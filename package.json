@@ -24,6 +24,7 @@
     "pruefen": "node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/paket-pruefen.ts",
     "frische": "node --experimental-strip-types scripts/frische-pruefen.ts",
     "search-console": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/search-console.ts",
+    "einrichten": "bash scripts/einrichten.sh",
     "inhalte": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/inhalte-pruefen.ts",
     "vertraege": "node --experimental-strip-types scripts/vertraege-pruefen.ts",
     "quellenprobe": "node --experimental-strip-types scripts/quellen-pruefen.ts",

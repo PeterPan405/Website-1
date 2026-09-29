@@ -377,6 +377,70 @@ jobs:
             Marge, Rückkauf gegen Dividende, Performanceindex gegen Kursindex,
             nachbörslicher Handel, Abzinsung, Korrelation gegen Gegenläufigkeit.
 
+            **Jeder Artikel bekommt seine Meldung in der Tagesausgabe** –
+            `top` und `further` zusammen also mindestens fünf. Die Ausgabe
+            ordnet, sie wählt nicht aus. Am 28. September 2026 standen sechs
+            Artikel und nur vier Meldungen da; gesprochen wurde, was in der
+            Ausgabe steht, und die Folge geriet halb so lang wie sonst.
+
+            **Alle `summary`-Absätze zusammen ergeben mehr als 110 Wörter.**
+            Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen
+            rund 110 Wörter festes Gerüst, das nicht mitwächst. Bleiben die
+            Meldungen darunter, besteht die Folge zur Hälfte aus
+            Kleingedrucktem – genau das hat der Betreiber beanstandet. Der
+            Mittelwert der letzten zwei Monate liegt bei 246 Wörtern; 40 bis
+            70 Wörter je Meldung treffen ihn.
+
+            Beide Zahlen prüft `scripts/nachrichten-erzeugen.ts` und weist
+            den Entwurf sonst zurück – der Lauf wäre rot, bevor irgendetwas
+            geschrieben ist.
+
+            ## Die Tagesausgabe ist zugleich der Podcast
+
+            `summary` wird **wörtlich gesprochen**. Die Folge am nächsten
+            Morgen besteht aus nichts anderem als diesen Absätzen, der Reihe
+            nach. Daraus folgen drei Dinge.
+
+            **1. `summary` und `whyItMatters` werden nicht vermischt.**
+            `summary` ist die **Nachricht**: was geschehen ist, mit Zahlen,
+            Namen und Uhrzeiten – keine Erklärung, keine Herleitung, keine
+            Lehre. `whyItMatters` ist die **Einordnung**, ein Satz darüber,
+            was der Leser damit anfängt; er steht auf der Website und kommt
+            **nicht** in die Folge.
+
+            Ein Satz wie „Steigende Renditen drücken Aktienbewertungen über
+            die Abzinsung künftiger Gewinne" gehört nach `whyItMatters`. In
+            `summary` gehört: „Die Rendite zehnjähriger US-Anleihen stieg
+            über 4,67 Prozent."
+
+            **2. Die Folge handelt von Wirtschaft und Politik.** Die
+            Rangfolge unter `top` ist die Rangfolge der Folge; oben steht,
+            was den Tag bestimmt: Notenbanken und Konjunktur (Zinsentscheide,
+            Inflations- und Arbeitsmarktdaten), Politik mit Marktwirkung
+            (Handelskonflikte, Zölle, Sanktionen, Haushalte, Wahlen,
+            militärische Eskalation) und der Markt im Ganzen (Indizes,
+            Renditen, Rohstoffe, Wechselkurse).
+
+            **Einzelne Aktien tragen die Folge nicht.** Ein einzelnes
+            Unternehmen kommt hinein, wenn es ein großer, allgemein bekannter
+            Name ist **und** die Meldung darüber hinaus erheblich ist – eine
+            Übernahme, ein Ausfall, eine Zahl, die einen Index bewegt.
+            Quartalszahlen eines Einzelwerts sind kein Aufmacher; zwei
+            Nachkommastellen beim Gewinn je Aktie gehören in den Artikel,
+            nicht in die gesprochene Meldung.
+
+            **3. Objektiv, ohne Position.** Berichtet wird, was geschehen ist
+            und wer was gesagt hat – mit Zuschreibung. Keine eigene
+            Bewertung, keine Parteinahme, keine Vermutung über Absichten,
+            keine urteilenden Adjektive. Das gilt besonders für politische
+            und militärische Ereignisse.
+
+            Richtig: „Russland griff Ziele in der Westukraine nahe der
+            polnischen Grenze an. Polen meldete eine Verletzung seines
+            Luftraums und berief sich auf Artikel 4 des Nato-Vertrags."
+            Falsch: „Russlands rücksichtsloser Angriff …" · „Der Markt hat
+            überreagiert." · „Anleger sollten jetzt …"
+
             ## Was heute ansteht, gehört hinein
 
             **Mindestens ein Artikel oder Absatz nennt die Termine des
@@ -427,6 +491,35 @@ jobs:
             - **Entspannt heißt auch: nicht dramatisieren.** Kein „Crash",
               kein „Kurssturz", wenn es 1,2 Prozent waren. Übertreibung ist
               die andere Art, den Leser nicht ernst zu nehmen.
+
+            ## Der Rhythmus trägt die Folge – und er wird gemessen
+
+            Am 27. September 2026 hat der Betreiber gemeldet, der Podcast
+            klinge langweilig und monoton. Nachgemessen an den zehn Folgen
+            davor, 125 gesprochene Sätze:
+
+                Wörter je Satz   Median 24 · p75 34 · max 58
+                Sätze <=  8 Wörter    4 %
+                Sätze >= 25 Wörter   49 %
+                mit Semikolon        42 von 125
+
+            „Kurze Hauptsätze" stand oben schon seit sieben Wochen. Ein
+            Adjektiv ohne Zahl bindet nicht, also hier die Zahlen:
+
+            - **Jeder Absatz beginnt mit einem Satz unter zwölf Wörtern.** Er
+              nennt den Vorgang. Die Zahlen kommen danach.
+            - **Kein Satz über 25 Wörter.** Gesprochen sind das elf Sekunden
+              in einem Atem; ein Hörer kann nicht zurückspringen.
+            - **Mindestens jeder vierte Satz hat höchstens acht Wörter.**
+              Kurze Sätze sind kein Stilmittel, sie sind die Luft dazwischen.
+            - **Kein Semikolon.** Es klebt zwei Hauptsätze zusammen, die
+              gesprochen zwei sein müssen. Mach zwei Sätze draus.
+
+            Das ist nicht Geschmack. Die Sprechstimme bemisst ihre **Pausen an
+            der Satzlänge** – kurzer Satz, längere Pause. Sind alle Sätze
+            gleich lang, sind alle Pausen gleich lang, und dann klingt es
+            monoton, egal wie gut die Stimme ist. Der Lauf misst das nach und
+            warnt (`satzrhythmus` in `lib/sprechfassung.ts`).
 
             Ohne Auswirkung auf die Sorgfalt: Der Ton lockert die Sprache,
             nie die Belege. Eine hübsche Formulierung, die eine Begründung
@@ -552,7 +645,57 @@ jobs:
               console.log("  im Abonnement enthalten) oder einen gültigen ANTHROPIC_API_KEY")
               console.log("  hinterlegen. Beides unter Settings > Secrets and variables > Actions.")
             }
+
+            /*
+              Ein 429 ist keine Absage, sondern ein Termin.
+
+              Am 27. September 2026 war das Wochenkontingent aufgebraucht, und
+              die Antwort nannte die Uhrzeit: „resets 1pm (UTC)". Das Kontingent
+              kam um 13:00 zurück – der Wecker hatte um 05:00 aufgehört, acht
+              Stunden davor, und danach hat niemand mehr gefragt.
+
+              Die Meldung wird deshalb in eine Datei geschrieben; der nächste
+              Schritt legt sie auf den Zweig, und `lib/tageswecker.ts` liest die
+              Uhrzeit daraus. Hier wird **nicht** geparst: Die Regel dafür ist
+              dort geprüft, und zwei Leser derselben Zeichenkette laufen
+              irgendwann auseinander.
+            */
+            if (status === 429 && ergebnis.is_error) {
+              require("fs").writeFileSync("kontingent.txt", String(ergebnis.result ?? "") + "\n")
+              console.log("")
+              console.log("  Das Kontingent ist aufgebraucht. Nennt die Meldung eine Uhrzeit,")
+              console.log("  weckt der Dauerlauf die Kette danach noch einmal.")
+            }
           ' "$protokoll"
+
+      # Die Meldung des Kontingents auf den wurzellosen Zweig – sonst weiß der
+      # Dauerlauf nichts davon. `if: always()`, weil der Schritt davor in genau
+      # diesem Fall rot geworden ist.
+      - name: Kontingent-Meldung auf den Zweig legen
+        if: always()
+        run: |
+          [ -s kontingent.txt ] || {
+            echo "Keine Kontingent-Meldung aus diesem Lauf – nichts zu schreiben."
+            exit 0
+          }
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          inhalt=$(mktemp)
+          # Der Tag davor, damit eine Meldung von gestern nicht heute weckt.
+          { date -u +%F; cat kontingent.txt; } > "$inhalt"
+
+          git checkout --orphan nachrichten-kontingent
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" kontingent.txt
+
+          git add kontingent.txt
+          git commit -m "Kontingent aufgebraucht am $(date -u +%F)"
+          git push --force origin nachrichten-kontingent
+
+          echo "::notice::$(tail -1 kontingent.txt)"
 
       # Erst hier wird der Entwurf abgelegt – und nur, wenn er die Probe
       # besteht. Ein Entwurf, den niemand geprüft hat, wäre gefährlicher als

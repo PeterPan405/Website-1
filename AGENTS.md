@@ -19,15 +19,13 @@ danebenging.
 
 ## Wie berichtet wird
 
-**Ausführlich arbeiten, kurz berichten.** Verlangt sind **zwei bis drei
-Zeilen**, so kurz wie möglich.
+**Ausführlich arbeiten, kurz berichten.** Im Chat **zwei bis drei Zeilen**, so
+kurz wie möglich: was getan ist, was gefunden wurde, was der Betreiber
+entscheiden muss. Kein Nacherzählen des Wegs; Tabellen und Aufzählungen nur,
+wenn sie kürzer sind als der Satz, den sie ersetzen.
 
-Das gilt für den Text im Chat – nicht für Commits, Pull Requests und
-Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts.
-
-Was in die drei Zeilen gehört: was getan ist, was gefunden wurde, was der
-Betreiber entscheiden muss. Tabellen und Aufzählungen nur, wenn sie kürzer
-sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
+Commits, Pull Requests und Kommentare bleiben ausführlich – sie sind das
+Gedächtnis des Projekts.
 
 ## Arbeitsweise
 
@@ -41,25 +39,26 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
   Pull Request, als Frage zur Sache.
 - **Wer einen Pull Request anlegt, beendet den Zug nicht, bevor er gemergt
   ist.** „Ich merge gleich" ist kein Zustand, den man hinterlässt. Auto-Merge
-  greift hier nicht (kein Pflicht-Check auf `main`).
+  greift nicht (kein Pflicht-Check auf `main`).
 - Löschen und Überschreiben von Bestand, Zugangsdaten und alles Unumkehrbare
   fällt **nicht** darunter – da wird weiter gefragt.
 - `workflow_dispatch` startet nur Workflows, die auf `main` liegen. Ein neuer
   Workflow auf einem Nebenzweig antwortet mit 404.
 - **Manchmal geht `workflow_dispatch` gar nicht** (403) – ein `push` auf den
-  Arbeitszweig schon. Dann hängt der Lauf an `push` mit **Pfadfilter** auf eine
-  Anstoßdatei; Vorbild: `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
-- **Nach einer Sitzung mit Änderungen: `npm run obsidian`** – legt die
-  Dokumentation in den Tresor, `--pruefen` sagt nur, was fehlt.
+  Arbeitszweig schon. Dann hängt der Lauf an `push` mit **Pfadfilter** auf
+  eine Anstoßdatei; Vorbild: `.github/sonde-anstoss.txt` in
+  `quellen-probe.yml`.
+- **Nach Änderungen: `npm run obsidian`** – Doku in den Tresor;
+  `--pruefen` sagt, was fehlt.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
 ## Diese Umgebung erreicht nur GitHub – **erst nachsehen, ob das stimmt**
 
 Die Sitzung auf dem Rechner des Betreibers hat vollen Zugang; dann gilt hier
-nichts. Ein `curl` auf eine beliebige Adresse klärt es in einer Sekunde.
-„Von hier nicht erreichbar" ist eine Aussage über die **Umgebung**, nicht über
-die Quelle – solche Notizen brauchen Datum und Ort.
+nichts. Ein `curl` klärt es in einer Sekunde. „Von hier nicht erreichbar"
+ist eine Aussage über die **Umgebung**, nicht die Quelle – solche Notizen
+brauchen Datum und Ort.
 
 Sonst scheitern `WebFetch` und `curl` an **jeder** Adresse außer GitHub und
 npm (`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
@@ -67,16 +66,15 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
 **Der Ausweg: ein Läufer holt es.** GitHub-Läufer haben vollen Netzzugang.
 
-- `.github/workflows/quellen-holen.yml` – nimmt Adressen, holt sie, schreibt
-  den Text ins Protokoll (`actions_list` + `get_job_logs`).
-- `.github/workflows/quellen-sammeln.yml` – legt `quellen.txt` auf den
-  wurzellosen Zweig `quellen-heute`; zu lesen mit
-  `git show origin/quellen-heute:quellen.txt`.
+- `quellen-holen.yml` – nimmt Adressen, holt sie, schreibt den Text ins
+  Protokoll (`actions_list` + `get_job_logs`).
+- `quellen-sammeln.yml` – legt `quellen.txt` auf den wurzellosen Zweig
+  `quellen-heute`, zu lesen mit `git show origin/quellen-heute:quellen.txt`.
 - **Ein Lauf, dessen Ergebnis eine Datei ist, legt sie auf einen wurzellosen
-  Zweig** – nicht als Artefakt. Das ist ein ZIP hinter einer Anmeldung und von
-  hier aus unerreichbar.
+  Zweig** – nicht als Artefakt: ein ZIP hinter einer Anmeldung.
 
-**Suchergebnisse sind kein Ersatz für eine gelesene Quelle.**
+**Suchergebnisse sind kein Ersatz für eine gelesene Quelle.** Vom Läufer kommen
+`dejure.org` und `justetf.com` durch, `gesetze-im-internet.de` nicht.
 
 → `ENTSCHEIDUNGEN.md`: „Diese Umgebung erreicht nur GitHub"
 
@@ -89,19 +87,22 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   `CURRENT_NEWS_COUNT` ist nur noch eine Anzeigegrenze.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
   Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren".
-- **Das Archiv ist zugeklappt**, jeder Tag, auch der jüngste – kein
-  `<details>` in `app/news/page.tsx` trägt `open`.
+- **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in
+  `app/news/page.tsx` trägt `open`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
-  `data/editions/index.ts` – Import **und** Array. Mindestens eine Top-Meldung,
-  drei insgesamt, `intro` 110–160 Zeichen.
+  `index.ts` – Import **und** Array. Mindestens eine Top-Meldung, drei
+  insgesamt, `intro` 110–160 Zeichen.
 - **Die Termine des Tages gehören hinein** – Konjunkturdaten, Notenbanken,
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
-  Nur was dort steht. Die Anweisung steht in `scripts/nachrichten-erzeugen.ts`
-  **und** `nachrichten-agent.yml`; wer eine ändert, ändert beide.
-- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen.
-- **Keine erfundenen Meldungen, keine erfundenen Zahlen, keine Quelle, die
-  niemand gesehen hat.** Steht in der Meldung kein Warum, schreibst du kein
-  Warum – und sagst das ausdrücklich.
+  Nur was dort steht. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
+  `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
+- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen,
+  **jeder mit seiner Meldung in der Ausgabe**. Alle `summary` zusammen über
+  110 Wörter – so viel wiegt das Gerüst an seinem längsten Tag.
+  `nachrichten-erzeugen.ts` weist beides zurück.
+- **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
+  hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst
+  das ausdrücklich.
 - Eine Adresse, die niemand abgerufen hat, gehört nicht in
   `data/nachrichtenquellen.ts`.
 
@@ -114,10 +115,15 @@ drei:
 **Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
 Notbehelf aus dem Kursbestand ist abgeschafft.
 
+**Der Riegel fragt „Hat die Ausgabe etwas kaputt gemacht?"**, nicht „ist
+irgendwo etwas rot?": Prüfkette vor und nach dem Schreiben, Befund für Befund
+verglichen. Vorbestehendes hält nicht auf, macht den Lauf danach rot. Nur der
+Bau blockiert.
+
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
 **und** Schlüssel; deshalb nur `https://`, deshalb warnt der Lauf. Wer Prompts
-kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
+kürzt, kürzt an Zahlen und Namen.
 
 **Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
 bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
@@ -127,28 +133,29 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 ändert, ändert sie dort mit.**
 
 → `ENTSCHEIDUNGEN.md`: „heißt der jüngste Erscheinungstag", „Der Agent
-schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt"
+schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt",
+„Hat die Ausgabe etwas kaputt gemacht"
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
-| Deutsche Zeit | UTC   | Was                                                        |
-| ------------- | ----- | ---------------------------------------------------------- |
-| 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?     |
-| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – `quellen-heute`, weckt den Agenten |
-| **02:33**     | 00:33 | `nachrichten-agent.yml` – der **Entwurf** entsteht         |
-| **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**                 |
-| 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                     |
-| **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen, senden → live ab ~03:20 |
-| **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**               |
-| **↳ ~03:20**  | 01:20 | `paket-bauen.yml` **stößt den Instagram-Beitrag an**       |
-| **~04:00**    | 02:00 | **die Folge ist online**                                   |
-| 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine          |
-| 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine     |
-| 04:52         | 02:52 | `instagram-beitrag.yml` als Cron – der Rückfall            |
-| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – alle 5 Minuten geplant   |
-| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist |
-| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau                     |
-| 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?                    |
+| Deutsche Zeit | UTC   | Was                                                |
+| ------------- | ----- | -------------------------------------------------- |
+| 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal offen?       |
+| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – weckt den Agenten          |
+| **02:33**     | 00:33 | `nachrichten-agent.yml` – der **Entwurf** entsteht |
+| **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**         |
+| 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten             |
+| **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen → ab ~03:20      |
+| **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**       |
+| **↳ ~03:20**  | 01:20 | `paket-bauen.yml` **→ Instagram-Beitrag**          |
+| **~04:00**    | 02:00 | **die Folge ist online**                           |
+| 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine  |
+| 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – 2 Rückfälle      |
+| 04:52         | 02:52 | `instagram-beitrag.yml` als Cron – der Rückfall    |
+| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – alle 5 Minuten   |
+| 05:11         | 03:11 | `ausgabe-waechter.yml` – Alarm **vor** der Frist   |
+| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau             |
+| 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?            |
 
 - **Die Kette hängt aneinander, nicht an der Uhr.** Jedes Glied stößt das
   nächste an, die Crons sind Rückfall. Wer hier etwas ändert, lässt die
@@ -158,9 +165,8 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - Der Podcast **muss nach** der Nachrichtenausgabe laufen – er vertont sie.
 - Der **Instagram-Beitrag muss nach der Übertragung** laufen: Meta holt die
   Bilder von der Website, und die Adresse antwortet auch mit gestern.
-- Die Folge erscheint **täglich**, sieben Tage die Woche.
-- `folgennummer()` in `lib/sprechfassung.ts` zählt zweiteilig, mit einer Naht
-  am 9. August 2026. Eine Folgennummer darf keine Lücke bekommen.
+- Die Folge erscheint **täglich**.
+- `folgennummer()` zählt zweiteilig, Naht am 9. August 2026 – keine Lücke.
 
 → `ENTSCHEIDUNGEN.md`: „Wann die Nachrichten entstehen – und wann der Podcast"
 
@@ -170,23 +176,23 @@ GitHub verwirft `schedule`-Läufe ohne Meldung, und zwar **regelmäßig**, nicht
 gelegentlich. Daraus folgt:
 
 - **Was zu einer bestimmten Zeit passiert sein muss, darf nicht an `schedule`
-  hängen.** Der Einstieg in den Tag hängt deshalb am Dauerlauf:
-  `kurse-dauerlauf.yml` fragt alle zehn Minuten, ob die Ausgabe auf `main`
-  steht, und weckt sonst `quellen-sammeln.yml` (`lib/tageswecker.ts`). Ein
-  laufender Prozess lässt sich nicht verwerfen.
-- **Krumme Minuten.** Wer einen neuen Workflow anlegt, sucht sich eine Minute,
-  die noch keiner hat – runde Minuten sind am dichtesten belegt.
+  hängen.** Der Einstieg in den Tag hängt am Dauerlauf: `kurse-dauerlauf.yml`
+  fragt alle zehn Minuten, ob die Ausgabe auf `main` steht, und weckt sonst
+  `quellen-sammeln.yml` (`lib/tageswecker.ts`). Ein laufender Prozess lässt
+  sich nicht verwerfen; ein `429` mit genannter Uhrzeit hält das Weckfenster
+  bis nach dem Zurücksetzen offen.
+- **Krumme Minuten** – ein neuer Workflow bekommt eine freie; runde sind am
+  dichtesten belegt.
 - **Ein Commit vom Bot löst nichts aus.** Ein Push mit dem `GITHUB_TOKEN`
-  startet keinen weiteren Workflow. Wer Daten nach `main` committet, stößt den
+  startet keinen weiteren Workflow. Wer nach `main` committet, stößt den
   Neubau selbst an (`gh workflow run`, dafür `permissions: actions: write`).
-- **Zu jedem Lauf, der etwas nach außen gibt, gehört die Frage: Steht das
-  Ergebnis des Tages schon?** Gefragt wird `origin/main` von **jetzt**
-  (`git fetch` + `git show`), nicht der Checkout – der ist eine Momentaufnahme
-  vom Auslösen.
-- **Ein Riegel ist so gut wie die Quelle, die er fragt** (siehe „Lehren"): Der
-  Upload fragt den YouTube-Kanal, nicht das Register.
-- **Ein Push, der nach der Veröffentlichung scheitert, ist rot.** Sonst laufen
-  zwei Wahrheiten auseinander. Wer eine Schleife um `git pull --rebase` legt,
+- **Zu jedem Lauf nach außen gehört die Frage: Steht das Ergebnis des Tages
+  schon?** Gefragt wird `origin/main` von **jetzt** (`git fetch` + `git show`),
+  nicht der Checkout – eine Momentaufnahme vom Auslösen.
+- Der Upload fragt den **YouTube-Kanal**, nicht das Register – siehe die
+  Lehren unten.
+- **Ein Push, der nach der Veröffentlichung scheitert, ist rot** – sonst
+  laufen zwei Wahrheiten auseinander. Eine Schleife um `git pull --rebase`
   räumt zwischen den Runden mit `git rebase --abort` auf.
 - `kurse.yml` koppelt seine Crons an Zeichenketten-Vergleiche (`NUR_ARTEN`,
   `NUR_PREIS`). Ein geänderter Cron ohne angepassten Vergleich schaltet
@@ -200,22 +206,21 @@ gelegentlich. Daraus folgt:
 Die Frage ist nicht „ist etwas schiefgegangen?", sondern **„sieht ein Besucher
 deshalb etwas anderes?"**
 
-- Misslungener Upload, `000` von außen, SSH-Aussetzer → **Warnung.** Der
+- Misslungener Upload, `000` von außen, SSH-Aussetzer → **Warnung**, der
   nächste Lauf trägt es nach.
 - Unbrauchbarer Schlüssel, halb getauschtes Verzeichnis, zerbrochener Bau,
   auseinanderlaufende Wahrheiten → **roter Lauf.**
-- Täglich laufende Workflows bleiben hart: Ein Fehlschlag heißt dort „heute
-  gibt es keine Folge", und dafür ist eine Mail richtig.
+- Täglich laufende Workflows bleiben hart: Ein Fehlschlag heißt „heute gibt es
+  keine Folge", und dafür ist eine Mail richtig.
 
 **Wer eine Meldung leiser stellt, baut die Gegenprobe dazu.** `kurse.yml`
 prüft jeden Lauf den Bauzeitpunkt aus `version.txt`: ab 10 Stunden Warnung und
 ein Bau, ab 18 Stunden rot.
 
 **`000` ist der Hoster, `404` sind wir.** Antwortet auf Port 443 niemand, ist
-der Host weg, und dagegen hilft kein Neubau → **Warnung**, und rot erst, wenn
-schon der vorige Lauf rot war. Antwortet der Server mit einem gelesenen Code
-außer 200, läuft er und findet nichts – das ist unser Webordner → **roter
-Lauf** und Neubau.
+der Host weg; kein Neubau hilft → **Warnung**, rot erst nach einem schon roten
+Vorlauf. Ein gelesener Code außer 200 heißt: Er läuft und findet nichts –
+unser Webordner → **roter Lauf** und Neubau.
 
 → `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat", „`000` ist der Hoster,
 `404` sind wir"
@@ -224,17 +229,16 @@ Lauf** und Neubau.
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel hier steht; `/zahlen` zeigt
 es. Der Zweck ist der stille Datenausfall: **Diese Zahlen fallen nicht von
-selbst.** Fällt eine, hat sich ein Bestand geleert – und alles andere bleibt
+selbst.** Fällt eine, hat sich ein Bestand geleert, und alles andere bleibt
 grün.
 
-- **Der Stand wird fortgeschrieben, sonst wird der Wächter stumpf.** Der
-  nächtliche Bau tut das (`paket-bauen.yml`, nur im `schedule`-Lauf).
-- **Ein Rückgang hält das Fortschreiben an**, sonst wird der Alarm in derselben
-  Nacht zum neuen Maßstab. Über einen gewollten Rückgang hinweg nur von Hand:
+- **Der Stand wird fortgeschrieben, sonst wird der Wächter stumpf** – im
+  nächtlichen Bau (nur im `schedule`-Lauf).
+- **Ein Rückgang hält das Fortschreiben an**, sonst wird der Alarm in
+  derselben Nacht zum Maßstab. Über einen gewollten hinweg nur von Hand:
   `ANWENDEN=1 TROTZDEM=1 npm run zahlen`.
-- **Ein `id` wird nie umbenannt** – der Abgleich hängt allein daran. Ein neuer
-  Schlüssel meldet einen Sturz auf null und hat danach keine Vorgeschichte
-  mehr.
+- **Ein `id` wird nie umbenannt** – der Abgleich hängt daran. Ein neuer
+  Schlüssel meldet einen Sturz auf null, ohne Vorgeschichte.
 
 → `ENTSCHEIDUNGEN.md`: „Ein Wächter, der seinen eigenen Alarm fortschreibt,
 ist keiner"
@@ -242,41 +246,39 @@ ist keiner"
 ## Quartalstermine
 
 - **Vier Quellen, und der veröffentlichte Tag schlägt den gerechneten.**
-  Sammelkalender (`ALPHAVANTAGE_API_KEY`), Tokioter Börse und
-  Nasdaq-Terminplan nennen veröffentlichte Tage; die SEC-Ableitung rechnet
-  hoch. **Drei Zustände, nicht zwei:** angekündigt (Unternehmen selbst, trägt
-  kein `geschaetzt`), veröffentlichter Plan (Nasdaq ohne Sitzungslage – auch
-  kein `geschaetzt`, aber „erwartet"), hochgerechnet (mit `geschaetzt`).
+  Sammelkalender (`ALPHAVANTAGE_API_KEY`), Tokio und Nasdaq nennen
+  veröffentlichte Tage; die SEC-Ableitung rechnet hoch. **Drei Zustände:**
+  angekündigt (Unternehmen selbst, ohne `geschaetzt`), veröffentlichter Plan
+  (Nasdaq ohne Sitzungslage – auch ohne `geschaetzt`, aber „erwartet"),
+  hochgerechnet (mit `geschaetzt`).
 - **Die Nasdaq läuft nach dem SEC-Durchgang und ersetzt nur das nächste
-  Quartal** (Fenster 45 Tage). Davor gestellt verlöre die Seite die drei
-  Quartale danach – die SEC liefert die Historie, die Nasdaq nur acht Wochen.
-- **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der Vorhersage,
-  aufgelöst über `TERMINQUELLEN` in `herkunftVon()`, und **vor** der Frage nach
-  `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin die SEC. Wer eine
-  vierte Quelle anschließt, trägt sie **dort** ein.
+  Quartal** (Fenster 45 Tage) – davor gestellt verlöre die Seite die drei
+  danach: Die SEC liefert die Historie, die Nasdaq acht Wochen.
+- **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der
+  Vorhersage, aufgelöst über `TERMINQUELLEN` in `herkunftVon()`, und **vor**
+  der Frage nach `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin
+  die SEC. Eine vierte Quelle wird **dort** eingetragen.
 - **Der Sammelkalender führt, was in New York notiert** – auch die
   Hinterlegungsscheine ausländischer Emittenten. Wer keinen Termin hat,
-  bekommt den Satz warum (`quartalsterminLuecke()`) – und der Satz hängt am
-  Handelsplatz: „fehlt in der Quelle" und „fehlt in ihrem Zeitfenster" sind
-  zweierlei.
+  bekommt den Satz warum (`quartalsterminLuecke()`), und der hängt am
+  Handelsplatz: „fehlt in der Quelle" ist nicht „fehlt in ihrem Zeitfenster".
 - **Tokio und die Nasdaq liefern den Tag, nie die Minute.** Keine der beiden
   Listen hat eine Spalte dafür; eine gerechnete Minute wäre erfunden.
-- **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
-  Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und gelesen wird die
+- **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt
+  ein Datum (`kessan06_0807.xlsx`), es sind zwei, und gelesen wird die
   **japanische** Übersichtsseite – die englische trägt null Verweise.
 - **Der Weg über Twelve Data ist tarifgesperrt** und hat nie etwas geliefert
-  (`TarifSperre`). Nicht „reparieren": Es fehlt ein Tarif, nicht Code.
-- **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft wird
-  der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
-  Bestand, und der Lauf bleibt grün.
+  (`TarifSperre`). Nicht „reparieren": Es fehlt ein Tarif, kein Code.
+- **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft
+  wird der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste
+  im Bestand, bei grünem Lauf.
 - **Die Uhrzeit ist die New Yorker Wanduhr**, in der Momentaufnahme; die
   deutsche entsteht erst in der Anzeige aus dem erwarteten Tag. Sechs Stunden
-  zu addieren ist an drei Wochen im Jahr falsch – und genau in die fällt die
-  Berichtssaison des ersten Quartals.
-- **Eine Zeit entsteht nur bei zwei Jahren in derselben Sitzungslage**, und
+  zu addieren ist an drei Wochen im Jahr falsch – in der Q1-Berichtssaison.
+- **Eine Zeit entsteht nur bei zwei Jahren in derselben Sitzungslage**;
   „während des US-Handels" wird nie angezeigt: Dort misst der Zeitstempel das
   nachgereichte Formular, nicht die Meldung.
-- **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, Grenze eingeschlossen.
+- **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, Grenze inklusive.
   Der Abschnitt auf der Aktienseite bleibt **offen**; das Zeichen im Kopf
   springt hinein, und ein Sprungziel im zugeklappten `<details>` führt ins
   Nichts.
@@ -295,25 +297,23 @@ Zusage: höchstens sechs Minuten.
 
 - **Es gibt keine Kurse zweiter Klasse.** Wer eine Zahl zeigt, die sich
   stündlich ändert, liest sie aus `lib/kurse-live-speicher.ts`, nicht aus
-  eigenem `fetch`. Drei Stellen: `components/markets/Kachelzahlen.tsx`,
-  `Zeilenzahlen.tsx`, `KursLive.tsx`.
-- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt: alle 46 Kacheln
-  der Übersicht.
-- `.github/workflows/kurse-dauerlauf.yml` bringt seine Uhr selbst mit: ein
-  Job, fünfeinhalb Stunden, alle zwei Minuten der volle Bestand. **Zwei
-  Bremsen dürfen nicht wegfallen:** kein Nachfolger unter zehn Minuten
-  Laufzeit, und der Wächter in `kurse.yml` wartet nach einem Fehlschlag eine
-  Stunde. An ihm hängt auch der Wecker der Tagesausgabe.
-- **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`).
-  Kommt der neue nicht hoch – der SSH-Port flattert –, stehen die Kurse eine
-  Stunde statt sechs Minuten. Nur anstoßen, wenn keiner läuft oder der
-  laufende kaputt ist.
-- Wer `ABSTAND_MS` anfasst, fasst den Dauerbetrieb bei Yahoo mit an.
-- **Eine Ausnahme gehört an die Bedingung, die sie meint** – nicht an die
-  nächstgelegene. Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
+  eigenem `fetch`. Drei Stellen: `Kachelzahlen.tsx`, `Zeilenzahlen.tsx`,
+  `KursLive.tsx`.
+- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt: alle 46 Kacheln.
+- `kurse-dauerlauf.yml` bringt seine Uhr selbst mit: ein Job, fünfeinhalb
+  Stunden, alle zwei Minuten der volle Bestand. **Zwei Bremsen dürfen nicht
+  wegfallen:** kein Nachfolger unter zehn Minuten Laufzeit, und der Wächter in
+  `kurse.yml` wartet nach einem Fehlschlag eine Stunde. An ihm hängt auch der
+  Wecker der Tagesausgabe.
+- **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`);
+  kommt der neue nicht hoch, stehen die Kurse eine Stunde statt sechs
+  Minuten. Nur bei keinem oder einem kaputten Lauf.
+- Wer `ABSTAND_MS` anfasst, fasst Yahoos Dauerbetrieb mit an.
+- **Eine Ausnahme gehört an die Bedingung, die sie meint**, nicht an die
+  nächstgelegene: Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
   (`NUR_LEITWERTE`), ihr Referenzkurs überlebt `ohneHeute()`.
 - Rohstoffe kommen bei Yahoo verzögert. Die Stand-Zeile nennt den Zeitstempel
-  der **Quelle**, nicht den des Abrufs.
+  der **Quelle**, nicht des Abrufs.
 
 → `ENTSCHEIDUNGEN.md`: „Ein Kurs ist so alt wie die Stelle, die ihn anzeigt"
 
@@ -321,46 +321,53 @@ Zusage: höchstens sechs Minuten.
 
 - **Die Pause hängt an der Satzlänge**, nicht am Satzzeichen. Absatzende
   bleibt bei 0,95 s (danach sucht der Kapitelschritt), der Mittelwert der
-  Satzpausen bei rund einer halben Sekunde. Beides prüft
-  `python scripts/sprechstimme.py --selbsttest`.
+  Satzpausen bei rund einer halben Sekunde. Prüft der Selbsttest.
 - **Der Selbsttest läuft vor dem Sprechen** – `podcast-erzeugen.yml`,
   `lese-stimme.yml`, `aufnahmen-nachpruefen.yml`.
-- **Geprüft wird die fertige Aufnahme, nicht das einzelne Stück.**
-  `sprechstimme.nachbessern()` läuft nach dem Zusammenfügen und dämpft, statt
-  nur zu melden.
+- **Geprüft wird die fertige Aufnahme, nicht das Stück.** `nachbessern()`
+  läuft nach dem Zusammenfügen und dämpft, statt zu melden.
 - `sprechstimme.py` und `stimme-erzeugen.py` stehen doppelt da: **Wer an
   Pausen, Stücklänge oder Frist etwas ändert, ändert beide Stellen.**
-- **Was englisch ist, wird englisch gesprochen** – `ENGLISCHE_NAMEN` in
-  `lib/sprechfassung.ts`, zuerst angewandt, zusammengesetzte Ausdrücke vor
-  ihren Bestandteilen. Nicht hinein gehört, was im Deutschen deutsch
-  gesprochen wird („ETF", „KI", „Broker", „Bond", „Trend").
-- **Drei Fallen der deutschen Rechtschreibung, und die Tabelle hat sie schon
-  neunmal übersehen:** „st"/„sp" am Wortanfang sind /scht/ und /schp/; „w" ist
-  **immer** /v/, für englisches /w/ steht **„u"**; „v" am Wortende ist /f/,
-  dort steht ebenfalls „w". `tests/sprechfassung-aussprache.test.ts` prüft die
-  letzten beiden maschinell – steht im englischen Wort ein „w" vor einem
-  Vokal, muss in der Umschrift ein „u" stehen, und ein „v" verlangt ein „w".
-- **Kleingedrucktes steht hinter der Begrüßung**, als zweiter Absatz, vor der
-  ersten Meldung: erst der KI-Hinweis, dann der Rechtshinweis – eine Stelle,
-  nicht zwei. Nicht davor (drei Sekunden halten den Hörer), nicht am Ende.
-  Beides Nutzerwunsch.
-- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Erkannt wird
-  deshalb auch, dass die Energie in **einer** Frequenz sitzt
-  (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
-- **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`. Wer eine weitere
-  Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe.
+- **Was englisch ist, wird englisch gesprochen** – `ENGLISCHE_NAMEN`, zuerst
+  angewandt, zusammengesetzte Ausdrücke vor ihren Bestandteilen. Nicht hinein
+  gehört, was deutsch klingt („ETF", „KI", „Broker").
+- **Eine Umschrift hat so viele Wörter wie ihr Muster** – Buchstaben mit
+  Bindestrich, nie mit Leerzeichen. „Uh Ess" machte aus `US-Notenbank` ein
+  „Uh Ess-Notenbank". „US" ist englisch.
+- **Drei Fallen der deutschen Rechtschreibung:** „st"/„sp" am Wortanfang sind
+  /scht/ und /schp/; „w" ist **immer** /v/, für englisches /w/ – auch das in
+  „qu" – steht **„u"**; „v" am Wortende ist /f/, dort steht ebenfalls „w".
+  Gilt auch für Buchstabennamen: V = „Fau", W = „Weh".
+  `tests/sprechfassung-aussprache.test.ts` prüft **jeden** Eintrag.
+- **In der Folge wird nichts erklärt** – nur Nachrichten, Wirtschaft und
+  Politik, objektiv. Einzeltitel nur, wenn groß **und** erheblich.
+  `whyItMatters` bleibt auf der Website; Grenze: `positionierungen()`.
+- **Der Rhythmus wird gemessen:** Absatzanfang unter 12 Wörtern, kein Satz
+  über 25, jeder vierte höchstens 8, kein Semikolon – in **beiden** Prompts.
+  `satzrhythmus()` misst, der Lauf warnt. An der Satzlänge hängt die Pause;
+  gleich lange Sätze klingen monoton.
+- **Kürzel spricht die Stimme als Silbe** – was nicht in
+  `KUERZEL_IN_ORDNUNG` steht, wird gemeldet.
+- **Kleingedrucktes steht hinter der Begrüßung**, vor der ersten Meldung:
+  erst KI-Hinweis, dann Rechtshinweis – eine Stelle, nicht zwei. Nicht davor,
+  nicht am Ende. Nutzerwunsch.
+- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen** – und manchmal
+  keins von beidem. Drei Merkmale: eine Frequenz (`TONANTEIL_GRENZE`), zu
+  viele Nulldurchgänge (`ZISCHGRENZE`), zu wenige (`RUMPELGRENZE` mit
+  `RUMPELN_TIEF`). Wer eins ändert, misst an echten Aufnahmen nach.
+- **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()` – jede
+  Sprechstelle führt durch dieselbe.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
   einmal, erkannt an ihrer Kennung. Eine zweite Fassung braucht eine erhöhte
-  `fassung` – sparsam, sie erzeugt bei jedem Hörer eine „neue Folge".
+  `fassung` – sparsam, das ist überall eine „neue Folge".
 - Der Feed der **Sendung** liegt auf dem Webspace, nicht in `main`;
-  `podcast-schaufenster.yml` bringt Änderungen daran nach draußen.
-- **Lernseiten:** Die Abschnitte kommen aus `vorleseAbschnitte()`, die
-  Grafiktexte aus `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst
-  fehlen 70 gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen.
-  Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme
-  spricht das Gerät – kein Fehler.
-- `lese-stimme.yml` läuft nach Zeitplan (23:19 UTC); 12 von 172 Seiten sind
-  gesprochen.
+  `podcast-schaufenster.yml` bringt Änderungen nach draußen.
+- **Lernseiten:** Abschnitte aus `vorleseAbschnitte()`, Grafiktexte aus
+  `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst fehlen 70
+  gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen. Reihenfolge
+  Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme spricht das
+  Gerät.
+- `lese-stimme.yml` läuft 23:19 UTC; 12 von 172 Seiten sind gesprochen.
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
@@ -374,14 +381,14 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   nicht mehr vor.
 - **Die Leistenfarbe entsteht per `document.write` im Startskript.** Safari
   liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos
-  (viermal nachgemessen). `document.write` schiebt den Text in den Token-Strom
-  – der Parser baut das Element selbst, wie bei Quelltext.
+  (viermal nachgemessen). `document.write` schiebt den Text in den
+  Token-Strom – der Parser baut das Element selbst.
 - **Drei Stücke, die zusammengehören:** das `document.write`, seine Stellung
   im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
   zieht Next ihn nach vorn, und die erste Angabe gewinnt). Jedes einzeln
   entfernt ergibt wieder einen falschen Balken.
-- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst
-  – die Website navigiert clientseitig, der Balken bliebe die Sitzung falsch.
+- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst;
+  die Website navigiert clientseitig, der Balken bliebe die Sitzung falsch.
 - `tests/farbschema-start.test.ts` fängt `document.write` auf und lässt
   `head`, `createElement`, `querySelectorAll` **werfen**.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
@@ -415,13 +422,15 @@ wiederholen. Die Fälle dazu stehen in `ENTSCHEIDUNGEN.md`.
 - **Ein Mittelwert kann nichts finden, was er verdünnt.**
 - **Ein Riegel ist so gut wie die Quelle, die er fragt.** Wer fragt, ob etwas
   passiert ist, fragt die Gegenwart – nicht den eigenen Arbeitsordner.
-- **Eine Grenze, die den guten Tag gerade eben trägt, ist eine Wette.**
+- **Eine Grenze, die den guten Tag gerade eben trägt, ist eine Wette.** Sie
+  wird am echten Material gewählt, mit dem gemeldeten Fall als Prüfstein und
+  der Liste dessen, was sie sonst fände.
 - **Wer eine Absicherung entfernt, die etwas anderes verdeckt hat, deckt den
-  verdeckten Fehler auf – und zwar erst beim Nutzer.** Beim Streichen einer
-  redundanten Stelle gehört geprüft, ob die verbliebene je gearbeitet hat.
+  verdeckten Fehler auf – erst beim Nutzer.** Beim Streichen einer Doppelung
+  gehört geprüft, ob die verbliebene je gearbeitet hat.
 - **Wo die einzige prüfbare Umgebung nicht die ist, in der es kaputtgeht, ist
-  „müsste jetzt gehen" keine Aussage.** Dann gehört der Weg gewählt, der ohne
-  die ungeprüfte Annahme auskommt.
+  „müsste jetzt gehen" keine Aussage.** Dann gilt der Weg, der ohne die
+  ungeprüfte Annahme auskommt.
 - **Die richtige Frage ist nicht „komme ich an die Seite?", sondern „wer kommt
   an sie, und wie bekomme ich sein Ergebnis?"**
 - **Eine Doppelung mit guter Begründung altert trotzdem** – die Begründung

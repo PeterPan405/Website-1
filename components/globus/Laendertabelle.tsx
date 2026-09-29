@@ -23,7 +23,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
 
   return (
     <div className="rounded-card border-border relative mt-6 overflow-x-auto border">
-      <table className="w-full min-w-[52rem] border-collapse text-sm">
+      <table className="w-full min-w-[68rem] border-collapse text-sm">
         <caption className="border-border bg-surface-muted text-fg-muted border-b px-4 py-2.5 text-left text-xs font-medium">
           Alle {laender.length} Länder der Karte. Leere Zellen bedeuten „keine Angabe
           hinterlegt“ – nicht null.
@@ -38,8 +38,12 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               'Schulden (% BIP)',
               'Gehalt (US-$/Jahr)',
               'Medianvermögen (US-$)',
+              'Einkommen je Kopf (US-$)',
+              'Kaufkraft je Kopf (US-$)',
               'Arbeitslos (%)',
               'Inflation (%)',
+              'Wohneigentum (%)',
+              'Geburtenrate (Kinder je Frau)',
               'Kurse',
             ].map((spalte, index) => (
               <th
@@ -84,6 +88,18 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                     land.medianvermoegen ? formatNumber(land.medianvermoegen.wert) : null
                   }
                 />
+                {/*
+                  Diese beiden Spalten fehlten bis zum 16. September 2026 –
+                  dieselbe Lücke wie in der Landtafel und in der Einfärbung
+                  der Karte. Die Tabelle ist die barrierefreie Fassung der
+                  Karte; was dort auswählbar ist, gehört hierher.
+                */}
+                <Zelle
+                  wert={land.bneProKopf ? formatNumber(land.bneProKopf.wert) : null}
+                />
+                <Zelle
+                  wert={land.bipProKopfKKP ? formatNumber(land.bipProKopfKKP.wert) : null}
+                />
                 <Zelle
                   wert={
                     land.arbeitslosenquote
@@ -101,6 +117,28 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                 <Zelle
                   wert={
                     land.inflation ? formatNumberSigned(land.inflation.wert, 1) : null
+                  }
+                />
+                {/*
+                  Ohne Vorzeichen und mit einer Nachkommastelle wie die
+                  übrigen Quoten. Negative Werte gibt es hier nicht: Eine
+                  Eigentumsquote liegt zwischen 0 und 100.
+                */}
+                <Zelle
+                  wert={
+                    land.wohneigentumsquote
+                      ? formatNumber(land.wohneigentumsquote.wert, 1)
+                      : null
+                  }
+                />
+                {/*
+                  Zwei Nachkommastellen, anders als die Quoten daneben. Die
+                  Hälfte aller Länder liegt zwischen 1,2 und 2,1 – auf eine
+                  Stelle gerundet stünde in der halben Spalte dasselbe.
+                */}
+                <Zelle
+                  wert={
+                    land.geburtenziffer ? formatNumber(land.geburtenziffer.wert, 2) : null
                   }
                 />
                 <Zelle wert={kurse > 0 ? String(kurse) : null} />

@@ -20,6 +20,10 @@ import {
   FENSTER_BIS,
   FENSTER_VON,
   HOECHSTENS_VERSUCHE,
+  KONTINGENT_FENSTER_MIN,
+  kontingentZurueck,
+  NACH_KONTINGENT_MIN,
+  nachKontingent,
   type Alarmlage,
   sollAlarmieren,
   sollWecken,
@@ -245,6 +249,125 @@ check(
     sollAlarmieren({ ...alarmlage, minuteUtc: ALARM_MINUTE - 60 }).alarmieren,
   ],
   [true, false]
+)
+
+/* ------------------------------------------- Das Kontingent und seine Uhr */
+
+/*
+  Der Fall vom 27. September 2026: Das Wochenkontingent war aufgebraucht, der
+  Agent nannte die Uhrzeit, zu der es zurückkommt – und der Wecker hatte acht
+  Stunden davor aufgehört. Dieser Abschnitt ist dagegen gebaut.
+
+  Zuerst das Lesen der Uhrzeit, wörtlich an der Meldung von damals.
+*/
+check(
+  'die echte Meldung ergibt 13:00 UTC',
+  kontingentZurueck("You've hit your weekly limit · resets 1pm (UTC)"),
+  13 * 60
+)
+check('mit Minuten dahinter', kontingentZurueck('resets 1:30pm (UTC)'), 13 * 60 + 30)
+check('Mitternacht ist 12am, nicht 12 Uhr', kontingentZurueck('resets 12am (UTC)'), 0)
+check('Mittag ist 12pm', kontingentZurueck('resets 12pm (UTC)'), 12 * 60)
+check('auch die 24-Stunden-Form', kontingentZurueck('resets 13:00 (UTC)'), 13 * 60)
+
+/*
+  Und die Gegenproben. **Ohne `UTC` wird nichts gelesen** – eine Stunde ohne
+  Zeitzone umzurechnen wäre geraten, und ein geratener Termin weckt zur
+  falschen Zeit. Alles Unlesbare ergibt `null`, und dann gilt allein das
+  Fenster: Der Wecker wird dadurch nie *früher* still, nur nicht später laut.
+*/
+for (const [name, text] of [
+  ['ohne UTC', 'resets 1pm'],
+  ['ohne Uhrzeit', "You've hit your weekly limit"],
+  ['nur Rauschen', 'rate limited (UTC)'],
+  ['unmögliche Minute', 'resets 13:99 (UTC)'],
+  ['unmögliche Stunde am Halbtag', 'resets 19pm (UTC)'],
+  ['leer', ''],
+  ['fehlt', null],
+] as const) {
+  check(`${name} ergibt keinen Termin`, kontingentZurueck(text), null)
+}
+
+/* Das Nachfenster: erst danach, und nicht endlos. */
+const zurueck = 13 * 60
+check('genau zur Rückkehr noch nicht', nachKontingent(zurueck, zurueck), false)
+check(
+  'nach der Toleranz schon',
+  nachKontingent(zurueck + NACH_KONTINGENT_MIN, zurueck),
+  true
+)
+check(
+  'am Ende des Nachfensters nicht mehr',
+  nachKontingent(zurueck + NACH_KONTINGENT_MIN + KONTINGENT_FENSTER_MIN, zurueck),
+  false
+)
+check('ohne Termin nie', nachKontingent(zurueck + 60, null), false)
+
+/*
+  Und jetzt der ganze Fall, so wie er lief: 12:02 UTC, weit außerhalb des
+  Fensters, Ausgabe fehlt. Vorher gab das „außerhalb des Fensters" und damit
+  keine Nachrichten. Mit dem Termin wartet der Wecker – und weckt danach.
+*/
+const spaet = { ...notlage, minuteUtc: 12 * 60 + 2 }
+check('um 12:02 ohne Termin: kein Weckruf', sollWecken(spaet).wecken, false)
+check(
+  'um 12:02 mit Termin 13:00: noch kein Weckruf',
+  sollWecken({ ...spaet, kontingentZurueckMinute: zurueck }).wecken,
+  false
+)
+check(
+  'um 13:05 mit Termin 13:00: Weckruf',
+  sollWecken({
+    ...notlage,
+    minuteUtc: zurueck + NACH_KONTINGENT_MIN,
+    kontingentZurueckMinute: zurueck,
+  }).wecken,
+  true
+)
+check(
+  'und die Begründung nennt das Kontingent',
+  sollWecken({
+    ...notlage,
+    minuteUtc: zurueck + NACH_KONTINGENT_MIN,
+    kontingentZurueckMinute: zurueck,
+  }).grund.includes('Kontingent'),
+  true
+)
+
+/*
+  Die Bremsen gelten im Nachfenster genauso. Sonst wäre der Termin ein Weg,
+  `HOECHSTENS_VERSUCHE` und die Abkühlung zu umgehen – und drei nutzlose
+  Anläufe verbrauchen genau die drei, die es gibt.
+*/
+const imNachfenster = {
+  ...notlage,
+  minuteUtc: zurueck + NACH_KONTINGENT_MIN,
+  kontingentZurueckMinute: zurueck,
+}
+check(
+  'eine stehende Ausgabe weckt auch im Nachfenster nicht',
+  sollWecken({ ...imNachfenster, ausgabeSteht: true }).wecken,
+  false
+)
+check(
+  'die Versuchsgrenze gilt auch im Nachfenster',
+  sollWecken({ ...imNachfenster, versuche: HOECHSTENS_VERSUCHE }).wecken,
+  false
+)
+check(
+  'die Abkühlung gilt auch im Nachfenster',
+  sollWecken({ ...imNachfenster, sekundenSeitWeckruf: ABKUEHLUNG_S - 1 }).wecken,
+  false
+)
+
+/*
+  Und das Fenster selbst bleibt, wie es war: Ein Termin darf es nicht
+  verengen. Am Morgen wird geweckt, ob ein Kontingent gemeldet war oder nicht.
+*/
+check(
+  'im Morgenfenster weckt es auch mit Termin',
+  sollWecken({ ...notlage, kontingentZurueckMinute: zurueck }).wecken,
+  true
 )
 
 console.log(

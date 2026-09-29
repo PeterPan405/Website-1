@@ -29,6 +29,7 @@ steht.
 
 from __future__ import annotations
 
+import math
 import os
 import re
 import signal
@@ -386,6 +387,163 @@ def _tonanteil(stuecke):
     return np.sum(spektrum * umgebung, axis=1) / np.maximum(gesamt, 1e-20)
 
 
+#: Obergrenze des „tiefen Bandes" in Hertz.
+#:
+#: Die menschliche Sprechstimme hat ihre Grundfrequenz zwischen 85 Hz (tiefe
+#: Männerstimme) und 255 Hz (hohe Frauenstimme), trägt ihre Verständlichkeit
+#: aber in den Formanten darüber – zwischen 300 und 3.500 Hz.
+#:
+#: **Daraus folgt nicht, dass hier wenig Energie sitzt.** Beim ersten Anlauf
+#: stand an dieser Stelle „nur ein Teil der Energie, nie der grösste". Am
+#: 20. September 2026 nachgemessen, über die 1238 lauten Fenster der Folge vom
+#: 19. September: Median 0,52, 90. Perzentil 0,86. Die Grundfrequenz dieser
+#: Stimme liegt unter 200 Hz und trägt mehr Energie als alle Formanten
+#: zusammen – der Tiefenanteil **allein** trennt deshalb nichts.
+#:
+#: Was trennt, ist das Paar mit der Nulldurchgangsrate: siehe `RUMPELGRENZE`.
+TIEFBAND_HZ = 200
+
+#: Ab wie **wenigen** Nulldurchgängen je Abtastwert ein Fenster rumpelt.
+#:
+#: Das Gegenstück zu `ZISCHGRENZE`, und bis zum 20. September 2026 fehlte es.
+#: Die Prüfung kannte nur „zu viele Nulldurchgänge"; nach unten war sie offen.
+#:
+#: 0,015 sind bei 24 kHz rund 180 Durchgänge je Sekunde. Gesprochene Sprache
+#: trägt ihre Verständlichkeit in den Formanten zwischen 300 und 3.500 Hz und
+#: erzeugt dort zwangsläufig Durchgänge; über die 1238 lauten Fenster der
+#: Folge vom 19. September liegt schon das 10. Perzentil bei 0,023. Ein
+#: Poltern hat keine Formanten und kommt auf 0,006.
+RUMPELGRENZE = 0.015
+
+#: Wie tief eine rumpelnde Stelle im Mittel liegen muss, damit sie zählt.
+#:
+#: Beurteilt wird der **Median über einen Abschnitt**, nicht jedes Fenster für
+#: sich – warum, steht bei `auffaellige_stellen` unter „Warum das Urteil am
+#: Abschnitt hängt" und bei `RUMPELN_FENSTER`.
+#:
+#: ## Wie das Paar gewählt wurde
+#:
+#: Am 20. September 2026 an der Folge vom 19. durchgerechnet, mit der
+#: gemeldeten Stelle als Prüfstein – nicht geschätzt:
+#:
+#:     Nulldurchg. bis   Tiefe ab   Stellen   die gemeldete dabei
+#:               0,015       0,80         2   ja
+#:               0,015       0,90         2   ja
+#:               0,020       0,80         7   ja
+#:               0,020       0,90         3   ja
+#:               0,025       0,90         3   ja
+#:               0,030       0,90         4   ja
+#:
+#: Bei 0,015/0,90 bleiben in 232 Sekunden genau zwei Stellen übrig, und beide
+#: tragen dieselbe Handschrift:
+#:
+#:     2:09  0,50 s  Tiefe 0,998  Nulldurchg. 0,006
+#:     2:55  0,62 s  Tiefe 0,953  Nulldurchg. 0,013   ← die gemeldete
+#:
+#: Dass 2:09 mitkommt, ohne gemeldet worden zu sein, ist kein Fehlalarm: 99,8
+#: Prozent der Energie unter 200 Hz über eine halbe Sekunde kann keine Sprache
+#: sein – dann bliebe nichts, woran ein Laut zu erkennen wäre.
+#:
+#: Die fünf, die bei 0,020/0,80 dazukommen, liegen bei einer Tiefe von 0,81
+#: bis 0,86 und 0,016 bis 0,023 Nulldurchgängen: eine andere Sorte, und zwar
+#: gesprochene. Das ist der Grund für beide Grenzen an dieser Stelle und nicht
+#: eine weiter unten – `nachbessern()` meldet nicht nur, es **dämpft**. Fünf
+#: Fehlalarme je Folge heissen fünf gedämpfte Stellen gesprochener Sprache.
+RUMPELN_TIEF = 0.90
+
+#: Über wie viele Fenster am Stück beide Mediane gebildet werden.
+#:
+#: ## Warum ein fester Abschnitt und nicht der ganze Lauf
+#:
+#: Der Vorgänger bildete erst einen Lauf aus allen stillen Fenstern und
+#: beurteilte ihn dann als Ganzes. Am Probeton fiel auf, warum das nicht
+#: trägt: `_probeton` liegt durchgehend bei 0,009 Nulldurchgängen, der Lauf
+#: wuchs über das eingebaute Poltern hinaus auf Sekunden an, und sein Median
+#: sank auf den Wert des Probetons. **Ein Mittelwert kann nichts finden, was
+#: er verdünnt** – derselbe Fehler wie beim Prüfen ganzer Stücke, nur eine
+#: Ebene tiefer.
+#:
+#: Ein fester Abschnitt kann nicht wachsen und deshalb auch nichts verdünnen.
+#: Drei Fenster sind das kleinste, das `STOERUNG_MINDESTENS_S` erreicht: Sie
+#: spannen 0,5 Sekunden. Der Median aus dreien überhört zugleich genau einen
+#: Ausreisser – und einer ist da, bei 175,62 fällt der Tiefenanteil auf 0,019.
+RUMPELN_FENSTER = max(
+    2, math.ceil((STOERUNG_MINDESTENS_S - FENSTER_S) / VORSCHUB_S) + 1
+)
+
+
+def merkmale(audio, rate: int):
+    """Misst jedes Fenster – ohne zu urteilen.
+
+    Gibt die Messwerte je Fenster zurück, aus denen `auffaellige_stellen`
+    sein Urteil bildet. `None`, wenn der Ton kürzer ist als ein Fenster.
+
+    ## Warum das getrennt ist
+
+    Am 19. September 2026 meldete der Betreiber ein Störgeräusch bei 2:56 –
+    „irgendwas zwischen Stuhl verschieben und flatulieren". Die Prüfung hatte
+    nichts gefunden, und es gab keine Möglichkeit nachzusehen, **was** sie an
+    dieser Stelle gemessen hatte: Die Zahlen entstanden in einer Funktion, die
+    nur ihr Urteil zurückgab.
+
+    Eine Erkennung, die man nur fragen kann „findest du etwas?", lässt sich
+    nicht verbessern. Man braucht die Messwerte an der Stelle, von der ein
+    Mensch sagt, dass dort etwas ist – sonst bleibt nur Raten an Schwellen.
+
+    `scripts/aufnahmen-nachpruefen.py --stelle` gibt sie aus.
+    """
+    import numpy as np
+
+    ton = np.asarray(audio, dtype=np.float32).reshape(-1)
+    fenster = max(1, int(FENSTER_S * rate))
+    vorschub = max(1, int(VORSCHUB_S * rate))
+    if len(ton) < fenster:
+        return None
+
+    anfaenge = range(0, len(ton) - fenster + 1, vorschub)
+    stuecke = np.stack([ton[i : i + fenster] for i in anfaenge])
+
+    effektiv = np.sqrt(np.mean(stuecke**2, axis=1))
+    # Nulldurchgänge je Abtastwert.
+    rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
+    anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
+
+    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
+    laut = effektiv >= max(schwelle, 1e-4)
+
+    return {
+        "fenster": fenster,
+        "vorschub": vorschub,
+        "zeit": np.array([i / rate for i in anfaenge], dtype=np.float32),
+        "effektiv": effektiv,
+        "rauheit": rauheit,
+        "anschlag": anschlag,
+        "tonanteil": _tonanteil(stuecke),
+        "tiefenanteil": _tiefenanteil(stuecke, rate),
+        "laut": laut,
+        "lautgrenze": max(schwelle, 1e-4),
+    }
+
+
+def _tiefenanteil(stuecke, rate: int):
+    """Je Fenster: welcher Anteil der Energie unter `TIEFBAND_HZ` sitzt.
+
+    Gemessen, noch nicht beurteilt. Ob und ab wann ein hoher Wert eine
+    Störung anzeigt, entscheidet sich an echtem Material und nicht hier.
+    """
+    import numpy as np
+
+    laenge = min(FFT_LAENGE, stuecke.shape[1])
+    ausschnitt = stuecke[:, :laenge] * np.hanning(laenge).astype(np.float32)
+    spektrum = np.abs(np.fft.rfft(ausschnitt, axis=1)) ** 2
+
+    frequenzen = np.fft.rfftfreq(laenge, 1 / rate)
+    tief = frequenzen < TIEFBAND_HZ
+
+    gesamt = np.sum(spektrum, axis=1)
+    return np.sum(spektrum[:, tief], axis=1) / np.maximum(gesamt, 1e-20)
+
+
 def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     """Findet Stellen im Ton, die nicht wie gesprochene Sprache aussehen.
 
@@ -460,30 +618,55 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     beim sauberen Probesignal achtzehnmal an – warum, steht bei
     `TONANTEIL_GRENZE`.
 
+    ## Die zweite Lücke: nach unten war die Prüfung offen
+
+    Am 19. September 2026 meldete der Betreiber bei 2:56 ein Geräusch
+    „zwischen Stuhl verschieben und flatulieren". Gemessen:
+
+        Sekunde  Effektiv  Nulldurchg.  Anschlag  Tonanteil  Tiefenanteil
+         175.50    0.1667        0.067     0.000      0.529         0.943
+         175.62    0.3390        0.020     0.000      0.400         0.019
+         175.75    0.3499        0.006     0.000      0.715         0.963
+         175.88    0.1887        0.006     0.000      0.657         0.998
+
+    Alle drei Merkmale sahen daran vorbei, und zwar nicht knapp: 0,006 gegen
+    eine Zischgrenze von 0,22, 0,000 gegen 0,02 am Anschlag, 0,72 gegen einen
+    Tonanteil von 0,90. `ZISCHGRENZE` fragt nach **zu vielen**
+    Nulldurchgängen. Nach unten stand keine Grenze – und ein Poltern ist
+    genau das: tiefe Energie ohne Formanten. Siehe `RUMPELGRENZE`.
+
+    ## Warum das Urteil an die Stelle gehört und nicht an jedes Fenster
+
+    Der erste Anlauf verknüpfte beide Merkmale **je Fenster** mit Und. Das
+    fand die gemeldete Stelle in keiner Kombination von Grenzen, und der Grund
+    steht in der Tabelle oben: Jedes der vier Fenster verfehlt mindestens eine
+    Bedingung. Übrig blieben zwei, 0,375 s, und damit scheiterte es um 25
+    Millisekunden an `STOERUNG_MINDESTENS_S`.
+
+    Wer von jedem Viertelsekundenfenster verlangt, allen Merkmalen zu genügen,
+    hat wieder eine Fallunterscheidung über ein Merkmal gebaut, das der Stoff
+    nicht hergibt. Deshalb: Die Stelle entsteht am robusten Merkmal (wenig
+    Nulldurchgänge, über `RUMPELN_LUECKE` hinweg), und beurteilt wird sie
+    **als Ganzes** am Median ihres Tiefenanteils (`RUMPELN_TIEF`).
+
     **Das sind Anzeichen, keine Beweise.** Sie fangen die Form, die dieser
     Fehler hat, und nicht jeden denkbaren. Die Antwort darauf bleibt deshalb
     ein neuer Versuch, kein Abbruch.
     """
-    import numpy as np
-
-    ton = np.asarray(audio, dtype=np.float32).reshape(-1)
-    fenster = max(1, int(FENSTER_S * rate))
-    vorschub = max(1, int(VORSCHUB_S * rate))
-    if len(ton) < fenster:
+    gemessen = merkmale(audio, rate)
+    if gemessen is None:
         return []
 
-    anfaenge = range(0, len(ton) - fenster + 1, vorschub)
-    stuecke = np.stack([ton[i : i + fenster] for i in anfaenge])
+    import numpy as np
 
-    effektiv = np.sqrt(np.mean(stuecke**2, axis=1))
-    # Nulldurchgänge je Abtastwert.
-    rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
-    anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
-
-    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
-    laut = effektiv >= max(schwelle, 1e-4)
-
-    tonanteil = _tonanteil(stuecke)
+    vorschub = gemessen["vorschub"]
+    fenster = gemessen["fenster"]
+    effektiv = gemessen["effektiv"]
+    rauheit = gemessen["rauheit"]
+    anschlag = gemessen["anschlag"]
+    tonanteil = gemessen["tonanteil"]
+    tiefenanteil = gemessen["tiefenanteil"]
+    laut = gemessen["laut"]
 
     verdaechtig = laut & (
         (rauheit >= ZISCHGRENZE)
@@ -515,7 +698,64 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
                 funde.append((round(von, 2), round(bis, 2), grund))
             lauf_beginn = None
 
-    return funde
+    for von, bis, a, b in _rumpelstellen(gemessen, rate):
+        bereich = slice(a, b + 1)
+        grund = (
+            f"{bis - von:.1f} s Rumpeln statt gesprochen "
+            f"(Nulldurchgänge {float(np.median(rauheit[bereich])):.3f}, "
+            f"unter {TIEFBAND_HZ} Hz "
+            f"{float(np.median(tiefenanteil[bereich])) * 100:.0f} %)"
+        )
+        funde.append((round(von, 2), round(bis, 2), grund))
+
+    return sorted(funde)
+
+
+def _rumpelstellen(gemessen, rate: int) -> list[tuple[float, float, int, int]]:
+    """Die Stellen, an denen es rumpelt: tiefe Energie ohne Formanten.
+
+    Gibt Anfang und Ende in Sekunden und die Fensterindizes zurück. Die
+    Begründung der drei Grenzen steht bei `RUMPELGRENZE`, `RUMPELN_TIEF` und
+    `RUMPELN_FENSTER`; warum das Urteil am Abschnitt hängt und nicht am
+    einzelnen Fenster, bei `auffaellige_stellen`.
+    """
+    import numpy as np
+
+    vorschub = gemessen["vorschub"]
+    fenster = gemessen["fenster"]
+    laut = gemessen["laut"]
+    rauheit = gemessen["rauheit"]
+    tiefenanteil = gemessen["tiefenanteil"]
+
+    breite = RUMPELN_FENSTER
+    anzahl = len(rauheit)
+    if anzahl < breite:
+        return []
+
+    # Jeder Abschnitt aus `breite` aufeinanderfolgenden Fenstern, beurteilt an
+    # seinen beiden Medianen. Ein Median aus dreien überhört einen Ausreisser
+    # und lässt sich von zweien nicht überstimmen.
+    beginnt = [
+        i
+        for i in range(anzahl - breite + 1)
+        if bool(laut[i : i + breite].all())
+        and float(np.median(rauheit[i : i + breite])) <= RUMPELGRENZE
+        and float(np.median(tiefenanteil[i : i + breite])) >= RUMPELN_TIEF
+    ]
+    if not beginnt:
+        return []
+
+    stellen: list[tuple[float, float, int, int]] = []
+    erster = letzter = beginnt[0]
+    for i in [*beginnt[1:], None]:
+        if i is not None and i - letzter < breite:
+            letzter = i
+            continue
+        a, b = erster, letzter + breite - 1
+        stellen.append((a * vorschub / rate, (b * vorschub + fenster) / rate, a, b))
+        if i is not None:
+            erster = letzter = i
+    return stellen
 
 
 #: Wie lang die Blende ist, mit der eine gedämpfte Stelle ein- und ausgeblendet
@@ -563,6 +803,68 @@ def stellen_daempfen(audio, rate: int, stellen: list[tuple[float, float, str]]):
             ton[i1 : i1 + nach] *= np.linspace(0.0, 1.0, nach, dtype=np.float32)
 
     return ton
+
+
+#: Wie lang die Rampe an jedem Stückende ist, in Millisekunden.
+#:
+#: Acht Millisekunden sind rund ein Drittel einer Sprachperiode bei tiefer
+#: Männerstimme – kurz genug, dass kein Laut angeschnitten klingt, lang genug,
+#: dass der Sprung verschwindet. Wer daran dreht, hört gegen: Zu kurz knackt
+#: weiter, zu lang frisst den Anlaut.
+NAHT_MS = 8.0
+
+
+def nahtlos(stueck, rate: int, ms: float = NAHT_MS):
+    """Legt eine kurze Rampe an beide Enden eines Stücks – gegen Schnittklicks.
+
+    ## Warum es das braucht
+
+    Die Folge entsteht aus fünfundzwanzig einzeln gesprochenen Stücken, die
+    `np.concatenate` hart aneinandersetzt. Jedes Stück **endet** in Stille –
+    die Pause wird angehängt –, aber es **beginnt** mit dem ersten Abtastwert
+    der Stimme. Der ist nicht null.
+
+    Genau dort entsteht der Klick: ein Sprung von der Stille des vorigen
+    Stücks auf den ersten Wert des nächsten, innerhalb eines einzigen
+    Abtastschritts. Das Ohr hört einen Knacks; die Wellenform zeigt eine
+    senkrechte Kante.
+
+    ## Warum ihn keine der beiden Prüfungen fand
+
+    Weil beide über Fenster mitteln. `auffaellige_stellen` misst Rauheit und
+    Tonanteil über Stücke von Millisekunden – ein Sprung, der **einen**
+    Abtastwert breit ist, verschwindet darin restlos. Das ist die Lehre aus
+    `AGENTS.md` in ihrer wörtlichsten Form: *Ein Mittelwert kann nichts
+    finden, was er verdünnt.*
+
+    Deshalb wird hier nicht erkannt, sondern vermieden. Eine Rampe kostet
+    nichts und kann nicht danebenliegen.
+
+    ## Warum an beiden Enden
+
+    Das Ende trägt zwar Stille, aber nicht jedes Stück: Wird ein Anlauf nach
+    drei Versuchen als „schief" durchgewinkt, kann die Aufnahme abrupt
+    abbrechen. Die Rampe am Ende kostet dieselben acht Millisekunden Stille,
+    die dort ohnehin liegen.
+
+    `numpy` wird lokal geholt, wie überall in dieser Datei: Das Modul muss
+    sich auch ohne es laden lassen – `pause_fuer` braucht nur Text.
+    """
+    import numpy as np
+
+    n = max(1, int(rate * ms / 1000.0))
+    if len(stueck) < 2 * n:
+        return stueck
+
+    gerampt = np.array(stueck, copy=True)
+    rampe = np.linspace(0.0, 1.0, n, dtype=np.float64)
+    if gerampt.ndim == 1:
+        gerampt[:n] *= rampe
+        gerampt[-n:] *= rampe[::-1]
+    else:
+        gerampt[:n] *= rampe[:, None]
+        gerampt[-n:] *= rampe[::-1, None]
+    return gerampt
 
 
 def nachbessern(audio, rate: int, melde=print):
@@ -844,6 +1146,26 @@ def selbsttest(melde=print) -> int:
     tief[i0 : i0 + len(t2)] = 0.5 * np.sin(2 * np.pi * 180 * t2)
     faelle.append(("2 s Brummen bei 180 Hz", tief, text(30), True))
 
+    # Der Fall vom 19. September: ein Poltern. Kein Ton, kein Rauschen, nichts
+    # am Anschlag – tiefe Energie ohne Formanten, und für alle drei bisherigen
+    # Merkmale unsichtbar.
+    #
+    # Nachgestellt aus drei tiefen Teiltönen mit Anschlag und Ausrollen, weil
+    # genau das ein verschobener Stuhl ist. Ein einzelner Sinus wäre der
+    # falsche Prüfstein: Den fände schon `TONANTEIL_GRENZE`.
+    poltern = _probeton(30, rate, 23).copy()
+    dauer_p = 0.6
+    tp = np.arange(int(dauer_p * rate)) / rate
+    huelle = np.exp(-3.5 * tp) * (1 - np.exp(-60 * tp))
+    stoss = huelle * (
+        np.sin(2 * np.pi * 46 * tp)
+        + 0.8 * np.sin(2 * np.pi * 71 * tp + 1.1)
+        + 0.6 * np.sin(2 * np.pi * 97 * tp + 2.3)
+    )
+    i0 = int(18 * rate)
+    poltern[i0 : i0 + len(tp)] = (0.85 * stoss / np.max(np.abs(stoss))).astype(np.float32)
+    faelle.append(("0,6 s Poltern unter 100 Hz", poltern, text(30), True))
+
     schief = 0
     for name, ton, txt, erwartet_fund in faelle:
         grund = brauchbar(txt, ton, rate)
@@ -853,6 +1175,46 @@ def selbsttest(melde=print) -> int:
             schief += 1
         zeichen = "OK  " if ok else "FEHL"
         melde(f"  {zeichen} {name}: {grund or 'nichts zu beanstanden'}")
+
+    # Gefunden werden reicht nicht – es muss **am neuen Merkmal** gefunden
+    # werden. Fände `TONANTEIL_GRENZE` das Poltern mit, wäre `RUMPELGRENZE`
+    # eine Doppelung, die beim nächsten Umbau niemand vermisst, und der Fall
+    # vom 19. September bliebe trotzdem offen.
+    gruende = [grund for _, _, grund in auffaellige_stellen(poltern, rate)]
+    if not any("Rumpeln" in grund for grund in gruende):
+        schief += 1
+        melde(f"  FEHL Poltern: nicht als Rumpeln erkannt, sondern als {gruende}.")
+    else:
+        melde("  OK   Poltern: als Rumpeln erkannt, nicht als Ton oder Rauschen.")
+
+    # Und die Gegenrichtung: Die neue Grenze darf keine saubere Aufnahme
+    # beanstanden. Ein Grundton von 110 Hz liegt unter `TIEFBAND_HZ` – ohne
+    # die Bedingung an die Nulldurchgänge wäre jede Silbe ein Fund.
+    keime = (0, 5, 9, 11, 13, 17, 23)
+    beanstandet = [
+        str(keim)
+        for keim in keime
+        if _rumpelstellen(merkmale(_probeton(30, rate, keim), rate), rate)
+    ]
+    if beanstandet:
+        schief += 1
+        melde(
+            "  FEHL Rumpeln: saubere Probetöne beanstandet "
+            f"(Keim {', '.join(beanstandet)})."
+        )
+    else:
+        melde(
+            f"  OK   Rumpeln: {len(keime)} saubere Probetöne bleiben unbeanstandet."
+        )
+
+    # Und zuletzt das, worauf es dem Hörer ankommt: Das Poltern muss nach der
+    # Nachbesserung weg sein. Gefunden und stehengelassen hilft niemandem.
+    geglaettet, anzahl_p = nachbessern(poltern, rate, melde=lambda _: None)
+    if anzahl_p == 0 or auffaellige_stellen(geglaettet, rate):
+        schief += 1
+        melde("  FEHL Poltern: steht nach dem Dämpfen noch da.")
+    else:
+        melde("  OK   Poltern: nach dem Dämpfen nicht mehr auffindbar.")
 
     # Und die Nachbesserung: Was gefunden wird, muss danach weg sein. Eine
     # Reparatur, die man nicht nachmisst, ist eine Behauptung.
@@ -874,7 +1236,7 @@ def selbsttest(melde=print) -> int:
     else:
         melde("  OK   Nachbesserung: saubere Aufnahme bleibt unangetastet.")
 
-    gesamt = len(faelle) + 2
+    gesamt = len(faelle) + 5
 
     if schief:
         melde(f"::error::{schief} von {gesamt} Fällen falsch beurteilt.")
@@ -883,6 +1245,7 @@ def selbsttest(melde=print) -> int:
     melde(f"Selbsttest der Tonprüfung: {gesamt} von {gesamt} richtig.")
 
     schief += _selbsttest_pausen(melde)
+    schief += _selbsttest_naht(melde)
     return 1 if schief else 0
 
 
@@ -909,6 +1272,71 @@ einem Minus von rund einem Prozent. Das zeigt, dass der Markt gerade andere \
 Faktoren stärker gewichtet als dieses eine Risiko.
 
 Bis morgen früh und viel Erfolg."""
+
+
+def _selbsttest_naht(melde=print) -> int:
+    """Legt der Rampe genau den Sprung vor, für den sie gebaut ist.
+
+    Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Also bekommt sie
+    hier ein Stück, das **hart** bei voller Auslenkung anfängt – der Fall, der
+    in der fertigen Folge knackt – und muss ihn glattziehen, ohne die Mitte
+    anzufassen.
+    """
+    import numpy as np
+
+    schief = 0
+    rate = 24_000
+
+    melde("")
+    melde("Selbsttest der Schnittkanten:")
+
+    # Ein Stück, das ohne Vorwarnung bei 0,9 beginnt und dort endet.
+    hart = np.full(rate, 0.9, dtype=np.float64)
+    weich = nahtlos(hart, rate)
+
+    # 1. Der erste Wert muss praktisch null sein – sonst bleibt der Sprung.
+    if abs(weich[0]) > 0.01:
+        melde(f"FEHL Der Anfang springt weiter auf {weich[0]:.3f}.")
+        schief += 1
+    else:
+        melde("OK   Der Anfang steigt aus der Stille an")
+
+    if abs(weich[-1]) > 0.01:
+        melde(f"FEHL Das Ende bricht weiter bei {weich[-1]:.3f} ab.")
+        schief += 1
+    else:
+        melde("OK   Das Ende läuft in die Stille aus")
+
+    # 2. Die Mitte bleibt unberührt – die Rampe darf keine Lautstärke kosten.
+    mitte = weich[rate // 2]
+    if abs(mitte - 0.9) > 1e-9:
+        melde(f"FEHL Die Mitte wurde verändert: {mitte:.6f} statt 0,900.")
+        schief += 1
+    else:
+        melde("OK   Die Mitte bleibt unangetastet")
+
+    # 3. Der größte Sprung von einem Wert zum nächsten muss klein sein.
+    #    Ohne Rampe ist er 0,9 – eine senkrechte Kante, und genau die knackt.
+    sprung_vorher = float(np.max(np.abs(np.diff(np.concatenate([[0.0], hart])))))
+    sprung_nachher = float(np.max(np.abs(np.diff(np.concatenate([[0.0], weich])))))
+    if sprung_nachher >= sprung_vorher:
+        melde(f"FEHL Der Sprung blieb: {sprung_nachher:.3f} gegen {sprung_vorher:.3f}.")
+        schief += 1
+    else:
+        melde(
+            f"OK   Die Kante ist weg – größter Schritt {sprung_nachher:.4f} "
+            f"statt {sprung_vorher:.3f}"
+        )
+
+    # 4. Ein Stück, das kürzer ist als zwei Rampen, bleibt unverändert.
+    winzig = np.full(4, 0.5, dtype=np.float64)
+    if not np.array_equal(nahtlos(winzig, rate), winzig):
+        melde("FEHL Ein zu kurzes Stück wurde angefasst.")
+        schief += 1
+    else:
+        melde("OK   Ein zu kurzes Stück bleibt, wie es ist")
+
+    return schief
 
 
 def _selbsttest_pausen(melde=print) -> int:

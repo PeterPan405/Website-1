@@ -69,6 +69,66 @@ const TOP_MAX = 6
 const ITEMS_MIN = 3
 const ITEMS_MAX = 12
 
+/**
+ * Wendungen, die in einer **gesprochenen Nachricht** nichts zu suchen haben.
+ *
+ * ## Warum das geprüft wird und nicht nur im Prompt steht
+ *
+ * `summary` wird wörtlich zur Podcastfolge (`lib/sprechfassung.ts`). Der
+ * Betreiber hat am 16. September 2026 verlangt, dass dort **objektiv ohne
+ * Positionierung oder Meinung** berichtet wird. Diese Anweisung steht seither
+ * in `scripts/nachrichten-erzeugen.ts` und in `nachrichten-agent.yml` – und
+ * eine Anweisung an ein Modell ist eine Bitte, keine Zusage. Deshalb hier
+ * zusätzlich die Grenze.
+ *
+ * ## Warum die Liste so kurz ist
+ *
+ * Geprüft wird nur, was sich **mechanisch** entscheiden lässt und wofür es in
+ * einer Nachrichtenmeldung keine zulässige Lesart gibt: eine Anlageempfehlung
+ * und die eigene Meinung des Sprechers.
+ *
+ * Urteilende Adjektive – „rücksichtslos", „skandalös" – stehen bewusst
+ * **nicht** hier. Sie sind ebenso unerwünscht, aber ihre Zulässigkeit hängt
+ * am Satz: In einem Zitat mit Zuschreibung sind sie richtig. Eine Wortliste,
+ * die das nicht unterscheiden kann, beanstandet irgendwann eine korrekte
+ * Meldung und wird dann abgeschaltet statt befolgt. Dafür ist der Prompt da.
+ *
+ * Nachgezählt über alle 47 Ausgaben vom 16. September 2026: **kein einziger
+ * Treffer** in `summary`. Die Regel kostet also nichts und fängt den Rückfall.
+ * Dass sie überhaupt anschlagen kann, prüft `tests/editions-objektiv.test.ts`
+ * an Sätzen, die sie beanstanden **muss**.
+ */
+const OHNE_POSITION: readonly { readonly art: string; readonly muster: RegExp }[] = [
+  {
+    art: 'Anlageempfehlung',
+    muster:
+      /\b(sollte[nst]? +(man|Anleger(innen)?|Sparer|du)\b|kaufempfehlung|verkaufsempfehlung|einstiegsgelegenheit|schnäppchen|ein klarer (kauf|verkauf)\b|jetzt +(kaufen|verkaufen|einsteigen|aussteigen)\b)/i,
+  },
+  {
+    art: 'eigene Meinung',
+    muster:
+      /\b(meiner meinung nach|meines erachtens|aus meiner sicht|ich (denke|glaube|meine)\b|wir (glauben|denken|erwarten|halten)\b)/i,
+  },
+]
+
+/**
+ * Findet Positionierung und Meinung in einem Text – siehe `OHNE_POSITION`.
+ *
+ * Ausgeführt und exportiert, damit sie an **einer** Stelle steht:
+ * `scripts/nachrichten-erzeugen.ts` prüft denselben Satz, bevor der Entwurf
+ * überhaupt zur Ausgabe wird, und `AGENTS.md` verlangt, dass die Prüfung dort
+ * diese hier spiegelt. Zwei Wortlisten mit demselben Zweck gehen auseinander;
+ * eine Funktion tut das nicht.
+ */
+export function positionierungen(text: string): { art: string; fund: string }[] {
+  const gefunden: { art: string; fund: string }[] = []
+  for (const { art, muster } of OHNE_POSITION) {
+    const treffer = text.match(muster)
+    if (treffer) gefunden.push({ art, fund: treffer[0] })
+  }
+  return gefunden
+}
+
 export function validateEditions(
   editions: readonly DailyEdition[],
   { topicSlugs, symbols }: Bezuege
@@ -124,6 +184,21 @@ export function validateEditions(
       }
       if (item.whyItMatters.trim().length < 40) {
         problems.push(`${at}: whyItMatters fehlt oder ist zu knapp.`)
+      }
+
+      /*
+        Nur `summary` – das ist der Text, der gesprochen wird.
+
+        `whyItMatters` bleibt frei: Es ist die Einordnung auf der Website und
+        darf sagen, worauf zu achten ist. In der Folge kommt es seit dem
+        16. September 2026 ohnehin nicht mehr vor.
+      */
+      for (const { art, fund } of positionierungen(item.summary.join(' '))) {
+        problems.push(
+          `${at}: „${fund}“ in summary – ${art}. Die Zusammenfassung wird ` +
+            `wörtlich zur Podcastfolge und berichtet ohne Positionierung. ` +
+            `Gehört das in die Einordnung, steht es in whyItMatters richtig.`
+        )
       }
       if (item.sources.length === 0) {
         problems.push(`${at}: Mindestens eine Quelle ist Pflicht.`)

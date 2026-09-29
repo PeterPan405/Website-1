@@ -13,10 +13,17 @@ import { pathToFileURL } from 'node:url'
 import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
+  folgengewicht,
   folgennummer,
+  kernDerUeberschrift,
   ordnungszahl,
+  RECHTSHINWEIS_GESPROCHEN,
   sprechbar,
+  SATZ_KURZ,
+  SATZ_LANG,
+  satzrhythmus,
   verdaechtigeAnglizismen,
+  WORTZAHL_KAPUTT,
   WORTZIEL_MAX,
   WORTZIEL_MIN,
   zahlwort,
@@ -68,7 +75,59 @@ pruefe(
   sprechbar('26.068,45 Punkte'),
   'sechsundzwanzigtausendachtundsechzig Komma vier fünf Punkte'
 )
-pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der S und P fünfhundert stieg.')
+pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der Ess und Pie fünfhundert stieg.')
+pruefe('S&P ohne Zahl', sprechbar('Der S&P gab nach.'), 'Der Ess und Pie gab nach.')
+
+/*
+  Der Bindestrich, der kein Minuszeichen ist.
+
+  Bis zum 16. September 2026 fasste die Vorzeichenregel jeden Strich vor einer
+  Ziffer. Im Bestand traf das fünf Stellen; gesprochen wurde daraus
+  „Nässdackminus einhundert". Gemeldet hat es der Betreiber als einen von
+  mehreren Sprachfehlern in der Folge.
+*/
+pruefe(
+  'Bindestrich im Namen wird nicht zum Minus',
+  sprechbar('der Nasdaq-100 bei 29.224'),
+  'der Nässdack-einhundert bei neunundzwanzigtausendzweihundertvierundzwanzig'
+)
+/*
+  Dasselbe an einem Namen, der mit einem Kürzel beginnt.
+
+  Geprüft wird hier der **Bindestrich**, nicht das Kürzel. Bis zum
+  27. September 2026 stand als Erwartung „der US-dreißig stieg" – und trug
+  damit nebenbei fest, dass „US" gar nicht umgeschrieben wird. Das war keine
+  Absicht, sondern der damalige Zustand: „US" fiel in vierzehn Folgen 51 Mal
+  und kam jedes Mal als Silbe heraus.
+
+  Seit „US" eine Umschrift hat, lautet die Erwartung „Juh-Ess-dreißig" – und
+  die Aussage dieser Prüfung ist unverändert: Aus dem Strich wird kein Minus.
+*/
+pruefe(
+  'Bindestrich hinter einem Kürzel wird nicht zum Minus',
+  sprechbar('der US-30 stieg'),
+  'der Juh-Ess-dreißig stieg'
+)
+pruefe(
+  'zusammengesetzte Zahl im Wort bleibt heil',
+  sprechbar('Ein 9-zu-3-Stillhalten'),
+  'Ein neun-zu-drei-Stillhalten'
+)
+/* Die Gegenprobe: Ein echtes Vorzeichen muss weiterhin gesprochen werden. */
+pruefe(
+  'echtes Minus bleibt Minus',
+  sprechbar('Das Ergebnis lag bei -3,2 %.'),
+  'Das Ergebnis lag bei minus drei Komma zwei Prozent.'
+)
+pruefe(
+  'echtes Plus bleibt Plus',
+  sprechbar('Das Ergebnis lag bei +1,5 %.'),
+  'Das Ergebnis lag bei plus eins Komma fünf Prozent.'
+)
+
+/* Namen, die bis zum 16. September 2026 unübersetzt durchliefen. */
+pruefe('Bank of England', sprechbar('die Bank of England'), 'die Bänk of Ingland')
+pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh-Teh-Ih stieg')
 /*
   Die eigene Adresse ist der eigene Name plus Endung, und beides wird
   englisch gesprochen. „iminvests punkt de" las die Stimme als ein einziges
@@ -78,12 +137,12 @@ pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der S und P fünfhundert sti
 pruefe(
   'Webadresse – die Endung wird buchstabiert',
   sprechbar('auf iminvests.de'),
-  'auf Ei Emm Inwests punkt Deh Eh'
+  'auf Ei-Emm Inwests punkt Deh-Eh'
 )
 pruefe(
   'Fremde Adressen genauso',
   sprechbar('Quelle: reuters.com'),
-  'Quelle: reuters punkt Zeh Oh Emm'
+  'Quelle: reuters punkt Zeh-Oh-Emm'
 )
 /*
   Zwei Fallen der deutschen Rechtschreibung, beide am 11. August 2026 vom
@@ -103,7 +162,7 @@ pruefe(
 pruefe(
   'Der eigene Name wird englisch gesprochen',
   sprechbar('Das Marktupdate von IM Invests.'),
-  'Das Markt-Appdejt von Ei Emm Inwests.'
+  'Das Markt-Appdejt von Ei-Emm Inwests.'
 )
 /*
   Und die Umschrift darf kein deutsches „im" anfassen. Ein `\bIM\b` ohne
@@ -191,6 +250,53 @@ pruefe(
   false
 )
 
+/* ------------------------------------------- Kapitelnamen aus Überschriften */
+
+/*
+  Die drei Fälle, an denen es am 16. September 2026 aufgefallen ist – wörtlich
+  die Überschriften der Ausgabe vom 30. Juli. In den Kapitelmarken und in
+  jeder Folgenbeschreibung stand daraus: „Öl springt 7", „Heute", „Wall
+  Street".
+
+  Feste Sätze statt der jüngsten Ausgabe: Die wechselt täglich, und eine
+  Prüfung, die morgen einen anderen Stoff bekommt, prüft nicht diesen Fehler.
+*/
+pruefe(
+  'Dezimalkomma trennt nicht',
+  kernDerUeberschrift(
+    'Öl springt 7,9 Prozent auf 90,74 Dollar – nach 16 Prozent Verlust'
+  ),
+  'Öl springt 7,9 Prozent auf 90,74 Dollar'
+)
+pruefe(
+  'eine Rubrik vor dem Doppelpunkt ist kein Kern',
+  kernDerUeberschrift('Heute: Bank of England, BIP-Schnellmeldungen und Apple'),
+  'Heute: Bank of England, BIP-Schnellmeldungen'
+)
+pruefe(
+  'ein Ort vor dem Doppelpunkt ebenso wenig',
+  kernDerUeberschrift('Wall Street: schwerster Tag seit April 2025, Renditen hoch'),
+  'Wall Street: schwerster Tag seit April 2025'
+)
+/* Die Gegenprobe: Wo der Teil vor dem Trenner trägt, bleibt es dabei. */
+pruefe(
+  'ein tragender Kern wird weiter abgetrennt',
+  kernDerUeberschrift('Fed hält die Zinsen mit 9 zu 3 – drei Stimmen für eine Erhöhung'),
+  'Fed hält die Zinsen mit 9 zu 3'
+)
+pruefe(
+  'Satzkomma trennt weiterhin',
+  kernDerUeberschrift('Microsoft springt, Meta fällt – zwei Berichte, ein Abend'),
+  'Microsoft springt'
+)
+pruefe(
+  'kein Satzzeichen am Ende',
+  /[,;:–—-]$/.test(
+    kernDerUeberschrift('Heute: Bank of England, BIP-Schnellmeldungen und Apple')
+  ),
+  false
+)
+
 /* ----------------------------------------------------------- Die Folge */
 
 pruefe('30.07. ist Folge 1', folgennummer('2026-07-30'), 1)
@@ -224,7 +330,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
+    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei-Emm Inwests.'
   ),
   true
 )
@@ -267,7 +373,27 @@ pruefe(
   /IM Investments/.test(folge.sprechtext),
   false
 )
-pruefe('Fazit-Absatz vorhanden', folge.sprechtext.includes('Bleibt das Fazit.'), true)
+/*
+  Kein Fazit, keine Einordnung – seit dem 16. September 2026.
+
+  Der Betreiber hat verlangt, dass in der Folge **nichts erklärt** wird,
+  sondern nur die Nachrichten des Tages kommen. Damit fiel beides weg: der
+  `whyItMatters`-Satz aus jedem Absatz und das Fazit, das ihn für die
+  wichtigste Meldung ein zweites Mal vortrug.
+
+  Beide Prüfungen stehen hier als Paar. Die erste allein ließe sich dadurch
+  erfüllen, dass jemand nur die Überschrift „Bleibt das Fazit" streicht und
+  den Satz stehen lässt.
+*/
+pruefe('kein Fazit-Absatz mehr', folge.sprechtext.includes('Bleibt das Fazit'), false)
+pruefe(
+  'keine Einordnung im Sprechtext',
+  [...edition.top, ...edition.further].some((item) =>
+    folge.sprechtext.includes(sprechbar(item.whyItMatters))
+  ),
+  false
+)
+pruefe('kein Kapitel „Fazit"', folge.kapitel.includes('Fazit'), false)
 pruefe('keine Ziffern im Sprechtext', /\d/.test(folge.sprechtext), false)
 pruefe('keine Klammern im Sprechtext', /[()]/.test(folge.sprechtext), false)
 pruefe('kein Prozentzeichen im Sprechtext', folge.sprechtext.includes('%'), false)
@@ -329,7 +455,19 @@ pruefe(
    wirklich nennt, und dass er unmittelbar hinter dem KI-Hinweis steht.
 ------------------------------------------------------------------- */
 
-const rechtAb = folge.sprechtext.indexOf('Und noch eins:')
+/*
+  Gesucht wird die **Konstante**, nicht ihr Wortlaut.
+
+  Bis zum 6. September 2026 stand hier `indexOf('Und noch eins:')`. Als der
+  Betreiber den Satz umformulieren ließ – er klang nach Nachtrag statt nach
+  Redaktion –, brachen vier Prüfungen auf einmal, obwohl inhaltlich nichts
+  fehlte. Ein Test, der an der Wortwahl hängt, verbietet das Feilen am Ton.
+
+  Was hier zählt, ist die **Stellung** des Hinweises und sein **Inhalt**.
+  Beides bleibt prüfbar, wenn der Satz sich ändert; der genaue Wortlaut steht
+  in der Konstante und braucht keine zweite Fassung im Test.
+*/
+const rechtAb = folge.sprechtext.indexOf(RECHTSHINWEIS_GESPROCHEN)
 
 pruefe('Sprechtext trägt den Rechtshinweis', rechtAb >= 0, true)
 
@@ -352,9 +490,15 @@ pruefe(
   /keine Anlageberatung/.test(folge.sprechtext),
   true
 )
+/*
+  Die Haftung, in beiden gebräuchlichen Wendungen. „haften wir nicht" und
+  „übernehmen wir keine Haftung" sagen dasselbe; welche dasteht, ist eine
+  Frage des Tons und keine der Aussage. Was der Test verhindern soll, ist der
+  Satz **ohne** den Punkt – nicht der Satz mit anderer Wortstellung.
+*/
 pruefe(
   'Er nennt: keine Haftung',
-  /übernehmen wir keine Haftung/.test(folge.sprechtext),
+  /(haften wir nicht|übernehmen wir keine Haftung|keine Haftung)/.test(folge.sprechtext),
   true
 )
 
@@ -456,10 +600,36 @@ if (folge.wortzahl < WORTZIEL_MIN) {
 /*
   Die harte Untergrenze, an der etwas kaputt wäre.
 
-  Unter 300 Wörtern ist es keine Folge mehr, sondern eine Meldung – dann hat
-  die Kürzungsschleife zu viel weggenommen oder die Ausgabe ist leer.
+  Unter `WORTZAHL_KAPUTT` ist es keine Folge mehr, sondern eine Meldung – dann
+  hat die Kürzungsschleife zu viel weggenommen oder die Ausgabe ist leer.
+
+  Die Zahl stand bis zum 25. September 2026 als `300` genau hier, als einzige
+  der vier Grenzen ohne Namen. Am 16. September wurde die Folge kürzer
+  (Einordnung raus, Nutzerwunsch), am 25. fiel eine ganz normale Ausgabe mit
+  295 Wörtern durch, und die Tagesausgabe blieb liegen. Die Begründung für
+  die neue Zahl steht bei `WORTZAHL_KAPUTT`; hier steht nur noch der Name.
 */
-pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
+pruefe(
+  `Wortzahl über der harten Untergrenze (${WORTZAHL_KAPUTT})`,
+  folge.wortzahl > WORTZAHL_KAPUTT,
+  true
+)
+
+/*
+  Und die Gegenprobe: Die Grenze muss die kaputte Folge auch wirklich fangen.
+
+  Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Vorgelegt wird
+  deshalb dieselbe Ausgabe ohne eine einzige Meldung – übrig bleiben
+  Begrüßung, Hinweise und Abschied. Das ist der Fall, für den die Zahl da ist.
+*/
+{
+  const leer = baueFolge({ ...edition, top: [], further: [] })
+  pruefe(
+    `Eine Folge ohne Meldungen fällt durch (${leer.wortzahl} Wörter)`,
+    leer.wortzahl <= WORTZAHL_KAPUTT,
+    true
+  )
+}
 
 /* ------------------------------------------------------------------
    Die Wortgrenzen stehen an einer Stelle – geprüft, nicht gehofft.
@@ -475,13 +645,25 @@ pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
 ------------------------------------------------------------------- */
 
 {
+  /*
+    Die Zahlen kommen aus den Konstanten, nicht aus dieser Datei.
+
+    Bis zum 25. September 2026 stand hier `/\b(710|740)\b/` – die Prüfung
+    gegen die Doppelung war selbst eine. Als `WORTZIEL_MIN` auf 320 wechselte,
+    suchte sie nach einer 710, die es nirgends mehr gibt, und hätte eine neu
+    eingetippte 320 im Skript anstandslos durchgelassen. Genau der Fall, den
+    sie verhindern soll.
+  */
   const skript = readFileSync('scripts/podcast-folge-erzeugen.ts', 'utf8')
   const ohneKommentare = skript.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
 
+  const zahlen = [WORTZIEL_MIN, WORTZIEL_MAX, WORTZAHL_KAPUTT]
+  const doppelt = zahlen.filter((n) => new RegExp(`\\b${n}\\b`).test(ohneKommentare))
+
   pruefe(
-    'Das Erzeugungsskript nennt die Grenzen nicht als eigene Zahlen',
-    /\b(710|740)\b/.test(ohneKommentare),
-    false
+    `Das Erzeugungsskript nennt die Grenzen nicht als eigene Zahlen (${zahlen.join(', ')})`,
+    doppelt,
+    []
   )
   pruefe(
     'Es bezieht sie aus lib/sprechfassung.ts',
@@ -489,7 +671,171 @@ pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
     true
   )
   pruefe('Das Fenster ist nicht leer', WORTZIEL_MIN < WORTZIEL_MAX, true)
+  pruefe(
+    'Die harte Untergrenze liegt unter dem Zielfenster',
+    WORTZAHL_KAPUTT < WORTZIEL_MIN,
+    true
+  )
 }
+
+/* ------------------------------------------------------- Der Satzrhythmus */
+
+/*
+  Der Fall vom 27. September 2026: „langweilig, monoton". Gemessen war es
+  nicht die Stimme, sondern der Text – und zwar so deutlich, dass es niemandem
+  hätte entgehen dürfen. Diese Prüfungen halten beide Richtungen fest.
+
+  Das Gerüst wird nicht mitgezählt: `satzrhythmus` überspringt Begrüßung,
+  Hinweise und Abschied. Sonst schönte das feste Vorspann-Deutsch den
+  Rhythmus, den der Agent tatsächlich schreibt.
+*/
+const geruest = (meldungen: string) =>
+  ['Guten Morgen.', 'Ein Hinweis.', meldungen, 'Bis morgen.'].join('\n\n')
+
+{
+  /* So klang es: ein Satz von 30 Wörtern, mit Semikolon, kein kurzer dabei. */
+  const lang =
+    'Die Huthi-Miliz griff nach Angaben der Agentur am Samstag die ' +
+    'saudi-arabische Hauptstadt Riad mit mehreren Drohnen an und traf dabei ' +
+    'auch Anlagen im Umland; der Sicherheitsrat verurteilte die Angriffe.'
+  const r = satzrhythmus(geruest(lang))
+  pruefe('ein einziger langer Satz zählt als lang', r.langeAnteil, 1)
+  pruefe('und als nicht kurz', r.kurzeAnteil, 0)
+  pruefe('das Semikolon wird gezählt', r.geklebt, 1)
+  pruefe('das Gerüst zählt nicht mit', r.anzahl, 1)
+}
+
+{
+  /* Und so soll es klingen: derselbe Inhalt, in Sätzen mit Luft dazwischen. */
+  const rhythmisch =
+    'Drohnen trafen Riad. Die Huthi-Miliz griff die saudi-arabische ' +
+    'Hauptstadt am Samstag an, nach Angaben der Agentur mit mehreren ' +
+    'Flugkörpern. Der Sicherheitsrat verurteilte die Angriffe.'
+  const r = satzrhythmus(geruest(rhythmisch))
+  pruefe('drei Sätze statt einem', r.anzahl, 3)
+  pruefe('ein Drittel davon ist kurz', r.kurzeAnteil > 0.3, true)
+  pruefe('keiner ist zu lang', r.langeAnteil, 0)
+  pruefe('und kein Semikolon mehr', r.geklebt, 0)
+}
+
+/*
+  Die Gegenprobe an der Wirklichkeit. Ohne sie wäre nur bewiesen, dass die
+  Messung an ausgedachten Sätzen rechnet – nicht, dass sie den gemeldeten Fall
+  gefunden hätte.
+
+  Genommen wird die jüngste Ausgabe im Bestand. Die Behauptung ist nicht „sie
+  ist schlecht", sondern: Die Messung liefert überhaupt Zahlen, und die
+  Schwellen liegen dort, wo sie etwas unterscheiden.
+*/
+{
+  const r = satzrhythmus(folge.sprechtext)
+  pruefe('die echte Folge ergibt Sätze', r.anzahl > 3, true)
+  pruefe('und einen Median über null', r.median > 0, true)
+  pruefe(
+    'die Grenzen liegen sinnvoll',
+    [SATZ_KURZ < SATZ_LANG, SATZ_KURZ > 0],
+    [true, true]
+  )
+}
+
+/* Ein leerer Text darf nicht werfen und nichts behaupten. */
+pruefe('ein Text ohne Meldungen ergibt null Sätze', satzrhythmus('').anzahl, 0)
+pruefe(
+  'und teilt nicht durch null',
+  satzrhythmus('').kurzeAnteil + satzrhythmus('').langeAnteil,
+  0
+)
+
+/* ------------------------------------------------ Gerüst gegen Meldungen */
+
+/*
+  Der Fall vom 28. September 2026: „viel zu kurz, das Intro und die Aufklärung
+  danach gehen genauso lange wie der Podcast."
+
+  **Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.** Deshalb steht
+  hier zuerst der Text, den sie beanstanden *muss* – nachgebaut aus der
+  Ausgabe des Tages: vier Meldungen zu rund zwanzig Wörtern.
+*/
+{
+  const duenn = [
+    /* 35 Wörter Begrüßung, 39 Hinweise – die echten Längen. */
+    'Guten Morgen und herzlich willkommen zum Marktupdate. Heute ist Montag. ' +
+      'Die USA weisen Irans Angebot zurück, am Montag sprechen Notenbanker, ' +
+      'und Mercedes drosselt die Produktion in Sindelfingen an diesem Morgen.',
+    'Diese Folge wurde mit Hilfe künstlicher Intelligenz erzeugt und vor der ' +
+      'Veröffentlichung nicht von einem Menschen freigegeben. Sie dient der ' +
+      'Information und Finanzbildung, sie ist keine Anlageberatung und keine ' +
+      'Empfehlung, irgendetwas zu kaufen oder zu verkaufen.',
+    'Die USA weisen Irans Angebot zurück. Teheran habe alle Zugeständnisse im ' +
+      'Voraus verlangt.',
+    'Am Montag stehen Notenbank-Termine an. Um zwölf Uhr spricht Ramsden, um ' +
+      'halb fünf kommt der Index der Dallas Fed.',
+    'Mercedes hat die Produktion in Sindelfingen gedrosselt. Die Ursache nennt ' +
+      'die Meldung nicht.',
+    'Passagiere reichten rund dreiundfünfzigtausend Klagen gegen Fluglinien ' +
+      'ein. Welches Land gemeint ist, nennt die Meldung nicht.',
+    'Das war das Marktupdate. Alle Themen findest du auf der Website. Bis ' +
+      'morgen früh und viel Erfolg.',
+  ].join('\n\n')
+  const g = folgengewicht(duenn)
+  pruefe('die dünne Folge wird gefunden', g.geruest >= g.meldungen, true)
+  pruefe('und der Anteil liegt über der Hälfte', g.anteil > 0.5, true)
+}
+
+/*
+  Die Gegenprobe: dieselbe Messung an der jüngsten Ausgabe im Bestand.
+
+  Die Behauptung ist nicht „sie ist gut", sondern dass die Aufteilung
+  aufgeht – Gerüst und Meldungen ergeben zusammen die ganze Folge, und das
+  Gerüst bleibt in der Spanne, die über 65 Folgen gemessen wurde (103 bis
+  116 Wörter). Wächst es doch einmal, ist die Grenze in
+  `scripts/nachrichten-erzeugen.ts` falsch geworden und muss es erfahren.
+*/
+{
+  const g = folgengewicht(folge.sprechtext)
+  pruefe(
+    'Gerüst und Meldungen ergeben die ganze Folge',
+    g.geruest + g.meldungen,
+    folge.wortzahl
+  )
+  pruefe(
+    'das Gerüst bleibt bei rund 110 Wörtern',
+    g.geruest >= 95 && g.geruest <= 125,
+    true
+  )
+  pruefe(
+    'und der Anteil passt dazu',
+    Math.abs(g.anteil - g.geruest / folge.wortzahl) < 1e-9,
+    true
+  )
+}
+
+/* Ein leerer Text darf auch hier nicht werfen. */
+pruefe('ohne Text keine Meldungen', folgengewicht('').meldungen, 0)
+pruefe('und kein Anteil', folgengewicht('').anteil, 0)
+
+/* --------------------------------------------- Die Kürzel im Sprechtext */
+
+/*
+  Der zweite Teil derselben Meldung: „viele Aussprachefehler". In der Folge des
+  Tages standen fünf, und `verdaechtigeAnglizismen` fand keinen einzigen.
+  Diese Prüfung hält fest, dass sie die Klasse jetzt sieht.
+*/
+pruefe(
+  'Kürzel ohne Umschrift werden gemeldet',
+  verdaechtigeAnglizismen('laut dpa-AFX die Daten, PCE, und ASML'),
+  ['AFX', 'ASML', 'PCE']
+)
+pruefe(
+  'bekannte deutsche Kürzel nicht',
+  verdaechtigeAnglizismen('Der DAX, die EZB, ein ETF und KI in der USA'),
+  []
+)
+pruefe(
+  'und was eine Umschrift hat, taucht nicht mehr auf',
+  verdaechtigeAnglizismen(sprechbar('laut dpa-AFX die US-Daten, PCE, und ASML')),
+  []
+)
 
 console.log(
   gescheitert === 0

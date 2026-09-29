@@ -43,6 +43,58 @@ ist beabsichtigt und kein Grund, sich den Wert daneben zu notieren.
 
 ---
 
+## 0 · Ein Befehl für alles, was noch offen ist
+
+```
+npm run einrichten
+```
+
+Das Skript sieht nach, was fehlt, und führt durch die Punkte, die noch einen
+Menschen brauchen. **Was ein Mensch beisteuert, sind die Zeichenketten aus
+einem Browser, in dem er angemeldet ist** – ein Bestätigungsschlüssel von
+Google, ein Anwendungsschlüssel von Spotify. Alles davor und alles danach
+erledigt es selbst: prüfen, hinterlegen, eintragen, bauen, Pull Request,
+mergen.
+
+Nur nachsehen, ohne etwas zu ändern:
+
+```
+npm run einrichten -- --stand
+```
+
+Einen einzelnen Punkt:
+
+```
+npm run einrichten -- --nur spotify
+```
+
+Drei Dinge tut es ausdrücklich **nicht**, und alle drei aus Gründen, die
+anderswo in dieser Datei stehen:
+
+- **Sich an fremden Konten anmelden.** Google und Spotify setzen ihre
+  Anmeldung mit Absicht vor die Schlüssel. Daran wird nicht vorbeigearbeitet;
+  das Skript sagt, was im Browser zu tun ist, und wartet.
+- **Ein Geheimnis irgendwo hinschreiben.** Der Spotify-Schlüssel wird ohne
+  Anzeige eingelesen, geht über die Standardeingabe an `gh secret set` und
+  steht in keiner Datei, keinem Commit, keinem Protokoll und keiner
+  Prozessliste. Er wird auch nicht zur Kontrolle noch einmal angezeigt – siehe
+  den Kasten darüber.
+- **Bestehende Zugangsdaten stillschweigend überschreiben.** Liegt ein Secret
+  schon vor, fragt es nach.
+
+Und eine Reihenfolge, auf die es ankommt: **Erst fragt es Spotify, ob die
+beiden Zeichenketten gelten, dann hinterlegt es sie.** Ein falsch kopiertes
+Secret lässt sich anstandslos speichern; erst der nächtliche Lauf meldet dann
+`invalid_client`, in einem Protokoll, das niemand liest. Genau so ist es
+gelaufen, als der Betreiber „Podcast bei Spotify nicht online" meldete
+(Abschnitt 5.0).
+
+Was das Skript selbst entscheidet, prüft `bash scripts/einrichten.sh
+--selbsttest` – ohne Netz, ohne `gh`, in einer Fünftelsekunde. Er läuft bei
+jedem `npm test` mit (`tests/einrichten.test.ts`).
+
+---
+
 ## 1 · Website ausliefern (SSH)
 
 ### 1.1 Schlüsselpaar erzeugen
@@ -901,37 +953,24 @@ iminvests.de.
 3. Fertig. Die ersten Auswertungen erscheinen nach ein bis drei Tagen, die
    vollständige Indexierung dauert Wochen.
 
-### 4.4 Zum Kopieren: der Auftrag für den lokalen Chat
+### 4.4 Der kurze Weg
 
-Wer den Schlüssel hat und nicht selbst tippen will, gibt das hier weiter:
-
-```text
-Ich habe den Bestätigungsschlüssel der Google Search Console für iminvests.de.
-Bitte trag ihn ein und bring ihn live.
-
-Der Schlüssel (bzw. die ganze Zeile von Google):
-<HIER EINFÜGEN>
-
-So gehst du vor:
-
-1. Lies EINRICHTUNG.md, Abschnitt 4 – dort steht der Zusammenhang.
-2. Zweig anlegen:  git checkout -b claude/search-console
-3. Eintragen und prüfen lassen:
-   npm run search-console -- '<der Schlüssel oder die ganze Zeile>'
-   Das Skript baut und sieht im gebauten HTML nach. Bricht es ab, lies die
-   Meldung – sie sagt, was mit der Eingabe nicht stimmt.
-4. Nur lib/site.ts committen. out/ gehört nicht ins Repository.
-5. Vor dem Pull Request: npm test, npm run pruefen, npx tsc --noEmit,
-   npx prettier --check . – alles muss grün sein.
-6. Pull Request anlegen, Prüfung „Bauen und prüfen" abwarten, bei Grün mergen.
-7. Warten, bis auf main „Paket bauen" und „Veröffentlichen" durch sind, und
-   mir dann Bescheid geben. Erst danach klicke ich in der Search Console auf
-   „Bestätigen".
-
-Wichtig: Melde dich, wenn das Skript abbricht oder die Prüfung rot wird –
-nicht selbst am Schlüssel herumbasteln. Ein falscher Schlüssel sieht in der
-Search Console genauso aus wie gar keiner.
 ```
+npm run einrichten -- --nur search-console
+```
+
+Das Skript fragt nach der Zeile aus 4.1, trägt sie ein, baut, sieht im
+gebauten HTML nach, legt den Pull Request an, wartet auf die Prüfung, mergt
+und sagt zum Schluss, wann Sie in der Search Console auf „Bestätigen" klicken
+können. Es nimmt dabei denselben Vorbefund wie der Nachrichtenlauf: Ein Test,
+der aus dem Bestand herausgealtert ist, hält Sie hier so wenig auf wie dort
+die Tagesausgabe (`ENTSCHEIDUNGEN.md`, „Hat die Ausgabe etwas kaputt
+gemacht?").
+
+**Bricht es ab, ist das eine Auskunft und keine Panne.** Die Meldung sagt, was
+mit der Eingabe nicht stimmt. Dann noch einmal kopieren – nicht am Schlüssel
+herumbasteln: Ein falscher Schlüssel sieht in der Search Console genauso aus
+wie gar keiner.
 
 Der Schlüssel ist kein Geheimnis – er steht anschließend im Quelltext jeder
 Seite und ist für jeden lesbar. Er beweist nur, dass jemand mit Zugriff auf
@@ -1029,40 +1068,27 @@ ein `abgerufenAm`.
 Befund und kein Fehler** – dann kennt Spotify die Sendung unter dieser
 Kennung nicht. Diese Antwort war bis heute nicht zu bekommen.
 
-### 5.4 Zum Kopieren: der Auftrag für den lokalen Chat
+### 5.4 Der kurze Weg
 
-```text
-Ich lege bei Spotify eine Anwendung an, damit die Website auf die einzelne
-Folge verweisen kann statt nur auf die Sendung – und damit wir sehen, welche
-Folgen bei Spotify angekommen sind.
-
-So gehst du vor:
-
-1. Lies EINRICHTUNG.md, Abschnitt 5. Dort steht, warum es die beiden
-   Zugangsdaten braucht und warum keine Nutzeranmeldung nötig ist.
-2. Führe mich durch 5.1 – developer.spotify.com/dashboard, Create app. Sag
-   mir zu jedem Feld, was hineingehört. Die Redirect URI wird nie benutzt,
-   muss aber ausgefüllt sein.
-3. Wenn ich dir Client ID und Client secret gebe, hinterlege sie:
-     gh secret set SPOTIFY_CLIENT_ID
-     gh secret set SPOTIFY_CLIENT_SECRET
-   Nicht in eine Datei schreiben, nicht committen. Das Secret ist ein
-   Schlüssel. Setz außerdem die Variable:
-     gh variable set SPOTIFY_SHOW_ID --body 033YxQviNJXETJpW2ezG3y
-4. Gegenprobe nach 5.3: podcast-schaufenster.yml anstoßen und mir aus dem
-   Protokoll vorlesen, was [spotify] meldet.
-5. Sag mir das Ergebnis in einem Satz: Wie viele Folgen kennt Spotify, und
-   welches ist die jüngste?
-
-Wichtig:
-– Steht dort weiter „Keine Zugangsdaten hinterlegt", sind die Secrets nicht
-  angekommen. Dann noch einmal setzen, nicht am Skript herumbasteln.
-– Meldet die Anmeldung „invalid_client", ist eine der beiden Zeichenketten
-  falsch kopiert – meistens das Secret, weil es hinter „View client secret"
-  liegt und leicht mit der ID verwechselt wird.
-– Findet es sich an, aber null Folgen: Das ist ein Ergebnis, kein Fehler.
-  Schreib es mir genau so.
 ```
+npm run einrichten -- --nur spotify
+```
+
+Das Skript führt durch 5.1, nimmt die beiden Zeichenketten entgegen – das
+Secret ohne Anzeige –, **fragt Spotify, ob sie gelten**, hinterlegt sie erst
+danach als Secrets, setzt `SPOTIFY_SHOW_ID` und stößt auf Wunsch die
+Gegenprobe aus 5.3 an.
+
+Drei Antworten, und alle drei sind Auskünfte:
+
+- **`invalid_client`** – eine der beiden Zeichenketten ist falsch kopiert,
+  meistens das Secret, weil es hinter _View client secret_ liegt und leicht
+  mit der ID verwechselt wird. Es wird dann **nichts** hinterlegt.
+- **„accounts.spotify.com war nicht erreichbar"** – das ist eine Aussage über
+  Ihre Verbindung, nicht über die Zugangsdaten. Nicht den Schlüssel wegwerfen.
+- **Angemeldet, aber null Folgen** – das ist ein Ergebnis, kein Fehler: Dann
+  kennt Spotify die Sendung unter dieser Kennung nicht. Genau diese Antwort
+  war am 1. September 2026 nicht zu bekommen.
 
 ---
 

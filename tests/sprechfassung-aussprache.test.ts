@@ -32,7 +32,7 @@
  * beanstandet, wird abgeschaltet statt befolgt.
  */
 
-import { englischeNamenSprechbar } from '@/lib/sprechfassung'
+import { ENGLISCHE_NAMEN, englischeNamenSprechbar } from '@/lib/sprechfassung'
 
 let failed = 0
 
@@ -139,6 +139,164 @@ for (const [wort, alteUmschrift] of ALT) {
     'Wenn das hier durchgeht, prüft der Test nichts.'
   )
 }
+
+/* ======================================================================
+   Und jetzt die ganze Tabelle, nicht nur die Liste oben.
+   ====================================================================== */
+
+/*
+  ## Warum das die eigentliche Prüfung ist
+
+  Die Liste `WOERTER` ist von Hand gepflegt. Sie hat die neun Verstöße vom
+  20. August 2026 gefunden – und jeden Eintrag ungeprüft gelassen, der danach
+  dazukam. Wer einen Namen in die Tabelle schreibt, denkt nicht daran, ihn
+  zusätzlich hierher zu schreiben.
+
+  So ist „Skwies" für „Squeeze" stehen geblieben: Die Regel sucht ein „w" im
+  **englischen** Wort, und in „Squeeze" steht keins – das /w/ steckt im „qu".
+  Gefunden hat es am 16. September 2026 ein Mensch beim Zuhören.
+
+  Deshalb läuft die Regel jetzt über **jeden** Eintrag. Das Probewort entsteht
+  aus dem Muster selbst; lässt es sich nicht ablesen, fällt der Eintrag durch,
+  statt übersprungen zu werden. Eine Prüfung, die still auslässt, was sie
+  nicht versteht, ist wieder eine Stichprobe.
+*/
+
+/**
+ * Aus einem Muster ein Wort machen, das es trifft.
+ *
+ * Fangende Klammern kommen seit `mitGenitiv()` vor: Das Muster bekommt ein
+ * `(s?)` angehängt, die Umschrift ein `$2`. Das Probewort nimmt das `s` mit
+ * und prüft damit gleich die Form, um derentwillen es die Erweiterung gibt –
+ * den Genitiv.
+ */
+function probewort(muster: RegExp): string {
+  return muster.source
+    .replaceAll('\\b', '')
+    .replaceAll(/\((?:\?:)?([^)|]+)\|[^)]*\)/g, '$1') // (?:xx|cks), (a|b) → xx
+    .replaceAll(/\(([^)]*)\)/g, '$1') // (s?) → s?
+    .replaceAll(/\[([^\]])[^\]]*\]\??/g, '$1') // [ -]? → Leerzeichen
+    .replaceAll(/(.)\?/g, '$1') // Sell-?off → Sell-off, s? → s
+}
+
+pruefen(
+  `Die Tabelle hat Einträge (${ENGLISCHE_NAMEN.length})`,
+  ENGLISCHE_NAMEN.length > 50,
+  'Ohne Einträge prüft alles Folgende die leere Menge.'
+)
+
+for (const [muster, umschrift] of ENGLISCHE_NAMEN) {
+  const wort = probewort(muster)
+
+  /* Zuerst: Trifft das abgelesene Wort sein eigenes Muster? Wenn nicht, ist
+     das Muster zu verwickelt für diese Prüfung – und dann wird es gemeldet,
+     nicht stillschweigend ausgelassen. */
+  if (!new RegExp(muster.source, muster.flags.replace('g', '')).test(wort)) {
+    pruefen(
+      `/${muster.source}/: Probewort ablesbar`,
+      false,
+      `Aus dem Muster wurde „${wort}" – das trifft es nicht. Entweder das ` +
+        `Muster vereinfachen oder probewort() erweitern. Übersprungen wird nicht.`
+    )
+    continue
+  }
+
+  /* Regel 2: englisches „w" vor Vokal → „u" in der Umschrift. */
+  const wVorVokal = [...wort.toLowerCase().matchAll(/w(.)/g)].filter(([, next]) =>
+    VOKALE.includes(next)
+  ).length
+  if (wVorVokal > 0) {
+    const us = (umschrift.toLowerCase().match(/u/g) ?? []).length
+    pruefen(
+      `„${wort}" → „${umschrift}": /w/ steht als „u"`,
+      us >= wVorVokal,
+      'Mit „w" gesprochen ergäbe das ein /v/.'
+    )
+  }
+
+  /* Regel 3: englisches „v" → „w", nie „v". */
+  if (wort.toLowerCase().includes('v')) {
+    pruefen(
+      `„${wort}" → „${umschrift}": das /v/ steht als „w"`,
+      !umschrift.toLowerCase().includes('v'),
+      '„v" ist im Deutschen /f/.'
+    )
+  }
+
+  /*
+    Regel 2, zweite Gestalt: das „qu".
+
+    Englisches „qu" ist /kw/. Ein „kw" in der Umschrift wäre im Deutschen
+    /kv/ – dieselbe Falle wie beim „w", nur dass die Regel oben sie nicht
+    sieht, weil im englischen Wort kein „w" steht. Genau daran ist „Squeeze"
+    vorbeigekommen.
+  */
+  if (/qu/i.test(wort)) {
+    pruefen(
+      `„${wort}" → „${umschrift}": das /kw/ aus „qu" steht als „ku"`,
+      !/kw/i.test(umschrift),
+      '„kw" ist im Deutschen /kv/ – gebraucht wird „ku".'
+    )
+  }
+}
+
+/*
+  Regel 4: **Eine Umschrift ist genauso viele Wörter wie ihr Muster.**
+
+  Die Regel, die am 28. September 2026 dazukam, und die einzige hier, die
+  nichts mit Lauten zu tun hat, sondern mit Wortgrenzen.
+
+  Der Fall: `[/\bUS\b/g, 'Uh Ess']` machte aus `US-Notenbank` den Text
+  `Uh Ess-Notenbank`. Aus einem Wort wurden zwei, und der Bindestrich klebte
+  am zweiten Buchstaben statt am Kürzel. Das Modell liest das so, wie es
+  dasteht: „Uh", Wortgrenze, „Ess-Notenbank" – gemeldet hat der Betreiber es
+  als „U     S Notenbank, mit einer sehr langen Pause".
+
+  Deutsche Nachrichten schreiben Kürzel fast immer als erstes Glied einer
+  Zusammensetzung. Nachgezählt an allen 65 Ausgaben: 176 solche Stellen,
+  72 Mal allein „US-Dollar". Der Fehler war also nicht selten, er war täglich.
+
+  Buchstabennamen werden deshalb mit **Bindestrichen** verbunden – so wie
+  `JPMorgan → Dschej-Pi-Morgen` es seit jeher vormacht. Ein Leerzeichen in
+  der Umschrift ist nur dort erlaubt, wo das Muster selbst eines hat.
+
+  Gezählt wird großzügig: Das Muster darf mehr Wörter haben als die Umschrift
+  („Bank of England" → „Bänk of Ingland" hat gleich viele, „Wall Street" →
+  „Uall-Striet" hätte weniger). Verboten ist nur das Wachsen.
+*/
+for (const [muster, umschrift] of ENGLISCHE_NAMEN) {
+  const wort = probewort(muster)
+  const musterWoerter = wort.split(/\s+/).filter(Boolean).length
+  const umschriftWoerter = umschrift.split(/\s+/).filter(Boolean).length
+  if (umschriftWoerter > musterWoerter) {
+    pruefen(
+      `„${wort}" → „${umschrift}": keine zusätzliche Wortgrenze`,
+      false,
+      `${musterWoerter} Wort/Wörter werden zu ${umschriftWoerter}. In einer ` +
+        `Zusammensetzung („${wort}-Dollar") landet der Bindestrich damit am ` +
+        `falschen Glied. Buchstabennamen mit Bindestrich verbinden.`
+    )
+  }
+}
+pruefen(
+  'Keine Umschrift wächst um ein Wort',
+  ENGLISCHE_NAMEN.every(
+    ([m, u]) =>
+      u.split(/\s+/).filter(Boolean).length <=
+      probewort(m).split(/\s+/).filter(Boolean).length
+  ),
+  'Siehe die Meldungen darüber.'
+)
+
+/*
+  Und die Gegenprobe zu Regel 4: Sie muss anschlagen, wenn man ihr den alten
+  Zustand vorlegt. Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.
+*/
+pruefen(
+  'Regel 4 findet den Fall vom 28. September 2026',
+  'Uh Ess'.split(/\s+/).length > probewort(/\bUS\b/g).split(/\s+/).length,
+  'Die Zählung findet „US" → „Uh Ess" nicht – dann prüft sie nichts.'
+)
 
 /*
   Und die Regel darf nicht zu scharf sein: Wörter ohne englisches /w/ und

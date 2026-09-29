@@ -75,13 +75,31 @@ def als_rohdaten(pfad: str):
     return np.frombuffer(ergebnis.stdout, dtype=np.float32), 24000
 
 
+#: Womit sich dieses Skript beim Server meldet.
+#:
+#: ## Warum das nötig ist
+#:
+#: Am 19. September 2026 antwortete `podcast-audio/2026-09-19.mp3` auf einen
+#: Abruf mit `urllib` durchgehend mit **404**, während derselbe Läufer wenige
+#: Minuten zuvor dieselbe Adresse mit `curl` und Statuscode 200 geholt hatte.
+#: Der Unterschied war die Kennung: `urllib` schickt „Python-urllib/3.12", und
+#: der Hoster weist die pauschal ab.
+#:
+#: Das ist keine Schranke, die jemand gegen uns gesetzt hat – es ist unser
+#: eigener Server, und die Regel richtet sich gegen Skripte im Allgemeinen.
+#: Eine schlichte Kennung zu schicken ist erlaubt; was nicht erlaubt wäre,
+#: sind Anmeldedaten oder Browser-Merkmale, die eine Sperre gezielt umgehen.
+KENNUNG = "iminvests-tonpruefung/1.0 (+https://iminvests.de)"
+
+
 def hole(url: str, ziel: str) -> bool:
     # `netz.oeffnen` statt `urlopen`: Auf einem Läufer ohne IPv6 scheitert
     # der erste Anlauf an jeder Adresse mit AAAA – und `iminvests.de` hat
     # eine. Die Meldung „nicht erreichbar" stand dann unter **jeder**
     # Aufnahme, ohne dass je eine gefehlt hätte. Begründung in scripts/netz.py.
+    anfrage = urllib.request.Request(url, headers={"User-Agent": KENNUNG})
     try:
-        with netz.oeffnen(url, timeout=60) as antwort, open(ziel, "wb") as datei:
+        with netz.oeffnen(anfrage, timeout=60) as antwort, open(ziel, "wb") as datei:
             datei.write(antwort.read())
         return True
     except Exception as fehler:  # noqa: BLE001
@@ -93,11 +111,151 @@ def als_uhrzeit(sekunden: float) -> str:
     return f"{int(sekunden) // 60}:{int(sekunden) % 60:02d}"
 
 
-def pruefe(pfad: str, name: str) -> int:
+def zeige_stelle(ton, rate: int, sekunde: float, umfeld: float = 2.0) -> None:
+    """Gibt die Messwerte rund um eine Sekunde aus – ohne Urteil.
+
+    Für den Fall, dass ein Mensch eine Stelle meldet und die Prüfung dort
+    nichts findet. Ohne diese Ausgabe bliebe nur Raten an Schwellen; mit ihr
+    steht da, was gemessen wurde.
+    """
+    gemessen = sprechstimme.merkmale(ton, rate)
+    if gemessen is None:
+        print("    (zu kurz für eine Messung)")
+        return
+
+    zeit = gemessen["zeit"]
+    von, bis = sekunde - umfeld, sekunde + umfeld
+    auswahl = [i for i, t in enumerate(zeit) if von <= t <= bis]
+    if not auswahl:
+        print(f"    (bei {sekunde:.0f} s liegt kein Fenster – Aufnahme zu kurz?)")
+        return
+
+    print(
+        f"    Messwerte {von:.1f}–{bis:.1f} s "
+        f"(laut ab Effektivwert {gemessen['lautgrenze']:.4f}):"
+    )
+    print("      Sekunde  Effektiv  Nulldurchg.  Anschlag  Tonanteil  Tiefenanteil  laut")
+    for i in auswahl:
+        print(
+            f"      {float(zeit[i]):7.2f}  {float(gemessen['effektiv'][i]):8.4f}  "
+            f"{float(gemessen['rauheit'][i]):11.3f}  "
+            f"{float(gemessen['anschlag'][i]):8.3f}  "
+            f"{float(gemessen['tonanteil'][i]):9.3f}  "
+            f"{float(gemessen['tiefenanteil'][i]):12.3f}  "
+            f"{'ja' if gemessen['laut'][i] else 'nein'}"
+        )
+
+    verteilung(gemessen, sekunde)
+
+
+def verteilung(gemessen, gemeldet: float | None = None) -> None:
+    """Was Tiefenanteil und Nulldurchgänge in **dieser** Aufnahme sonst tun.
+
+    ## Warum das neben den Einzelwerten stehen muss
+
+    Eine Grenze, die nur an der gemeldeten Stelle gemessen wurde, ist geraten.
+    Die Grundfrequenz einer männlichen Sprechstimme liegt zwischen 85 und
+    180 Hz – also **unter** den 200 Hz, die hier als „tief" zählen. Gesprochene
+    Vokale tragen dort zwangsläufig Energie, und eine Schwelle, die das nicht
+    berücksichtigt, beanstandet die halbe Folge.
+
+    Am 20. September 2026 nachgemessen, und deutlicher als erwartet: Über die
+    1238 lauten Fenster der Folge vom 19. September liegt der Median des
+    Tiefenanteils bei 0,52, das 90. Perzentil bei 0,86. **Der Tiefenanteil
+    allein trennt nichts** – er ist bei dieser Stimme der Normalfall.
+
+    Deshalb misst diese Ausgabe jetzt das Paar: tiefe Energie **und** wenig
+    Nulldurchgänge. Sprache trägt ihre Verständlichkeit in den Formanten
+    zwischen 300 und 3.500 Hz und erzeugt damit zwangsläufig Nulldurchgänge;
+    ein Rumpeln hat keine. Zu jeder Kombination steht hier, wie viele Fenster
+    und wie viele zusammenhängende Stellen ab `STOERUNG_MINDESTENS_S` sie in
+    dieser Aufnahme fände – und ob die **gemeldete** Stelle darunter ist.
+
+    Das ist die Gegenprobe zur Schwelle, bevor es sie gibt: Eine Absicherung,
+    die nie anschlägt, sieht aus wie Ruhe; eine, die überall anschlägt, wird
+    abgeschaltet.
+    """
+    import numpy as np
+
+    laut = gemessen["laut"]
+    anzahl = int(np.sum(laut))
+    if anzahl == 0:
+        print("    (kein lautes Fenster – keine Verteilung)")
+        return
+
+    stufen = [10, 25, 50, 75, 90, 95, 99]
+    print(f"\n    Verteilung über alle {anzahl} lauten Fenster:")
+    print("      Perzentil     " + "".join(f"{s:>8}" for s in stufen))
+    for name, schluessel in (("Tiefenanteil", "tiefenanteil"), ("Nulldurchg.", "rauheit")):
+        werte = gemessen[schluessel][laut]
+        print(
+            f"      {name:<13} "
+            + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
+        )
+
+    rate = int(gemessen["fenster"] / sprechstimme.FENSTER_S)
+    urspruenglich = (sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF)
+    print("\n    Was ein Paar aus Grenzen in dieser Aufnahme fände:")
+    print("      still bis  tief ab  Stellen  gemeldete dabei")
+    try:
+        for still in (0.015, 0.020, 0.025, 0.030, 0.040):
+            for tief in (0.50, 0.70, 0.80, 0.90):
+                stellen = _mit_grenzen(gemessen, rate, still, tief)
+                dabei = (
+                    "–"
+                    if gemeldet is None
+                    else ("ja" if _trifft(stellen, gemeldet) else "nein")
+                )
+                print(
+                    f"      {still:9.3f}  {tief:7.2f}  {len(stellen):7d}  {dabei:>15}"
+                )
+
+        # Eine Zahl sagt nicht, was sie beanstandet. Eine Grenze zu setzen,
+        # ohne ihre Fehlalarme angesehen zu haben, heisst später eine Aufnahme
+        # zu dämpfen, die in Ordnung war – `nachbessern()` meldet nicht nur,
+        # es greift ein.
+        for still, tief in ((0.020, 0.80), (0.025, 0.80), (0.030, 0.90)):
+            stellen = _mit_grenzen(gemessen, rate, still, tief)
+            print(f"\n    Die Stellen bei still ≤ {still:.3f} und tief ≥ {tief:.2f}:")
+            print("      Beginn         Dauer  tief (Median)  still (Median)  lauteste")
+            for von, bis, a, b in stellen:
+                bereich = slice(a, b + 1)
+                print(
+                    f"      {als_uhrzeit(von):>5} {von:7.2f} s  {bis - von:5.2f} s  "
+                    f"{float(np.median(gemessen['tiefenanteil'][bereich])):13.3f}  "
+                    f"{float(np.median(gemessen['rauheit'][bereich])):14.3f}  "
+                    f"{float(np.max(gemessen['effektiv'][bereich])):8.4f}"
+                )
+    finally:
+        sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF = urspruenglich
+
+
+def _mit_grenzen(gemessen, rate: int, still: float, tief: float):
+    """Was `_rumpelstellen` mit einem anderen Grenzenpaar fände.
+
+    Gerechnet wird mit **der** Funktion, die später auch urteilt, nicht mit
+    einer nachgebauten Kopie davon. Eine Gegenprobe, die etwas anderes rechnet
+    als die Sache, die sie prüft, prüft nichts.
+    """
+    sprechstimme.RUMPELGRENZE = still
+    sprechstimme.RUMPELN_TIEF = tief
+    return sprechstimme._rumpelstellen(gemessen, rate)
+
+
+def _trifft(stellen, sekunde: float, spiel: float = 1.0) -> bool:
+    """Liegt die gemeldete Sekunde in einer der gefundenen Stellen?"""
+    return any(von - spiel <= sekunde <= bis + spiel for von, bis, _, _ in stellen)
+
+
+def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:
     """Meldet die auffälligen Stellen einer Datei. Gibt ihre Anzahl zurück."""
     ton, rate = als_rohdaten(pfad)
     funde = sprechstimme.auffaellige_stellen(ton, rate)
     dauer = len(ton) / rate
+
+    if stelle is not None:
+        print(f"  {name}: Messwerte um {als_uhrzeit(stelle)}")
+        zeige_stelle(ton, rate, stelle)
 
     if not funde:
         print(f"  {name}: {als_uhrzeit(dauer)} lang, nichts Auffälliges.")
@@ -115,8 +273,22 @@ def main() -> int:
         print(__doc__)
         return 1
 
+    #: Sekunde, deren Messwerte ausgegeben werden sollen – `--stelle 176`.
+    stelle: float | None = None
+    if "--stelle" in argumente:
+        i = argumente.index("--stelle")
+        stelle = float(argumente[i + 1])
+        argumente = argumente[:i] + argumente[i + 2 :]
+
     gesamt = 0
     betroffen: list[str] = []
+    #: Wie viele Aufnahmen wirklich gelesen werden konnten.
+    #:
+    #: Ohne diese Zahl meldete der Lauf am 19. September 2026 „Keine Aufnahme
+    #: mit auffälligen Stellen" und wurde grün – obwohl er keine einzige Datei
+    #: heruntergeladen hatte. Ein Lauf, der nichts prüfen konnte, hat nicht
+    #: „nichts gefunden".
+    gelesen = 0
 
     with tempfile.TemporaryDirectory() as ordner:
         if argumente[0] == "--verzeichnis":
@@ -131,7 +303,8 @@ def main() -> int:
                 print(f"{url}")
                 if not hole(url, ziel):
                     continue
-                anzahl = pruefe(ziel, schluessel)
+                gelesen += 1
+                anzahl = pruefe(ziel, schluessel, stelle)
                 gesamt += anzahl
                 if anzahl:
                     betroffen.append(schluessel)
@@ -144,12 +317,22 @@ def main() -> int:
                         continue
                 else:
                     ziel = url
-                anzahl = pruefe(ziel, os.path.basename(url))
+                gelesen += 1
+                anzahl = pruefe(ziel, os.path.basename(url), stelle)
                 gesamt += anzahl
                 if anzahl:
                     betroffen.append(url)
 
     print()
+    if gelesen == 0:
+        # Der stille Fehler vom 19. September 2026: Der Lauf holte nichts und
+        # meldete „keine auffälligen Stellen" – grün, und ohne eine einzige
+        # Sekunde Ton angesehen zu haben.
+        print("::error::Keine einzige Aufnahme konnte gelesen werden.")
+        print("  Geprüft wurde damit nichts. Das ist kein Ergebnis, sondern")
+        print("  ein Ausfall – oben steht je Adresse, woran es lag.")
+        return 1
+
     if betroffen:
         print(f"::warning::{len(betroffen)} Aufnahme(n) mit auffälligen Stellen:")
         for eintrag in betroffen:

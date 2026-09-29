@@ -21,6 +21,10 @@ import { pathToFileURL } from 'node:url'
 import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
+  folgengewicht,
+  SATZ_KURZ,
+  SATZ_LANG,
+  satzrhythmus,
   verdaechtigeAnglizismen,
   WORTZIEL_MAX,
   WORTZIEL_MIN,
@@ -61,6 +65,31 @@ if (folge.wortzahl < WORTZIEL_MIN || folge.wortzahl > WORTZIEL_MAX) {
 }
 
 /*
+  Wiegt das Gerüst so viel wie die Nachricht?
+
+  Am 28. September 2026 gemeldet: „Das Intro und die Aufklärung danach gehen
+  genauso lange wie der Podcast." Nachgerechnet stimmte das auf das Wort –
+  103 Wörter Gerüst gegen 86 Wörter Meldung. Warum die Grenze bei der Hälfte
+  liegt und nicht woanders, steht bei `folgengewicht`.
+
+  Eine Warnung, kein Abbruch: Hier ist die Ausgabe schon geschrieben. Der
+  Riegel, der etwas ändern kann, sitzt in `scripts/nachrichten-erzeugen.ts`.
+*/
+const gewicht = folgengewicht(folge.sprechtext)
+console.log(
+  `[folge] Gerüst ${gewicht.geruest} Wörter, Meldungen ${gewicht.meldungen} Wörter ` +
+    `(Gerüst ${Math.round(gewicht.anteil * 100)} %).`
+)
+if (gewicht.geruest >= gewicht.meldungen) {
+  console.log(
+    `::warning::[folge] Das Gerüst wiegt so viel wie die Meldungen – Begrüßung und ` +
+      `Hinweise sind so lang wie die Nachrichten.`
+  )
+  console.log(`        Das Gerüst ist fester Text und war noch nie länger als 110`)
+  console.log(`        Wörter. Zu kurz ist die Ausgabe, nicht zu lang der Rahmen.`)
+}
+
+/*
   Was englisch aussieht und keine Umschrift hat, kommt hier ins Protokoll –
   **vor** dem Sprechen, nicht nach dem Hören.
 
@@ -72,6 +101,35 @@ if (folge.wortzahl < WORTZIEL_MIN || folge.wortzahl > WORTZIEL_MAX) {
   Sie bricht nichts ab: Ob ein Wort englisch gesprochen gehört, entscheidet
   ein Ohr, nicht ein Muster. Siehe `verdaechtigeAnglizismen`.
 */
+/*
+  Und der Satzrhythmus – aus demselben Grund und mit demselben Gewicht.
+
+  Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge
+  „langweilig, monoton". Nachgemessen war es nicht die Stimme, sondern der
+  Text: Median 24 Wörter je Satz, die Hälfte über 25, fast nie ein kurzer.
+  Warum das die Pausen mitnimmt, steht bei `satzrhythmus`.
+
+  Eine Warnung, kein Abbruch. Ob ein Absatz einen langen Satz braucht,
+  entscheidet der Stoff; eine Folge wegen Prosa zurückzuhalten wäre der
+  Tausch, den dieses Projekt nicht macht.
+*/
+const rhythmus = satzrhythmus(folge.sprechtext)
+if (rhythmus.anzahl > 0) {
+  console.log(
+    `[folge] Satzrhythmus: ${rhythmus.anzahl} Sätze, Median ${rhythmus.median} Wörter, ` +
+      `${Math.round(rhythmus.kurzeAnteil * 100)} % kurz (<=${SATZ_KURZ}), ` +
+      `${Math.round(rhythmus.langeAnteil * 100)} % lang (>=${SATZ_LANG}), ` +
+      `${rhythmus.geklebt} mit Semikolon`
+  )
+  if (rhythmus.langeAnteil > 0.5 || rhythmus.kurzeAnteil < 0.1) {
+    console.log(
+      `::warning::[folge] Der Rhythmus ist gleichmäßig – so klingt die Folge monoton.`
+    )
+    console.log(`        Gebraucht werden kurze Sätze zwischen den langen: An ihnen`)
+    console.log(`        hängt die Pausenlänge in scripts/sprechstimme.py.`)
+  }
+}
+
 const verdaechtig = verdaechtigeAnglizismen(folge.sprechtext)
 if (verdaechtig.length) {
   console.log(

@@ -6,9 +6,14 @@
  * Bis August 2026 entstand der tägliche Podcast „Börse am Morgen“ von Hand:
  * Zusammenfassung im Chat, Vertonung bei ElevenLabs, Hochladen. Die
  * Arbeitsanweisung dieses Ablaufs ist hier Zeile für Zeile übernommen –
- * fester Einstieg und Abschluss, Freitagsvariante, Fazit-Absatz,
- * ausgeschriebene Zahlen, 710 bis 740 Wörter, Folgennummer ab dem
- * 30. Juli 2026.
+ * fester Einstieg und Abschluss, Freitagsvariante, ausgeschriebene Zahlen,
+ * 710 bis 740 Wörter, Folgennummer ab dem 30. Juli 2026.
+ *
+ * Zwei Stücke davon sind seit dem 16. September 2026 weg: die Einordnung in
+ * den Absätzen und der Fazit-Absatz. Der Betreiber hat beanstandet, dass in
+ * der Folge **nichts erklärt** werden soll, sondern nur die Nachrichten des
+ * Tages kommen – Wirtschaft und Politik. Die Einordnung steht weiter in den
+ * Daten und auf der Website; siehe `themenAbsatz`.
  *
  * ## Warum die Quelle die Tagesausgabe ist und nicht die Website
  *
@@ -294,7 +299,25 @@ function zahlAlsSprechform(ganz: string, nachkomma?: string): string {
  * Die Liste ist bewusst kurz und wächst nur mit dem, was tatsächlich
  * auffällt – gehört, nicht vermutet.
  */
-const ENGLISCHE_NAMEN: [RegExp, string][] = [
+/**
+ * Die Umschrifttabelle – seit dem 16. September 2026 exportiert.
+ *
+ * ## Warum sie kein Innenteil mehr ist
+ *
+ * `tests/sprechfassung-aussprache.test.ts` prüfte die drei Regeln aus dem
+ * Kommentar unten an einer **handgepflegten Liste von siebzehn Wörtern**. Das
+ * hat die neun Verstöße vom 20. August 2026 gefunden – und jeden Eintrag
+ * ungeprüft gelassen, der danach dazukam. Wer einen neuen Namen einträgt,
+ * denkt nicht daran, ihn zusätzlich in eine Testdatei zu schreiben.
+ *
+ * Genau so ist „Skwies" für „Squeeze" stehen geblieben: Die Prüfung suchte
+ * nach einem „w" im englischen Wort, und in „Squeeze" steht keins.
+ *
+ * Eine Prüfung, die nur einen Teil des Stoffes ansieht, ist eine Stichprobe
+ * und wird trotzdem als Zusicherung gelesen. Deshalb liegt die Tabelle jetzt
+ * offen und wird **vollständig** geprüft.
+ */
+export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   /*
     Der eigene Name zuerst, und er ist der wichtigste Eintrag der Tabelle:
     Er fällt in jeder Folge zweimal, in Begrüßung und Abschluss.
@@ -302,12 +325,12 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
     „IM" ist im Deutschen ein Wort. Die Stimme las „das Marktupdate von IM
     Invests" also als „vom im Invests" – zwei Buchstaben, die eine Marke
     tragen sollen, verschluckt zu einer Präposition. Gesprochen wird die
-    Marke englisch, Buchstabe für Buchstabe: „Ei Emm Inwests".
+    Marke englisch, Buchstabe für Buchstabe: „Ei-Emm Inwests".
 
     Deshalb steht das Muster **gross** und ohne `i`-Schalter: Ein
     unempfindliches `\bIM\b` träfe jedes deutsche „im".
   */
-  [/\bIM Invests\b/g, 'Ei Emm Inwests'],
+  [/\bIM Invests\b/g, 'Ei-Emm Inwests'],
   [/\bAlphabet\b/g, 'Ällfabett'],
   /* Wie bei Berkshire steht die Kurzform hinter der langen: Erst „Goldman
      Sachs", dann das allein stehende „Goldman" – so, wie es der Nachrichten-
@@ -320,6 +343,138 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
   [/\bJPMorgan\b/g, 'Dschej-Pi-Morgen'],
   [/\bBank of America\b/g, 'Bänk of Amerika'],
+  /* Notenbanken und Rohstoffsorten kommen in fast jeder Folge vor und
+     standen bis zum 16. September 2026 nicht in der Tabelle: „Bank of
+     England" las die Stimme deutsch, „WTI" als Wort statt als Kürzel. */
+  [/\bBank of England\b/g, 'Bänk of Ingland'],
+  [/\bBank of Japan\b/g, 'Bänk of Dschäpän'],
+  [/\bWTI\b/g, 'Weh-Teh-Ih'],
+
+  /*
+    Die Kürzel, die in jeder Folge fielen und jedes Mal als Silbe herauskamen.
+
+    Am 27. September 2026 beanstandete der Betreiber die Aussprache erneut.
+    Nachgezählt über vierzehn Folgen: „US" 51 Mal, „AFX" 25 Mal. Das sind
+    nicht zwei Ausrutscher, das ist jede Folge mehrfach – „US-Dollar",
+    „US-Autobauer", „laut dpa-AFX".
+
+    `\bUS\b` trifft auch das erste Glied von „US-Dollar", weil der Bindestrich
+    eine Wortgrenze ist. Deshalb genügt der eine Eintrag für alle
+    Zusammensetzungen.
+
+    ## Am 28. September 2026 nachgebessert – zweimal am selben Eintrag
+
+    Der Betreiber hörte die Folge und meldete: „US Notenbank spricht er
+    ,U     S Notenbank' aus, mit einer sehr langen Pause. US soll es aber auch
+    nicht heißen – das englische U und S, die Buchstaben einzeln, aber schnell
+    nacheinander."
+
+    **Erstens: ein Leerzeichen zerlegt die Zusammensetzung.** „Uh Ess" hat aus
+    `US-Notenbank` den Text `Uh Ess-Notenbank` gemacht – drei Zeichenketten,
+    wo zwei standen, und der Bindestrich klebt am **zweiten** Buchstaben statt
+    am Kürzel. Das Modell liest, was dasteht: „Uh", Wortgrenze, „Ess-Notenbank".
+    Genau die Pause, die gemeldet wurde.
+
+    Nachgezählt an allen 65 Ausgaben: 176 solche Stellen, davon 72 Mal
+    „US-Dollar". Das ist kein Sonderfall, das ist die Regel – deutsche
+    Nachrichten schreiben Kürzel als erstes Glied einer Zusammensetzung.
+
+    Deshalb gilt jetzt: **Eine Umschrift ist genauso viele Wörter wie ihr
+    Muster.** Buchstabennamen werden mit Bindestrichen verbunden, nie mit
+    Leerzeichen – so, wie „JPMorgan" es seit jeher vormacht (`Dschej-Pi-Morgen`).
+    `tests/sprechfassung.test.ts` prüft das für jeden Eintrag; 19 der 131
+    verstießen dagegen, alle 19 sind zusammengezogen.
+
+    **Zweitens: die Buchstaben sind englisch.** „Uh Ess" waren die deutschen
+    Namen (/uː/, /ɛs/). Verlangt sind die englischen: U = /juː/, geschrieben
+    „Juh" – das deutsche „J" ist /j/, und genau den Laut braucht es.
+
+    „USA" bleibt davon unberührt: Es steht in `KUERZEL_IN_ORDNUNG` und wird
+    deutsch buchstabiert, weil es im Deutschen so heißt. Der Betreiber hat
+    „US" gemeint, nicht jedes Kürzel mit einem U darin.
+  */
+  [/\bUS\b/g, 'Juh-Ess'],
+  [/\bdpa-AFX\b/g, 'deh-peh-ah-Ah-Eff-Ix'],
+  [/\bAFX\b/g, 'Ah-Eff-Ix'],
+  [/\bPCE\b/g, 'Peh-Zeh-Eh'],
+  [/\bASML\b/g, 'Ah-Ess-Emm-Ell'],
+  [/\bAMD\b/g, 'Ah-Emm-Deh'],
+  [/\bGLD\b/g, 'Geh-Ell-Deh'],
+  /*
+    Und hier schlägt Falle 3 der deutschen Rechtschreibung auf die
+    Buchstabennamen selbst durch: Das **V** heisst „Vau" und wird /faʊ/
+    gesprochen, das **W** heisst „Weh" /veː/. Wer „Wau" schreibt, sagt /vaʊ/
+    und buchstabiert damit ein W.
+
+    Im ersten Entwurf stand hier „Ess Ell Wau" und „Weh Weh" – aus „VW" wäre
+    „W-W" geworden. Gemerkt beim Nachlesen der eigenen Regel in `AGENTS.md`,
+    nicht beim Hören.
+  */
+  [/\bSLV\b/g, 'Ess-Ell-Fau'],
+  [/\bVW\b/g, 'Fau-Weh'],
+
+  /*
+    Und die gewöhnlich geschriebenen englischen Wörter aus derselben Folge.
+    Für sie gibt es kein Muster – siehe `verdaechtigeAnglizismen` –, sie
+    kommen nur durch Zuhören in die Tabelle.
+
+    „Rivian" ist der teuerste der drei: Das „v" wird im Deutschen /f/, aus dem
+    Autobauer wird also „Rifian".
+  */
+  [/\bRivian\b/g, 'Riwien'],
+  [/\bManaged Money\b/g, 'Männedschd Mannie'],
+
+  /*
+    Die englischen Wörter aus dem Durchgang vom 28. September 2026.
+
+    ## Warum diese und nicht die anderen 60
+
+    `verdaechtigeAnglizismen` hat über alle 65 Folgen **78 verschiedene**
+    Wörter gemeldet, und keines davon ist je entschieden worden. Die Meldung
+    lief seit dem 11. August, die Liste wuchs, gelesen hat sie niemand – eine
+    Warnung ohne Entscheidung ist ein Zettel, kein Riegel.
+
+    Aufgeteilt wird sie danach, **was sich ohne Ohr entscheiden lässt**:
+
+    - **Englische Wörter.** Dass „Energy" nicht deutsch gesprochen gehört,
+      steht in `AGENTS.md` („Was englisch ist, wird englisch gesprochen") und
+      braucht niemanden, der es sich anhört. Die stehen hier.
+    - **Kürzel aus Großbuchstaben** – SAP, UBS, IBM, ADP, EQS, ATX, FDA, CME,
+      PMI, ISM und dreißig weitere. Ob die Stimme sie buchstabiert oder als
+      Silbe liest, **steht nicht in der Schreibweise**: „EZB" buchstabiert sie
+      von selbst richtig, deshalb steht es in `KUERZEL_IN_ORDNUNG`. Welches
+      Kürzel zu welcher Gruppe gehört, entscheidet ein Ohr. Sie bleiben
+      draußen, bis jemand sie gehört hat – eine erfundene Umschrift ist
+      schlimmer als eine fehlende, weil sie die Meldung zum Schweigen bringt.
+
+    Die Zahl in Klammern ist, wie oft das Wort in den 65 Folgen vorkam.
+  */
+  [/\bEnergy\b/g, 'Ennerdschi'], // 5×
+  [/\bIndustry\b/g, 'Inndastri'], // 2×
+  /* „Manufacturing" und „Country" kommen aus den Namen der
+     Einkaufsmanagerindizes („ISM Manufacturing", „Country PMI"). */
+  [/\bManufacturing\b/g, 'Männjufäktscharing'],
+  [/\bCountry\b/g, 'Kanntri'],
+  [/\bActivity\b/g, 'Äcktiwwiti'],
+  [/\bMobility\b/g, 'Mobbilliti'],
+  [/\bDelivery\b/g, 'Deliwweri'],
+  [/\bShopify\b/g, 'Schoppifei'],
+  [/\bBookbuilding\b/g, 'Buckbilding'],
+  [/\bNewsflash\b/g, 'Njuusfläsch'],
+  /* Klein geschrieben, wie es im Text steht – die Umschrift ebenso, sonst
+     stünde mitten im Satz ein Großbuchstabe. */
+  [/\bbullish\b/g, 'bullisch'],
+  [/\bCarry\b/g, 'Kärri'],
+  [/\bFitch\b/g, 'Fitsch'],
+  [/\bBarclays\b/g, 'Barklis'],
+  [/\beBay\b/g, 'Ieh-Bej'],
+  /* Falle 2: Das „W" in „FedWatch" ist ein englisches /w/ und steht deshalb
+     als „u". Mit „W" käme „Fedd-Votsch" heraus. */
+  [/\bFedWatch\b/g, 'Fedd-Uotsch'],
+  /* „AI" steht in den Ausgaben englisch da („AI-Boom"); „KI" bleibt deutsch
+     und gehört ausdrücklich nicht hierher. */
+  [/\bAI\b/g, 'Ej-Ei'],
+
   /*
     Drei Fallen, die die deutsche Rechtschreibung stellt. Die ersten beiden
     sind dem Betreiber am 11. August 2026 im Ohr aufgefallen, die dritte kam
@@ -362,6 +517,13 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
     Zeichen für ein hartes /st/ an dieser Stelle. Zusammenschreiben hilft nur,
     wenn ein Wort davorsteht – bei „Wall Street" ging es, hier nicht.
   */
+  /*
+    Der Nachrichtendienst, nicht die Straße – und deshalb vor „Wall Street".
+    Er steht in den Ausgaben als ein Wort mit Bindestrich („wallstreet-online")
+    und traf damit kein einziges Muster: In vierzehn Ausgaben zwölfmal
+    deutsch gesprochen, mit /v/ am Anfang.
+  */
+  [/\bwallstreet[- ]?online\b/gi, 'Uallstriet-onlein'],
   [/\bWall Street\b/g, 'Uallstriet'],
   [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
   [/\bSto(?:xx|cks) Europe\b/gi, 'Stocks Juropp'],
@@ -372,7 +534,7 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bGoogle\b/g, 'Guhgl'],
   [/\bNetflix\b/g, 'Nettflix'],
   [/\bBoeing\b/g, 'Bo-ing'],
-  [/\bCoca-Cola\b/g, 'Koka Kohla'],
+  [/\bCoca-Cola\b/g, 'Koka-Kohla'],
   [/\bJohnson & Johnson\b/g, 'Dschonson und Dschonson'],
   [/\bGeneral Motors\b/g, 'Dschennerel Motors'],
   [/\bHome Depot\b/g, 'Hohm Diepoh'],
@@ -386,15 +548,32 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bNasdaq\b/gi, 'Nässdack'],
   [/\bFederal Reserve\b/g, 'Fedderel Riserw'],
   [/\bTreasury\b/g, 'Treschery'],
-  [/\bBofA\b/g, 'Bänk of Amerika'],
-  [/\bOpenAI\b/g, 'Ohpen Ej Ei'],
+  [/\bBofA\b/g, 'Bänk-of-Amerika'],
+  [/\bOpenAI\b/g, 'Ohpen-Ej-Ei'],
   [/\bAnthropic\b/g, 'Änthropick'],
   [/\bMicrosoft\b/g, 'Meikrosoft'],
   [/\bOracle\b/g, 'Orakl'],
   [/\bPalantir\b/g, 'Pallantihr'],
   [/\bGitHub\b/g, 'Gitthabb'],
-  [/\bBig Tech\b/g, 'Bigg Teck'],
-  [/\bFear[- ]and[- ]Greed\b/g, 'Fier and Griedd'],
+  /* Auch mit Bindestrich – „Big-Tech-Werte" ist die häufigere Schreibung in
+     den Meldungen und traf das Muster mit Leerzeichen nie. */
+  [/\bBig[- ]Tech\b/g, 'Bigg-Teck'],
+  /*
+    Namen, die am 6. September 2026 in den Ausgaben der letzten zwei Wochen
+    standen und unverändert durchgingen. Alle nach denselben drei Regeln:
+    „u" für englisches /w/, „sch" für /ʃ/, „dd" für stimmhaftes /ð/.
+  */
+  [/\bPayPal\b/g, 'Pejpäll'],
+  [/\bTether\b/g, 'Tedder'],
+  [/\bWarsh\b/g, 'Uorsch'],
+  [/\bGreenlight\b/g, 'Griehnleit'],
+  [/\bHugging Face\b/g, 'Hagging Fejs'],
+  /* Bank of England, buchstabiert – „BoE" las die Stimme als Silbe. */
+  [/\bBoE\b/g, 'Bie-Ou-Ie'],
+  /* Zusammensetzungen mit „Rating": Das `\b` vor dem Wort verhinderte den
+     Treffer, und „Kaufrating" blieb deutsch neben umgeschriebenem „Rating". */
+  [/\b(Kauf|Verkaufs|Bonitäts)rating(s?)\b/g, '$1rejting$2'],
+  [/\bFear[- ]and[- ]Greed\b/g, 'Fier-and-Griedd'],
   [/\bUnderperform\b/g, 'Anderperform'],
   [/\bOutperform\b/g, 'Autperform'],
   [/\bValue\b/g, 'Wällju'],
@@ -405,7 +584,7 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bStrategy\b/g, 'Strättedschi'],
   [/\bMicroStrategy\b/g, 'Meikrosträttedschi'],
   [/\bCoinbase\b/g, 'Koinbejs'],
-  [/\bBlackRock\b/g, 'Bläck Rock'],
+  [/\bBlackRock\b/g, 'Bläck-Rock'],
   [/\bVanguard\b/g, 'Wängguard'],
   [/\bHold\b/g, 'Hohld'],
   [/\bBuy\b/g, 'Bai'],
@@ -431,10 +610,19 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bBlue Chips?\b/g, 'Bluh Tschipps'],
   [/\bSmall Caps?\b/g, 'Smohl Kepps'],
   [/\bLarge Caps?\b/g, 'Lahdsch Kepps'],
-  [/\bPrivate Equity\b/g, 'Preiwet Ekwiti'],
+  /* „Equity": „kw" wäre im Deutschen /kv/ – gesprochen „Ekwiti". Dieselbe
+     Falle wie bei „Squeeze", gefunden am 16. September 2026, als die Prüfung
+     zum ersten Mal über die **ganze** Tabelle lief statt über siebzehn
+     handverlesene Wörter. */
+  [/\bPrivate Equity\b/g, 'Preiwet Ekuiti'],
   [/\bVenture Capital\b/g, 'Wentscher Käpitel'],
   [/\bSupply Chain\b/g, 'Saplei Tschejn'],
-  [/\bShort Squeeze\b/g, 'Schort Skwies'],
+  /* „Squeeze": Das „qu" ist im Englischen /kw/, im Deutschen /kv/ – und ein
+     „w" in der Umschrift wäre wieder /v/. Also „u", wie bei jedem anderen
+     englischen /w/. Bis zum 16. September stand „Skwies" da, gesprochen
+     „Skwies" mit /v/. Die maschinelle Prüfung hat es nicht gefunden, weil
+     sie nach „w" im **englischen** Wort suchte – in „Squeeze" steht keins. */
+  [/\bShort Squeeze\b/g, 'Schort Skuies'],
   [/\bHedgefonds?\b/g, 'Hedschfonds'],
 
   [/\bBoom\b/g, 'Buhm'],
@@ -477,15 +665,60 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   /* Abkürzungen, die deutsch buchstabiert falsch klingen. „ETF" und „KI"
      gehören ausdrücklich **nicht** dazu – die spricht man hierzulande
      deutsch, und alles andere wäre die Karikatur aus dem Kopf der Datei. */
-  [/\bCEO\b/g, 'Sieh Ie Ou'],
-  [/\bCFO\b/g, 'Sieh Eff Ou'],
-  [/\bIPO\b/g, 'Ei Pie Ou'],
+  [/\bCEO\b/g, 'Sieh-Ie-Ou'],
+  [/\bCFO\b/g, 'Sieh-Eff-Ou'],
+  [/\bIPO\b/g, 'Ei-Pie-Ou'],
 ]
+
+/**
+ * Dasselbe Muster, aber mit angehängtem Genitiv-s.
+ *
+ * ## Die Lücke, die das schließt
+ *
+ * Am 6. September 2026 an vierzehn Ausgaben nachgemessen: „Nvidia" wurde
+ * umgeschrieben, **„Nvidias" nicht.** Ebenso „Teslas", „Apples",
+ * „Anthropics". Das `\b` am Ende jedes Musters schließt genau dort, wo der
+ * Genitiv anfängt.
+ *
+ * Das ist die unangenehmste Sorte Fehler in einer Aufnahme: Derselbe Name
+ * klingt in einem Satz englisch und im nächsten deutsch. Ein durchgehend
+ * falscher Name wäre weniger auffällig als einer, der springt.
+ *
+ * ## Warum als Umbau und nicht als sechzig neue Zeilen
+ *
+ * Man könnte jedem Eintrag ein `(s?)` anhängen. Das wären sechzig
+ * Gelegenheiten, eines zu vergessen – und die Tabelle wächst weiter. Hier
+ * geschieht es einmal, für alle, und der nächste Eintrag bekommt es
+ * geschenkt.
+ *
+ * Wo ein Genitiv unsinnig wäre („CEOs" ist ein Plural, kein Genitiv), schadet
+ * die Regel nicht: Die Umschrift hängt das `s` unverändert an, und
+ * „Sieh Ie Ous" ist genau das, was gesprochen werden soll.
+ */
+function mitGenitiv([muster, laut]: [RegExp, string]): [RegExp, string] {
+  if (!muster.source.endsWith('\\b')) return [muster, laut]
+  /*
+    Die neue Klammer bekommt die **nächste freie** Nummer, nicht die eins.
+    Ein Muster mit eigener Gruppe – `\b(Kauf|Verkaufs)rating\b` – benutzt `$1`
+    bereits; ein blindes `$1` hinten hängte dort den Wortanfang ein zweites
+    Mal an und machte aus „Kaufrating" ein „KaufrejtingKauf".
+
+    Gezählt wird, indem das Muster gegen den leeren String läuft: Die Länge
+    des Ergebnisses ist die Zahl der Gruppen plus eins.
+  */
+  const gruppen = new RegExp(`${muster.source}|`).exec('')!.length - 1
+  return [
+    new RegExp(muster.source.replace(/\\b$/, '(s?)\\b'), muster.flags),
+    `${laut}$${gruppen + 1}`,
+  ]
+}
+
+const ENGLISCHE_NAMEN_MIT_GENITIV = ENGLISCHE_NAMEN.map(mitGenitiv)
 
 /** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
 export function englischeNamenSprechbar(text: string): string {
   let s = text
-  for (const [muster, laut] of ENGLISCHE_NAMEN) s = s.replaceAll(muster, laut)
+  for (const [muster, laut] of ENGLISCHE_NAMEN_MIT_GENITIV) s = s.replaceAll(muster, laut)
   return s
 }
 
@@ -500,10 +733,66 @@ export function englischeNamenSprechbar(text: string): string {
   Modell als zwei Laute; ein „DE" läse es als Wort.
 */
 const ENDUNG = {
-  de: 'punkt Deh Eh',
-  com: 'punkt Zeh Oh Emm',
-  net: 'punkt Enn Eh Teh',
+  de: 'punkt Deh-Eh',
+  com: 'punkt Zeh-Oh-Emm',
+  /*
+    „net" wird **gesprochen**, nicht buchstabiert – anders als „de".
+
+    Bis zum 27. September 2026 stand hier „punkt Enn Eh Teh", und in der Folge
+    dieses Tages kam heraus: „finanzen punkt Enn Eh Teh". So sagt es niemand.
+
+    Der Unterschied zu „de" liegt am Wort, nicht an der Regel: „de" ist im
+    Deutschen keine Silbe, die man lesen kann – genau darum hat der Betreiber
+    am 11. August das Buchstabieren verlangt. „net" ist eine, und zwar eine,
+    die jeder kennt. Geschrieben als „nett", damit das Modell /nɛt/ sagt und
+    nicht /neːt/.
+  */
+  net: 'punkt nett',
 } as const
+
+/*
+  Kürzel, die die Stimme von selbst richtig sagt – oder die ausdrücklich
+  deutsch gesprochen gehören.
+
+  ## Warum es diese Liste braucht
+
+  Ein Kürzel aus Großbuchstaben hat im Deutschen keine Aussprache, die man
+  ablesen könnte: „EZB" wird buchstabiert, „DAX" als Wort gesprochen, und
+  welches von beidem gilt, steht nicht in der Schreibweise. Ein Melder, der
+  jedes Kürzel anzeigt, zeigt in jeder Folge zwanzig an und wird überlesen.
+
+  Hier stehen deshalb die, bei denen nichts zu tun ist. Alles andere meldet
+  `verdaechtigeAnglizismen`. Die Begründung, warum „ETF" und „KI" nicht
+  umgeschrieben werden, steht in `AGENTS.md`: Was im Deutschen deutsch
+  gesprochen wird, gehört nicht in die Tabelle.
+*/
+const KUERZEL_IN_ORDNUNG = new Set([
+  // Als Wort gesprochen, und zwar richtig.
+  'DAX',
+  'MDAX',
+  'SDAX',
+  'BASF',
+  'RAG',
+  'UN',
+  'OPEC',
+  'NATO',
+  // Buchstabiert, und die Stimme trifft es.
+  'EZB',
+  'USA',
+  'SPD',
+  'CDU',
+  'CSU',
+  'FDP',
+  'BIP',
+  'EU',
+  // Ausdrücklich deutsch – siehe AGENTS.md.
+  'ETF',
+  'ETFs',
+  'KI',
+  'AG',
+  'SE',
+  'GmbH',
+])
 
 /*
   Formen, die im Deutschen praktisch nur bei englischen Wörtern vorkommen.
@@ -559,6 +848,35 @@ const KEINE_ANGLIZISMEN = new Set([
  * ist; sie kennt nur ein paar Schreibweisen, die es im Deutschen kaum gibt.
  * Deshalb wird nichts abgebrochen und nichts von selbst ersetzt – die
  * Entscheidung, ob ein Wort in die Tabelle gehört, trifft ein Ohr.
+ *
+ * ## Was sie am 27. September 2026 dazugelernt hat
+ *
+ * Der Betreiber hat die Aussprache erneut beanstandet. In der Folge dieses
+ * Tages standen fünf Fehler – und dieser Melder fand **keinen einzigen**:
+ *
+ *     finanzen punkt Enn Eh Teh   „.net" buchstabiert statt gesprochen
+ *     Managed Money               gar nicht umgeschrieben
+ *     Rivian                      gar nicht umgeschrieben, „v" wird /f/
+ *     PCE                         als Silbe gelesen statt buchstabiert
+ *     dpa-AFX                     dasselbe
+ *
+ * Nachgezählt, woran es liegt: Die Muster oben fangen **auffällige**
+ * Schreibweisen – „tch", „-ing", „-sh", Konsonant plus „y". „Rivian" und
+ * „Managed" sind ganz gewöhnlich geschrieben, und ein Kürzel aus
+ * Großbuchstaben trifft kein einziges Muster.
+ *
+ * Für die gewöhnlich geschriebenen Wörter gibt es kein Muster, das trägt: Ein
+ * Versuch über „enthält v oder w" wurde an vierzehn Folgen gemessen und
+ * verworfen – er hätte „Bevor" (14×), „Hinweis" (29×), „Mittwoch" und
+ * „November" gemeldet. Eine Fallunterscheidung über ein Merkmal, das der
+ * Stoff nicht hergibt, ist keine.
+ *
+ * Die **Kürzel** dagegen sind eine saubere Klasse: zwei oder mehr
+ * Großbuchstaben am Stück. In denselben vierzehn Folgen waren es 26
+ * verschiedene, angeführt von „US" (51 Mal) und „AFX" (25 Mal) – zwei
+ * Kürzel, die in jeder Folge mehrfach fielen und jedes Mal als Silbe
+ * herauskamen. Die, bei denen nichts zu tun ist, stehen in
+ * `KUERZEL_IN_ORDNUNG`; alles andere wird gemeldet.
  */
 export function verdaechtigeAnglizismen(sprechtext: string): string[] {
   const gefunden = new Set<string>()
@@ -566,7 +884,16 @@ export function verdaechtigeAnglizismen(sprechtext: string): string[] {
     if (KEINE_ANGLIZISMEN.has(wort)) continue
     /* Zusammensetzungen am Bindestrich einzeln ansehen: „News-Ticker". */
     for (const teil of wort.split('-')) {
-      if (teil.length < 3 || KEINE_ANGLIZISMEN.has(teil)) continue
+      if (teil.length < 2 || KEINE_ANGLIZISMEN.has(teil)) continue
+      /*
+        Zuerst die Kürzel. Sie sind kürzer als drei Zeichen erlaubt – „US" ist
+        zwei –, und für sie gelten die Muster unten nicht.
+      */
+      if (/^[A-ZÄÖÜ]{2,}$/.test(teil)) {
+        if (!KUERZEL_IN_ORDNUNG.has(teil)) gefunden.add(teil)
+        continue
+      }
+      if (teil.length < 3) continue
       if (ENGLISCH_VERDAECHTIG.some((muster) => muster.test(teil))) gefunden.add(teil)
     }
   }
@@ -591,10 +918,24 @@ export function sprechbar(text: string): string {
   */
   s = englischeNamenSprechbar(s)
 
-  s = s.replaceAll(/S&P[  ]?500/g, 'S und P fünfhundert')
+  /*
+    „S&P 500" – der meistgenannte Index dieser Ausgaben (109 Nennungen).
+
+    Bis zum 16. September 2026 stand hier „S und P fünfhundert". Die beiden
+    Buchstaben las die Stimme als deutsche Buchstabennamen, aber ohne Halt:
+    Im Ohr war es ein Wort, nicht ein Kürzel. Gesprochen gehört es so, wie es
+    im deutschen Börsenfunk klingt – die Buchstaben ausgeschrieben, das „P"
+    englisch: „Ess und Pie".
+
+    Die Kurzform ohne Zahl kommt ebenfalls vor („der S&P gab nach") und
+    braucht dieselbe Behandlung – sonst bliebe dort ein nacktes
+    Kaufmannsund stehen.
+  */
+  s = s.replaceAll(/S&P[  ]?500/g, 'Ess und Pie fünfhundert')
+  s = s.replaceAll(/\bS&P\b/g, 'Ess und Pie')
   /* Die eigene Adresse ist die Marke plus Endung – siehe `ENGLISCHE_NAMEN`.
      „iminvests punkt de" las die Stimme als ein einziges deutsches Wort. */
-  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei Emm Inwests ${ENDUNG.de}`)
+  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei-Emm Inwests ${ENDUNG.de}`)
   s = s.replaceAll(
     /\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi,
     (_, name: string, endung: string) =>
@@ -643,8 +984,30 @@ export function sprechbar(text: string): string {
   /* Klammern sind in der Sprechfassung verboten – sie werden zu Einschüben. */
   s = s.replaceAll(/\s*\(([^)]*)\)/g, ', $1,')
 
-  /* Vorzeichen vor Zahlen. */
-  s = s.replaceAll(/([+−-])(\d)/g, (_, z: string, d: string) =>
+  /*
+    Vorzeichen vor Zahlen – aber nur, wo wirklich eines steht.
+
+    ## Der Fehler, den der Betreiber am 16. September 2026 gehört hat
+
+    Bis dahin fasste die Regel **jeden** Bindestrich vor einer Ziffer. Im
+    Bestand traf das fünf Stellen, und alle fünf klangen falsch:
+
+        der Nasdaq-100   →  „der Nässdackminus einhundert"
+        der US-30        →  „der USminus dreißig"
+        ein 9-zu-3-…     →  „ein neun-zuminus drei-…"
+
+    Ein Bindestrich in einem zusammengesetzten Wort ist kein Minuszeichen.
+    Unterscheiden lassen sich die beiden an dem, was **davor** steht: Ein
+    Vorzeichen steht am Anfang oder hinter einem Leerzeichen, einer Klammer,
+    einem Gedankenstrich. Klebt links ein Buchstabe oder eine Ziffer, ist der
+    Strich ein Bindestrich.
+
+    Das ist derselbe Satz wie an anderen Stellen dieses Projekts: **Eine
+    Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine.**
+    „Strich vor Ziffer" ist kein Merkmal eines Vorzeichens – erst die
+    Umgebung macht es zu einem.
+  */
+  s = s.replaceAll(/(?<![A-Za-zÄÖÜäöü0-9])([+−-])(\d)/g, (_, z: string, d: string) =>
     z === '+' ? `plus ${d}` : `minus ${d}`
   )
 
@@ -799,10 +1162,50 @@ const KEIN_SCHLUSSWORT = new Set([
   'ihre',
 ])
 
-/** Kürzt eine Überschrift auf ihren Kern – für Titelzeile und Kapitel. */
-function kernDerUeberschrift(headline: string, maxLaenge = 44): string {
-  /* Am ersten Doppelpunkt, Gedankenstrich oder Komma endet der Kern. */
-  let kern = headline.split(/[:–—,]/)[0].trim()
+/**
+ * Ein Kern unter dieser Länge ist ein Stummel und kein Kapitelname.
+ *
+ * „Heute", „Wall Street", „Der DAX" – richtig abgetrennt und trotzdem
+ * unbrauchbar. Vierzehn Zeichen ist die Grenze, unter der die Trennung
+ * verworfen und die ganze Überschrift gekürzt wird.
+ */
+const KERN_MIN = 14
+
+/**
+ * Kürzt eine Überschrift auf ihren Kern – für Titelzeile und Kapitel.
+ *
+ * ## Zwei Fehler, gefunden am 16. September 2026
+ *
+ * Bis dahin trennte die Funktion an `[:–—,]` – jedem Doppelpunkt,
+ * Gedankenstrich und Komma. An den Überschriften des 30. Juli ergab das:
+ *
+ *     Öl springt 7,9 Prozent auf 90,74 Dollar – …   →  „Öl springt 7"
+ *     Heute: Bank of England, BIP-Schnellmeldungen  →  „Heute"
+ *     Wall Street: schwerster Tag seit April 2025   →  „Wall Street"
+ *
+ * **Erstens ist ein Komma zwischen zwei Ziffern ein Dezimalkomma**, kein
+ * Satztrenner. In einem Börsentext steht in fast jeder Überschrift eines.
+ * Getrennt wird deshalb nur an einem Komma, das nicht zwischen Ziffern steht.
+ *
+ * **Zweitens ist nicht jeder Teil vor dem Trenner ein Kern.** Steht dort eine
+ * Rubrik („Heute:") oder ein Ort („Wall Street:"), bleibt ein Stummel übrig,
+ * der nichts mehr sagt. Fällt der Kern unter `KERN_MIN`, wird die Trennung
+ * verworfen und stattdessen die ganze Überschrift wortweise gekürzt.
+ *
+ * Zu sehen war beides in jeder Folgenbeschreibung: „Wir sprechen über Öl
+ * springt 7, Microsoft springt, Heute."
+ */
+export function kernDerUeberschrift(headline: string, maxLaenge = 44): string {
+  /*
+    Am ersten Doppelpunkt, Gedankenstrich oder Satzkomma endet der Kern.
+    Ein Komma zwischen zwei Ziffern ist ein Dezimalkomma und trennt nicht.
+  */
+  const TRENNER = /[:–—]|(?<!\d),(?!\d)/
+  const vorDemTrenner = headline.split(TRENNER)[0].trim()
+
+  /* Ein Stummel ist kein Kern – dann lieber die ganze Überschrift kürzen. */
+  let kern = vorDemTrenner.length < KERN_MIN ? headline.trim() : vorDemTrenner
+
   if (kern.length > maxLaenge) {
     const woerter = kern.split(' ')
     kern = ''
@@ -815,10 +1218,13 @@ function kernDerUeberschrift(headline: string, maxLaenge = 44): string {
   while (teile.length > 1 && KEIN_SCHLUSSWORT.has(teile.at(-1)!.toLowerCase())) {
     teile.pop()
   }
-  /* Titel dürfen laut Vorlage keine Gedankenstriche und Sonderzeichen tragen. */
+  /* Titel dürfen laut Vorlage keine Gedankenstriche und Sonderzeichen tragen.
+     Und kein Satzzeichen am Ende: Nach dem Kürzen bleibt sonst das Komma
+     stehen, an dem die Überschrift weitergegangen wäre. */
   return teile
     .join(' ')
     .replaceAll(/[„“"«»]/g, '')
+    .replace(/[\s,;:–—-]+$/, '')
     .trim()
 }
 
@@ -848,10 +1254,6 @@ export interface Podcastfolge {
 /**
  * Das Zielfenster der Folge, in Wörtern – **die eine Quelle dafür.**
  *
- * Rund fünf Minuten bei ruhigem Sprechtempo. Die Beschreibung jeder Folge
- * sagt „Kompakt in rund fünf Minuten"; diese beiden Zahlen sind das, was
- * dahintersteht.
- *
  * ## Warum sie seit dem 17. August 2026 exportiert werden
  *
  * Weil sie an drei Stellen standen und nur an einer als Konstante:
@@ -869,14 +1271,69 @@ export interface Podcastfolge {
  * Dieselbe Bauart hat am 16. August 2026 eine Tagesausgabe gekostet – zwei
  * Grenzen für dieselbe Zeichenkette, 165 gegen 160.
  *
+ * ## Am 25. September 2026 nachgemessen, und beide Zahlen waren falsch
+ *
+ * Am 16. September ist die Einordnung aus der gesprochenen Folge genommen
+ * worden – Nutzerwunsch: nur Nachrichten, keine Erklärung. `themenAbsatz()`
+ * spricht seither nur noch `summary`. Damit fiel jede Folge um ein knappes
+ * Drittel kürzer aus, und **niemand hat die Grenzen nachgezogen**.
+ *
+ * Die zehn Folgen seit dem 16. September, in Wörtern:
+ *
+ *     295  319  384  415  429  432  441  453  456  686
+ *
+ * Keine einzige hat `WORTZIEL_MIN` von 710 erreicht; die längste blieb 24
+ * Wörter unter der Obergrenze. Das Fenster war nicht eng, es war **leer** –
+ * eine Untergrenze, die jeden Tag meldet, meldet nichts. Sie hat neun Tage
+ * lang denselben Hinweis gedruckt, und am zehnten hat ihn niemand mehr
+ * gelesen.
+ *
+ * Neu gesetzt an dem, was das Format hergibt: Median 432, Spanne 295 bis 686.
+ * `WORTZIEL_MIN` steht deshalb bei 320 – damit trennt der Hinweis wieder,
+ * statt immer zu gelten. Die Obergrenze bleibt bei 740: Sie treibt die
+ * Kürzungsschleife, 686 kam vor und war in Ordnung, und eine engere Grenze
+ * würde Meldungen wegschneiden, die jemand geschrieben hat.
+ *
  * ## Warum die Untergrenze nur meldet und nicht erzwingt
  *
  * Gekürzt wird durch Weglassen, verlängert würde durch Erfinden. Reicht der
  * Stoff nicht, kommt die Folge kürzer heraus und sagt es – eine kurze
  * ehrliche Folge schlägt eine gestreckte.
  */
-export const WORTZIEL_MIN = 710
+export const WORTZIEL_MIN = 320
 export const WORTZIEL_MAX = 740
+
+/**
+ * Wie kurz eine Folge sein darf, bevor sie keine mehr ist.
+ *
+ * ## Warum diese Zahl einen Namen braucht
+ *
+ * Weil sie keinen hatte. Sie stand als `folge.wortzahl > 300` mitten in
+ * `tests/sprechfassung.test.ts` – die einzige der vier Grenzen, die beim
+ * Export am 17. August 2026 nicht mitgekommen ist. Genau daran ist sie dann
+ * hängengeblieben, als die Folge am 16. September kürzer wurde.
+ *
+ * **Am 25. September 2026 hat sie die Tagesausgabe gekostet.** Die Folge kam
+ * auf 295 Wörter, der Riegel sah einen neuen Befund, und die Ausgabe blieb
+ * liegen. Der Riegel hatte recht – gemessen an einer Zahl, die niemand mehr
+ * meinte.
+ *
+ * ## Woran die neue Zahl gewählt ist
+ *
+ * Nicht an den 295, die gerade durchfallen sollten. An dem, was eine **kaputte**
+ * Folge wirklich ergibt, nachgerechnet an der Ausgabe vom 25. September:
+ *
+ *     keine einzige Meldung   104 Wörter   ← Begrüßung, Hinweise, Abschied
+ *     eine Meldung            143
+ *     zwei Meldungen          192
+ *     drei Meldungen          233   ← das Minimum, das der Validator zulässt
+ *
+ * Eine Ausgabe mit drei Meldungen ist gültig und ergibt 233 Wörter. Die
+ * Grenze muss also darunter liegen, sonst verwirft sie Erlaubtes – und über
+ * 104, sonst findet sie die leere Folge nicht. 180 liegt zwischen „eine
+ * Meldung" und „zwei" und damit dort, wo wirklich etwas fehlt.
+ */
+export const WORTZAHL_KAPUTT = 180
 
 /**
  * Der KI-Hinweis, wie er unter jeder Folge steht.
@@ -1000,21 +1457,114 @@ export const KI_HINWEIS_GESPROCHEN =
  *
  * Das Vollständige steht weiterhin unter jeder Folge, im Impressum und in der
  * Fußzeile jeder Seite – dort ist Platz für den ganzen Satz.
+ *
+ * ## Die Fassung vom 6. September 2026 – der Ton
+ *
+ * Der Betreiber hat den Satz erneut beanstandet: Er klinge nicht
+ * professionell. Er hatte recht, und zwar an drei Stellen:
+ *
+ * > Und noch eins: Das ist keine Anlageberatung, und für
+ * > Anlageentscheidungen übernehmen wir keine Haftung.
+ *
+ * 1. **„Und noch eins"** ist Plauderton. Es kündigt einen Nachtrag an, als
+ *    wäre der Hinweis dem Sprecher gerade noch eingefallen – und es ist die
+ *    **zweite** Ankündigung in Folge, direkt hinter „Bevor es losgeht, ein
+ *    Hinweis". Zweimal ankündigen, einmal sagen.
+ * 2. **„Das ist"** – was ist „das"? Ein Rechtshinweis, der sein eigenes
+ *    Bezugswort offenlässt, klingt hingeworfen.
+ * 3. **„für Anlageentscheidungen übernehmen wir keine Haftung"** ist
+ *    umständlich und schief dazu: Für die Entscheidung eines anderen haftet
+ *    ohnehin niemand. Gemeint ist, dass aus dieser Folge keine Ansprüche
+ *    folgen.
+ *
+ * Jetzt:
+ *
+ * > Dazu der rechtliche Hinweis: Diese Folge ist Information, keine
+ * > Anlageberatung – und für deine Entscheidungen haften wir nicht.
+ *
+ * „Dazu der rechtliche Hinweis" benennt, was kommt, statt es anzukündigen –
+ * derselbe Ton, in dem Nachrichtensendungen ihre Pflichtangaben sprechen.
+ * „Diese Folge" hat ein Bezugswort. Der Gedankenstrich bindet den zweiten
+ * Punkt an den ersten, statt ihn als eigenen Satz nachzuschieben.
+ *
+ * **Was nicht geändert wurde:** die zwei Punkte und ihre Reihenfolge. Die
+ * Aufzählung „kaufen oder verkaufen" bleibt draußen, aus den Gründen zwei
+ * Absätze weiter oben.
  */
 export const RECHTSHINWEIS_GESPROCHEN =
-  'Und noch eins: Das ist keine Anlageberatung, und für Anlageentscheidungen ' +
-  'übernehmen wir keine Haftung.'
+  'Dazu der rechtliche Hinweis: Diese Folge ist Information, keine ' +
+  'Anlageberatung – und für deine Entscheidungen haften wir nicht.'
 
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
 }
 
-/** Ein Themenabsatz: Meldung mit Zahlen, dann die Einordnung. */
-function themenAbsatz(item: EditionItem, mitEinordnung: boolean): string {
-  const saetze = [...item.summary]
-  if (mitEinordnung) saetze.push(item.whyItMatters)
-  return sprechbar(saetze.join(' '))
+/**
+ * Sprechtempo der Stimme in Wörtern je Minute.
+ *
+ * Nachgemessen an den Folgen vom Juli und August 2026: rund 670 Wörter auf
+ * fünf Minuten. Die Zahl steht hier als Konstante, weil die Beschreibung
+ * jeder Folge eine Spieldauer nennt – und die muss stimmen.
+ */
+const WOERTER_JE_MINUTE = 134
+
+/**
+ * Wie lange die Folge ungefähr dauert – für den Satz in der Beschreibung.
+ *
+ * ## Warum das gerechnet wird und nicht mehr dasteht
+ *
+ * Bis zum 16. September 2026 stand in jeder Beschreibung „Kompakt in rund
+ * fünf Minuten". Das stimmte, solange jede Meldung ihre Einordnung mitbrachte.
+ * Seit die Folge nur noch die Nachrichten bringt, ist sie rund ein Drittel
+ * kürzer – dieselbe Ausgabe ergab im Versuch 472 statt 669 Wörter.
+ *
+ * Eine Angabe, die einmal gestimmt hat und seither mitgeschleppt wird, ist
+ * genau die Art von stillem Fehler, gegen die der Rest dieses Projekts
+ * anschreibt: Sie sieht richtig aus und niemand misst nach. Also wird sie
+ * gemessen.
+ *
+ * Aufgerundet auf halbe Minuten wäre genauer und läse sich schlechter; die
+ * Beschreibung sagt „rund".
+ */
+function spieldauerMinuten(sprechtext: string): number {
+  return Math.max(2, Math.round(wortzahl(sprechtext) / WOERTER_JE_MINUTE))
 }
+
+/**
+ * Ein Themenabsatz: die Meldung, sonst nichts.
+ *
+ * ## Warum die Einordnung hier nicht mehr steht
+ *
+ * Bis zum 16. September 2026 hängte diese Funktion `whyItMatters` an – „Was
+ * die Meldung für Privatanleger bedeutet". Auf der Website ist das der Zweck
+ * der Rubrik und bleibt es. In der Folge war es zu viel: Der Betreiber hat
+ * beanstandet, dass dort **nichts erklärt** werden soll, sondern nur die
+ * Nachrichten des Tages kommen.
+ *
+ * Er hat recht, und der Unterschied ist nicht der Umfang, sondern die
+ * Gattung. Wer morgens fünf Minuten Nachrichten hört, will wissen, was
+ * passiert ist. Eine Erklärung dazu ist etwas, das man liest, wenn man sie
+ * sucht – und genau dorthin verweist der Abschluss der Folge.
+ *
+ * Aus derselben Aufnahme fiel damit auch das „Fazit" heraus, das die
+ * Einordnung der wichtigsten Meldung ein zweites Mal vortrug.
+ *
+ * **Das Feld bleibt in den Daten und auf der Website.** Weggelassen wird es
+ * nur hier.
+ */
+function themenAbsatz(item: EditionItem): string {
+  return sprechbar(item.summary.join(' '))
+}
+
+/**
+ * So viele Meldungen bleiben mindestens stehen, auch wenn es zu lang wird.
+ *
+ * Darunter wäre es keine Nachrichtensendung mehr, sondern eine Meldung. Die
+ * Zahl ist von drei auf vier gestiegen, seit die Einordnungen wegfallen: Ein
+ * Absatz ist damit rund halb so lang, und vier davon sind kürzer als die drei
+ * von vorher.
+ */
+const MELDUNGEN_MIN = 4
 
 /**
  * Baut die komplette Folge aus einer Tagesausgabe.
@@ -1084,12 +1634,18 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
   const einstieg = `${begruessung}\n\n${KI_HINWEIS_GESPROCHEN} ${RECHTSHINWEIS_GESPROCHEN}`
 
   /*
-    Das Fazit wiederholt nicht die Begrüßung – dort steht `intro` bereits.
-    Es nimmt die Einordnung der wichtigsten Meldung, weil das die Lehre des
-    Tages ist, und die ist der erklärte Zweck dieses Podcasts.
+    Hier stand bis zum 16. September 2026 das Fazit.
+
+    Es nahm die Einordnung der wichtigsten Meldung – „die Lehre des Tages" –
+    und trug sie ein zweites Mal vor. Der Betreiber hat beanstandet, dass in
+    der Folge nichts erklärt werden soll; damit fällt nicht nur die Einordnung
+    aus den Absätzen (siehe `themenAbsatz`), sondern auch ihre Wiederholung am
+    Schluss.
+
+    Ersatzlos, und das ist Absicht: Ein Nachrichtenblock endet mit der letzten
+    Meldung. Was danach kommt, ist die Verabschiedung – und in der steht seit
+    jeher, wo die Einordnung zu finden ist.
   */
-  const lehre = alle[0]?.whyItMatters ?? ''
-  const fazit = `Bleibt das Fazit. ${sprechbar(lehre)}`
 
   /*
     Ein Abschluss für alle Tage.
@@ -1100,51 +1656,34 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     die nicht eintrifft: Am Samstag früh steht die nächste da.
   */
   /* Die Adresse steht hier als Adresse und nicht als fertige Lautschrift –
-     `sprechbar` macht daraus „Ei Emm Inwests punkt Deh Eh". Sonst stünde die
+     `sprechbar` macht daraus „Ei-Emm Inwests punkt Deh-Eh". Sonst stünde die
      Aussprache an zwei Stellen und ginge beim nächsten Mal auseinander. */
   const abschluss = sprechbar(
     'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests.de. Bis morgen früh und viel Erfolg.'
   )
 
   /*
-    Erst alles mit Einordnung, dann von hinten kürzen: zuerst verlieren die
-    letzten Themen ihre Einordnung, dann fallen sie ganz weg. So bleibt die
-    Rangfolge der Ausgabe gewahrt – gekürzt wird am Unwichtigsten.
+    Alle Meldungen, dann von hinten kürzen, bis es passt.
+
+    **Eine reiche Ausgabe darf die Folge nicht kosten.** Am 11. August 2026
+    hat genau das zugeschlagen: Der Agent lieferte sieben Artikel statt der
+    fünf, mit denen bis dahin gerechnet wurde, der Sprechtext lag über 740
+    Wörtern, und `tests/sprechfassung.test.ts` ließ den ganzen
+    Nachrichtenlauf scheitern. Die Ausgabe war gut, die Folge zu lang, und
+    veröffentlicht wurde nichts.
+
+    Gekürzt wird von hinten – die Rangfolge der Ausgabe bleibt gewahrt, und
+    weg fällt das Unwichtigste. Die Zwischenstufe „Meldung ohne Einordnung"
+    gibt es seit dem 16. September 2026 nicht mehr, weil es die Einordnung in
+    der Folge nicht mehr gibt (siehe `themenAbsatz`). Damit ist aus zwei
+    Schleifen eine geworden.
+
+    Reicht auch `MELDUNGEN_MIN` nicht, kommt die Folge etwas zu lang heraus –
+    lieber das als gar keine.
   */
-  let absaetze = alle.map((item) => themenAbsatz(item, true))
-  const rumpf = () => [einstieg, ...absaetze, fazit, abschluss].join('\n\n')
-  let ohneEinordnung = alle.length - 1
-  while (wortzahl(rumpf()) > WORTZIEL_MAX && ohneEinordnung > 0) {
-    absaetze[ohneEinordnung] = themenAbsatz(alle[ohneEinordnung], false)
-    ohneEinordnung -= 1
-    if (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > 3) {
-      absaetze = absaetze.slice(0, -1)
-    }
-  }
-
-  /*
-    Und weiter kürzen, bis es wirklich passt.
-
-    Die Schleife darüber hört auf, wenn `ohneEinordnung` bei null ankommt –
-    also nach so vielen Runden, wie es Themen gibt. Ob der Text danach kurz
-    genug ist, fragt sie nicht mehr. Bei fünf Themen fiel das nie auf; bei
-    sieben schon.
-
-    Am 11. August 2026 hat es zugeschlagen: Der Agent lieferte eine Ausgabe
-    mit sieben Artikeln – deutlich reicher als die fünf, mit denen bis dahin
-    gerechnet wurde –, der Sprechtext lag über 740 Wörtern, und
-    `tests/sprechfassung.test.ts` ließ den ganzen Nachrichtenlauf scheitern.
-    Die Ausgabe war gut, die Folge zu lang, und veröffentlicht wurde nichts.
-
-    **Eine reiche Ausgabe darf die Folge nicht kosten.** Die Website zeigt
-    alle Artikel; die Folge nimmt so viele, wie in ihre fünf Minuten passen.
-    Gekürzt wird weiter von hinten – die Rangfolge der Ausgabe bleibt gewahrt.
-
-    Die Untergrenze von drei Themen steht: Darunter wäre es keine Folge mehr,
-    sondern eine Meldung. Reicht auch das nicht, kommt die Folge etwas zu
-    lang heraus – lieber das als gar keine.
-  */
-  while (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > 3) {
+  let absaetze = alle.map((item) => themenAbsatz(item))
+  const rumpf = () => [einstieg, ...absaetze, abschluss].join('\n\n')
+  while (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > MELDUNGEN_MIN) {
     absaetze = absaetze.slice(0, -1)
   }
 
@@ -1155,10 +1694,12 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     110
   )
 
+  /* Ohne „Fazit" am Ende – den Absatz gibt es seit dem 16. September 2026
+     nicht mehr, und eine Kapitelmarke auf einen Abschnitt, der nicht
+     existiert, springt in die Verabschiedung. */
   const kapitel = [
     'Begrüßung und Überblick',
     ...alle.slice(0, absaetze.length).map((item) => kernDerUeberschrift(item.headline)),
-    'Fazit',
   ]
 
   /*
@@ -1176,13 +1717,17 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
   */
   const hashtags = hashtagZeile(edition)
 
-  const weitere = alle
-    .slice(2)
-    .map((item) => kernDerUeberschrift(item.headline, 60))
-    .join(', ')
+  /* Als Aufzählung mit „und", nicht als Kommareihe: Die Kerne tragen seit dem
+     16. September 2026 selbst Kommas – Dezimalkommas und Aufzählungen aus der
+     Überschrift –, und eine Kommareihe aus Kommareihen liest sich als eine
+     einzige lange Liste. */
+  const weitere = alsAufzaehlung(
+    alle.slice(2).map((item) => kernDerUeberschrift(item.headline)),
+    120
+  )
   const beschreibung = [
     `${edition.intro} ${alle[0]?.summary[0] ?? ''}`,
-    `Wir sprechen über ${weitere || spannungsbogen}. Kompakt in rund fünf Minuten.`,
+    `Wir sprechen über ${weitere || spannungsbogen}. Kompakt in rund ${zahlwort(spieldauerMinuten(sprechtext))} Minuten.`,
     '[KAPITEL]',
     'Website: iminvests.de',
     KI_HINWEIS,
@@ -1199,5 +1744,171 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     kapitel,
     beschreibung,
     hashtags,
+  }
+}
+
+/* ------------------------------------------------------- Der Satzrhythmus */
+
+/**
+ * Wie lang ein Satz höchstens sein soll, damit er gesprochen noch trägt.
+ *
+ * Bei rund 134 Wörtern je Minute sind 25 Wörter elf Sekunden in einem Atem.
+ * Darüber verliert ein Hörer den Anfang, bevor das Ende kommt – anders als ein
+ * Leser, der zurückspringen kann.
+ */
+export const SATZ_LANG = 25
+
+/**
+ * Wie kurz ein Satz sein muss, um als kurz zu zählen.
+ *
+ * Acht Wörter sind rund dreieinhalb Sekunden. Ein solcher Satz setzt einen
+ * Punkt, hinter dem die Stimme Luft holt – und genau daran hängt die
+ * Pausenlänge in `scripts/sprechstimme.py`.
+ */
+export const SATZ_KURZ = 8
+
+/** Was der Rhythmus einer Folge hergibt. */
+export interface Satzrhythmus {
+  anzahl: number
+  median: number
+  kurzeAnteil: number
+  langeAnteil: number
+  /** Sätze, die zwei Hauptsätze mit einem Semikolon zusammenkleben. */
+  geklebt: number
+}
+
+/**
+ * Misst den Satzrhythmus des Sprechtexts.
+ *
+ * ## Warum das gemessen wird und nicht beschrieben
+ *
+ * Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge
+ * „langweilig, monoton". Im Prompt stand zu diesem Zeitpunkt seit sieben
+ * Wochen „Kurze Hauptsätze, keine Schachtelsätze". Nachgemessen an den zehn
+ * Folgen davor, nur die Meldungsabsätze, 125 Sätze:
+ *
+ *     Wörter je Satz   min 6 · p25 17 · Median 24 · p75 34 · max 58
+ *     Sätze <= 8 Wörter    5 von 125   (4 %)
+ *     Sätze >= 25 Wörter  61 von 125   (49 %)
+ *     mit Semikolon       42 von 125
+ *
+ * Die Anweisung stand da und band nichts – ein Adjektiv ohne Zahl bindet
+ * nicht, dieselbe Lehre wie „Ein Satz im Protokoll ist keine Regel". Bei
+ * `intro` wirkt die Vorgabe, weil dort eine Zahl steht (110 bis 160 Zeichen)
+ * und ein Prüfer sie liest.
+ *
+ * ## Warum das die Monotonie erklärt
+ *
+ * Nicht nur, weil lange Sätze schwer zu hören sind. Sondern weil
+ * `scripts/sprechstimme.py` die **Pause an die Satzlänge** hängt: kurzer Satz,
+ * längere Pause. Bei einem Text, dessen Sätze alle zwischen 17 und 34 Wörtern
+ * liegen, bekommen alle Pausen fast dieselbe Länge – die Sprechstimme kann die
+ * Abwechslung, für die sie gebaut ist, gar nicht herstellen.
+ *
+ * **Eine Fallunterscheidung über ein Merkmal, das der Stoff nicht hat, ist
+ * keine.** Der Stoff gab die Satzlänge nicht her, also gab er die Pause nicht
+ * her, also klang es gleichmäßig. Die Stimme war nie das Problem.
+ *
+ * Gemessen wird deshalb hier, gemeldet in `scripts/podcast-folge-erzeugen.ts`
+ * – als Warnung, nicht als Abbruch. Ob ein Absatz einen langen Satz braucht,
+ * entscheidet der Stoff, und eine Ausgabe wegen Prosa zurückzuhalten wäre der
+ * Tausch, den dieses Projekt nicht macht.
+ */
+export function satzrhythmus(sprechtext: string): Satzrhythmus {
+  /*
+    Nur die Meldungsabsätze. Begrüßung, Hinweise und Abschied sind festes
+    Gerüst – sie mitzuzählen würde den Rhythmus schönen, den der Agent
+    tatsächlich schreibt.
+  */
+  const absaetze = sprechtext.split(/\n\n+/).slice(2, -1)
+  const saetze = absaetze
+    .flatMap((a) => a.split(/(?<=[.!?])\s+/))
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  const laengen = saetze
+    .map((s) => s.split(/\s+/).filter(Boolean).length)
+    .sort((a, b) => a - b)
+  const anzahl = laengen.length
+  if (anzahl === 0) {
+    return { anzahl: 0, median: 0, kurzeAnteil: 0, langeAnteil: 0, geklebt: 0 }
+  }
+
+  return {
+    anzahl,
+    median: laengen[Math.floor(anzahl / 2)],
+    kurzeAnteil: laengen.filter((n) => n <= SATZ_KURZ).length / anzahl,
+    langeAnteil: laengen.filter((n) => n >= SATZ_LANG).length / anzahl,
+    geklebt: saetze.filter((s) => s.includes(';')).length,
+  }
+}
+
+/* ------------------------------------------------ Gerüst gegen Meldungen */
+
+/** Wie sich eine Folge auf festes Gerüst und tatsächliche Nachricht verteilt. */
+export interface Folgengewicht {
+  /** Begrüßung, Hinweise und Abschied – in jeder Folge fast gleich lang. */
+  geruest: number
+  /** Die Meldungsabsätze, also das, wofür jemand einschaltet. */
+  meldungen: number
+  /** Anteil des Gerüsts an der ganzen Folge, zwischen 0 und 1. */
+  anteil: number
+}
+
+/**
+ * Misst, wie viel einer Folge Nachricht ist und wie viel Rahmen.
+ *
+ * ## Der Anlass
+ *
+ * Am 28. September 2026 hat der Betreiber gemeldet, die Folge sei „viel zu
+ * kurz", und dazu einen Satz gesagt, der sich nachrechnen lässt: „Das Intro
+ * und die Aufklärung danach gehen genauso lange wie der Podcast." Er hatte
+ * recht, und zwar genau:
+ *
+ *     Gerüst     103 Wörter   (Begrüßung 35 · Hinweise 39 · Abschied 29)
+ *     Meldungen   86 Wörter   (vier Meldungen)
+ *     Anteil Gerüst  54 %
+ *
+ * ## Warum das Gerüst der falsche Hebel ist
+ *
+ * Weil es nicht wächst. Nachgemessen an allen 65 Folgen seit dem 25. Juli
+ * 2026 liegt es zwischen 99 und 110 Wörtern, Median 104 – der KI-Hinweis,
+ * der Rechtshinweis, Gruß und Abschied sind fester Text. Es war am
+ * 28. September keine Zeile länger als am Tag mit dem höchsten Anteil von
+ * 15 %.
+ *
+ * Gewachsen ist nichts, geschrumpft ist die Nachricht. Kürzt man am Gerüst,
+ * verliert die Folge Pflichtangaben und bleibt trotzdem kurz.
+ *
+ * ## Woran die Grenze gewählt ist
+ *
+ * An dem Satz des Betreibers, nicht an einer runden Zahl: Das Gerüst darf
+ * nicht so viel wiegen wie die Meldungen. Die Verteilung über 65 Folgen:
+ *
+ *     Median 29 %  ·  min 15 %  ·  max 54 %
+ *     über 50 %:  einmal   (28. September 2026 – der gemeldete Fall)
+ *     40 bis 43 %: dreimal  (26. und 23. August, 6. August)
+ *
+ * Die Grenze fängt damit den gemeldeten Fall und sonst keinen. Das ist
+ * Absicht: Sie ist der Melder für „heute ist fast nichts drin", nicht für
+ * „heute ist wenig drin". Dafür gibt es `WORTZIEL_MIN`, das in neun von 65
+ * Folgen anschlägt.
+ *
+ * Gemeldet wird in `scripts/podcast-folge-erzeugen.ts`, als Warnung. Ein
+ * Abbruch wäre hier zu spät und am falschen Ort: Die Ausgabe ist zu diesem
+ * Zeitpunkt geschrieben, und eine dünne Folge schlägt keine. Der Riegel, der
+ * wirklich etwas ändern kann, sitzt in `scripts/nachrichten-erzeugen.ts` –
+ * dort ist der Entwurf noch nicht geschrieben und ein zweiter Anlauf möglich.
+ */
+export function folgengewicht(sprechtext: string): Folgengewicht {
+  const absaetze = sprechtext.split(/\n\n+/)
+  /* Dieselbe Aufteilung wie in `satzrhythmus`: die ersten beiden Absätze sind
+     Begrüßung und Hinweise, der letzte ist der Abschied. */
+  const meldungen = wortzahl(absaetze.slice(2, -1).join(' '))
+  const gesamt = wortzahl(sprechtext)
+  return {
+    geruest: gesamt - meldungen,
+    meldungen,
+    anteil: gesamt === 0 ? 0 : (gesamt - meldungen) / gesamt,
   }
 }

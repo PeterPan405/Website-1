@@ -141,13 +141,37 @@ export default function ImprintPage() {
 
           {/*
             Transparenz nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
-            anwendbar seit dem 2. August 2026. Die Kennzeichnungspflicht für
-            KI-erzeugte Texte von öffentlichem Interesse entfällt zwar, wenn
-            ein Mensch die Inhalte prüft und eine benannte Person die
-            redaktionelle Verantwortung trägt – genau so arbeitet diese
-            Website. Der Abschnitt sagt beides trotzdem ausdrücklich: den
-            KI-Einsatz und die Prüfung. So hängt nichts an der Auslegung der
-            Ausnahme, und der Leser erfährt, wie die Inhalte entstehen.
+            anwendbar seit dem 2. August 2026.
+
+            ## Am 20. September 2026 berichtigt
+
+            Hier stand: „Jeder Inhalt wird vor der Veröffentlichung von einem
+            Menschen inhaltlich geprüft und freigegeben."
+
+            Das traf nicht zu, und es ist das **dritte** Mal, dass derselbe
+            Satz auffällt. Am 17. August 2026 wurde er aus der
+            Kanalbeschreibung des Podcasts gestrichen und aus dem KI-Hinweis
+            unter jeder Folge – beide Male mit derselben Begründung: Die Kette
+            veröffentlicht ohne Halt. Die Tagesausgabe geht gegen 3 Uhr
+            hinaus, die Folge gegen 4, und an keiner Stelle dazwischen wartet
+            etwas auf einen Menschen.
+
+            Dass der Satz in der Kanalbeschreibung fiel und im Impressum
+            stehen blieb, ist der eigentliche Befund: Es wurde die Stelle
+            berichtigt, an der es aufgefallen war, und nicht die Aussage.
+            Ausgerechnet im Impressum wiegt sie am schwersten.
+
+            Die Ausnahme in Art. 50 Abs. 4 Satz 2 – keine Kennzeichnung, wenn
+            ein Mensch die Inhalte prüft und jemand die redaktionelle
+            Verantwortung trägt – lässt sich damit nicht mehr in Anspruch
+            nehmen, jedenfalls nicht für Tagesausgabe und Folge. Das ist kein
+            Verlust: Der Abschnitt kennzeichnet ohnehin ausdrücklich, statt
+            sich auf eine Auslegung zu stützen. Genau dafür stand er hier.
+
+            Was bleibt, ist wahr und nachprüfbar: die redaktionelle
+            Verantwortung beim Betreiber, die regelmässige Durchsicht nach
+            `data/inhalte-turnus.ts`, und dass Zahlen nicht erzeugt, sondern
+            aus benannten Quellen übernommen werden.
           */}
           <section aria-labelledby="ki-einsatz" className="mt-12">
             <h2 id="ki-einsatz" className="text-fg text-2xl font-bold">
@@ -155,11 +179,14 @@ export default function ImprintPage() {
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Texte und Erklärgrafiken dieser Website entstehen mit Unterstützung von
-              künstlicher Intelligenz. Jeder Inhalt wird vor der Veröffentlichung von
-              einem Menschen inhaltlich geprüft und freigegeben; die redaktionelle
-              Verantwortung trägt die unter „Redaktionell verantwortlich“ genannte Person.
-              Dieser Hinweis erfolgt mit Blick auf die Transparenzpflichten der Verordnung
-              (EU) 2024/1689 (KI-Verordnung, Art. 50).
+              künstlicher Intelligenz. Die tägliche Nachrichtenausgabe und die
+              Podcastfolge werden automatisiert erstellt und veröffentlicht; eine
+              vorherige inhaltliche Freigabe der einzelnen Meldung findet dabei nicht
+              statt, und auch die Sprecherstimme der Folge ist künstlich erzeugt. Die
+              übrigen Inhalte werden in festen Abständen durchgesehen. Die redaktionelle
+              Verantwortung trägt in allen Fällen die unter „Redaktionell verantwortlich“
+              genannte Person. Dieser Hinweis erfolgt nach den Transparenzpflichten der
+              Verordnung (EU) 2024/1689 (KI-Verordnung, Art. 50).
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Kurse, Kennzahlen und Wirtschaftsdaten werden nicht von einer KI erzeugt,

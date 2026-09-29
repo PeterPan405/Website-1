@@ -234,6 +234,45 @@ jobs:
               >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      # ------------------------------------------------------------------
+      # **Was ist schon rot, bevor die Ausgabe geschrieben wird?**
+      #
+      # Bis zum 10. September 2026 stellte der Schritt „Formatieren und
+      # prüfen" unten eine einzige Frage: *Ist irgendwo etwas rot?* Fiel eine
+      # von 126 Testdateien, `tsc`, `lint`, der Bau, die Paketprüfung oder
+      # die Formatierung, wurde nichts veröffentlicht. In sieben Tagen hat
+      # das drei Morgen gekostet:
+      #
+      #     04.09.  ein Test mit festem Stichtag, aus dem Bestand herausgealtert
+      #     05.09.  zwei Prüfungen in derselben Datei, die sich widersprachen
+      #     10.09.  die Paketprüfung zählte `&amp;` als vier Zeichen
+      #
+      # Keiner der drei Befunde hatte mit der Ausgabe des Tages zu tun. Zwei
+      # standen schon rot, **bevor** sie geschrieben wurde. Jeder war in einer
+      # Stunde behoben – und jeder hat trotzdem einen Tag ohne Nachrichten
+      # und ohne Folge bedeutet, weil der Riegel nicht unterscheiden konnte.
+      #
+      # Der Betreiber hat entschieden: *Es darf nicht mehr vorkommen.*
+      #
+      # Deshalb läuft dieselbe Prüfkette jetzt **zweimal** – einmal hier, auf
+      # dem unberührten Stand von `main`, und einmal nach dem Schreiben – und
+      # `scripts/pruefvergleich.ts` vergleicht Befund für Befund. Die Frage
+      # lautet seither: **Hat die Ausgabe etwas kaputt gemacht?** Was schon
+      # vorher rot war, hält sie nicht auf. Es wird trotzdem gemeldet, und
+      # der Lauf endet deswegen rot – als letzter Schritt, **nach** dem
+      # Veröffentlichen. Die Entscheidung steht in `lib/pruefvergleich.ts`,
+      # samt der Fälle, die sie abweisen muss.
+      #
+      # Was das kostet: einen zweiten Bau, rund vier Minuten. Der Regelweg
+      # (Anstoß durch den Agenten gegen 00:35 UTC) hat dafür drei Stunden
+      # Luft; der letzte Rückfalltermin um 02:47 UTC wird damit knapp, war es
+      # aber vorher auch schon.
+      - name: Vorbefund – was ist schon vor der Ausgabe rot?
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        run: bash scripts/pruefkette.sh "$RUNNER_TEMP/vorbefund"
+
       # Die Quellen. Erst der Zweig, den `quellen-sammeln.yml` schreibt; ist er
       # nicht von heute, holt dieser Lauf die Übersichten selbst.
       #
@@ -509,20 +548,27 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
-      # Dieselbe Kette wie im Paketbau. Schlägt eine Prüfung fehl, wird nichts
-      # veröffentlicht – lieber keine Ausgabe als eine, die den Build bricht.
-      - name: Formatieren und prüfen
+      # Dieselbe Kette wie im Paketbau, jetzt mit der Ausgabe im Arbeitsstand.
+      # Sie bricht nicht ab; das Urteil fällt der Vergleich darunter.
+      - name: Nachbefund – dieselbe Kette mit der Ausgabe
         if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
-        run: |
-          npx prettier --write data/ >/dev/null
-          npx tsc --noEmit
-          npm run lint
-          npm test
-          npm run build
-          npm run pruefen
-          npm run format:check
         env:
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        run: bash scripts/pruefkette.sh "$RUNNER_TEMP/nachher"
+
+      # **Hat die Ausgabe etwas kaputt gemacht?** – siehe den Vorbefund oben.
+      #
+      # Rot (und damit kein Push) nur, wenn etwas **erst mit** der Ausgabe rot
+      # geworden ist oder der Bau nicht durchläuft. Vorbestehende Befunde
+      # lassen die Ausgabe durch und kommen am Ende des Laufs als roter
+      # Schritt zurück – lieber ein roter Lauf mit Ausgabe als ein roter Lauf
+      # ohne.
+      - name: Hat die Ausgabe etwas kaputt gemacht?
+        id: vergleich
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
+        run: |
+          node --experimental-strip-types --import ./scripts/alias-hook.mjs \
+            scripts/pruefvergleich.ts "$RUNNER_TEMP/vorbefund" "$RUNNER_TEMP/nachher"
 
       - name: Auf main veröffentlichen
         if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
@@ -598,3 +644,24 @@ jobs:
             --repo "${{ github.repository }}" --ref main \
             && echo "Die Folge des Tages ist angefordert – sie vertont die eben geschriebene Ausgabe." \
             || echo "::warning::Der Podcastlauf ließ sich nicht anstoßen – Cron und kurse.yml greifen."
+
+      # ------------------------------------------------------------------
+      # Zuletzt: Was schon vor der Ausgabe rot war, wird nicht verschwiegen.
+      #
+      # Die Ausgabe ist veröffentlicht, Paketbau und Folge sind angestoßen –
+      # ein Besucher bekommt heute seine Nachrichten. Aber irgendwo im
+      # Bestand ist etwas kaputt, das mit ihr nichts zu tun hat, und ein
+      # grüner Lauf mit einer `::warning::` darin ist genau der stille Fehler,
+      # gegen den dieses Repository anschreibt. Deshalb rot, und deshalb
+      # **hier**, nach allem, was die Zusage von 6:00 Uhr braucht.
+      #
+      # `always()`, damit der Schritt auch dann greift, wenn der Push oder
+      # ein Anstoß davor gescheitert ist – dann ist der Lauf ohnehin rot, und
+      # der Grund unten gehört trotzdem ins Protokoll.
+      - name: Vorbestehende Befunde melden
+        if: always() && steps.vergleich.outputs.vorbestehend == 'ja'
+        run: |
+          echo "::error::Die Ausgabe ist veröffentlicht, aber im Bestand war schon vorher etwas rot –"
+          echo "  siehe die Zusammenfassung dieses Laufs. Das ist nicht die Schuld der Ausgabe,"
+          echo "  es ist trotzdem offen und gehört heute behoben."
+          exit 1

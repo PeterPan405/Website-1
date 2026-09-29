@@ -101,6 +101,7826 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-reden-und-spanische-inflation-am-dienstag',
+    title: 'Spaniens Inflation und zwei EZB-Reden bestimmen den Dienstag',
+    teaser:
+      'Am Dienstag meldet Spanien seine Inflationsrate, und aus der EZB kommen zwei Reden: erst Cipollone am Vormittag, am Nachmittag Präsidentin Lagarde.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-29T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Inflation', 'Notenbanken', 'Spanien'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online.de, Wirtschaftskalender, Stand 29.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag beginnt für Anleger mit einem vollen Kalender. Eine Zahl aus Spanien und zwei Reden aus der Europäischen Zentralbank stehen an – alles, bevor am Nachmittag die US-Börsen öffnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 9:00 Uhr veröffentlicht Spanien seine Verbraucherpreise für September. Der Wirtschaftskalender von wallstreet-online.de nennt eine Prognose von 4,7 Prozent im Jahresvergleich, nach 4,3 Prozent im Vormonat. Um 9:45 Uhr spricht EZB-Direktoriumsmitglied Piero Cipollone. Um 11:00 Uhr folgen für die Eurozone das Konjunkturklima sowie Umfragen zum Wirtschafts- und zum Verbrauchervertrauen; Letzteres wird bei minus 16,5 Punkten erwartet, unverändert zum Vormonat. Um 13:00 Uhr spricht EZB-Präsidentin Christine Lagarde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Harte Zahl, weiche Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die spanische Inflationsrate ist eine **harte** Zahl: Sie misst tatsächlich bezahlte Preise eines vergangenen Monats. Das Konjunkturklima und das Verbrauchervertrauen sind dagegen **weiche** Zahlen – Umfragewerte darüber, wie Unternehmen und Haushalte die Lage einschätzen. Weiche Daten kommen schneller und zeigen Stimmung, harte Daten kommen später und zeigen, was tatsächlich geschah. Beide zusammen ergeben erst ein Bild.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Reden von EZB-Vorständen sind eine dritte Art von Information: Sie enthalten keine neue Zahl, aber sie zeigen, wie die Notenbank vorliegende Zahlen gewichtet. Genau deshalb reagieren Anleihe- und Devisenmärkte oft stärker auf einzelne Formulierungen einer Rede als auf die Konjunkturdaten selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kalendertag mit vier Terminen liefert selten eine endgültige Antwort auf die Frage, wohin sich die Zinspolitik entwickelt. Er liefert eher einen weiteren Baustein – und zeigt, wie viele unterschiedliche Datentypen Notenbanken überhaupt einbeziehen, bevor sie eine Entscheidung treffen.',
+      },
+    ],
+  },
+  {
+    slug: 'hormus-spannungen-oel-gold-und-silber',
+    title: 'Hormus-Spannungen treiben Öl, Gold rutscht unter die 50-Tage-Linie',
+    metaTitle: 'Hormus-Spannungen: Öl steigt, Gold und Silber fallen',
+    teaser:
+      'Neue Spannungen um die Straße von Hormus ließen am Montag Öl und US-Renditen steigen. Gold und Silber gerieten am Verfalltag deutlich unter Druck.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Gold', 'Silber', 'Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label: 'goldreporter.de, Marktbericht vom 28.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online.de, Rohstoffkurse, Stand 29.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag meldete Goldreporter.de neue Spannungen um die Straße von Hormus. Die Nachrichtenlage trieb Öl und die Renditen von US-Staatsanleihen nach oben. Gold und Silber gerieten zur gleichen Zeit deutlich unter Druck – Goldreporter.de sprach von einem Tag, an dem zugleich der Futures-Verfall anstand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen zum Stand kurz nach Mitternacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf wallstreet-online.de notierte Brent-Öl am frühen Dienstagmorgen bei 98,56 US-Dollar. Gold stand bei 4.115,12 US-Dollar, Silber bei 60,61 US-Dollar und damit rund 5,8 Prozent unter seinem vorherigen Stand. Goldreporter.de berichtete zusätzlich, der Goldpreis sei unter seine 50-Tage-Linie gerutscht – eine Marke, die charttechnisch orientierte Anleger als Signal für eine mittelfristige Trendabschwächung lesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Öl steigt und Gold trotzdem fällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt gemeinhin als Absicherung gegen genau solche geopolitischen Spannungen. Dass der Goldpreis trotzdem fiel, während gleichzeitig die Anleiherenditen stiegen, zeigt einen zweiten Mechanismus: Gold zahlt keine Zinsen. Steigen die Renditen sicherer Anleihen, wird das Halten von Gold im Vergleich teurer – unabhängig davon, wie unruhig die politische Lage sonst ist. Welcher der beiden Effekte überwiegt, lässt sich vorab nicht sagen; die Meldung selbst nennt dafür keinen Grund.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Dienstag zeigt, dass ein einzelner geopolitischer Anlass ganz unterschiedlich auf verschiedene Anlageklassen wirken kann, je nachdem, welcher Kanal – Angebot, Zinsen oder Fluchtreflex – am Ende überwiegt.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-erwaegt-diesel-exportstopp-iran-oel',
+    title:
+      'Trump erwägt Diesel-Exportstopp, beschlagnahmtes Iran-Öl auf dem Weg in die USA',
+    metaTitle: 'Trump erwägt Diesel-Exportstopp – Iran-Öl unterwegs',
+    teaser:
+      'US-Präsident Trump hält an einem möglichen Exportstopp für Diesel fest. Zugleich steuern fast 6 Millionen Barrel beschlagnahmtes Iran-Öl auf die USA zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Diesel', 'USA', 'Iran', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['wti', 'brent'],
+    sources: [
+      {
+        label: 'wallstreet-online.de, Nachrichten vom 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump ist laut wallstreet-online.de weiterhin für einen Exportstopp von Diesel aus den USA. Die Seite berichtet, nicht nur Lobbyverbände warnten vor einem solchen Schritt. Eine Begründung für Trumps Position nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gleichzeitig: beschlagnahmtes Öl aus dem Iran',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu meldete wallstreet-online.de, dass fast 6 Millionen Barrel beschlagnahmtes Iran-Öl auf die USA zusteuern – ein Warenwert von rund 600 Millionen US-Dollar. Weitere Einzelheiten zu Herkunft, Zeitpunkt der Beschlagnahmung oder geplanter Verwendung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Exportstopp trifft zwei Märkte gleichzeitig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Exportverbot soll üblicherweise das Inlandsangebot sichern und die heimischen Preise dämpfen. Es entzieht aber auch dem Weltmarkt Ware, was dort tendenziell die Preise anhebt – ein Effekt, den eine Société-Générale-Analyse bereits am 25. September 2026 aufgriff: Ein US-Diesel-Exportverbot sei demnach selbst für die USA nur begrenzt attraktiv.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast 6 Millionen Barrel klingen nach viel. Gemessen am weltweiten Verbrauch von rund 100 Millionen Barrel Öl pro Tag entspricht die Menge aber nur wenigen Stunden globalen Bedarfs.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Handelspolitische Eingriffe in Öl- und Dieselmärkte wirken selten nur in eine Richtung. Wer eine Maßnahme allein am Inlandseffekt misst, übersieht leicht die Gegenbewegung auf der Weltmarktseite.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-oelpreis-und-openai-ruecktritt',
+    title: 'Ölpreis und OpenAI-Rückzieher belasten die Wall Street',
+    teaser:
+      'US-Aktien schlossen am Montag im Minus. dpa-AFX nennt den Ölpreisanstieg und OpenAIs Absage einer Modellveröffentlichung als Belastung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'OpenAI', 'KI', 'Öl', 'SoftBank'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 20:32 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 22:56 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX meldete am Montag um 20:32 Uhr Verluste an der Wall Street und nannte dafür zwei Gründe: den Ölpreisanstieg und KI-Nachrichten. Um 22:56 Uhr präzisierte die Agentur eine dieser KI-Nachrichten: OpenAI habe die Veröffentlichung eines neuen KI-Modells gestrichen. Weitere Gründe für die Absage nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index leidet stärker als der andere',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut wallstreet-online.de stand der US Tech 100 zuletzt 1,05 Prozent im Minus, der US 30 dagegen nur 0,63 Prozent. Das ist kein Zufall: Der US Tech 100 enthält deutlich mehr Technologie- und KI-nahe Unternehmen als der US 30. Eine Nachricht, die speziell die KI-Branche betrifft, bewegt deshalb die beiden Indizes unterschiedlich stark, obwohl beide an derselben Börse gehandelt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'SoftBanks Klumpenrisiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum selben Themenfeld berichtete wallstreet-online.de über SoftBank Group: Das Unternehmen sei „All in“ auf OpenAI und Künstliche Intelligenz gegangen, was laut dem Bericht die eigene Existenz des Konzerns gefährde. Das ist ein Beispiel für Klumpenrisiko – die Abhängigkeit eines Unternehmenswerts von einer einzigen Wette, statt von einem breiten Geschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer auf ein einzelnes Thema wie Künstliche Intelligenz setzt, trägt nicht nur dessen Chancen, sondern auch dessen Rückschläge in voller Wucht mit – ein Unterschied zu breiter gestreuten Engagements.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-dow-ende-jpmorgan-kursziel',
+    title: 'Boeing fällt ans Dow-Ende, JPMorgan hält an Kursziel 290 Dollar fest',
+    metaTitle: 'Boeing fällt ans Dow-Ende, Kursziel bleibt bei JPMorgan',
+    teaser:
+      'Ein neues Software-Problem verzögert die Zulassung einer neuen Boeing-Variante. Die Aktie fiel ans Dow-Ende, JPMorgan beließ ihr Kursziel unverändert.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Boeing', 'Dow Jones', 'Aktien', 'Analysten'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['boeing', 'dow-jones'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 23:30 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online.de, Nachrichten vom 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX meldete am Montag um 23:30 Uhr, ein Software-Problem verzögere die Zulassung einer neuen Boeing-Variante. wallstreet-online.de berichtete zusätzlich, die Aktie sei damit ans Ende des Dow Jones gerutscht. Um welche Boeing-Variante es geht und wie lange die Verzögerung dauert, nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursziel bleibt trotzdem stehen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag veröffentlichte JPMorgan laut dpa-AFX eine Analyse und beließ Boeing auf der Einstufung „Overweight“, mit einem Kursziel von 290 Dollar. Eine unveränderte Einstufung trotz einer belastenden Nachricht bedeutet nicht, dass die Nachricht ignoriert wurde – Analysten legen Kursziele meist auf Basis mehrjähriger Erwartungen fest, die ein einzelnes Software-Problem selten grundlegend verändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelner Kurs den ganzen Dow bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones ist ein preisgewichteter Index: Je höher der Kurs einer Aktie in Dollar, desto mehr Gewicht hat sie im Index – unabhängig von der Größe des Unternehmens. Ein Kursrückgang bei einer hochpreisigen Aktie wie Boeing kann den Dow deshalb stärker beeinflussen als ein Rückgang um denselben Prozentsatz bei einer niedrigpreisigen Aktie im selben Index.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Blick allein auf den Indexstand verrät nicht, wie eine Bewegung zustande kam. Erst der Blick auf die Gewichtung einzelner Werte zeigt, warum ein einzelnes Unternehmen einen ganzen Index bewegen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'indien-goldimporte-silber-gefragt',
+    title: 'Indiens Goldimporte brechen ein, während Silber gefragt bleibt',
+    teaser:
+      'Indiens Goldimporte sanken im August um 57,75 Prozent auf 2,3 Milliarden Dollar. Die Silberimporte legten im selben Zeitraum um 127 Prozent zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-29T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Indien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'portfolio-aufbau'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label: 'goldreporter.de, Meldung vom 28.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Indiens Goldimporte sind im August laut Goldreporter.de um 57,75 Prozent auf 2,3 Milliarden US-Dollar eingebrochen. Im selben Zeitraum stiegen die Silberimporte des Landes um 127 Prozent. Eine Begründung für die gegenläufige Entwicklung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Import ist nicht gleich Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Importstatistik misst eine andere Größe als ein Goldpreis-Chart: Sie zeigt physische Nachfrage in einem einzelnen, aber sehr großen Markt, nicht die weltweite Preisbildung an Terminbörsen. Indien zählt traditionell zu den größten Gold-Absatzmärkten der Welt, gerade für Schmuck – ein hoher Goldpreis kann dort die Kauflaune dämpfen, ohne dass sich das sofort im globalen Goldpreis niederschlagen muss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zahl mit eingebauter Verzögerung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die August-Zahlen erreichten die Öffentlichkeit erst Ende September. Wer aus solchen Statistiken auf die aktuelle Stimmung am Markt schließen will, blickt also immer auf einen Monat zurück – ein Unterschied zu Tageskursen, die in Echtzeit reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold und Silber bewegen sich oft gemeinsam, laufen aber bei der physischen Nachfrage nicht zwangsläufig gleich. Wer beide Edelmetalle allein über den Preis vergleicht, übersieht diesen Unterschied in der zugrunde liegenden Nachfrage.',
+      },
+    ],
+  },
+  {
+    slug: 'hormus-usa-weisen-irans-angebot-zurueck',
+    title: 'USA weisen Irans Angebot zur Straße von Hormus zurück',
+    teaser:
+      'Die US-Regierung nennt Irans Hormus-Angebot überzogen, Iran warnt Schiffe vor unautorisierten Routen, und Trump erwartet weitere Gespräche mit Teheran.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'USA', 'Hormus', 'Öl'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „'Verlangten alles im Voraus': USA über Irans Hormus-Angebot“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „Unautorisierte Routen: Iran warnt Schiffe vor Konsequenzen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „Trump: Erwarte weitere Gespräche mit dem Iran“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Straße von Hormus: Iran schiebt den Ball bei Öffnung den USA zu - Trump legt Angebot ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung hat Irans Angebot zur Straße von Hormus zurückgewiesen. Nach eigenen Angaben habe Teheran laut wallstreet-online alle Zugeständnisse im Voraus verlangt, bevor über eine Öffnung der Meerenge weiter verhandelt werde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Iran warnte zugleich Schiffe vor unautorisierten Routen. Welche Routen genau gemeint sind und welche Konsequenzen drohen, nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump äußerte sich ebenfalls zu dem Konflikt. Er erwarte weitere Gespräche mit dem Iran, meldete wallstreet-online, ohne einen Termin zu nennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis schon auf Ankündigungen reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus verläuft ein großer Teil der weltweiten Ölexporte. Ein Preis wie der von Brent enthält deshalb eine Risikoprämie für mögliche Störungen. Diese Prämie kann sich schon durch neue Wortmeldungen verändern, ganz ohne dass sich an der tatsächlich verschifften Menge etwas ändert. Am Montagmorgen notierte Brent laut wallstreet-online bei 98,47 US-Dollar je Fass, ein Plus von 1,03 Prozent (Stand 02:55 Uhr).',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich an der Blockadefrage etwas ändert, hängt an der nächsten Gesprächsrunde, die laut Trump noch aussteht. Bis dahin bleibt die Risikoprämie im Ölpreis eine Wette auf Ankündigungen, nicht auf tatsächliche Lieferausfälle.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-kalender-montag-ramsden-dallas-fed',
+    title: 'Diese Notenbank-Termine stehen am Montag an',
+    teaser:
+      'Am Montag spricht BoE-Vize Dave Ramsden, die Dallas Fed veröffentlicht ihren Industrieindex, dazu Konjunkturdaten aus Japan, Finnland und Italien.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-28T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Notenbanken', 'Konjunkturkalender', 'Bank of England', 'Fed'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Wirtschaftskalender „Kommende Termine“, Stand 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag richten sich mehrere Notenbank-Termine an die Märkte. Um 12:00 Uhr spricht der stellvertretende Bank-of-England-Gouverneur Dave Ramsden, meldet der Wirtschaftskalender von wallstreet-online.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 16:30 Uhr veröffentlicht die Dallas Fed ihren Manufacturing Business Index für die USA. Im Vormonat lag der Wert laut Kalender bei 11,6 Punkten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am frühen Morgen war laut Kalender um 01:50 Uhr das Protokoll der jüngsten Sitzung der Bank of Japan erschienen. Zugleich meldete Japan seinen Unternehmens-Dienstleistungspreisindex mit 3,7 Prozent im Jahresvergleich, nach 3,6 Prozent im Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aus Finnland stehen um 07:00 Uhr das Verbraucher- und das Industrievertrauen an. Österreich meldet um 10:00 Uhr den UniCredit-Bank-Einkaufsmanagerindex für die Industrie, zuletzt 54,4 Punkte, Italien zur selben Zeit seine Handelsbilanz außerhalb der EU, im Vormonat ein Überschuss von 2,55 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede ohne Zinsentscheid trotzdem zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dave Ramsden entscheidet an diesem Termin nicht über den Leitzins. Seine Einschätzung zur Konjunktur kann Markterwartungen an die nächste Zinsentscheidung der Bank of England trotzdem verschieben, weil Anleger aus einzelnen Sätzen auf die künftige Abstimmung im Gremium schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die heutigen Daten die Woche prägen, entscheidet sich erst im Vergleich mit den Prognosen der Marktteilnehmer. Der Kalender selbst nennt für die meisten dieser Termine keine Erwartungswerte.',
+      },
+    ],
+  },
+  {
+    slug: 'mercedes-benz-drosselt-produktion-sindelfingen',
+    title: 'Mercedes-Benz drosselt Produktion in Sindelfingen',
+    teaser:
+      'Mercedes-Benz hat laut finanzen.net die Produktion im Werk Sindelfingen gedrosselt. Die Ursache nennt die Kurzmeldung nicht, Dauer und Baureihen bleiben offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Mercedes-Benz', 'Produktion', 'Automobilindustrie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['mercedes-benz'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Mercedes-Benz: Werk Sindelfingen musste Produktion herunterfahren“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mercedes-Benz hat die Produktion im Werk Sindelfingen gedrosselt. Das meldete finanzen.net am Sonntag in seinem News-Ticker vom 27.09.2026.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Begründung nennt die Meldung nicht. Weder die Dauer der Drosselung noch die betroffenen Baureihen gehen aus der Kurzmeldung hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ausfall ist nicht gleich Ausfall',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gedrosselte Fertigung kann viele Ursachen haben: fehlende Teile von Zulieferern, eine technische Störung an der Linie oder eine bewusste Anpassung an die Nachfrage. Jede dieser Ursachen wirkt sich unterschiedlich auf kommende Quartalszahlen aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Lieferkettenproblem ist in aller Regel vorübergehend und wird oft in den folgenden Wochen nachgeholt. Eine Drosselung wegen schwacher Nachfrage zeigt sich dagegen häufig erst in den Auftragseingangszahlen des nächsten Quartals.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne genannten Grund lässt sich nicht sagen, welcher der beiden Fälle hier vorliegt. Die nächsten Quartalszahlen von Mercedes-Benz dürften mehr Aufschluss geben.',
+      },
+    ],
+  },
+  {
+    slug: 'passagierklagen-gegen-fluglinien-53000',
+    title: '53.000 Klagen von Passagieren gegen Fluglinien',
+    teaser:
+      'Laut finanzen.net reichten Passagiere binnen eines halben Jahres rund 53.000 Klagen gegen Fluglinien ein. Land, Zeitraum und Fluglinien nennt die Meldung nicht.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-28T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Fluggastrechte', 'Fluglinien', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „53.000 Klagen von Passagieren gegen Fluglinien im Halbjahr“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Passagiere haben binnen eines halben Jahres rund 53.000 Klagen gegen Fluglinien eingereicht. Das meldete finanzen.net am 27.09.2026 in seiner Nachrichtenübersicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Land, welcher genaue Zeitraum und welche Fluglinien betroffen sind, nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hinter einer Fluggastklage steckt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die meisten Klagen gegen Fluglinien in Europa drehen sich um Ausgleichszahlungen nach der EU-Fluggastrechteverordnung, etwa bei langen Verspätungen oder Annullierungen. Ob die gemeldeten 53.000 Fälle diese Verordnung betreffen, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Klage ist zudem nicht dasselbe wie eine erfolgreiche Klage. Fluglinien wenden häufig außergewöhnliche Umstände wie Wetter oder Streiks ein, die eine Zahlungspflicht ausschließen können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne Angaben zu Land und Ausgang der Verfahren lässt sich die Zahl 53.000 nur schwer einordnen. Sie zeigt aber, wie oft Passagiere ihre Rechte inzwischen einklagen.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-737-max-neue-software-panne',
+    title: 'Boeing meldet neue Software-Panne bei der 737 Max',
+    teaser:
+      'Boeing hat laut finanzen.net eine neue Software-Panne bei der 737 Max eingeräumt. Details zur Art des Fehlers nennt die Kurzmeldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Boeing', '737 Max', 'Luftfahrt'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['boeing'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Boeing-Aktie: Neue Software-Panne bei der 737 Max“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Boeing hat laut finanzen.net eine neue Software-Panne bei der 737 Max eingeräumt. Die Meldung vom 27.09.2026 nennt weder die Art des Fehlers noch, welche Systeme betroffen sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob Flugzeuge deshalb am Boden bleiben müssen oder Fluggesellschaften informiert wurden, geht aus der Kurzmeldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Schlagzeile ist noch keine Einordnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei der 737 Max hat es in der Vergangenheit mehrfach technische und softwareseitige Nachbesserungen gegeben. Wie schwer ein einzelner Fall wiegt, entscheidet sich meist erst, wenn Luftfahrtbehörden oder Boeing selbst weitere Details veröffentlichen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst vor wenigen Wochen war die Boeing-Aktie wegen verzögerter Tests am Langstreckenjet 777X unter Druck geraten, einem anderen Modellprogramm mit einer anderen Ursache. Beide Fälle zusammen zeigen vor allem, wie oft bei Boeing derzeit einzelne Programme Verzögerungen melden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne weitere Angaben lässt sich nicht sagen, ob die neue Software-Panne die Auslieferung von Maschinen verzögert. Das dürfte sich erst zeigen, wenn Boeing oder die Aufsichtsbehörden mehr mitteilen.',
+      },
+    ],
+  },
+  {
+    slug: 'lufthansa-flugstoerungen-powerbank-geruch',
+    title: 'Lufthansa meldet zwei Flugstörungen an einem Tag',
+    teaser:
+      'Ein Lufthansa-Flug wurde laut onvista wegen einer brennenden Powerbank umgeleitet, ein zweiter meldete Geruchsbelästigung an Bord, beide am selben Sonntag.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Lufthansa', 'Flugsicherheit', 'Luftfahrt'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['lufthansa'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 27.09.2026, 17:20 Uhr, dpa-AFX: „Lufthansa-Flug wegen brennender Powerbank umgeleitet“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Lufthansa-Aktie: Mehrere Flugstörungen durch Powerbank-Feuer und Geruchsbelästigung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Lufthansa-Flug wurde laut onvista und dpa-AFX am Sonntag um 17:20 Uhr wegen einer brennenden Powerbank an Bord umgeleitet. Details zur Landung nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daneben berichtete finanzen.net von einem zweiten Vorfall am selben Tag: einer Geruchsbelästigung an Bord eines weiteren Lufthansa-Flugs. Ob dieser Flug ebenfalls umgeleitet wurde, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Vorsichtsmaßnahme nicht gleich ein großer Zwischenfall ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Brand durch eine Lithium-Batterie an Bord gilt in der Luftfahrt als besonders riskant, weil er sich schnell ausbreiten kann. Crews reagieren deshalb standardmäßig mit einer Umleitung, unabhängig davon, wie groß das Feuer tatsächlich war.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Fluggesellschaft bedeutet das zunächst nur Zusatzkosten für die außerplanmäßige Landung. Ein Zusammenhang zur Finanzlage von Lufthansa lässt sich aus einem einzelnen Vorfall nicht ableiten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Vorfälle an einem Tag sind ungewöhnlich, sagen aber allein nichts über die Ursache aus. Ob es Zufall ist oder ein wiederkehrendes Muster, zeigt sich erst über mehrere Wochen.',
+      },
+    ],
+  },
+  {
+    slug: 'huthi-drohnenangriff-riad-iran-hormus-usa-am-zug',
+    title: 'Huthi-Miliz beschießt Riad, Iran sieht USA am Zug bei Hormus',
+    teaser:
+      'Der UN-Sicherheitsrat verurteilt Huthi-Drohnenangriffe auf Riad. Zugleich erklärt der Iran laut zwei Portalen, die USA seien für eine Hormus-Öffnung am Zug.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Huthi', 'Hormus', 'Nahost', 'Öl'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026, dpa-AFX: „ROUNDUP/Militär: Huthi-Miliz greift saudische Hauptstadt Riad mit Drohnen an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026: „Sicherheitsrat verurteilt Huthi-Angriffe gegen Saudi-Arabien“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026: „ROUNDUP 2: Iran sieht USA bei Öffnung der Straße von Hormus am Zug“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:57 Uhr: „Straße von Hormus: Iran schiebt den Ball bei Öffnung den USA zu“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 27.09.2026, 05:28 Uhr (GMT): Öl (Brent) 97,47 USD, ±0,00 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Huthi-Miliz hat nach einer Meldung von dpa-AFX über wallstreet-online am Samstag die saudi-arabische Hauptstadt Riad mit Drohnen angegriffen. Der UN-Sicherheitsrat verurteilte die Angriffe auf Saudi-Arabien.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete wallstreet-online, der Iran sehe nun die USA am Zug, wenn es um eine Öffnung der Straße von Hormus gehe. Am Sonntagmorgen meldete finanzen.net eine inhaltlich ähnliche Formulierung: Der Iran schiebe den Ball bei der Öffnung den USA zu. Welche konkrete Gegenleistung Teheran von Washington erwartet, nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Meerenge für den Ölpreis so viel Gewicht hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus verschiffen die Golfstaaten einen großen Teil ihres Rohöls Richtung Asien und Europa. Jede Ankündigung über eine mögliche Blockade oder Öffnung verändert deshalb die im Ölpreis enthaltene Risikoprämie – unabhängig davon, ob sich an der tatsächlich geförderten oder verschifften Menge etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, der am Wochenende stillsteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Sonntagmorgen notierte die Nordseesorte Brent laut wallstreet-online unverändert bei 97,47 US-Dollar je Fass. Der Handel ruht am Wochenende, weshalb weder der Drohnenangriff noch die neue Erklärung Irans bislang einen Kurswert bewegt haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Konfliktlinien bleiben über das Wochenende ungelöst nebeneinander bestehen – die Huthi-Angriffe auf Saudi-Arabien und der Streit darüber, wer bei der Straße von Hormus zuerst handeln muss. Ob der Ölpreis darauf reagiert, zeigt sich erst, wenn am Montag wieder gehandelt wird.',
+      },
+    ],
+  },
+  {
+    slug: 'us-autobauer-schraenken-rabatte-neuwagen-ein',
+    title: 'US-Autobauer schränken Rabatte bei Neuwagen ein',
+    teaser:
+      'Stellantis, General Motors, Toyota, Tesla und Rivian kappen laut wallstreet-online ihre Rabatte. Das erschwert Käufern den Preisvergleich bei Neuwagen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Autoindustrie', 'Neuwagen', 'USA', 'Elektroautos'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['tesla', 'toyota'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Meldung vom 26.09.2026: „Keine Schnäppchen mehr? Darum drehen US-Autobauer beim Autokauf die Regeln um“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mehrere US-Autobauer schränken laut wallstreet-online ihre Rabatte beim Neuwagenkauf ein. Genannt werden Stellantis, General Motors, Toyota, Tesla und Rivian.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Begründung dafür nennt die Quelle nicht. Festgehalten wird lediglich, dass der Preisvergleich für Käufer dadurch schwieriger wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum weniger Rabatt den Blick auf Gebrauchte lenkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut derselben Quelle könnten Gebrauchtwagen und Elektroautos für Käufer dadurch attraktiver werden. Wird der Preisabstand zwischen Neu- und Gebrauchtwagen kleiner, verschiebt sich die Kaufentscheidung erfahrungsgemäß in Richtung Gebrauchtmarkt – umgekehrt zu dem, was hohe Rabatte auf Neuwagen in den vergangenen Jahren bewirkt haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fünf Hersteller, zwei unterschiedliche Antriebe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter den genannten Herstellern sind mit Tesla und Rivian zwei reine Elektroauto-Anbieter neben den etablierten, überwiegend auf Verbrenner setzenden Herstellern Stellantis, General Motors und Toyota. Dass die Meldung alle fünf in einem Atemzug nennt, spricht dafür, dass die Zurückhaltung bei Rabatten die gesamte Branche betrifft und nicht nur ein einzelnes Antriebskonzept.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Käufer tatsächlich stärker zum Gebrauchtwagen greifen, hängt von der Höhe der eingesparten Rabatte ab – eine Zahl dazu liefert die Meldung nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-faellt-4283-dollar-terminverfall',
+    title: 'Goldpreis fällt auf 4.283 Dollar vor dem Terminverfall',
+    teaser:
+      'Der Goldpreis ist laut Goldreporter auf 4.283 Dollar gefallen. Das Managed Money reduziert seine Long-Positionen vor dem September-Terminverfall.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-27T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Terminmarkt', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Analyse, Meldung vom 26.09.2026: „Der Goldpreis ist auf 4.283 USD zurückgefallen. Am US-Terminmarkt reduzierte das Managed Money seine Long-Positionen. Jetzt steht der September-Verfall bevor.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Top-News, Stand 27.09.2026: „Goldmarkt: Spekulantenanteil bleibt hoch – Futures-Verfall steht an“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026, wallstreetONLINE Redaktion: „Goldpreis-Prognose: Lösen die PCE-Daten am 30. September ein großes Beben aus?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter auf 4.283 US-Dollar je Feinunze zurückgefallen. Am US-Terminmarkt hat das sogenannte Managed Money – große, meist spekulativ ausgerichtete Investoren – seine Long-Positionen reduziert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für den Zeitpunkt nennt Goldreporter den bevorstehenden September-Verfall am Terminmarkt: Kontrakte, die in diesem Monat auslaufen, müssen jetzt geschlossen oder in den nächsten Termin gerollt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Terminverfall mit dem Kurs zu tun hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Future ist eine Verpflichtung, Gold zu einem festen Termin zu liefern oder abzunehmen. Läuft dieser Termin aus, müssen offene Positionen glattgestellt werden. Das kann kurzfristig zusätzliche Käufe oder Verkäufe auslösen, unabhängig davon, ob sich an der langfristigen Markteinschätzung etwas geändert hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der nächste Termin, der den Kurs bewegen könnte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den 30. September stellt wallstreet-online die Frage, ob die dann anstehenden US-Konsumausgabendaten (PCE) den Goldpreis stärker bewegen könnten. Eine Antwort darauf liefert die Meldung nicht, sie benennt lediglich den Termin.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob der Rückgang von Dauer ist, hängt auch davon ab, wie sich die Positionen rund um den September-Verfall auflösen – dazu liefert keine der Meldungen eine Prognose.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-patenturteil-5-7-milliarden-dollar',
+    title: 'Gericht verurteilt Apple zu Zahlung von 5,7 Milliarden Dollar',
+    metaTitle: 'Apple soll 5,7 Milliarden Dollar in Patentstreit zahlen',
+    teaser:
+      'Apple soll laut dpa-AFX 5,7 Milliarden Dollar nach einem Patentgerichtsurteil zahlen. Kläger, Patent und Rechtskraft des Urteils nennt die Meldung nicht.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-27T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'Patentstreit', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 26.09.2026, 23:36 Uhr, dpa-AFX: „Patent-Urteil: Apple soll 5,7 Milliarden Dollar zahlen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple soll nach einem Patentgerichtsurteil 5,7 Milliarden US-Dollar zahlen, meldete dpa-AFX am Samstagabend über onvista.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Gericht geurteilt hat, wer gegen Apple geklagt hat und um welches Patent es geht, nennt die Meldung nicht. Auch ob es sich um ein rechtskräftiges Urteil oder um einen Spruch handelt, der noch angefochten werden kann, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Urteil noch keine Überweisung ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einem erstinstanzlichen Urteil und einer tatsächlichen Zahlung liegen in amerikanischen Patentverfahren oft Jahre. Die unterlegene Partei kann Rechtsmittel einlegen, wodurch sich die Summe noch ändern oder ganz entfallen kann.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie Konzerne mit offenen Prozessrisiken bilanzieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unternehmen bilden für laufende Rechtsstreitigkeiten üblicherweise Rückstellungen, sobald eine Zahlung wahrscheinlich und der Betrag schätzbar ist. Wie hoch eine mögliche Rückstellung bei Apple ausfällt oder ob der Konzern das Urteil anficht, geht aus der vorliegenden Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 5,7 Milliarden Dollar sind eine ungewöhnlich hohe Summe für ein einzelnes Patentverfahren. Ob der Betrag Bestand hat, entscheidet sich erst in einer möglichen nächsten Instanz – darüber sagt die Meldung nichts.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-rueckruf-zwei-werkstattbesuche',
+    title: 'VW-Rückruf zwingt Fahrer zu zwei Werkstatt-Besuchen',
+    teaser:
+      'Volkswagen ruft laut dpa-AFX erneut Fahrzeuge zurück. Betroffene müssen zweimal in die Werkstatt; Modell und Ursache nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Volkswagen', 'Rückruf', 'Autoindustrie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:53 Uhr: „VW-Aktie: Neuer Rückruf zwingt Fahrer zu zwei Werkstatt-Besuchen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, Meldung vom 26.09.2026, dpa-AFX: „Warum VW-Fahrer nach Rückruf zweimal in die Werkstatt müssen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen ruft laut dpa-AFX erneut Fahrzeuge zurück. Betroffene Fahrerinnen und Fahrer müssen dafür zweimal in die Werkstatt, wie sowohl finanzen.net als auch wallstreet-online berichteten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Modell und welcher technische Mangel betroffen sind und warum zwei statt eines Werkstattbesuchs nötig sind, nennen beide Meldungen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum manche Rückrufe zwei Termine brauchen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rückruf kann zwei Termine erfordern, wenn zum Beispiel zunächst eine Diagnose oder ein Software-Update ansteht und ein benötigtes Ersatzteil erst danach bestellt und eingebaut wird. Ob das hier der Grund ist, bleibt offen – die Meldung nennt keinen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Rückruf für die Bilanz bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Autohersteller bilden für angekündigte Rückrufe in der Regel Rückstellungen, sobald sich die Kosten schätzen lassen. Wie viele Fahrzeuge diesmal betroffen sind und welche Kosten Volkswagen dafür einplant, geht aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für betroffene Halter bedeutet der doppelte Werkstattbesuch vor allem Zeitaufwand. Welche Modelle betroffen sind, dürfte sich erst zeigen, wenn Volkswagen oder das Kraftfahrt-Bundesamt Details veröffentlichen.',
+      },
+    ],
+  },
+  {
+    slug: 'meta-cambridge-analytica-einwaende-abgewiesen',
+    title: 'Meta: Gericht weist Einwände im Cambridge-Analytica-Fall ab',
+    teaser:
+      'Ein Gericht hat laut finanzen.net Einwände im Cambridge-Analytica-Fall gegen Meta abgewiesen. Welches Gericht und wessen Einwände, bleibt offen.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-27T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Meta', 'Cambridge Analytica', 'Datenschutz', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['meta'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:45 Uhr: „Meta-Aktie: Gericht weist Einwände im Cambridge-Analytica-Fall ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Gericht hat Einwände im Cambridge-Analytica-Fall gegen Meta abgewiesen, meldete finanzen.net am Sonntagmorgen um 06:45 Uhr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Gericht entschieden hat, von wem die Einwände stammten und wogegen sie sich richteten, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Worum es im Fall Cambridge Analytica ursprünglich ging',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Name geht auf einen Datenskandal aus dem Jahr 2018 zurück: Daten von Facebook-Nutzern waren ohne ihr Wissen an die Analysefirma Cambridge Analytica gelangt und für politische Wahlkampagnen genutzt worden. Der Fall zog jahrelange behördliche und zivilrechtliche Verfahren gegen Meta nach sich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Gerichte über Einwände gegen eine Einigung entscheiden müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'In US-Sammelklagen muss ein Gericht eine ausgehandelte Einigung erst genehmigen. Betroffene können dagegen Einwände erheben, etwa zur Höhe der Entschädigung oder zu den Anwaltskosten. Weist ein Gericht solche Einwände ab, rückt eine Einigung dem Abschluss näher – ob das auch hier der Fall ist, sagt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine abgewiesene Einwendung ist ein Verfahrensschritt, kein Endergebnis. Ob und wann der Fall damit abgeschlossen ist, geht aus der kurzen Meldung nicht hervor.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-nahost-hoffnung-iran-hormus-plan',
+    title: 'Ölpreis fällt zum Wochenschluss auf Nahost-Hoffnung und Irans Hormus-Plan',
+    metaTitle: 'Ölpreis fällt auf Nahost-Hoffnung und Irans Hormus-Plan',
+    teaser:
+      'Brent fiel am Freitag auf 97,47 Dollar. Nahost-Hoffnungen und ein Fahrplan des Iran für die Straße von Hormus drücken den Ölpreis wieder unter 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Nahost', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 26.09.2026, 00:44 Uhr (GMT): Öl (Brent) 97,47 USD, -3,01 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, Meldung vom 25.09.2026, dpa-AFX: „Aktien New York: Gewinne - Ölpreise fallen wegen Nahost-Hoffnungen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 25.09.2026: „Nahostkonflikt im Blick: Iran bietet USA wohl Fahrplan für Straße von Hormus an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Top-News, Stand 26.09.2026, 00:44 Uhr (GMT): „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist zum Ende der Handelswoche deutlich gefallen. Die Nordseesorte Brent notierte laut wallstreet-online am Samstagmorgen bei 97,47 US-Dollar je Fass, ein Minus von 3,01 Prozent gegenüber dem Vortag – und damit wieder unter der Marke von 100 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt dpa-AFX über onvista Hoffnungen auf eine Lösung im Nahost-Konflikt: „Aktien New York: Gewinne - Ölpreise fallen wegen Nahost-Hoffnungen“, so die Meldung vom Freitag. Welche konkreten Fortschritte gemeint sind, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen möglichen Baustein liefert eine weitere Meldung von wallstreet-online vom selben Tag: Der Iran habe den USA einen Fahrplan für die Straße von Hormus angeboten – jene Meerenge, durch die laut mehreren Quellen ein großer Teil der weltweiten Ölexporte verschifft wird. Details des Angebots nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Ankündigung reicht, um den Preis zu bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einem diplomatischen Angebot und einer tatsächlich veränderten Liefermenge liegt eine Lücke – verschifft wird dadurch noch kein einziges zusätzliches Fass. Der Ölpreis reagiert trotzdem, weil er neben Angebot und Nachfrage auch eine sogenannte Risikoprämie enthält: einen Aufschlag für die Möglichkeit einer Lieferstörung. Sinkt diese Möglichkeit, kann die Prämie fallen, ohne dass sich an der geförderten Menge etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweiter Rohstoff bewegt sich in dieselbe statt in die entgegengesetzte Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold, das in Krisenzeiten oft als sicherer Hafen gilt, wurde durch die Entspannung nicht teurer. Laut Goldreporter rutschte der Goldpreis im selben Zeitraum unter seine 50-Tage-Linie. Als Grund nennt die Quelle nicht den Ölpreis, sondern gestiegene US-Marktzinsen – ein Hinweis darauf, dass die beiden Rohstoffe derzeit auf unterschiedliche Treiber reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Entspannung von Dauer ist, hängt an einem Angebot, dessen Inhalt aus den bisherigen Übersichten nicht hervorgeht. Für den Ölpreis zählt in den kommenden Tagen weniger, was am Freitag angekündigt wurde, als das, was tatsächlich verhandelt wird.',
+      },
+    ],
+  },
+  {
+    slug: 'diesel-exportstopp-trump-oelkonzerne-widerstand',
+    title: 'Trumps möglicher Diesel-Exportstopp bringt US-Ölkonzerne gegen sich auf',
+    metaTitle: 'Trumps möglicher Diesel-Exportstopp gegen US-Ölkonzerne',
+    teaser:
+      'Trump erwägt einen Exportstopp für US-Diesel. Die Ölindustrie protestiert, und eine Analyse von Société Générale hält das Verbot für wenig attraktiv.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Diesel', 'Öl', 'USA', 'Handelspolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 25.09.2026, wallstreetONLINE Redaktion: „Dieselexporte: US-Ölkonzerne wettern gegen möglichen Diesel-Export-Stopp“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Rohstoff- & Rohstoffaktien-Analysen, Meldung vom 25.09.2026, 11:30 Uhr, Société Générale: „Diesel: Exportverbot für US-Diesel selbst für die USA nur begrenzt attraktiv“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump erwägt laut wallstreet-online einen Exportstopp für Diesel aus amerikanischer Produktion. Die US-Ölindustrie wehrt sich dagegen – die Meldung vom Freitag trägt den Titel „US-Ölkonzerne wettern gegen möglichen Diesel-Export-Stopp“, nennt aber weder eine Begründung Trumps noch eine Frist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Analyse von Société Générale, veröffentlicht am selben Tag auf onvista, kommt zu einem nüchternen Schluss: Ein Exportverbot für US-Diesel wäre demnach „selbst für die USA nur begrenzt attraktiv“. Warum, führt die Überschrift allein nicht aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer exportiert, verdient am Weltmarktpreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Exportverbot soll üblicherweise das Inlandsangebot erhöhen und damit die heimischen Preise dämpfen. Es kostet aber die Anbieter Erlöse, wenn sie ihre Ware nicht mehr zum meist höheren Weltmarktpreis verkaufen dürfen, sondern nur noch im Inland absetzen können. Genau diesen Zielkonflikt zwischen niedrigeren Verbraucherpreisen und den Interessen der Exporteure beschreibt der Widerstand der Ölkonzerne.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Markt, der längst über Grenzen hinweg verflochten ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diesel wird weltweit gehandelt, und die USA importieren und exportieren gleichzeitig unterschiedliche Qualitäten. Ein einseitiger Exportstopp verändert deshalb nicht nur das eigene Angebot, sondern auch die Preise bei den bisherigen Abnehmern – mit Rückwirkungen, die sich nicht auf einen einzigen Markt begrenzen lassen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Trump den Exportstopp tatsächlich verhängt, ist aus den vorliegenden Meldungen nicht ersichtlich. Schon die Ankündigung zeigt aber, dass Handelspolitik bei Rohstoffen zwei Preise gleichzeitig bewegen kann – den heimischen und den am Weltmarkt.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wall-street-wochenschluss-nahost-hoffnung',
+    title: 'Dax beendet Verlustserie, Wall Street schließt fester auf Nahost-Hoffnung',
+    metaTitle: 'Dax beendet Verlustserie, Wall Street schließt fester',
+    teaser:
+      'Der Dax beendet die Woche im Plus, auch Dow und Nasdaq schließen fester. Zwei Kursanbieter zeigen dabei leicht unterschiedliche Prozentwerte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 6,
+    tags: ['Dax', 'Dow Jones', 'Nasdaq', 'Aktienmärkte'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Tagesrückblick, Meldung vom 25.09.2026, 15:59 Uhr, onvista: „Verlustserie beendet: Dax erzielt kleines Wochenplus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 25.09.2026, 16:27 Uhr, dpa-AFX: „ROUNDUP/Aktien Frankfurt Schluss: Dax beendet durchwachsene Woche freundlich“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, Meldung vom 25.09.2026, 20:37 Uhr, dpa-AFX: „ROUNDUP/Aktien New York Schluss: Dow erholt sich - Hoffnung auf Nahost-Lösung“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste und Wichtige Termine, Stand 26.09.2026, 00:44 Uhr (GMT)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 26.09.2026, 00:44 Uhr (GMT): DAX 25.409 Punkte, +0,6 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat seine Verlustserie beendet und die Woche laut onvista mit einem kleinen Plus abgeschlossen. Um 16:27 Uhr meldete dpa-AFX: „Dax beendet durchwachsene Woche freundlich.“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwei Datenanbieter zeigen dabei zum Zeitpunkt der Abfrage am Samstagmorgen leicht unterschiedliche Werte: finanzen.net notiert den Dax bei 25.409 Punkten (+0,6 Prozent), wallstreet-online bei 25.553,14 Punkten (+0,65 Prozent). Beide Angaben beziehen sich auf denselben Schlussstand vom Freitag – die Abweichung zeigt, wie unterschiedlich Anbieter runden und welchen Vergleichszeitpunkt sie für die Prozentangabe wählen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch New York schließt im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street zogen laut dpa-AFX alle wichtigen Indizes am Freitag an. Um 20:37 Uhr meldete die Agentur: „Dow erholt sich - Hoffnung auf Nahost-Lösung.“ Weitere Ticker-Meldungen von finanzen.net vermerkten für denselben Handelstag Gewinne bei S&P 500, Nasdaq Composite und Nasdaq 100. Nach Angaben von wallstreet-online lag der Future auf den Dow Jones („US 30“) zuletzt bei 51.822,60 Punkten (+0,89 Prozent), der auf den Nasdaq 100 („US Tech 100“) bei 30.617,77 Punkten (+0,44 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursindex zeigt nicht automatisch dieselbe Größe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax rechnet ausgeschüttete Dividenden seiner Mitgliedsunternehmen in seinen Stand ein und gilt deshalb als Performanceindex. Der Dow Jones dagegen wird traditionell als reiner Kursindex ohne Dividenden berechnet. Ein direkter Vergleich der Prozentwerte beider Indizes vergleicht deshalb nicht genau dieselbe Größe, auch wenn beide an diesem Freitag in dieselbe Richtung liefen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der neuen Handelswoche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die kommende Woche listen die Wirtschaftskalender von wallstreet-online und onvista unter anderem: am Montag, den 28.09., das Protokoll der jüngsten Notenbanksitzung der Bank of Japan, eine Rede des Bank-of-England-Vertreters Dave Ramsden sowie den Dallas Fed Manufacturing Business Index aus den USA. Für Dienstag, den 29.09., stehen die Jahresrate der Verbraucherpreise (HVPI) für die Eurozone sowie der EU-Geschäftsklimaindex und das Verbrauchervertrauen an. Uhrzeiten nennen die Kalender dazu nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein kleines Wochenplus nach vorherigen Verlusten ist noch keine Trendwende. Ob die am Montag und Dienstag anstehenden Daten die Nahost-getriebene Erholung stützen oder bremsen, lässt sich vorab nicht ablesen – sie liefern aber die nächsten konkreten Anhaltspunkte.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-rutscht-unter-50-tage-linie-hohe-zinsen',
+    title:
+      'Goldpreis rutscht unter 50-Tage-Linie – hohe Zinsen bremsen trotz fallendem Ölpreis',
+    metaTitle: 'Goldpreis rutscht unter 50-Tage-Linie – hohe Zinsen bremsen',
+    teaser:
+      'Der Goldpreis ist laut Goldreporter unter seine 50-Tage-Linie gefallen. Hohe Marktzinsen belasten trotz sinkendem Ölpreis am selben Tag.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-26T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Zinsen', 'Rohstoffe', 'Geldanlage'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Stand 26.09.2026, 00:44 Uhr (GMT): „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 26.09.2026, 00:44 Uhr (GMT): Gold 4.286,15 USD, 0,00 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 26.09.2026, 00:44 Uhr (GMT): Gold 4.286 USD, +0,2 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter unter seine 50-Tage-Linie gerutscht. Die Top-News der Seite trägt die Überschrift „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“ – eine Begründung über die genannten hohen Marktzinsen hinaus liefert die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Zeitpunkt der Abfrage am frühen Samstagmorgen notierte Gold laut wallstreet-online bei 4.286,15 US-Dollar je Feinunze, unverändert zum Vortag (0,00 Prozent). Finanzen.net zeigt für denselben Nominalpreis von 4.286 US-Dollar dagegen ein Plus von 0,2 Prozent – ein Beispiel dafür, dass zwei Anbieter beim selben Kurs je nach gewähltem Vergleichszeitpunkt zu unterschiedlichen Prozentwerten kommen können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zinslos in einer Welt hoher Zinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt weder Zinsen noch Dividende. Wer es hält, verzichtet auf die Verzinsung, die eine Anleihe oder ein Tagesgeldkonto in dieser Zeit bringen würde – die sogenannten Opportunitätskosten des Goldbesitzes. Je höher die Zinsen am Anleihemarkt, desto teurer wird es relativ gesehen, Gold statt einer verzinsten Anlage zu halten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kein Gleichlauf mit dem Ölpreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag fiel auch der Ölpreis nach Angaben von wallstreet-online deutlich, auf 97,47 US-Dollar je Fass Brent (-3,01 Prozent). Ein niedrigerer Ölpreis dämpft tendenziell die Inflationserwartung und könnte Zinssenkungen wahrscheinlicher machen – was Gold eigentlich stützen würde. Dass der Goldpreis trotzdem nachgab, zeigt, dass er in dieser Woche offenbar stärker auf die bereits hohen Zinsen reagierte als auf die Ölpreisbewegung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kurswert wie die 50-Tage-Linie ist kein Naturgesetz, sondern eine von vielen Marktbeobachtungen. Ob der Rückgang unter diese Linie weitere Verkäufe auslöst oder ob sich das Bild beim nächsten Zinsschritt schon wieder dreht, lässt sich aus den bisherigen Meldungen nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-evonik-uebernahmeangebot-unverbindliche-ansprache',
+    title: 'BASF bestätigt unverbindliche Ansprache für mögliche Übernahme von Evonik',
+    metaTitle: 'BASF bestätigt Ansprache für mögliche Evonik-Übernahme',
+    teaser:
+      'Evonik bestätigt eine unverbindliche Ansprache der BASF SE zu einer möglichen Übernahme. Auch der Ankeraktionär RAG-Stiftung meldet sich per Ad-hoc-Mitteilung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['BASF', 'Evonik', 'Übernahme', 'Chemie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['basf', 'evonik'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 25.09.2026, EQS Group AG: „EQS-Adhoc: Evonik Industries AG bestätigt unverbindliche Ansprache durch die BASF SE zu einem möglichen Übernahmeangebot“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 25.09.2026, EQS Group AG: „EQS-Adhoc: RAG-Stiftung: RAG-Stiftung zu einer möglichen Übernahme der Evonik durch BASF“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Chemiekonzern Evonik hat am Freitag per Ad-hoc-Mitteilung bestätigt, von der BASF SE unverbindlich wegen eines möglichen Übernahmeangebots angesprochen worden zu sein. Das geht aus einer EQS-Adhoc-Meldung vom 25.09.2026 hervor, die wallstreet-online veröffentlicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag gab auch die RAG-Stiftung eine eigene Ad-hoc-Mitteilung zu einer möglichen Übernahme der Evonik durch BASF heraus. Welchen Inhalt diese Mitteilung im Einzelnen hat, welchen Preis BASF genannt haben könnte oder ob es überhaupt zu einem verbindlichen Angebot kommt, geht aus den vorliegenden Überschriften nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unverbindlich heißt: noch kein Angebot',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine „unverbindliche Ansprache“ ist noch kein Übernahmeangebot im rechtlichen Sinn. Sie markiert lediglich den Beginn möglicher Gespräche – ob daraus ein konkretes, mit Preis und Bedingungen versehenes Angebot wird, ist zu diesem Zeitpunkt offen. Genau deshalb behandeln börsennotierte Unternehmen selbst diesen frühen Stand bereits als kursrelevant und veröffentlichen ihn verpflichtend als Ad-hoc-Mitteilung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Ankeraktionär eine eigene Meldung veröffentlicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die RAG-Stiftung, die traditionell einen bedeutenden Anteil an Evonik hält, veröffentlichte zu demselben Vorgang eine eigene Ad-hoc-Mitteilung – ein Hinweis darauf, dass ihre Zustimmung für den Ausgang eines möglichen Angebots wichtig sein dürfte. Auch sie nennt laut Überschrift keine Bedingungen oder einen Zeitplan.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Ad-hoc-Mitteilungen an einem Tag zeigen, dass beide Seiten den Vorgang für kursrelevant halten. Ob daraus ein Übernahmeangebot mit einer Prämie auf den zuletzt gehandelten Kurs wird, wie das bei Übernahmen üblich ist, bleibt vorerst offen.',
+      },
+    ],
+  },
+  {
+    slug: 'xi-trump-treffen-november-china-zollwaffenstillstand',
+    title:
+      'Nach Washington nun Peking: Xi und Trump wollen sich im November in China treffen',
+    metaTitle: 'Xi und Trump wollen sich im November in China treffen',
+    teaser:
+      'Nach ihrem Treffen in Washington wollen sich Trump und Xi im November in China wiedersehen. Der Zollwaffenstillstand bleibt vorerst ungeklärt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'China', 'Handelspolitik', 'Xi Jinping'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „ROUNDUP: Xi und Trump wollen sich im November in China treffen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten, Meldung vom 25.09.2026: „Xi Jinping lädt Trump zu nächstem Treffen nach China ein“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 25.09.2026: „Trump & Xi in Washington“ / „Nothing Burger Xi-Besuch: Harte Kritik aus eigenen Reihen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach ihrem Treffen am Donnerstag in Washington wollen sich US-Präsident Donald Trump und Chinas Staats- und Parteichef Xi Jinping laut einer ROUNDUP-Meldung von finanzen.net im November erneut treffen – diesmal in China.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wallstreet-online berichtet ergänzend, Xi Jinping habe Trump zu diesem nächsten Treffen nach China eingeladen. Ein genaues Datum, ein Ort innerhalb Chinas oder eine Tagesordnung gehen aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kritik am ersten Treffen aus den eigenen Reihen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Treffen am Donnerstag in Washington findet sich bei wallstreet-online zudem eine Überschrift, die von einem „Nothing Burger“-Besuch spricht und „harte Kritik aus eigenen Reihen“ ankündigt. Worin diese Kritik im Einzelnen besteht oder von wem sie stammt, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Ankündigungen wie diese Devisen und Aktien bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Handelspolitische Signale zwischen den beiden größten Volkswirtschaften der Welt wirken häufig über zwei Kanäle: direkt auf Aktien von Unternehmen mit China-Geschäft und indirekt über den Wechselkurs, weil Anleger politische Entspannung tendenziell mit einer stabileren Handelsbeziehung gleichsetzen. Welcher der beiden Kanäle diesmal stärker reagiert, lässt sich aus einer bloßen Ankündigung eines weiteren Treffens noch nicht ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Einladung zu einem weiteren Treffen ist ein Terminplan, kein Ergebnis. Ob der im November auslaufende Zollwaffenstillstand zwischen den USA und China verlängert wird, bleibt bis zum tatsächlichen Treffen in China offen.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-akamai-deal-chip-aktien-rally',
+    title: 'Milliarden-Deal von Akamai mit Anthropic zieht Chip-Aktien mit',
+    teaser:
+      'Akamai steigt nach einem Milliarden-Deal mit Anthropic kräftig. Auch ASML, AMD und Intel ziehen mit – ein Auftrag bewegt eine ganze Lieferkette.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Künstliche Intelligenz', 'Akamai', 'Chip-Aktien', 'Anthropic'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['amd', 'intel', 'asml'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „Akamai-Aktie schießt nach Milliarden-Deal mit Anthropic kräftig hoch“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „Aktien von ASML, AMD, Intel & Co.: Diese KI-Werte ziehen nach dem Anthropic-Deal mit“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Akamai Technologies ist am Freitag laut finanzen.net nach einem Milliarden-Deal mit dem KI-Unternehmen Anthropic kräftig gestiegen. Um welchen genauen Betrag es in dem Deal geht oder welche Leistung Akamai konkret liefert, nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kursgewinn blieb laut einer weiteren Meldung von finanzen.net nicht auf Akamai beschränkt: Auch Aktien von ASML, AMD und Intel zogen demnach im Sog der Nachricht an. Welche konkreten Kursbewegungen dabei gemeint sind, geht aus der Überschrift ebenfalls nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Deal, viele Zulieferer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein einzelner Auftrag für Rechenkapazität kann mehrere Aktien gleichzeitig bewegen, weil an der Bereitstellung von KI-Infrastruktur eine ganze Kette von Unternehmen beteiligt ist: Netzwerk- und Rechenzentrumsanbieter wie Akamai auf der einen Seite, Hersteller von Chips und Fertigungsanlagen wie ASML, AMD und Intel auf der anderen. Ein großer Auftrag für einen Teil der Kette lässt Anleger offenbar auch auf Folgeaufträge für die übrigen Glieder hoffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auftragseingang ist keine Garantie für Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine angekündigte Vereinbarung ist ein Auftragseingang, kein bereits verbuchter Umsatz. Zwischen der Unterschrift unter einen mehrjährigen Vertrag und dem tatsächlichen Zahlungseingang können Jahre liegen, und Verträge dieser Art enthalten häufig Bedingungen, unter denen sich der tatsächliche Umfang noch ändern kann – Angaben dazu liefert die vorliegende Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass gleich mehrere Zulieferer-Aktien auf die Meldung eines einzelnen Kunden reagieren, zeigt, wie stark der Markt Wachstum bei Künstlicher Intelligenz derzeit als ein gemeinsames Thema für ganze Lieferketten statt für einzelne Unternehmen einpreist.',
+      },
+    ],
+  },
+  {
+    slug: 'us-anleiherenditen-mehrjahreshoch-fed-williams-spricht',
+    title: 'US-Anleiherenditen auf Mehrjahreshoch – heute spricht die Fed',
+    teaser:
+      'Die Renditen US-amerikanischer Staatsanleihen kletterten am Donnerstag auf das höchste Niveau seit Jahren. Am Freitag spricht Fed-Vertreter John Williams.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-25T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anleihen', 'Fed', 'Zinsen', 'Staatsschulden'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 25.09.2026, 00:11 Uhr (GMT): „Die Renditen von US-Staatsanleihen sind am Donnerstag auf ein seit Jahren nicht mehr gesehenes Niveau gestiegen.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 24.09.2026: „Pulverfass Staatsschulden: Anleiherenditen explodieren!“ und „365 Billionen auf Pump: Die Welt hat sich billig verschuldet – jetzt kommt die brutale Rechnung“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, Stand 25.09.2026, 00:11 Uhr (GMT)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Renditen US-amerikanischer Staatsanleihen sind laut wallstreet-online am Donnerstag auf das höchste Niveau seit Jahren gestiegen. Die Übersicht nennt weder einen genauen Zahlenwert noch eine einzelne Laufzeit – als betroffene Wertpapiere werden der T-Bond-Future und der ICE US 10 Year Treasury Futures Index genannt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag titelte die Redaktion: „Pulverfass Staatsschulden: Anleiherenditen explodieren!“ Auch das bleibt eine Überschrift ohne begleitende Zahlen. Eine weitere Meldung sprach von 365 Billionen US-Dollar, mit denen sich die Welt in der Vergangenheit günstig verschuldet habe – eine Rechnung, die nun teurer werde. Ob beide Meldungen inhaltlich zusammenhängen, geht aus den Übersichten nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für Freitag mehrere Termine: Um 11:15 Uhr spricht Fed-Mitglied John C. Williams, um 14:30 Uhr veröffentlichen die USA die Auftragseingänge langlebiger Güter (Durable Goods Orders) samt der Kennzahl ohne Transportsektor. Aus Deutschland kommt um 8 Uhr die GfK-Konsumklimastudie, aus Spanien um 9 Uhr das Bruttoinlandsprodukt, aus dem Euroraum um 10 Uhr die Geldmenge M3 und die Kreditvergabe an den Privatsektor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rendite steigt, wenn ein Kurs fällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleiherenditen und Anleihekurse bewegen sich gegenläufig: Wer eine Anleihe mit fester Verzinsung günstiger kauft, weil ihr Kurs gefallen ist, erzielt bei gleichbleibendem Kupon eine höhere Rendite. Steigende Renditen sind deshalb zugleich Ausdruck fallender Kurse – ausgelöst etwa durch die Erwartung höherer künftiger Zinsen oder durch Sorgen um die Fähigkeit eines Schuldners, seine Anleihen zurückzuzahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob der Anstieg der Renditen an diesem Donnerstag mit den Schuldensorgen aus der zweiten Meldung zusammenhängt, geht aus den Übersichten nicht hervor – beide stehen dort unabhängig nebeneinander. Die Auftragsdaten und die Fed-Rede am Freitag liefern zusätzliche Anhaltspunkte dafür, in welche Richtung sich die Zinserwartungen als Nächstes verschieben könnten.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-hormus-drohkulisse-saudi-angebot',
+    title: 'Ölpreis zwischen Hormus-Drohkulisse und saudischem Angebot',
+    teaser:
+      'Der Ölpreis baute seinen Anstieg seit Dienstagabend bis Donnerstag auf zehn Prozent aus. Iran und Saudi-Arabien hatten die Notierung zuvor mehrfach gedreht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Iran', 'Saudi-Arabien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 24.09.2026, dpa-AFX: „Ölpreise bauen Anstieg seit Dienstagabend auf zehn Prozent aus“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 23.09.2026, wallstreetONLINE Redaktion: „Iran nennt seinen Preis für Hormus – Brent fällt unter 99 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Unsere Redaktion empfiehlt, Meldung vom 21.09.2026: „Ölpreis fällt deutlich: Saudi-Arabien dreht den Ölhahn auf“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 22.09.2026: „Ölpreis dreht brutal: Iran stellt Hormus-Öffnung binnen sieben Tagen in Aussicht“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis hat seinen Anstieg seit Dienstagabend bis Donnerstag laut einer dpa-AFX-Meldung auf zehn Prozent ausgebaut. Auf welchem Dollar-Niveau die Notierung damit steht, nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Tage zuvor hatte sich der Preis laut wallstreet-online mehrfach gedreht: Am Montag drehte Saudi-Arabien nach eigenen Angaben den Ölhahn auf, der Preis fiel danach deutlich. Am Dienstag stellte der Iran eine Öffnung der Straße von Hormus binnen sieben Tagen in Aussicht. Am Mittwoch nannte der Iran „seinen Preis“ für Hormus, woraufhin die Nordseesorte Brent unter 99 US-Dollar fiel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, der auf Ankündigungen reagiert, nicht nur auf Fässer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Keine der vier Meldungen erklärt, welche Liefermengen sich durch die genannten Ereignisse tatsächlich geändert haben. Zwischen einer Ankündigung, mehr zu fördern, und der Menge, die Wochen später tatsächlich verschifft wird, liegt eine Lücke – der Preis reagiert oft schon auf die Ankündigung selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Risikoprämie statt Angebot und Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ökonomen bezeichnen den Teil eines Rohstoffpreises, der sich nicht aus tatsächlich gelieferten oder nachgefragten Mengen erklärt, sondern aus der Möglichkeit einer Störung, als Risikoprämie. Sie kann sich auflösen, sobald sich die Lage beruhigt, ohne dass sich an den geförderten Barrel etwas ändert – was die Schwankungen dieser Woche erklären könnte, ohne dass es eine der Meldungen ausdrücklich so sagt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die vier Meldungen dieser Woche nebeneinanderlegt, sieht ein Muster aus Drohung, Entspannungssignal und Gegenreaktion. Welches der beiden Signale sich am Ende als dauerhafter erweist, lässt sich aus den bisherigen Übersichten nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'netanjahu-un-rede-atomanlagen-iran',
+    title: 'Netanjahu verteidigt bei UN-Rede Angriffe auf iranische Atomanlagen',
+    metaTitle: 'Netanjahu verteidigt bei UN Angriffe auf Atomanlagen',
+    teaser:
+      'Bei seiner Rede vor der UN-Vollversammlung verteidigte Netanjahu die Angriffe auf iranische Atomanlagen; mehrere Delegationen verließen den Saal.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Israel', 'UN', 'Nahost'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 24.09.2026, 20:47 Uhr, dpa-AFX: „ROUNDUP 2/Konfrontiert mit Protest: Netanjahu verteidigt Kriege bei UN“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Politik Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „Netanjahu verteidigt Angriffe auf iranische Atomanlagen“ und „Netanjahu-Rede bei UN - Etliche Delegationen verlassen Raum“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Stand 25.09.2026, 00:11 Uhr (GMT): „80 Staaten verurteilen Angriffe des Irans und der Huthi“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Israels Ministerpräsident Benjamin Netanjahu hat am Donnerstag vor der UN-Generalversammlung in New York seine Kriegsführung verteidigt. Laut einer dpa-AFX-Meldung von 20:47 Uhr geschah dies unter Protest; laut einer weiteren Überschrift verließen mehrere Delegationen während seiner Rede den Saal.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In seiner Rede verteidigte Netanjahu nach Angaben von wallstreet-online die israelischen Angriffe auf iranische Atomanlagen und sagte, „das iranische Volk wird frei sein“. Zudem griff er den New Yorker Bürgermeister Mamdani an. Eine Begründung für die Angriffe oder weitere Einzelheiten zu den Aussagen gehen aus den vorliegenden Überschriften nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine separate Meldung zu 80 Staaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den Rohstoffnachrichten von wallstreet-online findet sich zusätzlich die Überschrift „80 Staaten verurteilen Angriffe des Irans und der Huthi“. Ob diese Verurteilung im Zusammenhang mit der UN-Rede steht oder ein eigenständiges Ereignis beschreibt, lässt sich aus der Übersicht nicht erschließen – sie nennt weder die beteiligten Staaten noch ein Datum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede in New York den Ölpreis bewegen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nahost-Ereignisse wirken auf den Ölpreis über die erwartete Versorgungssicherheit: Ein großer Teil der weltweiten Ölexporte verläuft durch die Region, allen voran durch die Straße von Hormus. Reden und diplomatische Zwischenfälle liefern deshalb selbst dann Kursimpulse, wenn sich an den geförderten oder verschifften Mengen nichts ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Übersichten belegen die Rede und den Protest dagegen, nicht aber, wie sich die Lage in den kommenden Tagen entwickelt. Wer den Ölpreis in den nächsten Tagen beobachtet, sieht darin auch eine Reaktion auf Ereignisse wie dieses – unabhängig davon, ob sich die tatsächliche Liefersituation ändert.',
+      },
+    ],
+  },
+  {
+    slug: 'bafin-bundesbank-stresstest-banken-sparkassen-robust',
+    title: 'Stresstest: Kleine und mittlere Banken zeigen sich robust',
+    teaser:
+      'Ein gemeinsamer Stresstest von BaFin und Bundesbank bescheinigt kleinen und mittelgroßen Banken sowie Sparkassen in Deutschland ein robustes Kapitalpolster.',
+    category: 'Vorsorge',
+    publishedAt: '2026-09-25T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Banken', 'Einlagensicherung', 'Bundesbank', 'BaFin'],
+    relatedTopics: ['einlagensicherung'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilungen, Meldung vom 24.09.2026: „LSI-Stresstest 2026: Banken und Sparkassen mit robustem Kapitalpolster“',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kleine und mittelgroße Banken sowie Sparkassen in Deutschland zeigen sich laut einer Pressemitteilung der Bundesbank vom Donnerstag robust – trotz wirtschaftlicher Herausforderungen, geopolitischer Unsicherheiten und Belastungen im Unternehmens- und Gewerbeimmobiliengeschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grundlage ist der aktuelle Stresstest der „Less Significant Institutions“ (LSI) – also jener Institute, die nicht direkt von der Europäischen Zentralbank, sondern von nationalen Aufsehern beaufsichtigt werden. Vorgestellt wurden die Ergebnisse laut Bundesbank von Bafin-Exekutivdirektor Nikolas Speer und Bundesbank-Vorstandsmitglied Michael Theurer.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Stresstest überhaupt prüft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Stresstest simuliert, wie sich das Eigenkapital einer Bank in einem angenommenen Krisenszenario entwickeln würde – etwa bei fallenden Immobilienpreisen oder steigenden Kreditausfällen. Er misst damit keine Gewissheit über die Zukunft, sondern die Widerstandsfähigkeit gegen ein vorab festgelegtes Szenario.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für Sparerinnen und Sparer zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Geld auf einem Giro- oder Tagesgeldkonto bei einer kleinen Bank oder Sparkasse hält, verlässt sich auf zwei Sicherungen: das Eigenkapital der Bank selbst, das ein Stresstest wie dieser prüft, und die gesetzliche Einlagensicherung, die im Fall einer Insolvenz zusätzlich greift.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Pressemitteilung nennt keine Prozentzahlen zum Kapitalpolster und keine Institute, die im Test schlechter abschnitten. Wer die Ergebnisse im Detail nachvollziehen möchte, findet sie nicht in dieser Kurzmeldung, sondern erst im vollständigen Bericht von BaFin und Bundesbank.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-50-tage-linie-gold-etf-zufluss',
+    title: 'Goldpreis fällt auf 50-Tage-Linie, doch Gold-ETFs füllen sich wieder',
+    metaTitle: 'Goldpreis fällt auf 50-Tage-Linie, ETFs füllen sich',
+    teaser:
+      'Der Goldpreis fiel laut Goldreporter auf seine 50-Tage-Linie, weil die US-Renditen steigen. Der größte Gold-ETF GLD baute seine Bestände zuletzt trotzdem aus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-25T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'Anleiherenditen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News / ETF, Meldung vom 24.09.2026: „Goldpreis fällt auf 50-Tage-Linie – US-Renditen steigen“ und „Große Gold- und Silber-ETFs ziehen wieder Kapital an“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter auf seine 50-Tage-Linie gefallen – als Grund nennt die Redaktion steigende US-Renditen. Eine konkrete Notierung in Dollar nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig meldet Goldreporter, dass der weltweit größte Gold-ETF, der SPDR Gold Shares (GLD), seine Bestände wieder leicht ausgebaut hat: Er hält demnach knapp 1.052 Tonnen Gold. Beim Silber-ETF SLV gingen die Bestände dagegen kurzfristig zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Bewegungen, die sich nicht widersprechen müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein fallender Preis und gleichzeitig steigende ETF-Bestände klingen zunächst gegenläufig. Sie schließen sich aber nicht aus: Die Bestände eines ETF wie GLD ändern sich, wenn Anleger neue Anteile kaufen oder zurückgeben – der Preis der zugrunde liegenden Unze Gold bildet sich unabhängig davon am Terminmarkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die 50-Tage-Linie als Prüfstein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 50-Tage-Linie ist der gleitende Durchschnitt der Schlusskurse der vergangenen 50 Handelstage – ein häufig beobachtetes technisches Signal. Fällt ein Kurs darunter, werten das manche Marktteilnehmer als Hinweis auf eine Schwächephase; ein Beleg dafür, wie sich der Preis als Nächstes entwickelt, ist das für sich genommen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende US-Renditen erhöhen die Opportunitätskosten des zinslosen Golds – wer stattdessen eine verzinste Anleihe hält, verzichtet bei hohen Zinsen auf weniger. Ob die ETF-Zuflüsse diesen Effekt in den kommenden Tagen ausgleichen, lässt sich aus den Zahlen von Goldreporter allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'hellofresh-gewinnwarnung-drittes-quartal',
+    title: 'HelloFresh kappt Umsatz- und Gewinnziel nach schwachem Quartal',
+    teaser:
+      'HelloFresh erwartet laut einer Ad-hoc-Mitteilung einen Q3-Umsatz unter den Markterwartungen und senkt sein Jahresziel für 2026.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['HelloFresh', 'Gewinnwarnung', 'SDAX', 'Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['hellofresh'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 24.09.2026, EQS Group AG: „EQS-Adhoc: HelloFresh SE erwartet Umsatz für das dritte Quartal 2026 unter der Markterwartung und passt Prognose für das Geschäftsjahr 2026 an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Aktuelle Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „AKTIE IM FOKUS: Hellofresh auf Tradegate sehr schwach - Senkt Jahresziele“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Aktuelle Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „Hellofresh kappt Umsatz- und Gewinnziel - schwaches drittes Quartal“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Kochbox-Versender HelloFresh teilte laut einer Ad-hoc-Mitteilung vom Donnerstag mit, dass der Umsatz im dritten Quartal 2026 unter der Markterwartung liegen wird. Zugleich passte das Unternehmen seine Prognose für das Gesamtjahr 2026 an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von dpa-AFX kappte HelloFresh damit sowohl sein Umsatz- als auch sein Gewinnziel für das laufende Jahr. Um welchen Betrag oder welche Prozentzahl die neue Prognose von der alten abweicht, nennt keine der vorliegenden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ad-hoc-Meldung ist Pflicht, keine Kür',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsennotierte Unternehmen müssen Informationen mit Kursbeeinflussungspotenzial unverzüglich veröffentlichen – als sogenannte Ad-hoc-Mitteilung. Eine Gewinnwarnung wie diese fällt darunter: Sie informiert den Markt, bevor die vollständigen Quartalszahlen mit allen Details vorliegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Reaktion am Markt ging der offiziellen Meldung voraus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Überschrift von dpa-AFX zeigte sich die Aktie bereits im nachbörslichen Handel auf der Handelsplattform Tradegate „sehr schwach“. Ein solcher nachbörslicher Handel läuft außerhalb der regulären Xetra-Handelszeiten und reagiert oft schneller auf Nachrichten als die reguläre Börsensitzung am nächsten Morgen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Gewinnwarnung ohne begleitende Zahlen lässt offen, wie stark das Ergebnis tatsächlich vom bisherigen Ziel abweicht. Anleger erfahren das Ausmaß in der Regel erst mit der vollständigen Quartalsmitteilung – bis dahin bewegt sich der Kurs auf Basis der Erwartung, die allein die Ad-hoc-Meldung weckt.',
+      },
+    ],
+  },
+  {
+    slug: 'ifo-geschaeftsklima-fed-ezb-termine-heute',
+    title: 'Ifo-Geschäftsklima und Reden von Fed und EZB stehen heute an',
+    teaser:
+      'Um 10 Uhr veröffentlicht das ifo-Institut sein Geschäftsklima, davor und danach sprechen Notenbanker von EZB und Fed – ein dichter Terminvormittag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-24T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ifo', 'EZB', 'Fed', 'Konjunktur'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wichtige Termine / Kommende Termine, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 10 Uhr veröffentlicht das ifo-Institut das Geschäftsklima für die deutsche Wirtschaft. Laut den Terminübersichten von wallstreet-online erwarten Analysten einen Anstieg auf 89 Punkte, nach zuvor 88,8 Punkten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zeitgleich erscheinen die beiden Teilindizes: Die aktuelle Geschäftslage wird bei 89 Punkten erwartet, nach zuvor 88,5; die Geschäftserwartungen bei 89,3 Punkten, nach zuvor 89,1.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Notenbanker an einem Vormittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor den ifo-Zahlen spricht um 9:15 Uhr EZB-Direktoriumsmitglied Isabel Schnabel. Um 10:10 Uhr, kurz nach der ifo-Veröffentlichung, äußert sich Fed-Präsident John C. Williams von der Federal Reserve Bank of New York. Um 11 Uhr folgt EZB-Chefvolkswirt Philip Lane.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Stimmungsindex zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ifo-Index misst keine amtliche Wirtschaftsleistung, sondern die Einschätzung mehrerer tausend befragter Unternehmen zu Lage und Erwartungen – deshalb liegt er meist Wochen vor amtlichen Wachstumszahlen vor und gilt als früher Hinweis auf die Konjunkturentwicklung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Stimmungsindex ist eine Erwartung, keine abgeschlossene Messung. Ob die tatsächliche Wirtschaftsleistung der optimistischeren Stimmung folgt, zeigt sich erst in späteren amtlichen Daten – nicht am Tag der Veröffentlichung selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'frachtschiff-hormus-oelpreis-ueber-100-dollar',
+    title: 'Frachtschiff brennt vor Hormus – Ölpreis schnellt über 100 Dollar',
+    teaser:
+      'Ein Frachtschiff steht in der Straße von Hormus in Flammen, Deutschlands Außenminister fordert ein Ende der Blockade, und Brent klettert wieder über 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Hormus', 'Iran', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftsnachrichten, Stand 24.09.2026, 00:15 Uhr: „Behörde: Frachtschiff in der Straße von Hormus in Flammen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 23.09.2026, wallstreetONLINE Redaktion: „Dieselvorräte am Limit: USA liefert kein Diesel mehr: Brent bricht wieder über 100 Dollar aus!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Rohstoffnachrichten, Meldung vom 23.09.2026, dpa-AFX: „Ölpreise bauen Gewinne aus - Brent-Preis legt bis zu viereinhalb Prozent zu“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Straße von Hormus steht laut einer Behördenmeldung, die wallstreet-online in der Nacht auf Donnerstag veröffentlichte, ein Frachtschiff in Flammen. Die Meldung nennt weder die Ursache des Feuers noch den Namen des Schiffs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bundesaußenminister Wadephul forderte den Iran auf, die Blockade der Straße von Hormus zu beenden. Der Iran wiederum wehrte sich laut einer weiteren Meldung vor den Vereinten Nationen gegen Drohungen von US-Präsident Donald Trump; ein Treffen zwischen Trump und dem iranischen Präsidenten Peseschkian gilt laut wallstreet-online als möglich.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag notierte die Nordseesorte Brent laut wallstreet-online bei 103,43 US-Dollar, ein Plus von 4,87 Prozent gegenüber dem Vortag. Nach Angaben von finanzen.net legte der Preis im Verlauf des Handels bis zu viereinhalb Prozent zu. Nach fünf Tagen mit fallenden Notierungen kletterte Brent damit wieder über die Marke von 100 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Diesel als möglicher Auslöser',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für den Anstieg nennt eine Überschrift von wallstreet-online sinkende US-Dieselvorräte – die Meldung selbst liefert dazu keine weiteren Zahlen oder Belege. Wie das Feuer auf dem Frachtschiff und die Diesel-Lage zusammenhängen, geht aus den Quellen ebenfalls nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Feuer im Golf den Ölpreis weltweit bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus wird ein großer Teil der weltweiten Ölexporte verschifft. Der Preis reagiert deshalb nicht nur auf tatsächlich ausgefallene Lieferungen, sondern schon auf die Möglichkeit einer Blockade – dieser Erwartungsanteil wird als Risikoaufschlag bezeichnet und kann sich auflösen, sobald sich die Lage beruhigt, ohne dass sich an den geförderten Mengen etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Blockade tatsächlich anhält oder sich – wie schon in den Tagen zuvor – wieder auflöst, lässt sich aus einer einzelnen Nachtmeldung nicht ablesen. Wer den Ölpreis an diesem Morgen betrachtet, sieht damit auch, wie stark ein einzelnes ungeklärtes Ereignis am Golf den Preis kurzfristig bewegen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-schieben-zusatzzoelle-gegen-china-auf',
+    title: 'USA schieben neue Sonderzölle gegen China erneut auf',
+    teaser:
+      'Die US-Regierung hat laut einer dpa-AFX-Meldung zusätzliche Zölle gegen China erneut aufgeschoben – Details zu Umfang und neuer Frist bleiben offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Zölle', 'USA', 'China', 'Handelspolitik'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 23.09.2026, 23:24 Uhr, dpa-AFX: „US-Regierung: Zusatzzölle gegen China erneut aufgeschoben“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung hat zusätzliche Zölle gegen China einer Meldung von dpa-AFX zufolge erneut aufgeschoben. Um welche Zölle es sich handelt, auf welchen Termin sie verschoben wurden und was die Entscheidung ausgelöst hat, geht aus der kurzen Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ankündigung ohne viele Details',
+      },
+      {
+        type: 'paragraph',
+        text: 'Damit bleibt offen, ob es sich um eine kurzfristige Verschiebung oder eine länger angelegte Aussetzung handelt. Für eine Einordnung fehlen zentrale Angaben: um welche Produkte es geht, wie hoch die betroffenen Zölle ausfallen sollten und bis wann die neue Frist reicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Markt aus einer Verschiebung macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsen bilden nicht nur ein, was tatsächlich passiert, sondern auch, was Marktteilnehmer erwarten. Wird eine angekündigte Maßnahme aufgeschoben, verändert das die eingepreiste Wahrscheinlichkeit, dass sie überhaupt in Kraft tritt – selbst wenn sich am eigentlichen Zollsatz nichts ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Selbst ein Zoll, der am Ende nie in Kraft tritt, kann Investitionsentscheidungen beeinflussen, solange Unternehmen mit ihm rechnen müssen. Eine wiederholte Verschiebung verlängert diese Unsicherheit, statt sie aufzulösen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine wiederholt aufgeschobene Maßnahme ist weder eine endgültige Absage noch eine Bestätigung, dass sie kommt. Wer daraus eine klare Richtung für einzelne Branchen ableiten will, braucht mehr als eine Schlagzeile ohne Details.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-dax-schwaecher-euro-vier-monats-tief',
+    title:
+      'Steigende Ölpreise drücken Wall Street und Dax, der Euro fällt auf ein Vier-Monats-Tief',
+    metaTitle: 'Ölpreise drücken Wall Street, Dax und den Euro',
+    teaser:
+      'Wall Street und Dax schlossen am Mittwoch schwächer, während der Euro laut dpa-AFX auf den tiefsten Stand seit Ende Juli fiel – wegen steigender Ölpreise.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Wall Street', 'Euro', 'Ölpreis'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen, Meldung vom 23.09.2026, dpa-AFX: „ROUNDUP/Aktien New York Schluss: Schwächer - Steigende Ölpreise verunsichern“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, Meldung vom 23.09.2026, dpa-AFX: „ROUNDUP/Aktien Frankfurt Schluss: Verluste - Dax weiter von Ölpreisen bewegt“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten, Meldung vom 23.09.2026, dpa-AFX: „Devisen: Eurokurs fällt unter 1,14 US-Dollar auf tiefsten Stand seit Ende Juli“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Börsen schlossen am Mittwoch schwächer: Laut Kurzmeldungen von dpa-AFX gaben Dow Jones, S&P 500, Nasdaq Composite und Nasdaq 100 zum Handelsende nach; als Grund nennen die Meldungen steigende Ölpreise, die Anleger verunsichern. Konkrete Punkt- oder Prozentangaben liefern die Kurzmeldungen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch in Frankfurt ging es abwärts: Der Dax schloss laut dpa-AFX mit Verlusten, ebenfalls von den steigenden Ölpreisen bewegt; der Wiener ATX gab nach seinem jüngsten Rekordhoch leicht nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag zeigte die Kursleiste von finanzen.net den Dax bei 25.411 Punkten, ein Minus von 0,7 Prozent. Wallstreet-online wies zur selben Zeit einen Stand von 25.356,67 Punkten aus, ein Minus von 1,31 Prozent. Beide Angaben stammen aus fortlaufenden Kursen außerhalb der offiziellen Handelszeiten der Frankfurter Börse und beziehen sich deshalb nicht zwangsläufig auf denselben Vergleichszeitpunkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Euro auf dem tiefsten Stand seit Ende Juli',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Euro fiel laut dpa-AFX unter 1,14 US-Dollar und damit auf den tiefsten Stand seit Ende Juli. Eine Begründung für den Rückgang nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Anbieter können für denselben Index zur selben Nacht unterschiedliche Prozentzahlen zeigen, wenn sie zu unterschiedlichen Zeitpunkten oder auf Basis unterschiedlicher Handelsplätze rechnen. Wer eine einzelne Prozentangabe zitiert, sollte wissen, auf welchen Zeitpunkt sie sich bezieht.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-auseinander-in-derselben-nacht',
+    title: 'Gold hält sich, Silber bricht in derselben Nacht deutlich ein',
+    teaser:
+      'Während Gold in der Nacht auf Donnerstag kaum bewegt blieb, fiel Silber laut wallstreet-online um fast vier Prozent – zwei Edelmetalle, zwei Richtungen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-24T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Gold', 'Silber', 'Rohstoffe', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise / Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Marktberichte, Meldung vom 23.09.2026: „Der Goldpreis startet am Mittwoch erneut schwächer. Brent fällt unter 100 USD. Im Fokus stehen US-Zinsen, Iran-Gespräche und das Treffen Trump–Xi.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Aktien-Analysen, Meldung vom 23.09.2026, 15:55 Uhr: „Dax Tagesrückblick 23.09.2026 – Ölpreise belasten den Dax – Silber gibt deutlich nach“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag notierte Gold laut der Kursleiste von wallstreet-online bei 4.289 US-Dollar, ein Plus von 0,03 Prozent. Silber dagegen fiel im selben Zeitraum um 3,86 Prozent auf 64,49 US-Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass sich die beiden Edelmetalle in dieser Nacht auseinanderbewegten, deutete sich schon während des Mittwochshandels an: Ein Dax-Tagesrückblick von onvista trug am 23.09.2026 den Titel „Ölpreise belasten den Dax – Silber gibt deutlich nach“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold zwischen Zinsen und Nahost-Sorgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem Marktbericht von Goldreporter war der Goldpreis bereits am Mittwoch unter 4.350 US-Dollar gefallen; die Redaktion nannte als Themen im Blick der Märkte US-Zinsen, Gespräche mit dem Iran und ein Treffen zwischen Trump und Xi. Als Unterstützung gilt laut Goldreporter die 50-Tage-Linie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Edelmetalle, zwei Nachfragequellen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber gelten beide als Edelmetalle, doch Silber wird zu einem erheblichen Teil industriell verarbeitet, etwa in der Elektronik- und Solarbranche, während Gold überwiegend als Wertanlage und Reserve gehalten wird. Ein Grund, warum Silber in dieser Nacht deutlich stärker nachgab als Gold, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Rohstoffe, die oft gemeinsam als „Edelmetalle“ gehandelt werden, können sich in derselben Nacht in entgegengesetzte Richtungen bewegen. Wer von einem gemeinsamen Trend ausgeht, übersieht leicht, dass hinter Gold und Silber unterschiedliche Angebots- und Nachfragestrukturen stehen.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-beteiligung-immobilienentwickler-miami',
+    title:
+      'Berkshire baut Beteiligung an Immobilienentwickler trotz Kursverlust von 32 Prozent aus',
+    metaTitle: 'Berkshire steigt bei Immobilienentwickler Lennar ein',
+    teaser:
+      'Berkshire Hathaway hat eine fast zehnprozentige Beteiligung an einem Immobilienentwickler aufgebaut, dessen Aktie binnen eines Jahres rund 32 Prozent verlor.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-24T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Berkshire Hathaway', 'Lennar', 'Aktien', 'Immobilien'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['berkshire', 'lennar'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 24.09.2026, 00:15 Uhr: „Buffett-Nachfolger am Ruder: Berkshire kauft diese Absturz-Aktie nach“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway hat laut wallstreet-online eine fast zehnprozentige Beteiligung am Immobilienentwickler Lennar mit Sitz in Miami aufgebaut. Die Aktie von Lennar hat nach Angaben von wallstreet-online innerhalb eines Jahres rund 32 Prozent an Wert verloren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kaufen, wenn andere verkaufen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway ist dafür bekannt, Beteiligungen häufig dann aufzubauen, wenn ein Aktienkurs bereits deutlich gefallen ist, statt auf steigende Kurse zu warten. Warum genau Lennar für Berkshire jetzt interessant wurde, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine große Beteiligung nicht bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gemeldete Beteiligung ist eine Tatsache zu einem Stichtag, keine Prognose. Sie sagt nichts darüber aus, ob der Kurs von Lennar seinen Rückgang der vergangenen zwölf Monate fortsetzt oder sich erholt – und auch nichts darüber, wie lange Berkshire die Position halten wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein bekannter Großinvestor eine fallende Aktie aufstockt, ist für sich genommen weder ein Kauf- noch ein Verkaufssignal für andere. Es zeigt lediglich, wie ein einzelner Marktteilnehmer eine Bewertung zu einem bestimmten Zeitpunkt einschätzt.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-iran-gespraeche-un-generalversammlung',
+    title: 'USA und Iran sprechen erstmals seit Kriegsbeginn direkt miteinander',
+    metaTitle: 'USA und Iran sprechen erstmals direkt miteinander',
+    teaser:
+      'Am Rande der UN-Generalversammlung trafen sich US- und iranische Vertreter drei Stunden lang – der erste direkte Kontakt seit Kriegsbeginn im Februar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'USA', 'Diplomatie', 'Öl'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          't-online, Meldung vom 22.09.2026: „Trump: Vertreter der USA und des Irans haben sich getroffen“',
+        url: 'https://www.t-online.de/nachrichten/ausland/id_101447804/trump-vertreter-der-usa-und-des-irans-haben-sich-getroffen.html',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, dpa-AFX, Meldung vom 22.09.2026: „ROUNDUP 3/Trump: Vertreter der USA und des Irans haben sich getroffen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag trafen sich laut US-Präsident Donald Trump Vertreter der Vereinigten Staaten und des Iran am Rande der UN-Generalversammlung in New York. Auf amerikanischer Seite nahmen laut übereinstimmenden Berichten Chefunterhändler Steve Witkoff und Trumps Schwiegersohn Jared Kushner teil, auf iranischer Seite laut *New York Times* Außenminister Abbas Araghtschi. Vermittelt wurde das Treffen von Pakistan und Katar. Trump bezeichnete das rund dreistündige Gespräch als „sehr gut“ und stellte ein weiteres Treffen in Aussicht. Es war der erste bestätigte direkte Kontakt zwischen beiden Seiten, seit der Krieg im Februar begonnen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Optionen, ein Ultimatum',
+      },
+      {
+        type: 'paragraph',
+        text: 'In seiner Rede vor der UN-Generalversammlung stellte Trump dem Iran zwei Alternativen in Aussicht: ein Abkommen zur wirtschaftlichen Öffnung oder, in seinen Worten, die „Vernichtung der Islamischen Republik“. Zusätzlich drohte er mit möglichen Angriffen auf die iranische Atomanlage „Pickaxe Mountain“. Zugleich äußerte er die Erwartung, der Konflikt könne „direkt nach den Zwischenwahlen im November“ enden. Was ein Abkommen konkret beinhalten müsste, ging aus seinen Aussagen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis auf einen Gesprächstermin reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rohölpreis reagiert nicht nur auf tatsächlich geförderte oder ausgefallene Barrel, sondern auf die Erwartung künftiger Lieferausfälle rund um die Straße von Hormus, durch die ein großer Teil der Weltölproduktion verschifft wird. Eine Meldung über direkte Gespräche verändert diese Erwartung, ohne dass sich am selben Tag eine einzige Lieferung ändert – dieser Erwartungsanteil im Preis wird als Risikoaufschlag bezeichnet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesprächstermin ist kein Ergebnis. Ob aus dem dreistündigen Treffen eine Vereinbarung wird, die den seit Februar andauernden Konflikt beendet, lässt sich aus den bisherigen Aussagen nicht ablesen – Trumps eigene Ankündigung eines möglichen Angriffsziels am selben Tag zeigt, wie weit beide möglichen Wege noch auseinanderliegen.',
+      },
+    ],
+  },
+  {
+    slug: 'selenskyj-teilwaffenruhe-kreml-ablehnung',
+    title: 'Selenskyj bietet Teil-Waffenruhe an, der Kreml lehnt sofort ab',
+    teaser:
+      'Nach einem Treffen mit Trump bot Selenskyj einen Verzicht auf Angriffe gegen Energieanlagen an. Der Kreml wies den Vorschlag noch am selben Tag zurück.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ukraine', 'Russland', 'Energie', 'Diplomatie'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'investing.com, dpa-AFX, Meldung vom 22.09.2026: „Selenskyj: Ukraine bereit zu begrenzter Waffenruhe“',
+        url: 'https://de.investing.com/news/world-news/selenskyj-ukraine-bereit-zu-begrenzter-waffenruhe-3673295',
+      },
+      {
+        label:
+          'onvista, Politik Nachrichten, dpa-AFX, Meldung vom 22.09.2026, 20:49 Uhr: „Selenskyj: Ukraine bereit zu begrenzter Waffenruhe“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach einem Treffen mit US-Präsident Donald Trump am Rande der UN-Generaldebatte in New York bot der ukrainische Präsident Wolodymyr Selenskyj laut dpa-AFX eine teilweise Waffenruhe an: „Das heißt, wir werden keine Angriffe auf Energieanlagen durchführen“ – gemeint war der gesamte russische Energiesektor. Die Ukraine wäre demnach zu diesem Schritt bereit, wenn im Gegenzug ihre eigene Energieinfrastruktur, weitere kritische Infrastruktur und ihre Lebensmittelexporte nicht länger Ziel russischer Angriffe wären. Der Vorschlag sollte von den USA an Russland weitergeleitet werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kreml: keine Waffenruhe, sondern ein umfassender Frieden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kremlsprecher Dmitri Peskow lehnte den Vorschlag noch am selben Tag ab. Präsident Wladimir Putin habe stets betont, dass Russland „einer dauerhaften Friedensregelung verpflichtet ist, nicht einer Waffenruhe, die grundsätzlich nichts bringt“, so Peskow laut dpa-AFX. Selenskyj betonte seinerseits, Trump habe ihn nicht darum gebeten, auf Angriffe gegen die russische Ölindustrie zu verzichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Patriot-Flugabwehr im Gespräch, aber ohne Zusage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei dem Treffen sei laut dpa-AFX auch über zusätzliche US-Flugabwehrraketen vom Typ Patriot gesprochen worden. Eine konkrete Zusage aus Washington gab es dazu nach dieser Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Waffenruhe und ein Friedensvertrag sind zwei unterschiedliche Dinge – eine Waffenruhe legt Kampfhandlungen bei fortbestehendem Konflikt vorübergehend still, ein Friedensvertrag würde ihn rechtlich beenden. Dass der Kreml ausdrücklich das eine ablehnt und das andere fordert, zeigt, wie weit beide Seiten in dieser Frage noch auseinanderliegen.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-nasdaq-rekord-ki-sorgen-banken',
+    title: 'Dow fällt, Nasdaq erreicht Rekord – ausgelöst von derselben KI-Sorge',
+    metaTitle: 'Dow fällt, Nasdaq erreicht Rekord dank KI-Sorge',
+    teaser:
+      'Der Dow Jones verlor am Dienstag, der Nasdaq 100 stieg auf ein Rekordhoch. Grund für beides: die Furcht vor KI-Tools wie Metas neuem Assistenten Muse.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wall Street', 'Nasdaq', 'Dow Jones', 'Künstliche Intelligenz'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 22.09.2026: „ROUNDUP/Aktien New York Schluss: Dow schwächelt - Nasdaq mit Rekord“',
+        url: 'https://www.finanzen.net/nachricht/aktien/roundup-aktien-new-york-schluss-dow-schwaechelt-nasdaq-mit-rekord-15947516',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 22.09.2026: „ROUNDUP/Aktien New York Schluss: Dow schwächelt - Nasdaq mit Rekord“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Börsen schlossen den Dienstag uneinheitlich: Der Dow Jones Industrial verlor laut dpa-AFX 0,36 Prozent auf 51.863,69 Punkte, der S&P 500 schloss mit 7.764,64 Zählern praktisch unverändert. Der Nasdaq 100 dagegen legte um 0,82 Prozent auf 30.732,40 Punkte zu und markierte im Handelsverlauf mit 30.770 Punkten ein Rekordhoch. Der breitere Nasdaq Composite gewann 0,45 Prozent auf 27.244,28 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bankaktien fallen, Tech-Aktien steigen – am selben Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bankaktien wie JPMorgan, Morgan Stanley und Wells Fargo verloren laut dpa-AFX bis zu 4 Prozent, auch Versicherer und Reiseveranstalter gaben nach. Als Grund nennt die Meldung die Sorge, KI-Werkzeuge wie Metas neuer Assistent „Muse“ könnten Geschäftsmodelle beeinträchtigen, die auf Verbraucherträgheit beruhen – also darauf, dass Kunden selten den Anbieter wechseln. Dieselbe Sorge, die Bankaktien belastete, trieb an anderer Stelle offenbar Technologiewerte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Einzelne Gewinner: Amgen, Shopify, Grab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Amgen stieg laut dpa-AFX um 4,3 Prozent nach positiven Studienergebnissen, Shopify legte um 7,1 Prozent zu, die südostasiatische Plattform Grab gewann 8,6 Prozent. Als unterstützenden Hintergrund nennt die Meldung zudem die am selben Tag bekannt gewordenen Gespräche zwischen US- und iranischen Vertretern am Rande der UN-Generalversammlung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesamtindex zeigt nur den Mittelwert seiner Mitglieder. Dass der Dow fiel, während der Nasdaq 100 am selben Tag ein Rekordhoch erreichte, zeigt, wie dieselbe Nachricht – hier die Furcht vor disruptiven KI-Anwendungen – je nach Branche gegensätzlich wirken kann: belastend für Geschäftsmodelle, die sie bedroht, treibend für die Aktien der Anbieter dahinter.',
+      },
+    ],
+  },
+  {
+    slug: 'saudi-pipeline-brent-unter-100-dollar',
+    title: 'Saudi-Arabien nimmt Pipeline wieder in Betrieb, Brent fällt unter 100 Dollar',
+    metaTitle: 'Saudi-Pipeline zurück, Brent fällt unter 100 Dollar',
+    teaser:
+      'Nach einem Drohnenangriff stand die saudische Ost-West-Pipeline neun Tage still. Mit ihrer Wiederinbetriebnahme rutschte der Brent-Preis unter 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Saudi-Arabien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'The National, Meldung vom 22.09.2026: „Saudi Arabia restarts East-West pipeline for crude exports“',
+        url: 'https://www.thenationalnews.com/business/energy/2026/09/22/saudi-arabia-restarts-east-west-pipeline-for-crude-exports/',
+      },
+      {
+        label:
+          'onvista, Rohstoff-Analysen, Société Générale, Meldung vom 22.09.2026, 11:25 Uhr: „Öl: Saudi-Arabien exportiert mehr Rohöl über den Persischen Golf“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 23.09.2026, 02:56 Uhr: Öl (Brent) 98,63 US-Dollar',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien hat am Dienstag seine 1.200 Kilometer lange Ost-West-Pipeline wieder in Betrieb genommen, nachdem ein Drohnenangriff sie am 13. September zur Abschaltung gezwungen hatte. Die Ölexporte über den Rotmeerhafen Yanbu liefen laut The National zunächst mit reduzierter Kapazität wieder an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ausweichroute durch die Straße von Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während der Abschaltung verlagerte der staatliche Ölkonzern Saudi Aramco seine Exporte auf die Straße von Hormus. Über das Wochenende vor der Wiederinbetriebnahme luden sieben Supertanker am Golf zusammen 14 Millionen Barrel – die höchste Menge seit mindestens Juni, wie The National unter Berufung auf Marktbeobachtungen berichtete.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brent erstmals seit Wochen unter 100 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mit der Wiederinbetriebnahme und den zusätzlichen Verladungen am Golf fiel der Brent-Preis laut The National auf 97,81 US-Dollar (-2,52 Prozent), der amerikanische Ölpreis WTI auf 89,50 US-Dollar (-3,11 Prozent) – der erste Stand unter 100 Dollar seit mehreren Wochen. In der Nacht auf Mittwoch notierte Brent laut finanzen.net bei 98,63 US-Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Preis reagierte nicht nur auf die reparierte Pipeline, sondern darauf, dass in derselben Woche zwei Lieferwege gleichzeitig zur Verfügung standen – die alte Route über Yanbu und die während der Störung aufgebaute Ausweichroute über den Golf. Ein Angebotsausfall, dessen Ersatzlösung sich als tragfähig erweist, kann den Preis stärker drücken als der ursprüngliche Ausfall ihn angehoben hatte.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-xi-gipfel-washington-zollwaffenstillstand',
+    title:
+      'Trump empfängt Xi am Donnerstag – der Zollwaffenstillstand steht im Mittelpunkt',
+    metaTitle: 'Trump empfängt Xi: Zollwaffenstillstand im Mittelpunkt',
+    teaser:
+      'Am Donnerstag trifft Xi Jinping in Washington auf Trump. Im Zentrum steht, ob der am 10. November auslaufende Zollwaffenstillstand verlängert wird.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['USA', 'China', 'Zölle', 'Handel'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'alibaba'],
+    sources: [
+      {
+        label:
+          'Yahoo Finance, Meldung vom 22.09.2026: „Gipfeltreffen zwischen Trump und Xi: Diese Themen stehen auf der Agenda“',
+        url: 'https://de.finance.yahoo.com/nachrichten/gipfeltreffen-zwischen-trump-xi-diese-092720683.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag empfängt US-Präsident Donald Trump Chinas Staats- und Parteichef Xi Jinping in Washington. Im Mittelpunkt der Gespräche steht laut Yahoo Finance, ob der am 10. November auslaufende Zollwaffenstillstand zwischen den USA und China verlängert wird – die Märkte blicken dieser Entscheidung mit Spannung entgegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Boeing, Agrargüter und Seltene Erden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Washington drängt China laut dem Bericht zu umfangreichen Käufen amerikanischer Produkte, insbesondere Boeing-Flugzeuge und Agrargüter. Im Gegenzug fordert Peking eine Lockerung amerikanischer Exportrestriktionen, während Washington seinerseits auf eine Erleichterung chinesischer Ausfuhren von Seltenen Erden drängt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Taiwan und ein möglicher KI-Dialog',
+      },
+      {
+        type: 'paragraph',
+        text: 'Peking möchte laut Yahoo Finance, dass sich Trump gegen eine Unabhängigkeit Taiwans ausspricht – ein Abrücken von bisheriger US-Politik. Daneben sieht der Bericht Raum für eine mögliche Zusammenarbeit bei gemeinsamen Risiken künstlicher Intelligenz. Auch der Iran-Konflikt und der Zustrom von Fentanyl-Vorläufersubstanzen in die USA stehen auf der Agenda.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Solange offen ist, ob der Zollwaffenstillstand verlängert wird, preisen die Märkte eine Wahrscheinlichkeit dafür ein, keine Gewissheit. Das Treffen am Donnerstag liefert eine von zwei möglichen Antworten – und je nachdem, welche es wird, kann sich diese eingepreiste Erwartung in die eine oder andere Richtung auflösen.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-milliardenauftraege-vietnam-oesterreich',
+    title:
+      'Siemens erhält an einem Tag zwei Milliardenaufträge – aus Vietnam und Österreich',
+    metaTitle: 'Siemens: zwei Milliardenaufträge an einem Tag',
+    teaser:
+      'Siemens Mobility liefert Hochgeschwindigkeitszüge nach Vietnam, dazu kommt ein Signaltechnik-Auftrag der ÖBB. Zusammen sind es rund 2,3 Milliarden Euro.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens', 'DAX', 'Auftragseingang', 'Bahntechnik'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['siemens', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.at, Meldung vom 22.09.2026: „Siemens-Aktie im Plus: Bauauftrag eines Hochgeschwindigkeitsnetzes in Vietnam – Großauftrag auch aus Österreich“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/siemens-aktie-im-plus-bauauftrag-eines-hochgeschwindigkeitsnetzes-in-vietnam-grossauftrag-auch-aus-oesterreich-1036563188',
+      },
+      {
+        label:
+          'ariva.de, Meldung vom 22.09.2026: „Milliardenauftrag aus Österreich für Siemens-Bahnsparte“',
+        url: 'https://www.ariva.de/aktien/siemens-aktie/news/milliardenauftrag-aus-oesterreich-fuer-siemens-bahnsparte-12144788',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 22.09.2026: „Milliarden-Coup für Siemens: Siemens schlägt zu: Milliardenauftrag aus Asien entfacht neue Hoffnung“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Siemens Mobility hat laut finanzen.at einen Turnkey-Vertrag mit der Vingroup-Tochter Vinspeed für zwei Hochgeschwindigkeitsstrecken in Vietnam unterschrieben, Hanoi–Quang Ninh und Ben Thanh–Can Gio. Der Auftrag hat ein Volumen von bis zu einer Milliarde Euro. Siemens liefert zehn Züge des Typs Velaro Novo sowie Kommunikations- und Elektrifizierungssysteme; Vinspeed übernimmt Projektentwicklung, Gleisbau und die übrigen Bauarbeiten. Der Vertrag baut auf einer Technologietransfer-Vereinbarung vom Dezember des Vorjahres auf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am selben Tag: 1,3 Milliarden Euro aus Österreich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu beauftragte die ÖBB-Infrastruktur AG Siemens laut ariva.de mit digitaler Stellwerkstechnik im Volumen von 1,3 Milliarden Euro. Bei der Technologie „Signaling X“ wandert die Stellwerkslogik in zentrale Rechenzentren; die digitalen Stellwerke sollen ab 2030 schrittweise eingeführt werden. Zur Kursreaktion der Siemens-Aktie nennen die beiden Quellen an diesem Tag unterschiedliche Werte – finanzen.at berichtet von zeitweise 276,25 Euro (+1,01 Prozent), ariva.de von 273,85 Euro (+0,13 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auftragseingang ist nicht dasselbe wie Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zusammengerechnet stehen an diesem Tag rund 2,3 Milliarden Euro neuer Aufträge zu Buche. Verbucht wird ein solcher Auftragseingang jedoch, sobald der Vertrag unterschrieben ist – Umsatz und Gewinn daraus entstehen erst, wenn die Züge geliefert und die Stellwerke gebaut sind, im Fall Österreichs beginnend erst 2030. Eine Milliardenschlagzeile am Tag der Unterschrift sagt deshalb noch nichts darüber, wann sich der Auftrag in den Quartalszahlen niederschlägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Milliardenaufträge an einem Tag sind ein Signal für die Nachfrage nach Siemens-Technik, keine Vorwegnahme künftiger Bilanzen. Wer die Meldung liest, sollte Auftragseingang und Umsatzausweis als zwei verschiedene Zeitpunkte im selben Projekt verstehen, nicht als denselben Vorgang.',
+      },
+    ],
+  },
+  {
+    slug: 'schweizer-goldexporte-81-prozent-anstieg',
+    title: 'Schweizer Goldexporte steigen im August um 81 Prozent',
+    teaser:
+      'Die Schweiz exportierte im August 156,5 Tonnen Gold, vor allem nach Großbritannien und China. Der Goldpreis selbst bewegte sich kaum vom Fleck.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-23T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Schweiz', 'Edelmetalle', 'Zinsen'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 22.09.2026: „Internationale Gold-Lieferungen der Schweiz steigen um 80 Prozent“',
+        url: 'https://www.goldreporter.de/schweizer-goldexporte-august-2026/news/262042/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 21.09.2026: „Marktzinsen sinken leicht – Blicke auf USA-China-Gipfel gerichtet“',
+        url: 'https://www.goldreporter.de/marktzinsen-sinken-usa-china-gipfel-goldpreis/zinsen/262021/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 23.09.2026, 02:56 Uhr: Gold 4.359 US-Dollar (+0,1 Prozent)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Schweiz hat im August laut Goldreporter 156,5 Tonnen Gold im Wert von rund 18,8 Milliarden Euro exportiert – ein Anstieg um 81 Prozent gegenüber dem Juli-Wert. Größter Abnehmer war mit 102 Tonnen Großbritannien, gefolgt von China mit 26 Tonnen, den USA mit 10 Tonnen und Indien mit 3,5 Tonnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Schweiz importiert, veredelt, exportiert wieder',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig stiegen auch die Einfuhren: 205 Tonnen im Wert von 20,3 Milliarden Euro, ein Plus von 47 Prozent. Den größten Anteil lieferten mit 74,7 Tonnen die Vereinigten Arabischen Emirate über den Goldhandelsplatz Dubai, dazu kamen 28 Tonnen aus den USA, 7 Tonnen aus Italien und 4,6 Tonnen aus Deutschland – deutlich weniger als die 28 Tonnen, die Deutschland allein zwischen Januar und März geliefert hatte. Die Schweizer Raffinerien nehmen Rohgold aus aller Welt auf, veredeln es zu Barren und exportieren es weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Goldpreis selbst bewegte sich kaum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis war laut Goldreporter am Dienstag zeitweise unter die Marke von 4.350 US-Dollar gefallen, belastet von hohen US-Anleiherenditen – die Rendite zehnjähriger US-Staatsanleihen lag am Montagnachmittag bei 4,97 Prozent, nachdem sie zwischenzeitlich über 5 Prozent gestiegen war. In der Nacht auf Mittwoch notierte Gold laut finanzen.net wieder bei 4.359 US-Dollar, ein Plus von 0,1 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Auf den Goldpreis wirken hohe Anleiherenditen und geopolitische Risiken in entgegengesetzte Richtungen: Hohe Zinsen machen das zinslose Gold im Vergleich zu Anleihen weniger attraktiv, während Unsicherheit die Nachfrage nach einem als sicher geltenden Vermögenswert erhöht. Dass der Preis trotz beider Bewegungen kaum von der Stelle kam, deutet darauf hin, dass sich diese beiden Kräfte an diesem Tag ungefähr die Waage hielten.',
+      },
+    ],
+  },
+  {
+    slug: 'pmi-deutschland-frankreich-eurozone-heute',
+    title:
+      'Das steht heute an: Einkaufsmanagerindizes für Deutschland, Frankreich und die Eurozone',
+    metaTitle: 'Heute: PMI für Deutschland, Frankreich, Eurozone',
+    teaser:
+      'Um 9:15 und 9:30 Uhr erscheinen die Einkaufsmanagerindizes für Frankreich und Deutschland, um 10 Uhr der für die Eurozone. Die Vorwerte gehen auseinander.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-23T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PMI', 'Konjunktur', 'Deutschland', 'Frankreich'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 23.09.2026, 00:56 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Wichtige Termine, Stand 23.09.2026, 00:56 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Einkaufsmanagerindex fragt Einkaufsleiter in Unternehmen, ob sich Neuaufträge, Produktion und Beschäftigung gegenüber dem Vormonat verbessert oder verschlechtert haben. Ein Wert über 50 Punkten zeigt Wachstum an, ein Wert darunter Schrumpfung. Heute erscheinen laut wallstreet-online und finanzen.net gleich mehrere Ausgaben dieses Indikators für den Euroraum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Terminplan des Vormittags',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 9:00 Uhr spricht EZB-Ratsmitglied Boris Vujcic. Um 9:15 Uhr folgen die vorläufigen Einkaufsmanagerindizes für Frankreich: Für die Industrie liegt die Prognose bei 50,9 nach zuvor 51,1 Punkten, für den Dienstleistungssektor bei 48,5 nach 48,0 Punkten, für den Gesamtindex lag der Vorwert bei 48,5 Punkten. Um 9:30 Uhr erscheinen die deutschen Werte: Für die Industrie wird 54,5 nach zuvor 54,3 Punkten erwartet, für Dienstleistungen 50,0 nach 49,7 Punkten, der Gesamtindex lag zuvor bei 51,8 Punkten. Um 10:00 Uhr folgt der Industrie-Einkaufsmanagerindex für die gesamte Eurozone, mit einer Prognose von 52,7 Punkten – unverändert zum Vormonat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Währungsraum, zwei unterschiedliche Signale',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Vorwerte zeichnen für Deutschland und Frankreich unterschiedliche Bilder: Der deutsche Industrieindex liegt bereits über der Wachstumsschwelle von 50 Punkten und soll laut Prognose weiter steigen, während der französische Gesamtindex mit zuletzt 48,5 Punkten unterhalb dieser Schwelle liegt. Beide Länder teilen sich dieselbe Währung und dieselbe Notenbank, zeigen der Prognose nach an diesem Vormittag aber gegenläufige Konjunktursignale. Zusätzlich veröffentlichte die niederländische Statistikbehörde bereits um 6:30 Uhr die endgültigen Zahlen zum Bruttoinlandsprodukt des zweiten Quartals, unrevidiert bei 1,3 Prozent im Jahresvergleich und 0,4 Prozent zum Vorquartal.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Prognosewert ist keine Meldung, sondern eine Erwartung, die sich noch bestätigen oder verfehlen kann – erst die tatsächlichen Werte am Vormittag zeigen, ob sich die Industrie in Deutschland und Frankreich tatsächlich so entwickelt hat. Notenbanken lesen aus solchen Indizes Hinweise auf die Konjunktur, ohne dass ein einzelner Wert bereits eine Zinsentscheidung vorwegnimmt.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-unter-100-dollar',
+    title: 'Ölpreis fällt unter 100 Dollar – Europas Börsen schließen im Plus',
+    teaser:
+      'Brent-Öl rutschte am Montag um über drei Prozent unter die 100-Dollar-Marke. Europas Börsen schlossen im Plus, die Chevron-Aktie gab nach.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'DAX', 'Rohstoffe', 'Energiewerte'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'dax', 'chevron'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 21.09.2026: „Ölpreise weiter unter Druck - Preis für Brent-Öl fällt unter 100 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, dpa-AFX, Meldung vom 21.09.2026, 16:36 Uhr: „ROUNDUP/Aktien Europa Schluss: Klare Gewinne nach Ölpreisrückgang“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Marktberichte, Markt Bote, Meldung vom 21.09.2026: „Besonders beachtet!: Chevron Corporation Aktie fällt am 21.09.2026 um -4,17 % – Gründe, Kursentwicklung und Ausblick“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Preis für ein Barrel Brent-Rohöl fiel am Montag laut wallstreet-online um 3,24 Prozent auf 100,08 US-Dollar und rutschte damit unter die Marke von 100 Dollar. Bei finanzen.net stand derselbe Rohstoff zur gleichen Stunde dagegen fast unverändert bei 100,4 Dollar – ein Beleg dafür, wie unterschiedlich zwei Portale ihre Tagesveränderung berechnen. Welche Vergleichsbasis jeweils zugrunde liegt, geht aus den Quellen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rückgang mit direkter Wirkung auf Energiewerte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie des US-Ölkonzerns Chevron fiel laut Markt Bote am selben Tag um 4,17 Prozent. Die Meldung nennt keinen gesonderten Unternehmensgrund – der Kursrückgang fällt zeitlich mit dem fallenden Ölpreis zusammen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Europas Börsen im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX berichtete von klaren Gewinnen an den europäischen Börsen zum Handelsschluss und führte sie auf den sinkenden Ölpreis zurück. Auch die Wiener Börse habe laut derselben Agentur kräftig zugelegt, ebenfalls mit sinkenden Ölpreisen begründet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein fallender Ölpreis wirkt wie eine Kostensenkung für Unternehmen, die viel Energie verbrauchen, während er die Erträge von Förderkonzernen wie Chevron unmittelbar schmälert – ein und dieselbe Bewegung wirkt also je nach Branche gegensätzlich. Wer nur auf einen Gesamtindex blickt, sieht diesen Gegensatz zwischen den Branchen nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-nasdaq-dreimonatshoch',
+    title: 'Wall Street verlängert Rally: Nasdaq 100 auf Dreimonatshoch',
+    teaser:
+      'Tech-Werte trieben den Nasdaq 100 am Montagabend auf ein Dreimonatshoch. Auch Dow Jones und S&P 500 schlossen im Plus.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nasdaq', 'Wall Street', 'Technologiewerte', 'USA'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'sp500'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 21.09.2026, 18:24 Uhr: „Aktien New York: Erholung dank Ölpreisrückgang - Nasdaq 100 auf Dreimonatshoch“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 21.09.2026, 20:43 Uhr: „ROUNDUP/Aktien New York: Deutliche Gewinne - Tech-Werte stark dank KI-Fantasie“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 22.09.2026: US 30 52.079,12 (+0,75 %), US Tech 100 30.486,92 (+2,93 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street setzten sich die Kursgewinne am Montag bis in den Abend fort. Laut dpa-AFX stieg der Nasdaq 100 zunächst dank sinkender Ölpreise, im späteren Handel kamen laut derselben Agentur starke Technologiewerte hinzu, angetrieben von dem, was dpa-AFX „KI-Fantasie“ nannte. Der Index erreichte damit ein Dreimonatshoch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch Dow Jones und S&P 500 im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones („US 30“) schloss laut wallstreet-online 0,75 Prozent höher bei 52.079,12 Punkten, der Nasdaq-Auswahlindex „US Tech 100“ legte um 2,93 Prozent auf 30.486,92 Punkte zu. dpa-AFX berichtete zudem von Gewinnen beim S&P 500 und beim Nasdaq Composite zum Handelsende.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Dreimonatshoch über Erwartungen verrät',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Indexstand, der den höchsten Wert von drei Monaten markiert, zeigt, dass die Kursbewegungen der enthaltenen Werte einen früheren Stand übertreffen. Er sagt für sich genommen nichts darüber, ob sich die damit verbundene Erwartung in künftigen Quartalszahlen bestätigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Mehrmonatshoch bei einem stark technologielastigen Index wie dem Nasdaq 100 spiegelt vor allem, wie viel künftiges Gewinnwachstum Anleger bereits einpreisen. Bleibt dieses Wachstum aus, kann derselbe Optimismus den Index ebenso schnell wieder drücken.',
+      },
+    ],
+  },
+  {
+    slug: 'berlin-wahl-vonovia-dax-verlierer',
+    title: 'DAX klettert trotz Rückschlag für die Union bei der Berlin-Wahl',
+    teaser:
+      'Der DAX legte am Montag zu, obwohl die Union bei der Berlin-Wahl laut den Quellen verlor. Die Vonovia-Aktie zählte dennoch zu den größten Verlierern.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['DAX', 'Vonovia', 'Wahlen', 'Immobilien'],
+    relatedTopics: ['aktie', 'immobilien'],
+    relatedSymbols: ['dax', 'vonovia'],
+    sources: [
+      {
+        label:
+          'onvista, Marktberichte, Meldung vom 21.09.2026, 15:55 Uhr, onvista-Redaktion: „Dax Tagesrückblick 21.09.2026: Dax steigt kräftig - Vonovia schwächeln nach Berlin-Wahl“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, dpa-AFX, Meldung vom 21.09.2026, 16:24 Uhr: „AKTIE IM FOKUS 3: Vonovia-Titel nach Berlin-Wahl unter größten Dax-Verlierern“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 22.09.2026: DAX 25.635,96 (+1,29 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX legte am Montag laut onvista kräftig zu, während die Union bei der Wahl in Berlin nach Angaben von wallstreet-online eine Niederlage erlitt. Genaue Ergebniszahlen zur Wahl nennen die ausgewerteten Quellen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vonovia unter den größten Verlierern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie des Immobilienkonzerns Vonovia gehörte laut dpa-AFX im Zuge der Berlin-Wahl zu den größten Verlierern im DAX. Warum genau das Wahlergebnis den Kurs belastete, geht aus der Meldung nicht hervor – sie nennt weder eine konkrete Kurszahl noch eine Begründung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index, viele Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX stand nach dieser Kurserholung laut wallstreet-online bei 25.635,96 Punkten, ein Plus von 1,29 Prozent. Die Vonovia-Schwäche blieb davon unberührt – ein einzelner Wert mit geringerem Indexgewicht kann einen breiten Zuwachs kaum aufhalten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein Index insgesamt steigt, heißt nicht, dass alle enthaltenen Werte profitieren. Ein politisches Ereignis mit lokalem Bezug wie eine Landeswahl kann einzelne Branchen wie Wohnimmobilien treffen, ohne den Gesamtmarkt zu bewegen.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-termine-dienstag-nagel-lagarde',
+    title: 'Nagel und Lagarde sprechen am Dienstag, dazu US-Konjunkturdaten',
+    teaser:
+      'Am Dienstag treten mehrere Notenbanker auf, und in den USA stehen Konjunkturdaten an. Ein Grönland-Abkommen soll laut einem US-Beamten unterzeichnet werden.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-22T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Bundesbank', 'Fed', 'Konjunkturdaten'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine“ und „Kommende Termine“, Stand 22.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „US-Beamter: Unterzeichnung von Grönland-Abkommen am Dienstag“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag spricht laut wallstreet-online um 10:30 Uhr Bundesbank-Präsident und EZB-Ratsmitglied Joachim Nagel, um 14:00 Uhr folgt EZB-Präsidentin Christine Lagarde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'US-Daten am Nachmittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:15 Uhr veröffentlichen die USA den ADP-Beschäftigungsbericht als Vierwochendurchschnitt, der zuletzt bei 16,25 Tsd. lag; eine Prognose nennt die Quelle nicht. Um 16:00 Uhr folgen das Verbrauchervertrauen der Eurozone (Prognose -16,5 Punkte nach zuvor -15,5) und der Richmond-Fed-Index für die US-Industrie (Prognose 5 Punkte nach zuvor 4).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei weitere Fed-Vertreter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 16:05 Uhr spricht laut wallstreet-online der Präsident der Federal Reserve Bank of New York, John Williams, um 16:20 Uhr Fed-Vizechef Philip Jefferson.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Abkommen zu Grönland',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Meldung von finanzen.net kündigte ein US-Beamter für Dienstag die Unterzeichnung eines Grönland-Abkommens an. Weitere Einzelheiten dazu – etwa Inhalt oder beteiligte Parteien – nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Reden einzelner Notenbanker sind keine Zinsentscheidungen, geben aber Hinweise auf den künftigen geldpolitischen Kurs; in Kombination mit mehreren Konjunkturdaten an einem Tag kann das die Schwankungsbreite an den Märkten erhöhen.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-anleiherenditen-china-gipfel',
+    title: 'Anleiherenditen fallen leicht, Blick auf ein Treffen zwischen USA und China',
+    metaTitle: 'Anleiherenditen fallen leicht vor USA-China-Treffen',
+    teaser:
+      'Die Renditen von US- und Bundesanleihen gaben leicht nach. Der Goldpreis hielt sich bei rund 4.366 Dollar vor einem Treffen zwischen USA und China.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-22T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Anleihen', 'Geldpolitik', 'USA-China'],
+    relatedTopics: ['staatsanleihe', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Meldung vom 22.09.2026: „Marktzinsen sinken leicht – Blicke auf USA-China-Gipfel gerichtet“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 22.09.2026: Gold 4.366,48 USD (+0,53 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 22.09.2026: Gold 4.375 (+0,7 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Renditen von US-Staatsanleihen und Bundesanleihen gaben laut Goldreporter leicht nach. Als Grund nennt die Quelle die Aufmerksamkeit der Märkte für ein bevorstehendes Treffen zwischen den USA und China; ein genaues Datum für das Treffen nennt sie nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Goldpreis hält sich über wichtigen Marken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notierte laut wallstreet-online zuletzt bei 4.366,48 US-Dollar je Feinunze, ein Plus von 0,53 Prozent. Bei finanzen.net stand der Preis zur gleichen Stunde bei 4.375 Dollar, ein Plus von 0,7 Prozent – wieder ein Beispiel dafür, wie unterschiedlich zwei Portale denselben Kurs prozentual einordnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Treffen mit möglicher Signalwirkung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen weiteren Hinweis auf das bevorstehende Treffen liefert wallstreet-online: Dort ist von „leisen Tönen“ des US-Präsidenten vor einem Treffen mit dem chinesischen Staatschef Xi Jinping die Rede, ohne dass Zeitpunkt oder Inhalt des Treffens genannt werden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Sinkende Anleiherenditen machen zinslose Anlagen wie Gold tendenziell attraktiver, weil die Opportunitätskosten des Goldbesitzes sinken. Gleichzeitig zeigt der Blick auf ein einzelnes politisches Treffen, wie stark kurzfristige Markterwartungen von öffentlich angekündigten Terminen abhängen können.',
+      },
+    ],
+  },
+  {
+    slug: 'meta-aktie-elfmonatshoch-ki-assistent-muse',
+    title: 'Meta-Aktie auf Elfmonatshoch nach Start des KI-Assistenten Muse',
+    teaser:
+      'Meta legte am Montag zweistellig zu und erreichte ein Elfmonatshoch. Auslöser war laut dpa-AFX der Start des KI-Assistenten Muse.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Meta', 'Künstliche Intelligenz', 'Technologiewerte'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['meta'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „Meta-Aktie legt zweistellig zu - KI-Assistent Muse sorgt für Rückenwind“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, dpa-AFX, Meldung vom 21.09.2026: „AKTIE IM FOKUS: Meta auf Elfmonatshoch - Starker Start für KI-Agent Muse“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Meta-Aktie legte am Montag laut finanzen.net zweistellig zu und erreichte laut dpa-AFX ein Elfmonatshoch. Als Auslöser nennen beide Quellen den Start des KI-Assistenten „Muse“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldungen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine genaue Prozentzahl für den Kursgewinn oder Angaben zu Nutzerzahlen von Muse enthalten die ausgewerteten Kurzmeldungen nicht. Auch zu den Funktionen des KI-Assistenten äußern sich die Quellen nicht im Detail.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine einzelne Ankündigung, ein deutlicher Kursausschlag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein zweistelliger Kurssprung an einem einzigen Handelstag ist für einen Konzern von der Größe Metas ungewöhnlich groß. Solche Ausschläge zeigen, wie stark Ankündigungen rund um künstliche Intelligenz derzeit einzelne Technologiewerte bewegen können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung an einem Tag beruht auf der Erwartung künftiger Erträge aus einem neuen Produkt. Ob sich diese Erwartung erfüllt, zeigt sich erst in kommenden Quartalszahlen, nicht am Ankündigungstag selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'paramount-warner-deal-aktie-sinkt',
+    title: 'Paramount kommt Warner-Kauf näher, die Aktie sinkt trotzdem',
+    teaser:
+      'Paramount kam einem Zukauf von Warner Bros nach einem Deal mit US-Bundesstaaten näher. Die Aktie fiel trotzdem um mehr als acht Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Paramount', 'Warner Bros', 'Übernahme', 'Medien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, dpa-AFX, Meldung vom 21.09.2026: „ROUNDUP 2: Paramount auf Weg zu Warner-Kauf nach Deal mit Bundesstaaten“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Marktberichte, Markt Bote, Meldung vom 21.09.2026: „Besonders beachtet!: Paramount Skydance Corporations Registered (B) Aktie sinkt rapide - -8,12 % - 21.09.2026“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Paramount kam laut dpa-AFX einem Kauf von Warner Bros einen Schritt näher, nachdem ein Deal mit mehreren US-Bundesstaaten zustande kam. Details zu diesem Deal oder zum Kaufpreis nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Aktie reagierte gegenläufig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz dieses Fortschritts fiel die Paramount-Skydance-Aktie laut Markt Bote am selben Tag um 8,12 Prozent. Die Meldung nennt keinen zusätzlichen Grund für den Kursrückgang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fortschritt bei einem Deal ist kein Kursgarant',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass eine Übernahme dem Abschluss näherkommt, muss den Kurs des übernehmenden Unternehmens nicht stützen. Anleger können stattdessen auf die Kosten des Zukaufs oder auf die Bedingungen des Deals mit den Bundesstaaten blicken, über die die Quellen nichts Näheres mitteilen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Kurs eines übernehmenden Unternehmens spiegelt nicht nur den Fortschritt eines Deals, sondern auch dessen Kosten und Bedingungen. Ohne diese Details bleibt offen, ob der Rückgang eine Reaktion auf den Deal selbst ist oder andere Ursachen hat.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-erholung-krypto-aktien',
+    title: 'Bitcoin erholt sich über 86.000 Dollar, Krypto-Aktien ziehen mit',
+    teaser:
+      'Bitcoin stieg laut einer Meldung vom Montag wieder über 86.000 US-Dollar. Aktien von Strategy, Coinbase und Robinhood zogen im Anschluss mit.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-22T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bitcoin', 'Krypto-Aktien', 'Coinbase', 'Robinhood'],
+    relatedTopics: ['bitcoin-krypto'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „Bitcoin-Erholung über 86.000 USD schiebt Aktien von Strategy, Coinbase & Robinhood an - was Anleger wissen sollten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin erholte sich laut einer Meldung von finanzen.net vom Montag wieder auf über 86.000 US-Dollar. Im Anschluss zogen die Aktien der bitcoinnahen Unternehmen Strategy, Coinbase und Robinhood laut derselben Quelle mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine genaue Kurszahl für die drei genannten Aktien oder den Zeitpunkt der Bitcoin-Erholung nennt die Meldung nicht, ebenso wenig einen Auslöser für die Bewegung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein enger Gleichlauf mit Einschränkungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aktien von Unternehmen, die selbst Bitcoin halten oder mit dem Handel von Kryptowährungen Geld verdienen, folgen dem Bitcoin-Kurs häufig enger als der Gesamtmarkt. Sie tragen aber zusätzlich ein eigenes Unternehmensrisiko, das ein direkter Bitcoin-Kauf nicht hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer über eine Aktie wie Coinbase oder Strategy indirekt auf den Bitcoin-Kurs setzt, ist zusätzlich dem operativen Geschäft und der Bilanz des jeweiligen Unternehmens ausgesetzt. Die Kursbewegung ist deshalb kein reiner Spiegel des Bitcoin-Preises.',
+      },
+    ],
+  },
+  {
+    slug: 'berlin-mv-wahlen-cdu-faellt-linke-staerkste-kraft',
+    title:
+      'Landtagswahlen: CDU fällt in MV aus dem Landtag, Linke stärkste Kraft in Berlin',
+    metaTitle: 'Landtagswahlen: CDU raus aus MV-Landtag, Linke vorn in Berlin',
+    teaser:
+      'Die CDU verpasst in Mecklenburg-Vorpommern erstmals den Einzug in den Landtag, in Berlin wird die Linke stärkste Kraft – und der Bund spürt die Wahl sofort.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wahlen', 'Politik', 'Koalition', 'Berlin'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          "onvista, Aktuelle News, 20.09.2026, 21:20 Uhr, dpa-AFX: „Pressestimme/'The Times': Kanzler Merz ist schwer angeschlagen\"",
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 20.09.2026, 21:35 Uhr, dpa-AFX: „ROUNDUP: Schwarz-rote Koalition ringt nach Wahl um Reformkurs"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „GESAMT-ROUNDUP 6: CDU im Nordosten unter fünf Prozent - Linke siegt in Berlin"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „ROUNDUP 4: Linke will Berlin regieren - Streit um Enteignungen"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „ARD-Hochrechnung: BSW nicht im Berliner Abgeordnetenhaus"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Sonntag wählten Berlin und Mecklenburg-Vorpommern neue Landtage. In beiden Ländern verschob sich die Kräfteverteilung deutlich, wie mehrere ARD-Hochrechnungen und übereinstimmende Meldungen der Nachrichtenagentur dpa-AFX zeigten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mecklenburg-Vorpommern: Die CDU verlässt den Landtag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einer ARD-Hochrechnung zufolge fiel die CDU in Mecklenburg-Vorpommern unter fünf Prozent und verpasste damit erstmals den Einzug in den Landtag des Bundeslandes. Die AfD lag im Nordosten derselben Hochrechnung zufolge vor der SPD. Ministerpräsidentin Manuela Schwesig sagte laut dpa-AFX, der Westen solle die Kraft der AfD nicht unterschätzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Berlin: Die Linke wird stärkste Kraft, das BSW verpasst den Einzug',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Berlin wurde die Linke laut mehreren ROUNDUP-Meldungen von dpa-AFX stärkste Kraft und signalisierte im Anschluss den Anspruch, die Stadt zu regieren; laut derselben Quelle kam dabei bereits Streit über mögliche Enteignungen auf. Das Bündnis Sahra Wagenknecht verpasste einer Hochrechnung zufolge den Einzug ins Abgeordnetenhaus. Bei den Direktmandaten verlor CDU-Spitzenkandidat Evers seinen Wahlkreis, SPD-Spitzenkandidat Krach verfehlte seines, und die SPD-Politikerin Franziska Giffey ist nach dieser Wahl nicht mehr im Abgeordnetenhaus vertreten. Der amtierende Regierende Bürgermeister Kai Wegner (CDU) gewann dagegen sein Direktmandat in Spandau.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reaktionen aus Berlin und London',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 21:20 Uhr verbreitete dpa-AFX eine Pressestimme der britischen Zeitung „The Times", wonach Bundeskanzler Friedrich Merz „schwer angeschlagen" sei. Um 21:35 Uhr meldete die Agentur, die schwarz-rote Koalition im Bund ringe nach der Wahl um ihren Reformkurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wahlergebnisse in zwei Bundesländern ändern zunächst nichts an den Mehrheiten im Bundestag. Ob die Koalition ihren Kurs deshalb anpasst oder unverändert fortsetzt, entscheidet sich erst in den kommenden Wochen – bis dahin bleibt offen, mit welcher wirtschaftspolitischen Richtung Anleger rechnen können.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-tag-lagarde-goolsbee-cipollone-macklem',
+    title: 'Fünf Termine mit Notenbank-Bezug an einem einzigen Tag',
+    teaser:
+      'Bundesbank-Bericht, zwei EZB-Auftritte, ein Fed-Redner und der Chef der kanadischen Notenbank: Der 21. September bündelt viele geldpolitische Termine.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-21T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Geldpolitik', 'EZB', 'Fed', 'Bundesbank'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine", Stand 21.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am 21. September bündeln sich laut dem Wirtschaftskalender von wallstreet-online mehrere Termine mit Bezug zur Geldpolitik – ungewöhnlich viele für einen einzelnen Tag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 12:00 Uhr veröffentlicht die Deutsche Bundesbank ihren monatlichen Bericht. Um 12:30 Uhr spricht Fed-Mitglied Goolsbee, um 14:30 Uhr steht der Chicago Fed National Activity Index an, der zuletzt bei minus 0,08 Punkten lag. Um 17:00 Uhr treten EZB-Präsidentin Lagarde und der Gouverneur der kanadischen Notenbank, Macklem, auf, um 17:10 Uhr folgt EZB-Mitglied Cipollone. Für den 22. September kündigt dieselbe Quelle zudem einen Auftritt von EZB-Mitglied Nagel an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reden sind keine Entscheidungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Termine folgen auf die Zinserhöhung der US-Notenbank Fed in der vergangenen Woche. Reden einzelner Notenbank-Vertreter sind keine geldpolitischen Beschlüsse; sie können aber Hinweise auf die künftige Richtung der Geldpolitik geben und Kurse an Anleihe- und Devisenmärkten bewegen, weil Marktteilnehmer aus einzelnen Formulierungen auf künftige Zinsschritte schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer aus einer einzelnen Rede eine Kursreaktion ableiten will, prüft am besten zunächst, ob überhaupt eine neue Aussage gefallen ist – oft wiederholen Notenbanker an solchen Tagen nur, was sie zuvor bereits gesagt haben.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-vorzugsaktie-minus-7-7-prozent-autobauer-unter-druck',
+    title: 'VW-Vorzüge verlieren 7,7 Prozent, deutsche Autobauer unter Druck',
+    teaser:
+      'Die deutschen Autobauer verlieren laut dpa-AFX weiter an Boden, VW-Vorzüge fallen 7,7 Prozent – und der Konzern verliert den Skoda-Chef an Volvo Cars.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'Automobilindustrie', 'Aktien', 'Management'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Marktberichte, Markt Bote, Meldung vom 20.09.2026: „Die Bären übernehmen: Volkswagen (VW) Vz verliert 7,7 Prozent: Anleger suchen jetzt den Boden"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, 20.09.2026, dpa-AFX: „ROUNDUP 2/Analyse: Deutsche Autobauer verlieren weiter an Boden"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „VW-Konzern verliert wichtigen Manager: Skoda-Chef wechselt zu Volvo Cars"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutsche Autobauer-Aktien gerieten am 20. September laut einer Analyse von dpa-AFX weiter unter Druck.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Volkswagen-Vorzüge minus 7,7 Prozent',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Vorzugsaktie von Volkswagen verlor laut einer Meldung von Markt Bote 7,7 Prozent. Über welchen Zeitraum sich der Rückgang erstreckt, nennt die Meldung nicht – die Zahl steht damit für sich allein, ohne dass sich daraus ableiten lässt, ob es sich um die Reaktion eines einzelnen Handelstages oder mehrerer Tage handelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Wechsel an der Spitze von Skoda',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete dpa-AFX, der Chef der VW-Tochter Skoda wechsle zu Volvo Cars; die Meldung bezeichnete dies als Verlust eines wichtigen Managers für den VW-Konzern. Eine Begründung für den Wechsel nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nach der gesenkten Gewinnprognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Volkswagen und Porsche hatten bereits am Freitag zuvor ihre Gewinnprognose für das laufende Jahr gesenkt. Der Wechsel an der Spitze von Skoda und der beschriebene Kursrückgang fallen damit in dieselbe Woche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine Prozentzahl ohne Zeitraum lässt sich nicht einordnen – wer eine Kursbewegung bewerten will, braucht dafür immer auch den Vergleichszeitpunkt, nicht nur die Differenz.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-4350-dollar-terminmarkt-positionierung-silber',
+    title: 'Gold über 4.350 Dollar: Was die Terminmarkt-Positionierung zeigt',
+    teaser:
+      'Der Goldpreis hält sich über 4.350 Dollar, die Positionierung großer Spekulanten am Terminmarkt bleibt stabil, und Silber legt kräftiger zu als Gold.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-21T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Silber', 'Rohstoffe', 'Terminmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Meldung vom 20.09.2026: „Goldmarkt: Goldpreis erholt, US-Terminmarkt-Positionierung bleibt stabil"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 18. September 2026: „Goldpreis heute: Erholung setzt sich fort – Silber steigt um 2,3 Prozent"',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notierte laut Goldreporter zuletzt wieder über 4.350 US-Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was CoT-Daten zeigen – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die aktuellen CoT-Daten (Commitments of Traders) zeigen laut Goldreporter, dass die Positionierung großer Spekulanten an der Terminbörse Comex stabil ist; ihr Anteil am Gold-Futures-Handel bleibt der Quelle zufolge aber hoch. CoT-Daten bilden ab, wie verschiedene Händlergruppen an einer Terminbörse positioniert sind – sie sagen für sich genommen nichts darüber, in welche Richtung sich ein Preis als Nächstes bewegt, sondern nur, wie konzentriert der aktuelle Handel auf wenige große Adressen ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber legt stärker zu als Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Silberpreis stieg laut einer weiteren Meldung von Goldreporter vom 18. September um 2,3 Prozent, während sich die Erholung beim Gold laut derselben Quelle fortsetzte. Steigen zwei Edelmetalle gleichzeitig, aber unterschiedlich stark, spricht man von einer positiven, aber nicht perfekten Korrelation zwischen beiden Preisen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine stabile Positionierung am Terminmarkt ist kein Signal für die nächste Kursbewegung – sie beschreibt nur den aktuellen Zustand des Handels, nicht seine Richtung.',
+      },
+    ],
+  },
+  {
+    slug: 'ucits-etf-rekordzufluss-43-milliarden-august',
+    title: '43 Milliarden Euro in einem Monat: Rekordzuflüsse bei ETFs',
+    teaser:
+      'Europäische UCITS-ETFs sammelten im August laut wallstreet-online 43 Milliarden Euro ein – ein Wert, der die Frage nach einem Rekordjahr aufwirft.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-21T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ETF', 'Geldanlage', 'Fondsbranche'],
+    relatedTopics: ['etf'],
+    relatedSymbols: ['etf-msci-world'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 21.09.2026: „Rekordzuflüsse bei UCITS-ETFs: 43 Milliarden Euro allein im August: Steht ein ETF-Rekordjahr bevor?"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In europäische UCITS-ETFs flossen laut wallstreet-online allein im August 43 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Mittelzufluss zeigt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung wirft die Frage auf, ob damit ein Rekordjahr für die Fondsgattung bevorsteht, nennt zu Herkunft oder Zielrichtung der Mittel aber keine weiteren Angaben. Ein Mittelzufluss zeigt, wie viel neues Geld Anleger in eine Anlageklasse stecken – er ist aber kein Renditemaß: Ein ETF kann hohe Zuflüsse verzeichnen und trotzdem im selben Zeitraum an Wert verlieren, wenn die zugrunde liegenden Kurse fallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kursindex und Zufluss sind zwei verschiedene Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wert eines ETF-Anteils hängt vom Kurs der enthaltenen Wertpapiere ab, die Zuflusssumme dagegen davon, wie viel Geld Anleger zusätzlich einzahlen. Beide Zahlen können sich unabhängig voneinander entwickeln.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine hohe Zuflusssumme allein sagt nichts über die Wertentwicklung eines Fonds – wer beide Zahlen gemeinsam liest, bekommt ein vollständigeres Bild als aus einer der beiden allein.',
+      },
+    ],
+  },
+  {
+    slug: 'enapter-einmalaufwand-h1-2026-us-vertrieb',
+    title: 'Enapter meldet 17 Millionen Euro Einmalaufwand im ersten Halbjahr',
+    teaser:
+      'Der Wasserstoff-Spezialist Enapter ordnet seinen US-Vertrieb neu und weist dafür einen Einmalaufwand von 17 Millionen Euro aus.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Enapter', 'Halbjahreszahlen', 'Wasserstoff', 'Bilanz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'EQS Group AG, EQS-Adhoc, 18.09.2026: „Enapter AG gibt vorläufige, ungeprüfte Zahlen für das erste Halbjahr 2026 bekannt und ordnet den Vertrieb in den USA neu - Einmalaufwand von EUR 17 Mio."',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, wO Newsflash, 18.09.2026: „Enapter: 17 Mio. Euro Einmalaufwand – US-Vertrieb wird neu geordnet"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wasserstoff-Spezialist Enapter hat laut einer EQS-Ad-hoc-Mitteilung vom 18. September vorläufige, ungeprüfte Zahlen für das erste Halbjahr 2026 veröffentlicht und ordnet zugleich seinen Vertrieb in den USA neu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '17 Millionen Euro Einmalaufwand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Neuordnung des US-Vertriebs weist Enapter laut der Mitteilung einen Einmalaufwand von 17 Millionen Euro aus. Eine weitere Aufschlüsselung, etwa nach operativem Ergebnis ohne diesen Posten, nennt die Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Einmalaufwendungen beim Lesen von Halbjahreszahlen zählen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Einmalaufwand fällt, anders als laufende Kosten, nur einmalig an und sagt deshalb wenig über die künftige Ertragskraft eines Unternehmens aus. Wer ein Halbjahresergebnis bewerten will, das einen solchen Posten enthält, trennt ihn gedanklich vom operativen Geschäft, um beide Größen nicht zu vermischen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein hoher Einmalaufwand allein sagt noch nichts darüber, ob sich die zugrunde liegende Neuordnung des Vertriebs künftig auszahlt – das zeigt sich erst in den Ergebnissen der folgenden Quartale.',
+      },
+    ],
+  },
+  {
+    slug: 'tankrabatt-kritik-planwirtschaft-uebergewinnsteuer',
+    title:
+      'Tankrabatt-Streit: Kubicki spricht von Planwirtschaft, SPD-Länder wollen mehr',
+    metaTitle: 'Streit um den Tankrabatt: Planwirtschaft-Vorwurf, Ruf nach EU-Steuer',
+    teaser:
+      'Kaum ist der Tankrabatt vereinbart, gehen die Meinungen auseinander: Kritik von der FDP, zusätzliche Forderungen aus zwei SPD-geführten Ländern.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-20T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tankrabatt', 'Übergewinnsteuer', 'Spritpreise', 'Politik'],
+    relatedTopics: ['inflation', 'schulden-und-kredit'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          "finanzen.net, News-Ticker vom 19.09.2026: „Kubicki kritisiert Spritpreisdeckel als 'Planwirtschaft'\"",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Sachsens SPD lobt Tankrabatt - fordert aber Übergewinnsteuer"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Übergewinnsteuer: Niedersachsens Wirtschaftsminister für europäisches Vorgehen"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 19.09.2026, 12:05 Uhr, dpa-AFX: „ROUNDUP 2: Entlastung bei Spritpreisen - wie geht es jetzt weiter?"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kaum stand die grundsätzliche Einigung auf einen Tankrabatt und einen Spritpreisdeckel, meldeten sich am 19. September gleich mehrere Stimmen zu Wort – mit ganz unterschiedlichen Anliegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kritik von der FDP',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der FDP-Politiker Kubicki bezeichnete den Spritpreisdeckel laut finanzen.net als „Planwirtschaft". Eine ausführlichere Begründung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'SPD-Länder wollen eine Übergewinnsteuer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die sächsische SPD lobte den Tankrabatt, forderte aber zusätzlich eine Übergewinnsteuer für Ölkonzerne. Niedersachsens Wirtschaftsminister ging laut derselben Quelle noch einen Schritt weiter und sprach sich für ein europäisches, also EU-weites Vorgehen bei einer solchen Steuer aus. Welche Konzerne betroffen wären oder wie hoch der Satz ausfallen soll, steht in keiner der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offen bleibt, wie es weitergeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nachrichtenagentur dpa-AFX veröffentlichte am selben Tag um 12:05 Uhr laut onvista einen Bericht mit dem Titel „Entlastung bei Spritpreisen – wie geht es jetzt weiter?". Der Titel allein zeigt schon: Auch fünf Tage nach der ersten Einigung ist die Umsetzung offenbar noch nicht abschließend geklärt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein staatlicher Rabatt an der Zapfsäule und eine Übergewinnsteuer sind zwei verschiedene Hebel an zwei verschiedenen Enden derselben Kette – der eine entlastet Autofahrer, der andere würde bei den Anbietern ansetzen. Dass beide gleichzeitig diskutiert werden, ohne dass Höhe oder Zeitpunkt feststehen, zeigt vor allem eines: Die politische Debatte ist an diesem Punkt weiter als die konkrete Umsetzung.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-woche-goolsbee-lagarde-nagel',
+    title: 'Diese Notenbanker sprechen in der neuen Woche',
+    teaser:
+      'Nach der jüngsten Fed-Zinserhöhung tritt in den kommenden Tagen gleich reihenweise die Geldpolitik ans Mikrofon – von Chicago über Frankfurt bis Ottawa.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-20T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'EZB', 'Notenbanken', 'Zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine", Stand 20.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Erst hat die US-Notenbank Fed in der vergangenen Woche ihren Leitzins angehoben. Jetzt kommt die Rede-Runde: Der Wirtschaftskalender von wallstreet-online listet für die kommenden Tage gleich fünf Auftritte von Notenbankern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Montag: vier Termine an einem Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den 21. September nennt der Kalender das Fed-Mitglied Goolsbee, EZB-Präsidentin Lagarde, EZB-Mitglied Cipollone und den Gouverneur der kanadischen Notenbank, Macklem. Am selben Tag veröffentlicht die Deutsche Bundesbank zudem ihren monatlichen Bericht. Uhrzeiten nennt der Kalender zu keinem der Termine.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dienstag: ein fünfter Name',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am 22. September folgt laut derselben Quelle ein Auftritt von EZB-Mitglied Nagel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede keine Zinsentscheidung ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen den festen Sitzungsterminen der Notenbanken liegen oft Wochen ohne offizielle Entscheidung. Reden einzelner Mitglieder sind trotzdem keine Randnotiz: Wer öffentlich spricht, ordnet meist die zuletzt getroffene Entscheidung ein oder deutet an, wie die Diskussion für die nächste Sitzung steht – und genau das kann Kurse bewegen, ohne dass sich am Leitzins selbst etwas ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Woche mit fünf Notenbank-Terminen ist kein Ersatz für eine Woche mit fünf Entscheidungen. Wer die Termine verfolgt, sollte deshalb weniger auf eine einzelne Schlagzeile achten als darauf, ob sich der Ton mehrerer Sprecher in dieselbe Richtung bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-naehert-sich-4400-dollar-jpmorgan-oel',
+    title: 'Gold kratzt an 4.400 Dollar, JPMorgan gibt die Ölprognose auf',
+    teaser:
+      'Der Goldpreis verpasst die Marke von 4.400 Dollar nur knapp, während eine der größten Banken der Welt beim Ölpreis offen zugibt, keine Prognose zu wagen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Öl', 'Rohstoffe', 'Prognosen'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Devisen & Rohstoffe, Stand 20.09.2026: „Der Goldpreis stürmte ins Wochenende, verpasste dabei den Sprung über die 4.400 US-Dollar nur knapp"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          "wallstreet-online, wallstreetONLINE Redaktion, 19.09.2026: „'Wir wissen es einfach nicht': JPMorgan kapituliert vor Trumps Öl-Chaos\"",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 20.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut wallstreet-online zum Wochenende kräftig gestiegen und hat die Marke von 4.400 US-Dollar je Feinunze nur knapp verpasst. Zum Stand Sonntagfrüh nennt finanzen.net für Gold 4.380 Dollar, ein Plus von 0,9 Prozent gegenüber dem Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Bank gibt auf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Ölpreis dagegen ist von Klarheit wenig zu sehen: Die US-Bank JPMorgan hat laut wallstreet-online ihre Prognose für den Ölpreis aufgegeben. Als Zitat nennt die Quelle den Satz „Wir wissen es einfach nicht" – als Begründung wird die als unberechenbar beschriebene Ölpolitik von US-Präsident Trump genannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Kursleiste zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum selben Zeitpunkt notiert Brent-Rohöl laut finanzen.net bei 103,9 Dollar je Barrel, ein Minus von 0,9 Prozent. Silber legte laut wallstreet-online zuletzt um 1,59 Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose gegen Eingeständnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Banken veröffentlichen für gewöhnlich Kursziele, auch wenn sie sich später als falsch erweisen – ein Kursziel ist eine Wahrscheinlichkeitsaussage, keine Garantie. Eine Bank, die stattdessen offen sagt, sie könne keine Prognose abgeben, trifft damit ebenfalls eine Aussage: dass die Bandbreite möglicher Entwicklungen ihr selbst zu groß erscheint, um eine einzelne Zahl zu nennen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold gilt traditionell als Anlage für unsichere Zeiten, Öl reagiert dagegen direkt auf Angebot und Nachfrage. Dass ausgerechnet jetzt eine Großbank beim Öl passt und Gold zulegt, passt zu dieser groben Faustregel – ein Beweis für einen Zusammenhang ist das allein noch nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-gold-korrelation-so-eng-wie-nie',
+    title: 'Bitcoin und Gold laufen so eng wie nie im Gleichschritt',
+    teaser:
+      'Bitcoin und der Goldpreis bewegen sich laut einer Meldung so eng wie nie zuvor – doch schon am selben Morgen zeigen die Kurse etwas anderes.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-20T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Gold', 'Korrelation', 'Diversifikation'],
+    relatedTopics: ['bitcoin-krypto', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin', 'gold'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Bitcoin-Kurs und Goldpreis so eng wie nie: Was die Korrelation wirklich bedeutet - Chance für Anleger?"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 20.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin und Goldpreis bewegen sich laut finanzen.net derzeit so eng miteinander wie nie zuvor. Eine Begründung, wie die Kennzahl berechnet wurde oder über welchen Zeitraum, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Korrelation misst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Korrelation beschreibt, wie stark sich zwei Werte über einen bestimmten Zeitraum in dieselbe oder in die entgegengesetzte Richtung bewegt haben. Sie ist eine rückblickende Kennzahl – sie sagt nichts darüber, warum das so war, und nichts darüber, ob es so bleibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Gegenbeispiel vom selben Morgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Stand Sonntagfrüh nennt finanzen.net für Bitcoin 70.722 Dollar, ein Minus von 0,1 Prozent, und für Gold 4.380 Dollar, ein Plus von 0,9 Prozent. An diesem einen Zeitpunkt liefen die beiden Kurse also in unterschiedliche Richtungen – ein einzelner Schnappschuss widerlegt eine Korrelation über einen längeren Zeitraum nicht, zeigt aber, dass „eng korreliert" nicht „bewegt sich immer gleich" bedeutet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für ein Depot zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer zwei Anlagen hält, weil sie sich in der Vergangenheit unterschiedlich verhalten haben, verlässt sich auf genau diesen Unterschied als Puffer gegen Verluste. Steigt die Korrelation zwischen beiden, schrumpft dieser Puffer – unabhängig davon, ob die Kurse gerade steigen oder fallen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über eine „so enge Korrelation wie nie" lohnt einen zweiten Blick auf den Berechnungszeitraum, bevor sie das eigene Bild von zwei Anlageklassen verändert.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-bewertungen-milliarden-teuer-kaum-umsatz',
+    title: 'Hohe Bewertungen, wenig Umsatz: Die Sorge vor der KI-Blase',
+    teaser:
+      'Chinesische KI-Modelle werden beliebter, ihr Umsatz aber nicht – und auch beim Börsengang von Anthropic bleibt eine zentrale Frage offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'OpenAI', 'Anthropic', 'Bewertung'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['alibaba'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 20.09.2026: „Chinas KI-Modelle werden immer beliebter. Doch beim Umsatz liegen sie weit zurück."',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, 19.09.2026: „OpenAI und Anthropic im Fokus: Milliarden-Bewertungen, aber kaum Umsatz: Das steckt hinter dem KI-Hype"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Warten auf Anthropic-Aktie: Börsengang verzögert sich offenbar - was Anleger daraus ableiten können"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 19.09.2026, 18:28 Uhr, dpa-AFX: „Trump setzt stärker auf KI trotz Warnungen vor Gefahren"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinesische KI-Modelle werden einer Meldung von wallstreet-online zufolge immer beliebter. Beim Umsatz liegen sie demnach jedoch weit zurück – als Beispiele nennt die Quelle Alibaba und MiniMax. Für einige Start-ups wirken die Bewertungen dadurch bereits extrem hoch, so die Meldung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bewertung gegen Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine hohe Bewertung stützt sich auf die Erwartung künftigen Wachstums, ein Umsatz zeigt dagegen, was ein Unternehmen bereits heute verkauft. Klaffen beide weit auseinander, hängt der gesamte Wert eines Unternehmens an einer Prognose statt an einer bereits eingetretenen Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Börsengang von Anthropic wartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu meldete finanzen.net am 19. September, der Börsengang von Anthropic verzögere sich offenbar – laut anderer Ticker-Meldungen der Quelle auf November. Eine Begründung für die Verzögerung nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump setzt weiter auf KI',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dpa-AFX meldete am selben Tag um 18:28 Uhr laut onvista, US-Präsident Trump setze trotz Warnungen vor Gefahren stärker auf Künstliche Intelligenz. Worin diese Warnungen genau bestehen, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Branche kann gleichzeitig politisch gefördert, technologisch gefeiert und finanziell überteuert sein – die drei Dinge widersprechen sich nicht. Wer Bewertungen in diesem Sektor einordnen will, kommt an der Umsatzzahl nicht vorbei, egal wie groß die Erwartungen sonst formuliert werden.',
+      },
+    ],
+  },
+  {
+    slug: 'google-ki-hacking-huawei-chippreise',
+    title: 'Google meldet KI-Hacking, Huawei erhöht die Preise für KI-Chips',
+    teaser:
+      'Zwei große Tech-Namen, zwei verschiedene KI-Meldungen: Google macht Hacking-Vorfälle publik, während Huawei seine Chips teurer macht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Alphabet', 'Huawei', 'Cybersicherheit', 'Halbleiter'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet', 'nvidia'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Alphabet-Aktie im Visier: Google-KI Gemini außer Kontrolle? Tech-Riese macht KI-Hacking-Vorfälle publik"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Huawei-Aktie: Warum die Preiserhöhung bei KI-Chips Chinas Plan gegen NVIDIA gefährdet"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Google hat laut finanzen.net am 19. September Vorfälle bekanntgegeben, bei denen nach Angaben der Meldung Künstliche Intelligenz für Hackerangriffe eingesetzt wurde. Weitere Einzelheiten – etwa Umfang oder Betroffene – nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweiter, ganz anderer KI-Vorgang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete finanzen.net über Huawei: Das Unternehmen hat demnach die Preise für seine KI-Chips angehoben. Die Meldung ordnet diesen Schritt als Risiko für Chinas Plan ein, sich mit eigener Chip-Technik unabhängiger vom US-Anbieter Nvidia zu machen – warum eine Preiserhöhung genau das gefährdet, führt sie nicht weiter aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Seiten desselben KI-Wettlaufs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die eine Meldung handelt von Sicherheit, die andere von Preisen – gemeinsam ist beiden, dass sie zeigen, wie viele unterschiedliche Fronten der KI-Wettlauf inzwischen hat: Software-Risiken auf der einen, Hardware-Kosten auf der anderen Seite.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was offen bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Meldungen bestehen im Kern aus einer Schlagzeile mit wenig Hintergrund. Für ein abschließendes Urteil – etwa darüber, wie schwer der Hacking-Vorfall wiegt oder wie stark die Huawei-Preise tatsächlich steigen – fehlen an dieser Stelle die Zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Schlagzeilen am selben Tag über denselben Themenkomplex sind noch keine vollständige Geschichte. Wer beide Vorgänge einordnen will, muss auf weitere Berichterstattung warten, bevor sich sagen lässt, welcher der beiden mehr Gewicht hat.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-steigt-nach-fed-zinserhoehung',
+    title: 'Fed erhöht den Leitzins – Gold steigt auf 4.380 Dollar',
+    teaser:
+      'Nach der jüngsten Zinserhöhung der Fed klettert der Goldpreis auf 4.380 Dollar. Zugleich kaufen Zentralbanken und der größte Gold-ETF weiter zu.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-19T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Gold', 'Notenbanken', 'Zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'rohstoffe'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label: 'finanzen.net, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Goldreporter, 16. September 2026: „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026: „Trump attackiert Fed nach Zinserhöhung – Warsh in Gefahr?"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026, Top-News: „Größter Gold-ETF baut Bestände wieder leicht aus"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.09.2026: „Reserven aufgestockt: China und andere Brics-Staaten kaufen massiv Gold nach!"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis steht laut der Kursleiste von finanzen.net zum Stand Samstagfrüh, 19. September, 02:20 Uhr bei 4.380 Dollar je Feinunze, ein Plus von 0,9 Prozent. Das kommt wenige Tage, nachdem die US-Notenbank Fed ihren Leitzins angehoben hat – Goldreporter berichtete am 16. September, die Fed habe dabei zugleich einen weiteren Zinsschritt für dieses Jahr signalisiert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am 17. September schrieb Goldreporter, dass der Konflikt zwischen Präsident Trump und der Notenbank seit der Erhöhung weiter wachse: Trump fordere deutlich niedrigere Zinsen, und die Quelle warf die Frage auf, ob er versuchen könnte, Fed-Chef Kevin Warsh erneut aus dem Amt zu entfernen. Eine Antwort darauf nannte die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer kauft eigentlich noch Gold?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine höhere Notenbankzinsen gelten normalerweise als Gegenwind für Gold, weil das Metall selbst keine Zinsen zahlt und verzinste Anlagen dadurch attraktiver werden. Dass der Goldpreis trotzdem steigt, lässt sich mit zwei weiteren Meldungen erklären: wallstreetONLINE berichtete am 17. September, China und andere Brics-Staaten hätten ihre Goldreserven massiv aufgestockt. Und Goldreporter meldete am selben Tag, der weltweit größte Gold-ETF habe seine Bestände erneut leicht ausgebaut.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Käufergruppen folgen keiner Zinslogik im engeren Sinn: Notenbanken kaufen Gold auch aus Gründen der Reservediversifikation, ETF-Anleger reagieren oft auf allgemeine Unsicherheit. **Ein einzelner Zinsschritt erklärt damit nur einen Teil der Preisbewegung, nicht die ganze.**',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der kommenden Woche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Montag, den 21. September, nennt der Wirtschaftskalender von wallstreet-online mehrere Termine mit Bezug zur Geldpolitik: den Monatsbericht der Deutschen Bundesbank, eine Rede von EZB-Präsidentin Christine Lagarde und einen Auftritt von Fed-Mitglied Austan Goolsbee. Konkrete Uhrzeiten dazu nennt der Kalender nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Goldpreis allein aus der Zinsentscheidung erklären will, übersieht die zweite Nachfrageseite. Wie stabil das Zusammenspiel aus Zentralbankkäufen und Zinserwartung bleibt, zeigt sich frühestens an den Terminen der kommenden Woche.',
+      },
+    ],
+  },
+  {
+    slug: 'bund-laender-neuer-tankrabatt',
+    title: 'Bund und Länder einigen sich auf neuen Tankrabatt',
+    teaser:
+      'Bund und Länder einigen sich grundsätzlich auf einen neuen Tankrabatt samt Spritpreisdeckel. Politiker Lies fordert danach eine Übergewinnsteuer für Ölkonzerne.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-19T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tankrabatt', 'Steuern', 'Energiepreise', 'Politik'],
+    relatedTopics: ['inflation', 'schulden-und-kredit'],
+    relatedSymbols: ['brent', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „ROUNDUP 3: Bund und Länder einigen sich auf neuen Tankrabatt"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „WDH/ROUNDUP/Kreise: Grundsätzliche Einigung auf Tankrabatt und Spritpreisdeckel"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026, 20:03 Uhr: „Lies fordert Übergewinnsteuer für Ölkonzerne nach Tankrabatt"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bund und Länder haben sich laut mehreren Ticker-Meldungen von finanzen.net am 18. September grundsätzlich auf einen neuen Tankrabatt und einen Spritpreisdeckel geeinigt. Zu welchem Betrag oder ab welcher Preisschwelle der Deckel greifen soll, nennt keine der Meldungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 20:03 Uhr meldete dpa-AFX über finanzen.net, der Politiker Lies habe im Anschluss eine Übergewinnsteuer für Ölkonzerne gefordert. Eine Begründung oder einen konkreten Steuersatz dazu gibt die Meldung nicht wieder.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rabatt ist kein Geschenk – ihn zahlt jemand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein staatlich finanzierter Tankrabatt senkt den Preis an der Zapfsäule, aber nicht die Kosten der Herstellung – die Differenz übernimmt der Staatshaushalt. Eine Übergewinnsteuer ist der Versuch, einen Teil davon direkt bei den Unternehmen zu holen, die von hohen Energiepreisen zusätzlich profitieren, statt die Lücke allein über neue Schulden oder andere Steuern zu schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Inflationsstatistik macht das einen Unterschied: Ein Rabatt an der Zapfsäule senkt kurzfristig die gemessene Teuerung, weil Kraftstoff direkt im Warenkorb steckt. Läuft der Rabatt aus, kann der Preis – und mit ihm die gemessene Inflationsrate – wieder steigen, ohne dass sich am zugrunde liegenden Ölpreis etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Solange weder Betrag noch Laufzeit des Rabatts feststehen, lässt sich nicht beziffern, wie stark er den Haushalt oder die Inflationsrate am Ende bewegt. Das dürfte sich erst mit der endgültigen Einigung zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-verfallstag-vw-gewinnprognose',
+    title: 'DAX fällt am großen Verfallstag – VW kappt die Gewinnprognose',
+    metaTitle: 'DAX fällt am Verfallstag – VW kappt Gewinnprognose',
+    teaser:
+      'Am großen Verfallstag rutscht der DAX ab, während Volkswagen die Gewinnprognose deutlich senkt. Zwei Portale nennen dafür unterschiedliche Prozentzahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'Volkswagen', 'Verfallstag', 'Aktien'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dax', 'volkswagen', 'porsche-ag', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 18.09.2026, 16:11 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax sackt am großen Verfallstag ab"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 18.09.2026, 15:55 Uhr: „Dax rutscht ab - VW schockt mit Prognose-Senkung"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Aktien von VW und Porsche knicken ein: Volkswagen senkt Gewinnprognose deutlich"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist am Freitag, dem großen Verfallstag, deutlich gefallen. Laut onvista meldete dpa-AFX um 16:11 Uhr „Dax sackt am großen Verfallstag ab“, bereits um 15:55 Uhr hatte onvista getitelt: „Dax rutscht ab - VW schockt mit Prognose-Senkung“. Volkswagen und Porsche senkten am selben Tag ihre Gewinnprognose deutlich, wie ein Ticker von finanzen.net festhielt – beide Aktien gaben daraufhin nach.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Stand Samstagfrüh, 19. September, 02:20 Uhr zeigt die Kursleiste von finanzen.net den DAX bei 25.304 Punkten, ein Minus von 1,6 Prozent. Die Kursleiste von wallstreet-online nennt zur selben Zeit 25.308,88 Punkte, aber ein Minus von 1,33 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fast derselbe Punktestand, zwei verschiedene Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Angaben beziehen sich auf einen fast identischen Indexstand – die Differenz von rund 5 Punkten liegt im Rahmen normaler Kursschwankungen zwischen zwei Datenquellen. Trotzdem weichen die gemeldeten Prozentangaben spürbar voneinander ab. **Eine Prozentangabe ist immer ein Vergleich mit einem Bezugspunkt**, meist dem letzten Schlusskurs – und wenn zwei Portale diesen Bezugspunkt unterschiedlich erfassen oder zu leicht unterschiedlichen Zeitpunkten aktualisieren, entstehen zwei plausible, aber nicht identische Prozentzahlen für praktisch denselben Kurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der Euro Stoxx 50 gab laut finanzen.net nach, um 1,4 Prozent auf 6.236 Punkte. Ein „großer Verfallstag“ ist der Termin, an dem Optionen und Futures auf Indizes und Einzelwerte gleichzeitig auslaufen; das kann den Handel zeitweise volatiler machen, ohne dass sich an den wirtschaftlichen Rahmendaten der betroffenen Unternehmen etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursrückgang an einem Verfallstag lässt sich nicht ohne Weiteres von der unternehmensspezifischen Nachricht – hier der Gewinnwarnung von VW – trennen. Wer die Ursache eines Tagesverlusts sucht, findet an einem solchen Tag meist mehr als eine.',
+      },
+    ],
+  },
+  {
+    slug: 'erster-deutscher-f35-rheinmetall',
+    title: 'Erster deutscher F-35 ausgeliefert – Rheinmetall-Aktie gibt nach',
+    teaser:
+      'Am Tag, an dem der erste deutsche F-35-Kampfjet ausgeliefert wurde, ist die Rheinmetall-Aktie gefallen. Einen Zusammenhang nennt die Quelle nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstung', 'Aktien', 'Luftwaffe'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Rheinmetall-Aktie im Minus: Erster deutscher F-35-Kampfjet ausgeliefert"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          "finanzen.net, News-Ticker, 18.09.2026: „ROUNDUP 2: 'Neue Ära' für die Luftwaffe: F-35 soll abschrecken\"",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die deutsche Luftwaffe hat laut einer dpa-AFX-Meldung auf finanzen.net vom 18. September den ersten F-35-Kampfjet erhalten – in der Überschrift der Agentur eine „neue Ära“, der Jet solle abschrecken. Am selben Tag notierte die Rheinmetall-Aktie laut einem weiteren Ticker der Quelle im Minus. Eine genaue Kursveränderung oder eine Erklärung für den Rückgang nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Meldungen, ein Tag – nicht zwingend ein Zusammenhang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der F-35 ist ein Kampfjet des US-Herstellers Lockheed Martin und kein Rheinmetall-Produkt. Dass beide Meldungen am selben Tag erschienen, bedeutet nicht automatisch, dass die eine die andere erklärt – dafür müsste die Quelle einen Zusammenhang nennen, was sie nicht tut.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rüstungsaktien wie Rheinmetall bewegen sich oft im Gleichlauf mit politischen Erwartungen an künftige Verteidigungsbudgets. Ein einzelner Liefertermin für ein Fremdprodukt sagt darüber für sich genommen wenig aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer aus zwei gleichzeitigen Schlagzeilen einen Kausalzusammenhang liest, sollte prüfen, ob die Quelle diesen Zusammenhang tatsächlich herstellt – oder ob es sich um zwei unabhängige Ereignisse an einem gemeinsamen Tag handelt.',
+      },
+    ],
+  },
+  {
+    slug: 'infineon-hochgestuft-nach-kursverlust',
+    title: 'Infineon nach 40 Prozent Verlust hochgestuft – zieht Chipwerte mit',
+    metaTitle: 'Infineon nach 40 Prozent Verlust hochgestuft',
+    teaser:
+      'Nach rund 40 Prozent Kursverlust wird die Infineon-Aktie hochgestuft. Der Titel legt zu und zieht laut Ticker auch Aixtron und weitere Chipwerte mit nach oben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Infineon', 'Halbleiter', 'Analysten', 'Aktien'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['infineon', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026, 10:59 Uhr: „Infineon mit Upgrade, CoreWeave braucht Milliarden, Nvidia verdoppelt Chips"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „40 Prozent verloren – jetzt wird die Infineon-Aktie hochgestuft - Titel reagiert und zieht AIXTRON & Co. mit"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Infineon-Aktie ist laut einem Ticker von finanzen.net vom 18. September hochgestuft worden, nachdem der Titel zuvor rund 40 Prozent an Wert verloren hatte. Welches Analysehaus die Hochstufung vorgenommen hat und auf welches Kursziel, nennt die Meldung nicht. Der Kurs reagierte demnach positiv und zog auch die Aktie von Aixtron sowie weitere Chipwerte mit nach oben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Einzelmeinung einen ganzen Sektor bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Hochstufung ist zunächst nichts weiter als die geänderte Einschätzung eines einzelnen Analysehauses. Dass sie trotzdem mehrere Aktien gleichzeitig bewegt, liegt an der Branchenlogik: Halbleiterhersteller hängen an denselben Zulieferketten und denselben Endmärkten, etwa der Autoindustrie und der Chipnachfrage für Rechenzentren. Eine positivere Einschätzung für ein Unternehmen wird von Anlegern oft als Signal für die ganze Branche gelesen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist zugleich eine Grenze der Meldung: Ohne Namen des Analysehauses, ohne neues Kursziel und ohne Begründung lässt sich nicht einordnen, wie belastbar die Hochstufung ist – nur, dass der Markt an diesem Tag so reagiert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung nach einer Hochstufung sagt zunächst etwas über die Erwartung eines einzelnen Analysehauses, noch nicht über die Geschäftszahlen selbst. Die folgen erst mit dem nächsten Quartalsbericht.',
+      },
+    ],
+  },
+  {
+    slug: 'us-boersen-uneinheitlich-dow-nasdaq',
+    title: 'US-Börsen zum Wochenschluss uneinheitlich: Dow im Minus, Nasdaq im Plus',
+    metaTitle: 'US-Börsen uneinheitlich: Dow im Minus, Nasdaq im Plus',
+    teaser:
+      'Der Dow Jones schließt den Freitagshandel im Minus, während Nasdaq Composite und S&P 500 zulegen. Ein Beispiel dafür, warum Indizes nicht gleich Indizes sind.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'S&P 500', 'USA'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Schwacher Handel: Dow Jones notiert letztendlich im Minus"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Börse New York in Grün: S&P 500 legt zum Ende des Freitagshandels zu"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Handel in New York: NASDAQ Composite schließt in der Gewinnzone"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Freitagshandel an der Wall Street endete laut mehreren Tickern von finanzen.net uneinheitlich: Der Dow Jones schloss im Minus, während der S&P 500 „zum Ende des Freitagshandels“ zulegte und der Nasdaq Composite „in der Gewinnzone“ schloss. Die Kursleiste von wallstreet-online zeigt zum Stand Samstagfrüh, 02:20 Uhr, den Dow Jones (US 30) bei minus 0,23 Prozent und den technologielastigen US Tech 100 bei plus 0,56 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Indizes, ein Tag, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones fasst 30 große US-Industriewerte zusammen und gewichtet sie nach ihrem Aktienkurs, nicht nach der Größe des Unternehmens. Der Nasdaq Composite und der S&P 500 sind dagegen nach Marktkapitalisierung gewichtet und enthalten deutlich mehr Technologiewerte. Bewegen sich große Technologieaktien anders als der Rest des Marktes, laufen die Indizes auseinander – wie am Freitag geschehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX beschrieb die Lage laut onvista knapper: „Wenig Bewegung nach starkem Vortag“. Die Ausschläge blieben demnach insgesamt klein, auch wenn sich Dow und Nasdaq in entgegengesetzte Richtungen bewegten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Schlagzeile „Die Börse ist gefallen“ oder „Die Börse ist gestiegen“ existiert an einem solchen Tag streng genommen nicht – es kommt darauf an, welcher der drei großen US-Indizes gemeint ist.',
+      },
+    ],
+  },
+  {
+    slug: 'zwei-kursleisten-ein-morgen',
+    title: 'Zwei Kursleisten, ein Morgen: Warum der DAX nicht überall gleich steht',
+    metaTitle: 'Zwei Kursleisten, ein Morgen: DAX-Stände im Vergleich',
+    teaser:
+      'Zwei Portale zeigten am selben Morgen unterschiedliche DAX-Stände und Ölpreise – ein Blick darauf, warum ein Kurs nur eine Momentaufnahme eines Anbieters ist.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Wall Street', 'Ölpreis', 'Kursdaten'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax', 'brent', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista, Aktuelle News, 17.09.2026, 20:34 Uhr und 15:55 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste im Kopfbereich, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Donnerstag lief an den Börsen rund: Laut dpa-AFX-Meldungen auf onvista schlossen Dow Jones, S&P 500 und Nasdaq Composite im Plus, während der Brent-Ölpreis weiter nachgab. Der Dax knüpfte an das Plus vom Vortag an – begünstigt auch von Übernahmespekulationen rund um Qiagen, wie onvista um 15:55 Uhr berichtete. dpa-AFX betitelte den Frankfurter Schlussbericht mit „Anleger zuversichtlich nach US-Zinserhöhung".',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht zu Freitag zeigten zwei Finanzportale zur fast selben Minute unterschiedliche Werte. Finanzen.net wies um 02:17 Uhr einen Dax von 25.717 Punkten (+0,7 Prozent) und einen Brent-Ölpreis von 104,0 US-Dollar (-0,8 Prozent) aus. Wallstreet-online zeigte, ebenfalls um 02:17 Uhr, einen Dax von 25.651,11 Punkten (+0,61 Prozent) und einen Brent-Preis von 104,13 US-Dollar (-1,39 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Portale nicht denselben Wert zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Zahlen stammen von unterschiedlichen Datenlieferanten mit eigener Aktualisierungsfrequenz und eigenem Referenzzeitpunkt für die Prozentangabe. Ein „Kurs" ist deshalb nie ein absoluter, überall gültiger Wert, sondern immer die Momentaufnahme eines bestimmten Anbieters zu einem bestimmten Zeitpunkt – sichtbar wird das erst, wenn man zwei Anbieter nebeneinanderlegt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch in Wien zeigte sich ein uneinheitliches Bild innerhalb desselben Handelstages: Der ATX erholte sich laut dpa-AFX weiter, obwohl die Aktie der Raiffeisen Bank International deutlich im Minus notierte. Ein Index kann also steigen, während einzelne seiner Mitglieder in die entgegengesetzte Richtung laufen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Kurse über mehrere Quellen vergleicht, sollte immer auf Zeitstempel und Quelle achten, bevor er aus einer Abweichung eine Bewegung liest, die es gar nicht gibt.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-attackiert-fed-chef-warsh',
+    title: 'Trump attackiert Fed-Chef Warsh nach der Zinserhöhung',
+    teaser:
+      'Nach der Zinserhöhung fordert Trump laut wallstreetONLINE rund 1 Prozent Leitzins. Goldreporter fragt, ob Fed-Chef Kevin Warsh sein Amt verlieren könnte.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-18T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Notenbank', 'Kevin Warsh', 'Zinspolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.09.2026: „Trump fordert 1% Zinsen!: Fed erhöht Zinsen, Börsen atmen auf, Ölpreis fällt"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026: „Trump attackiert Fed nach Zinserhöhung – Warsh in Gefahr?" und „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Analysen, Société Générale, 17.09.2026, 10:30 Uhr: „USD: Fed erhöht die Zinsen … und dem US-Präsidenten gefällt das gar nicht"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hat ihren Leitzins in dieser Woche angehoben. Nach der Entscheidung signalisierte die Fed laut einer Überschrift von Goldreporter vom 17. September bereits einen weiteren Zinsschritt noch in diesem Jahr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Präsident Trump reagierte umgehend: Laut wallstreetONLINE forderte er nach der Erhöhung einen Leitzins von rund 1 Prozent. Auch eine Analyse von Société Générale, veröffentlicht auf onvista, brachte es in der Überschrift auf den Punkt: Die Zinserhöhung gefalle dem US-Präsidenten „gar nicht".',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Steht Fed-Chef Warsh vor dem Aus?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter warf in einer Überschrift vom selben Tag die Frage auf, ob Trump versuchen könnte, Fed-Chef Kevin Warsh erneut aus dem Amt zu entfernen. Die Quelle beantwortet diese Frage nicht und nennt auch keine rechtliche Grundlage oder einen konkreten Schritt dazu – sie stellt die Frage lediglich in den Raum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Unabhängigkeit einen Preis hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ökonomen sehen die Unabhängigkeit einer Notenbank von tagespolitischem Druck grundsätzlich als Voraussetzung dafür, dass ihre Zinsentscheidungen als glaubwürdig gelten. Wird eine Notenbank als politisch gelenkt wahrgenommen, kann das die Erwartungen an künftige Inflation und damit die langfristigen Anleiherenditen beeinflussen – unabhängig davon, welche Entscheidung sie im Einzelfall trifft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich der Konflikt zwischen Weißem Haus und Notenbank in den Markterwartungen niederschlägt, lässt sich aus den vorliegenden Quellen noch nicht ablesen – dafür fehlt bislang eine belegte Kursreaktion auf genau diese Frage.',
+      },
+    ],
+  },
+  {
+    slug: 'boj-vor-der-zinsentscheidung',
+    title: 'Bank of Japan vor der Entscheidung: Zwei Kernraten, zwei Richtungen',
+    metaTitle: 'Bank of Japan vor der Entscheidung: Inflation im Blick',
+    teaser:
+      'Japans Kerninflation stieg auf 2,0 Prozent, eine engere Kernrate fiel auf 1,7 Prozent – die Bank of Japan entscheidet heute über einen möglichen Zinsschritt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-18T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of Japan', 'Inflation', 'Notenbank', 'Japan'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['nikkei-225', 'eur-jpy'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Japan hat heute früh neue Verbraucherpreisdaten veröffentlicht. Laut dem Wirtschaftskalender von wallstreet-online blieb die allgemeine Jahresteuerung bei 1,9 Prozent unverändert. Die um frische Lebensmittel bereinigte Kernrate stieg dagegen von 1,8 auf 2,0 Prozent und übertraf damit die Prognose von 1,8 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kerninflationen, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine dritte, engere Kennziffer – die Rate ohne Lebensmittel und Energie – bewegte sich in die andere Richtung: Sie fiel von 1,8 auf 1,7 Prozent. Innerhalb derselben Veröffentlichung zeigen zwei Kernraten damit gegenläufige Trends, je nachdem, ob frische Lebensmittel oder Energie herausgerechnet werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Zinsentscheid am Vormittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 5 Uhr steht laut demselben Kalender die geldpolitische Erklärung der Bank of Japan samt Zinsentscheidung an. Als Markterwartung nennt der Kalender 1,25 Prozent gegenüber aktuell 1 Prozent – eine Prognose der Datenquelle, keine feststehende Entscheidung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ebenfalls auf der heutigen Terminliste steht laut demselben Kalender ein Treffen der Eurogruppe um 8 Uhr. Eine Tagesordnung dazu nennt die Quelle nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wenn zwei Kernraten am selben Morgen in unterschiedliche Richtungen laufen, zeigt das, wie sehr die Wahl der Kennziffer das Bild der Inflation verändern kann – noch bevor eine Notenbank überhaupt entschieden hat.',
+      },
+    ],
+  },
+  {
+    slug: 'grosser-optionsverfall-wall-street',
+    title: 'Optionsverfall an der Wall Street: Was 6,2 Billionen Dollar bedeuten',
+    metaTitle: 'Optionsverfall: Was 6,2 Billionen Dollar bedeuten',
+    teaser:
+      'Am Freitag verfallen an der Wall Street Optionen im Nominalwert von 6,2 Billionen Dollar. Was diese Zahl bedeutet – und warum sie größer klingt, als sie ist.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Optionen', 'Derivate', 'Wall Street', 'Volatilität'],
+    relatedTopics: ['option', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, 17.09.2026: „Großer Optionsverfall: Wall Street vor dem 6,2-Billionen-Dollar-Showdown"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am heutigen Freitag verfallen an der Wall Street laut wallstreet-online Optionen mit einem Nominalwert von 6,2 Billionen US-Dollar, die sich unter anderem auf den S&P 500, den Nasdaq 100 und den Dow Jones beziehen. Die Quelle beschreibt den Tag als potenziell turbulent, ohne die Einschätzung näher zu begründen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an einem großen Verfalltag passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'An einem solchen Termin laufen gleichzeitig mehrere Arten von Terminkontrakten und Optionen auf Indizes und Einzelaktien aus. Händler müssen ihre Absicherungspositionen rund um diese Kontrakte neu ordnen, was kurzfristig zu höheren Handelsvolumina und teils sprunghaften Kursbewegungen führen kann – unabhängig davon, ob sich an den wirtschaftlichen Rahmendaten etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der genannte Nominalwert von 6,2 Billionen Dollar ist dabei nicht gleichzusetzen mit einer Summe, die tatsächlich den Besitzer wechselt: Ein Großteil der Optionen verfällt wertlos oder wird glattgestellt, statt tatsächlich ausgeübt zu werden. Der reale Geldfluss an einem Verfalltag liegt deshalb regelmäßig weit unter der genannten Nominalsumme.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kurzfristige Unruhe, kein neues Signal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kursausschläge rund um einen Verfalltag entstehen aus der technischen Positionierung der Marktteilnehmer, nicht aus neuen Informationen über die Wirtschaft. Erfahrungsgemäß klingt die zusätzliche Bewegung nach Handelsschluss rasch wieder ab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Verfalltag mit auffälligen Kursausschlägen ist für sich genommen keine neue Nachricht über die wirtschaftliche Lage – ein Grund, ihn von echten fundamentalen Ereignissen zu unterscheiden.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-cybercab-untersuchung',
+    title: 'Tesla trotzt der Cybercab-Untersuchung',
+    teaser:
+      'Eine US-Behörde eröffnete eine Untersuchung zum Tesla Cybercab – die Aktie stieg trotzdem. Was das über Nachricht und Kursreaktion verrät.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Aktie', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 17.09.2026: „Tesla-Aktie dennoch fester: US-Aufsichtsbehörde leitet Untersuchung zum Cybercab ein"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Laut einer Meldung von finanzen.net vom 17. September hat eine US-Aufsichtsbehörde eine Untersuchung zum Tesla Cybercab eingeleitet. Die Aktie legte am selben Tag dennoch zu, wie die Überschrift derselben Meldung festhält. Welche Behörde die Untersuchung führt, was genau geprüft wird und wie lange sie dauern soll, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn eine Nachricht den Kurs nicht drückt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurs reagiert nicht auf ein Ereignis an sich, sondern auf den Abstand zwischen diesem Ereignis und dem, was der Markt bereits erwartet hatte. Eine Aktie kann deshalb trotz einer negativ klingenden Meldung steigen, wenn andere Nachrichten desselben Tages von den Marktteilnehmern als wichtiger eingestuft werden oder wenn mit der Untersuchung bereits gerechnet wurde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wichtig ist außerdem die Unterscheidung: Die Eröffnung einer Untersuchung ist keine Feststellung eines Fehlverhaltens und kein Rückruf. Aufsichtsbehörden prüfen neue Fahrzeugtechnik routinemäßig, und aus der bloßen Tatsache einer eingeleiteten Prüfung lässt sich weder ihr Ausgang noch ihr Zeitrahmen ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über einen einzelnen Handelstag sagt, was passiert ist – nicht, warum der Kurs so reagiert hat, wie er reagiert hat. Beides auseinanderzuhalten ist eine nützliche Gewohnheit beim Lesen von Börsennachrichten.',
+      },
+    ],
+  },
+  {
+    slug: 'generac-springt-18-prozent',
+    title: 'Generac springt 18 Prozent nach einem einzigen Deal',
+    teaser:
+      'Generac schoss nach einem Milliardendeal mit Amazon um 18 Prozent. Warum dieselbe Nachricht einen kleineren Konzern stärker bewegt als einen sehr viel größeren.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-18T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Generac', 'Amazon', 'Einzelaktien', 'Diversifikation'],
+    relatedTopics: ['risiko-und-rendite', 'portfolio-aufbau'],
+    relatedSymbols: ['amazon'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 17.09.2026: „Generac-Aktie +18 Prozent nach Milliardendeal mit Amazon – Signalwirkung für Anleger"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Generac ist am 17. September laut finanzen.net um 18 Prozent gestiegen, nachdem der Hersteller von Notstromaggregaten nach eigenen Angaben der Quelle einen Deal im Milliardenbereich mit Amazon abgeschlossen hat. Zu Vertragslaufzeit, genauem Volumen oder Inhalt des Deals macht die Meldung keine weiteren Angaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Deal einen kleineren Konzern stärker bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Auftrag in ähnlicher Größenordnung wirkt sich auf den Kurs eines Unternehmens umso stärker aus, je kleiner dessen bestehender Umsatz im Vergleich zum Auftragswert ist. Bei einem Indexschwergewicht mit einem um ein Vielfaches höheren Jahresumsatz würde eine vergleichbare Zusatzbestellung selten eine zweistellige Kursbewegung auslösen, weil sie einen viel kleineren Anteil am Gesamtgeschäft ausmacht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Formulierung „Signalwirkung für Anleger" stammt aus der Überschrift der Quelle selbst. Ein einzelner Auftrag ist zunächst ein Hinweis auf den Auftragseingang, keine Garantie für künftigen Umsatz – und Kursreaktionen auf solche Meldungen können sich in den Folgetagen auch wieder umkehren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je kleiner ein Unternehmen, desto stärker kann eine einzelne Nachricht seinen Kurs bewegen. Das ist ein Argument dafür, sich vor einer Einzelwette bewusst zu machen, wie groß der Anteil einer einzigen Position am eigenen Depot ist.',
+      },
+    ],
+  },
+  {
+    slug: 'us-notenbank-hebt-leitzins-25-basispunkte-warsh',
+    title: 'Fed erhöht Leitzins trotz Trump-Drucks um 25 Basispunkte',
+    teaser:
+      'Die US-Notenbank hat ihren Leitzins erstmals seit Juli 2023 wieder angehoben – einstimmig, obwohl Präsident Trump zuvor auf eine Senkung gedrängt hatte.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-17T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'Notenbank', 'Kevin Warsh'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dow-jones', 'gold'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 21:20 Uhr: „ROUNDUP 3: US-Notenbank erhöht erstmals seit Juli 2023 wieder Leitzins“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen vom 16. September 2026: „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten vom 16.09.2026: „Dow Jones fällt um 600 Punkte!: Fed hebt Leitzins an und sendet einstimmiges Signal an Trump“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 16.09.2026: „Trotz Trump-Druck: US-Notenbank Fed beschließt Leitzinserhöhung“ und „US-Notenbank rechnet mit höherer Inflation 2026“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hat am Mittwoch ihren Leitzins um 25 Basispunkte angehoben – die erste Erhöhung seit Juli 2023. Die Entscheidung unter Fed-Chef Kevin Warsh fiel laut wallstreet-online einstimmig, und das, obwohl Präsident Trump zuvor öffentlich auf eine Zinssenkung gedrängt hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein höherer Zins gegen eine höhere Inflationsprognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fed rechnet für 2026 laut finanzen.net nun mit einer höheren Inflation als bisher angenommen. Der neue „Dot Plot“ – die anonymisierte Zinserwartung der einzelnen Notenbanker – signalisiert laut Goldreporter zudem einen weiteren Zinsschritt noch in diesem Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldungen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Worin genau die höhere Inflationserwartung begründet liegt, geht aus den vorliegenden Übersichten nicht hervor – nur, dass sie gestiegen ist. Bemerkenswert ist vor allem die Einstimmigkeit der Abstimmung: Sie zeigt einen geschlossenen Ausschuss, unabhängig vom politischen Druck aus dem Weißen Haus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Leitzins verteuert Kredite und erhöht tendenziell die Attraktivität des Dollars gegenüber anderen Währungen. Wie stark, zeigt sich erst in den kommenden Wochen, wenn Anleihemärkte und Wechselkurse das neue Zinsniveau vollständig eingepreist haben.',
+      },
+    ],
+  },
+  {
+    slug: 'hvpi-boe-ezb-lane-termine-17-september',
+    title: 'Diese Termine bestimmen den Donnerstag an den Märkten',
+    teaser:
+      'EZB-Chefvolkswirt Lane spricht um 9 Uhr, die Euroraum-Kerninflation kommt um 11 Uhr, die Bank of England veröffentlicht um 13 Uhr ihre Abstimmung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-17T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'EZB', 'Inflation', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['euro-stoxx-50'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 17.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Donnerstag beginnt für Anleger nicht mit einer Unternehmensmeldung, sondern mit dem Kalender: Um 9 Uhr spricht EZB-Chefvolkswirt Philip Lane, wie der Wirtschaftskalender von wallstreet-online zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '11 Uhr: Die Kernrate für den Euroraum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11 Uhr wird die endgültige Kernrate der Verbraucherpreise (HVPI) für den Euroraum veröffentlicht. Für die Jahresrate zeigt der Kalender unverändert 2,4 Prozent als Vorgabe, für die Monatsrate ein Plus von 0,4 Prozent – nach zuvor ebenfalls 0,4 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '13 Uhr: Wie die Bank of England abgestimmt hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 13 Uhr folgt die Abstimmung des geldpolitischen Ausschusses der Bank of England. Als Vorgabe stehen im Kalender drei Mitglieder für eine Zinserhöhung und keines für eine Senkung – wie die tatsächliche Abstimmung ausgefallen ist, veröffentlicht die Notenbank erst zu diesem Zeitpunkt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Kernrate blendet Energie und Lebensmittel aus und gilt Notenbanken deshalb als verlässlicherer Hinweis auf den zugrunde liegenden Preisdruck als die Gesamtinflation. Sie wirkt auf die nächste EZB-Entscheidung stärker als eine einzelne Schlagzeile.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-gold-oel-euro-nach-fed-entscheid',
+    title: 'Dow sinkt, Gold pendelt: Wie der Markt auf die Fed reagierte',
+    teaser:
+      'Dow Jones und Ölpreis fielen nach der Zinserhöhung, der Nasdaq blieb fast unverändert, und zwei Übersichten zeigen beim Goldpreis unterschiedliche Vorzeichen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dow Jones', 'Gold', 'Ölpreis', 'Euro-Dollar'],
+    relatedTopics: ['aktie', 'rohstoffe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dow-jones', 'gold', 'brent', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste und Rohstoffpreise, Stand 17.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 20:34 Uhr: „ROUNDUP/Aktien New York Schluss: Dow und S&P 500 im Minus nach Zinsentscheid“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 16.09.2026: „Goldpreis fällt nach Fed-Zinserhöhung auf tiefsten Stand seit Anfang August“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 16.09.2026: „Devisen: Euro fällt nach US-Zinserhöhung kräftig“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach der Fed-Entscheidung vom Mittwoch schloss der Dow Jones laut onvista im Minus. Die von wallstreet-online in der Nacht auf Donnerstag erfasste Kursleiste zeigt den Index bei 51.478,28 Punkten – ein Minus von 1,16 Prozent, rund 600 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Derselbe Zinsschritt, verschiedene Reaktionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der technologielastige US Tech 100 gab in derselben Übersicht dagegen nur 0,01 Prozent nach, blieb also praktisch unverändert. Brent-Rohöl fiel um 2,67 Prozent auf 105,60 US-Dollar, und der Euro gab gegenüber dem Dollar nach – wallstreet-online schrieb von einem „kräftigen“ Rückgang, ohne dafür eine Prozentzahl zu nennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Goldpreis: zwei Momentaufnahmen, zwei Vorzeichen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Direkt nach der Zinsentscheidung meldete wallstreet-online, der Goldpreis sei auf den tiefsten Stand seit Anfang August gefallen. Die Kursleiste derselben Seite zeigte in der Nacht auf Donnerstag dagegen ein Plus von 0,48 Prozent auf 4.284,15 US-Dollar. Welchen Vergleichszeitpunkt die jeweilige Angabe zugrunde legt, geht aus den Übersichten nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Prozentzahl zu einem Kurs sagt wenig, ohne den Vergleichszeitpunkt zu kennen. Wer zwei Angaben zum selben Wert vergleicht und sie widersprüchlich findet, hat meist keinen Fehler entdeckt, sondern zwei verschiedene Referenzpunkte.',
+      },
+    ],
+  },
+  {
+    slug: 'bilfinger-streicht-stellen-nahost-krieg',
+    title: 'Bilfinger streicht wegen Nahost-Kriegs bis zu 1.500 Stellen',
+    teaser:
+      'Der Industriedienstleister senkt seine Prognose für 2026 und will bis zu 1.500 Arbeitsplätze abbauen – als Grund nennt die Meldung den Krieg im Nahen Osten.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bilfinger', 'Stellenabbau', 'Prognose', 'Nahost-Krieg'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 21:23 Uhr: „Krieg im Nahen Osten: Bilfinger senkt Prognose und streicht bis zu 1.500 Stellen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten vom 16.09.2026: „Bilfinger justiert 2026-Prognose und startet Programm „Agile““',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Industriedienstleister Bilfinger hat laut onvista am Mittwochabend seine Prognose für 2026 nach unten angepasst und will bis zu 1.500 Stellen streichen. Als Grund nennt die Meldung den Krieg im Nahen Osten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ad-hoc-Meldung ohne konkrete Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der zugehörigen Ad-hoc-Mitteilung ist laut wallstreet-online von einer angepassten Prognose und dem Start eines Programms namens „Agile“ die Rede – eine neue Gewinn- oder Umsatzzahl für 2026 nennen die vorliegenden Übersichten nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose und Stellenabbau sind zwei verschiedene Ankündigungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gesenkte Prognose beschreibt, was das Unternehmen für die Zukunft erwartet; ein Stellenabbau ist eine konkrete Maßnahme, mit der es darauf reagiert. Beide zusammen in einer Meldung bedeuten nicht zwangsläufig, dass ein Euro-Betrag für die Einsparung schon feststeht – dazu äußern sich die Übersichten nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Schlagzeile „Krieg drückt auf Prognose“ liest, verwechselt leicht Ursache und Ausmaß. Wie stark der Nahost-Konflikt konkret zu den bis zu 1.500 möglichen Stellen beigetragen hat, lässt sich aus einer Ad-hoc-Meldung allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-tief-777x-verzoegerung',
+    title: 'Boeing auf Jahrestief: 777X-Tests verzögern sich erneut',
+    teaser:
+      'Die Boeing-Aktie fiel auf den tiefsten Stand seit Ende März, nachdem sich die Tests des Langstreckenjets 777X laut Ticker-Meldung erneut verschoben haben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Boeing', 'Luftfahrt', 'Flugzeugbau', 'Aktienkurs'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['boeing'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen vom 16.09.2026: „AKTIE IM FOKUS: Boeing auf Tief seit Ende März - 777X-Tests verschieben sich“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Marktberichte vom 16.09.2026: „Besonders beachtet!: Boeing Aktie heute unter Druck - Kurs gibt deutlich nach“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Boeing-Aktie fiel am Mittwoch laut wallstreet-online auf den tiefsten Stand seit Ende März. Grund waren laut derselben Meldung weitere Verzögerungen bei den Tests des Langstreckenjets 777X.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Testflugzeug ist kein ausgeliefertes Flugzeug',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verzögerungen bei Flugzeugtests verschieben in aller Regel auch die Auslieferung an die Fluggesellschaften – und damit den Zeitpunkt, an dem Boeing dafür Zahlungen verbuchen kann. Um wie viele Wochen oder Monate sich das Programm diesmal verschiebt, geht aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs reagiert auf eine Ankündigung, nicht auf eine Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine zweite Übersicht beschrieb den Kursrückgang zusätzlich als „deutlich“ – eine Einschätzung, die sich nicht mit einer eigenen Prozentzahl belegen lässt. Die Bewegung fand vor der Vorlage neuer Geschäftszahlen statt, allein auf Basis der gemeldeten Testverzögerung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelnes Datum in einem mehrjährigen Entwicklungsprogramm kann einen Kurs kurzfristig bewegen, auch wenn sich am eigentlichen Auftragsbestand oder an der Nachfrage nichts geändert hat.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-vor-fed-entscheid-merz-reiche',
+    title:
+      'Öl zieht vor der Fed-Entscheidung an – und Berlin streitet über die Zapfsäule',
+    metaTitle: 'Öl zieht vor der Fed-Entscheidung an – Berlin streitet über Sprit',
+    teaser:
+      'Der Ölpreis legt kurz vor der US-Zinsentscheidung zu, während die Bundesregierung uneins ist, wie schnell sie hohe Spritpreise lindern will.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Rohstoffe', 'Politik', 'Spritpreise'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste und Rohstoffpreise, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 15.09.2026 (dpa-AFX): „Hohe Spritpreise: Reiche lehnt zentrale SPD-Forderungen ab“ und „Merz kündigt schnelle Entlastung bei Spritpreisen an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer heute an die Tankstelle fährt, zahlt für einen Rohstoff, der gerade wieder teurer wird. Brent-Rohöl legte über Nacht laut wallstreet-online um 2,18 Prozent auf 108,50 US-Dollar je Barrel zu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast zeitgleich zeigte finanzen.net für denselben Rohstoff ein Minus von 0,4 Prozent bei praktisch demselben Preis von 108,4 Dollar. Beide Zahlen können stimmen – sie vergleichen nur mit einem unterschiedlichen Bezugspunkt, etwa einem anderen Vortagesschluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis gerade nervös ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehrere Übersichten verknüpfen den Anstieg mit dem Iran-Konflikt und mit der Zurückhaltung der Anleger vor der heutigen US-Zinsentscheidung. Einen einzelnen, eindeutig benannten Auslöser für die Bewegung der letzten Stunden nennt keine der Quellen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutlicher wird es bei Chevron: Firmenchef Mike Wirth widersprach laut wallstreet-online einer Ankündigung von Donald Trump und sagte, bei 120 US-Dollar pro Barrel sei „keine Entspannung in Sicht“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Berlin reagiert nicht aus einem Guss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bundeskanzler Merz kündigte laut dpa-AFX eine schnelle Entlastung bei den Spritpreisen an. Wirtschaftsministerin Reiche lehnte am selben Tag zentrale Forderungen der SPD dazu ab. Ob beide Positionen zusammenpassen oder worin genau die Entlastung bestehen soll, geht aus den Übersichten nicht hervor – das wird hier bewusst offengelassen statt vermutet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Ölpreis wirkt über zwei Kanäle gleichzeitig – an der Zapfsäule und in den Kursen ölabhängiger Unternehmen. Wer beide Wirkungen für sich behält, statt sie in einer einzigen Prozentzahl zu vermischen, liest die nächsten Tage genauer.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-entscheidet-heute-kevin-warsh-us-renditen',
+    title: 'Fed entscheidet heute: Kevin Warshs erster großer Test',
+    teaser:
+      'Die US-Notenbank trifft heute unter ihrem noch neuen Vorsitzenden Kevin Warsh eine Zinsentscheidung, während die Anleiherenditen bereits steigen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-16T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'USA', 'Anleihen', 'Notenbanken'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Politik, Wirtschaft & Konjunktur, Stand 16.09.2026, 02:15 Uhr: „Warshs erster großer Test – S&P 500: Fed-Zinsentscheid könnte 10 % kosten“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Stand 16.09.2026, 02:15 Uhr: „Ausverkauf vor Fed-Entscheid: US-Rendite so hoch wie seit 2007 nicht – jetzt droht der Zinsschock!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'wallstreet-online, Wichtige Termine, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Hintergrund vom 7. September 2026: „Kevin Warsh steckt im Zins-Dilemma – was das für den Goldpreis bedeutet“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute, an einem Mittwoch, entscheidet die US-Notenbank Fed unter ihrem noch neuen Vorsitzenden Kevin Warsh über die Leitzinsen. Eine Übersicht von wallstreet-online nennt es Warshs „ersten großen Test“.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Einschätzungen dazu gehen auseinander: Morgan Stanley rechnet laut derselben Übersicht mit gleich zwei Zinserhöhungen, ein Analyst warnt vor einem Kursrutsch wie 2018 – ein anderer Ökonom hält beide Einschätzungen für übertrieben. Namen nennt die Übersicht dafür nicht, nur die Positionen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woran sich die Nervosität schon vorher ablesen lässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger US-Staatsanleihen erreichte laut wallstreet-online den höchsten Stand seit 2007. Steigende Renditen bedeuten: Der Staat muss für neue Schulden mehr Zinsen zahlen, und festverzinsliche Anlagen werden im Vergleich zu Aktien wieder attraktiver.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Schlagzeile derselben Übersicht beziffert das mögliche Risiko für Aktien konkret: „S&P 500: Fed-Zinsentscheid könnte 10 % kosten“. Wie diese Zahl berechnet wurde, steht dort nicht – sie ist als Einschätzung zu lesen, nicht als Vorhersage.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch aus Großbritannien kommen heute Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr veröffentlicht Großbritannien laut wallstreet-online seine Verbraucherpreise für das Jahr, erwartet werden 3,1 Prozent nach zuvor 2,9 Prozent. Parallel dazu steht die britische Erzeugerpreis-Kernrate an, deren Prognose die Übersicht offenlässt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon am 7. September beschrieb Goldreporter Warshs Lage als „Zins-Dilemma“: Er setze auf Inflationsbekämpfung, doch hohe US-Schulden und eine große Fed-Bilanz begrenzten seinen Spielraum – mit Folgen für den Goldpreis, so die Analyse.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Zinsentscheidung wirkt selten isoliert – sie trifft auf bereits gestiegene Anleiherenditen und auf einen Ölpreis, der die Inflation von der anderen Seite unter Druck setzt. Wer diese Zusammenhänge kennt, versteht heute Abend besser, warum Märkte auf dieselbe Entscheidung unterschiedlich reagieren können.',
+      },
+    ],
+  },
+  {
+    slug: 'rheinmetall-ruestungsabkommen-usa-1000-euro-marke',
+    title:
+      'Rheinmetall über 1.000 Euro: Ein Rüstungsabkommen mit den USA treibt den Kurs',
+    metaTitle: 'Rheinmetall über 1.000 Euro nach Rüstungsabkommen mit den USA',
+    teaser:
+      'Ein neues deutsch-amerikanisches Rüstungsabkommen und ein Großauftrag trieben die Rheinmetall-Aktie über die runde 1.000-Euro-Marke.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstung', 'DAX', 'Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['rheinmetall', 'hensoldt', 'renk'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026: „Rheinmetall-Aktie über 1.000-Euro-Marke: Großauftrag wirkt nach – so reagieren HENSOLDT, RENK und TKMS“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026 (dpa-AFX): „Pistorius unterzeichnet Rüstungsvereinbarung mit den USA“ und „Rheinmetall-Aktie springt an: Deutschland und USA bauen Zusammenarbeit bei Rüstungsprojekten aus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, 14.09.2026: „Munition stark gefragt: Rheinmetall rüstet auf: Neuer Großauftrag sorgt für Rückenwind“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Stand 16.09.2026, 02:15 Uhr: „Hält die 1.000-Euro-Marke? Rheinmetall-Aktie: Das sieht schon wieder ziemlich übel aus!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Verteidigungsminister Pistorius unterzeichnete laut dpa-AFX eine Rüstungsvereinbarung mit den USA. Eine zweite Meldung beschreibt es so: Deutschland und die USA bauen ihre Zusammenarbeit bei Rüstungsprojekten aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rheinmetall-Aktie reagierte darauf und stieg laut finanzen.net über die runde 1.000-Euro-Marke. Als zusätzlichen Treiber nennt die Übersicht einen neuen Großauftrag, ohne dessen Volumen zu beziffern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch andere Rüstungswerte reagierten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die finanzen.net-Schlagzeile nennt neben Rheinmetall auch HENSOLDT, RENK und TKMS als Unternehmen, die reagierten. In welche Richtung, sagt die Übersicht nicht – das wird hier bewusst offengelassen, statt eine plausible Richtung zu unterstellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hält die runde Marke?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Zeit fragte eine zweite Übersicht von wallstreet-online, ob Rheinmetall die 1.000-Euro-Marke überhaupt hält, und schätzte den Kurs skeptisch ein. Derselbe Tag, dieselbe Aktie, zwei gegensätzliche Einordnungen – ein Beleg dafür, dass eine runde Kursmarke allein noch keine Richtung vorgibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein politisches Abkommen und ein einzelner Auftrag können einen Kurs kurzfristig über eine runde Marke tragen. Ob das Niveau bleibt, hängt von mehr ab als von einer einzelnen guten Nachricht – etwa davon, wie belastbar der Auftragsbestand insgesamt ist.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-klingbeil-bedingungen-oder-bitten',
+    title: 'Commerzbank: Klingbeils „Bedingungen“ sind im Text eigentlich Bitten',
+    metaTitle: 'Commerzbank: Klingbeils „Bedingungen“ waren wohl nur Bitten',
+    teaser:
+      'Eine Schlagzeile spricht von Bedingungen, der Fließtext derselben Meldung nur von Bitten – ein Beispiel dafür, wie Überschriften Eindrücke verschieben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'UniCredit', 'Übernahme', 'Banken'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['commerzbank', 'unicredit'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 16.09.2026, 02:15 Uhr: „Übernahme durch UniCredit – Commerzbank: Das fordert Klingbeil jetzt von Orcel!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026: „Klingbeil stellt Bedingungen für Commerzbank-Übernahme – Aktie schwächer“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Schlagzeilen, ein Ereignis: Bundesfinanzminister Lars Klingbeil traf sich laut wallstreet-online am Montag mit UniCredit-Chef Andrea Orcel. Thema war die mögliche Übernahme der Commerzbank durch die italienische Bank.',
+      },
+      {
+        type: 'paragraph',
+        text: 'finanzen.net titelt „Klingbeil stellt Bedingungen für Commerzbank-Übernahme“. Im Fließtext von wallstreet-online zur selben Begegnung heißt es dagegen, Klingbeil habe gegenüber Orcel „lediglich Bitten ... vorbringen“ können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Unterschied zwischen Bedingung und Bitte zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Bedingung ist bindend, eine Bitte nicht. Ob und wie eine ausländische Bank ein Unternehmen übernimmt, entscheiden am Ende deren Eigentümer und Aufsichtsbehörden – ein Finanzminister kann öffentlich Erwartungen formulieren, aber nicht allein festlegen, was am Ende geschieht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welche konkreten Forderungen Klingbeil genau vorgebracht hat, geht aus den beiden Übersichten nicht hervor. Klar ist nur die Reaktion am Aktienmarkt: Die Commerzbank-Aktie zeigte sich laut finanzen.net schwächer.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Überschrift liest, überschätzt hier leicht, wie viel Einfluss der Bund auf eine ausländische Übernahmeentscheidung tatsächlich hat. Der Fließtext lohnt sich – gerade bei politisch aufgeladenen Themen wie einer Bankenübernahme.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-preisabschlag-shanghai-schrumpft-woche',
+    title: 'Warum sich der Gold-Preisabschlag in Shanghai gerade verkleinert',
+    metaTitle: 'Gold-Preisabschlag in Shanghai schrumpft binnen einer Woche',
+    teaser:
+      'Gold ist in Shanghai traditionell günstiger als im Westen – doch dieser Abstand ist laut Goldreporter binnen einer Woche deutlich geschrumpft.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-16T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'China', 'Rohstoffe', 'Preisunterschiede'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen vom 15. September 2026: „Goldmarkt: Goldpreis fällt im Westen stärker als in China“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Aktuelle Rohstoffpreise, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold kostet in Shanghai schon länger weniger als in Europa oder den USA – ein sogenannter Preisabschlag. Ungewöhnlich ist, dass dieser Abstand gerade kleiner statt größer wird.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter verringerte sich der Preisabschlag in Shanghai innerhalb einer Woche von 38 auf 22 US-Dollar je Feinunze. Grund dafür ist demnach, dass der Goldpreis in Europa zuletzt stärker fiel als in China – nicht, dass in China plötzlich mehr bezahlt worden wäre.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Preisabschlag überhaupt zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird zwar weltweit gehandelt, aber regional unterschiedlich besteuert, nachgefragt und über verschiedene Börsen gepreist. Ein Preisabschlag oder -aufschlag zwischen zwei Handelsplätzen zeigt deshalb, wie unterschiedlich Angebot und Nachfrage vor Ort gerade ausfallen – nicht, dass ein Markt den anderen betrügt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum aktuellen Preisniveau: Gold notierte laut wallstreet-online zuletzt bei 4.282,45 US-Dollar je Feinunze, ein Minus von 0,27 Prozent. Einen absoluten Preis für Shanghai nennt keine der beiden Übersichten – nur die Differenz.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur den westlichen Goldpreis verfolgt, übersieht, dass derselbe Rohstoff andernorts zeitweise günstiger oder teurer gehandelt wird. Die Größe dieses Abstands – nicht nur seine Richtung – verrät etwas über die relative Stärke der Nachfrage in den jeweiligen Regionen.',
+      },
+    ],
+  },
+  {
+    slug: 'bijou-brigitte-prognose-deutz-kapitalerhoehung',
+    title: 'Ein Unternehmen hebt die Prognose an, das andere holt sich frisches Kapital',
+    metaTitle: 'Bijou Brigitte hebt Prognose an, Deutz erhöht Kapital',
+    teaser:
+      'Zwei Ad-hoc-Meldungen am selben Abend zeigen zwei verschiedene Wege, wie Unternehmen mit Erwartungen und mit Kapitalbedarf umgehen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-16T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Ad-hoc', 'Guidance', 'Kapitalerhöhung', 'Unternehmen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten, Stand 16.09.2026, 02:15 Uhr: „EQS-Adhoc: Bijou Brigitte modische Accessoires AG: Bijou Brigitte passt Prognose für das Konzernergebnis vor Ertragssteuern im Geschäftsjahr 2026 nach oben an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten, Stand 16.09.2026, 02:15 Uhr: „EQS-Adhoc: DEUTZ AG schließt Kapitalerhöhung gegen Bareinlagen im Wege eines Accelerated Bookbuilding erfolgreich ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Ad-hoc-Meldungen desselben Abends, zwei völlig unterschiedliche Unternehmensentscheidungen. Beide betreffen deutsche Nebenwerte, keine der beiden Meldungen nennt eine konkrete Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bijou Brigitte passte laut EQS-Adhoc die Prognose für das Konzernergebnis vor Ertragssteuern im Geschäftsjahr 2026 nach oben an. Um welchen Betrag oder welche Prozentzahl es geht, steht in der Meldung nicht – nur die Richtung: nach oben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guidance ist ein Versprechen, kein Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine angehobene Prognose ändert zunächst nur die Erwartung an das Jahresende – nicht das tatsächliche Ergebnis. Erst der spätere Geschäftsbericht zeigt, ob das Unternehmen die neue, höhere Messlatte auch erreicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutz beschafft sich frisches Geld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutz schloss laut einer zweiten Ad-hoc-Meldung eine Kapitalerhöhung gegen Bareinlagen im Wege eines Accelerated Bookbuilding erfolgreich ab. Dabei platziert ein Unternehmen neue Aktien innerhalb weniger Stunden bei institutionellen Investoren gegen Bargeld – anders als ein Aktienrückkauf erhöht das die Zahl der Aktien, statt sie zu verringern.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognoseanhebung und eine Kapitalerhöhung klingen beide nach guten Nachrichten, bedeuten aber Gegensätzliches für die Aktienzahl: Die eine ändert nur Erwartungen, die andere verändert sofort, wie viele Anteile ein Unternehmen hat – und wie viel jeder einzelne davon wert ist.',
+      },
+    ],
+  },
+  {
+    slug: 'tanker-explosion-hormus-oelpreis-zwei-zahlen',
+    title:
+      'Tanker explodiert in der Straße von Hormus – zwei Portale, zwei Ölpreis-Prozentzahlen',
+    metaTitle: 'Tanker-Explosion in Hormus: Ölpreis uneinheitlich',
+    teaser:
+      'In der Straße von Hormus ist ein Öltanker explodiert. Der Ölpreis reagiert – nur nennen zwei Finanzportale zur gleichen Minute zwei verschiedene Prozentzahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Nahost-Konflikt', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 14.09.2026, 20:33 Uhr (dpa-AFX): „ROUNDUP/Revolutionsgarden: Öltanker in Straße von Hormus explodiert“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Nachrichtenübersicht vom 14.09.2026, Rubrik „Private Finanzen“: „Energiepreis-Explosion: 860 US-Dollar mehr pro Haushalt – der Iran-Krieg frisst Amerikas Ersparnisse“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 15.09.2026, 00:19 Uhr (Öl 106,5 USD, +0,7 %) und wallstreet-online, Kursleiste, Stand 15.09.2026, 00:19 Uhr (Öl (Brent) 106,19 USD, +1,96 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Straße von Hormus, der schmalen Meerenge, durch die ein großer Teil des weltweiten Öltransports läuft, ist laut Nachrichtenagentur dpa-AFX ein Öltanker explodiert. Die Meldung bringt das Ereignis mit den iranischen Revolutionsgarden in Verbindung – Details zum Hergang nennt die ausgewertete Übersicht nicht, und ohne sie lässt sich der genaue Ablauf hier nicht rekonstruieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kurz nach Mitternacht zeigten zwei deutsche Finanzportale die Nordsee-Sorte Brent fast auf denselben Dollar genau – 106,50 bei finanzen.net, 106,19 bei wallstreet-online –, aber mit sehr unterschiedlichen Tagesveränderungen: +0,7 Prozent dort, +1,96 Prozent hier. Beide Zahlen können gleichzeitig richtig sein, wenn sie sich auf unterschiedliche Vergleichspunkte beziehen – etwa den gestrigen Xetra-Schluss gegenüber einem rollierenden 24-Stunden-Fenster im außerbörslichen Handel. Welchen Bezugspunkt welches Portal konkret verwendet, steht in keiner der beiden Übersichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: "Was der Aufschlag laut Moody's kostet",
+      },
+      {
+        type: 'paragraph',
+        text: "Greifbarer wird die Lage über eine Zahl, die wallstreet-online aus einer Moody's-Einschätzung zitiert: Allein der Energie-Schock aus dem Iran-Konflikt koste US-Verbraucher rund 115 Milliarden Dollar, umgerechnet etwa 860 Dollar je Haushalt. Eine Erklärung, wie genau sich dieser Betrag zusammensetzt, liefert die Übersicht nicht mit.",
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Prozentzahl aus einer Kursleiste ist nur mit ihrem Bezugspunkt aussagekräftig – wer zwei Quellen vergleicht, sollte zuerst prüfen, wogegen jede von ihnen misst, bevor er aus der Differenz etwas Inhaltliches ableitet.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-faellt-trotz-nahost-eskalation',
+    title: 'Gold fällt zum Wochenstart – obwohl der Nahost-Konflikt eskaliert',
+    metaTitle: 'Gold fällt trotz eskalierendem Nahost-Konflikt',
+    teaser:
+      'Steigende Ölpreise wegen des Nahost-Konflikts gelten als Grund für höhere Goldpreise. Am Montag war es umgekehrt – der Goldpreis gab nach.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-15T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Nahost-Konflikt', 'Zinsen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'brent'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News und Marktbericht vom 14.09.2026: „Goldpreis fällt zum Wochenstart – Nahost-Spannungen treiben den Ölpreis“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Top-News/Analyse vom 14.09.2026: „Marktzinsen steigen deutlich – US-Renditen nahe 20-Jahres-Hoch“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 14.09.2026 (Rubrik China): „Goldmarkt: Chinas Schmucknachfrage bricht ein, Anlagegold stärker gefragt“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter am Montag schwächer in die Woche gestartet, während der Ölpreis wegen der Nahost-Spannungen über 107 Dollar geklettert ist. Das ist bemerkenswert, weil geopolitische Krisen Gold sonst eher als „sicheren Hafen“ stützen – diesmal lief die Bewegung gegenläufig.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Erklärung, die die Quelle nicht ausdrücklich liefert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum Gold ausgerechnet an diesem Tag nachgab, sagt die ausgewertete Meldung nicht direkt. Sie nennt aber im selben Atemzug eine zweite Schlagzeile: „Marktzinsen steigen deutlich – US-Renditen nahe 20-Jahres-Hoch“. Allgemein gilt: Gold zahlt keine Zinsen, während Anleihen das tun – steigen die Anleiherenditen, wird das Halten von Gold gegenüber verzinsten Anlagen rechnerisch teurer. Ob genau dieser Mechanismus die Bewegung vom Montag erklärt, lässt sich aus der Quelle allein nicht belegen; es ist ein allgemeiner Zusammenhang, keine bestätigte Ursache für diesen einen Tag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Goldmärkte in China, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine weitere Meldung vom selben Tag zeigt, dass „die Goldnachfrage“ selbst keine einheitliche Größe ist: In China ist laut Goldreporter die Schmucknachfrage eingebrochen, während Goldbarren und -münzen als Anlageform deutlich stärker gefragt sind. Derselbe Rohstoff wird also je nach Verwendungszweck – Schmuck oder Geldanlage – von unterschiedlichen Kräften bewegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kursausschlag widerlegt keine Faustregel wie „Krisen treiben den Goldpreis“ – er zeigt nur, dass an einem konkreten Tag andere Kräfte überwogen haben. Wer daraus eine Handelsentscheidung ableiten will, braucht mehr als eine Tagesbewegung und eine Schlagzeile.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-aktien-schwaecheln-cybersecurity-legt-zu',
+    title: 'KI-Aktien geben nach, Cybersicherheits-Aktien legen zu',
+    metaTitle: 'KI-Aktien schwach, Cybersecurity-Titel stark',
+    teaser:
+      'Nvidia, AMD und Infineon fielen am Montag unter KI-Sorgen. CrowdStrike und Palo Alto legten am selben Tag zu – ein Etikett, zwei Richtungen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['KI-Aktien', 'Halbleiter', 'Cybersecurity', 'Nasdaq'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'amd', 'infineon'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Tech-Aktien stürzen ab: Warum die NVIDIA-Aktie jetzt den entscheidenden Vorteil haben könnte“ und „KI-Aktien wie AMD, Super Micro und Micron stürzen ab: Reißleine ziehen oder Rücksetzer nutzen?“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Aktien von CrowdStrike, Palo Alto & Co. im Höhenflug: Darum trotzen Cybersicherheits-Titel den KI-Sorgen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Infineon-Aktie wegen KI-Sorgen kräftig im Minus - Milliardenprojekt mit TSMC erreicht wichtigen Meilenstein“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag gaben laut finanzen.net-Ticker mehrere Halbleiter- und KI-nahe Aktien nach: Nvidia, AMD, Super Micro Computer und Micron werden dort im Zusammenhang mit „KI-Sorgen“ genannt. Was genau diese Sorgen an diesem Tag ausgelöst hat, benennt keine der ausgewerteten Schlagzeilen konkret – der Begriff „KI-Sorgen“ bleibt in den Überschriften unspezifisch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dieselbe Woche, ein Gegenbeispiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag meldete finanzen.net unter der Überschrift „Aktien von CrowdStrike, Palo Alto & Co. im Höhenflug“, dass Cybersicherheits-Titel den KI-Sorgen „trotzen“ würden. Cybersicherheitsfirmen verkaufen überwiegend Software-Abonnements und sind vom selben Investitionszyklus in KI-Rechenzentren und -Chips deutlich weniger unmittelbar abhängig als Hersteller von Grafikprozessoren oder Speicherchips.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Gegenbeispiel innerhalb der Chipbranche selbst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass gute Unternehmensnachrichten an einem schwachen Tag nicht automatisch den Kurs stützen, zeigt Infineon: Die Aktie fiel laut finanzen.net „wegen KI-Sorgen kräftig im Minus“ – im selben Satz vermeldet die Überschrift, dass ein „Milliardenprojekt“ mit TSMC „einen wichtigen Meilenstein“ erreicht habe. Details zu diesem Meilenstein oder seinem Umfang in Euro nennt die Übersicht nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Sammelbezeichnung „KI-Aktien“ fasst Unternehmen mit sehr unterschiedlichen Geschäftsmodellen zusammen. Ein gemeinsames Etikett bedeutet nicht, dass die Kurse bei jeder Nachricht in dieselbe Richtung laufen – wer ein Unternehmen beurteilen will, kommt an dessen konkretem Geschäft nicht vorbei.',
+      },
+    ],
+  },
+  {
+    slug: 'rheinmetall-grossauftrag-1000-euro-marke',
+    title:
+      'Rheinmetall holt einen neuen Großauftrag – und hält die 1.000-Euro-Marke trotzdem nicht',
+    metaTitle: 'Rheinmetall: Großauftrag, Aktie unter 1.000 Euro',
+    teaser:
+      'Rheinmetall meldet einen neuen Großauftrag für das Munitionsgeschäft. Die Aktie fiel am selben Tag trotzdem unter die runde 1.000-Euro-Marke.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstungsaktien', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Rheinmetall-Aktie hält 1.000-Euro-Marke nicht: Neuer Millionenauftrag treibt Munitionsgeschäft“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Redaktionsbeitrag vom 14.09.2026: „Munition stark gefragt: Rheinmetall rüstet auf: Neuer Großauftrag sorgt für Rückenwind“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „US-Zinsentscheid als wichtiger Entscheidungsfaktor: DAX startet Woche auf rotem Terrain“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rheinmetall hat laut finanzen.net einen neuen Auftrag für sein Munitionsgeschäft erhalten – die Überschrift spricht von einem „Millionenauftrag“, wallstreet-online von einem „Großauftrag“. Eine konkrete Summe in Euro oder Dollar nennt keine der beiden ausgewerteten Schlagzeilen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guter Auftrag, schwacher Gesamtmarkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Montag stand laut finanzen.net der gesamte DAX unter Druck: „US-Zinsentscheid als wichtiger Entscheidungsfaktor: DAX startet Woche auf rotem Terrain“ – dazu kamen die oben beschriebenen Sorgen um Ölpreis und KI-Aktien. Ein einzelner Auftrag für Rheinmetall trat damit gegen einen Tag an, an dem der breite Markt ohnehin nachgab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein guter Auftrag nicht automatisch den Kurs hebt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rüstungsaufträge werden in der Regel über Monate verhandelt, bevor sie öffentlich gemeldet werden. Rechnen Marktteilnehmer mit einem Auftrag dieser Größenordnung bereits, ist die Erwartung möglicherweise schon im Kurs enthalten – dann bewegt die Meldung selbst wenig, selbst wenn das zugrunde liegende Geschäft weiterhin wächst. Ob das hier zutrifft, lässt sich aus den ausgewerteten Schlagzeilen nicht ablesen; sie beschreiben Auftrag und Kursverlauf, nicht die Erwartungshaltung davor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Auftragseingang und Kursreaktion sind zwei getrennte Dinge. Eine Meldung über einen neuen Großauftrag beschreibt das operative Geschäft – ob und wie stark der Kurs darauf reagiert, hängt zusätzlich davon ab, was der Markt vorher schon erwartet hatte und wie der Gesamtmarkt an diesem Tag gerade läuft.',
+      },
+    ],
+  },
+  {
+    slug: 'washtec-guidance-cewe-aktienrueckkauf',
+    title:
+      'Ein Tag, zwei Kapitalmeldungen: WashTec ändert die Prognose, CEWE kauft eigene Aktien zurück',
+    metaTitle: 'WashTec-Prognose und CEWE-Aktienrückkauf im Vergleich',
+    teaser:
+      'WashTec meldet per Ad-hoc eine geänderte Ergebniserwartung, CEWE beschließt am selben Tag einen Aktienrückkauf – zwei sehr unterschiedliche Nachrichten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-15T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Ad-hoc-Meldung', 'Aktienrückkauf', 'Guidance', 'WashTec', 'CEWE'],
+    relatedTopics: ['aktie', 'kosten-und-gebuehren'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, wO Newsflash vom 14.09.2026: „WashTec Akt: Neue Ergebniserwartung für 2026“ und EQS-Adhoc vom 14.09.2026: „WashTec AG: Anpassung der Ergebniserwartung für 2026“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „EQS-News: WashTec beschleunigt Transformation zum Lösungs- und Serviceanbieter und verschlankt Führungsstruktur“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, wO Newsflash vom 14.09.2026: „CEWE Stiftung beschließt Aktienrückkauf – das müssen Anleger wissen“ und EQS-Adhoc vom 14.09.2026: „CEWE Stiftung & Co. KGaA: CEWE decides to buy back own company shares“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'WashTec hat laut wallstreet-online per Ad-hoc-Mitteilung eine „Anpassung der Ergebniserwartung für 2026“ veröffentlicht, konkret eine geänderte EBIT-Prognose. Ob die neue Erwartung höher oder niedriger liegt als die bisherige, geht aus der ausgewerteten Schlagzeile nicht hervor – nur, dass sich etwas geändert hat. Am selben Tag meldete das Unternehmen laut finanzen.net zusätzlich, seine Transformation „zum Lösungs- und Serviceanbieter“ zu beschleunigen und die Führungsstruktur zu verschlanken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Prognoseänderung überhaupt gemeldet wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsennotierte Unternehmen müssen Informationen, die den Kurs erheblich bewegen könnten, unverzüglich als Ad-hoc-Mitteilung veröffentlichen – unabhängig davon, ob die Nachricht positiv oder negativ ausfällt. Allein die Existenz einer solchen Meldung sagt deshalb noch nichts über die Richtung der Änderung aus; das lässt sich nur der eigentlichen Prognosezahl entnehmen, die die ausgewertete Übersicht hier nicht wiedergibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'CEWE macht das Gegenteil: Geld zurück an die Aktionäre',
+      },
+      {
+        type: 'paragraph',
+        text: 'CEWE Stiftung & Co. KGaA hat laut wallstreet-online per Ad-hoc beschlossen, eigene Aktien zurückzukaufen. Ein Rückkauf verringert die Zahl der ausstehenden Aktien und lässt damit rechnerisch den Gewinn je verbleibender Aktie steigen, ohne dass sich am Gesamtgewinn etwas ändern muss – anders als eine Dividende, bei der Geld direkt und für alle Aktionäre gleich in bar ausgezahlt wird. Wie viele Aktien CEWE zurückkaufen will oder mit welchem Volumen, nennt die ausgewertete Schlagzeile nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Ad-hoc-Meldung zeigt nur, dass etwas Wesentliches passiert ist – nicht automatisch, ob es sich um eine gute oder eine schlechte Nachricht handelt. Wer eine Prognoseänderung oder einen Rückkauf bewerten will, braucht die konkreten Zahlen dahinter, nicht nur die Überschrift.',
+      },
+    ],
+  },
+  {
+    slug: 'wirtschaftstermine-15-september-grosshandelspreise-arbeitsmarkt',
+    title:
+      'Was heute ansteht: deutsche Großhandelspreise, britischer Arbeitsmarkt, Frankreichs Inflation',
+    metaTitle: 'Termine heute: Großhandelspreise, Arbeitsmarkt, Inflation',
+    teaser:
+      'Heute kommen deutsche Großhandelspreise, britische Arbeitsmarktdaten und Frankreichs finale Inflationsrate – ein Tag vor der Fed-Zinsentscheidung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-15T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Konjunkturdaten', 'Arbeitsmarkt', 'Inflation', 'Wirtschaftskalender'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-gbp', 'eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 15.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online zeigt für heute mehrere Termine: um 6:30 Uhr Japans Tertiärindustrie-Index im Monatsvergleich (Prognose +0,3 Prozent, Vormonat -0,2 Prozent), um 8:00 Uhr den deutschen Großhandelspreisindex sowie ein Bündel britischer Arbeitsmarktdaten, um 8:45 Uhr Frankreichs Verbraucherpreisindex nach EU-Norm.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutschland: zwei Zeitfenster, ein Index',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den deutschen Großhandelspreisindex nennt der Kalender zwei Werte: im Jahresvergleich lag der Vormonatswert bei 5,3 Prozent, eine Prognose dafür fehlt. Im Monatsvergleich lautet die Prognose +0,1 Prozent, nach zuvor +0,2 Prozent. Der Großhandelspreisindex gilt als früher Hinweis auf Preisdruck, der über die Lieferkette später bei den Verbraucherpreisen ankommen kann – muss aber nicht in vollem Umfang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'London: mehr offene Fragen als eine einzelne Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die britischen Arbeitsmarktdaten um 8:00 Uhr bestehen laut Kalender aus mehreren Teilen: Die Zahl der Anspruchsberechtigten auf Arbeitslosenunterstützung (Claimant Count Change) soll von zuvor -11.000 auf eine Prognose von +8.300 drehen, die Löhne inklusive Bonus sollen von 4,1 auf 3,9 Prozent im Jahresvergleich abkühlen, und die ILO-Arbeitslosenquote wird mit 5,0 Prozent nach zuvor 4,9 Prozent erwartet. Für die Erwerbstätigenveränderung (Employment Change) und die einfache Arbeitslosenquote nennt der Kalender keine Prognose, nur die Vorwerte von 83.000 beziehungsweise 4,3 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankreichs finale Verbraucherpreise um 8:45 Uhr sollen laut Prognose bei 2,7 Prozent liegen – exakt auf dem Niveau des Vormonats. Eine finale Veröffentlichung bestätigt in der Regel eine frühere Schnellschätzung, ohne dass sich der Wert noch wesentlich ändert; genau das würde eine unveränderte Prognose gegenüber dem Vormonat hier nahelegen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Diese Daten liegen einen Tag vor der Zinsentscheidung der US-Notenbank, die laut wallstreet-online für Mittwoch erwartet wird. Sie betreffen die Fed nicht unmittelbar, zeigen aber, worauf andere Notenbanken – etwa die Bank of England – in denselben Wochen blicken. Wer nur auf die Fed schaut, übersieht leicht, dass an mehreren Orten gleichzeitig Zahlen fällig werden.',
+      },
+    ],
+  },
+  {
+    slug: 'evonik-schliesst-bitterfeld-hamburg',
+    title: 'Evonik schließt seine Werke in Bitterfeld und Hamburg',
+    teaser:
+      'Evonik macht zwei Standorte dicht – 40 Stellen in Bitterfeld, 50 in Hamburg. Als Grund nennt der Konzern zu stark zersplitterte Strukturen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Evonik', 'Chemieindustrie', 'Stellenabbau', 'Restrukturierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['evonik'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Evonik-Aktie: Standort in Bitterfeld wird geschlossen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Handelsblatt, 11.09.2026: „Chemieindustrie: Evonik schließt Standorte in Hamburg und Bitterfeld“',
+        url: 'https://www.handelsblatt.com/unternehmen/industrie/chemieindustrie-evonik-schliesst-standorte-in-hamburg-und-bitterfeld/100253946.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Evonik schließt zwei seiner Werke: eines in Bitterfeld, eines in Hamburg. Angekündigt wurde das laut Handelsblatt am Freitag, den 11. September – schließen sollen beide Standorte im Jahr 2027.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Bitterfeld sind 40 Beschäftigte betroffen, die dort Chlorsilane herstellen. In Hamburg trifft es 50 Beschäftigte in der Fertigung von Kosmetik- und Pflegeprodukten – macht zusammen rund 90 Arbeitsplätze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Begründung: Struktur, nicht Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Interim-Konzernchef Claus Rettig begründete den Schritt laut Handelsblatt damit, dass Produktions-, Verwaltungs- und Laborstrukturen „in einigen Bereichen zu stark fragmentiert“ seien – das treibe unnötige Kosten und schwäche die Wettbewerbsfähigkeit. Die betroffenen Geschäfte sollen an größeren Evonik-Standorten gebündelt werden; wohin genau, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Standorte sind nicht der ganze Konzern',
+      },
+      {
+        type: 'paragraph',
+        text: '90 Stellen an zwei von vielen Evonik-Werken sagen wenig über die Auslastung des gesamten Konzerns – sie beschreiben eine Entscheidung über zwei konkrete Standorte, keinen Nachfrageeinbruch für Evonik insgesamt. Eine Zahl zu den erwarteten Einsparungen oder zu Restrukturierungskosten nennt die ausgewertete Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Standortschließung ist zunächst eine Aussage über einzelne Werke und ihre Auslastung – nicht automatisch über die Ertragslage des ganzen Unternehmens. Wer den Konzern beurteilen will, braucht mehr als diese eine Meldung, etwa die nächsten Quartalszahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-reden-und-kanadas-inflation-14-september',
+    title: 'Zwei EZB-Direktoren sprechen, dann kommt Kanadas Inflation',
+    teaser:
+      'Heute treten zwei EZB-Direktoriumsmitglieder auf, am Nachmittag folgen Kanadas Verbraucherpreise – vier Tage nach der jüngsten EZB-Zinsentscheidung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Notenbank', 'Kanada', 'Verbraucherpreise'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 14.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Wichtige Termine, Stand 14.09.2026, 00:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Europäische Zentralbank, Übersicht Publikationen: letzte geldpolitische Pressekonferenz am 10. September 2026',
+        url: 'https://www.ecb.europa.eu/press/html/index.en.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Auf dem Kalender für heute stehen laut wallstreet-online zwei Auftritte aus dem EZB-Direktorium: Isabel Schnabel spricht um 11:15 Uhr, Piero Cipollone um 15:00 Uhr. Beide Termine sind reine Reden, keine Sitzungen mit Beschluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Tage nach der letzten Entscheidung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die EZB hatte laut eigener Übersicht am 10. September ihre jüngste geldpolitische Pressekonferenz abgehalten. Beide heutigen Reden folgen also kurz danach – was Schnabel und Cipollone konkret sagen werden, geht aus dem Kalendereintrag naturgemäß nicht hervor, bekannt sind nur Zeit und Person.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am selben Nachmittag: Zahlen aus einem anderen Währungsraum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:30 Uhr veröffentlicht Kanada seine Verbraucherpreise für August – Gesamtrate und die von der Notenbank beachtete Kernrate. Bei der Kernrate im Monatsvergleich lag der Vormonatswert laut wallstreet-online bei 0,2 Prozent, bei der Gesamtrate im Monatsvergleich bei 0,5 Prozent; eine Prognose nennt die Quelle nur für die Kernrate, ebenfalls 0,2 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Daten haben mit der Eurozone nichts zu tun – sie fallen nur zufällig auf dieselbe Uhrzeit wie Cipollones Auftritt. Der Unterschied zwischen beidem ist trotzdem lehrreich: Eine Rede ist eine Meinungsäußerung ohne festen Zahlenwert, eine Verbraucherpreisstatistik ein Datenpunkt, der veröffentlicht wird, ob er gefällt oder nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Uhrzeiten kennt, weiß, wann er womit rechnen kann – nicht, was am Ende gesagt oder gemessen wird. Eine Rede kann die Markterwartung verschieben, ohne dass sich an der Zinslage etwas geändert hat; das lässt sich erst im Nachhinein auseinanderhalten.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-e-polo-30000-bestellungen',
+    title: 'VW meldet mehr als 30.000 Bestellungen für den E-Polo',
+    teaser:
+      'Volkswagen zählt über 30.000 Bestellungen für den elektrischen E-Polo – mehr als erwartet. Ausgeliefert ist davon bislang nur ein Teil.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'E-Polo', 'Elektroauto', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Starke Nachfrage: VW-Aktie: Mehr als 30.000 Bestellungen für E-Polo“',
+        url: 'https://www.finanzen.net/nachricht/aktien/starke-nachfrage-vw-aktie-mehr-als-30-000-bestellungen-fuer-e-polo-15931522',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen hat für den neuen elektrischen Kleinwagen E-Polo mehr als 30.000 Bestellungen gezählt. Zusammen mit den technisch verwandten Modellen ID. Cross, Škoda Epiq und Cupra Raval kommt der Konzern laut finanzen.net auf mehr als 100.000 Vorbestellungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bestellt ist noch nicht ausgeliefert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der E-Polo ist seit Ende April 2026 bestellbar und erst seit wenigen Tagen tatsächlich in den Verkaufsräumen zu sehen. Wegen der hohen Nachfrage entstehen laut der Meldung längere Wartezeiten; Volkswagen arbeitet an einer schrittweisen Steigerung der Produktion.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Bestellung ist damit noch kein ausgeliefertes und bezahltes Auto – zwischen beidem liegen Produktionskapazität und die Zeit bis zur Übergabe. Wie viele der 30.000 Bestellungen bereits ausgeliefert wurden, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preisstufen, ein Konzernurteil',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Basisversion kostet knapp unter 25.000 Euro, besser ausgestattete Varianten deutlich über 30.000 Euro. VW-Markenchef Thomas Schäfer wertet die Nachfrage laut finanzen.net als Zeichen, dass die Fahrzeugfamilie „die Erwartungen vieler Kundinnen und Kunden“ treffe – eine Einschätzung des Unternehmens selbst, keine unabhängig geprüfte Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein hoher Auftragseingang ist ein Nachfragesignal, kein Umsatz. Ob daraus tatsächlich Umsatz und Marge werden, entscheidet sich erst an der Auslieferung – und die hängt an einer Produktion, die laut eigener Aussage noch hochgefahren wird.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-roadster-fuenfter-termin-2026',
+    title: 'Tesla nennt für den Roadster bereits den fünften Termin',
+    teaser:
+      'Tesla will den Roadster nun am 1. Oktober zeigen – laut Berichten der fünfte genannte Termin allein in diesem Jahr, seit 2017 mindestens der achte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Roadster', 'Produktankündigung'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Tesla-Aktie im Fokus: Nach langer Wartezeit endlich neuer Roadster-Termin angekündigt“',
+        url: 'https://www.finanzen.net/nachricht/aktien/roadster-termin-fixiert-tesla-aktie-im-fokus-nach-langer-wartezeit-endlich-neuer-roadster-termin-angekuendigt-00-15931635',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Tesla hat für den seit Jahren verschobenen Roadster einen neuen Termin genannt: den 1. Oktober 2026. Auf der Produktseite läuft dazu ein Countdown, und Elon Musk bestätigte die Enthüllung über einen kurzen Beitrag mit den Worten „New Tesla Roadster Unveil 10.01“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht der erste Termin – und nicht der zweite',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net ist der 1. Oktober bereits das fünfte Datum, das Tesla allein in diesem Jahr für die Roadster-Enthüllung genannt hat – nach dem 1. April, Ende April, „in etwa einem Monat“ und August. Seit der ersten Ankündigung des Modells 2017 sei der Termin insgesamt mindestens acht Mal verschoben worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Enthüllung ist kein Verkaufsstart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu Preis oder Serienstart des Fahrzeugs macht die Meldung keine Angabe – angekündigt ist ausschließlich ein Termin, an dem das Auto gezeigt werden soll. Ob dieser Termin diesmal hält, lässt sich aus der Ankündigung selbst nicht ablesen; das lehrt vor allem die Liste der vorherigen Termine.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine wiederholt verschobene Ankündigung ist etwas anderes als eine bestätigte Zahl zu Produktion oder Umsatz. Wer aus einem neuen Datum bereits ein Ergebnis ableitet, überspringt genau den Schritt, an dem die vorherigen vier Termine dieses Jahres gescheitert sind.',
+      },
+    ],
+  },
+  {
+    slug: 'audi-formel-1-team-anteile-interesse',
+    title: 'Audi-Chef: Großes Interesse an Anteilen des F1-Teams',
+    teaser:
+      'Audi-Chef Döllner spricht von großem Interesse an Anteilen des konzerneigenen Formel-1-Teams – verkaufen will er trotzdem nichts überstürzen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Audi', 'Formel 1', 'Beteiligung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Audi-Boss über das Interesse an Anteilen am Formel-1-Team“',
+        url: 'https://www.finanzen.net/nachricht/aktien/audi-boss-ueber-das-interesse-an-anteilen-am-formel-1-team-15931668',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Audi-Chef Gernot Döllner hat sich laut finanzen.net zum Interesse an Anteilen des konzerneigenen Formel-1-Teams geäußert: „Das Interesse ist sehr groß, das kann ich sagen.“ Verkaufen will er deshalb noch lange nichts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Großes Interesse heißt nicht: Anteile stehen zum Verkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Döllner betonte, es bestehe „im Moment keine Notwendigkeit“, überhastet zu handeln. Ein zusätzlicher Anteilseigner würde einem „sehr, sehr strukturierten Verfahren“ unterliegen, und eine Minderheitsposition für Audi selbst sei „unvorstellbar“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was schon feststeht – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Audi hatte den Schweizer Traditionsrennstall Sauber übernommen und ist heute Mehrheitseigner des Teams; ein katarischer Staatsfonds hält bereits eine nach eigenen Angaben „bedeutende Minderheitsbeteiligung“. Eine genaue Prozentzahl dazu nennt die Meldung nicht – ebenso wenig einen Preis oder eine Bewertung für das Team.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Damit bleibt offen, wie groß ein möglicher weiterer Anteil überhaupt wäre und was er kosten würde. Die Aussage beschreibt Nachfrage, nicht einen Preis – und Nachfrage allein ist keine Bewertung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Großes Interesse“ ist eine Aussage über Nachfrage, keine über den Wert eines Anteils. Erst ein tatsächliches Angebot mit einem Preis würde zeigen, wie hoch dieser Wert aus Sicht eines Käufers wirklich liegt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-haelt-marke-vor-fed-entscheidung',
+    title: 'Gold hält seine Marke, bevor die Fed über die Zinsen entscheidet',
+    teaser:
+      'Der Goldpreis schloss die Woche an einer wichtigen Unterstützung. Spekulanten bauten ihre Wetten aus – kurz bevor die Fed am Mittwoch entscheidet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Fed', 'Zinsen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, CoT-Daten Gold, Meldung vom 12.09.2026: „Der Goldpreis schloss die Woche an der wichtigen Unterstützung von 4.350 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 12.09.2026: „Goldpreis: Beendet die Fed am Mittwoch die Goldrallye mit einem Paukenschlag?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis hat die vergangene Handelswoche an einer Marke beendet, die Chartbeobachter genau im Blick haben: 4.350 US-Dollar je Feinunze. Das meldet Goldreporter unter Berufung auf die aktuellen CoT-Daten – die wöchentliche Statistik darüber, wie Terminmarkt-Händler positioniert sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig dabei: Große Spekulanten haben ihre Netto-Long-Positionen laut dieser Auswertung wieder ausgebaut, setzen also verstärkt auf weiter steigende Kurse. Die Quelle selbst nennt keine Begründung dafür – nur die Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet der Mittwoch zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Überschrift bei wallstreet-online bringt den Grund für die Nervosität auf den Punkt, ohne selbst eine Antwort zu liefern: „Beendet die Fed am Mittwoch die Goldrallye mit einem Paukenschlag?“ Vom Stichtag aus gerechnet ist das der 16. September – die US-Notenbank tagt an diesem Mittwoch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch hier bleibt die Quelle bei der Frage stehen, ohne sie zu beantworten. Was die Fed tatsächlich beschließt und wie sie es begründet, lässt sich vorab nicht aus einer Ticker-Überschrift ablesen – so plausibel die Frage auch klingt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine eingepreiste Erwartung ist keine Garantie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Spekulanten schon vor einer Zinsentscheidung auf steigende Kurse setzen, heißt nicht, dass der Markt die Entscheidung schon kennt. Es bedeutet nur, dass ein Teil der Erwartung – etwa eine Zinspause – bereits im aktuellen Kurs von rund 4.348 Dollar steckt, wie ihn die Kursleiste von finanzen.net am Sonntagmorgen zeigte. Weicht die Fed davon ab, kann sich das stärker im Kurs zeigen als die reine Entscheidung selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Unterstützungsmarke und aufgebaute Long-Positionen beschreiben eine Momentaufnahme der Positionierung, keine Prognose. Ob die Marke von 4.350 Dollar hält, entscheidet sich erst an dem Termin, auf den beide Meldungen ohne weitere Erklärung verweisen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wochenminus-wien-rekordhoch',
+    title: 'DAX erholt sich am Freitag, doch die Woche bleibt rot',
+    teaser:
+      'Der DAX stabilisierte sich zum Wochenschluss, verbuchte aber auf Wochensicht ein Minus. Die Wiener Börse schaffte im selben Umfeld ein Rekordhoch.',
+    category: 'Märkte',
+    publishedAt: '2026-09-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'ATX', 'Ölpreis', 'Wochenrückblick'],
+    relatedTopics: ['aktien-laender-branchen', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, Index-Analysen, Meldung vom 11.09.2026, 15:54 Uhr: „Aktien Frankfurt Schluss: Dax stabilisiert sich - Auf Wochensicht im Minus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, Index-Analysen, Meldung vom 11.09.2026, 16:23 Uhr: „Aktien Wien Schluss: ATX trotzt hohen Ölpreisen mit Rekordhoch“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender, Kommende Termine, Stand 13.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei dpa-AFX-Meldungen vom Freitagnachmittag beschreiben denselben Handelstag mit demselben Wort: Der DAX „stabilisiert sich“. Auf Wochensicht blieb trotzdem ein Minus stehen, wie die Agentur ausdrücklich festhält – die Erholung am Freitag reichte nicht, um die Verluste der Woche auszugleichen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Sonntagmorgen zeigte die Kursleiste von finanzen.net den DAX bei 25.569 Punkten mit einem Tagesplus von 0,8 Prozent, wallstreet-online nannte 25.544,39 Punkte und ein Plus von 0,86 Prozent – zwei Portale, ein Index, zwei leicht unterschiedliche Zahlen für denselben Schlussstand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wien schlägt eine andere Richtung ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ganz anders die Wiener Börse: „ATX trotzt hohen Ölpreisen mit Rekordhoch“, meldete dpa-AFX zur selben Handelsschluss-Runde am Freitag. Ein hoher Ölpreis gilt sonst eher als Belastung für Aktienmärkte – in Wien war er an diesem Tag offenbar kein Hindernis für einen neuen Höchststand. Warum genau, sagt die Meldung nicht; sie hält nur das Ergebnis fest.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die neue Woche startet mit Notenbank-Reden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für Montag, den 14. September, gleich zwei Auftritte aus dem EZB-Direktorium: Isabel Schnabel und Piero Cipollone sind als Redner eingetragen, eine Uhrzeit dazu nennt der Kalender nicht. Dazu kommen japanische Industrieproduktionsdaten sowie Verbraucherpreise aus Finnland und Kanada.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Derselbe Ölpreis, dieselbe Woche, zwei entgegengesetzte Ergebnisse an zwei Börsen – das zeigt, dass ein makroökonomischer Faktor wie der Ölpreis nicht überall gleich wirkt. Wie stark ein Index auf ihn reagiert, hängt auch davon ab, welche Unternehmen in ihm stecken, nicht nur davon, was am Ölmarkt passiert.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-chefs-bremse-nasdaq-rekordnaehe',
+    title: 'Zwei KI-Chefs treten auf die Bremse – der Nasdaq bleibt nah am Rekord',
+    metaTitle: 'KI-Chefs bremsen, Nasdaq bleibt nah am Rekord',
+    teaser:
+      'OpenAI verschiebt den Börsengang, Anthropics Chef wirbt für langsamere Entwicklung. Der Nasdaq zeigte sich davon am selben Tag unbeeindruckt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['KI-Aktien', 'Nasdaq', 'OpenAI', 'Anthropic'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, Aktuelle News, Meldung vom 12.09.2026, 20:21 Uhr: „OpenAI-Chef: Börsengang nicht mehr in diesem Jahr“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, Aktuelle News, Meldung vom 12.09.2026, 17:24 Uhr: „Chef von KI-Firma Anthropic für verlangsamte Entwicklung“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Innerhalb weniger Stunden meldete dpa-AFX am Samstag zwei Sätze, die beide nach Zurückhaltung klingen: Um 17:24 Uhr, dass der Chef der KI-Firma Anthropic sich für eine „verlangsamte Entwicklung“ ausspricht. Um 20:21 Uhr, dass der Chef von OpenAI einen Börsengang in diesem Jahr ausschließt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Male bleibt es bei der reinen Aussage. Warum Anthropics Chef zu mehr Tempo-Zurückhaltung rät und was OpenAI dazu bewogen hat, den Börsengang zu verschieben, geht aus den beiden Ticker-Zeilen nicht hervor – das sagen die Quellen selbst nicht, also steht es hier auch nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Nasdaq sieht davon wenig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von dieser Zurückhaltung an der Spitze zeigte sich der breite Technologiemarkt unbeeindruckt: Die Kursleiste von finanzen.net wies den Nasdaq am Sonntagmorgen mit 26.333 Punkten und einem Tagesplus von 1,0 Prozent aus – nahe an seinen jüngsten Höchstständen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei verschiedene Arten von Bremse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die beiden Meldungen lassen sich leicht zu einer einzigen „KI-Sorge“ zusammenfassen – dabei beschreiben sie zwei unterschiedliche Dinge. Ein verschobener Börsengang ist eine Entscheidung über den Zeitpunkt, zu dem außenstehende Anleger überhaupt erst Anteile kaufen könnten. Eine Forderung nach langsamerer Entwicklung ist eine Aussage zum Tempo der Arbeit selbst, unabhängig davon, ob das Unternehmen börsennotiert ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Weder Anthropic noch OpenAI sind an der Börse handelbar – wer auf die KI-Erzählung setzen will, kauft heute zwangsläufig andere, bereits gelistete Werte. Ob Aussagen wie diese die Stimmung rund um solche Werte auf Dauer dämpfen, lässt sich an einem einzelnen Wochenende nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'hapag-lloyd-zim-uebernahme-trotz-veto',
+    title: 'Hapag-Lloyd hält trotz israelischem Veto an ZIM-Übernahme fest',
+    teaser:
+      'Ein Veto aus Israel hat Hapag-Lloyds Vorhaben, den Konkurrenten ZIM zu übernehmen, nicht gestoppt. Das Unternehmen verfolgt den Plan weiter.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Hapag-Lloyd', 'Übernahme', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 12.09.2026: „Hapag-Lloyd-Aktie: Trotz israelischem Veto wird weiterhin ZIM-Übernahme angestrebt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine einzelne Ticker-Zeile von finanzen.net hält einen bemerkenswerten Vorgang fest: Die Reederei Hapag-Lloyd will die Übernahme des israelischen Konkurrenten ZIM weiter vorantreiben – obwohl es dagegen ein Veto aus Israel gibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehr gibt die Meldung nicht her. Weder die Begründung für das Veto noch die finanziellen Eckdaten der geplanten Übernahme gehen aus der vorliegenden Quelle hervor. Beides wäre an dieser Stelle Spekulation – deshalb bleibt es offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Staat bei einer Übernahme mitreden kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig vom konkreten Fall gilt allgemein: Viele Staaten behalten sich bei Übernahmen in als strategisch eingestuften Branchen ein Mitspracherecht vor – Reedereien und Häfen gehören dazu, weil über sie ein großer Teil des Warenverkehrs läuft. Ein solches Veto kann eine Übernahme verzögern oder ganz verhindern, selbst wenn sich Käufer und Verkäufer längst einig sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Risiko außerhalb der Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger zeigt der Fall eine Risikokategorie, die sich nicht aus Umsatz- oder Gewinnzahlen ablesen lässt: das politische oder regulatorische Risiko. Ein Übernahmeplan kann betriebswirtschaftlich noch so sinnvoll sein – scheitert er an einer staatlichen Entscheidung, zählt am Ende trotzdem nur das Ergebnis.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein Unternehmen an einem Vorhaben festhält, ist keine Garantie dafür, dass es am Ende auch zustande kommt. Ob das Veto Bestand hat oder überwunden wird, entscheidet sich an anderer Stelle als am Verhandlungstisch der beiden Reedereien.',
+      },
+    ],
+  },
+  {
+    slug: 'schweden-ruestungsauftrag-rheinmetall-leer-aus',
+    title: 'Schweden vergibt Rüstungsauftrag – Rheinmetall geht leer aus',
+    teaser:
+      'Schweden hat einen großen Rüstungsauftrag vergeben – profitiert hat laut Bericht Lockheed Martin. Rheinmetall bleibt zugleich unter Beobachtung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Lockheed Martin', 'Rüstungsaktien', 'Auftrag'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'lockheed'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Gefragte Nachrichten, Meldung vom 10.09.2026: „Rheinmetall geht leer aus: Schweden vergibt gewaltigen Rüstungsauftrag – dieses Unternehmen profitiert!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Markt Bote über wallstreet-online, Neueste Marktberichte, Meldung vom 12.09.2026: „Rheinmetall unter Druck: Diese Risiken treiben Anleger um“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rüstungsbranche gilt seit Jahren als eine der verlässlichsten Wachstumsgeschichten an der Börse – umso mehr fällt eine Meldung von wallstreetONLINE auf: Schweden hat einen „gewaltigen Rüstungsauftrag“ vergeben, doch Rheinmetall geht dabei nach diesem Bericht leer aus. Profitieren soll stattdessen Lockheed Martin.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Volumen der Auftrag hat und um welches Produkt es konkret geht, nennt die ausgewertete Überschrift nicht. Auch das bleibt deshalb an dieser Stelle offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Boom hebt nicht jede Aktie gleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu berichtete Markt Bote am Freitag unter der Überschrift „Rheinmetall unter Druck: Diese Risiken treiben Anleger um“ – ohne die angekündigten Risiken im verfügbaren Text tatsächlich zu benennen. Eine Überschrift, die eine Erklärung verspricht, liefert sie damit nicht automatisch mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sektor-Story gegen Einzeltitel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Meldungen zusammen zeigen einen Unterschied, der in der Berichterstattung über „die Rüstungsbranche“ oft verschwimmt: Dass ein Sektor insgesamt von höheren Verteidigungsausgaben profitiert, heißt nicht, dass jedes einzelne Unternehmen darin jeden einzelnen Auftrag gewinnt. Wer in einen Trend investiert, investiert damit nicht automatisch in jeden Gewinner dieses Trends.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein verlorener Auftrag und eine unbelegte Risiko-Überschrift sind zwei verschiedene Dinge – das eine ein Fakt ohne Zahl, das andere eine Überschrift ohne Fakt. Beide verdienen es, auseinandergehalten zu werden, bevor man sie zu einem Gesamturteil über die Aktie verdichtet.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-trotz-pipeline-abschaltung',
+    title: 'Saudi-Arabien schaltet eine Pipeline ab – der Ölpreis fällt trotzdem',
+    metaTitle: 'Pipeline-Abschaltung in Saudi-Arabien: Ölpreis fällt trotzdem',
+    teaser:
+      'Nach Angriffen legt Saudi-Arabien eine Pipeline still. Der Ölpreis fiel trotzdem, und zwei Kursleisten nennen für denselben Preis unterschiedliche Prozente.',
+    category: 'Märkte',
+    publishedAt: '2026-09-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Rohstoffe', 'Saudi-Arabien', 'Marktdaten'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label: 'wallstreet-online, Rohstoffnachrichten vom 11.09.2026, dpa-AFX-Meldung',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste vom 12.09.2026, 06:45 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien hat nach Angriffen eine wichtige Pipeline abgeschaltet, meldete die Nachrichtenagentur dpa-AFX am Freitag. Wer daraufhin einen steigenden Ölpreis erwartet hätte, läge falsch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Samstagmorgen zeigte die Kursleiste von finanzen.net den Ölpreis bei 104,6 Dollar je Barrel – ein Minus von 2,8 Prozent. Wallstreet-online notierte zur selben Minute 104,50 Dollar für Brentöl, allerdings mit einem Minus von 4,06 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Portale meinen fast denselben Preis – die Differenz liegt bei zehn Cent. Trotzdem weicht die Prozentangabe um mehr als einen Punkt voneinander ab. Der Grund liegt selten im aktuellen Kurs selbst, sondern im Bezugspunkt: Je nachdem, welchen Vortageswert ein Anbieter ansetzt und wie aktuell dieser ist, fällt dieselbe Bewegung unterschiedlich groß aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Für Leser heißt das:** Eine Prozentzahl allein ist kein verlässliches Signal. Wer einen Kurs einordnen will, schaut auf den absoluten Wert – und im Zweifel auf mehr als eine Quelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum der Ölpreis trotz der abgeschalteten Pipeline fiel, sagt die Meldung nicht. Das bleibt an dieser Stelle offen, denn die Quelle nennt dazu keinen Grund.',
+      },
+    ],
+  },
+  {
+    slug: 'us-inflation-bleibt-hoch-maerkte-atmen-auf',
+    title: 'Die US-Inflation blieb hoch – die Märkte atmeten trotzdem auf',
+    teaser:
+      'Die US-Inflationsrate blieb im August stabil. Die niedrigere Kernrate sorgte für Erleichterung, und ein fallender Ölpreis half Aktien und Gold zusätzlich.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'USA', 'Gold', 'Wall Street'],
+    relatedTopics: ['inflation'],
+    relatedSymbols: ['gold', 'dow-jones'],
+    sources: [
+      {
+        label: 'Goldreporter, Meldung vom 11.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'onvista, dpa-AFX-Meldung vom 11.09.2026, 20:26 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Inflationsrate blieb im August stabil, meldete Goldreporter am Freitag. Trotzdem war an den Märkten von Enttäuschung nichts zu spüren – im Gegenteil.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor allem die niedrigere Kernrate, die schwankungsanfällige Posten wie Energie und Lebensmittel herausrechnet, sorgte laut Goldreporter für Erleichterung und stützte den Goldpreis.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, eine Schlagzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist die Pointe an Inflationsdaten: Die Gesamtrate und die Kernrate können unterschiedliche Signale senden. Bleibt die Gesamtrate hoch, weil zum Beispiel Energiepreise durchschlagen, die Kernrate aber verhält sich ruhiger, lesen Marktteilnehmer oft die zweite Zahl als die aussagekräftigere – weil sie eher zeigt, wohin sich die Inflation ohne Sondereffekte entwickelt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kam laut dpa-AFX-Meldung von onvista noch ein zweiter Effekt hinzu: Ein nachgebender Ölpreis half den Indizes zusätzlich, obwohl die Inflation insgesamt hoch blieb. Dow Jones, S&P 500 und Nasdaq schlossen den Handelstag im Plus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold bleibt über 4.300 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Samstagmorgen notierte Gold laut finanzen.net und wallstreet-online übereinstimmend bei rund 4.348 Dollar je Feinunze – ein Niveau, das die Erleichterung vom Vortag hielt.',
+      },
+    ],
+  },
+  {
+    slug: 'us-hypothekenzinsen-ueber-sieben-prozent',
+    title: 'US-Hypothekenzinsen springen über sieben Prozent',
+    teaser:
+      'Käufer werden aus dem US-Immobilienmarkt gedrängt: Die Hypothekenzinsen liegen wieder über sieben Prozent, und Bau- sowie Bankaktien geraten unter Druck.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Immobilien', 'USA', 'Anleihen', 'Zinsen'],
+    relatedTopics: ['immobilien', 'staatsanleihe'],
+    relatedSymbols: ['dr-horton', 'lennar', 'wells-fargo'],
+    sources: [
+      {
+        label: 'wallstreet-online, Private Finanzen, Meldung vom 11.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer sich in den USA gerade ein Haus kaufen will, zahlt wieder deutlich mehr dafür: Die Hypothekenzinsen sind über die Marke von sieben Prozent gestiegen, meldete wallstreet-online am Freitag. Käufer werden dadurch aus dem Markt gedrängt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung nennt konkrete Betroffene: Die Baukonzerne D.R. Horton und Lennar sowie die Banken Wells Fargo und Bank of America gerieten unter Druck – zusammen mit Immobilienaktien insgesamt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Anleihen und Hypotheken zusammenhängen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hypothekenzinsen orientieren sich in den USA typischerweise an der Rendite langlaufender Staatsanleihen, nicht am Leitzins der Notenbank direkt. Steigt die Rendite dieser Anleihen, ziehen Hypothekenzinsen meist nach – mit einigem zeitlichen Abstand, aber spürbar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das beschreibt eine zweite Meldung derselben Quelle vom selben Tag: Ein hoher Ölpreis treibe die Staatsanleihen vor sich her, fragt wallstreet-online, ob sich damit eine Stagflation ankündigt – also eine Mischung aus schwachem Wachstum und hartnäckiger Inflation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Frage, keine Antwort',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Quelle formuliert die Stagflationssorge selbst als Frage, nicht als Feststellung. Belastbare Zahlen zum Ausmaß nennt sie nicht, und auch dieser Artikel bleibt deshalb bei der Frage stehen, statt sie zu beantworten.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-leistungsbilanz-rentenmarkt-juli',
+    title: 'Deutschlands Leistungsbilanzüberschuss wuchs im Juli',
+    teaser:
+      'Die Bundesbank meldet für Juli einen höheren Leistungsbilanzüberschuss und mehr Emissionen am Rentenmarkt – eine Zahl davon bleibt allerdings unvollständig.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesbank', 'Leistungsbilanz', 'Rentenmarkt', 'Deutschland'],
+    relatedTopics: ['staatsanleihe', 'schuldverschreibung'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'Deutsche Bundesbank, Pressemitteilung vom 11.09.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschland hat im Juli mehr im Außenhandel verdient als im Vormonat: Die Leistungsbilanz verzeichnete laut Bundesbank einen Überschuss von 21,2 Milliarden Euro – 2,3 Milliarden Euro mehr als im Juni.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ausschlaggebend war laut Bundesbank ein höherer Überschuss im Warenhandel. Dagegen verminderte sich das Plus bei den „unsichtbaren" Leistungstransaktionen, zu denen neben Dienstleistungen auch Primär- und Sekundäreinkommen zählen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Rentenmarkt legte zu',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag veröffentlichte die Bundesbank eine zweite Meldung, betitelt „Hoher Nettoabsatz am deutschen Rentenmarkt im Juli 2026". Konkret beziffert wird darin allerdings nur der Bruttoabsatz: Er lag im Juli bei 144,2 Milliarden Euro und damit über dem Vormonatswert von 135,9 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brutto ist nicht Netto',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Bruttoabsatz zählt alle neu ausgegebenen Anleihen und Schuldverschreibungen eines Zeitraums. Der Nettoabsatz zieht davon ab, was in derselben Zeit an Papieren fällig wurde und zurückgezahlt wurde – erst er zeigt, ob der Umlauf tatsächlich wächst oder nur ersetzt wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Die konkrete Nettozahl für Juli nennt der ausgewertete Quellenauszug nicht.** Wer die Überschrift der Bundesbank-Meldung wörtlich nimmt, sollte sich bewusst sein, dass die belegte Zahl in dieser Auswertung nur die Bruttoseite betrifft.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbanken-kaufen-gold-norwegen-verkauft-anleihen',
+    title:
+      'Polen und die Brics-Staaten kaufen Gold – Norwegen will Dollar-Anleihen loswerden',
+    metaTitle: 'Notenbanken kaufen Gold, Norwegen verkauft Dollar-Anleihen',
+    teaser:
+      'Polens Notenbank baut ihre Goldreserven weiter aus, auch China und andere Brics-Staaten kaufen zu. Norwegens Staatsfonds will dagegen US-Anleihen abstoßen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Notenbanken', 'Staatsanleihen', 'Reserven'],
+    relatedTopics: ['rohstoffe', 'staatsanleihe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 11.09.2026, wallstreetONLINE Redaktion',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'Goldreporter, Top-News, Stand 12.09.2026, 04:45 Uhr',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Polens Notenbank kauft weiter Gold: Sie peile inzwischen 700 Tonnen in ihren Reserven an, meldete Goldreporter auf seiner Startseite. Auch China und andere Brics-Staaten stockten ihre Goldbestände zuletzt massiv auf, berichtete wallstreet-online am Freitag unter Berufung auf eigene Recherche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der anderen Seite der Bilanz steht eine Meldung, die zur selben Zeit auf Goldreporter zu lesen war: Norwegens Staatsfonds wolle US-Anleihen im Wert von fast 80 Milliarden Dollar verkaufen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Wege, Reserven zu halten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Bewegungen betreffen dieselbe Grundfrage: Wie verteilt ein staatlicher Akteur seine Reserven zwischen Gold und verzinsten Dollar-Anleihen? Gold zahlt keine Zinsen, gilt aber als unabhängig von der Kreditwürdigkeit eines einzelnen Schuldners. Staatsanleihen werfen Zinsen ab, hängen aber am Vertrauen in den Aussteller und an dessen Währung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Notenbanken wie die polnische seit Jahren Gold zukaufen, während ein Staatsfonds wie der norwegische zeitgleich einen großen Anleihenposten verkleinern will, zeigt vor allem, dass es hier keine einheitliche Antwort gibt – unterschiedliche Institutionen mit unterschiedlichen Aufgaben treffen unterschiedliche Entscheidungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der neuen Woche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Wochenausklang lohnt ein Blick voraus: Am Montag, den 14. September, spricht laut Wirtschaftskalender von wallstreet-online EZB-Direktoriumsmitglied Isabel Schnabel – eine Uhrzeit nennt der Kalender dafür nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'oracle-cloud-boom-adobe-bremst-erwartungen',
+    title: 'Oracle wächst im KI-Boom, Adobe bremst die eigene Prognose',
+    teaser:
+      'Oracle steigert den Quartalsumsatz um rund 30 Prozent, während Adobe kurz danach eine vorsichtigere Umsatzprognose für das Schlussquartal vorlegt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Oracle', 'Adobe', 'Cloud', 'Künstliche Intelligenz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['oracle', 'adobe'],
+    sources: [
+      {
+        label:
+          'Oracle Investor Relations, Pressemitteilung zum 1. Quartal des Geschäftsjahrs 2027, 10.09.2026',
+        url: 'https://www.prnewswire.com/news-releases/oracle-announces-q1-results-driven-by-triple-digit-growth-in-cloud-infrastructure-revenues-302875728.html',
+      },
+      {
+        label:
+          'finanzen.net, dpa-AFX-Meldung vom 10.09.2026, 21:09 Uhr: „Softwarehersteller Adobe mit vorsichtigem Umsatzausblick"',
+        url: 'https://www.finanzen.net/nachricht/aktien/softwarehersteller-adobe-mit-vorsichtigem-umsatzausblick-15928707',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Oracle hat im ersten Quartal seines Geschäftsjahrs 2027 einen Umsatz von 19,3 Milliarden Dollar gemeldet – ein Plus von rund 30 Prozent zum Vorjahresquartal. Getrieben hat das vor allem eine Sparte: die Cloud-Infrastruktur.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Sparte, in der Oracle Rechenleistung für Kundenprojekte rund um Künstliche Intelligenz vermietet, wuchs um 121 Prozent auf 7,4 Milliarden Dollar. Der Auftragsbestand – Verträge, deren Umsatz erst in den kommenden Jahren verbucht wird – stieg um 209 Milliarden auf 664 Milliarden Dollar, mehr als 30 Milliarden davon allein aus neuen KI-Cloud-Verträgen des Quartals.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die Prognose zählt, nicht die Vergangenheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Adobe legte tags darauf eigene Zahlen vor – und die fielen für das abgelaufene Quartal ebenfalls stark aus: Der Umsatz wuchs um 13 Prozent auf 6,76 Milliarden Dollar, der bereinigte Gewinn je Aktie lag mit 6,13 Dollar über der Analystenschätzung von 6,08 Dollar. An der Börse zählte trotzdem etwas anderes.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das laufende, am 30. November endende Quartal stellte Adobe einen Umsatz von 6,80 bis 6,85 Milliarden Dollar in Aussicht – der Mittelwert dieser Spanne liegt unter der durchschnittlichen Analystenschätzung von 6,85 Milliarden Dollar. Die Aktie gab im nachbörslichen Handel um weniger als ein Prozent nach und blieb damit auf einem Jahresverlust von rund 29 Prozent sitzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Firmen, ein Streitpunkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was beide Werte verbindet, ist ausgerechnet das Thema, das bei Oracle für Rückenwind sorgt: Künstliche Intelligenz. Während Oracle als Vermieter von Rechenleistung von jedem neuen KI-Modell profitiert, das irgendwo trainiert werden muss, sehen Beobachter bei Adobe eine andere Seite derselben Entwicklung – dass generative KI-Werkzeuge die Erstellung von Bildern und Videos vereinfachen und damit an Adobes klassischem Software-Geschäft rütteln könnten. Ob das die tatsächliche Ursache für die vorsichtige Prognose ist, geht aus der Mitteilung selbst nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Guidance ist eine Prognose des eigenen Managements, keine Tatsache – und der Markt gewichtet sie oft stärker als die tatsächlich erzielten Zahlen desselben Quartals. Wer nur auf die Ist-Werte schaut, hätte bei Adobe ein rundum solides Quartal gesehen. Wer auf die Prognose schaut, sieht ein Unternehmen, dem die eigene Führung selbst nicht zutraut, das laufende Tempo zu halten.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-erhoeht-leitzins-auf-25-prozent',
+    title: 'EZB erhöht den Leitzins auf 2,5 Prozent – heute folgt die US-Inflation',
+    metaTitle: 'EZB erhöht Leitzins auf 2,5 Prozent',
+    teaser:
+      'Die EZB hebt die Leitzinsen erneut an, der DAX fällt auf ein Sechs-Wochen-Tief, und heute Nachmittag folgen die US-Verbraucherpreise als nächster Test.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-11T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['EZB', 'Leitzins', 'Inflation', 'US-Verbraucherpreise', 'DAX'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label: 'Handelsblatt, Bericht zur EZB-Zinsentscheidung vom 10.09.2026',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-zinsentscheid-leitzins-im-euro-raum-steigt-auf-25-prozent/100252594.html',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.09.2026: „EZB erhöht die Zinsen: DAX bricht 25.500 – Nasdaq vor 29.000!"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Abruf 11.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'Board of Governors of the Federal Reserve System, FOMC-Sitzungskalender',
+        url: 'https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank hat am Donnerstag ihren Hauptrefinanzierungssatz um einen viertel Prozentpunkt auf 2,5 Prozent angehoben – die zweite Erhöhung in diesem Jahr. EZB-Präsidentin Christine Lagarde begründete den Schritt damit, dass die Inflation „hartnäckiger als angenommen“ sei und die Risiken für die Preisentwicklung nach oben zeigten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX reagierte mit einem deutlichen Rückgang: Der Index fiel unter die Marke von 25.500 Punkten, mehrere Ticker-Meldungen sprachen von einem Sechs-Wochen-Tief. Auch am Anleihemarkt ging es abwärts – die Kurse fielen, die Renditen stiegen entsprechend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein höherer Ölpreis mitspielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zeitgleich verteuerte sich Rohöl der Sorte Brent auf rund 108 US-Dollar je Barrel und damit auf den höchsten Stand seit Wochen – ein zweiter Faktor, der laut mehreren Meldungen zu den Inflationssorgen beitrug, die den Aktienmarkt belasteten. Warum der Ölpreis gerade jetzt anzieht, benennen die Ticker-Zeilen nicht; sie melden nur die Bewegung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Termin des Tages: 14:30 Uhr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute um 14:30 Uhr veröffentlicht die US-Statistikbehörde die Verbraucherpreise für August. Der Wirtschaftskalender nennt eine Prognose von 3,4 Prozent zum Vorjahr – genau der Wert, der bereits im Juli gemessen wurde. Bei der Kernrate ohne Lebensmittel und Energie liegt die Prognose für den Monatsvergleich bei 0,2 Prozent, ebenfalls unverändert zum Vormonat. Es ist die letzte Verbraucherpreiszahl vor der nächsten Sitzung der US-Notenbank am 15. und 16. September.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 8 Uhr stehen zudem Konjunkturdaten an, die laut Kalender von der britischen Statistikbehörde ONS stammen dürften – unter anderem zur Industrieproduktion und zum verarbeitenden Gewerbe, jeweils für den Vormonat. Der Kalender nennt hier eine Prognose von minus 0,2 Prozent bei der Industrieproduktion.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zinserhöhung und eine anstehende Inflationszahl hängen trotzdem an verschiedenen Fäden – die EZB entscheidet für den Euroraum, die US-Daten wirken vor allem auf die Erwartungen an die Fed. Wer beide Ereignisse nur als eine gemeinsame „Zinssorge“ zusammenfasst, verwischt, dass es sich um zwei unabhängige Notenbanken mit unterschiedlichen Zeitplänen handelt, die zufällig in dieselbe Woche fallen.',
+      },
+    ],
+  },
+  {
+    slug: 'adidas-rekordumsatz-schrumpfende-marge',
+    title: 'adidas meldet Rekordumsatz – und trotzdem sinkt die Marge',
+    teaser:
+      'adidas verbucht den höchsten Quartalsumsatz der Firmengeschichte, doch die operative Marge schrumpft – die Aktie fällt trotzdem deutlich.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['adidas', 'Marge', 'Umsatz', 'DAX'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['adidas'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Bericht vom 10.09.2026: „adidas-Aktie unter den schwächsten DAX-Werten: Das steckt hinter dem Kursrückgang"',
+        url: 'https://www.finanzen.net/nachricht/aktien/margendruck-adidas-aktie-unter-den-schwaechsten-dax-werten-das-steckt-hinter-dem-kursrueckgang-00-15927426',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'adidas hat im jüngsten Quartal so viel umgesetzt wie nie zuvor in der Firmengeschichte: 6,74 Milliarden Euro. Trotzdem gehörte die Aktie am Mittwoch zu den schwächsten Werten im DAX und schloss 2,56 Prozent leichter bei 142,70 Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Umsatz stimmt, die Marge nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund liegt nicht in der obersten Zeile der Bilanz, sondern in einer darunter: Die operative Marge fiel von 9,2 auf 8,5 Prozent. Ein Unternehmen kann also mehr verkaufen und trotzdem einen kleineren Anteil davon als Gewinn behalten – etwa, wenn Rabatte, höhere Beschaffungskosten oder Währungseffekte den zusätzlichen Umsatz auffressen. Was in diesem Fall konkret hinter dem Rückgang steckt, benennt die Quelle nicht im Detail.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bank UBS hatte die Aktie bereits Anfang August von „Kaufen“ auf „Hold“ zurückgestuft und genau diese Anfälligkeit bei der Marge als Grund genannt – trotz eines zu dem Zeitpunkt stabilen Umsatzwachstums.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die ganze Branche steht unter Beobachtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verschärft wurde die Stimmung durch die Branche insgesamt: Der US-Konkurrent Lululemon hatte kurz zuvor einen Kurseinbruch von rund 18 Prozent erlitten, nachdem das Unternehmen ein schrumpfendes US-Geschäft und ein enttäuschendes China-Geschäft gemeldet hatte. Mehrere Analysten bezeichneten China seither als die zentrale Enttäuschung des Quartals für Sportartikelhersteller insgesamt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht alle Einschätzungen fielen negativ aus: RBC Capital Markets bestätigte trotz der Branchensorgen ein Kursziel von 200 Euro für adidas und verwies auf lokale Geschäftsaktivitäten und positive Modetrends, von denen das Unternehmen anders als einige Wettbewerber profitiere.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Umsatz und Marge erzählen zwei unterschiedliche Geschichten über dasselbe Quartal. Ein Rekordumsatz sagt, wie viel ein Unternehmen verkauft hat – die Marge sagt, wie viel davon am Ende hängen bleibt. Wer nur die erste Zahl liest, hätte den Kursrückgang bei adidas nicht erwartet.',
+      },
+    ],
+  },
+  {
+    slug: 'bayer-fda-zulassung-aktie-im-minus',
+    title:
+      'Bayer bekommt grünes Licht von der US-Arzneimittelbehörde – die Aktie fällt trotzdem',
+    metaTitle: 'Bayer: FDA-Zulassung, Aktie dennoch im Minus',
+    teaser:
+      'Die FDA erweitert die Zulassung von Bayers Krebsmittel Sevabertinib auf unbehandelte Patienten – am selben Tag rutscht die Bayer-Aktie trotzdem ins Minus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-11T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bayer', 'FDA', 'Pharma', 'Aktienkurs'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['bayer'],
+    sources: [
+      {
+        label: 'U.S. Food and Drug Administration, Zulassungsmitteilung vom 09.09.2026',
+        url: 'https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sevabertinib-locally-advanced-or-metastatic-non-squamous-non-small',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.09.2026: „Bayer-Aktie rot: FDA-Zulassung für Krebsmittel Sevabertinib erhalten"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Arzneimittelbehörde FDA hat am 9. September die Zulassung für Bayers Krebsmedikament Sevabertinib (Handelsname Hyrnuo) erweitert. Es darf jetzt auch bei Patienten eingesetzt werden, die noch keine andere Therapie erhalten haben – bislang war es nur für Patienten zugelassen, deren Krebs bereits mit anderen Mitteln behandelt worden war.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grundlage war eine Studie mit 69 zuvor unbehandelten Patienten mit einer bestimmten Genmutation (HER2) bei nicht-kleinzelligem Lungenkrebs. 75 Prozent von ihnen sprachen auf die Behandlung an, bei 38 Prozent hielt dieses Ansprechen mindestens ein Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und trotzdem: die Aktie im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer daraus eine steigende Bayer-Aktie erwartet hätte, hätte sich getäuscht: Laut Ticker-Meldung notierte die Aktie am Tag der Meldung im Minus. Eine Begründung dafür nennt die Quelle nicht – sie hält lediglich die gegenläufige Bewegung fest.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein naheliegender Erklärungsansatz liegt außerhalb der Meldung selbst: Am selben Tag erhöhte die EZB ihre Leitzinsen, und der DAX gab insgesamt nach – auch die Bayer-Aktie ist Teil dieses Index. Ob das der tatsächliche Grund war oder ob unternehmensspezifische Faktoren mitspielten, lässt sich aus den vorliegenden Quellen nicht sicher sagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zulassung ist nicht gleich Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine erweiterte Zulassung öffnet einem Medikament einen größeren Kreis möglicher Patienten – sie sagt aber noch nichts darüber, wie viele Ärzte es tatsächlich verschreiben, wie die Erstattung durch Krankenversicherungen ausfällt oder wie stark die Konkurrenz in genau diesem Marktsegment ist. Zwischen einer Zulassungsmeldung und einem spürbaren Umsatzbeitrag liegt für ein Unternehmen wie Bayer oft mehr als ein Quartal.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine positive Unternehmensmeldung und ein fallender Kurs schließen sich nicht aus – der Gesamtmarkt, die Branche oder ganz andere Nachrichten desselben Tages können stärker wiegen als eine einzelne gute Nachricht. Wer aus einer Kursbewegung automatisch auf die zugehörige Schlagzeile schließt, unterstellt einen Zusammenhang, den die Quellen an diesem Tag nicht hergeben.',
+      },
+    ],
+  },
+  {
+    slug: 'groesster-gold-etf-verliert-anleger-goldpreis-haelt',
+    title: 'Größter Gold-ETF verliert erstmals seit sieben Wochen Anleger',
+    teaser:
+      'Der größte Gold-ETF der Welt meldet erstmals seit sieben Wochen sinkende Bestände, während sich der Goldpreis über 4.350 Dollar je Feinunze hält.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-11T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'Edelmetalle', 'Kapitalflüsse'],
+    relatedTopics: ['etf', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 10.09.2026: „Größter Gold-ETF meldet erstmals seit sieben Wochen Abflüsse"',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der weltweit größte Gold-ETF hat laut Goldreporter innerhalb einer Woche 849 Millionen US-Dollar an Anlegergeld verloren – die erste Abflusswoche nach sieben Wochen ununterbrochenen Wachstums. Der Goldpreis selbst blieb davon zunächst unbeeindruckt und stabilisierte sich über der Marke von 4.350 Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, die nicht dasselbe messen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Preis eines Rohstoffs und die Bestände des größten ETF darauf sind zwei unterschiedliche Messgrößen. Der Preis bildet sich aus Angebot und Nachfrage über alle Handelsplätze und Anlageformen hinweg – physisches Gold, Terminkontrakte, Zentralbankkäufe, Schmuck und eben auch ETFs. Ein einzelner ETF kann deshalb Anteile verlieren, ohne dass der Preis mitzieht, solange andere Käufer die freiwerdenden Anteile aufnehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach mehreren Wochen mit Zuflüssen ist ein Rückgang außerdem noch keine Trendwende – die Quelle nennt für diese eine Woche 849 Millionen Dollar Abfluss, ordnet sie aber nicht in eine längere Entwicklung ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf den Markt drumherum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis bewegt sich seit Tagen in unmittelbarer Nähe der Marke von 4.400 Dollar. Am heutigen Morgen zeigten mehrere Kursleisten Gold bei rund 4.320 Dollar – Investoren gelten als sensibel dafür, wie sich die heutigen US-Inflationsdaten auf die weiteren Zinserwartungen auswirken könnten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Goldmarkt allein über die Mittelflüsse eines einzelnen ETF verfolgt, verwechselt leicht einen Ausschnitt mit dem Ganzen. Ein sinkender ETF-Bestand bei gleichzeitig stabilem Preis zeigt, dass sich Kapital innerhalb eines Marktes verschieben kann, ohne dass sich der Marktpreis in dieselbe Richtung bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-aktie-steigt-nach-erstem-falt-iphone',
+    title: 'Nach drei Verlusttagen: Apple-Aktie steigt nach dem ersten Falt-iPhone',
+    metaTitle: 'Apple-Aktie steigt nach dem ersten Falt-iPhone',
+    teaser:
+      'Nach drei Verlusttagen in Folge dreht die Apple-Aktie: Einen Tag nach der Vorstellung des ersten faltbaren iPhones legt der Kurs um mehr als 3 Prozent zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'iPhone', 'Produktankündigung', 'Aktienkurs'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'finanzen.net, dpa-AFX-Meldung vom 10.09.2026: „Apple-Aktie am Tag nach iPhone-Duo-Präsentation mit Kursplus"',
+        url: 'https://www.finanzen.net/nachricht/aktien/produktneuheit-apple-aktie-am-tag-nach-iphone-duo-praesentation-mit-kursplus-15928640',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Drei Handelstage in Folge war die Apple-Aktie gefallen. Am Donnerstag drehte der Kurs: Ein Tag nach der Vorstellung des ersten faltbaren iPhones stieg die Aktie um 3,56 Prozent und schloss bei 326,57 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ereignis, das schon lange erwartet wurde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Apple hatte das neue Modell – intern als iPhone Duo bezeichnet – bereits am Vortag im Rahmen einer großen Produktvorstellung gezeigt. Beobachter sprachen von einer der dichtesten Produktpaletten in der Firmengeschichte, gemeinsam mit weiteren neuen Modellen der bestehenden iPhone-Reihe.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Analyst Amit Daryanani von Evercore ISI äußerte sich nach eigenen Tests des Geräts positiv über die technische Umsetzung der Falttechnik und rechnete zugleich mit Lieferengpässen – ein Hinweis auf erwartete hohe Nachfrage, aus Sicht eines einzelnen Analysten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Reaktion erst am Folgetag kam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass der Kurssprung nicht während der Präsentation selbst, sondern erst am Tag danach zu sehen war, passt zu einem wiederkehrenden Muster bei Produktankündigungen: Ein Ereignis, das lange im Voraus angekündigt ist, bewegt den Kurs oft weniger im Moment der Vorstellung als in den Tagen danach, wenn erste Reaktionen von Analysten und Nutzern einlaufen und sich zu einem Bild verdichten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner guter Handelstag nach drei schwächeren macht aus einer Aktie noch keinen neuen Trend. Er zeigt aber, wie unmittelbar Anleger auf zusätzliche, über die reine Ankündigung hinausgehende Informationen reagieren können – in diesem Fall auf erste positive Praxis-Eindrücke eines Analysten.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-zinsentscheid-10-september-hoeherer-leitzins',
+    title: 'Die EZB entscheidet heute – und der Kalender zeigt nach oben',
+    metaTitle: 'EZB-Entscheidung heute: Kalender zeigt nach oben',
+    teaser:
+      'Um 14:15 Uhr verkündet die EZB ihre Zinsentscheidung. Der Wirtschaftskalender nennt Prognosen, die auf einen höheren statt einen niedrigeren Leitzins deuten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-10T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Zinsen', 'Wirtschaftskalender', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender (Wichtige Termine), Abruf 10.09.2026, 00:20 Uhr: 14:15 Uhr ECB Main Refinancing Operations Rate (Prognose 2,65 %, vorher 2,4 %); 14:15 Uhr ECB Rate On Deposit Facility (Prognose 2,5 %, vorher 2,25 %); 08:00 Uhr Harmonized Index of Consumer Prices (YoY, Prognose 2,9 %, vorher 2,9 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'European Central Bank, ecb.europa.eu, Abruf 10.09.2026: „Latest monetary policy press conference — 10 September 2026“',
+        url: 'https://www.ecb.europa.eu/press/html/index.en.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute um 14:15 Uhr verkündet die Europäische Zentralbank ihre Zinsentscheidung. Das bestätigt auch die EZB selbst: Ihre eigene Website führt die heutige Pressekonferenz als aktuellste geldpolitische Sitzung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kalender zeigt nach oben, nicht nach unten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für 14:15 Uhr zwei Werte: den Hauptrefinanzierungssatz, für den Analysten 2,65 Prozent erwarten – bisher lag er bei 2,4 Prozent –, und den Einlagesatz, der von 2,25 auf 2,5 Prozent steigen soll. Beides wäre eine Erhöhung, keine Senkung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erst die Inflation, dann der Zins',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 8 Uhr liefert derselbe Kalender einen möglichen Hintergrund: Die deutsche Inflationsrate wird für August sowohl beim harmonisierten als auch beim nationalen Verbraucherpreisindex mit 2,9 Prozent zum Vorjahr erwartet – genau der Wert des Vormonats, und weiterhin über der Zielmarke von 2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Zahlen nicht verraten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kalender nennt nur die Prognosen der Analysten, keine Begründung dafür. Warum die EZB nach Jahren sinkender Zinsen nun offenbar den umgekehrten Weg einschlägt, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose im Kalender ist keine Garantie – sie zeigt nur, worauf Analysten ihre Erwartung setzen. Ob die EZB tatsächlich erhöht und wie deutlich, zeigt sich erst am Nachmittag.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-groesster-tagesverlust-seit-juli-oelpreis',
+    title: 'DAX erleidet größten Tagesverlust seit Anfang Juli',
+    teaser:
+      'Der Ölpreis kletterte über 100 Dollar, der DAX reagierte mit dem stärksten Rückgang seit Monaten. Zwei Kursleisten nennen leicht unterschiedliche Prozentwerte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Ölpreis', 'Brent', 'Aktienmarkt'],
+    relatedTopics: ['rohstoffe', 'boerse'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 09.09.2026, 15:55 Uhr: „Teures Öl brockt Dax größten Tagesverlust seit Anfang Juli ein“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 16:05 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Deutliche Verluste - Ölpreis über 100 Dollar belastet“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Abruf 10.09.2026, 00:20 Uhr (DAX 25.576 Punkte, -1,7 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Abruf 10.09.2026, 00:20 Uhr (DAX 25.512,81 Punkte, -1,40 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX hat einen schlechten Mittwoch hinter sich: Laut onvista brachte der teure Ölpreis dem deutschen Leitindex am 9. September seinen größten Tagesverlust seit Anfang Juli ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ölpreis über 100 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser war laut einer dpa-AFX-Meldung ein Brent-Ölpreis über 100 Dollar je Barrel. Auch die europäischen Börsen insgesamt schlossen im Minus – „Kursverluste - Ölpreisanstieg belastet Börsen“, wie es in einer ROUNDUP-Meldung vom selben Tag heißt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie groß der Rückgang genau war, hängt davon ab, welche Kursleiste man liest: Bei finanzen.net stand der DAX zuletzt bei einem Minus von 1,7 Prozent, bei wallstreet-online bei 1,40 Prozent. Beide Werte stammen aus derselben Nacht, aber nicht zwingend derselben Sekunde – ein Grund, eine einzelne Prozentzahl aus einer Kursleiste nicht auf die Nachkommastelle genau zu nehmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Öl den DAX bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein steigender Ölpreis verteuert Energie für energieintensive Unternehmen und nährt Inflationssorgen bei Notenbanken – zwei Kanäle, über die ein einzelner Rohstoffpreis einen ganzen Aktienindex bewegen kann. Was genau den Ölpreis am Mittwoch nach oben trieb, nennen die vorliegenden Quellen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Tagesverlust wirkt dramatischer, wenn man ihn isoliert betrachtet. Erst der Vergleich mit der vorherigen Entwicklung – hier: der stärkste Rückgang seit Anfang Juli – ordnet ihn ein, ohne dass daraus schon eine Kauf- oder Verkaufsentscheidung folgt.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-oelpreis-belastet-meta-rallye',
+    title: 'Ölpreis bremst die Wall Street – nur Meta läuft dagegen',
+    teaser:
+      'An der Wall Street drückte der hohe Ölpreis auf Dow und S&P 500. Ausgerechnet Meta legte laut mehreren Ticker-Meldungen am selben Tag an der Nasdaq deutlich zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'Meta', 'Nasdaq', 'Ölpreis'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['meta', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 20:16 Uhr: „Aktien New York Schluss: Ölpreis belastet weiter - Meta-Rally an Nasdaq“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Dow Jones-Handel aktuell: Dow Jones zum Handelsende in Rot“ und „Schwacher Handel: S&P 500 zum Ende des Mittwochshandels schwächer“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Minuszeichen in New York: NASDAQ Composite sackt schlussendlich ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street ging es am Mittwoch überwiegend abwärts: Der Dow Jones schloss laut dpa-AFX „zum Handelsende in Rot“, der S&P 500 „schlussendlich schwächer“, und auch der NASDAQ Composite „sackte schlussendlich ab“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grund war laut einer ROUNDUP-Meldung erneut der hohe Ölpreis. Dieselbe Meldung nennt für denselben Handelstag zugleich eine „Meta-Rally an Nasdaq“ – ausgerechnet im Tech-Sektor, der eigentlich empfindlich auf Zinssorgen reagiert, gab es mit einem einzelnen Wert einen Lichtblick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das kein Widerspruch sein muss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Index ist ein Durchschnitt vieler Einzelwerte. Steigt der Ölpreis, trifft das energieintensive und zinssensible Branchen ähnlich – ein einzelnes Unternehmen kann trotzdem aus eigenen, unternehmensspezifischen Gründen gegen den Trend laufen. Was genau die Meta-Aktie am Mittwoch trieb, nennt die Ticker-Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht jeder Index bewegt sich gleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bezeichnend ist, dass Dow Jones, S&P 500 und NASDAQ Composite fielen, während ein einzelner Nasdaq-Wert wie Meta zulegte. Ein breiter Rückgang und ein einzelner Höhenflug können am selben Tag gleichzeitig wahr sein, ohne dass sich die beiden Meldungen widersprechen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Index-Schlagzeile liest, verpasst, dass einzelne Aktien am selben Tag das Gegenteil tun können. Ein Blick auf die Einzelwerte hinter einem Index verrät oft mehr als der Indexstand allein.',
+      },
+    ],
+  },
+  {
+    slug: 'gaspreis-80-euro-erstmals-seit-2022',
+    title: 'Europäischer Gaspreis springt erstmals seit Ende 2022 über 80 Euro',
+    metaTitle: 'Gaspreis erstmals seit 2022 über 80 Euro',
+    teaser:
+      'Während alle auf den Ölpreis schauten, kostet europäisches Erdgas laut dpa-AFX erstmals seit Ende 2022 wieder mehr als 80 Euro.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-10T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Erdgas', 'Energiepreise', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['erdgas'],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 15:34 Uhr: „Europäischer Gaspreis steigt erstmals seit Ende 2022 über 80 Euro“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Société Générale, 01.09.2026, 11:25 Uhr: „Gas: Europäischer Gaspreis übersteigt 70 EUR-Marke“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während die Schlagzeilen des Tages über den Ölpreis über 100 Dollar sprachen, bewegte sich am selben Mittwoch ein zweiter Energiepreis fast unbemerkt: Der europäische Gaspreis stieg laut dpa-AFX erstmals seit Ende 2022 wieder über 80 Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Sprünge in wenigen Tagen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst Anfang September hatte dieselbe Quellenlage gemeldet, dass der Gaspreis die 70-Euro-Marke überschritten hatte. Innerhalb weniger Tage kam demnach ein weiterer Anstieg um rund zehn Euro hinzu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Gas nicht wie Öl funktioniert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl und Gas werden oft in einem Atemzug genannt, sind aber unterschiedliche Märkte mit unterschiedlicher Infrastruktur: Öl lässt sich per Schiff fast überallhin transportieren, Gas hängt stärker an Pipelines und Flüssiggas-Terminals. Einen Grund für den aktuellen Anstieg nennen die vorliegenden Meldungen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Erinnerung an 2022',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Marke von 80 Euro ist bemerkenswert, weil sie an die Energiekrise von 2022 erinnert. Ob der aktuelle Anstieg dieselben Ursachen hat, geht aus der Quelle nicht hervor – sie nennt nur den Preis und den Vergleichszeitraum.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rohstoffpreis, der eine psychologisch wichtige Marke aus einer Krisenzeit erneut erreicht, verdient Aufmerksamkeit – unabhängig davon, ob sich die Umstände von damals wiederholen oder nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-erstes-faltbares-iphone-vorgestellt',
+    title: 'Apple hat sein erstes faltbares iPhone vorgestellt',
+    teaser:
+      'Nach wochenlangen Gerüchten ist es laut mehreren Ticker-Meldungen so weit: Apple hat sein erstes auffaltbares iPhone-Modell offiziell angekündigt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'iPhone', 'Produktankündigung'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, dpa-AFX-Meldung vom 09.09.2026: „ROUNDUP: Apple bringt erstes auffaltbares iPhone heraus“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Apple-Aktie leicht im Minus: Präsentation von erstem auffaltbaren iPhone erwartet“ und „Apple-Aktie im Blick: Erstes Falt-iPhone enthüllt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach wochenlangen Spekulationen ist es laut mehreren dpa-AFX-Meldungen amtlich: Apple hat sein erstes faltbares iPhone-Modell vorgestellt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vor der Vorstellung: eine Aktie im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kurz vor der Ankündigung notierte die Apple-Aktie laut einer Ticker-Meldung „leicht im Minus“ – ein Hinweis darauf, dass ein erwartetes Ereignis nicht automatisch zu steigenden Kursen führt, selbst wenn es sich um ein historisch erstes Produkt handelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eingepreiste Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Grund dafür kann sein, dass die Ankündigung längst erwartet wurde: Schon Tage zuvor kündigten Marktberichte das Ereignis an. Ist eine Nachricht bereits allgemein bekannt, bevor sie offiziell eintritt, spricht man davon, dass sie „eingepreist“ ist – der Kurs hat die Erwartung schon vorweggenommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Quellen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie der Markt auf die eigentliche Vorstellung reagiert hat, geht aus den vorliegenden Ticker-Meldungen nicht hervor – sie melden die Produktankündigung selbst, aber keinen Kurs danach.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein neues Produkt wird erst dann zur Kursüberraschung, wenn es besser oder schlechter ausfällt als das, was der Markt bereits erwartet hat. Die Ankündigung allein sagt darüber noch nichts.',
+      },
+    ],
+  },
+  {
+    slug: 'booking-niederlage-gericht-etraveli-uebernahme',
+    title: 'Booking verliert vor Gericht den Streit um die eTraveli-Übernahme',
+    metaTitle: 'Booking verliert Gerichtsstreit um eTraveli',
+    teaser:
+      'Booking Holdings hat laut Ticker-Meldung eine Gerichtsniederlage im Streit um die Übernahme von eTraveli kassiert – die Aktie reagierte deutlich leichter.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-10T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Booking', 'Übernahme', 'Kartellrecht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Booking-Aktie deutlich leichter: Niederlage vor Gericht im Streit um eTraveli-Übernahme“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Booking Holdings hat laut einer Ticker-Meldung vom 9. September vor Gericht eine Niederlage im Streit um die Übernahme des Flugticket-Anbieters eTraveli erlitten. Die Aktie notierte danach laut derselben Quelle „deutlich leichter“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um welches Gericht es sich handelt, was genau entschieden wurde und wie es nun mit der Übernahme weitergeht, nennt die kurze Ticker-Zeile nicht. Das ist keine Ungenauigkeit dieses Artikels, sondern der Informationsstand der Quelle selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Übernahmen vor Gericht landen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Größere Firmenübernahmen werden in der EU und anderen Rechtsräumen von Wettbewerbsbehörden geprüft, bevor sie vollzogen werden dürfen. Ein Gerichtsverfahren rund um eine Übernahme deutet meist darauf hin, dass diese Prüfung oder ihr Ergebnis von einer der Parteien angefochten wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs reagiert schneller als die Erklärung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass die Aktie „deutlich leichter“ notierte, zeigt, wie schnell ein Markt auf eine Gerichtsentscheidung reagieren kann – oft schon, bevor die Hintergründe öffentlich aufgearbeitet sind.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Gerichtsbeschluss kann eine ganze Übernahme in Frage stellen. Wer die Aktie hält, bekommt mit dieser Meldung eher eine Warnung als eine Erklärung – Details müssten aus weiteren Quellen nachgereicht werden.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-steigt-nach-angriffen-gold-bleibt-ruhig',
+    title: 'Öl springt nach Angriffen im Nahen Osten – Gold rührt sich kaum',
+    metaTitle: 'Ölpreis steigt nach Angriffen – Gold reagiert kaum',
+    teaser:
+      'Nach Tankerangriffen und Huthi-Attacken auf Saudi-Arabien steigt der Ölpreis deutlich. Der Goldpreis, sonst ein Krisengewinner, bewegt sich kaum.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Gold', 'Geopolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 20:57 Uhr: „ROUNDUP/Iranische Medien: Mehrere Öltanker angegriffen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „USA-Verbündeter: Iran-Krieg: Huthi-Rebellen attackieren Saudi-Arabien“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Goldman Sachs hebt Ölpreisprognose an - bis zu 120 US-Dollar möglich“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (Öl 98,7 USD, +1,8 %; Gold 4.403 USD, -0,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (Öl (Brent) 99,32 USD, +2,06 %; Gold 4.348,03 USD, -0,17 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Mittwoch meldeten iranische Medien mehrere Angriffe auf Öltanker, und schon am Dienstag hatten die vom Iran unterstützten Huthi-Rebellen laut wallstreet-online vier Städte im Süden Saudi-Arabiens angegriffen. Der Ölpreis reagierte, wie er das in solchen Phasen oft tut: Er stieg.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie deutlich, hängt davon ab, wo man nachsieht. Heute früh gegen 2:17 Uhr zeigte finanzen.net Öl bei 98,7 Dollar, ein Plus von 1,8 Prozent. Wallstreet-online notierte zur selben Minute Brent bei 99,32 Dollar, ein Plus von 2,06 Prozent. Beide Portale zeigen dieselbe Richtung, aber unterschiedliche Prozentwerte – ein Hinweis darauf, dass „der Ölpreis“ je nach Referenzkurs und Berechnungszeitpunkt leicht variiert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Widerspruch bei Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'In früheren Krisenphasen zog Gold als sicherer Hafen oft mit an, wenn der Ölpreis wegen Nahost-Spannungen sprang. Diesmal nicht: Dieselben Kursleisten zeigen Gold nahezu unverändert bis leicht im Minus (finanzen.net -0,0 Prozent, wallstreet-online -0,17 Prozent). Warum der Goldpreis auf dieselbe Nachrichtenlage nicht reagiert, sagen die Quellen nicht – und das steht hier bewusst offen, statt eine Erklärung zu erfinden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verschärft wird das Bild durch eine zweite Meldung: Laut einer Ticker-Zeile hat Goldman Sachs seine Ölpreisprognose angehoben und hält einen Anstieg bis auf 120 US-Dollar für möglich. Die kurze Meldung nennt weder einen Zeitrahmen noch die zugrunde liegenden Annahmen dafür.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelnes geopolitisches Ereignis bewegt nicht automatisch alle Rohstoffe in dieselbe Richtung. Wer aus einem steigenden Ölpreis automatisch auf einen steigenden Goldpreis schließt, überträgt eine Faustregel auf einen Tag, an dem sie laut den vorliegenden Daten nicht gilt.',
+      },
+    ],
+  },
+  {
+    slug: 'chipaktien-qualcomm-springt-infineon-faellt',
+    title: 'Ein Tag, zwei Richtungen: Qualcomm springt, Infineon fällt',
+    teaser:
+      'Qualcomm gewinnt nach einem KI-Chip-Deal mit Amazon, Infineon verliert nach einem Analystenvotum. Beide gelten als Chipwerte – und laufen entgegengesetzt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Chipaktien', 'Halbleiter', 'Qualcomm'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['qualcomm', 'infineon', 'intel'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „QUALCOMM-Aktie mit Kurssprung nach KI-Chip-Deal mit Amazon für Rechenzentren“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Infineon-Aktie deutlich schwächer - Analystenvotum belastet Chipwerte deutlich“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Intel-Aktie springt hoch: Werden die Preise für Chips bald noch weiter erhöht?“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „D-Wave Quantum-Aktie zieht kräftig an: Millionen-Regen durch CHIPS-Act - US-Regierung sichert sich Anteile“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 10:58 Uhr: „Märkte heute: Infineon unter Druck, ASML mit Rückenwind, Robinhood wird Banker“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Für Chipwerte gab es am Dienstag keine gemeinsame Richtung. Qualcomm sprang laut Ticker-Meldung nach einem KI-Chip-Deal mit Amazon für Rechenzentren, während Infineon deutlich nachgab – belastet von einem Analystenvotum, das laut derselben Quelle „Chipwerte deutlich“ traf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Aktien, vier eigene Gründe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Intel und D-Wave Quantum bewegten sich am selben Tag – aber aus jeweils eigenem Anlass. Intel stieg laut Ticker auf Spekulationen, dass die Preise für Chips bald weiter steigen könnten. D-Wave Quantum legte zu, nachdem sich die US-Regierung im Rahmen des CHIPS Act eine Beteiligung gesichert hatte; wie hoch diese ausfällt, nennt die kurze Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Keine der vier Ticker-Zeilen nennt eine konkrete Kursveränderung in Prozent – nur die Richtung und den genannten Anlass. Genauere Zahlen dazu liegen aus diesen Quellen nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Etikett „Chipwerte“ wenig aussagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Lizenzdeal für Chipdesign, eine Analystenherabstufung wegen der Nachfrage nach Leistungshalbleitern, Spekulation über zyklische Preiserhöhungen und eine staatliche Kapitalbeteiligung sind vier völlig verschiedene Geschichten. Der gemeinsame Sektor-Begriff verdeckt, dass jede Aktie an diesem Tag aus einem eigenen Grund lief.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Sammelerzählung wie „KI-Boom bei Chips“ kann leicht überdecken, dass einzelne Aktien am selben Tag aus ganz unterschiedlichen, unternehmensspezifischen Gründen steigen oder fallen. Vor einer Einordnung lohnt der Blick auf die jeweils eigene Meldung.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-keynote-9-september-faltbares-iphone',
+    title: 'Apple hält heute wohl seine wichtigste Keynote seit dem iPhone X',
+    metaTitle: 'Apple-Keynote heute: wichtigster Auftritt seit dem iPhone X',
+    teaser:
+      'Am 9. September stellt Apple neue Produkte vor, Berichten zufolge erstmals auch ein faltbares iPhone. Die Aktie notiert bereits nahe ihrem Rekordhoch.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Apple', 'Produktevent', 'Technologie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „Aktie nah am Rekordhoch: Teurer, faltbar, historisch: Was Apple am 9. September plant“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Apple-Aktie vor Wendepunkt? Analysten erwarten die wichtigste Keynote seit dem iPhone X“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute, am 9. September, hält Apple sein herbstliches Produktevent. Laut einer Ticker-Meldung erwarten Analysten dabei „die wichtigste Keynote seit dem iPhone X“ – jenem Modell, mit dem Apple 2017 sein Design grundlegend änderte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Berichten zufolge soll es unter anderem um ein faltbares iPhone gehen – in den Schlagzeilen als „teuer, faltbar, historisch“ beschrieben. Konkrete Preise, Maße oder technische Daten nennen die Quellen nicht; das bleibt hier deshalb offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Aktie schon vor der Ankündigung reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Apple-Aktie handelt laut wallstreet-online bereits nahe ihrem Rekordhoch – noch bevor überhaupt etwas offiziell vorgestellt wurde. Das ist ein Beispiel für eine eingepreiste Erwartung: Anleger positionieren sich schon im Vorfeld, wenn sie mit einer guten Nachricht rechnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Risiko dabei: Bestätigt die Keynote nur, was ohnehin erwartet wurde, bewegt sich der Kurs am Ereignistag selbst oft kaum – manchmal fällt er sogar, wenn Details hinter den hochgeschraubten Erwartungen zurückbleiben. Ob das heute so kommt, lässt sich vor der Veranstaltung nicht sagen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Schlagzeilen wie „historisch“ vor einem Produktevent sind zunächst Erwartung, keine Tatsache. Es lohnt sich, auf die tatsächlich vorgestellten Produkte und Zahlen zu warten, statt aus der Ankündigungsstimmung bereits eine Kursrichtung abzuleiten.',
+      },
+    ],
+  },
+  {
+    slug: 'gamestop-rekordgewinn-ebay-wette',
+    title: 'GameStop verdient dank einer Wette auf eBay so viel wie nie',
+    teaser:
+      'GameStop meldet für das zweite Quartal einen Rekordgewinn und hebt die Jahresprognose kräftig an – begünstigt durch eine Beteiligung an eBay.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['GameStop', 'Quartalszahlen', 'Guidance'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „Rekordgewinn statt Umsatzflaute: GameStop überrascht mit eBay-Coup“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'GameStop hat laut wallstreet-online für das zweite Quartal einen Gewinn gemeldet, „so hoch wie nie zuvor“ – und das dank einer milliardenschweren Wette auf den Online-Marktplatz eBay.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut derselben Meldung schraubt das Unternehmen deshalb seine Jahresprognose „deutlich nach oben“. Konkrete Prozent- oder Dollarwerte nennt der kurze Text nicht – sie bleiben deshalb hier offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Geschichten in einer Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist ein zweiter Satz der Meldung: „Auch abseits der Börsengewinne“ laufe es operativ so gut „wie noch nie“. Das deutet darauf hin, dass sowohl das Kerngeschäft als auch der Wert der eBay-Beteiligung zum Ergebnis beigetragen haben – wie viel jeweils, trennt die Quelle allerdings nicht auf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das ist bei einem gemeldeten Rekordgewinn oft die entscheidende Frage: Ohne Aufschlüsselung lässt sich nicht beurteilen, wie viel davon aus dem laufenden Geschäft stammt und wie viel aus einer einmaligen Wertänderung einer Finanzbeteiligung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile wie „Rekordgewinn“ kann operative Verbesserung und Bewertungsgewinne aus einer Kapitalbeteiligung vermischen. Vor einer Einordnung lohnt sich der Blick darauf, welcher Anteil vom eigentlichen Geschäft kommt und welcher von einer einmaligen Position.',
+      },
+    ],
+  },
+  {
+    slug: 'china-gold-reserven-shanghai-preisabschlag',
+    title: 'China kauft weiter Gold – und zahlt dafür weniger als der Westen',
+    metaTitle: 'China kauft Gold – Preis in Shanghai unter Weltniveau',
+    teaser:
+      'Russisches Gold fließt in Rekordmengen nach Hongkong, Chinas Reserven wachsen weiter. Trotzdem notiert Gold in Shanghai unter dem westlichen Preis.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-09T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Zentralbanken', 'China'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 8. September 2026: „Russisches Gold strömt in Rekordmengen nach Hongkong“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 7. September 2026: „China kauft weiter kräftig Gold – Reserven steigen auf 76,73 Millionen Unzen“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 8. September 2026: „Goldmarkt: China-Spread fällt auf minus 38 US-Dollar“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwischen Januar und Juli sind laut Goldreporter fast 100 Tonnen russisches Gold nach Hongkong geflossen – knapp dreimal so viel wie im gleichen Zeitraum des Vorjahres. Zeitgleich meldet Goldreporter, dass Chinas offizielle Goldreserven weiter gewachsen sind, zuletzt auf 76,73 Millionen Feinunzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Nachfrage, niedrigerer Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer daraus auf einen höheren Goldpreis in China schließt, liegt laut den Daten falsch: Goldreporter beziffert den sogenannten China-Spread auf minus 38 US-Dollar – der Goldpreis in Shanghai notiert damit unter dem Preis im Westen. Zusätzlich soll der Preis dort zuletzt stärker gefallen sein als im Westen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum sich die anhaltenden offiziellen Käufe nicht in einem Preisaufschlag niederschlagen, sagt die Meldung nicht. Das bleibt hier bewusst offen, statt eine plausible, aber unbelegte Erklärung nachzuliefern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt zudem, dass Gold nicht überall zum selben Preis gehandelt wird: Shanghai, London und New York können zur gleichen Zeit unterschiedliche Preise zeigen. Solche Differenzen – „Spreads“ – werden von Marktbeobachtern selbst dann verfolgt, wenn die Ursache im Einzelfall nicht klar benannt ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Anhaltende Käufe einer Zentralbank oder ein wachsender Warenstrom bedeuten nicht automatisch einen höheren lokalen Preis. Wer eine einzelne Marktnotiz liest, sollte im Kopf behalten, dass es bei einem global gehandelten Rohstoff mehrere Preise gleichzeitig geben kann.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-stagniert-oelpreis-steigt-termine-heute',
+    title: 'DAX tritt auf der Stelle, während der Ölpreis weiter steigt',
+    metaTitle: 'DAX stagniert trotz steigendem Ölpreis – Termine heute',
+    teaser:
+      'Der DAX bewegte sich am Dienstag kaum, obwohl Öl deutlich teurer wurde. Heute stehen US-Jobdaten und eine Rede von EZB-Chefin Lagarde an.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Marktüberblick', 'Konjunkturkalender'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 15:55 Uhr: „Dax Tagesrückblick 08.09.2026 – Dax stagniert bei steigendem Ölpreis – Fresenius stark“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 16:07 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax tritt auf der Stelle - Ölpreise legen zu“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 20:36 Uhr: „ROUNDUP/Aktien New York Schluss: Dow mit schwachem Wochenauftakt - Nasdaq besser“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (DAX 25.969 Punkte, -0,1 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (DAX 25.874,54 Punkte, -0,50 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender vom 09.09.2026: ADP Employment Change (4-week average), 14:15 Uhr, Vorwert 11,75 Tsd.; EZB-Präsidentin Lagarde spricht, 19:00 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist laut onvista am Dienstag „auf der Stelle getreten“, obwohl der Ölpreis im Tagesverlauf weiter zulegte. Fresenius zählte derselben Quelle zufolge zu den stärkeren Werten des Tages.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In New York verlief der Handel uneinheitlich: Der Dow schloss laut Ticker-Meldung mit einem „schwachen Wochenauftakt“ schwächer, während sich der Nasdaq besser hielt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute früh gegen 2:17 Uhr zeigte finanzen.net den DAX bei 25.969 Punkten, ein Minus von 0,1 Prozent. Wallstreet-online notierte zur selben Minute 25.874,54 Punkte, ein Minus von 0,50 Prozent. Beide Portale beziehen sich auf denselben Index zur selben Zeit – und kommen wegen unterschiedlicher Referenzwerte auf unterschiedliche Prozentangaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:15 Uhr veröffentlichen die USA den ADP-Bericht zur privaten Beschäftigung als Vierwochendurchschnitt; der Vorwert lag laut Wirtschaftskalender bei 11.750, eine Prognose nennt die Quelle nicht. Um 19:00 Uhr spricht EZB-Präsidentin Christine Lagarde – für den Termin selbst ist keine neue geldpolitische Entscheidung angekündigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein ruhiger Indextag sagt wenig darüber, was als Nächstes passiert, wenn am selben Tag noch Arbeitsmarktdaten und eine Rede einer Notenbankpräsidentin anstehen. Beides kann die Richtung ändern – in welche, lässt sich vorab nicht sagen.',
+      },
+    ],
+  },
+  {
+    slug: 'strasse-von-hormus-schiffsverkehr-oelpreis',
+    title: 'Durch die Straße von Hormus fahren nur noch zehn Schiffe am Tag',
+    teaser:
+      'Nach neuen Angriffen auf Tanker ist der Schiffsverkehr durch die Straße von Hormus auf den niedrigsten Stand seit Mai gefallen – der Ölpreis reagiert.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Straße von Hormus', 'Geopolitik', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 7.9.2026, 20:30 Uhr: „Ölpreis geht durch die Decke: Straße von Hormus: Hier geht nichts mehr durch!“',
+        url: 'https://www.wallstreet-online.de/nachricht/21344735-oelpreis-decke-strasse-hormus-durch',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Durch eine der wichtigsten Öltransportrouten der Welt fahren derzeit so wenige Schiffe wie seit Monaten nicht mehr. Nach neuen Angriffen auf Tanker am Wochenende hat sich der Verkehr durch die Straße von Hormus binnen weniger Tage spürbar ausgedünnt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zehn Schiffe statt fünfzehn',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online berichtete am Montagabend, dass in den vergangenen zehn Tagen durchschnittlich nur noch zehn Frachtschiffe pro Tag die Meerenge durchquerten – der niedrigste Wert seit Mai. Am Freitag waren es laut derselben Quelle noch mehr als 15, am Samstag knapp 13. Am Samstag selbst passierten nur zwei Schiffe die Straße, am Sonntag sechs, die meisten davon über die iranische Route.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders auffällig: Seit Mittwoch hat laut der Meldung kein einziger sehr großer Rohöltanker (VLCC) die Straße verlassen. Diese Schiffsklasse transportiert die größten Mengen Rohöl auf einmal – bleibt sie aus, wirkt sich das stärker auf das Angebot aus, als der reine Rückgang der Schiffszahl vermuten lässt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Ölpreis daraus macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rückgang folgt auf neue gegenseitige Angriffe zwischen den USA und iranischen Revolutionsgarden am Wochenende, bei denen nach US-Angaben drei iranische Öltanker getroffen und einer davon versenkt wurde. Brent-Öl kostete laut wallstreet-online am Montagabend 97,31 US-Dollar, ein Plus von 1,64 Prozent, WTI legte um 1,87 Prozent auf 92,70 Dollar zu.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Nadelöhr wie die Straße von Hormus zeigt, wie ein geografisch enger Punkt einen globalen Preis bewegen kann, ohne dass sich an der weltweiten Fördermenge etwas ändert. Ob der Rückgang beim Schiffsverkehr anhält oder sich nach den jüngsten Angriffen wieder normalisiert, lässt sich aus den Quellen an diesem Abend nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'china-goldreserven-august-2026',
+    title: 'China kauft so viel Gold wie seit fast drei Jahren nicht mehr',
+    teaser:
+      'Chinas Zentralbank erhöhte ihre Goldreserven im August um 20,2 Tonnen auf 76,73 Millionen Unzen – ihr Wert stieg binnen eines Monats um 43,7 Milliarden Dollar.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-08T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'China', 'Notenbanken', 'Währungsreserven'],
+    relatedTopics: ['notenbanken-geldpolitik', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 7.9.2026: „China kauft weiter kräftig Gold – Reserven steigen auf 76,73 Millionen Unzen“',
+        url: 'https://www.goldreporter.de/china-goldreserven-august-2026/china/261647/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wenn eine Zentralbank über Jahre hinweg kauft statt verkauft, sagt das mehr über ihr Vertrauen in eine Anlageklasse als jede Rede. China gehört seit Ende 2022 durchgehend zu den Käufern von Gold – im August hat sich das Tempo noch einmal beschleunigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '20 Tonnen in einem Monat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter erhöhte die chinesische Zentralbank ihre offiziellen Goldreserven im August um rund 20,2 Tonnen beziehungsweise 650.000 Feinunzen. Der Gesamtbestand stieg damit auf 76,73 Millionen Unzen, umgerechnet etwa 2.386,6 Tonnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum ausgewiesenen Wert von 350,08 Milliarden US-Dollar trug neben der zusätzlichen Menge auch der gestiegene Goldpreis bei: Der Wert der chinesischen Reserven legte binnen eines Monats um rund 43,7 Milliarden Dollar zu. Seit der Wiederaufnahme der offiziellen Käufe im November 2022 kauft China nach Angaben der Quelle ununterbrochen zu, in den vergangenen vier Monaten sogar in beschleunigtem Tempo.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reserve, nicht Spekulation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Zentralbank kauft Gold nicht, um es kurzfristig wieder zu verkaufen, sondern als Teil ihrer Währungsreserven – neben Dollar, Euro und anderen Anlagen. Ein wachsender Goldanteil verringert die Abhängigkeit von einer einzelnen Reservewährung, ändert aber nichts an der kurzfristigen Kursbildung am Goldmarkt, die von ganz anderen Akteuren getrieben wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Zentralbank-Reserven sind ein Hinweis auf eine langfristige Nachfragequelle für Gold, keine Kursprognose für die nächste Woche. Ob und wie stark sich das auf den Tagespreis auswirkt, hängt von Faktoren ab, die mit dieser einen Meldung nichts zu tun haben.',
+      },
+    ],
+  },
+  {
+    slug: 'kevin-warsh-zins-dilemma-goldpreis',
+    title: 'Warsh steckt zwischen Inflationsbekämpfung und Schuldenberg',
+    teaser:
+      'Warsh will die Inflation bremsen – doch höhere Zinsen verteuern den Dienst auf mehr als 40 Billionen Dollar US-Schulden. Eine Analyse zeigt das Dilemma.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-08T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Kevin Warsh', 'US-Schulden', 'Gold'],
+    relatedTopics: ['notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Analyse vom 7.9.2026: „Kevin Warsh steckt im Zins-Dilemma – was das für den Goldpreis bedeutet“',
+        url: 'https://www.goldreporter.de/kevin-warsh-zins-dilemma-goldpreis-fed-goldreserven/geldpolitik/261614/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Zentralbankchef, der die Inflation bekämpfen will, tut das normalerweise mit höheren Zinsen. Bei US-Notenbankchef Kevin Warsh hat dieser Weg einen Haken, den eine Analyse von Goldreporter anhand von Zahlen sichtbar macht: Höhere Zinsen verteuern gleichzeitig den Schuldendienst eines Staates, der ohnehin schon tief in der Kreide steht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Über 40 Billionen Dollar Schulden, 1,17 Billionen Zinskosten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Analyse lagen die US-Staatsschulden Ende August bei mehr als 40,1 Billionen Dollar. Allein die Zinszahlungen summierten sich im laufenden Haushaltsjahr bis Juli auf 1,17 Billionen Dollar. Die Bilanzsumme der Fed liegt demnach bei 6,7 Billionen Dollar, darunter 4,4 Billionen Dollar an Staatsanleihen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Präsident Trump erwartet laut der Quelle niedrigere Zinsen, Warsh stellt nach ihrer Darstellung stattdessen die Preisstabilität und damit die Glaubwürdigkeit der Notenbank in den Vordergrund. Beide Ziele – Inflation drücken und Schuldendienst erleichtern – lassen sich mit demselben Instrument nicht gleichzeitig erreichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für Gold bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Analyse beschreibt einen Mechanismus in zwei Richtungen: Höhere Zinsen belasten den Goldpreis kurzfristig, weil zinslos gehaltenes Gold im Vergleich zu verzinsten Anlagen unattraktiver wird. Hält die Fed die Zinsen dagegen trotz anhaltender Inflation niedrig, könnte das Gold eher stützen. Als weiteren Punkt nennt die Quelle eine mögliche Neubewertung der offiziellen US-Goldreserven, die aktuell mit einem historischen Gesetzespreis von 42,22 Dollar je Feinunze und damit weit unter dem Marktwert in den Büchern stehen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Dilemma zwischen zwei Zielen bedeutet nicht, dass beide gleichermaßen unerreichbar sind – es bedeutet, dass eine Entscheidung immer auf Kosten des jeweils anderen Ziels geht. Welchen Weg die Fed einschlägt und wie stark sich das auf den Goldpreis auswirkt, lässt sich aus dieser Analyse allein nicht ableiten.',
+      },
+    ],
+  },
+  {
+    slug: 'hornbach-quartalszahlen-q2-2026-27',
+    title: 'Hornbach verdient mehr, Prognose bleibt unverändert',
+    teaser:
+      'Hornbach steigerte Umsatz im zweiten Quartal um 7,3 und das bereinigte Ergebnis um 12,8 Prozent – die Jahresprognose blieb davon unberührt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Hornbach', 'Quartalszahlen', 'Prognose', 'Einzelhandel'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sdax'],
+    sources: [
+      {
+        label:
+          'EQS-Adhoc über finanzen.net, Meldung vom 7.9.2026, 19:19 Uhr: „HORNBACH Holding AG & Co. KGaA: Umsatz und bereinigtes EBIT in Q2 2026/27 über Vorjahresniveau – Prognose für das Gesamtjahr bestätigt“',
+        url: 'https://www.finanzen.net/nachricht/aktien/eqs-adhoc-hornbach-holding-ag-co-kgaa-umsatz-und-bereinigtes-ebit-in-q2-2026-27-ber-vorjahresniveau-prognose-f-r-das-gesamtjahr-best-tigt-15922253',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen, das im Quartal deutlich mehr verdient als im Vorjahr, könnte seine Jahresprognose eigentlich anheben. Hornbach tut das nicht – und genau darin liegt die interessantere Geschichte hinter den Zahlen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zweistelliges Ergebnisplus im zweiten Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Ad-hoc-Mitteilung vom Montagabend stieg der Umsatz der Hornbach Holding im zweiten Geschäftsquartal (Juni bis August) um 7,3 Prozent auf 1.813,7 Millionen Euro, das bereinigte Ergebnis vor Zinsen und Steuern (EBIT) legte um 12,8 Prozent auf 124,6 Millionen Euro zu. Im ersten Halbjahr des Geschäftsjahres wuchs der Umsatz um 6,0 Prozent auf 3.816,2 Millionen Euro, das bereinigte EBIT um 4,9 Prozent auf 285,6 Millionen Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Prognose bleibt, wo sie war',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das Gesamtjahr 2026/27 erwartet Hornbach laut der Mitteilung einen Umsatz auf oder leicht über dem Vorjahresniveau von 6.433,9 Millionen Euro sowie ein bereinigtes EBIT auf der Höhe des Vorjahreswerts von 264,7 Millionen Euro – unverändert gegenüber der bisherigen Prognose. Als Grund nennt das Unternehmen anhaltende geopolitische Risiken, die sich auf Verbraucherstimmung, Einkaufspreise und Logistikkosten auswirken könnten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau dieser Abstand zwischen starkem Quartal und unveränderter Jahresprognose ist lehrreich: Ein einzelnes gutes Quartal sagt wenig darüber, wie belastbar die restlichen Monate des Geschäftsjahres sind. Ein Unternehmen, das seine Prognose trotz guter Zahlen nicht anhebt, rechnet entweder mit einem schwächeren zweiten Halbjahr oder sichert sich bewusst Spielraum, um spätere Überraschungen zu vermeiden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Prognose liest, liest damit auch, wie viel Vorsicht ein Unternehmen für die verbleibenden Monate einpreist. Die endgültigen Zahlen zum Geschäftsjahr will Hornbach nach eigenen Angaben am 29. September veröffentlichen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wochenauftakt-26000-ezb-us-inflation',
+    title: 'DAX verteidigt die 26.000, während Wall Street noch fehlt',
+    teaser:
+      'Der DAX gab am Montag leicht nach, weil US-Börsen feiertagsbedingt geschlossen blieben – die Woche bringt jetzt die EZB-Sitzung und US-Inflationsdaten.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'EZB', 'Wirtschaftskalender', 'Konjunktur'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über investing.com, Meldung vom 7.9.2026: „ROUNDUP/Aktien Frankfurt Schluss: Dax gibt wieder leicht nach“',
+        url: 'https://de.investing.com/news/stock-market-news/roundupaktien-frankfurt-schluss-dax-gibt-wieder-leicht-nach-3651976',
+      },
+      {
+        label:
+          'dpa-AFX über finanzen.at, Meldung vom 7.9.2026: „Aktien Europa Schluss: Träger Wochenstart vor EZB-Zinsentscheid und US-Inflation“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/aktien-europa-schluss-trager-wochenstart-vor-ezb-zinsentscheid-und-us-inflation-1036526631',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender-Widget „Kommende Termine“, Abruf 8.9.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Wochenstart ohne die Wall Street ist ein Wochenstart ohne den größten Impulsgeber – das war am Montag in Frankfurt zu spüren, noch bevor die eigentliche Woche mit ihren Terminen überhaupt begonnen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ruhiger Montag ohne US-Handel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX schloss laut dpa-AFX am Montag mit einem Minus von 0,15 Prozent bei 26.006,53 Punkten – knapp über der vielbeachteten 26.000er-Marke. Grund für die geringen Impulse: Die US-Börsen blieben feiertagsbedingt geschlossen, der reguläre Handel dort begann laut derselben Quelle erst am Dienstag wieder. Belastend wirkten daneben weiterhin die hohen Ölpreise.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf europäischer Ebene beschrieb dpa-AFX den Handelstag als „trägen Wochenstart vor EZB-Zinsentscheid und US-Inflation“: Der EuroStoxx 50 legte, gestützt von Tech- und KI-Werten, um 0,17 Prozent auf 6.403,99 Punkte zu, während der Schweizer SMI um 0,81 Prozent auf 14.279,38 Punkte nachgab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute schon feststeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aus dem Wirtschaftskalender von wallstreet-online geht hervor, welche Daten in der Nacht zum Dienstag bereits vorlagen und welche noch anstehen: Japans Bruttoinlandsprodukt für das zweite Quartal wurde um 1:50 Uhr wie erwartet mit einem Plus von 0,4 Prozent bestätigt. Um 6:30 Uhr steht die niederländische Verbraucherpreisrate an (Prognose 3,3 Prozent, zuvor 3,2 Prozent), um 7:00 Uhr folgt die japanische Eco-Watchers-Umfrage zur Konsumentenstimmung (Prognose 46,3 Punkte, zuvor 45,7).',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die eigentlich großen Termine der Woche liegen laut dpa-AFX noch vor den Anlegern: der Zinsentscheid der Europäischen Zentralbank sowie – am Freitag – die US-Inflationsdaten, denen die Agentur „wegweisenden Charakter für die US-Geldpolitik“ zuschreibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein ruhiger Handelstag ist nicht automatisch ein bedeutungsloser – er kann auch einfach die Ruhe vor mehreren Terminen sein, die in den nächsten Tagen gebündelt anstehen. Welche Richtung DAX und EuroStoxx nach EZB-Entscheid und US-Inflationsdaten einschlagen, lässt sich daraus nicht vorwegnehmen.',
+      },
+    ],
+  },
+  {
+    slug: 'jpmorgan-ki-investitionen-prognose-2030',
+    title: 'JPMorgan traut den KI-Investitionen mehr zu als noch im Frühjahr',
+    teaser:
+      'JPMorgan hebt die Prognose für weltweite KI-Investitionen bis 2030 auf 5,5 Billionen Dollar an – gut ein Drittel soll über neue Schulden finanziert werden.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-08T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'JPMorgan', 'Rechenzentren', 'Investitionen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['amazon', 'alphabet', 'microsoft'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 7.9.2026, 21:35 Uhr: „KI-Aktien im Blick: Warum JPMorgan die Billionen-Investitionen für tragfähig hält“',
+        url: 'https://www.finanzen.net/nachricht/aktien/rechenzentren-ki-aktien-im-blick-warum-jpmorgan-die-billionen-investitionen-fuer-tragfaehig-haelt-00-15910055',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wenn eine Großbank ihre eigene Prognose für ein Milliardenthema nach oben korrigiert, sagt das etwas darüber, wie wenig überzeugt sie von der eigenen Vorgängerschätzung noch war. JPMorgan hat genau das mit den weltweiten Investitionen in Künstliche Intelligenz getan.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Von 5,1 auf 5,5 Billionen Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net erhöhte JPMorgan seine Schätzung für die weltweiten KI-Investitionsausgaben bis zum Jahr 2030 von zuvor 5,1 auf nun 5,5 Billionen Dollar. Allein die fünf größten US-Hyperscaler sollen 2026 rund 697 Milliarden Dollar investieren, die gesamten Ausgaben großer Cloud- und Technologiekonzerne sollen laut der Meldung bis 2027 auf mehr als 1,1 Billionen Dollar steigen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein gutes Drittel läuft über Schulden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neu an der Prognose ist vor allem die Finanzierungsseite: JPMorgan geht davon aus, dass rund 4,1 Billionen Dollar der weltweiten KI-Investitionen fremdfinanziert werden, mit höheren Beleihungsquoten der einzelnen Projekte als bisher angenommen. Über einen Zeitraum von fünf Jahren rechnet die Bank laut der Meldung mit mehr als 2,1 Billionen Dollar an Investment-Grade-Unternehmensanleihen zur Finanzierung von Rechenzentren, davon allein 150 Milliarden Dollar an Anleiheemissionen von US-Hyperscalern im Jahr 2026.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als zentrale Treiber der Investitionswelle nennt die Meldung Amazon, Alphabet und Microsoft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine höhere Investitionsprognose ist noch keine Aussage darüber, wann sich diese Investitionen auszahlen – und eine stärker fremdfinanzierte Ausbauwelle reagiert empfindlicher auf steigende Zinsen als eine aus eigenen Mitteln finanzierte. Ob und wann sich die Rechnung für die beteiligten Konzerne aufgeht, lässt sich aus dieser Prognose allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-kursprognose-coinbase-ceo-400000-dollar',
+    title: 'Bitcoin bis 400.000 Dollar? Die Prognose des Coinbase-Chefs',
+    teaser:
+      'Coinbase-Chef Brian Armstrong hält 300.000 bis 400.000 Dollar je Bitcoin bis 2030 für wahrscheinlich – der Kurs schwankte heute Nacht um fast zwei Prozent.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-08T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Coinbase', 'Kursprognose', 'Krypto'],
+    relatedTopics: ['bitcoin-krypto', 'anlegerpsychologie'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 7.9.2026: „Coinbase-CEO: Bitcoin-Kurs könnte bis zu diesem Zeitpunkt auf bis zu 400.000 US-Dollar steigen“',
+        url: 'https://www.finanzen.net/nachricht/devisen/mega-kursprognose-coinbase-ceo-bitcoin-kurs-koennte-bis-zu-diesem-zeitpunkt-auf-bis-zu-400-000-us-dollar-steigen-00-15911477',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste (Abruf 8.9.2026, 02:19 Uhr): Bitcoin 68.085 US-Dollar (-1,8 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Kursprognose bis ins Jahr 2030 klingt beeindruckend – und sagt wenig darüber, wie sich ein Kurs in der Nacht davor bewegt. Beides lässt sich bei Bitcoin gerade gut nebeneinanderlegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '300.000 bis 400.000 Dollar bis 2030',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net nannte Coinbase-Chef Brian Armstrong in einem Fox-Business-Interview Ende August einen Bitcoin-Kurs von 300.000 bis 400.000 US-Dollar bis zum Jahr 2030 als aus seiner Sicht wahrscheinliches Ziel. In einem separaten CNBC-Interview sprach er von einem möglichen Beginn eines neuen Bullenzyklus und nannte als mögliche Auslöser die anstehende Senatsabstimmung zum Digital Asset Market CLARITY Act sowie die aus seiner Sicht historisch starke Kursentwicklung der vergangenen Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer die Prognose macht, ist Teil der Prognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Armstrong ist nicht irgendein Marktbeobachter, sondern Chef der Kryptobörse Coinbase – eines Unternehmens, dessen Geschäft direkt von steigenden Kryptokursen und mehr Handelsvolumen profitiert. Das macht seine Einschätzung nicht automatisch falsch, aber es lohnt sich, bei der Prognose eines Marktteilnehmers mit eigenem Interesse am Ausgang genauer hinzuschauen als bei einer neutralen Quelle.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Stunde zeigte die Kursleiste von finanzen.net beim Abruf in der Nacht zum Dienstag ein anderes Bild: Bitcoin notierte bei 68.085 US-Dollar, ein Minus von 1,8 Prozent – ein Wert, der mit einer Prognose für das Jahr 2030 wenig zu tun hat, aber daran erinnert, wie viel ein Kurs auch kurzfristig schwankt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose über mehrere Jahre und eine Kursbewegung über eine einzelne Nacht beantworten unterschiedliche Fragen. Wer beides vermischt, hält am Ende weder die eine noch die andere Aussage für das, was sie tatsächlich ist.',
+      },
+    ],
+  },
+  {
+    slug: 'yen-boj-zinsen-japanische-staatsanleihen',
+    title: 'Japans Anleihen werden nach Jahrzehnten wieder attraktiv',
+    teaser:
+      'Höhere Zinsen der Bank of Japan stützen den Yen und machen japanische Anleihen attraktiver – das könnte Kapital aus US-Staatsanleihen zurück nach Tokio ziehen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Yen', 'Bank of Japan', 'Staatsanleihen', 'US-Treasuries'],
+    relatedTopics: ['waehrungen-wechselkurse', 'staatsanleihe'],
+    relatedSymbols: ['eur-jpy'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion über finanznachrichten.de, Meldung vom 7.9.2026, 19:23 Uhr: „Geld fließt aus US-Treasuries: Japan wird ernsthafte Konkurrenz zu den USA“',
+        url: 'https://www.finanznachrichten.de/nachrichten-2026-09/69513463-geld-fliesst-aus-us-treasuries-japan-wird-ernsthafte-konkurrenz-zu-den-usa-049.htm',
+      },
+      {
+        label:
+          'wallstreet-online, Devisenpreise (Abruf 8.9.2026, 02:18 Uhr): EUR/JPY 178,65250 (-0,43 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein stärkerer Yen und weniger Kapital in US-Staatsanleihen können dieselbe Ursache haben – wenn diese Ursache höhere Zinsen in Japan sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Höhere BoJ-Zinsen wirken auf zwei Märkte gleichzeitig',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online berichtete am Montagabend, dass höhere Leitzinsen der Bank of Japan (BoJ) den Yen stützen und gleichzeitig japanische Staatsanleihen rentabler machen. Die Kernthese der Meldung: Das könnte Kapital aus US-Treasuries zurück nach Tokio ziehen und Japan damit zu einer „ernsthaften Konkurrenz zu den USA“ um internationales Anlagekapital machen. Konkrete Renditezahlen nennt die Meldung selbst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Märkte, eine Konkurrenz um Kapital',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Mechanismus dahinter: Wer als Anleger zwischen japanischen und amerikanischen Staatsanleihen wählt, vergleicht Rendite und Währungsrisiko gegeneinander. Werden japanische Anleihen nach Jahrzehnten niedriger Zinsen wieder attraktiver verzinst, verliert die US-Anleihe im Vergleich etwas von ihrem Vorteil – unabhängig davon, ob sich an deren eigener Verzinsung etwas ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur selben Stunde notierte EUR/JPY laut der Devisenkursleiste von wallstreet-online bei 178,65250 Yen, ein Minus von 0,43 Prozent – der Euro gab also gegenüber dem Yen nach, was zur These eines stärkeren Yen passt, ohne sie zu beweisen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zinswende in Japan verändert eine jahrzehntealte Rechnung, nach der internationales Kapital fast automatisch in höher verzinste US-Anleihen floss. Wie stark und wie schnell sich das auf die Kapitalströme tatsächlich auswirkt, lässt sich aus einer einzelnen Meldung nicht ablesen.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-zinserhoehung-donnerstag-dax-rekordnaehe',
     title: 'EZB vor Zinserhöhung: Der Markt traut ihr mehr zu als die Ökonomen',
     metaTitle: 'EZB: Markt traut ihr mehr zu als die Ökonomen',

@@ -595,6 +595,102 @@ Paketbau gegen denselben Server durchlief.
 kein Abwägen, sondern Wegsehen – und dann ist der Abschnitt darüber wieder
 dran.
 
+## Hat die Ausgabe etwas kaputt gemacht? – die Frage, die der Riegel stellt
+
+Zwischen dem 4. und dem 10. September 2026 stand an drei Morgen keine
+Tagesausgabe auf der Website, und damit auch keine Folge. Nachgezählt, woran
+es jeweils hing:
+
+    04.09.  ein Test mit festem Stichtag, aus dem Bestand herausgealtert
+    05.09.  zwei Prüfungen in derselben Testdatei, die sich widersprachen –
+            aufgedeckt vom ersten angekündigten Quartalstermin
+    10.09.  die Paketprüfung zählte `&amp;` als vier Zeichen und wies einen
+            Teaser von exakt 160 Zeichen mit 164 ab
+
+Drei verschiedene Fehler, jeder in einer Stunde behoben, jeder mit einem
+Pull Request und einer Gegenprobe. Und trotzdem derselbe Ausgang, weil alle
+drei denselben Riegel trafen: `nachrichten.yml` ließ vor dem Veröffentlichen
+die vollständige Prüfkette laufen – `tsc`, `lint`, 126 Testdateien, Bau,
+Paketprüfung, Formatierung – und brach beim ersten Rot ab. Die Frage, die der
+Riegel stellte, war: **Ist irgendwo etwas rot?**
+
+Das ist die falsche Frage. Zwei der drei Befunde standen schon rot, **bevor**
+die Ausgabe geschrieben wurde; sie hätten an jedem beliebigen Tag angeschlagen
+und hatten mit den Nachrichten nichts zu tun. Der dritte betraf zwar die neue
+Artikelseite – aber auf eine Weise, die kein Besucher je gesehen hätte. Ein
+Riegel, der bei jedem Rot im Bestand die Tagesausgabe zurückhält, macht aus
+jedem gealterten Test einen Tag ohne Nachrichten. Und gealterte Tests gibt es
+in einem Bestand von 126 Dateien mit Stichtagen, Kalendern und Fristen nicht
+gelegentlich, sondern regelmäßig.
+
+Der Betreiber hat am 10. September entschieden: _Es darf nicht mehr
+vorkommen._
+
+### Die Frage ändern, nicht die Prüfung abschaffen
+
+Der naheliegende Umbau wäre, die Prüfkette vor dem Veröffentlichen zu
+streichen oder auf den Bau zu kürzen. Das wäre die Absicherung abgeschafft,
+die am 9. August eine Ausgabe mit doppeltem Datum vom Build ferngehalten hat.
+
+Stattdessen stellt der Riegel seit dem 10. September eine andere Frage:
+**Hat die Ausgabe etwas kaputt gemacht?** Dafür läuft dieselbe Kette zweimal –
+einmal auf dem unberührten Stand von `main`, einmal nach dem Schreiben – und
+`lib/pruefvergleich.ts` vergleicht Befund für Befund:
+
+- Ein Befund, der erst mit der Ausgabe rot geworden ist, hält sie auf.
+  Nichts wird gepusht, der Lauf ist rot.
+- Ein Befund, der wortgleich schon vorher da war, hält sie **nicht** auf. Sie
+  wird veröffentlicht, Paketbau und Folge werden angestoßen – und der Lauf
+  endet **trotzdem rot**, als letzter Schritt. Ein grüner Lauf mit einer
+  Warnung darin wäre der stille Fehler; ein roter Lauf ohne Ausgabe der teure.
+  Ein roter Lauf **mit** Ausgabe ist beides nicht.
+- Der Bau blockiert immer, gleich seit wann er rot ist. Ein Stand, der nicht
+  baut, kann nicht ausgeliefert werden – ihn nach `main` zu schieben nützte
+  nichts und schadete dem nächsten, der bauen will.
+- Fehlt der Vorbefund, gilt alles als neu. Im Zweifel streng.
+
+Verglichen wird am Wortlaut: bei `npm test` die gescheiterten Dateien, bei
+`npm run pruefen` die einzelnen Beanstandungen. `tsc`, `lint` und die
+Formatierung nennen nichts Vergleichbares – dort entscheidet allein, ob sie
+schon vorher rot waren.
+
+### Was ein Besucher sieht, und was nicht
+
+Der Fall vom 10. September hätte auch mit dem Vergleich blockiert: Die neue
+Artikelseite gab es im Vorbefund nicht, ihr Befund war zwangsläufig neu. Die
+zweite Änderung gilt deshalb der Paketprüfung selbst, und sie folgt der
+Trennlinie aus dem Abschnitt darüber – _sieht ein Besucher deshalb etwas
+anderes?_
+
+Eine Meta-Description von 164 Zeichen kürzt die Suchmaschine um vier Zeichen.
+Ein Titel von 70 Zeichen bekommt drei Punkte. Zwei Seiten mit demselben Titel
+sind für die Suchmaschine unschön. Nichts davon sieht ein Besucher, nichts
+davon rechtfertigt einen Tag ohne Nachrichten. Diese vier Befunde sind seither
+**Warnungen**: `npm run pruefen` schreibt sie als `::warning::`-Zeilen und
+bleibt grün. Eine **fehlende** Angabe bleibt ein Fehler – ohne `<title>` steht
+im Reiter die Adresse, das sieht jeder.
+
+Der Nutzen des Vergleichs ist damit nicht abgeschafft. Er war es, der die
+Fälle vom 4. und 5. September getragen hätte; die Warnung trägt den vom 10.
+
+### Was das kostet und was es nicht löst
+
+Ein zweiter Bau, rund vier Minuten je Lauf. Der Regelweg – Anstoß durch den
+Agenten gegen 00:35 UTC – hat drei Stunden Luft bis zur Zusage. Der letzte
+Rückfalltermin um 02:47 UTC wird knapp; das war er vorher auch.
+
+Nicht gelöst ist, dass die gealterten Tests weiter altern. Der Vergleich sorgt
+dafür, dass sie die Ausgabe nicht mehr kosten – nicht dafür, dass sie behoben
+werden. Dafür ist der rote Schritt am Ende da: Er schickt die Mail, die vorher
+auch kam, nur steht jetzt eine Ausgabe auf der Website, während sie gelesen
+wird.
+
+**Die Gegenprobe:** `tests/pruefvergleich.test.ts` legt dem Vergleich die drei
+Morgen vor, jeden so, wie er war, und zu jedem den Zwilling, bei dem der
+Befund erst mit der Ausgabe entstanden ist. Ließe er beide durch, wäre der
+Riegel nicht verbessert, sondern weg. `tests/paket-pruefen-meta.test.ts`
+prüft die Grenze zwischen Fehler und Warnung von beiden Seiten.
+
 # Ein Kurs ist so alt wie die Stelle, die ihn anzeigt
 
 Nicht so alt wie der Abruf. Das klingt selbstverständlich und war es nicht:
@@ -1406,6 +1502,118 @@ jedem Lauf die Herkunft der stehenden Ausgabe und stößt den Nachrichtenlauf
 an, wenn Notbehelf + frischer Entwurf + noch kein Podcast zusammenkommen.
 Ein Notbehelf hat damit den ganzen Vormittag Gelegenheiten, ersetzt zu
 werden – bis 04:53 deutscher Zeit, wenn der Podcast ihn festschreibt.
+
+## Die Folge ist eine Nachrichtensendung, kein Lehrstück
+
+Am 16. September 2026 hat der Betreiber vier Dinge auf einmal beanstandet:
+
+> im podcast gibt es noch immer viele sprachfehler und es soll dort nichts
+> erklärt werden sondern nur die daily news kommen wirtschaft und politik du
+> brauchst auch nicht so sehr auf einzelne titel eingehen wenn dann nur auf
+> die big titel wenn es etwas sehr wichtiges gibt ansonsten halt auch wichtig
+> events zb fed zinsentscheide usw oder jetzt wo russland die ukraine nage der
+> polnischen grenze angriff aber alles objektiv ohne positionierung oder
+> meinung
+
+### Was in der Folge wirklich stand
+
+Nachgesehen wurde nicht im Kopf, sondern am erzeugten Sprechtext. Die Folge
+zum 30. Juli, 669 Wörter, enthielt unter anderem:
+
+    „der Ess und Pie fünfhundert"            → stand da als „S und P"
+    „der Nässdackminus einhundert"           → aus „Nasdaq-100"
+    „der USminus dreißig"                    → aus „US-30"
+    „Ein neun-zuminus drei-Stillhalten"      → aus „9-zu-3"
+    „WTI", „Bank of England", „Warsh"        → gar nicht umgeschrieben
+
+**Der Fehler mit dem Minus war eine einzige Zeile.** Die Vorzeichenregel in
+`sprechbar()` fasste jeden Bindestrich vor einer Ziffer. Ein Bindestrich in
+einem zusammengesetzten Wort ist kein Minuszeichen; unterscheiden lassen sich
+die beiden an dem, was links davon steht. Das ist wieder der Satz aus den
+Lehren: **Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist
+keine.** „Strich vor Ziffer" ist kein Merkmal eines Vorzeichens.
+
+### Warum die Aussprachetabelle trotz Prüfung weiter driftete
+
+`tests/sprechfassung-aussprache.test.ts` prüfte die Regeln seit dem 20. August
+2026 maschinell – **an einer handgepflegten Liste von siebzehn Wörtern.** Die
+Tabelle hatte zu diesem Zeitpunkt über hundert Einträge.
+
+Das ist eine Stichprobe, die wie eine Zusicherung aussieht. Wer einen Namen
+einträgt, denkt nicht daran, ihn zusätzlich in eine Testdatei zu schreiben; die
+Prüfung bleibt grün und sagt nichts darüber, was sie nicht angesehen hat.
+
+Seither läuft die Regel über **jeden** Eintrag. Das Probewort entsteht aus dem
+Muster selbst, und lässt es sich nicht ablesen, fällt der Eintrag durch, statt
+übersprungen zu werden – eine Prüfung, die still auslässt, was sie nicht
+versteht, ist wieder eine Stichprobe.
+
+**Beim ersten Lauf fand sie sofort einen Fehler:** „Private Equity" stand als
+„Preiwet Ekwiti" da. Deutsches „kw" ist /kv/, gesprochen wurde also „Ekwiti".
+Dieselbe Falle wie bei „Squeeze" → „Skwies", das ein Mensch beim Zuhören
+gefunden hatte. Die alte Regel konnte beide nicht sehen: Sie suchte ein „w" im
+**englischen** Wort, und in „Squeeze" und „Equity" steht keins – das /w/ steckt
+im „qu".
+
+### Nichts erklären heißt: das Feld weglassen, nicht kürzen
+
+Die Folge trug bis dahin zweimal Erklärung: `whyItMatters` hing an jedem
+Themenabsatz, und das „Fazit" am Schluss trug den Satz der wichtigsten Meldung
+ein zweites Mal vor. Beides ist weg.
+
+**Das Feld bleibt in den Daten und auf der Website.** Es ist dort der erklärte
+Zweck der Rubrik, und der Abschluss der Folge verweist genau darauf: „Alle
+Themen ausführlich und mit Einordnung findest du auf iminvests.de." Der
+Unterschied ist nicht der Umfang, sondern die Gattung – wer morgens
+Nachrichten hört, will wissen, was passiert ist.
+
+Dieselbe Ausgabe ergibt damit 472 statt 669 Wörter. Die Beschreibung sagt
+seither nicht mehr „rund fünf Minuten", sondern rechnet die Spieldauer aus dem
+Sprechtext: Eine Angabe, die einmal gestimmt hat und seither mitgeschleppt
+wird, ist genau der stille Fehler.
+
+### Warum die Mischung nicht im Code entschieden wird
+
+Der naheliegende Schritt wäre ein Riegel in `baueFolge()`: Einzeltitel
+erkennen und nach hinten sortieren. Nachgezählt an allen 291 Meldungen aus 47
+Ausgaben, ob sich das überhaupt entscheiden lässt – das Ergebnis war **nein**.
+Das beste verfügbare Merkmal, „genau ein `relatedSymbol`", trifft 137 von 291
+und steht gleichermaßen unter „Apple stellt faltbares iPhone vor" und unter
+„Gaspreis steigt erstmals seit 2022 über 80 Euro".
+
+Ein Klassifikator auf Merkmalen, die der Stoff nicht trägt, hätte sortiert und
+dabei geraten. Also steht die Mischung dort, wo der Text entsteht: im Prompt,
+in `scripts/nachrichten-erzeugen.ts` **und** `nachrichten-agent.yml`. Die
+Rangfolge unter `top` ist die Rangfolge der Folge.
+
+### Objektivität: Prompt plus Grenze
+
+Eine Anweisung an ein Modell ist eine Bitte, keine Zusage – derselbe Satz wie
+bei den geplanten Läufen. Deshalb prüft `positionierungen()` in
+`lib/editions-validate.ts` zusätzlich, und `scripts/nachrichten-erzeugen.ts`
+holt dieselbe Funktion, statt die Liste abzuschreiben.
+
+Geprüft wird **nur `summary`** – der Text, der gesprochen wird – und nur, was
+sich mechanisch entscheiden lässt: Anlageempfehlung und eigene Meinung.
+Urteilende Adjektive stehen bewusst nicht in der Liste: In einem Zitat mit
+Zuschreibung sind sie richtig, und eine Wortliste, die das nicht unterscheiden
+kann, beanstandet irgendwann eine korrekte Meldung und wird dann abgeschaltet
+statt befolgt.
+
+Über alle 47 Ausgaben findet die Regel keinen Treffer. Dass sie trotzdem
+arbeitet, zeigt `tests/editions-objektiv.test.ts` an neun Sätzen, die sie
+beanstanden **muss**, und sieben, die durchgehen müssen – darunter die heiklen
+„Der Bericht sollte um 14:30 Uhr erscheinen" und „Die Fed dürfte den Leitzins
+halten".
+
+### Der Nebenbefund: Kapitelnamen aus Dezimalkommas
+
+Beim Nachsehen fiel auf, dass `kernDerUeberschrift()` an `[:–—,]` trennte –
+also auch am **Dezimalkomma**. In einem Börsentext steht in fast jeder
+Überschrift eines. Herausgekommen ist „Öl springt 7" als Kapitelname, und in
+jeder Folgenbeschreibung stand „Wir sprechen über Öl springt 7, Microsoft
+springt, Heute." Dazu kam der Stummel: „Heute:" und „Wall Street:" sind
+Rubriken, kein Kern.
 
 ## Die Lernseiten sprechen mit derselben Stimme wie der Podcast
 
@@ -3206,6 +3414,109 @@ Ein gehaltener Ton bei 900 Hz und ein Brummen bei 180 Hz, beide weit unter dem
 Anschlag und weit unter der Zischgrenze. Beide werden jetzt gefunden und
 gedämpft, und beide standen vorher als „nichts zu beanstanden" da.
 
+### Und manchmal ist es keins von beidem – der 19. September 2026
+
+Der Betreiber meldete in der Folge vom 19. September bei 2:56 ein Geräusch
+„zwischen Stuhl verschieben und flatulieren". Gemessen sah es so aus:
+
+    Sekunde  Effektiv  Nulldurchg.  Anschlag  Tonanteil  Tiefenanteil
+     175.50    0.1667        0.067     0.000      0.529         0.943
+     175.62    0.3390        0.020     0.000      0.400         0.019
+     175.75    0.3499        0.006     0.000      0.715         0.963
+     175.88    0.1887        0.006     0.000      0.657         0.998
+
+Alle drei Merkmale sahen daran vorbei, und nicht knapp: 0,006 gegen eine
+Zischgrenze von 0,22, nichts am Anschlag, 0,72 gegen einen Tonanteil von 0,90.
+Dabei sind das die **lautesten** Fenster ihrer Umgebung.
+
+Der Grund ist eine Lücke in der Form der Prüfung, nicht in einer Zahl:
+`ZISCHGRENZE` fragt nach **zu vielen** Nulldurchgängen. Nach unten stand
+keine Grenze. Ein Poltern ist aber genau das – tiefe Energie ohne Formanten.
+
+#### Der Tiefenanteil allein trennt nichts
+
+Der erste Versuch maß den Anteil der Energie unter 200 Hz und ging davon aus,
+dass dort bei Sprache „nur ein Teil, nie der größte" sitzt. Über die 1238
+lauten Fenster derselben Folge nachgemessen:
+
+    Perzentil        10      25      50      75      90      95      99
+    Tiefenanteil  0.099   0.288   0.524   0.736   0.860   0.922   0.993
+
+Der Median liegt bei 0,52. Die Grundfrequenz dieser Stimme liegt unter 200 Hz
+und trägt mehr Energie als alle Formanten zusammen. Eine Grenze auf den
+Tiefenanteil allein wäre bei 0,90 wirkungslos gewesen (null Funde, auch der
+gemeldete nicht) und bei 0,70 verheerend (vierzehn Stellen, allesamt Sprache).
+
+#### Zwei falsche Formen, bevor die richtige stand
+
+**Und je Fenster.** Beide Merkmale für jedes Viertelsekundenfenster zu
+verlangen, fand die Stelle in _keiner_ Kombination von Grenzen. Jedes der
+vier Fenster verfehlt mindestens eine Bedingung; übrig blieben zwei, 0,375 s,
+und damit scheiterte es um 25 Millisekunden an `STOERUNG_MINDESTENS_S`. Ein
+Poltern ist kein gleichförmiger Ton – es schlägt an, rollt aus und schwankt
+dabei. Wieder eine Fallunterscheidung über ein Merkmal, das der Stoff nicht
+hergibt.
+
+**Lauf, dann Median.** Also erst einen Lauf aus allen stillen Fenstern bilden
+und ihn als Ganzes beurteilen. Das fand die echte Stelle – und fiel im
+Selbsttest durch, bevor es in einen Lauf kam: `_probeton` liegt durchgehend
+bei 0,009 Nulldurchgängen, der Lauf wuchs über das eingebaute Poltern hinaus
+auf Sekunden an, und sein Median sank auf den Wert des Probetons. **Ein
+Mittelwert kann nichts finden, was er verdünnt** – derselbe Fehler wie beim
+Prüfen ganzer Stücke, nur eine Ebene tiefer.
+
+Was steht, ist ein **fester Abschnitt**: drei Fenster am Stück, das kleinste,
+das 0,4 s erreicht. Er kann nicht wachsen und deshalb nichts verdünnen, und
+sein Median überhört genau einen Ausreißer – einer ist da, bei 175,62.
+
+#### Wie die Grenze gewählt wurde
+
+An der Aufnahme, mit der gemeldeten Stelle als Prüfstein, gerechnet mit
+derselben Funktion, die später urteilt:
+
+    Nulldurchg. bis   Tiefe ab   Stellen   die gemeldete dabei
+              0,015       0,80         2   ja
+              0,015       0,90         2   ja
+              0,020       0,80         7   ja
+              0,020       0,90         3   ja
+              0,030       0,90         4   ja
+
+Bei 0,015/0,90 bleiben in 232 Sekunden genau zwei Stellen, und beide tragen
+dieselbe Handschrift:
+
+    2:09  0,50 s  Tiefe 0,998  Nulldurchg. 0,006
+    2:55  0,50 s  Tiefe 0,963  Nulldurchg. 0,006   ← die gemeldete
+
+Dass 2:09 mitkommt, ohne gemeldet worden zu sein, ist kein Fehlalarm: 99,8
+Prozent der Energie unter 200 Hz über eine halbe Sekunde kann keine Sprache
+sein – dann bliebe nichts, woran ein Laut zu erkennen wäre.
+
+Die fünf, die bei 0,020/0,80 dazukommen, liegen bei einer Tiefe von 0,81 bis
+0,86 und 0,016 bis 0,023 Nulldurchgängen: eine andere Sorte, und zwar
+gesprochene. Das ist kein Feilschen um Kommastellen. `nachbessern()` meldet
+nicht nur, es **dämpft** – fünf Fehlalarme je Folge wären fünf gedämpfte
+Stellen gesprochener Sprache.
+
+#### Die Gegenprobe an den anderen Folgen
+
+Eine Grenze, die an einer einzigen Aufnahme gewählt wurde, ist an einem
+Einzelfall gewählt. Gegen sechs weitere Folgen laufen gelassen: kein einziger
+Fund am 20. und am 18. September, einer am 16. September (2:35, Tiefe 0,90,
+Nulldurchgänge 0,012) – in der Folge, über die der Betreiber vier Tage zuvor
+geklagt hatte. Die übrigen Funde dort sind „rau" und damit älter als diese
+Änderung.
+
+#### Was im Selbsttest dazukam
+
+Ein nachgestelltes Poltern aus drei tiefen Teiltönen mit Anschlag und
+Ausrollen – ein einzelner Sinus wäre der falsche Prüfstein, den fände schon
+der Tonanteil. Geprüft wird zusätzlich, dass es als **Rumpeln** gefunden wird
+und nicht als Ton oder Rauschen: Fände es ein altes Merkmal mit, wäre die neue
+Grenze eine Doppelung, die beim nächsten Umbau niemand vermisst, und der
+gemeldete Fall bliebe trotzdem offen. Dazu sieben saubere Probetöne, die
+unbeanstandet bleiben müssen, und die Nachbesserung, die das Poltern danach
+nicht mehr finden darf.
+
 ## Eine Regel im Kommentar ist keine Regel
 
 Am selben Tag beanstandete der Betreiber die Aussprache englischer Wörter.
@@ -3819,3 +4130,469 @@ Die Datei hat nach dem Aufräumen wieder rund 400 Zeichen Luft. Das ist kein
 Polster für ein Jahr – es ist Platz für zwei, drei Regeln. Wer mehr braucht,
 räumt weiter auf, statt die Grenze anzuheben: Sie ist nicht der Gegner,
 sondern das Einzige, was die Trennung am Leben hält.
+
+# Wohneigentum auf dem Globus – 30 Länder, und warum nicht mehr – 16. September 2026
+
+Der Betreiber wollte die Wohneigentumsquote auf der Karte, „für alle Länder".
+Die Kennzahl ist jetzt da. **„Alle Länder" ist sie nicht**, und das ist keine
+Nachlässigkeit, sondern der Stand der Quellenlage.
+
+## Was tatsächlich geprüft wurde
+
+Vom Läufer aus, weil diese Umgebung ausser GitHub nichts erreicht
+(`quellen-holen.yml`, drei Durchgänge):
+
+    Weltbank WDI              keine Reihe zum Wohneigentum
+    OECD SDMX, OECD.ELS.HD    200 – aber das ist die Gesundheitsabteilung
+    Eurostat ilc_lvho02       200, 30 Länder, Stand 2025
+
+Die ersten beiden Versuche bei Eurostat kamen mit 400 zurück. Der Grund stand
+nicht in der Fehlermeldung, sondern in der Antwort selbst: Die Dimensionen
+heissen `rskpovth` und `hhcomp`, nicht `incgrp` und `hhtyp`. Abzulesen war das
+erst, nachdem eine kleine Scheibe (`geo=DE`) vollständig durchs Protokoll
+passte – eine grosse Antwort wird gekürzt, und die Struktur steht hinten.
+
+**„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
+steht deshalb mit Datum und Liste hier und im Kopf von
+`EUROSTAT_WOHNEIGENTUM_URL`, damit der Nächste nicht dieselben drei Runden
+dreht. Wer die OECD anschliesst, holt USA, Japan, Korea, Kanada und Australien
+dazu; ihre Zahlen stehen in der Affordable Housing Database und damit
+ausserhalb der SDMX-Schnittstelle, die dieses Projekt sonst benutzt.
+
+## Warum hier nicht geschätzt wird
+
+Bei Lohn und Vermögen füllt eine Regression aus der Kaufkraft die Lücken. Das
+trägt dort, weil beide mit dem Wohlstand steigen. Beim Wohneigentum ist der
+Zusammenhang **umgekehrt** und stark:
+
+    Rumänien      93,2 %        Slowakei   93,8 %
+    Deutschland   47,2 %        Österreich 54,2 %
+
+Rumänien ist nicht viermal so wohlhabend wie Deutschland. Hohe Quoten stammen
+oft aus der Privatisierung von Staatswohnungen, niedrige aus einem grossen,
+gut geschützten Mietmarkt. Eine aus der Kaufkraft geschätzte Quote wäre nicht
+ungenau, sondern seitenverkehrt – und sähe mit ihrer Nachkommastelle genauso
+aus wie eine gemessene.
+
+Dieselbe Begründung wie bei Arbeitslosigkeit und Inflation, und derselbe
+Ausgang: gemessen oder gar nicht.
+
+## Personen, nicht Haushalte
+
+`ilc_lvho02` ist „Distribution of **population** by tenure status". Gezählt
+werden Menschen, die in einer Eigentumswohnung leben, Kinder eingeschlossen –
+nicht Haushalte, die eine besitzen. Die Quote je Haushalt liegt regelmässig
+niedriger, weil Eigentümerhaushalte im Schnitt grösser sind.
+
+Wer die beiden verwechselt, hält den Unterschied für einen Fehler. Deshalb
+steht er in der Erklärung auf der Seite, in der Abgrenzung der Quelle und in
+der Momentaufnahme – an allen drei Stellen, an denen jemand die Zahl zum
+ersten Mal sieht.
+
+## Die Auswertung liegt getrennt vom Abruf
+
+`scripts/laender-abrufen.ts` ruft beim Laden sofort `main()` auf; wer es
+importiert, startet einen vollständigen Abruf. Eine Auswertung darin wäre in
+der einzigen Umgebung, in der hier geschrieben wird, gar nicht prüfbar.
+
+Also `lib/wohneigentum.ts` – dieselbe Bauart wie `lib/pruefvergleich.ts` und
+`lib/tageswecker.ts`. `tests/wohneigentum.test.ts` legt ihr die **echte**
+Antwort vor, die der Läufer geholt hat, und prüft fünf Länderwerte gegen das
+Protokoll. Die Datei unter `tests/fixtures/` ist diese Antwort, gekürzt auf
+die gelesenen Teile und sonst unverändert.
+
+JSON-stat ist eine flache Liste; welche Zelle zu welchem Land gehört, ergibt
+sich aus `size`. Die Abfrage legt jede Dimension ausser `geo` auf einen Wert
+fest – **und die Auswertung prüft, dass sie das wirklich tut.** Ohne diese
+Prüfung stünde, falls Eurostat die Filterung einmal anders behandelt, bei
+jedem Land irgendein Wert: plausibel, mit Nachkommastelle, falsch. Genau die
+Art Fehler, die niemand mehr findet. Der Test legt ihr diesen Fall vor.
+
+# „Kinder je Frau" und nicht „Geburtenrate" – 16. September 2026
+
+Der Betreiber wollte die Geburtenrate auf den Globus, „also Kinder pro Kopf,
+zum Beispiel in Deutschland sind hier 1,3". Die Zahl, die er meint, ist die
+**zusammengefasste Geburtenziffer** – und genau daran hängt die einzige
+Entscheidung, die hier zu treffen war.
+
+## Zwei Zahlen, ein Wort
+
+Umgangssprachlich ist beides „die Geburtenrate":
+
+    rohe Geburtenziffer          Geburten je 1.000 Einwohner   Deutschland ~8
+    zusammengefasste Ziffer      Kinder je Frau                Deutschland 1,36
+
+Wer „Geburtenrate" über einer Karte liest und 1,36 sieht, hält die Zahl für
+falsch – oder rechnet, schlimmer, mit ihr weiter. Deshalb heisst die Kennzahl
+**„Kinder je Frau"**: Der Name sagt, was gemessen wird, statt den
+gebräuchlichen Begriff zu übernehmen und die Verwechslung mitzuliefern.
+
+Dass die Ziffer ein **Modellwert** ist, steht daneben: Sie sagt, wie viele
+Kinder eine Frau bekäme, wenn für sie ihr Leben lang die Geburtenhäufigkeiten
+dieses einen Jahres gälten. Einen solchen Jahrgang hat es nie gegeben. Das ist
+kein Einwand gegen die Zahl – es ist die übliche Vergleichsgrösse –, aber es
+gehört dazugesagt.
+
+## Warum zwei Nachkommastellen
+
+Arbeitslosigkeit und Inflation stehen mit einer Stelle da; eine zweite wäre
+dort Scheingenauigkeit. Hier ist die erste zu grob. Die Hälfte aller Länder
+liegt zwischen 1,2 und 2,1:
+
+    Südkorea   0,75      Deutschland  1,36      Frankreich  1,61
+    Israel     ~2,9      Nigeria      4,38      Niger       ~6,9
+
+Auf eine Stelle gerundet fielen in Europa mehrere Klassengrenzen zusammen, und
+der Unterschied zwischen 1,36 und 1,44 – der, über den jede Debatte zur
+Bevölkerungsentwicklung geht – verschwände. Deshalb `FEINE_METRIKEN` in
+`GlobusAnsicht.tsx` und `stellen: 2` im Abruf.
+
+Der Betreiber erwartete 1,3 für Deutschland; die Weltbank führt 1,36 für 2024.
+Die Karte zeigt die genauere Zahl, nicht die gerundete Erinnerung.
+
+## Diesmal reicht eine Quelle für die Welt
+
+Anders als beim Wohneigentum eine Woche zuvor: `SP.DYN.TFRT.IN` steht in den
+World Development Indicators und deckt fast jedes Land ab. Die Weltbank trägt
+sie aus den Bevölkerungsvorausberechnungen der Vereinten Nationen, den
+nationalen Statistikämtern und Eurostat zusammen.
+
+Der Abruf brauchte deshalb keine neue Funktion – nur einen Eintrag in
+`RATENREIHEN` und einen Aufruf von `ladeWeltbankreihe`. Dass die Reihe
+antwortet und was sie liefert, hat vor dem Schreiben ein Läufer geprüft:
+Deutschland 1,36 · Frankreich 1,61 · Südkorea 0,748 · Nigeria 4,382, alle für 2024.
+
+## Und auch hier wird nicht geschätzt
+
+Der Zusammenhang mit dem Wohlstand ist stark – arme Länder haben mehr Kinder.
+Die Ausnahmen sind aber genau die Fälle, wegen derer man auf die Karte sieht:
+Südkorea liegt bei 0,75 und ist reich, Israel bei fast 3 und ebenso. Eine
+Regression aus der Kaufkraft würde beide glattbügeln und dabei das
+Interessante entfernen.
+
+# Drei Listen für eine Kennzahl – und zwei, die seit Monaten fehlten – 16. September 2026
+
+Der Betreiber schickte einen Bildschirmabzug der Landtafel zu Spanien: acht
+Kennzahlen, und die Eigentumsquote nicht dabei. Sie stand in `metriken`, sie
+färbte die Karte, sie hatte eine Spalte in der Ländertabelle – nur die Tafel
+zum angeklickten Land kannte sie nicht.
+
+## Die Ursache: drei Listen, nichts verglich sie
+
+Eine Kennzahl muss an drei Stellen auftauchen, damit sie vollständig ist:
+
+    lib/laender.ts                   metriken + wertFuer
+    components/globus/GlobusAnsicht  wertVon (Karte) + Landtafel
+    components/globus/Laendertabelle die Spalten
+
+Alle drei von Hand gepflegt. Genau der Fall, vor dem `AGENTS.md` warnt: _Eine
+Doppelung mit guter Begründung altert trotzdem._ Und sie fiel nicht auf, weil
+ein Land ohne Zeile aussieht wie ein Land ohne Angabe.
+
+## Was der Test dann wirklich fand
+
+`tests/globus-kennzahlen.test.ts` hält die drei Listen gegeneinander. Dafür
+trägt jede Kennzahl den Namen ihres Feldes (`feld` in `Metrik`); zusammenführen
+liesse sich das nur mit einem Umbau der Tafel, die je Kennzahl eine eigene
+Schreibweise braucht („% des BIP", „US-$ je Erwachsenem", „Kinder je Frau").
+
+Beim **ersten Lauf** fiel nicht die gemeldete Kennzahl durch, sondern zwei
+andere:
+
+    Einkommen je Kopf    (bneProKopf)      203 Länder
+    Kaufkraft je Kopf    (bipProKopfKKP)   203 Länder
+
+Beide standen in der Auswahl über der Karte. Beide trafen in `wertVon` auf
+keinen Fall und fielen in `default: return null` – wer sie anklickte, bekam
+eine **vollständig graue Weltkarte**. Von aussen sieht das aus wie eine
+Kennzahl ohne Daten, nicht wie ein fehlender Zweig; die Legende schrieb
+dazu brav „0 von 249 Ländern und Gebieten mit Wert". In der Landtafel und in
+der Tabelle fehlten sie ebenso.
+
+Wie lange, lässt sich nicht sagen. Gemeldet hat es niemand.
+
+## Die eigentliche Lehre: `default` hat den Fehler verdeckt
+
+Der `default: return null` war der Grund, dass es keinen Krach gab. Ohne ihn
+hätte TypeScript beim Hinzufügen der beiden Kennzahlen sofort protestiert.
+
+Er ist jetzt weg, und `AnsichtMetrik.id` trägt statt `string` den Typ
+`MetrikId`. Damit prüft der Compiler die Vollständigkeit. Nachgemessen: Eine
+erfundene dreizehnte Kennzahl bricht den Bau an **zwei** Stellen –
+
+    components/globus/GlobusAnsicht.tsx  Function lacks ending return statement
+    lib/laender.ts                       Function lacks ending return statement
+
+– und zwar bevor irgendetwas gebaut wird. Das ist die stärkere Absicherung;
+der Test daneben deckt ab, was der Compiler nicht sieht: Landtafel und
+Tabelle, die keine `switch` sind, sondern Listen.
+
+**Ein `default`-Zweig in einer Fallunterscheidung über einen geschlossenen
+Typ ist keine Vorsicht, sondern ein abgeschalteter Compiler.**
+
+## Und die Umbenennung
+
+Die Geburtenziffer heisst auf Wunsch des Betreibers jetzt „Geburtenrate"
+statt „Kinder je Frau". Der Einwand – Geburtenrate bezeichnet statistisch die
+Geburten je tausend Einwohner – lag ihm vor; er hat den geläufigen Namen
+trotzdem verlangt, und das ist vertretbar: Kaum jemand sucht auf einer Karte
+nach „Kinder je Frau".
+
+Die Genauigkeit wandert deshalb in die **Einheit**, und die steht überall
+dort, wo die Zahl steht: in der Legende („Angaben in Kinder je Frau"), in der
+Landtafel („1,36 Kinder je Frau"), in der Tabellenüberschrift und im ersten
+Satz der Erklärung. Der Name ist geläufig, die Zahl bleibt eindeutig.
+
+---
+
+# Die Folge war halb Kleingedrucktes – 28. September 2026
+
+Gemeldet vom Betreiber, am Morgen nach der Folge: „Der Podcast von heute ist
+viel zu kurz, das Intro und die Aufklärung danach gehen genauso lange wie der
+Podcast, das ist komisch."
+
+Nachgerechnet an der Folge vom 28. September:
+
+    Begrüßung    35 Wörter
+    Hinweise     39 Wörter   ← KI-Hinweis und Rechtshinweis
+    vier Meldungen 86 Wörter
+    Abschied     29 Wörter
+    ─────────────────────
+    Gerüst      103 Wörter
+    Meldungen    86 Wörter   ← 46 % der Folge
+
+Er hatte nicht ungefähr recht, sondern auf das Wort: Das Kleingedruckte war
+länger als die Nachrichten.
+
+## Das Gerüst war nicht der Täter
+
+Der erste Gedanke ist, am Gerüst zu kürzen. Er ist falsch, und das lässt sich
+zeigen. Über alle 65 Folgen seit dem 25. Juli 2026 gemessen:
+
+    Gerüst      min 103 · Median 109 · max 116 Wörter
+    Anteil      min 15 % · Median 29 % · max 54 %
+
+(Gemessen vor dem Zusammenziehen der Umschriften, das am selben Tag
+dazukam – „Uh Ess“ zählte als zwei Wörter, „Juh-Ess“ zählt als eins.
+Danach sind es 99 bis 110, Median 104. Die Grenze `GERUEST_WOERTER = 110`
+ist der Höchstwert dieser Spanne: Die Meldungen sollen mehr wiegen als
+das Gerüst an seinem längsten Tag.)
+
+Das Gerüst ist fester Text – Gruß, Datum, `intro`, KI-Hinweis,
+Rechtshinweis, Abschied – und war am schlechtesten Tag keine Zeile länger als
+am besten. Gewachsen ist nichts; geschrumpft ist die Nachricht. Wer hier
+kürzt, verliert Pflichtangaben und hat weiterhin eine kurze Folge.
+
+Der Anteil von 54 % ist zudem ein Einzelfall: Der zweithöchste liegt bei
+43 %, und über 50 % kommt in 65 Folgen sonst nie vor.
+
+## Die Ursache stand in der Ausgabe, nicht in der Folge
+
+Die Tagesausgabe vom 28. September hatte **vier** Meldungen. Der Tag hatte
+**sechs** Artikel.
+
+Das Material lag also vor. Es kam nur nicht in die Ausgabe – und gesprochen
+wird ausschließlich, was in der Ausgabe steht. Ein Leser bekam sechs
+Meldungen, ein Hörer vier.
+
+Im Prompt steht seit jeher: „Die Tagesausgabe fasst dieselben Meldungen
+zusammen." Geprüft hat das niemand. Geprüft wurde:
+
+    artikel.length < 5                  → Abbruch   (die Website)
+    top.length + further.length < 3     → Abbruch   (der Podcast)
+
+Fünf für das Geschriebene, drei für das Gesprochene. Die Lücke dazwischen ist
+genau das, was am 28. September durchfiel.
+
+**Ein Satz im Prompt ist keine Regel, solange ihn kein Prüfer liest.** Das ist
+dieselbe Lehre wie am Tag davor beim Satzrhythmus, wo sieben Wochen lang
+„Kurze Hauptsätze, keine Schachtelsätze" dastand und nichts band.
+
+## Zwei Zahlen, und woran sie gewählt sind
+
+**Fünf Meldungen** (`MELDUNGEN_MIN` in `scripts/nachrichten-erzeugen.ts`).
+Meldungen je Ausgabe über 65 Tage:
+
+    unter fünf:  5 Tage   28.09. (4) · 27.09. (4) · 17.09. (3) ·
+                          13.08. (4) · 02.08. (4)
+    fünf:       18 Tage
+    sechs+:     42 Tage
+
+An vier dieser fünf Tage standen mehr Artikel als Meldungen bereit; die
+Grenze hätte einen zweiten Anlauf verlangt, nicht einen Tag gekostet. Der
+fünfte (02.08.) hatte selbst nur vier Artikel und wäre schon an der alten
+Grenze gescheitert. Die neue verwirft damit **keinen** Tag, den die alte
+durchgelassen hätte.
+
+**110 Wörter `summary`** (`GERUEST_WOERTER`, ebenda). Die Summe aller
+`summary`-Absätze, aufsteigend über 65 Ausgaben:
+
+    79 · 130 · 159 · 159 · 162 · 162 · 167 · 178 · 184 · 188 · …
+    Median 246, Höchstwert 529
+
+Genau eine Ausgabe liegt darunter – die gemeldete. Zur zweitdünnsten sind es
+51 Wörter Abstand. Die Zahl ist nicht gerundet, sondern abgelesen: So viel
+wiegt das Gerüst an seinem längsten Tag, und mehr müssen die Meldungen
+wiegen. Das ist der Satz des Betreibers, in eine Zahl übersetzt.
+
+## Warum der Riegel vorn sitzt und die Warnung hinten
+
+Zurückgewiesen wird beim **Entwurf**, in `scripts/nachrichten-erzeugen.ts`.
+Dort ist noch nichts geschrieben, und `nachrichten-agent.yml` läuft um 02:33,
+03:03 und 03:33; danach greift das Modell über die Schnittstelle. Ein
+verworfener Entwurf kostet eine halbe Stunde, keine Ausgabe.
+
+In `scripts/podcast-folge-erzeugen.ts` steht dieselbe Frage noch einmal, aber
+nur als **Warnung** (`folgengewicht()` in `lib/sprechfassung.ts`). Dort ist
+die Ausgabe längst geschrieben; eine dünne Folge zurückzuhalten hieße, gar
+keine zu senden, und das ist der Tausch, den dieses Projekt nicht macht.
+
+Die Warnung ist trotzdem kein Zierrat: Sie fängt den Fall, den die beiden
+Zahlen vorn nicht sehen – eine Ausgabe, die den Riegel passiert und deren
+Meldungen später gekürzt werden. `tests/sprechfassung.test.ts` legt ihr die
+Folge vom 28. September nachgebaut vor; beanstanden muss sie sie.
+
+---
+
+# „U S Notenbank" – ein Leerzeichen, das eine Pause war – 28. September 2026
+
+Gemeldet vom Betreiber, am selben Morgen wie die zu kurze Folge:
+
+> „Die Anglizismen werden noch immer nicht korrekt ausgesprochen, zum Beispiel
+> auch US-Notenbank – spricht er ,U S Notenbank' aus, mit einer sehr
+> langen Pause. Das ist falsch. Aber US soll es auch nicht heißen, also das
+> englische U und S, mit die Buchstaben einzeln, aber schnell nacheinander
+> aussprechen. Aber das ist nur einer von vielen Punkten."
+
+Er beschreibt zwei verschiedene Fehler, und beide steckten in **einem**
+Tabelleneintrag, der am Tag zuvor entstanden war.
+
+## Erstens: das Leerzeichen zerlegt die Zusammensetzung
+
+`[/\bUS\b/g, 'Uh Ess']` sieht harmlos aus. Was es mit dem Text macht, sieht
+man erst, wenn man ihn ausdruckt:
+
+    US-Notenbank      →  Uh Ess-Notenbank
+    US-Dollar         →  Uh Ess-Dollar
+    US-Jobbericht     →  Uh Ess-Jobbericht
+
+Aus **einem** Wort werden **drei** Zeichenketten, und der Bindestrich klebt
+am zweiten Buchstaben statt am Kürzel. Ein Sprachmodell liest, was dasteht:
+„Uh", Wortgrenze, „Ess-Notenbank". Die Wortgrenze ist die Pause.
+
+Das war keine Ausnahme. Nachgezählt an allen 65 Ausgaben, mit der Tabelle von
+heute gerechnet: **176 solche Stellen**, davon 72 Mal „US-Dollar", 8 Mal
+„US-Staatsanleihen", 8 Mal „US-Notenbank". Deutsche Nachrichten schreiben
+Kürzel fast immer als erstes Glied einer Zusammensetzung; der Fehler war
+nicht selten, er war täglich.
+
+Und er war nicht auf „US" beschränkt. Dieselbe Bauart hatten **19 von 131**
+Einträgen:
+
+    WTI → Weh Teh Ih          CEO → Sieh Ie Ou
+    PCE → Peh Zeh Eh          CFO → Sieh Eff Ou
+    ASML → Ah Ess Emm Ell     IPO → Ei Pie Ou
+    AMD → Ah Emm Deh          BoE → Bie Ou Ie
+    GLD → Geh Ell Deh         OpenAI → Ohpen Ej Ei
+    SLV → Ess Ell Fau         BofA → Bänk of Amerika
+    VW  → Fau Weh             BlackRock → Bläck Rock
+    AFX → Ah Eff Ix           Coca-Cola → Koka Kohla
+    dpa-AFX → deh peh ah Ah Eff Ix
+    Big-Tech → Bigg Teck      Fear-and-Greed → Fier and Griedd
+    wallstreet-online → Uallstriet onlein
+    IM Invests → Ei Emm Inwests
+
+„CEO-Wechsel" wäre „Sieh Ie Ou-Wechsel" geworden, „IPO-Kandidat" „Ei Pie
+Ou-Kandidat". Alle 19 sind zusammengezogen.
+
+Die Regel dahinter steht jetzt in `AGENTS.md` und wird geprüft:
+**Eine Umschrift hat so viele Wörter wie ihr Muster.** Buchstabennamen werden
+mit Bindestrichen verbunden, nie mit Leerzeichen – so, wie `JPMorgan →
+Dschej-Pi-Morgen` es seit jeher vormacht, ohne dass jemand die Regel
+aufgeschrieben hätte. `tests/sprechfassung-aussprache.test.ts` zählt für jeden
+Eintrag nach und bekommt als Gegenprobe den alten Zustand vorgelegt.
+
+## Warum Bindestrich und nicht Zusammenschreiben
+
+Gemessen, nicht geraten – aber mit einer Einschränkung, die dazugehört.
+
+`hoerprobe.yml` hat denselben Trägersatz mit fünf Schreibweisen gesprochen:
+„Die X-Notenbank senkt den Zins." Die Aufnahme liegt auf dem wurzellosen
+Zweig `hoerprobe`; gemessen wurden die Lücken **innerhalb** jedes Stücks
+(Lautstärke unter 3 % der Spitze, mindestens 60 ms):
+
+    Die Uh Ess-Notenbank …     längste Lücke 360 ms     ← Ist-Zustand
+    Die Uh-Ess-Notenbank …     längste Lücke 150 ms
+    Die Juh-Ess-Notenbank …    längste Lücke 310 ms
+    Die Juhess-Notenbank …     längste Lücke 260 ms
+    Die Ost-Notenbank …        längste Lücke 300 ms     ← Vergleichsmaß
+
+Das Vergleichsmaß ist die gewöhnliche deutsche Zusammensetzung: Auch sie hat
+rund 300 ms Luft, vor „senkt". Eine Lücke dieser Größe ist also normal. Die
+einzige Schreibweise, die darüber hinausgeht, ist die mit dem **Leerzeichen**.
+
+**Die Einschränkung:** Das ist **eine** Aufnahme je Schreibweise, und das
+Modell erzeugt nicht zweimal dasselbe. Der Unterschied zwischen 260 und
+310 ms trägt nichts. Was die Messung trägt, ist der Vergleich mit dem
+Leerzeichen – und das deckt sich mit dem, was ohne Ohr feststeht: Das
+Leerzeichen ist eine Wortgrenze, der Bindestrich ist keine.
+
+Gewählt ist der Bindestrich und nicht das Zusammenschreiben, weil er dem
+Modell die Silbengrenze nennt („Juh-Ess") statt sie raten zu lassen
+(„Juhess" könnte /juˈhɛs/ werden) – und weil ein Mensch die Tabelle noch
+lesen kann.
+
+## Zweitens: die Buchstaben waren deutsch
+
+„Uh Ess" sind die deutschen Buchstabennamen, /uː/ und /ɛs/. Der Betreiber
+verlangt die englischen. Das U heißt dort /juː/ und wird „Juh" geschrieben –
+das deutsche „J" ist /j/, und genau den Laut braucht es.
+
+„USA" bleibt deutsch und steht weiter in `KUERZEL_IN_ORDNUNG`: Im Deutschen
+heißt es „U-S-A". Der Betreiber hat „US" gemeint, nicht jedes Kürzel mit
+einem U.
+
+## „Nur einer von vielen Punkten" – was daraus geworden ist
+
+`verdaechtigeAnglizismen` meldet seit dem 11. August. Über 65 Folgen hat die
+Meldung **78 verschiedene** Wörter angezeigt, und **kein einziges** davon ist
+je entschieden worden. Eine Warnung ohne Entscheidung ist ein Zettel.
+
+Aufgeteilt wurde nach der Frage, **was sich ohne Ohr entscheiden lässt**:
+
+- **Englische Wörter** – dass „Energy", „Industry", „Shopify", „Bookbuilding",
+  „bullish" nicht deutsch gesprochen gehören, folgt aus der Regel in
+  `AGENTS.md` und braucht niemanden, der es sich anhört. Siebzehn davon sind
+  eingetragen; die Meldung ist damit von 78 auf 63 Wörter gefallen.
+- **Kürzel aus Großbuchstaben** – SAP (6×), EQS (4×), USD (4×), ADP (3×),
+  ATX, FDA, IBM, UBS, CME, ISM, PMI und dreißig weitere. Ob die Stimme sie
+  buchstabiert oder als Silbe liest, **steht nicht in der Schreibweise**:
+  „EZB" buchstabiert sie von selbst richtig, „DAX" spricht sie als Wort, und
+  beide stehen deshalb in `KUERZEL_IN_ORDNUNG`. Welches Kürzel zu welcher
+  Gruppe gehört, entscheidet ein Ohr.
+
+Diese zweite Gruppe bleibt offen, und zwar ausdrücklich: **Eine erfundene
+Umschrift ist schlimmer als eine fehlende**, weil sie die Meldung zum
+Schweigen bringt, ohne dass jemand hingehört hat. Der Weg dorthin steht
+bereit – `hoerprobe.yml` spricht eine Liste und legt sie als MP3 auf den
+Zweig `hoerprobe`. Gehört werden muss sie von einem Menschen.
+
+## Und warum die Hörprobe bis heute stumm war
+
+Der Schritt „Klangkette anwenden" in `hoerprobe.yml` ist seit seinem ersten
+Tag, dem 9. August 2026, **nie gelaufen**:
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+
+Dieselbe Falle wie am 8. August im Podcastlauf – ffmpeg liegt seither nicht
+mehr auf dem Ubuntu-Abbild. Dort wurde sie behoben, hier nicht. Weil der
+Schritt `if: always()` trägt, lief der Rest weiter, und neben dem roten
+Schritt lag jedes Mal eine WAV-Datei, die aussah wie das Ergebnis.
+
+Sie war es nicht: Was auf Spotify landet, ist die Aufnahme **nach** der
+Klangkette. Wer die Hörprobe abspielte, hörte das Modell, nicht die Folge –
+also die falsche Antwort auf die einzige Frage, für die es den Lauf gibt.
+
+**Ein Schritt, der nie gelaufen ist, sieht aus wie ein Schritt.** Die
+Installation steht jetzt **vor** dem Sprechen: sechs Minuten rechnen und dann
+an einem fehlenden Paket scheitern wäre die teure Reihenfolge.

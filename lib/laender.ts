@@ -85,6 +85,8 @@ export interface Land {
   bipProKopfKKP?: Kennwert
   arbeitslosenquote?: Kennwert
   inflation?: Kennwert
+  wohneigentumsquote?: Kennwert
+  geburtenziffer?: Kennwert
 
   indizes: Landeskurs[]
   aktien: Landeskurs[]
@@ -102,6 +104,8 @@ export type MetrikId =
   | 'bipProKopfKKP'
   | 'arbeitslosenquote'
   | 'inflation'
+  | 'wohneigentumsquote'
+  | 'geburtenziffer'
   | 'kurse'
 
 export interface Metrik {
@@ -112,11 +116,38 @@ export interface Metrik {
   einheit: string
   /** Für die Sortierung der Rangliste: Ist ein hoher Wert „mehr“? */
   hoherWertIstGross: boolean
+  /**
+   * Das Feld auf `Land`, das den Wert trägt – für `tests/globus-kennzahlen.test.ts`.
+   *
+   * ## Warum das hier steht
+   *
+   * Eine Kennzahl muss an **drei** Stellen auftauchen, damit sie vollständig
+   * ist: in der Einfärbung der Karte (`wertVon`), in der Tafel zum
+   * angeklickten Land (`Landtafel`) und in der Ländertabelle. Drei Listen,
+   * von Hand gepflegt.
+   *
+   * Am 16. September 2026 hat der Betreiber gemeldet, dass die
+   * Eigentumsquote in der Landtafel fehlt – sie stand in zweien der drei
+   * Listen und war auf der Karte zu sehen. Genau der Fall, vor dem
+   * `AGENTS.md` warnt: *Eine Doppelung mit guter Begründung altert
+   * trotzdem.* Es fiel niemandem auf, weil ein Land ohne Zeile aussieht wie
+   * ein Land ohne Angabe.
+   *
+   * Zusammenführen liesse sich das nur mit einem Umbau der Tafel, die je
+   * Kennzahl eine eigene Schreibweise braucht („% des BIP", „US-$ je
+   * Erwachsenem", „Kinder je Frau"). Statt dessen trägt jede Kennzahl den
+   * Namen ihres Feldes, und ein Test hält die drei Listen gegeneinander.
+   *
+   * Leer bei `kurse`: Die Zahl wird aus `indizes` und `aktien` gerechnet und
+   * steht in einem eigenen Abschnitt, nicht in der Kennzahlenliste.
+   */
+  feld?: keyof Land
 }
 
 export const metriken: Metrik[] = [
   {
     id: 'bip',
+    feld: 'bipUsd',
     label: 'Bruttoinlandsprodukt',
     erklaerung:
       'Der Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr herstellt. Eine Größenangabe – kein Wohlstandsmaß.',
@@ -125,6 +156,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bipProKopf',
+    feld: 'bipProKopfUsd',
     label: 'BIP pro Kopf',
     erklaerung:
       'Wirtschaftsleistung geteilt durch Einwohner. Sagt nichts darüber, wie sie verteilt ist.',
@@ -133,6 +165,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'einwohner',
+    feld: 'einwohner',
     label: 'Einwohner',
     erklaerung: 'Bevölkerung des Landes.',
     einheit: 'Personen',
@@ -140,6 +173,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'schuldenquote',
+    feld: 'schuldenquote',
     label: 'Staatsverschuldung',
     erklaerung:
       'Schulden des Staates im Verhältnis zur jährlichen Wirtschaftsleistung. Über 100 Prozent heißt: mehr Schulden als ein Jahr Wirtschaftsleistung.',
@@ -148,6 +182,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'durchschnittsgehalt',
+    feld: 'durchschnittsgehalt',
     label: 'Durchschnittsgehalt',
     erklaerung:
       'Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt. Brutto, vor Steuern und Abgaben. Erhoben wird er nur für die 38 OECD-Mitglieder; bei den übrigen ist er aus der Wirtschaftsleistung je Kopf geschätzt und liegt typischerweise um ein Achtel daneben.',
@@ -156,6 +191,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'medianvermoegen',
+    feld: 'medianvermoegen',
     label: 'Medianvermögen',
     /*
       Die Angabe „je Haushalt“ gehört in die Erklärung, nicht nur in die
@@ -172,6 +208,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bneProKopf',
+    feld: 'bneProKopf',
     label: 'Einkommen je Kopf',
     /*
       Der Name ist mit Bedacht nicht „Durchschnittsgehalt“.
@@ -189,6 +226,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bipProKopfKKP',
+    feld: 'bipProKopfKKP',
     label: 'Kaufkraft je Kopf',
     erklaerung:
       'Wirtschaftsleistung je Einwohner, umgerechnet nach dem, was man vor Ort dafür bekommt. Ein Friseurbesuch kostet in Kairo weniger als in Kopenhagen; wer nur zum Wechselkurs umrechnet, unterschätzt ärmere Länder deshalb systematisch. Diese Zahl gleicht das aus.',
@@ -197,6 +235,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'arbeitslosenquote',
+    feld: 'arbeitslosenquote',
     label: 'Arbeitslosenquote',
     /*
       Der Hinweis auf die Modellschätzung gehört in die Erklärung, nicht ins
@@ -214,6 +253,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'inflation',
+    feld: 'inflation',
     label: 'Inflation',
     /*
       Zwei Missverständnisse sind vorprogrammiert, und beide stehen deshalb im
@@ -223,6 +263,63 @@ export const metriken: Metrik[] = [
     erklaerung:
       'Wie stark die Verbraucherpreise gegenüber dem Vorjahr gestiegen sind. Das ist der Durchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute – wenn die Inflation gerade fällt, steht hier eine höhere Zahl als in den Nachrichten. Welche Waren gemessen werden, legt jedes Land selbst fest; die Körbe sind zwischen Ländern nicht deckungsgleich. Ein negativer Wert bedeutet fallende Preise.',
     einheit: 'Prozent gegenüber dem Vorjahr',
+    hoherWertIstGross: true,
+  },
+  {
+    id: 'wohneigentumsquote',
+    feld: 'wohneigentumsquote',
+    label: 'Wohneigentum',
+    /*
+      Drei Dinge müssen in der Erklärung stehen, weil die Zahl sonst falsch
+      gelesen wird.
+
+      **Personen, nicht Haushalte.** Eurostat misst „Distribution of
+      population by tenure status" – gezählt werden Menschen, die in einer
+      Eigentumswohnung oder einem eigenen Haus leben, einschließlich Kindern.
+      Die Quote je Haushalt liegt regelmäßig niedriger, weil Eigentümer-
+      haushalte im Schnitt größer sind. Wer die beiden verwechselt, hält den
+      Unterschied für einen Fehler.
+
+      **Mit laufendem Kredit zählt als Eigentum.** Wer sein Haus abbezahlt,
+      ist hier Eigentümer – das ist die übliche Abgrenzung und trotzdem nicht
+      selbstverständlich.
+
+      **Hoch ist nicht gut.** Bei jeder anderen Kennzahl dieser Seite steht
+      oben, wer vorn liegt. Hier nicht: Rumänien (93 Prozent) und die Schweiz
+      (unter 50) sagen über Wohlstand nichts aus. Hohe Quoten entstehen oft
+      durch Privatisierung von Staatswohnungen, niedrige durch einen großen,
+      gut geschützten Mietmarkt.
+    */
+    erklaerung:
+      'Anteil der Menschen, die in einer Wohnung oder einem Haus im Eigentum ihres Haushalts leben – mit laufendem Kredit oder abbezahlt. Gezählt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentümerhaushalte im Schnitt größer sind. Eine hohe Quote ist kein Wohlstandszeichen: Rumänien liegt über 90 Prozent, die Schweiz und Deutschland darunter. Hohe Werte stammen oft aus der Privatisierung von Staatswohnungen, niedrige aus einem großen, gut geschützten Mietmarkt.',
+    einheit: 'Prozent der Bevölkerung',
+    hoherWertIstGross: true,
+  },
+  {
+    id: 'geburtenziffer',
+    feld: 'geburtenziffer',
+    /*
+      „Geburtenrate", auf Wunsch des Betreibers vom 16. September 2026.
+
+      Zuerst stand hier „Kinder je Frau", und zwar mit Grund: **Geburtenrate**
+      bezeichnet statistisch die rohe Geburtenziffer – Geburten je tausend
+      Einwohner, für Deutschland rund acht. Was hier steht, ist die
+      zusammengefasste Geburtenziffer, für Deutschland 1,36.
+
+      Der Betreiber hat den geläufigen Namen verlangt, nachdem der Einwand
+      vorlag. Das ist seine Entscheidung, und sie ist vertretbar: Kaum jemand
+      sucht auf einer Karte nach „Kinder je Frau".
+
+      **Die Genauigkeit wandert deshalb in die Einheit**, und die steht
+      überall dort, wo die Zahl steht: in der Legende („Angaben in Kinder je
+      Frau"), in der Landtafel („1,36 Kinder je Frau") und im ersten Satz der
+      Erklärung. Der Name ist geläufig, die Zahl bleibt eindeutig – was
+      verloren ginge, wäre die Verwechslung mit den acht.
+    */
+    label: 'Geburtenrate',
+    erklaerung:
+      'Gemessen als Kinder je Frau: wie viele sie im Lauf ihres Lebens bekäme, wenn sie durchgehend so viele bekäme wie die Frauen jeden Alters in diesem einen Jahr. Ein Modellwert über einen Jahrgang, den es so nie gab – und trotzdem die übliche Vergleichsgrösse. Gemeint ist nicht die andere Zahl, die ebenfalls Geburtenrate heisst: Geburten je tausend Einwohner, für Deutschland rund acht. Bei rund 2,1 Kindern je Frau bleibt eine Bevölkerung ohne Zuwanderung langfristig gleich gross; darunter schrumpft sie, mit Verzögerung von Jahrzehnten. Hoch ist hier so wenig gut wie niedrig: Beides sagt etwas über Lebensverhältnisse, nichts über Wohlstand.',
+    einheit: 'Kinder je Frau',
     hoherWertIstGross: true,
   },
   {
@@ -273,6 +370,8 @@ type Momentaufnahme = {
       bipProKopfKKP?: { wert: number; jahr: number }
       arbeitslosenquote?: { wert: number; jahr: number }
       inflation?: { wert: number; jahr: number }
+      wohneigentumsquote?: { wert: number; jahr: number }
+      geburtenziffer?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
@@ -281,6 +380,8 @@ type Momentaufnahme = {
   einkommenQuelle?: { label: string; url: string; abgrenzung: string }
   arbeitslosenQuelle?: { label: string; url: string; abgrenzung: string }
   inflationQuelle?: { label: string; url: string; abgrenzung: string }
+  wohneigentumQuelle?: { label: string; url: string; abgrenzung: string }
+  geburtenQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -647,6 +748,47 @@ function baueLaender(): Land[] {
             },
           }
         : {}),
+      /*
+        Wohneigentumsquote: gemessen oder gar nicht – und hier ist das keine
+        Vorsichtsmaßnahme, sondern zwingend.
+
+        Bei Lohn und Vermögen füllt eine Regression aus der Kaufkraft die
+        Lücken, weil beide mit ihr steigen. Beim Wohneigentum ist es
+        **umgekehrt**, und zwar deutlich: Deutschland liegt bei 47 Prozent,
+        Rumänien bei 93, die Schweiz noch unter Deutschland. Reich heißt hier
+        eher zur Miete. Eine aus dem Wohlstand geschätzte Quote wäre nicht
+        ungenau, sondern seitenverkehrt.
+      */
+      ...(basis?.wohneigentumsquote
+        ? {
+            wohneigentumsquote: {
+              wert: basis.wohneigentumsquote.wert,
+              zeitraum: String(basis.wohneigentumsquote.jahr),
+              quelle: 'eurostat-wohneigentum',
+            },
+          }
+        : {}),
+      /*
+        Die Geburtenziffer ist die einzige Kennzahl hier, die **nicht** aus
+        der Gegenwart stammt: Sie sagt, wie viele Kinder eine Frau bekäme,
+        wenn sie ihr Leben lang die Geburtenhäufigkeit dieses einen Jahres
+        erlebte. Ein Modell über einen Jahrgang, der so nie existiert hat.
+
+        Geschätzt wird auch hier nichts. Der Zusammenhang mit dem Wohlstand
+        ist zwar stark – arme Länder haben mehr Kinder –, aber die Ausnahmen
+        sind genau die interessanten Fälle: Südkorea liegt bei 0,75 und ist
+        reich, Israel bei fast 3 und ebenso. Eine Regression würde beide
+        glattbügeln.
+      */
+      ...(basis?.geburtenziffer
+        ? {
+            geburtenziffer: {
+              wert: basis.geburtenziffer.wert,
+              zeitraum: String(basis.geburtenziffer.jahr),
+              quelle: 'weltbank-geburtenziffer',
+            },
+          }
+        : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -684,6 +826,8 @@ assertLaenderValid({
     'weltbank-einkommen',
     'weltbank-arbeitslosigkeit',
     'weltbank-inflation',
+    'eurostat-wohneigentum',
+    'weltbank-geburtenziffer',
     'geschaetzt-kaufkraft',
     'geschaetzt-vermoegen',
     'geschaetzt-reihe',
@@ -734,6 +878,10 @@ export function wertFuer(land: Land, metrik: MetrikId): number | null {
       return land.arbeitslosenquote?.wert ?? null
     case 'inflation':
       return land.inflation?.wert ?? null
+    case 'wohneigentumsquote':
+      return land.wohneigentumsquote?.wert ?? null
+    case 'geburtenziffer':
+      return land.geburtenziffer?.wert ?? null
     case 'kurse': {
       const anzahl = land.indizes.length + land.aktien.length
       // Null Kurse ist eine Aussage, kein fehlender Wert – deshalb 0 und nicht

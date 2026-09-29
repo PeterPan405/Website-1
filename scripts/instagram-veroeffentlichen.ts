@@ -36,9 +36,15 @@
  * scharf gestellt werden. Dieselbe Vorsicht wie beim Podcast-Upload.
  */
 
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 
 import { datumLang } from '../lib/datum-lang.ts'
+import {
+  gesperrt,
+  sperreLesen,
+  sperreSchreiben,
+  sperrhinweis,
+} from '../lib/instagram-sperre.ts'
 
 const API = 'https://graph.facebook.com/v21.0'
 
@@ -76,6 +82,50 @@ function haltAn(grund: string): never {
 
 function melde(text: string): void {
   console.log(`[instagram] ${text}`)
+}
+
+/**
+ * Wo die Marke liegt, die einen zweiten Versuch am selben Tag verbietet.
+ *
+ * Der Workflow holt sie vor dem Lauf vom wurzellosen Zweig `instagram-sperre`.
+ * Fehlt die Datei, ist nichts gesperrt – die Begründung steht in
+ * `lib/instagram-sperre.ts`.
+ */
+const SPERRE = 'out/instagram/sperre.txt'
+
+/**
+ * Und wohin eine **neu entstandene** Marke geschrieben wird.
+ *
+ * ## Warum zwei Dateien und nicht eine
+ *
+ * Weil der Workflow sonst nicht unterscheiden kann, ob die Marke von diesem
+ * Lauf stammt oder eben erst vom Zweig geholt wurde. Genau daran ist der
+ * erste Anlauf vorbeigelaufen: Der Schritt „Sperre auf den Zweig legen"
+ * fragte `grep "^$(date -u +%F)" sperre.txt` – und das trifft auch auf die
+ * geholte Marke zu.
+ *
+ * Gesehen am 20. September 2026 um 16:05. Der Riegel hielt, der Lauf schickte
+ * nichts, und trotzdem schob er dieselbe Marke noch einmal auf den Zweig:
+ *
+ *     + a2b5b48...dd3cc06 instagram-sperre -> instagram-sperre (forced update)
+ *
+ * Folgenlos, weil der Zweig wurzellos ist und immer genau einen Commit hat.
+ * Aber der Kommentar daneben behauptete, genau das finde nicht statt, und ein
+ * Kommentar, der nicht stimmt, ist schlimmer als keiner: Der nächste liest
+ * ihn und glaubt ihm.
+ *
+ * Eine eigene Datei kann nicht falsch verstanden werden. Sie entsteht nur,
+ * wenn dieser Lauf die Sperre gesetzt hat.
+ */
+const SPERRE_NEU = 'out/instagram/sperre-neu.txt'
+
+function sperreVomZweig(): string | null {
+  try {
+    return existsSync(SPERRE) ? readFileSync(SPERRE, 'utf8') : null
+  } catch {
+    /* Eine unlesbare Marke hält nichts auf. */
+    return null
+  }
 }
 
 /**
@@ -318,6 +368,26 @@ if (!TOKEN || !KONTO) {
     process.exit(1)
   }
 
+  /*
+    Riegel 3: Ist die Warteschlange des Dienstes heute schon vollgelaufen?
+
+    Er steht hier und nicht weiter oben, weil nur **dieser** Weg eine
+    Warteschlange hat – ein eigener Token schickt direkt an Meta. Und er steht
+    hinter dem Trockenlauf, damit eine Prüfung von Hand weiterhin bis hierher
+    durchläuft und zeigt, was hinausginge.
+
+    Warum genau diese eine Sorte Fehler sperrt und warum die Sperre von selbst
+    abläuft, steht in `lib/instagram-sperre.ts`.
+  */
+  const marke = sperreLesen(sperreVomZweig())
+  if (marke && gesperrt(marke, STICHTAG)) {
+    melde('')
+    for (const zeile of sperrhinweis(marke)) melde(zeile)
+    melde('')
+    melde('Es geht nichts hinaus. Das ist kein Fehler, sondern der Riegel.')
+    process.exit(0)
+  }
+
   melde('')
   melde('Kein eigenes Token – der Beitrag geht über den Haken beim Dienst.')
 
@@ -331,6 +401,25 @@ if (!TOKEN || !KONTO) {
   if (!antwort.ok) {
     melde(`Der Dienst antwortet mit ${antwort.status}: ${rumpf.slice(0, 200)}`)
     for (const zeile of ratschlag(rumpf)) melde(`  ${zeile}`)
+
+    /*
+      Und jetzt der Teil, der bisher fehlte: Die Warnung „nicht noch einmal
+      anstoßen" bindet niemanden, solange sie nur im Protokoll steht. Der Lauf
+      hinterlässt deshalb eine Marke, die den heutigen Tag sperrt – der
+      Workflow legt sie gleich danach auf den Zweig.
+
+      Nur bei der vollen Warteschlange. Jeder andere Fehlschlag darf vom
+      nächsten Lauf nachgetragen werden.
+    */
+    if (rumpf.toLowerCase().includes('queue is full')) {
+      writeFileSync(
+        SPERRE_NEU,
+        sperreSchreiben(STICHTAG, `${antwort.status}: ${rumpf.slice(0, 200)}`)
+      )
+      melde('')
+      melde(`Für heute gesperrt – vermerkt in ${SPERRE_NEU}.`)
+      melde('Der nächste Lauf von heute schickt nichts mehr; morgen läuft es an.')
+    }
     process.exit(1)
   }
 

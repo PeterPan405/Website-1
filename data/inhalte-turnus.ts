@@ -86,10 +86,36 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
 
       Nichts zu ändern. Der Zwischenstand in `data/stichtagswerte.ts` ist
       damit ein Ergebnis geworden.
+
+      26.09.2026: wieder alle fünf gehalten, diesmal **von hier aus** – über
+      `quellen-holen.yml`, weil die Sitzung selbst nur GitHub erreicht.
+
+      `gesetze-im-internet.de` lief dabei fünfmal ins Timeout, wie schon am
+      28. August. Der Läufer kommt über **dejure.org** durch (viermal 200);
+      `buzer.de` antwortet mit 403. Wer das nächste Mal prüft, nimmt dejure
+      und spart sich den Umweg.
+
+        25 %       § 32d Abs. 1 EStG: „beträgt 25 Prozent"
+        5,5 %      § 4 SolZG 1995: „beträgt 5,5 Prozent der Bemessungsgrundlage"
+        1.000 €    § 20 Abs. 9 EStG: „ein Betrag von 1 000 Euro … (Sparer-
+                   Pauschbetrag)"
+        30 %       § 20 Abs. 1 InvStG: „bei Aktienfonds 30 Prozent"
+        15 %       § 20 Abs. 2 InvStG: „Bei Mischfonds ist die Hälfte der für
+                   Aktienfonds geltenden Aktienteilfreistellung anzusetzen"
+        60 / 80 %  § 20 Abs. 3 InvStG: Immobilien- und Auslands-Immobilienfonds
+        Basiszins  § 18 Abs. 4 InvStG: Herleitung über die Bundesbank zum
+                   ersten Börsentag – deckt sich mit der Herkunft der 3,20 %
+
+      Die 15 Prozent standen zweimal nicht im Auszug: Absatz 2 ist ein
+      einziger Satz und fiel erst beim Abruf **ohne** Suchmuster heraus. Wer
+      eine Zahl mit einem Suchmuster sucht, findet sie nur, wenn sie darin
+      steht – „nicht gefunden" hiess hier „falsch gesucht".
+
+      Nichts zu ändern, zum zweiten Mal.
     */
-    zuletztGeprueft: '2026-09-05',
+    zuletztGeprueft: '2026-09-26',
     dateien: ['lib/kapitalertragsteuer.ts', 'data/stichtagswerte.ts'],
-    quelle: 'https://www.bundesfinanzministerium.de/',
+    quelle: 'https://dejure.org/ (über quellen-holen.yml), BMF für den Basiszins',
   },
   {
     id: 'etf-kosten',
@@ -108,8 +134,25 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       Juli 2026 zweimal getan (0,22 → 0,19 → 0,14). Die sechs mit `art:
       'anbieterangabe'` gehören zuerst angesehen – sie tragen den Tag der
       Durchsicht, nicht das Datum eines Dokuments.
+
+      26.09.2026: alle acht über `quellen-holen.yml` bei justETF nachgesehen,
+      achtmal HTTP 200. **Keine Änderung, keiner hat gesenkt:**
+
+        IE00B4L5Y983  MSCI World        0,20 %
+        IE00BK5BQT80  FTSE All-World    0,14 %
+        IE00B5BMR087  S&P 500           0,07 %
+        IE00BKM4GZ66  EM IMI            0,18 %
+        DE0005933931  DAX               0,16 %
+        DE0002635307  STOXX 600         0,20 %
+        IE00BF4RFH31  World Small Cap   0,35 %
+        LU0290358497  Geldmarkt         0,10 %
+
+      Die beiden aus dem Basisinformationsblatt (0,14 und 0,10) stimmen mit
+      der Portalangabe überein – das ist eine Gegenprobe auf zwei Wegen und
+      kein neues Dokument. Ihr `stand` bleibt deshalb das Datum des Dokuments;
+      nur die sechs Portalangaben tragen den neuen Tag der Durchsicht.
     */
-    zuletztGeprueft: '2026-09-05',
+    zuletztGeprueft: '2026-09-26',
     dateien: ['data/etf-kosten.ts'],
     quelle: 'Factsheets der Anbieter, ISIN steht je Eintrag',
   },
@@ -122,7 +165,20 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // 28.08.2026: `npm run frische` durchgesehen, alles innerhalb seiner
     // Grenzen. Ältester Wert war `laender.json` mit 21 Tagen (ohne Grenze),
     // die drei Kurs- und Marktwerte 0 bis 1 Tag.
-    zuletztGeprueft: '2026-08-28',
+    //
+    // 20.09.2026: wieder durchgesehen, wieder alles innerhalb der Grenzen –
+    // und diesmal mit den Zahlen dabei, damit der nächste sieht, wie viel
+    // Luft war und nicht nur, dass jemand hingesehen hat:
+    //
+    //     Leitzins der EZB              4 von 10 Tagen
+    //     Inflation Euroraum / DE      19 von 75 Tagen
+    //     Aktienkurse                   0 von  5 Tagen
+    //     Kursverläufe, Marktbreite     2 von  6 Tagen
+    //
+    // Abrufe 0 bis 4 Tage alt, keine abweichende Zahl im Fließtext, alle
+    // acht ETF-Kosten hinterlegt. Ob die hinterlegten Kosten noch den
+    // Factsheets entsprechen, sagt das nicht – das ist `etf-kosten`.
+    zuletztGeprueft: '2026-09-20',
     dateien: ['data/snapshots/', 'data/stichtagswerte.ts'],
   },
 
@@ -162,7 +218,24 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Impressum, Datenschutz, Haftungsausschluss, KI-Hinweise. Ändert sich ' +
       'selten, kostet im Fehlerfall am meisten.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 20.09.2026: Durchsicht mit **einem** Befund, und zwar dem teuersten,
+    // den dieser Bereich haben kann – einer Zusage, die nicht zutraf.
+    //
+    // Im Impressum stand „Jeder Inhalt wird vor der Veröffentlichung von
+    // einem Menschen inhaltlich geprüft und freigegeben". Derselbe Satz war
+    // am 17.08. aus der Kanalbeschreibung des Podcasts und aus dem KI-Hinweis
+    // unter jeder Folge gestrichen worden, beide Male mit der Begründung, die
+    // Kette veröffentliche ohne Halt. Berichtigt wurde damals die Stelle, an
+    // der es auffiel, nicht die Aussage.
+    //
+    // `tests/ki-hinweis-zusage.test.ts` hält die Aussage jetzt an allen
+    // Stellen zugleich fest – und fand beim ersten Lauf gleich eine zweite
+    // im selben Abschnitt.
+    //
+    // Nicht geprüft, weil von hier aus nicht erreichbar: ob die Angaben zu
+    // Anbieter und Hoster noch stimmen und ob sich an § 5 DDG oder der
+    // DSGVO-Auslegung etwas geändert hat. Das braucht einen Blick von aussen.
+    zuletztGeprueft: '2026-09-20',
     dateien: [
       'app/impressum/page.tsx',
       'app/datenschutz/page.tsx',

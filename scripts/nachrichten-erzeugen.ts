@@ -34,6 +34,8 @@
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
+import { positionierungen } from '../lib/editions-validate.ts'
+
 // ---------------------------------------------------------------- Regelwerk
 
 /** Aus `lib/news-validate.ts` – hier gespiegelt, damit der Bruch früh kommt. */
@@ -63,6 +65,85 @@ const SUMMARY_MIN = 40
 const WARUM_MIN = 40
 const TOP_MAX = 6
 const MELDUNGEN_MAX = 12
+
+/**
+ * Wie viele Meldungen die Tagesausgabe mindestens trägt.
+ *
+ * ## Warum hier fünf steht und in `lib/editions-validate.ts` drei
+ *
+ * Weil die beiden Zahlen verschiedene Fragen beantworten. `ITEMS_MIN = 3`
+ * dort fragt: „Ist diese Ausgabe noch eine Ausgabe?" – das ist die Grenze,
+ * unter der die Website bricht, und sie muss niedrig bleiben, weil fünf
+ * Ausgaben im Bestand darunter liegen. Diese Zahl hier fragt: „Hat das
+ * Modell geliefert, was bestellt war?" – und bestellt sind laut `AGENTS.md`
+ * fünf bis zehn Artikel und laut Prompt dieselben Meldungen in der Ausgabe.
+ *
+ * ## Der Anlass
+ *
+ * Die Folge vom 28. September 2026. Der Betreiber: „viel zu kurz, das Intro
+ * und die Aufklärung danach gehen genauso lange wie der Podcast." Sie hatte
+ * 86 Wörter Nachricht gegen 103 Wörter Gerüst.
+ *
+ * Die Ausgabe hatte **vier** Meldungen – und der Tag **sechs** Artikel. Das
+ * Material lag vor, es kam nur nicht in die Ausgabe. Im Prompt steht seit
+ * jeher „Die Tagesausgabe fasst dieselben Meldungen zusammen"; geprüft hat
+ * das niemand. Geprüft wurde `artikel.length < 5` – die Zahl, die auf der
+ * Website landet – und `< 3` für die Meldungen, die gesprochen werden.
+ *
+ * **Ein Satz im Prompt ist keine Regel, solange ihn kein Prüfer liest.**
+ * Dieselbe Lehre wie beim Satzrhythmus am Tag davor.
+ *
+ * ## Woran die Zahl gewählt ist, und was sie sonst fände
+ *
+ * An den 65 Ausgaben seit dem 25. Juli 2026. Meldungen je Ausgabe:
+ *
+ *     unter fünf:  5 Tage   28.09. (4) · 27.09. (4) · 17.09. (3) ·
+ *                           13.08. (4) · 02.08. (4)
+ *     fünf:       18 Tage
+ *     sechs+:     42 Tage
+ *
+ * An vier dieser fünf Tage standen **mehr Artikel als Meldungen** bereit;
+ * die Grenze hätte also einen zweiten Anlauf verlangt und nicht einen Tag
+ * gekostet. Der fünfte (02.08.) hatte selbst nur vier Artikel und wäre
+ * schon an `artikel.length < 5` gescheitert – die neue Grenze verwirft
+ * damit keinen Tag, den die alte durchgelassen hätte.
+ *
+ * ## Warum ein Abbruch hier vertretbar ist und in der Folge nicht
+ *
+ * Weil noch nichts geschrieben ist. `nachrichten-agent.yml` läuft um 02:33,
+ * 03:03 und 03:33; danach greift das Modell über die Schnittstelle. Ein
+ * verworfener Entwurf kostet eine halbe Stunde, keine Ausgabe.
+ */
+const MELDUNGEN_MIN = 5
+
+/**
+ * Das feste Gerüst der Folge in Wörtern – und damit die Untergrenze für alles,
+ * was gesprochen wird.
+ *
+ * Begrüßung, KI-Hinweis, Rechtshinweis und Abschied stehen wörtlich in
+ * `lib/sprechfassung.ts` und wachsen nicht mit. Nachgemessen an allen 65
+ * Folgen seit dem 25. Juli 2026: zwischen 99 und 110 Wörtern, Median 104.
+ * (Vor dem Zusammenziehen der Umschriften am selben Tag waren es 103 bis
+ * 116 – „Uh Ess“ zählte als zwei Wörter, „Juh-Ess“ zählt als eins.)
+ *
+ * 110 ist der **Höchstwert** dieser Spanne, nicht ihr Mittel: Die Meldungen
+ * sollen mehr wiegen als das Gerüst an seinem längsten Tag.
+ *
+ * Die Grenze ist der Satz des Betreibers vom 28. September 2026, in eine Zahl
+ * übersetzt: Die Meldungen müssen mehr wiegen als das Kleingedruckte. Die
+ * `summary`-Absätze aller 65 Ausgaben, aufsteigend:
+ *
+ *     79 · 130 · 159 · 159 · 162 · 162 · 167 · 178 · 184 · 188 · …
+ *     Median 246, Höchstwert 529
+ *
+ * Genau eine Ausgabe liegt darunter – die gemeldete. Zur zweitdünnsten sind
+ * es 51 Wörter Abstand; das ist keine Grenze, die den guten Tag gerade eben
+ * trägt.
+ *
+ * Gezählt wird nur `summary`: `whyItMatters` steht seit dem 16. September
+ * 2026 nicht mehr in der Folge, sondern nur noch auf der Website.
+ */
+const GERUEST_WOERTER = 110
 
 const KATEGORIEN = [
   'Geldpolitik',
@@ -371,7 +452,55 @@ Ton: sachlich, erklärend, per Du zum Leser nur wo es passt, keine Ausrufezeiche
 
 Fünf bis neun Artikel aus **mehreren Quellen zu mehreren Themen**. Lieber fünf belegte als neun mit einem geratenen. Eine einzelne Quelle, aus der fünf Artikel stammen und alle dasselbe Thema haben, erfüllt die Zahl und verfehlt die Sache.
 
-Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. \`whyItMatters\` ist der eigentliche Zweck der Rubrik – ein Satz darüber, was der Leser damit anfängt.
+Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. **Jeder Artikel bekommt seine Meldung** – die Ausgabe wählt nicht aus, sie ordnet. Weniger als ${MELDUNGEN_MIN} Meldungen werden zurückgewiesen.
+
+Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst nichts. Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen rund ${GERUEST_WOERTER} Wörter – festes Gerüst, das nicht mitwächst. Bei vier knappen Meldungen ist die Hälfte der Folge Kleingedrucktes, und genau das hat der Betreiber am 28. September 2026 beanstandet.
+
+**Alle \`summary\`-Absätze zusammen müssen deshalb mehr als ${GERUEST_WOERTER} Wörter ergeben** – sonst wird die Ausgabe zurückgewiesen. Der Mittelwert der letzten zwei Monate liegt bei 246; 40 bis 70 Wörter je Meldung treffen ihn.
+
+# Die Tagesausgabe ist zugleich der Podcast
+
+\`summary\` wird **wörtlich gesprochen**. Die Folge am nächsten Morgen besteht aus nichts anderem als diesen Absätzen, der Reihe nach. Daraus folgen drei Dinge:
+
+**1. \`summary\` und \`whyItMatters\` werden nicht vermischt.**
+
+- \`summary\` ist die **Nachricht**: was geschehen ist, mit Zahlen, Namen und Uhrzeiten. Keine Erklärung, keine Herleitung, keine Lehre.
+- \`whyItMatters\` ist die **Einordnung** – ein Satz darüber, was der Leser damit anfängt. Er steht auf der Website und kommt **nicht** in die Folge.
+
+Ein Satz wie „Steigende Renditen drücken Aktienbewertungen über die Abzinsung künftiger Gewinne" gehört nach \`whyItMatters\`. In \`summary\` gehört: „Die Rendite zehnjähriger US-Anleihen stieg über 4,67 Prozent."
+
+**2. Die Folge handelt von Wirtschaft und Politik.** Die Rangfolge unter \`top\` ist die Rangfolge der Folge; oben steht, was den Tag bestimmt:
+
+- **Notenbanken und Konjunktur** – Zinsentscheide, Inflations- und Arbeitsmarktdaten, Protokolle, Reden mit Marktrelevanz.
+- **Politik mit Marktwirkung** – Handelskonflikte, Zölle, Sanktionen, Haushalte, Wahlen, militärische Eskalation.
+- **Der Markt im Ganzen** – Indizes, Renditen, Rohstoffe, Wechselkurse.
+
+**Einzelne Aktien tragen die Folge nicht.** Ein einzelnes Unternehmen kommt hinein, wenn es ein großer, allgemein bekannter Name ist **und** die Meldung darüber hinaus erheblich ist – eine Übernahme, ein Ausfall, eine Zahl, die einen Index bewegt. Quartalszahlen eines Einzelwerts sind kein Aufmacher. Zwei Nachkommastellen beim Gewinn je Aktie gehören in den Artikel, nicht in die gesprochene Meldung.
+
+**4. Der Rhythmus trägt die Folge – und er wird gemessen.**
+
+Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge langweilig und monoton. Nachgemessen an den zehn Folgen davor, 125 gesprochene Sätze:
+
+\`\`\`
+Wörter je Satz   Median 24 · p75 34 · max 58
+Sätze <=  8 Wörter    4 %
+Sätze >= 25 Wörter   49 %
+mit Semikolon        42 von 125
+\`\`\`
+
+„Kurze Hauptsätze" stand da schon seit sieben Wochen. Ein Adjektiv ohne Zahl bindet nicht, also hier die Zahlen:
+
+- **Jeder Absatz beginnt mit einem Satz unter zwölf Wörtern.** Er nennt den Vorgang. Die Zahlen kommen danach.
+- **Kein Satz über 25 Wörter.** Gesprochen sind das elf Sekunden in einem Atem; ein Hörer kann nicht zurückspringen.
+- **Mindestens jeder vierte Satz hat höchstens acht Wörter.** Kurze Sätze sind kein Stilmittel, sie sind die Luft dazwischen.
+- **Kein Semikolon.** Es klebt zwei Hauptsätze zusammen, die gesprochen zwei sein müssen. Mach zwei Sätze draus.
+
+Das ist nicht Geschmack. Die Sprechstimme bemisst ihre **Pausen an der Satzlänge** – kurzer Satz, längere Pause. Sind alle Sätze gleich lang, sind alle Pausen gleich lang, und dann klingt es monoton, egal wie gut die Stimme ist.
+
+**3. Objektiv, ohne Position.** Berichtet wird, was geschehen ist und wer was gesagt hat – mit Zuschreibung. Keine eigene Bewertung, keine Parteinahme, keine Vermutung über Absichten, keine urteilenden Adjektive. Das gilt besonders für politische und militärische Ereignisse.
+
+- Richtig: „Russland griff Ziele in der Westukraine nahe der polnischen Grenze an. Polen meldete eine Verletzung seines Luftraums und berief sich auf Artikel 4 des Nato-Vertrags."
+- Falsch: „Russlands rücksichtsloser Angriff …" · „Der Markt hat überreagiert." · „Anleger sollten jetzt …"
 
 # Was heute ansteht, gehört hinein
 
@@ -531,8 +660,36 @@ function pruefe(
       `${ergebnis.top.length + ergebnis.further.length} Meldungen, erlaubt sind höchstens ${MELDUNGEN_MAX}.`
     )
   }
-  if (ergebnis.top.length + ergebnis.further.length < 3) {
-    f('Die Tagesausgabe braucht mindestens drei Meldungen insgesamt.')
+  const meldungen = ergebnis.top.length + ergebnis.further.length
+  if (meldungen < MELDUNGEN_MIN) {
+    f(
+      `Nur ${meldungen} Meldungen in der Tagesausgabe – mindestens ${MELDUNGEN_MIN}. ` +
+        `Es liegen ${ergebnis.artikel.length} Artikel vor; die Ausgabe fasst dieselben ` +
+        `Meldungen zusammen, sie wählt nicht aus.`
+    )
+  }
+
+  /*
+    Und die Meldungen müssen mehr wiegen als das Kleingedruckte davor.
+
+    Vier Meldungen zu je zwanzig Wörtern erfüllen jede Einzelgrenze – 40
+    Zeichen je Absatz, drei Meldungen insgesamt – und ergeben trotzdem eine
+    Folge, die zur Hälfte aus Begrüßung und Hinweisen besteht. Die Grenzen
+    darunter messen das Stück; diese misst die Summe. Siehe `GERUEST_WOERTER`.
+  */
+  const summaryWoerter = [...ergebnis.top, ...ergebnis.further].reduce(
+    (summe, m) =>
+      summe +
+      m.summary.reduce((s, p) => s + p.trim().split(/\s+/).filter(Boolean).length, 0),
+    0
+  )
+  if (summaryWoerter <= GERUEST_WOERTER) {
+    f(
+      `Die summary-Absätze ergeben zusammen nur ${summaryWoerter} Wörter – das ist ` +
+        `weniger als das feste Gerüst der Folge (${GERUEST_WOERTER} Wörter aus ` +
+        `Begrüßung, Hinweisen und Abschied). Die Folge bestünde zur Hälfte aus ` +
+        `Kleingedrucktem.`
+    )
   }
 
   /*
@@ -613,6 +770,20 @@ function pruefe(
     }
     if (!m.summary.length || m.summary.some((s) => s.trim().length < SUMMARY_MIN)) {
       f(`${wo}: jeder summary-Absatz braucht mindestens ${SUMMARY_MIN} Zeichen.`)
+    }
+    /*
+      Objektiv, ohne Position – dieselbe Prüfung wie im Build.
+
+      `summary` wird wörtlich zur Podcastfolge. Die Wortliste steht in
+      `lib/editions-validate.ts` und wird von dort geholt, nicht abgeschrieben:
+      `AGENTS.md` verlangt, dass diese Prüfung den Build spiegelt, und zwei
+      Listen mit demselben Zweck gehen auseinander.
+
+      Hier zu scheitern ist billig – der Entwurf wird verworfen, bevor er eine
+      Ausgabe wird, und der Lauf sagt im Protokoll, welcher Satz es war.
+    */
+    for (const { art, fund } of positionierungen(m.summary.join(' '))) {
+      f(`${wo}: „${fund}" in summary – ${art}. Das gehört in whyItMatters.`)
     }
     for (const t of m.relatedTopics)
       if (!themen.has(t)) f(`${wo}: Lernthema „${t}" gibt es nicht.`)

@@ -45,6 +45,28 @@ import { edition as edition20260904 } from './2026-09-04'
 import { edition as edition20260905 } from './2026-09-05'
 import { edition as edition20260906 } from './2026-09-06'
 import { edition as edition20260907 } from './2026-09-07'
+import { edition as edition20260908 } from './2026-09-08'
+import { edition as edition20260909 } from './2026-09-09'
+import { edition as edition20260910 } from './2026-09-10'
+import { edition as edition20260911 } from './2026-09-11'
+import { edition as edition20260912 } from './2026-09-12'
+import { edition as edition20260913 } from './2026-09-13'
+import { edition as edition20260914 } from './2026-09-14'
+import { edition as edition20260915 } from './2026-09-15'
+import { edition as edition20260916 } from './2026-09-16'
+import { edition as edition20260917 } from './2026-09-17'
+import { edition as edition20260918 } from './2026-09-18'
+import { edition as edition20260919 } from './2026-09-19'
+import { edition as edition20260920 } from './2026-09-20'
+import { edition as edition20260921 } from './2026-09-21'
+import { edition as edition20260922 } from './2026-09-22'
+import { edition as edition20260923 } from './2026-09-23'
+import { edition as edition20260924 } from './2026-09-24'
+import { edition as edition20260925 } from './2026-09-25'
+import { edition as edition20260926 } from './2026-09-26'
+import { edition as edition20260927 } from './2026-09-27'
+import { edition as edition20260928 } from './2026-09-28'
+import { edition as edition20260929 } from './2026-09-29'
 
 /**
  * Alle veröffentlichten Tagesausgaben.
@@ -60,6 +82,28 @@ import { edition as edition20260907 } from './2026-09-07'
  * auf, statt still zu verschwinden.
  */
 export const editions: DailyEdition[] = [
+  edition20260929,
+  edition20260928,
+  edition20260927,
+  edition20260926,
+  edition20260925,
+  edition20260924,
+  edition20260923,
+  edition20260922,
+  edition20260921,
+  edition20260920,
+  edition20260919,
+  edition20260918,
+  edition20260917,
+  edition20260916,
+  edition20260915,
+  edition20260914,
+  edition20260913,
+  edition20260912,
+  edition20260911,
+  edition20260910,
+  edition20260909,
+  edition20260908,
   edition20260907,
   edition20260906,
   edition20260905,
