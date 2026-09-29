@@ -58,3 +58,15 @@ entwurf.json
 # Am 10. August 2026 committete der erste erfolgreiche Lauf zwölf Seiten nach
 # `main` – und ab da war jeder Build rot, der diesen Stand enthielt.
 data/lese-audio.json
+
+# Das Abbild des Projektgedächtnisses für Obsidian, erzeugt von
+# `scripts/wissen-schreiben.ts` aus ENTSCHEIDUNGEN.md und AGENTS.md.
+#
+# Hier geht es ausnahmsweise nicht um einen Formatstreit, sondern um die Sache
+# selbst: Die Notizen übernehmen den Text **wörtlich**. Ein Umbruch, den
+# Prettier anders setzt als die Quelle, macht aus dem Abbild eine zweite
+# Fassung – und dann wäre nach vier Wochen nicht mehr klar, welche gilt.
+#
+# Nachgezogen wird der Ordner mit `ANWENDEN=1 npm run wissen`; dass er auf
+# Stand ist, prüft `tests/wissen.test.ts`.
+wissen/
