@@ -101,6 +101,312 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-reden-und-spanische-inflation-am-dienstag',
+    title: 'Spaniens Inflation und zwei EZB-Reden bestimmen den Dienstag',
+    teaser:
+      'Am Dienstag meldet Spanien seine Inflationsrate, und aus der EZB kommen zwei Reden: erst Cipollone am Vormittag, am Nachmittag Präsidentin Lagarde.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-29T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Inflation', 'Notenbanken', 'Spanien'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online.de, Wirtschaftskalender, Stand 29.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag beginnt für Anleger mit einem vollen Kalender. Eine Zahl aus Spanien und zwei Reden aus der Europäischen Zentralbank stehen an – alles, bevor am Nachmittag die US-Börsen öffnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 9:00 Uhr veröffentlicht Spanien seine Verbraucherpreise für September. Der Wirtschaftskalender von wallstreet-online.de nennt eine Prognose von 4,7 Prozent im Jahresvergleich, nach 4,3 Prozent im Vormonat. Um 9:45 Uhr spricht EZB-Direktoriumsmitglied Piero Cipollone. Um 11:00 Uhr folgen für die Eurozone das Konjunkturklima sowie Umfragen zum Wirtschafts- und zum Verbrauchervertrauen; Letzteres wird bei minus 16,5 Punkten erwartet, unverändert zum Vormonat. Um 13:00 Uhr spricht EZB-Präsidentin Christine Lagarde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Harte Zahl, weiche Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die spanische Inflationsrate ist eine **harte** Zahl: Sie misst tatsächlich bezahlte Preise eines vergangenen Monats. Das Konjunkturklima und das Verbrauchervertrauen sind dagegen **weiche** Zahlen – Umfragewerte darüber, wie Unternehmen und Haushalte die Lage einschätzen. Weiche Daten kommen schneller und zeigen Stimmung, harte Daten kommen später und zeigen, was tatsächlich geschah. Beide zusammen ergeben erst ein Bild.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Reden von EZB-Vorständen sind eine dritte Art von Information: Sie enthalten keine neue Zahl, aber sie zeigen, wie die Notenbank vorliegende Zahlen gewichtet. Genau deshalb reagieren Anleihe- und Devisenmärkte oft stärker auf einzelne Formulierungen einer Rede als auf die Konjunkturdaten selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kalendertag mit vier Terminen liefert selten eine endgültige Antwort auf die Frage, wohin sich die Zinspolitik entwickelt. Er liefert eher einen weiteren Baustein – und zeigt, wie viele unterschiedliche Datentypen Notenbanken überhaupt einbeziehen, bevor sie eine Entscheidung treffen.',
+      },
+    ],
+  },
+  {
+    slug: 'hormus-spannungen-oel-gold-und-silber',
+    title: 'Hormus-Spannungen treiben Öl, Gold rutscht unter die 50-Tage-Linie',
+    metaTitle: 'Hormus-Spannungen: Öl steigt, Gold und Silber fallen',
+    teaser:
+      'Neue Spannungen um die Straße von Hormus ließen am Montag Öl und US-Renditen steigen. Gold und Silber gerieten am Verfalltag deutlich unter Druck.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Gold', 'Silber', 'Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label: 'goldreporter.de, Marktbericht vom 28.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online.de, Rohstoffkurse, Stand 29.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag meldete Goldreporter.de neue Spannungen um die Straße von Hormus. Die Nachrichtenlage trieb Öl und die Renditen von US-Staatsanleihen nach oben. Gold und Silber gerieten zur gleichen Zeit deutlich unter Druck – Goldreporter.de sprach von einem Tag, an dem zugleich der Futures-Verfall anstand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen zum Stand kurz nach Mitternacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf wallstreet-online.de notierte Brent-Öl am frühen Dienstagmorgen bei 98,56 US-Dollar. Gold stand bei 4.115,12 US-Dollar, Silber bei 60,61 US-Dollar und damit rund 5,8 Prozent unter seinem vorherigen Stand. Goldreporter.de berichtete zusätzlich, der Goldpreis sei unter seine 50-Tage-Linie gerutscht – eine Marke, die charttechnisch orientierte Anleger als Signal für eine mittelfristige Trendabschwächung lesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Öl steigt und Gold trotzdem fällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt gemeinhin als Absicherung gegen genau solche geopolitischen Spannungen. Dass der Goldpreis trotzdem fiel, während gleichzeitig die Anleiherenditen stiegen, zeigt einen zweiten Mechanismus: Gold zahlt keine Zinsen. Steigen die Renditen sicherer Anleihen, wird das Halten von Gold im Vergleich teurer – unabhängig davon, wie unruhig die politische Lage sonst ist. Welcher der beiden Effekte überwiegt, lässt sich vorab nicht sagen; die Meldung selbst nennt dafür keinen Grund.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Dienstag zeigt, dass ein einzelner geopolitischer Anlass ganz unterschiedlich auf verschiedene Anlageklassen wirken kann, je nachdem, welcher Kanal – Angebot, Zinsen oder Fluchtreflex – am Ende überwiegt.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-erwaegt-diesel-exportstopp-iran-oel',
+    title:
+      'Trump erwägt Diesel-Exportstopp, beschlagnahmtes Iran-Öl auf dem Weg in die USA',
+    metaTitle: 'Trump erwägt Diesel-Exportstopp – Iran-Öl unterwegs',
+    teaser:
+      'US-Präsident Trump hält an einem möglichen Exportstopp für Diesel fest. Zugleich steuern fast 6 Millionen Barrel beschlagnahmtes Iran-Öl auf die USA zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Diesel', 'USA', 'Iran', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['wti', 'brent'],
+    sources: [
+      {
+        label: 'wallstreet-online.de, Nachrichten vom 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump ist laut wallstreet-online.de weiterhin für einen Exportstopp von Diesel aus den USA. Die Seite berichtet, nicht nur Lobbyverbände warnten vor einem solchen Schritt. Eine Begründung für Trumps Position nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gleichzeitig: beschlagnahmtes Öl aus dem Iran',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu meldete wallstreet-online.de, dass fast 6 Millionen Barrel beschlagnahmtes Iran-Öl auf die USA zusteuern – ein Warenwert von rund 600 Millionen US-Dollar. Weitere Einzelheiten zu Herkunft, Zeitpunkt der Beschlagnahmung oder geplanter Verwendung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Exportstopp trifft zwei Märkte gleichzeitig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Exportverbot soll üblicherweise das Inlandsangebot sichern und die heimischen Preise dämpfen. Es entzieht aber auch dem Weltmarkt Ware, was dort tendenziell die Preise anhebt – ein Effekt, den eine Société-Générale-Analyse bereits am 25. September 2026 aufgriff: Ein US-Diesel-Exportverbot sei demnach selbst für die USA nur begrenzt attraktiv.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast 6 Millionen Barrel klingen nach viel. Gemessen am weltweiten Verbrauch von rund 100 Millionen Barrel Öl pro Tag entspricht die Menge aber nur wenigen Stunden globalen Bedarfs.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Handelspolitische Eingriffe in Öl- und Dieselmärkte wirken selten nur in eine Richtung. Wer eine Maßnahme allein am Inlandseffekt misst, übersieht leicht die Gegenbewegung auf der Weltmarktseite.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-oelpreis-und-openai-ruecktritt',
+    title: 'Ölpreis und OpenAI-Rückzieher belasten die Wall Street',
+    teaser:
+      'US-Aktien schlossen am Montag im Minus. dpa-AFX nennt den Ölpreisanstieg und OpenAIs Absage einer Modellveröffentlichung als Belastung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'OpenAI', 'KI', 'Öl', 'SoftBank'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 20:32 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 22:56 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX meldete am Montag um 20:32 Uhr Verluste an der Wall Street und nannte dafür zwei Gründe: den Ölpreisanstieg und KI-Nachrichten. Um 22:56 Uhr präzisierte die Agentur eine dieser KI-Nachrichten: OpenAI habe die Veröffentlichung eines neuen KI-Modells gestrichen. Weitere Gründe für die Absage nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index leidet stärker als der andere',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut wallstreet-online.de stand der US Tech 100 zuletzt 1,05 Prozent im Minus, der US 30 dagegen nur 0,63 Prozent. Das ist kein Zufall: Der US Tech 100 enthält deutlich mehr Technologie- und KI-nahe Unternehmen als der US 30. Eine Nachricht, die speziell die KI-Branche betrifft, bewegt deshalb die beiden Indizes unterschiedlich stark, obwohl beide an derselben Börse gehandelt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'SoftBanks Klumpenrisiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum selben Themenfeld berichtete wallstreet-online.de über SoftBank Group: Das Unternehmen sei „All in“ auf OpenAI und Künstliche Intelligenz gegangen, was laut dem Bericht die eigene Existenz des Konzerns gefährde. Das ist ein Beispiel für Klumpenrisiko – die Abhängigkeit eines Unternehmenswerts von einer einzigen Wette, statt von einem breiten Geschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer auf ein einzelnes Thema wie Künstliche Intelligenz setzt, trägt nicht nur dessen Chancen, sondern auch dessen Rückschläge in voller Wucht mit – ein Unterschied zu breiter gestreuten Engagements.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-dow-ende-jpmorgan-kursziel',
+    title: 'Boeing fällt ans Dow-Ende, JPMorgan hält an Kursziel 290 Dollar fest',
+    metaTitle: 'Boeing fällt ans Dow-Ende, Kursziel bleibt bei JPMorgan',
+    teaser:
+      'Ein neues Software-Problem verzögert die Zulassung einer neuen Boeing-Variante. Die Aktie fiel ans Dow-Ende, JPMorgan beließ ihr Kursziel unverändert.',
+    category: 'Märkte',
+    publishedAt: '2026-09-29T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Boeing', 'Dow Jones', 'Aktien', 'Analysten'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['boeing', 'dow-jones'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 28.09.2026, 23:30 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online.de, Nachrichten vom 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX meldete am Montag um 23:30 Uhr, ein Software-Problem verzögere die Zulassung einer neuen Boeing-Variante. wallstreet-online.de berichtete zusätzlich, die Aktie sei damit ans Ende des Dow Jones gerutscht. Um welche Boeing-Variante es geht und wie lange die Verzögerung dauert, nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursziel bleibt trotzdem stehen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag veröffentlichte JPMorgan laut dpa-AFX eine Analyse und beließ Boeing auf der Einstufung „Overweight“, mit einem Kursziel von 290 Dollar. Eine unveränderte Einstufung trotz einer belastenden Nachricht bedeutet nicht, dass die Nachricht ignoriert wurde – Analysten legen Kursziele meist auf Basis mehrjähriger Erwartungen fest, die ein einzelnes Software-Problem selten grundlegend verändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelner Kurs den ganzen Dow bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones ist ein preisgewichteter Index: Je höher der Kurs einer Aktie in Dollar, desto mehr Gewicht hat sie im Index – unabhängig von der Größe des Unternehmens. Ein Kursrückgang bei einer hochpreisigen Aktie wie Boeing kann den Dow deshalb stärker beeinflussen als ein Rückgang um denselben Prozentsatz bei einer niedrigpreisigen Aktie im selben Index.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Blick allein auf den Indexstand verrät nicht, wie eine Bewegung zustande kam. Erst der Blick auf die Gewichtung einzelner Werte zeigt, warum ein einzelnes Unternehmen einen ganzen Index bewegen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'indien-goldimporte-silber-gefragt',
+    title: 'Indiens Goldimporte brechen ein, während Silber gefragt bleibt',
+    teaser:
+      'Indiens Goldimporte sanken im August um 57,75 Prozent auf 2,3 Milliarden Dollar. Die Silberimporte legten im selben Zeitraum um 127 Prozent zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-29T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Indien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'portfolio-aufbau'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label: 'goldreporter.de, Meldung vom 28.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Indiens Goldimporte sind im August laut Goldreporter.de um 57,75 Prozent auf 2,3 Milliarden US-Dollar eingebrochen. Im selben Zeitraum stiegen die Silberimporte des Landes um 127 Prozent. Eine Begründung für die gegenläufige Entwicklung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Import ist nicht gleich Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Importstatistik misst eine andere Größe als ein Goldpreis-Chart: Sie zeigt physische Nachfrage in einem einzelnen, aber sehr großen Markt, nicht die weltweite Preisbildung an Terminbörsen. Indien zählt traditionell zu den größten Gold-Absatzmärkten der Welt, gerade für Schmuck – ein hoher Goldpreis kann dort die Kauflaune dämpfen, ohne dass sich das sofort im globalen Goldpreis niederschlagen muss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zahl mit eingebauter Verzögerung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die August-Zahlen erreichten die Öffentlichkeit erst Ende September. Wer aus solchen Statistiken auf die aktuelle Stimmung am Markt schließen will, blickt also immer auf einen Monat zurück – ein Unterschied zu Tageskursen, die in Echtzeit reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold und Silber bewegen sich oft gemeinsam, laufen aber bei der physischen Nachfrage nicht zwangsläufig gleich. Wer beide Edelmetalle allein über den Preis vergleicht, übersieht diesen Unterschied in der zugrunde liegenden Nachfrage.',
+      },
+    ],
+  },
+  {
     slug: 'hormus-usa-weisen-irans-angebot-zurueck',
     title: 'USA weisen Irans Angebot zur Straße von Hormus zurück',
     teaser:
