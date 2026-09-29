@@ -49,6 +49,8 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 - **Manchmal geht `workflow_dispatch` gar nicht** (403) – ein `push` auf den
   Arbeitszweig schon. Dann hängt der Lauf an `push` mit **Pfadfilter** auf eine
   Anstoßdatei; Vorbild: `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
+- **Nach einer Sitzung mit Änderungen: `npm run obsidian`** – legt die
+  Dokumentation in den Tresor, `--pruefen` sagt nur, was fehlt.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
