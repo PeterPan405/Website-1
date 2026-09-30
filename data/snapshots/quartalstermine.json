@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-29T11:28:42.284Z",
+  "abgerufenAm": "2026-09-30T11:16:11.538Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-08-25",
       "bis": "2026-10-23",
       "zeilen": 680,
-      "kommendGesamt": 432,
+      "kommendGesamt": 424,
       "spalten": [
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月17日 現在 As of 2026/9/17 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 39,
-      "letzterTag": "2026-11-20",
-      "zeilen": 4386,
-      "imKatalog": 308,
-      "mitLage": 95,
-      "beigetragen": 308
+      "letzterTag": "2026-11-23",
+      "zeilen": 4415,
+      "imKatalog": 309,
+      "mitLage": 101,
+      "beigetragen": 309
     }
   },
   "unternehmen": {
@@ -1546,9 +1546,11 @@
       "vorhersagen": [
         {
           "erwartet": "2026-10-21",
-          "basis": "2025-10-22",
+          "basis": "Sep/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "06:05"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-28",
@@ -1995,10 +1997,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-20",
+          "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-09",
@@ -2495,7 +2499,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -2595,7 +2601,9 @@
           "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -3397,30 +3405,31 @@
     "WDAY": {
       "name": "Workday, Inc.",
       "bisher": [
+        "2026-09-29",
         "2026-08-27",
         "2026-05-21",
         "2026-02-24",
         "2026-02-04",
         "2025-11-25",
         "2025-08-21",
-        "2025-05-22",
-        "2025-02-25"
+        "2025-05-22"
       ],
       "bisherZeiten": {
+        "2026-09-29": "12:01",
         "2026-08-27": "16:01",
         "2026-05-21": "16:02",
         "2026-02-24": "16:02",
         "2026-02-04": "16:04",
         "2025-11-25": "16:03",
         "2025-08-21": "16:05",
-        "2025-05-22": "16:04",
-        "2025-02-25": "16:02"
+        "2025-05-22": "16:04"
       },
       "vorhersagen": [
         {
-          "erwartet": "2027-02-03",
-          "basis": "2026-02-04",
-          "streuungTage": 0
+          "erwartet": "2027-02-23",
+          "basis": "2026-02-24",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:02"
         },
         {
           "erwartet": "2027-05-20",
@@ -7249,10 +7258,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-16",
+          "erwartet": "2026-10-23",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-22",
@@ -9448,34 +9459,26 @@
     "CCL": {
       "name": "Carnival Corp Ltd.",
       "bisher": [
+        "2026-09-29",
         "2026-06-23",
         "2026-03-27",
         "2025-12-19",
         "2025-09-29",
         "2025-06-24",
         "2025-03-21",
-        "2024-12-20",
-        "2024-09-30"
+        "2024-12-20"
       ],
       "bisherZeiten": {
+        "2026-09-29": "05:16",
         "2026-06-23": "09:16",
         "2026-03-27": "09:18",
         "2025-12-19": "09:17",
         "2025-09-29": "09:16",
         "2025-06-24": "09:17",
         "2025-03-21": "09:16",
-        "2024-12-20": "09:17",
-        "2024-09-30": "09:17"
+        "2024-12-20": "09:17"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-09-29",
-          "basis": "Aug/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2026-12-18",
           "basis": "2025-12-19",
@@ -9493,6 +9496,12 @@
           "basis": "2026-06-23",
           "streuungTage": 0,
           "newYorkerZeit": "09:16"
+        },
+        {
+          "erwartet": "2027-09-28",
+          "basis": "2026-09-29",
+          "streuungTage": 1,
+          "newYorkerZeit": "05:16"
         }
       ]
     },
@@ -9569,10 +9578,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-04",
+          "erwartet": "2026-10-28",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-04",
@@ -10917,9 +10928,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-23",
-          "basis": "2025-11-24",
+          "basis": "Oct/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:11"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-24",
@@ -11201,7 +11212,9 @@
           "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -12580,10 +12593,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-22",
+          "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-25",
@@ -13341,9 +13356,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-23",
-          "basis": "2025-11-24",
-          "streuungTage": 6,
-          "newYorkerZeit": "16:08"
+          "basis": "Oct/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-22",
@@ -14926,14 +14941,6 @@
         "2025-04-10": "06:54"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-09-29",
-          "basis": "Aug/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2026-12-17",
           "basis": "2025-12-18",
@@ -18412,7 +18419,7 @@
     "MFC.TO": "2026-09-27",
     "MG.TO": "2026-09-28",
     "MKS.L": "2026-09-29",
-    "ML.PA": "2026-08-18",
+    "ML.PA": "2026-09-30",
     "MNDY": "2026-08-18",
     "MNG.L": "2026-08-18",
     "MONC.MI": "2026-08-18",
