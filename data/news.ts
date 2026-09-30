@@ -101,6 +101,254 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'renditen-steigen-trotz-oelpreisrueckgang',
+    title: 'Anleiherenditen steigen trotz deutlich fallendem Ölpreis',
+    teaser:
+      'Brent-Öl gab am Dienstag rund drei Prozent nach. Geholfen hat das der Wall Street kaum, denn die Rendite zehnjähriger US-Anleihen stieg trotzdem weiter.',
+    category: 'Märkte',
+    publishedAt: '2026-09-30T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anleihen', 'Öl', 'Renditen', 'Wall Street'],
+    relatedTopics: ['staatsanleihe', 'rohstoffe'],
+    relatedSymbols: ['brent', 'dow-jones', 'dax'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 29.09.2026, 20:18 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online.de, Rohstoffkurse, Stand 30.09.2026, 02:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist am Dienstag deutlich gefallen. Brent notierte am frühen Mittwochmorgen bei 95,67 Dollar, knapp drei Prozent unter dem Vortagesniveau. Eigentlich ist ein billigerer Ölpreis eine gute Nachricht für Aktienmärkte, weil er Unternehmen und Verbrauchern Kosten spart.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Rendite ließ sich davon nicht beeindrucken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Wall Street reagierte trotzdem kaum. dpa-AFX beschrieb den Handelsschluss in New York am Dienstag als „wenig bewegt“, weil die Rendite zehnjähriger US-Staatsanleihen gleichzeitig weiter anstieg. Zuvor hatte bereits der Dow Jones nachgegeben, belastet vom Renditeanstieg. In Frankfurt rettete der Dax ein knappes Plus ins Ziel, der EuroStoxx 50 schloss im Plus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preise, ein Markt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleihen und Aktien stehen in Konkurrenz um dasselbe Anlegergeld. Steigt die Rendite einer sicheren Staatsanleihe, wird sie im Vergleich zu einer Aktie attraktiver – unabhängig davon, was gerade mit dem Ölpreis passiert. Einen Grund für den Renditeanstieg selbst nennen die ausgewerteten Übersichten nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein fallender Ölpreis wirkt nicht automatisch wie ein Kursimpuls für Aktien, wenn ihm zeitgleich ein Renditeanstieg entgegensteht. Für die Bewertung von Aktien zählt am Ende, wie sich beide Kräfte gegeneinander aufwiegen, nicht jede für sich.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-tiefstand-pce-daten-heute',
+    title: 'Euro fällt auf Mehrmonatstief, heute stehen US-Inflationsdaten an',
+    teaser:
+      'Der Euro ist zum Dollar auf den tiefsten Stand seit Mai 2025 gefallen. Am Mittwoch spricht EZB-Mann Elderson, dazu stehen US-Inflationsdaten an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-30T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Euro', 'Dollar', 'Inflation', 'PCE'],
+    relatedTopics: ['notenbanken-geldpolitik', 'waehrungen-wechselkurse', 'inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online.de, Devisennachrichten vom 29.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'wallstreet-online.de, Wirtschaftskalender, Stand 30.09.2026, 00:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro ist am Dienstag zum US-Dollar auf den tiefsten Stand seit Mai 2025 gefallen, meldete dpa-AFX. Am frühen Mittwochmorgen notierte das Paar bei 1,1338 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was für den Mittwoch angesetzt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 4:20 Uhr spricht EZB-Direktoriumsmitglied Elderson. Im Tagesverlauf veröffentlichen die USA zudem ihre PCE-Preisdaten – das Inflationsmaß, dem die US-Notenbank Fed den größten Wert beimisst. Eine genaue Uhrzeit dafür nennen die ausgewerteten Übersichten nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum gerade dieser Preisindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der PCE-Index misst, wie sich die Konsumausgaben privater Haushalte über alle Kategorien hinweg entwickeln, und wird laufend an geändertes Kaufverhalten angepasst. Das unterscheidet ihn vom bekannteren Verbraucherpreisindex CPI, der einen festen Warenkorb verwendet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein schwacher Euro verteuert Importe aus den USA und macht europäische Exporte dort günstiger. Wie stark sich das PCE-Ergebnis auf die Zinserwartungen auswirkt, hängt davon ab, wie weit es von der Prognose abweicht – eine Zahl, die die ausgewerteten Übersichten für diesen Tag nicht nennen.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-koennte-evonik-angebot-erhoehen',
+    title: 'BASF könnte sein Angebot für Evonik auf 24 Euro erhöhen',
+    teaser:
+      'Im Übernahmepoker um Evonik nennt ein Bericht eine neue Zahl: BASF könnte sein Angebot je Aktie auf 24 Euro erhöhen, meldete onvista am Dienstagabend.',
+    category: 'Märkte',
+    publishedAt: '2026-09-30T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['BASF', 'Evonik', 'Übernahme', 'Chemie'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['basf'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 29.09.2026, 16:14 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Übernahmepoker um den Spezialchemiekonzern Evonik gibt es eine neue Zahl. BASF könnte sein Angebot je Evonik-Aktie auf 24 Euro erhöhen, berichtete onvista am Dienstagabend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Angebot in Bewegung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung beschreibt eine mögliche Erhöhung, keine beschlossene Zahl. Wie hoch das bisherige Angebot lag und woher die neue Zahl stammt, geht aus der ausgewerteten Übersicht nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Preis je Aktie zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einem Übernahmeangebot vergleichen Anleger den gebotenen Preis je Aktie mit dem aktuellen Börsenkurs. Liegt das Angebot deutlich darüber, spricht das für eine hohe Wahrscheinlichkeit, dass der Vorstand des Zielunternehmens zustimmt – notwendig ist das trotzdem nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höheres Angebot erhöht für die bietende Firma die Kosten der Übernahme, senkt aber gleichzeitig den Widerstand der Aktionäre. Ob sich BASF und Evonik auf 24 Euro oder eine andere Zahl einigen, ist mit dieser Meldung offen.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-rueckkaufprogramm-waechst-150-milliarden',
+    title: 'Nvidia weitet sein Aktienrückkaufprogramm um 150 Milliarden Dollar aus',
+    metaTitle: 'Nvidia: Rückkauf wächst um 150 Milliarden Dollar',
+    teaser:
+      'Nvidia hat sein Aktienrückkaufprogramm um 150 Milliarden Dollar aufgestockt, meldete onvista. Details zum Zeitrahmen nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-30T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Nvidia', 'Aktienrückkauf', 'Halbleiter'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nvidia', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 29.09.2026, 16:09 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia hat sein Aktienrückkaufprogramm um 150 Milliarden Dollar aufgestockt, meldete onvista am Dienstagabend. Details zum neuen Gesamtvolumen oder einem Zeitrahmen nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Aktienrückkauf bewirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kauft ein Unternehmen eigene Aktien zurück, sinkt die Zahl der im Umlauf befindlichen Anteile. Derselbe Gewinn verteilt sich danach auf weniger Aktien, wodurch der Gewinn je Aktie rechnerisch steigt, auch wenn sich am operativen Geschäft nichts ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rückkauf oder Dividende',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rückkauf ist eine von zwei üblichen Formen, Geld an Aktionäre zurückzugeben. Anders als eine Dividende ist er nicht verpflichtend und lässt sich leichter aussetzen, wenn sich die Geschäftslage ändert. Er bevorzugt zudem Aktionäre, die verkaufen wollen, gegenüber jenen, die halten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rückkaufprogramm dieser Größenordnung zeigt, dass ein Unternehmen nach eigener Einschätzung über viel freie liquide Mittel verfügt. Ob 150 Milliarden Dollar für Nvidia viel oder wenig sind, lässt sich ohne die Größe des laufenden Gesamtprogramms aus dieser Meldung allein nicht beurteilen.',
+      },
+    ],
+  },
+  {
+    slug: 'amd-kauft-world-labs-ki-geschaeft',
+    title: 'AMD übernimmt das KI-Unternehmen World Labs',
+    teaser:
+      'AMD hat das KI-Unternehmen World Labs übernommen und baut damit laut onvista sein Geschäft mit Künstlicher Intelligenz weiter aus.',
+    category: 'Märkte',
+    publishedAt: '2026-09-30T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['AMD', 'World Labs', 'Übernahme', 'Künstliche Intelligenz'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['amd', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista.de, News-Ticker vom 29.09.2026, 16:01 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'onvista.de, Video vom 29.09.2026, 10:58 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'AMD hat das KI-Unternehmen World Labs übernommen, berichtete onvista am Dienstagabend. Die Übernahme erweitert nach dieser Darstellung das KI-Geschäft von AMD.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Kaufpreis oder Details zu World Labs nennt die ausgewertete Übersicht nicht. Auch was genau das Unternehmen entwickelt, geht aus der Kurzmeldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zukäufe als Wachstumsstrategie im KI-Rennen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Halbleiterkonzerne wie AMD stehen im Wettbewerb um Anteile am KI-Geschäft nicht nur mit eigener Forschung, sondern zunehmend auch über Zukäufe kleinerer, spezialisierter Firmen. Das beschleunigt den Zugang zu neuer Technologie, verglichen mit einer eigenen Entwicklung von Grund auf.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich eine Übernahme auszahlt, zeigt sich meist erst Quartale später, wenn das zugekaufte Geschäft zum Umsatz beiträgt oder eben nicht. Für den Moment ist die Meldung vor allem ein weiteres Signal, wie viel Kapital derzeit in KI-nahe Firmen fließt.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-reden-und-spanische-inflation-am-dienstag',
     title: 'Spaniens Inflation und zwei EZB-Reden bestimmen den Dienstag',
     teaser:
