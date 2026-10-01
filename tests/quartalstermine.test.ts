@@ -487,20 +487,31 @@ pruefen(
   SEC geführt – aber als ausländischer Emittent, und die reichen kein 8-K mit
   Punkt 2.02 ein.
 
-  Diese Prüfung darf gern eines Tages umschlagen: Sobald eine Quelle gefunden
-  ist, die auch ausländische Emittenten deckt, hat Alibaba einen Termin, und
-  dann gehört diese Zeile gestrichen statt repariert.
+  ## Die Prüfung ist am 1. Oktober 2026 umgeschlagen – wie vorgesehen
+
+  Hier stand bis dahin, Alibaba habe **keinen** Termin und sage warum, mit dem
+  Hinweis: „Wenn das hier fehlschlägt, gibt es endlich eine Quelle für
+  6-K-Emittenten." Genau das ist passiert. Alibaba hat einen Termin:
+
+      erwartet   2026-11-24
+      Quelle     Nasdaq – veröffentlichter Terminplan der Quartalsmeldungen
+
+  Der Sammelkalender führt die Hinterlegungsscheine ausländischer Emittenten,
+  und die Nasdaq nennt ihren veröffentlichten Plan. Damit ist die Lücke zu, für
+  die der Lückensatz geschrieben wurde.
+
+  **Gestrichen statt repariert** – so stand es im Kommentar, und so ist es
+  gemacht. Was bleibt, ist die Aussage in ihrer positiven Form: Ein
+  ausländischer Emittent bekommt einen Termin. Fällt die Nasdaq-Quelle wieder
+  aus, schlägt diese Zeile an – und das ist dieselbe Absicherung wie vorher,
+  nur von der anderen Seite. Ein Test, der nur das alte Loch beschreibt, hätte
+  nach dem Zumachen nichts mehr zu sagen.
 */
 pruefen(
-  'Alibaba hat keinen Termin – und sagt warum',
-  quartalsterminLuecke('alibaba', STICHTAG) !== null,
-  'Wenn das hier fehlschlägt, gibt es endlich eine Quelle für 6-K-Emittenten.'
-)
-
-pruefen(
-  'Der Lückensatz nennt den Grund und nicht nur die Tatsache',
-  (quartalsterminLuecke('alibaba', STICHTAG) ?? '').includes('US-Börsenaufsicht'),
-  quartalsterminLuecke('alibaba', STICHTAG) ?? ''
+  'Ein ausländischer Emittent bekommt einen Termin (Alibaba)',
+  getQuartalsterminbefund('alibaba', STICHTAG) !== null &&
+    quartalsterminLuecke('alibaba', STICHTAG) === null,
+  'Kein Termin für einen 6-K-Emittenten – die Quelle, die sie deckt, ist weg.'
 )
 
 pruefen(

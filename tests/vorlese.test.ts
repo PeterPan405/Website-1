@@ -83,11 +83,52 @@ pruefe(
     (a) => a.includes('Marke: 61,8 %') && a.includes('Herkunft: Zahl durch die nächste')
   )
 )
+/*
+  Die Erwartung lautet seit dem 1. Oktober 2026 „Uoren Baffett" und nicht
+  „Warren Buffett".
+
+  Die Aussage dieser Prüfung ist unverändert – das Zitat nennt seine Quelle.
+  Dass hier der Name wörtlich dastand, trug nebenbei fest, dass die
+  Umschrifttabelle auf den Vorlesetext **nicht** angewandt wird. Das war kein
+  Vorsatz, sondern der damalige Zustand: 28 der 148 Muster trafen an 219
+  Stellen und wurden alle deutsch gelesen. Dieselbe Sorte Nebenwirkung wie bei
+  `US-30` in `tests/sprechfassung.test.ts` am 28. September.
+*/
 pruefe(
   'das Zitat nennt die Quelle',
-  probe.some((a) => a.includes('Warren Buffett'))
+  probe.some((a) => a.includes('Uoren Baffett')),
+  probe.join(' | ')
 )
 pruefe('Faktenzeilen werden als Paar gelesen', probe.includes('Risiko: hoch.'))
+
+/*
+  Und die Regel selbst, in beide Richtungen.
+
+  **Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe** – also bekommt
+  sie einen Satz mit vier englischen Namen vorgelegt und muss alle vier
+  umschreiben. Ohne diese Prüfung fällt der Aufruf beim nächsten Umbau von
+  `nurText()` heraus, und niemand merkt es: Die Seite sieht gleich aus, nur
+  die Stimme sagt wieder „Walue".
+*/
+{
+  const englisch = vorleseAbschnitte([
+    {
+      type: 'paragraph',
+      text: 'Der Spread, der Cashflow und der Value-Ansatz bei US-Aktien.',
+    },
+  ])
+  pruefe(
+    'englische Namen werden im Vorlesetext umgeschrieben',
+    englisch[0] === 'Der Spredd, der Käschflau und der Wällju-Ansatz bei Juh-Ess-Aktien.',
+    englisch.join(' | ')
+  )
+  pruefe(
+    'und ein deutsches Wort bleibt unberührt',
+    vorleseAbschnitte([
+      { type: 'paragraph', text: 'Die Streuung bleibt die Streuung.' },
+    ])[0] === 'Die Streuung bleibt die Streuung.'
+  )
+}
 
 /*
   Ordnungszahlen werden gebeugt, bevor die Stimme sie sieht. Geschrieben ist

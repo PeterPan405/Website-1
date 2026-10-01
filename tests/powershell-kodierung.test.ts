@@ -84,7 +84,6 @@ for (const pfad of skripte) {
   const text = roh.toString('utf8')
   const umlautzeilen = text
     .split('\n')
-    // eslint-disable-next-line no-control-regex
     .map((zeile, i) => ({ zeile, nr: i + 1 }))
     .filter(({ zeile }) => /[^\u0000-\u007F]/.test(zeile))
 
