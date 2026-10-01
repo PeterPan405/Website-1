@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-09-30T10:00:08.345Z",
+  "abgerufenAm": "2026-10-01T00:51:40.967Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "deutsche-inflation-steigt-auf-3-3-prozent-und-dow-verliert-trotz-guter-us-inflat",
+      "titel": "Deutsche Inflation steigt auf 3,3 Prozent und Dow verliert trotz guter US-Inflationsdaten",
+      "beschreibung": "Die deutsche Inflation springt über drei Prozent, US-Anleiherenditen erreichen den höchsten Stand seit 2007, und Öl und Gold laufen auseinander. Die deutschen Verbraucherpreise sind im September um 3,3 Prozent gestiegen. Im August waren es noch 2,9 Prozent. Das ist der höchste Wert seit Ende 2023.\n\nWir sprechen über US-Anleiherendite auf höchstem Stand seit, Ölpreis beendet das Quartal rund 40 Prozent und Micron hebt Prognose. Kompakt in rund drei Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:33) Deutsche Inflation steigt auf 3,3 Prozent\n(1:06) Dow verliert trotz guter US-Inflationsdaten\n(1:40) US-Anleiherendite auf höchstem Stand seit\n(2:12) Ölpreis beendet das Quartal rund 40 Prozent\n(2:47) Micron hebt Prognose\n(3:20) Kanzler Merz sagt Investoren Reformen und mehr\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-01",
+      "dauerSekunden": 229,
+      "url": "https://iminvests.de/podcast-audio/2026-10-01.mp3",
+      "youtubeId": "Awyn7kzVZzY"
+    },
     {
       "slug": "anleiherenditen-steigen-trotz-fallendem-oelpreis-und-euro-faellt-auf-tiefsten-st",
       "titel": "Anleiherenditen steigen trotz fallendem Ölpreis und Euro fällt auf tiefsten Stand seit Mai 2025",
