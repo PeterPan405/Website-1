@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-16T09:32:57.053Z",
+  "abgerufenAm": "2026-10-01T11:10:37.464Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -100,7 +100,7 @@
       "subregion": "Southern Europe",
       "waehrung": "ALL",
       "bipUsd": 22978,
-      "einwohner": 2414095,
+      "einwohner": 2411658,
       "schuldenquote": {
         "wert": 52.6,
         "jahr": 2025
@@ -1220,7 +1220,7 @@
       "subregion": "Northern America",
       "waehrung": "CAD",
       "bipUsd": 2140086,
-      "einwohner": 40083484,
+      "einwohner": 40049088,
       "schuldenquote": {
         "wert": 113.5,
         "jahr": 2025
@@ -2261,7 +2261,7 @@
       "region": "Europe",
       "subregion": "Northern Europe",
       "waehrung": "DKK",
-      "einwohner": 54414,
+      "einwohner": 54398,
       "bneProKopf": {
         "wert": 73120,
         "jahr": 2024
@@ -5250,7 +5250,7 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "USD",
       "bipUsd": 117902,
-      "einwohner": 3203792,
+      "einwohner": 3203794,
       "schuldenquote": {
         "wert": 18,
         "jahr": 2025
@@ -6544,7 +6544,7 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 9171,
-      "einwohner": 9304337,
+      "einwohner": 8223850,
       "schuldenquote": {
         "wert": 63,
         "jahr": 2025
@@ -6897,7 +6897,7 @@
       "subregion": "Northern Europe",
       "waehrung": "GBP",
       "bipUsd": 3340032,
-      "einwohner": 68492000,
+      "einwohner": 68526000,
       "schuldenquote": {
         "wert": 102.3,
         "jahr": 2025
@@ -6978,7 +6978,7 @@
       "subregion": "Northern America",
       "waehrung": "USD",
       "bipUsd": 27360935,
-      "einwohner": 336806231,
+      "einwohner": 336755052,
       "schuldenquote": {
         "wert": 123.9,
         "jahr": 2025
@@ -7037,7 +7037,7 @@
       "numerisch": "858",
       "region": "Americas",
       "subregion": "Latin America and the Caribbean",
-      "waehrung": "UYU,UYW",
+      "waehrung": "UYU",
       "bipUsd": 77241,
       "einwohner": 3388081,
       "schuldenquote": {
