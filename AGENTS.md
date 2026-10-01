@@ -281,9 +281,8 @@ ist keiner"
   „während des US-Handels" nie: Dort misst der Zeitstempel das nachgereichte
   Formular, nicht die Meldung.
 - **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, Grenze inklusive.
-  Der Abschnitt auf der Aktienseite bleibt **offen**; das Zeichen im Kopf
-  springt hinein, und ein Sprungziel im zugeklappten `<details>` führt ins
-  Nichts.
+  Der Abschnitt auf der Aktienseite bleibt **offen**: Ein Sprungziel im
+  zugeklappten `<details>` führt ins Nichts.
 
 **„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
 gehört mit Datum, Ort und Liste hingeschrieben – nicht als Beweis gelesen,
@@ -354,18 +353,18 @@ Zusage: höchstens sechs Minuten.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Drei Merkmale: eine Frequenz (`TONANTEIL_GRENZE`), zu
   viele Nulldurchgänge (`ZISCHGRENZE`), zu wenige (`RUMPELGRENZE` mit
   `RUMPELN_TIEF`). Wer eins ändert, misst an echten Aufnahmen nach.
-- **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()` – jede
-  Sprechstelle führt durch dieselbe.
+- **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`, jede Sprechstelle.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
   einmal, erkannt an ihrer Kennung. Eine zweite Fassung braucht eine erhöhte
   `fassung` – sparsam, das ist überall eine „neue Folge".
 - Der Feed der **Sendung** liegt auf dem Webspace, nicht in `main`;
-  `podcast-schaufenster.yml` bringt Änderungen nach draußen.
+  `podcast-schaufenster.yml` bringt Änderungen hinaus.
 - **Lernseiten:** Abschnitte aus `vorleseAbschnitte()`, Grafiktexte aus
   `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst fehlen 70
   gerechnete Beschreibungen; der Fingerabdruck hängt an ihnen. Reihenfolge
   Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme spricht das Gerät.
-- `lese-stimme.yml` läuft 23:19 UTC; 12 von 172 Seiten sind gesprochen.
+- `lese-stimme.yml` läuft 23:19 UTC; alle 172 Seiten sind gesprochen,
+  Vorlesetext durch `ENGLISCHE_NAMEN` (Zahlen bleiben Zahlen).
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",

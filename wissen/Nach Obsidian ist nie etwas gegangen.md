@@ -123,3 +123,5 @@ als drei hat. Wer „Ein Commit vom Bot löst nichts aus" sucht, findet es.
 
 Der Befund bleibt als Befund stehen – mit Datum, Ort und Liste, wie es sich
 gehört.
+
+---

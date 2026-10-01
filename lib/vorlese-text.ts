@@ -24,7 +24,7 @@
  */
 
 import type { ContentBlock } from '@/data/content'
-import { ordnungszahlenSprechbar } from './sprechfassung.ts'
+import { englischeNamenSprechbar, ordnungszahlenSprechbar } from './sprechfassung.ts'
 
 /** Was die Vorlesefassung über eine Grafik wissen muss. */
 export interface Vorlesegrafik {
@@ -48,18 +48,53 @@ const ORDNUNG = [
 ]
 
 /**
- * Entfernt Auszeichnungen, die nur fürs Auge sind, und beugt Ordnungszahlen.
+ * Entfernt Auszeichnungen, die nur fürs Auge sind, und macht den Text sprechbar.
  *
  * „Am 9. August“ liest ein Mensch als „am neunten August“ – die Endung steht
  * nicht da, er ergänzt sie beim Lesen. Eine Stimme tut das nicht; sie sagt
  * „am neunte August“. Deshalb steht sie hier schon im Text.
  *
- * Weiter geht die Umschrift bewusst nicht: Anders als in der Podcastfolge
- * bleiben Zahlen hier Zahlen. Eine Lernseite zeigt „26.364,45“ auch, und ein
- * Text, der Ziffern in Wörter tauscht, wäre für das Auge unbrauchbar.
+ * **Zahlen bleiben Zahlen.** Anders als in der Podcastfolge wird hier nicht
+ * ausgeschrieben: „26.364,45“ liest die Stimme von selbst richtig, und ein
+ * Text voller Zahlwörter wäre nicht mehr mit der Seite abzugleichen.
+ *
+ * ## Die englischen Namen kamen am 1. Oktober 2026 dazu
+ *
+ * Hier stand bis dahin, weiter gehe die Umschrift „bewusst nicht“, mit dem
+ * Zahlenbeispiel und der Begründung, ein umgeschriebener Text wäre „für das
+ * Auge unbrauchbar“.
+ *
+ * Die Begründung trägt für Zahlen und sie trägt **nicht** für Namen, und das
+ * zweite Argument trägt überhaupt nicht: **Dieser Text bekommt kein Auge zu
+ * sehen.** `vorleseAbschnitte()` geht an genau zwei Stellen hin – in
+ * `SpeechSynthesisUtterance` (`components/ui/Vorlesen.tsx`) und in die
+ * Arbeitsliste des Sprechlaufs. Angezeigt wird davon nichts außer
+ * „Abschnitt 12 von 40“. Ob dort „Value“ oder „Wällju“ steht, sieht niemand;
+ * gehört wird es von jedem.
+ *
+ * Gefragt hatte der Betreiber, ob mittlerweile alles richtig vertont sei.
+ * Nachgezählt an allen 172 Seiten: **28 der 148 Umschrift-Muster treffen im
+ * Vorlesetext, an 219 Stellen** – „Spread“ 92-mal, „US“ 37-mal, „Cashflow“
+ * 15-mal, „Value“ 14-mal. Alle wurden deutsch gelesen, obwohl in `AGENTS.md`
+ * unter der Überschrift „Stimme, Podcast **und Vorlesefassungen**“ steht:
+ * „Was englisch ist, wird englisch gesprochen.“ Die Regel galt für zwei der
+ * drei genannten Wege.
+ *
+ * Die Reihenfolge ist dieselbe wie in `sprechbar()`: **Namen zuerst**, dann
+ * die Ordnungszahlen. Ein Name darf nicht erst von einer Zahlregel angefasst
+ * werden.
+ *
+ * **Was offen bleibt:** Falle 1 der deutschen Rechtschreibung. „Spread“ wird
+ * zu „Spredd“ und damit /ʃprɛt/ gesprochen – das „sp“ steht am Wortanfang,
+ * und dagegen hilft nur Zusammenschreiben mit einem Wort davor, das es hier
+ * nicht gibt. Der Vokal wird richtig, der Anlaut bleibt falsch. Dasselbe gilt
+ * für „Spin-off“ → „Spinnof“. Siehe „Was der Durchgang vom 20. August
+ * ergeben hat“ bei `ENGLISCHE_NAMEN`.
  */
 function nurText(text: string): string {
-  return ordnungszahlenSprechbar(text.replaceAll('**', '')).replace(/\s+/g, ' ').trim()
+  return ordnungszahlenSprechbar(englischeNamenSprechbar(text.replaceAll('**', '')))
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 /** Sorgt dafür, dass die Stimme am Ende absetzt. */

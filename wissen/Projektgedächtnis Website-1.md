@@ -15,11 +15,18 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**21 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**22 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-01** – [[Die Regel galt für zwei von drei Wegen]]
+    - [[Die Regel galt für zwei von drei Wegen#Lückenlos – ja, bei den Lernseiten|Lückenlos – ja, bei den Lernseiten]]
+    - [[Die Regel galt für zwei von drei Wegen#Lückenlos – nein, beim Podcast|Lückenlos – nein, beim Podcast]]
+    - [[Die Regel galt für zwei von drei Wegen#Richtige Aussprache – nein, und zwar grundsätzlich|Richtige Aussprache – nein, und zwar grundsätzlich]]
+    - [[Die Regel galt für zwei von drei Wegen#Warum die Begründung dagegen nicht trug|Warum die Begründung dagegen nicht trug]]
+    - [[Die Regel galt für zwei von drei Wegen#Was das in Gang setzt|Was das in Gang setzt]]
+    - [[Die Regel galt für zwei von drei Wegen#Was offen bleibt, und ehrlich offen|Was offen bleibt, und ehrlich offen]]
 - **2026-09-29** – [[Nach Obsidian ist nie etwas gegangen]]
     - [[Nach Obsidian ist nie etwas gegangen#Warum es überhaupt einen Weg braucht|Warum es überhaupt einen Weg braucht]]
     - [[Nach Obsidian ist nie etwas gegangen#Abbild, nicht zweite Fassung|Abbild, nicht zweite Fassung]]
