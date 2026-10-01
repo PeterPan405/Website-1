@@ -101,6 +101,371 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'deutsche-inflation-september-dax-monatsminus',
+    title: 'Deutsche Inflation springt im September über drei Prozent',
+    teaser:
+      'Die deutschen Verbraucherpreise sind im September auf 3,3 Prozent gestiegen, so hoch wie seit Ende 2023 nicht mehr. Der Dax beendete den Monat im Minus.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-01T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Verbraucherpreise', 'Dax', 'Energiepreise'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista: Aktien Frankfurt Schluss – Dax beendet schwachen September im Minus, 30.09.2026',
+        url: 'https://www.onvista.de/news/2026/09-30-roundup-aktien-frankfurt-schluss-dax-beendet-schwachen-september-im-minus-0-10-26559233',
+      },
+      {
+        label: 'wallstreet-online.de, Wirtschaftskalender, Stand 01.10.2026, 00:10 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die deutschen Verbraucherpreise sind im September um 3,3 Prozent gestiegen, verglichen mit dem Vorjahresmonat. Im August lag die Rate noch bei 2,9 Prozent. Damit liegt die Teuerung erstmals seit Ende 2023 wieder über der Marke von drei Prozent. Hohe Energiepreise waren laut dem ausgewerteten Bericht der Haupttreiber.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Dax verabschiedet sich mit einem Monatsminus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der deutsche Leitindex schloss den Mittwoch bei 25.199,19 Punkten, ein Rückgang von 0,79 Prozent. Für den gesamten September ergab sich für den Dax ein Minus von vier Prozent. Der MDax der mittelgroßen Werte gab 0,13 Prozent nach, auf 30.842,53 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag meldet HCOB gleich drei Einkaufsmanagerindizes für die Industrie, um 9:15 Uhr, 9:45 Uhr und 9:55 Uhr. Für die letzte und am stärksten beachtete Zahl nennt der Wirtschaftskalender eine Prognose von 53,8 Punkten, unverändert gegenüber dem Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Inflationsrate über drei Prozent verengt den Spielraum für weitere Zinssenkungen der Europäischen Zentralbank. Ob ein einzelner schwacher Börsentag daran etwas ändert, ist eine andere Frage als die, wie hartnäckig sich die Teuerung in den kommenden Monaten zeigt.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-faellt-trotz-guter-us-inflationsdaten',
+    title: 'Dow fällt trotz guter US-Inflationsdaten, Tech-Werte legen zu',
+    teaser:
+      'Die US-Inflationsdaten fielen am Mittwoch besser aus als erwartet. Tech-Aktien legten zu, der Dow Jones schloss trotzdem schwächer und verlor den ganzen Monat.',
+    category: 'Märkte',
+    publishedAt: '2026-10-01T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'Inflation', 'Wall Street'],
+    relatedTopics: ['inflation', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'onvista: Aktien New York Schluss – Dow unter Druck, gute Inflationsdaten verpuffen, 30.09.2026',
+        url: 'https://www.onvista.de/news/2026/09-30-aktien-new-york-schluss-dow-unter-druck-gute-inflationsdaten-verpuffen-0-10-26559261',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der PCE-Deflator, das bevorzugte Inflationsmaß der US-Notenbank Fed, stieg im August schwächer als von Ökonomen erwartet. Die Nachricht kam am Mittwoch gut an – zumindest zunächst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Tech-Werte steigen, der Dow gibt trotzdem nach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der technologielastige Nasdaq 100 schloss 0,23 Prozent höher bei 30.408,50 Punkten. Der Dow Jones Industrial dagegen fiel um 0,86 Prozent auf 50.906,05 Punkte. Der S&P 500 gab 0,25 Prozent nach, auf 7.651,54 Punkte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nannte onvista die Sorge, steigende Ölpreise im Zuge des Iran-Kriegs könnten die Inflation erneut anheizen. Eine genauere Begründung liefert die ausgewertete Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der erste Monatsverlust seit fünf Monaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Dow bedeutet der Mittwoch zugleich das Ende einer Serie. Nach fünf Monatsgewinnen in Folge steht für September ein Minus von rund vier Prozent zu Buche. Im dritten Quartal insgesamt verlor der Index knapp drei Prozent, nachdem das zweite Quartal noch ein Plus von etwa 13 Prozent gebracht hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner guter Inflationswert reicht nicht, um eine Indexbilanz zu drehen, wenn gleichzeitig andere Sorgen das Bild bestimmen. Dass Tech-Werte und der Dow an einem Tag in unterschiedliche Richtungen laufen, zeigt vor allem, wie unterschiedlich beide Indizes zusammengesetzt sind.',
+      },
+    ],
+  },
+  {
+    slug: 'us-zehnjahresrendite-hoechststand-seit-2007',
+    title: 'US-Zehnjahresrendite auf höchstem Stand seit 2007',
+    teaser:
+      'Die Rendite zehnjähriger US-Staatsanleihen ist auf den höchsten Stand seit 2007 geklettert. Analysten nennen sechs Prozent als mögliche nächste Marke.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-01T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anleihen', 'Zinsen', 'USA', 'Staatsanleihen'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'wallstreet-online: Immobilien-Crash voraus – Der wichtigste Zins der Welt könnte schon bald über 6 % steigen, 30.09.2026',
+        url: 'https://www.wallstreet-online.de/nachricht/21456528-immobilien-crash-voraus-wichtigste-zins-welt-6',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger US-Staatsanleihen notiert bei knapp 5,3 Prozent. Das ist der höchste Stand seit 2007. Allein im September legte sie um mehr als 47 Basispunkte zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sechs Prozent als nächstes Ziel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Analyse von wallstreet-online vom Mittwoch nennt sechs Prozent als mögliche nächste Marke. Washington muss demnach Jahr für Jahr enorme neue Defizite finanzieren. Ein weiterer Renditeanstieg würde das verteuern, weil alte Anleihen schrittweise durch teurere Papiere ersetzt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Immobilien und Unternehmen spüren es zuerst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Millionen US-Hausbesitzer sitzen noch auf günstigen Hypotheken aus der Niedrigzinszeit. Ein Verkauf würde für sie deutlich teurere neue Kredite bedeuten, ein sogenannter Lock-in-Effekt, der den Immobilienmarkt bremsen kann. Zwischen 2027 und 2031 müssen US-Unternehmen zudem rund 4,3 Billionen Dollar an Schulden refinanzieren. Schwach bewertete Firmen könnten dabei schnell zweistellige Zinsen zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Höhere, als sicher geltende Anleiherenditen machen auch hoch bewertete Wachstumsaktien im Vergleich weniger attraktiv, ein Mechanismus, der unabhängig vom Tagesgeschehen an der Börse wirkt. Ob die Rendite tatsächlich sechs Prozent erreicht, ist eine Prognose der zitierten Analyse, keine feststehende Tatsache.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-quartalsende-goldpreis-trendbruch',
+    title: 'Ölpreis beendet das Quartal fast 40 Prozent höher, Gold bricht den Trend',
+    metaTitle: 'Ölpreis quartalshoch, Goldpreis bricht den Trend',
+    teaser:
+      'Brent-Öl beendet das Quartal rund 40 Prozent höher als vor Kriegsbeginn im Iran. Der Goldpreis dagegen bricht unter seine 50-Tage-Linie.',
+    category: 'Märkte',
+    publishedAt: '2026-10-01T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Gold', 'Rohstoffe', 'Iran-Krieg'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label:
+          'boersennews.de: Ölpreis zum Quartalsende – Iran-Krieg hat den Markt verändert, 30.09.2026',
+        url: 'https://www.boersennews.de/nachrichten/artikel/boersennews/oelpreis-zum-quartalsende-iran-krieg-hat-den-markt-veraendert/5295124/',
+      },
+      {
+        label: 'goldreporter.de: Goldpreis – Kurzfristige Trends gebrochen, 30.09.2026',
+        url: 'https://www.goldreporter.de/goldpreis-kurzfristige-trends-gebrochen-30-09-2026/charttechnik/262171/',
+      },
+      {
+        label: 'wallstreet-online.de, Rohstoffkurse, Stand 01.10.2026, 02:09 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Barrel der Nordseesorte Brent kostete zum Quartalsende knapp 98 US-Dollar. Vor Beginn des Kriegs zwischen den USA, Israel und dem Iran Ende Februar lag der Preis noch bei 72,51 Dollar. Das entspricht einem Anstieg von rund 40 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwischenzeitlich bei 126 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Verlauf des Konflikts war Brent zeitweise bis auf 126 Dollar gestiegen. Anfang Juli fiel der Preis dann überraschend kurz wieder auf das Niveau vor Kriegsbeginn zurück, bevor er erneut anzog. Die Ölexporte aus dem Nahen Osten lagen im September laut einer Analyse von Société Générale bei 15,5 Millionen Barrel täglich, über 80 Prozent des Niveaus vor dem Krieg, ermöglicht durch alternative Pipelines und Transporte durch die Straße von Hormus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold läuft in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während Öl steigt, fiel der Goldpreis am Mittwoch auf 4.187 Dollar je Feinunze, rund 100 Dollar oder 2,3 Prozent unter das Niveau der Vorwoche. Der Kurs rutschte damit unter die 50-Tage-Linie und durchbrach die Unterkante des seit drei Monaten laufenden Aufwärtstrends. Am frühen Donnerstagmorgen notierte Gold laut Ticker bei 4.151 Dollar, Silber bei 60,43 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Unterstützungsmarken im Blick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als nächste Haltelinien gelten 4.100 Dollar und das Jahrestief vom Juli bei 4.000 Dollar. Der Relative-Stärke-Index steht bei 41 und signalisiert damit noch keine überverkaufte Lage.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold gilt gern als Absicherung in Krisenzeiten, reagiert im Moment aber eher auf steigende Anleiherenditen, die eine zinslose Geldanlage wie Gold unattraktiver machen. Öl dagegen bildet unmittelbar ab, wie knapp oder reichlich das Angebot aus einer Krisenregion ist. Dieselbe geopolitische Lage kann beide Rohstoffe deshalb in unterschiedliche Richtungen bewegen.',
+      },
+    ],
+  },
+  {
+    slug: 'micron-prognose-aktie-verhalten',
+    title: 'Micron hebt die Prognose kräftig an, die Aktie reagiert verhalten',
+    teaser:
+      'Micron rechnet dank KI-Boom mit deutlich mehr Umsatz als Analysten erwartet hatten. Die Aktie reagierte darauf im nachbörslichen Handel kaum merklich.',
+    category: 'Märkte',
+    publishedAt: '2026-10-01T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Micron', 'Halbleiter', 'KI', 'Quartalszahlen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanznachrichten.de: Micron überrascht mit Umsatzoptimismus – Aktienkurs legt dennoch nur leicht zu, 30.09.2026',
+        url: 'https://www.finanznachrichten.de/nachrichten-2026-09/69723087-micron-ueberrascht-mit-umsatzoptimismus-aktienkurs-legt-dennoch-nur-leicht-zu-016.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Speicherchip-Hersteller Micron blickt optimistisch auf das kommende Quartal. Für das erste Quartal des Geschäftsjahres 2027 erwartet das Unternehmen einen Umsatz von 60 bis 63 Milliarden Dollar. Analysten hatten im Schnitt nur mit 56,8 Milliarden gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Getrieben von Speicherchips für KI-Rechenzentren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Treiber nennt Micron die anhaltend hohe Nachfrage nach HBM-Speicherchips, die in KI-Rechenzentren verbaut werden. Auch bei der Gewinnprognose liegt das Unternehmen über den Erwartungen: Je Aktie werden 37,15 bis 39,15 Dollar angepeilt, verglichen mit einer Analystenschätzung von 36,02 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Aktie bleibt trotzdem ruhig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im nachbörslichen Handel legte die Micron-Aktie um höchstens ein Prozent zu, zeitweise rutschte sie sogar ins Minus. Seit Jahresbeginn hat sie bereits rund 300 Prozent gewonnen, ein möglicher Grund, warum selbst eine starke Prognose kaum noch zusätzlichen Schwung bringt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wie eine Aktie auf gute Nachrichten reagiert, hängt nicht nur von der Nachricht selbst ab, sondern auch davon, wie viel Optimismus bereits im Kurs steckt. Nach einer Vervielfachung seit Jahresbeginn ist die Latte für eine weitere Kursbewegung entsprechend hoch.',
+      },
+    ],
+  },
+  {
+    slug: 'merz-investoren-reformen-made-for-germany',
+    title: 'Kanzler Merz sagt Investoren bei Siemens-Treffen Reformen zu',
+    teaser:
+      "Bundeskanzler Merz hat Vertretern der Initiative 'Made for Germany' weitere Strukturreformen zugesagt. Das Treffen fand in der Berliner Siemens-Zentrale statt.",
+    category: 'Märkte',
+    publishedAt: '2026-10-01T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Merz', 'Reformen', 'Made for Germany', 'Siemens'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['siemens', 'dax'],
+    sources: [
+      {
+        label: 'ariva.de: ROUNDUP – Merz sagt Investoren Reformen zu, 30.09.2026',
+        url: 'https://www.ariva.de/news/merz-sagt-investoren-reformen-zu-12154216',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bundeskanzler Friedrich Merz hat sich mit Wirtschaftsvertretern der Unternehmensinitiative „Made for Germany“ getroffen. Das Treffen fand im Berliner Siemens-Gebäude statt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Merz räumt Rückstand ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Merz sagte laut dem ausgewerteten Bericht, der Bedarf an Strukturreformen sei groß. Man sei noch nicht da, wo man zum jetzigen Zeitpunkt eigentlich sein wollte. An seiner Entschlossenheit, Reformen Schritt für Schritt umzusetzen, solle niemand zweifeln.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei genannte Reformfelder',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkret nannte Merz Flexibilisierungen am Arbeitsmarkt – „da haben wir einiges nachzuholen“ – sowie eine Vertiefung des EU-Binnenmarkts und eine geplante Rentenreform. Details zum Zeitplan nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Ankündigung ist noch kein Gesetz. Für Anleger zählt am Ende, ob aus den genannten Feldern konkrete Vorhaben mit Zeitplan werden, daran lässt sich eine Zusage überprüfen, eine Rede allein nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-auslandsvermoegen-rekord',
+    title: 'Deutschlands Netto-Auslandsvermögen steigt auf Rekordwert',
+    teaser:
+      'Deutschlands Netto-Auslandsvermögen kletterte Ende 2025 auf 3.661 Milliarden Euro. Ein starker Euro bremste den möglichen Zuwachs spürbar.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-01T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesbank', 'Auslandsvermögen', 'Euro', 'Wechselkurs'],
+    relatedTopics: ['waehrungen-wechselkurse', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'bundesbank.de: Pressemitteilung – Das deutsche Auslandsvermögen Ende 2025, 30.09.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressemitteilungen/das-deutsche-auslandsvermoegen-ende-2025--1009822',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschlands Netto-Auslandsvermögen lag Ende 2025 bei 3.661 Milliarden Euro. Das entspricht rund 81 Prozent der gesamten deutschen Wirtschaftsleistung, teilte die Bundesbank mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kapitalexporte bringen mehr, als am Ende ankommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nettokapitalexporte von 284 Milliarden Euro hätten das Vermögen eigentlich stärker wachsen lassen. Bewertungseffekte bremsten den Zuwachs jedoch auf 212 Milliarden Euro gegenüber dem Vorjahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein starker Euro drückt auf den Wert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grund dafür war vor allem die Aufwertung des Euro gegenüber Dollar, Yen und Pfund. Sie minderte den Wert ausländischer Vermögenswerte in Euro gerechnet. Zusammen mit weiteren Anpassungen fiel der Anstieg dadurch um 72 Milliarden Euro geringer aus, als es die reinen Kapitalströme nahelegen würden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Forderungen gegenüber dem Ausland stiegen um 605 Milliarden Euro auf 14.424 Milliarden Euro. Die Verbindlichkeiten legten um 394 Milliarden Euro auf 10.763 Milliarden Euro zu.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer im Ausland investiert, trägt neben dem eigentlichen Anlageerfolg immer auch ein Wechselkursrisiko. Ein stärkerer Euro freut Importeure und Urlauber, schmälert aber rechnerisch den Wert von Auslandsvermögen, für den deutschen Staat genauso wie für private Anleger mit Fondsanteilen in Dollar oder Yen.',
+      },
+    ],
+  },
+  {
     slug: 'renditen-steigen-trotz-oelpreisrueckgang',
     title: 'Anleiherenditen steigen trotz deutlich fallendem Ölpreis',
     teaser:
