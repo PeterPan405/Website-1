@@ -101,6 +101,383 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'putin-nennt-frist-fuer-donbass-kiew-zeigt-rakete',
+    title: 'Putin nennt Frist für Donbass, Kiew zeigt eigene Rakete',
+    teaser:
+      'Putin kündigt beim Waldai-Forum die Eroberung des Donbass binnen anderthalb Jahren an. Am selben Tag meldet Kiew den ersten Einsatz einer eigenen Rakete.',
+    category: 'Märkte',
+    publishedAt: '2026-10-02T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ukraine-Krieg', 'Russland', 'Geopolitik', 'Risikoprämie'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'ariva.de, Meldung vom 01.10.2026: „Putin will Donbass in weniger als anderthalb Jahren erobern“',
+        url: 'https://www.ariva.de/news/putin-will-donbass-in-weniger-als-anderthalb-jahren-erobern-12155954',
+      },
+      {
+        label:
+          'ariva.de, Meldung vom 01.10.2026, 20:39 Uhr: „Kiew verkündet ersten Einsatz eigener ballistischer Rakete“',
+        url: 'https://www.ariva.de/news/kiew-verkuendet-ersten-einsatz-eigener-ballistischer-rakete-12155928',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Putin setzte beim Waldai-Forum in Moskau eine Frist. Russland werde den gesamten Donbass in weniger als anderthalb Jahren erobern, sagte er laut einer ausgewerteten Meldung. Er gehe sogar von einem früheren Zeitpunkt aus, begründet mit dem Vormarsch russischer Truppen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Elf Prozent noch unter Kiewer Kontrolle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Putins eigener Angabe stehen aktuell elf Prozent der Donbass-Region unter ukrainischer Kontrolle. Er stellte dazu eine Frage: „Wenn der Verlust dieser Gebiete unvermeidlich ist, macht es dann Sinn, daran festzuhalten und dafür Menschen, ihre Sicherheit und ihr Leben zu opfern?“ Die ausgewertete Meldung verweist zugleich darauf, dass Putin in der Vergangenheit wiederholt Orte wie Swjatohirsk und Kupjansk als erobert bezeichnet hatte, die teils weiter unter ukrainischer Kontrolle stehen. Ukrainische Truppen hätten zuletzt Geländegewinne erzielt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kiew zeigt die eigene Rakete',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag meldete Präsident Selenskyj den ersten Kampfeinsatz einer selbst entwickelten taktischen ballistischen Rakete vom Typ FP-7. Hersteller ist die ukrainische Firma Fire Point. Selenskyj schrieb dazu: „Der erste Kampfeinsatz. Ich danke für das Ergebnis.“ Ein konkretes Ziel nannte er nicht, veröffentlichte aber ein Video eines nächtlichen Raketenstarts. Als nächste Aufgabe nannte er den Ausbau der Raketenproduktion.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fire Point hatte den ersten Kampfeinsatz laut der Meldung mehrfach verschoben. Ursprünglich waren für den Sommer Anschläge auf Moskau geplant gewesen, das rund 450 Kilometer von der ukrainischen Grenze entfernt liegt. Die Meldung ordnet den Schritt als Versuch ein, bei ballistischen Raketen ein Gegengewicht zu Russland aufzubauen, das seinerseits stark auf diese Waffenart setzt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Zeitplan für eine Eroberung und eine neue Waffe sind zunächst politische und militärische Ankündigungen, keine geprüften Fakten über den Kriegsverlauf. Für Anleger zählt an solchen Tagen weniger die einzelne Erklärung als die Summe der Risiken, die sich in der Risikoprämie vieler Rohstoffpreise niederschlägt – darunter, wie weiter unten zu lesen ist, auch im Ölpreis.',
+      },
+    ],
+  },
+  {
+    slug: 'irans-oelexporte-brechen-weg-brent-ueber-100-dollar',
+    title: 'Irans Ölexporte brechen weg, Brent bleibt über 100 Dollar',
+    teaser:
+      'Irans Ölexporte sind seit Ende September fast auf null gefallen. Der Ölpreis bleibt trotzdem über 100 Dollar, weil andere Produzenten über Hormus liefern.',
+    category: 'Märkte',
+    publishedAt: '2026-10-02T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Hormus', 'Iran', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 01.10.2026, 18:29 Uhr: „Teherans gefährlichster Hebel: Irans Ölexporte brechen weg – 13 Mio. Barrel der Nachbarn fließen durch Hormus“',
+        url: 'https://www.wallstreet-online.de/nachricht/21460779-teherans-gefaehrlichster-hebel-irans-oelexporte-brechen-13-mio-barrel-nachbarn-fliessen-hormus',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 01.10.2026: „Immer noch dreistellige Preise: Hormus öffnet sich wieder, doch der Ölpreis fällt trotzdem nicht!“',
+        url: 'https://www.wallstreet-online.de/nachricht/21462456-dreistellige-preise-hormus-oeffnet-wieder-oelpreis-faellt-nicht',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Irans Ölexporte sind praktisch verschwunden. Im September lagen sie nur noch bei rund 475.000 Barrel täglich, weniger als die Hälfte des August-Volumens. Seit dem 26. September kamen laut einer ausgewerteten Meldung praktisch keine neuen Tanker mehr an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Lieferkette, die sich leerte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rückgang zieht sich durch das ganze Jahr. Im März flossen noch 1,8 Millionen Barrel täglich über die Insel Kharg, im Mai waren es nur noch 260.000, während der Waffenruhe im Juli rund 890.000. Auf See lagerten Mitte April noch 160 Millionen Barrel iranisches Öl, aktuell sind es nach dieser Zählung noch rund 86 Millionen – davon 23 Millionen im Persischen Golf blockiert, der Rest an Land, zu 60 Prozent gefüllt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Quellen, zwei Zahlen für Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hier weichen die beiden ausgewerteten Meldungen voneinander ab. Die eine spricht von 13 Millionen Barrel öl anderer Produzenten, die täglich durch die Straße von Hormus fließen. Die andere nennt für den aktuellen Hormus-Durchfluss rund 10 Millionen Barrel, nach rund 6 Millionen Anfang September, und beziffert die gesamten Nahost-Exporte inklusive Umgehungsrouten auf knapp 15 Millionen Barrel täglich – etwa 64 Prozent des Niveaus vor der Krise. Welche der beiden Zahlen genau was misst, geht aus den Meldungen nicht übereinstimmend hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Menge, aber nicht viel billiger',
+      },
+      {
+        type: 'paragraph',
+        text: 'Brent-Öl kostete zuletzt gut 102 Dollar je Barrel, deutlich über den rund 70 Dollar während der Waffenruhe im Juni und Juli. Ein Grund dafür sind laut der zweiten Meldung die Transportkosten: Ein Supertanker vom Golf nach China kostet derzeit über 1,2 Millionen Dollar am Tag, rund ein Fünftel der gesamten Lieferkosten. Sofort lieferbares Öl, sogenanntes Dated Brent, handelt zudem mit einem Aufschlag von rund 17 Dollar gegenüber dem Terminkontrakt. Chinesische Raffinerien zahlen laut der ersten Meldung einen Rekordaufschlag von 28 Dollar je Barrel für russisches Ersatzöl der Sorte ESPO und fahren im Gegenzug ihre eigenen Kraftstoffexporte zurück.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Mehr Barrel durch eine Meerenge senken einen Preis nicht automatisch, wenn Fracht, Versicherung und die Geschwindigkeit der Lieferung selbst teurer werden. Der Ölpreis bildet damit nicht nur die geförderte Menge ab, sondern auch, wie schwierig und teuer es gerade ist, sie an ihr Ziel zu bringen.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-jefferson-daempft-zinssorgen-wall-street-im-plus',
+    title: 'Fed-Vize dämpft Zinssorgen, Wall Street schließt im Plus',
+    teaser:
+      'Fed-Vize Jefferson lässt die Frage nach weiteren Zinserhöhungen offen. Die US-Börsen schließen trotzdem moderat höher, gestützt von sinkenden Anleiherenditen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-02T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Anleiherenditen', 'US-Börsen', 'Zinspolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: ['dow-jones', 'sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026, 20:42 Uhr: „ROUNDUP/Aktien New York Schluss: Moderate Gewinne – Anleiherenditen geben nach“',
+        url: 'https://www.onvista.de/news/2026/10-01-roundup-aktien-new-york-schluss-moderate-gewinne-anleiherenditen-geben-nach-0-10-26559711',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Börsen holten am Donnerstag frühe Verluste auf. Der Dow Jones Industrial schloss knapp höher bei 50.926,56 Punkten. Der S&P 500 legte 0,19 Prozent auf 7.666,45 Punkte zu, der Nasdaq 100 gewann 0,31 Prozent auf 30.501,56 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erleichterung über sinkende Renditen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Entlastung sorgten sinkende Renditen am Anleihemarkt. Deren vorheriger Anstieg hatte Sorgen um die Tragfähigkeit der hohen US-Staatsschulden geweckt. Gestützt wurde die Erholung außerdem durch eine Äußerung von Fed-Vizechef Philip Jefferson: „Es kann noch einige Zeit dauern, bis sich beurteilen lässt, ob weitere Zinserhöhungen erforderlich sind.“ Eine Entscheidung ist mit diesem Satz ausdrücklich nicht gefallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Einzelwerte mit großen Ausschlägen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders stark bewegten sich einzelne Aktien. Accenture sprang nach überraschend starken Quartalszahlen um fast 16 Prozent. Synopsys gewann 13 Prozent auf Basis vielversprechender langfristiger Ziele, Mattel rund 19 Prozent auf 15 Dollar wegen Übernahmespekulationen. IBM legte 2,6 Prozent zu, Boeing 3,4 Prozent und der Speicherchip-Hersteller Micron 3 Prozent. Am Rohölmarkt notierte Brent für Dezember-Lieferung weiter über der Marke von 100 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Anleiherenditen verteuern rechnerisch die Zukunft eines jeden Unternehmensgewinns, weil sie bei der Abzinsung künftiger Erträge eine größere Rolle spielen. Fällt diese Rendite wieder, wie am Donnerstag, wirkt das wie ein kleiner Rückenwind für Aktienkurse – unabhängig davon, ob sich an den Geschäften der einzelnen Unternehmen überhaupt etwas geändert hat.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-faellt-auf-neues-tief-seit-mai-2025',
+    title: 'Euro fällt auf neues Tief seit Mai 2025',
+    teaser:
+      'Der Euro ist zum Dollar auf 1,1235 gefallen, den tiefsten Stand seit Mai 2025. Hohe Ölpreise und Spekulation auf weitere Fed-Zinserhöhungen treiben den Dollar.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-02T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Euro', 'Dollar', 'EZB', 'Fed'],
+    relatedTopics: ['waehrungen-wechselkurse', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026, 19:05 Uhr: „Devisen: Euro rutscht zum US-Dollar auf Niveau von Mai 2025“',
+        url: 'https://www.onvista.de/news/2026/10-01-devisen-euro-rutscht-zum-us-dollar-auf-niveau-von-mai-2025-0-10-26559702',
+      },
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 02.10.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro ist am Donnerstag auf 1,1235 Dollar gefallen. Das ist laut dpa-AFX der tiefste Stand seit Mai 2025. Im frühen europäischen Handel hatte das Paar noch deutlich über 1,13 Dollar gestanden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Öl und Zinsspekulation als genannte Gründe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Gründe nennt die ausgewertete Meldung zwei Faktoren: steigende Ölpreise, die Inflationssorgen schürten, und verstärkte Spekulation auf weitere Zinserhöhungen der US-Notenbank Fed. Beides habe dem Dollar Auftrieb gegeben, während der Euro im Gegenzug unter Druck geriet. Die Europäische Zentralbank setzte ihren Referenzkurs bei 1,1298 Dollar fest, nach 1,1355 Dollar am Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Bewegung, die schon länger läuft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neu ist die Richtung nicht: Bereits am Dienstag hatte der Euro mit 1,1338 Dollar den bis dahin tiefsten Stand seit Mai 2025 markiert. Zwei Tage später unterbietet er diese Marke erneut. In der Nacht zum Freitag notierte das Paar laut einer Kursleiste von wallstreet-online bei 1,12425 Dollar, kaum verändert gegenüber dem Donnerstagsschluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute auf dem Kalender steht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Freitag verzeichnet der Wirtschaftskalender von wallstreet-online mehrere Termine mit Bezug zum Euroraum. Um 9:00 Uhr meldet Spanien die Veränderung der Arbeitslosenzahl. Um 9:30 Uhr spricht EZB-Direktoriumsmitglied Piero Cipollone. Um 10:00 Uhr folgen Italiens Einzelhandelsumsätze für den Monatsvergleich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dieselbe Nachricht – steigende Ölpreise – trieb am Donnerstag zugleich die Spekulation auf weitere Fed-Zinserhöhungen an und lieferte, wie oben zu lesen, am Abend den Anlass für Fed-Vize Jefferson, genau diese Frage offenzulassen. Wechselkurse reagieren auf solche Zinserwartungen oft schneller, als eine Notenbank sie am Ende bestätigt.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-rutscht-unter-25000-punkte-200-tage-linie-haelt',
+    title: 'Dax rutscht unter 25.000 Punkte, 200-Tage-Linie hält',
+    teaser:
+      'Der Dax ist um 1,03 Prozent auf 24.939 Punkte gefallen und unter die 25.000er-Marke gerutscht. Am Tagestief fing ihn die 200-Tage-Linie auf.',
+    category: 'Märkte',
+    publishedAt: '2026-10-02T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Mdax', '200-Tage-Linie', 'Aktien'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'mdax'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026, 15:58 Uhr: „Leitindex unter 25.000 Punkten – doch 200-Tage-Linie hält“',
+        url: 'https://www.onvista.de/news/2026/10-01-leitindex-unter-25-000-punkten-200-tage-linie-haelt-41121301-19-26559651',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax rutschte am Donnerstag unter die 25.000-Punkte-Marke. Der deutsche Leitindex fiel um 1,03 Prozent auf 24.939 Punkte. Der MDax der mittelgroßen Werte verlor deutlich stärker, 1,92 Prozent auf 30.251 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die 200-Tage-Linie fängt den Index auf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf seinem Tagestief von 24.831 Punkten traf der Dax auf die 200-Tage-Linie, eine für den langfristigen Trend wichtige technische Marke. Ein IG-Marktexperte sprach laut der ausgewerteten Meldung von einem „wilden Ritt um die psychologisch wichtige Marke von 25.000 Punkten“. An der Unterstützung bei rund 24.800 Punkten habe es „ausgeprägtes Kaufinteresse“ gegeben, ob diese Marke auf Dauer trage, blieb nach seiner Einschätzung aber offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei genannte Belastungsfaktoren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Belastung nennt die Meldung schwache US-Börsen, hohe Ölpreise und steigende Anleiherenditen. Unter den Einzelwerten hielt sich Continental mit plus 0,3 Prozent gegen den Trend, gestützt von positiven Signalen vor der Schweigeperiode. Renk verlor dagegen 2,7 Prozent, den vierten Tag in Folge, nachdem die Bank of America ihre Kaufempfehlung gestrichen hatte. Hensoldt gewann rund 1 Prozent, nachdem dieselbe Bank ihre Kaufempfehlung bestätigt und den Titel in ihre Top-Ideen-Liste aufgenommen hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass der MDax fast doppelt so stark fiel wie der Dax, zeigt einen Unterschied in der Zusammensetzung beider Indizes: Großkonzerne im Dax sind oft international breiter aufgestellt als die mittelgroßen Werte im MDax und federn einen schlechten Börsentag dadurch manchmal leichter ab.',
+      },
+    ],
+  },
+  {
+    slug: 'micron-dreht-nach-gewinnmitnahmen-ins-plus',
+    title: 'Micron dreht nach Gewinnmitnahmen ins Plus',
+    teaser:
+      'Micron fiel trotz Rekordquartal zeitweise vier Prozent, Anleger nahmen Gewinne mit. Zum Schluss stand die Aktie drei Prozent höher, bei 1.097,39 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-10-02T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Micron', 'Halbleiter', 'Quartalszahlen', 'KI'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['micron', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026, 20:57 Uhr: „AKTIE IM FOKUS 2: Micron drehen ins Plus – Gewinnmitnahmen belasten nur kurz“',
+        url: 'https://www.onvista.de/news/2026/10-01-aktie-im-fokus-2-micron-drehen-ins-plus-gewinnmitnahmen-belasten-nur-kurz-0-10-26559712',
+      },
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026: „Micron mit erneutem Rekordquartal und optimistischem Ausblick“',
+        url: 'https://www.onvista.de/news/2026/10-01-micron-mit-erneutem-rekordquartal-und-optimistischem-ausblick-0-20-26559341',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Micron fiel am Donnerstag zunächst, obwohl die Zahlen gut ausfielen. Im frühen Handel rutschte die Aktie zeitweise um fast vier Prozent ins Minus, Anleger nahmen nach dem starken Lauf des Jahres offenbar Gewinne mit. Im späteren Handel drehte das Papier und schloss drei Prozent höher bei 1.097,39 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekordquartal als Auslöser',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatz des abgelaufenen Quartals stieg auf 54,23 Milliarden Dollar, etwa das Fünffache des Vorjahreswerts. Der bereinigte Gewinn je Aktie kletterte auf 33,42 Dollar, ungefähr das Elffache. Für das erste Quartal des neuen Geschäftsjahres stellte Micron einen Umsatz von 60 bis 63 Milliarden Dollar in Aussicht, bei einem Gewinn je Aktie zwischen 37,15 und 39,15 Dollar. Konzernchef Sanjay Mehrotra sagte: „Für das Geschäftsjahr 2026/2027 erwarten wir noch bessere Ergebnisse.“',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hohe Investitionen, hohe Erwartungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Micron plant allein in den ersten sechs Monaten des Geschäftsjahres rund 25 Milliarden Dollar an Investitionen, langfristig bis 2035 insgesamt 250 Milliarden Dollar. Die Aktie hat sich binnen eines Jahres um das Sechsfache verteuert und damit südkoreanische Wettbewerber deutlich hinter sich gelassen. Zacks Investment Research merkte laut der ausgewerteten Meldung an, die Bruttomargen zeigten „immense Preissetzungsmacht“ und stellten „jeden bisherigen Zyklus in den Schatten“. Technisch rutschte der Kurs dabei nicht einmal unter seine 21-Tage-Durchschnittslinie.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose, die weit über den Erwartungen liegt, bewegt eine Aktie nicht automatisch nach oben, wenn der Kurs zuvor schon einen Großteil davon vorweggenommen hat. Der kurze Rutsch am Morgen zeigt, dass selbst bei guten Zahlen zunächst Gewinnmitnahmen den Ton angeben können, bevor sich im Tagesverlauf eine andere Lesart durchsetzt.',
+      },
+    ],
+  },
+  {
+    slug: 'nike-verschaerft-sparprogramm-nach-umsatzrueckgang',
+    title: 'Nike verschärft Sparprogramm nach Umsatzrückgang',
+    teaser:
+      'Nike will 2,5 Milliarden Dollar sparen, nachdem Umsatz und Gewinn erneut gesunken sind. Die Aktie fiel im nachbörslichen Handel zeitweise vier Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-10-02T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nike', 'Sparprogramm', 'Einzelhandel', 'Quartalszahlen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nike'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 01.10.2026, 21:35 Uhr: „Weitere Rückgänge bei Umsatz und Gewinn – Nike verschärft Sparprogramm“',
+        url: 'https://www.onvista.de/news/2026/10-01-weitere-rueckgaenge-bei-umsatz-und-gewinn-nike-verscharft-sparprogramm-0-10-26559714',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nike kündigte am Donnerstag ein verschärftes Sparprogramm an. Über die kommenden Jahre sollen 2,5 Milliarden Dollar eingespart werden. Das Programm umfasst auch Stellenabbau, eine genaue Zahl dazu nennt die ausgewertete Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Umsatz und Gewinn gehen erneut zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im vergangenen Quartal sank der Umsatz um 4 Prozent auf 11,2 Milliarden Dollar. Der Gewinn fiel um 2 Prozent auf 712 Millionen Dollar. Für das Geschäftsjahr bis Ende Mai 2027 rechnet Nike nach eigenen Worten mit einem Umsatzrückgang im hohen einstelligen Prozentbereich – also deutlich mehr als im gerade abgelaufenen Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Direktvertrieb auf Kosten des Handels',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Hintergrund nennt die Meldung eine Strategie der vergangenen Jahre: Nike hatte stark auf den eigenen Direktvertrieb gesetzt, zulasten des klassischen Einzelhandels. Im US-Markt konnten Konkurrenzmarken dadurch Regalplatz übernehmen, was wiederum Nikes Verkäufe belastete. Die Aktie fiel im nachbörslichen US-Handel zeitweise um rund 4 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass die Prognose für das kommende Jahr schlechter ausfällt als der bereits gemeldete Rückgang, wiegt an der Börse oft schwerer als die Vergangenheit selbst. Der nachbörsliche Handel zeigt dabei nur eine erste, meist dünn gehandelte Reaktion – wie stark sie trägt, zeigt sich erst, wenn am nächsten Tag die regulären Börsensitzungen beginnen.',
+      },
+    ],
+  },
+  {
     slug: 'deutsche-inflation-september-dax-monatsminus',
     title: 'Deutsche Inflation springt im September über drei Prozent',
     teaser:
