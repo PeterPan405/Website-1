@@ -101,6 +101,331 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-jobbericht-schickt-nasdaq-auf-rekordkurs',
+    title: 'Schwacher US-Jobbericht schickt Nasdaq auf Rekordkurs',
+    teaser:
+      'Nur 29.000 neue Stellen in den USA, erwartet waren 90.000. An der Wall Street wurde daraus trotzdem ein Rekordtag für den Nasdaq 100.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-03T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Arbeitsmarkt', 'Fed', 'Nasdaq 100', 'USA'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100', 'sp500', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 02.10.2026, 20:30 Uhr: „ROUNDUP/Aktien New York Schluss: Rekorde bei Tech-Indizes - Zinssorgen gebremst“',
+        url: 'https://www.onvista.de/news/2026/10-02-roundup-aktien-new-york-schluss-rekorde-bei-tech-indizes-zinssorgen-gebremst-0-10-26560130',
+      },
+      {
+        label:
+          'commondreams.org, Bericht vom 02.10.2026: „US Added Just 29,000 Jobs, Wage Growth Hit New 5-Year Low Last Month as Trump Economy Teeters“',
+        url: 'https://www.commondreams.org/news/september-2026-jobs-report',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im September entstanden in den USA nur 29.000 neue Stellen. Volkswirte hatten im Schnitt 90.000 erwartet. Die Zahlen für Juli und August wurden zusammen um 60.000 Stellen nach unten revidiert, die Löhne stiegen im Jahresvergleich nur noch um 3 Prozent – der langsamste Anstieg seit fünf Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Schlechte Nachricht, gute Nachricht',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Börse zählte nicht die Schwäche selbst, sondern das, was sie für die Zinspolitik bedeutet. Ein lahmender Arbeitsmarkt macht es wahrscheinlicher, dass die US-Notenbank Fed bei ihrer Sitzung im Oktober die Zinsen nicht anhebt. Genau das honorierten Anleger.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nasdaq 100 stieg um 1,00 Prozent auf ein Rekordhoch von 30.807,93 Punkten, auch der Nasdaq Composite erreichte einen Rekord. Der S&P 500 gewann 0,73 Prozent, der Dow Jones 0,49 Prozent – ihn bremsten steigende Ölpreise und Anleiherenditen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter den Einzelwerten gewann Tesla 4,7 Prozent nach Auslieferungszahlen über den Erwartungen, Nvidia stieg um 1,3 Prozent auf ein Rekordhoch. Nike fiel dagegen um 3,6 Prozent nach einer schwachen Geschäftsprognose.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kalender der kommenden Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute, an einem Samstag, ruht der Handel. Am Montag, den 5. Oktober, sprechen die EZB-Mitglieder Joachim Nagel und Philip Lane, zudem erscheinen die Einkaufsmanagerindizes für den Dienstleistungssektor in Deutschland, Frankreich, Italien, Spanien und Japan – für Deutschland mit einem Vorwert von 52,9 Punkten. Genaue Uhrzeiten dazu nannte die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine einzelne schwache Arbeitsmarktzahl ist noch kein Trend. Wer die Reaktion der Börse verstehen will, schaut deshalb weniger auf die Zahl selbst als auf das, was sie für die nächste Zinsentscheidung wahrscheinlicher macht.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-erholt-sich-vom-julientief-infineon-allein-vorn',
+    title: 'Dax klettert zurück über 25.000 – Infineon allein vorn',
+    teaser:
+      'Der Leitindex gewann 1,17 Prozent. Einen Großteil des Anstiegs trug ein einziger Wert: Infineon legte 8,8 Prozent zu.',
+    category: 'Märkte',
+    publishedAt: '2026-10-03T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Infineon', 'Marktbreite', 'Index'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dax', 'mdax', 'infineon'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 02.10.2026, 16:40 Uhr: „ROUNDUP 2/Aktien Frankfurt Schluss: Dax klar erholt vom tiefsten Stand seit Juli“',
+        url: 'https://www.onvista.de/news/2026/10-02-roundup-2-aktien-frankfurt-schluss-dax-klar-erholt-vom-tiefsten-stand-seit-juli-0-10-26560104',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax schloss am Freitag 1,17 Prozent höher bei 25.231,20 Punkten. Damit begrenzte er sein Wochenminus auf 0,7 Prozent, nachdem er im Handelsverlauf zuvor erstmals seit Juli unter 25.000 Punkte gefallen war. Der MDax gewann 0,66 Prozent auf 30.450,00 Punkte, der EuroStoxx 50 stieg um 1,02 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Wert trägt den Index',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Dax-Spitze stand Infineon mit einem Plus von 8,8 Prozent, angetrieben von starken US-Chipwerten. Auch Aixtron, Siltronic, Süss Microtec und Jenoptik aus dem Halbleitersektor legten zu. Gegenläufig entwickelten sich Auto1 und Kion, die nach Analystengesprächen 4,8 beziehungsweise 7,7 Prozent verloren.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für die allgemeine Erholung nannte die Nachrichtenagentur dpa-AFX den überraschend schwachen US-Arbeitsmarktbericht. Er dämpfte Sorgen um weitere Zinserhöhungen. Zeitweise gesunkene Ölpreise und Anleiherenditen halfen zusätzlich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Indexplus von über einem Prozent liest sich nach einer breiten Erholung. Wie breit sie tatsächlich war, zeigt erst der Blick auf die Einzelwerte – und der lohnt sich gerade an Tagen, an denen ein Sektor den Ausschlag gibt.',
+      },
+    ],
+  },
+  {
+    slug: 'g7-staaten-oeffnen-notreserven-fuer-100-millionen-barrel-oel',
+    title: 'G7-Staaten öffnen Notreserven für 100 Millionen Barrel Öl',
+    teaser:
+      'Die G7 geben über vier Monate 100 Millionen Barrel aus ihren Reserven frei. Das Rohöl ist schnell verfügbar, der Diesel daraus nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-10-03T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Rohstoffe', 'Diesel', 'G7', 'IEA'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'euronews.com, Bericht vom 02.10.2026: „G7 agrees 100 million-barrel emergency oil release amid US pressure over diesel“',
+        url: 'https://www.euronews.com/2026/10/02/g7-agrees-100-million-barrel-emergency-oil-release-amid-us-pressure-over-diesel',
+      },
+      {
+        label:
+          'ariva.de, Meldung vom 02.10.2026: „G7-Staaten wollen 100 Millionen Barrel Öl aus Reserven freigeben“',
+        url: 'https://www.ariva.de/brent-crude-rohoel-ice-rolling-kurs/news/g7-staaten-wollen-100-millionen-barrel-oel-aus-reserven-12157025',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die G7-Staaten einigten sich am Freitag auf die Freigabe von 100 Millionen Barrel Öl und Diesel aus ihren strategischen Reserven. Koordiniert wird die Aktion über vier Monate von der Internationalen Energieagentur IEA. Ein erheblicher Teil des Diesels soll bereits innerhalb der ersten 20 Tage verfügbar sein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Diesel das eigentliche Problem ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vorausgegangen war Druck aus Washington, das Ländern mit einem Exportverbot für Diesel gedroht hatte. Ein nächtliches Telefonat zwischen US-Präsident Trump und Frankreichs Präsident Macron ging der Einigung voraus. Das Paket enthält zusätzlich Maßnahmen zur Steigerung der Raffinerieleistung und die Zusage, den Energiehandel zwischen den Partnerländern nicht einzuschränken.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Freigabe von Rohöl löst ein Dieselproblem nicht automatisch. Rohöl muss erst in Raffinerien verarbeitet werden. Wie viel Diesel am Ende herauskommt, hängt von Raffineriekapazität, Logistik und der Ölsorte ab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer den Ölpreis beobachtet, sollte Rohöl und die daraus hergestellten Produkte auseinanderhalten. Eine Reserve voller Rohöl hilft an der Tankstelle erst, wenn es jemand zu Diesel verarbeitet hat.',
+      },
+    ],
+  },
+  {
+    slug: 'dritter-us-flugzeugtraeger-vor-hormus-zwei-tanker-beschossen',
+    title: 'Dritter US-Flugzeugträger vor Hormus, zwei Tanker beschossen',
+    teaser:
+      'Die USA verlegen eine dritte Trägergruppe in den Nahen Osten. Binnen zwei Tagen gerieten zwei Tanker in der Straße von Hormus unter Beschuss.',
+    category: 'Märkte',
+    publishedAt: '2026-10-03T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Hormus', 'Öl', 'Geopolitik', 'Iran'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'aktien.news, Bericht vom 02.10.2026: „Dritter US-Flugzeugträger im Nahen Osten treibt Ölpreise nach oben“',
+        url: 'https://www.aktien.news/dritter-us-flugzeugtrager-im-nahen-osten-treibt-olpreise-nach-oben',
+      },
+      {
+        label:
+          'spectrumlocalnews.com, Bericht vom 01.10.2026: „Third aircraft carrier and thousands of troops head to Mideast“',
+        url: 'https://spectrumlocalnews.com/us/snplus/military/2026/10/01/third-aircraft-carrier-heads-middle-east',
+      },
+      {
+        label:
+          't-online.de, Bericht vom 02.10.2026: „Bericht: Erneut Schiff in Straße von Hormus unter Beschuss“',
+        url: 'https://www.t-online.de/nachrichten/ausland/id_101462358/bericht-erneut-schiff-in-strasse-von-hormus-unter-beschuss.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die USA verlegen mit der USS Theodore Roosevelt eine dritte Flugzeugträger-Kampfgruppe in den Nahen Osten, begleitet vom Kreuzer USS Chosin und der amphibischen Gruppe um die USS Makin Island. Insgesamt sind rund 9.000 Soldaten unterwegs, davon etwa 2.000 Marineinfanteristen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Treffen die Schiffe Ende Oktober ein, wären erstmals drei Flugzeugträger gleichzeitig in der Region, zusammen mit mehr als 20.000 Soldaten und Hunderten Flugzeugen. Präsident Trump bezeichnete neue Angriffe auf den Iran nach den Kongresswahlen Anfang November als „möglich“ und nannte ein iranisches Waffenstillstandsangebot „nicht gut genug“. Das US-Finanzministerium verschärfte zugleich Sanktionen gegen Irans Auto- und Eisenbahnsektor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Tanker binnen zwei Tagen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die britische Schifffahrtsbehörde UKMTO meldete zwei Vorfälle in der Straße von Hormus. Donnerstagabend geriet ein Tanker unter Beschuss, ein Feuer brach aus, die Besatzung blieb nach bisherigen Angaben unverletzt. Freitagabend traf ein unbekanntes Geschoss ein weiteres Schiff, es kam zu einem kleinen Brand und einem Stromausfall an Bord, bevor das Schiff die Fahrt fortsetzte. Zu keinem der Vorfälle bekannte sich bislang jemand.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis reagierte nervös. Brent verteuerte sich am Donnerstag um 4,4 Prozent auf 102,31 Dollar je Barrel, WTI um 2,7 Prozent auf 92,87 Dollar. An den US-Aktienmärkten blieben die Ausschläge dagegen klein, auch weil gleichzeitig die Anleiherenditen nachgaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie viel von diesem Ölpreisaufschlag tatsächlich ausbleibende Lieferungen abbildet und wie viel allein die Angst davor, lässt sich im Nachhinein kaum trennen. Eine solche Risikoprämie kann so schnell wieder verschwinden, wie sie gekommen ist, sobald sich die Lage beruhigt.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-verliert-trotz-aktienrally-an-boden',
+    title: 'Goldpreis verliert trotz Aktienrally an Boden',
+    teaser:
+      'Dax und Wall Street legten zu, Gold nicht. Der Goldpreis fiel am Freitag um 0,77 Prozent – ein Blick darauf, warum beide nicht immer gegenläufig laufen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-03T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Edelmetalle', 'Diversifikation'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite', 'portfolio-aufbau'],
+    relatedSymbols: ['gold', 'silber', 'dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Meldung vom 02.10.2026, 17:29 Uhr: „Rohstoffpreise Überblick: Goldpreis, Silberpreis, Öl (Brent/WTI)“',
+        url: 'https://www.wallstreet-online.de/nachricht/21468480-rohstoffpreise-ueberblick-goldpreis-silberpreis-oel-brent-wti-rohstoffe-02-10-2026',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während Dax und Wall Street am Freitag deutlich zulegten, gab der Goldpreis nach. Am Nachmittag notierte eine Feinunze bei 4.142,18 Dollar, ein Minus von 0,77 Prozent. Silber verlor 1,25 Prozent auf 60,23 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die übliche Gegenbewegung ausbleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt vielen als Absicherung gegen fallende Aktienkurse, weil beide sich oft gegenläufig bewegen. An diesem Freitag taten sie das nicht: Aktien stiegen, Gold fiel ebenfalls. Aus den vorliegenden Quellen geht kein Grund für den Rückgang hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das zeigt die Grenze jeder Korrelationsannahme. Zwei Anlageklassen, die meistens gegenläufig laufen, tun das nicht an jedem einzelnen Tag – sonst wäre es keine Korrelation, sondern ein fester Mechanismus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Gold als Absicherung im Depot hält, sollte das für den Durchschnitt vieler Tage erwarten, nicht für jeden einzelnen. Ein Tag wie dieser belegt für sich genommen nicht, dass die Absicherung nicht funktioniert.',
+      },
+    ],
+  },
+  {
+    slug: 'bayer-investiert-2-2-milliarden-dollar-in-werk-in-ohio',
+    title: 'Bayer investiert 2,2 Milliarden Dollar in Werk in Ohio',
+    teaser:
+      'Bayer baut ein neues Pharmawerk in New Albany, Ohio. Rund 600 Stellen sollen entstehen, ein Datum für den Produktionsstart nannte der Konzern nicht.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-03T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bayer', 'USA', 'Pharma', 'Investition'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['bayer'],
+    sources: [
+      {
+        label:
+          'onvista, Meldung vom 02.10.2026: „Bayer will über 2 Milliarden Dollar in US-Werk investieren“',
+        url: 'https://www.onvista.de/news/2026/10-02-bayer-will-ueber-2-milliarden-dollar-in-us-werk-investieren-0-10-26560124',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bayer will 2,2 Milliarden Dollar, umgerechnet rund 1,95 Milliarden Euro, in ein neues Werk in New Albany im US-Bundesstaat Ohio investieren. Dort sollen rund 600 hochqualifizierte Stellen entstehen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wirkstoff und Fertigarzneimittel an einem Ort',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der neue Standort bündelt die Herstellung pharmazeutischer Wirkstoffe und fertiger Arzneimittel an einem Ort. Bayer-Chef Bill Anderson begründete die Entscheidung damit, die USA seien seit langem ein wichtiger Produktionsstandort und ein bedeutendes Innovationszentrum für den Konzern. Über die vergangenen fünf Jahre hat Bayer nach eigenen Angaben mehr als 7 Milliarden Dollar in Forschung, Entwicklung und Produktion in den USA investiert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein konkretes Datum für den Produktionsstart nannte Bayer in seiner Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Standortentscheidung dieser Größe bindet Kapital auf Jahre und sagt wenig über den nächsten Quartalsbericht aus. Wer Unternehmensmeldungen verfolgt, sollte solche langfristigen Investitionen von den kurzfristigen Zahlen unterscheiden, die eine Aktie von Quartal zu Quartal bewegen.',
+      },
+    ],
+  },
+  {
     slug: 'putin-nennt-frist-fuer-donbass-kiew-zeigt-rakete',
     title: 'Putin nennt Frist für Donbass, Kiew zeigt eigene Rakete',
     teaser:
