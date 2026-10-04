@@ -101,6 +101,252 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'irans-waehrung-drei-millionen-rial-fuer-einen-euro',
+    title:
+      'Irans Währung fällt auf historisches Tief – ein Euro kostet drei Millionen Rial',
+    metaTitle: 'Irans Währung stürzt auf Rekordtief',
+    teaser:
+      'Ein Euro kostet in Iran erstmals drei Millionen Rial. Löhne und Lebensmittelpreise zeigen, wie stark Krieg und Sanktionen das Land treffen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-04T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Währung', 'Sanktionen', 'Rial'],
+    relatedTopics: ['waehrungen-wechselkurse'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'investing.com, Meldung vom 03.10.2026, 14:29 Uhr (dpa-AFX): „Irans Währung fällt auf historisches Tief“',
+        url: 'https://de.investing.com/news/economy-news/irans-wahrung-fallt-auf-historisches-tief-3689080',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro kostete am Wochenende erstmals drei Millionen iranische Rial. Das ist der niedrigste Stand der Landeswährung, den eine ausgewertete Meldung der Nachrichtenagentur dpa-AFX nennt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Löhne und Lebensmittel im freien Fall',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das durchschnittliche Monatseinkommen fiel seit Jahresbeginn von umgerechnet rund 120 auf etwa 70 Euro, berichteten von dpa-AFX zitierte Finanzexperten. Ein Kilo Reis kostete zuletzt 5,5 Millionen Rial, ein halbes Jahr zuvor waren es 3,5 Millionen. Der Preis für ein Brot verdoppelte sich im selben Zeitraum von 250.000 auf 500.000 Rial.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'US-Blockade trifft die Öleinnahmen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hintergrund sind laut der Meldung der anhaltende Krieg und US-Sanktionen. Die USA blockierten iranische Seehäfen, nachdem Iran zuvor die Straße von Hormus gesperrt hatte. Zusätzliche Sanktionen richteten sich gegen Banken und Luftfahrtunternehmen, die den Iran unterstützen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Währung, die so schnell an Wert verliert, verteuert alles, was ein Land importieren muss – von Rohstoffen bis zu Ersatzteilen. Wie lange eine Volkswirtschaft das verkraftet, ohne dass sich die Sanktionslage ändert, sagt die Meldung nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'kanada-pacific-link-pipeline-oelexporte-asien',
+    title: 'Kanada beschleunigt Pipeline-Projekt für Ölexporte nach Asien',
+    teaser:
+      'Kanadas Regierung erklärt die Pacific-Link-Pipeline zum nationalen Vorzeigeprojekt. Bis zu eine Million Barrel Öl sollen künftig täglich Richtung Asien fließen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-04T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Kanada', 'Pipeline', 'Öl', 'Handel'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Meldung vom 02.10.2026: „Neue Groß-Pipeline: Millionen Barrel an den USA vorbei: Kanada baut die Öl-Autobahn nach Asien“',
+        url: 'https://www.wallstreet-online.de/nachricht/21468168-gross-pipeline-millionen-barrel-usa-vorbei-kanada-baut-oel-autobahn-asien',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kanadas Premierminister Mark Carney erklärte die geplante Pacific-Link-Pipeline zum „Projekt von nationalem Interesse“. Das beschleunigt das Genehmigungsverfahren erheblich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Million Barrel täglich durch die Rocky Mountains',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Leitung soll Öl aus den Ölsanden Albertas durch British Columbia bis zu einem neuen Tiefwasserterminal bei Roberts Bank südlich von Vancouver führen. Von dort sollen große Tanker das Rohöl vor allem nach Asien bringen. Geplante Kapazität: bis zu eine Million Barrel pro Tag. Baubeginn soll laut den Regierungsplänen im September 2027 sein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '35 bis 44 Milliarden kanadische Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kosten werden mit 35,2 bis 43,7 Milliarden kanadischen Dollar veranschlagt. Federführend ist der staatliche Betreiber Trans Mountain, beteiligt ist auch Pembina Pipeline. Mindestens zehn Prozent der Anteile sind für indigene Gruppen vorgesehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kanada exportierte 2025 rund 4,3 Millionen Barrel Öl pro Tag, davon 90,1 Prozent in die USA. Die neue Pipeline soll diesen Anteil senken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Abnehmer für neun von zehn exportierten Barrel ist ein Klumpenrisiko für jeden Produzenten. Ob sich das Projekt für Kanada lohnt, hängt auch davon ab, wie sich der Handelsstreit mit den USA weiterentwickelt – dazu nennt die Meldung nur den Anlass, keinen aktuellen Stand.',
+      },
+    ],
+  },
+  {
+    slug: 'irak-oelexport-ceyhan-route-hormus-umgehen',
+    title: 'Irak baut Ölexporte über die Türkei aus, um Hormus zu umgehen',
+    teaser:
+      'Der Irak transportiert mehr Rohöl per Lastwagen und Pipeline zum Hafen Ceyhan in der Türkei – vorbei an der Straße von Hormus.',
+    category: 'Märkte',
+    publishedAt: '2026-10-04T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Irak', 'Öl', 'Hormus', 'Türkei'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Meldung vom 01.10.2026: „Hormus verliert an Macht: Iraks neuer Ölweg: Könnte das Angebot plötzlich stark steigen?“',
+        url: 'https://www.wallstreet-online.de/nachricht/21462009-hormus-verliert-macht-iraks-oelweg-angebot-stark-steigen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Irak exportierte im September rund 2,65 Millionen Barrel Öl pro Tag. Rund 250.000 Barrel davon liefen bereits über eine Route zum türkischen Mittelmeerhafen Ceyhan, die an der Straße von Hormus vorbeiführt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Per Lastwagen zur Pipeline',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rohöl aus dem Südirak wird dafür per Tanklastwagen zu den Fördergebieten bei Kirkuk gebracht. Bei einem Test Mitte September transportierten die Lastwagen laut der Meldung rund 38.000 Barrel in Richtung Kirkuk. Von dort läuft das Öl durch das türkische Pipelinenetz weiter nach Ceyhan.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bis zu 750.000 Barrel möglich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das im August verlängerte Pipelineabkommen zwischen Irak und der Türkei erlaubt rechnerisch bis zu 750.000 Barrel pro Tag. Tatsächlich flossen zuletzt nur rund 170.000 Barrel. Der Irak bietet sein Öl den Angaben zufolge mit einem Abschlag von 15 bis 20 Dollar je Barrel unter dem Weltmarktpreis an, unter anderem an die Handelshäuser Vitol und ADNOC.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Preisabschlag von bis zu 20 Dollar je Barrel ist kein Zeichen von Stärke, sondern der Preis für einen schnellen Verkauf abseits der üblichen Route. Ob der Irak die rechnerisch mögliche Menge erreicht, zeigt sich erst an der Lücke zwischen genehmigter und tatsächlich geflossener Menge – die liegt aktuell beim Vierfachen.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-87000-dollar-schwache-us-jobdaten',
+    title: 'Bitcoin steigt über 87.000 Dollar – schwache US-Jobdaten helfen',
+    teaser:
+      'Bitcoin erreichte am Freitag den höchsten Stand seit einer Woche. Enttäuschende US-Arbeitsmarktdaten dämpften die Aussicht auf weitere Zinserhöhungen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-04T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bitcoin', 'Kryptowährung', 'Zinsen', 'US-Arbeitsmarkt'],
+    relatedTopics: ['bitcoin-krypto'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanznachrichten.de, Meldung vom 02.10.2026 (dpa-AFX): „Bitcoin-Kurs steigt über 87.000 US-Dollar auf höchsten Stand seit einer Woche“',
+        url: 'https://www.finanznachrichten.de/nachrichten-2026-10/69743854-bitcoin-kurs-steigt-ueber-87-000-us-dollar-auf-hoechsten-stand-seit-einer-woche-016.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin stieg am Freitag zeitweise auf 87.219 Dollar, den höchsten Stand seit rund einer Woche. Zuletzt wurde die Kryptowährung bei etwa 86.000 Dollar gehandelt, meldete dpa-AFX.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Keine Zinsen, aber ein Vorteil bei sinkenden Erwartungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hintergrund waren laut der Meldung enttäuschende US-Arbeitsmarktdaten. Sie dämpften die Spekulation auf weitere Zinserhöhungen der US-Notenbank Fed. Weil Kryptowährungen anders als Anleihen oder Tagesgeld keine laufenden Zinsen abwerfen, steigt ihre relative Attraktivität, wenn Anleger mit weniger steigenden Zinsen rechnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Noch 30 Prozent unter dem Rekord',
+      },
+      {
+        type: 'paragraph',
+        text: 'Timo Emden vom Online-Broker Captrader kommentierte laut dpa-AFX: „Anleger am Kryptomarkt suchen wieder das Risiko und beenden offensichtlich zunächst ihre Serie der Gewinnmitnahmen.“ Seit dem Rekordhoch von über 126.000 Dollar im Oktober 2025 liegt Bitcoin dennoch weiterhin rund 30 Prozent darunter.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Anlage ohne laufende Verzinsung lebt stärker von der erwarteten Zinsrichtung als eine, die selbst Zinsen zahlt. Das erklärt, warum dieselben schwachen Arbeitsmarktdaten an einem Tag sowohl Aktienkurse als auch den Bitcoin-Kurs stützen konnten.',
+      },
+    ],
+  },
+  {
+    slug: 'woche-voraus-pmi-daten-ezb-reden-5-oktober',
+    title: 'Woche voraus: PMI-Daten aus mehreren Ländern, zwei EZB-Reden',
+    teaser:
+      'Am Montag veröffentlichen mehrere Länder ihre Einkaufsmanagerindizes für den Dienstleistungssektor. Zusätzlich sprechen zwei EZB-Vertreter.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-04T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Einkaufsmanagerindex', 'EZB', 'Konjunktur', 'Wirtschaftskalender'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender, abgerufen am 04.10.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag stehen mehrere Dienstleistungs-Einkaufsmanagerindizes an. Frankreich, Italien, Spanien und Deutschland veröffentlichen ihre Werte für September, ebenso Irland und Japan.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Vorwerte im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der deutsche HCOB-Dienstleistungsindex lag im Vormonat bei 52,9 Punkten, der zusammengefasste Composite-Index bei 53,8. Frankreich meldete zuletzt 51,4 beziehungsweise 51,2 Punkte, Italien 55,2 und Spanien 57,8. Irlands AIB-Dienstleistungsindex stand bei 55,4 Punkten, Japans Jibun-Bank-Index bei 51,6. Für keinen der Werte nennt der Kalender eine Prognose oder Uhrzeit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei EZB-Vertreter kommen zu Wort',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ebenfalls für Montag eingetragen sind Auftritte der EZB-Direktoriumsmitglieder Joachim Nagel und Philip Lane. Eine Uhrzeit nennt der Kalender dafür nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Einkaufsmanagerindex über 50 Punkten zeigt wachsende Geschäftstätigkeit an, ein Wert darunter schrumpfende. Eine einzelne Monatszahl sagt für sich wenig – erst der Vergleich mit dem Vormonat und mit anderen Ländern zeigt, ob sich ein Trend festigt oder dreht.',
+      },
+    ],
+  },
+  {
     slug: 'us-jobbericht-schickt-nasdaq-auf-rekordkurs',
     title: 'Schwacher US-Jobbericht schickt Nasdaq auf Rekordkurs',
     teaser:
