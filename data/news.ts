@@ -101,6 +101,340 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'pmi-dienstleistungsindex-fuenf-laender-ezb-reden-5-oktober',
+    title: 'Fünf PMI-Werte und zwei EZB-Reden zum Wochenstart',
+    teaser:
+      'Am Montagvormittag veröffentlichen fünf Länder ihre Dienstleistungs-PMI, danach sprechen die EZB-Vertreter Joachim Nagel und Philip Lane.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-05T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PMI', 'EZB', 'Konjunktur', 'Eurozone'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender „Kommende Termine“ und „Wichtige Termine“, Datenstand 5.10.2026, 02:19 Uhr: Dienstleistungs-PMI mehrerer Länder, Reden von EZB-Vorstand Nagel und EZB-Chefökonom Lane',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Montag beginnt mit einer ganzen Reihe von Konjunkturdaten. Einen ersten Wert gibt es bereits: Der irische Dienstleistungsindex AIB Services PMI fiel laut Wirtschaftskalender von 55,4 auf 54,1 Punkte, veröffentlicht um 2:01 Uhr mitteleuropäischer Zeit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Vormittag gehört dem Einkaufsmanagerindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im weiteren Tagesverlauf folgen die Dienstleistungs-PMI aus Spanien (9:15 Uhr, Vorwert 57,8), Italien (9:45 Uhr, Vorwert 55,2) und Frankreich (9:50 Uhr, Prognose und Vorwert je 51,4). Um 9:55 Uhr meldet Deutschland seinen Dienstleistungs-PMI (Prognose 52,9, Vorwert 52,9) sowie den Composite-PMI (Prognose 53,8, Vorwert 53,8). Um 10 Uhr folgt der Composite-PMI für die gesamte Eurozone (Prognose 53,1, Vorwert 53,1).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei EZB-Vertreter sprechen dazwischen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 9:45 Uhr spricht EZB-Vorstandsmitglied Joachim Nagel, um 10 Uhr EZB-Chefökonom Philip Lane. Beide Termine stehen im Wirtschaftskalender ohne weitere Angaben zum Thema der jeweiligen Rede.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die Prognose genau dem Vorwert entspricht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei den deutschen und französischen Werten liegt die Prognose exakt auf dem Niveau des Vormonats. Das ist selbst eine Information: Die befragten Ökonomen rechnen mit Stillstand, nicht mit Verbesserung oder Verschlechterung. Für die Marktreaktion zählt deshalb vor allem, wie stark die tatsächlichen Werte von dieser eingepreisten Erwartung abweichen – nicht die Zahl selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer solche Terminwochen verfolgt, kann an der Lücke zwischen Prognose und Vorwert ablesen, wie viel Veränderung der Markt überhaupt erwartet – und damit besser einschätzen, welche Abweichung eine Reaktion auslösen könnte.',
+      },
+    ],
+  },
+  {
+    slug: 'huthi-miliz-greift-oelanlagen-in-saudi-arabien-an',
+    title: 'Huthi-Miliz greift Ölanlagen in Saudi-Arabien an',
+    teaser:
+      'Die Huthi-Miliz meldete Angriffe auf saudische Ölanlagen, Jemens Regierung kündigte eine Großoffensive an, und Iran nennt Bedingungen für Hormus.',
+    category: 'Märkte',
+    publishedAt: '2026-10-05T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Geopolitik', 'Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Rohstoffnachrichten-Übersicht vom 5.10.2026 (dpa-AFX, Meldungen vom 4.10.2026): „Huthi-Miliz meldet Angriffe auf Ölanlagen in Saudi-Arabien“, „Iran knüpft Öffnung von Hormus an sieben Vorbedingungen“, „Jemens Regierung kündigt Großoffensive gegen Huthi-Miliz an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online.de, Nachgehakt-Rubrik vom 4.10.2026: „USA in Not – strategische Ölreserven auf 44-Jahrestief!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Huthi-Miliz im Jemen meldete am Wochenende Angriffe auf Ölanlagen in Saudi-Arabien. Das berichtete die Nachrichtenagentur dpa-AFX über wallstreet-online. Welche Anlagen genau betroffen waren oder wie groß der Schaden ist, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Jemens Regierung kündigt eine Großoffensive an',
+      },
+      {
+        type: 'paragraph',
+        text: 'Separat kündigte die Regierung Jemens eine Großoffensive gegen die Huthi-Miliz an. Ob die beiden Meldungen unmittelbar zusammenhängen, lässt sich aus den Übersichten nicht ablesen – ein Zusammenhang wird dort nicht hergestellt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Iran nennt sieben Bedingungen für Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu meldete dpa-AFX, dass Iran die Öffnung der Straße von Hormus an sieben Vorbedingungen knüpft. Welche Bedingungen das sind, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ölpreis bewegt sich trotzdem kaum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz dieser Nachrichtenlage notierte Brent zuletzt bei 102,70 US-Dollar je Barrel – unverändert zum Vortag, laut der Kursleiste von wallstreet-online. Einen Grund dafür nennt die Quelle nicht. Möglich ist, dass der Markt ähnliche Risiken bereits eingepreist hat oder die Lage als nicht unmittelbar angebotswirksam einschätzt. Zugleich meldete derselbe Nachrichtenüberblick, die strategischen Ölreserven der USA seien auf ihren niedrigsten Stand seit 44 Jahren gefallen – auch hier ohne nähere Angaben zu Zeitpunkt oder Quelle der Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine militärische Eskalation in einer wichtigen Öltransportregion erhöht gewöhnlich die Nervosität am Markt. Dass der Preis hier stillhält, zeigt: Nachrichtenlage und Preisreaktion laufen nicht automatisch im Gleichschritt.',
+      },
+    ],
+  },
+  {
+    slug: 'opec-plus-haelt-foerderquote-erneut-unveraendert',
+    title: 'Opec-Plus-Staaten lassen die Förderquote erneut unverändert',
+    teaser:
+      'Mehrere Opec-Plus-Staaten beschlossen übers Wochenende, ihre Förderquote nicht anzuheben. Details zu Ländern und Zeitraum nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-10-05T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'OPEC+', 'Rohstoffe', 'Angebot'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Marktberichte-Übersicht vom 5.10.2026 (Meldung vom 4.10.2026): „Ölförderstaaten der Opec+ heben Produktionsziel nicht an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mehrere Opec-Plus-Staaten haben beschlossen, ihre Förderquote nicht anzuheben. Das meldete wallstreet-online in seiner Marktberichte-Übersicht. Welche Länder an der Entscheidung beteiligt waren, für welchen Fördermonat die Quote gilt und wie die Staaten abgestimmt haben, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quote ist ein Versprechen, keine Messung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Leser lohnt sich dabei eine Unterscheidung, die bei Opec-Meldungen regelmäßig wiederkehrt: Eine Förderquote ist eine vereinbarte **Zielgröße**, auf die sich die Mitgliedsstaaten verständigen. Sie ist keine Messung dessen, was tatsächlich aus dem Boden kommt. Mitgliedsstaaten können ihre Ziele über- oder unterschreiten, ohne dass sich an der offiziellen Quote etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ölpreis bewegt sich kaum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Brentpreis notierte zuletzt bei 102,70 US-Dollar je Barrel, unverändert zum Vortag. Eine ausbleibende Erhöhung der Förderquote hätte theoretisch das Angebot verknappen können. In den vorliegenden Zahlen zeigt sich davon bislang nichts.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Ölpreis-Meldungen verfolgt, tut gut daran, eine beschlossene Förderquote nicht automatisch mit einer entsprechenden Angebotsmenge am Markt gleichzusetzen. Zwischen beschlossener Zielgröße und tatsächlicher Fördermenge kann ein erheblicher Unterschied liegen.',
+      },
+    ],
+  },
+  {
+    slug: 'marktueberblick-dax-dow-nasdaq-vorboerslich-5-oktober',
+    title: 'DAX, Dow und Nasdaq 100 stehen vorbörslich deutlich im Plus',
+    teaser:
+      'Noch vor der Handelseröffnung zeigen DAX, Dow Jones und Nasdaq 100 klare Aufschläge, während der Euro zum Dollar leicht nachgibt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-05T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Dow Jones', 'Nasdaq 100', 'Devisen'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'gold', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Kursleiste und Marktüberblick, Datenstand 5.10.2026, 02:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Noch vor der offiziellen Handelseröffnung zeigt die Kursleiste von wallstreet-online deutliche Aufschläge. Der DAX stand bei 25.274,47 Punkten, ein Plus von 1,19 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch die US-Indizes und Gold liegen vorn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones (in der Kursleiste als „US 30“ geführt) lag 0,46 Prozent höher bei 51.183,57 Punkten. Der Nasdaq 100 („US Tech 100“) gewann 0,98 Prozent auf 30.808,42 Punkte. Gold notierte 0,16 Prozent fester bei 4.149,75 US-Dollar je Feinunze. Der Euro gab zum Dollar um 0,05 Prozent auf 1,12476 nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorbörslich ist nicht dasselbe wie die Eröffnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Stände wurden kurz nach zwei Uhr morgens mitteleuropäischer Zeit erfasst, Stunden vor dem Start des regulären Handels. Solche frühen Kurse stammen meist aus dem außerbörslichen oder derivativen Handel und müssen sich nicht exakt in der späteren Eröffnungsauktion der jeweiligen Börse wiederfinden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Aktien und Gold zusammen im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist, dass Aktienindizes und Gold hier gemeinsam zulegen. Üblicherweise gelten beide eher als Gegenspieler in unruhigen Marktphasen. Warum sie an diesem Morgen gemeinsam steigen, lässt sich aus der Kursleiste allein nicht ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer solche frühen Kursstände liest, sollte sie als Momentaufnahme vor Handelsbeginn verstehen – als Hinweis auf eine mögliche Richtung, nicht als feststehendes Ergebnis des Handelstages.',
+      },
+    ],
+  },
+  {
+    slug: 'galeria-stellt-erneut-insolvenzantrag',
+    title: 'Warenhauskette Galeria stellt erneut einen Insolvenzantrag',
+    teaser:
+      'Die Warenhauskette Galeria hat wieder Insolvenz angemeldet. Mit-Eigentümer Beetz kritisierte den Schritt am Sonntagabend deutlich.',
+    category: 'Märkte',
+    publishedAt: '2026-10-05T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Galeria', 'Insolvenz', 'Einzelhandel'],
+    relatedTopics: ['schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News vom 5.10.2026 (Stand 4.10.2026, 22:15 Uhr, dpa-AFX): „Miteigentümer Beetz kritisiert Galeria für Insolvenzantrag“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Unternehmensmeldungen-Übersicht vom 5.10.2026: „WDH/ROUNDUP 6: Warenhauskette Galeria stellt abermals Insolvenzantrag“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Warenhauskette Galeria hat nach Angaben der Nachrichtenagentur dpa-AFX abermals einen Insolvenzantrag gestellt. Die Meldung wurde über Sonntag und Montag in mehreren aktualisierten Fassungen verbreitet, zuletzt als sechste Fassung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mit-Eigentümer kritisiert den Schritt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mit-Eigentümer Beetz kritisierte den Insolvenzantrag am Sonntagabend um 22:15 Uhr. Was genau er an dem Schritt kritisierte, geht aus der vorliegenden Übersicht nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Insolvenzantrag bedeutet – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Insolvenzantrag eröffnet ein gerichtliches Verfahren. Er bedeutet für sich genommen nicht, dass ein Unternehmen schließt: Die deutsche Insolvenzordnung sieht auch die Sanierung in Eigenverwaltung vor, bei der ein Betrieb unter gerichtlicher Aufsicht weiterarbeitet. Ob dieser Weg hier infrage kommt, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Antrag erneut kommt, bleibt offen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Grund für den wiederholten Antrag nennt keine der vorliegenden Meldungen. Dass es sich um einen erneuten Antrag handelt, zeigt, dass frühere Sanierungsversuche die Kette nicht dauerhaft stabilisiert haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Beschäftigte, Gläubiger und Vermieter bedeutet ein solcher Antrag zunächst Unsicherheit, keine Gewissheit über den Ausgang. Wie es bei Galeria konkret weitergeht, entscheidet sich im weiteren Verfahren.',
+      },
+    ],
+  },
+  {
+    slug: 'us-haeusermarkt-jeder-fuenfte-senkt-den-preis',
+    title: 'US-Häusermarkt: Jeder fünfte Verkäufer senkt den Angebotspreis',
+    teaser:
+      'Mehr als jeder fünfte Hausverkäufer in den USA senkt laut einem aktuellen Bericht seinen Angebotspreis – ein Signal vom Immobilienmarkt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-05T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['USA', 'Immobilien', 'Zinsen'],
+    relatedTopics: ['immobilien'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Nachrichten-Übersicht vom 5.10.2026: „US-Häusermarkt kippt – Immobilien-Alarm in den USA: Mehr als jeder Fünfte senkt den Preis“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In den USA senkt nach einem aktuellen Bericht mehr als jeder fünfte Hausverkäufer seinen Angebotspreis. Das meldete wallstreet-online unter der Überschrift „US-Häusermarkt kippt“. Die genaue Quelle der Zahl und der Erhebungszeitraum werden in der Übersicht nicht genannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein gesenkter Angebotspreis ist kein abgeschlossener Verkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einer Preissenkung im Angebot und einem tatsächlich niedrigeren Verkaufspreis liegt ein Unterschied. Die Angebotszahl zeigt, wie Verkäufer ihre Erwartung anpassen, bevor ein Haus den Besitzer wechselt. Abgeschlossene Verkaufspreise – etwa in Indizes wie dem Case-Shiller-Index – zeigen das Ergebnis erst mit Verzögerung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das auch für die Geldpolitik zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wohnkosten fließen in den USA mit Verzögerung in die offiziellen Inflationsmessungen ein. Ein schwächerer Häusermarkt heute kann sich deshalb erst Monate später in den Preisindizes zeigen, an denen sich auch die US-Notenbank orientiert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Einzelne Signale vom Immobilienmarkt lassen sich nicht direkt in eine Inflationszahl übersetzen. Wer die Entwicklung verstehen will, braucht mehrere solcher Datenpunkte über einen längeren Zeitraum.',
+      },
+    ],
+  },
+  {
     slug: 'irans-waehrung-drei-millionen-rial-fuer-einen-euro',
     title:
       'Irans Währung fällt auf historisches Tief – ein Euro kostet drei Millionen Rial',
