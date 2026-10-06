@@ -34,6 +34,15 @@ import {
   zonenversatzMinuten,
 } from '@/lib/zonenzeit'
 
+/*
+  Der Bestand selbst, nicht nur das, was die Anzeige daraus auswählt.
+
+  Seit dem 6. Oktober 2026 wird die Frage „liefert die Quelle das Feld noch?"
+  hier gestellt und nicht am Anzeigefenster – die Begründung steht weiter
+  unten beim Wächter.
+*/
+import momentaufnahme from '@/data/snapshots/quartalstermine.json'
+
 let failed = 0
 
 function pruefen(was: string, bedingung: boolean, hinweis = ''): void {
@@ -847,6 +856,44 @@ pruefen(
 
   Die Grenze bleibt deshalb bei 80 Prozent und wird nicht gesenkt. Gezählt wird
   weiterhin nur, wo eine Minute überhaupt herkommen kann.
+
+  ## Warum am 6. Oktober die Zählung vom Anzeigefenster in den Bestand wandert
+
+  An diesem Tag schlug der Wächter an: **265 von 337 = 78,6 Prozent**. Der
+  erste Verdacht war der naheliegende – die Quelle liefert das Feld nicht mehr
+  – und er war falsch. Nachgemessen im Bestand selbst, vor und nach dem Lauf,
+  der den Alarm auslöste:
+
+      vorher  (0ef7547e)   920 von 967   95,1 %
+      nachher (d2b0e78a)   923 von 969   95,3 %
+      Titel, die eine Uhrzeit verloren haben:  0
+
+  Besser statt schlechter, und kein einziger Verlust. Der Sturz steckte nicht
+  in den Daten, sondern in der **Auswahl**: `getQuartalstermine()` zeigt je
+  Titel das nächste Quartal, und der Lauf hat verschoben, welches das ist. Für
+  ein neu angerücktes Quartal greift „zwei Jahre in derselben Sitzungslage"
+  oft noch nicht – die Zeit fehlt dort also zu Recht.
+
+  Damit mass der Wächter etwas anderes, als er behauptete. Sein eigener Satz
+  lautet „ein Sturz auf null hieße, die Quelle liefert das Feld nicht mehr" –
+  gezählt hat er aber ein Fenster, das sich mit jedem Quartalswechsel von
+  selbst bewegt. Das ist die Wette aus AGENTS.md: eine Grenze, die den guten
+  Tag gerade eben trägt.
+
+  **Gezählt wird deshalb ab jetzt im Bestand**, und die Grenze ist gemessen.
+  19 Fassungen aus der Geschichte der Momentaufnahme:
+
+      ab 20.08.2026   94,8 bis 95,3 %   13 Messungen, Spanne 0,5 Punkte
+      davor            0,0 %            das Feld gab es noch nicht
+
+  85 Prozent lassen damit das Zwanzigfache der je beobachteten Schwankung zu
+  und fangen trotzdem jeden Ausfall, der auf null zielt – auch einen, der nur
+  die Hälfte der Titel erwischt.
+
+  Für die Anzeige bleibt eine **weite** Grenze stehen. Sie beantwortet eine
+  andere Frage: nicht „liefert die Quelle?", sondern „erzeugt die Ableitung
+  überhaupt noch Zeiten?". 50 Prozent – der niedrigste je gesehene Wert war
+  78,6, und unter 50 wäre die Rechnung selbst kaputt.
 */
 const ausTokio = (termin: (typeof termine)[number]): boolean =>
   termin.quelle.url.includes('jpx.co.jp')
@@ -863,11 +910,90 @@ const anteil =
       mitZeitmoeglichkeit.length
     : 0
 pruefen(
-  'Die große Mehrheit der Termine mit möglicher Uhrzeit nennt eine',
-  anteil >= 0.8,
+  'Die Ableitung erzeugt überhaupt noch Uhrzeiten',
+  anteil >= 0.5,
   `${mitZeitmoeglichkeit.filter((t) => t.uhrzeit).length} von ` +
     `${mitZeitmoeglichkeit.length} = ${(anteil * 100).toFixed(1)} % – ` +
-    'ein Sturz auf null hieße, die Quelle liefert das Feld nicht mehr.'
+    'unter der Hälfte wäre die Rechnung selbst kaputt, nicht die Quelle.\n' +
+    '     Ob die Quelle liefert, prüft der Wächter darunter am Bestand.'
+)
+
+/*
+  Und der eigentliche Quellenwächter – am Bestand, nicht am Anzeigefenster.
+*/
+/*
+  Eine eigene Gestalt für den Bestand, und zwar aus einem handfesten Grund:
+  TypeScript leitet aus der eingelesenen JSON-Datei eine Vereinigung von
+  siebenhundert Einzelformen ab – je nachdem, welche Felder ein Eintrag
+  zufällig hat. `vorhersage.herkunft` gibt es dann auf manchen davon nicht,
+  und der Übersetzer bricht ab. Hier steht deshalb, was der Bestand wirklich
+  ist, statt was aus einer Stichprobe abgeleitet wurde.
+*/
+interface BestandVorhersage {
+  herkunft?: string
+  newYorkerZeit?: string
+}
+
+interface Bestand {
+  unternehmen: Record<string, { vorhersagen?: BestandVorhersage[] }>
+}
+
+function zeitquoteImBestand(daten: Bestand): {
+  mit: number
+  gesamt: number
+  anteil: number
+} {
+  let mit = 0
+  let gesamt = 0
+  for (const eintrag of Object.values(daten.unternehmen)) {
+    for (const vorhersage of eintrag.vorhersagen ?? []) {
+      // Tokio und Nasdaq liefern nie eine Minute – siehe oben.
+      if (vorhersage.herkunft === 'nasdaq' || vorhersage.herkunft === 'jpx') continue
+      gesamt += 1
+      if (vorhersage.newYorkerZeit) mit += 1
+    }
+  }
+  return { mit, gesamt, anteil: gesamt > 0 ? mit / gesamt : 0 }
+}
+
+const echterBestand = momentaufnahme as unknown as Bestand
+const bestand = zeitquoteImBestand(echterBestand)
+
+pruefen(
+  'Die Quelle liefert die Uhrzeit weiterhin',
+  bestand.anteil >= 0.85,
+  `${bestand.mit} von ${bestand.gesamt} = ${(bestand.anteil * 100).toFixed(1)} % im Bestand.\n` +
+    '     Gemessen schwankte der Wert seit dem 20.08.2026 nur zwischen 94,8 und 95,3 %.\n' +
+    '     So tief kommt er nur, wenn die SEC-Ableitung das Feld nicht mehr füllt.'
+)
+
+/*
+  Die Gegenprobe – sonst wäre nicht gezeigt, dass der Wächter überhaupt
+  anschlägt. Ein Bestand, dem die Hälfte der Zeiten fehlt, muss durchfallen;
+  der echte darf es nicht.
+*/
+const halbiert: Bestand = {
+  unternehmen: Object.fromEntries(
+    Object.entries(echterBestand.unternehmen).map(([symbol, eintrag], i) => [
+      symbol,
+      i % 2 === 0
+        ? eintrag
+        : {
+            ...eintrag,
+            vorhersagen: (eintrag.vorhersagen ?? []).map((v) => ({
+              ...v,
+              newYorkerZeit: undefined,
+            })),
+          },
+    ])
+  ),
+}
+
+pruefen(
+  'Ein halbierter Bestand fiele durch',
+  zeitquoteImBestand(halbiert).anteil < 0.85,
+  `${(zeitquoteImBestand(halbiert).anteil * 100).toFixed(1)} % – der Wächter würde einen ` +
+    'Ausfall bei jedem zweiten Titel durchwinken.'
 )
 
 /*
