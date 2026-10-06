@@ -15,11 +15,18 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**22 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**23 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-06** – [[Vier Beanstandungen an einer Folge]]
+    - [[Vier Beanstandungen an einer Folge#Erstens: zu lang – und das war die Wirkung einer eigenen Änderung|Erstens: zu lang – und das war die Wirkung einer eigenen Änderung]]
+    - [[Vier Beanstandungen an einer Folge#Zweitens: nicht auf das Wesentlichste – dieselbe Änderung|Zweitens: nicht auf das Wesentlichste – dieselbe Änderung]]
+    - [[Vier Beanstandungen an einer Folge#Und die Spieldauer in der Beschreibung war auch falsch|Und die Spieldauer in der Beschreibung war auch falsch]]
+    - [[Vier Beanstandungen an einer Folge#Drittens: „Trump" – und warum der Melder ihn nicht finden kann|Drittens: „Trump" – und warum der Melder ihn nicht finden kann]]
+    - [[Vier Beanstandungen an einer Folge#Viertens: die Störgeräusche – eine Regel, die nur dastand|Viertens: die Störgeräusche – eine Regel, die nur dastand]]
+    - [[Vier Beanstandungen an einer Folge#Was ausdrücklich nicht gemacht wurde|Was ausdrücklich nicht gemacht wurde]]
 - **2026-10-01** – [[Die Regel galt für zwei von drei Wegen]]
     - [[Die Regel galt für zwei von drei Wegen#Lückenlos – ja, bei den Lernseiten|Lückenlos – ja, bei den Lernseiten]]
     - [[Die Regel galt für zwei von drei Wegen#Lückenlos – nein, beim Podcast|Lückenlos – nein, beim Podcast]]

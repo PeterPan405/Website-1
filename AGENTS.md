@@ -124,8 +124,8 @@ blockiert.
 
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
-**und** Schlüssel; deshalb nur `https://`, deshalb warnt der Lauf. Wer Prompts
-kürzt, kürzt an Zahlen und Namen.
+**und** Schlüssel: nur `https://`, und der Lauf warnt. Wer Prompts kürzt,
+kürzt an Zahlen und Namen.
 
 **Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
 bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
@@ -190,12 +190,12 @@ gelegentlich. Daraus folgt:
   Neubau selbst an (`gh workflow run`, dafür `permissions: actions: write`).
 - **Zu jedem Lauf nach außen gehört die Frage: Steht das Ergebnis des Tages
   schon?** Gefragt wird `origin/main` von **jetzt** (`git fetch` + `git show`),
-  nicht der Checkout – eine Momentaufnahme vom Auslösen.
+  nicht der Checkout, eine Momentaufnahme vom Auslösen.
 - Der Upload fragt den **YouTube-Kanal**, nicht das Register – siehe die
   Lehren unten.
 - **Ein Push, der nach der Veröffentlichung scheitert, ist rot** – sonst
   laufen zwei Wahrheiten auseinander. Eine Schleife um `git pull --rebase`
-  räumt zwischen den Runden mit `git rebase --abort` auf.
+  räumt mit `git rebase --abort` auf.
 - `kurse.yml` koppelt seine Crons an Zeichenketten-Vergleiche (`NUR_ARTEN`,
   `NUR_PREIS`). Ein geänderter Cron ohne angepassten Vergleich schaltet
   stillschweigend den vollen Abruf ein.
@@ -231,8 +231,7 @@ unser Webordner → **roter Lauf** und Neubau.
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel hier steht; `/zahlen` zeigt
 es. Der Zweck ist der stille Datenausfall: **Diese Zahlen fallen nicht von
-selbst.** Fällt eine, hat sich ein Bestand geleert, und alles andere bleibt
-grün.
+selbst.** Fällt eine, hat sich ein Bestand geleert – alles andere bleibt grün.
 
 - **Der Stand wird fortgeschrieben, sonst wird der Wächter stumpf** – im
   nächtlichen Bau (nur im `schedule`-Lauf).
@@ -251,8 +250,8 @@ ist keiner"
   Sammelkalender (`ALPHAVANTAGE_API_KEY`), Tokio und Nasdaq nennen
   veröffentlichte Tage; die SEC-Ableitung rechnet hoch. **Drei Zustände:**
   angekündigt (Unternehmen selbst, ohne `geschaetzt`), veröffentlichter Plan
-  (Nasdaq ohne Sitzungslage – auch ohne `geschaetzt`, aber „erwartet"),
-  hochgerechnet (mit `geschaetzt`).
+  (Nasdaq, ohne `geschaetzt`, aber „erwartet"), hochgerechnet (mit
+  `geschaetzt`).
 - **Die Nasdaq läuft nach dem SEC-Durchgang und ersetzt nur das nächste
   Quartal** (Fenster 45 Tage) – davor gestellt verlöre die Seite die drei
   danach: Die SEC liefert die Historie, die Nasdaq acht Wochen.
@@ -264,13 +263,13 @@ ist keiner"
   Hinterlegungsscheine ausländischer Emittenten. Wer keinen hat, bekommt den
   Satz warum (`quartalsterminLuecke()`), und der hängt am Handelsplatz:
   „fehlt in der Quelle" ist nicht „fehlt in ihrem Zeitfenster".
-- **Tokio und die Nasdaq liefern den Tag, nie die Minute.** Keine der beiden
-  Listen hat eine Spalte dafür; eine gerechnete Minute wäre erfunden.
+- **Tokio und die Nasdaq liefern den Tag, nie die Minute** – keine der Listen
+  hat eine Spalte dafür; eine gerechnete Minute wäre erfunden.
 - **Die JPX-Adresse wird gesucht, nicht eingetragen** – der Dateiname trägt ein
   Datum (`kessan06_0807.xlsx`), es sind zwei, und gelesen wird die
   **japanische** Seite; die englische trägt null Verweise.
 - **Der Weg über Twelve Data ist tarifgesperrt** und hat nie etwas geliefert
-  (`TarifSperre`). Nicht „reparieren": Es fehlt ein Tarif, kein Code.
+  (`TarifSperre`). Nicht reparieren: Es fehlt ein Tarif, kein Code.
 - **Beide Anbieter antworten auf eine Absage mit 200.** Geprüft wird der
   Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
   Bestand, bei grünem Lauf.
@@ -307,11 +306,11 @@ Zusage: höchstens sechs Minuten.
   Wecker der Tagesausgabe.
 - **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`);
   kommt der neue nicht hoch, stehen die Kurse eine Stunde statt sechs
-  Minuten. Nur bei keinem oder einem kaputten Lauf.
+  Minuten. Nur bei keinem oder kaputtem Lauf.
 - Wer `ABSTAND_MS` anfasst, fasst Yahoos Dauerbetrieb mit an.
 - **Eine Ausnahme gehört an die Bedingung, die sie meint**, nicht an die
   nächstgelegene: Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
-  (`NUR_LEITWERTE`), ihr Referenzkurs überlebt `ohneHeute()`.
+  (`NUR_LEITWERTE`), ihr Kurs überlebt `ohneHeute()`.
 - Rohstoffe kommen bei Yahoo verzögert. Die Stand-Zeile nennt den Zeitstempel
   der **Quelle**, nicht des Abrufs.
 
@@ -325,7 +324,7 @@ Zusage: höchstens sechs Minuten.
 - **Der Selbsttest läuft vor dem Sprechen** – `podcast-erzeugen.yml`,
   `lese-stimme.yml`, `aufnahmen-nachpruefen.yml`.
 - **Geprüft wird die fertige Aufnahme, nicht das Stück:** `nachbessern()`
-  läuft nach dem Zusammenfügen und dämpft, statt zu melden.
+  läuft nach dem Zusammenfügen und dämpft – in **beiden** Sprechwegen.
 - `sprechstimme.py` und `stimme-erzeugen.py` stehen doppelt da: **Wer an
   Pausen, Stücklänge oder Frist etwas ändert, ändert beide Stellen.**
 - **Was englisch ist, wird englisch gesprochen** – `ENGLISCHE_NAMEN`, zuerst
@@ -339,6 +338,9 @@ Zusage: höchstens sechs Minuten.
   „qu" – steht **„u"**; „v" am Wortende ist /f/, dort steht ebenfalls „w";
   auch bei Buchstabennamen: V = „Fau", W = „Weh".
   `tests/sprechfassung-aussprache.test.ts` prüft **jeden** Eintrag.
+- **Die Folge ist gedeckelt:** `WORTZIEL_MAX = 420`, rund vier Minuten,
+  gekürzt von hinten – die Rangfolge der Ausgabe ist die der Folge. Die
+  Website behält alles.
 - **In der Folge wird nichts erklärt** – nur Nachrichten, Wirtschaft und
   Politik, objektiv. Einzeltitel nur, wenn groß **und** erheblich.
   `whyItMatters` bleibt auf der Website; Grenze: `positionierungen()`.
@@ -349,16 +351,16 @@ Zusage: höchstens sechs Minuten.
   `KUERZEL_IN_ORDNUNG` steht, wird gemeldet.
 - **Kleingedrucktes steht hinter der Begrüßung**, vor der ersten Meldung:
   erst KI-Hinweis, dann Rechtshinweis – eine Stelle, nicht zwei; nicht davor,
-  nicht am Ende. Nutzerwunsch.
-- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Drei Merkmale: eine Frequenz (`TONANTEIL_GRENZE`), zu
-  viele Nulldurchgänge (`ZISCHGRENZE`), zu wenige (`RUMPELGRENZE` mit
-  `RUMPELN_TIEF`). Wer eins ändert, misst an echten Aufnahmen nach.
+  nicht am Ende.
+- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Drei Merkmale:
+  eine Frequenz (`TONANTEIL_GRENZE`), zu viele Nulldurchgänge
+  (`ZISCHGRENZE`), zu wenige (`RUMPELGRENZE`). Wer eins ändert, misst nach.
 - **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`, jede Sprechstelle.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
   einmal, erkannt an ihrer Kennung. Eine zweite Fassung braucht eine erhöhte
   `fassung` – sparsam, das ist überall eine „neue Folge".
 - Der Feed der **Sendung** liegt auf dem Webspace, nicht in `main`;
-  `podcast-schaufenster.yml` bringt Änderungen hinaus.
+  `podcast-schaufenster.yml` bringt ihn hinaus.
 - **Lernseiten:** Abschnitte aus `vorleseAbschnitte()`, Grafiktexte aus
   `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst fehlen 70
   gerechnete Beschreibungen; der Fingerabdruck hängt an ihnen. Reihenfolge
@@ -377,9 +379,9 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
   nicht mehr vor.
 - **Die Leistenfarbe entsteht per `document.write` im Startskript.** Safari
-  liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos
-  (viermal nachgemessen). `document.write` schiebt den Text in den
-  Token-Strom – der Parser baut das Element selbst.
+  liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos.
+  `document.write` schiebt den Text in den Token-Strom – der Parser baut das
+  Element selbst.
 - **Drei Stücke, die zusammengehören:** das `document.write`, seine Stellung
   im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
   zieht Next ihn nach vorn, und die erste Angabe gewinnt). Jedes einzeln

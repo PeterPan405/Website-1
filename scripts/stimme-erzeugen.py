@@ -536,6 +536,48 @@ for index in range(len(alle_stuecke)):
     stueck_audio, rate = sf.read(f"podcast-folge/stueck-{index:03d}.wav")
     teile.append(_stimme.nahtlos(stueck_audio, rate))
 audio = np.concatenate(teile)
+
+"""Die zweite Verteidigungslinie – und sie hat hier nie existiert.
+
+## Der Befund vom 6. Oktober 2026
+
+Der Betreiber: „auch irgendwelche Störgeräusche im Hintergrund und so
+weiter. Das darf so nicht sein." Nachgemessen mit
+`aufnahmen-nachpruefen.py` an den vier letzten veröffentlichten Folgen:
+
+    06.10.  2:29 rau · 3:37 rau
+    05.10.  3:30 rau
+    04.10.  2:14 rau · 4:11 rau
+    03.10.  0:01 Rumpeln · 1:34 rau · 2:05 Rumpeln
+
+Acht Stellen in vier Folgen, also **zwei je Folge, in jeder Folge.**
+
+## Die Ursache: eine Regel, die nur dastand
+
+In `AGENTS.md` steht seit dem 11. August: „**Geprüft wird die fertige
+Aufnahme, nicht das Stück.** `nachbessern()` läuft nach dem Zusammenfügen
+und dämpft, statt zu melden." Der Lernseitenlauf tut das
+(`lese-stimme-erzeugen.py`, Zeile 196). **Dieser Lauf hat die Funktion nie
+aufgerufen** – das Wort kam in dieser Datei nicht ein einziges Mal vor.
+
+Die Prüfung je Stück oben (`brauchbar`, Zeile 493) lief und läuft. Sie
+findet aber genau das nicht, wofür `nachbessern` geschrieben wurde: Eine
+Störung in einem leisen Stück bleibt unter der Schwelle, die am Pegel
+dieses Stücks gemessen wird – gegen den Pegel der **ganzen** Folge liegt sie
+darüber. Das steht wörtlich im Docstring von `nachbessern`, mit dem Fall vom
+11. August 2026 dazu, und war seither nicht verdrahtet.
+
+Der teuerste Fehler ist nicht der rote Lauf, sondern der stille: eine
+dokumentierte Absicherung, die nach Ruhe aussah, während der Betreiber das
+Ergebnis jeden Morgen hörte.
+
+## Vor der Klangkette, nicht danach
+
+Gedämpft wird die Rohfassung. Die Klangkette normiert danach auf −16 LUFS
+und hebt die Präsenz ab 3,5 kHz an – eine stummgeschaltete halbe Sekunde
+bleibt dabei stumm, ein gedämpftes Zischen würde wieder angehoben.
+"""
+audio, gedaempft = _stimme.nachbessern(audio, rate, melde)
 dauer = len(audio) / rate
 
 sf.write(ROHFASSUNG, audio, rate)
@@ -551,3 +593,8 @@ os.remove(ROHFASSUNG)
 if groesse < 100_000:
     melde(f"FEHLER: {groesse} Bytes sind zu wenig für {dauer / 60:.1f} Minuten.")
     sys.exit(1)
+
+# Die Zahl gehört ins Protokoll, nicht nur in die Warnung darüber: Steigt sie
+# über Tage, stimmt etwas mit der Stimme und nicht mit dem einzelnen Stück.
+# `nachbessern` meldet die Stellen selbst, hier steht nur, wie viele es waren.
+melde(f"Gedämpfte Stellen in dieser Folge: {gedaempft}.")

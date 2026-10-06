@@ -316,6 +316,16 @@ def main() -> int:
                     if not hole(url, ziel):
                         continue
                 else:
+                    # Ein Pfad ohne `http` ist eine Datei auf der Platte – und
+                    # wenn sie nicht da ist, gehört das gesagt. Am 6. Oktober
+                    # 2026 ging hier `podcast-audio/2026-10-06.mp3` hinein,
+                    # gemeint war die Adresse auf dem Server: Der Lauf starb an
+                    # einem ffmpeg-Traceback mit „exit status 254" statt an
+                    # einem Satz, der den Fehler nennt.
+                    if not os.path.exists(url):
+                        print(f"  keine Datei: {url}")
+                        print("    Gemeint war vielleicht eine Adresse? Dann mit https:// davor.")
+                        continue
                     ziel = url
                 gelesen += 1
                 anzahl = pruefe(ziel, os.path.basename(url), stelle)
