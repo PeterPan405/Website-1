@@ -668,6 +668,67 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bCEO\b/g, 'Sieh-Ie-Ou'],
   [/\bCFO\b/g, 'Sieh-Eff-Ou'],
   [/\bIPO\b/g, 'Ei-Pie-Ou'],
+
+  /*
+    Eigennamen, 6. Oktober 2026 – und warum der Melder sie nicht hatte.
+
+    Gemeldet hat der Betreiber: „Namen wie Trump werden T-R-U-M-P
+    ausgesprochen. Aber im Deutschen klingt es ja eher T-R-A-M-P. Und solche
+    Fehler passieren dort ständig."
+
+    Er hat recht, und `verdaechtigeAnglizismen` kann es nicht finden.
+    **„Trump" ist nach deutscher Rechtschreibung ein völlig gewöhnliches
+    Wort** – wie „Trumpf" ohne f. Kein „tch", kein „-ing", kein „-sh", kein
+    Konsonant plus „y", keine Großbuchstabenfolge. Der Melder sucht
+    Schreibmerkmale; ein Eigenname hat keine.
+
+    Gefunden wurden sie deshalb anders: über den **eigenen** deutschen
+    Wortschatz. Die 172 Lernseiten sind von Hand geschriebenes Deutsch,
+    11.937 verschiedene Wörter. Jedes großgeschriebene Wort aus 70
+    Tagesausgaben, das dort **nicht** vorkommt, ist ein Kandidat – 353 bei
+    mindestens zwei Treffern, und darin stehen die Namen zwischen
+    „Dienstagmorgen" und „Rheinmetall" sofort sichtbar.
+
+    Das ist keine Automatik und wird keine: Ob „Rheinmetall" deutsch klingt
+    und „Micron" nicht, entscheidet weiter ein Kopf. Aber es ist eine Liste
+    von 353 statt von 2.337, und sie hat diese dreizehn hergegeben.
+
+    Die Zahl in Klammern ist, wie oft das Wort in 70 Ausgaben vorkam.
+  */
+  [/\bTrump\b/g, 'Tramp'], // 30× – der gemeldete Fall
+  /*
+    „Tech" **nach** „Big-Tech", sonst zerlegt es die Zusammensetzung: Aus
+    „Big-Tech" würde „Big-Teck", und das Muster darüber träfe nie mehr.
+    Dieselbe Reihenfolge-Falle wie bei „Goldman Sachs" vor „Goldman".
+
+    Gesprochen gehört es ohnehin: Deutsches „ch" nach „e" ist /ç/ wie in
+    „ich" – „Tech" käme als „Tech" heraus, nicht als „Teck".
+  */
+  [/\bTech\b/g, 'Teck'], // 10×
+  [/\bComposite\b/g, 'Kompossitt'], // 8× – „Nasdaq Composite"
+  [/\bPipeline\b/g, 'Peipplein'], // 6×
+  [/\bShanghai\b/g, 'Schanghai'], // 6× – „sh" ist im Deutschen /s-h/
+  [/\bMicron\b/g, 'Meikron'], // 4×
+  [/\bGroup\b/g, 'Gruup'], // 4× – im Namen von Gesellschaften
+  /* Lagarde französisch: Das Schluss-e ist stumm. Deutsch gelesen klänge es
+     „Lagarde" mit Endsilbe. */
+  [/\bLagarde\b/g, 'Lagard'], // 8×
+  [/\bCipollone\b/g, 'Tschipollohne'], // 6× – italienisch, „Ci" ist /tʃ/
+  /* Falle 2: Das englische /w/ in „Williams" steht als „u". Mit „W" käme
+     „Villiams" heraus. */
+  [/\bWilliams\b/g, 'Uilliems'], // 3× – John Williams, New York Fed
+  /* Falle 3 in der Mitte des Wortes: „v" ist /f/, gebraucht wird /v/, also
+     steht dort „w". „Kevin" las die Stimme als „Kefin". */
+  [/\bKevin\b/g, 'Kewin'], // 10× – Kevin Warsh
+  [/\bLane\b/g, 'Lejn'], // 6× – Philip Lane, EZB
+  /*
+    Und die beiden Kürzel aus der Folge vom 6. Oktober, die der Melder
+    tatsächlich gefunden hat. Beide werden im Deutschen buchstabiert, beide
+    mit Bindestrich statt Leerzeichen – siehe „Eine Umschrift hat so viele
+    Wörter wie ihr Muster".
+  */
+  [/\bKKR\b/g, 'Kah-Kah-Err'],
+  [/\bRAF\b/g, 'Err-Ah-Eff'],
 ]
 
 /**
@@ -1290,9 +1351,56 @@ export interface Podcastfolge {
  *
  * Neu gesetzt an dem, was das Format hergibt: Median 432, Spanne 295 bis 686.
  * `WORTZIEL_MIN` steht deshalb bei 320 – damit trennt der Hinweis wieder,
- * statt immer zu gelten. Die Obergrenze bleibt bei 740: Sie treibt die
- * Kürzungsschleife, 686 kam vor und war in Ordnung, und eine engere Grenze
- * würde Meldungen wegschneiden, die jemand geschrieben hat.
+ * statt immer zu gelten.
+ *
+ * ## Am 6. Oktober 2026 hat die Obergrenze zum ersten Mal etwas zu tun
+ *
+ * Sie stand bei 740 mit der Begründung, eine engere Grenze „würde Meldungen
+ * wegschneiden, die jemand geschrieben hat". Erreicht hat sie nie etwas: Die
+ * längste Folge davor hatte 686 Wörter, die Schleife lief nie.
+ *
+ * Gemeldet hat der Betreiber die Folge vom 6. Oktober: „hat sich nicht
+ * wirklich auf das Wesentlichste beschränkt … und er ging viel zu lange.
+ * Sechs Minuten. Das darf so nicht sein." Sie hatte 631 Wörter in acht
+ * Meldungen und lief 6:02.
+ *
+ * **Das ist die Wirkung einer eigenen Änderung.** Am 28. September kamen
+ * `MELDUNGEN_MIN = 5` und die 110 Wörter `summary` in
+ * `scripts/nachrichten-erzeugen.ts` dazu, weil die Folge zu dünn war. Seither
+ * wuchs sie – und gedeckelt hat sie nichts:
+ *
+ *     28.09.  183 W  1:46      02.10.  479 W  4:44
+ *     29.09.  397 W  3:49      03.10.  449 W  4:00
+ *     30.09.  348 W  3:29      04.10.  436 W  4:24
+ *     01.10.  399 W  3:49      05.10.  487 W  5:01
+ *                              06.10.  631 W  6:02   ← gemeldet
+ *
+ * Eine Untergrenze ohne wirksame Obergrenze kennt nur eine Richtung.
+ *
+ * ## Woran die neue Zahl gewählt ist
+ *
+ * An der **gemessenen** Dauer, nicht an der gerechneten. Wortzahl gegen
+ * Spieldauer über alle 64 Folgen ergibt rund 104 Wörter je Minute (die
+ * letzten zwölf: 97 bis 112). Daraus:
+ *
+ *     3,0 Minuten → 312 Wörter     4,0 Minuten → 416 Wörter
+ *     3,5 Minuten → 364 Wörter     4,5 Minuten → 468 Wörter
+ *
+ * `WORTZIEL_MAX` steht auf **420**, also rund vier Minuten. Sechs Minuten
+ * waren „viel zu lange", fünf hat niemand beanstandet, und vier liegt
+ * darunter, ohne die Folge auf das Gerüst zusammenzuziehen.
+ *
+ * **Gekürzt wird von hinten, und das ist hier der ganze Punkt.** Die
+ * Rangfolge der Ausgabe ist die Rangfolge der Folge – `top` zuerst, dann
+ * `further`. Was wegfällt, ist das Unwichtigste: Am 6. Oktober wären das
+ * Gold und Silber, der Ölpreis und eine Fondsübernahme gewesen, während die
+ * Werkaufträge, Russland, die Bomber und der Euro geblieben wären. Die
+ * Beschränkung auf das Wesentliche und die kürzere Folge sind **dieselbe**
+ * Änderung, nicht zwei.
+ *
+ * Auf der Website bleibt alles stehen. Gekürzt wird die **Folge**, nicht die
+ * Ausgabe: `MELDUNGEN_MIN = 5` in `scripts/nachrichten-erzeugen.ts` bleibt,
+ * wo es ist, und ein Leser bekommt weiter alle acht Meldungen.
  *
  * ## Warum die Untergrenze nur meldet und nicht erzwingt
  *
@@ -1301,7 +1409,7 @@ export interface Podcastfolge {
  * ehrliche Folge schlägt eine gestreckte.
  */
 export const WORTZIEL_MIN = 320
-export const WORTZIEL_MAX = 740
+export const WORTZIEL_MAX = 420
 
 /**
  * Wie kurz eine Folge sein darf, bevor sie keine mehr ist.
@@ -1500,13 +1608,26 @@ function wortzahl(text: string): number {
 }
 
 /**
- * Sprechtempo der Stimme in Wörtern je Minute.
+ * Sprechtempo der Stimme in Wörtern je Minute, **mit den Pausen**.
  *
- * Nachgemessen an den Folgen vom Juli und August 2026: rund 670 Wörter auf
- * fünf Minuten. Die Zahl steht hier als Konstante, weil die Beschreibung
- * jeder Folge eine Spieldauer nennt – und die muss stimmen.
+ * ## Warum hier seit dem 6. Oktober 2026 104 steht und nicht 134
+ *
+ * Weil 134 das Tempo der reinen Sprache war, nachgemessen an den Folgen vom
+ * Juli und August. Was die Beschreibung ansagt, ist aber die **Spieldauer** –
+ * und zwischen den Stücken steht Stille: 0,95 s je Absatz, rund eine halbe
+ * Sekunde je Satz.
+ *
+ * Nachgerechnet an allen 64 Folgen, Wortzahl gegen die Dauer, die im Feed
+ * steht: **rund 104 Wörter je Minute**, die letzten zwölf zwischen 97 und
+ * 112. Mit 134 sagte jede Beschreibung rund ein Viertel zu wenig an – die
+ * Folge vom 6. Oktober versprach „rund fünf Minuten" und lief 6:02.
+ *
+ * Das ist genau die Sorte Fehler, gegen die der Kommentar unten anschreibt:
+ * eine Angabe, die einmal gestimmt hat und seither mitgeschleppt wird. Sie
+ * hat eine Ebene tiefer noch einmal zugeschlagen – die Zahl wurde gemessen,
+ * nur an der falschen Größe.
  */
-const WOERTER_JE_MINUTE = 134
+const WOERTER_JE_MINUTE = 104
 
 /**
  * Wie lange die Folge ungefähr dauert – für den Satz in der Beschreibung.
