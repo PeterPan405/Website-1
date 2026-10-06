@@ -101,6 +101,493 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'konjunkturkalender-dienstag-werkauftraege-und-boj-rede',
+    title: 'Werkaufträge, eine Zentralbank-Rede und Bau-PMI: der Dienstag im Kalender',
+    metaTitle: 'Werkaufträge, BoJ-Rede und Bau-PMI am Dienstag',
+    teaser:
+      'Am Dienstag meldet Deutschland seine Werkaufträge, Japans Notenbankchef Ueda spricht, und Großbritannien veröffentlicht seinen Bau-Einkaufsmanagerindex.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-06T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Konjunktur', 'Notenbanken', 'Werkaufträge', 'Einkaufsmanagerindex'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender „Kommende Termine“, Datenstand 6.10.2026, 02:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag beginnt früh mit deutschen Konjunkturdaten. Um 8 Uhr veröffentlicht das Statistische Bundesamt die Werkaufträge für September. Der Wirtschaftskalender von wallstreet-online nennt eine Prognose von minus einem Prozent im Monatsvergleich, nach einem Plus von 2,5 Prozent im August.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Frankreich und Spanien folgen kurz danach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8:45 Uhr meldet Frankreich seine Industrieproduktion, erwartet mit einem Plus von 0,3 Prozent nach einem Minus von 0,4 Prozent im Vormonat. Zur gleichen Zeit veröffentlicht Frankreich seinen Haushaltssaldo, zuletzt ein Defizit von 146 Milliarden Euro. Um 9 Uhr folgt Spaniens Industrieproduktion im Jahresvergleich, zuletzt bei plus 2,3 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Japans Notenbankchef spricht, Großbritanniens Bauwirtschaft meldet sich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8:35 Uhr hält Bank-of-Japan-Gouverneur Kazuo Ueda eine Rede, laut Kalender ohne vorab bekanntes Thema. Um 10:30 Uhr veröffentlicht Großbritannien seinen S&P Global Construction PMI für die Bauwirtschaft, erwartet bei 45,4 Punkten nach 44,3 im Vormonat. Um 10:40 Uhr äußert sich Bank-of-England-Ratsmitglied Catherine Mann.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognose unter 50 ist trotzdem eine Verbesserung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Werte des Einkaufsmanagerindex über 50 Punkten gelten als Zeichen von Wachstum, Werte darunter als Zeichen von Schrumpfung. Die erwarteten 45,4 Punkte für Großbritanniens Bauwirtschaft lägen damit weiterhin im Schrumpfungsbereich – aber über dem Vormonatswert von 44,3. Eine Prognose kann also gleichzeitig „schlecht“ und „besser als zuvor“ bedeuten, je nachdem, mit welchem Bezugspunkt man sie vergleicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Monatswert bei den Werkaufträgen – ob plus 2,5 oder minus 1 Prozent – sagt wenig über die Richtung der deutschen Industrie insgesamt aus. Solche Auftragszahlen schwanken von Monat zu Monat stark, oft wegen einzelner Großaufträge, und erst der Verlauf über mehrere Monate ergibt ein verlässlicheres Bild.',
+      },
+    ],
+  },
+  {
+    slug: 'wadephul-russland-plant-ueber-die-ukraine-hinaus',
+    title: 'Wadephul: Russland verfolgt Pläne über die Ukraine hinaus',
+    teaser:
+      'Außenminister Wadephul geht laut einem Interview davon aus, dass Russland neben der Ukraine auch Georgien, Moldau und die baltischen Staaten im Blick hat.',
+    category: 'Märkte',
+    publishedAt: '2026-10-06T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Geopolitik', 'Nato', 'Russland', 'Sicherheitspolitik'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News vom 6.10.2026 (dpa-AFX, Meldung vom 5.10.2026, 21:10 Uhr): „Wadephul sieht weitergehende Pläne Russlands“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'zdfheute.de, Artikel abgerufen am 6.10.2026: Wadephul zu russischen Plänen über die Ukraine hinaus',
+        url: 'https://www.zdfheute.de/politik/ausland/wadephul-russland-warnung-ausweitung-gefahr-ukraine-krieg-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bundesaußenminister Johann Wadephul sieht nach eigenen Worten weitergehende Pläne Russlands. Das meldete die Nachrichtenagentur dpa-AFX am Montagabend um 21:10 Uhr über onvista. Welche Details Wadephul dabei nannte, ging aus der Ticker-Meldung selbst nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Welche Länder er nennt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem ausführlicheren Bericht von zdfheute geht Wadephul davon aus, dass sich Russlands Pläne neben der Ukraine auch auf Georgien, Moldau und die baltischen Staaten Estland, Lettland und Litauen richten könnten. Er begründete das mit früheren Äußerungen Putins, der den Zerfall der Sowjetunion als größte Katastrophe des 20. Jahrhunderts bezeichnet hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für die Nato bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Estland, Lettland und Litauen sind Nato-Mitglieder. Wadephul stellte laut zdfheute klar, dass eine deutsche Beistandspflicht nicht erst beim Überschreiten der eigenen Grenze ausgelöst würde, sondern auch dann, wenn die Grenze zu Polen, Estland, Lettland oder Litauen überschritten wird. Als Beispiele für bereits laufende hybride Bedrohungen nannte er einen Drohnenfund am Flughafen Leipzig/Halle im August 2026 und anhaltende Cyberangriffe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Risikoprämie für Sicherheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aussagen wie diese fließen an den Finanzmärkten typischerweise in eine sogenannte Risikoprämie ein: einen Aufschlag, den Anleger für ein wahrgenommenes zusätzliches Risiko verlangen, etwa bei Anleihen osteuropäischer Staaten, bei Rüstungsaktien oder bei sicheren Häfen wie Gold. Diese Prämie lässt sich selten exakt einer einzelnen Äußerung zuordnen, sie verschiebt sich eher schleichend mit der gesamten Nachrichtenlage.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine politische Warnung wie diese verändert nicht über Nacht eine Bilanz oder einen Zinssatz. Sie verändert aber, wie Anleger künftige Risiken einschätzen – und genau diese Einschätzung ist es, die sich langfristig in Preisen für Anleihen, Währungen oder Rohstoffe niederschlägt.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-ziehen-bomber-aus-grossbritannien-ab',
+    title: 'USA ziehen Langstreckenbomber aus Großbritannien ab',
+    teaser:
+      'Die USA haben ihre B-1-Bomber vom Stützpunkt RAF Fairford abgezogen. Trump nannte eine Drohung im Zusammenhang mit Iran als Grund für den Schritt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Geopolitik', 'Iran', 'Nato', 'Luftwaffe'],
+    relatedTopics: ['risiko-und-rendite', 'rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News vom 6.10.2026 (dpa-AFX, Meldungen vom 5.10.2026, 20:53 und 21:10 Uhr): „ROUNDUP 4: US-Bomber aus Großbritannien abgezogen - wegen Bedrohung?“, „Doch wegen Bedrohung: Was Trump über den Bomberabzug sagt“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'aljazeera.com, Artikel vom 4.10.2026, abgerufen am 6.10.2026: Hintergrund zum Abzug der B-1-Bomber von RAF Fairford',
+        url: 'https://www.aljazeera.com/news/2026/10/4/us-withdraws-b-1-bomber-aircraft-from-uks-fairford-base-amid-iran-fears',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die USA haben ihre Langstreckenbomber vom britischen Stützpunkt RAF Fairford abgezogen. Das meldete dpa-AFX am Montagabend über onvista, unter Berufung auf Äußerungen von US-Präsident Donald Trump. Betroffen waren nach Medienberichten rund ein Dutzend Bomber des Typs B-1.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Auslöser: zwei Festnahmen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dem Abzug gingen laut Al Jazeera zwei Festnahmen voraus. Am 27. September nahm die britische Polizei fünf Männer wegen des Verdachts fest, Sprengsätze in der Nähe der Basis platzieren zu wollen; Sprengstoff selbst wurde nicht gefunden, die Männer wurden später ohne Anklage freigelassen. Am 2. Oktober folgte die Festnahme eines 25-jährigen britisch-iranischen Doppelstaatlers in London.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump spricht von einer Drohung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump sagte laut übereinstimmenden Agenturberichten, es habe eine Drohung gegeben, die er mit dem Iran in Verbindung brachte. Das US-Verteidigungsministerium bestätigte, dass alle in Fairford stationierten Bomber zu ihren Heimatbasen in den USA zurückgekehrt seien.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ölmarkt, der trotzdem nicht reagierte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine iranbezogene Sicherheitswarnung dieser Größenordnung würde man am Ölmarkt gewöhnlich als Risikofaktor erwarten. Tatsächlich gab der Ölpreis der Sorte Brent am selben Handelstag nach, wie an anderer Stelle in dieser Ausgabe beschrieben – ein Hinweis darauf, dass andere Einflüsse überwogen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine militärische oder sicherheitspolitische Drohung führt nicht automatisch zu einer sichtbaren Marktreaktion. Wie stark sich ein Ereignis in Preisen niederschlägt, hängt davon ab, was zur gleichen Zeit sonst noch auf Angebot und Nachfrage wirkt.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-faellt-auf-17-monats-tief-frankreich-sorgen',
+    title: 'Euro fällt auf 17-Monats-Tief, Frankreichs Anleihen unter Druck',
+    teaser:
+      'Der Euro ist erstmals seit Mai 2025 unter 1,12 Dollar gefallen. Die Furcht vor Frankreichs Staatsschulden und Neuwahlen in Spanien drücken die Währung.',
+    category: 'Märkte',
+    publishedAt: '2026-10-06T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Euro', 'Anleihen', 'Frankreich', 'Devisen'],
+    relatedTopics: ['waehrungen-wechselkurse', 'staatsanleihe'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Devisennachrichten und Kursleiste, Datenstand 6.10.2026, 02:11 Uhr: „Devisen: Eurokurs fällt erstmals seit Mai 2025 unter 1,12 US-Dollar“, „Devisen: Eurokurs gefallen - EZB-Referenzkurs: 1,1204 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'euronews.com, Artikel vom 5.10.2026, abgerufen am 6.10.2026: Euro auf 17-Monats-Tief wegen Frankreichs Schuldensorgen und Spaniens Neuwahl',
+        url: 'https://www.euronews.com/2026/10/05/euro-hits-17-month-low-as-french-debt-fears-mount-and-spain-heads-for-snap-election',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro ist am Montag erstmals seit Mai 2025 unter die Marke von 1,12 Dollar gefallen. Das meldete dpa-AFX unter der Überschrift „Devisen: Eurokurs fällt erstmals seit Mai 2025 unter 1,12 US-Dollar“, verbreitet über wallstreet-online. Die Europäische Zentralbank setzte ihren Referenzkurs bei 1,1204 Dollar fest.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Frankreichs Schuldenlast beunruhigt Investoren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut euronews weitete sich der Renditeabstand zwischen französischen und deutschen zehnjährigen Staatsanleihen auf rund 146 Basispunkte aus – der stärkste Wochenanstieg seit 17 Jahren. Frankreichs zehnjährige Rendite stieg auf 4,917 Prozent. EZB-Präsidentin Christine Lagarde hatte bereits am 3. Oktober gewarnt, eine Schuldenlast von fast 120 Prozent der Wirtschaftsleistung ohne erkennbaren Konsolidierungspfad sei „eine ernste Angelegenheit“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Spanien kündigt Neuwahlen an',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zusätzlich belastete laut euronews die Ankündigung von Neuwahlen in Spanien für den 29. November den Euro. Spaniens Regierungschef Pedro Sánchez rief die Wahlen aus, nachdem das Parlament zwei seiner Wohnungsdekrete abgelehnt hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der aktuelle Stand am Dienstagmorgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Dienstagmorgen notierte der Euro laut Kursleiste von wallstreet-online bei 1,12153 Dollar, ein Minus von 0,06 Prozent gegenüber dem Vortag, Stand 2:11 Uhr.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Furcht der Anleger richtet sich hier zunächst gegen einzelne Mitgliedsstaaten – Frankreich und Spanien. Weil beide Länder aber Teil der gemeinsamen Währungsunion sind, wirkt sich eine höhere Risikoeinschätzung für ihre Anleihen über den Wechselkurs auf den gesamten Euroraum aus, nicht nur auf die betroffenen Länder selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'nasdaq-100-markiert-rekord-dax-tritt-auf-der-stelle',
+    title: 'Nasdaq 100 markiert neuen Rekord, Dax tritt auf der Stelle',
+    teaser:
+      'Der Nasdaq 100 kletterte am Montag auf ein neues Rekordhoch, der Dax kam dagegen kaum vom Fleck. Am Dienstagmorgen notiert der Dax bei 25.321 Punkten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-06T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Nasdaq', 'Aktienindizes', 'USA'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News und Marktberichte vom 6.10.2026 (dpa-AFX, Meldungen vom 5.10.2026): „Aktien New York: Gewinne zum Wochenstart - Nasdaq 100 mit weiterem Rekord“, „ROUNDUP/Aktien Frankfurt Schluss: Stagnation - Anleger sind auf der Hut“, „ROUNDUP/Aktien Europa Schluss: Leichte Gewinne - Eurozone-Sorgen bremsen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online.de, Kursleiste, Datenstand 6.10.2026, 02:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Nasdaq 100 hat am Montag ein neues Rekordhoch erreicht. Das meldete dpa-AFX unter der Überschrift „Aktien New York: Gewinne zum Wochenstart - Nasdaq 100 mit weiterem Rekord“. Der Dow Jones (US 30) schloss nach demselben Bericht ebenfalls fester.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dax bleibt stehen, Europa tut sich schwer',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Frankfurt sah es anders aus: dpa-AFX titelte „ROUNDUP/Aktien Frankfurt Schluss: Stagnation - Anleger sind auf der Hut“. Für ganz Europa meldete die Agentur „Leichte Gewinne - Eurozone-Sorgen bremsen“. Welche Sorgen konkret gemeint waren, nannte die Ticker-Meldung selbst nicht – an anderer Stelle in dieser Ausgabe wird berichtet, dass am selben Tag der Euro wegen Frankreichs Schuldenlast und Spaniens Neuwahlen auf ein 17-Monats-Tief fiel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die aktuellen Stände am Dienstagmorgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Kursleiste von wallstreet-online notierte der Dax am Dienstagmorgen (Stand 2:11 Uhr) bei 25.321,61 Punkten, ein Plus von 0,19 Prozent. Der Dow Jones (US 30) stand bei 51.273,75 Punkten (plus 0,18 Prozent), der Nasdaq 100 (US Tech 100) bei 31.062,84 Punkten (plus 0,83 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekord und eine Stagnation am selben Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein US-Index ein Rekordhoch markiert, während ein europäischer Leitindex stagniert, ist keine Widersprüchlichkeit, sondern zeigt zwei unterschiedliche Indizes mit unterschiedlicher Zusammensetzung: Im Nasdaq 100 haben wenige große Technologiewerte ein starkes Gewicht, während der Dax breiter über Branchen gestreut ist und stärker auf europäische Risiken reagiert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Index erzählt nie die ganze Geschichte eines Börsentages. Wer nur auf einen Rekordwert schaut, übersieht leicht, dass andere Märkte zur gleichen Zeit ganz anders laufen.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-sinkt-trotz-spannungen-im-nahen-osten',
+    title: 'Ölpreis sinkt trotz Spannungen im Nahen Osten',
+    teaser:
+      'Brent-Rohöl fiel am Montag um rund zwei Prozent. Freigegebene Notreserven und eine saudische Preissenkung drückten den Preis trotz anhaltender Risiken.',
+    category: 'Märkte',
+    publishedAt: '2026-10-06T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Rohstoffe', 'Opec', 'Notreserven'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Aktuelle Rohstoffpreise, Datenstand 6.10.2026, 02:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista.de, Marktberichte vom 6.10.2026 (dpa-AFX, Meldung vom 5.10.2026, 20:39 Uhr): „ROUNDUP/Aktien New York Schluss: Gewinne zum Wochenstart - Ölpreise sinken“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'boersennews.de, Artikel vom 5.10.2026, abgerufen am 6.10.2026: „Ölpreis unter Spannung: Notreserven treffen auf neue Angebotsrisiken“',
+        url: 'https://www.boersennews.de/nachrichten/artikel/boersennews/oelpreis-unter-spannung-notreserven-treffen-auf-neue-angebotsrisiken/5300522/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis der Sorte Brent ist am Montag gefallen. Laut Kursleiste von wallstreet-online notierte Brent am Dienstagmorgen (Stand 2:11 Uhr) bei 100,28 Dollar je Barrel, ein Minus von 2,36 Prozent. Dpa-AFX hatte den Rückgang bereits am Montagabend unter der Überschrift „Gewinne zum Wochenstart - Ölpreise sinken“ gemeldet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'G7-Staaten öffnen ihre Notreserven',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut boersennews.de gaben die G7-Staaten zusammen rund 100 Millionen Barrel Diesel und Rohöl aus ihren strategischen Notreserven frei. Zugleich erholten sich die Rohölexporte aus dem Nahen Osten deutlich – an vier der sieben Septembertage lagen die Lieferungen über dem Niveau vor Beginn des Konflikts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Saudi-Arabien senkt den Preis für Asien',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zusätzlich senkte der staatliche saudische Ölkonzern Aramco laut boersennews.de seinen offiziellen Verkaufspreis für die Sorte Arab Light für November-Lieferungen nach Asien um 3 Dollar je Barrel. Der Abschlag erreichte damit das höchste Niveau seit Juni 2020.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Angriffe auf Schiffe halten die Sorgen wach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass der Preis trotz dieser Entwicklungen nicht noch stärker fiel, führt boersennews.de auf anhaltende Angriffe auf Schiffe und Energieanlagen in der Region zurück. Sie hielten die Sorge vor neuen Lieferausfällen wach, auch wenn aktuell mehr Öl auf den Markt kommt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Risikoprämie für mögliche Lieferausfälle und ein tatsächlicher Anstieg des Angebots wirken hier in entgegengesetzte Richtungen – und am Ende setzte sich das zusätzliche Angebot durch. Wer allein auf Konfliktmeldungen schaut, hätte den Rückgang nicht erwartet.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-und-silber-laufen-am-dienstagmorgen-auseinander',
+    title: 'Gold und Silber laufen am Dienstagmorgen auseinander',
+    teaser:
+      'Der Goldpreis gab am frühen Dienstag leicht nach, während Silber gleichzeitig zulegte. Der schwache Euro macht beide Metalle für Anleger im Euroraum teurer.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-06T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Edelmetalle', 'Euro'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['gold', 'silber', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Aktuelle Rohstoffpreise, Datenstand 6.10.2026, 02:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News und Ausblick Gold vom 5.10.2026: „Goldpreis heute: Euro fällt auf 17-Monats-Tief – Gold steigt“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber haben sich am Dienstagmorgen in unterschiedliche Richtungen bewegt. Laut Kursleiste von wallstreet-online (Stand 2:11 Uhr) notierte Gold bei 4.134,90 Dollar je Feinunze, ein Minus von 0,12 Prozent. Silber stieg im selben Zeitraum um 1,33 Prozent auf 61,10 Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'In Euro gerechnet ein anderes Bild',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter.de berichtete unter der Überschrift „Goldpreis heute: Euro fällt auf 17-Monats-Tief – Gold steigt“, dass der schwächere Euro den Anstieg des in Euro gerechneten Goldpreises verstärke. Der Grund: Gold wird international in Dollar gehandelt. Wenn der Euro zum Dollar nachgibt, wird jede Dollar-Unze Gold automatisch mehr Euro wert – unabhängig davon, ob sich der Dollarpreis selbst überhaupt bewegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Edelmetalle, zwei Preise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber gelten beide als Edelmetalle und bewegen sich oft in dieselbe Richtung, weil beide auch als Wertanlage gelten. Silber wird daneben aber auch industriell genutzt, etwa in der Elektronik- und Solarbranche, und reagiert deshalb teils anders auf Nachrichten als das stärker als Krisenwährung gehandelte Gold. Am Dienstagmorgen liefen beide Preise in entgegengesetzte Richtungen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass zwei eng verwandte Rohstoffe am selben Morgen unterschiedliche Vorzeichen zeigen, ist eine Erinnerung daran, dass eine übliche Korrelation keine Garantie ist. Zusätzlich verändert der Wechselkurs, wie sich ein in Dollar notierter Preis für Anleger im Euroraum tatsächlich darstellt.',
+      },
+    ],
+  },
+  {
+    slug: 'kkr-kauft-gen-ii-fund-services-fuer-5-1-milliarden-dollar',
+    title: 'KKR kauft Fondsverwalter Gen II für 5,1 Milliarden Dollar',
+    teaser:
+      'Die Beteiligungsgesellschaft KKR übernimmt den Fondsdienstleister Gen II von Hg und General Atlantic. Der Deal bewertet Gen II mit 5,1 Milliarden Dollar.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-06T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['KKR', 'Private Equity', 'Übernahme', 'Fonds'],
+    relatedTopics: ['fonds'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle Nachrichten vom 6.10.2026 (Business Wire, Meldung vom 5.10.2026, 1:30 Uhr): „KKR to Acquire Gen II Fund Services for More Than $5 Billion from Hg and General Atlantic“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'financialcontent.com, Pressemitteilung vom 5.10.2026, abgerufen am 6.10.2026',
+        url: 'https://www.financialcontent.com/article/bizwire-2026-10-5-kkr-to-acquire-gen-ii-fund-services-for-more-than-5-billion-from-hg-and-general-atlantic',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Beteiligungsgesellschaft KKR hat vereinbart, den Fondsdienstleister Gen II Fund Services zu übernehmen. Verkäufer sind die bisherigen Eigentümer Hg und General Atlantic. Das meldete Business Wire am Montag um 1:30 Uhr, verbreitet unter anderem über onvista. Der Deal bewertet Gen II mit einem Unternehmenswert von mehr als 5,1 Milliarden Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was Gen II macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gen II ist laut der Pressemitteilung ein Fondsverwalter für Private-Equity- und Private-Credit-Gesellschaften. Das Unternehmen bietet Fondsbuchhaltung, Steuer-Compliance, Treasury-Dienste und technologiegestützte Lösungen an. Nach eigenen Angaben betreut Gen II mehr als 275 Investmentmanager mit zusammen über 2 Billionen Dollar verwaltetem Vermögen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Starkes Wachstum seit 2020',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hg und General Atlantic waren 2020 gemeinsam bei Gen II eingestiegen. Seitdem habe sich Umsatz und Ergebnis (Ebitda) durch organisches Wachstum und vier zugekaufte Unternehmen vervierfacht, heißt es in der Mitteilung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wann der Deal abgeschlossen werden soll',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Abschluss der Transaktion ist für 2027 vorgesehen und steht noch unter dem Vorbehalt üblicher Bedingungen sowie behördlicher Genehmigungen. KKR kündigte an, Gen II bei der internationalen Expansion zu unterstützen, das Leistungsangebot zu erweitern und in Technologie- sowie KI-gestützte Lösungen zu investieren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Fondsverwalter wie Gen II verdient an Gebühren für die Verwaltung von Fondsvermögen – unabhängig davon, ob die zugrunde liegenden Private-Equity-Fonds selbst gerade besonders gut oder schlecht laufen. Für ein Unternehmen wie KKR ist das ein Geschäft, dessen Erträge weniger stark von einzelnen Marktzyklen abhängen als das eigentliche Beteiligungsgeschäft.',
+      },
+    ],
+  },
+  {
     slug: 'pmi-dienstleistungsindex-fuenf-laender-ezb-reden-5-oktober',
     title: 'Fünf PMI-Werte und zwei EZB-Reden zum Wochenstart',
     teaser:
