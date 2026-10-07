@@ -101,6 +101,327 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'frankreich-zahlt-fast-fuenf-prozent',
+    title: 'Frankreich zahlt fast fünf Prozent – und was das mit dem Euro macht',
+    metaTitle: 'Frankreich: Fast fünf Prozent Zinsen auf Staatsanleihen',
+    teaser:
+      'Investoren verlangen von Paris fast fünf Prozent Zinsen, die Schulden haben sich seit der Euro-Einführung verdoppelt – ein Blick auf die Risikoprämie.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-07T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Frankreich', 'Staatsanleihen', 'Euro', 'EZB'],
+    relatedTopics: [
+      'staatsanleihe',
+      'notenbanken-geldpolitik',
+      'waehrungen-wechselkurse',
+    ],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftsnachrichten vom 07.10.2026 (wallstreetONLINE Redaktion, Meldung vom 06.10.2026): „Frankreichs 400-Milliarden-Falle: Jetzt kommt die Rechnung für Corona“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Meldungen & Analysen, Eintrag vom 06.10.2026: „Hohe Anleihe-Renditen schüren Sorgen um Staatsfinanzierung in Europa“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender „Kommende Termine“, Datenstand 07.10.2026, 00:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Frankreich zahlt für neue Staatsanleihen fast fünf Prozent Zinsen. Das meldete wallstreetONLINE am Dienstag unter Berufung auf den Investor Leonard Fischer. Die Schulden des Landes haben sich demnach seit der Einführung des Euro verdoppelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Steigende Renditen, wachsender Druck auf die Staatskasse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Goldreporter berichtete am selben Tag, steigende Anleiherenditen würden den Druck auf die Staatsfinanzierung in Europa erhöhen. Die Schwäche des Euro stütze im Gegenzug den Goldpreis in Gemeinschaftswährung – ein Beispiel dafür, wie ein und dasselbe Problem zwei gegenläufige Preise gleichzeitig bewegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Währung, zwei Zinssätze',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankreich und Deutschland teilen sich den Euro und zahlen trotzdem unterschiedliche Zinsen auf ihre Staatsanleihen. Investoren verlangen für das höhere Ausfallrisiko eines Landes eine Risikoprämie, den sogenannten Spread zur sichereren Bundesanleihe. Fischer zog laut wallstreetONLINE sogar den Vergleich zu Griechenland – und sieht Athen heute besser aufgestellt als Paris.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch anstehen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Tag bringt weitere Signale aus der Geldpolitik. Um 7 Uhr spricht EZB-Ratsmitglied Piero Cipollone, um 9:20 Uhr folgt sein Kollege Boris Vujcic. Um 8 Uhr veröffentlicht Deutschland seine Industrieproduktion, Ökonomen erwarten nach einem Rückgang im Vormonat ein Plus von 0,5 Prozent; um 8:45 Uhr meldet Frankreich seine Handelsbilanz.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Staatsanleihen unterschiedlicher Euro-Länder vergleicht, sieht am Spread, wie der Markt Risiko einzeln bepreist, obwohl alle dieselbe Währung nutzen.',
+      },
+    ],
+  },
+  {
+    slug: 'rekordschluesse-in-new-york-oelpreis-dreht',
+    title: 'Rekorde an der Wall Street, dann dreht der Ölpreis wieder nach oben',
+    metaTitle: 'Wall Street auf Rekordniveau, Ölpreis dreht am Morgen',
+    teaser:
+      'S&P 500 und Nasdaq 100 schlossen auf Rekordniveau, Europas Börsen profitierten von fallenden Ölpreisen – doch am Mittwochmorgen steigt Brent schon wieder.',
+    category: 'Märkte',
+    publishedAt: '2026-10-07T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Aktienmarkt', 'Rekordhoch', 'Ölpreis', 'Dax'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite', 'rohstoffe'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dax', 'brent'],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News vom 07.10.2026 (dpa-AFX, Meldungen vom 06.10.2026, 20:34 und 15:49 Uhr): „ROUNDUP/Aktien New York Schluss: Gewinne - Rekorde bei S&P 500 und Nasdaq 100“, „Aktien Frankfurt Schluss: Gewinne dank Tech-Stärke und Entspannung bei Anleihen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista.de, Rohstoffnachrichten vom 07.10.2026 (dpa-AFX, Meldung vom 06.10.2026): „Tanker vor russischer Schwarzmeerküste in Brand“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kursleiste „Aktuelle Rohstoffpreise“, Datenstand 07.10.2026, 02:11 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der S&P 500 und der Nasdaq 100 haben am Dienstag neue Rekordhochs erreicht. Das meldete dpa-AFX um 20:34 Uhr über onvista. Auch der Dow Jones schloss im Plus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Europa profitierte von fallenden Ölpreisen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Europas Börsen schlossen laut dpa-AFX freundlich, gestützt von sinkenden Ölpreisen. Der Dax legte zudem dank Tech-Stärke und einer Entspannung bei den Anleiherenditen zu, meldete dpa-AFX um 15:49 Uhr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am Mittwochmorgen dreht der Ölpreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nur Stunden später zeigt die Kursleiste von wallstreet-online ein anderes Bild. Brent notiert am Mittwoch früh bei 101,13 Dollar je Barrel, ein Plus von 0,85 Prozent, Datenstand 02:11 Uhr. Am Dienstag hatte dpa-AFX zudem einen Tankerbrand vor der russischen Schwarzmeerküste gemeldet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preisbewegungen, ein Rohstoff',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Öl an einem Tag fällt und tags darauf wieder steigt, zeigt, wie einzelne Ereignisse kurzfristig stärker wirken können als ein längerfristiger Trend. Ein gesunkener Preis am Nachmittag sagt deshalb wenig darüber aus, wo der Preis am nächsten Morgen steht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Tagesbewegungen bei Rohstoffen wie Öl erzählen oft eine andere Geschichte als der Blick auf eine ganze Woche. Wer nur einen Schlusskurs sieht, sieht nur einen Ausschnitt.',
+      },
+    ],
+  },
+  {
+    slug: 'iran-waehrung-stuerzt-oelminister-tritt-ab',
+    title: 'Irans Währung stürzt weiter, der Ölminister tritt zurück',
+    teaser:
+      'Der Rial fällt auf 2,7 Millionen je Dollar, Irans Ölminister ist zurückgetreten – im Land fehlen laut einem Bericht täglich zehn Millionen Liter Sprit.',
+    category: 'Märkte',
+    publishedAt: '2026-10-07T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Ölpreis', 'Währungskrise', 'Hormus'],
+    relatedTopics: ['waehrungen-wechselkurse', 'rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Gefragte Nachrichten, Eintrag vom 05.10.2026: „Öldollar versiegen: 2,7 Millionen Rial für einen Dollar: Irans Währung stürzt ins Bodenlose“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online.de, Gefragte Nachrichten, Eintrag vom 06.10.2026: „Hormus macht alles teurer: Irans Ölminister tritt ab – und es fehlen täglich 10 Millionen Liter Sprit“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Irans Währung stürzt weiter ab. Der Rial notierte zuletzt bei 2,7 Millionen je US-Dollar, berichtete wallstreetONLINE am Montag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ölminister tritt zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag meldete wallstreetONLINE den Rücktritt von Irans Ölminister. Im Land fehlten demnach täglich zehn Millionen Liter Treibstoff. Die Redaktion brachte die Lage in Verbindung mit der Situation in der Straße von Hormus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rohöl ist nicht Diesel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum ein Land, das selbst Öl exportiert, zu Hause Treibstoff knapp hat, nennt die Meldung nicht. Die Begründung dafür geht aus den Berichten nicht hervor. Grundsätzlich gilt aber: Zwischen Rohöl und Diesel an der Zapfsäule liegt eine Raffinerie, und die braucht eigenes Kapital, Technik und Ersatzteile. Ein Rohstoffüberschuss allein sichert deshalb keine Versorgung mit fertigem Kraftstoff.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Meldungen, ein Bild',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein kollabierender Wechselkurs und ein zurückgetretener Minister ergeben zusammen ein Bild wirtschaftlichen Drucks. Beide Meldungen stammen von derselben Redaktion und beziehen sich auf unterschiedliche Tage dieser Woche.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Währungskrise und eine Versorgungslücke beim selben Rohstoff, den ein Land exportiert, zeigen, dass Förderung und Verteilung zwei getrennte Probleme sein können.',
+      },
+    ],
+  },
+  {
+    slug: 'paramount-schliesst-warner-uebernahme-ab',
+    title: 'Paramount schließt die Übernahme von Warner ab',
+    teaser:
+      'Der Medienkonzern Paramount hat die Übernahme von Warner abgeschlossen, meldete dpa-AFX – ein Schritt, der die Streaming-Konkurrenz mit Netflix verschärft.',
+    category: 'Märkte',
+    publishedAt: '2026-10-07T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Übernahme', 'Streaming', 'Medien', 'Netflix'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['warner-bros-discovery', 'netflix'],
+    sources: [
+      {
+        label:
+          'onvista.de, Aktuelle News vom 07.10.2026 (dpa-AFX, Meldung vom 06.10.2026, 20:14 Uhr): „ROUNDUP 2: Paramount schließt Warner-Übernahme ab“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Politik Nachrichten vom 07.10.2026 (dpa-AFX, Meldung vom 06.10.2026, Wertpapier: Netflix): „ROUNDUP 2: Paramount schließt Warner-Übernahme ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Paramount hat die Übernahme von Warner abgeschlossen. Das meldete dpa-AFX am Dienstagabend um 20:14 Uhr über onvista.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenig Zahlen, eine klare Tatsache',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Kaufpreis oder zu weiteren Bedingungen der Übernahme nennt die kurze Meldung keine Angaben. Festzuhalten ist allein: Der Zusammenschluss ist vollzogen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Netflix als Vergleich auftaucht',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nachrichtenübersicht von wallstreet-online ist die Meldung mit dem Wertpapier Netflix verknüpft. Das deutet darauf hin, dass die Redaktion den Zusammenschluss als Ereignis mit Bedeutung für den Streaming-Wettbewerb einordnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Konsolidierung in der Streaming-Branche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Je weniger eigenständige Anbieter um Zuschauer und Werbeeinnahmen konkurrieren, desto mehr Verhandlungsmacht gewinnen die verbleibenden Plattformen gegenüber Studios und Werbekunden. Ein einzelner Zusammenschluss verändert diese Kräfteverhältnisse nicht sofort, verschiebt sie aber.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine abgeschlossene Übernahme ist ein Fakt, keine Prognose. Was sie für Umsatz und Marge der beteiligten Konzerne bedeutet, zeigt sich erst in künftigen Quartalszahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'deutz-streicht-400-stellen',
+    title: 'Deutz streicht 400 Stellen, vor allem bei kleinen Motoren',
+    teaser:
+      'Der Motorenhersteller Deutz baut 400 Stellen ab, besonders im Geschäft mit kleinen Motoren – ein Einzelfall mit einer Lehre über Segmentrisiko.',
+    category: 'Märkte',
+    publishedAt: '2026-10-07T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Deutz', 'Stellenabbau', 'Industrie'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "wallstreet-online.de, Nachrichten „Aktien & Indizes“ vom 07.10.2026 (dpa-AFX unter Berufung auf Handelsblatt, Meldung vom 06.10.2026): „'HB': Deutz will 400 Stellen abbauen - vor allem bei kleinen Motoren“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Motorenhersteller Deutz will 400 Stellen abbauen. Das berichtete das Handelsblatt, weitergegeben von dpa-AFX am Dienstag. Betroffen ist vor allem das Geschäft mit kleinen Motoren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zahl, keine Begründung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum ausgerechnet das Segment der kleinen Motoren betroffen ist, geht aus der kurzen Meldung nicht hervor. Eine Begründung nennt dpa-AFX nicht, und keine sollte hier erfunden werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Unternehmen hat mehrere Geschäfte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutz baut neben kleinen auch große Industriemotoren und bietet Service für Bestandskunden an. Ein Stellenabbau in einem einzelnen Segment sagt deshalb wenig über das Unternehmen als Ganzes aus, genauso wie ein einzelner Quartalsumsatz wenig über die Marge einer einzelnen Sparte verrät.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kein Indexschwergewicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutz gehört keinem der großen deutschen Leitindizes an. Für die Gesamtwirtschaft ist die Meldung deshalb eher ein Einzelfall als ein Signal für die gesamte Industrie, wohl aber ein Beispiel dafür, wie sich Nachfrageschwäche in einzelnen Sparten in Beschäftigung übersetzt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Stellenabbau in einem Teilsegment ist ein Datenpunkt, keine Prognose für den gesamten Maschinenbau. Erst mehrere solcher Meldungen zusammen ergäben ein Bild.',
+      },
+    ],
+  },
+  {
     slug: 'konjunkturkalender-dienstag-werkauftraege-und-boj-rede',
     title: 'Werkaufträge, eine Zentralbank-Rede und Bau-PMI: der Dienstag im Kalender',
     metaTitle: 'Werkaufträge, BoJ-Rede und Bau-PMI am Dienstag',
