@@ -101,6 +101,304 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'zentralbank-tag-fed-waller-ezb-lane',
+    title: 'Zentralbank-Tag: Das bewegt die Märkte am 8. Oktober',
+    teaser:
+      'Handelsbilanz, Eurogruppe und vier Notenbank-Reden: Am Donnerstag taktet die Geldpolitik dicht, noch bevor die Börsen richtig geöffnet haben.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-08T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Geldpolitik', 'Notenbanken', 'Konjunktur'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 08.10.2026, 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Donnerstag beginnt ruhig und wird dann dicht. Fünf Termine stehen im Kalender, die Mehrzahl mit Notenbank-Bezug.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Uhrzeiten im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr veröffentlicht das Statistische Bundesamt die deutsche Handelsbilanz. Volkswirte erwarten einen Überschuss von 19,0 Milliarden Euro, nach 21,3 Milliarden Euro im Vormonat. Um 10 Uhr tagt die Eurogruppe, das Treffen der Finanzminister der Eurozone. Um 10:30 Uhr spricht Fed-Gouverneur Christopher Waller, um 11:15 Uhr die Bank-of-England-Direktorin Megan Greene, um 12 Uhr EZB-Chefvolkswirt Philip Lane.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede einen Kurs bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Keiner dieser Termine ist ein Zinsentscheid. Trotzdem lesen Händler jede Rede auf Hinweise zum nächsten Schritt. Ein einzelnes Wort zur Inflation kann reichen, um Anleiherenditen zu verschieben – und darüber auch Aktienkurse.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein sinkender Handelsbilanzüberschuss wäre zudem ein Signal für die Exportnachfrage. Deutschland verdient einen Teil seines Wohlstands am Außenhandel, ein schwächerer Überschuss zeigt, ob die Nachfrage aus dem Ausland nachlässt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Kein einzelner Termin dürfte für sich genommen einen Kurssprung auslösen. In der Summe zeigen sie aber, wie eng Geldpolitik und Konjunkturdaten heute getaktet sind – und wie viel Deutung in einer einzigen Rede stecken kann.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-ueber-100-dollar-hormus-spannungen',
+    title: 'Ölpreis hält über 100 Dollar trotz Spannungen am Golf',
+    teaser:
+      'Brent-Öl notiert über 100 Dollar, während Tankerzahlen durch die Straße von Hormus einen Rekord seit Kriegsbeginn zeigen – ein Widerspruch in den Schlagzeilen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-08T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rohstoffe', 'Öl', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichtenübersicht vom 07.10.2026, Stand 08.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Öl bleibt teuer, aber die Erklärung ist nicht so einfach wie „Krise am Golf“. Der Brent-Preis notiert bei 100,96 Dollar je Fass, kaum verändert zum Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was tatsächlich gemeldet wurde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Mittwoch meldete die Nachrichtenagentur dpa-AFX drei Tote in Saudi-Arabien nach Angriffen auf Flughäfen. Wer die Angriffe ausführte und warum, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig beobachtet die Analysefirma Société Générale, dass die Durchfahrten von LNG-Tankern durch die Straße von Hormus auf dem höchsten Stand seit Kriegsbeginn liegen – und dass die Ölexporte aus der Golfregion trotz der Blockade-Meldungen über dem Niveau vor dem Krieg liegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Reserve, die ausgeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den USA ist die strategische Ölreserve unterdessen so knapp wie zuletzt 1982, berichtet wallstreet-online: Nur rund 10 Prozent der Bestände seien noch verfügbar. Eine Freigabe von Dieselreserven hat nach Angaben von Société Générale zuletzt einen drohenden US-Exportstopp für Diesel abgewendet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Furcht vor einer Blockade und die tatsächlichen Frachtzahlen zeigen zuletzt in dieselbe Richtung, aber nicht in derselben Dringlichkeit. Wer nur die Überschriften liest, bekommt ein dramatischeres Bild, als es die Tankerbewegungen hergeben.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-17-monats-tief-frankreich-anleihen',
+    title: 'Euro fällt auf 17-Monats-Tief – Frankreichs Anleihemarkt unter Druck',
+    metaTitle: 'Euro auf 17-Monats-Tief: Frankreichs Anleihemarkt unter Druck',
+    teaser:
+      'Der Euro fällt auf ein 17-Monats-Tief, Frankreichs Anleihemarkt gerät unter Druck – und zwei Kursquellen zeigen am selben Tag verschiedene Prozentzahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-08T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Devisen', 'Euro', 'Anleihen'],
+    relatedTopics: ['waehrungen-wechselkurse', 'staatsanleihe'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 07.10.2026, Stand 08.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro ist so schwach wie seit 17 Monaten nicht mehr. Der Auslöser liegt diesmal nicht in Frankfurt, sondern in Paris.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Agentur meldet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nachrichtenagentur dpa-AFX berichtete am Mittwoch unter dem Titel „Euro gefallen – Lage am französischen Anleihemarkt verschärft sich“. Die Europäische Zentralbank stellte ihren Referenzkurs auf 1,1177 US-Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, ein Kurspaar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Finanzdienst Markt Bote vermeldete am Nachmittag einen Kursrutsch von 0,84 Prozent auf 1,11658 Dollar. Zum Zeitpunkt der Abfrage dieser Ausgabe, kurz nach Mitternacht, stand das Paar bei 1,11960 Dollar und einem Minus von nur 0,02 Prozent. Beide Zahlen sind richtig – sie messen nur unterschiedliche Momente desselben Tages.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prozentangabe zu einem Wechselkurs ist eine Momentaufnahme, kein fester Wert. Der Vergleich zweier Quellen lohnt sich erst mit Blick auf die Uhrzeit – sonst wirkt ein harmloser Zeitunterschied wie ein Widerspruch.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wall-street-schwaecher-renditen-oelpreis',
+    title: 'Dax und Wall Street schließen schwächer – Renditen und Ölpreis belasten',
+    metaTitle: 'Dax und Wall Street schwächer: Renditen und Ölpreis belasten',
+    teaser:
+      'Dax und Wall Street schließen schwächer: Hohe Anleiherenditen und der Ölpreis drücken quer durch die Indizes auf die Stimmung.',
+    category: 'Märkte',
+    publishedAt: '2026-10-08T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Wall Street', 'Aktienmarkt'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista, Nachrichtenübersicht vom 07.10.2026, 16:07 Uhr (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Börsen trugen am Mittwoch ihre eigene kleine Krise: hohe Anleiherenditen, ein hoher Ölpreis, wenig Risikoappetit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Tag in Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax schloss nach Angaben von dpa-AFX deutlich im Minus. Der breiter gefasste HDAX fiel um 1,36 Prozent auf 13.262,49 Punkte, der Dax selbst notierte zuletzt bei 25.119,18 Punkten, ein Minus von 0,90 Prozent. In Wien verlor der ATX nach Agenturangaben ebenfalls deutlich. An der Wall Street schloss der Dow Jones (US 30) bei 51.173,29 Punkten, 0,70 Prozent leichter, der Nasdaq 100 (US Tech 100) bei 31.164,65 Punkten, ein Minus von 0,23 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kursindex gegen Performanceindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax ist ein Performanceindex: Dividenden der enthaltenen Unternehmen fließen rechnerisch wieder hinein. Der Dow Jones dagegen ist ein reiner Kursindex, er bildet nur die Kursbewegung ab, ausgeschüttete Dividenden fehlen in der Zahl. Über einen einzelnen Tag macht das kaum einen Unterschied, über Jahre schon.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Tagesvergleich zwischen Dax und Dow Jones sagt wenig darüber, welcher Markt die Anleger besser bezahlt hat. Dafür bräuchte es dieselbe Indexart auf beiden Seiten, nicht zwei unterschiedliche Rechenwege.',
+      },
+    ],
+  },
+  {
+    slug: 'fresenius-medical-care-neuer-vorstandschef',
+    title: 'Fresenius Medical Care tauscht den Vorstandschef aus',
+    teaser:
+      'Fresenius Medical Care tauscht per Ad-hoc-Meldung den Vorstandschef aus, ohne genannten Grund – während JPMorgan skeptisch bleibt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-08T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Fresenius Medical Care', 'Management', 'Analystenrating'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['fresenius-medical'],
+    sources: [
+      {
+        label: 'wallstreet-online, EQS-Adhoc vom 07.10.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dialyse-Konzern Fresenius Medical Care hat einen neuen Vorstandsvorsitzenden: Shervin J. Korangy folgt auf Helen Giza.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Ad-hoc-Meldung sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Unternehmen veröffentlichte den Wechsel als Ad-hoc-Mitteilung über die EQS Group – eine Meldeform, die Unternehmen für Tatsachen nutzen müssen, die den Kurs bewegen können. Einen Grund für den Wechsel nennt die Mitteilung nicht, auch nicht zu den Umständen oder zur Zukunft von Helen Giza.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Analystenseite',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag bestätigte die US-Bank JPMorgan laut dpa-AFX ihre Einstufung „Underweight“ für die Aktie, mit einem Kursziel von 32,30 Euro. Eine Einstufung unter „neutral“ bedeutet, dass die Analysten der Aktie eine schlechtere Entwicklung zutrauen als dem Marktdurchschnitt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Chefwechsel und eine bestehende Analystenmeinung sind zwei unabhängige Ereignisse, die zufällig auf denselben Tag fielen. Ob der neue Vorstandschef etwas an der Einschätzung ändert, zeigt sich erst mit den nächsten Zahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-unterschiedliche-richtung',
+    title: 'Gold hält sich, Silber gibt deutlicher nach',
+    teaser:
+      'Gold gibt kaum nach, Silber dagegen deutlich: ein Tag, der zeigt, warum die beiden Edelmetalle nicht dieselbe Geschichte erzählen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-08T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label: 'goldreporter.de, Marktbericht vom 07.10.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Rohstoffpreise, Stand 08.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber gelten als verwandte Anlagen. Am Mittwoch liefen sie trotzdem deutlich auseinander.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold notierte zuletzt bei 4.108,75 Dollar je Feinunze, ein Minus von nur 0,06 Prozent. Silber dagegen verlor 1,92 Prozent auf 60,20 Dollar. Nach Angaben von Goldreporter steht der Goldpreis an einer charttechnisch wichtigen Schwelle: Hält die Marke von 4.100 Dollar, gilt eine Erholung als möglich, darunter rückt das Tief vom Juli bei rund 4.000 Dollar in den Blick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum beide trotzdem nicht dasselbe sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold dient vor allem als Wertanker, seine Nachfrage kommt stark aus Notenbanken und Anlegern. Silber hat einen deutlich größeren Industrieanteil, es steckt in Solarzellen, Elektronik und Batterien. Das macht den Silberpreis empfindlicher für Erwartungen zur Industriekonjunktur, nicht nur für Zinsen und den Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Tag, an dem beide Edelmetalle unterschiedlich stark nachgeben, ist kein Widerspruch. Er zeigt, dass Silber zwei Preistreiber hat, Gold im Kern nur einen.',
+      },
+    ],
+  },
+  {
     slug: 'frankreich-zahlt-fast-fuenf-prozent',
     title: 'Frankreich zahlt fast fünf Prozent – und was das mit dem Euro macht',
     metaTitle: 'Frankreich: Fast fünf Prozent Zinsen auf Staatsanleihen',
