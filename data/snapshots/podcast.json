@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-07T10:34:45.756Z",
+  "abgerufenAm": "2026-10-08T00:51:42.733Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "fed-ezb-und-bank-of-england-vier-notenbanker-sprechen-oel-bleibt-ueber-100-dolla",
+      "titel": "Fed, EZB und Bank of England: Vier Notenbanker sprechen, Öl bleibt über 100 Dollar und Euro auf 17-Monats-Tief",
+      "beschreibung": "Notenbanker sprechen, Frankreichs Anleihemarkt wackelt, Öl bleibt teuer: ein dicht getakteter Donnerstag für die Märkte. Um 8 Uhr veröffentlicht das Statistische Bundesamt die deutsche Handelsbilanz. Volkswirte erwarten einen Überschuss von 19,0 Milliarden Euro, nach 21,3 Milliarden Euro im Vormonat.\n\nWir sprechen über Euro auf 17-Monats-Tief, Dax und Wall Street schließen schwächer, Fresenius Medical Care und Gold hält sich knapp. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:34) Fed, EZB und Bank of England: Vier\n(1:05) Öl bleibt über 100 Dollar\n(1:40) Euro auf 17-Monats-Tief\n(2:22) Dax und Wall Street schließen schwächer\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-08",
+      "dauerSekunden": 218,
+      "url": "https://iminvests.de/podcast-audio/2026-10-08.mp3",
+      "youtubeId": "LGrT4hKcOYE"
+    },
     {
       "slug": "frankreichs-anleiherenditen-naehern-sich-fuenf-prozent-und-wall-street-schliesst",
       "titel": "Frankreichs Anleiherenditen nähern sich fünf Prozent und Wall Street schließt auf Rekordniveau",
