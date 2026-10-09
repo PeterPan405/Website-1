@@ -101,6 +101,348 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-cipollone-schnabel-ecofin-nachfolge',
+    title: 'EZB-Tag: Zwei Reden, ein Rätsel um die Nachfolge',
+    teaser:
+      'Am Freitag sprechen zwei EZB-Direktoriumsmitglieder, tagt der EcoFin-Rat – und die Suche nach einer Nachfolge für Isabel Schnabel hat begonnen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-09T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Geldpolitik', 'Notenbanken', 'Euro'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender und Politiknachrichten, Stand 09.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Freitag ist in der Geldpolitik dicht getaktet. Zwei Mitglieder des Direktoriums der Europäischen Zentralbank treten ans Mikrofon, die Finanzminister der EU tagen – und im Hintergrund läuft bereits die Suche nach einer Nachfolge für ein drittes Mitglied.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kalender: EcoFin, Cipollone, Schnabel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 10 Uhr kommen die Finanzminister der EU-Staaten zum EcoFin-Rat zusammen, zeigt der Wirtschaftskalender von wallstreet-online. Um 12:15 Uhr spricht EZB-Direktoriumsmitglied Piero Cipollone, um 15:30 Uhr folgt Isabel Schnabel. Welche Themen die beiden ansprechen, nennt der Kalender nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer auf Isabel Schnabel folgen könnte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach einer Meldung von dpa-AFX suchen die Euro-Finanzminister bereits nach einer Nachfolge für Schnabel bei der EZB. Einen Grund, einen Namen oder einen Zeitplan nennt die Meldung nicht – nur, dass die Suche läuft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Reden ohne Beschluss trotzdem bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Rede ist kein Zinsentscheid. Trotzdem lesen Händler jeden Satz eines Notenbankmitglieds auf Hinweise für den nächsten geldpolitischen Schritt. Der Euro notierte zuletzt bei 1,1217 Dollar, leicht fester als am Vortag, als die EZB ihren Referenzkurs auf 1,1186 Dollar festsetzte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine offene Personalfrage an der Spitze einer Notenbank ist für sich genommen kein Grund zur Sorge, erhöht aber die Zahl der Unbekannten, mit denen Anleger bei jeder künftigen Zinsentscheidung rechnen müssen.',
+      },
+    ],
+  },
+  {
+    slug: 'frankreich-protest-vertretungslehrer-anleihemarkt',
+    title: 'Frankreich: Schulproteste treffen auf nervöse Anleihemärkte',
+    teaser:
+      '71.500 Demonstranten, 3.000 Vertretungslehrer und ein angespannter Anleihemarkt: Frankreichs Haushaltskrise zeigt sich an mehreren Fronten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-09T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Staatsanleihen', 'Haushaltskrise', 'Eurozone'],
+    relatedTopics: ['staatsanleihe'],
+    relatedSymbols: ['cac-40'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Politik- und Devisennachrichten, Stand 09.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Frankreichs Haushaltskrise zeigt sich derzeit an mehreren Stellen gleichzeitig: auf der Straße, im Schulsystem und an den Anleihemärkten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Proteste und Nothilfe im Schulsystem',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag demonstrierten nach Angaben von dpa-AFX 71.500 Menschen in Frankreich für bessere Schulen. Die Regierung reagierte mit einer kurzfristigen Maßnahme: Sie setzte 3.000 Vertretungslehrer ein, um Unterrichtsausfälle aufzufangen. Einen Zusammenhang zwischen beiden Meldungen stellt die Quelle nicht her.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an den Anleihemärkten los ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel beschreibt wallstreet-online eine angespannte Lage am französischen Anleihemarkt, ausgelöst durch die Haushaltskrise des Landes. Eine Videoüberschrift derselben Redaktion bezifferte am Vortag insgesamt 335 Milliarden Euro an fälligen Summen – auf welchen Zeitraum und welche Art von Verbindlichkeit sich die Zahl genau bezieht, erklärt die Überschrift nicht. Diese Lücke wird hier bewusst nicht aufgefüllt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Risikoaufschlag: eine Zinsdifferenz mit Bedeutung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn Anleger einem Staat weniger vertrauen, verlangen sie einen höheren Zins für dessen Anleihen als für die eines als sicherer geltenden Landes wie Deutschland. Dieser Abstand heißt Risikoaufschlag oder Spread. Er steigt mit der Sorge um die Zahlungsfähigkeit, lange bevor ein Staat tatsächlich in Zahlungsschwierigkeiten gerät.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein steigender Risikoaufschlag ist ein Frühindikator, kein Urteil über die Zukunft. Er zeigt, wie der Markt die Wahrscheinlichkeit künftiger Probleme gerade einschätzt – diese Einschätzung kann sich mit neuen Nachrichten rasch wieder ändern.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-asien-rabatt-preiskrieg-us-reserve',
+    title: 'Ölpreis steigt, obwohl Irak und Saudi-Arabien Rabatte geben',
+    teaser:
+      'Brent kostet 103,86 Dollar, ein Plus von 2,87 Prozent – während Irak und Saudi-Arabien ihre Preise für Asien senken. Zwei Preislogiken im Vergleich.',
+    category: 'Märkte',
+    publishedAt: '2026-10-09T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Rohstoffe', 'Opec', 'Energiepreise'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste und Rohstoffnachrichten, Stand 09.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis steigt – und gleichzeitig senken zwei große Anbieter ihre Preise für einen ganzen Kontinent. Beides stimmt zugleich, und beides hat einen eigenen Grund.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preise, eine Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Brent-Rohöl kostete zuletzt 103,86 Dollar je Fass, ein Plus von 2,87 Prozent gegenüber dem vorherigen Stand. Gleichzeitig senkten Irak und Saudi-Arabien laut wallstreet-online ihre offiziellen Verkaufspreise für Abnehmer in Asien deutlich. Genaue Prozentsätze für die Preissenkung nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die US-Reserve eine Rolle spielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Preisumfeld passt eine zweite Meldung: Die strategische Ölreserve der USA ist nach einem Bericht vom Vortag so klein wie zuletzt 1982, nur rund zehn Prozent der Kapazität sind demnach noch verfügbar. US-Präsident Trump kündigte laut dpa-AFX an, bis zu den Zwischenwahlen im November keine Angriffe auf Iran zu beginnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Benchmark-Preis gegen Verkaufspreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Preis, den Börsen wie Brent oder WTI notieren, ist ein Durchschnittswert für den gesamten Weltmarkt. Produzenten wie Saudi-Arabien oder Irak setzen daneben eigene, offizielle Verkaufspreise für bestimmte Abnehmerregionen fest. Sinken diese regionalen Preise, heißt das nicht automatisch, dass auch der globale Benchmark-Preis fällt – beide reagieren auf unterschiedliche Angebots- und Nachfragesignale.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Preisnachlass für einzelne Käufer in Asien und ein steigender Weltmarktpreis schließen sich nicht aus. Wer nur die eine Zahl liest, bekommt ein unvollständiges Bild vom Ölmarkt.',
+      },
+    ],
+  },
+  {
+    slug: 'nasdaq-ki-sorgen-tsmc-rekordumsatz',
+    title: 'Nasdaq schwächer, TSMC stark: ein Tag, zwei KI-Geschichten',
+    teaser:
+      'Der Dow schloss stabil, der Nasdaq gab wegen OpenAI-Sorgen nach – während TSMC laut onvista einen Rekordumsatz meldete. Zwei Nachrichten, eine Branche.',
+    category: 'Märkte',
+    publishedAt: '2026-10-09T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['KI', 'Nasdaq', 'TSMC', 'US-Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'tsmc'],
+    sources: [
+      {
+        label:
+          'onvista und wallstreet-online, Marktberichte vom 08.10.2026, Stand 09.10.2026 00:16 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street gingen die Meinungen zu Künstlicher Intelligenz an einem einzigen Tag auseinander: Der Gesamtmarkt verlor, ein einzelner Chiphersteller meldete einen Rekord.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Schwacher Nasdaq, stabiler Dow',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones schloss nach Angaben von dpa-AFX stabil. Der Nasdaq gab dagegen nach, belastet von Sorgen um Künstliche Intelligenz. Bereits am Vortag hatten laut derselben Agentur Umsatzsorgen um OpenAI für deutliche Verluste bei KI-Werten gesorgt. Der US Tech 100 notierte zuletzt 1,38 Prozent im Minus, der US 30 legte 0,10 Prozent zu, zeigt die aktuelle Kursleiste von wallstreet-online.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'TSMC meldet Rekordumsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mitten in diese Stimmung platzte eine andere Meldung: Der Chiphersteller TSMC erzielte laut onvista einen Rekordumsatz. Konkrete Zahlen dazu nennt die Übersicht nicht, ebenso wenig einen Grund für den Gegensatz zu den übrigen KI-Werten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index ist kein Unternehmen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Index wie der Nasdaq 100 bündelt hunderte Unternehmen, aber nicht zu gleichen Teilen. Große Werte wiegen schwerer als kleine, und einzelne Geschäftsmodelle – etwa eine starke Abhängigkeit von einem einzigen Großkunden – können den Gesamtindex belasten, selbst wenn andere Unternehmen in derselben Branche gerade Rekorde melden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein fallender Index und eine steigende Einzelaktie aus derselben Branche widersprechen sich nicht. Sie zeigen, dass der Markt innerhalb eines Sektors zwischen einzelnen Geschäftsmodellen unterscheidet.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-4100-dollar-china-reserven-etf-zufluss',
+    title: 'Gold hält die 4.100-Dollar-Marke trotz steigender Anleiherenditen',
+    teaser:
+      'Gold notiert über 4.100 Dollar, der größte Gold-ETF meldet Zuflüsse, China kauft weiter zu – und das, obwohl die Anleiherenditen steigen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-09T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Geldanlage', 'Zentralbanken', 'ETF'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label: 'goldreporter.de, Marktbericht und ETF-Meldung vom 08.10.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Steigende Anleiherenditen gelten als Belastung für Gold. Trotzdem hält sich der Preis über einer wichtigen Marke, und Anleger kaufen weiter zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs: stabil über 4.100 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold kostete zuletzt 4.147,55 Dollar je Feinunze, ein Plus von 0,31 Prozent gegenüber dem vorherigen Stand. Das zeigt die aktuelle Kursleiste von wallstreet-online. Nach Angaben von Goldreporter hält sich der Kurs damit über der viel beachteten Marke von 4.100 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zuflüsse bei ETF und Zentralbanken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der nach Vermögenswerten größte Gold-ETF meldete laut Goldreporter einen Kapitalzufluss von 571 Millionen Dollar und baute seine Bestände weiter aus. China stockte seine Goldreserven im September erneut kräftig auf, wie Goldreporter berichtet. Genaue Mengenangaben nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Realzins gegen Absicherung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keine Zinsen. Steigen die Renditen sicherer Anleihen, wird das Halten von Gold im Vergleich teurer, und der Preis gerät üblicherweise unter Druck. Zuflüsse in Gold-ETFs trotz steigender Renditen sprechen deshalb für eine zusätzliche Nachfrage, die nicht aus der Zinslogik allein erklärbar ist – etwa aus Sorge um andere Risiken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wenn sich ein Markt nicht so verhält, wie ein einzelner Faktor es nahelegt, lohnt der Blick auf die übrigen Treiber. Bei Gold gehören dazu Zentralbankkäufe und die allgemeine Risikowahrnehmung.',
+      },
+    ],
+  },
+  {
+    slug: 'bovespa-rekord-bolsonaro-umfrage-sparkurs',
+    title: 'Brasiliens Bovespa springt auf Rekord: Eine Umfrage bewegt Milliarden',
+    metaTitle: 'Brasiliens Bovespa springt auf Rekord: Umfrage bewegt Milliarden',
+    teaser:
+      'Fast acht Prozent plus an einem Tag: Brasiliens Börse reagiert auf Umfragewerte zu Bolsonaro und Lula, noch bevor eine Stimme ausgezählt ist.',
+    category: 'Märkte',
+    publishedAt: '2026-10-09T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Brasilien', 'Schwellenmärkte', 'Wahlen', 'Aktienindex'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['ibovespa'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 08.10.2026, Stand 09.10.2026 00:16 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In Brasilien reichte eine Umfrage, um die Börse im Rekordtempo nach oben zu schicken – lange bevor überhaupt gewählt wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Sprung auf Rekordniveau',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der brasilianische Leitindex Bovespa sprang nach Angaben von wallstreet-online um fast acht Prozent auf ein Rekordhoch. Als Grund nennt die Redaktion Umfragewerte, in denen der frühere Präsident Jair Bolsonaro an Amtsinhaber Lula vorbeizog.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Umfrage schon reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Investoren setzen der Quelle zufolge auf einen strikteren Sparkurs unter einer möglichen neuen Regierung. Die Stichwahl ist nach Angaben von wallstreet-online weiterhin offen, über den weiteren Zeitplan macht die Übersicht keine Angabe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Politisches Risiko als eigener Preisfaktor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schwellenmarktbörsen reagieren oft stärker auf politische Nachrichten als etablierte Märkte, weil Wahlergebnisse dort häufiger zu deutlichen Kurswechseln in der Wirtschaftspolitik führen können. Diesen Auf- oder Abschlag für politische Unsicherheit bezeichnet man als politisches Risiko – er kann sich mit jeder neuen Umfrage ändern, lange bevor überhaupt gewählt wurde.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung auf eine Umfrage hin ist eine Wette auf einen Ausgang, der noch nicht feststeht. Fällt das Ergebnis anders aus, kann sich die Bewegung ebenso schnell umkehren.',
+      },
+    ],
+  },
+  {
     slug: 'zentralbank-tag-fed-waller-ezb-lane',
     title: 'Zentralbank-Tag: Das bewegt die Märkte am 8. Oktober',
     teaser:
