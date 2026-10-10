@@ -101,6 +101,450 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'iran-kehrtwende-trumps-dritter-flugzeugtraeger',
+    title: 'Trump schwenkt beim Iran um: Kein Angriff vor den Midterms',
+    teaser:
+      'Donald Trump verschiebt nach eigenen Worten mögliche Angriffe auf den Iran auf die Zeit nach den US-Zwischenwahlen. Ein dritter Flugzeugträger ist unterwegs.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'USA', 'Geopolitik', 'Ölpreis'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Politik- und Rohstoffnachrichten, Stand 10.10.2026 00:44 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Donald Trump hat seine Iran-Politik geändert. Das meldet wallstreet-online. Vor den US-Zwischenwahlen soll es demnach keine amerikanischen Angriffe auf den Iran geben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig ist ein dritter US-Flugzeugträger auf dem Weg in die Region. Details zu Ziel oder Zeitplan nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das mit dem Ölpreis zu tun hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Angriff auf den Iran gilt an den Rohstoffmärkten als Risiko für Öllieferungen durch die Straße von Hormus. Bleibt er vorerst aus, sinkt dieses Risiko zumindest kurzfristig.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob das mit der jüngsten Beruhigung am Ölmarkt zusammenhängt, lässt sich aus der Meldung selbst nicht ableiten. Sie nennt dafür keinen Zusammenhang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Lage bleibt angespannt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Flugzeugträger ist trotz der Kehrtwende unterwegs. Die militärische Präsenz in der Region bleibt also bestehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum Trump genau jetzt umschwenkt, sagt die Meldung nicht. Auch zum genauen Kurs des Flugzeugträgers fehlen Angaben.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-diesel-russland-selenskyj-kritik',
+    title: 'Trump kündigt Diesel aus Russland an, Kiew widerspricht',
+    teaser:
+      'Donald Trump kündigt größere Diesellieferungen aus Russland an. Wolodymyr Selenskyj kritisiert den Deal nach einem Agenturbericht scharf.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Russland', 'Ukraine', 'Energie', 'Diesel'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label: 'onvista, News-Ticker vom 09.10.2026, 20:25 Uhr (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Rohstoffnachrichten, Stand 10.10.2026 00:44 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Donald Trump hat größere Diesellieferungen aus Russland angekündigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das meldete eine dpa-AFX-Übersicht unter dem Kürzel ROUNDUP 2, zitiert von wallstreet-online. Angaben zu Mengen oder einem Zeitplan fehlen in der Übersicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Scharfe Kritik aus Kiew',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ukrainische Präsident Wolodymyr Selenskyj kritisierte den US-Deal zu russischem Diesel scharf. Das berichtete dpa-AFX um 20:25 Uhr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Worin genau seine Kritik besteht, führt die Agenturmeldung nicht weiter aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine offene Frage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie sich die Ankündigung auf westliche Sanktionen gegen russische Energieexporte auswirkt, lässt sich aus den gesichteten Quellen nicht beantworten.',
+      },
+    ],
+  },
+  {
+    slug: 'frankreich-anleihen-entspannung-dws',
+    title: 'Frankreichs Anleihen entspannen sich, DWS sieht keine neue Eurokrise',
+    metaTitle: 'Frankreich: Anleihen entspannen sich, DWS sieht keine Eurokrise',
+    teaser:
+      'Der französische Anleihemarkt beruhigt sich am Donnerstag etwas. Die DWS erwartet trotz der Haushaltskrise keine neue Krise im Euroraum.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Staatsanleihen', 'Eurokrise', 'Haushalt'],
+    relatedTopics: ['staatsanleihe'],
+    relatedSymbols: ['cac-40'],
+    sources: [
+      {
+        label: 'onvista, News-Ticker vom 09.10.2026, 16:22 Uhr (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Wirtschaftsnachrichten vom 09.10.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Frankreichs Anleihemarkt hat sich am Donnerstag etwas entspannt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das meldeten dpa-AFX und Reuters im Rahmen ihrer Berichte zum europäischen Börsenschluss. Einen genauen Auslöser nennen beide Agenturen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Keine neue Eurokrise laut DWS',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fondsgesellschaft DWS erwartet trotz Frankreichs Schuldenproblem keine neue Eurokrise. Das berichtet wallstreet-online. Eine Begründung dafür nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das ungelöste Grundproblem',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankreichs Haushaltskrise selbst ist damit nicht vom Tisch. Die Entspannung betrifft laut den Quellen die Kursbewegung an einem einzelnen Handelstag, nicht die zugrunde liegenden Probleme.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie es in den kommenden Wochen weitergeht, lässt sich aus den vorliegenden Meldungen nicht ableiten.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-ueber-25000-oelpreis-pause',
+    title: 'Dax klettert zurück über 25.000 Punkte',
+    teaser:
+      'Eine Verschnaufpause bei Öl- und Anleihekursen hilft dem deutschen Leitindex am Donnerstag über die Marke von 25.000 Punkten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Aktienmarkt', 'Ölpreis', 'Anleihen'],
+    relatedTopics: ['staatsanleihe'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 09.10.2026, 16:05 und 16:20 Uhr (dpa-AFX, Reuters)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 10.10.2026 00:44 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat am Donnerstag wieder die Marke von 25.000 Punkten übersprungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das meldeten dpa-AFX und Reuters übereinstimmend. Als Grund nannten beide Agenturen eine Verschnaufpause bei Öl- und Anleihekursen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher die Erholung kam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Anleihemärkte beruhigten sich. In Frankreich entspannte sich die Lage laut dpa-AFX zumindest vorübergehend.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zuletzt notierte der Dax laut wallstreet-online bei 25.170,31 Punkten. Das war ein Plus von 0,80 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine runde Marke bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zahlen wie 25.000 Punkte haben keinen eigenen wirtschaftlichen Wert. Sie wirken an der Börse trotzdem oft wie eine psychologische Orientierungsmarke.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-schliesst-im-plus-ki-sorgen',
+    title: 'Wall Street schließt im Plus trotz KI-Sorgen',
+    teaser:
+      'Dow Jones und Nasdaq legen am Donnerstag zu, obwohl sinkende Ölpreise und Sorgen um Künstliche Intelligenz die Stimmung belasten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'Dow Jones', 'Nasdaq', 'KI-Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista, News-Ticker vom 09.10.2026, 18:09 und 20:21 Uhr (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 10.10.2026 00:44 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street ging es am Donnerstag nach oben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dpa-AFX meldete Gewinne bei sinkenden Ölpreisen – und das trotz Sorgen um Künstliche Intelligenz.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der US 30, ein Pendant zum Dow Jones, stand laut wallstreet-online zuletzt bei 51.683,33 Punkten. Das war ein Plus von 0,89 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der US Tech 100, der an die Nasdaq angelehnt ist, legte um 0,50 Prozent auf 30.887,05 Punkte zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Widerspruch, der keiner sein muss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Schlagzeile nennt Sorgen um Künstliche Intelligenz. Der Technologieindex legte trotzdem zu. Das zeigt: Ein belastendes Thema drückt nicht automatisch den gesamten Index.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welche Einzelwerte die Bewegung im Technologieindex konkret getragen haben, nennt die Übersicht nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-naehert-sich-4200-dollar',
+    title: 'Gold nähert sich 4.200 Dollar – trotz steigender Renditen',
+    metaTitle: 'Gold nähert sich 4.200 Dollar, Anleiherenditen steigen weiter',
+    teaser:
+      'Der Goldpreis legt kräftig zu und rückt näher an die Marke von 4.200 Dollar heran, obwohl die Anleiherenditen gleichzeitig steigen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-10T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Edelmetalle', 'Anleiherenditen', 'Notenbanken'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label: 'goldreporter.de, Marktbericht vom 9. Oktober 2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 10.10.2026 00:44 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist zuletzt kräftig gestiegen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das meldet Goldreporter. Die Marke von 4.200 Dollar je Feinunze rückte damit näher.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Widerspruch zu den Anleiherenditen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Tag zuvor hatte Goldreporter noch von einer Stabilisierung bei 4.100 Dollar berichtet – bei gleichzeitig steigenden Anleiherenditen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigende Renditen verteuern normalerweise das zinslose Halten von Gold. Dass der Preis trotzdem zulegt, deutet auf zusätzliche Nachfrage hin, die über die reine Zinsrechnung hinausgeht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zentralbanken kaufen weiter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter berichtet zudem, China habe seine Goldreserven im September erneut aufgestockt. Eine genaue Menge nennt der Bericht nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zuletzt notierte Gold laut wallstreet-online bei 4.195,82 Dollar je Feinunze, nahezu unverändert zum Vortag.',
+      },
+    ],
+  },
+  {
+    slug: 'sdax-wechsel-procredit-ersetzt-nagarro',
+    title: 'SDax-Wechsel: Procredit ersetzt Nagarro ab 14. Oktober',
+    teaser:
+      'Die Deutsche Börse tauscht ein Mitglied im Nebenwerteindex SDax aus. Procredit ersetzt Nagarro ab dem 14. Oktober, meldet dpa-AFX.',
+    category: 'Märkte',
+    publishedAt: '2026-10-10T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['SDax', 'Index', 'Deutsche Börse'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sdax'],
+    sources: [
+      {
+        label: 'onvista, News-Ticker vom 09.10.2026, 18:20 Uhr (dpa-AFX, Index-Monitor)',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der SDax bekommt ein neues Mitglied.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Procredit ersetzt Nagarro ab dem 14. Oktober. Das meldete dpa-AFX im Rahmen seines Index-Monitors.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie Indexwechsel funktionieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Börse prüft die Zusammensetzung ihrer Indizes regelmäßig nach Kriterien wie Marktkapitalisierung und Handelsvolumen. Verändert sich die Rangfolge, tauscht sie Mitglieder aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die betroffenen Aktien kann ein solcher Wechsel kurzfristig Kursbewegungen auslösen. Fonds, die den Index nachbilden, müssen ihre Bestände anpassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Grund für den konkreten Tausch nennt die Agenturmeldung nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-kampagne-zahlungsbetrug',
+    title: 'Bundesbank startet Kampagne gegen Zahlungsbetrug',
+    teaser:
+      'Ab heute informieren Finanzwirtschaft, Telekommunikation und Handel einen Monat lang gemeinsam über Phishing und andere Betrugsmaschen.',
+    category: 'Vorsorge',
+    publishedAt: '2026-10-10T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zahlungsbetrug', 'Phishing', 'Verbraucherschutz', 'Bundesbank'],
+    relatedTopics: ['depot-und-broker'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'Deutsche Bundesbank, Pressemitteilung vom 08.10.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Bundesbank startet heute eine Kampagne gegen Zahlungsbetrug.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ab dem 10. Oktober informieren Unternehmen aus Finanzwirtschaft, Telekommunikation und Handel sowie öffentliche Institutionen rund einen Monat lang über typische Betrugsmaschen. Das teilte die Bundesbank mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer mitmacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Träger ist die Bundesbank gemeinsam mit dem Bundesministerium der Finanzen. Die Kampagne bietet nach eigenen Angaben praktische Tipps, Videos und weiterführende Informationen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für Privatanleger zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Phishing zielt häufig auf Zugangsdaten zu Bankkonten oder Depots. Wer verdächtige Nachrichten früh erkennt, kann einen finanziellen Schaden oft noch verhindern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkrete Zahlen zum Ausmaß von Zahlungsbetrug in Deutschland nennt die Pressemitteilung nicht.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-cipollone-schnabel-ecofin-nachfolge',
     title: 'EZB-Tag: Zwei Reden, ein Rätsel um die Nachfolge',
     teaser:
