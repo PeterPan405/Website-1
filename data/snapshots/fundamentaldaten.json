@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-03T11:44:50.988Z",
+  "abgerufenAm": "2026-10-10T12:35:16.642Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -933,7 +933,7 @@
     },
     "CLX": {
       "umsatz": 7104000000,
-      "gewinn": 810000000,
+      "gewinn": 824000000,
       "cashflow": 981000000,
       "eigenkapital": -67000000,
       "aktien": 120921351
@@ -1020,8 +1020,8 @@
       "umsatz": 275235000000,
       "gewinn": 8099000000,
       "cashflow": 13335000000,
-      "eigenkapital": 33509000000,
-      "aktien": 443478804
+      "eigenkapital": 35803000000,
+      "aktien": 443129349
     },
     "CP.TO": {
       "umsatz": 14969000000,
@@ -1092,8 +1092,8 @@
       "umsatz": 11264761000,
       "gewinn": 1999968000,
       "cashflow": 2276280000,
-      "eigenkapital": 5139887000,
-      "aktien": 400169561
+      "eigenkapital": 5204532000,
+      "aktien": 397075093
     },
     "CTSH": {
       "umsatz": 21108000000,
@@ -1134,8 +1134,8 @@
       "umsatz": 63364000000,
       "gewinn": 5005000000,
       "cashflow": 8342000000,
-      "eigenkapital": 21815000000,
-      "aktien": 657623030
+      "eigenkapital": 22513000000,
+      "aktien": 657912380
     },
     "DASH": {
       "umsatz": 13717000000,
@@ -2476,8 +2476,8 @@
       "umsatz": 37378000000,
       "gewinn": 8539000000,
       "cashflow": 17525000000,
-      "eigenkapital": 100724000000,
-      "aktien": 1129393151
+      "eigenkapital": 138378000000,
+      "aktien": 1131423212
     },
     "NAB.AX": {
       "waehrung": "AUD",
@@ -2761,8 +2761,8 @@
       "umsatz": 93925000000,
       "gewinn": 8240000000,
       "cashflow": 12087000000,
-      "eigenkapital": 22098000000,
-      "aktien": 1364891558
+      "eigenkapital": 22292000000,
+      "aktien": 1362741092
     },
     "PETR4.SA": {
       "umsatz": 91416000000,
@@ -3406,7 +3406,7 @@
       "umsatz": 9139000000,
       "gewinn": 1686700000,
       "cashflow": 2669000000,
-      "eigenkapital": 8255600000
+      "eigenkapital": 8586900000
     },
     "SU.PA": {
       "waehrung": "EUR",
@@ -3908,7 +3908,7 @@
     },
     "WDC": {
       "umsatz": 9520000000,
-      "gewinn": 1889000000,
+      "gewinn": 1643000000,
       "cashflow": 1691000000,
       "eigenkapital": 8864000000,
       "aktien": 360540944
