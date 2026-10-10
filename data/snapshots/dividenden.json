@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-09T01:29:44.042Z",
+  "abgerufenAm": "2026-10-10T01:18:46.127Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -9537,10 +9537,6 @@
     ],
     "bbva": [
       {
-        "date": "2021-10-08",
-        "amount": 0.08
-      },
-      {
         "date": "2022-04-06",
         "amount": 0.23
       },
@@ -12462,7 +12458,7 @@
       },
       {
         "date": "2026-08-28",
-        "amount": 320
+        "amount": 530
       }
     ],
     "seven-i": [
@@ -13963,6 +13959,10 @@
       {
         "date": "2026-05-04",
         "amount": 0.19441
+      },
+      {
+        "date": "2026-10-09",
+        "amount": 0.17698343
       }
     ],
     "china-construction-bank": [
@@ -32967,6 +32967,10 @@
       {
         "date": "2026-05-04",
         "amount": 0.149634
+      },
+      {
+        "date": "2026-10-09",
+        "amount": 0.15191762
       }
     ],
     "china-merchants-bank": [
@@ -35582,10 +35586,6 @@
       }
     ],
     "astra-international": [
-      {
-        "date": "2021-10-08",
-        "amount": 45
-      },
       {
         "date": "2022-05-09",
         "amount": 194
@@ -40410,10 +40410,6 @@
       }
     ],
     "oracle": [
-      {
-        "date": "2021-10-08",
-        "amount": 0.32
-      },
       {
         "date": "2022-01-06",
         "amount": 0.32
