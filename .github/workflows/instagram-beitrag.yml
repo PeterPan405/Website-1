@@ -24,6 +24,13 @@ name: Instagram-Beitrag
 # verworfen. Der Rückfalltermin unten ist genau das – ein Rückfall –, und beide
 # Wege dürfen sich überschneiden, dafür gibt es die Riegel.
 #
+# ## Vier Riegel – drei im Skript, einer hier
+#
+# Der vierte steht weiter unten in diesem Workflow und ist seit dem
+# 11. Oktober 2026 der wichtigste: **die Freigabe des Tages.** Ohne sie geht
+# nichts hinaus, auch nicht aus der Kette und auch nicht nachts um drei. Der
+# Betreiber sieht jeden Beitrag vorher an.
+#
 # ## Zwei Riegel im Skript, keiner davon in diesem Workflow
 #
 # `scripts/instagram-veroeffentlichen.ts` prüft vor dem ersten Behälter:
@@ -161,12 +168,53 @@ jobs:
             echo "  Der eine Weg steht in EINRICHTUNG.md 3.4 und 3.5, der andere in 3.11."
           fi
 
+      # Der vierte Riegel: die Freigabe des Tages.
+      #
+      # Anordnung des Betreibers vom 11. Oktober 2026: Es geht kein Beitrag
+      # mehr hinaus, den er nicht vorher gesehen hat. Taeglich wird besprochen,
+      # **was** hinausgeht – Nachrichten oder ein Wissensbeitrag –, und erst
+      # danach wird freigegeben.
+      #
+      # ## Warum ein Datum und kein Schalter
+      #
+      # Ein `true` bleibt stehen. Wer es einmal setzt, hat die Automatik
+      # dauerhaft wieder eingeschaltet, ohne es zu merken – und der naechste
+      # Beitrag geht ungesehen hinaus. Genau das soll nicht passieren.
+      #
+      # Ein **Datum** laeuft um Mitternacht von selbst ab. Freigegeben ist
+      # immer nur **ein** Tag, und die Freigabe muss jeden Tag neu erteilt
+      # werden. Vergisst sie jemand, bleibt der Beitrag aus – das ist der
+      # gewollte Ausgang, nicht der Fehler.
+      #
+      # Gesetzt wird sie, wenn der Entwurf abgenommen ist:
+      #
+      #     gh variable set INSTAGRAM_FREIGABE --body 2026-10-12
+      #
+      # Fehlt die Variable, ist nichts freigegeben. Das ist der Normalzustand.
+      - name: Freigabe des Tages prüfen
+        id: freigabe
+        run: |
+          heute=$(date -u +%F)
+          frei="${{ vars.INSTAGRAM_FREIGABE }}"
+
+          if [ "$frei" = "$heute" ]; then
+            echo "heute=ja" >> "$GITHUB_OUTPUT"
+            echo "Freigegeben für $heute."
+          else
+            echo "heute=nein" >> "$GITHUB_OUTPUT"
+            echo "Keine Freigabe für $heute (INSTAGRAM_FREIGABE: ${frei:-nicht gesetzt})."
+            echo "Dieser Lauf zeigt nur, was hinausginge."
+          fi
+
       # Wann wird wirklich veroeffentlicht?
       #
       #   workflow_dispatch  nur mit gesetztem Haken – von Hand wird geprueft,
       #                      nicht gepostet, solange niemand es ausdruecklich will
       #   schedule           ja; der Rueckfalltermin ist der Ernstfall
       #   Anstoss aus dem Paketbau  ja, per `-f veroeffentlichen=true`
+      #
+      # **Und in allen drei Faellen zusaetzlich: nur mit der Freigabe des
+      # Tages.** Ohne sie bleibt es beim Trockenlauf, auch nachts um drei.
       #
       # Ohne Zugangsdaten bleibt es beim Trockenlauf – das Skript zaehlt dann
       # die Kacheln auf und hoert vor dem ersten Behaelter auf.
@@ -194,6 +242,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
           VEROEFFENTLICHEN: >-
             ${{ (steps.zugang.outputs.vorhanden == 'ja'
+                 && steps.freigabe.outputs.heute == 'ja'
                  && (github.event_name == 'schedule' || inputs.veroeffentlichen))
                 && 'ja' || 'nein' }}
 
@@ -248,6 +297,14 @@ jobs:
               echo "**Keine Zugangsdaten** – weder IG_ACCESS_TOKEN/IG_USER_ID noch MAKE_WEBHOOK_URL."
               echo "Es ist nichts hinausgegangen. Der eine Weg steht in EINRICHTUNG.md 3.4"
               echo "und 3.5, der andere in 3.11."
+            elif [ "${{ steps.freigabe.outputs.heute }}" != "ja" ]; then
+              echo "**Keine Freigabe für heute** – es ist nichts hinausgegangen."
+              echo ""
+              echo "Oben steht die Beschriftung, die hinausginge. Ist sie abgenommen:"
+              echo ""
+              echo '    gh variable set INSTAGRAM_FREIGABE --body '"$(date -u +%F)"
+              echo ""
+              echo "Danach diesen Workflow mit gesetztem Haken starten."
             elif [ "${{ github.event_name }}" = "schedule" ] \
               || [ "${{ inputs.veroeffentlichen }}" = "true" ]; then
               echo "Scharf gestellt. Ob der Beitrag hinausging, sagt das Protokoll"
