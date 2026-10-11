@@ -87,6 +87,50 @@ Ohne gesetzte Variable ist nichts freigegeben. Das ist der Normalzustand, und
 der Lauf sagt in der Zusammenfassung, was hinausginge und mit welchem Befehl
 man es freigibt.
 
+## „Top-News des Tages" wird nachgebaut, nicht neu gestaltet
+
+Am Abend des 11. Oktober 2026 stellte sich heraus, dass der Generator in
+`lib/instagram-bild.tsx` seit August Kacheln erzeugte, die im Kanal **nie**
+erschienen waren: weiß, „DIE MELDUNGEN DES TAGES" in blauen Versalien, drei
+Schlagzeilen. Im Kanal standen 54 Tagesbeiträge in einer ganz anderen Form –
+Foto-Deckblatt, fünf weiße Kacheln mit Wasserzeichen. Veröffentlicht hatte sie
+der Dienst; was das Repository baute, sah niemand.
+
+Der Betreiber dazu: „Du sollst das gleiche Design wiedergeben … keine neuen
+Experimente, sondern erstmal dabei bleiben."
+
+Deshalb ist der neue Generator **abgemessen, nicht entworfen.** Alle 130
+Beiträge wurden über die Graph-Schnittstelle abgezogen und ausgewertet; die
+Maße stehen in `lib/instagram-bild.ts`, das Muster in `INSTAGRAM.md`. Drei
+Entscheidungen darin sind keine Selbstverständlichkeit:
+
+**Das Wasserzeichen ist ausgeschnitten.** `lib/instagram/grundplatte.png` ist
+ein Streifen aus einer veröffentlichten Kachel. Nachgebaut aus
+`public/logo.svg` hätte es ähnlich ausgesehen – und ähnlich ist genau das, was
+im Raster neben 270 echten Kacheln auffällt.
+
+**Die Deckblätter sind gebraucht.** Das Deckblatt unterscheidet sich von Tag
+zu Tag nur im Foto. Ein neues Foto braucht eine Bildquelle – Bilddienst,
+Bildgenerator –, und jede davon wäre die neue Form, die nicht gewünscht war.
+Genommen sind 28 der 37 Deckblätter seit dem 17. August, an denen nichts an
+einen Tag gebunden ist; Menschen, Marken und Produkte sind weggelassen.
+
+**Der Plan hält die Ausgabe nie auf.** Die Kurztexte für die Kacheln schreibt
+der Nachrichten-Agent neben die Ausgabe. Prüft `nachrichten-erzeugen.ts` sie
+und findet einen Fehler, wird er laut gesagt – aber `process.exit(1)` gibt es
+dafür nicht. Die Ausgabe ist Website, Podcast und der Rest des Tages; der
+Beitrag ist einer von fünf Abnehmern. Fiele der Tag wegen einer zu langen
+Kachelüberschrift aus, wäre das der teuerste denkbare Tausch.
+
+Dass es **nur werktags** einen Tagesbeitrag gibt, ist ebenfalls gemessen:
+54 von 54 Werktagen, 0 von 22 Wochenendtagen. Am 11.10.2026 wurde das
+Wochenende zuerst für einen Ausfall gehalten – es war keiner.
+
+Der Tag, für den die Kacheln gelten, steht seither in `/instagram/stand.txt`
+statt in der ersten Zeile der Beschriftung: Die Beschriftung beginnt wie im
+Kanal mit „Die wichtigsten Börsennews des Tages. 📈". `lib/datum-lang.ts`, das
+nur für den alten Abgleich existierte, ist damit entfallen.
+
 ## `datumLang` musste umziehen
 
 Riegel 1 vergleicht eine Zeile, die `app/instagram/beschriftung.txt/route.ts`

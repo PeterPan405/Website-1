@@ -31,10 +31,18 @@
  * ist. Eine halbe Ausgabe im Repository wäre schlimmer als keine.
  */
 
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 import { positionierungen } from '../lib/editions-validate.ts'
+import {
+  ANWEISUNG_INSTAGRAM,
+  type InstagramPlan,
+  KACHELN as IG_KACHELN,
+  SCHLAGWORTE as IG_SCHLAGWORTE,
+  istErscheinungstag,
+  pruefeInstagramPlan,
+} from '../lib/instagram-plan.ts'
 
 // ---------------------------------------------------------------- Regelwerk
 
@@ -187,6 +195,11 @@ interface Antwort {
   artikel: Artikel[]
   top: Meldung[]
   further: Meldung[]
+  /**
+   * Der Instagram-Beitrag des Tages – **ausdrücklich nicht** Teil der Prüfung
+   * der Ausgabe. Ein Fehler hier kostet den Beitrag, nie die Website.
+   */
+  instagram?: InstagramPlan
 }
 
 // ------------------------------------------------------------------ Eingabe
@@ -387,6 +400,31 @@ const WERKZEUG = {
         items: { $ref: '#/$defs/meldung' },
       },
       further: { type: 'array', maxItems: 6, items: { $ref: '#/$defs/meldung' } },
+      instagram: {
+        type: 'object',
+        description:
+          'Der Instagram-Beitrag „Top-News des Tages" – fünf Kacheln, Zusammenfassung, fünf Schlagworte. Siehe Anweisung.',
+        required: ['zusammenfassung', 'kacheln', 'schlagworte'],
+        properties: {
+          zusammenfassung: { type: 'string' },
+          kacheln: {
+            type: 'array',
+            minItems: IG_KACHELN,
+            maxItems: IG_KACHELN,
+            items: {
+              type: 'object',
+              required: ['titel', 'text'],
+              properties: { titel: { type: 'string' }, text: { type: 'string' } },
+            },
+          },
+          schlagworte: {
+            type: 'array',
+            minItems: IG_SCHLAGWORTE,
+            maxItems: IG_SCHLAGWORTE,
+            items: { type: 'string' },
+          },
+        },
+      },
     },
     $defs: {
       meldung: {
@@ -539,6 +577,10 @@ schlimmere Fehler.
 - \`title\`, \`metaTitle\`, \`teaser\` und \`headline\` müssen sich **zwischen den Artikeln unterscheiden**. Zwei gleiche Meta-Descriptions sehen in einer Suchergebnisliste aus wie derselbe Artikel.
 - \`sources\`: mindestens eine je Artikel, \`https://\`, mit lesbarer Beschriftung nach dem Muster „finanzen.net, News-Ticker vom ${heute}, 7:21 Uhr: „…"".
 - \`body\`: mindestens fünf Blöcke, davon mindestens ein \`heading\` (level 2). Kein Block leer.
+
+# Der Instagram-Beitrag
+
+${ANWEISUNG_INSTAGRAM}
 
 # Die Quellen von heute
 
@@ -954,7 +996,40 @@ async function main() {
     process.exit(1)
   }
 
+  /*
+    Der Instagram-Plan wird geprüft, aber er hält die Ausgabe nie auf.
+
+    Die Ausgabe ist die Website, der Podcast und der Rest des Tages; der
+    Instagram-Beitrag ist einer von fünf Abnehmern. Fiele die Ausgabe wegen
+    einer zu langen Kachelüberschrift durch, wäre der Tag verloren für etwas,
+    das der Leser auf der Website nie sieht. Deshalb: Fehler werden laut
+    gesagt – der Agent sieht sie in seiner Probe und bessert nach –, aber
+    `process.exit(1)` gibt es hier nicht. Ohne gültigen Plan erscheint an
+    diesem Tag eben kein Tagesbeitrag, und `instagram-beitrag.yml` sagt warum.
+  */
+  const igFehler = pruefeInstagramPlan(ergebnis.instagram)
+  const igTag = istErscheinungstag(heute)
+  const igMelden = () => {
+    if (!igTag) {
+      console.log(
+        `Instagram: ${heute} ist kein Werktag – an diesem Tag gibt es keinen Tagesbeitrag.`
+      )
+    } else if (igFehler.length === 0) {
+      console.log('Instagram-Plan: in Ordnung.')
+      for (const k of ergebnis.instagram!.kacheln) console.log(`  ▸ ${k.titel}`)
+      console.log(`  ${ergebnis.instagram!.schlagworte.map((w) => '#' + w).join(' ')}`)
+    } else {
+      console.log(
+        `::warning::Der Instagram-Plan hält ${igFehler.length} Regeln nicht ein – bitte beheben:`
+      )
+      for (const satz of igFehler) console.log(`  – ${satz}`)
+      console.log('  (Die Ausgabe selbst ist davon nicht betroffen.)')
+    }
+  }
+
   if (probe) {
+    console.log('')
+    igMelden()
     console.log('')
     console.log('── Probe bestanden. Es wurde nichts geschrieben. ──')
     console.log('')
@@ -1042,6 +1117,34 @@ ${ergebnis.further.map(meldungQuelltext).join('\n')}
     `Geschrieben: ${ergebnis.artikel.length} Artikel, ${ergebnis.top.length} Top-Meldungen, ${ergebnis.further.length} weitere.`
   )
   for (const a of ergebnis.artikel) console.log(`  – ${a.title}`)
+
+  /*
+    Der Plan liegt neben der Ausgabe, nicht in ihr: `DailyEdition` ist der
+    Vertrag von Website, Podcast und Prüfungen, und ein Feld, das nur einer
+    von ihnen braucht, gehört nicht hinein. `nachrichten.yml` committet
+    `data/` als Ganzes – die Datei geht also mit.
+  */
+  igMelden()
+  if (igTag && igFehler.length === 0) {
+    mkdirSync('data/instagram', { recursive: true })
+    const plan = ergebnis.instagram!
+    writeFileSync(
+      `data/instagram/${heute}.json`,
+      JSON.stringify(
+        {
+          zusammenfassung: plan.zusammenfassung.trim(),
+          kacheln: plan.kacheln.map((k) => ({
+            titel: k.titel.trim(),
+            text: k.text.trim(),
+          })),
+          schlagworte: plan.schlagworte,
+        },
+        null,
+        2
+      ) + '\n'
+    )
+    console.log(`Geschrieben: data/instagram/${heute}.json`)
+  }
 }
 
 /*

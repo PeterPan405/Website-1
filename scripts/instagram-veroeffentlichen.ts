@@ -38,7 +38,6 @@
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 
-import { datumLang } from '../lib/datum-lang.ts'
 import {
   gesperrt,
   sperreLesen,
@@ -193,30 +192,16 @@ const kacheln = readdirSync('out/instagram')
   .filter((n) => /^\d+\.jpg$/.test(n))
   .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
 
-if (kacheln.length < 2) {
-  melde(`Nur ${kacheln.length} Kachel(n) – ein Karussell braucht mindestens zwei.`)
-  process.exit(1)
-}
-if (kacheln.length > 10) {
-  // Instagram nimmt höchstens zehn. Mehr wäre ein Fehler, der erst bei Meta
-  // auffiele – also hier abfangen, wo der Grund noch sichtbar ist.
-  melde(`${kacheln.length} Kacheln – Instagram nimmt höchstens zehn.`)
-  process.exit(1)
-}
-
 /*
   Die Beschriftung kommt aus demselben Bau wie die Kacheln
-  (`app/instagram/beschriftung.txt/route.ts`). Fehlt sie, wird ohne Text
-  veröffentlicht – ein Beitrag ohne Beschriftung ist mager, aber kein Grund,
-  die Bilder zurückzuhalten.
+  (`app/instagram/beschriftung.txt/route.ts`). Ohne sie geht nichts hinaus:
+  Der Rechtshinweis und der KI-Hinweis stehen darin, und ein Beitrag ohne
+  beides gibt es seit August nicht mehr.
 */
 const TEXTDATEI = 'out/instagram/beschriftung.txt'
 const beschriftung = existsSync(TEXTDATEI) ? readFileSync(TEXTDATEI, 'utf8').trim() : ''
 
 const adressen = kacheln.map((n) => `${BASIS}/instagram/${n}`)
-
-melde(`${kacheln.length} Kacheln, Basis ${BASIS}`)
-for (const a of adressen) melde(`  ${a}`)
 
 /*
   Riegel 1: Zeigt die Website überhaupt schon die Ausgabe von heute?
@@ -228,31 +213,56 @@ for (const a of adressen) melde(`  ${a}`)
   und der Beitrag geht mit den Schlagzeilen von gestern hinaus.
 
   Das wäre kein roter Lauf, sondern ein stiller Fehler: Alles meldet Erfolg,
-  und nur die 1.680 Leute im Feed sehen, dass etwas nicht stimmt.
+  und nur die Leute im Feed sehen, dass etwas nicht stimmt.
 
-  Geprüft wird deshalb der einzige Zeuge, der den Tag kennt: die erste Zeile
-  der Beschriftung, die derselbe Bau erzeugt hat wie die Kacheln. Steht dort
-  nicht der erwartete Tag, ist die Übertragung noch nicht durch.
+  Gefragt wird `/instagram/stand.txt` aus demselben Bau wie die Kacheln:
+  erste Zeile der Tag, zweite Zeile, ob es einen Beitrag gibt. Bis zum
+  11.10.2026 stand der Tag in der ersten Zeile der Beschriftung – die beginnt
+  jetzt wie im Kanal mit „Die wichtigsten Börsennews des Tages".
 */
-const erwartet = `${datumLang(STICHTAG)} –`
-const ersteZeile = beschriftung.split('\n')[0]?.trim() ?? ''
+const STAND = 'out/instagram/stand.txt'
+const stand = existsSync(STAND) ? readFileSync(STAND, 'utf8').trim().split('\n') : []
+const [standTag = '', standArt = '', ...standGrund] = stand.map((z) => z.trim())
 
-if (!beschriftung) {
+if (!standTag) {
   haltAn(
-    'Unter /instagram/beschriftung.txt liegt nichts. Ohne sie lässt sich nicht ' +
+    'Unter /instagram/stand.txt liegt nichts. Ohne sie lässt sich nicht ' +
       'feststellen, von welchem Tag die Kacheln sind.'
   )
 }
-if (!ersteZeile.startsWith(erwartet)) {
+if (standTag !== STICHTAG) {
   haltAn(
-    `Die Website zeigt noch nicht den ${STICHTAG}.\n` +
-      `[instagram]   erwartet: ${erwartet} …\n` +
-      `[instagram]   gefunden: ${ersteZeile}\n` +
+    `Die Website zeigt noch nicht den ${STICHTAG}, sondern den ${standTag}.\n` +
       '[instagram] Der Paketbau ist noch nicht übertragen – ein Beitrag jetzt trüge ' +
       'die Schlagzeilen von gestern.'
   )
 }
-melde(`Die Website zeigt den ${STICHTAG}: ${ersteZeile}`)
+if (standArt !== 'tagesnews') {
+  haltAn(`Für den ${STICHTAG} gibt es keinen Tagesbeitrag. ${standGrund.join(' ')}`)
+}
+if (!beschriftung) {
+  haltAn(
+    'Unter /instagram/beschriftung.txt liegt nichts – ohne Text geht kein Beitrag hinaus.'
+  )
+}
+melde(`Die Website zeigt den ${STICHTAG}, Tagesbeitrag liegt bereit.`)
+
+/*
+  Erst jetzt wird gezählt: An Tagen ohne Beitrag liegt nur das Deckblatt da,
+  und das ist kein Fehler – Riegel 1 hat dann schon aufgehört.
+*/
+if (kacheln.length < 2) {
+  melde(`Nur ${kacheln.length} Kachel(n) – ein Karussell braucht mindestens zwei.`)
+  process.exit(1)
+}
+if (kacheln.length > 10) {
+  // Instagram nimmt höchstens zehn. Mehr wäre ein Fehler, der erst bei Meta
+  // auffiele – also hier abfangen, wo der Grund noch sichtbar ist.
+  melde(`${kacheln.length} Kacheln – Instagram nimmt höchstens zehn.`)
+  process.exit(1)
+}
+melde(`${kacheln.length} Kacheln, Basis ${BASIS}`)
+for (const a of adressen) melde(`  ${a}`)
 
 if (!SCHARF) {
   melde('')
@@ -499,6 +509,17 @@ const sammel = await graph(`${KONTO}/media`, {
   media_type: 'CAROUSEL',
   children: kennungen.join(','),
   ...(beschriftung ? { caption: beschriftung } : {}),
+  /*
+    Das Label „KI-Inhalte" unter dem Kontonamen – es steht an allen 130
+    Beiträgen im Kanal, und der Betreiber am 11.10.2026: „Der KI-Hinweis muss
+    hin." Der Satz in der Beschriftung allein ersetzt das Label nicht.
+
+    Laut Metas Referenz zu `/{ig-user-id}/media` (nachgelesen am 11.10.2026)
+    ist `is_ai_generated` eine Selbstauskunft „nicht für untergeordnete
+    Carousel-Elemente verfügbar" – also hier am Sammelbehälter, nicht an den
+    einzelnen Kacheln oben.
+  */
+  is_ai_generated: 'true',
 })
 const sammelKennung = String(sammel.id)
 await warteAufFertig(sammelKennung, 120)
