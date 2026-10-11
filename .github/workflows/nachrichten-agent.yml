@@ -586,7 +586,12 @@ jobs:
                   "sources": [{ "label": "…", "url": "https://…" }]
                 }
               ],
-              "further": []
+              "further": [],
+              "instagram": {
+                "zusammenfassung": "60 bis 300 Zeichen",
+                "kacheln": [{ "titel": "höchstens 28 Zeichen", "text": "100 bis 190 Zeichen" }],
+                "schlagworte": ["news", "top", "daily", "öl", "ezb"]
+              }
             }
             ```
 
@@ -595,6 +600,18 @@ jobs:
             `further` zusammen mindestens drei. Titel, Meta-Titel und Anreißer
             müssen untereinander **und gegen die vorhandenen Artikel in
             `data/news.ts`** eindeutig sein.
+
+            ## Der Instagram-Beitrag
+
+            Aus dem Feld `instagram` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, montags bis freitags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
+
+            - `kacheln`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
+              - `titel`: höchstens 28 Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
+              - `text`: 100 bis 190 Zeichen, zwei bis drei Sätze – die Nachricht mit Zahl und Namen, ohne Einordnung. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
+            - `zusammenfassung`: ein bis zwei Sätze, 60 bis 300 Zeichen, die die fünf Themen nennen. Vorbild: „KI-Aktien unter Druck, Brasiliens Börse auf Rekordhoch und steigende Ölpreise. Gleichzeitig sorgen Frankreichs Haushaltsprobleme und die Entwicklungen rund um die EZB für Aufmerksamkeit."
+            - `schlagworte`: **genau fünf**, kleingeschrieben, ohne `#`. Zwei bis drei passen zu den Themen des Tages (etwa `öl`, `ezb`, `fed`, `dax`, `inflation`), der Rest aus `news`, `top`, `daily`, `finanzen`, `wirtschaft`, `investieren`, `aktien`.
+            - Kein Emoji, kein `#` im Text. Kopf, Rechtshinweis und KI-Hinweis setzt das Skript selbst.
+            - Es gelten dieselben Grundsätze wie für die Ausgabe: nur, was in den Quellen steht, keine Wertung.
 
             ## Prüfe dich selbst – das ist der wichtigste Schritt
 
@@ -610,6 +627,11 @@ jobs:
             prüfe erneut**, bis „Probe bestanden" dasteht. Ein Entwurf, der hier
             durchfällt, wird verworfen, und die Website bekommt den Notbehelf aus
             Kursdaten statt echter Nachrichten.
+
+            Darüber steht die Zeile zum Instagram-Plan. Montags bis freitags soll
+            dort „Instagram-Plan: in Ordnung." stehen; nennt sie Fehler, behebe
+            auch die. Sie halten die Ausgabe nicht auf – aber ohne gültigen Plan
+            erscheint an diesem Tag kein Tagesbeitrag bei Instagram.
 
             Ändere nichts unter `data/` und committe nichts – das Ablegen
             übernimmt der Schritt nach dir. Deine einzige Ausgabe ist die Datei

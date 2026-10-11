@@ -92,6 +92,7 @@ Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
     - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#Warum nicht dort, wo der Podcast hängt|Warum nicht dort, wo der Podcast hängt]]
     - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#Zwei Riegel, und beide fragen etwas Äußeres|Zwei Riegel, und beide fragen etwas Äußeres]]
     - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#Der vierte Riegel ist ein Datum, kein Schalter|Der vierte Riegel ist ein Datum, kein Schalter]]
+    - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#„Top-News des Tages" wird nachgebaut, nicht neu gestaltet|„Top-News des Tages" wird nachgebaut, nicht neu gestaltet]]
     - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#`datumLang` musste umziehen|`datumLang` musste umziehen]]
     - [[Der Instagram-Beitrag hängt am Paketbau, nicht an den Nachrichten#Was offen bleibt|Was offen bleibt]]
 - **2026-08-29** – [[Der Instagram-Beitrag läuft – über einen Dritten, weil Meta zumachte]]

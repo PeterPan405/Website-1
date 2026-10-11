@@ -119,6 +119,18 @@ jobs:
           basis="${basis%/}"
           mkdir -p out/instagram
 
+          # Zuerst: Gibt es heute überhaupt einen Beitrag? Am Wochenende und an
+          # Tagen ohne gültigen Plan steht unter /instagram/ nur das Deckblatt.
+          # Das ist kein Fehler – das Skript sagt danach, warum nichts hinausgeht.
+          code=$(curl -s -o out/instagram/stand.txt -w '%{http_code}' "$basis/instagram/stand.txt")
+          [ "$code" = "200" ] || rm -f out/instagram/stand.txt
+          echo "Stand:"; sed 's/^/  /' out/instagram/stand.txt 2>/dev/null || echo "  (keiner)"
+          if [ "$(sed -n 2p out/instagram/stand.txt 2>/dev/null)" != "tagesnews" ]; then
+            curl -s -o out/instagram/1.jpg "$basis/instagram/1.jpg" || true
+            echo "kacheln=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           # Wie viele Kacheln gibt es? Gezählt wird, bis eine fehlt – die
           # Anzahl haengt an der Ausgabe des Tages und ist nicht fest.
           n=1
