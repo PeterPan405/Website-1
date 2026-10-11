@@ -3917,6 +3917,23 @@ Ohne gesetzte Variable ist nichts freigegeben. Das ist der Normalzustand, und
 der Lauf sagt in der Zusammenfassung, was hinausginge und mit welchem Befehl
 man es freigibt.
 
+**Nachtrag, derselbe Abend:** Für den Tagesbeitrag gilt die Freigabe seither
+von selbst. Der Betreiber, nachdem „Top-News des Tages" nach dem Muster der
+54 bisherigen Beiträge nachgebaut war: „Sobald die Daily News nachts gemacht
+werden … soll bei Instagram die Daily News nun vollautomatisch erscheinen.
+Du hast ja alle Vorgaben von mir jetzt bekommen. Diese müssen zwingend
+beachtet werden."
+
+Das ist kein Widerruf der Regel oben, sondern ihre Anwendung: Die Freigabe
+gilt einer **Form**, die er gesehen und abgenommen hat – sechs Kacheln, die
+feste Beschriftung, der KI-Hinweis, fünf Schlagworte, nur werktags –, und
+diese Form erzwingt jetzt `lib/instagram-plan.ts`. Ein Plan, der sie nicht
+einhält, ergibt „kein-beitrag" statt eines abweichenden Beitrags. Für alles
+andere – Erklärbeiträge, Zahlenkarten – gilt weiter das Datum.
+
+Deshalb fragt der Riegel die **Art** aus `/instagram/stand.txt` und keinen
+neuen Schalter: „tagesnews" steht dort nur, wenn die Prüfung bestanden ist.
+
 ## „Top-News des Tages" wird nachgebaut, nicht neu gestaltet
 
 Am Abend des 11. Oktober 2026 stellte sich heraus, dass der Generator in
