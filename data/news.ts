@@ -101,6 +101,401 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'diesel-deal-putin-mengen-senat-kritik',
+    title: 'Diesel-Deal mit Russland: Diese Mengen hat Trump zugesagt',
+    teaser:
+      'Nach Tagen ohne Zahlen nennt eine US-Agentur die Diesel-Mengen aus Trumps Deal mit Putin – und den scharfen Widerstand im US-Senat.',
+    category: 'Märkte',
+    publishedAt: '2026-10-11T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Russland', 'USA', 'Diesel', 'Sanktionen', 'Ölmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 11:05 Uhr (dpa-AFX): „ROUNDUP 3: Empörung wegen Diesel-Deal von Trump und Putin“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'The Atlanta Journal-Constitution (AP), 9.10.2026: „Trump strikes deal with Putin for Russian diesel in sharp reversal of US policy ahead of midterms“',
+        url: 'https://www.ajc.com/news/2026/10/trump-strikes-deal-with-putin-for-russian-diesel-in-sharp-reversal-of-us-policy-ahead-of-midterms/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump hat mit dem russischen Präsidenten Wladimir Putin telefoniert – eigentlich ging es um einen Krankheitsfall bei Tieren in Russland. Am Ende des Gesprächs stand eine Ankündigung, die damit nichts zu tun hat: Russland liefert künftig deutlich mehr Diesel an die USA und den Weltmarkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Mengen, die bisher fehlten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump nannte auf seiner eigenen Plattform konkrete Zahlen. Sofort sollen mehr als 300.000 Tonnen Diesel kommen, im November weitere 500.000 Tonnen. Kurz danach soll eine Million Tonnen folgen, anschließend binnen kurzer Zeit weitere drei Millionen Tonnen – zusammen rund 4,8 Millionen Tonnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das US-Finanzministerium setzte die Sanktionen auf russischen Diesel dafür befristet aus, bis April 2027 – vorausgesetzt, die Ladung ist bis Freitag verschifft. Es ist nach eigenen Angaben die erste derartige Lockerung seit mehr als 30 Tagen seit Kriegsbeginn 2022. Das Weiße Haus nannte weder einen Zahler noch feste Liefertermine.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reaktionen zwischen Dank und Vorwurf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump bedankte sich öffentlich bei Putin und begründete den Schritt mit niedrigeren Preisen für Farmer, Viehzüchter und Lkw-Fahrer. Zu Sanktionen oder zum Krieg in der Ukraine äußerte er sich nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ukrainische Präsident Wolodymyr Selenskyj nannte die Entscheidung eine schwache Entscheidung starker Partner. Mehrere demokratische US-Senatoren, darunter Chuck Schumer, Jeanne Shaheen und Elizabeth Warren, sprachen von einem Verrat an der Ukraine und an den europäischen Verbündeten. Senator Richard Blumenthal, Mitinitiator des US-Sanktionsgesetzes gegen Russland, warf Trump vor, die USA mitschuldig am Krieg zu machen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Mehr Diesel-Angebot am Weltmarkt kann die Preise an der Tankstelle dämpfen – genau das, was Trump vor den Midterms sucht. Gleichzeitig lockert die befristete Ausnahme einen Teil der westlichen Sanktionsarchitektur gegen russische Energieexporte, wenn auch nur für ein einzelnes Produkt und einen begrenzten Zeitraum.',
+      },
+    ],
+  },
+  {
+    slug: 'angriff-saporischschja-tote-selenskyj-raffinerien',
+    title: '23 Tote nach russischem Angriff auf Saporischschja',
+    teaser:
+      'Russland griff am Wochenende erneut Saporischschja an, die Zahl der Toten stieg auf 23. Selenskyj bietet eine Gegenleistung bei Raffinerien an.',
+    category: 'Märkte',
+    publishedAt: '2026-10-11T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Ukraine', 'Russland', 'Krieg', 'Energie'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 10:49 Uhr (dpa-AFX): „Angriff auf Saporischschja: Zahl der Toten steigt auf 23“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'ad-hoc-news.de, dpa-AFX-Meldung vom 11.10.2026, 14:46 Uhr: „Angriff auf Saporischschja: Zahl der Toten steigt auf 23“',
+        url: 'https://www.ad-hoc-news.de/wirtschaft/angriff-auf-saporischschja-zahl-der-toten-steigt-auf-23/70292622',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Russland hat am Samstag die südukrainische Stadt Saporischschja angegriffen. Die Rettungsarbeiten sind inzwischen abgeschlossen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahl der Toten steigt im Tagesverlauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Zahl der Toten stieg im Tagesverlauf auf 23, darunter vier Minderjährige. Das teilte der ukrainische Präsident Wolodymyr Selenskyj über soziale Medien mit, nachdem frühere Meldungen zunächst von 17 und dann von 20 Toten ausgegangen waren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Weitere Ziele in derselben Nacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'In derselben Nacht griff Russland nach Berichten auch eine medizinische Einrichtung in Charkiw sowie zivile Infrastruktur, Wohnhäuser und Energieanlagen an. In Slowjansk traf ein weiterer Angriff ein Wohnhaus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der ukrainischen Führung setzte Russland allein in dieser Woche landesweit rund 1.450 Gleitbomben, 75 Raketen und Marschflugkörper sowie mehr als 1.640 Drohnen ein, zum großen Teil mit Düsenantrieb.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Selenskyjs Angebot zu Raffinerien',
+      },
+      {
+        type: 'paragraph',
+        text: 'Selenskyj erklärte, der eigentliche Grund für den Krieg in Europa sei Russland allein. Zugleich bot er an, ukrainische Angriffe auf russische Raffinerien einzustellen – vorausgesetzt, Russland lässt im Gegenzug die ukrainische Energieversorgung in Ruhe. Ob Russland darauf eingeht, ist offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ukrainische Drohnenangriffe auf russische Raffinerien haben in den vergangenen Monaten wiederholt Verarbeitungskapazität vom Markt genommen. Ein Ende dieser Angriffe würde die Versorgungslage dort entspannen – unabhängig vom separat verhandelten Diesel-Deal zwischen den USA und Russland.',
+      },
+    ],
+  },
+  {
+    slug: 'huthi-angriff-flughafen-riad-zwoelf-tote',
+    title: 'Zwölf Tote bei Huthi-Angriff auf Flughafen in Riad',
+    teaser:
+      'Eine ballistische Rakete traf ein Terminal in Riad. Zwölf Menschen starben, mehr als 300 wurden verletzt – der schwerste Angriff seit Februar.',
+    category: 'Märkte',
+    publishedAt: '2026-10-11T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Saudi-Arabien', 'Huthi', 'Nahost', 'Ölmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 11:35 Uhr (dpa-AFX): „Mindestens zwölf Tote bei Angriff auf Flughafen in Riad“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'aero.de, 11.10.2026: „Zwölf Tote bei Angriff auf Flughafen Riad“',
+        url: 'https://www.aero.de/news-53895/Zwoelf-Tote-bei-Angriff-auf-Flughafen-Riad.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Samstag traf eine ballistische Rakete ein Passagierterminal des Flughafens King Khalid in der saudi-arabischen Hauptstadt Riad. Das berichtete der Sender Al Jazeera.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwölf Tote, Hunderte Verletzte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die staatliche saudische Luftfahrtbehörde zählte zwölf Tote und 309 Verletzte, einige davon am Morgen danach in Lebensgefahr. Unter den Toten waren laut Behördenangaben vier Saudis, zwei Staatsangehörige aus Bangladesch sowie jeweils eine Person aus den USA, Ägypten, Jordanien, Syrien, dem Sudan und den palästinensischen Gebieten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Es ist der bislang höchste Opferstand bei einem Angriff auf Saudi-Arabien seit Beginn des Kriegs um den Iran Ende Februar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Verantwortung und Reaktionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das saudisch geführte Militärbündnis macht die Huthi-Miliz verantwortlich. Zum Angriff vom Samstag gab es zunächst kein Bekennerschreiben, die Miliz hatte aber bereits frühere Angriffe auf Riad reklamiert – darunter einen vom Donnerstag mit drei Toten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bündnis-Sprecher Turki al-Maliki nannte den Angriff auf der Plattform X ein „regelrechtes Kriegsverbrechen“ und kündigte eine entschiedene Reaktion an. US-Außenminister Marco Rubio verurteilte den Angriff und stellte sich an die Seite Saudi-Arabiens. Nach Angaben des Senders CBS prüft Präsident Trump, ob sich die USA den saudischen Gegenangriffen auf die Huthi anschließen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Folgen für den Flugverkehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Flughafen King Khalid stellte den Betrieb vorübergehend ein, ebenso der Flughafen in Dammam. Die US-Botschaft rief amerikanische Bürger auf, das Flughafengelände und seine Umgebung zu meiden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Angriffe auf saudische Flughäfen betreffen nicht unmittelbar die Öl-Förderanlagen des Landes. Sie zeigen aber, dass sich die seit Februar laufende Eskalation am Golf nicht auf den Jemen beschränkt – ein Risiko, das Ölhändler traditionell als Geopolitik-Prämie in den Preis einrechnen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-quartalssaison-start-kw42',
+    title: 'Diese Woche startet die große US-Berichtssaison',
+    teaser:
+      'ASML, TSMC, BlackRock, JPMorgan Chase und Johnson & Johnson legen in den kommenden Tagen ihre Quartalszahlen vor – der Auftakt für Q3.',
+    category: 'Märkte',
+    publishedAt: '2026-10-11T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Quartalszahlen', 'USA', 'JPMorgan', 'ASML', 'TSMC'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['jpmorgan', 'asml', 'tsmc', 'blackrock', 'johnson-johnson'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichtenübersicht vom 11.10.2026: „Diese in den kommenden Tagen (KW42) anstehenden US-Quartalszahlen müssen Anlegerinnen und Anleger kennen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Diese Woche beginnt die US-Berichtssaison für das dritte Quartal. Das meldet wallstreet-online unter Berufung auf den Terminkalender der Kalenderwoche 42.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Diese Namen berichten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu zählen ASML Holding, Taiwan Semiconductor Manufacturing (TSMC), BlackRock, JPMorgan Chase und Johnson & Johnson.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkrete Konsensschätzungen zu Gewinn oder Umsatz nennt die Übersicht nicht. Auch feste Termine innerhalb der Woche fehlen in der gesichteten Quelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein voller Kalender zum Wochenstart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Montag tagt zudem der Internationale Währungsfonds. Mehrere Notenbanker treten öffentlich auf: Breeden und Mann von der Bank of England, Vujcic von der EZB und Hammack von der US-Notenbank Fed, laut derselben Terminübersicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Dienstag nennt die Übersicht britische Einzelhandelsdaten (BRC Like-for-Like Retail Sales) mit einer Prognose von 0,7 Prozent nach zuvor 0,5 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Auftakt der Berichtssaison gilt an der Wall Street oft als erster Stimmungstest, unabhängig davon, wie die einzelnen Unternehmen tatsächlich abschneiden. Enttäuscht ein Schwergewicht wie JPMorgan Chase, wird das oft auf die ganze Branche übertragen – unabhängig von den eigentlichen Geschäftszahlen der anderen Häuser.',
+      },
+    ],
+  },
+  {
+    slug: 'deutsche-bank-sewing-mehr-tempo-reformen',
+    title: 'Deutsche-Bank-Chef Sewing fordert erneut mehr Reformtempo',
+    teaser:
+      'Christian Sewing drängt die Bundesregierung laut dpa-AFX erneut zu mehr Tempo bei Reformen – ein Thema, das er seit Monaten wiederholt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-11T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Deutsche Bank', 'Reformen', 'Wirtschaftspolitik'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['deutsche-bank', 'dax'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 10:49 Uhr (dpa-AFX): „Deutsche-Bank-Chef Sewing fordert mehr Tempo bei Reformen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'ms-aktuell.de: „Deutsche-Bank-Chef Sewing erhöht den Druck auf die Bundesregierung“',
+        url: 'https://ms-aktuell.de/?p=155452',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutsche-Bank-Chef Christian Sewing hat die Bundesregierung erneut zu mehr Tempo bei Reformen aufgefordert. Das meldete dpa-AFX am Sonntagmorgen, ohne den genauen Wortlaut der aktuellen Äußerung zu nennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein wiederkehrendes Thema',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sewing hat diese Forderung in den vergangenen Monaten wiederholt erhoben. Bezugspunkt ist ein Paket mit 34 Maßnahmen zu Steuern, Arbeitsmarkt, Sozialversicherung und Bürokratie, auf das sich Union und SPD Anfang Juli geeinigt hatten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Handelsblatt-Bankengipfel im August verlangte Sewing, die Koalition solle beschlossene Maßnahmen umsetzen statt über eine Rücknahme zu sprechen. Nach einem Treffen mit der Bundesregierung Ende September bezeichnete er das Reformpaket zwar als richtig, aber als nicht ausreichend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Warnung vor Stillstand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon im Januar hatte Sewing bei einem Empfang der Bank in Berlin gewarnt: Ohne tiefgreifende Reformen drohe Deutschlands Potenzialwachstum bis zum Ende des Jahrzehnts auf null zu sinken. Er forderte damals zusätzlich mehr Freihandelsabkommen und eine Reform der Sozialsysteme, insbesondere der Rente.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Rufe von Bankchefs nach mehr Reformtempo sagen für sich genommen nichts über deren Umsetzung. Sie zeigen aber, wie ungeduldig Teile der deutschen Wirtschaft mit dem Tempo der Bundespolitik sind – ein Stimmungsbild, das auch in die Risikobewertung deutscher Standortfaktoren einfließt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-4200-dollar-spekulanten-bauen-ab',
+    title: 'Gold nähert sich 4.200 Dollar, Spekulanten bauen ab',
+    teaser:
+      'Der Goldpreis rückt wieder näher an 4.200 Dollar. Zugleich bauen große Terminmarkt-Spekulanten laut Goldreporter ihre Netto-Long-Positionen ab.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-11T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Gold', 'CoT-Daten', 'Open Interest', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Startseite, Stand 11.10.2026: „Goldmarkt: Spekulanten bauen Positionen weiter ab – Open Interest sinkt“ und „Goldpreis heute: Kräftiger Anstieg Richtung 4.200 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Rohstoffpreise, Stand 11.10.2026, 13:07 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis rückt wieder näher an die Marke von 4.200 Dollar je Feinunze heran. Das berichtet Goldreporter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Weg seit Dienstag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Noch am Dienstag lag der Preis unter Druck bei rund 4.100 Dollar, am Donnerstag stabilisierte er sich auf diesem Niveau. Zuletzt notierte die Feinunze laut wallstreet-online bei 4.195,82 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Spekulanten ziehen sich zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig setzt sich am US-Terminmarkt laut Goldreporter der Positionsabbau fort. Große Spekulanten reduzieren ihre Netto-Long-Positionen, während das Open Interest – die Zahl offener Kontrakte – weiter sinkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkrete Kontraktzahlen oder den Umfang des Rückgangs nennt die gesichtete Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigt ein Preis, während sich Terminmarkt-Spekulanten zurückziehen, trägt tendenziell eine andere Käufergruppe die Rallye – etwa Zentralbanken oder langfristig orientierte ETF-Anleger. CoT-Daten sagen für sich genommen nichts über die künftige Kursrichtung, sondern nur, wie einseitig ein Markt positioniert ist.',
+      },
+    ],
+  },
+  {
     slug: 'iran-kehrtwende-trumps-dritter-flugzeugtraeger',
     title: 'Trump schwenkt beim Iran um: Kein Angriff vor den Midterms',
     teaser:
