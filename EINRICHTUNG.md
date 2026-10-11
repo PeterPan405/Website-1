@@ -630,6 +630,17 @@ me/accounts
 Die `id` ist die **Seiten-ID**. Merken, aber **nicht** als `IG_USER_ID`
 eintragen – das ist der zweithäufigste Fehler.
 
+**Das `access_token` in dieser Antwort ist das Seitentoken – und genau das
+gehört in `IG_ACCESS_TOKEN`**, nicht das Nutzertoken aus 3.4 d. Der
+Unterschied kostet sonst alle 60 Tage fünf Minuten: Ein Seitentoken, das aus
+einem **langlebigen** Nutzertoken stammt, läuft **nicht ab**. Deshalb die
+Reihenfolge in 3.4: erst verlängern, dann hier abfragen. Wer die Abfrage mit
+dem kurzlebigen Token macht, bekommt ein Seitentoken, das mit ihm stirbt.
+
+> Gemessen am 11.10.2026: `debug_token` meldet für dieses Seitentoken
+> `expires_at: 0` – das ist Metas Art, „nie" zu schreiben. Für das
+> Nutzertoken daneben stand der 10.12.2026.
+
 > **Kommt `"data": []` zurück?** Dann ist entweder in 3.4 c der Haken bei der
 > Seite nicht gesetzt worden, oder es gibt keine Facebook-Seite. Zurück zu
 > 3.2 b.
@@ -703,7 +714,7 @@ Jeweils **New repository secret**:
 
 | Name              | Wert                                   | Nötig?           |
 | ----------------- | -------------------------------------- | ---------------- |
-| `IG_ACCESS_TOKEN` | das **langlebige** Token aus 3.4 d     | ja               |
+| `IG_ACCESS_TOKEN` | das **Seitentoken** aus 3.5 a          | ja               |
 | `IG_USER_ID`      | die Zahl aus 3.5 b, beginnt mit `1784` | ja               |
 | `PEXELS_API_KEY`  | der Schlüssel aus 3.6                  | nein, siehe oben |
 
@@ -778,24 +789,35 @@ zum Nachschlagen:
 | Was im Protokoll steht                        | Woran es liegt                                                    |
 | --------------------------------------------- | ----------------------------------------------------------------- |
 | `Das Token wird abgelehnt (400)`              | Kurzlebiges Token genommen (3.4 d) oder abgelaufen                |
-| `OAuthException: … session has expired`       | 60 Tage um – neues Token erzeugen                                 |
+| `OAuthException: … session has expired`       | Nutzertoken statt Seitentoken eingetragen, 60 Tage um (3.10)      |
 | `IG_USER_ID … ist nicht abrufbar`             | Seiten-ID statt Instagram-Kennung eingetragen (3.5 a gegen 3.5 b) |
 | `Unsupported get request`                     | Dieselbe Verwechslung; Meta antwortet darauf uneindeutig          |
 | `Verbunden ist @… , erwartet war @im_invests` | Die Kennung gehört zu einem anderen Konto                         |
 | `(#200) Requires … permission`                | Eine der vier Berechtigungen fehlt (3.3 d)                        |
 | `Noch keine Zugangsdaten hinterlegt`          | Secret-Name vertippt – auf Groß- und Kleinschreibung achten       |
 
-### 3.10 Das Token läuft nach 60 Tagen ab
+### 3.10 Das Seitentoken läuft nicht ab – das Nutzertoken schon
 
-Dann bleibt der Beitrag eines Morgens aus – der stille Fehler, den dieses
-Projekt an allen Ecken abzuschaffen versucht.
+**Steht in `IG_ACCESS_TOKEN` das Seitentoken aus 3.5 a, gibt es hier nichts
+zu tun.** Es läuft nicht ab, solange niemand das Passwort ändert, die App
+entfernt oder in den Business-Integrationen die Verbindung löst. Kein Termin,
+keine Erinnerung.
 
-**Erneuern geht schneller als das erste Mal:** Graph API Explorer → Token
-erzeugen → Access Token Debugger → Extend → das neue in `IG_ACCESS_TOKEN`
-überschreiben → Zugangsprobe starten. Fünf Minuten.
+**Steht dort das Nutzertoken aus 3.4 d, ist nach 60 Tagen Schluss**, und der
+Beitrag bleibt eines Morgens aus – der stille Fehler, den dieses Projekt an
+allen Ecken abzuschaffen versucht. Dann einmal 3.5 a nachholen und das
+Seitentoken eintragen; danach ist der Termin für immer erledigt.
 
-Tragen Sie sich den Termin ein. Ein langlebiges Token, das am **9. August**
-erzeugt wurde, gilt bis zum **8. Oktober**.
+**Wenn es doch einmal neu muss** (Passwort geändert, Verbindung gelöst):
+Graph API Explorer → Token erzeugen → Access Token Debugger → Extend →
+mit dem **verlängerten** Token `me/accounts` abfragen → das `access_token`
+von dort in `IG_ACCESS_TOKEN` überschreiben → Zugangsprobe starten.
+Fünf Minuten.
+
+> **Die Probe, die den Unterschied zeigt**, ohne das Token irgendwohin zu
+> schicken: im Access Token Debugger einfügen und auf **Läuft ab** sehen.
+> `Never` ist das Seitentoken, ein Datum rund zwei Monate voraus das
+> Nutzertoken.
 
 ---
 

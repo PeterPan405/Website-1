@@ -20,9 +20,9 @@
  * 2. Gehört die angegebene Kennung zu einem Instagram-Profikonto, und wie
  *    heißt es? Das ist die eigentliche Probe: Stimmt der Name mit dem
  *    erwarteten überein, ist die Verbindung nachweislich die richtige.
- * 3. Wie lange gilt das Token noch? Ein langlebiges Token hält 60 Tage.
- *    Läuft es ab, bleibt der Beitrag eines Morgens einfach aus – der stille
- *    Fehler, den dieses Projekt an allen Ecken abzuschaffen versucht.
+ * 3. Welche Art Token steht da? Ein Seitentoken läuft nicht ab, ein
+ *    Nutzertoken nach 60 Tagen – und dann bleibt der Beitrag eines Morgens
+ *    einfach aus, der stille Fehler, den dieses Projekt überall abschafft.
  * 4. Liegt ein Pexels-Schlüssel für die Titelbilder bereit?
  *
  * ## Was **nicht** passiert
@@ -93,7 +93,8 @@ if (ich.status !== 200) {
   console.error('')
   console.error('  Häufigste Ursachen:')
   console.error('   – Das Token ist abgelaufen. Kurzlebige gelten 1 Stunde,')
-  console.error('     langlebige 60 Tage.')
+  console.error('     langlebige Nutzertoken 60 Tage. Ein Seitentoken läuft')
+  console.error('     nicht ab – dann liegt es nicht am Ablauf.')
   console.error('   – Es stammt von einer anderen App als der eingerichteten.')
   process.exit(1)
 }
@@ -148,19 +149,48 @@ melde(`✓ Das ist @${ERWARTET} – die Verbindung führt zum richtigen Konto.`)
 /* ------------------------------------------------ 3. Wie lange noch? */
 
 /*
-  `debug_token` verlangt einen App-Token. Den haben wir hier nicht, also
-  wird die Gültigkeit über die Fehlermeldung ermittelt – geht nicht. Statt
-  zu raten, wird der Betreiber an das Datum erinnert, das er selbst kennt:
-  den Tag, an dem er das Token erzeugt hat.
+  `debug_token` verlangt einen App-Token; den haben wir hier nicht, das
+  Ablaufdatum ist also nicht auszulesen. Die **Art** des Tokens aber schon,
+  und die entscheidet die ganze Frage:
 
-  Das ist ehrlicher als eine Zahl, die auf einer Annahme beruht. Der Wächter
-  weiter unten in der Kette macht daraus einen roten Lauf, sobald das Token
-  wirklich abgelehnt wird – und das ist der Zeitpunkt, der zählt.
+  - Ein **Seitentoken** aus einem langlebigen Nutzertoken läuft nicht ab.
+    Gemessen am 11.10.2026: `debug_token` meldete dafür `expires_at: 0`.
+  - Ein **Nutzertoken** ist nach 60 Tagen tot, und der Beitrag bleibt eines
+    Morgens aus – der stille Fehler, den dieses Projekt überall abschafft.
+
+  `metadata=1` nennt die Art in `metadata.type`. Bis zum 11.10.2026 stand
+  hier stattdessen „gilt 60 Tage" – ein Satz, der beim Seitentoken zu einem
+  Termin im Kalender führt, an dem nichts zu tun ist, und der beim echten
+  Ausfall nach der falschen Ursache suchen lässt.
+
+  **Eigener Aufruf, nicht an den von oben angehängt.** Ob Meta `metadata=1`
+  in dieser Fassung beantwortet, ist hier nicht geprüft worden; hinge die
+  Frage „antwortet das Token überhaupt?" daran, machte eine unbeantwortete
+  Zusatzangabe aus einer gelungenen Probe einen roten Lauf. So kostet sie im
+  schlechtesten Fall eine Zeile „nicht lesbar".
 */
+const artAntwort = await hole(
+  `me?metadata=1&fields=id&access_token=${encodeURIComponent(TOKEN)}`
+)
+const art =
+  artAntwort.status === 200
+    ? (artAntwort.daten as { metadata?: { type?: string } }).metadata?.type
+    : undefined
+
 melde('')
-melde('Ein langlebiges Token gilt 60 Tage ab Ausstellung.')
-melde('Diese Probe kann das Ablaufdatum nicht auslesen – sie sagt nur, dass')
-melde('es **heute** gilt. Wer es erneuert, startet diesen Lauf danach erneut.')
+if (art === 'page') {
+  melde('Das ist ein Seitentoken – es läuft nicht ab. Kein Termin nötig.')
+  melde('Neu muss es nur, wenn das Passwort geändert oder die Verbindung in')
+  melde('den Business-Integrationen gelöst wird (EINRICHTUNG.md 3.10).')
+} else if (art === 'user') {
+  console.warn('::warning::[instagram] In IG_ACCESS_TOKEN steht ein Nutzertoken.')
+  melde('Es gilt 60 Tage ab Ausstellung, dann bleibt der Beitrag aus.')
+  melde('Das Seitentoken aus EINRICHTUNG.md 3.5 a läuft nicht ab – eintragen,')
+  melde('und die Frage ist für immer erledigt.')
+} else {
+  melde(`Die Art des Tokens ist nicht lesbar (metadata.type: ${art ?? '—'}).`)
+  melde('Diese Probe sagt dann nur, dass es **heute** gilt.')
+}
 
 /* ----------------------------------------------- 4. Die Titelbilder
 
