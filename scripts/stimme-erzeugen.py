@@ -303,6 +303,10 @@ bricht ab, statt eine Folge mit einem Loch auszuliefern.
 """
 FRIST_JE_STUECK = int(os.environ.get("STIMME_FRIST", "180"))
 
+# Wie oft ein kurzes, nicht mehr teilbares Stück neu gewürfelt wird, die
+# erste Generierung eingerechnet. Begründung im Docstring von `sprich`.
+ANLAEUFE_KURZ = 5
+
 
 class Zeitueberschreitung(Exception):
     pass
@@ -377,18 +381,47 @@ def haelften(stueck: str) -> tuple[str, str] | None:
     return None
 
 
-def sprich(stueck: str, tiefe: int = 0):
+def sprich(stueck: str, tiefe: int = 0, anlauf: int = 1):
     """Spricht ein Stück. Hängt das Modell, wird geteilt statt aufgegeben.
 
-    ## Warum teilen und nicht nochmal versuchen
+    ## Teilen **und** nochmal versuchen
 
-    Der zweite Versuch war die erste Idee und hat sich als wertlos
-    erwiesen: Am 8. August 2026 hing **dasselbe** Stück zweimal
-    hintereinander, jedes Mal bis zur Frist. Es liegt also am Text, nicht
-    am Zufall – und dann hilft ein weiterer Anlauf mit demselben Text
-    nicht.
+    Hier stand bis zum 11. Oktober 2026 das Gegenteil: Der zweite Versuch
+    sei wertlos, am 8. August 2026 habe **dasselbe** Stück zweimal
+    hintereinander bis zur Frist gehangen, es liege also am Text und nicht
+    am Zufall.
 
-    Was hilft, ist ein **kürzeres** Stück. Das Modell erzeugt Ton, bis es
+    **Dieser Schluss war falsch, und er stand hier zwei Monate zu lange.**
+    Widerlegt wurde er am 10. August 2026 von zwei Seiten gleichzeitig –
+    zwei Fassungen derselben Folge, eine mit Quietschen, eine sauber, bei
+    gleichem Text; und der erste Vertonungslauf der Lernseiten, der an
+    `'Versichert wird, was ruiniert, nicht was ärgert.'` scheiterte, 48
+    Zeichen, ein gewöhnlicher Satz. Das Modell würfelt. Zweimal dasselbe
+    Ergebnis ist bei einer Wahrscheinlichkeit um die Hälfte kein Beweis für
+    Determinismus, sondern ein Münzwurf, der zweimal Kopf zeigt.
+
+    `sprechstimme.py` wurde damals berichtigt und bekam bis zu vier weitere
+    Anläufe. **Diese Datei nicht** – und der Kommentar dort benannte sogar,
+    dass hier noch die widerlegte Begründung steht. Am 11. Oktober 2026 hat
+    sie die Folge des Tages gekostet:
+
+        Stück hing nach 180 s – geteilt in 57 + 157 Zeichen (Ebene 1).
+        RuntimeError: 'Russland liefert künftig deutlich mehr Diesel an
+        die USA.' ließ sich nicht sprechen und nicht mehr teilen.
+
+    Siebenundfünfzig Zeichen, Punkt am Ende, ein gewöhnlicher Satz – und
+    weil er unter der Teilungsgrenze von 80 Zeichen liegt und sein
+    Schlusszeichen schon hat, griff keine der beiden Rettungen. Nicht
+    unwahrscheinlich: **unmöglich.** Der Ausweg unten („bekommt sein
+    Schlusszeichen und einen weiteren Versuch") kann für einen
+    vollständigen Satz gar nicht greifen, weil `mit_schlusszeichen` ihn
+    unverändert zurückgibt.
+
+    Eine Doppelung mit guter Begründung altert trotzdem. Die Begründung war
+    hier nicht einmal mehr gut – sie war widerlegt, schriftlich, in der
+    Nachbardatei.
+
+    Was außerdem hilft, ist ein **kürzeres** Stück. Das Modell erzeugt Ton, bis es
     ein Schlusszeichen setzt; je weniger es auf einmal sprechen soll,
     desto eher findet es eines. Die beiden Hälften werden nahtlos
     aneinandergehängt – gehört wird davon nichts, weil an einer
@@ -412,8 +445,20 @@ def sprich(stueck: str, tiefe: int = 0):
     Deshalb zwei Dinge: `haelften` setzt jetzt Schlusszeichen, und ein Stück,
     das sich **nicht** teilen lässt, bekommt vorher noch einen Versuch mit
     Schlusszeichen. Erst wenn auch der scheitert, ist Schluss.
+
+    ## Die Frist richtet sich nach der Länge
+
+    `frist_fuer` kommt aus `sprechstimme.py` und wird nicht noch einmal
+    hingeschrieben – zwei Zahlen zu pflegen heißt, irgendwann die falsche zu
+    haben. Sie gibt einem kurzen Satz 60 statt 180 Sekunden, und genau das
+    macht die Anläufe oben bezahlbar: fünf Generierungen kosten dann fünf
+    Minuten, nicht fünfzehn. Der Sprechauftrag hat 45 Minuten Budget und
+    braucht gemessene 25.
     """
-    signal.alarm(FRIST_JE_STUECK)
+    import sprechstimme
+
+    frist = sprechstimme.frist_fuer(stueck)
+    signal.alarm(frist)
     try:
         return modell.generate_voice_clone(
             text=stueck, voice_clone_prompt=prompt, language="German"
@@ -431,13 +476,33 @@ def sprich(stueck: str, tiefe: int = 0):
         if geschlossen != stueck and tiefe < 4:
             melde(f"  Stück ohne Satzende – erneut mit Punkt: {geschlossen[:40]!r}")
             return sprich(geschlossen, tiefe + 1)
+
+        # **Ein kurzes Stück, das hängt, bekommt weitere Anläufe.** Die
+        # Begründung steht im Docstring oben.
+        #
+        # Gezählt wird in `anlauf` und **nicht** in `tiefe`. In
+        # `sprechstimme.py` steht an dieser Stelle `tiefe < 8` und daneben
+        # „bis zu vier weitere Anläufe" – das stimmt nicht: Weil ein kurzer
+        # Satz die Teilungsebene nie verbraucht, zählt derselbe Zähler dort
+        # bis neun Generierungen hoch. Bei 60 s Frist sind das neun Minuten
+        # je Stück; zwei solche Stücke in einem Viertel ergeben 43 von 45
+        # Minuten Sprechauftrag. Eine Grenze, die den guten Tag gerade eben
+        # trägt, ist eine Wette.
+        #
+        # Mit eigenem Zähler ist die Rechnung nachprüfbar: höchstens
+        # ANLAEUFE_KURZ Generierungen, also fünf Minuten je Stück im
+        # schlechtesten Fall – und im besten die ganze Folge des Tages.
+        if anlauf < ANLAEUFE_KURZ:
+            melde(f"  Kurzes Stück hing – Anlauf {anlauf + 1}: {stueck[:50]!r}")
+            return sprich(stueck, tiefe, anlauf + 1)
+
         raise RuntimeError(
             f"Ein Stück ließ sich nicht sprechen und nicht mehr teilen: "
             f"{stueck[:60]!r}. Lieber keine Folge als eine mit einem Loch."
         )
 
     melde(
-        f"  Stück hing nach {FRIST_JE_STUECK} s – geteilt in "
+        f"  Stück hing nach {frist} s – geteilt in "
         f"{len(teile[0])} + {len(teile[1])} Zeichen (Ebene {tiefe + 1})."
     )
     links, rate = sprich(teile[0], tiefe + 1)
