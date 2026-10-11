@@ -188,9 +188,7 @@ if (seitenprobe.status === 200) {
   melde('Neu muss es nur, wenn das Passwort geändert oder die Verbindung in')
   melde('den Business-Integrationen gelöst wird (EINRICHTUNG.md 3.10).')
 } else {
-  console.warn(
-    '::warning::[instagram] In IG_ACCESS_TOKEN steht kein Seitentoken.'
-  )
+  console.warn('::warning::[instagram] In IG_ACCESS_TOKEN steht kein Seitentoken.')
   melde('Ein Nutzertoken gilt 60 Tage ab Ausstellung, dann bleibt der Beitrag')
   melde('eines Morgens aus. Das Seitentoken aus EINRICHTUNG.md 3.5 a läuft')
   melde('nicht ab – eintragen, und die Frage ist für immer erledigt.')
