@@ -3887,6 +3887,36 @@ Riegel 1 wurde gegen einen falschen Tag geprüft und hielt. Riegel 2 wurde gegen
 ein ungültiges Token geprüft und brach ab, wie er soll – gegen einen echten
 Doppelpost prüfen kann erst, wer ein Token hat.
 
+## Der vierte Riegel ist ein Datum, kein Schalter
+
+Anordnung des Betreibers vom 11. Oktober 2026, am selben Abend, an dem der
+direkte Weg zu Meta zum ersten Mal stand: **Es geht kein Beitrag mehr hinaus,
+den er nicht vorher gesehen hat.** Täglich wird besprochen, was hinausgeht –
+Nachrichten oder ein Wissensbeitrag –, und erst danach wird freigegeben.
+
+Der naheliegende Weg wäre ein Schalter gewesen: `INSTAGRAM_AUTOMATISCH` auf
+`aus`, und wer veröffentlichen will, stellt ihn kurz an. Genau das ist die
+Falle. **Ein `true` bleibt stehen.** Wer es einmal setzt und nicht
+zurückstellt, hat die Automatik dauerhaft wieder eingeschaltet, ohne es zu
+merken – und der nächste Beitrag geht ungesehen hinaus. Dasselbe Muster wie
+bei `TROTZDEM=1` im Zahlenwächter, nur ohne dessen Gegenprobe.
+
+Freigegeben wird deshalb ein **Tag**: `INSTAGRAM_FREIGABE` trägt ein Datum,
+und der Lauf vergleicht es mit `date -u +%F`. Das läuft um Mitternacht von
+selbst ab. Freigegeben ist immer nur ein Tag, und die Freigabe muss jeden Tag
+neu erteilt werden. Vergisst sie jemand, bleibt der Beitrag aus – **das ist
+der gewollte Ausgang, nicht der Fehler.**
+
+Der Riegel sitzt im Workflow und nicht im Skript, und das ist Absicht: Er
+betrifft nicht die Frage „ist dieser Beitrag in Ordnung?" – die stellen die
+drei Riegel im Skript –, sondern „darf heute überhaupt etwas hinaus?". Diese
+Frage gehört vor den Lauf, nicht hinein. Nebenbei greift er dadurch auch für
+den Weg über den Dienst, der im Skript einen anderen Zweig nimmt.
+
+Ohne gesetzte Variable ist nichts freigegeben. Das ist der Normalzustand, und
+der Lauf sagt in der Zusammenfassung, was hinausginge und mit welchem Befehl
+man es freigibt.
+
 ## `datumLang` musste umziehen
 
 Riegel 1 vergleicht eine Zeile, die `app/instagram/beschriftung.txt/route.ts`
