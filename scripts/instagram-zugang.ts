@@ -158,38 +158,43 @@ melde(`✓ Das ist @${ERWARTET} – die Verbindung führt zum richtigen Konto.`)
   - Ein **Nutzertoken** ist nach 60 Tagen tot, und der Beitrag bleibt eines
     Morgens aus – der stille Fehler, den dieses Projekt überall abschafft.
 
-  `metadata=1` nennt die Art in `metadata.type`. Bis zum 11.10.2026 stand
-  hier stattdessen „gilt 60 Tage" – ein Satz, der beim Seitentoken zu einem
-  Termin im Kalender führt, an dem nichts zu tun ist, und der beim echten
-  Ausfall nach der falschen Ursache suchen lässt.
+  Gefragt wird nicht nach der Art, sondern nach einem **Feld, das es nur bei
+  einer Seite gibt**: `category`. Hinter einem Seitentoken steht ein
+  Page-Knoten und antwortet damit; hinter einem Nutzertoken ein User-Knoten,
+  und Meta lehnt das Feld ab.
 
-  **Eigener Aufruf, nicht an den von oben angehängt.** Ob Meta `metadata=1`
-  in dieser Fassung beantwortet, ist hier nicht geprüft worden; hinge die
-  Frage „antwortet das Token überhaupt?" daran, machte eine unbeantwortete
-  Zusatzangabe aus einer gelungenen Probe einen roten Lauf. So kostet sie im
-  schlechtesten Fall eine Zeile „nicht lesbar".
+  Gemessen am 11.10.2026, beide Token derselben App:
+
+      me?fields=category   Seitentoken  200, „News & media website"
+      me?fields=category   Nutzertoken  400
+
+  `metadata=1` wäre der naheliegende Weg gewesen – `metadata.type` nennt
+  „page" oder „user". In v21.0 kommt das Feld aber nicht mehr zurück, weder
+  allein noch neben `fields`; gemessen am selben Tag, alle drei Schreibweisen
+  ohne `metadata` in der Antwort. Deshalb der Umweg über `category`.
+
+  **Eigener Aufruf, nicht an den von oben angehängt.** Bei einem Nutzertoken
+  ist diese Abfrage ein Fehler – angehängt machte sie aus einer gelungenen
+  Probe einen roten Lauf, der behauptet, das Token werde abgelehnt. So kostet
+  sie im schlechtesten Fall eine Zeile.
 */
-const artAntwort = await hole(
-  `me?metadata=1&fields=id&access_token=${encodeURIComponent(TOKEN)}`
+const seitenprobe = await hole(
+  `me?fields=category&access_token=${encodeURIComponent(TOKEN)}`
 )
-const art =
-  artAntwort.status === 200
-    ? (artAntwort.daten as { metadata?: { type?: string } }).metadata?.type
-    : undefined
 
 melde('')
-if (art === 'page') {
+if (seitenprobe.status === 200) {
   melde('Das ist ein Seitentoken – es läuft nicht ab. Kein Termin nötig.')
   melde('Neu muss es nur, wenn das Passwort geändert oder die Verbindung in')
   melde('den Business-Integrationen gelöst wird (EINRICHTUNG.md 3.10).')
-} else if (art === 'user') {
-  console.warn('::warning::[instagram] In IG_ACCESS_TOKEN steht ein Nutzertoken.')
-  melde('Es gilt 60 Tage ab Ausstellung, dann bleibt der Beitrag aus.')
-  melde('Das Seitentoken aus EINRICHTUNG.md 3.5 a läuft nicht ab – eintragen,')
-  melde('und die Frage ist für immer erledigt.')
 } else {
-  melde(`Die Art des Tokens ist nicht lesbar (metadata.type: ${art ?? '—'}).`)
-  melde('Diese Probe sagt dann nur, dass es **heute** gilt.')
+  console.warn(
+    '::warning::[instagram] In IG_ACCESS_TOKEN steht kein Seitentoken.'
+  )
+  melde('Ein Nutzertoken gilt 60 Tage ab Ausstellung, dann bleibt der Beitrag')
+  melde('eines Morgens aus. Das Seitentoken aus EINRICHTUNG.md 3.5 a läuft')
+  melde('nicht ab – eintragen, und die Frage ist für immer erledigt.')
+  melde(`(Meta antwortete auf die Seitenprobe mit ${seitenprobe.status}.)`)
 }
 
 /* ----------------------------------------------- 4. Die Titelbilder
