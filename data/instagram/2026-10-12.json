@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Vier Notenbanker sprechen zum IWF-Start, die Ukraine meldet neue Spannungen um Energieanlagen, Öl und Silber ziehen an – und die Telekom-Aktie fällt nach einem SpaceX-Deal.",
+  "kacheln": [
+    {
+      "titel": "Zinswoche: 4 Reden",
+      "text": "Zum Start der IWF-Jahrestagung sprechen am Montag vier Notenbanker aus drei Häusern – von der Bank of England bis zur US-Notenbank Fed."
+    },
+    {
+      "titel": "Ukraine: Neuer Angriff",
+      "text": "Kurz nach einem gemeldeten russischen Angriff auf eine Energieanlage verkündete Donald Trump eine Waffenruhe für Energieanlagen im Ukraine-Krieg."
+    },
+    {
+      "titel": "Öl: 104 Dollar",
+      "text": "Brent kostet weiter rund 104 Dollar, obwohl Berichte von mehr Öl-Exporten und mehr Tankerverkehr durch die Straße von Hormus sprechen."
+    },
+    {
+      "titel": "Silber: 61 Dollar",
+      "text": "Silber zieht über Nacht um fast drei Prozent an auf rund 60,83 Dollar. Gold bleibt bei 4.197 Dollar fast unverändert."
+    },
+    {
+      "titel": "Telekom: SpaceX-Schock",
+      "text": "Ein Frequenzdeal von SpaceX schickte die Telekom-Aktie am Freitag zeitweise um sieben Prozent nach unten, auch US-Konkurrenten traf es hart."
+    }
+  ],
+  "schlagworte": ["ezb", "öl", "fed", "news", "top"]
+}

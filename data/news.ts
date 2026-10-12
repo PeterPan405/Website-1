@@ -101,6 +101,301 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'iwf-jahrestagung-vier-notenbanker-montag',
+    title: 'IWF-Jahrestagung startet, vier Notenbanker sprechen am Montag',
+    teaser:
+      'Zum Auftakt der IWF-Jahrestagung treten am Montag vier Notenbanker aus drei Häusern öffentlich auf – von der Bank of England bis zur Fed.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['IWF', 'Notenbanken', 'EZB', 'Fed', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 12.10.2026, 00:10 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die neue Woche beginnt dicht getaktet. In Washington eröffnet der Internationale Währungsfonds seine Jahrestagung, und gleich vier Notenbanker treten am selben Tag öffentlich auf. Das zeigt der Wirtschaftskalender von wallstreet-online.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Auftritte an einem Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11:30 Uhr spricht ein Mitglied der Bank of England, Breeden. Um 12 Uhr folgt EZB-Ratsmitglied Vujcic. Am Nachmittag, um 14:50 Uhr, äußert sich ein weiteres Bank-of-England-Mitglied, Mann. Den Abschluss macht um 18:50 Uhr Fed-Mitglied Hammack.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf Dienstag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Dienstag kündigt der Kalender bereits die nächsten harten Daten an: britische Einzelhandelsumsätze, erwartet mit einem Plus von 0,7 Prozent nach zuvor 0,5 Prozent. Dazu kommen japanische Bankkredite und Erzeugerpreise. Der IWF tagt an diesem Tag weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Reden sind keine Zinsentscheidungen. Händler lesen sie trotzdem auf Hinweise zum nächsten Schritt der Notenbanken. Vier Auftritte an einem Tag aus drei verschiedenen Häusern erhöhen die Chance, dass mindestens einer davon kurzfristig Kurse an Anleihe- und Devisenmärkten bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'ukraine-waffenruhe-energieanlagen-neuer-angriff',
+    title: 'Trump meldet Waffenruhe für Energieanlagen, Selenskyj neuen Angriff',
+    metaTitle: 'Waffenruhe für Energieanlagen – und ein neuer Angriff',
+    teaser:
+      'Am Sonntagabend folgten zwei widersprüchliche Meldungen zur Ukraine dicht aufeinander: ein neuer Angriff, dann eine angekündigte Waffenruhe.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Ukraine', 'Russland', 'Energie', 'Waffenruhe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'erdgas'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 17:52 Uhr und 18:22 Uhr (dpa-AFX): „Selenskyj: Neuer russischer Angriff auf Energieanlage“ und „ROUNDUP 3/Ukraine-Krieg: Trump verkündet Waffenruhe für Energieanlagen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Sonntagabend meldete dpa-AFX im Abstand von einer halben Stunde zwei Nachrichten zur Ukraine, die auf den ersten Blick nicht zueinander passen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zuerst der Angriff',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 17:52 Uhr berichtete die Agentur, der ukrainische Präsident Wolodymyr Selenskyj habe einen neuen russischen Angriff auf eine Energieanlage gemeldet. Welche Anlage genau betroffen war und wie groß der Schaden ist, nennt die Ticker-Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dann die Waffenruhe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine halbe Stunde später, um 18:22 Uhr, folgte die nächste Meldung: Laut einem dpa-AFX-Roundup hat US-Präsident Donald Trump eine Waffenruhe für Energieanlagen verkündet. Details zu Umfang, Dauer oder einer möglichen Überwachung nennt auch diese Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ankündigungen von Teil-Waffenruhen für die Energieinfrastruktur hat es im Krieg schon mehrfach gegeben, ohne dass sie dauerhaft hielten. Ob diese Ankündigung anders ausgeht, lässt sich aus den beiden Ticker-Zeilen allein nicht beurteilen – entscheidend wird, ob neue Angriffe in den kommenden Tagen ausbleiben.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-104-dollar-hormus-entspannung',
+    title: 'Öl bei 104 Dollar, trotz Entspannung am Golf',
+    teaser:
+      'Brent kostet weiter rund 104 Dollar, während Exporte und Tankerverkehr am Golf laut mehreren Berichten über dem Niveau vor dem Krieg liegen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Straße von Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 12.10.2026, kurz nach 2 Uhr MESZ: Brent 103,90 USD',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoff-Analysen, Société Générale vom 6.10.2026: „Freigabe von Dieselreserven wendet US-Exportstopp ab“ und „Trotz Hormus-Blockade: Ölexporte aus der Golfregion über Vorkriegsniveau“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoff-Analysen, BNP Paribas S.A., dailyOEL vom 9.10.2026: „Kurzfristiger Aufwärtstrend“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rohöl der Sorte Brent kostete in der Nacht zum Montag rund 104 Dollar pro Fass. Das zeigt die Preisleiste von wallstreet-online, Stand kurz nach 2 Uhr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Öl, mehr Gas – trotz Blockade-Rhetorik',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach einer Analyse von Société Générale vom Dienstag liegen die Ölexporte aus der Golfregion trotz der Blockade-Drohungen an der Straße von Hormus inzwischen über dem Niveau vor dem Krieg. Die Freigabe von US-Dieselreserven habe zudem einen zuvor verhängten Exportstopp abgewendet. Auch der Tankerverkehr mit Flüssiggas durch die Straße von Hormus erreichte laut derselben Quelle den höchsten Stand seit Kriegsbeginn.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis bleibt trotzdem fest',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die technische Einschätzung von BNP Paribas vom Freitag sprach von einem kurzfristigen Aufwärtstrend beim Ölpreis, einen Tag zuvor war bereits von einem bestätigten mittelfristigen Aufwärtstrend die Rede. Warum der Preis trotz der gemeldeten Entspannung bei Fördermengen und Tankerverkehr nicht stärker nachgegeben hat, nennt keine der gesichteten Quellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Ölpreis reagiert nicht nur auf die aktuell verschiffte Menge, sondern auch auf die eingepreiste Unsicherheit über künftige Lieferungen. Diese Risikoprämie kann bestehen bleiben, selbst wenn die Mengen im Moment höher ausfallen als befürchtet.',
+      },
+    ],
+  },
+  {
+    slug: 'silber-61-dollar-gold-stabil',
+    title: 'Silber nähert sich 61 Dollar, Gold hält die Linie',
+    teaser:
+      'Silber zieht in der Nacht zum Montag um fast drei Prozent an. Gold bleibt nahe 4.200 Dollar nahezu unverändert – ein Rollentausch bei Edelmetallen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Silber', 'Gold', 'Edelmetalle', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['silber', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 12.10.2026, 02:09 Uhr: Silber 60,83 USD (+2,80 %), Gold 4.196,81 USD (+0,06 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Marktbericht: „Der Goldpreis legt am Freitag deutlich zu und nähert sich der Marke von 4.200 USD. Silber erholt sich noch stärker.“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Silber hat in der Nacht zum Montag deutlich zugelegt, während Gold kaum von der Stelle kommt. Das zeigt die Preisleiste von wallstreet-online.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen der Nacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Silber kostete rund 60,83 Dollar je Feinunze, ein Plus von 2,80 Prozent. Gold notierte bei 4.196,81 Dollar und damit praktisch unverändert, ein Plus von nur 0,06 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kein neues Muster',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon am Freitag hatte Goldreporter berichtet, Gold nähere sich der Marke von 4.200 Dollar, Silber erhole sich aber noch stärker. Der Rollentausch zwischen den beiden Edelmetallen zieht sich damit bereits über das Wochenende hinweg.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Silber gilt als das deutlich kleinere und engere Marktsegment der beiden Edelmetalle. Das macht seinen Kurs anfälliger für größere prozentuale Ausschläge in beide Richtungen als den des Goldpreises – nach oben wie nach unten.',
+      },
+    ],
+  },
+  {
+    slug: 'telekom-spacex-frequenzen-grain-management',
+    title: 'SpaceX kauft Frequenzen von Grain Management – Telekom-Aktie fällt',
+    metaTitle: 'SpaceX-Frequenzdeal lässt Telekom-Aktie fallen',
+    teaser:
+      'Ein Frequenzdeal von SpaceX schickte die Telekom-Aktie am Freitag zeitweise um sieben Prozent nach unten – auch US-Konkurrenten traf es hart.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Telekom', 'SpaceX', 'T-Mobile US', 'Starlink'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['deutsche-telekom'],
+    sources: [
+      {
+        label:
+          'ms-aktuell.de, 9.10.2026: „SpaceX drängt in den US-Mobilfunkmarkt und setzt die Telekom massiv unter Druck“',
+        url: 'https://ms-aktuell.de/welt/telekom-aktie-spacex-09-10-2026/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite „Gefragte Nachrichten“, Stand 12.10.2026: „Telekom-Aktie bricht ein – ausgerechnet SpaceX ist der Grund!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Frequenzdeal von SpaceX hat am Freitag die Aktien der Deutschen Telekom und ihrer amerikanischen Tochter T-Mobile US unter Druck gesetzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Deal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag wurde bekannt: SpaceX übernimmt von der Investmentgesellschaft Grain Management ein landesweites Frequenzportfolio im 800-Megahertz-Bereich, bis zu 14 Megahertz gepaartes Spektrum. Einen Kaufpreis nannten die Unternehmen nicht. Die Übernahme steht noch unter dem Vorbehalt einer Genehmigung durch die US-Regulierungsbehörde FCC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurseinbruch am Freitag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Telekom-Aktie verlor im frühen Handel laut Reuters zeitweise rund sieben Prozent, vorbörslich auf der Handelsplattform Tradegate etwa fünf Prozent. T-Mobile US gab nachbörslich an der Nasdaq rund sechs bis sieben Prozent ab. Auch die Wettbewerber AT&T und Verizon gerieten unter Druck, mit Verlusten von rund 6,6 beziehungsweise 5,7 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher die Frequenzen stammen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grain Management hatte das 800-Megahertz-Portfolio erst im August 2026 von T-Mobile US selbst übernommen, im Austausch gegen Bargeld und Frequenzen im 600-Megahertz-Bereich. Die Deutsche Telekom hält an T-Mobile US zum 30. Juni 2026 einen Anteil von 54,2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Frequenzen sollen nach Berichten den Ausbau eines eigenständigen, landesweiten Mobilfunkangebots unter der Marke Starlink Mobile vorbereiten – eine direkte Konkurrenz zum Kerngeschäft von T-Mobile US. Die Deutsche Telekom hatte im März 2026 selbst eine Starlink-Partnerschaft für Satellitenfunk in zehn europäischen Ländern angekündigt, die ab 2028 starten soll.',
+      },
+    ],
+  },
+  {
     slug: 'diesel-deal-putin-mengen-senat-kritik',
     title: 'Diesel-Deal mit Russland: Diese Mengen hat Trump zugesagt',
     teaser:
