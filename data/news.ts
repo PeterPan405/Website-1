@@ -101,6 +101,261 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'notenbanker-und-inflation-am-dienstag',
+    title: 'Drei Notenbanker sprechen am Dienstag, deutsche Inflation im Fokus',
+    metaTitle: 'Drei Notenbanker sprechen, deutsche Inflation im Fokus',
+    teaser:
+      'Am Dienstag sprechen Vertreter von Bank of England, EZB und Fed, während Deutschland seine September-Inflation offiziell bestätigt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Notenbanken', 'Inflation', 'EZB', 'Fed', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd', 'dax'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 13.10.2026, 01:33 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag ist dicht getaktet. Gleich drei Notenbanker treten öffentlich auf, und aus Deutschland kommt die endgültige Fassung der September-Inflation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 5 Uhr spricht ein Mitglied der Bank of England. Um 8 Uhr veröffentlicht Deutschland den harmonisierten Verbraucherpreisindex sowie die nationale Variante für September – beide mit einer Prognose von 3,3 Prozent im Jahresvergleich, unverändert zum Vormonat. Bereits um 6:30 Uhr meldet die niederländische Statistikbehörde ihre eigene Inflationszahl, mit einer Prognose von 3,4 Prozent nach zuvor 3,3 Prozent. Um 9:15 Uhr folgt ein Mitglied des EZB-Rats, um 9:45 Uhr ein Mitglied der US-Notenbank Fed. Das zeigt der Wirtschaftskalender von wallstreet-online, Stand Dienstagnacht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose gegen tatsächlichen Wert',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Börse zählt bei solchen Terminen selten die Zahl allein, sondern der Abstand zur Prognose. Bestätigt die deutsche Inflation die erwarteten 3,3 Prozent, dürfte die Reaktion gering ausfallen. Weicht der tatsächliche Wert ab, kann das Anleihen und den Euro stärker bewegen als die Inflationszahl selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer solche Termine verfolgt, achtet besser auf die Prognose als auf die Schlagzeile danach. Der Markt hat die erwartete Zahl meist schon vorweggenommen – überraschend ist nur die Abweichung.',
+      },
+    ],
+  },
+  {
+    slug: 'oel-steigt-gold-und-silber-geben-nach',
+    title: 'Öl steigt auf 106 Dollar, Gold und Silber geben nach',
+    teaser:
+      'Brent legt in der Nacht zum Dienstag deutlich zu, während Gold und Silber nachgeben – Goldreporter nennt Frankreichs hohe Anleiherenditen als Hintergrund.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Gold', 'Silber', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 13.10.2026, kurz nach 3 Uhr MESZ: Brent 105,97 USD (+1,99 %), Gold 4.153,37 USD (-0,44 %), Silber 60,33 USD (-0,83 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News vom 12.10.2026: „Anleihezinsen bleiben hoch: Frankreich unter Druck – Gold kämpft um 4.200 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Rohstoffmarkt laufen Energie und Edelmetalle in der Nacht zum Dienstag in verschiedene Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Öl zieht an, Gold und Silber geben nach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Brent kostet laut der Preisleiste von wallstreet-online 105,97 Dollar pro Fass, ein Plus von 1,99 Prozent. Gold fällt im selben Zeitraum um 0,44 Prozent auf 4.153,37 Dollar je Feinunze, Silber verliert 0,83 Prozent auf 60,33 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Frankreich dabei eine Rolle spielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter bleiben die Anleiherenditen in der Eurozone hoch, besonders in Frankreich. Das Zinsumfeld bleibt damit nach Einschätzung des Portals ein wichtiger Faktor für den Goldpreis, der seit Tagen um die Marke von 4.200 Dollar kämpft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Öl und Edelmetalle werden oft in einen Topf geworfen, wenn von „Rohstoffen“ die Rede ist. Ihr Verhalten an einem einzelnen Tag zeigt: Sie folgen unterschiedlichen Treibern – Energie reagiert auf Angebot und Nachfrage, Gold stärker auf Zinsen und Anleiherenditen.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-im-plus-technologiewerte-unter-druck',
+    title: 'Dow im Plus, Technologiewerte unter Druck vor der Berichtssaison',
+    teaser:
+      'Der Dow Jones schloss am Montag im Plus, während Technologiewerte vor der US-Berichtssaison nachgaben – auch am Dienstagmorgen zeigt sich das Bild.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'USA', 'Berichtssaison'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 12.10.2026, 20:22 Uhr und 20:35 Uhr (dpa-AFX): „Aktien New York Schluss: Techwerte vor Berichtssaison unter Druck – Dow legt zu“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 13.10.2026, 01:33 Uhr: US 30 51.835,63 Pkt. (+0,29 %), US Tech 100 30.670,97 Pkt. (-0,70 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street zeigte sich am Montag ein geteiltes Bild.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dow im Plus, Technologiewerte unter Druck',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones schloss laut einem Marktbericht der Nachrichtenagentur dpa-AFX im Plus, während Technologiewerte vor der anlaufenden US-Berichtssaison nachgaben. Am frühen Dienstagmorgen bestätigte sich das Bild: Der Dow-Jones-Future notierte 0,29 Prozent höher bei 51.835,63 Punkten, der Nasdaq 100 lag 0,70 Prozent im Minus bei 30.670,97 Punkten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Indizes, zwei Zusammensetzungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones bündelt 30 große, etablierte US-Konzerne aus unterschiedlichen Branchen. Der Nasdaq 100 enthält dagegen überwiegend Technologiewerte. Ein Tag, an dem Anleger vor Quartalszahlen bei Technologiewerten vorsichtiger werden, kann die beiden Indizes deshalb in unterschiedliche Richtungen schicken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Index erzählt nie die ganze Geschichte eines Börsentags. Wer wissen will, wie breit eine Bewegung tatsächlich ist, braucht mindestens einen zweiten Index mit anderer Zusammensetzung zum Vergleich.',
+      },
+    ],
+  },
+  {
+    slug: 'us-midterms-bofa-sieht-entweder-oder-fuer-aktien',
+    title: 'US-Midterms: BofA sieht für Aktien ein Entweder-oder',
+    teaser:
+      'Die Bank of America rechnet je nach Ausgang der US-Zwischenwahlen am 3. November mit zweistelligen Kursgewinnen oder einem heftigen Rückschlag für Aktien.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['USA', 'Midterms', 'Bank of America', 'Politik'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Startseite „Nachrichten: Aktien & Indizes“, Stand 13.10.2026: „Die US-Midterms könnten für Anleger zur Zerreißprobe werden“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Zwischenwahlen am 3. November rücken für Anleger in den Blick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Bank of America erwartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem Bericht von wallstreetONLINE sieht die Bank of America je nach Machtverteilung im neuen Kongress zweistellige Kursgewinne oder einen heftigen Rückschlag für Aktien. Welche Sitzverteilung zu welchem Szenario führen würde, nannte die Zusammenfassung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unsicherheit als eigener Preisfaktor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsen reagieren nicht erst am Tag eines Wahlergebnisses. Schon die Unsicherheit über den Ausgang kann sich in der Zeit davor in Kursschwankungen niederschlagen, unabhängig davon, wie die Wahl am Ende ausgeht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose wie diese ist die Einschätzung einer einzelnen Bank, keine Gewissheit. Sie zeigt vor allem, dass der Ausgang der Wahl von Marktteilnehmern bereits als Risiko eingepreist wird.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-erholt-sich-weiter-ruestungswerte-gefragt',
+    title: 'Dax erholt sich weiter, Rüstungswerte bleiben gefragt',
+    teaser:
+      'Der Dax startete die Woche im Plus und erreichte am Montag rund 25.260 Punkte – besonders gefragt waren laut onvista Rheinmetall und Nordex.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Rheinmetall', 'Nordex', 'Rüstung'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax', 'rheinmetall'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Chartanalyse vom 12.10.2026, 08:25 Uhr: „Dax setzt seine Erholung fort und erreicht 25.260 Punkte“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 12.10.2026, 15:44 Uhr: „Leitindex startet Woche im Plus – Rüstung gefragt“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat seine Erholung am Montag fortgesetzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rüstungswerte besonders gefragt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Leitindex startete die Woche im Plus und erreichte laut einer Chartanalyse von onvista am Montagvormittag rund 25.260 Punkte. Besonders gefragt waren laut onvista Rheinmetall und Nordex.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kursindex gegen Performanceindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax ist ein Performanceindex: Dividenden der enthaltenen Unternehmen fließen automatisch wieder in die Berechnung ein. Reine Kursindizes wie der Dow Jones oder der Nikkei 225 lassen Dividenden dagegen außen vor – auf lange Sicht kann dieser Unterschied beim Vergleich zweier Indizes erheblich sein.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Dax mit einem ausländischen Leitindex vergleicht, vergleicht sonst leicht Äpfel mit Birnen. Der Unterschied zwischen Performance- und Kursindex gehört in jeden solchen Vergleich.',
+      },
+    ],
+  },
+  {
     slug: 'iwf-jahrestagung-vier-notenbanker-montag',
     title: 'IWF-Jahrestagung startet, vier Notenbanker sprechen am Montag',
     teaser:
