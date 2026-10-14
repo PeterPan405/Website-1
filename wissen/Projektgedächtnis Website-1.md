@@ -15,7 +15,7 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**24 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**25 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
@@ -26,6 +26,14 @@ Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
     - [[Nichts doppelt, und kein Streit der Quellen#Die Regel und ihr Netz|Die Regel und ihr Netz]]
     - [[Nichts doppelt, und kein Streit der Quellen#Erst der Preis, dann das Warum – und kein „das meldet"|Erst der Preis, dann das Warum – und kein „das meldet"]]
     - [[Nichts doppelt, und kein Streit der Quellen#Was das Netz nicht kann|Was das Netz nicht kann]]
+- **2026-10-14** – [[Das Briefing für die tägliche Recherche]]
+    - [[Das Briefing für die tägliche Recherche#Fünf statt fünf bis neun|Fünf statt fünf bis neun]]
+    - [[Das Briefing für die tägliche Recherche#Welche Quellen ein Läufer überhaupt lesen kann|Welche Quellen ein Läufer überhaupt lesen kann]]
+    - [[Das Briefing für die tägliche Recherche#Direkte Links – und warum es sie vorher nicht gab|Direkte Links – und warum es sie vorher nicht gab]]
+    - [[Das Briefing für die tägliche Recherche#Sieben Tage statt Vortag|Sieben Tage statt Vortag]]
+    - [[Das Briefing für die tägliche Recherche#Mehrere unabhängige Quellen – laut, aber kein Abbruch|Mehrere unabhängige Quellen – laut, aber kein Abbruch]]
+    - [[Das Briefing für die tägliche Recherche#Zwei Sätze je Kachel|Zwei Sätze je Kachel]]
+    - [[Das Briefing für die tägliche Recherche#Die Uhrzeit|Die Uhrzeit]]
 - **2026-10-06** – [[Vier Beanstandungen an einer Folge]]
     - [[Vier Beanstandungen an einer Folge#Erstens: zu lang – und das war die Wirkung einer eigenen Änderung|Erstens: zu lang – und das war die Wirkung einer eigenen Änderung]]
     - [[Vier Beanstandungen an einer Folge#Zweitens: nicht auf das Wesentlichste – dieselbe Änderung|Zweitens: nicht auf das Wesentlichste – dieselbe Änderung]]

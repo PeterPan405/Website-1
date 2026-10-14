@@ -88,7 +88,7 @@ const FUELLWOERTER = new Set(
     'für über nach vor trotz als wie ein eine einen einem eines ist sind wird werden ' +
     'bleibt bleiben hält legt gibt geben steigt steigen fällt fallen sinkt nachgibt ' +
     'weiter leicht deutlich heute morgen dollar euro prozent punkte punkten seit bis ' +
-    'sich auch noch nur dann neu neue neuer neuen neues straße'
+    'sich auch noch nur dann neu neue neuer neuen neues straße unter'
   ).split(' ')
 )
 
@@ -154,6 +154,50 @@ const QUELLENSTREIT =
 export function quellenstreit(text: string): string | null {
   const treffer = text.match(QUELLENSTREIT)
   return treffer ? treffer[0] : null
+}
+
+/**
+ * Wie viele Erscheinungstage zurück verglichen wird.
+ *
+ * Bis zum 14. Oktober 2026 war es einer, der Vortag – weil das Karussell zwei
+ * Tage zeigt. Am selben Tag kam das Briefing des Betreibers: „Vergleiche die
+ * aktuelle Auswahl mit den Nachrichten der vergangenen sieben Tage."
+ *
+ * Gemessen am Bestand bis zum 14. Oktober, Grenze unverändert ein Drittel:
+ * 22 Treffer statt 8. **21 sind Wiederholungen** – „Euro fällt auf
+ * 17-Monats-Tief" am 6. und 8. Oktober fast wortgleich (0,67), „Dax klettert
+ * zurück über 25.000" am 3. und 10. (0,50), die Öl- und Goldreihe, die Fed
+ * zweimal, Siemens Energy zweimal in sechs Tagen. **Einer ist ein Fehlgriff:**
+ * „Dax rutscht unter 25.000 Punkte, 200-Tage-Linie hält" gegen Gold unter der
+ * 50-Tage-Linie (0,33) – derselbe Chartbegriff, zwei Anlagen. Ihn
+ * wegzurechnen („Tage" und „Linie" als Füllwort) kostete eine echte
+ * Wiederholung; der Preis des Fehlgriffs ist eine umformulierte Überschrift.
+ *
+ * Die drei erlaubten Fälle am Wert `WIEDERHOLUNG_AB` liegen auch im Fenster
+ * von sieben Tagen unter der Grenze.
+ */
+export const WIEDERHOLUNG_TAGE = 7
+
+/**
+ * Die Überschriften der letzten `tage` Erscheinungstage vor `stichtag`,
+ * jüngster zuerst, mit ihrem Tag – für den Riegel und für die Anweisung.
+ */
+export function ueberschriftenLetzteTage(
+  newsQuelltext: string,
+  stichtag: string,
+  tage: number = WIEDERHOLUNG_TAGE
+): { tag: string; titel: string }[] {
+  const alle: { tag: string; titel: string }[] = []
+  for (const block of newsQuelltext.split(/\n {2}\{\n/).slice(1)) {
+    const titel = block.match(/^ {4}title:\s*(?:\n\s*)?'((?:[^'\\]|\\.)*)'/m)?.[1]
+    const tag = block.match(/^ {4}publishedAt:\s*'(\d{4}-\d{2}-\d{2})/m)?.[1]
+    if (!titel || !tag || tag >= stichtag) continue
+    alle.push({ tag, titel: titel.replace(/\\'/g, "'") })
+  }
+  const fenster = new Set(
+    [...new Set(alle.map((a) => a.tag))].sort().reverse().slice(0, tage)
+  )
+  return alle.filter((a) => fenster.has(a.tag)).sort((x, y) => (x.tag < y.tag ? 1 : -1))
 }
 
 /**

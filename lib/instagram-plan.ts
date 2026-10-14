@@ -60,6 +60,36 @@ export const ZUSAMMENFASSUNG_MAX = 300
 export const SCHLAGWORTE = 5
 
 /**
+ * Höchstens so viele Sätze je Kachel.
+ *
+ * Bis zum 14. Oktober 2026 hieß es „zwei bis drei" – abgelesen an den 54
+ * Beiträgen davor. Am 14. Oktober kam das Briefing des Betreibers: „Maximal
+ * zwei kurze Sätze." Das ist keine Neuerung im Sinne von „keine
+ * Experimente", sondern eine Anordnung derselben Stelle, die den Kanal führt.
+ */
+export const SAETZE_MAX = 2
+
+/*
+  Abkürzungen, nach denen ein Punkt kein Satzende ist. Dazu jede Zahl mit
+  Punkt – „im 3. Quartal" ist eine Ordnungszahl, kein zweiter Satz – und
+  jeder einzelne Buchstabe: „z. B.", „U.S.", „Donald J. Trump".
+*/
+const ABKUERZUNG =
+  /(?:\b(?:Mrd|Mio|Tsd|Bio|Nr|Dr|Prof|bzw|ca|inkl|vgl|evtl|etc|Abs|Jh|St|[A-Za-zÄÖÜäöü])|\d)\.$/
+
+/** Zählt die Sätze eines Kacheltexts. */
+export function saetze(text: string): number {
+  const teile = text.trim().split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9„"])/)
+  let anzahl = 0
+  let davor = ''
+  for (const teil of teile) {
+    if (!davor || !ABKUERZUNG.test(davor)) anzahl++
+    davor = teil
+  }
+  return text.trim() ? anzahl : 0
+}
+
+/**
  * Der Rechtshinweis, **wörtlich** wie in 59 von 59 Beiträgen seit dem
  * 6. September 2026 – einschließlich des KI-Hinweises am Ende.
  *
@@ -94,7 +124,7 @@ export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-N
 
 - \`kacheln\`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
-  - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, zwei bis drei Sätze – die Nachricht mit Zahl und Namen, ohne Einordnung. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
+  - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
 - \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen. Vorbild: „KI-Aktien unter Druck, Brasiliens Börse auf Rekordhoch und steigende Ölpreise. Gleichzeitig sorgen Frankreichs Haushaltsprobleme und die Entwicklungen rund um die EZB für Aufmerksamkeit."
 - \`schlagworte\`: **genau fünf**, kleingeschrieben, ohne \`#\`. Zwei bis drei passen zu den Themen des Tages (etwa \`öl\`, \`ezb\`, \`fed\`, \`dax\`, \`inflation\`), der Rest aus \`news\`, \`top\`, \`daily\`, \`finanzen\`, \`wirtschaft\`, \`investieren\`, \`aktien\`.
 - Kein Emoji, kein \`#\` im Text. Kopf, Rechtshinweis und KI-Hinweis setzt das Skript selbst.
@@ -157,6 +187,10 @@ export function pruefeInstagramPlan(plan: unknown): string[] {
         )
       if (BILDZEICHEN.test(titel + text))
         fehler.push(`Kachel ${nr}: kein Emoji auf der Kachel.`)
+      if (saetze(text) > SAETZE_MAX)
+        fehler.push(
+          `Kachel ${nr}: ${saetze(text)} Sätze, höchstens ${SAETZE_MAX} – „maximal zwei kurze Sätze" (Briefing vom 14.10.2026).`
+        )
     })
     const titel = p.kacheln.map((k) =>
       String(k?.titel ?? '')

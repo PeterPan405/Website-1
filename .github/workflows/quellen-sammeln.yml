@@ -87,6 +87,12 @@ jobs:
       - name: Abrufweg selbst prüfen
         run: python3 scripts/netz.py --selbsttest
 
+      # Die Aufbereitung steht seit dem 14. Oktober 2026 in
+      # `scripts/quellentext.py` und nicht mehr hier im Workflow – dort ist
+      # sie prüfbar. Begründung im Kopf der Datei: Sie warf jeden Link weg.
+      - name: Aufbereitung selbst prüfen
+        run: python3 scripts/quellentext.py --selbsttest
+
       - name: Übersichten abrufen
         env:
           # Die gepflegte Liste steht in `data/nachrichtenquellen.ts`; hier
@@ -103,6 +109,22 @@ jobs:
             https://www.bundesbank.de/de/presse/pressenotizen
             https://www.destatis.de/DE/Presse/Pressemitteilungen/_inhalt.html
             https://www.ecb.europa.eu/press/html/index.en.html
+          # Die Wirtschaftsmedien aus dem Briefing des Betreibers vom
+          # 14. Oktober 2026 – als Feed, weil der Überschrift, Kurztext,
+          # Zeitstempel **und** den direkten Link trägt. Reuters, Bloomberg,
+          # FT, WSJ und die SEC-Presseseite antworteten dem Läufer am selben
+          # Tag mit 401/403; Liste und Datum in `data/nachrichtenquellen.ts`.
+          FEEDS: >-
+            https://www.tagesschau.de/wirtschaft/index~rss2.xml
+            https://www.handelsblatt.com/contentexport/feed/finanzen
+            https://www.wiwo.de/contentexport/feed/rss/finanzen
+            https://www.faz.net/rss/aktuell/finanzen/
+            https://www.cnbc.com/id/100003114/device/rss/rss.html
+          # Ein Feed ist dicht – Überschrift, Link, zwei Sätze. 8.000 Zeichen
+          # sind rund zwanzig Meldungen je Medium; mehr verdoppelte die
+          # Quellendatei, und die geht beim Weg über die Schnittstelle als
+          # Ganzes ins Modell.
+          FEED_ZEICHEN: '8000'
           # Der Kopf jeder Seite. Schlagzeilen mit Uhrzeit stehen dort; die
           # Artikel selbst werden nicht gebraucht und nicht abgelegt.
           ZEICHEN: '20000'
@@ -123,8 +145,13 @@ jobs:
           sys.path.insert(0, "scripts")
           import netz
 
-          grenze = int(os.environ["ZEICHEN"])
-          adressen = [a for a in os.environ["ADRESSEN"].split() if a.startswith("http")]
+          import quellentext
+
+          grenze_seite = int(os.environ["ZEICHEN"])
+          grenze_feed = int(os.environ["FEED_ZEICHEN"])
+          seiten = [a for a in os.environ["ADRESSEN"].split() if a.startswith("http")]
+          feeds = [a for a in os.environ["FEEDS"].split() if a.startswith("http")]
+          adressen = [(a, grenze_seite) for a in seiten] + [(a, grenze_feed) for a in feeds]
 
           KOPF = {
               "User-Agent": (
@@ -134,69 +161,6 @@ jobs:
               "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
           }
 
-          def zu_text(roh: str) -> str:
-              ohne = re.sub(r"(?is)<(script|style|noscript|svg)\b.*?</\1>", " ", roh)
-              ohne = re.sub(
-                  r"(?i)</(p|div|li|tr|h[1-6]|section|article|br)\s*/?>", "\n", ohne
-              )
-              ohne = re.sub(r"(?s)<[^>]+>", " ", ohne)
-              ohne = html.unescape(ohne)
-              ohne = re.sub(r"[ \t\r\f\v]+", " ", ohne)
-              ohne = re.sub(r"\n\s*\n\s*", "\n\n", ohne)
-              return ohne.strip()
-
-          def entdoppeln(text: str) -> str:
-              """Wirft jede Zeile weg, die in derselben Quelle schon dastand.
-
-              ## Warum das lohnt
-
-              Am 14. August 2026 nachgemessen: Von 99.526 Zeichen der
-              Quellendatei waren 19 Prozent wortgleiche Wiederholungen –
-              „Übersicht" 109-mal, „zurück" 106-mal, dazu Rubrikleisten und
-              Fußzeilen, die auf jeder Unterseite noch einmal stehen. Das ist
-              Menü, kein Text; niemand liest daraus etwas heraus, und das
-              Modell bekommt es trotzdem jedes Mal vorgelegt.
-
-              ## Warum das nichts kostet
-
-              Jede **verschiedene** Zeile bleibt erhalten – nachgeprüft an der
-              echten Datei: 2.364 verschiedene Zeilen vorher, 2.364 nachher.
-              Weg ist nur die zweite, dritte, hundertste Wiederholung derselben
-              Zeile.
-
-              ## Warum je Quelle und nicht über alle
-
-              Über alle Quellen entdoppelt spart vier Prozentpunkte mehr – und
-              verliert die Bestätigung: Meldet eine Schlagzeile sowohl Reuters
-              als auch die Börsen-Zeitung, stünde sie nur noch unter der
-              ersten. Bei einer Website, die auf genannte Quellen Wert legt,
-              ist das der falsche Tausch.
-
-              ## Der Nebeneffekt, der mehr wert ist als die Ersparnis
-
-              Entdoppelt wird **vor** dem Kürzen auf `ZEICHEN`. In dasselbe
-              Zeichenbudget passen damit mehr echte Meldungen – die Quelle
-              wird also nicht nur kleiner, sondern ergiebiger.
-              """
-              gesehen: set[str] = set()
-              raus: list[str] = []
-              leer_davor = False
-              for zeile in text.split("\n"):
-                  gestutzt = zeile.strip()
-                  if not gestutzt:
-                      # Absatzgrenzen bleiben, aber nur einfach – sie trennen
-                      # Meldungen voneinander und sind damit Information.
-                      if not leer_davor:
-                          raus.append("")
-                          leer_davor = True
-                      continue
-                  leer_davor = False
-                  if gestutzt in gesehen:
-                      continue
-                  gesehen.add(gestutzt)
-                  raus.append(zeile)
-              return "\n".join(raus)
-
           jetzt = datetime.datetime.now(datetime.timezone.utc)
           print("# Quellenlage " + jetzt.strftime("%Y-%m-%d %H:%M UTC"))
           print()
@@ -205,7 +169,7 @@ jobs:
           print("Arbeitsmaterial – zusammenfassen, nie spiegeln.")
 
           brauchbar = 0
-          for adresse in adressen:
+          for adresse, grenze in adressen:
               print("\n" + "=" * 78)
               print(f"QUELLE: {adresse}")
               print("=" * 78)
@@ -225,7 +189,7 @@ jobs:
                   print(f"FEHLER: {type(fehler).__name__}: {fehler}")
                   continue
 
-              lesbar = entdoppeln(zu_text(text))
+              lesbar = quellentext.entdoppeln(quellentext.zu_text(text, adresse))
               # Eine Seite, die mit 200 antwortet und trotzdem nur Menü und
               # Fußzeile liefert, ist der Ausfall, der nicht auffällt – der
               # Inhalt kommt dort per JavaScript nach. Unter 1.500 Zeichen ist
