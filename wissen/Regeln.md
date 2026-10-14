@@ -102,7 +102,7 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
   Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren". **Nichts
   doppelt:** Thema der letzten sieben Tage nur mit neuem Ereignis, ein Preis
-  ist keins.
+  ist keins; Karussell: `schonHeute()`.
   **Kein Quellenstreit:** je Preis eine Zahl, „Kursleiste" nur in
   Quellenangaben (`lib/nachrichten-wiederholung.ts`).
 - **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in
