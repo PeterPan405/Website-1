@@ -150,14 +150,13 @@ export const newsArticles: NewsArticle[] = [
   },
   {
     slug: 'oelpreis-uebersicht-nennt-107-kursleiste-106',
-    title: 'Ölpreis: Übersicht nennt 107 Dollar, Kursleiste zeigt 106,37',
-    metaTitle: 'Ölpreis: 107 Dollar laut Übersicht, 106,37 laut Kursleiste',
+    title: 'Brent steigt über 107 Dollar, Raketen auf Kiew in der Nacht',
     teaser:
-      'Eine Marktübersicht meldet Brent über 107 Dollar, die Kursleiste zur gleichen Zeit nur 106,37 – dazu Raketen auf Kiew in der Nacht.',
+      'Der Ölpreis der Sorte Brent steigt am Mittwochmorgen über 107 Dollar. In der Nacht trafen Raketen die ukrainische Hauptstadt Kiew.',
     category: 'Märkte',
     publishedAt: '2026-10-14T07:45:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
+    readingMinutes: 2,
     tags: ['Öl', 'Brent', 'Geopolitik', 'Rohstoffe'],
     relatedTopics: ['rohstoffe'],
     relatedSymbols: ['brent'],
@@ -169,11 +168,6 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         label:
-          'wallstreet-online, Rohstoffpreise (Kursleiste), Stand 14.10.2026, 07:04 Uhr: Brent 106,37 USD (+0,02 %)',
-        url: 'https://www.wallstreet-online.de/nachrichten',
-      },
-      {
-        label:
           'wallstreet-online/dpa-AFX, Wirtschaftsnachrichten-Ticker, 14.10.2026, 06:21 Uhr: „Raketen treffen Kiew – Ukrainer beklagen fehlende Vorwarnung“',
         url: 'https://www.wallstreet-online.de/nachrichten',
       },
@@ -181,29 +175,29 @@ export const newsArticles: NewsArticle[] = [
     body: [
       {
         type: 'paragraph',
-        text: 'Am Ölmarkt zeigen zwei Quellen am selben Mittwochmorgen zwei unterschiedliche Bilder.',
+        text: 'Der Ölpreis der Nordseesorte Brent ist am Mittwochmorgen über 107 US-Dollar je Barrel gestiegen. Das meldet wallstreet-online in seinem Marktüberblick, Stand 07:04 Uhr.',
       },
       {
         type: 'heading',
         level: 2,
-        text: '107 Dollar in der Übersicht, 106,37 auf der Kursleiste',
+        text: 'Was die Meldung nennt – und was nicht',
       },
       {
         type: 'paragraph',
-        text: 'Eine Marktübersicht von wallstreet-online schreibt, Brent sei über 107 US-Dollar gestiegen, und nennt als Hintergrund einbrechende Chipwerte in Asien sowie die heute beginnende US-Bankenberichtssaison. Die Kursleiste derselben Seite zeigt zur gleichen Zeit, um 07:04 Uhr, einen Brent-Preis von 106,37 Dollar – ein Plus von nur 0,02 Prozent gegenüber dem Vortag. Welcher Wert sich auf welchen genauen Zeitpunkt bezieht, geht aus den Quellen nicht hervor.',
+        text: 'Im selben Überblick stehen zwei weitere Themen des Morgens: einbrechende Chipwerte in Asien und die US-Großbanken, die heute Zahlen vorlegen. Einen Zusammenhang mit dem Ölpreis stellt die Meldung nicht her. Einen Grund für den Anstieg nennt sie nicht.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Geopolitische Spannungen im Hintergrund',
+        text: 'Raketen auf Kiew',
       },
       {
         type: 'paragraph',
-        text: 'Zu den Themen, die der Ölmarkt an diesem Morgen verarbeitet, gehört auch die Lage in der Ukraine. Nach Angaben der Nachrichtenagentur dpa-AFX trafen in der Nacht Raketen die Hauptstadt Kiew. Ukrainische Stellen beklagten eine fehlende Vorwarnung.',
+        text: 'In der Nacht trafen nach Angaben der Nachrichtenagentur dpa-AFX Raketen die ukrainische Hauptstadt Kiew. Ukrainer beklagten eine fehlende Vorwarnung.',
       },
       {
         type: 'paragraph',
-        text: '**Was daraus folgt:** Schlagzeile und Kursleiste bilden oft unterschiedliche Momente desselben Handelstages ab – ein Tageshoch ist nicht derselbe Wert wie der aktuelle Kurs. Wer eine Zahl zitiert, nennt deshalb besser auch den Zeitpunkt.',
+        text: '**Was daraus folgt:** Brent wird fast rund um die Uhr gehandelt, ein Wert am frühen Morgen ist eine Momentaufnahme. Wer einen Ölpreis nennt, nennt deshalb die Uhrzeit dazu – hier über 107 Dollar um 07:04 Uhr.',
       },
     ],
   },
@@ -248,7 +242,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: 'paragraph',
-        text: 'Der Dax notiert laut der Kursleiste von wallstreet-online um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
+        text: 'Der Dax notiert laut wallstreet-online um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
       },
       {
         type: 'heading',
@@ -323,7 +317,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'gold-silber-unterschiedliche-richtung-mittwoch',
     title: 'Gold pendelt nahe 4.200 Dollar, Silber gibt weiter nach',
     teaser:
-      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber laut Kursleiste weiter nachgibt.',
+      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber weiter nachgibt.',
     category: 'Märkte',
     publishedAt: '2026-10-14T07:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -355,7 +349,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: 'paragraph',
-        text: 'Gold kostet laut der Kursleiste von wallstreet-online um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
+        text: 'Gold kostet laut wallstreet-online um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
       },
       {
         type: 'heading',
