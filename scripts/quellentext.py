@@ -32,6 +32,18 @@ Adresse steht in spitzen Klammern hinter dem Text:
 
 In Feeds stehen die Links ohnehin als Text im `<link>`-Element; dort ändert
 sich nichts.
+
+## Nicht in Menü, Kopf und Fuß
+
+Der erste echte Lauf (14. Oktober 2026, 08:53 UTC) brachte 427 Links – und
+244 davon waren Menüpunkte von EZB und Bundesbank: „Our tasks and
+responsibilities ⟨…/ecb/orga/tasks/html/index.en.html⟩". Lang genug für eine
+Schlagzeile, tief genug für einen Artikel, und trotzdem Navigation. Sie
+kosteten das Zeichenbudget, in dem die Meldungen stehen sollten.
+
+Links in `<nav>`, `<header>` und `<footer>` bekommen deshalb keine Adresse.
+Ihr **Text** bleibt, wie er vorher war – die Aufbereitung ändert dort nichts
+gegenüber dem Stand vor den Links.
 """
 
 from __future__ import annotations
@@ -69,14 +81,20 @@ def _anker(basis: str):
     return ersetzen
 
 
+_RAHMEN = re.compile(r"(?is)(<(nav|header|footer)\b.*?</\2\s*>)")
+_LINK = re.compile(r"""(?is)<a\b[^>]*?\bhref\s*=\s*["']([^"'#]+)["'][^>]*>(.*?)</a>""")
+
+
 def zu_text(roh: str, basis: str = "") -> str:
     """HTML oder Feed zu lesbarem Text; Schlagzeilen behalten ihre Adresse."""
     ohne = re.sub(r"(?is)<(script|style|noscript|svg)\b.*?</\1>", " ", roh)
     if basis:
-        ohne = re.sub(
-            r"""(?is)<a\b[^>]*?\bhref\s*=\s*["']([^"'#]+)["'][^>]*>(.*?)</a>""",
-            _anker(basis),
-            ohne,
+        # Nur außerhalb von Menü, Kopf und Fuß – Begründung im Modulkopf.
+        teile = _RAHMEN.split(ohne)
+        ohne = "".join(
+            teil if i % 3 else _LINK.sub(_anker(basis), teil)
+            for i, teil in enumerate(teile)
+            if i % 3 != 2
         )
     ohne = re.sub(r"(?i)</(p|div|li|tr|h[1-6]|section|article|br|item)\s*/?>", "\n", ohne)
     ohne = re.sub(r"(?i)<!\[CDATA\[|\]\]>", " ", ohne)
@@ -169,6 +187,28 @@ def _selbsttest() -> int:
         "/nachrichten⟩" not in text,
     )
     pruefe("ein Sprung innerhalb der Seite nicht", "#oben" not in text)
+
+    # Der Fall vom ersten echten Lauf: ein Menüpunkt der EZB.
+    menue = zu_text(
+        '<header><nav><ul><li><a href="/ecb/orga/tasks/html/index.en.html">'
+        "Our tasks and responsibilities</a></li></ul></nav></header>"
+        '<main><a href="/press/pr/date/2026/html/ecb.pr261015.en.html">'
+        "Monetary policy decisions of 15 October 2026</a></main>"
+        '<footer><a href="/home/legal/html/index.en.html">Legal notice and privacy statement</a></footer>',
+        "https://www.ecb.europa.eu/press/html/index.en.html",
+    )
+    pruefe(
+        "ein Menüpunkt in <nav>/<header> bekommt keine Adresse, behält aber den Text",
+        "Our tasks and responsibilities" in menue and "orga/tasks" not in menue,
+        menue,
+    )
+    pruefe("ein Link im <footer> auch nicht", "legal/html" not in menue and "Legal notice" in menue)
+    pruefe(
+        "die Meldung daneben schon",
+        "Monetary policy decisions of 15 October 2026 ⟨https://www.ecb.europa.eu/press/pr/"
+        "date/2026/html/ecb.pr261015.en.html⟩" in menue,
+        menue,
+    )
 
     # Die Gegenprobe: ohne Basis wie vorher – kein Link, aber derselbe Text.
     ohne = zu_text(seite)
