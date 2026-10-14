@@ -510,6 +510,8 @@ ${vortag.length ? vortag.map((t) => `- ${t}`).join('\n') : '(keine gefunden)'}
 
 - **Ein Thema von gestern kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Überschriften, die denen von gestern zu ähnlich sind, werden zurückgewiesen.
 - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber bewegen sich jeden Tag; ein Rohstoffartikel braucht einen Anlass außerhalb des Kurses.
+- **Ein Kursartikel: erst der Preis, dann das Warum** – aus einer Quelle unten. Steht dort kein Grund, gibt es keinen Kursartikel, auch keinen, der sagt, dass keiner genannt wird.
+- **Kein „X meldet" im Text.** Wer etwas gesagt oder beschlossen hat, wird genannt. Ein Preis oder eine Tatsache steht ohne „laut …" und „das meldet …" – woher sie stammt, sagt die Quellenangabe.
 - **Ein Thema, ein Artikel.** Öl und Gold auf dieselbe Nachricht sind ein Artikel.
 - **Nennen zwei Quellen für denselben Preis zwei Zahlen, nimm eine** – die mit Uhrzeit, sonst die jüngere – und nenn sie mit Quelle und Zeitpunkt. Die Abweichung ist nie das Thema: Sie klingt unsicher und ist keine Nachricht. Das Wort „Kursleiste" steht höchstens in der Quellenangabe. Beides wird sonst zurückgewiesen.
 

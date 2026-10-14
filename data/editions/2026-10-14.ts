@@ -10,7 +10,7 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-10-14',
   intro:
-    'Notenbanker sprechen, Spanien meldet die Inflation, Brent steigt über 107 Dollar, und US-Großbanken starten in die Berichtssaison.',
+    'Notenbanker sprechen, Spanien meldet die Inflation, am Ölmarkt widersprechen sich zwei Quellen, und US-Großbanken starten in die Berichtssaison.',
   top: [
     {
       headline:
@@ -33,19 +33,20 @@ export const edition: DailyEdition = {
       ],
     },
     {
-      headline: 'Brent steigt über 107 Dollar, Raketen auf Kiew',
+      headline: 'Brent über 107 Dollar laut Übersicht, Kursleiste zeigt 106,37',
       summary: [
-        'Der Ölpreis der Sorte Brent ist am Mittwochmorgen über 107 Dollar je Barrel gestiegen. Das meldet wallstreet-online um 07:04 Uhr. Einen Grund für den Anstieg nennt die Meldung nicht.',
-        'In der Nacht trafen nach Angaben von dpa-AFX Raketen die ukrainische Hauptstadt Kiew. Ukrainer beklagten eine fehlende Vorwarnung.',
+        'Am Ölmarkt zeigen zwei Quellen am Mittwochmorgen zwei Bilder. Eine Marktübersicht von wallstreet-online meldet, Brent sei über 107 Dollar gestiegen. Als Hintergrund nennt sie einbrechende Chipwerte in Asien und die heute beginnende US-Bankenberichtssaison.',
+        'Die Kursleiste derselben Seite zeigt zur gleichen Zeit nur 106,37 Dollar, kaum verändert zum Vortag. In der Ukraine schlugen nach Angaben von dpa-AFX in der Nacht Raketen in Kiew ein. Ukrainische Stellen beklagten eine fehlende Vorwarnung.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Der Ölpreis wirkt über Transport- und Energiekosten auf die Teuerung – und die steht heute mit Spaniens Inflationsdaten und Lagardes Auftritt ohnehin im Mittelpunkt.',
+        'Ein Tageshoch und der aktuelle Kurs sind zwei verschiedene Werte – eine Schlagzeile kann beides meinen, ohne dass eine Zahl falsch ist.',
       relatedTopics: ['rohstoffe'],
       relatedSymbols: ['brent'],
       sources: [
         {
-          label: 'wallstreet-online, Marktüberblick, Stand 14.10.2026, 07:04 Uhr',
+          label:
+            'wallstreet-online, Marktüberblick und Rohstoffpreise, Stand 14.10.2026, 07:04 Uhr',
           url: 'https://www.wallstreet-online.de/nachrichten',
         },
         {
@@ -58,7 +59,7 @@ export const edition: DailyEdition = {
     {
       headline: 'Dax hält sich, während Chipwerte in Asien einbrechen',
       summary: [
-        'Der Dax zeigt sich am Mittwochmorgen robust. Er notiert laut wallstreet-online bei 25.304,58 Punkten, ein Plus von 0,24 Prozent.',
+        'Der Dax zeigt sich am Mittwochmorgen robust. Er notiert bei 25.304,58 Punkten, ein Plus von 0,24 Prozent.',
         'Ganz anders das Bild in Asien. Dort geben laut einer Marktübersicht Speicherchip-Hersteller wie SK Hynix, Samsung Electronics und Kioxia deutlich nach. An der Wall Street war der Vortag bereits durchwachsen verlaufen, mit leichten Verlusten wegen Geschäftszahlen und schwachen Technologiewerten.',
       ],
       category: 'Märkte',

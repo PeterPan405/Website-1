@@ -5118,6 +5118,33 @@ Geprüft am Entwurf selbst: Der Entwurf des Agenten vom 14. Oktober – im
 Test als `tests/fixtures/entwurf-2026-10-14.json` – wird aus genau den zwei
 gemeldeten Gründen zurückgewiesen und besteht, sobald sie behoben sind.
 
+## Erst der Preis, dann das Warum – und kein „das meldet"
+
+Die erste Umschreibung des Öl-Artikels vom 14. Oktober hielt sich an die
+alte Regel „Steht kein Warum in der Meldung, sag das ausdrücklich" und
+schrieb: „Das meldet wallstreet-online … Einen Grund für den Anstieg nennt
+sie nicht." Der Betreiber dazu: „da soll der Preis kommen und dann warum er
+gestiegen oder gefallen ist … nicht das meldet das das meldet das, das ist
+einfach dämlich."
+
+Daraus zwei Regeln in beiden Anweisungen:
+
+- **Ein Kursartikel nennt den Preis und dann den Grund** – aus einer
+  gelesenen Quelle. Der Agent hat Netzzugang und liest den Artikel hinter
+  der Schlagzeile. Findet er keinen Grund, gibt es **keinen** Kursartikel;
+  einer, der sagt, dass keiner genannt wird, ist keine Nachricht. Die
+  Regel gegen erfundene Gründe gilt unverändert – sie führt hier nur zum
+  Weglassen statt zum Hinschreiben der Lücke.
+- **Zuschreibung gehört zu Aussagen, nicht zu Preisen.** Wer etwas gesagt,
+  beschlossen, angekündigt hat, wird genannt. Ein Kurs steht ohne „laut
+  wallstreet-online"; woher er stammt, sagt die Quellenangabe.
+
+Beim Nachholen des Grundes fiel ein weiterer Fehler auf: `quellen-holen.yml`
+installierte den PDF-Leser ohne `apt-get update` und starb am 14. Oktober
+mit `404 Not Found`, bevor eine Seite abgerufen war – als einziger der fünf
+Workflows, die etwas installieren. Jetzt frischt er den Index auf und läuft
+ohne PDF-Leser weiter, statt abzubrechen.
+
 ## Was das Netz nicht kann
 
 Es vergleicht Wörter, nicht Inhalte. „Edelmetalle uneinheitlich" kommt nach
