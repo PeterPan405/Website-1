@@ -498,10 +498,51 @@ jobs:
               Zeit hat.** Kurze Hauptsätze, keine Schachtelsätze, keine
               Beamtensprache. „Das klingt nach viel. Es ist auch viel – aber
               nicht das, wonach es klingt."
-            - **Die Spannung liegt im Widerspruch**, nicht in Superlativen:
-              Auftragseingang steigt, Umsatz nicht. Zwei Portale nennen
-              denselben Preis mit verschiedenen Prozentzahlen. Öl fällt und
-              Gold steigt auf dieselbe Nachricht.
+            - **Die Spannung liegt im Widerspruch der Sache**, nicht in
+              Superlativen: Auftragseingang steigt, Umsatz nicht. Öl fällt
+              und Gold steigt auf dieselbe Nachricht.
+            - **Nie im Widerspruch der Quellen.** Nennen zwei Portale für
+              denselben Preis zwei Zahlen, nimm eine – die mit Uhrzeit, sonst
+              die jüngere – und nenn sie mit Quelle und Zeitpunkt. Die
+              Abweichung ist kein Thema, weder in Überschrift noch Text: Sie
+              sind zwei Abrufzeitpunkte, keine Nachricht, und für den Leser
+              klingt es unsicher. Das Wort „Kursleiste" kommt nur in der
+              Quellenangabe vor – kein Leser weiß, was das ist. Der Betreiber
+              hat das am 14. Oktober 2026 beanstandet („klingt unsicher, ist
+              verwirrend und unseriös"). Die Probe weist es in Überschrift,
+              Anreißer, Einleitung und Meldung zurück und warnt im Fließtext –
+              beheb beides vor der Abgabe.
+
+            ## Nichts doppelt
+
+            Das Karussell auf der Startseite zeigt **heute und gestern
+            nebeneinander.** Was gestern schon eine Meldung war, steht dort
+            sonst zweimal – am 14. Oktober 2026 waren es Öl, Gold und Silber,
+            wie an 75 von 85 Tagespaaren davor. Der Betreiber: „wir brauchen
+            keine news doppelt."
+
+            Lies deshalb zuerst die Überschriften des letzten
+            Erscheinungstags – die Datei beginnt mit den jüngsten Artikeln:
+
+            ```
+            grep -A1 -E "^    (title|publishedAt):" data/news.ts | head -45
+            ```
+
+            - **Ein Thema von gestern kommt nur mit einem neuen Ereignis
+              wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas
+              ändert. Der Diesel-Deal mit den zugesagten Mengen am Tag nach
+              der Ankündigung ist eine Entwicklung; „Gold nähert sich 4.200
+              Dollar" zwei Tage hintereinander ist keine.
+            - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber
+              bewegen sich jeden Tag. Ein Rohstoffartikel braucht einen
+              Anlass außerhalb des Kurses; ohne ihn gehört die Bewegung in
+              einen Satz eines anderen Artikels oder nirgendwohin.
+            - **Ein Thema, ein Artikel.** Öl und Gold auf dieselbe Nachricht
+              sind ein Artikel, nicht zwei.
+
+            Die Probe vergleicht jede Überschrift mit denen von gestern und
+            weist zu ähnliche zurück. Sie vergleicht Wörter, nicht Inhalte –
+            sie ist das Netz, die Regel ist dieser Abschnitt.
             - **Entspannt heißt auch: nicht dramatisieren.** Kein „Crash",
               kein „Kurssturz", wenn es 1,2 Prozent waren. Übertreibung ist
               die andere Art, den Leser nicht ernst zu nehmen.
