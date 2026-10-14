@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Notenbanker und deutsche Inflationsdaten stehen im Fokus, während Öl steigt und Gold nachgibt. An der Wall Street laufen Dow und Nasdaq auseinander, die US-Midterms rücken ins Blickfeld, und der Dax bleibt dank Rüstungswerten gefragt.",
+  "kacheln": [
+    {
+      "titel": "Notenbanken & Inflation",
+      "text": "Am Dienstag sprechen Vertreter von Bank of England, EZB und Fed. Deutschland meldet seine September-Inflation, erwartet werden unverändert 3,3 Prozent."
+    },
+    {
+      "titel": "Öl steigt, Gold fällt",
+      "text": "Brent legt um 1,99 Prozent auf 105,97 Dollar zu. Gold gibt um 0,44 Prozent nach, Silber verliert 0,83 Prozent. Frankreichs hohe Anleiherenditen belasten laut Goldreporter den Goldpreis."
+    },
+    {
+      "titel": "Dow vs. Nasdaq",
+      "text": "Der Dow Jones legte am Montag zu, während Technologiewerte vor der US-Berichtssaison nachgaben. Am Dienstagmorgen zeigt sich dasselbe Bild erneut."
+    },
+    {
+      "titel": "US-Midterms",
+      "text": "Die Bank of America sieht je nach Ausgang der Wahl am 3. November zweistellige Kursgewinne oder einen heftigen Rückschlag für US-Aktien."
+    },
+    {
+      "titel": "Dax: Rüstung gefragt",
+      "text": "Der Dax erreichte am Montag rund 25.260 Punkte. Besonders gefragt waren laut onvista die Rüstungswerte Rheinmetall und Nordex."
+    }
+  ],
+  "schlagworte": ["ezb", "öl", "dax", "news", "top"]
+}

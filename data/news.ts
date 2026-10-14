@@ -101,6 +101,874 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-tag-lagarde-spricht-spanien-meldet-inflation',
+    title: 'EZB-Tag: Lagarde spricht, Spanien meldet die Inflation',
+    teaser:
+      'Am Mittwoch reihen sich fünf Notenbanker-Auftritte, dazu kommen Spaniens Inflationsdaten und Deutschlands Großhandelspreise – ein dicht gepackter Kalendertag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['EZB', 'Notenbanken', 'Inflation', 'Spanien'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd', 'dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender und Ticker, Stand 14.10.2026, 07:04 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Mittwoch ist dicht getaktet. Fünf Notenbanker treten im Tagesverlauf auf, dazwischen kommen zwei Länder mit frischen Preisdaten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Auftritte im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr spricht ein Mitglied der Bank of England, fünf Minuten später der Gouverneur der kanadischen Notenbank. Die Europäische Zentralbank ist gleich dreifach vertreten: EZB-Mitglied Elderson um 10 Uhr, Präsidentin Lagarde um 10:30 Uhr und EZB-Mitglied Escrivá um 11:20 Uhr. Das zeigt der Wirtschaftskalender von wallstreet-online, Stand Mittwochmorgen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preisdaten aus zwei Ländern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr veröffentlicht Deutschland seinen Großhandelspreisindex für September. Die Prognose liegt bei plus 0,7 Prozent im Monatsvergleich, nach plus 0,9 Prozent im Vormonat. Eine Stunde später folgt Spanien mit der harmonisierten Inflation: Die Prognose für den Jahreswert liegt bei 5,0 Prozent, unverändert zum Vormonat. Die national berechnete spanische Teuerung wird mit 4,9 Prozent erwartet, ebenfalls gleich wie im September.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Zahlen für ein und dasselbe Land zeigen, warum ein einzelner Inflationswert selten die ganze Geschichte erzählt. Die harmonisierte und die national berechnete spanische Teuerung unterscheiden sich in der Methode – und liegen trotzdem nahe beieinander.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-uebersicht-nennt-107-kursleiste-106',
+    title: 'Ölpreis über 106 Dollar: Iran droht Tankern in Hormus',
+    teaser:
+      'Brent steigt über 106 Dollar. Iran kündigt härtere Angriffe auf Tanker in der Straße von Hormus an, und die Zentrale von Saudi Aramco wurde getroffen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Brent', 'Geopolitik', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Gina Moesing, 14.10.2026: „Ölpreis über 106 US-Dollar: Huthis treffen Aramco-Zentrale – und Hormus wird jetzt noch gefährlicher“ (mit Angaben von Reuters und Bloomberg)',
+        url: 'https://www.wallstreet-online.de/nachricht/21521533-oelpreis-106-us-dollar-huthis-treffen-aramco-zentrale-hormus-gefaehrlicher',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis der Nordseesorte Brent ist am Mittwoch über 106 US-Dollar je Barrel gestiegen. Die US-Sorte WTI näherte sich 95 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Auslöser: Drohungen gegen Tanker in Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Iranische Regierungsvertreter erklärten nach Angaben von Reuters, sie wollten die Angriffe auf Tanker in der Straße von Hormus mit neuen Taktiken verschärfen. Die Meerenge ist das entscheidende Nadelöhr für Öl aus dem Persischen Golf. Schon jetzt wenden sich mehr Supertanker von der Region ab.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das US-Zentralkommando Centcom wies iranische Behauptungen zurück, Teheran kontrolliere die Meerenge. Amerikanische Streitkräfte und regionale Partner kontrollierten sie eindeutig, erklärte Centcom.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Angriffe auf Saudi-Arabien',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zugleich eskalieren die Kämpfe zwischen Saudi-Arabien und den vom Iran unterstützten Huthis im Jemen. Nach dem Huthi-Angriff auf den Flughafen von Riad soll eine saudisch geführte Koalition Energie-Terminals und Treibstofflager der Huthis angegriffen haben. Laut Bloomberg wurde auch die Zentrale von Saudi Aramco in Dhahran getroffen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Morgan Stanley hob seine Brent-Prognose für das vierte Quartal von 100 auf 105 Dollar je Barrel an, für das erste Quartal 2027 von 95 auf 100 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Exporte aus der Region laufen weiter, schreibt auch Morgan Stanley. Steigen kann der Preis trotzdem – über die Risikoprämie, den Aufschlag für die Gefahr, dass Lieferungen ausfallen. Angriffe auf Tanker und Energieanlagen erhöhen genau diese Gefahr.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-behauptet-sich-chipwerte-asien-schwach',
+    title: 'Dax behauptet sich, Chipwerte in Asien geben deutlich nach',
+    teaser:
+      'Der Dax notiert am Morgen im Plus, während Speicherchip-Hersteller wie SK Hynix und Samsung in Asien deutlich nachgeben – ein geteiltes Bild.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Chipwerte', 'Asien', 'Indizes'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'samsung'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 14.10.2026, 07:04 Uhr: DAX 25.304,58 Punkte (+0,24 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Marktüberblick, Stand 14.10.2026, 07:04 Uhr, Wertpapier-Tags: CXMT Registered (A), SK hynix, Samsung Electronics (Spons. GDR), Kioxia Holdings Corporation',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, Marktberichte, 13.10.2026, 20:20 Uhr: „Aktien New York Schluss: Leichte Verluste – Geschäftszahlen und Tech-Schwäche“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax zeigt sich am Mittwochmorgen robust, während Speicherchip-Hersteller in Asien deutlich nachgeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dax im Plus, Asiens Chipwerte im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax notiert um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Wall Street als Vorlauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Einordnung: An der Wall Street war der Dienstag bereits durchwachsen verlaufen. Laut einem Marktbericht der Nachrichtenagentur dpa-AFX schloss der Handel mit leichten Verlusten, belastet von Geschäftszahlen und schwachen Technologiewerten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index wie der Dax bildet vor allem die eigene Zusammensetzung ab – vierzig deutsche Standardwerte ohne große Technologiekonzerne. Eine Branchenschwäche in Asien oder den USA muss sich deshalb nicht eins zu eins im Dax zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-grossbanken-legen-quartalszahlen-vor',
+    title: 'Blackrock, Morgan Stanley und Bank of America legen heute Zahlen vor',
+    metaTitle: 'US-Großbanken legen am Mittwoch ihre Quartalszahlen vor',
+    teaser:
+      'Blackrock, Morgan Stanley, Bank of America und State Street veröffentlichen am Mittwoch frische Quartalszahlen – der Auftakt einer dichten Woche.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['USA', 'Banken', 'Quartalszahlen', 'Berichtssaison'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['blackrock', 'bank-of-america'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, „Ihre wichtigsten Termine“, Stand 14.10.2026, 04:30 Uhr: „Frische Q-Zahlen von: Blackrock, Morgan Stanley, Bank of America & State Street“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, Marktberichte, 13.10.2026, 20:20 Uhr: „Aktien New York Schluss: Leichte Verluste – Geschäftszahlen und Tech-Schwäche“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Mittwoch bringt frische Zahlen von gleich vier großen US-Finanzkonzernen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Namen, ein Termin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Terminübersicht von wallstreetONLINE legen Blackrock, Morgan Stanley, Bank of America und State Street an diesem Mittwoch ihre Quartalszahlen vor. Konkrete Erwartungswerte oder Zahlen nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Auftakt einer dichten Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Termin reiht sich in eine bereits angelaufene US-Berichtssaison ein. Der Handel in New York hatte am Dienstag laut einem Bericht der Nachrichtenagentur dpa-AFX bereits auf erste Geschäftszahlen und schwächere Technologiewerte reagiert, mit leichten Verlusten zum Handelsschluss.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Banken berichten traditionell zu den Ersten in jeder Berichtssaison. Ihre Zahlen zur Kreditvergabe und zum Handelsgeschäft gelten deshalb oft als früher Hinweis auf die Stimmung in der gesamten Wirtschaft – eine Garantie für den weiteren Verlauf sind sie nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-unterschiedliche-richtung-mittwoch',
+    title: 'Gold pendelt nahe 4.200 Dollar, Silber gibt weiter nach',
+    teaser:
+      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber weiter nachgibt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Gold', 'Silber', 'Edelmetalle', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 14.10.2026, 07:04 Uhr: Gold 4.164,49 USD (+0,16 %), Silber 59,28 USD (-0,37 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News vom 13.10.2026: „Goldpreis nähert sich wieder 4.200 USD – Öl und Renditen geben nach“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber bewegen sich am Mittwochmorgen in unterschiedliche Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Edelmetalle, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold kostet um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Marke von 4.200 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter berichtete am Vortag, der Goldpreis nähere sich wieder der Marke von 4.200 Dollar, während Öl und Anleiherenditen nachgäben. An diesem Mittwochmorgen liegt der Kurs weiterhin unterhalb dieser Marke.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold und Silber gelten beide als Edelmetalle, reagieren aber nicht immer gleich. Silber hat einen deutlich größeren industriellen Anwendungsanteil als Gold, das stärker von Zinserwartungen und seiner Rolle als Krisenwährung getrieben wird.',
+      },
+    ],
+  },
+  {
+    slug: 'evotec-vorlaeufige-neun-monats-zahlen-ueber-erwartungen',
+    title: 'Evotec übertrifft mit vorläufigen Neun-Monats-Zahlen die Erwartungen',
+    metaTitle: 'Evotec: Vorläufige Neun-Monats-Zahlen über den Erwartungen',
+    teaser:
+      'Evotec meldet vorläufige Neun-Monats-Ergebnisse über den Erwartungen und bestätigt die Prognose für 2026 – konkrete Zahlen fehlen noch.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Evotec', 'Quartalszahlen', 'Biotechnologie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, Ad-hoc-Nachrichten, Stand 14.10.2026, 00:07 Uhr: „Evotec's Preliminary 9-Month Results Beat Expectations; 2026 Guidance Holds“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Evotec meldete in der Nacht zum Mittwoch vorläufige Zahlen, die über den Erwartungen liegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorläufig über den Erwartungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Ad-hoc-Mitteilung, die wallstreet-online um 00:07 Uhr auflistete, liegen die vorläufigen Neun-Monats-Ergebnisse des Biotechnologie-Unternehmens über den Erwartungen. Gleichzeitig bestätigte Evotec die Prognose für das Geschäftsjahr 2026. Konkrete Umsatz- oder Ergebniszahlen nennt die kurze Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorläufig heißt: Es folgt noch mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vorläufige Zahlen sind eine erste, ungeprüfte Einschätzung des Unternehmens selbst. Die endgültigen, testierten Zahlen folgen meist erst mit dem vollständigen Geschäftsbericht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine bestätigte Prognose ist etwas anderes als eine angehobene. Wer beides gleichsetzt, überliest den Unterschied zwischen „es bleibt wie geplant“ und „es läuft besser als geplant“.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbanker-und-inflation-am-dienstag',
+    title: 'Drei Notenbanker sprechen am Dienstag, deutsche Inflation im Fokus',
+    metaTitle: 'Drei Notenbanker sprechen, deutsche Inflation im Fokus',
+    teaser:
+      'Am Dienstag sprechen Vertreter von Bank of England, EZB und Fed, während Deutschland seine September-Inflation offiziell bestätigt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Notenbanken', 'Inflation', 'EZB', 'Fed', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd', 'dax'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 13.10.2026, 01:33 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag ist dicht getaktet. Gleich drei Notenbanker treten öffentlich auf, und aus Deutschland kommt die endgültige Fassung der September-Inflation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 5 Uhr spricht ein Mitglied der Bank of England. Um 8 Uhr veröffentlicht Deutschland den harmonisierten Verbraucherpreisindex sowie die nationale Variante für September – beide mit einer Prognose von 3,3 Prozent im Jahresvergleich, unverändert zum Vormonat. Bereits um 6:30 Uhr meldet die niederländische Statistikbehörde ihre eigene Inflationszahl, mit einer Prognose von 3,4 Prozent nach zuvor 3,3 Prozent. Um 9:15 Uhr folgt ein Mitglied des EZB-Rats, um 9:45 Uhr ein Mitglied der US-Notenbank Fed. Das zeigt der Wirtschaftskalender von wallstreet-online, Stand Dienstagnacht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose gegen tatsächlichen Wert',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Börse zählt bei solchen Terminen selten die Zahl allein, sondern der Abstand zur Prognose. Bestätigt die deutsche Inflation die erwarteten 3,3 Prozent, dürfte die Reaktion gering ausfallen. Weicht der tatsächliche Wert ab, kann das Anleihen und den Euro stärker bewegen als die Inflationszahl selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer solche Termine verfolgt, achtet besser auf die Prognose als auf die Schlagzeile danach. Der Markt hat die erwartete Zahl meist schon vorweggenommen – überraschend ist nur die Abweichung.',
+      },
+    ],
+  },
+  {
+    slug: 'oel-steigt-gold-und-silber-geben-nach',
+    title: 'Öl steigt auf 106 Dollar, Gold und Silber geben nach',
+    teaser:
+      'Brent legt in der Nacht zum Dienstag deutlich zu, während Gold und Silber nachgeben – Goldreporter nennt Frankreichs hohe Anleiherenditen als Hintergrund.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Gold', 'Silber', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 13.10.2026, kurz nach 3 Uhr MESZ: Brent 105,97 USD (+1,99 %), Gold 4.153,37 USD (-0,44 %), Silber 60,33 USD (-0,83 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News vom 12.10.2026: „Anleihezinsen bleiben hoch: Frankreich unter Druck – Gold kämpft um 4.200 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Rohstoffmarkt laufen Energie und Edelmetalle in der Nacht zum Dienstag in verschiedene Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Öl zieht an, Gold und Silber geben nach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Brent kostet laut der Preisleiste von wallstreet-online 105,97 Dollar pro Fass, ein Plus von 1,99 Prozent. Gold fällt im selben Zeitraum um 0,44 Prozent auf 4.153,37 Dollar je Feinunze, Silber verliert 0,83 Prozent auf 60,33 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Frankreich dabei eine Rolle spielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter bleiben die Anleiherenditen in der Eurozone hoch, besonders in Frankreich. Das Zinsumfeld bleibt damit nach Einschätzung des Portals ein wichtiger Faktor für den Goldpreis, der seit Tagen um die Marke von 4.200 Dollar kämpft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Öl und Edelmetalle werden oft in einen Topf geworfen, wenn von „Rohstoffen“ die Rede ist. Ihr Verhalten an einem einzelnen Tag zeigt: Sie folgen unterschiedlichen Treibern – Energie reagiert auf Angebot und Nachfrage, Gold stärker auf Zinsen und Anleiherenditen.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-im-plus-technologiewerte-unter-druck',
+    title: 'Dow im Plus, Technologiewerte unter Druck vor der Berichtssaison',
+    teaser:
+      'Der Dow Jones schloss am Montag im Plus, während Technologiewerte vor der US-Berichtssaison nachgaben – auch am Dienstagmorgen zeigt sich das Bild.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'USA', 'Berichtssaison'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 12.10.2026, 20:22 Uhr und 20:35 Uhr (dpa-AFX): „Aktien New York Schluss: Techwerte vor Berichtssaison unter Druck – Dow legt zu“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 13.10.2026, 01:33 Uhr: US 30 51.835,63 Pkt. (+0,29 %), US Tech 100 30.670,97 Pkt. (-0,70 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street zeigte sich am Montag ein geteiltes Bild.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dow im Plus, Technologiewerte unter Druck',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones schloss laut einem Marktbericht der Nachrichtenagentur dpa-AFX im Plus, während Technologiewerte vor der anlaufenden US-Berichtssaison nachgaben. Am frühen Dienstagmorgen bestätigte sich das Bild: Der Dow-Jones-Future notierte 0,29 Prozent höher bei 51.835,63 Punkten, der Nasdaq 100 lag 0,70 Prozent im Minus bei 30.670,97 Punkten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Indizes, zwei Zusammensetzungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones bündelt 30 große, etablierte US-Konzerne aus unterschiedlichen Branchen. Der Nasdaq 100 enthält dagegen überwiegend Technologiewerte. Ein Tag, an dem Anleger vor Quartalszahlen bei Technologiewerten vorsichtiger werden, kann die beiden Indizes deshalb in unterschiedliche Richtungen schicken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Index erzählt nie die ganze Geschichte eines Börsentags. Wer wissen will, wie breit eine Bewegung tatsächlich ist, braucht mindestens einen zweiten Index mit anderer Zusammensetzung zum Vergleich.',
+      },
+    ],
+  },
+  {
+    slug: 'us-midterms-bofa-sieht-entweder-oder-fuer-aktien',
+    title: 'US-Midterms: BofA sieht für Aktien ein Entweder-oder',
+    teaser:
+      'Die Bank of America rechnet je nach Ausgang der US-Zwischenwahlen am 3. November mit zweistelligen Kursgewinnen oder einem heftigen Rückschlag für Aktien.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['USA', 'Midterms', 'Bank of America', 'Politik'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Startseite „Nachrichten: Aktien & Indizes“, Stand 13.10.2026: „Die US-Midterms könnten für Anleger zur Zerreißprobe werden“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Zwischenwahlen am 3. November rücken für Anleger in den Blick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Bank of America erwartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem Bericht von wallstreetONLINE sieht die Bank of America je nach Machtverteilung im neuen Kongress zweistellige Kursgewinne oder einen heftigen Rückschlag für Aktien. Welche Sitzverteilung zu welchem Szenario führen würde, nannte die Zusammenfassung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unsicherheit als eigener Preisfaktor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsen reagieren nicht erst am Tag eines Wahlergebnisses. Schon die Unsicherheit über den Ausgang kann sich in der Zeit davor in Kursschwankungen niederschlagen, unabhängig davon, wie die Wahl am Ende ausgeht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose wie diese ist die Einschätzung einer einzelnen Bank, keine Gewissheit. Sie zeigt vor allem, dass der Ausgang der Wahl von Marktteilnehmern bereits als Risiko eingepreist wird.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-erholt-sich-weiter-ruestungswerte-gefragt',
+    title: 'Dax erholt sich weiter, Rüstungswerte bleiben gefragt',
+    teaser:
+      'Der Dax startete die Woche im Plus und erreichte am Montag rund 25.260 Punkte – besonders gefragt waren laut onvista Rheinmetall und Nordex.',
+    category: 'Märkte',
+    publishedAt: '2026-10-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Rheinmetall', 'Nordex', 'Rüstung'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax', 'rheinmetall'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Chartanalyse vom 12.10.2026, 08:25 Uhr: „Dax setzt seine Erholung fort und erreicht 25.260 Punkte“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 12.10.2026, 15:44 Uhr: „Leitindex startet Woche im Plus – Rüstung gefragt“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat seine Erholung am Montag fortgesetzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rüstungswerte besonders gefragt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Leitindex startete die Woche im Plus und erreichte laut einer Chartanalyse von onvista am Montagvormittag rund 25.260 Punkte. Besonders gefragt waren laut onvista Rheinmetall und Nordex.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kursindex gegen Performanceindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax ist ein Performanceindex: Dividenden der enthaltenen Unternehmen fließen automatisch wieder in die Berechnung ein. Reine Kursindizes wie der Dow Jones oder der Nikkei 225 lassen Dividenden dagegen außen vor – auf lange Sicht kann dieser Unterschied beim Vergleich zweier Indizes erheblich sein.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Dax mit einem ausländischen Leitindex vergleicht, vergleicht sonst leicht Äpfel mit Birnen. Der Unterschied zwischen Performance- und Kursindex gehört in jeden solchen Vergleich.',
+      },
+    ],
+  },
+  {
+    slug: 'iwf-jahrestagung-vier-notenbanker-montag',
+    title: 'IWF-Jahrestagung startet, vier Notenbanker sprechen am Montag',
+    teaser:
+      'Zum Auftakt der IWF-Jahrestagung treten am Montag vier Notenbanker aus drei Häusern öffentlich auf – von der Bank of England bis zur Fed.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['IWF', 'Notenbanken', 'EZB', 'Fed', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 12.10.2026, 00:10 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die neue Woche beginnt dicht getaktet. In Washington eröffnet der Internationale Währungsfonds seine Jahrestagung, und gleich vier Notenbanker treten am selben Tag öffentlich auf. Das zeigt der Wirtschaftskalender von wallstreet-online.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Auftritte an einem Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11:30 Uhr spricht ein Mitglied der Bank of England, Breeden. Um 12 Uhr folgt EZB-Ratsmitglied Vujcic. Am Nachmittag, um 14:50 Uhr, äußert sich ein weiteres Bank-of-England-Mitglied, Mann. Den Abschluss macht um 18:50 Uhr Fed-Mitglied Hammack.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf Dienstag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Dienstag kündigt der Kalender bereits die nächsten harten Daten an: britische Einzelhandelsumsätze, erwartet mit einem Plus von 0,7 Prozent nach zuvor 0,5 Prozent. Dazu kommen japanische Bankkredite und Erzeugerpreise. Der IWF tagt an diesem Tag weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Reden sind keine Zinsentscheidungen. Händler lesen sie trotzdem auf Hinweise zum nächsten Schritt der Notenbanken. Vier Auftritte an einem Tag aus drei verschiedenen Häusern erhöhen die Chance, dass mindestens einer davon kurzfristig Kurse an Anleihe- und Devisenmärkten bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'ukraine-waffenruhe-energieanlagen-neuer-angriff',
+    title: 'Trump meldet Waffenruhe für Energieanlagen, Selenskyj neuen Angriff',
+    metaTitle: 'Waffenruhe für Energieanlagen – und ein neuer Angriff',
+    teaser:
+      'Am Sonntagabend folgten zwei widersprüchliche Meldungen zur Ukraine dicht aufeinander: ein neuer Angriff, dann eine angekündigte Waffenruhe.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Ukraine', 'Russland', 'Energie', 'Waffenruhe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'erdgas'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.10.2026, 17:52 Uhr und 18:22 Uhr (dpa-AFX): „Selenskyj: Neuer russischer Angriff auf Energieanlage“ und „ROUNDUP 3/Ukraine-Krieg: Trump verkündet Waffenruhe für Energieanlagen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Sonntagabend meldete dpa-AFX im Abstand von einer halben Stunde zwei Nachrichten zur Ukraine, die auf den ersten Blick nicht zueinander passen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zuerst der Angriff',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 17:52 Uhr berichtete die Agentur, der ukrainische Präsident Wolodymyr Selenskyj habe einen neuen russischen Angriff auf eine Energieanlage gemeldet. Welche Anlage genau betroffen war und wie groß der Schaden ist, nennt die Ticker-Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dann die Waffenruhe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine halbe Stunde später, um 18:22 Uhr, folgte die nächste Meldung: Laut einem dpa-AFX-Roundup hat US-Präsident Donald Trump eine Waffenruhe für Energieanlagen verkündet. Details zu Umfang, Dauer oder einer möglichen Überwachung nennt auch diese Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ankündigungen von Teil-Waffenruhen für die Energieinfrastruktur hat es im Krieg schon mehrfach gegeben, ohne dass sie dauerhaft hielten. Ob diese Ankündigung anders ausgeht, lässt sich aus den beiden Ticker-Zeilen allein nicht beurteilen – entscheidend wird, ob neue Angriffe in den kommenden Tagen ausbleiben.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-104-dollar-hormus-entspannung',
+    title: 'Öl bei 104 Dollar, trotz Entspannung am Golf',
+    teaser:
+      'Brent kostet weiter rund 104 Dollar, während Exporte und Tankerverkehr am Golf laut mehreren Berichten über dem Niveau vor dem Krieg liegen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Straße von Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 12.10.2026, kurz nach 2 Uhr MESZ: Brent 103,90 USD',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoff-Analysen, Société Générale vom 6.10.2026: „Freigabe von Dieselreserven wendet US-Exportstopp ab“ und „Trotz Hormus-Blockade: Ölexporte aus der Golfregion über Vorkriegsniveau“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoff-Analysen, BNP Paribas S.A., dailyOEL vom 9.10.2026: „Kurzfristiger Aufwärtstrend“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rohöl der Sorte Brent kostete in der Nacht zum Montag rund 104 Dollar pro Fass. Das zeigt die Preisleiste von wallstreet-online, Stand kurz nach 2 Uhr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Öl, mehr Gas – trotz Blockade-Rhetorik',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach einer Analyse von Société Générale vom Dienstag liegen die Ölexporte aus der Golfregion trotz der Blockade-Drohungen an der Straße von Hormus inzwischen über dem Niveau vor dem Krieg. Die Freigabe von US-Dieselreserven habe zudem einen zuvor verhängten Exportstopp abgewendet. Auch der Tankerverkehr mit Flüssiggas durch die Straße von Hormus erreichte laut derselben Quelle den höchsten Stand seit Kriegsbeginn.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis bleibt trotzdem fest',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die technische Einschätzung von BNP Paribas vom Freitag sprach von einem kurzfristigen Aufwärtstrend beim Ölpreis, einen Tag zuvor war bereits von einem bestätigten mittelfristigen Aufwärtstrend die Rede. Warum der Preis trotz der gemeldeten Entspannung bei Fördermengen und Tankerverkehr nicht stärker nachgegeben hat, nennt keine der gesichteten Quellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Ölpreis reagiert nicht nur auf die aktuell verschiffte Menge, sondern auch auf die eingepreiste Unsicherheit über künftige Lieferungen. Diese Risikoprämie kann bestehen bleiben, selbst wenn die Mengen im Moment höher ausfallen als befürchtet.',
+      },
+    ],
+  },
+  {
+    slug: 'silber-61-dollar-gold-stabil',
+    title: 'Silber nähert sich 61 Dollar, Gold hält die Linie',
+    teaser:
+      'Silber zieht in der Nacht zum Montag um fast drei Prozent an. Gold bleibt nahe 4.200 Dollar nahezu unverändert – ein Rollentausch bei Edelmetallen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Silber', 'Gold', 'Edelmetalle', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['silber', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, Stand 12.10.2026, 02:09 Uhr: Silber 60,83 USD (+2,80 %), Gold 4.196,81 USD (+0,06 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Marktbericht: „Der Goldpreis legt am Freitag deutlich zu und nähert sich der Marke von 4.200 USD. Silber erholt sich noch stärker.“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Silber hat in der Nacht zum Montag deutlich zugelegt, während Gold kaum von der Stelle kommt. Das zeigt die Preisleiste von wallstreet-online.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen der Nacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Silber kostete rund 60,83 Dollar je Feinunze, ein Plus von 2,80 Prozent. Gold notierte bei 4.196,81 Dollar und damit praktisch unverändert, ein Plus von nur 0,06 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kein neues Muster',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon am Freitag hatte Goldreporter berichtet, Gold nähere sich der Marke von 4.200 Dollar, Silber erhole sich aber noch stärker. Der Rollentausch zwischen den beiden Edelmetallen zieht sich damit bereits über das Wochenende hinweg.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Silber gilt als das deutlich kleinere und engere Marktsegment der beiden Edelmetalle. Das macht seinen Kurs anfälliger für größere prozentuale Ausschläge in beide Richtungen als den des Goldpreises – nach oben wie nach unten.',
+      },
+    ],
+  },
+  {
+    slug: 'telekom-spacex-frequenzen-grain-management',
+    title: 'SpaceX kauft Frequenzen von Grain Management – Telekom-Aktie fällt',
+    metaTitle: 'SpaceX-Frequenzdeal lässt Telekom-Aktie fallen',
+    teaser:
+      'Ein Frequenzdeal von SpaceX schickte die Telekom-Aktie am Freitag zeitweise um sieben Prozent nach unten – auch US-Konkurrenten traf es hart.',
+    category: 'Märkte',
+    publishedAt: '2026-10-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Telekom', 'SpaceX', 'T-Mobile US', 'Starlink'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['deutsche-telekom'],
+    sources: [
+      {
+        label:
+          'ms-aktuell.de, 9.10.2026: „SpaceX drängt in den US-Mobilfunkmarkt und setzt die Telekom massiv unter Druck“',
+        url: 'https://ms-aktuell.de/welt/telekom-aktie-spacex-09-10-2026/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite „Gefragte Nachrichten“, Stand 12.10.2026: „Telekom-Aktie bricht ein – ausgerechnet SpaceX ist der Grund!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Frequenzdeal von SpaceX hat am Freitag die Aktien der Deutschen Telekom und ihrer amerikanischen Tochter T-Mobile US unter Druck gesetzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Deal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag wurde bekannt: SpaceX übernimmt von der Investmentgesellschaft Grain Management ein landesweites Frequenzportfolio im 800-Megahertz-Bereich, bis zu 14 Megahertz gepaartes Spektrum. Einen Kaufpreis nannten die Unternehmen nicht. Die Übernahme steht noch unter dem Vorbehalt einer Genehmigung durch die US-Regulierungsbehörde FCC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurseinbruch am Freitag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Telekom-Aktie verlor im frühen Handel laut Reuters zeitweise rund sieben Prozent, vorbörslich auf der Handelsplattform Tradegate etwa fünf Prozent. T-Mobile US gab nachbörslich an der Nasdaq rund sechs bis sieben Prozent ab. Auch die Wettbewerber AT&T und Verizon gerieten unter Druck, mit Verlusten von rund 6,6 beziehungsweise 5,7 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher die Frequenzen stammen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grain Management hatte das 800-Megahertz-Portfolio erst im August 2026 von T-Mobile US selbst übernommen, im Austausch gegen Bargeld und Frequenzen im 600-Megahertz-Bereich. Die Deutsche Telekom hält an T-Mobile US zum 30. Juni 2026 einen Anteil von 54,2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Frequenzen sollen nach Berichten den Ausbau eines eigenständigen, landesweiten Mobilfunkangebots unter der Marke Starlink Mobile vorbereiten – eine direkte Konkurrenz zum Kerngeschäft von T-Mobile US. Die Deutsche Telekom hatte im März 2026 selbst eine Starlink-Partnerschaft für Satellitenfunk in zehn europäischen Ländern angekündigt, die ab 2028 starten soll.',
+      },
+    ],
+  },
+  {
     slug: 'diesel-deal-putin-mengen-senat-kritik',
     title: 'Diesel-Deal mit Russland: Diese Mengen hat Trump zugesagt',
     teaser:

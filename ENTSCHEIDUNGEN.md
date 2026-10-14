@@ -5070,3 +5070,188 @@ zweite Fassung bräuchte eine erhöhte `fassung`, und das ist überall eine
 Und die acht gemessenen Stellen in den vier Folgen werden nicht nachträglich
 gedämpft: Dieselbe Begründung. Was ab morgen gesprochen wird, läuft durch
 `nachbessern`.
+
+# Nichts doppelt, und kein Streit der Quellen – 14. Oktober 2026
+
+Am 14. Oktober 2026 schickte der Betreiber drei Bildschirmfotos des
+Karussells auf der Startseite und schrieb dazu: „wir brauchen keine news
+doppelt" – und zu „Ölpreis: Übersicht nennt 107 Dollar, Kursleiste zeigt
+106,37": „sowas klingt unsicher, ist verwirrend und unseriös."
+
+## Was nachgezählt wurde
+
+Über alle 521 Artikel an 86 Tagen:
+
+- **Öl, Gold oder Silber** kamen an 79 von 86 Tagen vor, an 75 von 85
+  aufeinanderfolgenden Tagespaaren an beiden. Das Karussell zeigt seit einem
+  Nutzerwunsch zwei Erscheinungstage – also stand fast immer zweimal dasselbe
+  darin, mit anderen Zahlen. „Gold nähert sich 4.200 Dollar" erschien am 10. und am 11. Oktober fast wortgleich.
+- **Quellenstreit als Aufhänger** seit dem 1. August immer wieder: „Brent bei
+  88,14 oder 90,12 Dollar? Beide Zahlen stimmen", „DAX vor dem Wochenstart:
+  zwei Quellen, zwei Schlusskurse". „Kursleiste" – ein Bauteil der
+  Quellseite, das kein Leser kennt – stand in 96 Artikeln.
+
+## Das zweite war bestellt
+
+Die Anweisung an den Agenten nannte unter „Der Ton" als Beispiel für
+Spannung: „Zwei Portale nennen denselben Preis mit verschiedenen
+Prozentzahlen." Der Agent hat das getan, was dastand. Zwei Zahlen für
+denselben Preis sind aber keine Nachricht, sondern zwei Abrufzeitpunkte –
+und für den Leser klingt die Website dabei, als wüsste sie es nicht.
+
+Gestrichen. Der Widerspruch, der trägt, liegt in der **Sache**
+(Auftragseingang steigt, Umsatz nicht), nie zwischen den Quellen. Weichen
+zwei Quellen ab, wird eine genommen – die mit Uhrzeit, sonst die jüngere –
+und mit Zeitpunkt genannt.
+
+## Die Regel und ihr Netz
+
+Die Regel steht in beiden Anweisungen (`nachrichten-agent.yml`,
+`nachrichten-erzeugen.ts`): Ein Thema vom Vortag kommt nur mit einem neuen
+Ereignis wieder, ein Preis allein ist keins, ein Thema ist ein Artikel. Die
+API-Anweisung bekommt die Überschriften des Vortags mitgeliefert; der Agent
+liest sie selbst.
+
+Das Netz steht in `lib/nachrichten-wiederholung.ts` und im Riegel:
+
+- **Wiederholung:** Jede Überschrift gegen die des letzten Erscheinungstags,
+  Anteil gemeinsamer Themenwörter, Grenze ein Drittel. Am Bestand gewählt:
+  acht Treffer, alle acht Wiederholungen; direkt darunter liegen die Fälle,
+  die erlaubt sein müssen – HPE nach NetApp (0,30), ein neuer Vorfall vor
+  Hormus (0,29), der Diesel-Deal mit den nachgetragenen Mengen (0,27). Beide
+  Listen stehen am Wert und werden im Test gegen den Bestand geprüft.
+- **Quellenstreit:** In Überschrift, Meta-Titel, Anreißer, Einleitung und
+  Meldung **zurückgewiesen**, im Fließtext **gewarnt**.
+
+Warum die Trennung: Hart über alles geprüft, hätte die Regel unter der alten
+Anweisung 54 von 86 Tagen beanstandet, 46 davon nur wegen „Kursleiste" in
+einem Absatz. Der Agent bessert in seiner Probe nach – gelingt ihm das
+nicht, fehlt aber der ganze Tag, und das ist für ein Wort im Fließtext der
+falsche Preis. Was der Leser im Karussell sieht und in der Folge hört,
+bleibt hart: dort hätte es 15 von 86 Tagen getroffen, und jeder davon ist
+einer der beanstandeten Fälle.
+
+Geprüft am Entwurf selbst: Der Entwurf des Agenten vom 14. Oktober – im
+Test als `tests/fixtures/entwurf-2026-10-14.json` – wird aus genau den zwei
+gemeldeten Gründen zurückgewiesen und besteht, sobald sie behoben sind.
+
+## Erst der Preis, dann das Warum – und kein „das meldet"
+
+Die erste Umschreibung des Öl-Artikels vom 14. Oktober hielt sich an die
+alte Regel „Steht kein Warum in der Meldung, sag das ausdrücklich" und
+schrieb: „Das meldet wallstreet-online … Einen Grund für den Anstieg nennt
+sie nicht." Der Betreiber dazu: „da soll der Preis kommen und dann warum er
+gestiegen oder gefallen ist … nicht das meldet das das meldet das, das ist
+einfach dämlich."
+
+Daraus zwei Regeln in beiden Anweisungen:
+
+- **Ein Kursartikel nennt den Preis und dann den Grund** – aus einer
+  gelesenen Quelle. Der Agent hat Netzzugang und liest den Artikel hinter
+  der Schlagzeile. Findet er keinen Grund, gibt es **keinen** Kursartikel;
+  einer, der sagt, dass keiner genannt wird, ist keine Nachricht. Die
+  Regel gegen erfundene Gründe gilt unverändert – sie führt hier nur zum
+  Weglassen statt zum Hinschreiben der Lücke.
+- **Zuschreibung gehört zu Aussagen, nicht zu Preisen.** Wer etwas gesagt,
+  beschlossen, angekündigt hat, wird genannt. Ein Kurs steht ohne „laut
+  wallstreet-online"; woher er stammt, sagt die Quellenangabe.
+
+Beim Nachholen des Grundes fiel ein weiterer Fehler auf: `quellen-holen.yml`
+installierte den PDF-Leser ohne `apt-get update` und starb am 14. Oktober
+mit `404 Not Found`, bevor eine Seite abgerufen war – als einziger der fünf
+Workflows, die etwas installieren. Jetzt frischt er den Index auf und läuft
+ohne PDF-Leser weiter, statt abzubrechen.
+
+## Was das Netz nicht kann
+
+Es vergleicht Wörter, nicht Inhalte. „Edelmetalle uneinheitlich" kommt nach
+„Gold und Silber geben nach" durch. Die Regel ist die Anweisung; das Netz
+fängt den bequemen Fall. Wer es für die Regel hält, liest daraus, dass alles
+Erlaubte auch gewollt ist.
+
+# Das Briefing für die tägliche Recherche – 14. Oktober 2026
+
+Am 14. Oktober 2026 gab der Betreiber ein Briefing „IM Invest – Tägliche
+News-Recherche" vor: fünf sorgfältig recherchierte, aktuelle und
+abwechslungsreiche Nachrichten bis spätestens 6:30 Uhr, aus vielen seriösen
+und unabhängigen Quellen, mit direkten Links, ohne Wiederholungen aus den
+letzten sieben Tagen, für Instagram mit höchstens zwei kurzen Sätzen je
+Kachel, und eine Schlusskontrolle vor der Abgabe.
+
+Umgesetzt wurde es am Bestand gemessen, nicht nur hingeschrieben. Was die
+Messung ergab, steht hier – mit dem, was sich daraus änderte.
+
+## Fünf statt fünf bis neun
+
+„Wähle … die fünf relevantesten Nachrichten des Tages." Die Untergrenze
+war schon fünf; neu ist, dass sie zugleich die Obergrenze ist. Fünf
+Artikel, fünf Meldungen, fünf Kacheln – in einer Rangfolge, die für
+Website, Folge und Instagram dieselbe ist. Der Riegel weist sechs zurück
+wie vier.
+
+## Welche Quellen ein Läufer überhaupt lesen kann
+
+Das Briefing nennt Reuters, Bloomberg, Financial Times, CNBC, Wall Street
+Journal, Handelsblatt, WirtschaftsWoche, FAZ, Tagesschau und die SEC. Am 14. Oktober 2026, 08:26 UTC, von einem GitHub-Läufer abgerufen:
+
+    200  Tagesschau, Handelsblatt, WirtschaftsWoche, CNBC (Seite und Feed)
+    200  FAZ – nur der Feed; die Seite antwortet mit 302
+    401  Reuters, Wall Street Journal
+    403  Bloomberg, Financial Times, SEC-Pressemitteilungen
+
+Die fünf offenen kamen als **Feed** in den Sammler und in
+`data/nachrichtenquellen.ts` – ein Feed trägt Überschrift, Kurztext,
+Zeitstempel und den direkten Link. Die gesperrten stehen mit Datum in der
+Liste: ein Zwischenstand, kein Urteil. Aus ihnen wird nur zitiert, was eine
+gelesene Quelle wiedergibt.
+
+## Direkte Links – und warum es sie vorher nicht gab
+
+Nachgezählt: **819 von 1.078** Quellenlinks der Website zeigten auf eine
+Übersicht, 317-mal `wallstreet-online.de/nachrichten`. In den letzten
+dreißig Tagen 320 von 377.
+
+Das lag nicht am Agenten. Die Aufbereitung im Sammler machte aus
+`<a href="/nachricht/…">Schlagzeile</a>` die Schlagzeile allein – der
+Link ging verloren, bevor die Quellendatei entstand. Wer daraus schrieb,
+konnte nur die Übersicht angeben. Ein stiller Fehler: Nichts wurde je rot.
+
+Die Aufbereitung steht jetzt in `scripts/quellentext.py`, mit Selbsttest,
+und behält jeden Link hinter einer Schlagzeile (Linktext ab 25 Zeichen,
+Ziel mit mindestens zwei Pfadteilen) in ⟨spitzen Klammern⟩. Erst damit ist
+die neue Prüfung fair: `lib/quellenlink.ts` weist eine Quelle zurück, die
+eine Start- oder Rubrikseite ist oder in der Quellenliste steht – die
+führt per Definition Übersichten.
+
+## Sieben Tage statt Vortag
+
+Gegen den Vortag gemessen, fand die Wiederholungsprüfung 8 Fälle; gegen
+sieben Erscheinungstage 22, davon 21 echte Wiederholungen – „Euro fällt auf
+17-Monats-Tief" am 6. und 8. Oktober fast wortgleich, „Dax klettert zurück
+über 25.000" am 3. und 10. Einer ist ein Fehlgriff (zwei Chartlinien, zwei
+Anlagen) und steht als solcher am Wert `WIEDERHOLUNG_TAGE`. „Unter" kam als
+Füllwort hinzu; die Grenze von einem Drittel blieb.
+
+Der Agent liest dieselbe Liste, gegen die geprüft wird:
+`scripts/ueberschriften-woche.ts`. Vorher stand dort ein `grep`, der die
+Zahl der Tage nur ungefähr traf.
+
+## Mehrere unabhängige Quellen – laut, aber kein Abbruch
+
+250 von 521 Artikeln stützten sich auf eine einzige Website. Das Briefing
+verlangt die Prüfung „möglichst" an mehreren. Der Riegel warnt deshalb und
+bricht nicht ab: Manche Meldung gibt es am frühen Morgen nur an einer
+Stelle – dann wird sie als unbestätigt gekennzeichnet, nicht gestrichen.
+
+## Zwei Sätze je Kachel
+
+Bis dahin galten „zwei bis drei" – abgelesen an den 54 Beiträgen davor,
+auf Anordnung „keine Experimente". Das Briefing sagt „maximal zwei kurze
+Sätze", und es kommt von derselben Stelle. `saetze()` in
+`lib/instagram-plan.ts` zählt sie; Abkürzungen, Ordnungszahlen und
+einzelne Buchstaben („z. B.", „U.S.") beenden keinen Satz.
+
+## Die Uhrzeit
+
+Das Briefing nennt 6:30 Uhr. Die Zusage dieser Website ist 6:00 Uhr – sie
+bleibt, und sie liegt davor.

@@ -88,7 +88,11 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   Stelle: `getCurrentNews()`, `getFurtherNews()`, `getFurtherNewsByDay()`.
   `CURRENT_NEWS_COUNT` ist nur noch eine Anzeigegrenze.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
-  Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren".
+  Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren". **Nichts
+  doppelt:** Thema der letzten sieben Tage nur mit neuem Ereignis, ein Preis
+  ist keins.
+  **Kein Quellenstreit:** je Preis eine Zahl, „Kursleiste" nur in
+  Quellenangaben (`lib/nachrichten-wiederholung.ts`).
 - **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in
   `app/news/page.tsx` trägt `open`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
@@ -98,10 +102,10 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
   Nur was dort steht. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
   `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
-- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen,
-  **jeder mit seiner Meldung in der Ausgabe**. Alle `summary` zusammen über
-  110 Wörter – so viel wiegt das Gerüst an seinem längsten Tag.
-  `nachrichten-erzeugen.ts` weist beides zurück.
+- **Umfang:** **genau fünf** Nachrichten zu mehreren Themen, nach Relevanz,
+  jede mit Meldung
+  und **direktem Link** (Briefing 14.10.). Alle `summary` über 110 Wörter.
+  `nachrichten-erzeugen.ts` weist es zurück.
 - **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
   hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst
   das ausdrücklich.
@@ -114,8 +118,8 @@ drei:
 1. Entwurf vom Agenten (`nachrichten-agent.yml`, im Abo) – der Regelfall
 2. Modell über die Anthropic-Schnittstelle (~0,20 $, braucht `ANTHROPIC_API_KEY`)
 
-**Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
-Notbehelf aus dem Kursbestand ist abgeschafft.
+**Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab** – und
+ohne Ausgabe keine Folge. Der Notbehelf aus dem Kursbestand ist abgeschafft.
 
 **Der Riegel fragt „Hat die Ausgabe etwas kaputt gemacht?"**, nicht „ist
 irgendwo etwas rot?": Prüfkette vor und nach dem Schreiben, Befund gegen
@@ -127,16 +131,13 @@ voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
 **und** Schlüssel: nur `https://`, und der Lauf warnt. Wer Prompts kürzt,
 kürzt an Zahlen und Namen.
 
-**Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
-bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
-
 Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts`,
 `lib/editions-validate.ts` und `npm run pruefen`. **Wer eine Regel im Build
 ändert, ändert sie dort mit.**
 
 → `ENTSCHEIDUNGEN.md`: „heißt der jüngste Erscheinungstag", „Der Agent
 schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt",
-„Hat die Ausgabe etwas kaputt gemacht"
+„Hat die Ausgabe etwas kaputt gemacht", „Nichts doppelt"
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
@@ -191,8 +192,7 @@ gelegentlich. Daraus folgt:
 - **Zu jedem Lauf nach außen gehört die Frage: Steht das Ergebnis des Tages
   schon?** Gefragt wird `origin/main` von **jetzt** (`git fetch` + `git show`),
   nicht der Checkout, eine Momentaufnahme vom Auslösen.
-- Der Upload fragt den **YouTube-Kanal**, nicht das Register – siehe die
-  Lehren unten.
+- Der Upload fragt den **YouTube-Kanal**, nicht das Register.
 - **Ein Push, der nach der Veröffentlichung scheitert, ist rot** – sonst
   laufen zwei Wahrheiten auseinander. Eine Schleife um `git pull --rebase`
   räumt mit `git rebase --abort` auf.
@@ -350,8 +350,7 @@ Zusage: höchstens sechs Minuten.
 - **Kürzel spricht die Stimme als Silbe** – was nicht in
   `KUERZEL_IN_ORDNUNG` steht, wird gemeldet.
 - **Kleingedrucktes steht hinter der Begrüßung**, vor der ersten Meldung:
-  erst KI-Hinweis, dann Rechtshinweis – eine Stelle, nicht zwei; nicht davor,
-  nicht am Ende.
+  erst KI-Hinweis, dann Rechtshinweis – eine Stelle, nicht zwei.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Drei Merkmale:
   eine Frequenz (`TONANTEIL_GRENZE`), zu viele Nulldurchgänge
   (`ZISCHGRENZE`), zu wenige (`RUMPELGRENZE`). Wer eins ändert, misst nach.
@@ -365,8 +364,7 @@ Zusage: höchstens sechs Minuten.
   `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst fehlen 70
   gerechnete Beschreibungen; der Fingerabdruck hängt an ihnen. Reihenfolge
   Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme spricht das Gerät.
-- `lese-stimme.yml` läuft 23:19 UTC; alle 172 Seiten sind gesprochen,
-  Vorlesetext durch `ENGLISCHE_NAMEN` (Zahlen bleiben Zahlen).
+- `lese-stimme.yml` läuft 23:19 UTC; Vorlesetext durch `ENGLISCHE_NAMEN` (Zahlen bleiben Zahlen).
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",

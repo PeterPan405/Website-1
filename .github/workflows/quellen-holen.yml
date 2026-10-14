@@ -121,8 +121,23 @@ jobs:
       # obwohl die Quelle offen im Netz liegt.
       #
       # `poppler-utils` bringt `pdftotext` mit, rund zwei Sekunden Installation.
+      #
+      # **Erst `apt-get update`.** Am 14. Oktober 2026 starb der Lauf hier mit
+      # `404 Not Found` – der Paketindex des Läuferabbilds zeigte auf eine
+      # Fassung, die der Spiegel nicht mehr hatte. Die vier anderen Workflows,
+      # die etwas installieren, frischen den Index vorher auf; dieser nicht.
+      #
+      # **Und kein Abbruch, wenn es trotzdem scheitert.** Ohne `pdftotext`
+      # fehlen PDFs – HTML-Seiten, um die es meistens geht, lassen sich
+      # trotzdem lesen. Ein fehlendes Werkzeug für einen Teil darf nicht den
+      # ganzen Abruf kosten.
       - name: PDF-Leser bereitstellen
-        run: sudo apt-get install -qq -y poppler-utils
+        run: |
+          if sudo apt-get update -qq && sudo apt-get install -qq -y poppler-utils; then
+            echo "pdftotext bereit."
+          else
+            echo "::warning::poppler-utils ließ sich nicht installieren – PDFs bleiben unlesbar, HTML geht."
+          fi
 
       # Der Rückfall auf IPv4 greift auf diesem Läufer bei jeder Quelle mit
       # AAAA – und nirgends sonst. Wäre er kaputt, sähe das aus wie „die
