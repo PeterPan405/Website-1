@@ -5135,6 +5135,27 @@ Geprüft am Entwurf selbst: Der Entwurf des Agenten vom 14. Oktober – im
 Test als `tests/fixtures/entwurf-2026-10-14.json` – wird aus genau den zwei
 gemeldeten Gründen zurückgewiesen und besteht, sobald sie behoben sind.
 
+## Auch das Karussell: was heute steht, fällt vom Vortag heraus
+
+Am Abend des 14. Oktober kam die Beanstandung ein zweites Mal, mit drei
+Bildschirmfotos: Öl heute, Gold/Silber heute – und dazwischen der
+Sammelartikel von gestern, „Öl steigt auf 106 Dollar, Gold und Silber geben
+nach". „Das ist doppelt."
+
+Der Riegel war dafür blind, und zwar zu Recht: Er prüft eine **neue**
+Ausgabe gegen die alten. Gestern stand der Sammelartikel allein; heute
+stehen zwei Artikel, die ihn ablösen. Doppelt wird es erst im Karussell, das
+zwei Tage zeigt.
+
+`getNewsHeadlines()` lässt deshalb einen Vortagsartikel weg, dessen
+Überschrift einer heutigen zu ähnlich ist (`schonHeute()`, dieselbe Grenze
+wie im Riegel). Über alle Tage bis zum 14. Oktober: 8 ausgeblendet, alle 8
+Wiederholungen. Im Archiv und unter seiner Adresse bleibt er.
+
+Verworfen: dasselbe über Rohstoffsymbole. Es hätte 68 weitere ausgeblendet,
+darunter „23 Tote nach russischem Angriff auf Saporischschja", nur weil der
+Artikel mit `brent` verschlagwortet ist. Ein Schlagwort ist kein Thema.
+
 ## Erst der Preis, dann das Warum – und kein „das meldet"
 
 Die erste Umschreibung des Öl-Artikels vom 14. Oktober hielt sich an die

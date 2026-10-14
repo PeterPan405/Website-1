@@ -1,4 +1,5 @@
 import { newsArticles, type NewsArticle, type NewsCategory } from '@/data/news'
+import { aehnlichkeit, WIEDERHOLUNG_AB } from '@/lib/nachrichten-wiederholung'
 
 import { assertNewsValid } from '@/lib/news-validate'
 
@@ -255,10 +256,39 @@ export async function getNewsHeadlines(
   const alle = sortedArticles()
   if (alle.length === 0) return []
   const tage = [...new Set(alle.map(tagVon))].slice(0, 2)
+  const heute = alle.filter((artikel) => tagVon(artikel) === tage[0])
   return alle
     .filter((artikel) => tage.includes(tagVon(artikel)))
+    .filter((artikel) => tagVon(artikel) === tage[0] || !schonHeute(artikel, heute))
     .slice(0, limit)
     .map(toHeadline)
+}
+
+/**
+ * Steht das Thema dieses Vortagsartikels heute schon im Karussell?
+ *
+ * Der Betreiber am 14. Oktober 2026, zweimal: „wir brauchen keine news
+ * doppelt" – und abends, mit drei Bildschirmfotos: Öl und Gold/Silber heute
+ * je für sich, und dazwischen der Sammelartikel von gestern „Öl steigt auf
+ * 106 Dollar, Gold und Silber geben nach". Die Regel gegen Wiederholungen
+ * greift beim Schreiben einer **neuen** Ausgabe; was gestern schon stand,
+ * zeigte das Karussell trotzdem.
+ *
+ * Gemessen wird wie im Riegel (`lib/nachrichten-wiederholung.ts`), mit
+ * derselben Grenze. Über alle 86 Tage bis zum 14. Oktober blendet das 8
+ * Vortagsartikel aus, alle 8 Wiederholungen.
+ *
+ * **Nicht** über Symbole. Probiert und verworfen: „alle Rohstoffsymbole des
+ * Vortagsartikels kommen heute vor" hätte 68 weitere ausgeblendet – darunter
+ * „23 Tote nach russischem Angriff auf Saporischschja" und den
+ * Opec-Beschluss, die nur mit `brent` verschlagwortet sind. Ein Schlagwort
+ * ist kein Thema.
+ *
+ * Ausgeblendet heißt: nicht im Karussell. Der Artikel bleibt im Archiv und
+ * unter seiner Adresse.
+ */
+export function schonHeute(artikel: NewsArticle, heute: NewsArticle[]): boolean {
+  return heute.some((h) => aehnlichkeit(artikel.title, h.title) >= WIEDERHOLUNG_AB - 1e-9)
 }
 
 /** Vorhandene Kategorien in der Reihenfolge ihres ersten Auftretens. */
