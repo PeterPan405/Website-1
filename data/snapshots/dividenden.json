@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-13T02:44:48.041Z",
+  "abgerufenAm": "2026-10-14T00:39:04.903Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -7145,6 +7145,10 @@
       {
         "date": "2026-05-26",
         "amount": 1.13
+      },
+      {
+        "date": "2026-10-13",
+        "amount": 0.57
       }
     ],
     "air-liquide": [
@@ -7209,6 +7213,10 @@
       {
         "date": "2026-04-21",
         "amount": 3.95
+      },
+      {
+        "date": "2026-10-13",
+        "amount": 1.1
       }
     ],
     "bouygues": [
@@ -9583,6 +9591,10 @@
       {
         "date": "2026-04-08",
         "amount": 0.6
+      },
+      {
+        "date": "2026-10-13",
+        "amount": 0.37
       }
     ],
     "caixabank": [
@@ -10772,11 +10784,11 @@
     "equinor": [
       {
         "date": "2021-11-11",
-        "amount": 1.72766
+        "amount": 1.7112511
       },
       {
         "date": "2022-02-11",
-        "amount": 1.72766
+        "amount": 1.7112511
       },
       {
         "date": "2022-05-12",
@@ -10792,15 +10804,15 @@
       },
       {
         "date": "2023-01-09",
-        "amount": 8.638299
+        "amount": 8.556255
       },
       {
         "date": "2023-05-11",
-        "amount": 8.638299
+        "amount": 8.556255
       },
       {
         "date": "2023-08-14",
-        "amount": 8.638299
+        "amount": 8.556255
       },
       {
         "date": "2023-11-14",
