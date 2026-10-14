@@ -10,7 +10,7 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-10-14',
   intro:
-    'Notenbanker sprechen, Spanien meldet die Inflation, am Ölmarkt widersprechen sich zwei Quellen, und US-Großbanken starten in die Berichtssaison.',
+    'Notenbanker sprechen, Spanien meldet die Inflation, Iran droht Tankern in Hormus, und US-Großbanken starten in die Berichtssaison.',
   top: [
     {
       headline:
@@ -33,26 +33,21 @@ export const edition: DailyEdition = {
       ],
     },
     {
-      headline: 'Brent über 107 Dollar laut Übersicht, Kursleiste zeigt 106,37',
+      headline: 'Ölpreis über 106 Dollar: Iran droht Tankern in Hormus',
       summary: [
-        'Am Ölmarkt zeigen zwei Quellen am Mittwochmorgen zwei Bilder. Eine Marktübersicht von wallstreet-online meldet, Brent sei über 107 Dollar gestiegen. Als Hintergrund nennt sie einbrechende Chipwerte in Asien und die heute beginnende US-Bankenberichtssaison.',
-        'Die Kursleiste derselben Seite zeigt zur gleichen Zeit nur 106,37 Dollar, kaum verändert zum Vortag. In der Ukraine schlugen nach Angaben von dpa-AFX in der Nacht Raketen in Kiew ein. Ukrainische Stellen beklagten eine fehlende Vorwarnung.',
+        'Brent ist am Mittwoch über 106 Dollar je Barrel gestiegen. Iranische Regierungsvertreter kündigten nach Angaben von Reuters härtere Angriffe auf Tanker in der Straße von Hormus an.',
+        'Zugleich eskalieren die Kämpfe zwischen Saudi-Arabien und den Huthis im Jemen. Laut Bloomberg wurde die Zentrale von Saudi Aramco getroffen. Morgan Stanley hob seine Brent-Prognose für das vierte Quartal auf 105 Dollar an.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Ein Tageshoch und der aktuelle Kurs sind zwei verschiedene Werte – eine Schlagzeile kann beides meinen, ohne dass eine Zahl falsch ist.',
+        'Auch wenn das Öl weiter fließt, treiben Angriffe auf Tanker und Energieanlagen die Risikoprämie – und ein teurerer Ölpreis wirkt über Transport und Energie auf die Inflation.',
       relatedTopics: ['rohstoffe'],
       relatedSymbols: ['brent'],
       sources: [
         {
           label:
-            'wallstreet-online, Marktüberblick und Rohstoffpreise, Stand 14.10.2026, 07:04 Uhr',
-          url: 'https://www.wallstreet-online.de/nachrichten',
-        },
-        {
-          label:
-            'wallstreet-online/dpa-AFX, Wirtschaftsnachrichten-Ticker, 14.10.2026, 06:21 Uhr: „Raketen treffen Kiew – Ukrainer beklagen fehlende Vorwarnung“',
-          url: 'https://www.wallstreet-online.de/nachrichten',
+            'wallstreet-online, 14.10.2026: „Ölpreis über 106 US-Dollar: Huthis treffen Aramco-Zentrale – und Hormus wird jetzt noch gefährlicher“',
+          url: 'https://www.wallstreet-online.de/nachricht/21521533-oelpreis-106-us-dollar-huthis-treffen-aramco-zentrale-hormus-gefaehrlicher',
         },
       ],
     },
