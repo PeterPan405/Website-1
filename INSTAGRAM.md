@@ -9,14 +9,18 @@ an, die wir schon haben, und nutze die als Vorgabe … keine neuen Experimente."
 Wer einen Beitrag baut, baut ihn so. Wer davon abweichen will, ändert zuerst
 diese Datei – mit dem Grund daneben.
 
-> [!warning] Es geht nichts ohne Freigabe hinaus
-> Ohne die Freigabe des Tages bleibt jeder Lauf ein Trockenlauf, auch der
-> nächtliche:
+> [!warning] Was von selbst hinausgeht – und was nicht
+> **„Top-News des Tages" geht werktags vollautomatisch hinaus**, nach der
+> nächtlichen Ausgabe – Anordnung vom 11.10.2026, abends. Aber nur in genau
+> der Form unten; ein Plan, der sie verfehlt, ergibt „kein Beitrag".
+>
+> **Alles andere** – Erklärbeitrag, Zahlenkarte – braucht die Freigabe für
+> genau seinen Tag:
 >
 >     gh variable set INSTAGRAM_FREIGABE --body JJJJ-MM-TT
 >
-> Warum ein Datum und kein Schalter, steht in `ENTSCHEIDUNGEN.md` unter „Der
-> vierte Riegel ist ein Datum, kein Schalter".
+> Begründung in `ENTSCHEIDUNGEN.md` unter „Der vierte Riegel ist ein Datum,
+> kein Schalter".
 
 ## Der Rhythmus
 

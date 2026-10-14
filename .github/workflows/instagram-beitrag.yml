@@ -26,10 +26,10 @@ name: Instagram-Beitrag
 #
 # ## Vier Riegel – drei im Skript, einer hier
 #
-# Der vierte steht weiter unten in diesem Workflow und ist seit dem
-# 11. Oktober 2026 der wichtigste: **die Freigabe des Tages.** Ohne sie geht
-# nichts hinaus, auch nicht aus der Kette und auch nicht nachts um drei. Der
-# Betreiber sieht jeden Beitrag vorher an.
+# Der vierte steht weiter unten in diesem Workflow: **die Freigabe des
+# Tages.** Der Tagesbeitrag „Top-News des Tages" ist seit dem Abend des
+# 11. Oktober 2026 dauerhaft freigegeben und geht werktags von selbst hinaus;
+# jeder andere Beitrag braucht die Freigabe für genau seinen Tag.
 #
 # ## Zwei Riegel im Skript, keiner davon in diesem Workflow
 #
@@ -182,39 +182,43 @@ jobs:
 
       # Der vierte Riegel: die Freigabe des Tages.
       #
-      # Anordnung des Betreibers vom 11. Oktober 2026: Es geht kein Beitrag
-      # mehr hinaus, den er nicht vorher gesehen hat. Taeglich wird besprochen,
-      # **was** hinausgeht – Nachrichten oder ein Wissensbeitrag –, und erst
-      # danach wird freigegeben.
+      # Zwei Anordnungen des Betreibers, beide vom 11. Oktober 2026:
       #
-      # ## Warum ein Datum und kein Schalter
+      #   1. Nachmittags, als der direkte Weg zu Meta zum ersten Mal stand:
+      #      nichts geht hinaus, was er nicht vorher gesehen hat.
+      #   2. Abends, nachdem „Top-News des Tages" nach dem Muster der 54
+      #      bisherigen Tagesbeiträge nachgebaut war: „Sobald die Daily News
+      #      nachts gemacht werden … soll bei Instagram die Daily News nun
+      #      vollautomatisch erscheinen."
       #
-      # Ein `true` bleibt stehen. Wer es einmal setzt, hat die Automatik
-      # dauerhaft wieder eingeschaltet, ohne es zu merken – und der naechste
-      # Beitrag geht ungesehen hinaus. Genau das soll nicht passieren.
-      #
-      # Ein **Datum** laeuft um Mitternacht von selbst ab. Freigegeben ist
-      # immer nur **ein** Tag, und die Freigabe muss jeden Tag neu erteilt
-      # werden. Vergisst sie jemand, bleibt der Beitrag aus – das ist der
-      # gewollte Ausgang, nicht der Fehler.
-      #
-      # Gesetzt wird sie, wenn der Entwurf abgenommen ist:
+      # Daraus folgt: **Der Tagesbeitrag ist freigegeben, jeden Werktag, ohne
+      # Zutun.** Ob es heute einen gibt, sagt /instagram/stand.txt – „tagesnews"
+      # nur montags bis freitags und nur mit einem Plan, der die Prüfung in
+      # lib/instagram-plan.ts bestanden hat. Alles andere – ein Erklärbeitrag,
+      # eine Zahlenkarte, sobald es dafür einen Erzeuger gibt – braucht weiter
+      # die Freigabe für genau diesen Tag:
       #
       #     gh variable set INSTAGRAM_FREIGABE --body 2026-10-12
       #
-      # Fehlt die Variable, ist nichts freigegeben. Das ist der Normalzustand.
+      # Ein Datum statt eines Schalters, weil ein true stehen bleibt und die
+      # Automatik unbemerkt auf alles ausdehnt. Begründung in ENTSCHEIDUNGEN.md
+      # unter „Der vierte Riegel ist ein Datum, kein Schalter".
       - name: Freigabe des Tages prüfen
         id: freigabe
         run: |
           heute=$(date -u +%F)
           frei="${{ vars.INSTAGRAM_FREIGABE }}"
+          art=$(sed -n 2p out/instagram/stand.txt 2>/dev/null)
 
-          if [ "$frei" = "$heute" ]; then
+          if [ "$art" = "tagesnews" ]; then
+            echo "heute=ja" >> "$GITHUB_OUTPUT"
+            echo "Tagesbeitrag – freigegeben ohne Zutun (Anordnung vom 11.10.2026)."
+          elif [ "$frei" = "$heute" ]; then
             echo "heute=ja" >> "$GITHUB_OUTPUT"
             echo "Freigegeben für $heute."
           else
             echo "heute=nein" >> "$GITHUB_OUTPUT"
-            echo "Keine Freigabe für $heute (INSTAGRAM_FREIGABE: ${frei:-nicht gesetzt})."
+            echo "Kein Tagesbeitrag und keine Freigabe für $heute (INSTAGRAM_FREIGABE: ${frei:-nicht gesetzt})."
             echo "Dieser Lauf zeigt nur, was hinausginge."
           fi
 
@@ -225,8 +229,8 @@ jobs:
       #   schedule           ja; der Rueckfalltermin ist der Ernstfall
       #   Anstoss aus dem Paketbau  ja, per `-f veroeffentlichen=true`
       #
-      # **Und in allen drei Faellen zusaetzlich: nur mit der Freigabe des
-      # Tages.** Ohne sie bleibt es beim Trockenlauf, auch nachts um drei.
+      # **Und in allen drei Faellen zusaetzlich: nur mit der Freigabe** – für
+      # den Tagesbeitrag gilt sie von selbst, für alles andere je Tag.
       #
       # Ohne Zugangsdaten bleibt es beim Trockenlauf – das Skript zaehlt dann
       # die Kacheln auf und hoert vor dem ersten Behaelter auf.
