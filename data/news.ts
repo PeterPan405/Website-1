@@ -101,6 +101,327 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-tag-lagarde-spricht-spanien-meldet-inflation',
+    title: 'EZB-Tag: Lagarde spricht, Spanien meldet die Inflation',
+    teaser:
+      'Am Mittwoch reihen sich fünf Notenbanker-Auftritte, dazu kommen Spaniens Inflationsdaten und Deutschlands Großhandelspreise – ein dicht gepackter Kalendertag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['EZB', 'Notenbanken', 'Inflation', 'Spanien'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd', 'dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender und Ticker, Stand 14.10.2026, 07:04 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Mittwoch ist dicht getaktet. Fünf Notenbanker treten im Tagesverlauf auf, dazwischen kommen zwei Länder mit frischen Preisdaten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Auftritte im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr spricht ein Mitglied der Bank of England, fünf Minuten später der Gouverneur der kanadischen Notenbank. Die Europäische Zentralbank ist gleich dreifach vertreten: EZB-Mitglied Elderson um 10 Uhr, Präsidentin Lagarde um 10:30 Uhr und EZB-Mitglied Escrivá um 11:20 Uhr. Das zeigt der Wirtschaftskalender von wallstreet-online, Stand Mittwochmorgen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preisdaten aus zwei Ländern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr veröffentlicht Deutschland seinen Großhandelspreisindex für September. Die Prognose liegt bei plus 0,7 Prozent im Monatsvergleich, nach plus 0,9 Prozent im Vormonat. Eine Stunde später folgt Spanien mit der harmonisierten Inflation: Die Prognose für den Jahreswert liegt bei 5,0 Prozent, unverändert zum Vormonat. Die national berechnete spanische Teuerung wird mit 4,9 Prozent erwartet, ebenfalls gleich wie im September.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Zahlen für ein und dasselbe Land zeigen, warum ein einzelner Inflationswert selten die ganze Geschichte erzählt. Die harmonisierte und die national berechnete spanische Teuerung unterscheiden sich in der Methode – und liegen trotzdem nahe beieinander.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-uebersicht-nennt-107-kursleiste-106',
+    title: 'Ölpreis: Übersicht nennt 107 Dollar, Kursleiste zeigt 106,37',
+    metaTitle: 'Ölpreis: 107 Dollar laut Übersicht, 106,37 laut Kursleiste',
+    teaser:
+      'Eine Marktübersicht meldet Brent über 107 Dollar, die Kursleiste zur gleichen Zeit nur 106,37 – dazu Raketen auf Kiew in der Nacht.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Geopolitik', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Marktüberblick, Stand 14.10.2026, 07:04 Uhr: „Chipwerte brechen in Asien ein, Brent steigt über 107 US-Dollar und heute legen die Großbanken Zahlen vor.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise (Kursleiste), Stand 14.10.2026, 07:04 Uhr: Brent 106,37 USD (+0,02 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, Wirtschaftsnachrichten-Ticker, 14.10.2026, 06:21 Uhr: „Raketen treffen Kiew – Ukrainer beklagen fehlende Vorwarnung“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Ölmarkt zeigen zwei Quellen am selben Mittwochmorgen zwei unterschiedliche Bilder.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '107 Dollar in der Übersicht, 106,37 auf der Kursleiste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Marktübersicht von wallstreet-online schreibt, Brent sei über 107 US-Dollar gestiegen, und nennt als Hintergrund einbrechende Chipwerte in Asien sowie die heute beginnende US-Bankenberichtssaison. Die Kursleiste derselben Seite zeigt zur gleichen Zeit, um 07:04 Uhr, einen Brent-Preis von 106,37 Dollar – ein Plus von nur 0,02 Prozent gegenüber dem Vortag. Welcher Wert sich auf welchen genauen Zeitpunkt bezieht, geht aus den Quellen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Geopolitische Spannungen im Hintergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu den Themen, die der Ölmarkt an diesem Morgen verarbeitet, gehört auch die Lage in der Ukraine. Nach Angaben der Nachrichtenagentur dpa-AFX trafen in der Nacht Raketen die Hauptstadt Kiew. Ukrainische Stellen beklagten eine fehlende Vorwarnung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Schlagzeile und Kursleiste bilden oft unterschiedliche Momente desselben Handelstages ab – ein Tageshoch ist nicht derselbe Wert wie der aktuelle Kurs. Wer eine Zahl zitiert, nennt deshalb besser auch den Zeitpunkt.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-behauptet-sich-chipwerte-asien-schwach',
+    title: 'Dax behauptet sich, Chipwerte in Asien geben deutlich nach',
+    teaser:
+      'Der Dax notiert am Morgen im Plus, während Speicherchip-Hersteller wie SK Hynix und Samsung in Asien deutlich nachgeben – ein geteiltes Bild.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Dax', 'Chipwerte', 'Asien', 'Indizes'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'samsung'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 14.10.2026, 07:04 Uhr: DAX 25.304,58 Punkte (+0,24 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Marktüberblick, Stand 14.10.2026, 07:04 Uhr, Wertpapier-Tags: CXMT Registered (A), SK hynix, Samsung Electronics (Spons. GDR), Kioxia Holdings Corporation',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, Marktberichte, 13.10.2026, 20:20 Uhr: „Aktien New York Schluss: Leichte Verluste – Geschäftszahlen und Tech-Schwäche“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax zeigt sich am Mittwochmorgen robust, während Speicherchip-Hersteller in Asien deutlich nachgeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dax im Plus, Asiens Chipwerte im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax notiert laut der Kursleiste von wallstreet-online um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Wall Street als Vorlauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Einordnung: An der Wall Street war der Dienstag bereits durchwachsen verlaufen. Laut einem Marktbericht der Nachrichtenagentur dpa-AFX schloss der Handel mit leichten Verlusten, belastet von Geschäftszahlen und schwachen Technologiewerten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index wie der Dax bildet vor allem die eigene Zusammensetzung ab – vierzig deutsche Standardwerte ohne große Technologiekonzerne. Eine Branchenschwäche in Asien oder den USA muss sich deshalb nicht eins zu eins im Dax zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-grossbanken-legen-quartalszahlen-vor',
+    title: 'Blackrock, Morgan Stanley und Bank of America legen heute Zahlen vor',
+    metaTitle: 'US-Großbanken legen am Mittwoch ihre Quartalszahlen vor',
+    teaser:
+      'Blackrock, Morgan Stanley, Bank of America und State Street veröffentlichen am Mittwoch frische Quartalszahlen – der Auftakt einer dichten Woche.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['USA', 'Banken', 'Quartalszahlen', 'Berichtssaison'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['blackrock', 'bank-of-america'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, „Ihre wichtigsten Termine“, Stand 14.10.2026, 04:30 Uhr: „Frische Q-Zahlen von: Blackrock, Morgan Stanley, Bank of America & State Street“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, Marktberichte, 13.10.2026, 20:20 Uhr: „Aktien New York Schluss: Leichte Verluste – Geschäftszahlen und Tech-Schwäche“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Mittwoch bringt frische Zahlen von gleich vier großen US-Finanzkonzernen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Namen, ein Termin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Terminübersicht von wallstreetONLINE legen Blackrock, Morgan Stanley, Bank of America und State Street an diesem Mittwoch ihre Quartalszahlen vor. Konkrete Erwartungswerte oder Zahlen nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Auftakt einer dichten Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Termin reiht sich in eine bereits angelaufene US-Berichtssaison ein. Der Handel in New York hatte am Dienstag laut einem Bericht der Nachrichtenagentur dpa-AFX bereits auf erste Geschäftszahlen und schwächere Technologiewerte reagiert, mit leichten Verlusten zum Handelsschluss.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Banken berichten traditionell zu den Ersten in jeder Berichtssaison. Ihre Zahlen zur Kreditvergabe und zum Handelsgeschäft gelten deshalb oft als früher Hinweis auf die Stimmung in der gesamten Wirtschaft – eine Garantie für den weiteren Verlauf sind sie nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-unterschiedliche-richtung-mittwoch',
+    title: 'Gold pendelt nahe 4.200 Dollar, Silber gibt weiter nach',
+    teaser:
+      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber laut Kursleiste weiter nachgibt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Gold', 'Silber', 'Edelmetalle', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 14.10.2026, 07:04 Uhr: Gold 4.164,49 USD (+0,16 %), Silber 59,28 USD (-0,37 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News vom 13.10.2026: „Goldpreis nähert sich wieder 4.200 USD – Öl und Renditen geben nach“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber bewegen sich am Mittwochmorgen in unterschiedliche Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Edelmetalle, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold kostet laut der Kursleiste von wallstreet-online um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Marke von 4.200 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter berichtete am Vortag, der Goldpreis nähere sich wieder der Marke von 4.200 Dollar, während Öl und Anleiherenditen nachgäben. An diesem Mittwochmorgen liegt der Kurs weiterhin unterhalb dieser Marke.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold und Silber gelten beide als Edelmetalle, reagieren aber nicht immer gleich. Silber hat einen deutlich größeren industriellen Anwendungsanteil als Gold, das stärker von Zinserwartungen und seiner Rolle als Krisenwährung getrieben wird.',
+      },
+    ],
+  },
+  {
+    slug: 'evotec-vorlaeufige-neun-monats-zahlen-ueber-erwartungen',
+    title: 'Evotec übertrifft mit vorläufigen Neun-Monats-Zahlen die Erwartungen',
+    metaTitle: 'Evotec: Vorläufige Neun-Monats-Zahlen über den Erwartungen',
+    teaser:
+      'Evotec meldet vorläufige Neun-Monats-Ergebnisse über den Erwartungen und bestätigt die Prognose für 2026 – konkrete Zahlen fehlen noch.',
+    category: 'Märkte',
+    publishedAt: '2026-10-14T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Evotec', 'Quartalszahlen', 'Biotechnologie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, Ad-hoc-Nachrichten, Stand 14.10.2026, 00:07 Uhr: „Evotec's Preliminary 9-Month Results Beat Expectations; 2026 Guidance Holds“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Evotec meldete in der Nacht zum Mittwoch vorläufige Zahlen, die über den Erwartungen liegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorläufig über den Erwartungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Ad-hoc-Mitteilung, die wallstreet-online um 00:07 Uhr auflistete, liegen die vorläufigen Neun-Monats-Ergebnisse des Biotechnologie-Unternehmens über den Erwartungen. Gleichzeitig bestätigte Evotec die Prognose für das Geschäftsjahr 2026. Konkrete Umsatz- oder Ergebniszahlen nennt die kurze Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorläufig heißt: Es folgt noch mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vorläufige Zahlen sind eine erste, ungeprüfte Einschätzung des Unternehmens selbst. Die endgültigen, testierten Zahlen folgen meist erst mit dem vollständigen Geschäftsbericht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine bestätigte Prognose ist etwas anderes als eine angehobene. Wer beides gleichsetzt, überliest den Unterschied zwischen „es bleibt wie geplant“ und „es läuft besser als geplant“.',
+      },
+    ],
+  },
+  {
     slug: 'notenbanker-und-inflation-am-dienstag',
     title: 'Drei Notenbanker sprechen am Dienstag, deutsche Inflation im Fokus',
     metaTitle: 'Drei Notenbanker sprechen, deutsche Inflation im Fokus',

@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Der Ölpreis sorgt für widersprüchliche Zahlen, der Dax hält sich trotz schwacher Chipwerte in Asien, und mehrere Notenbanker sprechen. Dazu legen US-Großbanken Quartalszahlen vor, während Gold und Silber unterschiedliche Richtungen nehmen.",
+  "kacheln": [
+    {
+      "titel": "Brent über 107 $",
+      "text": "Eine Marktübersicht meldete einen Brentpreis über 107 Dollar, die Kursleiste zur gleichen Zeit nur 106,37 Dollar. Hintergrund sind unter anderem Raketenangriffe auf Kiew in der Nacht."
+    },
+    {
+      "titel": "Dax stabil, Chips schwach",
+      "text": "Der Dax notierte am Morgen bei 25.304 Punkten, ein Plus von 0,24 Prozent. Gleichzeitig brachen Speicherchip-Werte in Asien wie SK Hynix und Samsung deutlich ein."
+    },
+    {
+      "titel": "EZB",
+      "text": "Am Mittwoch sprechen EZB-Präsidentin Lagarde sowie die EZB-Mitglieder Elderson und Escrivá. Spanien veröffentlicht zeitgleich seine Inflationsdaten für September."
+    },
+    {
+      "titel": "US-Banken: Zahlen",
+      "text": "Blackrock, Morgan Stanley, Bank of America und State Street legen am Mittwoch ihre Quartalszahlen vor, meldete wallstreetONLINE. Konkrete Erwartungswerte nannte die Übersicht nicht."
+    },
+    {
+      "titel": "Gold nahe 4.200 $",
+      "text": "Gold kostete am Morgen 4.164 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber gab dagegen 0,37 Prozent auf 59,28 Dollar nach."
+    }
+  ],
+  "schlagworte": ["öl", "ezb", "dax", "news", "wirtschaft"]
+}
