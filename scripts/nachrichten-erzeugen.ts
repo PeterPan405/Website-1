@@ -37,9 +37,10 @@ import { pathToFileURL } from 'node:url'
 import { positionierungen } from '../lib/editions-validate.ts'
 import {
   quellenstreit,
-  ueberschriftenVortag,
+  ueberschriftenLetzteTage,
   wiederholungen,
 } from '../lib/nachrichten-wiederholung.ts'
+import { keinDirekterLink } from '../lib/quellenlink.ts'
 import {
   ANWEISUNG_INSTAGRAM,
   type InstagramPlan,
@@ -128,6 +129,17 @@ const MELDUNGEN_MAX = 12
  * verworfener Entwurf kostet eine halbe Stunde, keine Ausgabe.
  */
 const MELDUNGEN_MIN = 5
+
+/**
+ * **Genau fünf** Nachrichten – Briefing des Betreibers vom 14. Oktober 2026:
+ * „Wähle aus einer möglichst breiten Recherche die fünf relevantesten
+ * Nachrichten des Tages." Fünf Artikel, fünf Meldungen, fünf Kacheln.
+ *
+ * Vorher galten fünf bis neun. Die Untergrenze bleibt, was sie war
+ * (`MELDUNGEN_MIN`, Begründung oben); neu ist, dass sie zugleich die
+ * Obergrenze ist.
+ */
+const NACHRICHTEN = 5
 
 /**
  * Das feste Gerüst der Folge in Wörtern – und damit die Untergrenze für alles,
@@ -341,8 +353,8 @@ const WERKZEUG = {
       },
       artikel: {
         type: 'array',
-        minItems: 5,
-        maxItems: 9,
+        minItems: NACHRICHTEN,
+        maxItems: NACHRICHTEN,
         items: {
           type: 'object',
           required: [
@@ -494,9 +506,13 @@ Ton: sachlich, erklärend, per Du zum Leser nur wo es passt, keine Ausrufezeiche
 
 # Umfang und Mischung
 
-Fünf bis neun Artikel aus **mehreren Quellen zu mehreren Themen**. Lieber fünf belegte als neun mit einem geratenen. Eine einzelne Quelle, aus der fünf Artikel stammen und alle dasselbe Thema haben, erfüllt die Zahl und verfehlt die Sache.
+**Genau ${NACHRICHTEN} Nachrichten** – die relevantesten des Tages, die wichtigste zuerst. Die Reihenfolge der Artikel ist die Rangfolge für \`top\`/\`further\`, die Folge und die Instagram-Kacheln. Gewichtet wird nach Aktualität, wirtschaftlicher Bedeutung, Auswirkung auf Unternehmen, Märkte oder Anleger und Neuigkeitswert; konkrete Entwicklungen vor Spekulation und unwichtigen Kursbewegungen.
 
-Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. **Jeder Artikel bekommt seine Meldung** – die Ausgabe wählt nicht aus, sie ordnet. Weniger als ${MELDUNGEN_MIN} Meldungen werden zurückgewiesen.
+**Relevanz, nicht Bekanntheit.** Nicht jeden Tag Nvidia, Apple, Tesla, Bitcoin oder dieselben KI-Werte – lieber eine weniger bekannte, aber wirtschaftlich erhebliche Meldung, auch eine internationale. Die fünf verteilen sich über mehrere Bereiche: Aktienmärkte, Unternehmen und Quartalszahlen, Konjunktur, Geldpolitik, Politik mit wirtschaftlicher Folge, Technologie, internationale Märkte.
+
+**Prüfe über Kreuz.** Wesentliche Aussagen, Zahlen und Termine an mindestens zwei unabhängigen Quellen unten; Originalquellen (Unternehmen, Notenbank, Statistikamt) vor Berichten darüber. Was nur eine Quelle meldet, kennzeichnest du als unbestätigt. **Jede Quellenangabe ist ein direkter Link** auf den Artikel – er steht unten in ⟨spitzen Klammern⟩ hinter der Schlagzeile oder im Feed in der Zeile darunter. Eine Übersichtsseite als Quelle wird zurückgewiesen.
+
+Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. **Jeder Artikel bekommt seine Meldung** – zusammen also genau ${NACHRICHTEN}.
 
 Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst nichts. Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen rund ${GERUEST_WOERTER} Wörter – festes Gerüst, das nicht mitwächst. Bei vier knappen Meldungen ist die Hälfte der Folge Kleingedrucktes, und genau das hat der Betreiber am 28. September 2026 beanstandet.
 
@@ -504,11 +520,11 @@ Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst
 
 # Nichts doppelt – und keine Quellen gegeneinander
 
-Die Startseite zeigt die Artikel von heute und gestern nebeneinander. Was gestern schon dastand, steht dort sonst zweimal. Die Überschriften des letzten Erscheinungstags:
+Die Startseite zeigt die Artikel von heute und gestern nebeneinander, und verglichen wird mit den vergangenen sieben Tagen. Die Überschriften der letzten sieben Erscheinungstage:
 
 ${vortag.length ? vortag.map((t) => `- ${t}`).join('\n') : '(keine gefunden)'}
 
-- **Ein Thema von gestern kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Überschriften, die denen von gestern zu ähnlich sind, werden zurückgewiesen.
+- **Ein Thema dieser sieben Tage kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Zu ähnliche Überschriften werden zurückgewiesen.
 - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber bewegen sich jeden Tag; ein Rohstoffartikel braucht einen Anlass außerhalb des Kurses.
 - **Ein Kursartikel: erst der Preis, dann das Warum** – aus einer Quelle unten. Steht dort kein Grund, gibt es keinen Kursartikel, auch keinen, der sagt, dass keiner genannt wird.
 - **Kein „X meldet" im Text.** Wer etwas gesagt oder beschlossen hat, wird genannt. Ein Preis oder eine Tatsache steht ohne „laut …" und „das meldet …" – woher sie stammt, sagt die Quellenangabe.
@@ -594,8 +610,12 @@ schlimmere Fehler.
 - \`relatedSymbols\`: **nur** aus dem Katalog. Die meisten Einzelaktien aus deutschen Tickermeldungen fehlen dort; nimm dann den Index (\`dax\`). Erlaubt sind unter anderem: ${symbole.slice(0, 60).join(', ')} – und weitere; im Zweifel weglassen.
 - \`whyItMatters\` und jeder \`summary\`-Absatz: mindestens 40 Zeichen. Ein Halbsatz reicht nicht.
 - \`title\`, \`metaTitle\`, \`teaser\` und \`headline\` müssen sich **zwischen den Artikeln unterscheiden**. Zwei gleiche Meta-Descriptions sehen in einer Suchergebnisliste aus wie derselbe Artikel.
-- \`sources\`: mindestens eine je Artikel, \`https://\`, mit lesbarer Beschriftung nach dem Muster „finanzen.net, News-Ticker vom ${heute}, 7:21 Uhr: „…"".
+- \`sources\`: mindestens eine je Artikel, möglichst zwei unabhängige, jede ein **direkter** \`https://\`-Link auf den Artikel, mit lesbarer Beschriftung nach dem Muster „finanzen.net, News-Ticker vom ${heute}, 7:21 Uhr: „…"".
 - \`body\`: mindestens fünf Blöcke, davon mindestens ein \`heading\` (level 2). Kein Block leer.
+
+# Schlusskontrolle
+
+Bevor du antwortest: Sind alle fünf aktuell, möglichst von heute? Stimmen Fakten und Zahlen, an mehreren Quellen geprüft, Unbestätigtes gekennzeichnet? Ist jede Quellenangabe ein direkter Link? Gibt es Abwechslung, und wiederholt sich nichts aus den letzten sieben Tagen ohne neue Entwicklung? Sind die Texte kurz, verständlich, interessant? Stehen die fünf nach Relevanz geordnet?
 
 # Der Instagram-Beitrag
 
@@ -727,9 +747,9 @@ export function pruefe(
     vortag
   )) {
     f(
-      `„${w.titel}" wiederholt die Überschrift vom Vortag „${w.gestern}" ` +
-        `(Ähnlichkeit ${w.wert.toFixed(2)}). Ohne neues Ereignis gehört das ` +
-        `Thema heute nicht hinein – ein Preis allein ist keins.`
+      `„${w.titel}" wiederholt die Überschrift „${w.gestern}" aus den letzten ` +
+        `sieben Erscheinungstagen (Ähnlichkeit ${w.wert.toFixed(2)}). Ohne neues ` +
+        `Ereignis gehört das Thema heute nicht hinein – ein Preis allein ist keins.`
     )
   }
   const streit = (wo: string, text: string | undefined) => {
@@ -759,8 +779,10 @@ export function pruefe(
       `intro hat ${ergebnis.intro.length} Zeichen, erlaubt sind ${INTRO_MIN}–${INTRO_MAX}.`
     )
   }
-  if (ergebnis.artikel.length < 5)
-    f(`Nur ${ergebnis.artikel.length} Artikel – mindestens fünf.`)
+  if (ergebnis.artikel.length !== NACHRICHTEN)
+    f(
+      `${ergebnis.artikel.length} Artikel – genau ${NACHRICHTEN}, die relevantesten des Tages.`
+    )
   if (ergebnis.top.length < 1) f('Die Tagesausgabe braucht mindestens eine Top-Meldung.')
   if (ergebnis.top.length > TOP_MAX)
     f(`${ergebnis.top.length} Top-Meldungen, erlaubt sind höchstens ${TOP_MAX}.`)
@@ -770,7 +792,11 @@ export function pruefe(
     )
   }
   const meldungen = ergebnis.top.length + ergebnis.further.length
-  if (meldungen < MELDUNGEN_MIN) {
+  if (meldungen !== NACHRICHTEN) {
+    f(
+      `${meldungen} Meldungen in der Tagesausgabe – genau ${NACHRICHTEN}, eine je Artikel.`
+    )
+  } else if (meldungen < MELDUNGEN_MIN) {
     f(
       `Nur ${meldungen} Meldungen in der Tagesausgabe – mindestens ${MELDUNGEN_MIN}. ` +
         `Es liegen ${ergebnis.artikel.length} Artikel vor; die Ausgabe fasst dieselben ` +
@@ -864,6 +890,17 @@ export function pruefe(
     for (const q of a.sources) {
       if (!q.url.startsWith('https://'))
         f(`${wo}: Quelle „${q.label}" ist kein https-Link.`)
+      /*
+        Direkt auf den Artikel – Briefing vom 14. Oktober 2026. Begründung
+        und Messung in `lib/quellenlink.ts`: 819 von 1.078 Links zeigten
+        vorher auf eine Übersicht.
+      */
+      const grund = keinDirekterLink(q.url)
+      if (grund)
+        f(
+          `${wo}: Quelle ${q.url} ist ${grund}, kein direkter Link auf den Artikel. ` +
+            `In quellen.txt steht er in ⟨…⟩ hinter der Schlagzeile.`
+        )
     }
     if (a.body.length < 5) f(`${wo}: nur ${a.body.length} Textblöcke, mindestens fünf.`)
     if (!a.body.some((b) => b.type === 'heading')) f(`${wo}: keine Zwischenüberschrift.`)
@@ -872,6 +909,10 @@ export function pruefe(
 
   for (const m of [...ergebnis.top, ...ergebnis.further]) {
     const wo = `Meldung „${m.headline}"`
+    for (const q of m.sources) {
+      const grund = keinDirekterLink(q.url)
+      if (grund) f(`${wo}: Quelle ${q.url} ist ${grund}, kein direkter Link.`)
+    }
     if (m.whyItMatters.trim().length < WARUM_MIN) {
       f(
         `${wo}: whyItMatters hat ${m.whyItMatters.trim().length} Zeichen, mindestens ${WARUM_MIN}.`
@@ -1049,7 +1090,10 @@ async function main() {
     `Stichtag ${heute} · ${themen.size} Lernthemen · ${symbole.size} Symbole · ${vorhandeneSlugs.size} vorhandene Artikel`
   )
 
-  const vortag = ueberschriftenVortag(readFileSync('data/news.ts', 'utf8'), heute)
+  const vortag = ueberschriftenLetzteTage(
+    readFileSync('data/news.ts', 'utf8'),
+    heute
+  ).map((u) => u.titel)
   const ergebnis = await frageModell(
     anweisung(heute, [...themen], [...symbole], quellen, vortag)
   )
@@ -1073,6 +1117,36 @@ async function main() {
     Absatz ist der falsche Preis. Der Agent sieht die Warnung in seiner Probe
     und bessert nach, wie beim Instagram-Plan.
   */
+  /*
+    Mehrere unabhängige Quellen – Briefing vom 14. Oktober 2026: „Überprüfe
+    wesentliche Aussagen … anhand mehrerer unabhängiger Quellen." Am Bestand
+    stützte sich fast jeder zweite Artikel (250 von 521) auf eine einzige
+    Website. Laut, aber kein Abbruch: Manche Meldung gibt es am frühen Morgen
+    nur an einer Stelle, und dann ist sie als unbestätigt zu kennzeichnen,
+    nicht zu streichen. Gezählt wird die Website, nicht der Link.
+  */
+  const website = (u: string) => {
+    try {
+      return new URL(u).hostname
+        .replace(/^www\./, '')
+        .split('.')
+        .slice(-2)
+        .join('.')
+    } catch {
+      return u
+    }
+  }
+  const einzeln = ergebnis.artikel.filter(
+    (a) => new Set(a.sources.map((q) => website(q.url))).size < 2
+  )
+  if (einzeln.length > 0) {
+    console.log(
+      `::warning::${einzeln.length} Artikel stützen sich auf eine einzige Website – ` +
+        `bitte mit einer zweiten, unabhängigen Quelle prüfen oder als unbestätigt kennzeichnen:`
+    )
+    for (const a of einzeln) console.log(`  – ${a.slug}`)
+  }
+
   const textStreit = ergebnis.artikel.flatMap((a) =>
     a.body
       .map((b) => quellenstreit(b.text))

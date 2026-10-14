@@ -23,7 +23,9 @@ import {
   aehnlichkeit,
   quellenstreit,
   themenwoerter,
+  ueberschriftenLetzteTage,
   ueberschriftenVortag,
+  WIEDERHOLUNG_TAGE,
   wiederholungen,
   WIEDERHOLUNG_AB,
 } from '@/lib/nachrichten-wiederholung.ts'
@@ -142,6 +144,44 @@ pruefeDass(
   Math.abs(WIEDERHOLUNG_AB - 1 / 3) < 1e-12
 )
 
+/* ------------------------------------- Sieben Tage – das Fenster im Riegel */
+
+/*
+  Das Briefing vom 14. Oktober 2026 verlangt den Vergleich mit sieben Tagen.
+  Gemessen bis zu diesem Tag: 22 Treffer, 21 Wiederholungen und ein
+  dokumentierter Fehlgriff (Begründung an `WIEDERHOLUNG_TAGE`).
+*/
+const imFenster = new Set<string>()
+for (const [tag, titel] of proTag)
+  for (const w of wiederholungen(
+    titel,
+    ueberschriftenLetzteTage(news, tag).map((u) => u.titel)
+  ))
+    imFenster.add(w.titel)
+pruefeDass(
+  'das Fenster hat sieben Erscheinungstage',
+  WIEDERHOLUNG_TAGE === 7 &&
+    new Set(ueberschriftenLetzteTage(news, '2026-10-14').map((u) => u.tag)).size === 7
+)
+pruefeDass(
+  'sieben Tage finden 22 Wiederholungen bis zum 14. Oktober',
+  imFenster.size === 22,
+  `es sind ${imFenster.size}`
+)
+for (const t of [
+  'Euro fällt auf 17-Monats-Tief – Frankreichs Anleihemarkt unter Druck',
+  'Dax klettert zurück über 25.000 Punkte',
+  'Siemens Energy fällt trotz Kaufempfehlung',
+  ...MUSS,
+])
+  pruefeDass(`im Fenster erkannt: ${t.slice(0, 50)}`, imFenster.has(t))
+for (const t of DARF_NICHT)
+  pruefeDass(`auch im Fenster erlaubt: ${t.slice(0, 50)}`, !imFenster.has(t))
+pruefeDass(
+  'der dokumentierte Fehlgriff steht, wo er stehen soll',
+  imFenster.has('Dax rutscht unter 25.000 Punkte, 200-Tage-Linie hält')
+)
+
 /* ------------------------------------------- Der Riegel am echten Entwurf */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -161,15 +201,40 @@ function riegel(e: Entwurf, vortag: string[]): string[] {
   const symbole = new Set<string>(e.artikel.flatMap((a: Entwurf) => a.relatedSymbols))
   return pruefe(e, themen, symbole, new Set(), vortag)
 }
-const WDH = 'wiederholt die Überschrift vom Vortag'
+const WDH = 'wiederholt die Überschrift'
 const STREIT = 'eine Abweichung zwischen Quellen ist kein Thema'
 
 const vorher = riegel(entwurf, GESTERN_13_10)
+/*
+  Seit dem Briefing vom 14. Oktober 2026 hält derselbe Entwurf zwei weitere
+  Regeln nicht ein – und genau die sollen hier stehen, nichts sonst: sechs
+  statt fünf Nachrichten, und Übersichtsseiten als Quelle.
+*/
+const ANZAHL = 'genau 5'
+const LINK = 'kein direkter Link'
+const bekannt = (s: string) =>
+  s.includes(WDH) || s.includes(STREIT) || s.includes(ANZAHL) || s.includes(LINK)
 pruefeDass(
-  'der Entwurf vom 14. Oktober bestand ohne diese Prüfung alles andere',
-  vorher.every((s) => s.includes(WDH) || s.includes(STREIT)),
-  vorher.filter((s) => !s.includes(WDH) && !s.includes(STREIT)).join('\n     ')
+  'der Entwurf vom 14. Oktober scheitert nur an diesen und den Briefing-Regeln',
+  vorher.every(bekannt),
+  vorher.filter((s) => !bekannt(s)).join('\n     ')
 )
+pruefeDass(
+  'Briefing: sechs Artikel statt genau fünf werden zurückgewiesen',
+  vorher.some((s) => s.includes(ANZAHL) && s.startsWith('6 Artikel'))
+)
+/* Artikel und Meldung einzeln – sonst trüge die eine Prüfung die andere mit. */
+for (const ebene of ['Artikel „', 'Meldung „']) {
+  pruefeDass(
+    `Briefing: die Übersichtsseite als Quelle wird zurückgewiesen (${ebene.slice(0, -2)})`,
+    vorher.some(
+      (s) =>
+        s.startsWith(ebene) &&
+        s.includes(LINK) &&
+        s.includes('https://www.wallstreet-online.de/nachrichten ')
+    )
+  )
+}
 pruefeDass(
   'Gold/Silber wird als Wiederholung vom 13. zurückgewiesen',
   vorher.some((s) => s.includes(WDH) && s.includes('Gold pendelt nahe 4.200'))

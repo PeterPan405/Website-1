@@ -89,7 +89,8 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   `CURRENT_NEWS_COUNT` ist nur noch eine Anzeigegrenze.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
   Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren". **Nichts
-  doppelt:** Thema von gestern nur mit neuem Ereignis, ein Preis ist keins.
+  doppelt:** Thema der letzten sieben Tage nur mit neuem Ereignis, ein Preis
+  ist keins.
   **Kein Quellenstreit:** je Preis eine Zahl, „Kursleiste" nur in
   Quellenangaben (`lib/nachrichten-wiederholung.ts`).
 - **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in
@@ -101,10 +102,10 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
   Nur was dort steht. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
   `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
-- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen,
-  **jeder mit seiner Meldung in der Ausgabe**. Alle `summary` zusammen über
-  110 Wörter – so viel wiegt das Gerüst an seinem längsten Tag.
-  `nachrichten-erzeugen.ts` weist beides zurück.
+- **Umfang:** **genau fünf** Nachrichten zu mehreren Themen, nach Relevanz,
+  jede mit Meldung
+  und **direktem Link** (Briefing 14.10.). Alle `summary` über 110 Wörter.
+  `nachrichten-erzeugen.ts` weist es zurück.
 - **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
   hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst
   das ausdrücklich.

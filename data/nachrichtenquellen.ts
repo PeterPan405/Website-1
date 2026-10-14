@@ -173,6 +173,62 @@ export const nachrichtenquellen: Quellenrubrik[] = [
     ],
   },
   {
+    /*
+      Aus dem Briefing des Betreibers vom 14. Oktober 2026: „Internationale
+      Finanzmedien … Deutsche Wirtschaftsmedien …". Abgerufen am selben Tag,
+      08:26 UTC, von einem GitHub-Läufer über `quellen-holen.yml`:
+
+        200  Tagesschau, Handelsblatt, WirtschaftsWoche, CNBC (Seite und Feed)
+        200  FAZ – nur der Feed; die Seite antwortet mit 302 auf eine
+             Einwilligungsabfrage
+        401  Reuters, Wall Street Journal
+        403  Bloomberg, Financial Times, SEC-Pressemitteilungen
+
+      Das ist ein Zwischenstand mit Datum und Ort, kein Urteil über die
+      Quellen: Die gesperrten antworten einem Läufer nicht, einem Menschen
+      schon. Zitiert wird aus ihnen nur, was eine gelesene Quelle wiedergibt
+      („nach Angaben von Reuters").
+
+      Eingetragen sind die Feeds, nicht die Seiten: Ein Feed trägt zu jeder
+      Meldung Überschrift, Kurztext, Zeitstempel und den direkten Link – genau
+      das, was das Briefing für die Quellenangabe verlangt.
+    */
+    rubrik: 'Wirtschaftsmedien',
+    zweck: 'Die Meldungslage der großen Redaktionen, mit direkten Links.',
+    quellen: [
+      {
+        name: 'Tagesschau – Wirtschaft (Feed)',
+        adresse: 'https://www.tagesschau.de/wirtschaft/index~rss2.xml',
+        wofuer: 'Wirtschaft und Politik mit Marktfolge, öffentlich-rechtlich.',
+        primaer: false,
+      },
+      {
+        name: 'Handelsblatt – Finanzen (Feed)',
+        adresse: 'https://www.handelsblatt.com/contentexport/feed/finanzen',
+        wofuer: 'Unternehmen, Märkte und Finanzbranche aus Deutschland.',
+        primaer: false,
+      },
+      {
+        name: 'WirtschaftsWoche – Finanzen (Feed)',
+        adresse: 'https://www.wiwo.de/contentexport/feed/rss/finanzen',
+        wofuer: 'Einordnung und Unternehmensthemen abseits der Tageskurse.',
+        primaer: false,
+      },
+      {
+        name: 'FAZ – Finanzen (Feed)',
+        adresse: 'https://www.faz.net/rss/aktuell/finanzen/',
+        wofuer: 'Märkte, Geldpolitik und Wirtschaftspolitik.',
+        primaer: false,
+      },
+      {
+        name: 'CNBC – Top News (Feed)',
+        adresse: 'https://www.cnbc.com/id/100003114/device/rss/rss.html',
+        wofuer: 'US-Märkte und Unternehmen, auf Englisch.',
+        primaer: false,
+      },
+    ],
+  },
+  {
     rubrik: 'Rohstoffe',
     zweck: 'Öl, Gas, Gold und Industriemetalle.',
     quellen: [
