@@ -248,7 +248,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: 'paragraph',
-        text: 'Der Dax notiert laut der Kursleiste von wallstreet-online um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
+        text: 'Der Dax notiert um 07:04 Uhr bei 25.304,58 Punkten, ein Plus von 0,24 Prozent. Eine Marktübersicht derselben Seite ordnet die Lage als „Chipwerte brechen in Asien ein“ ein und nennt dabei namentlich CXMT, SK Hynix, Samsung Electronics und Kioxia Holdings.',
       },
       {
         type: 'heading',
@@ -323,7 +323,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'gold-silber-unterschiedliche-richtung-mittwoch',
     title: 'Gold pendelt nahe 4.200 Dollar, Silber gibt weiter nach',
     teaser:
-      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber laut Kursleiste weiter nachgibt.',
+      'Gold legt am Morgen leicht zu und bleibt unter der Marke von 4.200 Dollar, während Silber weiter nachgibt.',
     category: 'Märkte',
     publishedAt: '2026-10-14T07:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -355,7 +355,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: 'paragraph',
-        text: 'Gold kostet laut der Kursleiste von wallstreet-online um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
+        text: 'Gold kostet um 07:04 Uhr 4.164,49 Dollar je Feinunze, ein Plus von 0,16 Prozent. Silber verliert dagegen 0,37 Prozent auf 59,28 Dollar.',
       },
       {
         type: 'heading',

@@ -15,11 +15,17 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**23 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**24 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-14** – [[Nichts doppelt, und kein Streit der Quellen]]
+    - [[Nichts doppelt, und kein Streit der Quellen#Was nachgezählt wurde|Was nachgezählt wurde]]
+    - [[Nichts doppelt, und kein Streit der Quellen#Das zweite war bestellt|Das zweite war bestellt]]
+    - [[Nichts doppelt, und kein Streit der Quellen#Die Regel und ihr Netz|Die Regel und ihr Netz]]
+    - [[Nichts doppelt, und kein Streit der Quellen#Erst der Preis, dann das Warum – und kein „das meldet"|Erst der Preis, dann das Warum – und kein „das meldet"]]
+    - [[Nichts doppelt, und kein Streit der Quellen#Was das Netz nicht kann|Was das Netz nicht kann]]
 - **2026-10-06** – [[Vier Beanstandungen an einer Folge]]
     - [[Vier Beanstandungen an einer Folge#Erstens: zu lang – und das war die Wirkung einer eigenen Änderung|Erstens: zu lang – und das war die Wirkung einer eigenen Änderung]]
     - [[Vier Beanstandungen an einer Folge#Zweitens: nicht auf das Wesentlichste – dieselbe Änderung|Zweitens: nicht auf das Wesentlichste – dieselbe Änderung]]

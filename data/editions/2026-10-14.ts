@@ -59,7 +59,7 @@ export const edition: DailyEdition = {
     {
       headline: 'Dax hält sich, während Chipwerte in Asien einbrechen',
       summary: [
-        'Der Dax zeigt sich am Mittwochmorgen robust. Er notiert laut der Kursleiste von wallstreet-online bei 25.304,58 Punkten, ein Plus von 0,24 Prozent.',
+        'Der Dax zeigt sich am Mittwochmorgen robust. Er notiert bei 25.304,58 Punkten, ein Plus von 0,24 Prozent.',
         'Ganz anders das Bild in Asien. Dort geben laut einer Marktübersicht Speicherchip-Hersteller wie SK Hynix, Samsung Electronics und Kioxia deutlich nach. An der Wall Street war der Vortag bereits durchwachsen verlaufen, mit leichten Verlusten wegen Geschäftszahlen und schwachen Technologiewerten.',
       ],
       category: 'Märkte',

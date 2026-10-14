@@ -36,6 +36,11 @@ import { pathToFileURL } from 'node:url'
 
 import { positionierungen } from '../lib/editions-validate.ts'
 import {
+  quellenstreit,
+  ueberschriftenVortag,
+  wiederholungen,
+} from '../lib/nachrichten-wiederholung.ts'
+import {
   ANWEISUNG_INSTAGRAM,
   type InstagramPlan,
   KACHELN as IG_KACHELN,
@@ -464,7 +469,8 @@ function anweisung(
   heute: string,
   themen: string[],
   symbole: string[],
-  quellen: string
+  quellen: string,
+  vortag: string[] = []
 ): string {
   return `Du schreibst die Nachrichtenausgabe vom ${heute} für IM Invests, eine deutschsprachige Website zur Finanzbildung.
 
@@ -495,6 +501,19 @@ Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`,
 Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst nichts. Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen rund ${GERUEST_WOERTER} Wörter – festes Gerüst, das nicht mitwächst. Bei vier knappen Meldungen ist die Hälfte der Folge Kleingedrucktes, und genau das hat der Betreiber am 28. September 2026 beanstandet.
 
 **Alle \`summary\`-Absätze zusammen müssen deshalb mehr als ${GERUEST_WOERTER} Wörter ergeben** – sonst wird die Ausgabe zurückgewiesen. Der Mittelwert der letzten zwei Monate liegt bei 246; 40 bis 70 Wörter je Meldung treffen ihn.
+
+# Nichts doppelt – und keine Quellen gegeneinander
+
+Die Startseite zeigt die Artikel von heute und gestern nebeneinander. Was gestern schon dastand, steht dort sonst zweimal. Die Überschriften des letzten Erscheinungstags:
+
+${vortag.length ? vortag.map((t) => `- ${t}`).join('\n') : '(keine gefunden)'}
+
+- **Ein Thema von gestern kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Überschriften, die denen von gestern zu ähnlich sind, werden zurückgewiesen.
+- **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber bewegen sich jeden Tag; ein Rohstoffartikel braucht einen Anlass außerhalb des Kurses.
+- **Ein Kursartikel: erst der Preis, dann das Warum** – aus einer Quelle unten. Steht dort kein Grund, gibt es keinen Kursartikel, auch keinen, der sagt, dass keiner genannt wird.
+- **Kein „X meldet" im Text.** Wer etwas gesagt oder beschlossen hat, wird genannt. Ein Preis oder eine Tatsache steht ohne „laut …" und „das meldet …" – woher sie stammt, sagt die Quellenangabe.
+- **Ein Thema, ein Artikel.** Öl und Gold auf dieselbe Nachricht sind ein Artikel.
+- **Nennen zwei Quellen für denselben Preis zwei Zahlen, nimm eine** – die mit Uhrzeit, sonst die jüngere – und nenn sie mit Quelle und Zeitpunkt. Die Abweichung ist nie das Thema: Sie klingt unsicher und ist keine Nachricht. Das Wort „Kursleiste" steht höchstens in der Quellenangabe. Beides wird sonst zurückgewiesen.
 
 # Die Tagesausgabe ist zugleich der Podcast
 
@@ -682,14 +701,58 @@ async function frageModell(prompt: string): Promise<Antwort> {
 
 // ------------------------------------------------------------------ Prüfung
 
-function pruefe(
+export function pruefe(
   ergebnis: Antwort,
   themen: Set<string>,
   symbole: Set<string>,
-  vorhandeneSlugs: Set<string>
+  vorhandeneSlugs: Set<string>,
+  vortag: string[] = []
 ): string[] {
   const fehler: string[] = []
   const f = (satz: string) => fehler.push(satz)
+
+  /*
+    Nichts vom Vortag noch einmal – und keine Quellen gegeneinander.
+
+    Beides hat der Betreiber am 14. Oktober 2026 beanstandet: „wir brauchen
+    keine news doppelt", und zu „Ölpreis: Übersicht nennt 107 Dollar,
+    Kursleiste zeigt 106,37": „klingt unsicher, ist verwirrend und
+    unseriös". Messung und Grenze stehen in `lib/nachrichten-wiederholung.ts`.
+
+    Das Karussell zeigt zwei Erscheinungstage nebeneinander. Was gestern
+    schon dastand, steht dort heute zweimal.
+  */
+  for (const w of wiederholungen(
+    ergebnis.artikel.map((a) => a.title),
+    vortag
+  )) {
+    f(
+      `„${w.titel}" wiederholt die Überschrift vom Vortag „${w.gestern}" ` +
+        `(Ähnlichkeit ${w.wert.toFixed(2)}). Ohne neues Ereignis gehört das ` +
+        `Thema heute nicht hinein – ein Preis allein ist keins.`
+    )
+  }
+  const streit = (wo: string, text: string | undefined) => {
+    const treffer = text ? quellenstreit(text) : null
+    if (treffer)
+      f(
+        `${wo}: „${treffer}" – eine Abweichung zwischen Quellen ist kein Thema. ` +
+          `Eine Zahl nennen, mit Quelle und Uhrzeit; „Kursleiste" kennt kein Leser.`
+      )
+  }
+  streit('intro', ergebnis.intro)
+  for (const a of ergebnis.artikel) {
+    const wo = `Artikel „${a.slug}"`
+    streit(`${wo}, title`, a.title)
+    streit(`${wo}, metaTitle`, a.metaTitle)
+    streit(`${wo}, teaser`, a.teaser)
+  }
+  for (const m of [...ergebnis.top, ...ergebnis.further]) {
+    streit(
+      `Meldung „${m.headline}"`,
+      [m.headline, ...m.summary, m.whyItMatters].join(' ')
+    )
+  }
 
   if (ergebnis.intro.length < INTRO_MIN || ergebnis.intro.length > INTRO_MAX) {
     f(
@@ -986,14 +1049,42 @@ async function main() {
     `Stichtag ${heute} · ${themen.size} Lernthemen · ${symbole.size} Symbole · ${vorhandeneSlugs.size} vorhandene Artikel`
   )
 
-  const ergebnis = await frageModell(anweisung(heute, [...themen], [...symbole], quellen))
+  const vortag = ueberschriftenVortag(readFileSync('data/news.ts', 'utf8'), heute)
+  const ergebnis = await frageModell(
+    anweisung(heute, [...themen], [...symbole], quellen, vortag)
+  )
 
-  const fehler = pruefe(ergebnis, themen, symbole, vorhandeneSlugs)
+  const fehler = pruefe(ergebnis, themen, symbole, vorhandeneSlugs, vortag)
   if (fehler.length > 0) {
     console.error(`::error::Die Ausgabe hält ${fehler.length} Regeln nicht ein:`)
     for (const satz of fehler) console.error(`  – ${satz}`)
     console.error('Es wurde nichts geschrieben.')
     process.exit(1)
+  }
+
+  /*
+    Quellenstreit im Fließtext: laut, aber kein Abbruch.
+
+    Überschrift, Anreißer, Einleitung und Meldungen sieht der Leser im
+    Karussell und hört er in der Folge – dort weist `pruefe` zurück. Im
+    Fließtext stand „Kursleiste" am 14. Oktober 2026 in 96 von 521 Artikeln;
+    hart geprüft, hätte das unter der alten Anweisung 46 Tage zusätzlich
+    zurückgewiesen, und ein Tag ohne Ausgabe wegen eines Worts in einem
+    Absatz ist der falsche Preis. Der Agent sieht die Warnung in seiner Probe
+    und bessert nach, wie beim Instagram-Plan.
+  */
+  const textStreit = ergebnis.artikel.flatMap((a) =>
+    a.body
+      .map((b) => quellenstreit(b.text))
+      .filter((t): t is string => t !== null)
+      .map((t) => `Artikel „${a.slug}", Text: „${t}"`)
+  )
+  if (textStreit.length > 0) {
+    console.log(
+      `::warning::Quellenstreit im Fließtext an ${textStreit.length} Stellen – bitte beheben ` +
+        `(eine Zahl mit Quelle und Uhrzeit, kein „Kursleiste"):`
+    )
+    for (const satz of textStreit) console.log(`  – ${satz}`)
   }
 
   /*
