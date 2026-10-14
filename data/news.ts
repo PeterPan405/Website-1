@@ -150,60 +150,57 @@ export const newsArticles: NewsArticle[] = [
   },
   {
     slug: 'oelpreis-uebersicht-nennt-107-kursleiste-106',
-    title: 'Ölpreis: Übersicht nennt 107 Dollar, Kursleiste zeigt 106,37',
-    metaTitle: 'Ölpreis: 107 Dollar laut Übersicht, 106,37 laut Kursleiste',
+    title: 'Ölpreis über 106 Dollar: Iran droht Tankern in Hormus',
     teaser:
-      'Eine Marktübersicht meldet Brent über 107 Dollar, die Kursleiste zur gleichen Zeit nur 106,37 – dazu Raketen auf Kiew in der Nacht.',
+      'Brent steigt über 106 Dollar. Iran kündigt härtere Angriffe auf Tanker in der Straße von Hormus an, und die Zentrale von Saudi Aramco wurde getroffen.',
     category: 'Märkte',
     publishedAt: '2026-10-14T07:45:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
+    readingMinutes: 3,
     tags: ['Öl', 'Brent', 'Geopolitik', 'Rohstoffe'],
     relatedTopics: ['rohstoffe'],
     relatedSymbols: ['brent'],
     sources: [
       {
         label:
-          'wallstreet-online, Marktüberblick, Stand 14.10.2026, 07:04 Uhr: „Chipwerte brechen in Asien ein, Brent steigt über 107 US-Dollar und heute legen die Großbanken Zahlen vor.“',
-        url: 'https://www.wallstreet-online.de/nachrichten',
-      },
-      {
-        label:
-          'wallstreet-online, Rohstoffpreise (Kursleiste), Stand 14.10.2026, 07:04 Uhr: Brent 106,37 USD (+0,02 %)',
-        url: 'https://www.wallstreet-online.de/nachrichten',
-      },
-      {
-        label:
-          'wallstreet-online/dpa-AFX, Wirtschaftsnachrichten-Ticker, 14.10.2026, 06:21 Uhr: „Raketen treffen Kiew – Ukrainer beklagen fehlende Vorwarnung“',
-        url: 'https://www.wallstreet-online.de/nachrichten',
+          'wallstreet-online, Gina Moesing, 14.10.2026: „Ölpreis über 106 US-Dollar: Huthis treffen Aramco-Zentrale – und Hormus wird jetzt noch gefährlicher“ (mit Angaben von Reuters und Bloomberg)',
+        url: 'https://www.wallstreet-online.de/nachricht/21521533-oelpreis-106-us-dollar-huthis-treffen-aramco-zentrale-hormus-gefaehrlicher',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Am Ölmarkt zeigen zwei Quellen am selben Mittwochmorgen zwei unterschiedliche Bilder.',
+        text: 'Der Ölpreis der Nordseesorte Brent ist am Mittwoch über 106 US-Dollar je Barrel gestiegen. Die US-Sorte WTI näherte sich 95 Dollar.',
       },
       {
         type: 'heading',
         level: 2,
-        text: '107 Dollar in der Übersicht, 106,37 auf der Kursleiste',
+        text: 'Der Auslöser: Drohungen gegen Tanker in Hormus',
       },
       {
         type: 'paragraph',
-        text: 'Eine Marktübersicht von wallstreet-online schreibt, Brent sei über 107 US-Dollar gestiegen, und nennt als Hintergrund einbrechende Chipwerte in Asien sowie die heute beginnende US-Bankenberichtssaison. Die Kursleiste derselben Seite zeigt zur gleichen Zeit, um 07:04 Uhr, einen Brent-Preis von 106,37 Dollar – ein Plus von nur 0,02 Prozent gegenüber dem Vortag. Welcher Wert sich auf welchen genauen Zeitpunkt bezieht, geht aus den Quellen nicht hervor.',
+        text: 'Iranische Regierungsvertreter erklärten nach Angaben von Reuters, sie wollten die Angriffe auf Tanker in der Straße von Hormus mit neuen Taktiken verschärfen. Die Meerenge ist das entscheidende Nadelöhr für Öl aus dem Persischen Golf. Schon jetzt wenden sich mehr Supertanker von der Region ab.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das US-Zentralkommando Centcom wies iranische Behauptungen zurück, Teheran kontrolliere die Meerenge. Amerikanische Streitkräfte und regionale Partner kontrollierten sie eindeutig, erklärte Centcom.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Geopolitische Spannungen im Hintergrund',
+        text: 'Angriffe auf Saudi-Arabien',
       },
       {
         type: 'paragraph',
-        text: 'Zu den Themen, die der Ölmarkt an diesem Morgen verarbeitet, gehört auch die Lage in der Ukraine. Nach Angaben der Nachrichtenagentur dpa-AFX trafen in der Nacht Raketen die Hauptstadt Kiew. Ukrainische Stellen beklagten eine fehlende Vorwarnung.',
+        text: 'Zugleich eskalieren die Kämpfe zwischen Saudi-Arabien und den vom Iran unterstützten Huthis im Jemen. Nach dem Huthi-Angriff auf den Flughafen von Riad soll eine saudisch geführte Koalition Energie-Terminals und Treibstofflager der Huthis angegriffen haben. Laut Bloomberg wurde auch die Zentrale von Saudi Aramco in Dhahran getroffen.',
       },
       {
         type: 'paragraph',
-        text: '**Was daraus folgt:** Schlagzeile und Kursleiste bilden oft unterschiedliche Momente desselben Handelstages ab – ein Tageshoch ist nicht derselbe Wert wie der aktuelle Kurs. Wer eine Zahl zitiert, nennt deshalb besser auch den Zeitpunkt.',
+        text: 'Morgan Stanley hob seine Brent-Prognose für das vierte Quartal von 100 auf 105 Dollar je Barrel an, für das erste Quartal 2027 von 95 auf 100 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Exporte aus der Region laufen weiter, schreibt auch Morgan Stanley. Steigen kann der Preis trotzdem – über die Risikoprämie, den Aufschlag für die Gefahr, dass Lieferungen ausfallen. Angriffe auf Tanker und Energieanlagen erhöhen genau diese Gefahr.',
       },
     ],
   },
