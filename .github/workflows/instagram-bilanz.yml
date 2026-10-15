@@ -63,7 +63,7 @@ jobs:
               raise SystemExit(0)
           felder = "id,timestamp,media_type,permalink,caption"
           adresse = (f"https://graph.facebook.com/v21.0/{konto}/media?"
-                     + urllib.parse.urlencode({"fields": felder, "limit": 100, "access_token": token}))
+                     + urllib.parse.urlencode({"fields": felder, "limit": 50, "access_token": token}))
           n = 0
           while adresse and n < 2000:
               try:
@@ -71,8 +71,16 @@ jobs:
                       seite = json.load(a)
               except Exception as fehler:  # noqa: BLE001
                   # Die Meldung nennt Zeichen und Stelle, nie die Adresse.
-                  grund = str(fehler).replace(token, "***") if token else str(fehler)
-                  print(f"KANAL: Abfrage gescheitert – {type(fehler).__name__}: {grund[:160]}")
+                  grund = str(fehler)
+                  # Meta erklärt einen 400 im Rumpf ({"error": {"message": …}}).
+                  if hasattr(fehler, "read"):
+                      try:
+                          grund += " – " + json.load(fehler).get("error", {}).get("message", "")
+                      except Exception:  # noqa: BLE001
+                          pass
+                  if token:
+                      grund = grund.replace(token, "***")
+                  print(f"KANAL: Abfrage gescheitert – {type(fehler).__name__}: {grund[:300]}")
                   break
               for m in seite.get("data", []):
                   n += 1
