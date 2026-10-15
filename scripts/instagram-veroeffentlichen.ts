@@ -534,12 +534,6 @@ melde('')
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')
 
-// Kommentare an, dann die erste Kachel als Story (`lib/instagram-nachgang.ts`).
-await nachgang({
-  api: API,
-  token: TOKEN,
-  konto: KONTO,
-  beitrag: String(veroeffentlicht.id),
-  storyBild: adressen[0],
-  melde,
-})
+// Kommentare an (`lib/instagram-nachgang.ts`). Die Story teilt der
+// Betreiber in der App – nur dort trägt sie den Verweis zum Beitrag.
+await nachgang({ api: API, token: TOKEN, beitrag: String(veroeffentlicht.id), melde })
