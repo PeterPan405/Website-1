@@ -28,6 +28,13 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     datum: '2026-10-15',
     /*
+      Freigegeben vom Betreiber am 15.10.2026 („so passt es", Entwurf 4).
+      Nachgetragen um 17:06, als er fragte „wo bleibt der von heute" – die
+      Karte war um 08:59 von Hand hinausgegangen, noch ohne dieses Feld.
+      Steht sie noch im Kanal, hält der Veröffentlicher an (Riegel 4).
+    */
+    freigabe: '2026-10-15',
+    /*
       Erster Entwurf: zwei Balken, Deutschland gegen Polen. Der Betreiber:
       „mache mehrere Länder in den Vergleich, es muss auch nicht immer so ein
       Balkendiagramm sein". Jetzt eine Auswahl aus den 30 Ländern – nur
