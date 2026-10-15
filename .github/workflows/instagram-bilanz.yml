@@ -45,6 +45,10 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          # Der erste Lauf (15.10.2026) scheiterte mit UnicodeEncodeError: Die
+          # Beschriftungen tragen Emoji, und die Ausgabe in die Datei lief
+          # nicht in UTF-8.
+          PYTHONIOENCODING: utf-8
         run: |
           python3 - <<'ENDE' > kanal.txt
           import json, os, urllib.parse, urllib.request
@@ -85,6 +89,7 @@ jobs:
           while read -r id zeit ergebnis; do
             treffer=$(gh run view "$id" --repo "${{ github.repository }}" --log 2>/dev/null \
               | grep -E "Veröffentlicht: [0-9]|Übergeben \(|Der Dienst antwortet mit|steht schon im Kanal|Im Kanal steht für" \
+              | grep -v 'echo "' \
               | sed -E 's/^[^\t]*\t[^\t]*\t[0-9TZ:.-]+ //' | sed 's/\[instagram\] //' | tr '\n' ' ')
             [ -n "$treffer" ] && echo "LAUF $zeit $id $ergebnis :: $treffer" >> laeufe.txt
           done < liste.txt
