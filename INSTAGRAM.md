@@ -200,7 +200,11 @@ schon.
 ## Musik
 
 Gewünscht (15.10.2026): bei den Tagesnews **„Walker" von blackboxnorth**; bei
-der Zahlenkarte fügt der Betreiber den Sound selbst hinzu.
+der Zahlenkarte ein Sound nach Wahl.
+
+**Sound und das Verbergen der Likes macht der Betreiber selbst in der App**,
+bei jedem Beitrag (15.10.2026: „ich mache es selbst, Likes und Sound"). Die
+Automatik soll beides nicht nachbauen – kein Reel als Umweg.
 
 **Über die Schnittstelle nur bei Reels.** Metas „Instagram Audio API" (Stand
 16.06.2026) sucht aktuelle Titel und hängt sie „bei der Erstellung von Reels"
