@@ -81,6 +81,16 @@ Eine einzelne weiße Kachel, kein Karussell. Oben mittig Logo und Wortmarke
 Darunter die Grafik: schwarzer Balken gegen dunkelgrünen, Werte darüber, die
 Differenz dunkelrot dazwischen. Unten eine Fußzeile:
 
+**Die Vorlage ist Schrift und Logo, nicht das Diagramm.** Der Betreiber am
+15.10.2026 zum ersten Entwurf: „mache mehrere Länder in den Vergleich, es
+muss auch nicht immer so ein Balkendiagramm sein, sei ein wenig kreativ – ich
+meinte mit Vorlage Schrift und dass unser Logo oben drauf ist." Fest bleiben
+Anton, das Logo oben und die Fußzeile; die Grafik wechselt. Der Generator
+(`lib/instagram-zahlenkarte.ts`) kennt zwei Formen: `vergleich` (zwei Balken)
+und `rangliste` (bis elf Zeilen, je zehn Häuschen – eins je zehn Prozent –,
+eine Zeile hervorgehoben, ein Schnitt gestrichelt eingereiht). Eine neue Form
+wird dort angelegt, nicht im Datensatz.
+
     Stand: 10.10.2026 | Quellen: Kursdaten, STOXX Europe 600, EZB
 
 Die jüngste Sorte – die erste erschien am 11.10.2026. Der Betreiber will davon

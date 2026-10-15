@@ -13,6 +13,8 @@ import {
   zahlenkartePng,
   ZK_BREITE,
   ZK_HOEHE,
+  type Rangkarte,
+  type Vergleichskarte,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
 
@@ -65,31 +67,104 @@ pruefe('die Beschriftung trägt den Rechtshinweis wörtlich', b.includes(RECHTSH
 pruefe('und den KI-Hinweis', b.includes('mit Unterstützung von KI erstellt'))
 pruefe('fünf Schlagworte', (b.match(/#[a-zäöüß0-9]+/g) ?? []).length === 5)
 
-/*
-  Die Zahlen der Karte vom 15.10.2026 stammen aus dem Datenbestand der
-  Website – und dürfen sich nicht unbemerkt davon lösen.
-*/
-const laender = JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
-const wohnen = zahlenkarten.find((k) => k.datum === '2026-10-15')!
+/* Die Rangliste muss beanstanden, was ihre Form verfehlt. */
+const rang: Rangkarte = {
+  ...(zahlenkarten.find((k) => k.art === 'rangliste') as Rangkarte),
+  zeilen: [
+    { name: 'Klein', wert: 40, land: 'DEU', hervor: true },
+    { name: 'Gross', wert: 90, land: 'POL', hervor: true },
+    { name: 'Zu viel', wert: 140, land: 'ITA' },
+    { name: 'Fremd', wert: 10, land: 'XYZ' },
+  ],
+}
+const rangFehler = pruefeZahlenkarte(rang)
+for (const teil of [
+  'absteigend',
+  'genau eine hervorgehobene',
+  '0 bis 100',
+  'keine Flagge',
+])
+  pruefe(
+    `Rangliste beanstandet: ${teil}`,
+    rangFehler.some((f) => f.includes(teil)),
+    rangFehler.join(' | ')
+  )
 pruefe(
-  'Deutschland wie im Bestand',
-  wohnen.links.wert === laender.DEU.wohneigentumsquote.wert
-)
-pruefe('Polen wie im Bestand', wohnen.rechts.wert === laender.POL.wohneigentumsquote.wert)
-pruefe(
-  'die Differenz ist gerechnet, nicht getippt',
-  wohnen.differenz.text ===
-    `+${(wohnen.rechts.wert - wohnen.links.wert).toFixed(1).replace('.', ',')}`
+  'Rangliste beanstandet zwölf Zeilen',
+  pruefeZahlenkarte({
+    ...rang,
+    zeilen: Array.from({ length: 12 }, (_, i) => ({
+      name: `L${i}`,
+      wert: 90 - i,
+      land: 'DEU',
+      hervor: i === 0,
+    })),
+  }).some((f) => f.includes('12 Zeilen'))
 )
 
-/* Das Bild: PNG im Format 1080 × 1350. */
-const png = await zahlenkartePng(gut, readFileSync('public/logo.svg', 'utf8'))
-pruefe('das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
-pruefe(
-  `im Format ${ZK_BREITE} × ${ZK_HOEHE}`,
-  png.readUInt32BE(16) === ZK_BREITE && png.readUInt32BE(20) === ZK_HOEHE,
-  `${png.readUInt32BE(16)} × ${png.readUInt32BE(20)}`
+/*
+  Die Zahlen der Karte vom 15.10.2026 stammen aus dem Datenbestand der
+  Website – und dürfen sich nicht unbemerkt davon lösen. Der EU-Schnitt
+  steht nicht in `laender.json`; er kommt aus derselben Eurostat-Antwort,
+  die `tests/wohneigentum.test.ts` liest.
+*/
+const laender: Record<string, { wohneigentumsquote?: { wert: number } }> = JSON.parse(
+  readFileSync('data/snapshots/laender.json', 'utf8')
+).laender
+const eurostat = JSON.parse(
+  readFileSync('tests/fixtures/eurostat-ilc_lvho02-2025.json', 'utf8')
 )
+const wohnen = zahlenkarten.find((k) => k.datum === '2026-10-15') as Rangkarte
+for (const z of wohnen.zeilen) {
+  const soll =
+    z.land === 'EU27'
+      ? eurostat.value[eurostat.dimension.geo.category.index.EU27_2020]
+      : laender[z.land]?.wohneigentumsquote?.wert
+  pruefe(`${z.name} wie im Bestand (${soll})`, z.wert === soll, `Karte ${z.wert}`)
+}
+pruefe(
+  'Deutschland ist hervorgehoben und das Schlusslicht aller Länder im Bestand',
+  wohnen.zeilen.find((z) => z.hervor)?.land === 'DEU' &&
+    Object.values(laender).every(
+      (l) => !l.wohneigentumsquote || l.wohneigentumsquote.wert >= 47.2
+    )
+)
+pruefe(
+  'der Spitzenreiter steht oben',
+  wohnen.zeilen[0].wert ===
+    Math.max(...Object.values(laender).map((l) => l.wohneigentumsquote?.wert ?? 0))
+)
+
+/* Das Bild: PNG im Format 1080 × 1350 – in beiden Formen. */
+const vergleich: Vergleichskarte = {
+  datum: '2026-10-12',
+  titel: [{ text: 'Zwei Balken' }, { text: 'zum Vergleich', gruen: true }],
+  links: {
+    name: 'Links',
+    wert: 47.2,
+    anzeige: '47,2 %',
+    zusatz: 'im Eigentum',
+    flagge: ['#000', '#d00', '#fc0'],
+  },
+  rechts: { name: 'Rechts', wert: 87.2, anzeige: '87,2 %', zusatz: 'im Eigentum' },
+  differenz: { text: '+40,0', zusatz: 'Prozentpunkte' },
+  fusszeile: 'Stand: 2025 | Quelle: Beispiel',
+  text: 'Beispiel.\nQuellen: Beispiel',
+  schlagworte: ['eins', 'zwei', 'drei', 'vier', 'fuenf'],
+}
+pruefe('die Vergleichskarte hält die Form ein', pruefeZahlenkarte(vergleich).length === 0)
+for (const [form, karte] of [
+  ['Rangliste', wohnen],
+  ['Vergleich', vergleich],
+] as const) {
+  const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
+  pruefe(`${form}: das Bild ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
+  pruefe(
+    `${form}: im Format ${ZK_BREITE} × ${ZK_HOEHE}`,
+    png.readUInt32BE(16) === ZK_BREITE && png.readUInt32BE(20) === ZK_HOEHE,
+    `${png.readUInt32BE(16)} × ${png.readUInt32BE(20)}`
+  )
+}
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
