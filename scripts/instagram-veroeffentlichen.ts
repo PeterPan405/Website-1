@@ -44,6 +44,7 @@ import {
   sperreSchreiben,
   sperrhinweis,
 } from '../lib/instagram-sperre.ts'
+import { nachgang } from '../lib/instagram-nachgang.ts'
 
 const API = 'https://graph.facebook.com/v21.0'
 
@@ -532,3 +533,13 @@ const veroeffentlicht = await graph(`${KONTO}/media_publish`, {
 melde('')
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')
+
+// Kommentare an, dann die erste Kachel als Story (`lib/instagram-nachgang.ts`).
+await nachgang({
+  api: API,
+  token: TOKEN,
+  konto: KONTO,
+  beitrag: String(veroeffentlicht.id),
+  storyBild: adressen[0],
+  melde,
+})

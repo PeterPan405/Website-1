@@ -19,6 +19,7 @@
  *      Aufhänger, nicht nach „irgendein Beitrag heute": Die Tagesnews stehen
  *      um 17 Uhr längst drin.
  */
+import { nachgang } from '../lib/instagram-nachgang.ts'
 import {
   AB_MINUTE,
   berlinJetzt,
@@ -147,5 +148,15 @@ for (;;) {
 const veroeffentlicht = await graph(`${KONTO}/media_publish`, { creation_id: behaelter })
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')
+
+// Kommentare an, dann dasselbe Bild als Story (`lib/instagram-nachgang.ts`).
+await nachgang({
+  api: API,
+  token: TOKEN,
+  konto: KONTO,
+  beitrag: String(veroeffentlicht.id),
+  storyBild: bildAdresse,
+  melde,
+})
 
 export {}

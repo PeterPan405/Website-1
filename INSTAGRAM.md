@@ -167,13 +167,40 @@ von 130 Beiträgen. Ein bis drei zum Thema, der Rest allgemein. Am häufigsten:
 `#news` (79), `#investment` (45), `#finance` (42), `#finanzen` (30),
 `#aktien` (23). Beim Autobeitrag `#china #eu #import #hybrid #autos`.
 
+**Seit dem 15.10.2026: viral und themenbezogen.** Der Betreiber: „# müssen
+viral sein und themenbezogen (maximal sind 5 möglich)". Zwei bis drei zum
+Thema, so wie danach gesucht wird (`ölpreis`, `ezb`, `wohneigentum`), der
+Rest aus großen deutschen Finanz-Hashtags (`börse`, `aktien`, `finanzen`,
+`investieren`, `geldanlage`, `wirtschaft`). Füllwörter wie `#news`, `#top`,
+`#daily` fallen weg – danach sucht niemand. Die Anweisung steht in
+`lib/instagram-plan.ts` **und** `nachrichten-agent.yml`.
+
 ### Das Label „KI-Inhalte"
 
 Steht an allen Beiträgen. Über die Schnittstelle setzt es `is_ai_generated`
 am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 (Metas Referenz zu `/{ig-user-id}/media`, nachgelesen am 11.10.2026).
 
+## Nach dem Beitrag
+
+Anordnung des Betreibers vom 15.10.2026, für Tagesnews und Zahlenkarte.
+`lib/instagram-nachgang.ts` erledigt sie, gleich nach `media_publish`:
+
+| Wunsch | Über die Schnittstelle |
+|---|---|
+| Kommentare erlaubt | ja – `comment_enabled=true` am Beitrag |
+| Als KI-Inhalt markiert | ja – `is_ai_generated` an Beitrag und Story |
+| Danach in die Story | ja – dasselbe Bild als `STORIES` (Tagesnews: Kachel 1); ein eigenes Bild, kein geteilter Beitrag mit Verweis |
+| Likes und Teilen verbergen | **nein** – nur in der App, je Beitrag („Anzahl der „Gefällt mir"-Angaben und geteilten Inhalte verbergen") |
+| Sound | **nein** – siehe „Musik" |
+
+Scheitert Kommentare oder Story, warnt der Lauf; der Beitrag steht dann
+schon.
+
 ## Musik
+
+Gewünscht (15.10.2026): bei den Tagesnews **„Walker" von blackboxnorth**; bei
+der Zahlenkarte fügt der Betreiber den Sound selbst hinzu.
 
 **Über die Schnittstelle nur bei Reels.** Metas „Instagram Audio API" (Stand
 16.06.2026) sucht aktuelle Titel und hängt sie „bei der Erstellung von Reels"
