@@ -56,8 +56,15 @@ jobs:
           # Leerzeichen aus dem Kopieren ist für Node Leerraum, für die
           # Adresszeile von Python ein Zeichen, das nicht in ASCII passt – der
           # zweite Lauf am 15.10.2026 scheiterte genau so (UnicodeEncodeError).
-          token = (os.environ.get("IG_ACCESS_TOKEN") or "").strip()
-          konto = urllib.parse.quote((os.environ.get("IG_USER_ID") or "").strip())
+          # JavaScripts trim() entfernt auch U+FEFF (BOM) – Pythons strip()
+          # nicht. Der vierte Lauf (15.10.2026) bekam deshalb von Meta „Cannot
+          # parse access token", obwohl derselbe Wert beim Veröffentlichen
+          # funktioniert.
+          trim = lambda w: (w or "").strip().strip("\ufeff\u200b").strip()
+          token = trim(os.environ.get("IG_ACCESS_TOKEN"))
+          konto = urllib.parse.quote(trim(os.environ.get("IG_USER_ID")))
+          print(f"KANAL: Token {len(token)} Zeichen, nur ASCII: {token.isascii()}; "
+                f"Konto nur Ziffern: {konto.isdigit()}")
           if not token or not konto:
               print("KANAL: kein IG_ACCESS_TOKEN/IG_USER_ID – nicht abfragbar")
               raise SystemExit(0)
