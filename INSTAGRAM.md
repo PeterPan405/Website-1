@@ -111,7 +111,9 @@ bekommen".
 3. **Karte eintragen** – `data/instagram-zahlenkarten.ts`; gesetzt von
    `lib/instagram-zahlenkarte.ts`, ausgeliefert unter
    `/instagram/zahlenkarte.jpg` und `/instagram/zahlenkarte.txt`.
-4. **Entwurf in den Chat** – Bild und Beschriftung, bis 16 Uhr.
+4. **Entwurf gegen 14 Uhr in den Chat** – Bild und Beschriftung (Betreiber
+   am 15.10.2026: „14:00 Uhr passt"). Zwei Stunden reichen für Änderungen,
+   Freigabe und Bau vor 16 Uhr.
 5. **Freigabe**, sonst Änderung und neuer Entwurf. Nach dem „passt" wird
    `freigabe: '<heute>'` an die Karte geschrieben, gemergt, gebaut – und
    **nicht** von Hand veröffentlicht.
