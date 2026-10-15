@@ -76,8 +76,10 @@ Folgen", „Fazit"), **keine Aufforderung zu folgen.** Gelegentlich steht eine
 
 ### C — Zahlenkarte
 
-Eine einzelne weiße Kachel, kein Karussell. Oben mittig Logo und Wortmarke
-„IM Invests". Überschrift schwarz mit **dunkelgrün hervorgehobenen Wörtern**.
+Eine einzelne weiße Kachel, kein Karussell. Oben mittig das Signet (ohne
+„IMI" in der Mitte) und die Wortmarke „IM Invests" in Open Sans, schwarz,
+klein – nachgemessen am Beitrag vom 12.10.2026. Überschrift in Anton, alles
+andere in Open Sans. Überschrift schwarz mit **dunkelgrün hervorgehobenen Wörtern**.
 Darunter die Grafik: schwarzer Balken gegen dunkelgrünen, Werte darüber, die
 Differenz dunkelrot dazwischen. Unten eine Fußzeile:
 
