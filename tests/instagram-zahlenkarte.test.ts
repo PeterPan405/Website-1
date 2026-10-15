@@ -10,6 +10,7 @@ import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
   beschriftungZahlenkarte,
   pruefeZahlenkarte,
+  signetOhneMitte,
   zahlenkartePng,
   ZK_BREITE,
   ZK_HOEHE,
@@ -133,6 +134,23 @@ pruefe(
   'der Spitzenreiter steht oben',
   wohnen.zeilen[0].wert ===
     Math.max(...Object.values(laender).map((l) => l.wohneigentumsquote?.wert ?? 0))
+)
+
+/*
+  Das Signet ohne „IMI" – wie im Vorbild. Fünf Flächen im Logo, vier im
+  Signet; die vier Figuren bleiben (je eine Farbe, Grau einmal).
+*/
+const logoSvg = readFileSync('public/logo.svg', 'utf8')
+const signet = signetOhneMitte(logoSvg)
+const flaechen = (svg: string) => (svg.match(/<path/g) ?? []).length
+pruefe('das Logo hat fünf Flächen', flaechen(logoSvg) === 5, String(flaechen(logoSvg)))
+pruefe('das Signet vier', flaechen(signet) === 4, String(flaechen(signet)))
+for (const farbe of ['#17296F', '#6E6E6E', '#8B2225', '#205437'])
+  pruefe(`die Figur in ${farbe} bleibt`, signet.includes(`fill="${farbe}"`))
+pruefe(
+  'eine fremde letzte Fläche bleibt stehen',
+  signetOhneMitte('<svg><path fill="#000" d="M0 0"/></svg>') ===
+    '<svg><path fill="#000" d="M0 0"/></svg>'
 )
 
 /* Das Bild: PNG im Format 1080 × 1350 – in beiden Formen. */

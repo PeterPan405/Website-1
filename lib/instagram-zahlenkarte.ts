@@ -146,6 +146,14 @@ const GRAU = '#222222'
 const MITTELGRAU = '#555555'
 const LEER = '#dcdcdc'
 
+/*
+  Die Schriften der Vorlage: Anton für die Überschrift, Open Sans für alles
+  andere – Wortmarke, Werte, Beschriftung, Fußzeile. Bis zum 15.10.2026 stand
+  hier Noto Sans; der Betreiber: „die Schrift von IM Invests passt so noch
+  nicht, das ist nicht wie in der Vorgabe". Gegen den Beitrag vom 12.10.
+  gestellt kam Open Sans am nächsten (verglichen mit Montserrat, Inter,
+  Albert Sans, Figtree).
+*/
 const ORDNER = join(process.cwd(), 'lib/instagram/schriften')
 type Schrift = {
   name: string
@@ -163,20 +171,20 @@ function schriften() {
       style: 'normal',
     },
     {
-      name: 'Noto',
-      data: readFileSync(join(ORDNER, 'noto-sans-400.woff')),
+      name: 'Open',
+      data: readFileSync(join(ORDNER, 'open-sans-400.woff')),
       weight: 400,
       style: 'normal',
     },
     {
-      name: 'Noto',
-      data: readFileSync(join(ORDNER, 'noto-sans-700.woff')),
+      name: 'Open',
+      data: readFileSync(join(ORDNER, 'open-sans-700.woff')),
       weight: 700,
       style: 'normal',
     },
     {
-      name: 'Noto',
-      data: readFileSync(join(ORDNER, 'noto-sans-800-kursiv.woff')),
+      name: 'Open',
+      data: readFileSync(join(ORDNER, 'open-sans-800-kursiv.woff')),
       weight: 800,
       style: 'italic',
     },
@@ -288,7 +296,7 @@ const flagge = (fl: Flagge, groesse: number, rand: number) =>
             'div',
             {
               style: {
-                fontFamily: 'Noto',
+                fontFamily: 'Open',
                 fontWeight: 700,
                 fontSize: Math.round(groesse * 0.35),
                 color: '#FFCC00',
@@ -332,10 +340,33 @@ const haus = (farbe: string) =>
 
 const zahl = (w: number) => w.toFixed(1).replace('.', ',')
 
+/*
+  Der Kopf, nachgemessen am Beitrag vom 12.10.2026 (auf 1080 px gerechnet):
+  Signet 46 px ab Zeile 24, Wortmarke mit 19 px Versalhöhe – Open Sans 27 px,
+  schwarz – 11 px daneben. Das Signet dort trägt kein „IMI" in der Mitte.
+*/
+const KOPF_OBEN = 24
+const KOPF_LOGO = 46
+
+/**
+ * Das Signet ohne den Schriftzug „IMI" in der Mitte – wie im Vorbild.
+ * `public/logo.svg` führt ihn als letzte Fläche (grau); fehlt sie dort oder
+ * steht sie anders, bleibt das Logo unverändert, statt eine Figur zu verlieren.
+ */
+export function signetOhneMitte(svg: string): string {
+  const letzte = svg.lastIndexOf('<path')
+  const ende = svg.indexOf('/>', letzte)
+  if (letzte < 0 || ende < 0) return svg
+  const flaeche = svg.slice(letzte, ende + 2)
+  if (!flaeche.includes('fill="#6E6E6E"') || !/^\s*<\/svg>\s*$/.test(svg.slice(ende + 2)))
+    return svg
+  return svg.slice(0, letzte) + svg.slice(ende + 2)
+}
+
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const rangliste = k.art === 'rangliste'
-  const logo = svgAdresse(logoSvg)
+  const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
     {
@@ -352,7 +383,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
       {
         style: {
           position: 'absolute',
-          top: 38,
+          top: KOPF_OBEN,
           left: 0,
           width: ZK_BREITE,
           display: 'flex',
@@ -360,10 +391,10 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           alignItems: 'center',
         },
       },
-      h('img', { src: logo, width: 62, height: 62 }),
+      h('img', { src: logo, width: KOPF_LOGO, height: KOPF_LOGO }),
       h(
         'div',
-        { style: { fontFamily: 'Noto', fontSize: 34, color: GRAU, marginLeft: 12 } },
+        { style: { fontFamily: 'Open', fontSize: 27, color: SCHWARZ, marginLeft: 11 } },
         'IM Invests'
       )
     ),
@@ -418,7 +449,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           position: 'absolute',
           left: 44,
           top: ZK_HOEHE - 62,
-          fontFamily: 'Noto',
+          fontFamily: 'Open',
           fontSize: 22,
           color: GRAU,
         },
@@ -458,7 +489,7 @@ function vergleichsGrafik(k: Vergleichskarte) {
         'div',
         {
           style: {
-            fontFamily: 'Noto',
+            fontFamily: 'Open',
             fontWeight: 800,
             fontStyle: 'italic',
             fontSize: 56,
@@ -470,7 +501,7 @@ function vergleichsGrafik(k: Vergleichskarte) {
       ),
       h(
         'div',
-        { style: { fontFamily: 'Noto', fontWeight: 700, fontSize: 30, color: SCHWARZ } },
+        { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 30, color: SCHWARZ } },
         s.zusatz
       )
     )
@@ -526,12 +557,12 @@ function vergleichsGrafik(k: Vergleichskarte) {
       },
       h(
         'div',
-        { style: { fontFamily: 'Noto', fontWeight: 700, fontSize: 46, color: ROT } },
+        { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 46, color: ROT } },
         k.differenz.text
       ),
       h(
         'div',
-        { style: { fontFamily: 'Noto', fontWeight: 700, fontSize: 22, color: SCHWARZ } },
+        { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 22, color: SCHWARZ } },
         k.differenz.zusatz
       )
     ),
@@ -566,7 +597,7 @@ function vergleichsGrafik(k: Vergleichskarte) {
           'div',
           {
             style: {
-              fontFamily: 'Noto',
+              fontFamily: 'Open',
               fontWeight: 700,
               fontSize: 36,
               color: SCHWARZ,
@@ -661,7 +692,7 @@ function ranglistenGrafik(k: Rangkarte) {
           style: {
             width: 250,
             marginLeft: 16,
-            fontFamily: 'Noto',
+            fontFamily: 'Open',
             fontWeight: 700,
             fontSize: 30,
             color: farbe,
@@ -675,7 +706,7 @@ function ranglistenGrafik(k: Rangkarte) {
         {
           style: {
             marginLeft: 'auto',
-            fontFamily: 'Noto',
+            fontFamily: 'Open',
             fontWeight: 800,
             fontStyle: 'italic',
             fontSize: 36,
@@ -698,7 +729,7 @@ function ranglistenGrafik(k: Rangkarte) {
           right: 60,
           display: 'flex',
           alignItems: 'center',
-          fontFamily: 'Noto',
+          fontFamily: 'Open',
           fontWeight: 700,
           fontSize: 28,
           color: GRAU,
