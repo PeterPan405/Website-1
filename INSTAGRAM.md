@@ -86,6 +86,31 @@ Differenz dunkelrot dazwischen. Unten eine Fußzeile:
 Die jüngste Sorte – die erste erschien am 11.10.2026. Der Betreiber will davon
 künftig mehr.
 
+**Seit dem 15.10.2026 täglich, und jede abgesprochen.** Der Betreiber: „Ich
+möchte, dass die Themen der Beiträge mit mir bzw. mit unserer
+Social-Media-Abteilung abgesprochen werden … Du machst mir immer ein paar
+Vorschläge, ich sage dann, was ich haben möchte" – und: „die täglichen
+Beiträge immer so um 16 Uhr mir schicken, dass wir das bis 17 Uhr online
+bekommen".
+
+1. **Vorschläge** – drei bis fünf Themen, jedes mit Zahl, Quelle und Stand.
+   Wichtiges wird vorgezogen, der Rest rückt nach.
+2. **Wahl** – durch den Betreiber oder die Social-Media-Abteilung.
+3. **Karte eintragen** – `data/instagram-zahlenkarten.ts`; gesetzt von
+   `lib/instagram-zahlenkarte.ts`, ausgeliefert unter
+   `/instagram/zahlenkarte.jpg` und `/instagram/zahlenkarte.txt`.
+4. **Entwurf um 16 Uhr in den Chat** – Bild und Beschriftung.
+5. **Freigabe**, sonst Änderung und neuer Entwurf.
+6. **Bis 17 Uhr online** – `instagram-zahlenkarte.yml -f freigabe=<heute>`.
+   Kein Zeitplan: Eine Uhr kann nicht abnehmen.
+
+Die Sperre gegen Doppelposts fragt nach **dieser** Karte (ihrem Aufhänger),
+nicht nach „irgendein Beitrag heute" – um 17 Uhr stehen die Tagesnews schon
+im Kanal. Umgekehrt hält der Tagesnews-Veröffentlicher an, sobald heute
+irgendetwas im Kanal steht: Ein Rückfalllauf der Tagesnews **nach** 17 Uhr
+schickt deshalb nichts mehr. Bewusst so gelassen – die Tagesnews gehen
+nachts hinaus, ein Nachzügler am Abend wäre keine Tagesnachricht mehr.
+
 ## Die Beschriftung
 
 ### Bei „Top-News des Tages" – fest

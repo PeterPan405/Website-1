@@ -1,0 +1,54 @@
+name: Instagram-Zahlenkarte
+
+# Veröffentlicht die Zahlenkarte des Tages – ein einzelnes Bild.
+#
+# **Nur von Hand, nur nach Freigabe.** Anordnung des Betreibers vom
+# 15.10.2026: Die Themen werden abgesprochen, der Entwurf kommt um 16 Uhr in
+# den Chat, und erst nach seinem „passt" geht er bis 17 Uhr hinaus. Gestartet
+# wird dieser Workflow deshalb erst dann, mit dem Datum des Tages als
+# Freigabe:
+#
+#     gh workflow run instagram-zahlenkarte.yml -f freigabe=JJJJ-MM-TT
+#
+# Ein anderes Datum als heute (deutscher Kalendertag) schickt nichts – ein
+# Datum läuft um Mitternacht ab, ein Schalter bliebe stehen.
+#
+# Es gibt **keinen** Zeitplan. Eine Karte, die niemand abgenommen hat, soll
+# nicht hinausgehen, und eine Uhr kann nicht abnehmen.
+#
+# Die Riegel stehen im Skript (`scripts/instagram-zahlenkarte.ts`): Freigabe
+# heute, Website zeigt die Karte von heute, Bild antwortet als JPEG, diese
+# Karte steht noch nicht im Kanal.
+
+on:
+  workflow_dispatch:
+    inputs:
+      freigabe:
+        description: 'Datum der Freigabe (JJJJ-MM-TT) – nur heute schickt etwas'
+        required: true
+        type: string
+
+concurrency:
+  group: instagram-zahlenkarte
+  cancel-in-progress: false
+
+jobs:
+  veroeffentlichen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Zahlenkarte veröffentlichen
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          NEXT_PUBLIC_SITE_URL: https://iminvests.de
+          FREIGABE: ${{ inputs.freigabe }}
+        run: node --experimental-strip-types scripts/instagram-zahlenkarte.ts
