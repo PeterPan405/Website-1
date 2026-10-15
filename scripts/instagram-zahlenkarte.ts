@@ -1,21 +1,30 @@
 /**
  * Veröffentlicht die Zahlenkarte des Tages – ein Bild, kein Karussell.
  *
- * Gestartet von `.github/workflows/instagram-zahlenkarte.yml`, und zwar erst
- * **nach** der Freigabe im Chat (Anordnung vom 15.10.2026: Entwurf um 16 Uhr,
- * Freigabe, bis 17 Uhr online). Die Freigabe kommt als Datum herein; nur wenn
- * es heute ist, geht etwas hinaus – ein Datum läuft um Mitternacht ab, ein
- * Schalter nicht (`ENTSCHEIDUNGEN.md`, „Der vierte Riegel ist ein Datum").
+ * Gestartet von `.github/workflows/instagram-zahlenkarte.yml` – angestoßen
+ * vom Dauerlauf ab 16 Uhr, Cron als Rückfall, oder von Hand. Die Freigabe
+ * steht als Datum an der Karte und kommt mit dem Bau auf die Website; nur
+ * wenn es heute ist, geht etwas hinaus – ein Datum läuft um Mitternacht ab,
+ * ein Schalter nicht (`ENTSCHEIDUNGEN.md`, „Der vierte Riegel ist ein Datum").
  *
- * Vier Riegel, alle vor dem ersten Aufruf bei Meta:
+ * Fünf Riegel, alle vor dem ersten Aufruf bei Meta:
  *
- *   1. Freigabe = heute (deutscher Kalendertag)
+ *   0. Es ist 16 Uhr deutscher Zeit oder später – „der Beitrag des Tages
+ *      kommt immer erst um 16 Uhr" (Betreiber, 15.10.2026, nachdem die erste
+ *      Karte um 08:59 hinausgegangen war; `lib/zahlenkarten-wecker.ts`)
+ *   1. Freigabe = heute (deutscher Kalendertag), gelesen von der Website
  *   2. Die Website zeigt die Karte von heute (`/instagram/zahlenkarte.txt`)
  *   3. Das Bild antwortet mit 200 und ist ein JPEG
  *   4. Im Kanal steht diese Karte noch nicht – gefragt wird nach **ihrem**
  *      Aufhänger, nicht nach „irgendein Beitrag heute": Die Tagesnews stehen
  *      um 17 Uhr längst drin.
  */
+import {
+  AB_MINUTE,
+  berlinJetzt,
+  leseZahlenkarteText,
+} from '../lib/zahlenkarten-wecker.ts'
+
 const API = 'https://graph.facebook.com/v21.0'
 const TOKEN = process.env.IG_ACCESS_TOKEN?.trim() ?? ''
 const KONTO = process.env.IG_USER_ID?.trim() ?? ''
@@ -23,7 +32,6 @@ const BASIS = (process.env.NEXT_PUBLIC_SITE_URL || 'https://iminvests.de').repla
   /\/+$/,
   ''
 )
-const FREIGABE = (process.env.FREIGABE ?? '').trim()
 
 const melde = (s: string) => console.log(`[zahlenkarte] ${s}`)
 const halt = (s: string): never => {
@@ -32,24 +40,31 @@ const halt = (s: string): never => {
   process.exit(0)
 }
 
-const HEUTE = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin' }).format(
-  new Date()
-)
+const { tag: HEUTE, minute } = berlinJetzt(new Date())
 
-// Riegel 1
-if (FREIGABE !== HEUTE) halt(`Freigabe „${FREIGABE || '–'}" ist nicht heute (${HEUTE}).`)
+// Riegel 0
+if (minute < AB_MINUTE)
+  halt(
+    `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um 16 Uhr hinaus.`
+  )
 
-// Riegel 2
 const textAntwort = await fetch(`${BASIS}/instagram/zahlenkarte.txt`, {
   cache: 'no-store',
 })
 if (!textAntwort.ok)
   halt(`${BASIS}/instagram/zahlenkarte.txt antwortet mit ${textAntwort.status}.`)
-const [datum, ...rest] = (await textAntwort.text()).split('\n')
-const beschriftung = rest.join('\n').trim()
-if (datum.trim() !== HEUTE)
+const { datum, freigabe, beschriftung } = leseZahlenkarteText(await textAntwort.text())
+
+// Riegel 1
+if (freigabe !== HEUTE)
   halt(
-    `Die Website zeigt die Karte vom ${datum.trim()}, nicht von heute – der Bau ist noch nicht übertragen.`
+    `Freigabe „${freigabe ?? '–'}" ist nicht heute (${HEUTE}) – ohne Freigabe geht nichts hinaus.`
+  )
+
+// Riegel 2
+if (datum !== HEUTE)
+  halt(
+    `Die Website zeigt die Karte vom ${datum}, nicht von heute – der Bau ist noch nicht übertragen.`
   )
 if (!beschriftung.includes('KI erstellt'))
   halt('Die Beschriftung trägt keinen KI-Hinweis.')

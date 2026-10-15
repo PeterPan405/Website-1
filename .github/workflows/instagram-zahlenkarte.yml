@@ -2,31 +2,33 @@ name: Instagram-Zahlenkarte
 
 # Veröffentlicht die Zahlenkarte des Tages – ein einzelnes Bild.
 #
-# **Nur von Hand, nur nach Freigabe.** Anordnung des Betreibers vom
-# 15.10.2026: Die Themen werden abgesprochen, der Entwurf kommt um 16 Uhr in
-# den Chat, und erst nach seinem „passt" geht er bis 17 Uhr hinaus. Gestartet
-# wird dieser Workflow deshalb erst dann, mit dem Datum des Tages als
-# Freigabe:
+# **Nur nach Freigabe, und frühestens um 16 Uhr.** Anordnung des Betreibers
+# vom 15.10.2026: Die Themen werden abgesprochen, der Entwurf kommt in den
+# Chat, und erst nach seinem „passt" geht er hinaus. Am selben Tag ging die
+# erste Karte nach dem „passt" um 08:59 Uhr hinaus; seine Antwort: „der
+# Beitrag des Tages kommt immer erst um 16 Uhr". Seitdem sind Freigabe und
+# Veröffentlichung getrennt (`lib/zahlenkarten-wecker.ts`):
 #
-#     gh workflow run instagram-zahlenkarte.yml -f freigabe=JJJJ-MM-TT
+#   - Die **Freigabe** ist ein Datum an der Karte (`freigabe` in
+#     `data/instagram-zahlenkarten.ts`), eingetragen nach dem „passt" und mit
+#     dem Bau auf der Website (Zeile 2 von `/instagram/zahlenkarte.txt`).
+#   - **Angestoßen** wird dieser Workflow vom Dauerlauf
+#     (`kurse-dauerlauf.yml`), der ab 16 Uhr alle zehn Minuten fragt –
+#     geplante Läufe sind eine Bitte. Die zwei Crons sind Rückfall: 14:07 UTC
+#     ist 16:07 im Sommer, 15:07 UTC ist 16:07 im Winter; der jeweils andere
+#     hält am Riegel „vor 16 Uhr" bzw. „steht schon im Kanal" und schickt
+#     nichts. Dadurch muss die Zeitumstellung hier nichts nachziehen.
 #
-# Ein anderes Datum als heute (deutscher Kalendertag) schickt nichts – ein
-# Datum läuft um Mitternacht ab, ein Schalter bliebe stehen.
-#
-# Es gibt **keinen** Zeitplan. Eine Karte, die niemand abgenommen hat, soll
-# nicht hinausgehen, und eine Uhr kann nicht abnehmen.
-#
-# Die Riegel stehen im Skript (`scripts/instagram-zahlenkarte.ts`): Freigabe
-# heute, Website zeigt die Karte von heute, Bild antwortet als JPEG, diese
-# Karte steht noch nicht im Kanal.
+# Ein Start von Hand vor 16 Uhr schickt nichts. Die Riegel stehen im Skript
+# (`scripts/instagram-zahlenkarte.ts`): 16 Uhr vorbei, Freigabe heute,
+# Website zeigt die Karte von heute, Bild antwortet als JPEG, diese Karte
+# steht noch nicht im Kanal.
 
 on:
   workflow_dispatch:
-    inputs:
-      freigabe:
-        description: 'Datum der Freigabe (JJJJ-MM-TT) – nur heute schickt etwas'
-        required: true
-        type: string
+  schedule:
+    - cron: '7 14 * * *'
+    - cron: '7 15 * * *'
 
 concurrency:
   group: instagram-zahlenkarte
@@ -50,5 +52,4 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           NEXT_PUBLIC_SITE_URL: https://iminvests.de
-          FREIGABE: ${{ inputs.freigabe }}
         run: node --experimental-strip-types scripts/instagram-zahlenkarte.ts
