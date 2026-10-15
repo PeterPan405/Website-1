@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die US-Inflation überrascht nach oben, KI-Infrastrukturwerte wie CoreWeave und Dell stürzen ab, und US-Banken fallen trotz guter Zahlen. Dazu: Lufthansa im Rennen um TAP und Chinas Exportboom.",
+  "kacheln": [
+    {
+      "titel": "US-Inflation 3,7 %",
+      "text": "Die US-Verbraucherpreise stiegen im September stärker als erwartet. Die Anleiherenditen zogen sofort an, Technologiewerte gaben nach."
+    },
+    {
+      "titel": "KI-Aktien im Ausverkauf",
+      "text": "CoreWeave verlor an der Börse 15 Prozent, Dell brach um 11 Prozent ein. Anleger sorgen sich um die hohe Verschuldung hinter dem KI-Boom."
+    },
+    {
+      "titel": "US-Banken fallen trotzdem",
+      "text": "Morgan Stanley meldete Rekordzuflüsse, Bank of America verpasste die Erwartungen. Trotzdem gaben alle sechs großen US-Bankaktien nach."
+    },
+    {
+      "titel": "Lufthansa gewinnt TAP",
+      "text": "Portugal lässt die Lufthansa beim Einstieg in die Fluggesellschaft TAP zum Zug kommen. Sie setzte sich gegen Air France-KLM durch."
+    },
+    {
+      "titel": "Chinas Exporte boomen",
+      "text": "Chinas Exporte legten im September überraschend stark zu. Halbleiter und Autos trieben das Wachstum, der Handelsüberschuss steigt auf ein mögliches Rekordhoch."
+    }
+  ],
+  "schlagworte": ["inflation", "ki", "banken", "news", "top"]
+}

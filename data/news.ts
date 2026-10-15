@@ -101,6 +101,284 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-inflation-september-ueberrascht-notenbank',
+    title: 'US-Inflation überrascht nach oben – Anleiherenditen ziehen an',
+    teaser:
+      'Die US-Verbraucherpreise sind im September stärker gestiegen als erwartet. Die Anleiherenditen zogen sofort an, Dow und Nasdaq schlossen schwächer.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-15T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'fed', 'anleihen', 'usa'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 14.10.2026, 21:25 Uhr: „Inflation in den USA springt im September nach oben – schnelle Reaktion am Anleihemarkt“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/inflation-preise-in-den-usa-steigen-im-september-um-37-prozent/100261070.html',
+      },
+      {
+        label:
+          "CNBC, 14.10.2026, 16:56 Uhr: „Here's the inflation breakdown for September 2026 — in one chart“",
+        url: 'https://www.cnbc.com/2026/10/14/cpi-inflation-breakdown-september-2026.html',
+      },
+      {
+        label:
+          'Handelsblatt, 14.10.2026, 13:57 Uhr: „Dow Jones, S&P 500, Nasdaq: US-Börsen schließen mit Verlusten“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-us-boersen-schliessen-mit-verlusten-inflation-steigt-unerwartet-stark/100262180.html',
+      },
+      {
+        label: 'wallstreet-online.de, Indexstand vom 14.10.2026: Nasdaq 100',
+        url: 'https://www.wallstreet-online.de/indizes/nasdaq100',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Verbraucherpreise sind im September um 3,7 Prozent gestiegen – stärker, als Analysten erwartet hatten. Treiber waren vor allem höhere Benzin- und Energiepreise im Zusammenhang mit dem Krieg um den Iran, berichtet CNBC. Vom Inflationsziel der US-Notenbank von 2 Prozent entfernt sich die Rate damit noch deutlicher.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An den Anleihemärkten ging es schnell: Laut Handelsblatt zogen die Renditen unmittelbar nach Veröffentlichung der Daten an. Der Nasdaq 100 schloss am Mittwoch 1,97 Prozent schwächer, der Dow Jones gab 0,20 Prozent nach (wallstreet-online, Stand 14.10.2026).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Technologiewerte stärker reagieren als der Dow',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Grund liegt in der Abzinsung künftiger Gewinne. Wachstumswerte, wie sie den Nasdaq prägen, erwirtschaften den Großteil ihres Gewinns erst in einigen Jahren. Steigen die Zinsen, sinkt der heutige Wert dieser künftigen Gewinne stärker als bei Unternehmen, die schon jetzt hohe laufende Gewinne ausweisen – etwa viele Dow-Werte aus etablierten Branchen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die gelesenen Quellen nennen keinen offiziellen Kommentar der US-Notenbank zu den Daten. Wie die Fed darauf reagiert, lässt sich aus der Meldung selbst nicht ablesen – wer das behauptet, würde eine Begründung erfinden, die dort nicht steht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine des Tages',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag sprechen zwei weitere Notenbanker: BoJ-Ratsmitglied Koeda um 3:30 Uhr deutscher Zeit, ein Vertreter der Bank of England namens Pill um 5:40 Uhr. Um 8 Uhr veröffentlicht Großbritannien seine monatlichen Zahlen zu BIP, Industrie- und Verarbeitungsproduktion für August.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine einzelne Inflationszahl ändert selten sofort die Geldpolitik. Sie verschiebt aber die Erwartungen darüber, wie schnell oder langsam die US-Notenbank ihre Zinsen in den kommenden Monaten senkt – und genau diese Erwartung bewegt gerade die Kurse von Anleihen und Wachstumsaktien.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-infrastruktur-aktien-ausverkauf-schulden',
+    title: 'CoreWeave verliert 15 Prozent im KI-Schulden-Ausverkauf',
+    teaser:
+      'CoreWeave und Dell führten einen Ausverkauf bei KI-Infrastrukturwerten an. Anleger sorgen sich um die hohe Fremdfinanzierung des Rechenzentren-Booms.',
+    category: 'Märkte',
+    publishedAt: '2026-10-15T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['ki', 'aktien', 'schulden', 'technologie'],
+    relatedTopics: ['schulden-und-kredit', 'risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 14.10.2026, 22:46 Uhr: „CoreWeave shares tumble as bond yields near 15% on concern about AI borrowing binge“',
+        url: 'https://www.cnbc.com/2026/10/14/coreweave-stock-bond-yields-ai-debt.html',
+      },
+      {
+        label:
+          "CNBC, 14.10.2026, 22:19 Uhr: „Dell stock plunges 11%, leading data center sell-off as fears mount about 'enterprise AI timing'“",
+        url: 'https://www.cnbc.com/2026/10/14/dell-stock-barclays-enterprise-ai.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 13.10.2026, 14:41 Uhr: „Künstliche Intelligenz: Was passiert, wenn die KI-Euphorie verfliegt?“',
+        url: 'https://www.wiwo.de/finanzen/boerse/iwf-warnt-vor-ki-boom-wie-fremdkapital-die-maerkte-gefaehrdet/100261843.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktien rund um den KI-Infrastruktur-Boom gerieten am Mittwoch unter Druck. Die CoreWeave-Aktie fiel laut CNBC um 15 Prozent, während die Rendite der Unternehmensanleihen in die Nähe von 15 Prozent kletterte – ein Zeichen, wie riskant Anleger die Rückzahlung inzwischen einschätzen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Dell traf es hart. Die Aktie brach um 11 Prozent ein. Die Bank Barclays hatte Dell, HPE und NetApp zuvor herabgestuft – aus Sorge, dass Unternehmen ihre KI-Investitionen langsamer umsetzen als gedacht, berichtet CNBC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fremdkapital statt Eigenkapital',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rechenzentren für KI-Modelle sind teuer, und ein Teil davon wird über Anleihen statt über Aktienkapital finanziert. Steigt die Rendite dieser Anleihen, verlangen Investoren eine höhere Risikoprämie dafür, ihr Geld zu verleihen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Internationale Währungsfonds hatte bereits am Dienstag vor genau dieser Mischung gewarnt: hohe, fremdfinanzierte Wetten auf Künstliche Intelligenz träfen auf ohnehin hohe Staatsschulden, berichtet die WirtschaftsWoche über den IWF-Bericht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Kursverlust bei einem einzelnen Anbieter ist noch kein Beweis für eine Blase. Er zeigt aber, wie schnell die Stimmung kippen kann, wenn ein Geschäftsmodell stärker auf Schulden als auf laufenden Gewinnen beruht.',
+      },
+    ],
+  },
+  {
+    slug: 'us-banken-zahlen-aktien-fallen-trotzdem',
+    title: 'Gute Zahlen, rote Kurse: US-Banken fallen trotz starker Bilanzen',
+    teaser:
+      'Morgan Stanley meldete Rekord-Mittelzuflüsse, Bank of America verpasste die Erwartungen. Trotzdem gaben am Mittwoch alle sechs großen US-Bankaktien nach.',
+    category: 'Märkte',
+    publishedAt: '2026-10-15T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['banken', 'aktien', 'usa', 'quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['bank-of-america', 'goldman-sachs'],
+    sources: [
+      {
+        label:
+          'FAZ, 14.10.2026, 16:54 Uhr: „US-Banken: Morgan Stanley mit Rekordmittelzuflüssen“',
+        url: 'https://www.faz.net/aktuell/finanzen/morgan-stanley-mit-rekordmittelzufluessen-aber-hinter-goldman-sachs-201317774.html',
+      },
+      {
+        label:
+          'CNBC, 14.10.2026: „Bank of America shares drop after third-quarter revenue miss and regulatory penalty“',
+        url: 'https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html',
+      },
+      {
+        label:
+          "CNBC, 15.10.2026, 00:48 Uhr: „Jim Cramer explains why even strong bank earnings couldn't save their stocks“",
+        url: 'https://www.cnbc.com/2026/10/14/cramer-big-bank-earnings-stock-reaction.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Morgan Stanley meldete für das dritte Quartal Rekord-Mittelzuflüsse, blieb damit aber hinter Goldman Sachs zurück, berichtet die FAZ.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bank of America traf es schlechter: Die Aktie fiel nach einem verpassten Umsatzziel und einer regulatorischen Strafe, meldet CNBC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Erwartung mehr zählt als das Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Alle sechs großen US-Banken fielen am Mittwoch an der Börse – selbst jene mit starken Zahlen, schreibt CNBC-Kommentator Jim Cramer. Der Markt bewertet ein Quartalsergebnis nicht gegen null, sondern gegen das, was vorher an der Börse eingepreist war.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Hintergrund stand derselbe Tag, an dem die US-Inflationsdaten die Zinserwartungen nach oben schoben. Cramer nennt Sorgen um Zinsen und Konjunkturausblick als Grund, warum selbst solide Berichte die Kurse nicht stützten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Gewinn allein sagt wenig darüber, wie eine Aktie reagiert. Entscheidend ist die Differenz zwischen dem, was Analysten erwartet hatten, und dem, was ein Unternehmen tatsächlich liefert.',
+      },
+    ],
+  },
+  {
+    slug: 'lufthansa-setzt-sich-bei-tap-durch',
+    title: 'Lufthansa setzt sich im Ringen um die portugiesische TAP durch',
+    teaser:
+      'Portugal lässt die Lufthansa beim Einstieg in die staatliche Fluggesellschaft TAP zum Zug kommen. Die Airline setzte sich gegen Air France-KLM durch.',
+    category: 'Märkte',
+    publishedAt: '2026-10-15T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['lufthansa', 'uebernahme', 'luftfahrt'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 14.10.2026, 14:53 Uhr: „Portugal erlaubt Einstieg der Lufthansa bei staatlicher Airline TAP“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/uebernahme-tap-lufthansa-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die portugiesische Regierung lässt die Lufthansa beim Einstieg in die staatliche Fluggesellschaft TAP zum Zug kommen. Das meldet die Tagesschau unter Berufung auf die Regierung in Lissabon.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Ringen um 44,9 Prozent der TAP-Anteile setzte sich die Lufthansa gegen die Konkurrentin Air France-KLM durch. Der tatsächliche Einstieg dauert laut Tagesschau aber noch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quelle, noch keine zweite Bestätigung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Zeitpunkt dieser Ausgabe lag für die Entscheidung nur die Meldung der Tagesschau vor. Eine zweite, unabhängige Quelle dazu wurde nicht gefunden. Die Angabe gilt deshalb als unbestätigt, bis eine weitere Stelle sie bestätigt oder die beteiligten Unternehmen sich offiziell äußern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Air France-KLM hatte im Bieterverfahren zuvor ebenfalls ein Angebot vorgelegt. Warum sich die portugiesische Regierung für die Lufthansa entschied, geht aus der gelesenen Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Für die Lufthansa wäre ein Einstieg bei TAP ein weiterer Schritt zu einem größeren Streckennetz Richtung Südamerika. Ob und wie schnell daraus ein abgeschlossener Deal wird, bleibt für Anleger vorerst offen.',
+      },
+    ],
+  },
+  {
+    slug: 'chinas-handelsueberschuss-naehert-sich-billion',
+    title: 'Chinas Handelsüberschuss nähert sich der Billionen-Dollar-Marke',
+    teaser:
+      'Chinas Exporte legten im September überraschend stark zu. Halbleiter und Autos trieben das Wachstum, der Handelsüberschuss könnte 2026 einen Rekord erreichen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-15T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['china', 'export', 'konjunktur'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['hang-seng'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 14.10.2026, 12:24 Uhr: „Chinas Handelsüberschuss nähert sich der Billionen-Dollar-Marke“',
+        url: 'https://www.tagesschau.de/wirtschaft/weltwirtschaft/china-handelsueberschuss-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinas Exporte sind im September überraschend stark gestiegen, meldet die Tagesschau. Der Handelsüberschuss der Volksrepublik könnte in diesem Jahr ein historisches Hoch erreichen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor allem Halbleiter und Autos trieben das Wachstum an, heißt es in der Meldung. Genaue Prozentangaben zum September nennt die gelesene Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quelle, noch keine zweite Bestätigung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für diese Meldung lag zum Redaktionsschluss nur die Tagesschau vor. Eine weitere, unabhängige Bestätigung der genauen Zahlen stand noch aus; die Angabe gilt deshalb als unbestätigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein hoher Handelsüberschuss bedeutet, dass ein Land mehr exportiert als importiert. Für die Weltwirtschaft ist das zweischneidig: Es stärkt die heimische Industrie, kann aber Handelspartner wie die EU oder die USA unter Druck setzen, die selbst Hersteller von Halbleitern und Autos schützen wollen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein wachsender chinesischer Überschuss erhöht den Druck auf Handelspartner, eigene Industrien zu schützen – etwa über Zölle oder Importbeschränkungen. Ob es dazu kommt, hängt von politischen Entscheidungen ab, die in der gelesenen Meldung nicht angesprochen werden.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-tag-lagarde-spricht-spanien-meldet-inflation',
     title: 'EZB-Tag: Lagarde spricht, Spanien meldet die Inflation',
     teaser:
