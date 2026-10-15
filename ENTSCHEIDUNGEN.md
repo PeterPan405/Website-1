@@ -5285,13 +5285,26 @@ das Thema vorher abgesprochen, der Entwurf um 16 Uhr im Chat, nach der
 Freigabe bis 17 Uhr online. Die Tagesnews dagegen gehen weiter von selbst
 hinaus, gleich nach der nächtlichen Ausgabe.
 
-## Warum es keinen Zeitplan gibt
+## Freigabe und Veröffentlichung sind zwei Dinge
 
-Der Veröffentlicher der Zahlenkarte startet nur von Hand, mit dem Tag der
-Freigabe als Datum. Ein Zeitplan um 17 Uhr hätte veröffentlicht, was
-niemand abgenommen hat – genau das, was die Anordnung ausschließt. Ein
-Datum läuft um Mitternacht ab; eine vergessene Freigabe lässt den Beitrag
-ausfallen, statt ihn ungesehen hinauszuschicken.
+Zuerst startete der Veröffentlicher nur von Hand, mit dem Tag der Freigabe
+als Datum – „eine Uhr kann nicht abnehmen". Am ersten Tag ging die Karte
+deshalb dann hinaus, als der Betreiber „so passt es" schrieb: um 08:59 Uhr.
+Seine Antwort: „warum hast du es schon hochgeladen" – „der Beitrag des Tages
+kommt immer erst um 16 Uhr".
+
+Der Fehler war, eine Abnahme als Auftrag zu lesen. Jetzt trägt sie nur noch
+ein Datum ein (`freigabe` an der Karte, mit dem Bau auf der Website), und
+die Uhrzeit hängt an der Uhr: Der Dauerlauf stößt ab 16 Uhr an, der
+Veröffentlicher hält vorher an – auch von Hand gestartet. Die Uhr nimmt
+weiterhin nichts ab: Ohne Datum von heute geht nichts hinaus, und ein Datum
+läuft um Mitternacht ab. Die Entscheidung steht in
+`lib/zahlenkarten-wecker.ts`, geprüft in `tests/zahlenkarten-wecker.test.ts`
+mit dem Fall 08:59 als Gegenprobe.
+
+Zwei Crons (14:07 und 15:07 UTC, also 16:07 im Sommer und im Winter) sind
+Rückfall für den Dauerlauf; der jeweils falsche hält am Riegel. Die
+Zeitumstellung muss hier nichts nachziehen.
 
 ## Warum die Karte über die Website geht
 

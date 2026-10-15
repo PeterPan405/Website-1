@@ -258,6 +258,8 @@ jobs:
           # Einmal je Dauerlauf genügt: Die Mail eines roten Laufs ist da,
           # und eine zweite macht sie nicht dringender.
           alarmgestellt=0
+          # Der Tag, an dem dieser Lauf die Zahlenkarte angestoßen hat.
+          zkangestossen=''
           alarmantwort=0
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
@@ -466,6 +468,33 @@ jobs:
                   alarmgestellt=1
                 else
                   echo "::warning::Runde $runde: Der Wächter ließ sich nicht anstoßen – nächster Versuch in zehn Minuten."
+                fi
+              fi
+            fi
+
+            # ## Die Zahlenkarte ab 16 Uhr
+            #
+            # Der Betreiber am 15.10.2026: „der Beitrag des Tages kommt immer
+            # erst um 16 Uhr". Ob sie jetzt hinaus soll, entscheidet
+            # `lib/zahlenkarten-wecker.ts`: 16 Uhr vorbei, die Website zeigt
+            # die Karte von heute **und** ihre Freigabe von heute, und dieser
+            # Lauf hat heute noch nicht angestoßen. Ein Nachfolger stößt
+            # höchstens noch einmal an; der Veröffentlicher sieht dann die
+            # Karte im Kanal und schickt nichts.
+            #
+            # `|| true` aus demselben Grund wie beim Wecker oben: Ein
+            # Fehler hier darf die Kurse nicht anhalten.
+            if [ $((runde % 5)) -eq 0 ]; then
+              zkspruch=$(ZK_ANGESTOSSEN_AM="$zkangestossen" \
+                         node --experimental-strip-types \
+                              scripts/zahlenkarte-wecken.ts 2>/dev/null || true)
+              if [ "$(printf '%s\n' "$zkspruch" | sed -n 's/^ANSTOSS=//p')" = "1" ]; then
+                if gh workflow run instagram-zahlenkarte.yml \
+                     --repo "$GITHUB_REPOSITORY" --ref main; then
+                  echo "::notice::Runde $runde: Zahlenkarte freigegeben, 16 Uhr vorbei – Veröffentlichung angestoßen."
+                  zkangestossen=$(TZ=Europe/Berlin date +%F)
+                else
+                  echo "::warning::Runde $runde: Die Zahlenkarte ließ sich nicht anstoßen – nächster Versuch in zehn Minuten."
                 fi
               fi
             fi

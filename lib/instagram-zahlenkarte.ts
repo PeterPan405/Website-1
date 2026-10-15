@@ -62,6 +62,12 @@ interface KarteGemeinsam {
   text: string
   /** Genau fünf, klein, ohne `#`. */
   schlagworte: string[]
+  /**
+   * Der Tag der Freigabe durch den Betreiber – erst dann geht die Karte
+   * hinaus, und auch dann frühestens um 16 Uhr (`lib/zahlenkarten-wecker.ts`).
+   * Gesetzt wird es **nach** seinem „passt", nie davor; ein Entwurf hat keins.
+   */
+  freigabe?: string
 }
 
 /** Zwei Balken gegeneinander – die Form des Vorbilds vom 12.10.2026. */
@@ -223,6 +229,10 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const f: string[] = []
   if (!/^\d{4}-\d{2}-\d{2}$/.test(k.datum))
     f.push(`datum „${k.datum}" ist kein JJJJ-MM-TT.`)
+  if (k.freigabe !== undefined && k.freigabe !== k.datum)
+    f.push(
+      `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
+    )
   if (!k.titel.some((t) => t.gruen)) f.push('Die Überschrift braucht eine grüne Pointe.')
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)

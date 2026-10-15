@@ -111,13 +111,24 @@ bekommen".
 3. **Karte eintragen** – `data/instagram-zahlenkarten.ts`; gesetzt von
    `lib/instagram-zahlenkarte.ts`, ausgeliefert unter
    `/instagram/zahlenkarte.jpg` und `/instagram/zahlenkarte.txt`.
-4. **Entwurf um 16 Uhr in den Chat** – Bild und Beschriftung.
-5. **Freigabe**, sonst Änderung und neuer Entwurf.
-6. **Bis 17 Uhr online** – `instagram-zahlenkarte.yml -f freigabe=<heute>`.
-   Kein Zeitplan: Eine Uhr kann nicht abnehmen.
+4. **Entwurf in den Chat** – Bild und Beschriftung, bis 16 Uhr.
+5. **Freigabe**, sonst Änderung und neuer Entwurf. Nach dem „passt" wird
+   `freigabe: '<heute>'` an die Karte geschrieben, gemergt, gebaut – und
+   **nicht** von Hand veröffentlicht.
+6. **Online ab 16 Uhr** – der Dauerlauf (`kurse-dauerlauf.yml`) fragt ab
+   16:00 alle zehn Minuten und stößt `instagram-zahlenkarte.yml` an, sobald
+   die Website die Karte von heute mit Freigabe von heute zeigt; zwei Crons
+   (16:07 Sommer- und Winterzeit) sind Rückfall. Kommt die Freigabe später,
+   geht die Karte beim nächsten Blick hinaus.
+
+**„Passt" heißt freigegeben, nicht „jetzt hochladen".** Am 15.10.2026 ging
+die erste Karte nach dem „passt" um 08:59 Uhr hinaus. Der Betreiber: „warum
+hast du es schon hochgeladen" – „der Beitrag des Tages kommt immer erst um
+16 Uhr". Seitdem hält der Veröffentlicher selbst vor 16 Uhr an, auch von
+Hand gestartet (`lib/zahlenkarten-wecker.ts`).
 
 Die Sperre gegen Doppelposts fragt nach **dieser** Karte (ihrem Aufhänger),
-nicht nach „irgendein Beitrag heute" – um 17 Uhr stehen die Tagesnews schon
+nicht nach „irgendein Beitrag heute" – um 16 Uhr stehen die Tagesnews schon
 im Kanal. Umgekehrt hält der Tagesnews-Veröffentlicher an, sobald heute
 irgendetwas im Kanal steht: Ein Rückfalllauf der Tagesnews **nach** 17 Uhr
 schickt deshalb nichts mehr. Bewusst so gelassen – die Tagesnews gehen
