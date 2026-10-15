@@ -183,19 +183,25 @@ am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 
 ## Nach dem Beitrag
 
-Anordnung des Betreibers vom 15.10.2026, für Tagesnews und Zahlenkarte.
-`lib/instagram-nachgang.ts` erledigt sie, gleich nach `media_publish`:
+Anordnung des Betreibers vom 15.10.2026, für Tagesnews und Zahlenkarte:
 
-| Wunsch                     | Über die Schnittstelle                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Kommentare erlaubt         | ja – `comment_enabled=true` am Beitrag                                                                       |
-| Als KI-Inhalt markiert     | ja – `is_ai_generated` an Beitrag und Story                                                                  |
-| Danach in die Story        | ja – dasselbe Bild als `STORIES` (Tagesnews: Kachel 1); ein eigenes Bild, kein geteilter Beitrag mit Verweis |
-| Likes und Teilen verbergen | **nein** – nur in der App, je Beitrag („Anzahl der „Gefällt mir"-Angaben und geteilten Inhalte verbergen")   |
-| Sound                      | **nein** – siehe „Musik"                                                                                     |
+| Wunsch                     | Wer                                                             |
+| -------------------------- | --------------------------------------------------------------- |
+| Kommentare erlaubt         | der Lauf – `comment_enabled=true` (`lib/instagram-nachgang.ts`) |
+| Als KI-Inhalt markiert     | der Lauf – `is_ai_generated` am Beitrag                         |
+| In die Story, anklickbar   | **der Betreiber in der App** – „Zu deiner Story hinzufügen"     |
+| Likes und Teilen verbergen | **der Betreiber in der App**, je Beitrag                        |
+| Sound                      | **der Betreiber in der App** – siehe „Musik"                    |
 
-Scheitert Kommentare oder Story, warnt der Lauf; der Beitrag steht dann
-schon.
+**Die Story kann die Schnittstelle nicht so, wie sie gemeint ist.** Gewollt
+ist der geteilte Beitrag, „dass man das anklicken kann und dann zum Beitrag
+geleitet wird". Meta stellt per Schnittstelle nur ein eigenes Bild als Story
+ein, ohne Verweis; Sticker sind nicht unterstützt. Eine solche Story lief
+einen Tag lang mit (#402) und ist wieder entfernt – sie wäre neben der
+geteilten eine zweite gewesen.
+
+Scheitert das Einschalten der Kommentare, warnt der Lauf; der Beitrag steht
+dann schon.
 
 ## Musik
 

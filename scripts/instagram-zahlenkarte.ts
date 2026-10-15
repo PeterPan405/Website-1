@@ -149,14 +149,8 @@ const veroeffentlicht = await graph(`${KONTO}/media_publish`, { creation_id: beh
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')
 
-// Kommentare an, dann dasselbe Bild als Story (`lib/instagram-nachgang.ts`).
-await nachgang({
-  api: API,
-  token: TOKEN,
-  konto: KONTO,
-  beitrag: String(veroeffentlicht.id),
-  storyBild: bildAdresse,
-  melde,
-})
+// Kommentare an (`lib/instagram-nachgang.ts`). Die Story teilt der
+// Betreiber in der App – nur dort trägt sie den Verweis zum Beitrag.
+await nachgang({ api: API, token: TOKEN, beitrag: String(veroeffentlicht.id), melde })
 
 export {}
