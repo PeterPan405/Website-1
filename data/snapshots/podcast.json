@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-14T09:01:31.035Z",
+  "abgerufenAm": "2026-10-15T00:54:29.773Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "us-inflation-ueberrascht-nach-oben-und-coreweave-und-dell-fuehren-ausverkauf-bei",
+      "titel": "US-Inflation überrascht nach oben und CoreWeave und Dell führen Ausverkauf bei",
+      "beschreibung": "Die US-Inflation überrascht nach oben, KI-Infrastrukturwerte stürzen ab, und US-Banken fallen trotz starker Zahlen. Dazu Lufthansa und Chinas Exportboom. Die US-Verbraucherpreise sind im September um 3,7 Prozent gestiegen. Das ist mehr als erwartet, getrieben vor allem durch höhere Benzin- und Energiepreise im Zusammenhang mit dem Iran-Krieg.\n\nWir sprechen über US-Großbanken legen gute Zahlen vor, Lufthansa gewinnt das Rennen um und Chinas Exporte wachsen überraschend stark. Kompakt in rund drei Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:36) US-Inflation überrascht nach oben\n(1:12) CoreWeave und Dell führen Ausverkauf bei\n(1:43) US-Großbanken legen gute Zahlen vor\n(2:20) Lufthansa gewinnt das Rennen um\n(2:52) Chinas Exporte wachsen überraschend stark\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-15",
+      "dauerSekunden": 185,
+      "url": "https://iminvests.de/podcast-audio/2026-10-15.mp3",
+      "youtubeId": "Aw0Fhl6781Q"
+    },
     {
       "slug": "ezb-tag-lagarde-elderson-und-escriv-sprechen-spanien-und-brent-ueber-107-dollar",
       "titel": "EZB-Tag: Lagarde, Elderson und Escrivá sprechen, Spanien und Brent über 107 Dollar laut Übersicht",
