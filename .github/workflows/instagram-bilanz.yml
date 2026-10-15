@@ -52,7 +52,12 @@ jobs:
         run: |
           python3 - <<'ENDE' > kanal.txt
           import json, os, urllib.parse, urllib.request
-          token, konto = os.environ.get("IG_ACCESS_TOKEN"), os.environ.get("IG_USER_ID")
+          # Wie im Veröffentlichungsskript (`.trim()`): Ein geschütztes
+          # Leerzeichen aus dem Kopieren ist für Node Leerraum, für die
+          # Adresszeile von Python ein Zeichen, das nicht in ASCII passt – der
+          # zweite Lauf am 15.10.2026 scheiterte genau so (UnicodeEncodeError).
+          token = (os.environ.get("IG_ACCESS_TOKEN") or "").strip()
+          konto = urllib.parse.quote((os.environ.get("IG_USER_ID") or "").strip())
           if not token or not konto:
               print("KANAL: kein IG_ACCESS_TOKEN/IG_USER_ID – nicht abfragbar")
               raise SystemExit(0)
@@ -65,7 +70,9 @@ jobs:
                   with urllib.request.urlopen(adresse, timeout=60) as a:
                       seite = json.load(a)
               except Exception as fehler:  # noqa: BLE001
-                  print(f"KANAL: Abfrage gescheitert – {type(fehler).__name__}")
+                  # Die Meldung nennt Zeichen und Stelle, nie die Adresse.
+                  grund = str(fehler).replace(token, "***") if token else str(fehler)
+                  print(f"KANAL: Abfrage gescheitert – {type(fehler).__name__}: {grund[:160]}")
                   break
               for m in seite.get("data", []):
                   n += 1
