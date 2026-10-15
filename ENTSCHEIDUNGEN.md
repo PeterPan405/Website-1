@@ -5302,6 +5302,10 @@ läuft um Mitternacht ab. Die Entscheidung steht in
 `lib/zahlenkarten-wecker.ts`, geprüft in `tests/zahlenkarten-wecker.test.ts`
 mit dem Fall 08:59 als Gegenprobe.
 
+Damit 16 Uhr auch gehalten wird, kommt der Entwurf seitdem gegen 14 Uhr in
+den Chat statt um 16 („14:00 Uhr passt"): Nach dem „passt" braucht es noch
+einen Eintrag, einen Pull Request und einen Bau von gut zwanzig Minuten.
+
 Zwei Crons (14:07 und 15:07 UTC, also 16:07 im Sommer und im Winter) sind
 Rückfall für den Dauerlauf; der jeweils falsche hält am Riegel. Die
 Zeitumstellung muss hier nichts nachziehen.
