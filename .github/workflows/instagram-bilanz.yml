@@ -1,0 +1,114 @@
+name: Instagram-Bilanz
+
+# Welche Beiträge hat die Automatik bisher veröffentlicht – und was steht
+# wirklich im Kanal?
+#
+# Angelegt am 15. Oktober 2026 auf die Frage des Betreibers „welche Beiträge
+# kamen bisher von dir?". Die Antwort steht an zwei Stellen, die von einer
+# Sitzung aus nicht erreichbar sind: in den Protokollen von 457 Läufen von
+# `instagram-beitrag.yml` (die Protokolle liegen hinter einer Weiterleitung,
+# die nur ein Läufer folgt) und im Kanal selbst bei Meta.
+#
+# **Beides wird gefragt, und zwar in dieser Rangfolge:** Der Kanal ist die
+# Wahrheit – „Der Upload fragt den Kanal, nicht das Register". Die
+# Protokolle sagen, welcher Lauf etwas hinausgeschickt hat. Bis zum
+# 11. Oktober 2026 ging das über den Dienst Make; dort belegt unser Protokoll
+# nur die **Übergabe** („Übergeben (200)"), nicht die Veröffentlichung. Erst
+# der Abgleich mit dem Kanal zeigt, was daraus wurde.
+#
+# Der Lauf liest nur. Er veröffentlicht nichts, ändert keinen Bestand und legt
+# das Ergebnis auf den wurzellosen Zweig `instagram-bilanz`:
+#
+#     git show origin/instagram-bilanz:bilanz.txt
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: instagram-bilanz
+  cancel-in-progress: false
+
+jobs:
+  bilanz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      # Der Kanal: alle Beiträge mit Zeitpunkt, Art und Anfang der
+      # Beschriftung. Das Token geht nur als Umgebungsvariable hinein und wird
+      # nie ausgegeben.
+      - name: Kanal bei Meta abfragen
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          python3 - <<'ENDE' > kanal.txt
+          import json, os, urllib.parse, urllib.request
+          token, konto = os.environ.get("IG_ACCESS_TOKEN"), os.environ.get("IG_USER_ID")
+          if not token or not konto:
+              print("KANAL: kein IG_ACCESS_TOKEN/IG_USER_ID – nicht abfragbar")
+              raise SystemExit(0)
+          felder = "id,timestamp,media_type,permalink,caption"
+          adresse = (f"https://graph.facebook.com/v21.0/{konto}/media?"
+                     + urllib.parse.urlencode({"fields": felder, "limit": 100, "access_token": token}))
+          n = 0
+          while adresse and n < 2000:
+              try:
+                  with urllib.request.urlopen(adresse, timeout=60) as a:
+                      seite = json.load(a)
+              except Exception as fehler:  # noqa: BLE001
+                  print(f"KANAL: Abfrage gescheitert – {type(fehler).__name__}")
+                  break
+              for m in seite.get("data", []):
+                  n += 1
+                  kopf = (m.get("caption") or "").replace("\n", " ")[:70]
+                  print(f"KANAL {m.get('timestamp','?')}  {m.get('media_type','?'):<15} {m.get('permalink','')}  {kopf}")
+              adresse = seite.get("paging", {}).get("next")
+          print(f"KANAL: {n} Beiträge")
+          ENDE
+          tail -1 kanal.txt
+
+      # Die Protokolle: je Lauf die Zeilen, die sagen, ob etwas hinausging.
+      - name: Protokolle der Veröffentlichungsläufe lesen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          : > laeufe.txt
+          gh run list --repo "${{ github.repository }}" --workflow instagram-beitrag.yml \
+            --limit 1000 --json databaseId,createdAt,conclusion \
+            --jq '.[] | "\(.databaseId) \(.createdAt) \(.conclusion)"' > liste.txt
+          echo "$(wc -l < liste.txt) Läufe."
+          while read -r id zeit ergebnis; do
+            treffer=$(gh run view "$id" --repo "${{ github.repository }}" --log 2>/dev/null \
+              | grep -E "Veröffentlicht: [0-9]|Übergeben \(|Der Dienst antwortet mit|steht schon im Kanal|Im Kanal steht für" \
+              | sed -E 's/^[^\t]*\t[^\t]*\t[0-9TZ:.-]+ //' | sed 's/\[instagram\] //' | tr '\n' ' ')
+            [ -n "$treffer" ] && echo "LAUF $zeit $id $ergebnis :: $treffer" >> laeufe.txt
+          done < liste.txt
+          echo "$(wc -l < laeufe.txt) Läufe mit einer Aussage zur Veröffentlichung."
+
+      - name: Auf den Zweig `instagram-bilanz` legen
+        run: |
+          {
+            echo "# Instagram-Bilanz $(date -u +'%Y-%m-%d %H:%M UTC')"
+            echo
+            echo "## Der Kanal (Meta)"
+            sort kanal.txt
+            echo
+            echo "## Die Läufe mit Aussage zur Veröffentlichung"
+            sort laeufe.txt
+          } > bilanz.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          inhalt=$(mktemp); cp bilanz.txt "$inhalt"
+          git checkout --orphan instagram-bilanz
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" bilanz.txt
+          git add bilanz.txt
+          git commit -m "Instagram-Bilanz $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push --force origin instagram-bilanz
+          echo "Liegt bereit: git show origin/instagram-bilanz:bilanz.txt"
