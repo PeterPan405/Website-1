@@ -186,13 +186,13 @@ am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 Anordnung des Betreibers vom 15.10.2026, für Tagesnews und Zahlenkarte.
 `lib/instagram-nachgang.ts` erledigt sie, gleich nach `media_publish`:
 
-| Wunsch | Über die Schnittstelle |
-|---|---|
-| Kommentare erlaubt | ja – `comment_enabled=true` am Beitrag |
-| Als KI-Inhalt markiert | ja – `is_ai_generated` an Beitrag und Story |
-| Danach in die Story | ja – dasselbe Bild als `STORIES` (Tagesnews: Kachel 1); ein eigenes Bild, kein geteilter Beitrag mit Verweis |
-| Likes und Teilen verbergen | **nein** – nur in der App, je Beitrag („Anzahl der „Gefällt mir"-Angaben und geteilten Inhalte verbergen") |
-| Sound | **nein** – siehe „Musik" |
+| Wunsch                     | Über die Schnittstelle                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Kommentare erlaubt         | ja – `comment_enabled=true` am Beitrag                                                                       |
+| Als KI-Inhalt markiert     | ja – `is_ai_generated` an Beitrag und Story                                                                  |
+| Danach in die Story        | ja – dasselbe Bild als `STORIES` (Tagesnews: Kachel 1); ein eigenes Bild, kein geteilter Beitrag mit Verweis |
+| Likes und Teilen verbergen | **nein** – nur in der App, je Beitrag („Anzahl der „Gefällt mir"-Angaben und geteilten Inhalte verbergen")   |
+| Sound                      | **nein** – siehe „Musik"                                                                                     |
 
 Scheitert Kommentare oder Story, warnt der Lauf; der Beitrag steht dann
 schon.
