@@ -25,33 +25,41 @@ export const zahlenkarten: Zahlenkarte[] = [
       Deutschland 47,2 % ist der niedrigste Wert aller 30 Länder der Reihe;
       oben Slowakei 93,8, Rumänien 93,2, Kroatien 91,4.
     */
+    art: 'rangliste',
     datum: '2026-10-15',
+    /*
+      Erster Entwurf: zwei Balken, Deutschland gegen Polen. Der Betreiber:
+      „mache mehrere Länder in den Vergleich, es muss auch nicht immer so ein
+      Balkendiagramm sein". Jetzt eine Auswahl aus den 30 Ländern – nur
+      solche, deren Flagge sich im Kreis erkennen lässt (Kroatien mit seinem
+      Schachbrett nicht), oben der Spitzenreiter, unten Deutschland als
+      Schlusslicht, dazwischen der EU-Schnitt (EU27_2020, 68,5).
+    */
     titel: [
-      { text: 'Nur 47 % der Deutschen' },
-      { text: 'wohnen im Eigentum', gruen: true },
+      { text: 'Deutschland ist' },
+      { text: 'Europas Land der Mieter', gruen: true },
     ],
-    links: {
-      name: 'Deutschland',
-      wert: 47.2,
-      anzeige: '47,2 %',
-      zusatz: 'im Eigentum',
-      flagge: ['#000000', '#dd0000', '#ffce00'],
-    },
-    rechts: {
-      name: 'Polen',
-      wert: 87.2,
-      anzeige: '87,2 %',
-      zusatz: 'im Eigentum',
-      flagge: ['#ffffff', '#dc143c'],
-    },
-    differenz: { text: '+40,0', zusatz: 'Prozentpunkte' },
+    unterzeile: 'Von 10 Menschen wohnen so viele im Eigentum:',
+    zeilen: [
+      { name: 'Slowakei', wert: 93.8, land: 'SVK' },
+      { name: 'Rumänien', wert: 93.2, land: 'ROU' },
+      { name: 'Ungarn', wert: 89.8, land: 'HUN' },
+      { name: 'Polen', wert: 87.2, land: 'POL' },
+      { name: 'Italien', wert: 77.1, land: 'ITA' },
+      { name: 'Spanien', wert: 73.6, land: 'ESP' },
+      { name: 'Belgien', wert: 70.9, land: 'BEL' },
+      { name: 'EU-Schnitt', wert: 68.5, land: 'EU27', schnitt: true },
+      { name: 'Frankreich', wert: 61.4, land: 'FRA' },
+      { name: 'Österreich', wert: 54.2, land: 'AUT' },
+      { name: 'Deutschland', wert: 47.2, land: 'DEU', hervor: true },
+    ],
     fusszeile:
-      'Stand: 2025 | Quelle: Eurostat, EU-SILC (ilc_lvho02), Anteil der Bevölkerung',
+      'Stand: 2025 | Quelle: Eurostat, EU-SILC (ilc_lvho02) | Auswahl aus 30 Ländern',
     text:
-      'Nur 47 % der Deutschen wohnen in den eigenen vier Wänden – in Polen sind es 87 %. 🏠\n\n' +
-      'Deutschland hat die niedrigste Eigentumsquote aller 30 Länder in der Eurostat-Statistik. ' +
-      'Mehr als die Hälfte der Menschen hierzulande wohnt zur Miete oder mietfrei. ' +
-      'Am oberen Ende stehen die Slowakei, Rumänien und Kroatien mit über 90 %.\n\n' +
+      'Deutschland ist Europas Land der Mieter: Nur 47,2 % der Menschen wohnen in den eigenen vier Wänden. 🏠\n\n' +
+      'Das ist der niedrigste Wert aller 30 Länder in der Eurostat-Statistik – der EU-Schnitt liegt bei 68,5 %. ' +
+      'Ganz oben stehen die Slowakei mit 93,8 % und Rumänien mit 93,2 %. ' +
+      'Auch in Ungarn, Polen, Italien und Spanien wohnt die große Mehrheit im Eigentum.\n\n' +
       'Gezählt werden Personen, nicht Haushalte – mit und ohne laufenden Kredit.\n' +
       'Quellen: Eurostat, EU-SILC (ilc_lvho02), Stand 2025',
     schlagworte: ['wohneigentum', 'immobilien', 'miete', 'deutschland', 'finanzen'],
