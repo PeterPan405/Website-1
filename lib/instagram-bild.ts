@@ -59,7 +59,7 @@ function datenUrl(datei: string, art: string): string {
   return `data:${art};base64,${readFileSync(join(ORDNER, datei)).toString('base64')}`
 }
 
-let schriftenVorrat: { name: string; data: Buffer; weight: 400 }[] | null = null
+let schriftenVorrat: { name: string; data: Buffer; weight: 400 | 700 }[] | null = null
 function schriften() {
   schriftenVorrat ??= [
     {
@@ -71,6 +71,11 @@ function schriften() {
       name: 'Open Sans',
       data: readFileSync(join(ORDNER, 'schriften/open-sans-400.woff')),
       weight: 400,
+    },
+    {
+      name: 'Open Sans',
+      data: readFileSync(join(ORDNER, 'schriften/open-sans-700.woff')),
+      weight: 700,
     },
   ]
   return schriftenVorrat
@@ -86,9 +91,174 @@ export const UEBERSCHRIFT = {
 }
 export const TEXT = { groesse: 46, zeilenabstand: 1.4, links: 35, rechts: 38, unten: 20 }
 
-/** Eine Meldungskachel als PNG. */
-export async function meldungskachel(titel: string, text: string): Promise<Buffer> {
-  const bild = new ImageResponse(
+/** Ein Kursverlauf für die Kachel – Werte schon fertig zum Anzeigen. */
+export interface KachelKurs {
+  /** „Brent", „Commerzbank" */
+  name: string
+  /** Schlusskurse, alt nach neu. */
+  punkte: number[]
+  /** „106,06 $" */
+  wert: string
+  /** Veränderung über den Zeitraum in Prozent. */
+  aenderung: number
+  /** „letzte 30 Tage · Stand 14.10." */
+  unterzeile: string
+}
+
+/*
+  Die Bildzone zwischen Überschrift und Text (16.10.2026, „mehr Bilder,
+  spannender"). Die Überschrift endet bei zwei Zeilen um y 342, der Text
+  beginnt bei fünf Zeilen um y 1008 – dazwischen liegt die Zone, mit Luft
+  zu beiden Seiten. Ohne Bild und ohne Kurs bleibt die Kachel, wie sie war:
+  weiß, mit dem Wasserzeichen.
+*/
+export const BILDZONE = { oben: 365, unten: 960, links: 35, breite: 1010 }
+const KURSHOEHE = 215
+const LUECKE = 20
+
+const GRUEN = '#1f6b3a'
+const ROT = '#a1262b'
+
+function verlaufSvg(
+  punkte: number[],
+  breite: number,
+  hoehe: number,
+  farbe: string
+): string {
+  const min = Math.min(...punkte)
+  const max = Math.max(...punkte)
+  const spanne = max - min || 1
+  const xy = punkte.map((p, i) => [
+    (i / Math.max(1, punkte.length - 1)) * breite,
+    hoehe - 6 - ((p - min) / spanne) * (hoehe - 12),
+  ])
+  const linie = xy.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
+  const flaeche = `0,${hoehe} ${linie} ${breite},${hoehe}`
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe}" viewBox="0 0 ${breite} ${hoehe}">` +
+    `<polygon points="${flaeche}" fill="${farbe}" fill-opacity="0.12"/>` +
+    `<polyline points="${linie}" fill="none" stroke="${farbe}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `</svg>`
+  )
+}
+
+function kursKasten(kurs: KachelKurs, hoehe: number) {
+  const farbe = kurs.aenderung >= 0 ? GRUEN : ROT
+  const vorzeichen = kurs.aenderung > 0 ? '+' : ''
+  const prozent = `${vorzeichen}${kurs.aenderung.toFixed(1).replace('.', ',')} %`
+  const innen = BILDZONE.breite - 56
+  const kurve = hoehe - 120
+  return h(
+    'div',
+    {
+      style: {
+        width: BILDZONE.breite,
+        height: hoehe,
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '20px 28px',
+        borderRadius: 28,
+        backgroundColor: '#f3f5f2',
+      },
+    },
+    h(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+        },
+      },
+      h(
+        'div',
+        {
+          style: {
+            fontFamily: 'Open Sans',
+            fontWeight: 700,
+            fontSize: 34,
+            color: '#000',
+          },
+        },
+        kurs.name
+      ),
+      h(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            fontFamily: 'Open Sans',
+            fontWeight: 700,
+            fontSize: 34,
+          },
+        },
+        h('span', { style: { color: '#000' } }, kurs.wert),
+        h('span', { style: { color: farbe, marginLeft: 16 } }, prozent)
+      )
+    ),
+    h(
+      'div',
+      { style: { fontFamily: 'Open Sans', fontSize: 22, color: '#555', marginTop: 2 } },
+      kurs.unterzeile
+    ),
+    h('img', {
+      src: `data:image/svg+xml;base64,${Buffer.from(verlaufSvg(kurs.punkte, innen, kurve, farbe)).toString('base64')}`,
+      width: innen,
+      height: kurve,
+      style: { marginTop: 12 },
+    })
+  )
+}
+
+/** Eine Meldungskachel als PNG – wahlweise mit Foto und Kursverlauf. */
+export async function meldungskachel(
+  titel: string,
+  text: string,
+  bild: { foto?: Buffer | null; kurs?: KachelKurs | null } = {}
+): Promise<Buffer> {
+  const foto = bild.foto ?? null
+  const kurs = bild.kurs && bild.kurs.punkte.length >= 2 ? bild.kurs : null
+  const zone = BILDZONE.unten - BILDZONE.oben
+  const fotoHoehe = foto ? (kurs ? zone - KURSHOEHE - LUECKE : zone) : 0
+  const kursHoehe = kurs ? (foto ? KURSHOEHE : zone) : 0
+
+  const bildzone =
+    foto || kurs
+      ? h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: BILDZONE.oben,
+              left: BILDZONE.links,
+              width: BILDZONE.breite,
+              display: 'flex',
+              flexDirection: 'column',
+            },
+          },
+          ...(foto
+            ? [
+                h('img', {
+                  src: `data:image/jpeg;base64,${foto.toString('base64')}`,
+                  width: BILDZONE.breite,
+                  height: fotoHoehe,
+                  style: { objectFit: 'cover', borderRadius: 28 },
+                }),
+              ]
+            : []),
+          ...(kurs
+            ? [
+                h(
+                  'div',
+                  { style: { display: 'flex', marginTop: foto ? LUECKE : 0 } },
+                  kursKasten(kurs, kursHoehe)
+                ),
+              ]
+            : [])
+        )
+      : null
+
+  const bildAntwort = new ImageResponse(
     h(
       'div',
       {
@@ -100,12 +270,16 @@ export async function meldungskachel(titel: string, text: string): Promise<Buffe
           backgroundColor: '#ffffff',
         },
       },
-      h('img', {
-        src: datenUrl('grundplatte.png', 'image/png'),
-        width: IG_BREITE,
-        height: IG_HOEHE,
-        style: { position: 'absolute', left: 0, top: 0 },
-      }),
+      ...(bildzone
+        ? [bildzone]
+        : [
+            h('img', {
+              src: datenUrl('grundplatte.png', 'image/png'),
+              width: IG_BREITE,
+              height: IG_HOEHE,
+              style: { position: 'absolute', left: 0, top: 0 },
+            }),
+          ]),
       h(
         'div',
         {
@@ -145,7 +319,12 @@ export async function meldungskachel(titel: string, text: string): Promise<Buffe
     ),
     { width: IG_BREITE, height: IG_HOEHE, fonts: schriften() }
   )
-  return Buffer.from(await bild.arrayBuffer())
+  return Buffer.from(await bildAntwort.arrayBuffer())
+}
+
+/** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
+export function motivJpeg(id: string): Buffer {
+  return readFileSync(join(ORDNER, 'motive', `${id}.jpg`))
 }
 
 /**
