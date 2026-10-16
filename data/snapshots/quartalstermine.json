@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-15T10:08:35.165Z",
+  "abgerufenAm": "2026-10-16T09:59:29.636Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,15 +10,14 @@
       "stand": "2026-10-01",
       "von": "2026-09-15",
       "bis": "2026-11-19",
-      "zeilen": 3294,
-      "kommendGesamt": 2980,
+      "zeilen": 3335,
+      "kommendGesamt": 2892,
       "spalten": [
-        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年10月1日 現在 As of 2026/10/1 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
-        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年10月8日 現在 As of 2026/10/8 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
+        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年10月15日 現在 As of 2026/10/15 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
-      "inListe": 65,
-      "kommend": 62,
+      "inListe": 67,
+      "kommend": 64,
       "abgeleitet": 3,
       "abstandJeStelle": {
         "1": 43,
@@ -40,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-12-08",
-      "zeilen": 4491,
-      "imKatalog": 308,
+      "letzterTag": "2026-12-09",
+      "zeilen": 4488,
+      "imKatalog": 304,
       "mitLage": 222,
-      "beigetragen": 308
+      "beigetragen": 304
     }
   },
   "unternehmen": {
@@ -212,14 +211,14 @@
         "2024-10-29"
       ],
       "bisherZeiten": {
-        "2026-07-22": "16:01",
-        "2026-04-29": "16:01",
-        "2026-02-04": "16:01",
-        "2025-10-29": "16:01",
-        "2025-07-23": "16:01",
-        "2025-04-24": "16:01",
-        "2025-02-04": "16:01",
-        "2024-10-29": "16:01"
+        "2026-07-22": "20:01",
+        "2026-04-29": "20:01",
+        "2026-02-04": "21:01",
+        "2025-10-29": "20:01",
+        "2025-07-23": "20:01",
+        "2025-04-24": "20:01",
+        "2025-02-04": "21:01",
+        "2024-10-29": "20:01"
       },
       "vorhersagen": [
         {
@@ -234,19 +233,19 @@
           "erwartet": "2027-02-03",
           "basis": "2026-02-04",
           "streuungTage": 1,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "21:01"
         },
         {
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 6,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "20:01"
         },
         {
           "erwartet": "2027-07-21",
           "basis": "2026-07-22",
           "streuungTage": 0,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "20:01"
         }
       ]
     },
@@ -463,14 +462,14 @@
         "2024-10-29"
       ],
       "bisherZeiten": {
-        "2026-08-04": "16:16",
-        "2026-05-05": "16:16",
-        "2026-02-03": "16:16",
-        "2025-11-04": "16:16",
-        "2025-08-05": "16:16",
-        "2025-05-06": "16:16",
-        "2025-02-04": "16:17",
-        "2024-10-29": "16:16"
+        "2026-08-04": "20:16",
+        "2026-05-05": "20:16",
+        "2026-02-03": "21:16",
+        "2025-11-04": "21:16",
+        "2025-08-05": "20:16",
+        "2025-05-06": "20:16",
+        "2025-02-04": "21:17",
+        "2024-10-29": "20:16"
       },
       "vorhersagen": [
         {
@@ -485,19 +484,19 @@
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 0,
-          "newYorkerZeit": "16:16"
+          "newYorkerZeit": "21:16"
         },
         {
           "erwartet": "2027-05-04",
           "basis": "2026-05-05",
           "streuungTage": 0,
-          "newYorkerZeit": "16:16"
+          "newYorkerZeit": "20:16"
         },
         {
           "erwartet": "2027-08-03",
           "basis": "2026-08-04",
           "streuungTage": 0,
-          "newYorkerZeit": "16:16"
+          "newYorkerZeit": "20:16"
         }
       ]
     },
@@ -677,9 +676,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-12-09",
-          "basis": "2025-12-10",
-          "streuungTage": 2,
-          "newYorkerZeit": "16:14"
+          "basis": "Nov/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-03-09",
@@ -775,9 +774,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-12-09",
-          "basis": "2025-12-10",
+          "basis": "Nov/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:05"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-03-11",
@@ -2310,14 +2309,14 @@
         "2024-10-30"
       ],
       "bisherZeiten": {
-        "2026-08-04": "06:31",
-        "2026-04-30": "06:31",
-        "2026-01-29": "06:31",
-        "2025-10-29": "06:32",
-        "2025-08-05": "06:32",
-        "2025-04-30": "06:31",
-        "2025-01-30": "06:32",
-        "2024-10-30": "06:33"
+        "2026-08-04": "10:31",
+        "2026-04-30": "10:31",
+        "2026-01-29": "11:31",
+        "2025-10-29": "10:32",
+        "2025-08-05": "10:32",
+        "2025-04-30": "10:31",
+        "2025-01-30": "11:32",
+        "2024-10-30": "10:33"
       },
       "vorhersagen": [
         {
@@ -2330,19 +2329,19 @@
           "erwartet": "2027-01-28",
           "basis": "2026-01-29",
           "streuungTage": 0,
-          "newYorkerZeit": "06:31"
+          "newYorkerZeit": "11:31"
         },
         {
           "erwartet": "2027-04-29",
           "basis": "2026-04-30",
           "streuungTage": 1,
-          "newYorkerZeit": "06:31"
+          "newYorkerZeit": "10:31"
         },
         {
           "erwartet": "2027-08-03",
           "basis": "2026-08-04",
           "streuungTage": 0,
-          "newYorkerZeit": "06:31"
+          "newYorkerZeit": "10:31"
         }
       ]
     },
@@ -2818,14 +2817,14 @@
         "2024-10-29"
       ],
       "bisherZeiten": {
-        "2026-07-22": "16:01",
-        "2026-04-29": "16:01",
-        "2026-02-04": "16:01",
-        "2025-10-29": "16:01",
-        "2025-07-23": "16:01",
-        "2025-04-24": "16:01",
-        "2025-02-04": "16:01",
-        "2024-10-29": "16:01"
+        "2026-07-22": "20:01",
+        "2026-04-29": "20:01",
+        "2026-02-04": "21:01",
+        "2025-10-29": "20:01",
+        "2025-07-23": "20:01",
+        "2025-04-24": "20:01",
+        "2025-02-04": "21:01",
+        "2024-10-29": "20:01"
       },
       "vorhersagen": [
         {
@@ -2840,19 +2839,19 @@
           "erwartet": "2027-02-03",
           "basis": "2026-02-04",
           "streuungTage": 1,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "21:01"
         },
         {
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 6,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "20:01"
         },
         {
           "erwartet": "2027-07-21",
           "basis": "2026-07-22",
           "streuungTage": 0,
-          "newYorkerZeit": "16:01"
+          "newYorkerZeit": "20:01"
         }
       ]
     },
@@ -3266,9 +3265,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-12-09",
-          "basis": "2025-12-10",
-          "streuungTage": 7,
-          "newYorkerZeit": "21:12"
+          "basis": "Oct/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-24",
@@ -4040,34 +4039,26 @@
     "SCHW": {
       "name": "SCHWAB CHARLES CORP",
       "bisher": [
+        "2026-10-15",
         "2026-07-21",
         "2026-04-16",
         "2026-01-21",
         "2025-10-16",
         "2025-07-18",
         "2025-04-17",
-        "2025-01-21",
-        "2024-10-15"
+        "2025-01-21"
       ],
       "bisherZeiten": {
+        "2026-10-15": "20:18",
         "2026-07-21": "20:16",
         "2026-04-16": "20:17",
         "2026-01-21": "21:16",
         "2025-10-16": "20:25",
         "2025-07-18": "20:20",
         "2025-04-17": "20:17",
-        "2025-01-21": "21:17",
-        "2024-10-15": "20:17"
+        "2025-01-21": "21:17"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-20",
           "basis": "2026-01-21",
@@ -4085,6 +4076,12 @@
           "basis": "2026-07-21",
           "streuungTage": 4,
           "newYorkerZeit": "20:16"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 0,
+          "newYorkerZeit": "20:18"
         }
       ]
     },
@@ -4189,85 +4186,75 @@
     "USB": {
       "name": "US BANCORP \\DE\\",
       "bisher": [
+        "2026-10-15",
         "2026-07-16",
         "2026-04-16",
         "2026-01-20",
         "2025-10-16",
         "2025-07-17",
         "2025-04-16",
-        "2025-01-16",
-        "2024-10-16"
+        "2025-01-16"
       ],
       "bisherZeiten": {
-        "2026-07-16": "06:59",
-        "2026-04-16": "06:47",
-        "2026-01-20": "06:49",
-        "2025-10-16": "06:49",
-        "2025-07-17": "06:49",
-        "2025-04-16": "06:48",
-        "2025-01-16": "06:48",
-        "2024-10-16": "06:48"
+        "2026-10-15": "10:59",
+        "2026-07-16": "10:59",
+        "2026-04-16": "10:47",
+        "2026-01-20": "11:49",
+        "2025-10-16": "10:49",
+        "2025-07-17": "10:49",
+        "2025-04-16": "10:48",
+        "2025-01-16": "11:48"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-19",
           "basis": "2026-01-20",
           "streuungTage": 5,
-          "newYorkerZeit": "06:49"
+          "newYorkerZeit": "11:49"
         },
         {
           "erwartet": "2027-04-15",
           "basis": "2026-04-16",
           "streuungTage": 1,
-          "newYorkerZeit": "06:47"
+          "newYorkerZeit": "10:47"
         },
         {
           "erwartet": "2027-07-15",
           "basis": "2026-07-16",
           "streuungTage": 0,
-          "newYorkerZeit": "06:59"
+          "newYorkerZeit": "10:59"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 0,
+          "newYorkerZeit": "10:59"
         }
       ]
     },
     "PNC": {
       "name": "PNC FINANCIAL SERVICES GROUP, INC.",
       "bisher": [
+        "2026-10-15",
         "2026-07-15",
         "2026-04-15",
         "2026-01-16",
         "2025-11-07",
         "2025-10-15",
         "2025-07-16",
-        "2025-04-15",
-        "2025-01-16"
+        "2025-04-15"
       ],
       "bisherZeiten": {
+        "2026-10-15": "10:46",
         "2026-07-15": "10:40",
         "2026-04-15": "10:39",
         "2026-01-16": "11:37",
         "2025-11-07": "16:32",
         "2025-10-15": "10:39",
         "2025-07-16": "10:41",
-        "2025-04-15": "10:46",
-        "2025-01-16": "11:32"
+        "2025-04-15": "10:46"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-15",
           "basis": "2026-01-16",
@@ -4285,6 +4272,12 @@
           "basis": "2026-07-15",
           "streuungTage": 0,
           "newYorkerZeit": "10:40"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 1,
+          "newYorkerZeit": "10:46"
         }
       ]
     },
@@ -4542,24 +4535,24 @@
     "PRU": {
       "name": "PRUDENTIAL FINANCIAL INC",
       "bisher": [
+        "2026-10-15",
         "2026-08-04",
         "2026-07-15",
         "2026-05-05",
         "2026-04-21",
         "2026-04-14",
         "2026-02-03",
-        "2026-01-15",
-        "2025-10-29"
+        "2026-01-15"
       ],
       "bisherZeiten": {
+        "2026-10-15": "20:22",
         "2026-08-04": "20:24",
         "2026-07-15": "20:23",
         "2026-05-05": "20:20",
         "2026-04-21": "20:19",
         "2026-04-14": "20:37",
         "2026-02-03": "21:32",
-        "2026-01-15": "21:18",
-        "2025-10-29": "20:21"
+        "2026-01-15": "21:18"
       },
       "vorhersagen": [
         {
@@ -4581,6 +4574,12 @@
           "basis": "2026-07-15",
           "streuungTage": 1,
           "newYorkerZeit": "20:23"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 2,
+          "newYorkerZeit": "20:22"
         }
       ]
     },
@@ -5005,14 +5004,14 @@
         "2024-11-06"
       ],
       "bisherZeiten": {
-        "2026-08-04": "16:03",
-        "2026-05-07": "16:03",
-        "2026-02-10": "16:02",
-        "2025-10-30": "16:04",
-        "2025-08-07": "16:26",
-        "2025-04-24": "16:03",
-        "2025-02-11": "16:04",
-        "2024-11-06": "16:09"
+        "2026-08-04": "20:03",
+        "2026-05-07": "20:03",
+        "2026-02-10": "21:02",
+        "2025-10-30": "20:04",
+        "2025-08-07": "20:26",
+        "2025-04-24": "20:03",
+        "2025-02-11": "21:04",
+        "2024-11-06": "21:09"
       },
       "vorhersagen": [
         {
@@ -5025,19 +5024,19 @@
           "erwartet": "2027-02-09",
           "basis": "2026-02-10",
           "streuungTage": 0,
-          "newYorkerZeit": "16:02"
+          "newYorkerZeit": "21:02"
         },
         {
           "erwartet": "2027-05-06",
           "basis": "2026-05-07",
           "streuungTage": 14,
-          "newYorkerZeit": "16:03"
+          "newYorkerZeit": "20:03"
         },
         {
           "erwartet": "2027-08-03",
           "basis": "2026-08-04",
           "streuungTage": 2,
-          "newYorkerZeit": "16:03"
+          "newYorkerZeit": "20:03"
         }
       ]
     },
@@ -6032,7 +6031,9 @@
           "erwartet": "2026-11-04",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-02",
@@ -7242,7 +7243,9 @@
           "erwartet": "2026-10-29",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-16",
@@ -7441,10 +7444,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-28",
+          "erwartet": "2026-10-21",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-20",
@@ -7493,7 +7498,9 @@
           "erwartet": "2026-11-02",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-09",
@@ -7728,14 +7735,14 @@
         "2024-11-04"
       ],
       "bisherZeiten": {
-        "2026-08-06": "06:52",
-        "2026-05-11": "06:59",
-        "2026-02-24": "06:56",
-        "2025-11-07": "07:00",
-        "2025-08-07": "06:58",
-        "2025-05-06": "06:50",
-        "2025-02-18": "06:59",
-        "2024-11-04": "06:54"
+        "2026-08-06": "10:52",
+        "2026-05-11": "10:59",
+        "2026-02-24": "11:56",
+        "2025-11-07": "12:00",
+        "2025-08-07": "10:58",
+        "2025-05-06": "10:50",
+        "2025-02-18": "11:59",
+        "2024-11-04": "11:54"
       },
       "vorhersagen": [
         {
@@ -7748,19 +7755,19 @@
           "erwartet": "2027-02-23",
           "basis": "2026-02-24",
           "streuungTage": 7,
-          "newYorkerZeit": "06:56"
+          "newYorkerZeit": "11:56"
         },
         {
           "erwartet": "2027-05-10",
           "basis": "2026-05-11",
           "streuungTage": 6,
-          "newYorkerZeit": "06:59"
+          "newYorkerZeit": "10:59"
         },
         {
           "erwartet": "2027-08-05",
           "basis": "2026-08-06",
           "streuungTage": 0,
-          "newYorkerZeit": "06:52"
+          "newYorkerZeit": "10:52"
         }
       ]
     },
@@ -8015,34 +8022,26 @@
     "BNY": {
       "name": "Bank of New York Mellon Corp",
       "bisher": [
+        "2026-10-15",
         "2026-07-15",
         "2026-04-16",
         "2026-01-13",
         "2025-10-16",
         "2025-07-15",
         "2025-04-11",
-        "2025-01-15",
-        "2024-10-11"
+        "2025-01-15"
       ],
       "bisherZeiten": {
+        "2026-10-15": "10:30",
         "2026-07-15": "10:30",
         "2026-04-16": "10:30",
         "2026-01-13": "11:30",
         "2025-10-16": "10:15",
         "2025-07-15": "10:30",
         "2025-04-11": "10:30",
-        "2025-01-15": "11:30",
-        "2024-10-11": "10:30"
+        "2025-01-15": "11:30"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-12",
           "basis": "2026-01-13",
@@ -8060,57 +8059,61 @@
           "basis": "2026-07-15",
           "streuungTage": 1,
           "newYorkerZeit": "10:30"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 0,
+          "newYorkerZeit": "10:30"
         }
       ]
     },
     "MRSH": {
       "name": "MARSH & MCLENNAN COMPANIES, INC.",
       "bisher": [
+        "2026-10-15",
         "2026-07-21",
         "2026-04-16",
         "2026-01-29",
         "2025-10-16",
         "2025-07-17",
         "2025-04-17",
-        "2025-01-30",
-        "2024-10-17"
+        "2025-01-30"
       ],
       "bisherZeiten": {
-        "2026-07-21": "07:02",
-        "2026-04-16": "07:02",
-        "2026-01-29": "07:03",
-        "2025-10-16": "06:33",
-        "2025-07-17": "06:34",
-        "2025-04-17": "07:07",
-        "2025-01-30": "07:03",
-        "2024-10-17": "06:42"
+        "2026-10-15": "12:05",
+        "2026-07-21": "11:02",
+        "2026-04-16": "11:02",
+        "2026-01-29": "12:03",
+        "2025-10-16": "10:33",
+        "2025-07-17": "10:34",
+        "2025-04-17": "11:07",
+        "2025-01-30": "12:03"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-28",
           "basis": "2026-01-29",
           "streuungTage": 0,
-          "newYorkerZeit": "07:03"
+          "newYorkerZeit": "12:03"
         },
         {
           "erwartet": "2027-04-15",
           "basis": "2026-04-16",
           "streuungTage": 0,
-          "newYorkerZeit": "07:02"
+          "newYorkerZeit": "11:02"
         },
         {
           "erwartet": "2027-07-20",
           "basis": "2026-07-21",
           "streuungTage": 5,
-          "newYorkerZeit": "07:02"
+          "newYorkerZeit": "11:02"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 0,
+          "newYorkerZeit": "12:05"
         }
       ]
     },
@@ -8392,7 +8395,7 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-20",
+          "erwartet": "2026-10-21",
           "basis": "Sep/2026",
           "streuungTage": 0,
           "herkunft": "nasdaq",
@@ -8673,24 +8676,24 @@
     "KMB": {
       "name": "KIMBERLY CLARK CORP",
       "bisher": [
+        "2026-10-15",
         "2026-08-04",
         "2026-04-28",
         "2026-01-27",
         "2025-10-30",
         "2025-08-01",
         "2025-04-22",
-        "2025-01-28",
-        "2024-10-22"
+        "2025-01-28"
       ],
       "bisherZeiten": {
+        "2026-10-15": "11:08",
         "2026-08-04": "10:33",
         "2026-04-28": "10:33",
         "2026-01-27": "11:37",
         "2025-10-30": "10:32",
         "2025-08-01": "10:34",
         "2025-04-22": "11:04",
-        "2025-01-28": "11:40",
-        "2024-10-22": "10:37"
+        "2025-01-28": "11:40"
       },
       "vorhersagen": [
         {
@@ -8716,6 +8719,12 @@
           "basis": "2026-08-04",
           "streuungTage": 4,
           "newYorkerZeit": "10:33"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 14,
+          "newYorkerZeit": "11:08"
         }
       ]
     },
@@ -11047,14 +11056,14 @@
         "2025-02-13"
       ],
       "bisherZeiten": {
-        "2026-07-30": "16:03",
-        "2026-04-30": "16:02",
-        "2026-02-12": "16:03",
-        "2026-01-12": "07:30",
-        "2025-10-30": "16:02",
-        "2025-07-30": "16:02",
-        "2025-05-01": "16:03",
-        "2025-02-13": "16:03"
+        "2026-07-30": "20:03",
+        "2026-04-30": "20:02",
+        "2026-02-12": "21:03",
+        "2026-01-12": "12:30",
+        "2025-10-30": "20:02",
+        "2025-07-30": "20:02",
+        "2025-05-01": "20:03",
+        "2025-02-13": "21:03"
       },
       "vorhersagen": [
         {
@@ -11069,25 +11078,25 @@
           "erwartet": "2027-01-11",
           "basis": "2026-01-12",
           "streuungTage": 0,
-          "newYorkerZeit": "07:30"
+          "newYorkerZeit": "12:30"
         },
         {
           "erwartet": "2027-02-11",
           "basis": "2026-02-12",
           "streuungTage": 0,
-          "newYorkerZeit": "16:03"
+          "newYorkerZeit": "21:03"
         },
         {
           "erwartet": "2027-04-29",
           "basis": "2026-04-30",
           "streuungTage": 0,
-          "newYorkerZeit": "16:02"
+          "newYorkerZeit": "20:02"
         },
         {
           "erwartet": "2027-07-29",
           "basis": "2026-07-30",
           "streuungTage": 1,
-          "newYorkerZeit": "16:03"
+          "newYorkerZeit": "20:03"
         }
       ]
     },
@@ -11636,51 +11645,49 @@
     "AA": {
       "name": "Alcoa Corp",
       "bisher": [
+        "2026-10-15",
         "2026-07-16",
         "2026-04-16",
         "2026-01-22",
         "2025-10-22",
         "2025-07-16",
         "2025-04-16",
-        "2025-01-22",
-        "2024-10-16"
+        "2025-01-22"
       ],
       "bisherZeiten": {
-        "2026-07-16": "16:12",
-        "2026-04-16": "16:12",
-        "2026-01-22": "16:13",
-        "2025-10-22": "16:13",
-        "2025-07-16": "16:12",
-        "2025-04-16": "16:11",
-        "2025-01-22": "16:15",
-        "2024-10-16": "16:26"
+        "2026-10-15": "20:14",
+        "2026-07-16": "20:12",
+        "2026-04-16": "20:12",
+        "2026-01-22": "21:13",
+        "2025-10-22": "20:13",
+        "2025-07-16": "20:12",
+        "2025-04-16": "20:11",
+        "2025-01-22": "21:15"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-01-21",
           "basis": "2026-01-22",
           "streuungTage": 1,
-          "newYorkerZeit": "16:13"
+          "newYorkerZeit": "21:13"
         },
         {
           "erwartet": "2027-04-15",
           "basis": "2026-04-16",
           "streuungTage": 1,
-          "newYorkerZeit": "16:12"
+          "newYorkerZeit": "20:12"
         },
         {
           "erwartet": "2027-07-15",
           "basis": "2026-07-16",
           "streuungTage": 1,
-          "newYorkerZeit": "16:12"
+          "newYorkerZeit": "20:12"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 6,
+          "newYorkerZeit": "20:14"
         }
       ]
     },
@@ -12193,51 +12200,49 @@
     "PLD": {
       "name": "Prologis, Inc.",
       "bisher": [
+        "2026-10-15",
         "2026-07-16",
         "2026-04-16",
         "2026-01-21",
         "2025-10-15",
         "2025-07-16",
         "2025-04-16",
-        "2025-01-21",
-        "2024-10-16"
+        "2025-01-21"
       ],
       "bisherZeiten": {
-        "2026-07-16": "08:05",
-        "2026-04-16": "08:05",
-        "2026-01-21": "08:06",
-        "2025-10-15": "08:05",
-        "2025-07-16": "08:05",
-        "2025-04-16": "08:05",
-        "2025-01-21": "08:05",
-        "2024-10-16": "08:05"
+        "2026-10-15": "13:18",
+        "2026-07-16": "12:05",
+        "2026-04-16": "12:05",
+        "2026-01-21": "13:06",
+        "2025-10-15": "12:05",
+        "2025-07-16": "12:05",
+        "2025-04-16": "12:05",
+        "2025-01-21": "13:05"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-10-15",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-01-20",
           "basis": "2026-01-21",
           "streuungTage": 1,
-          "newYorkerZeit": "08:06"
+          "newYorkerZeit": "13:06"
         },
         {
           "erwartet": "2027-04-15",
           "basis": "2026-04-16",
           "streuungTage": 1,
-          "newYorkerZeit": "08:05"
+          "newYorkerZeit": "12:05"
         },
         {
           "erwartet": "2027-07-15",
           "basis": "2026-07-16",
           "streuungTage": 1,
-          "newYorkerZeit": "08:05"
+          "newYorkerZeit": "12:05"
+        },
+        {
+          "erwartet": "2027-10-14",
+          "basis": "2026-10-15",
+          "streuungTage": 1,
+          "newYorkerZeit": "13:18"
         }
       ]
     },
@@ -12762,14 +12767,14 @@
         "2024-11-07"
       ],
       "bisherZeiten": {
-        "2026-07-21": "06:53",
-        "2026-04-21": "06:50",
-        "2026-01-21": "06:49",
-        "2025-10-21": "06:53",
-        "2025-07-22": "06:50",
-        "2025-04-22": "06:52",
-        "2025-01-22": "07:01",
-        "2024-11-07": "07:08"
+        "2026-07-21": "10:53",
+        "2026-04-21": "10:50",
+        "2026-01-21": "11:49",
+        "2025-10-21": "10:53",
+        "2025-07-22": "10:50",
+        "2025-04-22": "10:52",
+        "2025-01-22": "12:01",
+        "2024-11-07": "12:08"
       },
       "vorhersagen": [
         {
@@ -12784,19 +12789,19 @@
           "erwartet": "2027-01-20",
           "basis": "2026-01-21",
           "streuungTage": 0,
-          "newYorkerZeit": "06:49"
+          "newYorkerZeit": "11:49"
         },
         {
           "erwartet": "2027-04-20",
           "basis": "2026-04-21",
           "streuungTage": 0,
-          "newYorkerZeit": "06:50"
+          "newYorkerZeit": "10:50"
         },
         {
           "erwartet": "2027-07-20",
           "basis": "2026-07-21",
           "streuungTage": 0,
-          "newYorkerZeit": "06:53"
+          "newYorkerZeit": "10:53"
         }
       ]
     },
@@ -13009,14 +13014,14 @@
         "2025-02-20"
       ],
       "bisherZeiten": {
-        "2026-07-30": "16:04",
-        "2026-04-30": "16:04",
-        "2026-02-24": "16:09",
-        "2025-10-30": "16:09",
-        "2025-07-31": "16:05",
-        "2025-04-29": "16:04",
-        "2025-02-25": "16:06",
-        "2025-02-20": "16:09"
+        "2026-07-30": "20:04",
+        "2026-04-30": "20:04",
+        "2026-02-24": "21:09",
+        "2025-10-30": "20:09",
+        "2025-07-31": "20:05",
+        "2025-04-29": "20:04",
+        "2025-02-25": "21:06",
+        "2025-02-20": "21:09"
       },
       "vorhersagen": [
         {
@@ -13029,19 +13034,19 @@
           "erwartet": "2027-02-23",
           "basis": "2026-02-24",
           "streuungTage": 0,
-          "newYorkerZeit": "16:09"
+          "newYorkerZeit": "21:09"
         },
         {
           "erwartet": "2027-04-29",
           "basis": "2026-04-30",
           "streuungTage": 2,
-          "newYorkerZeit": "16:04"
+          "newYorkerZeit": "20:04"
         },
         {
           "erwartet": "2027-07-29",
           "basis": "2026-07-30",
           "streuungTage": 0,
-          "newYorkerZeit": "16:04"
+          "newYorkerZeit": "20:04"
         }
       ]
     },
@@ -13349,39 +13354,41 @@
         "2024-10-24"
       ],
       "bisherZeiten": {
-        "2026-07-29": "06:00",
-        "2026-04-29": "06:00",
-        "2026-02-03": "06:01",
-        "2025-10-29": "07:00",
-        "2025-07-30": "07:00",
-        "2025-04-29": "07:30",
-        "2025-01-30": "07:00",
-        "2024-10-24": "07:00"
+        "2026-07-29": "10:00",
+        "2026-04-29": "10:00",
+        "2026-02-03": "11:01",
+        "2025-10-29": "11:00",
+        "2025-07-30": "11:00",
+        "2025-04-29": "11:30",
+        "2025-01-30": "12:00",
+        "2024-10-24": "11:00"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 5,
-          "newYorkerZeit": "06:01"
+          "newYorkerZeit": "11:01"
         },
         {
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 1,
-          "newYorkerZeit": "06:00"
+          "newYorkerZeit": "10:00"
         },
         {
           "erwartet": "2027-07-28",
           "basis": "2026-07-29",
           "streuungTage": 0,
-          "newYorkerZeit": "06:00"
+          "newYorkerZeit": "10:00"
         }
       ]
     },
@@ -13513,7 +13520,9 @@
           "erwartet": "2026-10-27",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -13906,10 +13915,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-29",
+          "erwartet": "2026-11-05",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-09",
@@ -14414,39 +14425,39 @@
         "2024-12-04"
       ],
       "bisherZeiten": {
-        "2026-09-09": "07:04",
-        "2026-06-10": "07:04",
-        "2026-03-25": "07:05",
-        "2025-12-10": "07:05",
-        "2025-09-10": "07:03",
-        "2025-06-11": "07:03",
-        "2025-03-26": "07:04",
-        "2024-12-04": "07:04"
+        "2026-09-09": "11:04",
+        "2026-06-10": "11:04",
+        "2026-03-25": "11:05",
+        "2025-12-10": "12:05",
+        "2025-09-10": "11:03",
+        "2025-06-11": "11:03",
+        "2025-03-26": "11:04",
+        "2024-12-04": "12:04"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-12-09",
-          "basis": "2025-12-10",
-          "streuungTage": 7,
-          "newYorkerZeit": "07:05"
+          "basis": "Oct/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-03-24",
           "basis": "2026-03-25",
           "streuungTage": 0,
-          "newYorkerZeit": "07:05"
+          "newYorkerZeit": "11:05"
         },
         {
           "erwartet": "2027-06-09",
           "basis": "2026-06-10",
           "streuungTage": 0,
-          "newYorkerZeit": "07:04"
+          "newYorkerZeit": "11:04"
         },
         {
           "erwartet": "2027-09-08",
           "basis": "2026-09-09",
           "streuungTage": 0,
-          "newYorkerZeit": "07:04"
+          "newYorkerZeit": "11:04"
         }
       ]
     },
@@ -15479,7 +15490,9 @@
           "erwartet": "2026-10-28",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-10",
@@ -16606,27 +16619,10 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-06",
-          "basis": "2026-09-30",
-          "streuungTage": 6,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-02-08",
-          "basis": "2026-12-31",
-          "streuungTage": 5,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-05-12",
+          "erwartet": "2026-11-10",
           "basis": "2027-03-31",
-          "streuungTage": 4,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-08-05",
-          "basis": "2027-06-30",
-          "streuungTage": 7,
+          "streuungTage": 0,
+          "angekuendigt": true,
           "herkunft": "jpx"
         }
       ]
@@ -16774,27 +16770,10 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-10-30",
-          "basis": "2026-09-30",
-          "streuungTage": 5,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-02-03",
+          "erwartet": "2026-10-29",
           "basis": "2026-12-31",
-          "streuungTage": 4,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-04-28",
-          "basis": "2027-03-31",
-          "streuungTage": 7,
-          "herkunft": "jpx"
-        },
-        {
-          "erwartet": "2027-07-30",
-          "basis": "2027-06-30",
-          "streuungTage": 6,
+          "streuungTage": 0,
+          "angekuendigt": true,
           "herkunft": "jpx"
         }
       ]
@@ -17786,7 +17765,7 @@
     "NDA.DE": "2026-10-13",
     "NDX1.DE": "2026-10-14",
     "NEM.DE": "2026-10-15",
-    "NESN.SW": "2026-08-18",
+    "NESN.SW": "2026-10-16",
     "NESTE.HE": "2026-08-18",
     "NESTLEIND.NS": "2026-08-18",
     "NEX.PA": "2026-08-18",
