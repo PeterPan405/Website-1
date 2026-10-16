@@ -62,7 +62,16 @@ const alt: FfMomentaufnahme | null = existsSync(DATEI)
   ? JSON.parse(readFileSync(DATEI, 'utf8'))
   : null
 const neu = mischeFeed(alt, daten as FfEreignis[], new Date())
-writeFileSync(DATEI, serialisiereFf(neu))
+/*
+  Nur schreiben, wenn sich an den Terminen etwas geändert hat. Sonst
+  entstünde zweimal am Tag ein Commit, der nur den Zeitstempel verschiebt –
+  der erste Lauf am 16.10.2026 tat genau das.
+*/
+const gleich =
+  alt !== null && JSON.stringify(alt.ereignisse) === JSON.stringify(neu.ereignisse)
+if (gleich)
+  console.log('Keine neuen oder geänderten Termine – die Datei bleibt, wie sie ist.')
+else writeFileSync(DATEI, serialisiereFf(neu))
 
 const { termine, ohneEinordnung } = konjunkturtermine(neu.ereignisse)
 console.log(
