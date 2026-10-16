@@ -16,6 +16,48 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema: keine Wahl des Betreibers für den 16.10. – laut Ablauf der erste
+      offene Vorschlag vom 15.10. („US-Inflation springt auf 3,7 %").
+
+      Zahlen:
+        3,7 %  US-Verbraucherpreise September, gegenüber Vorjahr – Handelsblatt
+               und CNBC vom 14.10.2026, so in data/news.ts
+               (us-inflation-september-ueberrascht-notenbank)
+        2,0 %  Inflationsziel der US-Notenbank – im selben Artikel
+        3,6 %  Prognose, 3,4 % Vormonat – ForexFactory, „CPI y/y" vom
+               14.10.2026 (tests/fixtures/forexfactory-2026-10-16.json)
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    datum: '2026-10-16',
+    titel: [
+      { text: 'US-Inflation:' },
+      { text: 'fast doppelt so hoch wie das Ziel', gruen: true },
+    ],
+    links: {
+      name: 'Ziel der Fed',
+      wert: 2,
+      anzeige: '2,0 %',
+      zusatz: 'Inflationsziel',
+    },
+    rechts: {
+      name: 'US-Inflation',
+      wert: 3.7,
+      anzeige: '3,7 %',
+      zusatz: 'im September',
+    },
+    differenz: { text: '+1,7', zusatz: 'Prozentpunkte' },
+    fusszeile:
+      'Stand: September 2026 | Quellen: Handelsblatt, CNBC (14.10.2026), ForexFactory',
+    text:
+      'Die US-Inflation liegt bei 3,7 % – fast doppelt so hoch wie das Ziel der US-Notenbank von 2 %. 📈\n\n' +
+      'Die Verbraucherpreise sind im September stärker gestiegen als erwartet: Die Prognose lag bei 3,6 %, im August waren es 3,4 %. ' +
+      'An den Anleihemärkten zogen die Renditen unmittelbar nach der Veröffentlichung an.\n\n' +
+      'Quellen: Handelsblatt, CNBC (14.10.2026), ForexFactory (Prognose und Vormonat)',
+    schlagworte: ['inflation', 'usa', 'fed', 'börse', 'finanzen'],
+    titelbild: 'fed',
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 15.10.2026 aus fünf Vorschlägen
       („Wir machen das Thema Wohneigentum").
 
