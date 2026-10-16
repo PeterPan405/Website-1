@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "UniCredit erhält grünes Licht für die Commerzbank-Übernahme, US-Erzeugerpreise schießen hoch, und die UBS prüft laut Insidern einen Umzug. Dazu Lagardes mögliche Zukunft beim WEF und ein EuGH-Urteil zu Kontobetrug.",
+  "kacheln": [
+    {
+      "titel": "UniCredit: 50 % Commerzbank",
+      "text": "Die EZB erlaubt UniCredit, den Anteil an der Commerzbank über 30 Prozent zu erhöhen. Bis Jahresende peilt die Bank rund 50 Prozent der Stimmrechte und die Kontrolle an."
+    },
+    {
+      "titel": "US-Erzeugerpreise +6,3 %",
+      "text": "Die US-Erzeugerpreise legten im September um 6,3 Prozent zum Vorjahr zu, der stärkste Anstieg seit 2022. Ökonomen sehen dadurch das Risiko einer weiteren Fed-Zinserhöhung steigen."
+    },
+    {
+      "titel": "UBS prüft Umzug",
+      "text": "Die UBS zieht laut Insidern bei zu strengen Schweizer Kapitalregeln einen Umzug ins Ausland oder eine Fusion in Betracht. Konkrete Gespräche gebe es bislang nicht."
+    },
+    {
+      "titel": "Lagarde zum WEF?",
+      "text": "Das Weltwirtschaftsforum könnte EZB-Chefin Christine Lagarde Anfang November zur neuen Vorsitzenden wählen. Die EZB äußerte sich dazu nicht."
+    },
+    {
+      "titel": "EuGH stärkt Bankkunden",
+      "text": "Der EuGH urteilte: Banken müssen Opfern von Kontobetrug das Geld zunächst erstatten, auch bei grober Fahrlässigkeit. Erst danach dürfen sie es zurückfordern."
+    }
+  ],
+  "schlagworte": ["ezb", "commerzbank", "fed", "börse", "finanzen"]
+}

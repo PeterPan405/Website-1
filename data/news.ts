@@ -101,6 +101,306 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'unicredit-ezb-freigabe-commerzbank-kontrolle',
+    title: 'UniCredit erhält EZB-Freigabe für die Commerzbank-Kontrolle',
+    teaser:
+      'Die EZB erlaubt UniCredit, die 30-Prozent-Schwelle bei der Commerzbank zu überschreiten. Bis Jahresende rechnet die Bank mit rund 50 Prozent der Stimmrechte.',
+    category: 'Märkte',
+    publishedAt: '2026-10-16T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['UniCredit', 'Commerzbank', 'EZB', 'Bankenfusion'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 15.10.2026, 21:53 Uhr: „UniCredit bekommt grünes Licht von EZB für Übernahme der Commerzbank“',
+        url: 'https://www.tagesschau.de/wirtschaft/ezb-uebernahme-commerzbank-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 15.10.2026, 21:41 Uhr: „Banken: EZB gibt Unicredit grünes Licht für volle Commerzbank-Übernahme“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-ezb-gibt-unicredit-gruenes-licht-fuer-volle-commerzbank-uebernahme/100262659.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank hat der italienischen Großbank UniCredit am Donnerstagabend grünes Licht gegeben, ihren Anteil an der Commerzbank über die Schwelle von 30 Prozent hinaus zu erhöhen – ohne Obergrenze. UniCredit selbst bezeichnete die Genehmigung als „wichtigen Meilenstein“ der Übernahme.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie UniCredit auf fast 50 Prozent kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'UniCredit hält nach eigenen Angaben aktuell knapp 30 Prozent der Commerzbank-Aktien direkt. Über ein Tauschangebot aus dem Sommer hat sich die Bank zusätzlich Zugriff auf rund 20 Prozent weitere Anteile gesichert – teils über komplexe Finanzgeschäfte statt über direkten Aktienbesitz. Bis zum Jahresende rechnet UniCredit damit, über rund 50 Prozent der Stimmrechte zu verfügen und die Kontrolle übernehmen zu können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Wege, ein Ergebnis: kaufen oder bieten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mit der Freigabe könnte UniCredit weitere Commerzbank-Aktien frei am Markt erwerben oder ein neues Übernahmeangebot vorlegen. Ein neues Angebot wäre wegen der üblichen Übernahmeprämie deutlich teurer als der Kauf am offenen Markt, berichtet das Handelsblatt. Die Übernahme ist seit Längerem umstritten: Die Commerzbank und die Bundesregierung hatten sich lange dagegen gewehrt. Zuletzt nahmen beide Banken aber Gespräche über einen Zusammenschluss auf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was 30 Prozent regulatorisch bedeuten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Schwelle von 30 Prozent ist in der EU-Bankenaufsicht keine runde Zahl, sondern ein rechtlicher Auslöser: Ab ihr gilt eine Beteiligung als „maßgeblich“, und die EZB prüft, ob der neue Großaktionär fachlich und finanziell geeignet ist, bevor er sie überschreiten darf. Genau diese Prüfung hat UniCredit nun bestanden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wirtschaftlicher Zugriff über Finanzgeschäfte und tatsächliches Stimmrecht sind zwei verschiedene Dinge – UniCredit sicherte sich die ökonomische Beteiligung schon im Sommer, die Kontrolle über die Stimmrechte hing aber an der aufsichtsrechtlichen Freigabe von diesem Donnerstag.',
+      },
+    ],
+  },
+  {
+    slug: 'us-erzeugerpreise-fed-zinserhoehung-risiko',
+    title: 'US-Erzeugerpreise schießen so stark wie seit 2022 nicht mehr',
+    teaser:
+      'Die US-Erzeugerpreise legten im September um 6,3 Prozent zum Vorjahr zu – der stärkste Anstieg seit 2022. Ökonomen erwarten nun eher eine Fed-Zinserhöhung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-16T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Erzeugerpreise', 'Fed', 'Inflation', 'Notenbanken'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "CNBC, 15.10.2026, 11:37 Uhr Ortszeit: „Economists: Hot PPI shows Fed's work is not done“",
+        url: 'https://www.cnbc.com/2026/10/15/pce-ppi-september-fed-reserve-rate-hike.html',
+      },
+      {
+        label:
+          'CNBC, 15.10.2026, 08:32 Uhr Ortszeit: „Wholesale prices jumped 6.3% annually in September, biggest gain since 2022“',
+        url: 'https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Erzeugerpreise sind im September um 1,3 Prozent zum Vormonat gestiegen – der stärkste monatliche Anstieg seit März 2022. Zum Vorjahr beträgt das Plus 6,3 Prozent, der größte Jahresanstieg seit Dezember 2022, berichtet CNBC unter Berufung auf das US-Arbeitsministerium (BLS). Ökonomen hatten im Schnitt nur 0,6 Prozent zum Vormonat erwartet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher der Schub kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Treiber waren die Energiepreise: Die Benzinpreise legten laut BLS um 20 Prozent zu, ein Teil davon geht nach Angaben der Behörde auf gestiegene Dieselpreise zurück. Doch auch ohne Energie, Nahrungsmittel und Handelsdienstleistungen stiegen die sogenannten Kernpreise um 0,5 Prozent – ein Hinweis darauf, dass sich die Teuerung nicht auf einen einzelnen Bereich beschränkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erzeugerpreise sind die Vorstufe, nicht die Verbraucherpreise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erzeugerpreise messen, was Hersteller und Großhändler für ihre Waren erhalten, bevor sie beim Verbraucher ankommen. Steigen sie, geben Unternehmen die höheren Kosten oft mit Verzögerung an Verbraucher weiter. Zusammen mit den bereits veröffentlichten Verbraucherpreisen nutzen Ökonomen die Erzeugerpreise, um die vorausschauende Kerninflationsrate der Fed zu schätzen, die PCE-Kernrate. Sieben von CNBC befragte Analysten erwarten für den PCE-Kernwert im September nun 0,32 Prozent zum Vormonat, nach 0,25 Prozent im August.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zentralbanker-Tag mitten in der IWF-Tagung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitag sprechen gleich mehrere Notenbanker öffentlich: Laut Wirtschaftskalender von wallstreet-online hält Fed-Chef Kevin Warsh um 5:30 Uhr eine Rede, EZB-Vorstandsmitglied Joachim Nagel spricht um 4:30 Uhr, und Bank-of-England-Gouverneur Andrew Bailey tritt um 4 Uhr auf – am Rande der IWF-Jahrestagung in Washington. Am Fed-Futures-Markt lag die Wahrscheinlichkeit einer Zinserhöhung bei der Fed-Sitzung Ende Oktober laut CNBC am Donnerstag bei 29 Prozent, die Wahrscheinlichkeit für mindestens eine Erhöhung bis Dezember bei 91 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine höhere Wahrscheinlichkeit für eine Zinserhöhung verändert, wie Anleihemärkte künftige Fed-Entscheidungen einpreisen – unabhängig davon, ob die Erhöhung tatsächlich kommt. Je mehr Marktteilnehmer sie für wahrscheinlich halten, desto stärker schlägt sich das schon jetzt in den Anleiherenditen nieder.',
+      },
+    ],
+  },
+  {
+    slug: 'ubs-umzug-fusion-schweizer-kapitalregeln',
+    title: 'UBS prüft laut Insidern Umzug oder Fusion wegen Kapitalregeln',
+    teaser:
+      'Laut Insidern spielt eine interne UBS-Arbeitsgruppe bei zu strengen Schweizer Kapitalregeln einen Umzug ins Ausland durch. Konkrete Gespräche gebe es nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-10-16T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['UBS', 'Schweiz', 'Bankenregulierung', 'Eigenkapital'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['ubs'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 15.10.2026, 20:44 Uhr: „Banken: UBS erwägt bei zu strengen Schweizer Regeln offenbar Umzug oder Fusion“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-ubs-erwaegt-bei-zu-strengen-regeln-offenbar-umzug-oder-fusion/100262665.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Schweizer Großbank UBS prüft einem Bericht der Nachrichtenagentur Reuters zufolge für den Fall zu strenger heimischer Eigenkapitalvorschriften einen Umzug ins Ausland oder einen Zusammenschluss mit einem anderen Institut. Das berichtet das Handelsblatt unter Berufung auf drei mit der Angelegenheit vertraute Personen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die interne Arbeitsgruppe durchspielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut den Insidern erstellt eine interne UBS-Arbeitsgruppe verschiedene Szenarien – darunter eine Liste kleinerer US-Banken für eine mögliche Übernahme oder die Option, selbst übernommen zu werden. Konkrete Gespräche gebe es derzeit aber nicht. Zuvor hatte laut Handelsblatt bereits das „Wall Street Journal“ berichtet, der Konzern bereite Notfallpläne vor. Die UBS selbst lehnte eine Stellungnahme ab. Eine vom Handelsblatt unabhängige, selbst gelesene Quelle lag dafür nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Worum es bei den Kapitalregeln geht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hintergrund sind Pläne der Schweizer Politik für schärfere Bankenregeln als Reaktion auf den Zusammenbruch der Credit Suisse 2023. Die Regierung will, dass die UBS ihre Auslandstöchter vollständig mit hartem Kernkapital (CET1) unterlegt – das könnte nach Angaben des Handelsblatts mit mehr als 20 Milliarden Dollar zu Buche schlagen. Der Ständerat, die kleine Kammer des Parlaments, senkte die Anforderung im September zwar auf 90 Prozent, doch auch das geht der UBS noch zu weit. Eine Kommission des Nationalrats befasst sich noch in diesem Monat mit der Vorlage.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum hartes Kernkapital teuer ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hartes Kernkapital (CET1) besteht aus Eigenkapital, das Verluste als Erstes auffängt – es ist die sicherste, aber auch die teuerste Form der Bankfinanzierung, weil Aktionäre für das Risiko eine höhere Rendite erwarten als Fremdkapitalgeber. Je mehr eine Bank davon vorhalten muss, desto stärker sinkt tendenziell ihre Eigenkapitalrendite, wenn sie das Geschäft nicht entsprechend ausweitet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Strengere Eigenkapitalvorgaben machen eine Bank krisenfester, kosten sie aber auch Wettbewerbsfähigkeit gegenüber Konkurrenten mit laxeren Vorgaben in anderen Ländern – genau dieses Spannungsfeld beschreibt die UBS, wenn sie vor einem Nachteil im internationalen Wettbewerb warnt.',
+      },
+    ],
+  },
+  {
+    slug: 'lagarde-wef-chefin-november',
+    title: 'Lagarde könnte Anfang November WEF-Chefin werden',
+    teaser:
+      'Das WEF-Kuratorium tagt laut Reuters am 2. November und könnte EZB-Chefin Christine Lagarde zur neuen Vorsitzenden wählen. Die EZB äußerte sich nicht dazu.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-16T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Lagarde', 'WEF', 'Notenbanken'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 15.10.2026, 15:59 Uhr: „EZB-Präsidentin: Bericht: WEF könnte Lagarde Anfang November zur künftigen Chefin küren“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-wef-koennte-lagarde-anfang-november-zur-kuenftigen-chefin-kueren/100262581.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das Weltwirtschaftsforum (WEF) könnte EZB-Chefin Christine Lagarde bereits im kommenden Monat zu seiner neuen Vorsitzenden wählen. Das berichtet das Handelsblatt unter Berufung auf die Nachrichtenagentur Reuters und mehrere der Organisation nahestehende Personen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Termin am 2. November',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Kuratorium des WEF, dem Lagarde selbst angehört, tagt demnach am 2. November und könnte die Französin zur nächsten Vorsitzenden wählen. Die Wahl sei zwar noch nicht gesichert, Lagarde genieße aber laut den Insidern breite Unterstützung im Gremium. Alternativ könnte das Kuratorium bei dieser Sitzung auch nur einen Termin für die eigentliche Abstimmung festlegen – rechtzeitig, damit Lagarde beim WEF-Jahrestreffen im Januar in Davos bereits als designierte Vorsitzende auftreten könnte. Die EZB lehnte eine Stellungnahme ab, auch das WEF nannte keinen konkreten Sitzungstermin. Eine vom Handelsblatt unabhängige, selbst gelesene Quelle lag für diesen Bericht nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Seit Wochen verdichten sich die Rücktrittszeichen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon seit Monaten gibt es laut Handelsblatt Anzeichen, dass Lagarde ihr Amt als EZB-Präsidentin vorzeitig niederlegen könnte. Ende September skizzierte sie das Szenario erstmals selbst: Sie schließe nicht aus, einige Monate vor Ablauf ihrer Amtszeit zurückzutreten, sagte sie in einem Interview. Zuvor hatte sie lediglich erklärt, bis kommendes Jahr bei der EZB bleiben zu wollen. Bei einem Gespräch des US-Senders CNN in Bangkok äußerte sie sich auf Nachfrage nicht zu einem möglichen Wechsel zum WEF.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Notenbank ist kein Wirtschaftsforum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die EZB ist eine Währungsbehörde mit gesetzlichem Mandat für die Preisstabilität im Euroraum; ihre Präsidentin wird von den Staats- und Regierungschefs der Eurozone bestimmt. Das WEF dagegen ist eine private, in der Schweiz ansässige Stiftung ohne hoheitliche Befugnisse, die vor allem das Jahrestreffen in Davos organisiert. Ein Wechsel zwischen beiden Posten wäre ungewöhnlich, weil er von einem öffentlichen Mandat in eine private Organisation führt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein frühzeitig absehbarer Abgang an der EZB-Spitze kann Markterwartungen über die künftige Geldpolitik beeinflussen, selbst bevor eine Nachfolge feststeht – weil Anleger versuchen einzuschätzen, ob ein Nachfolger den eingeschlagenen Kurs fortsetzt.',
+      },
+    ],
+  },
+  {
+    slug: 'eugh-urteil-banken-kontobetrug-erstattung',
+    title: 'EuGH: Banken müssen Kontobetrug-Opfern sofort erstatten',
+    teaser:
+      'Der EuGH entschied: Banken müssen Kontobetrug-Opfern das Geld zunächst erstatten, auch bei grober Fahrlässigkeit. Erst danach dürfen sie es zurückfordern.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-10-16T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EuGH', 'Verbraucherschutz', 'Banken', 'Phishing'],
+    relatedTopics: ['einlagensicherung', 'worauf-achten-einsteiger'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Tagesschau, 15.10.2026, 15:59 Uhr: „EuGH-Urteil: Banken müssen bei Kontobetrug Geld erstatten“',
+        url: 'https://www.tagesschau.de/wirtschaft/verbraucher/eugh-konto-betrug-phishing-100.html',
+      },
+      {
+        label:
+          'FAZ, 15.10.2026, 11:29 Uhr: „Gerichtsurteil: Banken müssen Geld bei Kontobetrug erst einmal erstatten“',
+        url: 'https://www.faz.net/aktuell/finanzen/kontobetrug-banken-muessen-geld-erst-einmal-erstatten-accg-201339759.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Europäische Gerichtshof (EuGH) hat am Donnerstag entschieden, dass Banken Opfern von Kontobetrug das Geld zunächst sofort erstatten müssen – selbst wenn sie den Kundinnen und Kunden grobe Fahrlässigkeit vorwerfen. Das geht aus einer Mitteilung des Gerichtshofs in Luxemburg hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Fall: eine polnische Verkäuferin und ein falscher Link',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anlass war ein Fall aus Polen: Eine Frau hatte einen Artikel auf einer Online-Verkaufsplattform angeboten. Ein Betrüger gab sich als Kaufinteressent aus und schickte ihr einen Link, der angeblich von der Plattform stammte. Die Frau folgte dem Link, landete auf einer Seite, die wie die ihrer Bank aussah, und gab dort ihre Zugangsdaten ein. Der Täter überwies daraufhin rund 700 Euro auf ein eigenes Konto. Die Bank lehnte eine Erstattung ab, weil die Frau den Betrug durch grobe Fahrlässigkeit ermöglicht habe. Ein polnisches Gericht legte den Fall dem EuGH zur Klärung vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erst zahlen, dann im Zweifel zurückfordern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der EuGH stellte klar: Ein Zahlungsdienstleister ist grundsätzlich verpflichtet, den Betrag eines nicht autorisierten Zahlungsvorgangs unverzüglich zu erstatten, sagte Gerichtssprecher Helge Homburg. Die Erstattung dürfe nicht allein mit dem Argument verweigert werden, der Kunde habe seine Zugangsdaten nicht ausreichend geschützt. Nach EU-Recht gibt es laut dem Urteil nur eine Ausnahme: wenn Gründe für den Verdacht bestehen, dass der Kunde selbst betrügt, und die Bank das der zuständigen Behörde schriftlich meldet. In einem zweiten Schritt kann die Bank versuchen, sich das Geld zurückzuholen – muss dafür aber beweisen, dass der Kunde tatsächlich grob fahrlässig gehandelt hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch in Deutschland eine verbreitete Praxis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben einer Expertin des Verbraucherzentrale Bundesverbands lässt sich in Deutschland eine ähnliche Praxis beobachten wie im polnischen Fall: Banken verweigern Erstattungen oft unter Verweis auf grobe Fahrlässigkeit. Das zwinge Betroffene zu aufwendigen Auseinandersetzungen mit ihrem Zahlungsdienstleister, berichtet die Tagesschau. Viele scheuten wegen des Prozesskostenrisikos den Rechtsweg oder nähmen ungünstige Vergleichsangebote an.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Beweislast für grobe Fahrlässigkeit liegt künftig zuerst bei der Bank und nicht beim Kunden – wer Opfer eines Phishing-Betrugs wird, bekommt sein Geld also schneller zurück, auch wenn ein Streit über die Schuldfrage danach noch möglich bleibt.',
+      },
+    ],
+  },
+  {
     slug: 'us-inflation-september-ueberrascht-notenbank',
     title: 'US-Inflation überrascht nach oben – Anleiherenditen ziehen an',
     teaser:
