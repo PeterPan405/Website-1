@@ -237,6 +237,38 @@ pruefe(
   pruefeZahlenkarte({ ...wohnen, titelbild: 'mond' }).some((f) => f.includes('titelbild'))
 )
 
+/* Die Karte vom 16.10.2026 – jede Zahl gegen ihre Quelle im Bestand. */
+const inflation = zahlenkarten.find((k) => k.datum === '2026-10-16') as Vergleichskarte
+const nachricht = readFileSync('data/news.ts', 'utf8')
+pruefe(
+  '3,7 % wie in der Meldung vom 14.10.',
+  inflation.rechts.wert === 3.7 &&
+    nachricht.includes(
+      'Die US-Verbraucherpreise sind im September um 3,7 Prozent gestiegen'
+    )
+)
+pruefe(
+  '2 % Inflationsziel wie in derselben Meldung',
+  inflation.links.wert === 2 &&
+    nachricht.includes('Inflationsziel der US-Notenbank von 2 Prozent')
+)
+const ff = JSON.parse(
+  readFileSync('tests/fixtures/forexfactory-2026-10-16.json', 'utf8')
+) as { title: string; country: string; forecast: string; previous: string }[]
+const cpi = ff.find((e) => e.country === 'USD' && e.title === 'CPI y/y')
+pruefe(
+  'Prognose 3,6 % und Vormonat 3,4 % wie bei ForexFactory',
+  cpi?.forecast === '3.6%' &&
+    cpi?.previous === '3.4%' &&
+    inflation.text.includes('3,6 %') &&
+    inflation.text.includes('3,4 %')
+)
+pruefe(
+  'die Differenz ist gerechnet: +1,7',
+  inflation.differenz.text ===
+    `+${(inflation.rechts.wert - inflation.links.wert).toFixed(1).replace('.', ',')}`
+)
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )
