@@ -156,3 +156,18 @@ export async function getPfadeMitStufe(
   }
   return treffer
 }
+
+/** Die Schritte so, wie `PfadStart` sie braucht. */
+export function startSchritte(pfad: AufgeloesterPfad): {
+  kennung: string
+  href: string
+  titel: string
+  art: 'stufe' | 'rechner'
+}[] {
+  return pfad.aufgeloest.map((schritt) => ({
+    kennung: schritt.kennung,
+    href: schritt.href,
+    titel: schritt.titel,
+    art: schritt.art,
+  }))
+}

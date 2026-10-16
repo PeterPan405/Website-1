@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { PfadStart } from '@/components/learn/PfadStart'
 import { PfadFortschritt, SchrittMarke } from '@/components/learn/PfadFortschritt'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
@@ -10,7 +11,7 @@ import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getLernpfad, getLernpfadSlugs } from '@/lib/lernpfade'
+import { getLernpfad, getLernpfadSlugs, startSchritte } from '@/lib/lernpfade'
 import { buildMetadata } from '@/lib/seo'
 
 export async function generateStaticParams() {
@@ -84,27 +85,24 @@ export default async function LernpfadSeite({
       <div className="fk-container py-12 sm:py-16">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <div className="min-w-0">
-            {/* ------------------------------------------------ Einordnung */}
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div className="fk-card p-5">
-                <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-                  Für wen
-                </h2>
-                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                  {pfad.fuerWen}
-                </p>
-              </div>
-              <div className="fk-card p-5">
-                <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-                  Danach kannst du
-                </h2>
-                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                  {pfad.ergebnis}
-                </p>
-              </div>
+            {/*
+              Der Knopf zuerst. Der Betreiber am 16.10.2026: „einfacher
+              gestalten, dass man gleich loslegen kann". Bis dahin kamen vor
+              dem ersten Schritt zwei Steckbrief-Kästen („Für wen", „Danach
+              kannst du"); jetzt ein Satz und der Knopf, der bei Schritt 1
+              beginnt oder bei der nächsten offenen Stufe weitermacht.
+            */}
+            <div className="rounded-card border-learn/30 bg-learn-soft border p-6">
+              <p className="text-fg leading-relaxed">
+                <span className="font-semibold">Danach kannst du: </span>
+                {pfad.ergebnis}
+              </p>
+              <PfadStart schritte={startSchritte(pfad)} className="mt-5" />
             </div>
-
-            {/* ---------------------------------------------- Die Schritte */}
+            <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
+              <span className="font-medium">Für wen: </span>
+              {pfad.fuerWen}
+            </p>
             <h2 id="schritte" className="text-fg mt-10 text-2xl font-bold sm:text-3xl">
               Die Schritte
             </h2>
