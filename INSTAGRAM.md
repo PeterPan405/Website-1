@@ -51,6 +51,16 @@ Druck", „Öl +10 %", „EZB"), ein- oder zweizeilig, unten links bündig zwei 
 drei Sätze, drei bis fünf Zeilen. Gemessen (1080 × 1350): Überschrift 108 px,
 rechter Rand 42 px; Text 46 px, Zeilenabstand 1,4, letzte Zeile bei y ≈ 1315.
 
+**Seit dem 16.10.2026 mit Foto und Kursverlauf.** Der Betreiber: „Insta-Beitrag
+ab heute mit etwas mehr Bildern, also spannender gestalten". Zwischen
+Überschrift und Text (y 365–960) steht jetzt ein Foto zum Thema, und nennt die
+Überschrift einen Kurs (Brent, Dax, Gold, ein Unternehmen beim Namen), darunter
+dessen Verlauf der letzten 30 Tage mit Wert und Veränderung. Die Fotos sind aus
+den eigenen Deckblättern geschnitten (`lib/instagram/motive/`, 16 Motive), die
+Kurse kommen aus dem Bestand der Website. Zugeordnet wird über den Inhalt der
+Kachel, kein Motiv zweimal im Beitrag; ohne passendes Bild bleibt die Kachel
+wie vorher. Regeln und Gründe in `lib/instagram-motive.ts`.
+
 Kriege und Politik kamen nur über ihre Marktfolge vor („Öl über 100", „USA &
 Iran", „UN-Protest"). In den Beschriftungen aller 54 Tagesbeiträge steht kein
 Wort wie „Tote" oder „Opfer", auf den durchgesehenen Kacheln ebenso wenig.

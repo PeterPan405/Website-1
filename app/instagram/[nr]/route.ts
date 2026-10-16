@@ -1,4 +1,6 @@
-import { deckblatt, meldungskachel } from '@/lib/instagram-bild'
+import { deckblatt, meldungskachel, motivJpeg } from '@/lib/instagram-bild'
+import { kachelKurs } from '@/lib/instagram-kurs'
+import { bebildere } from '@/lib/instagram-motive'
 import { instagramHeute } from '@/lib/instagram-heute'
 import { KACHELN } from '@/lib/instagram-plan'
 
@@ -59,7 +61,16 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
     */
     const plan = stand.status === 'tagesnews' ? stand.plan : null
     const kachel = plan!.kacheln[stelle - 2]
-    const png = await meldungskachel(kachel.titel, kachel.text)
+    /*
+      Foto und Kursverlauf (16.10.2026, „mehr Bilder, spannender"). Die
+      Auswahl läuft über alle Kacheln, damit kein Motiv zweimal kommt – siehe
+      `lib/instagram-motive.ts`.
+    */
+    const bild = bebildere(plan!.kacheln)[stelle - 2]
+    const png = await meldungskachel(kachel.titel, kachel.text, {
+      foto: bild.motiv ? motivJpeg(bild.motiv) : null,
+      kurs: bild.kurs ? await kachelKurs(bild.kurs) : null,
+    })
     const { default: sharp } = await import('sharp')
     jpeg = await sharp(png).jpeg({ quality: 90, mozjpeg: true }).toBuffer()
   }
