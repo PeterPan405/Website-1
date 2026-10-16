@@ -15,11 +15,12 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**27 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**28 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-16** – [[Canva Sans ist nicht zu haben]]
 - **2026-10-15** – [[Die Zahlenkarte wird täglich abgesprochen]]
 - **2026-10-15** – [[Was die Schnittstelle nicht kann, steht dabei]]
 - **2026-10-14** – [[Nichts doppelt, und kein Streit der Quellen]]

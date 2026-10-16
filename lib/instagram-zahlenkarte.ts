@@ -159,6 +159,12 @@ const LEER = '#dcdcdc'
   nicht, das ist nicht wie in der Vorgabe". Gegen den Beitrag vom 12.10.
   gestellt kam Open Sans am nächsten (verglichen mit Montserrat, Inter,
   Albert Sans, Figtree).
+
+  Die Vorlage ist in Canva gesetzt, in Canva Sans – und die verlangt der
+  Betreiber seit dem 16.10.2026 für alle kleineren Texte. Sie ist eine
+  Hausschrift von Canva und darf außerhalb von Canva nicht verwendet werden;
+  Open Sans ist die Ersatzschrift, dieselbe wie in den Tageskacheln
+  (`lib/instagram-bild.ts`).
 */
 const ORDNER = join(process.cwd(), 'lib/instagram/schriften')
 type Schrift = {

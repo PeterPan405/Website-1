@@ -15,7 +15,7 @@
  *     Überschrift  Anton 108 px, rechtsbündig, rechter Rand 42 px,
  *                  höchstens 900 px breit, Zeilenabstand 1,37,
  *                  Oberkante der Versalien bei y ≈ 46
- *     Text         Noto Sans 46 px, Zeilenabstand 1,4, links 35 px,
+ *     Text         Open Sans 46 px, Zeilenabstand 1,4, links 35 px,
  *                  unten bündig, letzte Zeile endet bei y ≈ 1315
  *     Grund        weiß, das IMI-Wasserzeichen in der Mitte
  *
@@ -28,8 +28,14 @@
  * weicht er im Mittel um 0,44 Graustufen ab – das ist das JPEG, nicht das
  * Zeichen.
  *
- * Die Schrift der Originale war nicht frei verfügbar; Noto Sans steht ihr am
- * nächsten (gleiche Zeilenumbrüche im Prüfsatz). Anton ist dieselbe.
+ * Die Schrift der Originale ist Canva Sans – eine Hausschrift von Canva, die
+ * außerhalb von Canva nicht verwendet werden darf. Bis zum 16.10.2026 stand
+ * hier Noto Sans (gleiche Zeilenumbrüche im Prüfsatz). Seit der Betreiber
+ * „sämtliche kleineren Texte einheitlich in Canva Sans" verlangt, setzen
+ * Kacheln und Zahlenkarte dieselbe Ersatzschrift: Open Sans. Sie bricht auf
+ * allen 25 Kacheln der letzten Ausgaben an denselben Stellen um wie Noto
+ * Sans (gemessen am 16.10.2026), und an der Zahlenkarte kam sie der Vorlage
+ * am nächsten. Anton ist dieselbe.
  *
  * ## Warum kein JSX
  *
@@ -62,8 +68,8 @@ function schriften() {
       weight: 400,
     },
     {
-      name: 'Noto Sans',
-      data: readFileSync(join(ORDNER, 'schriften/noto-sans-400.woff')),
+      name: 'Open Sans',
+      data: readFileSync(join(ORDNER, 'schriften/open-sans-400.woff')),
       weight: 400,
     },
   ]
@@ -128,7 +134,7 @@ export async function meldungskachel(titel: string, text: string): Promise<Buffe
             right: TEXT.rechts,
             bottom: TEXT.unten,
             display: 'flex',
-            fontFamily: 'Noto Sans',
+            fontFamily: 'Open Sans',
             fontSize: TEXT.groesse,
             lineHeight: TEXT.zeilenabstand,
             color: '#000000',
@@ -158,13 +164,49 @@ export async function meldungskachel(titel: string, text: string): Promise<Buffe
  * Xi, Moderna, iPhone, Nike, VW, Dell, Paramount) und die älteren Deckblätter
  * mit Unterzeile, die zu einer früheren Form gehören.
  *
- * Bei 28 Bildern und fünf Beiträgen je Woche kehrt ein Deckblatt nach gut
- * fünf Wochen wieder.
+ * Bei 18 Bildern und fünf Werktagen je Woche kehrt ein Deckblatt nach gut
+ * dreieinhalb Wochen wieder.
  */
 export function deckblaetter(): string[] {
   return readdirSync(join(ORDNER, 'titelbilder'))
-    .filter((d) => d.endsWith('.jpg'))
+    .filter((d) => d.endsWith('.jpg') && !(d in NICHT_ALS_DECKBLATT))
     .sort()
+}
+
+/**
+ * Deckblätter, bei denen die Überschrift mit dem Bild kämpft.
+ *
+ * Gestaltungsrichtlinie des Betreibers vom 16.10.2026: „Achte darauf, dass
+ * sich die Überschrift möglichst nicht mit auffälligen Bildelementen im
+ * Hintergrund überschneidet. Der Bildhintergrund soll eine gute Lesbarkeit
+ * ermöglichen." Die Überschrift ist in die Bilder eingebrannt; die Wahl
+ * bleibt also nur zwischen den Bildern.
+ *
+ * Gemessen hinter der Überschrift (x 30–650, y 40–340, ohne die Schrift und
+ * vier Pixel um sie herum), mit dem Wert, an dem es scheitert – geprüft in
+ * `tests/instagram-tagesnews.test.ts`:
+ *
+ *   Kontrast   Abstand der Hintergrundhelligkeit zur Schrift; unter 110
+ *              verschwimmt weiße Schrift im hellen Himmel
+ *   Unruhe     mittlerer Helligkeitssprung zwischen Nachbarpixeln über 8
+ *              **und** Streuung über 40 – Fassaden, Schilder, Menschen
+ *
+ * Drei weitere sind mit dem Auge aussortiert: Ein Motiv ragt in „des Tages"
+ * hinein, nimmt dort aber zu wenig Fläche ein, um die Messung zu kippen.
+ *
+ * Die Dateien bleiben liegen; sie gehen nur nicht mehr in die Reihe.
+ */
+export const NICHT_ALS_DECKBLATT: Record<string, string> = {
+  '2026-08-24.jpg': 'Kontrast 91, Unruhe 8,3 – weiße Schrift vor Fassade',
+  '2026-09-02.jpg': 'Kontrast 62 – weiße Schrift im hellen Himmel',
+  '2026-09-04.jpg': 'Kontrast nahe 0 – weiße Schrift auf Weiß',
+  '2026-09-08.jpg': 'Unruhe 9,0, Streuung 75 – Schrift über Glasfassaden',
+  '2026-09-15.jpg': 'Kontrast 102 – weiße Schrift, Gebäude dahinter',
+  '2026-09-18.jpg': 'Unruhe 18,3 – Schrift über Laterne und Fassaden',
+  '2026-10-05.jpg': 'Kontrast 74 – weiße Schrift im hellen Himmel',
+  '2026-09-21.jpg': 'mit dem Auge: Schlossturm ragt in „des Tages"',
+  '2026-09-24.jpg': 'mit dem Auge: Kräne ragen in „des Tages"',
+  '2026-09-30.jpg': 'mit dem Auge: Dachkonstruktion ragt in „des Tages"',
 }
 
 /** Werktage seit einem festen Montag – damit jeder Tag sein eigenes Bild hat. */
