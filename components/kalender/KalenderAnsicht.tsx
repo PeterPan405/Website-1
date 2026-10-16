@@ -555,6 +555,22 @@ function ZeileEinzeln({
 
         <h3 className="text-fg mt-1.5 font-semibold">{termin.titel}</h3>
         <p className="text-fg-muted mt-1 text-sm leading-relaxed">{termin.bedeutung}</p>
+        {/*
+          Prognose und Vorwert, wie die Quelle sie nennt. Ein Ist-Wert steht
+          hier nie – der Kalender kündigt an, er meldet nicht.
+        */}
+        {termin.werte && termin.werte.length > 0 && (
+          <ul className="text-fg-subtle mt-1.5 space-y-0.5 text-xs">
+            {termin.werte.map((wert) => (
+              <li key={wert.name}>
+                <span className="text-fg-muted">{wert.name}:</span>
+                {wert.prognose && ` Prognose ${wert.prognose}`}
+                {wert.prognose && wert.vorher && ' ·'}
+                {wert.vorher && ` zuvor ${wert.vorher}`}
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
           {termin.symbole?.map((symbol) => (

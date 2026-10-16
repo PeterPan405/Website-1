@@ -3,6 +3,8 @@ import { terminArtReihenfolge, type Termin, type TerminArt } from '@/data/kalend
 import { assertTermineValid } from '@/lib/kalender-validate'
 import { getDividendentermine } from '@/lib/dividendentermine'
 import { getQuartalstermine } from '@/lib/quartalstermine'
+import { konjunkturtermine, type FfMomentaufnahme } from '@/lib/konjunkturkalender'
+import forexfactory from '@/data/snapshots/forexfactory.json'
 
 /**
  * Service-Schicht für den Börsenkalender.
@@ -58,8 +60,15 @@ export { nurAufWunsch, terminArtMeta, terminArtReihenfolge } from '@/data/kalend
   gekennzeichnet. Sie sind aber ein Vielfaches an Zahl – siehe `nurAufWunsch`
   in den Typen, das sie in der Ansicht ausschaltet, bis jemand sie einschaltet.
 */
+/*
+  Die Wirtschaftstermine aus ForexFactory (`lib/konjunkturkalender.ts`):
+  laufende Woche plus, was die Momentaufnahme an früheren hält. Was schon
+  von Hand drinsteht, kommt nicht doppelt.
+*/
 const termine: Termin[] = [
   ...gepflegteTermine,
+  ...konjunkturtermine((forexfactory as FfMomentaufnahme).ereignisse, gepflegteTermine)
+    .termine,
   ...getQuartalstermine(),
   ...getDividendentermine(),
 ]

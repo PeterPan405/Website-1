@@ -83,7 +83,7 @@ export const terminArtMeta: Record<TerminArt, TerminArtMeta> = {
   konjunktur: {
     label: 'Konjunkturdaten',
     erklaerung:
-      'Fest angekündigte Veröffentlichungen wie Inflationsraten oder Stimmungsindizes.',
+      'Fest angekündigte Veröffentlichungen wie Inflationsraten oder Stimmungsindizes – für die laufende Woche aus dem Kalender von ForexFactory, mit Uhrzeit, Prognose und Vorwert.',
   },
   dividende: {
     label: 'Dividenden',
@@ -157,5 +157,11 @@ export interface Termin {
     /** Wie weit das Muster bisher gestreut hat, in Tagen. */
     streuungTage: number
   }
+  /**
+   * Prognose und Vorwert je Kennzahl, wie die Quelle sie nennt – bei den
+   * Wirtschaftsterminen aus ForexFactory (`lib/konjunkturkalender.ts`).
+   * Kein Ist-Wert: Der Kalender kündigt an, er meldet nicht.
+   */
+  werte?: { name: string; prognose?: string; vorher?: string }[]
   quelle: { label: string; url: string }
 }

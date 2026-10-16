@@ -16,6 +16,10 @@ data/snapshots/markets.json
 # die Formatierung nicht, das tut allein `npm run format:check`.
 data/snapshots/kurse-aktuell.json
 
+# Die Wirtschaftstermine von ForexFactory, eine Zeile je Termin –
+# `serialisiereFf` in `lib/konjunkturkalender.ts`.
+data/snapshots/forexfactory.json
+
 # Die Kartengeometrie ist unverändert kopiertes Fremdmaterial – Natural Earth
 # über das Paket `world-atlas`, hergestellt von `npm run globus-geometrie`.
 #
