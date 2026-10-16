@@ -5,13 +5,19 @@
  */
 import { readFileSync } from 'node:fs'
 
+import sharp from 'sharp'
+
 import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
+import { titelmotiv } from '@/lib/instagram-motive'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
   beschriftungZahlenkarte,
   pruefeZahlenkarte,
   signetOhneMitte,
   zahlenkartePng,
+  TITELBILD_FOTO_HOEHE,
+  TITELBILD_FOTO_OBEN,
+  titelbildPng,
   ZK_BREITE,
   ZK_HOEHE,
   type Rangkarte,
@@ -183,6 +189,53 @@ for (const [form, karte] of [
     `${png.readUInt32BE(16)} × ${png.readUInt32BE(20)}`
   )
 }
+
+/*
+  Das Titelbild – erste Seite des Tagesbeitrags (16.10.2026). Die
+  Überschrift darf das Foto nicht berühren: Über der Fotokante bleibt ein
+  weißer Streifen.
+*/
+const titelPng = await titelbildPng(
+  wohnen,
+  readFileSync('public/logo.svg', 'utf8'),
+  await sharp({
+    create: {
+      width: ZK_BREITE,
+      height: TITELBILD_FOTO_HOEHE,
+      channels: 3,
+      background: '#335',
+    },
+  })
+    .jpeg()
+    .toBuffer()
+)
+pruefe(
+  'Titelbild: PNG in 1080 × 1350',
+  titelPng.readUInt32BE(16) === ZK_BREITE && titelPng.readUInt32BE(20) === ZK_HOEHE
+)
+const streifen = await sharp(titelPng)
+  .extract({ left: 40, top: TITELBILD_FOTO_OBEN - 30, width: 1000, height: 28 })
+  .greyscale()
+  .raw()
+  .toBuffer()
+pruefe(
+  '… die Überschrift endet über dem Foto',
+  [...streifen].every((v) => v > 240)
+)
+const fotokante = await sharp(titelPng)
+  .extract({ left: 40, top: TITELBILD_FOTO_OBEN + 10, width: 1000, height: 10 })
+  .greyscale()
+  .raw()
+  .toBuffer()
+pruefe(
+  '… und das Foto beginnt dort (Gegenprobe)',
+  [...fotokante].every((v) => v < 120)
+)
+pruefe('das Motiv der Karte vom 15.10. ist „wohnen"', titelmotiv(wohnen).id === 'wohnen')
+pruefe(
+  'ein unbekanntes Titelbild wird beanstandet',
+  pruefeZahlenkarte({ ...wohnen, titelbild: 'mond' }).some((f) => f.includes('titelbild'))
+)
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`

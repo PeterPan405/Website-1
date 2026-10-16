@@ -32,6 +32,7 @@ import { join } from 'node:path'
 import { ImageResponse } from 'next/og.js'
 import { createElement as h } from 'react'
 
+import { MOTIVE } from './instagram-motive.ts'
 import { RECHTSHINWEIS } from './instagram-plan.ts'
 
 export const ZK_BREITE = 1080
@@ -68,6 +69,12 @@ interface KarteGemeinsam {
    * Gesetzt wird es **nach** seinem „passt", nie davor; ein Entwurf hat keins.
    */
   freigabe?: string
+  /**
+   * Das Motiv des Titelbilds – eine `id` aus `MOTIVE` in
+   * `lib/instagram-motive.ts`. Fehlt es, wird es aus Überschrift und Text
+   * gewählt wie bei den Tageskacheln.
+   */
+  titelbild?: string
 }
 
 /** Zwei Balken gegeneinander – die Form des Vorbilds vom 12.10.2026. */
@@ -235,6 +242,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const f: string[] = []
   if (!/^\d{4}-\d{2}-\d{2}$/.test(k.datum))
     f.push(`datum „${k.datum}" ist kein JJJJ-MM-TT.`)
+  if (k.titelbild !== undefined && !MOTIVE.some((m) => m.id === k.titelbild))
+    f.push(`titelbild „${k.titelbild}" gibt es nicht – eine id aus MOTIVE.`)
   if (k.freigabe !== undefined && k.freigabe !== k.datum)
     f.push(
       `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
@@ -379,10 +388,74 @@ export function signetOhneMitte(svg: string): string {
   return svg.slice(0, letzte) + svg.slice(ende + 2)
 }
 
+/** Kopf (Signet und Wortmarke) – auf Karte und Titelbild derselbe. */
+function kopf(logoSvg: string) {
+  return h(
+    'div',
+    {
+      style: {
+        position: 'absolute',
+        top: KOPF_OBEN,
+        left: 0,
+        width: ZK_BREITE,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
+    h('img', {
+      src: svgAdresse(signetOhneMitte(logoSvg)),
+      width: KOPF_LOGO,
+      height: KOPF_LOGO,
+    }),
+    h(
+      'div',
+      { style: { fontFamily: 'Open', fontSize: 27, color: SCHWARZ, marginLeft: 11 } },
+      'IM Invests'
+    )
+  )
+}
+
+/** Die Überschrift in Anton, die Pointe dunkelgrün – auf Karte und Titelbild dieselbe. */
+function ueberschrift(
+  k: Zahlenkarte,
+  groesse: number,
+  zeilenabstand: number,
+  abstand: number
+) {
+  return h(
+    'div',
+    {
+      style: {
+        position: 'absolute',
+        top: 120,
+        left: 60,
+        right: 60,
+        display: 'flex',
+        flexWrap: 'wrap',
+        fontFamily: 'Anton',
+        fontSize: groesse,
+        lineHeight: zeilenabstand,
+      },
+    },
+    ...k.titel.flatMap((stueck) =>
+      stueck.text
+        .split(' ')
+        .filter(Boolean)
+        .map((wort) =>
+          h(
+            'span',
+            { style: { color: stueck.gruen ? GRUEN : SCHWARZ, marginRight: abstand } },
+            wort
+          )
+        )
+    )
+  )
+}
+
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const rangliste = k.art === 'rangliste'
-  const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
     {
@@ -394,58 +467,12 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
         backgroundColor: '#ffffff',
       },
     },
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          top: KOPF_OBEN,
-          left: 0,
-          width: ZK_BREITE,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      },
-      h('img', { src: logo, width: KOPF_LOGO, height: KOPF_LOGO }),
-      h(
-        'div',
-        { style: { fontFamily: 'Open', fontSize: 27, color: SCHWARZ, marginLeft: 11 } },
-        'IM Invests'
-      )
-    ),
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          top: 120,
-          left: 60,
-          right: 60,
-          display: 'flex',
-          flexWrap: 'wrap',
-          fontFamily: 'Anton',
-          fontSize: rangliste ? RL_TITEL : 112,
-          lineHeight: rangliste ? 1.1 : 1.12,
-        },
-      },
-      ...k.titel.flatMap((stueck) =>
-        stueck.text
-          .split(' ')
-          .filter(Boolean)
-          .map((wort) =>
-            h(
-              'span',
-              {
-                style: {
-                  color: stueck.gruen ? GRUEN : SCHWARZ,
-                  marginRight: rangliste ? 24 : 26,
-                },
-              },
-              wort
-            )
-          )
-      )
+    kopf(logoSvg),
+    ueberschrift(
+      k,
+      rangliste ? RL_TITEL : 112,
+      rangliste ? 1.1 : 1.12,
+      rangliste ? 24 : 26
     ),
     ...(k.art === 'rangliste' ? ranglistenGrafik(k) : vergleichsGrafik(k)),
     h('div', {
@@ -474,6 +501,82 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
     )
   )
 
+  const antwort = new ImageResponse(bild, {
+    width: ZK_BREITE,
+    height: ZK_HOEHE,
+    fonts: schriften(),
+  })
+  return Buffer.from(await antwort.arrayBuffer())
+}
+
+/*
+  Das Titelbild – die erste Seite des Tagesbeitrags (16.10.2026).
+
+  Der Betreiber: „Insta-Beitrag ab heute mit etwas mehr Bildern, also
+  spannender gestalten". Der Tagesbeitrag ist seitdem ein Karussell aus zwei
+  Bildern: vorn Kopf, Überschrift und ein Foto zum Thema, dahinter die Karte
+  mit den Zahlen.
+
+  Die Überschrift steht auf Weiß, das Foto darunter – sie überschneiden sich
+  nicht. So verlangt es die Gestaltungsrichtlinie vom selben Tag: „dass sich
+  die Überschrift möglichst nicht mit auffälligen Bildelementen im
+  Hintergrund überschneidet". Wie weit das Foto nach oben reicht, hängt an
+  der Länge der Überschrift: höchstens drei Zeilen Anton bei 112 px.
+*/
+export const TITELBILD_FOTO_OBEN = 540
+export const TITELBILD_FOTO_HOEHE = ZK_HOEHE - TITELBILD_FOTO_OBEN
+
+/** Setzt das Titelbild; `foto` ist ein JPEG in 1080 × `TITELBILD_FOTO_HOEHE`. */
+export async function titelbildPng(
+  k: Zahlenkarte,
+  logoSvg: string,
+  foto: Buffer
+): Promise<Buffer> {
+  const bild = h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+      },
+    },
+    kopf(logoSvg),
+    ueberschrift(k, 112, 1.12, 26),
+    h('img', {
+      src: `data:image/jpeg;base64,${foto.toString('base64')}`,
+      width: ZK_BREITE,
+      height: TITELBILD_FOTO_HOEHE,
+      style: {
+        position: 'absolute',
+        left: 0,
+        top: TITELBILD_FOTO_OBEN,
+        objectFit: 'cover',
+      },
+    }),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          right: 40,
+          bottom: 40,
+          display: 'flex',
+          alignItems: 'center',
+          padding: '14px 26px',
+          borderRadius: 40,
+          backgroundColor: '#ffffff',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: SCHWARZ,
+        },
+      },
+      'Die Zahlen  →'
+    )
+  )
   const antwort = new ImageResponse(bild, {
     width: ZK_BREITE,
     height: ZK_HOEHE,

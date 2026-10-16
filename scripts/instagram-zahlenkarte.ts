@@ -14,7 +14,7 @@
  *      Karte um 08:59 hinausgegangen war; `lib/zahlenkarten-wecker.ts`)
  *   1. Freigabe = heute (deutscher Kalendertag), gelesen von der Website
  *   2. Die Website zeigt die Karte von heute (`/instagram/zahlenkarte.txt`)
- *   3. Das Bild antwortet mit 200 und ist ein JPEG
+ *   3. Beide Bilder antworten mit 200 und sind JPEG – Titelbild und Karte
  *   4. Im Kanal steht diese Karte noch nicht – gefragt wird nach **ihrem**
  *      Aufhänger, nicht nach „irgendein Beitrag heute": Die Tagesnews stehen
  *      um 17 Uhr längst drin.
@@ -72,13 +72,18 @@ if (!beschriftung.includes('KI erstellt'))
 const aufhaenger = beschriftung.split('\n')[0].trim()
 melde(`Karte vom ${HEUTE}: ${aufhaenger}`)
 
-// Riegel 3
-const bildAdresse = `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}`
-const bild = await fetch(bildAdresse, { method: 'HEAD', cache: 'no-store' })
-if (!bild.ok || !(bild.headers.get('content-type') ?? '').includes('image/jpeg'))
-  halt(
-    `Das Bild antwortet mit ${bild.status} (${bild.headers.get('content-type') ?? '?'}).`
-  )
+// Riegel 3 – beide Bilder des Karussells: Titelbild, dann die Karte
+const bildAdressen = [
+  `${BASIS}/instagram/zahlenkarte-titel.jpg?d=${HEUTE}`,
+  `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}`,
+]
+for (const adresse of bildAdressen) {
+  const bild = await fetch(adresse, { method: 'HEAD', cache: 'no-store' })
+  if (!bild.ok || !(bild.headers.get('content-type') ?? '').includes('image/jpeg'))
+    halt(
+      `${adresse} antwortet mit ${bild.status} (${bild.headers.get('content-type') ?? '?'}).`
+    )
+}
 
 if (!TOKEN || !KONTO) {
   melde(
@@ -122,29 +127,45 @@ async function graph(pfad: string, felder: Record<string, string>) {
   return daten
 }
 
+/*
+  Ein Karussell aus zwei Bildern (16.10.2026, „mehr Bilder, spannender"):
+  erst jede Seite als eigener Behälter, dann der Sammelbehälter mit
+  Beschriftung und KI-Kennzeichen – `is_ai_generated` gibt es laut Metas
+  Referenz nur am Sammelbehälter, nicht an den Seiten.
+*/
+async function warte(kennung: string, sekunden = 90) {
+  const frist = Date.now() + sekunden * 1000
+  for (;;) {
+    const z = (await (
+      await fetch(
+        `${API}/${kennung}?fields=status_code&access_token=${encodeURIComponent(TOKEN)}`
+      )
+    ).json()) as { status_code?: string }
+    if (z.status_code === 'FINISHED') return
+    if (z.status_code === 'ERROR' || Date.now() > frist)
+      throw new Error(`Behälter ${kennung}: ${z.status_code ?? 'unbekannt'}`)
+    await new Promise((r) => setTimeout(r, 3000))
+  }
+}
+const seiten: string[] = []
+for (const adresse of bildAdressen) {
+  const kennung = String(
+    (await graph(`${KONTO}/media`, { image_url: adresse, is_carousel_item: 'true' })).id
+  )
+  await warte(kennung)
+  seiten.push(kennung)
+}
 const behaelter = String(
   (
     await graph(`${KONTO}/media`, {
-      image_url: bildAdresse,
+      media_type: 'CAROUSEL',
+      children: seiten.join(','),
       caption: beschriftung,
       is_ai_generated: 'true',
     })
   ).id
 )
-const frist = Date.now() + 90_000
-for (;;) {
-  const z = (await (
-    await fetch(
-      `${API}/${behaelter}?fields=status_code&access_token=${encodeURIComponent(TOKEN)}`
-    )
-  ).json()) as {
-    status_code?: string
-  }
-  if (z.status_code === 'FINISHED') break
-  if (z.status_code === 'ERROR' || Date.now() > frist)
-    throw new Error(`Behälter ${behaelter}: ${z.status_code ?? 'unbekannt'}`)
-  await new Promise((r) => setTimeout(r, 3000))
-}
+await warte(behaelter, 120)
 const veroeffentlicht = await graph(`${KONTO}/media_publish`, { creation_id: behaelter })
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')

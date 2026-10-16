@@ -86,6 +86,14 @@ Folgen", „Fazit"), **keine Aufforderung zu folgen.** Gelegentlich steht eine
 
 ### C — Zahlenkarte
 
+**Seit dem 16.10.2026 ein Karussell aus zwei Bildern** („mehr Bilder,
+spannender"): vorn das **Titelbild** – Kopf, Überschrift in Anton auf Weiß,
+darunter ein Foto zum Thema bis zum Rand, unten rechts „Die Zahlen →" –,
+dahinter die Karte. Das Motiv steht als `titelbild` an der Karte (eine `id`
+aus `MOTIVE` in `lib/instagram-motive.ts`) oder wird aus Überschrift und Text
+gewählt. Die Überschrift endet über dem Foto; das prüft
+`tests/instagram-zahlenkarte.test.ts` am gesetzten Bild.
+
 Eine einzelne weiße Kachel, kein Karussell. Oben mittig das Signet (ohne
 „IMI" in der Mitte) und die Wortmarke „IM Invests" in Open Sans, schwarz,
 klein – nachgemessen am Beitrag vom 12.10.2026. Überschrift in Anton, alles
