@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { PfadFortschritt } from '@/components/learn/PfadFortschritt'
+import { PfadStart } from '@/components/learn/PfadStart'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getLernpfade } from '@/lib/lernpfade'
+import { getLernpfade, startSchritte } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -71,10 +72,6 @@ export default async function LernpfadeSeite() {
                   </h2>
                   <p className="text-fg-muted mt-2 leading-relaxed">{pfad.kurz}</p>
 
-                  <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
-                    {pfad.fuerWen}
-                  </p>
-
                   <dl className="text-fg-subtle mt-5 flex flex-wrap gap-x-4 gap-y-1 text-xs">
                     <div className="flex gap-1.5">
                       <dt>Stufen:</dt>
@@ -95,11 +92,20 @@ export default async function LernpfadeSeite() {
                   </dl>
 
                   <PfadFortschritt kennungen={pfad.stufenkennungen} className="mt-5" />
-
-                  <p className="text-learn mt-5 flex items-center gap-1.5 text-sm font-semibold">
-                    Pfad ansehen
-                    <Icon name="arrow-right" className="size-4" />
-                  </p>
+                  {/*
+                    Direkt loslegen, ohne Umweg über die Pfadseite (16.10.2026).
+                    `relative z-10` hebt den Knopf über den gestreckten Link
+                    des Titels – sonst öffnete jeder Klick die Pfadseite.
+                  */}
+                  <div className="relative z-10 mt-5 flex flex-wrap items-start gap-x-5 gap-y-3">
+                    <PfadStart schritte={startSchritte(pfad)} />
+                    <Link
+                      href={`/lernen/pfade/${pfad.slug}`}
+                      className="text-learn mt-2.5 text-sm font-semibold"
+                    >
+                      Alle Schritte ansehen
+                    </Link>
+                  </div>
                 </article>
               </Reveal>
             </li>
