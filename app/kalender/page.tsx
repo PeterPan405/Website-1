@@ -134,6 +134,14 @@ export default async function KalenderPage() {
               Quartalsmonate –, und Wahltermine stehen im Gesetz.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
+              Die Wirtschaftsdaten der laufenden Woche – Inflation, Arbeitsmarkt,
+              Einkaufsmanager, Reden der Notenbankspitzen – kommen aus dem Kalender von
+              ForexFactory, mit Uhrzeit in deutscher Zeit, Prognose und Vorwert.
+              Aufgenommen ist, was dort als wichtig eingestuft ist, aus den USA, dem
+              Euroraum, Großbritannien, Japan, der Schweiz und China. Weiter als bis zum
+              kommenden Samstag reicht diese Quelle nicht.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
               Wann ein einzelnes Unternehmen seine Quartalszahlen vorlegt, kündigt es
               dagegen selbst an, meist wenige Wochen vorher. Ein Jahr im Voraus ist dieser
               Tag nirgends zu bekommen. Was es gibt, ist das Muster: Unternehmen melden

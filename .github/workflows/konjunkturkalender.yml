@@ -1,0 +1,65 @@
+name: Konjunkturkalender
+
+# Holt die Wirtschaftstermine der laufenden Woche von ForexFactory und legt
+# sie in `data/snapshots/forexfactory.json` ab. Auftrag des Betreibers vom
+# 16.10.2026: „Kalender ausbauen mit Daten von ForexFactory".
+#
+# Was davon in den Kalender kommt und warum, steht in
+# `lib/konjunkturkalender.ts`; das Holen in `scripts/forexfactory-holen.ts`.
+#
+# Zweimal am Tag, zu krummen Minuten: früh vor dem nächtlichen Bau
+# (`paket-bauen.yml`, 05:41 UTC), der die neue Woche dann mitnimmt, und am
+# Nachmittag, weil ForexFactory Prognosen im Lauf der Woche nachträgt. Der
+# Feed reicht nur bis Samstag – am Sonntag kommt die neue Woche.
+#
+# Kein eigener Neubau: Ein Kalendertermin, der ein paar Stunden später auf
+# der Website steht, kostet niemanden etwas – und „Ein Commit vom Bot löst
+# nichts aus" gilt hier bewusst. Der nächtliche Bau holt es ab.
+
+on:
+  schedule:
+    - cron: '37 3 * * *'
+    - cron: '13 13 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: konjunkturkalender
+  cancel-in-progress: false
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Wochentermine holen
+        run: node --experimental-strip-types scripts/forexfactory-holen.ts
+
+      - name: Momentaufnahme committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/snapshots/forexfactory.json
+          if git diff --cached --quiet -- data/snapshots/forexfactory.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
+          git commit -m "Konjunkturkalender: ForexFactory, Stand $(date -u +'%Y-%m-%d %H:%M UTC')"
+
+          for versuch in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Push fehlgeschlagen, Versuch $versuch"
+            sleep $((versuch * 5))
+          done
+          exit 1
