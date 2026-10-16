@@ -322,23 +322,3 @@ export function bebildere(kacheln: { titel: string; text: string }[]): Bebilderu
     return { motiv, kurs: kursZurKachel(titel) }
   })
 }
-
-/**
- * Das Motiv des Titelbilds eines Tagesbeitrags: das gewählte, sonst aus
- * Überschrift und Text gewählt wie bei den Tageskacheln, sonst die
- * Frankfurter Skyline – ein Titelbild ohne Foto wäre keins.
- */
-export function titelmotiv(k: {
-  titel: { text: string }[]
-  text: string
-  titelbild?: string
-}): Motiv {
-  const gewaehlt = k.titelbild ? MOTIVE.find((m) => m.id === k.titelbild) : undefined
-  if (gewaehlt) return gewaehlt
-  const [auto] = bebildere([
-    { titel: k.titel.map((t) => t.text).join(' '), text: k.text },
-  ])
-  return (
-    MOTIVE.find((m) => m.id === auto.motiv) ?? MOTIVE.find((m) => m.id === 'frankfurt')!
-  )
-}

@@ -54,7 +54,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       'An den Anleihemärkten zogen die Renditen unmittelbar nach der Veröffentlichung an.\n\n' +
       'Quellen: Handelsblatt, CNBC (14.10.2026), ForexFactory (Prognose und Vormonat)',
     schlagworte: ['inflation', 'usa', 'fed', 'börse', 'finanzen'],
-    titelbild: 'fed',
+    /*
+      Freigegeben vom Betreiber am 16.10.2026: „Ja, das passt" – die Karte,
+      nicht das Titelbild davor („das andere nicht"). Der Tagesbeitrag bleibt
+      eine Seite.
+    */
+    freigabe: '2026-10-16',
   },
   {
     /*
