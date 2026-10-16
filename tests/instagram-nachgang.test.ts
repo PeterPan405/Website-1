@@ -70,6 +70,27 @@ const grund = {
   pruefe('und meldet: keine Kommentare', e?.kommentare === false)
 }
 
+/* Fehlende Berechtigung (Code 10) ist ein Hinweis, keine Warnung. */
+{
+  const holen = (async () =>
+    new Response(
+      JSON.stringify({
+        error: { code: 10, message: 'Application does not have permission' },
+      })
+    )) as unknown as typeof fetch
+  const zeilen: string[] = []
+  const alt = console.log
+  console.log = (...t: unknown[]) => zeilen.push(t.join(' '))
+  const e = await nachgang({ ...grund, holen })
+  console.log = alt
+  pruefe(
+    'Code 10 meldet keine Warnung',
+    !zeilen.some((z) => z.startsWith('::warning::')),
+    zeilen.join(' | ')
+  )
+  pruefe('und sagt ehrlich: nicht umgestellt', e.kommentare === false)
+}
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )

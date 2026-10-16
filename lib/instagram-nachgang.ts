@@ -40,6 +40,18 @@ export async function nachgang(n: Nachgang): Promise<{ kommentare: boolean }> {
     const daten = (await antwort.json()) as {
       error?: { message?: string; code?: number }
     }
+    /*
+      Code 10 heißt: Dem Zugang fehlt die Berechtigung zum Verwalten von
+      Kommentaren. So ist es seit dem ersten Lauf (15.10.2026) – jeden Tag
+      eine Warnung dafür wäre Lärm, der eine echte überdeckt. Die Kommentare
+      stehen auf Instagram ohnehin offen; gemeldet wird es als Hinweis.
+    */
+    if (daten.error?.code === 10) {
+      n.melde(
+        'Kommentare: nicht umgestellt – dem Zugang fehlt die Berechtigung; sie sind ohnehin offen.'
+      )
+      return { kommentare: false }
+    }
     if (daten.error)
       throw new Error(
         `Meta lehnt ab (${daten.error.code ?? '?'}): ${daten.error.message ?? 'ohne Grund'}`
