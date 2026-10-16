@@ -584,6 +584,36 @@ pruefe(
 )
 
 /*
+  Die Grenze hält auch bei langen Meldungen – der Fall vom 16.10.2026.
+
+  Fünf Meldungen mit je rund 120 Wörtern: Vier davon ergaben 500 Wörter, und
+  die ganze Ausgabe blieb stehen. Diese Prüfung legt der Folge genau so
+  etwas vor. Ohne die Satzkürzung in `baueFolge` schlägt sie an.
+*/
+const satz = (n: number) =>
+  `Meldung ${n} nennt hier einen vollständigen Satz mit genau zwanzig Wörtern, damit die Länge der Absätze sicher bekannt und gut zählbar bleibt.`
+const lang = (item: (typeof edition.top)[number]) => ({
+  ...item,
+  summary: Array.from({ length: 6 }, (_, i) => satz(i + 1)),
+})
+const langeFolge = baueFolge({
+  ...edition,
+  top: edition.top.map(lang),
+  further: edition.further.map(lang),
+})
+pruefe(
+  `Fünf lange Meldungen bleiben unter ${WORTZIEL_MAX} Wörtern`,
+  langeFolge.wortzahl <= WORTZIEL_MAX,
+  true
+)
+pruefe(
+  'und jede gesprochene Meldung behält ihren ersten Satz',
+  langeFolge.sprechtext.split(/\n\n+/).filter((a) => a.includes('Meldung eins')).length >=
+    4,
+  true
+)
+
+/*
   Und die Untergrenze wird **gemeldet, nicht erzwungen**.
 
   Gekürzt wird durch Weglassen, verlängert würde durch Erfinden. Eine Ausgabe

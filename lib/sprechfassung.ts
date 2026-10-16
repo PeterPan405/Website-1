@@ -1799,13 +1799,47 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     der Folge nicht mehr gibt (siehe `themenAbsatz`). Damit ist aus zwei
     Schleifen eine geworden.
 
-    Reicht auch `MELDUNGEN_MIN` nicht, kommt die Folge etwas zu lang heraus –
-    lieber das als gar keine.
+    Reicht auch `MELDUNGEN_MIN` nicht, werden die Absätze selbst gekürzt –
+    siehe unten.
   */
   let absaetze = alle.map((item) => themenAbsatz(item))
   const rumpf = () => [einstieg, ...absaetze, abschluss].join('\n\n')
   while (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > MELDUNGEN_MIN) {
     absaetze = absaetze.slice(0, -1)
+  }
+
+  /*
+    Und wenn es mit `MELDUNGEN_MIN` Meldungen noch zu lang ist: den längsten
+    Absatz um seinen letzten Satz kürzen, bis es passt – jeder behält
+    mindestens seinen ersten.
+
+    Am 16. Oktober 2026 kam die Ausgabe nicht hinaus. Seit dem Briefing vom
+    14.10. hat sie genau fünf Meldungen mit je über 110 Wörtern; vier davon
+    ergaben 500 Wörter, und `tests/sprechfassung.test.ts` hält die Grenze von
+    420 – der Riegel in `nachrichten.yml` stoppte die ganze Ausgabe samt
+    Website, Folge und Instagram. Hier stand bis dahin „lieber zu lang als
+    gar keine", während der Test genau das verbot: eine Zusage, die der Code
+    nicht hielt. Jetzt hält er sie.
+
+    Die Website behält alles; gekürzt wird nur die Folge, und zwar zuerst am
+    Ende jeder Meldung, wo nach dem Aufbau der Ausgabe das Nebensächliche
+    steht.
+  */
+  const saetze = (absatz: string) =>
+    absatz
+      .split(/(?<=[.!?])\s+/)
+      .map((satz) => satz.trim())
+      .filter(Boolean)
+  while (wortzahl(rumpf()) > WORTZIEL_MAX) {
+    const zerlegt = absaetze.map(saetze)
+    const kandidaten = zerlegt
+      .map((teile, i) => ({ i, teile, woerter: wortzahl(absaetze[i]) }))
+      .filter((k) => k.teile.length > 1)
+    if (kandidaten.length === 0) break
+    const laengster = kandidaten.reduce((a, b) => (b.woerter > a.woerter ? b : a))
+    absaetze = absaetze.map((absatz, i) =>
+      i === laengster.i ? laengster.teile.slice(0, -1).join(' ') : absatz
+    )
   }
 
   const sprechtext = rumpf()
