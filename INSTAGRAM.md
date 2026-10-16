@@ -86,13 +86,11 @@ Folgen", „Fazit"), **keine Aufforderung zu folgen.** Gelegentlich steht eine
 
 ### C — Zahlenkarte
 
-**Seit dem 16.10.2026 ein Karussell aus zwei Bildern** („mehr Bilder,
-spannender"): vorn das **Titelbild** – Kopf, Überschrift in Anton auf Weiß,
-darunter ein Foto zum Thema bis zum Rand, unten rechts „Die Zahlen →" –,
-dahinter die Karte. Das Motiv steht als `titelbild` an der Karte (eine `id`
-aus `MOTIVE` in `lib/instagram-motive.ts`) oder wird aus Überschrift und Text
-gewählt. Die Überschrift endet über dem Foto; das prüft
-`tests/instagram-zahlenkarte.test.ts` am gesetzten Bild.
+**Immer eine Seite.** Am 16.10.2026 ging der Tagesbeitrag kurz als Karussell
+aus Titelbild mit Foto und Karte; der Betreiber zur Karte: „Ja, das passt",
+zum Titelbild: „das andere nicht – wo es nur eine Seite ist, mit Chart, immer
+nur eine Seite". Das Titelbild ist wieder entfernt. Fotos gibt es in den
+Kacheln der Tagesnews, nicht hier.
 
 Eine einzelne weiße Kachel, kein Karussell. Oben mittig das Signet (ohne
 „IMI" in der Mitte) und die Wortmarke „IM Invests" in Open Sans, schwarz,
