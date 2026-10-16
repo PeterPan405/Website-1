@@ -24,7 +24,12 @@ import { readFileSync } from 'node:fs'
 
 import sharp from 'sharp'
 
-import { deckblaetter, deckblatt, meldungskachel } from '@/lib/instagram-bild'
+import {
+  deckblaetter,
+  deckblatt,
+  meldungskachel,
+  NICHT_ALS_DECKBLATT,
+} from '@/lib/instagram-bild'
 import {
   ANWEISUNG_INSTAGRAM,
   type InstagramPlan,
@@ -252,7 +257,78 @@ pruefen(
 // ------------------------------------------------------------ Deckblätter
 
 const liste = deckblaetter()
-pruefen(`Es liegen Deckblätter bereit (${liste.length})`, liste.length >= 20)
+/* 28 Bilder, davon zehn aussortiert (`NICHT_ALS_DECKBLATT`) – 18 bleiben. */
+pruefen(`Es liegen Deckblätter bereit (${liste.length})`, liste.length >= 15)
+
+/*
+  Lesbarkeit hinter der Überschrift – Richtlinie des Betreibers vom
+  16.10.2026. Gemessen wie in `lib/instagram-bild.ts` beschrieben; jedes
+  Deckblatt in der Reihe muss bestehen, und jedes, das wegen der Messung
+  aussortiert ist, muss durchfallen. Sonst misst die Prüfung nichts.
+*/
+async function lesbarkeit(datei: string) {
+  const { data, info } = await sharp(`lib/instagram/titelbilder/${datei}`)
+    .extract({ left: 30, top: 40, width: 620, height: 300 })
+    .greyscale()
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  const W = info.width
+  const H = info.height
+  let w = 0
+  let b = 0
+  for (const v of data) {
+    if (v > 235) w++
+    if (v < 35) b++
+  }
+  const weiss = w > b
+  const nah = new Uint8Array(W * H)
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++) {
+      const v = data[y * W + x]
+      if (weiss ? v > 200 : v < 70)
+        for (let dy = -4; dy <= 4; dy++)
+          for (let dx = -4; dx <= 4; dx++) {
+            const yy = y + dy
+            const xx = x + dx
+            if (yy >= 0 && yy < H && xx >= 0 && xx < W) nah[yy * W + xx] = 1
+          }
+    }
+  let n = 0
+  let s = 0
+  let s2 = 0
+  let g = 0
+  for (let y = 1; y < H - 1; y++)
+    for (let x = 1; x < W - 1; x++) {
+      const i = y * W + x
+      if (nah[i]) continue
+      const v = data[i]
+      n++
+      s += v
+      s2 += v * v
+      g += Math.abs(data[i + 1] - data[i - 1]) + Math.abs(data[i + W] - data[i - W])
+    }
+  if (n === 0) return { kontrast: 0, streuung: 0, unruhe: 0 }
+  const m = s / n
+  return {
+    kontrast: weiss ? 255 - m : m,
+    streuung: Math.sqrt(s2 / n - m * m),
+    unruhe: g / n,
+  }
+}
+const besteht = (l: { kontrast: number; streuung: number; unruhe: number }) =>
+  l.kontrast >= 110 && !(l.unruhe > 8 && l.streuung > 40)
+for (const datei of liste) {
+  const l = await lesbarkeit(datei)
+  pruefen(
+    `Deckblatt ${datei} ist hinter der Überschrift ruhig genug`,
+    besteht(l),
+    JSON.stringify(l)
+  )
+}
+for (const [datei, grund] of Object.entries(NICHT_ALS_DECKBLATT)) {
+  if (grund.startsWith('mit dem Auge')) continue
+  pruefen(`aussortiert fällt durch: ${datei}`, !besteht(await lesbarkeit(datei)))
+}
 const montag = deckblatt('2026-10-12').datei
 const dienstag = deckblatt('2026-10-13').datei
 pruefen(

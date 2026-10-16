@@ -46,7 +46,8 @@ export interface InstagramPlan {
   Breite; das prüft `tests/instagram-tagesnews.test.ts` am gesetzten Bild,
   nicht an dieser Zahl.
 
-  Text: drei bis fünf Zeilen Noto Sans bei 46 px – im Kanal nie mehr als
+  Text: drei bis fünf Zeilen Open Sans (bis 16.10.2026 Noto Sans, gleiche
+  Umbrüche) bei 46 px – im Kanal nie mehr als
   fünf (am 9.10.: 127 bis 178 Zeichen, drei bis fünf Zeilen). Gemessen am
   gesetzten Bild mit langen Wörtern: 188 Zeichen sind fünf Zeilen, 206 schon
   sechs. Daher 190. Unter 100 ist es keine Meldung mehr, sondern eine Zeile.

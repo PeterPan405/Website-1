@@ -181,6 +181,23 @@ Steht an allen Beiträgen. Über die Schnittstelle setzt es `is_ai_generated`
 am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 (Metas Referenz zu `/{ig-user-id}/media`, nachgelesen am 11.10.2026).
 
+## Gestaltungsrichtlinien
+
+Vom Betreiber, 16.10.2026, für alle IM-Invest-Beiträge:
+
+1. **Kleine Texte einheitlich in Canva Sans** – Fließtext, Erklärungen,
+   Ergänzungen. Canva Sans darf außerhalb von Canva nicht verwendet werden;
+   was hier gesetzt wird (Tageskacheln, Zahlenkarte), nimmt **Open Sans**
+   als Ersatz. Wer in Canva gestaltet, nimmt Canva Sans selbst.
+2. **Überschriften bleiben in Anton.**
+3. **Die Deckblattüberschrift überschneidet sich möglichst nicht mit
+   auffälligen Bildelementen**, der Hintergrund lässt sie gut lesen. Die
+   Überschrift ist in die Deckblätter eingebrannt; zehn von 28 sind deshalb
+   aus der Reihe genommen (`NICHT_ALS_DECKBLATT` in `lib/instagram-bild.ts`,
+   je mit Grund). `tests/instagram-tagesnews.test.ts` misst jedes Deckblatt
+   in der Reihe hinter der Überschrift: Kontrast mindestens 110, keine
+   unruhige Fläche. Ein neues Deckblatt muss diese Messung bestehen.
+
 ## Nach dem Beitrag
 
 Anordnung des Betreibers vom 15.10.2026, für Tagesnews und Zahlenkarte:
@@ -241,6 +258,7 @@ außerhalb entstanden.
 
 - Ein veröffentlichter Beitrag trägt den Titel **„Anthrophic X Nvidia?"** –
   das Unternehmen heißt Anthropic.
-- Die Schrift des Fließtexts in den alten Kacheln ist nicht frei verfügbar;
-  Noto Sans kommt ihr am nächsten und bricht im Prüfsatz an denselben Stellen
-  um.
+- Die Schrift des Fließtexts in den alten Kacheln ist Canva Sans – eine
+  Hausschrift von Canva, außerhalb von Canva nicht verwendbar. Ersatz seit
+  16.10.2026 überall Open Sans (vorher in den Kacheln Noto Sans; gleiche
+  Umbrüche auf allen 25 gemessenen Kacheln).
