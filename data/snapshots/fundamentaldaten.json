@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-10T12:35:16.642Z",
+  "abgerufenAm": "2026-10-17T10:44:34.347Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -239,8 +239,8 @@
       "umsatz": 69672977000,
       "gewinn": 7678433000,
       "cashflow": 11474399000,
-      "eigenkapital": 31890566000,
-      "aktien": 616153379
+      "eigenkapital": 31567256000,
+      "aktien": 612481327
     },
     "ADBE": {
       "umsatz": 23769000000,
@@ -2427,8 +2427,8 @@
       "umsatz": 26981000000,
       "gewinn": 4160000000,
       "cashflow": 5292000000,
-      "eigenkapital": 15433000000,
-      "aktien": 477211268
+      "eigenkapital": 14910000000,
+      "aktien": 475514327
     },
     "MRVL": {
       "umsatz": 8194600000,
@@ -3254,11 +3254,11 @@
     },
     "SMIN.L": {
       "waehrung": "GBP",
-      "umsatz": 2915000000,
-      "gewinn": 292000000,
-      "cashflow": 456000000,
-      "eigenkapital": 2060000000,
-      "aktien": 340723454
+      "umsatz": 1937000000,
+      "gewinn": 1972000000,
+      "cashflow": 241000000,
+      "eigenkapital": 2605000000,
+      "aktien": 313613232
     },
     "SN.L": {
       "waehrung": "USD",
@@ -3512,7 +3512,7 @@
     },
     "TEAM": {
       "umsatz": 5215304000,
-      "gewinn": -256687000,
+      "gewinn": -256700000,
       "cashflow": 1460393000,
       "eigenkapital": 1058442000,
       "aktien": 260163000
@@ -3615,8 +3615,8 @@
       "umsatz": 48828000000,
       "gewinn": 6288000000,
       "cashflow": 10606000000,
-      "eigenkapital": 33121000000,
-      "aktien": 208575022
+      "eigenkapital": 28995000000,
+      "aktien": 204946347
     },
     "TSCO.L": {
       "waehrung": "GBP",
