@@ -8,7 +8,9 @@ import { readFileSync } from 'node:fs'
 import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
+  akzentfarbe,
   beschriftungZahlenkarte,
+  LOGOFARBEN,
   pruefeZahlenkarte,
   signetOhneMitte,
   zahlenkartePng,
@@ -50,7 +52,7 @@ const kaputt: Zahlenkarte = {
 }
 const fehler = pruefeZahlenkarte(kaputt)
 for (const teil of [
-  'grüne Pointe',
+  'Pointe in der Akzentfarbe',
   'keine Quelle',
   'Quellen',
   'genau fünf',
@@ -214,6 +216,19 @@ pruefe(
   'die Differenz ist gerechnet: +1,7',
   inflation.differenz.text ===
     `+${(inflation.rechts.wert - inflation.links.wert).toFixed(1).replace('.', ',')}`
+)
+
+/*
+  Die Akzentfarbe wechselt durch die vier Farben des Logos (Betreiber,
+  17.10.2026) – dieselben Werte wie in public/logo.svg.
+*/
+for (const farbe of LOGOFARBEN)
+  pruefe(`Akzentfarbe ${farbe} steht so im Logo`, logoSvg.includes(`fill="${farbe}"`))
+pruefe(
+  'vier Tage, vier Farben: 17.10. grün, 18.10. navy, 19.10. rot, 20.10. anthrazit, 21.10. wieder grün',
+  ['2026-10-17', '2026-10-18', '2026-10-19', '2026-10-20', '2026-10-21']
+    .map(akzentfarbe)
+    .join() === [...LOGOFARBEN, LOGOFARBEN[0]].join()
 )
 
 /*

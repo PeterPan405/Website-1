@@ -54,7 +54,11 @@ export interface Seite {
 interface KarteGemeinsam {
   /** Erscheinungstag, JJJJ-MM-TT. */
   datum: string
-  /** Die Überschrift in Stücken; `gruen` hebt die Pointe hervor. */
+  /**
+   * Die Überschrift in Stücken; `gruen` hebt die Pointe hervor – in der
+   * Akzentfarbe des Tages (`akzentfarbe()`), seit dem 18.10.2026 nicht mehr
+   * immer grün. Der Feldname blieb, damit die Karten im Bestand gelten.
+   */
   titel: { text: string; gruen?: boolean }[]
   /** Unter der Linie, klein: „Stand: 2025 | Quelle: Eurostat …" */
   fusszeile: string
@@ -197,7 +201,31 @@ export const FLAGGEN: Record<string, Flagge> = {
 }
 
 const SCHWARZ = '#000000'
-const GRUEN = '#1f4a12'
+/*
+  Die Akzentfarbe wechselt täglich durch die vier Farben des Logos – der
+  Betreiber am 17.10.2026: „die Schriftfarben der Beiträge nicht nur grün,
+  sondern abwechselnd mit den Farben aus dem Logo. Anthrazit, Navyblau und
+  Rot … die gleichen Farbtöne." Die Werte stehen so in `public/logo.svg`;
+  der Test vergleicht sie. Reihenfolge ab dem 17.10.2026 (grün): Grün,
+  Navy, Rot, Anthrazit, dann wieder Grün.
+*/
+export const LOGOFARBEN = ['#205437', '#17296F', '#8B2225', '#6E6E6E'] as const
+const FARBE_AB = Date.UTC(2026, 9, 17)
+
+/** Die Akzentfarbe einer Karte – aus ihrem Datum, also stabil bei jedem Neubau. */
+export function akzentfarbe(datum: string): string {
+  const tage = Math.round((Date.parse(`${datum}T00:00:00Z`) - FARBE_AB) / 86_400_000)
+  return LOGOFARBEN[((tage % 4) + 4) % 4]
+}
+
+/** Dieselbe Farbe, stark aufgehellt – der Grund der hervorgehobenen Zeile. */
+function hell(farbe: string): string {
+  const kanal = (i: number) =>
+    Math.round(parseInt(farbe.slice(i, i + 2), 16) * 0.13 + 255 * 0.87)
+      .toString(16)
+      .padStart(2, '0')
+  return `#${kanal(1)}${kanal(3)}${kanal(5)}`
+}
 const ROT = '#8e1b1b'
 const GRAU = '#222222'
 const MITTELGRAU = '#555555'
@@ -304,7 +332,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     f.push(
       `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
     )
-  if (!k.titel.some((t) => t.gruen)) f.push('Die Überschrift braucht eine grüne Pointe.')
+  if (!k.titel.some((t) => t.gruen))
+    f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
@@ -509,7 +538,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
               'span',
               {
                 style: {
-                  color: stueck.gruen ? GRUEN : SCHWARZ,
+                  color: stueck.gruen ? akzentfarbe(k.datum) : SCHWARZ,
                   marginRight: rangliste ? 24 : 26,
                 },
               },
@@ -622,7 +651,7 @@ function vergleichsGrafik(k: Vergleichskarte) {
         top: BODEN - hR,
         width: BALKEN,
         height: hR,
-        backgroundColor: GRUEN,
+        backgroundColor: akzentfarbe(k.datum),
       },
     }),
     wertKopf(XL, BODEN - hL, k.links),
@@ -765,11 +794,12 @@ function balken(wert: number, groesster: number, farbe: string) {
 
 function ranglistenGrafik(k: Rangkarte) {
   const mitBalken = k.skala === 'balken'
+  const akzent = akzentfarbe(k.datum)
   const groesster = Math.max(...k.zeilen.map((z) => z.wert))
   const hundert = RL_BALKEN_X + (RL_BALKEN * 100) / groesster
   const hoehe = zeilenhoehe(k.zeilen.length)
   const zeile = (z: Rang, i: number) => {
-    const farbe = z.hervor ? GRUEN : z.schnitt ? MITTELGRAU : SCHWARZ
+    const farbe = z.hervor ? akzent : z.schnitt ? MITTELGRAU : SCHWARZ
     return h(
       'div',
       {
@@ -784,11 +814,11 @@ function ranglistenGrafik(k: Rangkarte) {
           paddingLeft: 18,
           paddingRight: 18,
           borderRadius: 14,
-          backgroundColor: z.hervor ? '#e3eddc' : 'transparent',
+          backgroundColor: z.hervor ? hell(akzent) : 'transparent',
           border: z.schnitt
             ? '3px dashed #777'
             : z.hervor
-              ? `3px solid ${GRUEN}`
+              ? `3px solid ${akzent}`
               : '3px solid transparent',
         },
       },
