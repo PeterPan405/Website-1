@@ -12,8 +12,9 @@
  * `INSTAGRAM.md`.
  *
  *   – Ein Deckblatt und **genau fünf** Meldungskacheln. 54 von 54.
- *   – **Nur montags bis freitags.** 54 von 54 Werktagen, 0 von 22
- *     Wochenendtagen.
+ *   – Bis zum 16.10.2026 **nur montags bis freitags** (54 von 54
+ *     Werktagen, 0 von 22 Wochenendtagen). Seit dem 17.10.2026 **täglich**,
+ *     Anordnung des Betreibers: „mache aber jetzt täglich News des Tages".
  *   – Jede Kachel: eine kurze Überschrift („KI-Werte unter Druck",
  *     „Öl +10 %") und zwei bis drei Sätze.
  *   – Die Beschriftung: fester Kopf, ein bis zwei Sätze zu den fünf Themen,
@@ -121,7 +122,7 @@ export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminv
  *
  * Die Vorbilder sind echte Kacheln aus dem Kanal, nicht ausgedacht.
  */
-export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, montags bis freitags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
+export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
 
 - \`kacheln\`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
@@ -137,13 +138,13 @@ const BILDZEICHEN = /\p{Extended_Pictographic}/u
 /**
  * Erscheint an diesem Tag ein Tagesbeitrag?
  *
- * Gefragt wird das **Datum der Ausgabe** (deutscher Kalendertag), nicht die
- * Uhr des Läufers – der Lauf beginnt kurz nach Mitternacht UTC, und dann ist
- * es in Berlin schon der nächste Tag.
+ * Seit dem 17.10.2026 an **jedem** Tag – der Betreiber: „mache aber jetzt
+ * täglich News des Tages". Bis dahin nur montags bis freitags, so wie es im
+ * Kanal gewesen war. Die Frage bleibt stehen, damit eine Ausnahme (ein
+ * Feiertag, eine Pause) wieder eine Stelle hat.
  */
 export function istErscheinungstag(datum: string): boolean {
-  const tag = new Date(`${datum}T12:00:00Z`).getUTCDay()
-  return tag >= 1 && tag <= 5
+  return /^\d{4}-\d{2}-\d{2}$/.test(datum)
 }
 
 /** Alle Verstöße gegen das Muster, als lesbare Sätze. Leer heißt: in Ordnung. */
@@ -236,7 +237,7 @@ export function tagesstand(datum: string, rohtext: string | null): Tagesstand {
     return {
       datum,
       status: 'kein-beitrag',
-      grund: 'Wochenende – Tagesbeiträge erscheinen montags bis freitags.',
+      grund: `${datum} ist kein Datum der Form JJJJ-MM-TT.`,
     }
   if (rohtext === null)
     return {

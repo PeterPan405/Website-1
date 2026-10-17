@@ -712,7 +712,7 @@ jobs:
 
             ## Der Instagram-Beitrag
 
-            Aus dem Feld `instagram` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, montags bis freitags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
+            Aus dem Feld `instagram` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
 
             - `kacheln`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
               - `titel`: höchstens 28 Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".

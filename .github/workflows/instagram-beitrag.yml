@@ -28,7 +28,7 @@ name: Instagram-Beitrag
 #
 # Der vierte steht weiter unten in diesem Workflow: **die Freigabe des
 # Tages.** Der Tagesbeitrag „Top-News des Tages" ist seit dem Abend des
-# 11. Oktober 2026 dauerhaft freigegeben und geht werktags von selbst hinaus;
+# 11. Oktober 2026 dauerhaft freigegeben und geht seit dem 17.10. täglich von selbst hinaus;
 # jeder andere Beitrag braucht die Freigabe für genau seinen Tag.
 #
 # ## Zwei Riegel im Skript, keiner davon in diesem Workflow
@@ -119,8 +119,8 @@ jobs:
           basis="${basis%/}"
           mkdir -p out/instagram
 
-          # Zuerst: Gibt es heute überhaupt einen Beitrag? Am Wochenende und an
-          # Tagen ohne gültigen Plan steht unter /instagram/ nur das Deckblatt.
+          # Zuerst: Gibt es heute überhaupt einen Beitrag? An Tagen ohne gültigen
+          # Plan steht unter /instagram/ nur das Deckblatt.
           # Das ist kein Fehler – das Skript sagt danach, warum nichts hinausgeht.
           code=$(curl -s -o out/instagram/stand.txt -w '%{http_code}' "$basis/instagram/stand.txt")
           [ "$code" = "200" ] || rm -f out/instagram/stand.txt
@@ -191,9 +191,9 @@ jobs:
       #      nachts gemacht werden … soll bei Instagram die Daily News nun
       #      vollautomatisch erscheinen."
       #
-      # Daraus folgt: **Der Tagesbeitrag ist freigegeben, jeden Werktag, ohne
+      # Daraus folgt: **Der Tagesbeitrag ist freigegeben, jeden Tag, ohne
       # Zutun.** Ob es heute einen gibt, sagt /instagram/stand.txt – „tagesnews"
-      # nur montags bis freitags und nur mit einem Plan, der die Prüfung in
+      # (seit dem 17.10.2026 täglich, davor montags bis freitags) nur mit einem Plan, der die Prüfung in
       # lib/instagram-plan.ts bestanden hat. Alles andere – ein Erklärbeitrag,
       # eine Zahlenkarte, sobald es dafür einen Erzeuger gibt – braucht weiter
       # die Freigabe für genau diesen Tag:

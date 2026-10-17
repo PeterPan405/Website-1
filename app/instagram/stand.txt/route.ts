@@ -11,7 +11,7 @@ import { instagramHeute } from '@/lib/instagram-heute'
  *
  *     2026-10-11
  *     kein-beitrag
- *     Wochenende – Tagesbeiträge erscheinen montags bis freitags.
+ *     Für den 2026-10-11 liegt kein Instagram-Plan vor.
  *
  * ## Warum eine eigene Datei
  *

@@ -143,6 +143,12 @@ Dass es **nur werktags** einen Tagesbeitrag gibt, ist ebenfalls gemessen:
 54 von 54 Werktagen, 0 von 22 Wochenendtagen. Am 11.10.2026 wurde das
 Wochenende zuerst für einen Ausfall gehalten – es war keiner.
 
+**Seit dem 17.10.2026 gilt das nicht mehr:** Der Betreiber hat angeordnet
+„mache aber jetzt täglich News des Tages". Die Messung beschrieb, was war;
+sie war keine Regel, die er sich gesetzt hatte. `istErscheinungstag()` bleibt
+als Stelle für eine künftige Ausnahme stehen, die Deckblätter zählen Tage
+statt Werktage – sonst bekäme das Wochenende das Bild vom Freitag.
+
 Der Tag, für den die Kacheln gelten, steht seither in `/instagram/stand.txt`
 statt in der ersten Zeile der Beschriftung: Die Beschriftung beginnt wie im
 Kanal mit „Die wichtigsten Börsennews des Tages. 📈". `lib/datum-lang.ts`, das

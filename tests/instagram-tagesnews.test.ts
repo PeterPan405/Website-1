@@ -14,7 +14,7 @@
  *      Kopf, Rechtshinweis samt KI-Hinweis, fünf Schlagworte.
  *   2. Der Plan des 9. Oktober besteht die Prüfung; absichtlich verdorbene
  *      Pläne fallen durch. Eine Prüfung, die nie anschlägt, sähe aus wie Ruhe.
- *   3. Nur montags bis freitags – 54 von 54 Werktagen, 0 Wochenendtage.
+ *   3. Täglich seit dem 17.10.2026 – davor nur montags bis freitags.
  *   4. Gesetzte Kacheln: Überschriften wie im Original ein- oder zweizeilig,
  *      der Text unten bündig, nie mehr als fünf Zeilen.
  *   5. Die Anweisung an das Modell steht in beiden Wegen gleich.
@@ -152,11 +152,12 @@ pruefen(
   pruefeInstagramPlan(undefined).length > 0
 )
 
-// ------------------------------------------------------------ 3. Werktage
+// ------------------------------------------------------------ 3. Jeder Tag
 
 pruefen('Freitag, 9.10.2026 ist ein Erscheinungstag', istErscheinungstag('2026-10-09'))
-pruefen('Samstag, 10.10.2026 ist keiner', !istErscheinungstag('2026-10-10'))
-pruefen('Sonntag, 11.10.2026 ist keiner', !istErscheinungstag('2026-10-11'))
+pruefen('Samstag, 17.10.2026 ist einer', istErscheinungstag('2026-10-17'))
+pruefen('Sonntag, 18.10.2026 ist einer', istErscheinungstag('2026-10-18'))
+pruefen('kein Datum ist keiner', !istErscheinungstag('17.10.2026'))
 pruefen('Montag, 12.10.2026 ist einer', istErscheinungstag('2026-10-12'))
 
 const json = JSON.stringify(NEUNTER)
@@ -165,8 +166,8 @@ pruefen(
   tagesstand('2026-10-09', json).status === 'tagesnews'
 )
 pruefen(
-  'Wochenende mit Plan → kein Beitrag',
-  tagesstand('2026-10-10', json).status === 'kein-beitrag'
+  'Wochenende mit Plan → Tagesbeitrag (seit 17.10.2026)',
+  tagesstand('2026-10-17', json).status === 'tagesnews'
 )
 pruefen(
   'Werktag ohne Plan → kein Beitrag',
@@ -334,6 +335,11 @@ const dienstag = deckblatt('2026-10-13').datei
 pruefen(
   'Zwei Werktage hintereinander haben verschiedene Deckblätter',
   montag !== dienstag
+)
+pruefen(
+  'Freitag, Samstag und Sonntag haben drei verschiedene Deckblätter',
+  new Set(['2026-10-16', '2026-10-17', '2026-10-18'].map((d) => deckblatt(d).datei))
+    .size === 3
 )
 pruefen(
   'Dasselbe Datum ergibt dasselbe Deckblatt',
