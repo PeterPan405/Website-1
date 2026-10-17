@@ -1,0 +1,116 @@
+name: X-Beitrag
+
+# Teilt die Tagesnews und die Zahlenkarte auf X (Twitter) – dieselben Bilder
+# wie auf Instagram, eigener kurzer Text (`lib/x-text.ts`).
+#
+# Anordnung des Betreibers vom 17.10.2026: „Ich möchte die News und Beiträge
+# auch auf Twitter (X) automatisch teilen." Eingerichtet wird das Konto in
+# der Sitzung am PC des Betreibers – Anleitung in `werkzeuge/x-einrichten.md`.
+#
+# ## Wann etwas hinausgeht
+#
+# Nur bei `scharf`:
+#   - `ja` – von Hand, zum ersten Probelauf;
+#   - `auto` – Anstoß aus `paket-bauen.yml` (Tagesnews) und
+#     `instagram-zahlenkarte.yml` (Zahlenkarte), und die Crons. Scharf erst,
+#     wenn die Variable `X_AKTIV` auf `ja` steht – gesetzt nach dem ersten
+#     erfolgreichen Probelauf.
+#   - `nein` – Trockenlauf: Texte und Bilder geprüft und gezeigt.
+#
+# Ohne die vier Secrets endet jeder Lauf grün mit einem Hinweis. Die Riegel
+# stehen im Skript (`scripts/x-veroeffentlichen.ts`): Website zeigt heute,
+# Zahlenkarte freigegeben und 16 Uhr vorbei, für heute noch nichts auf X.
+#
+# Die Crons sind Rückfall, auf krummen Minuten: 03:29 UTC für die Tagesnews
+# (nach dem Instagram-Rückfall), 15:19 UTC für die Zahlenkarte – im Sommer
+# 17:19, im Winter 16:19, beides nach 16 Uhr.
+
+on:
+  workflow_dispatch:
+    inputs:
+      art:
+        description: 'Was geteilt wird'
+        type: choice
+        options: [tagesnews, zahlenkarte]
+        default: tagesnews
+      scharf:
+        description: 'nein = Trockenlauf, ja = veröffentlichen, auto = nur wenn X_AKTIV=ja'
+        type: choice
+        options: [nein, ja, auto]
+        default: nein
+  schedule:
+    - cron: '29 3 * * *'
+    - cron: '19 15 * * *'
+
+concurrency:
+  group: x-beitrag
+  cancel-in-progress: false
+
+jobs:
+  teilen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Art und Schärfe bestimmen
+        id: art
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "29 3 * * *" ]; then art=tagesnews; else art=zahlenkarte; fi
+            scharf=auto
+          else
+            art="${{ inputs.art }}"
+            scharf="${{ inputs.scharf }}"
+          fi
+          if [ "$scharf" = "auto" ]; then
+            if [ "${{ vars.X_AKTIV }}" = "ja" ]; then scharf=ja; else scharf=nein; fi
+          fi
+          echo "art=$art" >> "$GITHUB_OUTPUT"
+          echo "scharf=$scharf" >> "$GITHUB_OUTPUT"
+          echo "Art: $art, scharf: $scharf (X_AKTIV: ${{ vars.X_AKTIV || 'nicht gesetzt' }})"
+
+      # Die Marke liegt auf einem wurzellosen Zweig – wie `instagram-sperre`.
+      - name: Marke holen
+        run: |
+          if git fetch --depth 1 origin x-gepostet 2>/dev/null; then
+            git show FETCH_HEAD:x-gepostet.txt > x-gepostet.txt 2>/dev/null || true
+          fi
+          echo "Bisher auf X:"; tail -n 5 x-gepostet.txt 2>/dev/null | sed 's/^/  /' || echo "  (nichts)"
+
+      - name: Teilen
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          SCHARF: ${{ steps.art.outputs.scharf }}
+          MARKE: x-gepostet.txt
+          MARKE_NEU: x-gepostet-neu.txt
+          NEXT_PUBLIC_SITE_URL: https://iminvests.de
+        run: node --experimental-strip-types scripts/x-veroeffentlichen.ts "${{ steps.art.outputs.art }}"
+
+      # Auch nach einem Fehler: Steht der erste Post, muss die Marke hinauf,
+      # sonst schickt der nächste Lauf ihn ein zweites Mal. Scheitert dieser
+      # Push, ist der Lauf rot – sonst laufen Kanal und Marke auseinander.
+      - name: Marke schreiben
+        if: always()
+        run: |
+          [ -f x-gepostet-neu.txt ] || { echo "Nichts Neues."; exit 0; }
+          inhalt=$(mktemp)
+          cat x-gepostet.txt x-gepostet-neu.txt 2>/dev/null | tail -n 400 > "$inhalt"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan x-gepostet
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" x-gepostet.txt
+          git add x-gepostet.txt
+          git commit -m "X: $(tail -n 1 x-gepostet.txt)"
+          git push --force origin x-gepostet

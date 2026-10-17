@@ -40,6 +40,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+      actions: write
     steps:
       - uses: actions/checkout@v5
 
@@ -53,3 +54,15 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           NEXT_PUBLIC_SITE_URL: https://iminvests.de
         run: node --experimental-strip-types scripts/instagram-zahlenkarte.ts
+
+      # Dieselbe Karte auf X (Betreiber, 17.10.2026) – erst, wenn X scharf
+      # gestellt ist. Die Riegel dort sind dieselben: Freigabe heute, 16 Uhr
+      # vorbei, heute noch nicht geteilt.
+      - name: X-Beitrag anstoßen
+        if: always() && vars.X_AKTIV == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run x-beitrag.yml --repo "${{ github.repository }}" --ref main \
+            -f art=zahlenkarte -f scharf=auto \
+            || echo "::warning::Der X-Lauf ließ sich nicht anstoßen – der Rückfall um 15:19 UTC greift."
