@@ -85,7 +85,7 @@ export interface Rang {
   name: string
   /** Prozent – bei Häuschen 0 bis 100, eins je zehn; bei Balken auch darüber. */
   wert: number
-  /** Schlüssel in `FLAGGEN`: ISO-3 oder „EU27". */
+  /** Schlüssel in `FLAGGEN`: ISO-3, „EU27" oder „WELT" (Schnitt aller Länder). */
   land: string
   /** Die Zeile, um die es geht – dunkelgrün, umrandet. Genau eine. */
   hervor?: boolean
@@ -119,6 +119,8 @@ export interface Flagge {
   wappen?: string
   /** Statt Streifen ein Kürzel auf der ersten Farbe – „EU". */
   kuerzel?: string
+  /** Farbe des Kürzels, sonst Gelb wie die Sterne der EU. */
+  kuerzelFarbe?: string
   /** Die ganze Flagge als SVG, quadratisch – für Flaggen ohne Streifen (Japan, USA). */
   svg?: string
 }
@@ -179,6 +181,7 @@ export const FLAGGEN: Record<string, Flagge> = {
   DEU: { streifen: ['#000000', '#DD0000', '#FFCE00'] },
   ESP: { streifen: ['#AA151B', '#F1BF00', '#AA151B'], gewichte: [1, 2, 1] },
   EU27: { streifen: ['#003399'], kuerzel: 'EU' },
+  WELT: { streifen: ['#555555'], kuerzel: 'Ø', kuerzelFarbe: '#FFFFFF' },
   FRA: { streifen: ['#002395', '#FFFFFF', '#ED2939'], senkrecht: true },
   HUN: { streifen: ['#CE2939', '#FFFFFF', '#477050'] },
   IRL: { streifen: ['#169B62', '#FFFFFF', '#FF883E'], senkrecht: true },
@@ -382,8 +385,8 @@ const flagge = (fl: Flagge, groesse: number, rand: number) =>
                 style: {
                   fontFamily: 'Open',
                   fontWeight: 700,
-                  fontSize: Math.round(groesse * 0.35),
-                  color: '#FFCC00',
+                  fontSize: Math.round(groesse * (fl.kuerzel.length === 1 ? 0.6 : 0.35)),
+                  color: fl.kuerzelFarbe ?? '#FFCC00',
                 },
               },
               fl.kuerzel
