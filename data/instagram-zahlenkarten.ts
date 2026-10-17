@@ -40,6 +40,11 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-17',
+    /*
+      Freigegeben vom Betreiber am 17.10.2026 um 11:49 („perfekt das passt",
+      Entwurf 2 mit Länderschnitt). Hinaus geht sie frühestens um 16 Uhr.
+    */
+    freigabe: '2026-10-17',
     titel: [
       { text: 'Staatsschulden:' },
       { text: 'Wer am tiefsten drinsteckt', gruen: true },
