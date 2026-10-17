@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-16T07:52:52.715Z",
+  "abgerufen": "2026-10-17T08:01:21.451Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -106,7 +106,7 @@
     {"title":"Capacity Utilization Rate","country":"USD","date":"2026-10-16T09:15:00-04:00","impact":"Low","forecast":"76.5%","previous":"76.3%"},
     {"title":"Industrial Production m/m","country":"USD","date":"2026-10-16T09:15:00-04:00","impact":"Low","forecast":"0.4%","previous":"0.0%"},
     {"title":"IMF Meetings","country":"All","date":"2026-10-16T10:15:00-04:00","impact":"Low","forecast":"","previous":""},
-    {"title":"Federal Budget Balance","country":"USD","date":"2026-10-16T14:00:00-04:00","impact":"Low","forecast":"-34.7B","previous":"-166.8B"},
+    {"title":"Federal Budget Balance","country":"USD","date":"2026-10-16T14:05:00-04:00","impact":"Low","forecast":"-34.7B","previous":"-166.8B"},
     {"title":"TIC Long-Term Purchases","country":"USD","date":"2026-10-16T16:00:00-04:00","impact":"Low","forecast":"75.2B","previous":"-27.9B"},
     {"title":"German Buba President Nagel Speaks","country":"EUR","date":"2026-10-17T00:45:00-04:00","impact":"Low","forecast":"","previous":""},
     {"title":"BOE Gov Bailey Speaks","country":"GBP","date":"2026-10-17T02:45:00-04:00","impact":"Medium","forecast":"","previous":""},
