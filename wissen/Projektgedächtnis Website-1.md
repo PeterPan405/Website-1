@@ -15,11 +15,12 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**30 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**31 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-17** – [[X teilt, was Instagram zeigt]]
 - **2026-10-16** – [[Canva Sans ist nicht zu haben]]
 - **2026-10-16** – [[Der Kalender liest ForexFactory]]
 - **2026-10-16** – [[Die Kacheln bekommen Bilder]]

@@ -1087,6 +1087,18 @@ jobs:
             echo "  Der Rückfalltermin um 04:52 deutscher Zeit greift."
           fi
 
+      # Dieselben Tagesnews auf X (Betreiber, 17.10.2026). Erst, wenn X
+      # eingerichtet und scharf gestellt ist – sonst liefen bei jedem Bau
+      # Trockenläufe ohne Zweck. Riegel und Marke im Lauf selbst.
+      - name: X-Beitrag anstoßen
+        if: steps.ssh.outputs.bereit == 'ja' && vars.X_AKTIV == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run x-beitrag.yml --repo "${{ github.repository }}" --ref main \
+            -f art=tagesnews -f scharf=auto \
+            || echo "::warning::Der X-Lauf ließ sich nicht anstoßen – der Rückfall um 03:29 UTC greift."
+
       # ------------------------------------------------------------------
       # Der Podcast-Feed – die Datei, die Spotify liest.
       #
