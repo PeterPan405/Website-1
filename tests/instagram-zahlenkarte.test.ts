@@ -70,7 +70,7 @@ pruefe('fünf Schlagworte', (b.match(/#[a-zäöüß0-9]+/g) ?? []).length === 5)
 
 /* Die Rangliste muss beanstanden, was ihre Form verfehlt. */
 const rang: Rangkarte = {
-  ...(zahlenkarten.find((k) => k.art === 'rangliste') as Rangkarte),
+  ...(zahlenkarten.find((k) => k.datum === '2026-10-15') as Rangkarte),
   zeilen: [
     { name: 'Klein', wert: 40, land: 'DEU', hervor: true },
     { name: 'Gross', wert: 90, land: 'POL', hervor: true },
@@ -215,6 +215,57 @@ pruefe(
   inflation.differenz.text ===
     `+${(inflation.rechts.wert - inflation.links.wert).toFixed(1).replace('.', ',')}`
 )
+
+/*
+  Die Karte vom 17.10.2026 – Staatsschulden, jede Zeile gegen den
+  IWF-Bestand in `laender.json`. Oben und unten stehen die Ränder aller
+  Länder mit einem Wert für 2025; ältere (Eritrea, 2019) zählen nicht.
+*/
+const schulden = zahlenkarten.find((k) => k.datum === '2026-10-17') as Rangkarte
+const quote: Record<string, { schuldenquote?: { wert: number; jahr: number } }> =
+  JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
+const aktuell = Object.entries(quote)
+  .filter(([, l]) => l.schuldenquote?.jahr === 2025)
+  .map(([land, l]) => ({ land, wert: l.schuldenquote!.wert }))
+  .sort((a, b) => b.wert - a.wert)
+for (const z of schulden.zeilen)
+  pruefe(
+    `Schulden ${z.name} wie im Bestand (${quote[z.land]?.schuldenquote?.wert})`,
+    quote[z.land]?.schuldenquote?.wert === z.wert &&
+      quote[z.land]?.schuldenquote?.jahr === 2025
+  )
+pruefe(
+  'oben steht der höchste Wert für 2025',
+  schulden.zeilen[0].land === aktuell[0].land
+)
+pruefe('unten der niedrigste', schulden.zeilen.at(-1)!.land === aktuell.at(-1)!.land)
+const platz = aktuell.findIndex((l) => l.land === 'DEU') + 1
+pruefe(
+  `Deutschland auf Platz ${platz} von ${aktuell.length}, wie im Text`,
+  schulden.text.includes(`Platz ${platz} von ${aktuell.length}`) &&
+    schulden.fusszeile.includes(`${aktuell.length} Ländern`)
+)
+pruefe(
+  'jede Zahl der Karte steht so im Text',
+  schulden.zeilen.every((z) =>
+    schulden.text.includes(`${z.wert.toFixed(1).replace('.', ',')} %`)
+  )
+)
+pruefe(
+  'Frankreichs Anleiherenditen wie in der Meldung vom 12.10.',
+  nachricht.includes('Anleihezinsen bleiben hoch: Frankreich unter Druck')
+)
+pruefe(
+  'mit Häuschen beanstandet die Rangliste Werte über 100',
+  pruefeZahlenkarte({ ...schulden, skala: 'haeuser' as const }).some((f) =>
+    f.includes("skala: 'balken'")
+  )
+)
+const schuldenPng = await zahlenkartePng(
+  schulden,
+  readFileSync('public/logo.svg', 'utf8')
+)
+pruefe('Balken: das Bild ist ein PNG', schuldenPng.subarray(1, 4).toString() === 'PNG')
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`

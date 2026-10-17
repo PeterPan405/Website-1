@@ -16,6 +16,53 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 16.10.2026 („Für morgen Thema 1 mit den
+      Staatsschulden"), Zuschnitt am 17.10.: „Niedrigstes. Höchstes, so. Und
+      vielleicht noch Frankreich, weil die machen Probleme." – also der
+      niedrigste und der höchste Wert aller Länder, Frankreich und die vier
+      aus dem Vorschlag (Deutschland, USA, Italien, Japan).
+
+      Zahlen: data/snapshots/laender.json, `schuldenquote` – IWF, World
+      Economic Outlook (GGXWDG_NGDP), Bruttoschuld des Gesamtstaats in % des
+      BIP, Jahr 2025. 188 Länder haben einen Wert für 2025; oben Venezuela
+      308,7, unten Liechtenstein 0,5. Eritrea (260,4) stammt aus 2019 und
+      zählt nicht mit. Deutschland steht auf Platz 68 von 188.
+
+      Frankreichs „Probleme": Goldreporter, Top-News vom 12.10.2026
+      („Anleihezinsen bleiben hoch: Frankreich unter Druck"), so in
+      data/news.ts.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    art: 'rangliste',
+    skala: 'balken',
+    datum: '2026-10-17',
+    titel: [
+      { text: 'Staatsschulden:' },
+      { text: 'Wer am tiefsten drinsteckt', gruen: true },
+    ],
+    unterzeile: 'Schulden des Staates in % der Wirtschaftsleistung:',
+    zeilen: [
+      { name: 'Venezuela', wert: 308.7, land: 'VEN' },
+      { name: 'Japan', wert: 206.5, land: 'JPN' },
+      { name: 'Italien', wert: 137.1, land: 'ITA' },
+      { name: 'USA', wert: 123.9, land: 'USA' },
+      { name: 'Frankreich', wert: 116, land: 'FRA' },
+      { name: 'Deutschland', wert: 62.9, land: 'DEU', hervor: true },
+      { name: 'Liechtenstein', wert: 0.5, land: 'LIE' },
+    ],
+    fusszeile:
+      'Stand: 2025 | Quelle: IWF, World Economic Outlook | Auswahl aus 188 Ländern',
+    text:
+      'Venezuela schuldet mehr als das Dreifache seiner Wirtschaftsleistung: 308,7 % des BIP – der höchste Wert aller Länder mit Zahlen für 2025. Dahinter folgt Japan mit 206,5 %. 📊\n\n' +
+      'Auch Italien (137,1 %), die USA (123,9 %) und Frankreich (116,0 %) liegen über 100 %: Der Staat schuldet dort mehr, als das ganze Land in einem Jahr erwirtschaftet. ' +
+      'In Frankreich bleiben die Anleiherenditen zudem hoch. ' +
+      'Deutschland kommt auf 62,9 % – Platz 68 von 188 Ländern. Am wenigsten Schulden hat Liechtenstein mit 0,5 %.\n\n' +
+      'Gezählt wird die Bruttoschuld des Gesamtstaats in der einheitlichen Abgrenzung des IWF; sie weicht von den Maastricht-Zahlen der EU ab.\n' +
+      'Quellen: IWF, World Economic Outlook (Stand 2025); Goldreporter (12.10.2026) zu Frankreich',
+    schlagworte: ['staatsschulden', 'schulden', 'wirtschaft', 'börse', 'finanzen'],
+  },
+  {
+    /*
       Thema: keine Wahl des Betreibers für den 16.10. – laut Ablauf der erste
       offene Vorschlag vom 15.10. („US-Inflation springt auf 3,7 %").
 

@@ -83,7 +83,7 @@ export interface Vergleichskarte extends KarteGemeinsam {
 /** Eine Zeile der Rangliste. */
 export interface Rang {
   name: string
-  /** Prozent, 0 bis 100 – ein Häuschen je zehn. */
+  /** Prozent – bei Häuschen 0 bis 100, eins je zehn; bei Balken auch darüber. */
   wert: number
   /** Schlüssel in `FLAGGEN`: ISO-3 oder „EU27". */
   land: string
@@ -99,6 +99,12 @@ export interface Rangkarte extends KarteGemeinsam {
   unterzeile: string
   /** Absteigend, vier bis elf Zeilen. */
   zeilen: Rang[]
+  /**
+   * Häuschen (Voreinstellung) für Anteile bis 100 %, Balken für Werte, die
+   * darüber gehen – Staatsschulden von 308,7 % des BIP wären 31 Häuschen.
+   * Die Balken zeigen eine gestrichelte Linie bei 100 %.
+   */
+  skala?: 'haeuser' | 'balken'
 }
 
 export type Zahlenkarte = Vergleichskarte | Rangkarte
@@ -113,12 +119,50 @@ export interface Flagge {
   wappen?: string
   /** Statt Streifen ein Kürzel auf der ersten Farbe – „EU". */
   kuerzel?: string
+  /** Die ganze Flagge als SVG, quadratisch – für Flaggen ohne Streifen (Japan, USA). */
+  svg?: string
 }
 
 /*
   Nur Länder, deren Flagge aus Streifen besteht – oder deren Wappen sich in
   46 px noch erkennen lässt. Ohne Wappen wäre die Slowakei Russland.
 */
+/*
+  Flaggen, die sich nicht aus Streifen legen lassen, als ganzes Bild –
+  vereinfacht auf das, was in 46 px noch zu sehen ist: die Sterne als Punkte,
+  die Krone Liechtensteins als Umriss.
+*/
+const quadrat = (inhalt: string) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">${inhalt}</svg>`
+const FLAGGE_JAPAN = quadrat(
+  '<rect width="60" height="60" fill="#fff"/><circle cx="30" cy="30" r="17" fill="#BC002D"/>'
+)
+const FLAGGE_USA = quadrat(
+  Array.from(
+    { length: 13 },
+    (_, i) =>
+      `<rect y="${((i * 60) / 13).toFixed(2)}" width="60" height="${(60 / 13 + 0.1).toFixed(2)}" fill="${i % 2 ? '#fff' : '#B22234'}"/>`
+  ).join('') +
+    '<rect width="30" height="32.3" fill="#3C3B6E"/>' +
+    [8, 16, 24]
+      .flatMap((y) =>
+        [9, 17, 25].map((x) => `<circle cx="${x}" cy="${y}" r="1.8" fill="#fff"/>`)
+      )
+      .join('')
+)
+const FLAGGE_LIECHTENSTEIN = quadrat(
+  '<rect width="60" height="30" fill="#002B7F"/><rect y="30" width="60" height="30" fill="#CE1126"/>' +
+    '<path d="M13 23 L13 15 L17 19 L20.5 12 L24 19 L28 15 L28 23 Z" fill="#FFD83D"/>'
+)
+const FLAGGE_VENEZUELA = quadrat(
+  '<rect width="60" height="20" fill="#FFCC00"/><rect y="20" width="60" height="20" fill="#00247D"/>' +
+    '<rect y="40" width="60" height="20" fill="#CF142B"/>' +
+    Array.from({ length: 8 }, (_, i) => {
+      const w = Math.PI * (1.1 + (0.8 * i) / 7)
+      return `<circle cx="${(30 + 13 * Math.cos(w)).toFixed(1)}" cy="${(36 + 13 * Math.sin(w)).toFixed(1)}" r="1.6" fill="#fff"/>`
+    }).join('')
+)
+
 const WAPPEN_SLOWAKEI =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24">' +
   '<path d="M1 1H19V12C19 18 14 21 10 23C6 21 1 18 1 12Z" fill="#fff"/>' +
@@ -139,10 +183,14 @@ export const FLAGGEN: Record<string, Flagge> = {
   HUN: { streifen: ['#CE2939', '#FFFFFF', '#477050'] },
   IRL: { streifen: ['#169B62', '#FFFFFF', '#FF883E'], senkrecht: true },
   ITA: { streifen: ['#009246', '#FFFFFF', '#CE2B37'], senkrecht: true },
+  JPN: { streifen: ['#FFFFFF'], svg: FLAGGE_JAPAN },
+  LIE: { streifen: ['#002B7F'], svg: FLAGGE_LIECHTENSTEIN },
   NLD: { streifen: ['#AE1C28', '#FFFFFF', '#21468B'] },
   POL: { streifen: ['#FFFFFF', '#DC143C'] },
   ROU: { streifen: ['#002B7F', '#FCD116', '#CE1126'], senkrecht: true },
   SVK: { streifen: ['#FFFFFF', '#0B4EA2', '#EE1C25'], wappen: WAPPEN_SLOWAKEI },
+  USA: { streifen: ['#B22234'], svg: FLAGGE_USA },
+  VEN: { streifen: ['#FFCC00'], svg: FLAGGE_VENEZUELA },
 }
 
 const SCHWARZ = '#000000'
@@ -226,9 +274,23 @@ const RL_TITEL = 104
 const RL_UNTERZEILE = 478
 const RL_OBEN = 560
 const RL_ZEILE = 62
+/*
+  Weniger als elf Zeilen verteilen sich auf dieselbe Höhe, bis 84 px je
+  Zeile – sieben zu 62 px ließen unten ein Viertel der Karte leer
+  (Entwurf vom 17.10.2026). Elf bleiben bei 62.
+*/
 export const RL_ZEILEN_MAX = 11
+const RL_UNTEN = RL_OBEN + RL_ZEILEN_MAX * RL_ZEILE
+const zeilenhoehe = (n: number) => Math.min(84, Math.floor((RL_UNTEN - RL_OBEN) / n))
 const HAUS = 38
 const HAUS_ABSTAND = 7
+/*
+  Die Balken beginnen, wo die Häuschen beginnen: Zeile ab 40, Rand 3,
+  Innenabstand 18, Flagge 46, Abstand 16, Name 250. Der längste ist 430 px
+  lang – Platz für „308,7 %" rechts daneben.
+*/
+const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
+const RL_BALKEN = 430
 
 /** Was an einer Karte nicht stimmt – leer heißt: in Ordnung. */
 export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
@@ -271,8 +333,12 @@ function pruefeRangliste(k: Rangkarte): string[] {
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
   if (!k.unterzeile.trim()) f.push('Die Unterzeile fehlt.')
   for (const [i, z] of k.zeilen.entries()) {
-    if (!(z.wert > 0 && z.wert <= 100))
-      f.push(`${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100.`)
+    if (!(z.wert > 0))
+      f.push(`${z.name}: ${z.wert} – der Wert muss größer als null sein.`)
+    else if (k.skala !== 'balken' && z.wert > 100)
+      f.push(
+        `${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100; darüber skala: 'balken'.`
+      )
     if (!FLAGGEN[z.land]) f.push(`${z.name}: keine Flagge für „${z.land}" in FLAGGEN.`)
     if (i > 0 && z.wert > k.zeilen[i - 1].wert)
       f.push(`${z.name} steht unter ${k.zeilen[i - 1].name}, hat aber mehr – absteigend.`)
@@ -306,46 +372,48 @@ const flagge = (fl: Flagge, groesse: number, rand: number) =>
         backgroundColor: fl.streifen[0],
       },
     },
-    ...(fl.kuerzel
-      ? [
-          h(
-            'div',
-            {
-              style: {
-                fontFamily: 'Open',
-                fontWeight: 700,
-                fontSize: Math.round(groesse * 0.35),
-                color: '#FFCC00',
+    ...(fl.svg
+      ? [h('img', { src: svgAdresse(fl.svg), width: groesse, height: groesse })]
+      : fl.kuerzel
+        ? [
+            h(
+              'div',
+              {
+                style: {
+                  fontFamily: 'Open',
+                  fontWeight: 700,
+                  fontSize: Math.round(groesse * 0.35),
+                  color: '#FFCC00',
+                },
               },
-            },
-            fl.kuerzel
-          ),
-        ]
-      : [
-          ...fl.streifen.map((farbe, i) =>
-            h('div', {
-              style: {
-                flex: fl.gewichte?.[i] ?? 1,
-                alignSelf: 'stretch',
-                backgroundColor: farbe,
-              },
-            })
-          ),
-          ...(fl.wappen
-            ? [
-                h('img', {
-                  src: svgAdresse(fl.wappen),
-                  width: groesse * 0.43,
-                  height: groesse * 0.52,
-                  style: {
-                    position: 'absolute',
-                    left: groesse * 0.15,
-                    top: groesse * 0.2,
-                  },
-                }),
-              ]
-            : []),
-        ])
+              fl.kuerzel
+            ),
+          ]
+        : [
+            ...fl.streifen.map((farbe, i) =>
+              h('div', {
+                style: {
+                  flex: fl.gewichte?.[i] ?? 1,
+                  alignSelf: 'stretch',
+                  backgroundColor: farbe,
+                },
+              })
+            ),
+            ...(fl.wappen
+              ? [
+                  h('img', {
+                    src: svgAdresse(fl.wappen),
+                    width: groesse * 0.43,
+                    height: groesse * 0.52,
+                    style: {
+                      position: 'absolute',
+                      left: groesse * 0.15,
+                      top: groesse * 0.2,
+                    },
+                  }),
+                ]
+              : []),
+          ])
   )
 
 const haus = (farbe: string) =>
@@ -676,7 +744,27 @@ function haeuser(wert: number, farbe: string) {
   )
 }
 
+/** Ein Balken, gemessen am größten Wert der Liste – mindestens ein Strich. */
+function balken(wert: number, groesster: number, farbe: string) {
+  return h(
+    'div',
+    { style: { display: 'flex', width: RL_BALKEN, height: 34 } },
+    h('div', {
+      style: {
+        width: Math.max(4, (RL_BALKEN * wert) / groesster),
+        height: 34,
+        borderRadius: 4,
+        backgroundColor: farbe,
+      },
+    })
+  )
+}
+
 function ranglistenGrafik(k: Rangkarte) {
+  const mitBalken = k.skala === 'balken'
+  const groesster = Math.max(...k.zeilen.map((z) => z.wert))
+  const hundert = RL_BALKEN_X + (RL_BALKEN * 100) / groesster
+  const hoehe = zeilenhoehe(k.zeilen.length)
   const zeile = (z: Rang, i: number) => {
     const farbe = z.hervor ? GRUEN : z.schnitt ? MITTELGRAU : SCHWARZ
     return h(
@@ -686,8 +774,8 @@ function ranglistenGrafik(k: Rangkarte) {
           position: 'absolute',
           left: 40,
           right: 40,
-          top: RL_OBEN + i * RL_ZEILE,
-          height: RL_ZEILE - 6,
+          top: RL_OBEN + i * hoehe,
+          height: hoehe - 6,
           display: 'flex',
           alignItems: 'center',
           paddingLeft: 18,
@@ -716,7 +804,9 @@ function ranglistenGrafik(k: Rangkarte) {
         },
         z.name
       ),
-      haeuser(z.wert, z.schnitt ? '#777777' : farbe),
+      mitBalken
+        ? balken(z.wert, groesster, z.schnitt ? '#777777' : farbe)
+        : haeuser(z.wert, z.schnitt ? '#777777' : farbe),
       h(
         'div',
         {
@@ -752,9 +842,51 @@ function ranglistenGrafik(k: Rangkarte) {
         },
       },
       k.unterzeile,
-      h('img', { src: haus(SCHWARZ), width: 30, height: 30, style: { marginLeft: 12 } }),
-      h('div', { style: { marginLeft: 8, fontWeight: 400 } }, '= 10 %')
+      ...(mitBalken
+        ? []
+        : [
+            h('img', {
+              src: haus(SCHWARZ),
+              width: 30,
+              height: 30,
+              style: { marginLeft: 12 },
+            }),
+            h('div', { style: { marginLeft: 8, fontWeight: 400 } }, '= 10 %'),
+          ])
     ),
+    /* Die 100-%-Linie: links davon weniger Schulden als ein Jahr Wirtschaftsleistung. */
+    ...(mitBalken && groesster > 100
+      ? [
+          h('div', {
+            style: {
+              position: 'absolute',
+              left: hundert - 1,
+              top: RL_OBEN - 14,
+              width: 0,
+              height: k.zeilen.length * hoehe + 8,
+              borderLeft: '3px dashed #777',
+            },
+          }),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                left: hundert - 60,
+                top: RL_OBEN - 44,
+                width: 120,
+                display: 'flex',
+                justifyContent: 'center',
+                fontFamily: 'Open',
+                fontWeight: 700,
+                fontSize: 22,
+                color: MITTELGRAU,
+              },
+            },
+            '100 %'
+          ),
+        ]
+      : []),
     ...k.zeilen.map(zeile),
   ]
 }
