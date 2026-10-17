@@ -194,6 +194,9 @@ export const MOTIVE: Motiv[] = [
       'Fabrik*',
       'Autobauer*',
       'Autoindustrie',
+      'Autoaktie*',
+      'Autowerte',
+      'Verbrenner*',
       'VW',
       'BMW',
       'Mercedes'
@@ -215,7 +218,11 @@ export const MOTIVE: Motiv[] = [
       'Kapitalregel*',
       'Anleihe*',
       'Rendite*',
-      'Umzug'
+      'Umzug',
+      'Index-*',
+      'Indizes',
+      'Schwellenl*',
+      'Börse*'
     ),
     auchImText: false,
   },

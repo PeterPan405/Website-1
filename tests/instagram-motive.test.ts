@@ -7,8 +7,20 @@ import { existsSync, readFileSync } from 'node:fs'
 
 import sharp from 'sharp'
 
-import { BILDZONE, meldungskachel, motivJpeg } from '@/lib/instagram-bild'
-import { kachelKurs } from '@/lib/instagram-kurs'
+import {
+  achsenTage,
+  achsenTeilung,
+  BILDZONE,
+  meldungskachel,
+  motivJpeg,
+} from '@/lib/instagram-bild'
+import {
+  kachelKurs,
+  kursFuerKachel,
+  letzterHandelstag,
+  preiseIn,
+} from '@/lib/instagram-kurs'
+import type { MarketQuote } from '@/lib/markets'
 import { bebildere, kursZurKachel, MOTIVE, woerter } from '@/lib/instagram-motive'
 
 let failed = 0
@@ -86,6 +98,123 @@ pruefe('„Ukraine" bekommt keine New Yorker Skyline', ukraine.motiv === null)
 const brent = await kachelKurs('brent')
 pruefe('Brent hat einen Verlauf', (brent?.punkte.length ?? 0) >= 5, JSON.stringify(brent))
 pruefe('… mit Dollarzeichen', brent?.wert.endsWith(' $') ?? false, brent?.wert)
+pruefe('… und einem Tag zu jedem Punkt', brent?.tage.length === brent?.punkte.length)
+
+/*
+  Der Fall vom 17.10.2026: „Brent nahe 110 $", die Grafik zeigte „105,92 $
+  −2,6 %". Die Tagesreihe endete am 15.10., der Freitag stand nur im
+  laufenden Kurs; die Prozentzahl galt 30 Tagen. Der Betreiber hat den
+  Beitrag gelöscht. Nachgestellt mit den Zahlen von damals.
+*/
+const reihe1510 = [
+  ['2026-10-09', 104.72],
+  ['2026-10-12', 106.65],
+  ['2026-10-13', 105.69],
+  ['2026-10-14', 106.06],
+  ['2026-10-15', 105.92],
+].map(([t, value]) => ({ t: t as string, value: value as number }))
+const freitag = {
+  value: 109.69,
+  changePercent: 3.5592900302114767,
+  asOf: '2026-10-16T20:59:31.000Z',
+} as MarketQuote
+const brentKachel = {
+  titel: 'Brent nahe 110 $',
+  text: 'Die Sorte Brent näherte sich am Freitag 110 Dollar je Barrel. Iran hat seine Angriffe in der Straße von Hormus verstärkt.',
+}
+const fall = kursFuerKachel('brent', reihe1510, freitag, brentKachel, '2026-10-17')
+pruefe(
+  '17.10.: der Freitag schließt die Reihe ab – 109,69 $, +3,6 % zum Vortag',
+  'kurs' in fall &&
+    fall.kurs.wert === '109,69 $' &&
+    fall.kurs.aenderung.toFixed(1) === '3.6' &&
+    fall.kurs.tage.at(-1) === '2026-10-16' &&
+    fall.kurs.unterzeile.includes('Stand 16.10.'),
+  JSON.stringify(fall)
+)
+pruefe(
+  '17.10.: ohne den laufenden Kurs keine Grafik – sie endete vor dem Tag der Meldung',
+  'grund' in kursFuerKachel('brent', reihe1510, undefined, brentKachel, '2026-10-17')
+)
+pruefe(
+  'eine Zahl der Kachel, die der Grafik widerspricht, verhindert sie',
+  'grund' in
+    kursFuerKachel(
+      'brent',
+      reihe1510,
+      freitag,
+      { titel: 'Brent über 120 $', text: brentKachel.text },
+      '2026-10-17'
+    )
+)
+pruefe(
+  '„fällt" bei steigendem Kurs verhindert sie',
+  'grund' in
+    kursFuerKachel(
+      'brent',
+      reihe1510,
+      freitag,
+      { titel: 'Ölpreis fällt', text: 'Brent fiel am Freitag deutlich.' },
+      '2026-10-17'
+    )
+)
+pruefe(
+  '„steigt" bei fallendem Kurs verhindert sie',
+  'grund' in
+    kursFuerKachel(
+      'brent',
+      reihe1510,
+      { ...freitag, value: 102, changePercent: -3.7 },
+      { titel: 'Ölpreis steigt', text: 'Brent stieg am Freitag.' },
+      '2026-10-17'
+    )
+)
+pruefe(
+  'Preise: „110 Dollar", „4.200 $", „25.600 Punkte"',
+  JSON.stringify(preiseIn('110 Dollar, 4.200 $ und 25.600 Punkte, 3,5 Prozent')) ===
+    '[110,4200,25600]'
+)
+pruefe(
+  'letzter Handelstag vor Samstag, Sonntag, Montag ist der Freitag',
+  ['2026-10-17', '2026-10-18', '2026-10-19'].every(
+    (d) => letzterHandelstag(d) === '2026-10-16'
+  )
+)
+pruefe(
+  'letzter Handelstag vor Mittwoch ist Dienstag',
+  letzterHandelstag('2026-10-21') === '2026-10-20'
+)
+
+/* Achsen (Betreiber 17.10.: „immer eine X- und Y-Achse mit den Koordinaten"). */
+const teilung = achsenTeilung(99.2, 109.69)
+pruefe(
+  'Y-Achse: runde Werte, die den Verlauf einschließen',
+  teilung.werte[0] <= 99.2 &&
+    teilung.werte.at(-1)! >= 109.69 &&
+    teilung.werte.length >= 3 &&
+    teilung.werte.length <= 6,
+  JSON.stringify(teilung)
+)
+pruefe('Y-Achse bei Gold ohne Nachkommastellen', achsenTeilung(3900, 4200).stellen === 0)
+pruefe(
+  'Y-Achse bei kleinen Spannen mit Nachkommastellen',
+  achsenTeilung(1.081, 1.093).stellen >= 2,
+  JSON.stringify(achsenTeilung(1.081, 1.093))
+)
+const xTage = achsenTage([
+  '2026-09-15',
+  '2026-09-20',
+  '2026-09-25',
+  '2026-10-01',
+  '2026-10-06',
+  '2026-10-11',
+  '2026-10-16',
+])
+pruefe(
+  'X-Achse: erster und letzter Tag, dazwischen zwei',
+  xTage.length === 4 && xTage[0].text === '15.09.' && xTage.at(-1)!.text === '16.10.',
+  JSON.stringify(xTage)
+)
 
 /*
   Die Bildzone überdeckt den Text nicht – auch nicht bei fünf Zeilen. Unter
