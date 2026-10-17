@@ -38,3 +38,18 @@ Zusammenhang; den soll die Meldung selbst herstellen.
 Grenze. `woerter()` baut die Muster mit Buchstaben-Grenzen aus `\p{L}`. Und
 ein Firmenname, der zugleich ein Beiname ist, gehört dem Beinamen: „Dow" ist
 in einer Meldung der Index, nicht Dow Inc.
+
+**Lieber keine Grafik als eine, die etwas anderes sagt** – 17.10.2026. Die
+Kachel „Brent nahe 110 $" ging mit einer Grafik „105,92 $ −2,6 %" hinaus; der
+Betreiber hat den Beitrag gelöscht („das können wir uns nicht erlauben").
+Zwei Fehler übereinander: Die Tagesreihe endete am 15.10., der Freitag
+(109,69 $, +3,6 %) stand nur im laufenden Kurs – und die Prozentzahl galt
+30 Tagen, die Meldung dem Tag. Jetzt schließt der laufende Kurs die Reihe
+ab, die Prozentzahl ist die zum Vortag, und `kursFuerKachel()` lehnt ab, was
+vor dem letzten Handelstag endet oder einer Zahl (3 %) oder Richtung der
+Kachel widerspricht. Der Test stellt den Fall mit den Zahlen von damals nach.
+
+Am selben Tag: **Jede Grafik bekommt Achsen.** Der Betreiber: „Die Charts
+müssen immer eine X- und Y-Achse mit den Koordinaten haben." Die Linien
+zeichnet das SVG, die Zahlen setzt satori daneben – ein `<text>` im
+eingebetteten SVG fände keine Schrift.

@@ -97,11 +97,13 @@ export interface KachelKurs {
   name: string
   /** Schlusskurse, alt nach neu. */
   punkte: number[]
+  /** Die Tage zu `punkte`, als JJJJ-MM-TT – für die X-Achse. */
+  tage: string[]
   /** „106,06 $" */
   wert: string
-  /** Veränderung über den Zeitraum in Prozent. */
+  /** Veränderung zum Vortag in Prozent – der Tag, von dem die Meldung handelt. */
   aenderung: number
-  /** „letzte 30 Tage · Stand 14.10." */
+  /** „am 16.10. · Verlauf 30 Tage" */
   unterzeile: string
 }
 
@@ -113,33 +115,92 @@ export interface KachelKurs {
   weiß, mit dem Wasserzeichen.
 */
 export const BILDZONE = { oben: 365, unten: 960, links: 35, breite: 1010 }
-const KURSHOEHE = 215
+const KURSHOEHE = 340
 const LUECKE = 20
 
 const GRUEN = '#1f6b3a'
 const ROT = '#a1262b'
 
+/*
+  Achsen (Betreiber 17.10.2026): „Die Charts müssen immer eine X- und
+  Y-Achse mit den Koordinaten haben, sonst kann man damit nichts anfangen,
+  einfach nur mit einer Kurve." Die Y-Achse trägt runde Kurswerte, die
+  X-Achse vier Tage. Die Linien zeichnet das SVG, die Zahlen setzt satori
+  als Text daneben – ein `<text>` im eingebetteten SVG fände keine Schrift.
+*/
+const Y_ACHSE = 104
+const X_ACHSE = 34
+/** Platz über dem obersten Teilstrich, damit seine Zahl nicht an die Unterzeile stößt. */
+const PLOT_OBEN = 18
+
+/** Runde Teilstriche: 1, 2, 2,5 oder 5 mal einer Zehnerpotenz, drei bis fünf Stück. */
+export function achsenTeilung(
+  min: number,
+  max: number
+): { werte: number[]; stellen: number } {
+  const spanne = max - min || Math.abs(max) * 0.02 || 1
+  const roh = spanne / 3
+  const potenz = 10 ** Math.floor(Math.log10(roh))
+  const schritt =
+    [1, 2, 2.5, 5, 10].map((f) => f * potenz).find((x) => x >= roh) ?? 10 * potenz
+  const unten = Math.floor(min / schritt) * schritt
+  const oben = Math.ceil(max / schritt) * schritt
+  const werte: number[] = []
+  for (let w = unten; w <= oben + schritt / 2; w += schritt)
+    werte.push(Number(w.toFixed(10)))
+  const stellen = Math.max(
+    0,
+    -Math.floor(Math.log10(schritt) + 1e-9) + (schritt / potenz === 2.5 ? 1 : 0)
+  )
+  return { werte, stellen }
+}
+
+const zahlDe = (w: number, stellen: number) =>
+  w.toLocaleString('de-DE', {
+    minimumFractionDigits: stellen,
+    maximumFractionDigits: stellen,
+  })
+
 function verlaufSvg(
   punkte: number[],
   breite: number,
   hoehe: number,
-  farbe: string
+  farbe: string,
+  teilung: number[]
 ): string {
-  const min = Math.min(...punkte)
-  const max = Math.max(...punkte)
+  const min = teilung[0]
+  const max = teilung.at(-1)!
   const spanne = max - min || 1
-  const xy = punkte.map((p, i) => [
-    (i / Math.max(1, punkte.length - 1)) * breite,
-    hoehe - 6 - ((p - min) / spanne) * (hoehe - 12),
-  ])
-  const linie = xy.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
+  const y = (p: number) => hoehe - ((p - min) / spanne) * hoehe
+  const xy = punkte.map((p, i) => [(i / Math.max(1, punkte.length - 1)) * breite, y(p)])
+  const linie = xy.map(([px, py]) => `${px.toFixed(1)},${py.toFixed(1)}`).join(' ')
   const flaeche = `0,${hoehe} ${linie} ${breite},${hoehe}`
+  const gitter = teilung
+    .map(
+      (w) =>
+        `<line x1="0" x2="${breite}" y1="${y(w).toFixed(1)}" y2="${y(w).toFixed(1)}" stroke="#c9cec7" stroke-width="2" stroke-dasharray="6 6"/>`
+    )
+    .join('')
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe}" viewBox="0 0 ${breite} ${hoehe}">` +
+    gitter +
     `<polygon points="${flaeche}" fill="${farbe}" fill-opacity="0.12"/>` +
     `<polyline points="${linie}" fill="none" stroke="${farbe}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<line x1="1.5" x2="1.5" y1="0" y2="${hoehe}" stroke="#333" stroke-width="3"/>` +
+    `<line x1="0" x2="${breite}" y1="${hoehe - 1.5}" y2="${hoehe - 1.5}" stroke="#333" stroke-width="3"/>` +
     `</svg>`
   )
+}
+
+/** Die Tage für die X-Achse: erster, letzter und zwei dazwischen – „15.09." */
+export function achsenTage(tage: string[]): { stelle: number; text: string }[] {
+  if (tage.length === 0) return []
+  const n = tage.length - 1
+  const stellen = [...new Set([0, Math.round(n / 3), Math.round((2 * n) / 3), n])]
+  return stellen.map((i) => ({
+    stelle: n === 0 ? 0 : i / n,
+    text: `${tage[i].slice(8, 10)}.${tage[i].slice(5, 7)}.`,
+  }))
 }
 
 function kursKasten(kurs: KachelKurs, hoehe: number) {
@@ -147,7 +208,16 @@ function kursKasten(kurs: KachelKurs, hoehe: number) {
   const vorzeichen = kurs.aenderung > 0 ? '+' : ''
   const prozent = `${vorzeichen}${kurs.aenderung.toFixed(1).replace('.', ',')} %`
   const innen = BILDZONE.breite - 56
-  const kurve = hoehe - 120
+  const flaeche = hoehe - 116
+  const plotBreite = innen - Y_ACHSE
+  const plotHoehe = flaeche - X_ACHSE - PLOT_OBEN
+  const { werte, stellen } = achsenTeilung(
+    Math.min(...kurs.punkte),
+    Math.max(...kurs.punkte)
+  )
+  const y = (w: number) =>
+    PLOT_OBEN + plotHoehe - ((w - werte[0]) / (werte.at(-1)! - werte[0] || 1)) * plotHoehe
+  const beschriftung = { fontFamily: 'Open Sans', fontSize: 21, color: '#444' }
   return h(
     'div',
     {
@@ -156,7 +226,7 @@ function kursKasten(kurs: KachelKurs, hoehe: number) {
         height: hoehe,
         display: 'flex',
         flexDirection: 'column',
-        padding: '20px 28px',
+        padding: '18px 28px',
         borderRadius: 28,
         backgroundColor: '#f3f5f2',
       },
@@ -201,12 +271,63 @@ function kursKasten(kurs: KachelKurs, hoehe: number) {
       { style: { fontFamily: 'Open Sans', fontSize: 22, color: '#555', marginTop: 2 } },
       kurs.unterzeile
     ),
-    h('img', {
-      src: `data:image/svg+xml;base64,${Buffer.from(verlaufSvg(kurs.punkte, innen, kurve, farbe)).toString('base64')}`,
-      width: innen,
-      height: kurve,
-      style: { marginTop: 12 },
-    })
+    h(
+      'div',
+      {
+        style: {
+          position: 'relative',
+          display: 'flex',
+          width: innen,
+          height: flaeche,
+          marginTop: 14,
+        },
+      },
+      ...werte.map((w) =>
+        h(
+          'div',
+          {
+            style: {
+              ...beschriftung,
+              position: 'absolute',
+              left: 0,
+              width: Y_ACHSE - 12,
+              top: y(w) - 14,
+              display: 'flex',
+              justifyContent: 'flex-end',
+            },
+          },
+          zahlDe(w, stellen)
+        )
+      ),
+      h('img', {
+        src: `data:image/svg+xml;base64,${Buffer.from(verlaufSvg(kurs.punkte, plotBreite, plotHoehe, farbe, werte)).toString('base64')}`,
+        width: plotBreite,
+        height: plotHoehe,
+        style: { position: 'absolute', left: Y_ACHSE, top: PLOT_OBEN },
+      }),
+      ...achsenTage(kurs.tage).map(({ stelle, text }) =>
+        h(
+          'div',
+          {
+            style: {
+              ...beschriftung,
+              position: 'absolute',
+              top: PLOT_OBEN + plotHoehe + 6,
+              /* Der erste Tag beginnt an der Achse, der letzte endet am Rand. */
+              left:
+                Y_ACHSE +
+                stelle * plotBreite -
+                (stelle === 0 ? 0 : stelle === 1 ? 90 : 45),
+              width: 90,
+              display: 'flex',
+              justifyContent:
+                stelle === 0 ? 'flex-start' : stelle === 1 ? 'flex-end' : 'center',
+            },
+          },
+          text
+        )
+      )
+    )
   )
 }
 

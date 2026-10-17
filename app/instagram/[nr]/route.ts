@@ -69,7 +69,7 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
     const bild = bebildere(plan!.kacheln)[stelle - 2]
     const png = await meldungskachel(kachel.titel, kachel.text, {
       foto: bild.motiv ? motivJpeg(bild.motiv) : null,
-      kurs: bild.kurs ? await kachelKurs(bild.kurs) : null,
+      kurs: bild.kurs ? await kachelKurs(bild.kurs, kachel, stand.datum) : null,
     })
     const { default: sharp } = await import('sharp')
     jpeg = await sharp(png).jpeg({ quality: 90, mozjpeg: true }).toBuffer()
