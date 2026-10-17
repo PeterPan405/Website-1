@@ -1,0 +1,365 @@
+{
+  "stichtag": "2026-10-17",
+  "intro": "Fed-Chef Warsh lobt eine KI-Investitionswelle, der Ölpreis nähert sich 110 Dollar, und Deutschland und Frankreich weichen das Verbrenner-Aus auf.",
+  "artikel": [
+    {
+      "slug": "fed-warsh-ki-investitionswelle-vix-vier-monats-hoch",
+      "title": "Fed-Chef Warsh lobt „enorme Investitionswelle“ bei KI, VIX steigt",
+      "metaTitle": "Warsh lobt KI-Welle, VIX auf Vier-Monats-Hoch",
+      "teaser": "Fed-Chef Kevin Warsh lobte eine enorme KI-Investitionswelle. Der Dow Jones schloss dennoch leicht im Minus, der Angst-Index VIX stieg auf ein Vier-Monats-Hoch.",
+      "category": "Geldpolitik",
+      "readingMinutes": 4,
+      "tags": ["Fed", "Kevin Warsh", "KI-Aktien", "VIX"],
+      "relatedTopics": ["notenbanken-geldpolitik", "risiko-und-rendite"],
+      "relatedSymbols": ["dow-jones", "nasdaq-100"],
+      "sources": [
+        {
+          "label": "Handelsblatt, 16.10.2026, 18:22 Uhr GMT: „Dow Jones, S&P 500, Nasdaq: US-Börsen verlieren deutlich – Ausverkauf bei KI-Aktien geht weiter“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-dow-jones-schliesst-03-prozent-niedriger/100262834.html"
+        },
+        {
+          "label": "Handelsblatt, 16.10.2026, 05:41 Uhr GMT: „US-Notenbank: Fed-Chef Warsh preist 'enorme Investitionswelle' bei KI und gibt Investoren neue Zuversicht“",
+          "url": "https://www.handelsblatt.com/finanzen/geldpolitik/us-inflation-fed-chef-warsh-preist-enorme-investitionswelle/100262487.html"
+        },
+        {
+          "label": "CNBC, 16.10.2026, 19:28 Uhr GMT: „Wall Street's fear gauge is ripping. Traders see it going even higher“",
+          "url": "https://www.cnbc.com/2026/10/16/wall-streets-fear-gauge-is-ripping-traders-see-it-going-even-higher.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "An der Wall Street ging die Woche mit Verlusten zu Ende. Der Dow Jones schloss am Freitag 0,3 Prozent niedriger, bei Technologiewerten hielt der Ausverkauf von Chip- und KI-Aktien an, der schon die Vorwoche geprägt hatte. Der Angst-Index VIX stieg über die Marke von 22 Punkten – den höchsten Stand seit vier Monaten."
+        },
+        { "type": "heading", "level": 2, "text": "Eine Rede mitten in den Ausverkauf" },
+        {
+          "type": "paragraph",
+          "text": "Fed-Chef Kevin Warsh trat am Freitag öffentlich auf und beschrieb eine „enorme Investitionswelle“ bei Künstlicher Intelligenz. Seine zuversichtlichen Worte stützten nach Handelsblatt-Angaben die Kurse und dämpften zugleich die Aussicht auf eine baldige Zinserhöhung."
+        },
+        { "type": "heading", "level": 2, "text": "Was der VIX wirklich misst" },
+        {
+          "type": "paragraph",
+          "text": "**Der VIX zeigt die vom Optionsmarkt erwartete Schwankung des S&P 500, nicht die Kursrichtung.** Er steigt, wenn Anleger größere Ausschläge einpreisen – nach oben wie nach unten. Ein Wert über 22 bedeutet also Nervosität, aber keine Vorhersage, in welche Richtung sich die Kurse bewegen."
+        },
+        {
+          "type": "paragraph",
+          "text": "Drei Dinge zeigt der VIX nicht: ob die erwartete Schwankung tatsächlich eintritt, welche Branche die Bewegung treibt – hier vor allem Chip- und KI-Werte – und wie unterschiedlich einzelne Indizes reagieren. Der Dow enthält kaum reine KI-Infrastrukturwerte und reagierte entsprechend schwächer als technologienähere Indizes."
+        },
+        {
+          "type": "paragraph",
+          "text": "Für Anleger mit breit gestreuten Indexfonds bedeutet das vor allem: Die Zusammensetzung des eigenen Depots entscheidet, wie stark eine Woche wie diese durchschlägt – unabhängig davon, was einzelne Nachrichten über die Richtung des Gesamtmarkts suggerieren."
+        }
+      ]
+    },
+    {
+      "slug": "oelpreis-110-dollar-iran-weitet-hormus-angriffe-aus",
+      "title": "Brent nähert sich 110 Dollar – Iran weitet Angriffe in Hormus aus",
+      "metaTitle": "Ölpreis bei 110 Dollar: Iran eskaliert in Hormus",
+      "teaser": "Die Sorte Brent näherte sich am Freitag 110 Dollar. Iran hat seine Angriffe in der Straße von Hormus verstärkt, die Ukraine droht mit Angriffen auf Raffinerien.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["Ölpreis", "Brent", "Iran", "Hormus"],
+      "relatedTopics": ["rohstoffe", "inflation"],
+      "relatedSymbols": ["brent"],
+      "sources": [
+        {
+          "label": "CNBC, 16.10.2026, 20:02 Uhr GMT: „Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries“",
+          "url": "https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 18:52 Uhr: „Eurowings streicht Flüge und prüft Kurzarbeit“",
+          "url": "https://www.tagesschau.de/wirtschaft/unternehmen/eurowings-kurzarbeit-100.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Der Ölpreis zog am Freitag kräftig an. Die Sorte Brent näherte sich der Marke von 110 Dollar je Barrel. Auslöser ist eine Eskalation am Persischen Golf: Iran hat seine Angriffe in der Straße von Hormus in dieser Woche verstärkt, berichtete CNBC. Eine zweite, unabhängige Quelle dazu lag bislang nicht vor."
+        },
+        { "type": "heading", "level": 2, "text": "Zwei Konflikte, ein Markt" },
+        {
+          "type": "paragraph",
+          "text": "Zugleich kündigte die Ukraine nach eigenen Angaben an, russische Ölraffinerien anzugreifen. Zwei Konflikte wirken damit gleichzeitig auf denselben Markt: der eine über das Angebot am Golf, der andere über die Raffineriekapazität in Russland."
+        },
+        { "type": "heading", "level": 2, "text": "Wo der höhere Preis zuerst ankommt" },
+        {
+          "type": "paragraph",
+          "text": "Noch bevor ein höherer Ölpreis an der Tankstelle sichtbar wird, trifft er Unternehmen, die viel Kerosin oder Diesel verbrauchen. Die Lufthansa-Tochter Eurowings streicht Flüge und prüft Kurzarbeit für ihre Beschäftigten – als Grund nennt sie laut Tagesschau die gestiegenen Preise für Kerosin durch den Krieg."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ein Ölpreisschock wandert in mehreren Stufen durch die Wirtschaft. Zunächst zahlen Fluggesellschaften, Spediteure und Chemiekonzerne sofort mehr für Kerosin, Diesel und Rohstoffe. Wer kann, gibt diese Kosten über höhere Preise an Kunden weiter. Am Ende stehen oft erst mit einigen Monaten Verzögerung steigende Verbraucherpreise."
+        },
+        {
+          "type": "paragraph",
+          "text": "Wie stark dieser Weg wirkt, hängt auch davon ab, wie lange der Ölpreis erhöht bleibt. Ein kurzer Ausschlag verpufft oft, bevor er bei den Verbrauchern ankommt – ein Preis, der über Wochen hoch bleibt, wandert eher durch."
+        }
+      ]
+    },
+    {
+      "slug": "verbrenner-aus-lockerung-autoaktien-springen-an",
+      "title": "Deutschland und Frankreich weichen das Verbrenner-Aus auf",
+      "teaser": "Deutschland und Frankreich kündigten eine Aufweichung des EU-Verbrenner-Aus an. Die Ankündigung ließ Autoaktien und den Dax am Freitag deutlich steigen.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["Verbrenner-Aus", "Autoaktien", "Dax", "EU-Klimapolitik"],
+      "relatedTopics": ["aktien-laender-branchen", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["dax", "volkswagen", "mercedes-benz"],
+      "sources": [
+        {
+          "label": "Tagesschau, 16.10.2026, 13:48 Uhr: „Deutschland und Frankreich einig bei Lockerung von Verbrenner-Aus“",
+          "url": "https://www.tagesschau.de/wirtschaft/energie/frankreich-deutschland-verbrenner-aus-einigung-100.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 14:17 Uhr: „Auto-Aktien steigen nach deutsch-französischer Einigung deutlich“",
+          "url": "https://www.tagesschau.de/wirtschaft/finanzen/autobauer-verbrenneraus-marktbericht-100.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Deutschland und Frankreich haben sich am Freitag auf eine Lockerung des europäischen Verbrenner-Aus verständigt. Beide Regierungen kündigten eine Aufweichung an, berichtete die Tagesschau: Fahrzeuge mit Verbrennungsmotor könnten damit auch nach 2035 in der EU neu zugelassen werden. Eine zweite, unabhängige Quelle dazu lag bislang nicht vor."
+        },
+        { "type": "heading", "level": 2, "text": "Vom Beschluss zur Kursbewegung" },
+        {
+          "type": "paragraph",
+          "text": "Die Ankündigung bewegte sofort die Börse. Aktien von Autobauern sprangen deutlich nach oben, auch der Dax legte am Mittag zu. Frankreichs Präsident Emmanuel Macron hatte sich zuvor gegen eine Lockerung gesperrt."
+        },
+        { "type": "heading", "level": 2, "text": "Ein Index ist die Summe seiner Branchen" },
+        {
+          "type": "paragraph",
+          "text": "**Eine politische Entscheidung über eine einzelne Branche kann einen ganzen Index bewegen – nicht, weil sich die Wirtschaft insgesamt ändert, sondern weil ein Sektor darin stark genug vertreten ist.** Der Dax enthält mit mehreren Autoherstellern und Zulieferern ein spürbares Gewicht aus genau dieser einen Branche."
+        },
+        {
+          "type": "paragraph",
+          "text": "Für Anleger in einen breiten Index bedeutet das: Sie bekommen solche Sektorausschläge automatisch mit – nach oben wie nach unten –, ohne sie gezielt gewählt zu haben. Wer das vermeiden will, müsste gezielt in einzelne Branchen oder Aktien investieren und würde damit das Risiko erhöhen, statt es zu streuen."
+        }
+      ]
+    },
+    {
+      "slug": "baugenehmigungen-steigen-im-august-stimmung-bleibt-schwach",
+      "title": "Baugenehmigungen steigen im August, Stimmung am Bau bleibt schwach",
+      "metaTitle": "Mehr Baugenehmigungen, schwache Stimmung am Bau",
+      "teaser": "Im August wurden rund sieben Prozent mehr Wohnungen genehmigt als zuvor. Höhere Finanzierungskosten trüben die Stimmung in der Baubranche trotzdem weiter ein.",
+      "category": "Geldanlage",
+      "readingMinutes": 4,
+      "tags": ["Baugenehmigungen", "Wohnungsbau", "Immobilien", "Bauzinsen"],
+      "relatedTopics": ["immobilien", "schulden-und-kredit"],
+      "relatedSymbols": ["vonovia"],
+      "sources": [
+        {
+          "label": "WirtschaftsWoche, 16.10.2026, 07:47 Uhr GMT: „Wohnungsbau: Baugenehmigungen für Wohnungen steigen im August um fast sieben Prozent“",
+          "url": "https://www.wiwo.de/finanzen/immobilien/wohnungsbau-baugenehmigungen-steigen-im-august-um-fast-sieben-prozent/100262757.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 11:29 Uhr: „Wohnimmobilien: Deutlich mehr Baugenehmigungen“",
+          "url": "https://www.tagesschau.de/wirtschaft/baugenehmigungen-steigen-wieder-2026-100.html"
+        },
+        {
+          "label": "WirtschaftsWoche, 16.10.2026, 07:27 Uhr GMT: „Bauprojekte: Stimmung im deutschen Wohnungsbau trübt sich ein“",
+          "url": "https://www.wiwo.de/finanzen/immobilien/bauwirtschaft-stimmung-im-deutschen-wohnungsbau-truebt-sich-ein/100262754.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Der deutsche Wohnungsbau zieht weiter an. Im August stieg die Zahl der Baugenehmigungen für Wohnungen um fast sieben Prozent, berichtete die WirtschaftsWoche. Mehr Ein- und Mehrfamilienhäuser wurden genehmigt als zuvor. Die Tagesschau bestätigte, dass sich der Aufwärtstrend aus dem ersten Halbjahr damit fortsetzt."
+        },
+        { "type": "heading", "level": 2, "text": "Eine Genehmigung ist kein Haus" },
+        {
+          "type": "paragraph",
+          "text": "**Eine Baugenehmigung zeigt, was gebaut werden darf – nicht, was tatsächlich gebaut wird.** Zwischen Genehmigung und Fertigstellung vergehen oft ein bis zwei Jahre. In dieser Zeit kann sich die Finanzierungslage ändern und ein Projekt verzögern oder ganz stoppen."
+        },
+        { "type": "heading", "level": 2, "text": "Zwei Indikatoren, zwei Richtungen" },
+        {
+          "type": "paragraph",
+          "text": "Während die Genehmigungszahlen steigen, verschlechtert sich laut WirtschaftsWoche das Geschäftsklima im Wohnungsbau weiter. Höhere Zinsen und stornierte Aufträge belasten viele Bauherren – ein Hinweis darauf, dass der heutige Anstieg der Genehmigungen Entscheidungen von vor Monaten widerspiegelt, nicht die aktuelle Stimmung in der Branche."
+        },
+        {
+          "type": "paragraph",
+          "text": "Baugenehmigungen und Geschäftsklima sind zwei unterschiedliche Kennzahlen. Baugenehmigungen sind ein Frühindikator, der zeigt, was Monate oder Jahre im Voraus geplant wurde. Das Geschäftsklima ist dagegen eine Stimmungsabfrage unter Unternehmen, die auf aktuelle Zinsen und Auftragslage reagiert. Beide können gleichzeitig unterschiedliche Richtungen zeigen, ohne dass einer der beiden falsch liegt."
+        }
+      ]
+    },
+    {
+      "slug": "msci-droht-indonesien-rauswurf-schwellenlaender-index",
+      "title": "MSCI droht Indonesien mit dem Rauswurf aus dem Schwellenländer-Index",
+      "metaTitle": "MSCI droht Indonesien den Schwellenland-Rauswurf",
+      "teaser": "Der Indexanbieter MSCI prüft, Indonesien den Status als Schwellenland zu entziehen. Jakartas Börse brach so stark ein wie seit der Asienkrise nicht mehr.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["MSCI", "Indonesien", "Schwellenländer", "ETF"],
+      "relatedTopics": ["etf", "risiko-und-rendite"],
+      "relatedSymbols": ["etf-em-imi"],
+      "sources": [
+        {
+          "label": "Handelsblatt, 16.10.2026, 10:54 Uhr GMT: „Südostasien: MSCI droht Indonesien mit Index-Rauswurf – Börse verliert heftig“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/suedostasien-msci-droht-indonesien-mit-index-rauswurf-boerse-verliert/100262750.html"
+        },
+        {
+          "label": "FAZ, 16.10.2026, 09:57 Uhr GMT: „Börse: Indonesien erhält nächsten Warnschuss von MSCI“",
+          "url": "https://www.faz.net/aktuell/finanzen/finanzmarkt/msci-prueft-indonesiens-schwellenland-status-boerse-bricht-ein-accg-201528065.html"
+        },
+        {
+          "label": "WirtschaftsWoche, 16.10.2026, 14:25 Uhr GMT: „MSCI: Indonesien steht vor dem Börsen-Abstieg“",
+          "url": "https://www.wiwo.de/finanzen/boerse/boerse-indonesien-koennte-schwellenland-status-beim-msci-verlieren/100262768.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Der Indexanbieter MSCI prüft, Indonesien der Status als Schwellenland zu entziehen. Grund sind nach Handelsblatt-Angaben unzureichende Reformen zur Markttransparenz in Südostasiens größter Volkswirtschaft. Die Börse in Jakarta brach daraufhin stark ein – laut FAZ der stärkste Rückgang seit der Asienkrise."
+        },
+        { "type": "heading", "level": 2, "text": "Warum eine Einstufung über Geld entscheidet" },
+        {
+          "type": "paragraph",
+          "text": "**MSCI-Indizes sind keine neutrale Beschreibung eines Landes – sie sind die Vorlage, nach der viele Fonds automatisch kaufen und verkaufen.** Ein Schwellenland-Index wird von zahlreichen ETFs eins zu eins nachgebildet. Verliert Indonesien diesen Status, müssten diese Fonds ihre indonesischen Aktien verkaufen, unabhängig davon, wie die einzelnen Unternehmen wirtschaftlich dastehen."
+        },
+        { "type": "heading", "level": 2, "text": "Ein Risiko, das niemand einzeln gewählt hat" },
+        {
+          "type": "paragraph",
+          "text": "Wer über einen Schwellenländer-ETF investiert, trägt dieses Risiko automatisch mit. Mit rund 280 Millionen Einwohnern ist Indonesien laut FAZ keine Randposition in solchen Indizes."
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine Index-Reklassifizierung wirkt mechanisch: Fonds, die den Index eins zu eins abbilden, müssen verkaufen, unabhängig vom Unternehmenswert. Der Verkaufsdruck entsteht durch die Reklassifizierung selbst, nicht durch neue Nachrichten über einzelne Firmen. Das kann betroffene Aktien stärker drücken, als es die eigentliche wirtschaftliche Lage rechtfertigt."
+        }
+      ]
+    }
+  ],
+  "top": [
+    {
+      "headline": "Fed-Chef Warsh lobt KI-Investitionswelle, Wall Street bleibt nervös",
+      "summary": [
+        "Die US-Börsen beendeten die Woche schwächer. Der Dow Jones gab 0,3 Prozent ab. Bei Chip- und KI-Werten hielt der Ausverkauf an. Der Angst-Index VIX stieg über 22 Punkte – den höchsten Stand seit vier Monaten.",
+        "Mitten in den Ausverkauf sprach Fed-Chef Kevin Warsh am Freitag öffentlich. Er beschrieb eine „enorme Investitionswelle“ bei Künstlicher Intelligenz. Seine Worte dämpften zugleich die Aussicht auf eine baldige Zinserhöhung."
+      ],
+      "category": "Geldpolitik",
+      "whyItMatters": "Der VIX misst die vom Markt erwartete Schwankung, nicht die Kursrichtung – ein hoher Wert zeigt Nervosität, sagt aber nichts darüber, ob Kurse weiter fallen oder sich erholen.",
+      "relatedTopics": ["notenbanken-geldpolitik", "risiko-und-rendite"],
+      "relatedSymbols": ["dow-jones", "nasdaq-100"],
+      "sources": [
+        {
+          "label": "Handelsblatt, 16.10.2026, 18:22 Uhr GMT: „Dow Jones, S&P 500, Nasdaq: US-Börsen verlieren deutlich – Ausverkauf bei KI-Aktien geht weiter“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-dow-jones-schliesst-03-prozent-niedriger/100262834.html"
+        },
+        {
+          "label": "CNBC, 16.10.2026, 19:28 Uhr GMT: „Wall Street's fear gauge is ripping. Traders see it going even higher“",
+          "url": "https://www.cnbc.com/2026/10/16/wall-streets-fear-gauge-is-ripping-traders-see-it-going-even-higher.html"
+        }
+      ]
+    },
+    {
+      "headline": "Ölpreis steigt auf rund 110 Dollar, Iran weitet Hormus-Angriffe aus",
+      "summary": [
+        "Der Ölpreis zog kräftig an. Die Sorte Brent näherte sich am Freitag 110 Dollar je Barrel. Grund ist eine Eskalation am Persischen Golf. Iran hat seine Angriffe in der Straße von Hormus in dieser Woche verstärkt – eine zweite, unabhängige Quelle dazu lag bislang nicht vor.",
+        "Zugleich kündigte die Ukraine neue Schritte an. Sie will nach eigenen Angaben russische Ölraffinerien angreifen. Spürbar wird der höhere Ölpreis schon in Europa. Die Lufthansa-Tochter Eurowings streicht Flüge und prüft Kurzarbeit – als Grund nennt sie die gestiegenen Kerosinpreise durch den Krieg."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Energiepreise wirken mit Verzögerung auf die Inflation – ein höherer Ölpreis verteuert zunächst Treibstoff und Fracht, bevor er sich in den Verbraucherpreisen zeigt.",
+      "relatedTopics": ["rohstoffe", "inflation"],
+      "relatedSymbols": ["brent"],
+      "sources": [
+        {
+          "label": "CNBC, 16.10.2026, 20:02 Uhr GMT: „Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries“",
+          "url": "https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 18:52 Uhr: „Eurowings streicht Flüge und prüft Kurzarbeit“",
+          "url": "https://www.tagesschau.de/wirtschaft/unternehmen/eurowings-kurzarbeit-100.html"
+        }
+      ]
+    },
+    {
+      "headline": "Deutschland und Frankreich weichen Verbrenner-Aus auf, Autoaktien springen an",
+      "summary": [
+        "Deutschland und Frankreich einigten sich am Freitag. Beide Regierungen kündigten eine Aufweichung des EU-weiten Verbrenner-Aus an. Fahrzeuge mit Verbrennungsmotor könnten damit auch nach 2035 neu zugelassen werden. Eine zweite, unabhängige Quelle dazu lag bislang nicht vor.",
+        "Die Ankündigung bewegte sofort die Börse. Aktien von Autobauern sprangen deutlich nach oben. Auch der Dax legte am Mittag zu. Frankreichs Präsident Macron hatte sich bislang gegen eine Lockerung gesperrt."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Ein regulatorisches Signal wirkt direkt auf einzelne Branchen – wer in einen breiten Index wie den Dax investiert, trägt solche Sektorschwankungen automatisch mit, ohne sie wählen zu können.",
+      "relatedTopics": ["aktien-laender-branchen", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["dax", "volkswagen", "mercedes-benz"],
+      "sources": [
+        {
+          "label": "Tagesschau, 16.10.2026, 13:48 Uhr: „Deutschland und Frankreich einig bei Lockerung von Verbrenner-Aus“",
+          "url": "https://www.tagesschau.de/wirtschaft/energie/frankreich-deutschland-verbrenner-aus-einigung-100.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 14:17 Uhr: „Auto-Aktien steigen nach deutsch-französischer Einigung deutlich“",
+          "url": "https://www.tagesschau.de/wirtschaft/finanzen/autobauer-verbrenneraus-marktbericht-100.html"
+        }
+      ]
+    },
+    {
+      "headline": "Baugenehmigungen steigen im August, Stimmung am Bau bleibt gedrückt",
+      "summary": [
+        "Der deutsche Wohnungsbau zieht an. Im August stieg die Zahl der Baugenehmigungen für Wohnungen um fast sieben Prozent. Mehr Ein- und Mehrfamilienhäuser wurden genehmigt als zuvor. Der Aufwärtstrend aus dem ersten Halbjahr setzt sich damit fort.",
+        "Doch steigende Finanzierungskosten bremsen die Branche. Das Geschäftsklima im Wohnungsbau verschlechterte sich zuletzt weiter. Höhere Zinsen und stornierte Aufträge belasten viele Bauherren."
+      ],
+      "category": "Geldanlage",
+      "whyItMatters": "Baugenehmigungen sind ein Frühindikator: Sie zeigen, was gebaut werden darf, nicht was tatsächlich gebaut wird – zwischen Genehmigung und Fertigstellung vergehen oft Jahre.",
+      "relatedTopics": ["immobilien", "schulden-und-kredit"],
+      "relatedSymbols": ["vonovia"],
+      "sources": [
+        {
+          "label": "WirtschaftsWoche, 16.10.2026, 07:47 Uhr GMT: „Wohnungsbau: Baugenehmigungen für Wohnungen steigen im August um fast sieben Prozent“",
+          "url": "https://www.wiwo.de/finanzen/immobilien/wohnungsbau-baugenehmigungen-steigen-im-august-um-fast-sieben-prozent/100262757.html"
+        },
+        {
+          "label": "Tagesschau, 16.10.2026, 11:29 Uhr: „Wohnimmobilien: Deutlich mehr Baugenehmigungen“",
+          "url": "https://www.tagesschau.de/wirtschaft/baugenehmigungen-steigen-wieder-2026-100.html"
+        }
+      ]
+    }
+  ],
+  "further": [
+    {
+      "headline": "MSCI droht Indonesien mit Rauswurf aus dem Schwellenländer-Index",
+      "summary": [
+        "Der Indexanbieter MSCI prüft einen Rauswurf. Betroffen ist Indonesiens Status als Schwellenland im MSCI-Index. Die Börse in Jakarta brach daraufhin stark ein. Laut FAZ war es der stärkste Einbruch seit der Asienkrise.",
+        "Grund sind nach Handelsblatt-Angaben unzureichende Reformen zur Markttransparenz. Das trifft auch bekannte Indonesien-ETFs, die den Index nachbilden. Ein Entzug des Schwellenland-Status würde viele Fonds zu Verkäufen zwingen."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Ein Entzug des Schwellenland-Status wirkt wie ein erzwungener Verkauf: Passive ETFs, die den MSCI-Index nachbilden, müssen die Aktien automatisch abstoßen – unabhängig vom tatsächlichen Wert des Unternehmens.",
+      "relatedTopics": ["etf", "risiko-und-rendite"],
+      "relatedSymbols": ["etf-em-imi"],
+      "sources": [
+        {
+          "label": "Handelsblatt, 16.10.2026, 10:54 Uhr GMT: „Südostasien: MSCI droht Indonesien mit Index-Rauswurf – Börse verliert heftig“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/suedostasien-msci-droht-indonesien-mit-index-rauswurf-boerse-verliert/100262750.html"
+        },
+        {
+          "label": "FAZ, 16.10.2026, 09:57 Uhr GMT: „Börse: Indonesien erhält nächsten Warnschuss von MSCI“",
+          "url": "https://www.faz.net/aktuell/finanzen/finanzmarkt/msci-prueft-indonesiens-schwellenland-status-boerse-bricht-ein-accg-201528065.html"
+        }
+      ]
+    }
+  ],
+  "instagram": {
+    "zusammenfassung": "Fed-Chef Warsh lobt eine KI-Investitionswelle, der Ölpreis steigt wegen der Eskalation um Hormus, und Deutschland und Frankreich lockern das Verbrenner-Aus. Dazu mehr Baugenehmigungen und Ärger um Indonesiens Börsenstatus.",
+    "kacheln": [
+      {
+        "titel": "VIX auf 4-Monats-Hoch",
+        "text": "Fed-Chef Warsh lobte eine enorme KI-Investitionswelle. Der Angst-Index VIX stieg dennoch auf den höchsten Stand seit vier Monaten, der Dow Jones schloss leicht im Minus."
+      },
+      {
+        "titel": "Öl bei 110 Dollar",
+        "text": "Der Ölpreis Brent näherte sich 110 Dollar. Iran weitete seine Angriffe in der Straße von Hormus aus, die Ukraine droht mit Angriffen auf russische Raffinerien."
+      },
+      {
+        "titel": "Verbrenner-Aus gelockert",
+        "text": "Deutschland und Frankreich wollen das EU-Verbrenner-Aus aufweichen. Autoaktien und der Dax legten nach der Ankündigung am Freitag deutlich zu."
+      },
+      {
+        "titel": "Baugenehmigungen +7 %",
+        "text": "Im August wurden rund sieben Prozent mehr Wohnungen genehmigt. Höhere Finanzierungskosten belasten die Baubranche trotz des Anstiegs weiter."
+      },
+      {
+        "titel": "MSCI vs. Indonesien",
+        "text": "MSCI prüft, Indonesien den Schwellenland-Status zu entziehen. Die Börse in Jakarta brach so stark ein wie seit der Asienkrise nicht mehr."
+      }
+    ],
+    "schlagworte": ["ölpreis", "dax", "fed", "börse", "wirtschaft"]
+  }
+}
