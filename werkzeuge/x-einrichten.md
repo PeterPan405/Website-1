@@ -53,6 +53,13 @@ es.
 
 ### 1. Das Konto
 
+**Spur vom 17.10.2026:** Im Gmail-Postfach des Betreibers liegt eine
+Bestätigungsmail von X (`verify@x.com`) vom **27.07.2026** – dem Tag, an dem
+auch der Instagram-Kanal begann. Wahrscheinlich gibt es also ein Konto.
+Zuerst dort anmelden (mit der Adresse, an die die Mail ging; Passwort
+notfalls über „Passwort vergessen"), Namen (@…) und Profil ansehen. Ob es ein
+privates Konto ist oder eins für IM Invests, entscheidet der Betreiber.
+
 - Gibt es ein X-Konto für IM Invests? Welcher Name (@…)? In `lib/site.ts`
   steht `twitterHandle: '@iminvests'` nur als Platzhalter.
 - Falls neu: Profilbild, Banner und Beschreibung wie bei Instagram; Link
