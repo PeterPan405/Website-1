@@ -228,7 +228,7 @@ const aktuell = Object.entries(quote)
   .filter(([, l]) => l.schuldenquote?.jahr === 2025)
   .map(([land, l]) => ({ land, wert: l.schuldenquote!.wert }))
   .sort((a, b) => b.wert - a.wert)
-for (const z of schulden.zeilen)
+for (const z of schulden.zeilen.filter((z) => !z.schnitt))
   pruefe(
     `Schulden ${z.name} wie im Bestand (${quote[z.land]?.schuldenquote?.wert})`,
     quote[z.land]?.schuldenquote?.wert === z.wert &&
@@ -250,6 +250,11 @@ pruefe(
   schulden.zeilen.every((z) =>
     schulden.text.includes(`${z.wert.toFixed(1).replace('.', ',')} %`)
   )
+)
+const mittel = aktuell.reduce((summe, l) => summe + l.wert, 0) / aktuell.length
+pruefe(
+  `der Länderschnitt ist der Mittelwert aller ${aktuell.length} (${mittel.toFixed(2)})`,
+  schulden.zeilen.find((z) => z.schnitt)?.wert === Math.round(mittel * 10) / 10
 )
 pruefe(
   'Frankreichs Anleiherenditen wie in der Meldung vom 12.10.',

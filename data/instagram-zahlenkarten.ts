@@ -28,6 +28,10 @@ export const zahlenkarten: Zahlenkarte[] = [
       308,7, unten Liechtenstein 0,5. Eritrea (260,4) stammt aus 2019 und
       zählt nicht mit. Deutschland steht auf Platz 68 von 188.
 
+      Der Schnitt („durchschnittlich noch", Betreiber 17.10.): einfacher
+      Mittelwert dieser 188 Werte, 59,8 – nicht nach Wirtschaftskraft
+      gewichtet; der gewichtete Weltwert des IWF steht nicht im Bestand.
+
       Frankreichs „Probleme": Goldreporter, Top-News vom 12.10.2026
       („Anleihezinsen bleiben hoch: Frankreich unter Druck"), so in
       data/news.ts.
@@ -36,6 +40,11 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-17',
+    /*
+      Freigegeben vom Betreiber am 17.10.2026 um 11:49 („perfekt das passt",
+      Entwurf 2 mit Länderschnitt). Hinaus geht sie frühestens um 16 Uhr.
+    */
+    freigabe: '2026-10-17',
     titel: [
       { text: 'Staatsschulden:' },
       { text: 'Wer am tiefsten drinsteckt', gruen: true },
@@ -48,6 +57,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       { name: 'USA', wert: 123.9, land: 'USA' },
       { name: 'Frankreich', wert: 116, land: 'FRA' },
       { name: 'Deutschland', wert: 62.9, land: 'DEU', hervor: true },
+      { name: 'Länderschnitt', wert: 59.8, land: 'WELT', schnitt: true },
       { name: 'Liechtenstein', wert: 0.5, land: 'LIE' },
     ],
     fusszeile:
@@ -56,8 +66,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Venezuela schuldet mehr als das Dreifache seiner Wirtschaftsleistung: 308,7 % des BIP – der höchste Wert aller Länder mit Zahlen für 2025. Dahinter folgt Japan mit 206,5 %. 📊\n\n' +
       'Auch Italien (137,1 %), die USA (123,9 %) und Frankreich (116,0 %) liegen über 100 %: Der Staat schuldet dort mehr, als das ganze Land in einem Jahr erwirtschaftet. ' +
       'In Frankreich bleiben die Anleiherenditen zudem hoch. ' +
-      'Deutschland kommt auf 62,9 % – Platz 68 von 188 Ländern. Am wenigsten Schulden hat Liechtenstein mit 0,5 %.\n\n' +
-      'Gezählt wird die Bruttoschuld des Gesamtstaats in der einheitlichen Abgrenzung des IWF; sie weicht von den Maastricht-Zahlen der EU ab.\n' +
+      'Deutschland kommt auf 62,9 % – Platz 68 von 188 Ländern und knapp über dem Durchschnitt aller Länder von 59,8 %. Am wenigsten Schulden hat Liechtenstein mit 0,5 %.\n\n' +
+      'Gezählt wird die Bruttoschuld des Gesamtstaats in der einheitlichen Abgrenzung des IWF; sie weicht von den Maastricht-Zahlen der EU ab. Der Durchschnitt ist der einfache Mittelwert der 188 Länder, nicht nach Wirtschaftskraft gewichtet.\n' +
       'Quellen: IWF, World Economic Outlook (Stand 2025); Goldreporter (12.10.2026) zu Frankreich',
     schlagworte: ['staatsschulden', 'schulden', 'wirtschaft', 'börse', 'finanzen'],
   },

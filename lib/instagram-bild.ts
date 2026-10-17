@@ -343,8 +343,8 @@ export function motivJpeg(id: string): Buffer {
  * Xi, Moderna, iPhone, Nike, VW, Dell, Paramount) und die älteren Deckblätter
  * mit Unterzeile, die zu einer früheren Form gehören.
  *
- * Bei 18 Bildern und fünf Werktagen je Woche kehrt ein Deckblatt nach gut
- * dreieinhalb Wochen wieder.
+ * Bei 18 Bildern und sieben Beiträgen je Woche (seit dem 17.10.2026 täglich)
+ * kehrt ein Deckblatt nach gut zweieinhalb Wochen wieder.
  */
 export function deckblaetter(): string[] {
   return readdirSync(join(ORDNER, 'titelbilder'))
@@ -388,19 +388,20 @@ export const NICHT_ALS_DECKBLATT: Record<string, string> = {
   '2026-09-30.jpg': 'mit dem Auge: Dachkonstruktion ragt in „des Tages"',
 }
 
-/** Werktage seit einem festen Montag – damit jeder Tag sein eigenes Bild hat. */
-function werktagNummer(datum: string): number {
+/*
+  Tage seit einem festen Montag – damit jeder Tag sein eigenes Bild hat.
+  Bis zum 16.10.2026 zählten nur Werktage; seit die Tagesnews auch samstags
+  und sonntags erscheinen, bekäme das Wochenende sonst das Bild vom Freitag.
+*/
+function tagNummer(datum: string): number {
   const anfang = Date.UTC(2026, 0, 5) // Montag, 5. Januar 2026
-  const tage = Math.round((Date.parse(`${datum}T00:00:00Z`) - anfang) / 86_400_000)
-  const wochen = Math.floor(tage / 7)
-  return wochen * 5 + Math.min(((tage % 7) + 7) % 7, 4)
+  return Math.round((Date.parse(`${datum}T00:00:00Z`) - anfang) / 86_400_000)
 }
 
-/** Das Deckblatt des Tages, als JPEG – reihum, an jedem Werktag ein anderes. */
+/** Das Deckblatt des Tages, als JPEG – reihum, an jedem Tag ein anderes. */
 export function deckblatt(datum: string): { datei: string; jpeg: Buffer } {
   const liste = deckblaetter()
   if (liste.length === 0) throw new Error('lib/instagram/titelbilder/ ist leer.')
-  const datei =
-    liste[((werktagNummer(datum) % liste.length) + liste.length) % liste.length]
+  const datei = liste[((tagNummer(datum) % liste.length) + liste.length) % liste.length]
   return { datei, jpeg: readFileSync(join(ORDNER, 'titelbilder', datei)) }
 }

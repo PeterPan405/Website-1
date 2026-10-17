@@ -10,8 +10,9 @@ Wer einen Beitrag baut, baut ihn so. Wer davon abweichen will, ändert zuerst
 diese Datei – mit dem Grund daneben.
 
 > [!warning] Was von selbst hinausgeht – und was nicht
-> **„Top-News des Tages" geht werktags vollautomatisch hinaus**, nach der
-> nächtlichen Ausgabe – Anordnung vom 11.10.2026, abends. Aber nur in genau
+> **„Top-News des Tages" geht täglich vollautomatisch hinaus**, nach der
+> nächtlichen Ausgabe – Anordnung vom 11.10.2026, abends; seit dem 17.10.2026
+> auch samstags und sonntags („mache aber jetzt täglich News des Tages"). Aber nur in genau
 > der Form unten; ein Plan, der sie verfehlt, ergibt „kein Beitrag".
 >
 > **Alles andere** – Erklärbeitrag, Zahlenkarte – braucht die Freigabe für
@@ -31,8 +32,9 @@ Gezählt über 77 Tage, 27.07. bis 11.10.2026:
 | „Top-News des Tages"     | morgens, meist zwischen 06:45 und 07:45 Uhr (Median 07:02) | **nur montags bis freitags** – 54 von 54 |
 | Erklär- oder Zahlbeitrag | nachmittags oder abends                                    | **jeden Tag**, auch am Wochenende        |
 
-An Samstagen und Sonntagen gab es nie einen Tagesbeitrag. Ein Wochenende ohne
-„Top-News" ist also kein Ausfall.
+Bis dahin gab es an Samstagen und Sonntagen nie einen Tagesbeitrag. **Seit dem
+17.10.2026 erscheint er täglich** – Anordnung des Betreibers. Ein Wochenende
+ohne „Top-News" ist seither ein Ausfall.
 
 ## Drei Sorten
 
