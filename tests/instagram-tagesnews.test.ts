@@ -379,10 +379,12 @@ const agent = readFileSync('.github/workflows/nachrichten-agent.yml', 'utf8')
 
 /*
   GitHub verwirft einen Workflow, dessen Text mit Ausdruck (\${{ … }}) über
-  21.000 Zeichen lang ist – ohne Lauf, nur „No jobs were run" bei jedem
+  21.000 **Bytes** lang ist – ohne Lauf, nur „No jobs were run" bei jedem
   Push. So geschehen am 18.10.2026: Die Wochenend-Regel brachte den Prompt
-  von 20.438 auf 21.086 Zeichen, und der Agent lief nicht mehr. Gezählt wird
-  der Block unter `prompt: |`, eingerückt wie YAML ihn liest.
+  von 20.898 auf 21.560 Bytes, und der Agent lief nicht mehr. Die erste
+  Korrektur zählte Zeichen (20.680) und lag in Bytes noch darüber (21.142):
+  „, ä, – sind zwei bis drei Bytes. Gezählt wird der Block unter
+  `prompt: |`, eingerückt wie YAML ihn liest.
 */
 {
   const zeilen = agent.split('\n')
@@ -392,10 +394,10 @@ const agent = readFileSync('.github/workflows/nachrichten-agent.yml', 'utf8')
     if (z.trim() && !z.startsWith(' '.repeat(12))) break
     block.push(z.slice(12))
   }
-  const laenge = block.join('\n').trimEnd().length
+  const laenge = Buffer.byteLength(block.join('\n').trimEnd(), 'utf8')
   pruefen(
-    `der Agenten-Prompt hat ${laenge} Zeichen – GitHub nimmt höchstens 21.000, Puffer 300`,
-    start > 0 && laenge > 10_000 && laenge <= 20_700,
+    `der Agenten-Prompt hat ${laenge} Bytes – GitHub nimmt höchstens 21.000, Puffer 200`,
+    start > 0 && laenge > 10_000 && laenge <= 20_800,
     'Kürzen – sonst läuft nachrichten-agent.yml gar nicht.'
   )
 }
