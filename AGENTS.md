@@ -141,8 +141,10 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 
 ## Instagram – was am 17. und 18.10.2026 schiefging
 
-- **„Passt" heißt freigegeben, nicht hochladen.** Tagesbeitrag ab 16 Uhr;
-  erst die News, dann die Zahlenkarte.
+- **Die News gehen ohne Freigabe hinaus** – sie müssen den Standard von
+  selbst halten: nur spannende Meldungen, nichts doppelt. **Der
+  Tagesbeitrag nie ohne sein „passt"**; „passt" heißt freigegeben, nicht
+  hochladen – ab 16 Uhr, erst die News, dann die Zahlenkarte.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
 - **Kein Thema zweimal** – nicht im Beitrag, nicht am Folgetag (Öl am 17.
