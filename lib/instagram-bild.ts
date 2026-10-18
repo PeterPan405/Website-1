@@ -519,6 +519,19 @@ function tagNummer(datum: string): number {
   return Math.round((Date.parse(`${datum}T00:00:00Z`) - anfang) / 86_400_000)
 }
 
+/**
+ * Das Deckblatt zum Thema – das Titelbild, aus dem das Motiv geschnitten ist.
+ * Ohne Thema (oder wenn sein Bild nicht als Deckblatt taugt) reihum.
+ */
+export function deckblattZumThema(
+  datum: string,
+  quelle: string | null
+): { datei: string; jpeg: Buffer } {
+  if (quelle && deckblaetter().includes(quelle))
+    return { datei: quelle, jpeg: readFileSync(join(ORDNER, 'titelbilder', quelle)) }
+  return deckblatt(datum)
+}
+
 /** Das Deckblatt des Tages, als JPEG – reihum, an jedem Tag ein anderes. */
 export function deckblatt(datum: string): { datei: string; jpeg: Buffer } {
   const liste = deckblaetter()

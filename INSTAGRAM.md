@@ -63,6 +63,19 @@ Kurse kommen aus dem Bestand der Website. Zugeordnet wird über den Inhalt der
 Kachel, kein Motiv zweimal im Beitrag; ohne passendes Bild bleibt die Kachel
 wie vorher. Regeln und Gründe in `lib/instagram-motive.ts`.
 
+**Keine Skylines, Deckblatt zum Thema** (18.10.2026). Der Betreiber: „Die
+Bilder müssen immer auch zum Thema passen. Ansonsten einfach kein Bild
+nehmen, bevor du eine Skyline nimmst." Frankfurt, Banken, Finanzviertel,
+Deutschland, Europa und New York sind keine Motive mehr; eine Kachel ohne
+Thema bleibt ohne Foto. Das Deckblatt nimmt das Titelbild zum Thema der
+wichtigsten Meldung (Fed, EZB, Luftfahrt, Bahn, Industrie, Wohnen), sonst
+reihum.
+
+**Wochenende** (18.10.2026): Samstag bildet den Freitag ab, Sonntag und
+Montag das Wochenende – an diesen beiden Tagen drei bis fünf Kacheln
+(`kachelnErlaubt()`), kein Thema aus dem Beitrag des Vortags ohne neues
+Ereignis, gern politische Ereignisse und anstehende Termine der Woche.
+
 **Eine Grafik sagt dasselbe wie die Kachel – oder es gibt keine** (seit dem
 17.10.2026, `lib/instagram-kurs.ts`). Sie endet mit dem letzten Handelstag vor
 der Ausgabe (der laufende Kurs schließt die Tagesreihe ab), die Prozentzahl

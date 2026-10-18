@@ -54,6 +54,21 @@ export interface InstagramPlan {
   sechs. Daher 190. Unter 100 ist es keine Meldung mehr, sondern eine Zeile.
 */
 export const KACHELN = 5
+/*
+  Sonntags und montags dürfen es weniger sein (Betreiber, 18.10.2026): Der
+  Samstag bildet den Freitag ab, Sonntag und Montag das Wochenende – „so
+  viel Börsen-News gibt es am Wochenende nicht … mindestens aber vier
+  Slides mit drei News". Lieber drei neue als fünf mit Wiederholungen.
+*/
+export const KACHELN_MIN_WOCHENENDE = 3
+
+/** Wie viele Kacheln an diesem Tag erlaubt sind – sonntags und montags drei bis fünf. */
+export function kachelnErlaubt(datum?: string): { min: number; max: number } {
+  const tag = datum ? new Date(`${datum}T12:00:00Z`).getUTCDay() : -1
+  return tag === 0 || tag === 1
+    ? { min: KACHELN_MIN_WOCHENENDE, max: KACHELN }
+    : { min: KACHELN, max: KACHELN }
+}
 export const TITEL_MAX = 28
 export const TEXT_MIN = 100
 export const TEXT_MAX = 190
@@ -125,6 +140,7 @@ export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminv
 export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
 
 - \`kacheln\`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
+- **Sonntags und montags drei bis fünf Kacheln** (Betreiber 18.10.2026): Samstag bildet den Freitag ab, Sonntag und Montag das Wochenende. **Kein Thema aus dem Instagram-Beitrag des Vortags** (\`data/instagram/<gestern>.json\`), außer es gibt ein neues Ereignis – lieber drei neue Meldungen als fünf mit Wiederholungen. An diesen Tagen dürfen auch **politische Ereignisse** als Kachel stehen (sachlich, ohne Opferzahlen), und eine Kachel darf **anstehende Termine** nennen – „Diese Woche: EZB am Donnerstag, Quartalszahlen von …" –, aber nur Termine, die in den Quellen oder im Kalender (\`data/kalender/\`, \`data/snapshots/forexfactory.json\`) stehen.
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
   - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
 - \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen. Vorbild: „KI-Aktien unter Druck, Brasiliens Börse auf Rekordhoch und steigende Ölpreise. Gleichzeitig sorgen Frankreichs Haushaltsprobleme und die Entwicklungen rund um die EZB für Aufmerksamkeit."
@@ -148,7 +164,8 @@ export function istErscheinungstag(datum: string): boolean {
 }
 
 /** Alle Verstöße gegen das Muster, als lesbare Sätze. Leer heißt: in Ordnung. */
-export function pruefeInstagramPlan(plan: unknown): string[] {
+export function pruefeInstagramPlan(plan: unknown, datum?: string): string[] {
+  const { min, max } = kachelnErlaubt(datum)
   const fehler: string[] = []
   if (!plan || typeof plan !== 'object') return ['Der Plan fehlt.']
   const p = plan as Partial<InstagramPlan>
@@ -169,9 +186,9 @@ export function pruefeInstagramPlan(plan: unknown): string[] {
       )
   }
 
-  if (!Array.isArray(p.kacheln) || p.kacheln.length !== KACHELN) {
+  if (!Array.isArray(p.kacheln) || p.kacheln.length < min || p.kacheln.length > max) {
     fehler.push(
-      `\`kacheln\` braucht genau ${KACHELN} Einträge, es sind ${Array.isArray(p.kacheln) ? p.kacheln.length : 0}.`
+      `\`kacheln\` braucht ${min === max ? `genau ${max}` : `${min} bis ${max}`} Einträge, es sind ${Array.isArray(p.kacheln) ? p.kacheln.length : 0}.`
     )
   } else {
     p.kacheln.forEach((k, i) => {
@@ -255,7 +272,7 @@ export function tagesstand(datum: string, rohtext: string | null): Tagesstand {
       grund: 'Der Instagram-Plan ist kein gültiges JSON.',
     }
   }
-  const fehler = pruefeInstagramPlan(plan)
+  const fehler = pruefeInstagramPlan(plan, datum)
   if (fehler.length > 0)
     return {
       datum,
