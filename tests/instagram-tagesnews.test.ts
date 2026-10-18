@@ -376,6 +376,29 @@ pruefen(
 
 const ohneRaum = (s: string) => s.replace(/\r/g, '').replace(/\s+/g, ' ').trim()
 const agent = readFileSync('.github/workflows/nachrichten-agent.yml', 'utf8')
+
+/*
+  GitHub verwirft einen Workflow, dessen Text mit Ausdruck (\${{ … }}) über
+  21.000 Zeichen lang ist – ohne Lauf, nur „No jobs were run" bei jedem
+  Push. So geschehen am 18.10.2026: Die Wochenend-Regel brachte den Prompt
+  von 20.438 auf 21.086 Zeichen, und der Agent lief nicht mehr. Gezählt wird
+  der Block unter `prompt: |`, eingerückt wie YAML ihn liest.
+*/
+{
+  const zeilen = agent.split('\n')
+  const start = zeilen.findIndex((z) => /^ {10}prompt: \|\s*$/.test(z))
+  const block: string[] = []
+  for (const z of zeilen.slice(start + 1)) {
+    if (z.trim() && !z.startsWith(' '.repeat(12))) break
+    block.push(z.slice(12))
+  }
+  const laenge = block.join('\n').trimEnd().length
+  pruefen(
+    `der Agenten-Prompt hat ${laenge} Zeichen – GitHub nimmt höchstens 21.000, Puffer 300`,
+    start > 0 && laenge > 10_000 && laenge <= 20_700,
+    'Kürzen – sonst läuft nachrichten-agent.yml gar nicht.'
+  )
+}
 pruefen(
   'Der Agent bekommt dieselbe Instagram-Anweisung wie der Weg über die Schnittstelle',
   ohneRaum(agent).includes(ohneRaum(ANWEISUNG_INSTAGRAM)),
