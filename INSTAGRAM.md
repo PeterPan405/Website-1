@@ -97,6 +97,13 @@ Folgen", „Fazit"), **keine Aufforderung zu folgen.** Gelegentlich steht eine
 
 ### C — Zahlenkarte
 
+**Form und Farbe wechseln täglich.** Die Akzentfarbe läuft durch die vier
+Logofarben (Grün, Navy, Rot, Anthrazit – `akzentfarbe()`), die Form darf nie
+zwei Tage hintereinander dieselbe sein (`form()`: Vergleich, Häuschen,
+Balken, Kacheln; der Test prüft es). Betreiber, 17. und 18.10.2026: „Das
+soll sich durchrotieren, genauso wie die Farben. Sonst wirkt das
+langweilig."
+
 **Immer eine Seite.** Am 16.10.2026 ging der Tagesbeitrag kurz als Karussell
 aus Titelbild mit Foto und Karte; der Betreiber zur Karte: „Ja, das passt",
 zum Titelbild: „das andere nicht – wo es nur eine Seite ist, mit Chart, immer

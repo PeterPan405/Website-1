@@ -106,9 +106,10 @@ export interface Rangkarte extends KarteGemeinsam {
   /**
    * Häuschen (Voreinstellung) für Anteile bis 100 %, Balken für Werte, die
    * darüber gehen – Staatsschulden von 308,7 % des BIP wären 31 Häuschen.
-   * Die Balken zeigen eine gestrichelte Linie bei 100 %.
+   * Die Balken zeigen eine gestrichelte Linie bei 100 %. Kacheln: ein
+   * Raster aus Karten mit großer Zahl, zwei Spalten, ohne Grafik.
    */
-  skala?: 'haeuser' | 'balken'
+  skala?: 'haeuser' | 'balken' | 'kacheln'
   /**
    * Was hinter der Zahl steht – voreingestellt „ %". Leer für Größen ohne
    * Einheit wie die Geburtenziffer (1,36 Kinder je Frau; die Einheit steht
@@ -426,7 +427,7 @@ function pruefeRangliste(k: Rangkarte): string[] {
     f.push('Die Rangliste braucht genau eine hervorgehobene Zeile.')
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
   if (!k.unterzeile.trim()) f.push('Die Unterzeile fehlt.')
-  if (k.einheit !== undefined && k.skala !== 'balken')
+  if (k.einheit !== undefined && (k.skala ?? 'haeuser') === 'haeuser')
     f.push(
       "Eine andere Einheit als Prozent nur mit skala: 'balken' – Häuschen zählen Prozent."
     )
@@ -858,7 +859,108 @@ function balken(wert: number, groesster: number, farbe: string) {
   )
 }
 
+/*
+  Die Kacheln (18.10.2026): Der Betreiber zur zweiten Balkenkarte in Folge:
+  „gleiche Beitragsart vom Design her wie gestern … Das soll sich
+  durchrotieren, genauso wie die Farben. Sonst wirkt das langweilig."
+  Zwei Spalten, je Land eine Karte mit Flagge, Name und großer Zahl; die
+  hervorgehobene ist in der Akzentfarbe gefüllt, der Schnitt gestrichelt.
+*/
+function kachelGrafik(k: Rangkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const spalten = 2
+  const reihen = Math.ceil(k.zeilen.length / spalten)
+  const luecke = 18
+  const breite = (ZK_BREITE - 80 - luecke) / spalten
+  const hoehe = Math.min(150, Math.floor((RL_UNTEN + 20 - RL_OBEN) / reihen) - luecke)
+  const karte = (z: Rang, i: number) => {
+    const farbe = z.hervor ? '#ffffff' : z.schnitt ? MITTELGRAU : SCHWARZ
+    return h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: 40 + (i % spalten) * (breite + luecke),
+          top: RL_OBEN - 20 + Math.floor(i / spalten) * (hoehe + luecke),
+          width: breite,
+          height: hoehe,
+          display: 'flex',
+          alignItems: 'center',
+          paddingLeft: 28,
+          paddingRight: 22,
+          borderRadius: 22,
+          backgroundColor: z.hervor ? akzent : z.schnitt ? '#ffffff' : '#f1f3f0',
+          border: z.schnitt
+            ? '3px dashed #777'
+            : `3px solid ${z.hervor ? akzent : '#f1f3f0'}`,
+        },
+      },
+      /* Keine Rangnummer: Die Auswahl ist nicht die Rangliste – Deutschland
+         stünde als „6." da und ist weltweit 183. */
+      flagge(FLAGGEN[z.land] ?? { streifen: [LEER] }, 58, z.hervor ? 3 : 2),
+      h(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            flexDirection: 'column',
+            marginLeft: 16,
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 26, color: farbe } },
+          z.name
+        ),
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Open',
+              fontWeight: 800,
+              fontStyle: 'italic',
+              fontSize: 50,
+              lineHeight: 1.05,
+              color: farbe,
+            },
+          },
+          `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
+        )
+      )
+    )
+  }
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    ...k.zeilen.map(karte),
+  ]
+}
+
+/**
+ * Die Form einer Karte – zwei Tage hintereinander nie dieselbe (Betreiber,
+ * 18.10.2026: „Das soll sich durchrotieren, genauso wie die Farben").
+ */
+export function form(k: Zahlenkarte): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' {
+  return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
+}
+
 function ranglistenGrafik(k: Rangkarte) {
+  if (k.skala === 'kacheln') return kachelGrafik(k)
   const mitBalken = k.skala === 'balken'
   const akzent = akzentfarbe(k.datum)
   const groesster = Math.max(...k.zeilen.map((z) => z.wert))
