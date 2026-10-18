@@ -101,6 +101,235 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelmarkt-angriffe-petersburg-jemen',
+    title: 'Ukraine greift Ölhafen an, Saudi-Arabien fängt Raketen ab',
+    teaser:
+      'Die Ukraine berichtet von einem Angriff auf einen russischen Ölhafen in St. Petersburg. Saudi-Arabien fängt am selben Tag zwei Raketen aus dem Jemen ab.',
+    category: 'Märkte',
+    publishedAt: '2026-10-18T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Geopolitik', 'Ukraine-Krieg'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 18.10.2026, 10:35 Uhr: „ROUNDUP: Saudi-Arabien fängt zwei ballistische Raketen aus dem Jemen ab“',
+        url: 'https://www.onvista.de/news/2026/10-18-roundup-saudi-arabien-faengt-zwei-ballistische-raketen-aus-dem-jemen-ab-0-10-26565304',
+      },
+      {
+        label:
+          'wallstreet-online, dpa-AFX-Meldung vom 18.10.2026, 11:57 Uhr: „Bericht: Ukraine greift Ölhafen in St. Petersburg an“',
+        url: 'https://www.wallstreet-online.de/nachricht/21542218-bericht-ukraine-greift-oelhafen-st-petersburg',
+      },
+      {
+        label:
+          'CNBC, 16.10.2026, 20:02 Uhr GMT: „Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries“',
+        url: 'https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Sonntag meldeten zwei Kriegsparteien neue Vorfälle rund um den Ölmarkt. Die Ukraine griff nach einem Bericht einen Ölhafen an. Ziel war demnach eine Anlage in St. Petersburg. Eine zweite, unabhängige Quelle dazu lag bislang nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ukraine hatte bereits am Freitag angekündigt, russische Ölraffinerien anzugreifen. Zu diesem Zeitpunkt eskalierte zugleich der Konflikt am Persischen Golf: Iran hatte seine Angriffe in der Straße von Hormus verstärkt, und Brent näherte sich 110 Dollar je Barrel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Saudi-Arabien wehrt Raketen aus dem Jemen ab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast zur gleichen Zeit fing Saudi-Arabien zwei Raketen ab. Die Agentur dpa-AFX berichtete, die Raketen seien aus dem Jemen gekommen. Zum beabsichtigten Ziel wurde nichts bekannt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Vorfälle treffen denselben Markt aus zwei Richtungen. Im Norden Russlands geht es um Exportinfrastruktur, am Roten Meer um eine Schifffahrtsroute, über die viel Öl transportiert wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ölpreise reagieren oft schon auf die Möglichkeit einer Lieferstörung, nicht erst auf eine bestätigte. Diese eingepreiste Risikoprämie kann wieder sinken, sobald sich ein Vorfall als folgenlos herausstellt – unabhängig davon, ob die Attacke selbst bestätigt wird.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-haushaltsdefizit-2026',
+    title: 'US-Haushaltsdefizit steigt auf fast zwei Billionen Dollar',
+    teaser:
+      'Die USA meldeten für das Haushaltsjahr 2026 ein Defizit von fast zwei Billionen Dollar. Das sind zwölf Prozent mehr als im Jahr zuvor.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-18T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'Staatsverschuldung', 'Haushalt'],
+    relatedTopics: ['schulden-und-kredit', 'staatsanleihe'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 16.10.2026, 22:34 Uhr GMT: „U.S. budget deficit swells to almost $2 trillion for fiscal 2026, up 12% in a single year“',
+        url: 'https://www.cnbc.com/2026/10/16/us-budget-deficit-2026.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das US-Finanzministerium veröffentlichte die Zahlen zum Haushaltsjahr 2026. Das Defizit liegt bei fast zwei Billionen Dollar. Das ist ein Anstieg von zwölf Prozent gegenüber dem Vorjahr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weitere Angaben zur Aufteilung zwischen Einnahmen und Ausgaben lagen aus der Quelle nicht vor. Auch ein Grund für den Anstieg wurde dort nicht genannt. Eine zweite, unabhängige Quelle zu der Zahl lag zum Zeitpunkt der Recherche nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer das Defizit am Ende finanziert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Staat ohne Überschuss deckt die Lücke über neue Anleihen. Das US-Finanzministerium muss also zusätzliche Staatsanleihen ausgeben, um das Defizit zu finanzieren. Mehr Angebot an Anleihen trifft dabei auf eine Nachfrage, die nicht automatisch mitwächst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein größeres Angebot an Staatsanleihen kann die Rendite nach oben drücken, die der Staat Investoren bieten muss. Steigt diese Rendite, steigen über kurz oder lang auch die Zinskosten für neue Kredite im ganzen Land.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-russland-sanktionen-ausgesetzt',
+    title: 'Trump setzt neue Russland-Sanktionen aus',
+    teaser:
+      'Donald Trump setzte neue Russland-Sanktionen aus, bevor sie in Kraft treten konnten. Präsident Selenskyj nannte den Schritt falsch.',
+    category: 'Märkte',
+    publishedAt: '2026-10-18T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Russland-Sanktionen', 'USA', 'Ukraine-Krieg'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "CNBC, 18.10.2026, 12:50 Uhr GMT: „Trump waives broad new Russia sanctions, Zelenskyy condemns it as 'wrong'“",
+        url: 'https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump setzte breite neue Russland-Sanktionen aus. Die Sanktionen sollten eigentlich demnächst in Kraft treten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grundlage ist das sogenannte Graham Bill. Trump hatte es im September unterschrieben. Das Gesetz richtet sich gegen Russland wegen des Angriffs auf die Ukraine.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reaktion aus Kiew',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ukraines Präsident Wolodymyr Selenskyj kritisierte den Schritt. Er bezeichnete die Aussetzung als falsch. Weitere Einzelheiten zum Inhalt der ausgesetzten Sanktionen lagen aus der Quelle nicht vor. Eine zweite, unabhängige Quelle zu dem Vorgang lag zum Zeitpunkt der Recherche ebenfalls nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Sanktionen und ihre Aussetzung ändern das wirtschaftliche Risiko für betroffene Branchen unmittelbar, ohne dass sich an der politischen Lage sonst etwas ändert. Das macht solche Entscheidungen zu einem eigenen Marktfaktor.',
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-england-hedgefonds-warnung',
+    title: 'Bank of England warnt vor Risiko durch Hedgefonds',
+    teaser:
+      'Ein Vize-Gouverneur der Bank of England warnte vor den Geschäften von Hedgefonds. Sie könnten einen Schock am globalen Anleihemarkt wahrscheinlicher machen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-18T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of England', 'Anleihemarkt', 'Hedgefonds'],
+    relatedTopics: ['staatsanleihe', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 18.10.2026, 06:13 Uhr GMT: „Why hedge funds could be making a bond market shock more likely“',
+        url: 'https://www.cnbc.com/2026/10/18/hedge-funds-bond-market-turmoil.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Vize-Gouverneur der Bank of England warnte öffentlich vor Hedgefonds. Ihre Geschäfte könnten das Risiko für einen Schock am globalen Anleihemarkt erhöhen. Einzelheiten zu den gemeinten Geschäften nannte er laut der Quelle nicht. Eine zweite, unabhängige Quelle zu der Warnung lag zum Zeitpunkt der Recherche nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Warnung reiht sich in eine Woche mit viel Bewegung an den Anleihemärkten ein. Zuvor hatten bereits hohe US-Erzeugerpreise und eine überraschend hohe US-Inflation die Anleiherenditen bewegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Blick auf die neue Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Montag, den 19. Oktober, sprechen gleich drei Vertreter der EZB öffentlich: Olaf Sleijpen, Philip Lane und Frank Elderson. Zudem veröffentlicht die kanadische Notenbank ihre Kerninflation.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wenn stark verschuldete Investoren gleichzeitig Positionen abbauen müssen, kann die Liquidität am Anleihemarkt schnell austrocknen. Das unterscheidet ein Risiko für das System von einem Risiko für einen einzelnen Fonds.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-aktie-rekordhoch-nachfolge',
+    title: 'Berkshire-Aktie erreicht höchsten Stand seit Mai 2025',
+    teaser:
+      'Die Berkshire-Aktie klettert auf ihr höchstes Niveau seit Mai 2025. Damals kündigte Warren Buffett seinen Rückzug als Chef an.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-18T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Berkshire Hathaway', 'Warren Buffett', 'Aktienmarkt'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['berkshire'],
+    sources: [
+      {
+        label:
+          'CNBC, 17.10.2026, 12:46 Uhr GMT: „Berkshire shares buck market sell-off, rally to highest since Buffett said he would step down as CEO“',
+        url: 'https://www.cnbc.com/2026/10/17/berkshire-rally-to-highest-since-buffett-announcement.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Berkshire-Aktie stieg auf ihr höchstes Niveau seit Mai 2025. Damals hatte Warren Buffett den Aktionären seinen Rückzug als Chef angekündigt. Er wollte das Amt demnach Ende jenes Jahres abgeben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der breite Markt bewegte sich zuletzt in die andere Richtung. Technologie- und KI-Werte standen diese Woche unter Verkaufsdruck. Berkshire konnte sich diesem Trend laut CNBC entziehen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gegen den Trend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Berkshire hält traditionell wenig Technologiewerte und viel Bargeld. Genau das wirkte in einer Woche mit fallenden Tech-Kursen offenbar wie ein Vorteil, nicht wie ein Nachteil.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass eine einzelne Aktie gegen einen breiten Ausverkauf steigt, zeigt, wie unterschiedlich sich Werte innerhalb eines Index verhalten können. Ein Index-Durchschnitt verdeckt solche Unterschiede, statt sie zu zeigen.',
+      },
+    ],
+  },
+  {
     slug: 'fed-warsh-ki-investitionswelle-vix-vier-monats-hoch',
     title: 'Fed-Chef Warsh lobt „enorme Investitionswelle“ bei KI, VIX steigt',
     metaTitle: 'Warsh lobt KI-Welle, VIX auf Vier-Monats-Hoch',
