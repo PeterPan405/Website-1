@@ -73,7 +73,8 @@ const aufhaenger = beschriftung.split('\n')[0].trim()
 melde(`Karte vom ${HEUTE}: ${aufhaenger}`)
 
 // Riegel 3
-const bildAdresse = `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}`
+/* Jedes Mal eine neue Adresse – Meta merkt sich Bilder an ihr (18.10.2026). */
+const bildAdresse = `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}&t=${Date.now()}`
 const bild = await fetch(bildAdresse, { method: 'HEAD', cache: 'no-store' })
 if (!bild.ok || !(bild.headers.get('content-type') ?? '').includes('image/jpeg'))
   halt(
