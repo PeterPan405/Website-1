@@ -29,6 +29,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       Geprüft in tests/instagram-zahlenkarte.test.ts.
     */
     art: 'rangliste',
+    /*
+      Freigegeben vom Betreiber am 18.10.2026: „direkt noch danach den
+      Vermögensbeitrag" – nach dem neu gemachten Tagesbeitrag.
+    */
+    freigabe: '2026-10-18',
     skala: 'kacheln',
     einheit: ' $',
     stellen: 0,
