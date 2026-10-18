@@ -45,6 +45,7 @@ import {
   ANWEISUNG_INSTAGRAM,
   type InstagramPlan,
   KACHELN as IG_KACHELN,
+  KACHELN_MIN_WOCHENENDE as IG_KACHELN_MIN,
   SCHLAGWORTE as IG_SCHLAGWORTE,
   istErscheinungstag,
   pruefeInstagramPlan,
@@ -420,13 +421,13 @@ const WERKZEUG = {
       instagram: {
         type: 'object',
         description:
-          'Der Instagram-Beitrag „Top-News des Tages" – fünf Kacheln, Zusammenfassung, fünf Schlagworte. Siehe Anweisung.',
+          'Der Instagram-Beitrag „Top-News des Tages" – fünf Kacheln (sonntags und montags drei bis fünf), Zusammenfassung, fünf Schlagworte. Siehe Anweisung.',
         required: ['zusammenfassung', 'kacheln', 'schlagworte'],
         properties: {
           zusammenfassung: { type: 'string' },
           kacheln: {
             type: 'array',
-            minItems: IG_KACHELN,
+            minItems: IG_KACHELN_MIN,
             maxItems: IG_KACHELN,
             items: {
               type: 'object',
@@ -1172,7 +1173,7 @@ async function main() {
     `process.exit(1)` gibt es hier nicht. Ohne gültigen Plan erscheint an
     diesem Tag eben kein Tagesbeitrag, und `instagram-beitrag.yml` sagt warum.
   */
-  const igFehler = pruefeInstagramPlan(ergebnis.instagram)
+  const igFehler = pruefeInstagramPlan(ergebnis.instagram, heute)
   const igTag = istErscheinungstag(heute)
   const igMelden = () => {
     if (!igTag) {

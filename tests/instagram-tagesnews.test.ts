@@ -160,6 +160,27 @@ pruefen('Sonntag, 18.10.2026 ist einer', istErscheinungstag('2026-10-18'))
 pruefen('kein Datum ist keiner', !istErscheinungstag('17.10.2026'))
 pruefen('Montag, 12.10.2026 ist einer', istErscheinungstag('2026-10-12'))
 
+/* Sonntags und montags drei bis fünf Kacheln (Betreiber, 18.10.2026). */
+const drei = { ...NEUNTER, kacheln: NEUNTER.kacheln.slice(0, 3) }
+pruefen(
+  'Sonntag mit drei Kacheln: in Ordnung',
+  pruefeInstagramPlan(drei, '2026-10-18').length === 0,
+  pruefeInstagramPlan(drei, '2026-10-18').join(' | ')
+)
+pruefen(
+  'Montag mit drei Kacheln: in Ordnung',
+  pruefeInstagramPlan(drei, '2026-10-19').length === 0
+)
+pruefen(
+  'Samstag mit drei Kacheln: zu wenig',
+  pruefeInstagramPlan(drei, '2026-10-17').length > 0
+)
+pruefen(
+  'Sonntag mit zwei Kacheln: zu wenig',
+  pruefeInstagramPlan({ ...NEUNTER, kacheln: NEUNTER.kacheln.slice(0, 2) }, '2026-10-18')
+    .length > 0
+)
+
 const json = JSON.stringify(NEUNTER)
 pruefen(
   'Werktag mit gültigem Plan → Tagesbeitrag',

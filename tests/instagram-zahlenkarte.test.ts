@@ -10,6 +10,7 @@ import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
   akzentfarbe,
   beschriftungZahlenkarte,
+  form,
   LOGOFARBEN,
   pruefeZahlenkarte,
   signetOhneMitte,
@@ -332,6 +333,14 @@ const geburtenPng = await zahlenkartePng(
   readFileSync('public/logo.svg', 'utf8')
 )
 pruefe('Geburten: das Bild ist ein PNG', geburtenPng.subarray(1, 4).toString() === 'PNG')
+
+/* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
+const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
+for (let i = 1; i < nachDatum.length; i++)
+  pruefe(
+    `${nachDatum[i].datum}: Form „${form(nachDatum[i])}" nicht wie am Vortag`,
+    form(nachDatum[i]) !== form(nachDatum[i - 1])
+  )
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`

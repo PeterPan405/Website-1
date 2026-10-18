@@ -28,7 +28,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       Geprüft in tests/instagram-zahlenkarte.test.ts.
     */
     art: 'rangliste',
-    skala: 'balken',
+    /*
+      Erst als Balken entworfen; der Betreiber: „gleiche Beitragsart vom
+      Design her wie gestern … Mache heute wieder ein anderes Design."
+    */
+    skala: 'kacheln',
     einheit: '',
     stellen: 2,
     datum: '2026-10-18',

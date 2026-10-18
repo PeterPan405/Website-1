@@ -15,6 +15,12 @@
  * aufgemacht; diese hier ist beantwortet. Weggelassen sind Bilder mit
  * Menschen, das Schloss und reine Himmel.
  *
+ * **Keine Skylines** (Betreiber, 18.10.2026): „Die Bilder müssen immer auch
+ * zum Thema passen. Ansonsten einfach kein Bild nehmen, bevor du eine
+ * Skyline nimmst. Das ist langweilig." Gestrichen sind deshalb Frankfurt,
+ * Banken (die Frankfurter Türme), Finanzviertel, Deutschland (Düsseldorf),
+ * Europa (Barcelona) und New York. Eine Kachel ohne Thema bleibt ohne Foto.
+ *
  * ## Wie ein Foto zu einer Kachel findet
  *
  * Über den Inhalt der Kachel, nicht über ihre Stelle: Am 14.10.2026 lagen
@@ -165,26 +171,6 @@ export const MOTIVE: Motiv[] = [
     auchImText: true,
   },
   {
-    id: 'frankfurt',
-    quelle: '2026-09-23.jpg',
-    muster: woerter('Dax', 'DAX', 'MDax', 'Frankfurter Börse'),
-    auchImText: true,
-  },
-  {
-    id: 'banken',
-    quelle: '2026-09-07.jpg',
-    muster: woerter(
-      'Bank*',
-      'Banken*',
-      'Commerzbank',
-      'UniCredit',
-      'UBS',
-      'Sparkasse*',
-      'EuGH'
-    ),
-    auchImText: true,
-  },
-  {
     id: 'industrie',
     quelle: '2026-09-28.jpg',
     muster: woerter(
@@ -208,41 +194,6 @@ export const MOTIVE: Motiv[] = [
     quelle: '2026-09-11.jpg',
     muster: woerter('Immobilie*', 'Wohn*', 'Miete*'),
     auchImText: true,
-  },
-  {
-    id: 'finanzviertel',
-    quelle: '2026-09-08.jpg',
-    muster: woerter(
-      'Fusion*',
-      'Übernahme*',
-      'Kapitalregel*',
-      'Anleihe*',
-      'Rendite*',
-      'Umzug',
-      'Index-*',
-      'Indizes',
-      'Schwellenl*',
-      'Börse*'
-    ),
-    auchImText: false,
-  },
-  {
-    id: 'deutschland',
-    quelle: '2026-10-06.jpg',
-    muster: woerter('Deutschland', 'Bundesregierung', 'ifo', 'Konjunktur*'),
-    auchImText: false,
-  },
-  {
-    id: 'europa',
-    quelle: '2026-09-29.jpg',
-    muster: woerter('Spanien', 'Europa', 'EU', 'Frankreich', 'Italien'),
-    auchImText: false,
-  },
-  {
-    id: 'new-york',
-    quelle: '2026-10-09.jpg',
-    muster: woerter('USA', 'US-*', 'Trump'),
-    auchImText: false,
   },
 ]
 
@@ -313,15 +264,43 @@ export interface Bebilderung {
   kurs: string | null
 }
 
+/** Das Motiv einer einzelnen Kachel – Überschrift vor Text, wie in `bebildere()`. */
+function motivFuer(k: { titel: string; text: string }, frei: Motiv[]): Motiv | undefined {
+  return (
+    frei.find((x) => x.muster.test(k.titel)) ??
+    frei.find((x) => x.auchImText && x.muster.test(k.text))
+  )
+}
+
+/**
+ * Das Thema des Deckblatts: das Motiv der wichtigsten Meldung (erste Kachel),
+ * wenn ihr Deckblatt dafür taugt (`erlaubt`, die Liste aus
+ * `deckblaetter()`). Betreiber, 18.10.2026: „Bei dem Deckblatt musst du auch
+ * nicht immer eine Skyline nehmen. Da kannst du gerne auch mal
+ * themenbezogene Sachen nehmen." Das Motiv kommt dann nicht noch einmal in
+ * einer Kachel vor.
+ */
+export function deckblattMotiv(
+  kacheln: { titel: string; text: string }[],
+  erlaubt: string[]
+): Motiv | null {
+  const erste = kacheln[0]
+  if (!erste) return null
+  const m = motivFuer(erste, MOTIVE)
+  return m && erlaubt.includes(m.quelle) ? m : null
+}
+
 /** Fotos und Kurse für alle Kacheln eines Beitrags – kein Motiv doppelt. */
-export function bebildere(kacheln: { titel: string; text: string }[]): Bebilderung[] {
-  const vergeben = new Set<string>()
+export function bebildere(
+  kacheln: { titel: string; text: string }[],
+  /** Schon vergeben, etwa ans Deckblatt. */
+  ohne: string | null = null
+): Bebilderung[] {
+  const vergeben = new Set<string>(ohne ? [ohne] : [])
   return kacheln.map(({ titel, text }) => {
     let motiv: string | null = null
     const frei = MOTIVE.filter((x) => !vergeben.has(x.id))
-    const m =
-      frei.find((x) => x.muster.test(titel)) ??
-      frei.find((x) => x.auchImText && x.muster.test(text))
+    const m = motivFuer({ titel, text }, frei)
     if (m) {
       motiv = m.id
       vergeben.add(m.id)

@@ -21,7 +21,13 @@ import {
   preiseIn,
 } from '@/lib/instagram-kurs'
 import type { MarketQuote } from '@/lib/markets'
-import { bebildere, kursZurKachel, MOTIVE, woerter } from '@/lib/instagram-motive'
+import {
+  bebildere,
+  deckblattMotiv,
+  kursZurKachel,
+  MOTIVE,
+  woerter,
+} from '@/lib/instagram-motive'
 
 let failed = 0
 function pruefe(was: string, bedingung: boolean, hinweis = ''): void {
@@ -85,9 +91,46 @@ for (const tag of tage) {
   mitFoto += motive.length
   gesamt += b.length
 }
+/*
+  Seit dem 18.10.2026 keine Skylines mehr (Betreiber: „lieber kein Bild"):
+  Von 25 Kacheln der Woche bekommen 16 ein Foto. Die Grenze liegt darunter,
+  damit ein Motiv, das wegfällt, auffällt – nicht jede Woche.
+*/
 pruefe(
-  `die meisten Kacheln bekommen ein Foto (${mitFoto} von ${gesamt})`,
-  mitFoto >= gesamt * 0.7
+  `gut die Hälfte der Kacheln bekommt ein Foto (${mitFoto} von ${gesamt})`,
+  mitFoto >= gesamt * 0.5
+)
+for (const id of [
+  'frankfurt',
+  'banken',
+  'finanzviertel',
+  'deutschland',
+  'europa',
+  'new-york',
+])
+  pruefe(`keine Skyline: „${id}" ist kein Motiv mehr`, !MOTIVE.some((m) => m.id === id))
+
+/* Das Deckblatt zum Thema der wichtigsten Meldung. */
+const fedKacheln = [
+  { titel: 'Fed senkt Zinsen', text: 'Die US-Notenbank senkte den Leitzins.' },
+  { titel: 'Lufthansa streicht Flüge', text: 'Die Airline …' },
+]
+const fedDeckblatt = deckblattMotiv(fedKacheln, ['2026-09-16.jpg'])
+pruefe('Fed-Meldung oben → Fed-Deckblatt', fedDeckblatt?.id === 'fed')
+pruefe(
+  '… und das Fed-Motiv kommt nicht noch einmal in einer Kachel',
+  bebildere(fedKacheln, fedDeckblatt?.id).every((b) => b.motiv !== 'fed')
+)
+pruefe(
+  'taugt das Bild nicht als Deckblatt, gibt es keins zum Thema',
+  deckblattMotiv(fedKacheln, []) === null
+)
+pruefe(
+  'ohne Thema kein Deckblatt zum Thema',
+  deckblattMotiv(
+    [{ titel: 'Ukraine: Gespräche', text: 'Kiew …' }],
+    ['2026-09-16.jpg']
+  ) === null
 )
 const ukraine = bebildere([
   { titel: 'Ukraine: Neuer Angriff', text: 'Die US-Regierung …' },
