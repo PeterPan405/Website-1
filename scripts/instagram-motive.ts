@@ -18,6 +18,8 @@ export const MOTIV_BREITE = 1010
 export const MOTIV_HOEHE = 560
 
 for (const motiv of MOTIVE) {
+  /* Bilder von außen sind schon zugeschnitten (`herkunft`). */
+  if (!motiv.quelle) continue
   const pfad = `lib/instagram/titelbilder/${motiv.quelle}`
   const { width = 0, height = 0 } = await sharp(pfad).metadata()
   const oben = Math.round(height * 0.3)

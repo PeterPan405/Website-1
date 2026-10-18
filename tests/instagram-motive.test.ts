@@ -42,8 +42,13 @@ function pruefe(was: string, bedingung: boolean, hinweis = ''): void {
 for (const m of MOTIVE) {
   pruefe(`Motiv ${m.id} liegt bereit`, existsSync(`lib/instagram/motive/${m.id}.jpg`))
   pruefe(
-    `… geschnitten aus ${m.quelle}`,
-    existsSync(`lib/instagram/titelbilder/${m.quelle}`)
+    m.quelle
+      ? `… geschnitten aus ${m.quelle}`
+      : `… von außen, gemeinfrei, mit Fundstelle`,
+    m.quelle
+      ? existsSync(`lib/instagram/titelbilder/${m.quelle}`)
+      : m.herkunft?.lizenz === 'Public domain' &&
+          m.herkunft.seite.startsWith('https://commons.wikimedia.org/')
   )
 }
 pruefe(
@@ -140,6 +145,21 @@ const ukraine = bebildere([
   { titel: 'Ukraine: Neuer Angriff', text: 'Die US-Regierung …' },
 ])[0]
 pruefe('„Ukraine" bekommt keine New Yorker Skyline', ukraine.motiv === null)
+/* Der Sonntagsbeitrag vom 18.10.2026 – so hätte er aussehen sollen. */
+const sonntag = bebildere([
+  {
+    titel: 'Trump hebt Sanktionen auf',
+    text: 'Donald Trump setzte neue Russland-Sanktionen aus.',
+  },
+  {
+    titel: 'US-Defizit: fast 2 Bio.',
+    text: 'Das US-Haushaltsdefizit stieg 2026 auf fast zwei Billionen Dollar.',
+  },
+  { titel: 'Ukraine: Gespräche', text: 'Präsident Trump sprach mit Selenskyj.' },
+])
+pruefe('„Trump hebt Sanktionen auf" bekommt Trump', sonntag[0].motiv === 'trump')
+pruefe('„US-Defizit" bekommt das Kapitol', sonntag[1].motiv === 'kapitol')
+pruefe('Trump nur im Text: kein Trump-Bild', sonntag[2].motiv === null)
 
 /* Der Kurs rechnet aus dem Bestand. */
 const brent = await kachelKurs('brent')
