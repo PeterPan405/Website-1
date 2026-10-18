@@ -71,6 +71,11 @@ Thema bleibt ohne Foto. Das Deckblatt nimmt das Titelbild zum Thema der
 wichtigsten Meldung (Fed, EZB, Luftfahrt, Bahn, Industrie, Wohnen), sonst
 reihum.
 
+**Bilder von außen nur gemeinfrei** (18.10.2026): Trump, Kapitol und Weißes
+Haus sind Werke der US-Regierung (Wikimedia Commons, `herkunft` am Motiv),
+geholt mit `bilder-holen.yml`. Bilder unter CC-BY-SA verlangen eine Nennung
+im Beitrag – die gibt es nicht, also werden sie nicht genommen.
+
 **Wochenende** (18.10.2026): Samstag bildet den Freitag ab, Sonntag und
 Montag das Wochenende – an diesen beiden Tagen drei bis fünf Kacheln
 (`kachelnErlaubt()`), kein Thema aus dem Beitrag des Vortags ohne neues

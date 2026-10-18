@@ -41,8 +41,13 @@ import { marketDefinitions } from '@/data/markets'
 
 export interface Motiv {
   id: string
-  /** Das Deckblatt, aus dem es geschnitten ist. */
-  quelle: string
+  /** Das Deckblatt, aus dem es geschnitten ist – oder `herkunft` bei einem Bild von außen. */
+  quelle?: string
+  /**
+   * Ein Bild von außen (seit 18.10.2026): nur gemeinfrei, mit Fundstelle.
+   * Geholt über `.github/workflows/bilder-holen.yml` (Wikimedia Commons).
+   */
+  herkunft?: { titel: string; seite: string; lizenz: 'Public domain'; urheber: string }
   muster: RegExp
   /**
    * Auch, wenn das Stichwort nur im Text steht. Allgemeine Motive (New York,
@@ -125,6 +130,66 @@ export const MOTIVE: Motiv[] = [
       'US-Aktie*'
     ),
     auchImText: true,
+  },
+  /*
+    Personen und Orte der US-Politik (18.10.2026). Der Betreiber zu „Trump
+    hebt Sanktionen auf": „ein Bild von Trump hätte sein können." Aus den
+    Deckblättern waren Menschen bewusst weggelassen; diese drei sind Werke
+    der US-Regierung und damit gemeinfrei. Nur aus der Überschrift – eine
+    Meldung, die Trump im Text nennt, handelt nicht von ihm.
+  */
+  {
+    id: 'trump',
+    herkunft: {
+      titel: 'January 2025 Official Presidential Portrait of Donald J. Trump',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:January_2025_Official_Presidential_Portrait_of_Donald_J._Trump.jpg',
+      lizenz: 'Public domain',
+      urheber: 'Daniel Torok, Weißes Haus',
+    },
+    muster: woerter('Trump', 'Trumps'),
+    auchImText: false,
+  },
+  {
+    id: 'kapitol',
+    herkunft: {
+      titel: 'United States Capitol - west front',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:United_States_Capitol_-_west_front.jpg',
+      lizenz: 'Public domain',
+      urheber: 'Architect of the Capitol',
+    },
+    muster: woerter(
+      'Kongress',
+      'US-Kongress',
+      'Senat',
+      'US-Senat',
+      'Repräsentantenhaus',
+      'Shutdown',
+      'US-Haushalt*',
+      'US-Defizit',
+      'Schuldenobergrenze',
+      'Midterms',
+      'US-Wahl*'
+    ),
+    auchImText: false,
+  },
+  {
+    id: 'weisses-haus',
+    herkunft: {
+      titel: 'North Façade White House',
+      seite: 'https://commons.wikimedia.org/wiki/File:North_Fa%C3%A7ade_White_House.JPG',
+      lizenz: 'Public domain',
+      urheber: 'Nishkid64 (gemeinfrei erklärt)',
+    },
+    muster: woerter(
+      'Weißes Haus',
+      'Weißen Haus*',
+      'US-Regierung',
+      'US-Präsident*',
+      'Washington'
+    ),
+    auchImText: false,
   },
   {
     id: 'luftfahrt',
@@ -288,7 +353,7 @@ export function deckblattMotiv(
   const erste = kacheln[0]
   if (!erste) return null
   const m = motivFuer(erste, MOTIVE)
-  return m && erlaubt.includes(m.quelle) ? m : null
+  return m?.quelle && erlaubt.includes(m.quelle) ? m : null
 }
 
 /** Fotos und Kurse für alle Kacheln eines Beitrags – kein Motiv doppelt. */
