@@ -202,7 +202,20 @@ const kacheln = readdirSync('out/instagram')
 const TEXTDATEI = 'out/instagram/beschriftung.txt'
 const beschriftung = existsSync(TEXTDATEI) ? readFileSync(TEXTDATEI, 'utf8').trim() : ''
 
-const adressen = kacheln.map((n) => `${BASIS}/instagram/${n}`)
+/*
+  Jede Adresse trägt eine Kennung aus dem Bildinhalt. Meta merkt sich Bilder
+  an ihrer Adresse: Am 18.10.2026 ging der neu gemachte Sonntagsbeitrag mit
+  den Kacheln des Vormittags und sogar „Brent nahe 110 $" vom Freitag hinaus
+  – dieselben Adressen `/instagram/2.jpg`, aus Metas Zwischenspeicher. Der
+  Server übergeht die Abfrage; für Meta ist es eine neue Adresse.
+*/
+const { createHash } = await import('node:crypto')
+const kennung = (n: string) =>
+  createHash('sha1')
+    .update(readFileSync(`out/instagram/${n}`))
+    .digest('hex')
+    .slice(0, 12)
+const adressen = kacheln.map((n) => `${BASIS}/instagram/${n}?v=${kennung(n)}`)
 
 /*
   Riegel 1: Zeigt die Website überhaupt schon die Ausgabe von heute?
