@@ -150,6 +150,29 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 → `ENTSCHEIDUNGEN.md`: [[Nachrichten Aktuell heißt der jüngste Erscheinungstag|heißt der jüngste Erscheinungstag]], [[Diese Umgebung erreicht nur GitHub#Der Agent schreibt, der Läufer veröffentlicht|Der Agent schreibt, der Läufer veröffentlicht]], [[Diese Umgebung erreicht nur GitHub#Warum es Auffangnetz und Wächter gibt|Warum es Auffangnetz und Wächter gibt]],
 [[Diese Umgebung erreicht nur GitHub#Hat die Ausgabe etwas kaputt gemacht? – die Frage, die der Riegel stellt|Hat die Ausgabe etwas kaputt gemacht]], [[Nichts doppelt, und kein Streit der Quellen|Nichts doppelt]]
 
+## Instagram – was am 17. und 18.10.2026 schiefging
+
+- **„Passt" heißt freigegeben, nicht hochladen.** Tagesbeitrag ab 16 Uhr;
+  erst die News, dann die Zahlenkarte.
+- **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
+  2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
+- **Kein Thema zweimal** – nicht im Beitrag, nicht am Folgetag (Öl am 17.
+  und 18.10.). Sonntag: nur Samstag und Sonntag; So/Mo 3–5 Kacheln.
+- **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
+  `kursFuerKachel()`), immer mit X- und Y-Achse.
+- **Kein Bild ist besser als ein falsches:** keine Skylines; Personen nur
+  gemeinfrei (`bilder-holen.yml`, Lizenz prüfen).
+- **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
+  `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
+- **Meta merkt sich Bilder an der Adresse.** Jede Adresse trägt eine
+  Inhaltskennung (`?v=`) – ohne sie gingen Kacheln von gestern hinaus.
+- **Der Agenten-Prompt hat 21.000 Bytes, nicht Zeichen.** Darüber
+  verwirft GitHub `nachrichten-agent.yml` ganz („No jobs were run"); der
+  Test misst es. Neue Regeln dort kurz.
+- **Jede Kachel vor dem Hochladen gerendert ansehen.**
+
+→ `ENTSCHEIDUNGEN.md`: [[Lieber kein Bild als eine Skyline, lieber drei Meldungen als Wiederholungen|Lieber kein Bild als eine Skyline]], [[Meta merkt sich Bilder an der Adresse]], [[Der Prompt zählt in Bytes]]
+
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
 | Deutsche Zeit | UTC   | Was                                                        |

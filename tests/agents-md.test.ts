@@ -44,8 +44,14 @@ const GRUENDE = 'ENTSCHEIDUNGEN.md'
  * `ENTSCHEIDUNGEN.md` verschieben, oder diese Zahl bewusst erhöhen und dabei
  * nachrechnen, was sie je Zug kostet. Beides ist in Ordnung – das
  * Stillschweigende nicht.
+ *
+ * Am 18.10.2026 bewusst auf 25.500 erhöht (~6.400 Token je Zug): Der
+ * Betreiber verlangte nach einem Tag mit fünf Instagram-Fehlern, „die
+ * Fehler, aus denen du heute gelernt hast, speichern und nicht wieder
+ * machen". Das sind Regeln für jeden Zug, keine Vorgeschichte – die steht
+ * in ENTSCHEIDUNGEN.md.
  */
-const HOECHSTENS = 24_000
+const HOECHSTENS = 25_500
 
 let failed = 0
 
