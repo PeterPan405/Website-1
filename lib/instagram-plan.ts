@@ -137,13 +137,13 @@ export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminv
  *
  * Die Vorbilder sind echte Kacheln aus dem Kanal, nicht ausgedacht.
  */
-export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags. Er muss aussehen wie die 54 Beiträge davor – keine neue Form, keine Experimente.
+export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags.
 
 - \`kacheln\`: **genau fünf** – die fünf wichtigsten Meldungen der Ausgabe für Anleger, wichtigste zuerst. Märkte, Notenbanken, Konjunktur und große Unternehmen gehen vor. Krieg und Politik kommen nur über ihre Marktfolge hinein – „Öl über 100 Dollar", „USA & Iran", nicht die Zahl der Opfer.
-- **Sonntags und montags 3–5 Kacheln.** Kein Thema aus \`data/instagram/<gestern>.json\` ohne neues Ereignis. Politik erlaubt, ohne Opferzahlen; eine Kachel darf Termine der Woche aus den Quellen oder \`data/snapshots/forexfactory.json\` nennen.
+- **So/Mo 3–5 Kacheln**, kein Thema vom Vortag ohne neues Ereignis; Politik und Termine der Woche (nur aus Quellen) erlaubt.
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
   - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
-- \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen. Vorbild: „KI-Aktien unter Druck, Brasiliens Börse auf Rekordhoch und steigende Ölpreise. Gleichzeitig sorgen Frankreichs Haushaltsprobleme und die Entwicklungen rund um die EZB für Aufmerksamkeit."
+- \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen.
 - \`schlagworte\`: **genau fünf** (mehr nimmt Instagram nicht), kleingeschrieben, ohne \`#\`. Alle **themenbezogen und reichweitenstark** (Betreiber 15.10.2026: „müssen viral sein und themenbezogen“): zwei bis drei zu den Themen des Tages, so wie danach gesucht wird (etwa \`ölpreis\`, \`gold\`, \`ezb\`, \`fed\`, \`dax\`, \`inflation\`), der Rest aus großen deutschen Finanz-Hashtags: \`börse\`, \`aktien\`, \`finanzen\`, \`investieren\`, \`geldanlage\`, \`wirtschaft\`. Keine Füllwörter wie \`news\`, \`top\` oder \`daily\` – danach sucht niemand.
 - Kein Emoji, kein \`#\` im Text. Kopf, Rechtshinweis und KI-Hinweis setzt das Skript selbst.
 - Es gelten dieselben Grundsätze wie für die Ausgabe: nur, was in den Quellen steht, keine Wertung.`
