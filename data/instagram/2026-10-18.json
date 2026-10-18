@@ -1,26 +1,26 @@
 {
-  "zusammenfassung": "Neue Angriffe am Ölmarkt, ein Rekorddefizit in den USA, Trumps Sanktions-Kehrtwende, eine BoE-Warnung vor Hedgefonds und eine Rekordrally bei Berkshire.",
+  "zusammenfassung": "Trump setzt neue Russland-Sanktionen aus, das US-Defizit steigt auf fast zwei Billionen Dollar, die Bank of England warnt vor Hedgefonds und Berkshire klettert. Dazu die wichtigsten Termine der Woche.",
   "kacheln": [
     {
-      "titel": "Öl: Neue Angriffe",
-      "text": "Die Ukraine griff nach einem Bericht einen russischen Ölhafen an. Saudi-Arabien fing am selben Tag zwei Raketen aus dem Jemen ab."
+      "titel": "Trump hebt Sanktionen auf",
+      "text": "Donald Trump setzte neue Russland-Sanktionen aus, bevor sie wirken konnten. Präsident Selenskyj nannte den Schritt falsch."
     },
     {
       "titel": "US-Defizit: fast 2 Bio.",
       "text": "Das US-Haushaltsdefizit stieg 2026 auf fast zwei Billionen Dollar. Das sind zwölf Prozent mehr als im Vorjahr."
     },
     {
-      "titel": "Trump hebt Sanktionen auf",
-      "text": "Donald Trump setzte neue Russland-Sanktionen aus, bevor sie wirken konnten. Präsident Selenskyj nannte den Schritt falsch."
-    },
-    {
       "titel": "BoE warnt vor Hedgefonds",
       "text": "Ein Vize-Gouverneur der Bank of England warnte vor Hedgefonds-Geschäften. Sie könnten einen Schock am Anleihemarkt wahrscheinlicher machen."
     },
     {
-      "titel": "Berkshire: Rekordhoch",
+      "titel": "Berkshire: 17-Monats-Hoch",
       "text": "Die Berkshire-Aktie stieg auf ihr höchstes Niveau seit Mai 2025. Damals kündigte Warren Buffett seinen Rückzug als Chef an."
+    },
+    {
+      "titel": "Diese Woche: Termine",
+      "text": "Am Mittwoch kommen die britischen Verbraucherpreise, erwartet sind 3,4 Prozent. Am Freitag folgen die Einkaufsmanagerindizes für Deutschland, Frankreich und die USA."
     }
   ],
-  "schlagworte": ["ölpreis", "sanktionen", "anleihen", "börse", "aktien"]
+  "schlagworte": ["trump", "sanktionen", "anleihen", "börse", "aktien"]
 }
