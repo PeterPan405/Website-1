@@ -5518,3 +5518,30 @@ den Terminen der Woche als erlaubtem Stoff. Eine Prüfung gegen den
 Vortagsbeitrag gibt es nur als Anweisung: Die Überschriften der Kacheln
 sind zu kurz für den Wortvergleich aus `lib/nachrichten-wiederholung.ts`
 („Brent nahe 110 $" und „Öl: Neue Angriffe" teilen kein Wort).
+
+# Meta merkt sich Bilder an der Adresse – 18. Oktober 2026
+
+Der neu gemachte Sonntagsbeitrag ging mit Kacheln hinaus, die es auf der
+Website nicht mehr gab: „Öl: Neue Angriffe" vom Vormittag, sogar „Brent nahe
+110 $" vom Freitag. Die Website stimmte; der Riegel „zeigt sie heute?"
+fragte richtig. Aber `instagram-veroeffentlichen.ts` gab Meta jeden Tag
+dieselben Adressen (`/instagram/2.jpg`), und Meta nahm, was es unter dieser
+Adresse schon kannte.
+
+Seitdem trägt jede Kachel-Adresse `?v=` mit dem SHA-1 des Bildes, das der
+Lauf selbst von der Website geholt hat; die Zahlenkarte `?d=…&t=…`. Neuer
+Inhalt, neue Adresse. **Ein Riegel, der die eigene Website fragt, sagt
+nichts darüber, was ein Dritter von ihr behalten hat.**
+
+# Der Prompt zählt in Bytes – 18. Oktober 2026
+
+Nach der Wochenend-Regel lief `nachrichten-agent.yml` nicht mehr: bei jedem
+Push ein roter Lauf „No jobs were run", Mails an den Betreiber. GitHub nimmt
+für einen Text mit `${{ … }}` höchstens 21.000 – **Bytes**. Der Prompt hatte
+20.898 Bytes (lief), mit der Regel 21.560. Die erste Korrektur kürzte nach
+Zeichen auf 20.680 und lag in Bytes mit 21.142 noch darüber; „, ä, – sind
+zwei bis drei Bytes.
+
+Jetzt 20.737 Bytes, und `tests/instagram-tagesnews.test.ts` misst den Block
+in Bytes (Grenze 20.800). Wer dort eine Regel ergänzt, kürzt an anderer
+Stelle. **Eine Grenze, die man in der falschen Einheit misst, ist keine.**
