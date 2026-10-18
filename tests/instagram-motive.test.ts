@@ -65,6 +65,10 @@ pruefe(
   kursZurKachel('Dow vs. Nasdaq') === 'dow-jones'
 )
 pruefe('Öl ist Brent', kursZurKachel('Öl steigt, Gold fällt') === 'brent')
+pruefe(
+  '„Berkshire: Rekordhoch" bekommt den Berkshire-Kurs (18.10.2026)',
+  kursZurKachel('Berkshire: Rekordhoch') === 'berkshire'
+)
 pruefe('Lufthansa beim Namen', kursZurKachel('Lufthansa gewinnt TAP') === 'lufthansa')
 pruefe(
   'was zuerst steht, gewinnt',

@@ -213,6 +213,7 @@ const BEINAMEN: [RegExp, string][] = [
   [woerter('S&P', 'S&P 500'), 'sp500'],
   [woerter('Dow', 'Dow Jones'), 'dow-jones'],
   [woerter('Bitcoin'), 'bitcoin'],
+  [woerter('Berkshire', 'Buffett'), 'berkshire'],
 ]
 
 const SYMBOLE = new Set(marketDefinitions.map((m) => m.symbol))

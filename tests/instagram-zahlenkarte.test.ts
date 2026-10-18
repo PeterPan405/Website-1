@@ -288,51 +288,60 @@ const schuldenPng = await zahlenkartePng(
 )
 pruefe('Balken: das Bild ist ein PNG', schuldenPng.subarray(1, 4).toString() === 'PNG')
 
-/* Die Karte vom 18.10.2026 – Geburtenziffer, jede Zeile gegen den Weltbank-Bestand. */
-const geburten = zahlenkarten.find((k) => k.datum === '2026-10-18') as Rangkarte
-const gz: Record<string, { geburtenziffer?: { wert: number; jahr: number } }> =
+/* Die Karte vom 18.10.2026 – Vermögen, jede Zeile gegen den OECD-Bestand. */
+const vermoegen = zahlenkarten.find((k) => k.datum === '2026-10-18') as Rangkarte
+const mv: Record<string, { medianvermoegen?: { wert: number; jahr: number } }> =
   JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
-const gz2024 = Object.entries(gz)
-  .filter(([, l]) => l.geburtenziffer?.jahr === 2024)
-  .map(([land, l]) => ({ land, wert: l.geburtenziffer!.wert }))
+const mvAlle = Object.entries(mv)
+  .filter(([, l]) => l.medianvermoegen)
+  .map(([land, l]) => ({ land, ...l.medianvermoegen! }))
   .sort((a, b) => b.wert - a.wert)
-for (const z of geburten.zeilen.filter((z) => !z.schnitt))
+for (const z of vermoegen.zeilen)
   pruefe(
-    `Geburten ${z.name} wie im Bestand (${gz[z.land]?.geburtenziffer?.wert})`,
-    gz[z.land]?.geburtenziffer?.wert === z.wert &&
-      gz[z.land]?.geburtenziffer?.jahr === 2024
+    `Vermögen ${z.name} wie im Bestand (${mv[z.land]?.medianvermoegen?.wert})`,
+    mv[z.land]?.medianvermoegen?.wert === z.wert
   )
-pruefe('Geburten: oben der höchste Wert', geburten.zeilen[0].land === gz2024[0].land)
 pruefe(
-  'Geburten: Südkorea ist der niedrigste Staat – darunter nur Macau',
-  gz2024
-    .filter((l) => l.wert < 0.75)
-    .map((l) => l.land)
-    .join() === 'MAC'
+  'Vermögen: oben der höchste, unten der niedrigste Wert',
+  vermoegen.zeilen[0].land === mvAlle[0].land &&
+    vermoegen.zeilen.at(-1)!.land === mvAlle.at(-1)!.land
 )
-const gzMittel = gz2024.reduce((s, l) => s + l.wert, 0) / gz2024.length
+const mvPlatz = mvAlle.findIndex((l) => l.land === 'DEU') + 1
 pruefe(
-  `Geburten: Länderschnitt ist der Mittelwert der ${gz2024.length} (${gzMittel.toFixed(3)})`,
-  geburten.zeilen.find((z) => z.schnitt)?.wert === Math.round(gzMittel * 100) / 100 &&
-    geburten.fusszeile.includes(`${gz2024.length} Ländern`)
+  `Vermögen: Deutschland Platz ${mvPlatz} von ${mvAlle.length}, wie im Text`,
+  vermoegen.text.includes(`Platz ${mvPlatz}`) &&
+    vermoegen.text.includes(`${mvAlle.length} Ländern`)
 )
+const jahre = vermoegen.zeilen.map((z) => mv[z.land]!.medianvermoegen!.jahr)
 pruefe(
-  'Geburten: jede Zahl der Karte steht so im Text',
-  geburten.zeilen.every((z) =>
-    geburten.text.includes(z.wert.toFixed(2).replace('.', ','))
-  )
+  `Vermögen: Stand ${Math.min(...jahre)}–${Math.max(...jahre)} wie in der Fußzeile`,
+  vermoegen.fusszeile.includes(`${Math.min(...jahre)}–${Math.max(...jahre)}`)
 )
 pruefe(
-  'eine andere Einheit nur mit Balken',
-  pruefeZahlenkarte({ ...geburten, skala: 'haeuser' as const }).some((f) =>
+  'Vermögen: jede Zahl der Karte steht so im Text',
+  vermoegen.zeilen.every((z) => vermoegen.text.includes(z.wert.toLocaleString('de-DE'))),
+  vermoegen.zeilen
+    .filter((z) => !vermoegen.text.includes(z.wert.toLocaleString('de-DE')))
+    .map((z) => z.name)
+    .join()
+)
+pruefe(
+  'Vermögen: 47,2 % Wohneigentum wie im Bestand',
+  vermoegen.text.includes('47,2 %') &&
+    (mv as Record<string, { wohneigentumsquote?: { wert: number } }>).DEU
+      .wohneigentumsquote?.wert === 47.2
+)
+pruefe(
+  'eine andere Einheit nur mit Balken oder Kacheln',
+  pruefeZahlenkarte({ ...vermoegen, skala: 'haeuser' as const }).some((f) =>
     f.includes('Einheit')
   )
 )
-const geburtenPng = await zahlenkartePng(
-  geburten,
+const vermoegenPng = await zahlenkartePng(
+  vermoegen,
   readFileSync('public/logo.svg', 'utf8')
 )
-pruefe('Geburten: das Bild ist ein PNG', geburtenPng.subarray(1, 4).toString() === 'PNG')
+pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString() === 'PNG')
 
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
