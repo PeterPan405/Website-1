@@ -287,6 +287,52 @@ const schuldenPng = await zahlenkartePng(
 )
 pruefe('Balken: das Bild ist ein PNG', schuldenPng.subarray(1, 4).toString() === 'PNG')
 
+/* Die Karte vom 18.10.2026 – Geburtenziffer, jede Zeile gegen den Weltbank-Bestand. */
+const geburten = zahlenkarten.find((k) => k.datum === '2026-10-18') as Rangkarte
+const gz: Record<string, { geburtenziffer?: { wert: number; jahr: number } }> =
+  JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
+const gz2024 = Object.entries(gz)
+  .filter(([, l]) => l.geburtenziffer?.jahr === 2024)
+  .map(([land, l]) => ({ land, wert: l.geburtenziffer!.wert }))
+  .sort((a, b) => b.wert - a.wert)
+for (const z of geburten.zeilen.filter((z) => !z.schnitt))
+  pruefe(
+    `Geburten ${z.name} wie im Bestand (${gz[z.land]?.geburtenziffer?.wert})`,
+    gz[z.land]?.geburtenziffer?.wert === z.wert &&
+      gz[z.land]?.geburtenziffer?.jahr === 2024
+  )
+pruefe('Geburten: oben der höchste Wert', geburten.zeilen[0].land === gz2024[0].land)
+pruefe(
+  'Geburten: Südkorea ist der niedrigste Staat – darunter nur Macau',
+  gz2024
+    .filter((l) => l.wert < 0.75)
+    .map((l) => l.land)
+    .join() === 'MAC'
+)
+const gzMittel = gz2024.reduce((s, l) => s + l.wert, 0) / gz2024.length
+pruefe(
+  `Geburten: Länderschnitt ist der Mittelwert der ${gz2024.length} (${gzMittel.toFixed(3)})`,
+  geburten.zeilen.find((z) => z.schnitt)?.wert === Math.round(gzMittel * 100) / 100 &&
+    geburten.fusszeile.includes(`${gz2024.length} Ländern`)
+)
+pruefe(
+  'Geburten: jede Zahl der Karte steht so im Text',
+  geburten.zeilen.every((z) =>
+    geburten.text.includes(z.wert.toFixed(2).replace('.', ','))
+  )
+)
+pruefe(
+  'eine andere Einheit nur mit Balken',
+  pruefeZahlenkarte({ ...geburten, skala: 'haeuser' as const }).some((f) =>
+    f.includes('Einheit')
+  )
+)
+const geburtenPng = await zahlenkartePng(
+  geburten,
+  readFileSync('public/logo.svg', 'utf8')
+)
+pruefe('Geburten: das Bild ist ein PNG', geburtenPng.subarray(1, 4).toString() === 'PNG')
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )

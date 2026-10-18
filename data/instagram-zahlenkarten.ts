@@ -16,6 +16,48 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema: keine Wahl des Betreibers für den 18.10. – laut Ablauf der erste
+      offene Vorschlag vom 17.10. („Geburten: Südkorea 0,75 Kinder je Frau,
+      Deutschland 1,36, Italien 1,18, Frankreich 1,61").
+
+      Zahlen: data/snapshots/laender.json, `geburtenziffer` – Weltbank,
+      World Development Indicators (SP.DYN.TFRT.IN), Jahr 2024, 215 Länder
+      und Gebiete. Oben Tschad 6,03; unten Südkorea 0,75 als niedrigster
+      Staat – darunter liegt nur das Gebiet Macau (0,58). Länderschnitt: einfacher
+      Mittelwert der 215 Werte, 2,35. Deutschland Platz 183 von 215.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    art: 'rangliste',
+    skala: 'balken',
+    einheit: '',
+    stellen: 2,
+    datum: '2026-10-18',
+    titel: [{ text: 'Kinder je Frau:' }, { text: 'Südkorea ganz unten', gruen: true }],
+    unterzeile: 'So viele Kinder bekommt eine Frau im Schnitt:',
+    zeilen: [
+      { name: 'Tschad', wert: 6.03, land: 'TCD' },
+      { name: 'Israel', wert: 2.87, land: 'ISR' },
+      { name: 'Länderschnitt', wert: 2.35, land: 'WELT', schnitt: true },
+      { name: 'Indien', wert: 1.96, land: 'IND' },
+      { name: 'USA', wert: 1.63, land: 'USA' },
+      { name: 'Frankreich', wert: 1.61, land: 'FRA' },
+      { name: 'Deutschland', wert: 1.36, land: 'DEU', hervor: true },
+      { name: 'Japan', wert: 1.15, land: 'JPN' },
+      { name: 'China', wert: 1.01, land: 'CHN' },
+      { name: 'Südkorea', wert: 0.75, land: 'KOR' },
+    ],
+    fusszeile:
+      'Stand: 2024 | Quelle: Weltbank (SP.DYN.TFRT.IN) | Auswahl aus 215 Ländern und Gebieten',
+    text:
+      'In Südkorea bekommt eine Frau im Schnitt nur noch 0,75 Kinder – so wenige wie in keinem anderen Staat. 👶\n\n' +
+      'Auch in China (1,01), Japan (1,15) und Deutschland (1,36) liegt die Geburtenziffer weit unter dem Schnitt der 215 Länder und Gebiete von 2,35. ' +
+      'Indien liegt bei 1,96, die USA bei 1,63, Frankreich bei 1,61. Am höchsten ist die Geburtenziffer im Tschad mit 6,03 Kindern je Frau, Israel kommt auf 2,87.\n\n' +
+      'Die Geburtenziffer ist ein Modellwert für ein Jahr: so viele Kinder, wie eine Frau im Lauf ihres Lebens bekäme, wenn die Geburtenhäufigkeiten dieses Jahres immer gälten. Der Schnitt ist der einfache Mittelwert, nicht nach Bevölkerung gewichtet.\n' +
+      'Quellen: Weltbank, World Development Indicators (SP.DYN.TFRT.IN), Stand 2024',
+    schlagworte: ['geburtenrate', 'demografie', 'wirtschaft', 'deutschland', 'finanzen'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 16.10.2026 („Für morgen Thema 1 mit den
       Staatsschulden"), Zuschnitt am 17.10.: „Niedrigstes. Höchstes, so. Und
       vielleicht noch Frankreich, weil die machen Probleme." – also der

@@ -109,6 +109,14 @@ export interface Rangkarte extends KarteGemeinsam {
    * Die Balken zeigen eine gestrichelte Linie bei 100 %.
    */
   skala?: 'haeuser' | 'balken'
+  /**
+   * Was hinter der Zahl steht – voreingestellt „ %". Leer für Größen ohne
+   * Einheit wie die Geburtenziffer (1,36 Kinder je Frau; die Einheit steht
+   * dann in der Unterzeile). Nur mit Balken: Häuschen zählen Prozent.
+   */
+  einheit?: string
+  /** Nachkommastellen der Werte – voreingestellt eine; die Geburtenziffer braucht zwei. */
+  stellen?: number
 }
 
 export type Zahlenkarte = Vergleichskarte | Rangkarte
@@ -169,6 +177,54 @@ const FLAGGE_VENEZUELA = quadrat(
     }).join('')
 )
 
+/** Ein fünfzackiger Stern als Pfad – für China. */
+const stern = (cx: number, cy: number, r: number, drehung = 0) =>
+  `<path d="${Array.from({ length: 10 }, (_, i) => {
+    const w = drehung + (Math.PI * i) / 5 - Math.PI / 2
+    const ri = i % 2 ? r * 0.38 : r
+    return `${i ? 'L' : 'M'}${(cx + ri * Math.cos(w)).toFixed(2)} ${(cy + ri * Math.sin(w)).toFixed(2)}`
+  }).join(' ')}Z" fill="#FFDE00"/>`
+const FLAGGE_CHINA = quadrat(
+  '<rect width="60" height="60" fill="#EE1C25"/>' +
+    stern(16, 18, 9) +
+    stern(28, 8, 2.6, 0.4) +
+    stern(32, 14, 2.6, 0.9) +
+    stern(32, 22, 2.6, 0) +
+    stern(28, 28, 2.6, 0.4)
+)
+const FLAGGE_ISRAEL = quadrat(
+  '<rect width="60" height="60" fill="#fff"/>' +
+    '<rect y="9" width="60" height="7" fill="#0038B8"/><rect y="44" width="60" height="7" fill="#0038B8"/>' +
+    '<path d="M30 19 L39.5 35.5 L20.5 35.5 Z M30 41 L20.5 24.5 L39.5 24.5 Z" fill="none" stroke="#0038B8" stroke-width="2.4"/>'
+)
+const FLAGGE_INDIEN = quadrat(
+  '<rect width="60" height="20" fill="#FF9933"/><rect y="20" width="60" height="20" fill="#fff"/>' +
+    '<rect y="40" width="60" height="20" fill="#138808"/>' +
+    '<circle cx="30" cy="30" r="7" fill="none" stroke="#000080" stroke-width="1.6"/><circle cx="30" cy="30" r="1.6" fill="#000080"/>'
+)
+/* Südkorea: das Taegeuk (rot oben, blau unten) und die vier Trigramme als Striche. */
+const FLAGGE_SUEDKOREA = quadrat(
+  '<rect width="60" height="60" fill="#fff"/>' +
+    '<path d="M18 30 A12 12 0 0 1 42 30 A6 6 0 0 1 30 30 A6 6 0 0 0 18 30 Z" fill="#CD2E3A"/>' +
+    '<path d="M18 30 A6 6 0 0 0 30 30 A6 6 0 0 1 42 30 A12 12 0 0 1 18 30 Z" fill="#0047A0"/>' +
+    [
+      [10, 12, 45],
+      [50, 12, -45],
+      [10, 48, -45],
+      [50, 48, 45],
+    ]
+      .map(
+        ([x, y, w]) =>
+          `<g transform="rotate(${w} ${x} ${y})">${[-3.5, 0, 3.5]
+            .map(
+              (d) =>
+                `<rect x="${x - 5}" y="${y + d - 1}" width="10" height="2" fill="#000"/>`
+            )
+            .join('')}</g>`
+      )
+      .join('')
+)
+
 const WAPPEN_SLOWAKEI =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24">' +
   '<path d="M1 1H19V12C19 18 14 21 10 23C6 21 1 18 1 12Z" fill="#fff"/>' +
@@ -182,20 +238,26 @@ const WAPPEN_SLOWAKEI =
 export const FLAGGEN: Record<string, Flagge> = {
   AUT: { streifen: ['#ED2939', '#FFFFFF', '#ED2939'] },
   BEL: { streifen: ['#000000', '#FAE042', '#ED2939'], senkrecht: true },
+  CHN: { streifen: ['#EE1C25'], svg: FLAGGE_CHINA },
   DEU: { streifen: ['#000000', '#DD0000', '#FFCE00'] },
   ESP: { streifen: ['#AA151B', '#F1BF00', '#AA151B'], gewichte: [1, 2, 1] },
   EU27: { streifen: ['#003399'], kuerzel: 'EU' },
   WELT: { streifen: ['#555555'], kuerzel: 'Ø', kuerzelFarbe: '#FFFFFF' },
   FRA: { streifen: ['#002395', '#FFFFFF', '#ED2939'], senkrecht: true },
   HUN: { streifen: ['#CE2939', '#FFFFFF', '#477050'] },
+  IND: { streifen: ['#FF9933'], svg: FLAGGE_INDIEN },
   IRL: { streifen: ['#169B62', '#FFFFFF', '#FF883E'], senkrecht: true },
+  ISR: { streifen: ['#FFFFFF'], svg: FLAGGE_ISRAEL },
   ITA: { streifen: ['#009246', '#FFFFFF', '#CE2B37'], senkrecht: true },
   JPN: { streifen: ['#FFFFFF'], svg: FLAGGE_JAPAN },
+  KOR: { streifen: ['#FFFFFF'], svg: FLAGGE_SUEDKOREA },
   LIE: { streifen: ['#002B7F'], svg: FLAGGE_LIECHTENSTEIN },
   NLD: { streifen: ['#AE1C28', '#FFFFFF', '#21468B'] },
   POL: { streifen: ['#FFFFFF', '#DC143C'] },
   ROU: { streifen: ['#002B7F', '#FCD116', '#CE1126'], senkrecht: true },
   SVK: { streifen: ['#FFFFFF', '#0B4EA2', '#EE1C25'], wappen: WAPPEN_SLOWAKEI },
+  /* Tschad: Streifen wie Rumänien, im Blau dunkler – so ist die Flagge. */
+  TCD: { streifen: ['#002664', '#FECB00', '#C60C30'], senkrecht: true },
   USA: { streifen: ['#B22234'], svg: FLAGGE_USA },
   VEN: { streifen: ['#FFCC00'], svg: FLAGGE_VENEZUELA },
 }
@@ -364,6 +426,10 @@ function pruefeRangliste(k: Rangkarte): string[] {
     f.push('Die Rangliste braucht genau eine hervorgehobene Zeile.')
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
   if (!k.unterzeile.trim()) f.push('Die Unterzeile fehlt.')
+  if (k.einheit !== undefined && k.skala !== 'balken')
+    f.push(
+      "Eine andere Einheit als Prozent nur mit skala: 'balken' – Häuschen zählen Prozent."
+    )
   for (const [i, z] of k.zeilen.entries()) {
     if (!(z.wert > 0))
       f.push(`${z.name}: ${z.wert} – der Wert muss größer als null sein.`)
@@ -454,7 +520,7 @@ const haus = (farbe: string) =>
       `<path d="M20 3 L38 19 L33 19 L33 37 L7 37 L7 19 L2 19 Z" fill="${farbe}"/></svg>`
   )
 
-const zahl = (w: number) => w.toFixed(1).replace('.', ',')
+const zahl = (w: number, stellen = 1) => w.toFixed(stellen).replace('.', ',')
 
 /*
   Der Kopf, nachgemessen am Beitrag vom 12.10.2026 (auf 1080 px gerechnet):
@@ -852,7 +918,7 @@ function ranglistenGrafik(k: Rangkarte) {
             color: farbe,
           },
         },
-        `${zahl(z.wert)} %`
+        `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
       )
     )
   }
