@@ -1,0 +1,90 @@
+name: Bilder holen
+
+# Holt Bildkandidaten für die Instagram-Kacheln von Wikimedia Commons – mit
+# Lizenz, Urheber und Quelle – und legt sie auf den wurzellosen Zweig
+# `bilder-geholt`. Diese Umgebung erreicht nur GitHub; ein Läufer hat vollen
+# Netzzugang (AGENTS.md, „Diese Umgebung erreicht nur GitHub").
+#
+# Anlass: Der Betreiber am 18.10.2026 – „Trump hebt Sanktionen auf und dann
+# ist da kein Bild dahinter, ein Bild von Trump hätte sein können." Die
+# Motive stammten bis dahin nur aus den eigenen Deckblättern, und dort waren
+# Menschen bewusst weggelassen.
+#
+# **Geholt ist nicht genommen.** Ob ein Bild verwendet werden darf,
+# entscheidet die Lizenz in `lizenzen.json` – gemeinfrei (etwa Werke der
+# US-Regierung) oder eine Lizenz, deren Nennung wir erfüllen. Das prüft die
+# Sitzung, die das Motiv anlegt, nicht dieser Lauf.
+
+on:
+  workflow_dispatch:
+    inputs:
+      suche:
+        description: 'Je Zeile „kennung|Suchbegriff", z. B. „trump|Donald Trump official portrait 2025"'
+        required: true
+        type: string
+
+concurrency:
+  group: bilder-holen
+  cancel-in-progress: false
+
+jobs:
+  holen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Kandidaten suchen und laden
+        env:
+          SUCHE: ${{ inputs.suche }}
+        run: |
+          set -euo pipefail
+          mkdir -p geholt
+          ua='IM-Invests-Bildersuche/1.0 (https://iminvests.de)'
+          echo '[]' > geholt/lizenzen.json
+          printf '%s\n' "$SUCHE" | tr ';' '\n' | while IFS='|' read -r kennung begriff; do
+            [ -n "${kennung// /}" ] || continue
+            kennung=$(echo "$kennung" | tr -cd 'a-z0-9-')
+            echo "== $kennung: $begriff"
+            api='https://commons.wikimedia.org/w/api.php'
+            curl -sS -A "$ua" -G "$api" \
+              --data-urlencode action=query --data-urlencode format=json \
+              --data-urlencode generator=search --data-urlencode gsrnamespace=6 \
+              --data-urlencode "gsrsearch=$begriff filetype:bitmap" --data-urlencode gsrlimit=5 \
+              --data-urlencode prop=imageinfo --data-urlencode iiprop='url|extmetadata|size' \
+              --data-urlencode iiurlwidth=1600 > antwort.json
+            jq -c '.query.pages // {} | to_entries | sort_by(.value.index) | .[].value' antwort.json | nl -nln | while read -r nr seite; do
+              titel=$(echo "$seite" | jq -r '.title')
+              bild=$(echo "$seite" | jq -r '.imageinfo[0].thumburl // .imageinfo[0].url')
+              datei="geholt/${kennung}-${nr}.jpg"
+              curl -sS -A "$ua" -L "$bild" -o "$datei" || { echo "  $titel: Laden scheiterte"; continue; }
+              echo "$seite" | jq --arg datei "$(basename "$datei")" --arg kennung "$kennung" '{
+                kennung: $kennung, datei: $datei, titel: .title,
+                seite: .imageinfo[0].descriptionurl,
+                lizenz: (.imageinfo[0].extmetadata.LicenseShortName.value // "?"),
+                bedingungen: (.imageinfo[0].extmetadata.UsageTerms.value // ""),
+                urheber: (.imageinfo[0].extmetadata.Artist.value // "" | gsub("<[^>]*>"; "")),
+                quelle: (.imageinfo[0].extmetadata.Credit.value // "" | gsub("<[^>]*>"; "")),
+                nennung_noetig: (.imageinfo[0].extmetadata.AttributionRequired.value // "?")
+              }' > eintrag.json
+              jq --slurpfile e eintrag.json '. + $e' geholt/lizenzen.json > tmp.json && mv tmp.json geholt/lizenzen.json
+              echo "  $(jq -r '.lizenz + " · " + .titel' eintrag.json)"
+            done
+          done
+          ls -la geholt
+
+      - name: Auf den Zweig bilder-geholt legen
+        run: |
+          inhalt=$(mktemp -d)
+          cp -r geholt/. "$inhalt"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan bilder-geholt
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -r "$inhalt"/. .
+          git add -A
+          git commit -m "Bilder geholt: $(date -u +%F\ %H:%M)"
+          git push --force origin bilder-geholt

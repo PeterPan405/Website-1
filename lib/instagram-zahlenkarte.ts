@@ -226,6 +226,14 @@ const FLAGGE_SUEDKOREA = quadrat(
       .join('')
 )
 
+const FLAGGE_GROSSBRITANNIEN = quadrat(
+  '<rect width="60" height="60" fill="#012169"/>' +
+    '<path d="M0 0 L60 60 M60 0 L0 60" stroke="#fff" stroke-width="12"/>' +
+    '<path d="M0 0 L60 60 M60 0 L0 60" stroke="#C8102E" stroke-width="4"/>' +
+    '<path d="M30 0 V60 M0 30 H60" stroke="#fff" stroke-width="18"/>' +
+    '<path d="M30 0 V60 M0 30 H60" stroke="#C8102E" stroke-width="10"/>'
+)
+
 const WAPPEN_SLOWAKEI =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24">' +
   '<path d="M1 1H19V12C19 18 14 21 10 23C6 21 1 18 1 12Z" fill="#fff"/>' +
@@ -246,12 +254,16 @@ export const FLAGGEN: Record<string, Flagge> = {
   WELT: { streifen: ['#555555'], kuerzel: 'Ø', kuerzelFarbe: '#FFFFFF' },
   FRA: { streifen: ['#002395', '#FFFFFF', '#ED2939'], senkrecht: true },
   HUN: { streifen: ['#CE2939', '#FFFFFF', '#477050'] },
+  /* Großbritannien: das Kreuz des Union Jack, ohne die Diagonalen der Einzelflaggen. */
+  GBR: { streifen: ['#012169'], svg: FLAGGE_GROSSBRITANNIEN },
   IND: { streifen: ['#FF9933'], svg: FLAGGE_INDIEN },
   IRL: { streifen: ['#169B62', '#FFFFFF', '#FF883E'], senkrecht: true },
   ISR: { streifen: ['#FFFFFF'], svg: FLAGGE_ISRAEL },
   ITA: { streifen: ['#009246', '#FFFFFF', '#CE2B37'], senkrecht: true },
   JPN: { streifen: ['#FFFFFF'], svg: FLAGGE_JAPAN },
   KOR: { streifen: ['#FFFFFF'], svg: FLAGGE_SUEDKOREA },
+  LUX: { streifen: ['#EF3340', '#FFFFFF', '#00A3E0'] },
+  LVA: { streifen: ['#9E3039', '#FFFFFF', '#9E3039'], gewichte: [2, 1, 2] },
   LIE: { streifen: ['#002B7F'], svg: FLAGGE_LIECHTENSTEIN },
   NLD: { streifen: ['#AE1C28', '#FFFFFF', '#21468B'] },
   POL: { streifen: ['#FFFFFF', '#DC143C'] },
@@ -421,8 +433,10 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
 function pruefeRangliste(k: Rangkarte): string[] {
   const f: string[] = []
   const n = k.zeilen.length
-  if (n < 4 || n > RL_ZEILEN_MAX)
-    f.push(`${n} Zeilen – die Rangliste trägt vier bis ${RL_ZEILEN_MAX}.`)
+  /* Kacheln stehen in zwei Spalten – zwölf sind sechs Reihen. */
+  const hoechstens = k.skala === 'kacheln' ? 12 : RL_ZEILEN_MAX
+  if (n < 4 || n > hoechstens)
+    f.push(`${n} Zeilen – die Rangliste trägt vier bis ${hoechstens}.`)
   if (k.zeilen.filter((z) => z.hervor).length !== 1)
     f.push('Die Rangliste braucht genau eine hervorgehobene Zeile.')
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
@@ -434,7 +448,7 @@ function pruefeRangliste(k: Rangkarte): string[] {
   for (const [i, z] of k.zeilen.entries()) {
     if (!(z.wert > 0))
       f.push(`${z.name}: ${z.wert} – der Wert muss größer als null sein.`)
-    else if (k.skala !== 'balken' && z.wert > 100)
+    else if ((k.skala ?? 'haeuser') === 'haeuser' && z.wert > 100)
       f.push(
         `${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100; darüber skala: 'balken'.`
       )
@@ -521,7 +535,12 @@ const haus = (farbe: string) =>
       `<path d="M20 3 L38 19 L33 19 L33 37 L7 37 L7 19 L2 19 Z" fill="${farbe}"/></svg>`
   )
 
-const zahl = (w: number, stellen = 1) => w.toFixed(stellen).replace('.', ',')
+/* Deutsch gesetzt, mit Tausenderpunkt – „812.822" für das Vermögen. */
+const zahl = (w: number, stellen = 1) =>
+  w.toLocaleString('de-DE', {
+    minimumFractionDigits: stellen,
+    maximumFractionDigits: stellen,
+  })
 
 /*
   Der Kopf, nachgemessen am Beitrag vom 12.10.2026 (auf 1080 px gerechnet):
