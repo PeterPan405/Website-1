@@ -16,6 +16,44 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 19.10.2026 aus drei Vorschlägen („Dax
+      gegen S&P 500"). Form: Vergleich – am Vortag Kacheln. Farbe: Rot
+      (akzentfarbe('2026-10-19')).
+
+      Zahlen: Kursbestand der Website (Yahoo Finance), getQuotes() –
+      Schlusskurse vom Freitag, 16.10.2026, und die Veränderung seit dem
+      letzten Schlusskurs 2025 (`ytdPercent`): Dax 25.622,61 Punkte, +4,62 %;
+      S&P 500 7.659,44 Punkte, +11,89 %. Jeweils in Landeswährung.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    datum: '2026-10-19',
+    titel: [{ text: 'Dax gegen S&P 500:' }, { text: 'Wall Street vorn', gruen: true }],
+    links: {
+      name: 'Dax',
+      wert: 4.6,
+      anzeige: '+4,6 %',
+      zusatz: 'seit Jahresbeginn',
+      land: 'DEU',
+    },
+    rechts: {
+      name: 'S&P 500',
+      wert: 11.9,
+      anzeige: '+11,9 %',
+      zusatz: 'seit Jahresbeginn',
+      land: 'USA',
+    },
+    differenz: { text: '+7,3', zusatz: 'Prozentpunkte' },
+    fusszeile:
+      'Stand: Schlusskurse 16.10.2026 | Quelle: Yahoo Finance | jeweils in Landeswährung',
+    text:
+      'Seit Jahresbeginn hat der S&P 500 um 11,9 % zugelegt – der Dax nur um 4,6 %. 📊\n\n' +
+      'Der US-Leitindex schloss am Freitag bei 7.659 Punkten, der Dax bei 25.623 Punkten. Der Abstand beträgt 7,3 Prozentpunkte. ' +
+      'Beide Werte sind in Landeswährung gerechnet; für Anleger aus dem Euroraum kommt beim S&P 500 die Entwicklung des Dollars hinzu.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse vom 16.10.2026 und Jahresschluss 2025)',
+    schlagworte: ['dax', 'sp500', 'aktien', 'börse', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 18.10.2026 aus den Vorschlägen
       („Vermögen"), nachdem er „Kinder je Frau" abgelehnt hatte („Nee, lieber
       ein anderes Thema"); dazu: „nehme aber noch ein paar weitere Länder

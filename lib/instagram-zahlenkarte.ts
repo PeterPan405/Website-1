@@ -49,6 +49,8 @@ export interface Seite {
   zusatz: string
   /** Kreisrunde Flagge aus waagrechten Streifen, von oben – oder keine. */
   flagge?: string[]
+  /** Statt `flagge`: ein Schlüssel in `FLAGGEN` – auch für Flaggen ohne Streifen (USA). */
+  land?: string
 }
 
 interface KarteGemeinsam {
@@ -416,6 +418,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   else
     for (const s of [k.links, k.rechts]) {
       if (!(s.wert > 0)) f.push(`${s.name}: Wert muss größer als null sein.`)
+      if (s.land && !FLAGGEN[s.land]) f.push(`${s.name}: keine Flagge für „${s.land}".`)
       if (s.flagge && s.flagge.length < 2)
         f.push(`${s.name}: eine Flagge braucht mindestens zwei Streifen.`)
     }
@@ -808,7 +811,11 @@ function vergleichsGrafik(k: Vergleichskarte) {
           },
           s.name
         ),
-        ...(s.flagge ? [flagge({ streifen: s.flagge }, 86, 3)] : [])
+        ...(s.land && FLAGGEN[s.land]
+          ? [flagge(FLAGGEN[s.land], 86, 3)]
+          : s.flagge
+            ? [flagge({ streifen: s.flagge }, 86, 3)]
+            : [])
       )
     ),
   ]

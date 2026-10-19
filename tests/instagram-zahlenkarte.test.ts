@@ -343,6 +343,32 @@ const vermoegenPng = await zahlenkartePng(
 )
 pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString() === 'PNG')
 
+/* Die Karte vom 19.10.2026 – Dax gegen S&P 500, gegen den Kursbestand. */
+{
+  const { getQuotes } = await import('@/lib/markets')
+  const dax = zahlenkarten.find((k) => k.datum === '2026-10-19') as Vergleichskarte
+  const [qDax, qSp] = await getQuotes(['dax', 'sp500'])
+  const runde = (w: number) => Math.round(w * 10) / 10
+  pruefe(
+    `Dax seit Jahresbeginn wie im Bestand (${qDax.ytdPercent.toFixed(2)} %)`,
+    dax.links.wert === runde(qDax.ytdPercent) || qDax.asOf.slice(0, 10) > '2026-10-16'
+  )
+  pruefe(
+    `S&P 500 seit Jahresbeginn wie im Bestand (${qSp.ytdPercent.toFixed(2)} %)`,
+    dax.rechts.wert === runde(qSp.ytdPercent) || qSp.asOf.slice(0, 10) > '2026-10-16'
+  )
+  pruefe(
+    'die Differenz ist gerechnet: +7,3',
+    dax.differenz.text ===
+      `+${(dax.rechts.wert - dax.links.wert).toFixed(1).replace('.', ',')}`
+  )
+  pruefe(
+    'jede Zahl der Karte steht im Text',
+    ['11,9 %', '4,6 %', '7,3 Prozentpunkte'].every((z) => dax.text.includes(z))
+  )
+  pruefe('Akzentfarbe am 19.10. ist Rot', akzentfarbe('2026-10-19') === '#8B2225')
+}
+
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
 for (let i = 1; i < nachDatum.length; i++)
