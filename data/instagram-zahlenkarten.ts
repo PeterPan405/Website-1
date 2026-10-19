@@ -16,59 +16,48 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Thema gewählt vom Betreiber am 19.10.2026: „Gerne Beitrag 2, defensiv
-      schlägt Tech." – nach dem Vorbild HKCM („Konsumaktien schlagen Tech um
-      12,7 Prozentpunkte"). Form: Duell (am Vortag Verlauf). Farbe: Anthrazit.
+      Thema gewählt vom Betreiber am 19.10.2026: „Nehmen lieber Öl schlägt
+      alles." – statt „SMI schlägt Nasdaq" (Duell), nach dem Vorbild HKCM.
+      Form: Balken mit Plus und Minus (am Vortag Verlauf). Farbe: Anthrazit.
 
-      Zahlen: Yahoo Finance, Tagesschlusskurse ^SSMI und ^NDX, abgerufen am
-      19.10.2026 über quellen-holen.yml (Lauf 39275639017) – der Kursbestand
-      der Website trug den 16.10. zu dem Zeitpunkt noch nicht.
-      SMI 13.787,40 → 14.391,31 = +4,38 %; Nasdaq 100 30.883,15 → 29.187,55 =
-      −5,49 %; Differenz 9,87 Prozentpunkte.
-      Ausverkauf bei Chip- und KI-Aktien: Handelsblatt, 16.10.2026, in
-      data/news.ts (Fed-Chef Warsh …, 17.10.).
+      Zahlen: Yahoo Finance, Tagesschlusskurse, abgerufen am 19.10.2026 über
+      quellen-holen.yml (Lauf 39277296882). Letzter Schluss 2025 → 16.10.2026:
+        Brent (BZ=F)       60,85 →    109,86   +80,54 %
+        Nasdaq 100 (^NDX)  25.249,85 → 29.187,55 +15,59 %
+        S&P 500 (^GSPC)    6.845,50 →  7.659,44  +11,89 %
+        Dax (^GDAXI)       24.490,41 → 25.622,61 +4,62 % (Jahresschluss 30.12.)
+        Gold (GC=F)        4.341,10 →  4.181,10  −3,69 %
+        Bitcoin (BTC-USD)  87.508,83 → 81.500,80 −6,87 %
+        Silber (SI=F)      70,13 →     56,99     −18,73 %
+      Rohstoffe als Terminkontrakt in US-Dollar, Indizes in Landeswährung.
+      S&P 500 und Dax decken sich mit der Karte vom 19.10.
     */
-    art: 'duell',
+    art: 'rangliste',
+    skala: 'balken',
     datum: '2026-10-20',
     titel: [
-      { text: 'SMI schlägt Nasdaq' },
-      { text: 'um 9,9 Prozentpunkte', gruen: true },
+      { text: 'Öl schlägt alles:' },
+      { text: 'Brent +80,5 % seit Januar', gruen: true },
     ],
-    unterzeile: 'Wochenbilanz vom 12. bis 16. Oktober 2026:',
-    links: {
-      name: 'SMI',
-      zusatz: 'Schweizer Leitindex',
-      land: 'CHE',
-      punkte: [
-        { t: '2026-10-09', wert: 13787.4 },
-        { t: '2026-10-12', wert: 13877.84 },
-        { t: '2026-10-13', wert: 13927.52 },
-        { t: '2026-10-14', wert: 14129.93 },
-        { t: '2026-10-15', wert: 14349.51 },
-        { t: '2026-10-16', wert: 14391.31 },
-      ],
-    },
-    rechts: {
-      name: 'Nasdaq 100',
-      zusatz: 'US-Technologieindex',
-      land: 'USA',
-      punkte: [
-        { t: '2026-10-09', wert: 30883.15 },
-        { t: '2026-10-12', wert: 30664.7 },
-        { t: '2026-10-13', wert: 30569.48 },
-        { t: '2026-10-14', wert: 29950.82 },
-        { t: '2026-10-15', wert: 29935.6 },
-        { t: '2026-10-16', wert: 29187.55 },
-      ],
-    },
+    unterzeile: 'Wertentwicklung seit Jahresbeginn:',
+    zeilen: [
+      { name: 'Öl (Brent)', wert: 80.5, land: 'OEL', hervor: true },
+      { name: 'Nasdaq 100', wert: 15.6, land: 'USA' },
+      { name: 'S&P 500', wert: 11.9, land: 'USA' },
+      { name: 'Dax', wert: 4.6, land: 'DEU' },
+      { name: 'Gold', wert: -3.7, land: 'GOLD' },
+      { name: 'Bitcoin', wert: -6.9, land: 'BTC' },
+      { name: 'Silber', wert: -18.7, land: 'SILBER' },
+    ],
     fusszeile:
-      'Stand: Schlusskurse 09.10.–16.10.2026 | Quelle: Yahoo Finance | Wochenperformance',
+      'Stand: Schlusskurse 16.10.2026 | Quelle: Yahoo Finance | Rohstoffe und Bitcoin in US-Dollar',
     text:
-      'Der Schweizer Leitindex SMI legte in der vergangenen Woche um 4,4 % zu – der Nasdaq 100 verlor 5,5 %. 📊\n\n' +
-      'Die Differenz beträgt 9,9 Prozentpunkte. Im SMI haben Nahrungsmittel- und Pharmakonzerne wie Nestlé, Roche und Novartis großes Gewicht, im Nasdaq 100 die Technologiewerte. ' +
-      'In derselben Woche hielt der Ausverkauf bei Chip- und KI-Aktien an.\n' +
-      'Quellen: Yahoo Finance (Schlusskurse 9. und 16.10.2026); Handelsblatt (16.10.2026)',
-    schlagworte: ['nasdaq', 'smi', 'aktien', 'börse', 'investieren'],
+      'Ein Barrel der Nordseesorte Brent kostete am Freitag 109,86 Dollar – zum Jahresende 2025 waren es 60,85 Dollar. Ein Plus von 80,5 %. 🛢️\n\n' +
+      'Kein anderer der großen Werte kommt annähernd heran: Der Nasdaq 100 legte seit Jahresbeginn um 15,6 % zu, der S&P 500 um 11,9 %, der Dax um 4,6 %. ' +
+      'Gold liegt 3,7 % im Minus, Bitcoin 6,9 %, Silber sogar 18,7 %.\n\n' +
+      'Indizes in Landeswährung, Rohstoffe als Terminkontrakt und Bitcoin in US-Dollar.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse vom 16.10.2026 und Jahresschluss 2025)',
+    schlagworte: ['öl', 'brent', 'rohstoffe', 'börse', 'investieren'],
   },
   {
     /*

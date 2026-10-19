@@ -285,6 +285,11 @@ const FLAGGE_GROSSBRITANNIEN = quadrat(
     '<path d="M30 0 V60 M0 30 H60" stroke="#C8102E" stroke-width="10"/>'
 )
 
+const SYMBOL_OEL = quadrat(
+  '<rect width="60" height="60" fill="#1b1b1b"/>' +
+    '<path d="M30 12 C30 12 18 28 18 36 A12 12 0 0 0 42 36 C42 28 30 12 30 12 Z" fill="#fff"/>'
+)
+
 const FLAGGE_SCHWEIZ = quadrat(
   '<rect width="60" height="60" fill="#DA291C"/>' +
     '<rect x="25" y="12" width="10" height="36" fill="#fff"/><rect x="12" y="25" width="36" height="10" fill="#fff"/>'
@@ -302,6 +307,11 @@ const WAPPEN_SLOWAKEI =
 
 export const FLAGGEN: Record<string, Flagge> = {
   AUT: { streifen: ['#ED2939', '#FFFFFF', '#ED2939'] },
+  /* Keine Länder: Rohstoffe und Bitcoin als Zeichen im Kreis (19.10.2026). */
+  OEL: { streifen: ['#1b1b1b'], svg: SYMBOL_OEL },
+  GOLD: { streifen: ['#C9A227'], kuerzel: 'Au', kuerzelFarbe: '#FFFFFF' },
+  SILBER: { streifen: ['#A7A9AC'], kuerzel: 'Ag', kuerzelFarbe: '#FFFFFF' },
+  BTC: { streifen: ['#F7931A'], kuerzel: 'BTC', kuerzelFarbe: '#FFFFFF' },
   CHE: { streifen: ['#DA291C'], svg: FLAGGE_SCHWEIZ },
   BEL: { streifen: ['#000000', '#FAE042', '#ED2939'], senkrecht: true },
   CHN: { streifen: ['#EE1C25'], svg: FLAGGE_CHINA },
@@ -517,8 +527,10 @@ function pruefeRangliste(k: Rangkarte): string[] {
       "Eine andere Einheit als Prozent nur mit skala: 'balken' – Häuschen zählen Prozent."
     )
   for (const [i, z] of k.zeilen.entries()) {
-    if (!(z.wert > 0))
-      f.push(`${z.name}: ${z.wert} – der Wert muss größer als null sein.`)
+    if (!(z.wert > 0) && !(k.skala === 'balken' && z.wert < 0))
+      f.push(
+        `${z.name}: ${z.wert} – der Wert muss größer als null sein (negativ nur mit Balken).`
+      )
     else if ((k.skala ?? 'haeuser') === 'haeuser' && z.wert > 100)
       f.push(
         `${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100; darüber skala: 'balken'.`
@@ -946,13 +958,21 @@ function haeuser(wert: number, farbe: string) {
 }
 
 /** Ein Balken, gemessen am größten Wert der Liste – mindestens ein Strich. */
-function balken(wert: number, groesster: number, farbe: string) {
+/*
+  Negative Werte (19.10.2026, „Öl schlägt alles"): Die Null steht dort, wo
+  der kleinste Wert Platz lässt; Plus geht nach rechts, Minus nach links.
+*/
+function balken(wert: number, groesster: number, farbe: string, kleinster = 0) {
+  const spanne = groesster - Math.min(kleinster, 0)
+  const null_ = (RL_BALKEN * -Math.min(kleinster, 0)) / spanne
+  const breite = Math.max(4, (RL_BALKEN * Math.abs(wert)) / spanne)
   return h(
     'div',
     { style: { display: 'flex', width: RL_BALKEN, height: 34 } },
     h('div', {
       style: {
-        width: Math.max(4, (RL_BALKEN * wert) / groesster),
+        marginLeft: wert < 0 ? null_ - breite : null_,
+        width: breite,
         height: 34,
         borderRadius: 4,
         backgroundColor: farbe,
@@ -1069,10 +1089,18 @@ function ranglistenGrafik(k: Rangkarte) {
   const mitBalken = k.skala === 'balken'
   const akzent = akzentfarbe(k.datum)
   const groesster = Math.max(...k.zeilen.map((z) => z.wert))
+  const kleinster = Math.min(...k.zeilen.map((z) => z.wert), 0)
   const hundert = RL_BALKEN_X + (RL_BALKEN * 100) / groesster
+  const nulllinie = RL_BALKEN_X + (RL_BALKEN * -kleinster) / (groesster - kleinster)
   const hoehe = zeilenhoehe(k.zeilen.length)
   const zeile = (z: Rang, i: number) => {
-    const farbe = z.hervor ? akzent : z.schnitt ? MITTELGRAU : SCHWARZ
+    const farbe = z.hervor
+      ? akzent
+      : z.schnitt
+        ? MITTELGRAU
+        : z.wert < 0
+          ? '#8B2225'
+          : SCHWARZ
     return h(
       'div',
       {
@@ -1111,7 +1139,7 @@ function ranglistenGrafik(k: Rangkarte) {
         z.name
       ),
       mitBalken
-        ? balken(z.wert, groesster, z.schnitt ? '#777777' : farbe)
+        ? balken(z.wert, groesster, z.schnitt ? '#777777' : farbe, kleinster)
         : haeuser(z.wert, z.schnitt ? '#777777' : farbe),
       h(
         'div',
@@ -1125,7 +1153,7 @@ function ranglistenGrafik(k: Rangkarte) {
             color: farbe,
           },
         },
-        `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
+        `${kleinster < 0 && z.wert > 0 ? '+' : z.wert < 0 ? '−' : ''}${zahl(Math.abs(z.wert), k.stellen)}${k.einheit ?? ' %'}`
       )
     )
   }
@@ -1160,6 +1188,21 @@ function ranglistenGrafik(k: Rangkarte) {
             h('div', { style: { marginLeft: 8, fontWeight: 400 } }, '= 10 %'),
           ])
     ),
+    /* Die Nulllinie, wenn es negative Werte gibt. */
+    ...(mitBalken && kleinster < 0
+      ? [
+          h('div', {
+            style: {
+              position: 'absolute',
+              left: nulllinie - 1,
+              top: RL_OBEN - 10,
+              width: 3,
+              height: k.zeilen.length * hoehe + 4,
+              backgroundColor: '#333',
+            },
+          }),
+        ]
+      : []),
     /* Die 100-%-Linie: links davon weniger Schulden als ein Jahr Wirtschaftsleistung. */
     ...(mitBalken && groesster > 100
       ? [
