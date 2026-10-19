@@ -115,6 +115,26 @@ Folgen", „Fazit"), **keine Aufforderung zu folgen.** Gelegentlich steht eine
 
 ### C — Zahlenkarte
 
+**Vorbild HKCM – aktuell, eine Zahl, ein Kontrast** (Betreiber, 19.10.2026:
+„Die Themen dürfen auch gern immer aktuell bezogen sein … Es müssen nicht
+immer so trockene Fakten sein … ein bisschen durchmischt."). Aus vier
+Beiträgen von @hkc_management abgelesen:
+
+- **Ein aktueller Anlass** – die Woche an der Börse („Konsumaktien schlagen
+  Tech um 12,7 Prozentpunkte"), eine Unternehmenszahl (Berkshires
+  Cashquote), eine neue Statistik (Chinas Erwerbstätige) – oder ein
+  historischer Vergleich, der zur Lage passt (Nasdaq 2000–2002: fünf
+  Rallyes, am Ende −78 %).
+- **Überschrift mit der Zahl und einem Kontrast oder einer Frage**, zwei
+  Zeilen, ein Teil in der Akzentfarbe. Darunter **ein Satz Einordnung**,
+  der sagt, was die Zahl bedeutet – nur, was die Quelle hergibt.
+- **Die Grafik hebt hervor**: den einen Wert (Etikett am Linienende, der
+  markierte Balken, die große Differenz in einem eigenen Kasten); Rest
+  zurückhaltend.
+- **Quelle mit Datum und Zeitraum** in der Fußzeile, wie bei uns.
+- **Durchmischt:** etwa jeder zweite Tagesbeitrag mit aktuellem Anlass,
+  dazwischen Länder- und Langfristzahlen.
+
 **Form und Farbe wechseln täglich.** Die Akzentfarbe läuft durch die vier
 Logofarben (Grün, Navy, Rot, Anthrazit – `akzentfarbe()`), die Form darf nie
 zwei Tage hintereinander dieselbe sein (`form()`: Vergleich, Häuschen,
