@@ -49,6 +49,8 @@ export interface Seite {
   zusatz: string
   /** Kreisrunde Flagge aus waagrechten Streifen, von oben – oder keine. */
   flagge?: string[]
+  /** Statt `flagge`: ein Schlüssel in `FLAGGEN` – auch für Flaggen ohne Streifen (USA). */
+  land?: string
 }
 
 interface KarteGemeinsam {
@@ -120,7 +122,33 @@ export interface Rangkarte extends KarteGemeinsam {
   stellen?: number
 }
 
-export type Zahlenkarte = Vergleichskarte | Rangkarte
+/** Eine Linie im Verlauf – ein Index oder Wert aus dem Kursbestand. */
+export interface Verlaufreihe {
+  name: string
+  /** Symbol im Kursbestand (`data/markets.ts`). */
+  symbol: string
+  /** Schlüssel in `FLAGGEN`, am Ende der Linie. */
+  land?: string
+  /** Die Linie in der Akzentfarbe – genau eine; die andere ist schwarz. */
+  akzent?: boolean
+  /** So steht der Endwert am Linienende: „+11,9 %" – derselbe wie im Text. */
+  endwert: string
+}
+
+/**
+ * Zwei Linien seit Jahresbeginn, in Prozent (18.10.2026). Der Betreiber zum
+ * Vergleich mit zwei Balken: „nein, mit Chart vergleich, bissl kreativer
+ * werden!!"
+ */
+export interface Verlaufkarte extends KarteGemeinsam {
+  art: 'verlauf'
+  unterzeile: string
+  /** Letzter Handelstag, der zählt – spätere Kurse bleiben draußen. */
+  bis: string
+  reihen: Verlaufreihe[]
+}
+
+export type Zahlenkarte = Vergleichskarte | Rangkarte | Verlaufkarte
 
 /** Eine kreisrunde Flagge: Streifen, von oben oder von links, wahlweise mit Wappen. */
 export interface Flagge {
@@ -413,9 +441,17 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else
+  else if (k.art === 'verlauf') {
+    if (k.reihen.length < 2 || k.reihen.length > 3)
+      f.push('Ein Verlauf trägt zwei oder drei Linien.')
+    if (k.reihen.filter((r) => r.akzent).length !== 1)
+      f.push('Genau eine Linie in der Akzentfarbe.')
+    for (const r of k.reihen)
+      if (r.land && !FLAGGEN[r.land]) f.push(`${r.name}: keine Flagge für „${r.land}".`)
+  } else
     for (const s of [k.links, k.rechts]) {
       if (!(s.wert > 0)) f.push(`${s.name}: Wert muss größer als null sein.`)
+      if (s.land && !FLAGGEN[s.land]) f.push(`${s.name}: keine Flagge für „${s.land}".`)
       if (s.flagge && s.flagge.length < 2)
         f.push(`${s.name}: eine Flagge braucht mindestens zwei Streifen.`)
     }
@@ -567,7 +603,13 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
-  const rangliste = k.art === 'rangliste'
+  const rangliste = k.art !== undefined && k.art !== 'vergleich'
+  const grafik =
+    k.art === 'verlauf'
+      ? await verlaufGrafik(k)
+      : k.art === 'rangliste'
+        ? ranglistenGrafik(k)
+        : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -633,7 +675,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           )
       )
     ),
-    ...(k.art === 'rangliste' ? ranglistenGrafik(k) : vergleichsGrafik(k)),
+    ...grafik,
     h('div', {
       style: {
         position: 'absolute',
@@ -808,7 +850,11 @@ function vergleichsGrafik(k: Vergleichskarte) {
           },
           s.name
         ),
-        ...(s.flagge ? [flagge({ streifen: s.flagge }, 86, 3)] : [])
+        ...(s.land && FLAGGEN[s.land]
+          ? [flagge(FLAGGEN[s.land], 86, 3)]
+          : s.flagge
+            ? [flagge({ streifen: s.flagge }, 86, 3)]
+            : [])
       )
     ),
   ]
@@ -974,7 +1020,10 @@ function kachelGrafik(k: Rangkarte) {
  * Die Form einer Karte – zwei Tage hintereinander nie dieselbe (Betreiber,
  * 18.10.2026: „Das soll sich durchrotieren, genauso wie die Farben").
  */
-export function form(k: Zahlenkarte): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' {
+export function form(
+  k: Zahlenkarte
+): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'verlauf' {
+  if (k.art === 'verlauf') return 'verlauf'
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
 
@@ -1108,5 +1157,228 @@ function ranglistenGrafik(k: Rangkarte) {
         ]
       : []),
     ...k.zeilen.map(zeile),
+  ]
+}
+
+/* ------------------------------------------------------------ Verlauf */
+
+/**
+ * Die Entwicklung seit Jahresbeginn in Prozent – aus dem Kursbestand.
+ * Bezug ist der Jahresschluss, so wie `ytdPercent` ihn rechnet; der
+ * Schlusskurs des Stichtags kommt aus dem Kurs, wenn die Tagesreihe ihn noch
+ * nicht trägt. Was nach `bis` liegt, bleibt draußen.
+ */
+export async function verlaufSeitJahresbeginn(
+  symbol: string,
+  bis: string
+): Promise<{ t: string; prozent: number }[]> {
+  const { getQuote, getSeries } = await import('@/lib/markets')
+  const [reihe, kurs] = await Promise.all([getSeries(symbol, '1J'), getQuote(symbol)])
+  if (!kurs) return []
+  const jahr = bis.slice(0, 4)
+  const basis = kurs.value / (1 + kurs.ytdPercent / 100)
+  const punkte = reihe
+    .filter((p) => p.t.slice(0, 4) === jahr && p.t.slice(0, 10) <= bis)
+    .map((p) => ({ t: p.t.slice(0, 10), wert: p.value }))
+  const kursTag = kurs.asOf.slice(0, 10)
+  if (kursTag === bis && punkte.at(-1)?.t !== bis)
+    punkte.push({ t: bis, wert: kurs.value })
+  return [
+    { t: `${Number(jahr) - 1}-12-31`, prozent: 0 },
+    ...punkte.map((p) => ({ t: p.t, prozent: (p.wert / basis - 1) * 100 })),
+  ]
+}
+
+const MONATE = [
+  'Jan',
+  'Feb',
+  'Mär',
+  'Apr',
+  'Mai',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Okt',
+  'Nov',
+  'Dez',
+]
+
+async function verlaufGrafik(k: Verlaufkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const reihen = await Promise.all(
+    k.reihen.map(async (r) => ({
+      ...r,
+      punkte: await verlaufSeitJahresbeginn(r.symbol, k.bis),
+    }))
+  )
+  const alle = reihen.flatMap((r) => r.punkte.map((p) => p.prozent))
+  const roh = Math.max(...alle) - Math.min(...alle, 0)
+  const schritt = [2, 2.5, 5, 10, 20, 25, 50].find((x) => roh / x <= 5) ?? 100
+  const unten = Math.floor(Math.min(...alle, 0) / schritt) * schritt
+  const oben = Math.ceil(Math.max(...alle, 0) / schritt) * schritt
+  const teil: number[] = []
+  for (let w = unten; w <= oben + 1e-9; w += schritt) teil.push(Math.round(w * 10) / 10)
+
+  /* Fläche: links die Y-Achse, rechts Platz für die Endwerte. */
+  const X0 = 130
+  const X1 = 780
+  const Y0 = 580
+  const Y1 = 1150
+  const zeitAnfang = Date.parse(`${reihen[0].punkte[0].t}T00:00:00Z`)
+  const zeitEnde = Date.parse(`${k.bis}T00:00:00Z`)
+  const x = (t: string) =>
+    X0 +
+    ((Date.parse(`${t}T00:00:00Z`) - zeitAnfang) / (zeitEnde - zeitAnfang)) * (X1 - X0)
+  const y = (p: number) => Y1 - ((p - unten) / (oben - unten)) * (Y1 - Y0)
+
+  const linien = reihen
+    .map((r) => {
+      const farbe = r.akzent ? akzent : SCHWARZ
+      const pfad = r.punkte
+        .map((p) => `${(x(p.t) - X0).toFixed(1)},${(y(p.prozent) - Y0).toFixed(1)}`)
+        .join(' ')
+      return `<polyline points="${pfad}" fill="none" stroke="${farbe}" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>`
+    })
+    .join('')
+  const gitter = teil
+    .map((w) => {
+      const yy = (y(w) - Y0).toFixed(1)
+      return w === 0
+        ? `<line x1="0" x2="${X1 - X0}" y1="${yy}" y2="${yy}" stroke="#333" stroke-width="3"/>`
+        : `<line x1="0" x2="${X1 - X0}" y1="${yy}" y2="${yy}" stroke="#c9c9c9" stroke-width="2" stroke-dasharray="7 7"/>`
+    })
+    .join('')
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${X1 - X0}" height="${Y1 - Y0}" viewBox="0 0 ${X1 - X0} ${Y1 - Y0}">` +
+    gitter +
+    `<line x1="1.5" x2="1.5" y1="0" y2="${Y1 - Y0}" stroke="#333" stroke-width="3"/>` +
+    `<line x1="0" x2="${X1 - X0}" y1="${Y1 - Y0 - 1.5}" y2="${Y1 - Y0 - 1.5}" stroke="#333" stroke-width="3"/>` +
+    linien +
+    `</svg>`
+
+  const zahl = (w: number) => `${w > 0 ? '+' : ''}${w.toLocaleString('de-DE')} %`
+  const schrift = { fontFamily: 'Open', fontSize: 24, color: GRAU }
+
+  /* Monatsanfänge auf der X-Achse – jeder zweite, damit nichts zusammenstößt. */
+  const monate: { t: string; text: string }[] = []
+  const bisMonat = Number(k.bis.slice(5, 7))
+  for (let m = 1; m <= bisMonat; m += 2)
+    monate.push({
+      t: `${k.bis.slice(0, 4)}-${String(m).padStart(2, '0')}-01`,
+      text: MONATE[m - 1],
+    })
+
+  /* Endwerte: an der Höhe ihres letzten Punktes, auseinandergeschoben, wenn sie sich zu nah kommen. */
+  const enden = reihen
+    .map((r) => ({ r, yy: y(r.punkte.at(-1)!.prozent) }))
+    .sort((a, b) => a.yy - b.yy)
+  for (let i = 1; i < enden.length; i++)
+    if (enden[i].yy - enden[i - 1].yy < 96) enden[i].yy = enden[i - 1].yy + 96
+
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    ...teil.map((w) =>
+      h(
+        'div',
+        {
+          style: {
+            ...schrift,
+            position: 'absolute',
+            left: 20,
+            width: X0 - 34,
+            top: y(w) - 16,
+            display: 'flex',
+            justifyContent: 'flex-end',
+            fontWeight: w === 0 ? 700 : 400,
+          },
+        },
+        zahl(w)
+      )
+    ),
+    h('img', {
+      src: svgAdresse(svg),
+      width: X1 - X0,
+      height: Y1 - Y0,
+      style: { position: 'absolute', left: X0, top: Y0 },
+    }),
+    ...monate.map(({ t, text }) =>
+      h(
+        'div',
+        {
+          style: {
+            ...schrift,
+            position: 'absolute',
+            left: x(t) - 40,
+            width: 80,
+            top: Y1 + 14,
+            display: 'flex',
+            justifyContent: 'center',
+          },
+        },
+        text
+      )
+    ),
+    ...enden.map(({ r, yy }) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: X1 + 22,
+            top: yy - 44,
+            display: 'flex',
+            alignItems: 'center',
+          },
+        },
+        r.land ? flagge(FLAGGEN[r.land], 50, 2) : h('div', {}),
+        h(
+          'div',
+          { style: { display: 'flex', flexDirection: 'column', marginLeft: 12 } },
+          h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Open',
+                fontWeight: 700,
+                fontSize: 26,
+                color: SCHWARZ,
+              },
+            },
+            r.name
+          ),
+          h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Open',
+                fontWeight: 800,
+                fontStyle: 'italic',
+                fontSize: 44,
+                lineHeight: 1.05,
+                color: r.akzent ? akzent : SCHWARZ,
+              },
+            },
+            r.endwert
+          )
+        )
+      )
+    ),
   ]
 }

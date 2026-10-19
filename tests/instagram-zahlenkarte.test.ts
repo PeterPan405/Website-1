@@ -19,6 +19,8 @@ import {
   ZK_HOEHE,
   type Rangkarte,
   type Vergleichskarte,
+  type Verlaufkarte,
+  verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
 
@@ -342,6 +344,36 @@ const vermoegenPng = await zahlenkartePng(
   readFileSync('public/logo.svg', 'utf8')
 )
 pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString() === 'PNG')
+
+/* Die Karte vom 19.10.2026 – Dax gegen S&P 500, gegen den Kursbestand. */
+{
+  const { getQuotes } = await import('@/lib/markets')
+  const dax = zahlenkarten.find((k) => k.datum === '2026-10-19') as Verlaufkarte
+  const [qDax, qSp] = await getQuotes(['dax', 'sp500'])
+  const runde = (w: number) => `+${(Math.round(w * 10) / 10).toLocaleString('de-DE')} %`
+  const endwert = (s: string) => dax.reihen.find((r) => r.symbol === s)!.endwert
+  pruefe(
+    `Dax seit Jahresbeginn wie im Bestand (${qDax.ytdPercent.toFixed(2)} %)`,
+    endwert('dax') === runde(qDax.ytdPercent) || qDax.asOf.slice(0, 10) > dax.bis
+  )
+  pruefe(
+    `S&P 500 seit Jahresbeginn wie im Bestand (${qSp.ytdPercent.toFixed(2)} %)`,
+    endwert('sp500') === runde(qSp.ytdPercent) || qSp.asOf.slice(0, 10) > dax.bis
+  )
+  const linie = await verlaufSeitJahresbeginn('sp500', dax.bis)
+  pruefe(
+    'die Linie beginnt bei null und endet beim Endwert',
+    linie[0].prozent === 0 && runde(linie.at(-1)!.prozent) === endwert('sp500'),
+    `${linie.at(-1)?.t}: ${linie.at(-1)?.prozent}`
+  )
+  pruefe(
+    'jede Zahl der Karte steht im Text',
+    ['11,9 %', '4,6 %', '7,3 Prozentpunkte'].every((z) => dax.text.includes(z))
+  )
+  const daxPng = await zahlenkartePng(dax, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Verlauf: das Bild ist ein PNG', daxPng.subarray(1, 4).toString() === 'PNG')
+  pruefe('Akzentfarbe am 19.10. ist Rot', akzentfarbe('2026-10-19') === '#8B2225')
+}
 
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))

@@ -16,6 +16,43 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 19.10.2026 aus drei Vorschlägen („Dax
+      gegen S&P 500"). Form: Verlauf – am Vortag Kacheln. Farbe: Rot
+      (akzentfarbe('2026-10-19')).
+
+      Zahlen: Kursbestand der Website (Yahoo Finance), getQuotes() –
+      Schlusskurse vom Freitag, 16.10.2026, und die Veränderung seit dem
+      letzten Schlusskurs 2025 (`ytdPercent`): Dax 25.622,61 Punkte, +4,62 %;
+      S&P 500 7.659,44 Punkte, +11,89 %. Jeweils in Landeswährung.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    /*
+      Erster Entwurf: zwei Balken (Vergleich). Der Betreiber: „nein, mit Chart
+      vergleich, bissl kreativer werden!!" – jetzt der Verlauf beider Indizes
+      seit Jahresbeginn.
+    */
+    art: 'verlauf',
+    datum: '2026-10-19',
+    /* Freigegeben vom Betreiber am 19.10.2026: „ja passt" – hinaus ab 16 Uhr. */
+    freigabe: '2026-10-19',
+    titel: [{ text: 'Dax gegen S&P 500:' }, { text: 'Wall Street vorn', gruen: true }],
+    unterzeile: 'Wertentwicklung seit Jahresbeginn, in Prozent:',
+    bis: '2026-10-16',
+    reihen: [
+      { name: 'S&P 500', symbol: 'sp500', land: 'USA', akzent: true, endwert: '+11,9 %' },
+      { name: 'Dax', symbol: 'dax', land: 'DEU', endwert: '+4,6 %' },
+    ],
+    fusszeile:
+      'Stand: Schlusskurse 16.10.2026 | Quelle: Yahoo Finance | jeweils in Landeswährung',
+    text:
+      'Seit Jahresbeginn hat der S&P 500 um 11,9 % zugelegt – der Dax nur um 4,6 %. 📊\n\n' +
+      'Der US-Leitindex schloss am Freitag bei 7.659 Punkten, der Dax bei 25.623 Punkten. Der Abstand beträgt 7,3 Prozentpunkte. ' +
+      'Beide Werte sind in Landeswährung gerechnet; für Anleger aus dem Euroraum kommt beim S&P 500 die Entwicklung des Dollars hinzu.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse vom 16.10.2026 und Jahresschluss 2025)',
+    schlagworte: ['dax', 'sp500', 'aktien', 'börse', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 18.10.2026 aus den Vorschlägen
       („Vermögen"), nachdem er „Kinder je Frau" abgelehnt hatte („Nee, lieber
       ein anderes Thema"); dazu: „nehme aber noch ein paar weitere Länder
