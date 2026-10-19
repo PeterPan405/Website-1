@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-18T09:45:39.529Z",
+  "abgerufenAm": "2026-10-19T11:00:14.294Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -13,6 +13,7 @@
       "zeilen": 3335,
       "kommendGesamt": 2889,
       "spalten": [
+        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年10月1日 現在 As of 2026/10/1 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年10月15日 現在 As of 2026/10/15 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
@@ -17794,7 +17795,7 @@
     "NESN.SW": "2026-10-16",
     "NESTE.HE": "2026-10-17",
     "NESTLEIND.NS": "2026-10-18",
-    "NEX.PA": "2026-08-18",
+    "NEX.PA": "2026-10-19",
     "NG.L": "2026-08-18",
     "NICE": "2026-08-18",
     "NN.AS": "2026-08-18",
