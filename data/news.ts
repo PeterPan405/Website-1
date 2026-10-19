@@ -101,6 +101,333 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'suedkorea-chipboom-bis-2027-lee-hyoung-il',
+    title: 'Südkoreas Finanzminister erwartet Chip-Boom bis mindestens 2027',
+    teaser:
+      'Finanzminister Lee Hyoung-Il erwartet in Bangkok, dass der weltweite Chip-Boom bis mindestens 2027 anhält – mitten im Ausverkauf bei Halbleiter-Aktien.',
+    category: 'Märkte',
+    publishedAt: '2026-10-19T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Halbleiter', 'Südkorea', 'Chip-Aktien'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['kospi', 'nvidia', 'samsung'],
+    sources: [
+      {
+        label:
+          "CNBC, 18.10.2026, 07:10 Uhr EDT (aktualisiert): „Semiconductor market to remain solid 'at least through next year,' South Korea finance minister says“",
+        url: 'https://www.cnbc.com/2026/10/17/south-korea-semiconductor-outlook-lee-hyoung-il.html',
+      },
+      {
+        label:
+          'Handelsblatt, 16.10.2026, 18:22 Uhr GMT: „Dow Jones, S&P 500, Nasdaq: US-Börsen verlieren deutlich – Ausverkauf bei KI-Aktien geht weiter“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-dow-jones-schliesst-03-prozent-niedriger/100262834.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Südkoreas Finanzminister Lee Hyoung-Il sieht den weltweiten Chip-Boom noch lange nicht am Ende. Er sprach am Rande der IWF-Jahrestagung in Bangkok mit dem US-Sender CNBC. Nach seiner Einschätzung hält das Wachstum mindestens bis zum kommenden Jahr an.',
+      },
+      {
+        type: 'paragraph',
+        text: '„Nach unserer derzeitigen Einschätzung können wir dieses Wachstum mindestens bis nächstes Jahr aufrechterhalten“, sagte Lee. Die Lücke zwischen Angebot und Nachfrage bei Halbleitern bleibe weiterhin sehr groß. Das gelte selbst dann, wenn Hersteller ihre Produktionskapazitäten weiter ausbauten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ausverkauf mitten in der Boom-Erzählung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lees Aussage fällt in eine Woche mit deutlichen Kursverlusten. Chip- und KI-Aktien gerieten laut Handelsblatt zuletzt stark unter Druck. Anleger sorgen sich vor allem wegen möglicher Zinserhöhungen und wachsender Konkurrenz aus China.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Betroffen sind südkoreanische Werte wie SK Hynix und Seoul Semiconductor. Auch der US-Riese Nvidia gehörte zu den Verlierern. Chipwerte haben an der südkoreanischen Börse ein besonders großes Gewicht, erklärte Lee – deutlich mehr als in den meisten anderen Volkswirtschaften.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warnende Stimmen aus der Branche selbst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht alle teilen den Optimismus des Ministers. Eine Kolumne der südkoreanischen Zeitung Maeil Business Newspaper warnte bereits am Donnerstag vor einer kommenden Abkühlung. Laut einer Übersetzung von CNBC erwarten dort zwei Branchenexperten bis 2029 ein Überangebot, das den Speicherchip-Markt in einen harten Verdrängungswettbewerb treibe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Steuereinnahmen trotz der Schwankungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Boom bringt dem Staat zugleich mehr Geld ein. Südkorea rechnet nach Lees Angaben in diesem Jahr mit höheren Steuereinnahmen als ursprünglich geplant. Die Chipindustrie verschaffe dem Land dadurch insgesamt eine stärkere Haushaltslage.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine amtliche Nachfrageprognose beschreibt die erwartete Geschäftsentwicklung eines Sektors. Sie ist etwas anderes als die aktuelle Kursrichtung seiner Aktien. Beide Sichtweisen können für längere Zeit nebeneinander bestehen, bevor sich eine der anderen annähert.',
+      },
+    ],
+  },
+  {
+    slug: 'mastercard-citigroup-marktzugang-china-bangkok',
+    title: 'USA drängen China bei Marktzugang für Mastercard und Citigroup',
+    teaser:
+      'US-Finanzbeamte sprachen in Bangkok mit China über mehr Marktzugang für Mastercard, Visa und Citigroup – Teil der Vereinbarungen zwischen Trump und Xi.',
+    category: 'Märkte',
+    publishedAt: '2026-10-19T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'China', 'Mastercard', 'Citigroup'],
+    relatedTopics: ['aktien-laender-branchen', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['mastercard', 'visa'],
+    sources: [
+      {
+        label:
+          'CNBC, 16.10.2026, 12:46 Uhr EDT: „U.S. presses China on Mastercard, Citigroup market access in bilateral Bangkok talks, official says“',
+        url: 'https://www.cnbc.com/2026/10/16/us-china-mastercard-citigroup-market-access.html',
+      },
+      {
+        label:
+          'The Star (Malaysia)/Xinhua, 14.10.2026, 01:07 Uhr MYT: „1st LD-Writethru: China approves Visa subsidiary application to establish bank card clearing institution“',
+        url: 'https://www.thestar.com.my/news/world/2026/10/14/1st-ld-writethru-china-approves-visa-subsidiary-application-to-establish-bank-card-clearing-institution',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung hat China erneut zum Marktzugang für eigene Finanzkonzerne gedrängt. Das sagte ein Vertreter des US-Finanzministeriums dem Sender CNBC. Die Gespräche fanden diese Woche in Bangkok statt, am Rande der Jahrestagung von IWF und Weltbank.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die US-Delegation unter Vize-Finanzminister Francis Brooke traf Vertreter der chinesischen Notenbank PBOC und des Finanzministeriums. Themen waren der Marktzugang für Mastercard, Visa und die Bank Citigroup. Eine Einigung zu möglichen Genehmigungen sei bereits beim Treffen zwischen Donald Trump und Xi Jinping im September in Washington vereinbart worden, sagte der Beamte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Visa hat die Vorbereitung schon erlaubt bekommen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Schritt ist China bereits gegangen. Am 13. Oktober genehmigte die chinesische Notenbank PBOC der Visa-Tochter Visa Information Technology (Beijing) laut einem Bericht der Nachrichtenagentur Xinhua die Vorbereitung eines eigenen Kartengeschäfts.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Visa hat laut dieser Meldung ein Jahr Zeit für die Vorbereitung, bevor das Unternehmen eine Betriebslizenz beantragen kann. Die endgültige Lizenz vergeben PBOC und die chinesische Finanzaufsicht gemeinsam. Mastercard betreibt sein Geschäft in China bislang über ein Gemeinschaftsunternehmen mit NetsUnion Clearing. Eine Genehmigung für den eigenständigen Betrieb strebt der Konzern laut CNBC an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Citigroup will ins Wertpapiergeschäft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Bank Citigroup verfolgt eigene Pläne. Sie bewirbt sich laut CNBC um eine eigenständige Lizenz für das Wertpapiergeschäft in China, darunter Aktienhandel, Emissionsbegleitung und Research. Den Antrag hatte die Bank bereits Ende 2021 gestellt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein nächstes Treffen zwischen Trump und Xi ist schon terminiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump und Xi sollen sich im November beim Gipfel der asiatisch-pazifischen Wirtschaftskooperation in Shenzhen zum dritten Mal in diesem Jahr persönlich treffen. Die Eurasia-Group-Analystin Dan Wang bezeichnete die bisherigen Zugeständnisse gegenüber CNBC als „begrenztes Entgegenkommen“. Sie signalisierten aber, dass China sich weiter öffne, was das Anlegervertrauen in chinesische Vermögenswerte leicht stützen dürfte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Genehmigung für ein US-Unternehmen in China ist selten nur eine Verwaltungsentscheidung. Sie folgt meist einem politischen Fahrplan zwischen den Regierungen – und kann sich mit diesem Fahrplan auch wieder ändern.',
+      },
+    ],
+  },
+  {
+    slug: 'indien-boerse-schwaeche-sitharaman',
+    title: 'Indiens Finanzministerin erklärt die Schwäche der eigenen Börse',
+    teaser:
+      'Nirmala Sitharaman erklärt die Schwäche der indischen Börse mit zu viel Liquidität und leichten Ausstiegen – trotz robustem Wirtschaftswachstum im Land.',
+    category: 'Märkte',
+    publishedAt: '2026-10-19T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Indien', 'Schwellenländer', 'Kapitalabflüsse'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['nifty-50'],
+    sources: [
+      {
+        label:
+          "CNBC, 18.10.2026, 19:00 Uhr EDT: „India's Finance Minister blames easy exits and excess liquidity for equity market's underperformance“",
+        url: 'https://www.cnbc.com/2026/10/18/india-ai-nifty50-sensex-investors.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Indiens Börse bleibt hinter den eigenen Wirtschaftsdaten zurück, und Finanzministerin Nirmala Sitharaman hat dafür nun eine Erklärung genannt. Im Gespräch mit dem Sender CNBC am Rande der IWF-Jahrestagung in Bangkok nannte sie zu viel Liquidität als Grund.',
+      },
+      {
+        type: 'paragraph',
+        text: '„Wegen der leichten Liquidität, der leichten Verfügbarkeit steigen Anleger auch leicht wieder aus“, sagte Sitharaman. Die Fundamentaldaten der indischen Wirtschaft seien dagegen „in Ordnung“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fast zwölf Prozent Verlust seit Januar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Zahlen hinter der Aussage sind deutlich. Indiens wichtigste Leitindizes verloren seit Januar fast zwölf Prozent, berichtet CNBC unter Berufung auf Daten des Finanzdienstleisters LSEG. Das Wirtschaftswachstum des Landes habe sich dabei trotz Handelskonflikten und geopolitischer Schocks robust gezeigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ausländische Investoren zogen laut der Depotstelle NSDL bislang mehr als 33 Milliarden Dollar aus indischen Aktien ab. Sitharaman nannte anhaltende Kapitalabflüsse eines der größten Risiken für Indien im kommenden Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Indien gilt als Gegenpol zum KI-Boom',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig fließt weiter heimisches Geld in den Markt. Indische Aktienfonds verzeichnen laut dem Branchenverband AMFI seit März 2021 jeden Monat Nettozuflüsse. Ein Teil davon ermöglichte Altinvestoren und Private-Equity-Fonds, bei Börsengängen mit Gewinn auszusteigen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'International gilt Indien zunehmend als Gegenpol zum KI-Boom. Taiwan stellt laut einem von CNBC zitierten Goldman-Sachs-Bericht inzwischen das größte Gewicht im MSCI-Index für asiatisch-pazifische Schwellenländer, Südkorea folgt auf Platz zwei. Indiens Anteil sank von 19 auf 10 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Keine Sorge vor einer platzenden KI-Blase',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sitharaman zeigte sich davon unbeeindruckt. Sollte die weltweite KI-Euphorie an den Börsen kippen, werde Indien davon nicht „getroffen“, sagte sie – weil das Land ohnehin kaum von diesen Investitionen profitiert habe. Indien sei im Bereich der Zukunftstechnologien zugleich „kein Nachzügler mehr“ und baue eigene Kapazitäten in der Chipfertigung auf.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Länderindex spiegelt nicht nur das Wachstum vor Ort, sondern auch, wohin globales Kapital gerade fließt. Ein Land kann wirtschaftlich zulegen und an der Börse trotzdem zurückbleiben, wenn Anleger ihr Geld lieber anderswo investieren.',
+      },
+    ],
+  },
+  {
+    slug: 'berichtssaison-tesla-meta-sap-diese-woche',
+    title: 'Berichtssaison nimmt Fahrt auf: Tesla, Meta und SAP legen vor',
+    teaser:
+      'Diese Woche bringt den Höhepunkt der Berichtssaison: Tesla, Meta und der Softwarekonzern SAP veröffentlichen am Mittwoch ihre Quartalszahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-19T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Quartalszahlen', 'Tesla', 'Meta', 'SAP'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla', 'meta', 'sap'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, 18.10.2026: „Earnings der kommenden Woche: Earnings-Vorschau: Tesla, Meta, Netflix und SAP stehen im Fokus der Analysten!“',
+        url: 'https://www.wallstreet-online.de/nachricht/21542281-earnings-kommenden-woche-earnings-vorschau-tesla-meta-netflix-sap-stehen-fokus-analysten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Berichtssaison nimmt diese Woche laut einer Übersicht von wallstreetONLINE und der Agentur dpa-AFX deutlich an Fahrt auf. Den Auftakt am Montag machen kleinere US-Finanzwerte wie Fifth Third Bancorp und W. R. Berkley.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Mittwoch gilt als Höhepunkt der Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag berichtet zunächst der Streaming-Anbieter Netflix. Anleger achten dort auf das Abonnentenwachstum und das Werbegeschäft. Am Mittwoch folgen dann gleich zwei der bedeutendsten US-Technologiekonzerne: Tesla und Meta.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Tesla blicken Anleger vor allem auf die Profitabilität des Fahrzeuggeschäfts und auf Fortschritte beim autonomen Fahren. Meta muss zeigen, ob sich die milliardenschweren Investitionen in Künstliche Intelligenz im Werbegeschäft auszahlen. Am selben Tag veröffentlicht mit SAP auch ein deutscher Softwarekonzern seine Zahlen, hier steht vor allem das Cloudgeschäft im Fokus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Industrie und Konsum folgen zum Wochenende',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag berichten unter anderem der Konsumgüterkonzern Procter & Gamble und der Rüstungskonzern Lockheed Martin. Zum Wochenschluss am Freitag legen American Express sowie die Energiekonzerne Eni und SLB ihre Zahlen vor. American Express gilt dabei als Hinweisgeber für das Konsumverhalten der US-Verbraucher.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch die Notenbanken bleiben diese Woche nicht ruhig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Montag sprechen gleich drei Vertreter der Europäischen Zentralbank: Olaf Sleijpen, Philip Lane und Frank Elderson. Am Nachmittag veröffentlicht zudem die kanadische Notenbank ihre Verbraucherpreise für September.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Nach den hohen Bewertungen vieler Technologiewerte können schon kleine Enttäuschungen für deutliche Kursbewegungen sorgen. Das gilt in dieser Berichtswoche besonders für die großen KI-nahen Konzerne.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-geraete-apple-amazon-meta-abhoergesetze',
+    title: 'KI-Geräte von Apple, Amazon und Meta geraten ins Visier von US-Abhörgesetzen',
+    metaTitle: 'KI-Geräte: Rechtsrisiko für Apple, Amazon und Meta',
+    teaser:
+      'Immer mehr KI-Geräte hören ununterbrochen mit. US-Juristen sehen darin laut CNBC ein wachsendes rechtliches Risiko für Apple, Amazon, Meta und ihre Nutzer.',
+    category: 'Märkte',
+    publishedAt: '2026-10-19T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'Datenschutz', 'Apple', 'Amazon', 'Meta'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['apple', 'amazon', 'meta'],
+    sources: [
+      {
+        label:
+          'CNBC, 18.10.2026, 08:00 Uhr EDT: „Always on, always listening: New AI devices are pushing legal limits and could put users in jeopardy“',
+        url: 'https://www.cnbc.com/2026/10/18/ai-wearables-privacy-wiretap-laws.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple, Amazon und Meta bringen laut einem Bericht des Senders CNBC in diesem Jahr gleich mehrere Geräte auf den Markt, die dauerhaft mithören. Im Unterschied zu älteren Lautsprechern mit einem festen Aktivierungswort hören diese Geräte ohne ein solches Signal mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Neue Geräte am Handgelenk, auf der Nase und am Hals',
+      },
+      {
+        type: 'paragraph',
+        text: 'Amazon brachte am Donnerstag das Wearable Bee Frontier sowie das kartenförmige Gerät Bee Eclipse auf den Markt. Apple stattet seine im September vorgestellte Apple Watch Series 12 mit der Funktion Siri Recap aus, die Gespräche automatisch zusammenfasst. Meta-Brillen können Fotos, Videos und Sprachnotizen aufnehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Apple und Amazon betonen, dass dabei keine Tonaufnahme gespeichert oder an Server geschickt werde. Nach Einschätzung mehrerer Juristen löst das die rechtliche Frage aber nicht. Viele Abhörgesetze der US-Bundesstaaten stellen nicht auf eine Aufnahme ab, sondern darauf, ob der Inhalt eines Gesprächs erfasst wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Risiko kann bei der Nutzerin oder dem Nutzer liegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Jurist Colin Zick von der Kanzlei Foley Hoag verweist auf das Gesetz von Massachusetts. Es erfasst schon ein Gerät, das Inhalte „empfängt, verstärkt oder aufzeichnet“ – unabhängig von einer gespeicherten Audiodatei. Nach Einschätzung von Daniel Pi, Rechtsprofessor an der University of New Hampshire, würde die neue Funktion der Apple Watch dort als Abhörung gelten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Juristen weisen zugleich auf eine Besonderheit hin. Weil die Gesprächspartnerin oder der Gesprächspartner den Nutzungsbedingungen des Geräts nie zugestimmt hat, kann die rechtliche Verantwortung stärker bei der tragenden Person liegen als beim Hersteller. Pi hält eine tatsächliche Strafverfolgung in der Praxis trotzdem für unwahrscheinlich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein neues Geschäftsfeld wie KI-gestützte Wearables trägt nicht nur ein technisches, sondern auch ein rechtliches Risiko. Ungeklärte Gesetzeslagen können die Einführung solcher Produkte verzögern oder einschränken, selbst wenn die Technik bereits funktioniert.',
+      },
+    ],
+  },
+  {
     slug: 'oelmarkt-angriffe-petersburg-jemen',
     title: 'Ukraine greift Ölhafen an, Saudi-Arabien fängt Raketen ab',
     teaser:

@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Südkoreas Chip-Prognose, US-Druck auf China bei Mastercard und Citigroup, Indiens schwache Börse, die neue Berichtssaison und Rechtsfragen bei KI-Geräten von Apple, Amazon und Meta.",
+  "kacheln": [
+    {
+      "titel": "Chip-Boom bis 2027?",
+      "text": "Südkoreas Finanzminister erwartet, dass der Chip-Boom bis mindestens 2027 anhält. SK Hynix und Nvidia gerieten zuletzt trotzdem unter Druck."
+    },
+    {
+      "titel": "Mastercard will nach China",
+      "text": "Die USA drängten China in Bangkok auf mehr Marktzugang für Mastercard, Visa und Citigroup. Peking hatte Visa bereits eine erste Genehmigung erteilt."
+    },
+    {
+      "titel": "Indiens Börse schwächelt",
+      "text": "Indiens Finanzministerin erklärt die Schwäche der Börse mit zu viel Liquidität. Die Leitindizes verloren seit Januar fast zwölf Prozent."
+    },
+    {
+      "titel": "Tesla und Meta legen vor",
+      "text": "Die Berichtssaison nimmt Fahrt auf: Am Mittwoch veröffentlichen Tesla, Meta und SAP ihre Quartalszahlen. Zuvor berichtet am Dienstag bereits Netflix."
+    },
+    {
+      "titel": "KI-Geräte vor Gericht",
+      "text": "Neue KI-Geräte von Apple, Amazon und Meta hören ununterbrochen mit. US-Juristen sehen darin ein rechtliches Risiko für Hersteller und Nutzer."
+    }
+  ],
+  "schlagworte": ["chipaktien", "china", "indien", "börse", "aktien"]
+}
