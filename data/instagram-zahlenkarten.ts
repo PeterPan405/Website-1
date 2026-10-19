@@ -17,7 +17,7 @@ export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
       Thema gewählt vom Betreiber am 19.10.2026 aus drei Vorschlägen („Dax
-      gegen S&P 500"). Form: Vergleich – am Vortag Kacheln. Farbe: Rot
+      gegen S&P 500"). Form: Verlauf – am Vortag Kacheln. Farbe: Rot
       (akzentfarbe('2026-10-19')).
 
       Zahlen: Kursbestand der Website (Yahoo Finance), getQuotes() –
@@ -26,23 +26,20 @@ export const zahlenkarten: Zahlenkarte[] = [
       S&P 500 7.659,44 Punkte, +11,89 %. Jeweils in Landeswährung.
       Geprüft in tests/instagram-zahlenkarte.test.ts.
     */
+    /*
+      Erster Entwurf: zwei Balken (Vergleich). Der Betreiber: „nein, mit Chart
+      vergleich, bissl kreativer werden!!" – jetzt der Verlauf beider Indizes
+      seit Jahresbeginn.
+    */
+    art: 'verlauf',
     datum: '2026-10-19',
     titel: [{ text: 'Dax gegen S&P 500:' }, { text: 'Wall Street vorn', gruen: true }],
-    links: {
-      name: 'Dax',
-      wert: 4.6,
-      anzeige: '+4,6 %',
-      zusatz: 'seit Jahresbeginn',
-      land: 'DEU',
-    },
-    rechts: {
-      name: 'S&P 500',
-      wert: 11.9,
-      anzeige: '+11,9 %',
-      zusatz: 'seit Jahresbeginn',
-      land: 'USA',
-    },
-    differenz: { text: '+7,3', zusatz: 'Prozentpunkte' },
+    unterzeile: 'Wertentwicklung seit Jahresbeginn, in Prozent:',
+    bis: '2026-10-16',
+    reihen: [
+      { name: 'S&P 500', symbol: 'sp500', land: 'USA', akzent: true, endwert: '+11,9 %' },
+      { name: 'Dax', symbol: 'dax', land: 'DEU', endwert: '+4,6 %' },
+    ],
     fusszeile:
       'Stand: Schlusskurse 16.10.2026 | Quelle: Yahoo Finance | jeweils in Landeswährung',
     text:
