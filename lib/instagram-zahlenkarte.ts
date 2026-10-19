@@ -70,7 +70,7 @@ interface KarteGemeinsam {
   schlagworte: string[]
   /**
    * Der Tag der Freigabe durch den Betreiber – erst dann geht die Karte
-   * hinaus, und auch dann frühestens um 16 Uhr (`lib/zahlenkarten-wecker.ts`).
+   * hinaus, und auch dann frühestens um 15 Uhr (`lib/zahlenkarten-wecker.ts`).
    * Gesetzt wird es **nach** seinem „passt", nie davor; ein Entwurf hat keins.
    */
   freigabe?: string

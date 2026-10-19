@@ -2,14 +2,14 @@
  * Veröffentlicht die Zahlenkarte des Tages – ein Bild, kein Karussell.
  *
  * Gestartet von `.github/workflows/instagram-zahlenkarte.yml` – angestoßen
- * vom Dauerlauf ab 16 Uhr, Cron als Rückfall, oder von Hand. Die Freigabe
+ * vom Dauerlauf ab 15 Uhr, Cron als Rückfall, oder von Hand. Die Freigabe
  * steht als Datum an der Karte und kommt mit dem Bau auf die Website; nur
  * wenn es heute ist, geht etwas hinaus – ein Datum läuft um Mitternacht ab,
  * ein Schalter nicht (`ENTSCHEIDUNGEN.md`, „Der vierte Riegel ist ein Datum").
  *
  * Fünf Riegel, alle vor dem ersten Aufruf bei Meta:
  *
- *   0. Es ist 16 Uhr deutscher Zeit oder später – „der Beitrag des Tages
+ *   0. Es ist 15 Uhr deutscher Zeit oder später (bis 18.10.2026: 16 Uhr) – „der Beitrag des Tages
  *      kommt immer erst um 16 Uhr" (Betreiber, 15.10.2026, nachdem die erste
  *      Karte um 08:59 hinausgegangen war; `lib/zahlenkarten-wecker.ts`)
  *   1. Freigabe = heute (deutscher Kalendertag), gelesen von der Website
@@ -46,7 +46,7 @@ const { tag: HEUTE, minute } = berlinJetzt(new Date())
 // Riegel 0
 if (minute < AB_MINUTE)
   halt(
-    `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um 16 Uhr hinaus.`
+    `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um 15 Uhr hinaus.`
   )
 
 const textAntwort = await fetch(`${BASIS}/instagram/zahlenkarte.txt`, {

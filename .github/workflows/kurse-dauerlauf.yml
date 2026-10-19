@@ -472,11 +472,11 @@ jobs:
               fi
             fi
 
-            # ## Die Zahlenkarte ab 16 Uhr
+            # ## Die Zahlenkarte ab 15 Uhr
             #
             # Der Betreiber am 15.10.2026: „der Beitrag des Tages kommt immer
             # erst um 16 Uhr". Ob sie jetzt hinaus soll, entscheidet
-            # `lib/zahlenkarten-wecker.ts`: 16 Uhr vorbei, die Website zeigt
+            # `lib/zahlenkarten-wecker.ts`: 15 Uhr vorbei, die Website zeigt
             # die Karte von heute **und** ihre Freigabe von heute, und dieser
             # Lauf hat heute noch nicht angestoßen. Ein Nachfolger stößt
             # höchstens noch einmal an; der Veröffentlicher sieht dann die
@@ -491,7 +491,7 @@ jobs:
               if [ "$(printf '%s\n' "$zkspruch" | sed -n 's/^ANSTOSS=//p')" = "1" ]; then
                 if gh workflow run instagram-zahlenkarte.yml \
                      --repo "$GITHUB_REPOSITORY" --ref main; then
-                  echo "::notice::Runde $runde: Zahlenkarte freigegeben, 16 Uhr vorbei – Veröffentlichung angestoßen."
+                  echo "::notice::Runde $runde: Zahlenkarte freigegeben, 15 Uhr vorbei – Veröffentlichung angestoßen."
                   zkangestossen=$(TZ=Europe/Berlin date +%F)
                 else
                   echo "::warning::Runde $runde: Die Zahlenkarte ließ sich nicht anstoßen – nächster Versuch in zehn Minuten."
