@@ -2,7 +2,7 @@ name: Instagram-Zahlenkarte
 
 # Veröffentlicht die Zahlenkarte des Tages – ein einzelnes Bild.
 #
-# **Nur nach Freigabe, und frühestens um 16 Uhr.** Anordnung des Betreibers
+# **Nur nach Freigabe, und frühestens um 15 Uhr** (bis 18.10.2026: 16 Uhr). Anordnung des Betreibers
 # vom 15.10.2026: Die Themen werden abgesprochen, der Entwurf kommt in den
 # Chat, und erst nach seinem „passt" geht er hinaus. Am selben Tag ging die
 # erste Karte nach dem „passt" um 08:59 Uhr hinaus; seine Antwort: „der
@@ -13,22 +13,22 @@ name: Instagram-Zahlenkarte
 #     `data/instagram-zahlenkarten.ts`), eingetragen nach dem „passt" und mit
 #     dem Bau auf der Website (Zeile 2 von `/instagram/zahlenkarte.txt`).
 #   - **Angestoßen** wird dieser Workflow vom Dauerlauf
-#     (`kurse-dauerlauf.yml`), der ab 16 Uhr alle zehn Minuten fragt –
-#     geplante Läufe sind eine Bitte. Die zwei Crons sind Rückfall: 14:07 UTC
-#     ist 16:07 im Sommer, 15:07 UTC ist 16:07 im Winter; der jeweils andere
-#     hält am Riegel „vor 16 Uhr" bzw. „steht schon im Kanal" und schickt
+#     (`kurse-dauerlauf.yml`), der ab 15 Uhr alle zehn Minuten fragt –
+#     geplante Läufe sind eine Bitte. Die zwei Crons sind Rückfall: 13:07 UTC
+#     ist 15:07 im Sommer, 14:07 UTC ist 15:07 im Winter; der jeweils andere
+#     hält am Riegel „vor 15 Uhr" bzw. „steht schon im Kanal" und schickt
 #     nichts. Dadurch muss die Zeitumstellung hier nichts nachziehen.
 #
-# Ein Start von Hand vor 16 Uhr schickt nichts. Die Riegel stehen im Skript
-# (`scripts/instagram-zahlenkarte.ts`): 16 Uhr vorbei, Freigabe heute,
+# Ein Start von Hand vor 15 Uhr schickt nichts. Die Riegel stehen im Skript
+# (`scripts/instagram-zahlenkarte.ts`): 15 Uhr vorbei, Freigabe heute,
 # Website zeigt die Karte von heute, Bild antwortet als JPEG, diese Karte
 # steht noch nicht im Kanal.
 
 on:
   workflow_dispatch:
   schedule:
+    - cron: '7 13 * * *'
     - cron: '7 14 * * *'
-    - cron: '7 15 * * *'
 
 concurrency:
   group: instagram-zahlenkarte
@@ -56,7 +56,7 @@ jobs:
         run: node --experimental-strip-types scripts/instagram-zahlenkarte.ts
 
       # Dieselbe Karte auf X (Betreiber, 17.10.2026) – erst, wenn X scharf
-      # gestellt ist. Die Riegel dort sind dieselben: Freigabe heute, 16 Uhr
+      # gestellt ist. Die Riegel dort sind dieselben: Freigabe heute, 15 Uhr
       # vorbei, heute noch nicht geteilt.
       - name: X-Beitrag anstoßen
         if: always() && vars.X_AKTIV == 'ja'

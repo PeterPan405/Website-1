@@ -1,28 +1,29 @@
 /**
- * Wann die Zahlenkarte hinausgeht – frühestens um 16 Uhr, und nur freigegeben.
+ * Wann die Zahlenkarte hinausgeht – frühestens um 15 Uhr, und nur freigegeben.
  *
  * Am 15.10.2026 ging die erste Karte um 08:59 Uhr hinaus: Der Betreiber hatte
  * den Entwurf mit „so passt es" abgenommen, und das wurde als „jetzt
  * hochladen" gelesen. Seine Antwort: „warum hast du es schon hochgeladen" –
- * „der Beitrag des Tages kommt immer erst um 16 Uhr".
+ * „der Beitrag des Tages kommt immer erst um 16 Uhr". Seit dem
+ * 19.10.2026 ab 15 Uhr: „mach 15 Uhr, wenn es schon fertig ist, zukünftig".
  *
  * Seitdem sind Freigabe und Veröffentlichung getrennt:
  *
  *   Freigabe          steht als Datum an der Karte (`freigabe` in
  *                     `data/instagram-zahlenkarten.ts`) und kommt mit dem
  *                     Bau auf die Website – Zeile 2 von `zahlenkarte.txt`
- *   Veröffentlichung  frühestens 16:00 Uhr deutscher Zeit; angestoßen vom
+ *   Veröffentlichung  frühestens 15:00 Uhr deutscher Zeit; angestoßen vom
  *                     Dauerlauf (`kurse-dauerlauf.yml`, alle zehn Minuten),
  *                     der Cron in `instagram-zahlenkarte.yml` ist Rückfall
  *
- * Kommt die Freigabe nach 16 Uhr, geht die Karte beim nächsten Blick des
+ * Kommt die Freigabe nach 15 Uhr, geht die Karte beim nächsten Blick des
  * Dauerlaufs hinaus. Die Riegel stehen **auch** im Veröffentlicher
- * (`scripts/instagram-zahlenkarte.ts`) – ein Start von Hand vor 16 Uhr
+ * (`scripts/instagram-zahlenkarte.ts`) – ein Start von Hand vor 15 Uhr
  * schickt nichts.
  */
 
-/** 16:00 Uhr deutscher Zeit, in Minuten seit Mitternacht. */
-export const AB_MINUTE = 16 * 60
+/** 15:00 Uhr deutscher Zeit, in Minuten seit Mitternacht (bis 18.10.2026: 16:00). */
+export const AB_MINUTE = 15 * 60
 
 /** Kalendertag und Minute in Berlin – Sommer- und Winterzeit inklusive. */
 export function berlinJetzt(jetzt: Date): { tag: string; minute: number } {
@@ -85,7 +86,7 @@ export function sollZahlenkarteAnstossen(l: Zahlenkartenlage): {
   grund: string
 } {
   if (l.minute < AB_MINUTE)
-    return { anstossen: false, grund: 'vor 16 Uhr geht keine Zahlenkarte hinaus' }
+    return { anstossen: false, grund: 'vor 15 Uhr geht keine Zahlenkarte hinaus' }
   if (l.datum !== l.tag)
     return {
       anstossen: false,
@@ -95,5 +96,5 @@ export function sollZahlenkarteAnstossen(l: Zahlenkartenlage): {
     return { anstossen: false, grund: 'die Karte von heute ist nicht freigegeben' }
   if (l.angestossenAm === l.tag)
     return { anstossen: false, grund: 'heute schon angestoßen' }
-  return { anstossen: true, grund: 'Karte von heute, freigegeben, 16 Uhr vorbei' }
+  return { anstossen: true, grund: 'Karte von heute, freigegeben, 15 Uhr vorbei' }
 }

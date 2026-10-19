@@ -1,5 +1,5 @@
 /**
- * Wann die Zahlenkarte hinausgeht – frühestens 16 Uhr, nur freigegeben.
+ * Wann die Zahlenkarte hinausgeht – frühestens 15 Uhr, nur freigegeben.
  *
  * Ausführen mit `npm test`. Anlass in `lib/zahlenkarten-wecker.ts`: Am
  * 15.10.2026 ging die erste Karte um 08:59 Uhr hinaus, weil ein „passt" als
@@ -50,13 +50,13 @@ pruefe(
 /* Die Entscheidung. */
 const gut: Zahlenkartenlage = {
   tag: '2026-10-16',
-  minute: 16 * 60,
+  minute: 15 * 60,
   datum: '2026-10-16',
   freigabe: '2026-10-16',
   angestossenAm: '',
 }
 pruefe(
-  '16:00, freigegeben, Karte von heute → anstoßen',
+  '15:00, freigegeben, Karte von heute → anstoßen',
   sollZahlenkarteAnstossen(gut).anstossen
 )
 pruefe(
@@ -64,7 +64,7 @@ pruefe(
   sollZahlenkarteAnstossen({ ...gut, minute: 20 * 60 }).anstossen
 )
 for (const [was, lage] of [
-  ['15:59 – eine Minute zu früh', { ...gut, minute: 16 * 60 - 1 }],
+  ['14:59 – eine Minute zu früh', { ...gut, minute: 15 * 60 - 1 }],
   ['08:59 – der Fall vom 15.10.', { ...gut, minute: 8 * 60 + 59 }],
   ['ohne Freigabe', { ...gut, freigabe: null }],
   ['Freigabe von gestern', { ...gut, freigabe: '2026-10-15' }],

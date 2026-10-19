@@ -19,11 +19,11 @@ name: X-Beitrag
 #
 # Ohne die vier Secrets endet jeder Lauf grün mit einem Hinweis. Die Riegel
 # stehen im Skript (`scripts/x-veroeffentlichen.ts`): Website zeigt heute,
-# Zahlenkarte freigegeben und 16 Uhr vorbei, für heute noch nichts auf X.
+# Zahlenkarte freigegeben und 15 Uhr vorbei, für heute noch nichts auf X.
 #
 # Die Crons sind Rückfall, auf krummen Minuten: 03:29 UTC für die Tagesnews
 # (nach dem Instagram-Rückfall), 15:19 UTC für die Zahlenkarte – im Sommer
-# 17:19, im Winter 16:19, beides nach 16 Uhr.
+# 17:19, im Winter 16:19, beides nach 15 Uhr.
 
 on:
   workflow_dispatch:

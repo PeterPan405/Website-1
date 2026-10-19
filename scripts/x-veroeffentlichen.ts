@@ -14,7 +14,7 @@
  *   0. Die vier Schlüssel sind da – sonst ist X noch nicht eingerichtet, und
  *      der Lauf endet grün mit einem Hinweis (`werkzeuge/x-einrichten.md`).
  *   1. Die Website zeigt den Beitrag von **heute** (deutscher Kalendertag).
- *   2. Zahlenkarte: Freigabe ist heute, und es ist 16 Uhr vorbei – dieselben
+ *   2. Zahlenkarte: Freigabe ist heute, und es ist 15 Uhr vorbei – dieselben
  *      Regeln wie bei Instagram (`lib/zahlenkarten-wecker.ts`).
  *   3. In der Marke (`x-gepostet.txt` auf dem Zweig `x-gepostet`) steht für
  *      heute und diese Art noch nichts. Gefragt wird die Marke, nicht der
@@ -113,7 +113,7 @@ if (ART === 'tagesnews') {
   if (!k) halt('Es gibt keine Zahlenkarte.')
   // Riegel 2
   if (minute < AB_MINUTE)
-    halt('Die Zahlenkarte geht frühestens um 16 Uhr hinaus – wie auf Instagram.')
+    halt('Die Zahlenkarte geht frühestens um 15 Uhr hinaus – wie auf Instagram.')
   if (k.freigabe !== HEUTE)
     halt(`Freigabe „${k.freigabe ?? '–'}" ist nicht heute (${HEUTE}).`)
   // Riegel 1

@@ -164,21 +164,22 @@ bekommen".
    `lib/instagram-zahlenkarte.ts`, ausgeliefert unter
    `/instagram/zahlenkarte.jpg` und `/instagram/zahlenkarte.txt`.
 4. **Entwurf gegen 14 Uhr in den Chat** – Bild und Beschriftung (Betreiber
-   am 15.10.2026: „14:00 Uhr passt"). Zwei Stunden reichen für Änderungen,
-   Freigabe und Bau vor 16 Uhr.
+   am 15.10.2026: „14:00 Uhr passt"). Eine Stunde reicht für Änderungen,
+   Freigabe und Bau vor 15 Uhr.
 5. **Freigabe**, sonst Änderung und neuer Entwurf. Nach dem „passt" wird
    `freigabe: '<heute>'` an die Karte geschrieben, gemergt, gebaut – und
    **nicht** von Hand veröffentlicht.
-6. **Online ab 16 Uhr** – der Dauerlauf (`kurse-dauerlauf.yml`) fragt ab
-   16:00 alle zehn Minuten und stößt `instagram-zahlenkarte.yml` an, sobald
+6. **Online ab 15 Uhr** (bis 18.10.2026: 16 Uhr; Betreiber am 19.10.: „mach
+   15 Uhr, wenn es schon fertig ist, zukünftig") – der Dauerlauf
+   (`kurse-dauerlauf.yml`) fragt ab 15:00 alle zehn Minuten und stößt `instagram-zahlenkarte.yml` an, sobald
    die Website die Karte von heute mit Freigabe von heute zeigt; zwei Crons
-   (16:07 Sommer- und Winterzeit) sind Rückfall. Kommt die Freigabe später,
+   (15:07 Sommer- und Winterzeit) sind Rückfall. Kommt die Freigabe später,
    geht die Karte beim nächsten Blick hinaus.
 
 **„Passt" heißt freigegeben, nicht „jetzt hochladen".** Am 15.10.2026 ging
 die erste Karte nach dem „passt" um 08:59 Uhr hinaus. Der Betreiber: „warum
 hast du es schon hochgeladen" – „der Beitrag des Tages kommt immer erst um
-16 Uhr". Seitdem hält der Veröffentlicher selbst vor 16 Uhr an, auch von
+16 Uhr". Seitdem hält der Veröffentlicher selbst vor der Uhrzeit an (seit 19.10. 15 Uhr), auch von
 Hand gestartet (`lib/zahlenkarten-wecker.ts`).
 
 Die Sperre gegen Doppelposts fragt nach **dieser** Karte (ihrem Aufhänger),

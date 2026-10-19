@@ -155,7 +155,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 - **Die News gehen ohne Freigabe hinaus** – sie müssen den Standard von
   selbst halten: nur spannende Meldungen, nichts doppelt. **Der
   Tagesbeitrag nie ohne sein „passt"**; „passt" heißt freigegeben, nicht
-  hochladen – ab 16 Uhr, erst die News, dann die Zahlenkarte.
+  hochladen – ab 15 Uhr, erst die News, dann die Zahlenkarte.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
 - **Kein Thema zweimal** – nicht im Beitrag, nicht am Folgetag (Öl am 17.
