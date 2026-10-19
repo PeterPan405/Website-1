@@ -35,6 +35,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-20',
+    /* Freigegeben vom Betreiber am 19.10.2026: „Ja, perfekt, das passt. Das morgen dann hochladen." */
+    freigabe: '2026-10-20',
     titel: [
       { text: 'Öl schlägt alles:' },
       { text: 'Brent +80,5 % seit Januar', gruen: true },
