@@ -33,6 +33,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'verlauf',
     datum: '2026-10-19',
+    /* Freigegeben vom Betreiber am 19.10.2026: „ja passt" – hinaus ab 16 Uhr. */
+    freigabe: '2026-10-19',
     titel: [{ text: 'Dax gegen S&P 500:' }, { text: 'Wall Street vorn', gruen: true }],
     unterzeile: 'Wertentwicklung seit Jahresbeginn, in Prozent:',
     bis: '2026-10-16',
