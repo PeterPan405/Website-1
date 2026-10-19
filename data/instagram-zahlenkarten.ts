@@ -16,6 +16,53 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 19.10.2026: „Nehmen lieber Öl schlägt
+      alles." – statt „SMI schlägt Nasdaq" (Duell), nach dem Vorbild HKCM.
+      Form: Balken mit Plus und Minus (am Vortag Verlauf). Farbe: Anthrazit.
+
+      Zahlen: Yahoo Finance, Tagesschlusskurse, abgerufen am 19.10.2026 über
+      quellen-holen.yml (Lauf 39277296882). Letzter Schluss 2025 → 16.10.2026:
+        Brent (BZ=F)       60,85 →    109,86   +80,54 %
+        Nasdaq 100 (^NDX)  25.249,85 → 29.187,55 +15,59 %
+        S&P 500 (^GSPC)    6.845,50 →  7.659,44  +11,89 %
+        Dax (^GDAXI)       24.490,41 → 25.622,61 +4,62 % (Jahresschluss 30.12.)
+        Gold (GC=F)        4.341,10 →  4.181,10  −3,69 %
+        Bitcoin (BTC-USD)  87.508,83 → 81.500,80 −6,87 %
+        Silber (SI=F)      70,13 →     56,99     −18,73 %
+      Rohstoffe als Terminkontrakt in US-Dollar, Indizes in Landeswährung.
+      S&P 500 und Dax decken sich mit der Karte vom 19.10.
+    */
+    art: 'rangliste',
+    skala: 'balken',
+    datum: '2026-10-20',
+    /* Freigegeben vom Betreiber am 19.10.2026: „Ja, perfekt, das passt. Das morgen dann hochladen." */
+    freigabe: '2026-10-20',
+    titel: [
+      { text: 'Öl schlägt alles:' },
+      { text: 'Brent +80,5 % seit Januar', gruen: true },
+    ],
+    unterzeile: 'Wertentwicklung seit Jahresbeginn:',
+    zeilen: [
+      { name: 'Öl (Brent)', wert: 80.5, land: 'OEL', hervor: true },
+      { name: 'Nasdaq 100', wert: 15.6, land: 'USA' },
+      { name: 'S&P 500', wert: 11.9, land: 'USA' },
+      { name: 'Dax', wert: 4.6, land: 'DEU' },
+      { name: 'Gold', wert: -3.7, land: 'GOLD' },
+      { name: 'Bitcoin', wert: -6.9, land: 'BTC' },
+      { name: 'Silber', wert: -18.7, land: 'SILBER' },
+    ],
+    fusszeile:
+      'Stand: Schlusskurse 16.10.2026 | Quelle: Yahoo Finance | Rohstoffe und Bitcoin in US-Dollar',
+    text:
+      'Ein Barrel der Nordseesorte Brent kostete am Freitag 109,86 Dollar – zum Jahresende 2025 waren es 60,85 Dollar. Ein Plus von 80,5 %. 🛢️\n\n' +
+      'Kein anderer der großen Werte kommt annähernd heran: Der Nasdaq 100 legte seit Jahresbeginn um 15,6 % zu, der S&P 500 um 11,9 %, der Dax um 4,6 %. ' +
+      'Gold liegt 3,7 % im Minus, Bitcoin 6,9 %, Silber sogar 18,7 %.\n\n' +
+      'Indizes in Landeswährung, Rohstoffe als Terminkontrakt und Bitcoin in US-Dollar.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse vom 16.10.2026 und Jahresschluss 2025)',
+    schlagworte: ['öl', 'brent', 'rohstoffe', 'börse', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 19.10.2026 aus drei Vorschlägen („Dax
       gegen S&P 500"). Form: Verlauf – am Vortag Kacheln. Farbe: Rot
       (akzentfarbe('2026-10-19')).

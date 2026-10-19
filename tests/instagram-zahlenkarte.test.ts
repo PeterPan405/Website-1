@@ -20,6 +20,8 @@ import {
   type Rangkarte,
   type Vergleichskarte,
   type Verlaufkarte,
+  type Duellkarte,
+  duellProzent,
   verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
@@ -192,6 +194,8 @@ for (const [form, karte] of [
 /* Die Karte vom 16.10.2026 – jede Zahl gegen ihre Quelle im Bestand. */
 const inflation = zahlenkarten.find((k) => k.datum === '2026-10-16') as Vergleichskarte
 const nachricht = readFileSync('data/news.ts', 'utf8')
+const zahl1 = (w: number) =>
+  w.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 pruefe(
   '3,7 % wie in der Meldung vom 14.10.',
   inflation.rechts.wert === 3.7 &&
@@ -373,6 +377,80 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   const daxPng = await zahlenkartePng(dax, readFileSync('public/logo.svg', 'utf8'))
   pruefe('Verlauf: das Bild ist ein PNG', daxPng.subarray(1, 4).toString() === 'PNG')
   pruefe('Akzentfarbe am 19.10. ist Rot', akzentfarbe('2026-10-19') === '#8B2225')
+}
+
+/* Die Karte vom 20.10.2026 – Öl schlägt alles, Balken mit Plus und Minus. */
+{
+  const oel = zahlenkarten.find((k) => k.datum === '2026-10-20') as Rangkarte
+  /* Schlusskurse aus Yahoo Finance, Lauf 39277296882: Jahresschluss 2025 → 16.10.2026. */
+  const kurse: Record<string, [number, number]> = {
+    'Öl (Brent)': [60.85, 109.86],
+    'Nasdaq 100': [25249.85, 29187.55],
+    'S&P 500': [6845.5, 7659.44],
+    Dax: [24490.41, 25622.61],
+    Gold: [4341.1, 4181.1],
+    Bitcoin: [87508.83, 81500.8],
+    Silber: [70.13, 56.99],
+  }
+  for (const z of oel.zeilen) {
+    const [von, bis] = kurse[z.name]
+    const gerechnet = Math.round((bis / von - 1) * 1000) / 10
+    pruefe(`${z.name}: ${z.wert} % = gerechnet ${gerechnet} %`, z.wert === gerechnet)
+    pruefe(
+      `${z.name}: der Wert steht im Text`,
+      oel.text.includes(`${zahl1(Math.abs(z.wert))} %`)
+    )
+  }
+  pruefe('die Karte hält die Form ein', pruefeZahlenkarte(oel).length === 0)
+  pruefe(
+    'Häuschen mit negativen Werten werden abgewiesen',
+    pruefeZahlenkarte({ ...oel, skala: 'haeuser' as const }).some((f) =>
+      f.includes('negativ')
+    )
+  )
+  pruefe('Anthrazit am 20.10.', akzentfarbe('2026-10-20') === '#6E6E6E')
+  const png = await zahlenkartePng(oel, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Öl: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
+/* Die Form Duell – gezeigt an der verworfenen Karte vom 20.10. (SMI gegen Nasdaq 100). */
+{
+  const duell: Duellkarte = {
+    art: 'duell',
+    datum: '2026-10-20',
+    titel: [
+      { text: 'SMI schlägt Nasdaq' },
+      { text: 'um 9,9 Prozentpunkte', gruen: true },
+    ],
+    unterzeile: 'Wochenbilanz vom 12. bis 16. Oktober 2026:',
+    links: {
+      name: 'SMI',
+      zusatz: 'Schweizer Leitindex',
+      land: 'CHE',
+      punkte: [
+        { t: '2026-10-09', wert: 13787.4 },
+        { t: '2026-10-14', wert: 14129.93 },
+        { t: '2026-10-16', wert: 14391.31 },
+      ],
+    },
+    rechts: {
+      name: 'Nasdaq 100',
+      zusatz: 'US-Technologieindex',
+      land: 'USA',
+      punkte: [
+        { t: '2026-10-09', wert: 30883.15 },
+        { t: '2026-10-14', wert: 29950.82 },
+        { t: '2026-10-16', wert: 29187.55 },
+      ],
+    },
+    fusszeile: 'Stand: Schlusskurse 09.10.–16.10.2026 | Quelle: Yahoo Finance',
+    text: 'Probe.',
+    schlagworte: ['probe'],
+  }
+  pruefe('Duell: SMI +4,38 %', duellProzent(duell.links).toFixed(2) === '4.38')
+  pruefe('Duell: Nasdaq 100 −5,49 %', duellProzent(duell.rechts).toFixed(2) === '-5.49')
+  const png = await zahlenkartePng(duell, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Duell: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
