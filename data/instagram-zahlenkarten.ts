@@ -16,6 +16,62 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 19.10.2026: „Gerne Beitrag 2, defensiv
+      schlägt Tech." – nach dem Vorbild HKCM („Konsumaktien schlagen Tech um
+      12,7 Prozentpunkte"). Form: Duell (am Vortag Verlauf). Farbe: Anthrazit.
+
+      Zahlen: Yahoo Finance, Tagesschlusskurse ^SSMI und ^NDX, abgerufen am
+      19.10.2026 über quellen-holen.yml (Lauf 39275639017) – der Kursbestand
+      der Website trug den 16.10. zu dem Zeitpunkt noch nicht.
+      SMI 13.787,40 → 14.391,31 = +4,38 %; Nasdaq 100 30.883,15 → 29.187,55 =
+      −5,49 %; Differenz 9,87 Prozentpunkte.
+      Ausverkauf bei Chip- und KI-Aktien: Handelsblatt, 16.10.2026, in
+      data/news.ts (Fed-Chef Warsh …, 17.10.).
+    */
+    art: 'duell',
+    datum: '2026-10-20',
+    titel: [
+      { text: 'SMI schlägt Nasdaq' },
+      { text: 'um 9,9 Prozentpunkte', gruen: true },
+    ],
+    unterzeile: 'Wochenbilanz vom 12. bis 16. Oktober 2026:',
+    links: {
+      name: 'SMI',
+      zusatz: 'Schweizer Leitindex',
+      land: 'CHE',
+      punkte: [
+        { t: '2026-10-09', wert: 13787.4 },
+        { t: '2026-10-12', wert: 13877.84 },
+        { t: '2026-10-13', wert: 13927.52 },
+        { t: '2026-10-14', wert: 14129.93 },
+        { t: '2026-10-15', wert: 14349.51 },
+        { t: '2026-10-16', wert: 14391.31 },
+      ],
+    },
+    rechts: {
+      name: 'Nasdaq 100',
+      zusatz: 'US-Technologieindex',
+      land: 'USA',
+      punkte: [
+        { t: '2026-10-09', wert: 30883.15 },
+        { t: '2026-10-12', wert: 30664.7 },
+        { t: '2026-10-13', wert: 30569.48 },
+        { t: '2026-10-14', wert: 29950.82 },
+        { t: '2026-10-15', wert: 29935.6 },
+        { t: '2026-10-16', wert: 29187.55 },
+      ],
+    },
+    fusszeile:
+      'Stand: Schlusskurse 09.10.–16.10.2026 | Quelle: Yahoo Finance | Wochenperformance',
+    text:
+      'Der Schweizer Leitindex SMI legte in der vergangenen Woche um 4,4 % zu – der Nasdaq 100 verlor 5,5 %. 📊\n\n' +
+      'Die Differenz beträgt 9,9 Prozentpunkte. Im SMI haben Nahrungsmittel- und Pharmakonzerne wie Nestlé, Roche und Novartis großes Gewicht, im Nasdaq 100 die Technologiewerte. ' +
+      'In derselben Woche hielt der Ausverkauf bei Chip- und KI-Aktien an.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse 9. und 16.10.2026); Handelsblatt (16.10.2026)',
+    schlagworte: ['nasdaq', 'smi', 'aktien', 'börse', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 19.10.2026 aus drei Vorschlägen („Dax
       gegen S&P 500"). Form: Verlauf – am Vortag Kacheln. Farbe: Rot
       (akzentfarbe('2026-10-19')).

@@ -20,6 +20,8 @@ import {
   type Rangkarte,
   type Vergleichskarte,
   type Verlaufkarte,
+  type Duellkarte,
+  duellProzent,
   verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
@@ -373,6 +375,34 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   const daxPng = await zahlenkartePng(dax, readFileSync('public/logo.svg', 'utf8'))
   pruefe('Verlauf: das Bild ist ein PNG', daxPng.subarray(1, 4).toString() === 'PNG')
   pruefe('Akzentfarbe am 19.10. ist Rot', akzentfarbe('2026-10-19') === '#8B2225')
+}
+
+/* Die Karte vom 20.10.2026 – SMI gegen Nasdaq 100, Wochenbilanz. */
+{
+  const duell = zahlenkarten.find((k) => k.datum === '2026-10-20') as Duellkarte
+  const smi = duellProzent(duell.links)
+  const ndx = duellProzent(duell.rechts)
+  pruefe(`SMI +4,38 % (${smi.toFixed(2)})`, smi.toFixed(2) === '4.38')
+  pruefe(`Nasdaq 100 −5,49 % (${ndx.toFixed(2)})`, ndx.toFixed(2) === '-5.49')
+  pruefe(
+    'Überschrift und Text nennen die gerechnete Differenz',
+    duell.titel
+      .map((t) => t.text)
+      .join(' ')
+      .includes((smi - ndx).toFixed(1).replace('.', ',')) &&
+      duell.text.includes('9,9 Prozentpunkte')
+  )
+  pruefe(
+    'Text nennt +4,4 % und 5,5 %',
+    duell.text.includes('4,4 %') && duell.text.includes('5,5 %')
+  )
+  pruefe(
+    'Ausverkauf bei KI-Aktien steht so in der Meldung vom 16.10.',
+    nachricht.includes('Ausverkauf bei KI-Aktien geht weiter')
+  )
+  pruefe('Anthrazit am 20.10.', akzentfarbe('2026-10-20') === '#6E6E6E')
+  const png = await zahlenkartePng(duell, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Duell: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */

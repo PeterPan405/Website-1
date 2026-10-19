@@ -148,7 +148,30 @@ export interface Verlaufkarte extends KarteGemeinsam {
   reihen: Verlaufreihe[]
 }
 
-export type Zahlenkarte = Vergleichskarte | Rangkarte | Verlaufkarte
+/** Eine Seite im Duell: Schlusskurse eines Zeitraums, Tag für Tag. */
+export interface Duellseite {
+  name: string
+  /** Kleine Zeile unter dem Namen: „Schweizer Leitindex". */
+  zusatz: string
+  land?: string
+  /** Schlusskurse, alt nach neu; der erste ist der Bezug (0 %). */
+  punkte: { t: string; wert: number }[]
+}
+
+/**
+ * Zwei kleine Charts nebeneinander und die Differenz in einem Kasten
+ * (19.10.2026, nach dem Vorbild HKCM „Konsumaktien schlagen Tech um 12,7
+ * Prozentpunkte"). Steigt eine Seite, ist ihre Linie grün, fällt sie, rot –
+ * die Logotöne; die Differenz steht in der Akzentfarbe.
+ */
+export interface Duellkarte extends KarteGemeinsam {
+  art: 'duell'
+  unterzeile: string
+  links: Duellseite
+  rechts: Duellseite
+}
+
+export type Zahlenkarte = Vergleichskarte | Rangkarte | Verlaufkarte | Duellkarte
 
 /** Eine kreisrunde Flagge: Streifen, von oben oder von links, wahlweise mit Wappen. */
 export interface Flagge {
@@ -262,6 +285,11 @@ const FLAGGE_GROSSBRITANNIEN = quadrat(
     '<path d="M30 0 V60 M0 30 H60" stroke="#C8102E" stroke-width="10"/>'
 )
 
+const FLAGGE_SCHWEIZ = quadrat(
+  '<rect width="60" height="60" fill="#DA291C"/>' +
+    '<rect x="25" y="12" width="10" height="36" fill="#fff"/><rect x="12" y="25" width="36" height="10" fill="#fff"/>'
+)
+
 const WAPPEN_SLOWAKEI =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24">' +
   '<path d="M1 1H19V12C19 18 14 21 10 23C6 21 1 18 1 12Z" fill="#fff"/>' +
@@ -274,6 +302,7 @@ const WAPPEN_SLOWAKEI =
 
 export const FLAGGEN: Record<string, Flagge> = {
   AUT: { streifen: ['#ED2939', '#FFFFFF', '#ED2939'] },
+  CHE: { streifen: ['#DA291C'], svg: FLAGGE_SCHWEIZ },
   BEL: { streifen: ['#000000', '#FAE042', '#ED2939'], senkrecht: true },
   CHN: { streifen: ['#EE1C25'], svg: FLAGGE_CHINA },
   DEU: { streifen: ['#000000', '#DD0000', '#FFCE00'] },
@@ -441,7 +470,13 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else if (k.art === 'verlauf') {
+  else if (k.art === 'duell') {
+    for (const sei of [k.links, k.rechts]) {
+      if (sei.punkte.length < 3) f.push(`${sei.name}: zu wenige Kurse.`)
+      if (sei.land && !FLAGGEN[sei.land])
+        f.push(`${sei.name}: keine Flagge für „${sei.land}".`)
+    }
+  } else if (k.art === 'verlauf') {
     if (k.reihen.length < 2 || k.reihen.length > 3)
       f.push('Ein Verlauf trägt zwei oder drei Linien.')
     if (k.reihen.filter((r) => r.akzent).length !== 1)
@@ -607,9 +642,11 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
   const grafik =
     k.art === 'verlauf'
       ? await verlaufGrafik(k)
-      : k.art === 'rangliste'
-        ? ranglistenGrafik(k)
-        : vergleichsGrafik(k)
+      : k.art === 'duell'
+        ? duellGrafik(k)
+        : k.art === 'rangliste'
+          ? ranglistenGrafik(k)
+          : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -1022,8 +1059,8 @@ function kachelGrafik(k: Rangkarte) {
  */
 export function form(
   k: Zahlenkarte
-): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'verlauf' {
-  if (k.art === 'verlauf') return 'verlauf'
+): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'verlauf' | 'duell' {
+  if (k.art === 'verlauf' || k.art === 'duell') return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
 
@@ -1378,6 +1415,268 @@ async function verlaufGrafik(k: Verlaufkarte) {
             r.endwert
           )
         )
+      )
+    ),
+  ]
+}
+
+/* ------------------------------------------------------------ Duell */
+
+/** Veränderung vom ersten bis zum letzten Schlusskurs, in Prozent. */
+export function duellProzent(sei: Duellseite): number {
+  return (sei.punkte.at(-1)!.wert / sei.punkte[0].wert - 1) * 100
+}
+
+/** „+4,0 %" – eine Nachkommastelle, deutsches Komma, Vorzeichen. */
+export const prozentText = (w: number, stellen = 1) =>
+  `${w > 0 ? '+' : w < 0 ? '−' : ''}${Math.abs(w).toLocaleString('de-DE', { minimumFractionDigits: stellen, maximumFractionDigits: stellen })} %`
+
+const LOGO_GRUEN = '#205437'
+const LOGO_ROT = '#8B2225'
+
+function duellGrafik(k: Duellkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const seiten = [k.links, k.rechts].map((sei) => ({
+    sei,
+    reihe: sei.punkte.map((p) => ({
+      t: p.t,
+      p: (p.wert / sei.punkte[0].wert - 1) * 100,
+    })),
+    prozent: duellProzent(sei),
+  }))
+  /* Beide Felder auf derselben Skala – sonst sähe −5 % aus wie +4 %. */
+  const alle = seiten.flatMap((x) => x.reihe.map((r) => r.p))
+  const schritt =
+    [1, 2, 2.5, 5, 10].find(
+      (x) => (Math.max(...alle, 0) - Math.min(...alle, 0)) / x <= 4
+    ) ?? 20
+  const unten = Math.floor(Math.min(...alle, 0) / schritt) * schritt
+  const oben = Math.ceil(Math.max(...alle, 0) / schritt) * schritt
+  const teil: number[] = []
+  for (let w = unten; w <= oben + 1e-9; w += schritt) teil.push(Math.round(w * 10) / 10)
+
+  const FELD_B = 485
+  const FELD_H = 470
+  const OBEN = 560
+  const P_L = 74
+  const P_R = 18
+  const P_O = 128
+  const P_U = 46
+  const pb = FELD_B - P_L - P_R
+  const ph = FELD_H - P_O - P_U
+
+  const feld = (x: (typeof seiten)[number], links: number) => {
+    const farbe = x.prozent >= 0 ? LOGO_GRUEN : LOGO_ROT
+    const n = x.reihe.length - 1
+    /* 12 px Luft rechts, sonst schneidet der Rand den Endpunkt ab. */
+    const px = (i: number) => (i / n) * (pb - 12)
+    const py = (w: number) => ph - ((w - unten) / (oben - unten)) * ph
+    const linie = x.reihe
+      .map((r, i) => `${px(i).toFixed(1)},${py(r.p).toFixed(1)}`)
+      .join(' ')
+    const flaeche = `0,${py(0).toFixed(1)} ${linie} ${px(n).toFixed(1)},${py(0).toFixed(1)}`
+    const svg =
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${pb}" height="${ph}" viewBox="0 0 ${pb} ${ph}">` +
+      teil
+        .map((w) =>
+          w === 0
+            ? `<line x1="0" x2="${pb}" y1="${py(w).toFixed(1)}" y2="${py(w).toFixed(1)}" stroke="#333" stroke-width="2.5"/>`
+            : `<line x1="0" x2="${pb}" y1="${py(w).toFixed(1)}" y2="${py(w).toFixed(1)}" stroke="#d0d0d0" stroke-width="2" stroke-dasharray="6 6"/>`
+        )
+        .join('') +
+      `<polygon points="${flaeche}" fill="${farbe}" fill-opacity="0.13"/>` +
+      `<polyline points="${linie}" fill="none" stroke="${farbe}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+      `<line x1="1.5" x2="1.5" y1="0" y2="${ph}" stroke="#333" stroke-width="3"/>` +
+      `<line x1="0" x2="${pb}" y1="${ph - 1.5}" y2="${ph - 1.5}" stroke="#333" stroke-width="3"/>` +
+      `<circle cx="${px(n).toFixed(1)}" cy="${py(x.reihe[n].p).toFixed(1)}" r="8" fill="${farbe}"/>` +
+      `</svg>`
+    const tage = [0, Math.round(n / 2), n]
+    return h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: links,
+          top: OBEN,
+          width: FELD_B,
+          height: FELD_H,
+          borderRadius: 22,
+          border: '2px solid #e2e2e2',
+          display: 'flex',
+        },
+      },
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: 22,
+            top: 16,
+            display: 'flex',
+            alignItems: 'center',
+          },
+        },
+        x.sei.land ? flagge(FLAGGEN[x.sei.land], 44, 2) : h('div', {}),
+        h(
+          'div',
+          { style: { display: 'flex', flexDirection: 'column', marginLeft: 12 } },
+          h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Anton',
+                fontSize: 38,
+                color: SCHWARZ,
+                lineHeight: 1.1,
+              },
+            },
+            x.sei.name
+          ),
+          h(
+            'div',
+            { style: { fontFamily: 'Open', fontSize: 20, color: MITTELGRAU } },
+            x.sei.zusatz
+          )
+        )
+      ),
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            right: 18,
+            top: 22,
+            padding: '6px 14px',
+            borderRadius: 10,
+            backgroundColor: farbe,
+            color: '#fff',
+            fontFamily: 'Open',
+            fontWeight: 800,
+            fontStyle: 'italic',
+            fontSize: 34,
+            display: 'flex',
+          },
+        },
+        prozentText(x.prozent, 2)
+      ),
+      ...teil.map((w) =>
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              left: 4,
+              width: P_L - 12,
+              top: P_O + py(w) - 13,
+              display: 'flex',
+              justifyContent: 'flex-end',
+              fontFamily: 'Open',
+              fontSize: 19,
+              fontWeight: w === 0 ? 700 : 400,
+              color: GRAU,
+            },
+          },
+          `${w > 0 ? '+' : ''}${w.toLocaleString('de-DE')} %`
+        )
+      ),
+      h('img', {
+        src: svgAdresse(svg),
+        width: pb,
+        height: ph,
+        style: { position: 'absolute', left: P_L, top: P_O },
+      }),
+      ...tage.map((i, j) =>
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              left: P_L + px(i) - (j === 0 ? 0 : j === 2 ? 70 : 35),
+              width: 70,
+              top: P_O + ph + 8,
+              display: 'flex',
+              justifyContent: j === 0 ? 'flex-start' : j === 2 ? 'flex-end' : 'center',
+              fontFamily: 'Open',
+              fontSize: 19,
+              color: GRAU,
+            },
+          },
+          `${x.reihe[i].t.slice(8, 10)}.${x.reihe[i].t.slice(5, 7)}.`
+        )
+      )
+    )
+  }
+
+  const differenz = Math.abs(seiten[0].prozent - seiten[1].prozent)
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    feld(seiten[0], 40),
+    feld(seiten[1], 40 + FELD_B + 30),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: 40,
+          right: 40,
+          top: OBEN + FELD_H + 24,
+          height: 130,
+          borderRadius: 22,
+          border: '2px solid #e2e2e2',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      },
+      h(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            marginRight: 24,
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 26, color: GRAU } },
+          'Differenz'
+        ),
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontSize: 20, color: MITTELGRAU } },
+          `${k.links.name} vs. ${k.rechts.name}`
+        )
+      ),
+      h(
+        'div',
+        { style: { fontFamily: 'Anton', fontSize: 92, color: akzent, lineHeight: 1 } },
+        differenz.toLocaleString('de-DE', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+      ),
+      h(
+        'div',
+        { style: { fontFamily: 'Anton', fontSize: 46, color: SCHWARZ, marginLeft: 16 } },
+        'Prozentpunkte'
       )
     ),
   ]
