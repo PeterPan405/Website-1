@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-18T08:18:51.060Z",
+  "abgerufen": "2026-10-19T09:17:11.160Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -125,7 +125,7 @@
     {"title":"Retail Sales y/y","country":"CNY","date":"2026-10-18T22:00:00-04:00","impact":"Low","forecast":"0.5%","previous":"0.4%"},
     {"title":"Unemployment Rate","country":"CNY","date":"2026-10-18T22:00:00-04:00","impact":"Low","forecast":"5.3%","previous":"5.3%"},
     {"title":"Tertiary Industry Activity m/m","country":"JPY","date":"2026-10-19T00:30:00-04:00","impact":"Low","forecast":"-0.3%","previous":"0.4%"},
-    {"title":"Foreign Direct Investment ytd/y","country":"CNY","date":"2026-10-19T02:02:00-04:00","impact":"Low","forecast":"","previous":"-5.3%"},
+    {"title":"Foreign Direct Investment ytd/y","country":"CNY","date":"2026-10-19T05:10:00-04:00","impact":"Low","forecast":"","previous":"-5.3%"},
     {"title":"Common CPI y/y","country":"CAD","date":"2026-10-19T08:30:00-04:00","impact":"Medium","forecast":"2.6%","previous":"2.6%"},
     {"title":"Core CPI m/m","country":"CAD","date":"2026-10-19T08:30:00-04:00","impact":"Low","forecast":"","previous":"0.1%"},
     {"title":"CPI m/m","country":"CAD","date":"2026-10-19T08:30:00-04:00","impact":"High","forecast":"0.2%","previous":"-0.1%"},
