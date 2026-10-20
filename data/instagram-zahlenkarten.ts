@@ -16,6 +16,49 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 20.10.2026: „thema 4" – Inflation 2025,
+      Anlass: Bundesbank-Monatsbericht (Handelsblatt, 19.10.2026, in
+      data/editions/2026-10-20.ts). Form: Kacheln (am Vortag Balken).
+      Farbe: Grün (akzentfarbe('2026-10-21')).
+
+      Zahlen: data/snapshots/laender.json, `inflation` – Weltbank, World
+      Development Indicators (FP.CPI.TOTL.ZG), Verbraucherpreise,
+      Jahresdurchschnitt 2025 gegenüber 2024. 164 Länder haben einen Wert
+      für 2025; Deutschland steht mit 2,2 % auf Platz 102 (Platz 1 = höchste
+      Rate: Iran 42,2). Die USA fehlen: Ihr letzter Wert stammt aus 2024.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    art: 'rangliste',
+    skala: 'kacheln',
+    datum: '2026-10-21',
+    titel: [{ text: 'Inflation 2025:' }, { text: 'Deutschland 2,2\u00a0%', gruen: true }],
+    unterzeile: 'So stark stiegen die Verbraucherpreise 2025 im Jahresschnitt:',
+    zeilen: [
+      { name: 'Türkei', wert: 34.9, land: 'TUR' },
+      { name: 'Großbritannien', wert: 3.9, land: 'GBR' },
+      { name: 'Polen', wert: 3.8, land: 'POL' },
+      { name: 'Österreich', wert: 3.5, land: 'AUT' },
+      { name: 'Niederlande', wert: 3.3, land: 'NLD' },
+      { name: 'Japan', wert: 3.2, land: 'JPN' },
+      { name: 'Spanien', wert: 2.7, land: 'ESP' },
+      { name: 'Deutschland', wert: 2.2, land: 'DEU', hervor: true },
+      { name: 'Italien', wert: 1.5, land: 'ITA' },
+      { name: 'Frankreich', wert: 0.9, land: 'FRA' },
+      { name: 'Schweiz', wert: 0.2, land: 'CHE' },
+      { name: 'China', wert: 0.1, land: 'CHN' },
+    ],
+    fusszeile: 'Stand: 2025 | Quelle: Weltbank (WDI) | Jahresdurchschnitt',
+    text:
+      'Die Verbraucherpreise in Deutschland stiegen 2025 im Jahresschnitt um 2,2 %. In der Türkei waren es 34,9 %, in China nur 0,1 %. 📊\n\n' +
+      'Über Deutschland lagen unter anderem Großbritannien (3,9 %), Polen (3,8 %), Österreich (3,5 %), die Niederlande (3,3 %), Japan (3,2 %) und Spanien (2,7 %). ' +
+      'Darunter Italien (1,5 %), Frankreich (0,9 %) und die Schweiz (0,2 %). Von 164 Ländern mit einem Wert für 2025 steht Deutschland auf Platz 102.\n\n' +
+      'Zum Ausblick: Die Bundesbank schreibt in ihrem Monatsbericht, die Inflation in Deutschland bleibe „merklich erhöht“ – bis weit in das Jahr 2027 hinein.\n\n' +
+      'Gezählt ist der Jahresdurchschnitt 2025, nicht die Rate von heute; der Warenkorb wird je Land national festgelegt.\n' +
+      'Quellen: Weltbank, World Development Indicators; Handelsblatt (19.10.2026)',
+    schlagworte: ['inflation', 'preise', 'geldanlage', 'wirtschaft', 'deutschland'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 19.10.2026: „Nehmen lieber Öl schlägt
       alles." – statt „SMI schlägt Nasdaq" (Duell), nach dem Vorbild HKCM.
       Form: Balken mit Plus und Minus (am Vortag Verlauf). Farbe: Anthrazit.
