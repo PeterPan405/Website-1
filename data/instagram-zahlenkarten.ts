@@ -31,6 +31,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'kacheln',
     datum: '2026-10-21',
+    /* Freigegeben vom Betreiber am 20.10.2026: „passt" – hinaus am 21.10. ab 15 Uhr. */
+    freigabe: '2026-10-21',
     titel: [{ text: 'Inflation 2025:' }, { text: 'Deutschland 2,2\u00a0%', gruen: true }],
     unterzeile: 'So stark stiegen die Verbraucherpreise 2025 im Jahresschnitt:',
     zeilen: [
