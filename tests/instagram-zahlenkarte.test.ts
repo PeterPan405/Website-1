@@ -421,6 +421,46 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Öl: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 21.10.2026 – Inflation 2025, Kacheln. */
+{
+  const inflation = zahlenkarten.find((k) => k.datum === '2026-10-21') as Rangkarte
+  type Wert = { wert: number; jahr: number }
+  const laender: Record<string, { inflation?: Wert }> = JSON.parse(
+    readFileSync('data/snapshots/laender.json', 'utf8')
+  ).laender
+  for (const z of inflation.zeilen) {
+    const quelle = laender[z.land!]?.inflation
+    pruefe(
+      `${z.name}: ${z.wert} % wie im Bestand (${quelle?.wert}, ${quelle?.jahr})`,
+      quelle?.wert === z.wert && quelle?.jahr === 2025
+    )
+    pruefe(
+      `${z.name}: der Wert steht im Text`,
+      inflation.text.includes(`${zahl1(z.wert)} %`)
+    )
+  }
+  const alle = Object.values(laender)
+    .map((l) => l.inflation)
+    .filter((w): w is Wert => w?.jahr === 2025)
+    .map((w) => w.wert)
+    .sort((a, b) => b - a)
+  pruefe(`164 Länder mit Wert für 2025 (${alle.length})`, alle.length === 164)
+  pruefe(
+    `Deutschland auf Platz 102 (${alle.indexOf(2.2) + 1})`,
+    alle.indexOf(2.2) + 1 === 102 && inflation.text.includes('Platz 102')
+  )
+  pruefe(
+    'Bundesbank-Zitat steht so in der Ausgabe vom 20.10.',
+    readFileSync('data/editions/2026-10-20.ts', 'utf8').includes(
+      '„merklich erhöht“ – und zwar bis weit in das Jahr 2027'
+    )
+  )
+  pruefe('die Karte hält die Form ein', pruefeZahlenkarte(inflation).length === 0)
+  pruefe('Grün am 21.10.', akzentfarbe('2026-10-21') === '#205437')
+  const png = await zahlenkartePng(inflation, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Inflation: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
 /* Die Form Duell – gezeigt an der verworfenen Karte vom 20.10. (SMI gegen Nasdaq 100). */
 {
   const duell: Duellkarte = {

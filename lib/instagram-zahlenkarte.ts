@@ -200,6 +200,11 @@ export interface Flagge {
 */
 const quadrat = (inhalt: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">${inhalt}</svg>`
+/* Türkei (20.10.2026): Halbmond aus zwei Kreisen, Stern mit der Spitze zum Mond. */
+const FLAGGE_TUERKEI = quadrat(
+  '<rect width="60" height="60" fill="#E30A17"/><circle cx="25" cy="30" r="14" fill="#fff"/>' +
+    '<circle cx="28.5" cy="30" r="11.2" fill="#E30A17"/><polygon points="35.00,30.00 39.73,28.35 39.84,23.34 42.87,27.34 47.66,25.89 44.80,30.00 47.66,34.11 42.87,32.66 39.84,36.66 39.73,31.65" fill="#fff"/>'
+)
 const FLAGGE_JAPAN = quadrat(
   '<rect width="60" height="60" fill="#fff"/><circle cx="30" cy="30" r="17" fill="#BC002D"/>'
 )
@@ -338,6 +343,7 @@ export const FLAGGEN: Record<string, Flagge> = {
   SVK: { streifen: ['#FFFFFF', '#0B4EA2', '#EE1C25'], wappen: WAPPEN_SLOWAKEI },
   /* Tschad: Streifen wie Rumänien, im Blau dunkler – so ist die Flagge. */
   TCD: { streifen: ['#002664', '#FECB00', '#C60C30'], senkrecht: true },
+  TUR: { streifen: ['#E30A17'], svg: FLAGGE_TUERKEI },
   USA: { streifen: ['#B22234'], svg: FLAGGE_USA },
   VEN: { streifen: ['#FFCC00'], svg: FLAGGE_VENEZUELA },
 }
