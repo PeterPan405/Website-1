@@ -66,12 +66,17 @@ wie vorher. Regeln und Gründe in `lib/instagram-motive.ts`.
 **Keine Skylines, Deckblatt zum Thema** (18.10.2026). Der Betreiber: „Die
 Bilder müssen immer auch zum Thema passen. Ansonsten einfach kein Bild
 nehmen, bevor du eine Skyline nimmst." Frankfurt, Banken, Finanzviertel,
-Deutschland, Europa und New York sind keine Motive mehr; eine Kachel ohne
-Thema bleibt ohne Foto. Das Deckblatt nimmt das Titelbild zum Thema der
+Deutschland, Europa und New York sind keine Motive mehr. Das Deckblatt nimmt das Titelbild zum Thema der
 wichtigsten Meldung (Fed, EZB, Luftfahrt, Bahn, Industrie, Wohnen), sonst
 reihum.
 
-**Bilder von außen nur gemeinfrei** (18.10.2026): Trump, Kapitol und Weißes
+**Jede Kachel bekommt ein Bild** (20.10.2026). Der Betreiber: „bitte auf
+jede Seite ein Bild" – „neue Regel: es findet sich immer etwas". Findet eine
+Kachel kein Motiv zu ihrem Thema, nimmt sie das erste freie aus `RUECKFALL`
+(Börsenparkett, Euro-Geld, Tresor, Einkaufswagen). Neu dazu: Frankreich
+(Palais Bourbon), Bank of England, Gericht, Smartphone.
+
+**Bilder von außen nur gemeinfrei oder CC0** (18.10.2026): Trump, Kapitol und Weißes
 Haus sind Werke der US-Regierung (Wikimedia Commons, `herkunft` am Motiv),
 geholt mit `bilder-holen.yml`. Bilder unter CC-BY-SA verlangen eine Nennung
 im Beitrag – die gibt es nicht, also werden sie nicht genommen.

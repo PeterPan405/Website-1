@@ -151,8 +151,8 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
   und 18.10.). Sonntag: nur Samstag und Sonntag; So/Mo 3–5 Kacheln.
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
-- **Kein Bild ist besser als ein falsches:** keine Skylines; Personen nur
-  gemeinfrei (`bilder-holen.yml`, Lizenz prüfen).
+- **Jede Kachel ein Bild, nie ein falsches:** ohne Thema der Rückfall
+  (`RUECKFALL`); keine Skylines; nur gemeinfrei/CC0 (`bilder-holen.yml`).
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
 - **Meta merkt sich Bilder an der Adresse.** Jede Adresse trägt eine
@@ -162,7 +162,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
   Test misst es. Neue Regeln dort kurz.
 - **Jede Kachel vor dem Hochladen gerendert ansehen.**
 
-→ `ENTSCHEIDUNGEN.md`: „Lieber kein Bild als eine Skyline", „Meta merkt
+→ `ENTSCHEIDUNGEN.md`: „Es findet sich immer etwas", „Meta merkt
 sich Bilder an der Adresse", „Der Prompt zählt in Bytes"
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
