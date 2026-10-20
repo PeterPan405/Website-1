@@ -367,7 +367,15 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   const linie = await verlaufSeitJahresbeginn('sp500', dax.bis)
   pruefe(
     'die Linie beginnt bei null und endet beim Endwert',
-    linie[0].prozent === 0 && runde(linie.at(-1)!.prozent) === endwert('sp500'),
+    /*
+      Wie die beiden Prüfungen darüber: Ist der Bestand über den Stichtag
+      hinaus, fehlt der Tagesreihe mitunter der Stichtag selbst – dann
+      endet die Linie früher, und der Endwert ist nicht mehr nachzurechnen.
+      Am 20.10.2026 hielt das den Bau dreimal auf.
+    */
+    linie[0].prozent === 0 &&
+      (runde(linie.at(-1)!.prozent) === endwert('sp500') ||
+        qSp.asOf.slice(0, 10) > dax.bis),
     `${linie.at(-1)?.t}: ${linie.at(-1)?.prozent}`
   )
   pruefe(
