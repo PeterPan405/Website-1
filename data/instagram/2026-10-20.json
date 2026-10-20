@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Bundesbank warnt vor lang anhaltender Inflation, Unruhen in Frankreich belasten Euro und Anleihen, Chinas Wachstum überrascht, der Ölpreis gibt nach, und Volkswagen friert laut Berichten die Gehälter ein.",
+  "kacheln": [
+    {
+      "titel": "Inflation bleibt bis 2027",
+      "text": "Die Bundesbank erwartet, dass die Inflation in Deutschland bis weit ins Jahr 2027 hinein erhöht bleibt."
+    },
+    {
+      "titel": "Euro fällt wegen Frankreich",
+      "text": "Unruhen in Frankreich ließen den Euro zeitweise unter 1,12 Dollar fallen. Die Risikoprämie auf französische Anleihen stieg weiter."
+    },
+    {
+      "titel": "China: Wachstum 4,5 %",
+      "text": "Chinas Wirtschaft wuchs im dritten Quartal um 4,5 Prozent und übertraf die Erwartungen. Starke Exporte trugen das Wachstum."
+    },
+    {
+      "titel": "Öl unter 110 Dollar",
+      "text": "Der Ölpreis fiel zurück unter die 110-Dollar-Marke. Grund war Trumps Lockerung der Russland-Sanktionen trotz neuer Angriffe."
+    },
+    {
+      "titel": "VW friert Gehälter ein",
+      "text": "Volkswagen will laut Medienberichten weltweit die Gehälter für mehrere Jahre einfrieren. Der Konzern äußerte sich dazu nicht."
+    }
+  ],
+  "schlagworte": ["inflation", "frankreich", "ölpreis", "börse", "wirtschaft"]
+}

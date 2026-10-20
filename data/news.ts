@@ -101,6 +101,260 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'bundesbank-inflation-bleibt-bis-2027-erhoeht',
+    title: 'Bundesbank erwartet noch bis 2027 hohe Inflation',
+    teaser:
+      'Im neuen Monatsbericht rechnet die Bundesbank damit, dass die Inflation in Deutschland noch bis weit ins Jahr 2027 hinein spürbar erhöht bleibt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-20T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Bundesbank', 'Geldpolitik'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 19.10.2026, 12:45 Uhr MESZ: „Monatsbericht: Bundesbank sieht starken Preisdruck bis ins Jahr 2027“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/bundesbank-inflation-bleibt-bis-ins-naechste-jahr-hinein-merklich-erhoeht/100263257.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Bundesbank rechnet nicht mit einer schnellen Entspannung bei den Verbraucherpreisen. In ihrem aktuellen Monatsbericht schreibt die Notenbank, die Inflation in Deutschland bleibe „merklich erhöht“ – und zwar bis weit in das Jahr 2027 hinein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Treibstoff und Dienstleistungen treiben die Preise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Einschätzung der Bundesbank tragen vor allem die Preise für Treibstoffe und Dienstleistungen die Teuerung. Unternehmen geben diese Kosten den Angaben zufolge nur langsam an ihre Kunden weiter – ein Grund, warum sich der Preisdruck über mehrere Jahre zieht, statt in einem kurzen Schub abzuklingen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Verbraucher bedeutet das vor allem: Eine schnelle Rückkehr zur Zielmarke der Europäischen Zentralbank von zwei Prozent ist aus Sicht der Bundesbank nicht in Sicht. Eine genaue Jahresrate für 2027 nennt der Bericht nicht, sondern nur die Richtung – anhaltend erhöht statt sinkend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer über die Zinsen entscheidet – und wer nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bundesbank ist Teil des Eurosystems, trifft aber keine eigene Zinsentscheidung. Darüber befindet der Rat der Europäischen Zentralbank in Frankfurt. Ihr Monatsbericht wirkt trotzdem wie ein Frühwarnsystem: Er zeigt, wie die deutsche Notenbank die Lage einschätzt, bevor die EZB ihre nächste Entscheidung trifft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der Kalender an diesem Dienstag richtet den Blick auf die Preise. Um 8 Uhr veröffentlicht Großbritannien seinen monatlichen Arbeitsmarktbericht, und zur gleichen Zeit meldet das Statistische Bundesamt die deutschen Erzeugerpreise für September.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-faellt-wegen-unruhen-frankreich',
+    title: 'Unruhen in Frankreich drücken Euro unter 1,12 Dollar',
+    teaser:
+      'Gewalt bei Protesten am Wochenende hat die Sorgen um die französischen Staatsfinanzen neu belebt – der Euro fiel am Montag zeitweise unter 1,12 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-10-20T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Euro', 'Staatsanleihen'],
+    relatedTopics: ['staatsanleihe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['cac-40', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 19.10.2026, 14:05 Uhr MESZ: „Marktbericht: Sorgen um Frankreich belasten den Euro“',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/marktbericht-frankreich-proteste-euro-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 19.10.2026, 15:49 Uhr MESZ: „Investoren: Französische Staatsanleihen nach Unruhen unter Druck“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/anleihen/investoren-franzoesische-staatsanleihen-nach-unruhen-unter-druck/100263262.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am französischen Finanzmarkt ist die Nervosität zum Wochenstart zurück. Nach Gewalt bei Protesten am Wochenende lebten laut Tagesschau die Sorgen um die Staatsfinanzen Frankreichs wieder auf. Der Euro fiel am Montag zeitweise unter die Marke von 1,12 Dollar zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Risikoprämie auf französische Anleihen wächst weiter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Investoren verlangten für französische Staatsanleihen laut Handelsblatt einen weiter steigenden Aufschlag gegenüber deutschen Bundesanleihen. Dieser Abstand, die sogenannte Risikoprämie, gilt als Messlatte dafür, wie groß die Sorge der Anleger um die Kreditwürdigkeit eines Landes ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Je größer der Abstand zur als sicherer geltenden deutschen Anleihe, desto teurer wird es für den französischen Staat, sich neues Geld zu leihen. Eine wachsende Risikoprämie ist damit selbst schon eine Belastung für den Haushalt, den sie eigentlich nur widerspiegeln soll.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dax verliert, Frankreich ist nicht der einzige Grund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax schloss den Handelstag nach Angaben des Handelsblatts deutlich im Minus. Neben der Lage in Frankreich lasteten laut dem Bericht auch anhaltende Sorgen um hoch bewertete KI-Aktien auf der Stimmung an den europäischen Börsen.',
+      },
+    ],
+  },
+  {
+    slug: 'chinas-wirtschaft-waechst-staerker-als-erwartet',
+    title: 'Chinas Wirtschaft wächst stärker als erwartet',
+    teaser:
+      'Chinas Wirtschaft ist im dritten Quartal um 4,5 Prozent gewachsen und hat damit die Erwartungen der Ökonomen übertroffen, getragen von starken Exporten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-20T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['China', 'Wachstum', 'Exporte'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['hang-seng'],
+    sources: [
+      {
+        label:
+          "CNBC, 19.10.2026, 06:36 Uhr MESZ: „China's third-quarter economic growth quickens to 4.5% as exports surge, beating estimates“",
+        url: 'https://www.cnbc.com/2026/10/19/chinas-economic-growth-quickens-to-4point6percent-as-exports-surge-stimulus-rolls-out.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinas Wirtschaft ist im dritten Quartal überraschend kräftig gewachsen. Das Bruttoinlandsprodukt legte im Jahresvergleich um 4,5 Prozent zu und übertraf damit die Markterwartungen, berichtet CNBC unter Berufung auf die amtlichen Zahlen aus Peking.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Exporte tragen, der Konsum hinkt hinterher',
+      },
+      {
+        type: 'paragraph',
+        text: 'Treiber des Wachstums war laut dem Bericht vor allem die Auslandsnachfrage nach chinesischen Technologiegütern. Sie glich eine weiterhin schwache Konsumnachfrage im Inland aus – private Haushalte in China halten sich demnach beim Geldausgeben weiterhin zurück.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Kombination ist für China nicht neu, zeigt sich aber erneut deutlich: Exporte stützen das Wachstum, während die Binnenwirtschaft schwächer bleibt. Für die zweitgrößte Volkswirtschaft der Welt bedeutet das eine anhaltende Abhängigkeit von der Nachfrage aus dem Ausland.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Exportstärke eine zweite Seite hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wächst eine Volkswirtschaft vor allem über ihre Exporte, reagiert sie auch stärker auf Entscheidungen anderer Länder, etwa neue Zölle oder schwächere Nachfrage in Absatzmärkten. Ein kräftiger Binnenkonsum gilt deshalb als robusterer, weil unabhängigerer Wachstumstreiber.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-zurueck-unter-110-dollar',
+    title: 'Ölpreis fällt zurück unter die 110-Dollar-Marke',
+    teaser:
+      'Der Ölpreis ist am Montag zurück unter die 110-Dollar-Marke gefallen. Grund war laut wallstreet-online Trumps Lockerung der Russland-Sanktionen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-20T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Russland', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 19.10.2026, 08:23 Uhr MESZ: „Energiekrise: Ölpreise geben nach – Brent entfernt sich wieder von 110-Dollar-Marke“',
+        url: 'https://www.wiwo.de/finanzen/boerse/energiekrise-oelpreise-geben-nach-brent-entfernt-sich-wieder-von-110-dollar-marke/100263165.html',
+      },
+      {
+        label:
+          'wallstreet-online, 19.10.2026: „Trotz neuer Angriffe: Ölpreise sinken nach Trumps Lockerung der Russland-Sanktionen“',
+        url: 'https://www.wallstreet-online.de/nachricht/21544433-trotz-angriffe-oelpreise-sinken-trumps-lockerung-russland-sanktionen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist zum Wochenstart zurückgerudert. Die Sorte Brent entfernte sich laut WirtschaftsWoche am Montag wieder von der 110-Dollar-Marke, die sie erst vorige Woche übersprungen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump lockert die Russland-Sanktionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser für den Rückgang war laut wallstreet-online, dass US-Präsident Donald Trump die Sanktionen gegen Russland gelockert hat – und das, obwohl es weiterhin neue Angriffe gab. Vorige Woche hatte noch der gegenteilige Effekt den Preis getrieben: US-Abgeordnete wollten laut WirtschaftsWoche einen Diesel-Deal zwischen Trump und Russland verhindern, und allein die Zweifel daran ließen den Ölpreis über 110 Dollar steigen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Innerhalb einer Woche bewegte sich der Preis damit zweimal aus demselben politischen Grund, nur in verschiedene Richtungen. Erst ließen Zweifel an einem möglichen Sanktions-Deal den Preis steigen, dann drückte die tatsächliche Lockerung ihn wieder nach unten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Schlagzeilen hier mehr bewegen als die Fördermenge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ölmarkt reagiert in solchen Phasen stärker auf politische Ankündigungen als auf tatsächliche Änderungen bei Angebot oder Nachfrage. Das macht den Preis kurzfristig schwankungsanfälliger, sagt aber wenig darüber aus, wie viel Öl tatsächlich gefördert oder verbraucht wird.',
+      },
+    ],
+  },
+  {
+    slug: 'volkswagen-friert-gehaelter-weltweit-ein',
+    title: 'Volkswagen friert laut Berichten die Gehälter ein',
+    teaser:
+      'Volkswagen will laut übereinstimmenden Medienberichten weltweit die Gehälter für mehrere Jahre einfrieren. Der Konzern wollte sich dazu nicht äußern.',
+    category: 'Märkte',
+    publishedAt: '2026-10-20T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Volkswagen', 'Autoindustrie', 'Sparmaßnahmen'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 19.10.2026, 13:27 Uhr MESZ: „Volkswagen will offenbar Gehälter einfrieren“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/vw-1620.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen verschärft offenbar seine Sparmaßnahmen. Nach übereinstimmenden Medienberichten, die die Tagesschau zusammenfasst, will der Konzern die Gehälter weltweit für mehrere Jahre einfrieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Konzern äußert sich nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Volkswagen selbst wollte sich zu den Berichten nicht äußern, schreibt die Tagesschau. Offiziell bestätigt ist der Schritt damit nicht – er beruht auf Angaben mehrerer Medien, die sich in der Darstellung einig sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Gehaltsbremse träfe die Belegschaft anders als der in der Autoindustrie verbreitete Stellenabbau: Statt Arbeitsplätze zu streichen, würde Volkswagen die Lohnkosten über mehrere Jahre strecken, ohne Menschen zu entlassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Teil eines größeren Sparkurses',
+      },
+      {
+        type: 'paragraph',
+        text: 'Volkswagen steht bereits seit Monaten unter Kostendruck, unter anderem wegen des teuren Umbaus auf Elektroautos und wachsender Konkurrenz aus China. Konkrete Zahlen dazu, wie viel das Unternehmen durch eingefrorene Gehälter sparen würde, nennt der Bericht nicht.',
+      },
+    ],
+  },
+  {
     slug: 'suedkorea-chipboom-bis-2027-lee-hyoung-il',
     title: 'Südkoreas Finanzminister erwartet Chip-Boom bis mindestens 2027',
     teaser:
