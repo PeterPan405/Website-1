@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-16T23:56:17.915Z",
+  "abgerufenAm": "2026-10-20T00:42:22.732Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -5603,6 +5603,10 @@
       {
         "date": "2026-07-17",
         "amount": 1.02
+      },
+      {
+        "date": "2026-10-16",
+        "amount": 1.02
       }
     ],
     "schlumberger": [
@@ -9989,10 +9993,6 @@
     ],
     "intesa-sanpaolo": [
       {
-        "date": "2021-10-18",
-        "amount": 0.0996
-      },
-      {
         "date": "2021-11-22",
         "amount": 0.0721
       },
@@ -10064,10 +10064,6 @@
       }
     ],
     "generali": [
-      {
-        "date": "2021-10-18",
-        "amount": 0.46
-      },
       {
         "date": "2022-05-23",
         "amount": 1.07
@@ -10471,6 +10467,10 @@
       {
         "date": "2026-04-29",
         "amount": 2.5
+      },
+      {
+        "date": "2026-10-19",
+        "amount": 1.5
       }
     ],
     "volvo-b": [
