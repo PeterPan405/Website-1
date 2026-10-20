@@ -19,7 +19,14 @@
  * zum Thema passen. Ansonsten einfach kein Bild nehmen, bevor du eine
  * Skyline nimmst. Das ist langweilig." Gestrichen sind deshalb Frankfurt,
  * Banken (die Frankfurter Türme), Finanzviertel, Deutschland (Düsseldorf),
- * Europa (Barcelona) und New York. Eine Kachel ohne Thema bleibt ohne Foto.
+ * Europa (Barcelona) und New York.
+ *
+ * **Jede Kachel bekommt ein Bild** (Betreiber, 20.10.2026: „bitte auf jede
+ * Seite ein Bild" – „neue Regel: es findet sich immer etwas"). Findet die
+ * Kachel kein Motiv zu ihrem Thema, nimmt sie eins aus `RUECKFALL`: Geld,
+ * Börse, Tresor, Einkaufswagen – Bilder, die zu jeder Wirtschaftsmeldung
+ * passen, ohne einen Ort oder eine Person zu behaupten. Keine Skyline bleibt
+ * keine Skyline.
  *
  * ## Wie ein Foto zu einer Kachel findet
  *
@@ -46,8 +53,14 @@ export interface Motiv {
   /**
    * Ein Bild von außen (seit 18.10.2026): nur gemeinfrei, mit Fundstelle.
    * Geholt über `.github/workflows/bilder-holen.yml` (Wikimedia Commons).
+   * CC0 ist ein Verzicht auf alle Rechte und steht gemeinfrei gleich.
    */
-  herkunft?: { titel: string; seite: string; lizenz: 'Public domain'; urheber: string }
+  herkunft?: {
+    titel: string
+    seite: string
+    lizenz: 'Public domain' | 'CC0'
+    urheber: string
+  }
   muster: RegExp
   /**
    * Auch, wenn das Stichwort nur im Text steht. Allgemeine Motive (New York,
@@ -191,6 +204,70 @@ export const MOTIVE: Motiv[] = [
     ),
     auchImText: false,
   },
+  /*
+    Seit 20.10.2026 („es findet sich immer etwas"): weitere Motive von
+    Wikimedia Commons, gemeinfrei oder CC0, geholt mit bilder-holen.yml.
+  */
+  {
+    id: 'frankreich',
+    herkunft: {
+      titel: 'Palais Bourbon, Paris 7e, NW View 140402 1',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:Palais_Bourbon,_Paris_7e,_NW_View_140402_1.jpg',
+      lizenz: 'Public domain',
+      urheber: 'DXR',
+    },
+    muster: woerter(
+      'Frankreich',
+      'Frankreichs',
+      'Paris',
+      'Macron',
+      'französisch*',
+      'Le Pen'
+    ),
+    auchImText: false,
+  },
+  {
+    id: 'bank-of-england',
+    herkunft: {
+      titel: 'The Royal Exchange and Bank of England LL',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:The_Royal_Exchange_and_Bank_of_England_LL.jpg',
+      lizenz: 'Public domain',
+      urheber: 'unbekannt (historische Postkarte)',
+    },
+    muster: woerter(
+      'BoE',
+      'Bank of England',
+      'Bailey',
+      'Pfund',
+      'Großbritannien*',
+      'britisch*',
+      'London*'
+    ),
+    auchImText: true,
+  },
+  {
+    id: 'gericht',
+    herkunft: {
+      titel: 'Courtroom One Gavel - Flickr - Joe Gratz',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:Courtroom_One_Gavel_-_Flickr_-_Joe_Gratz.jpg',
+      lizenz: 'CC0',
+      urheber: 'Joe Gratz',
+    },
+    muster: woerter(
+      'Gericht*',
+      'Klage*',
+      'verklagt',
+      'Urteil*',
+      'Richter*',
+      'Anklage*',
+      'Kartell*',
+      'Prozess'
+    ),
+    auchImText: true,
+  },
   {
     id: 'luftfahrt',
     quelle: '2026-08-31.jpg',
@@ -216,6 +293,40 @@ export const MOTIVE: Motiv[] = [
       'Software',
       'CoreWeave',
       'Rechenzentr*'
+    ),
+    auchImText: true,
+  },
+  {
+    id: 'smartphone',
+    herkunft: {
+      titel: 'Man with smartphone and laptop (Unsplash)',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:Man_with_smartphone_and_laptop_(Unsplash).jpg',
+      lizenz: 'CC0',
+      urheber: 'Alejandro Escamilla',
+    },
+    muster: woerter(
+      'Smartphone*',
+      'iPhone*',
+      'Handy*',
+      'App',
+      'Apps',
+      'Apple',
+      'Meta',
+      'Facebook',
+      'WhatsApp',
+      'Instagram',
+      'Google',
+      'Alphabet',
+      'Microsoft',
+      'Amazon',
+      'Gerät*',
+      'Online*',
+      'Internet*',
+      'Telekom',
+      'SpaceX',
+      'Satellit*',
+      'Mobilfunk*'
     ),
     auchImText: true,
   },
@@ -247,6 +358,11 @@ export const MOTIVE: Motiv[] = [
       'Autoindustrie',
       'Autoaktie*',
       'Autowerte',
+      'Auto',
+      'Autos',
+      'Elektroauto*',
+      'Tesla',
+      'Volkswagen',
       'Verbrenner*',
       'VW',
       'BMW',
@@ -260,7 +376,119 @@ export const MOTIVE: Motiv[] = [
     muster: woerter('Immobilie*', 'Wohn*', 'Miete*'),
     auchImText: true,
   },
+  /* Die allgemeinen Motive – sie sind zugleich der Rückfall (`RUECKFALL`). */
+  {
+    id: 'euro',
+    herkunft: {
+      titel: 'Euro coins and banknotes (cropped)',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:Euro_coins_and_banknotes_(cropped).jpg',
+      lizenz: 'Public domain',
+      urheber: 'Avij',
+    },
+    muster: woerter(
+      'Euro',
+      'Inflation*',
+      'Teuerung*',
+      'Verbraucherpreis*',
+      'Bundesbank',
+      'Lohn',
+      'Löhne*',
+      'Gehalt',
+      'Gehälter*',
+      'Tarif*',
+      'Rente*',
+      'Steuer*',
+      'Sparer*',
+      'Geld*',
+      'Schulden*',
+      'Haushalt*'
+    ),
+    auchImText: true,
+  },
+  {
+    id: 'konsum',
+    herkunft: {
+      titel: 'Shopping Cart Supermarket',
+      seite: 'https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg',
+      lizenz: 'CC0',
+      urheber: 'safaritravelplus',
+    },
+    muster: woerter(
+      'Einzelhandel*',
+      'Konsum*',
+      'Verbraucher*',
+      'Supermarkt*',
+      'Kaufkraft',
+      'Lebensmittel*',
+      'Händler*',
+      'Umsatz*',
+      'Weihnachtsgeschäft'
+    ),
+    auchImText: true,
+  },
+  {
+    id: 'tresor',
+    herkunft: {
+      titel: 'Porta caveau banca - Bank vault door - 1967',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:Porta_caveau_banca_-_Bank_vault_door_-_1967.png',
+      lizenz: 'Public domain',
+      urheber: 'Aldo Moisio',
+    },
+    muster: woerter(
+      'Bank',
+      'Banken',
+      'Bankaktie*',
+      'Großbank*',
+      'Sparkasse*',
+      'Volksbank*',
+      'Hedgefonds',
+      'Fonds',
+      'Kredit*',
+      'Geldhaus',
+      'Finanzaufsicht',
+      'Bafin',
+      'Gold',
+      'Goldpreis*'
+    ),
+    auchImText: true,
+  },
+  {
+    id: 'boerse',
+    herkunft: {
+      titel:
+        'New York Stock Exchange trading floor on Wall Street, New York, New York LCCN2011634218',
+      seite:
+        'https://commons.wikimedia.org/wiki/File:New_York_Stock_Exchange_trading_floor_on_Wall_Street,_New_York,_New_York_LCCN2011634218.tif',
+      lizenz: 'Public domain',
+      urheber: 'Carol M. Highsmith, Library of Congress',
+    },
+    muster: woerter(
+      'Börse*',
+      'Aktie*',
+      'Anleger*',
+      'Index',
+      'Indizes',
+      'Rally',
+      'Kursrutsch',
+      'Rekordhoch',
+      'Quartalszahl*',
+      'Dividende*',
+      'Börsengang*',
+      'IPO'
+    ),
+    auchImText: true,
+  },
 ]
+
+/**
+ * Der Rückfall, wenn eine Kachel zu ihrem Thema nichts findet – in dieser
+ * Reihenfolge, das erste, das im Beitrag noch frei ist. Sind alle vergeben,
+ * kommt das erste ein zweites Mal: Ein Bild doppelt ist besser als eine
+ * Seite ohne (Betreiber, 20.10.2026).
+ */
+export const RUECKFALL = ['boerse', 'euro', 'tresor', 'konsum']
 
 /* --------------------------------------------------------------- Kurse */
 
@@ -356,7 +584,10 @@ export function deckblattMotiv(
   return m?.quelle && erlaubt.includes(m.quelle) ? m : null
 }
 
-/** Fotos und Kurse für alle Kacheln eines Beitrags – kein Motiv doppelt. */
+/**
+ * Fotos und Kurse für alle Kacheln eines Beitrags – jede Kachel mit Foto,
+ * kein Motiv doppelt, solange der Rückfall reicht.
+ */
 export function bebildere(
   kacheln: { titel: string; text: string }[],
   /** Schon vergeben, etwa ans Deckblatt. */
@@ -364,13 +595,12 @@ export function bebildere(
 ): Bebilderung[] {
   const vergeben = new Set<string>(ohne ? [ohne] : [])
   return kacheln.map(({ titel, text }) => {
-    let motiv: string | null = null
+    let motiv: string
     const frei = MOTIVE.filter((x) => !vergeben.has(x.id))
     const m = motivFuer({ titel, text }, frei)
-    if (m) {
-      motiv = m.id
-      vergeben.add(m.id)
-    }
+    if (m) motiv = m.id
+    else motiv = RUECKFALL.find((id) => !vergeben.has(id)) ?? RUECKFALL[0]
+    vergeben.add(motiv)
     return { motiv, kurs: kursZurKachel(titel) }
   })
 }

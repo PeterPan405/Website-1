@@ -26,6 +26,7 @@ import {
   deckblattMotiv,
   kursZurKachel,
   MOTIVE,
+  RUECKFALL,
   woerter,
 } from '@/lib/instagram-motive'
 
@@ -44,10 +45,10 @@ for (const m of MOTIVE) {
   pruefe(
     m.quelle
       ? `… geschnitten aus ${m.quelle}`
-      : `… von außen, gemeinfrei, mit Fundstelle`,
+      : `… von außen, gemeinfrei oder CC0, mit Fundstelle`,
     m.quelle
       ? existsSync(`lib/instagram/titelbilder/${m.quelle}`)
-      : m.herkunft?.lizenz === 'Public domain' &&
+      : (m.herkunft?.lizenz === 'Public domain' || m.herkunft?.lizenz === 'CC0') &&
           m.herkunft.seite.startsWith('https://commons.wikimedia.org/')
   )
 }
@@ -100,14 +101,32 @@ for (const tag of tage) {
   mitFoto += motive.length
   gesamt += b.length
 }
-/*
-  Seit dem 18.10.2026 keine Skylines mehr (Betreiber: „lieber kein Bild"):
-  Von 25 Kacheln der Woche bekommen 16 ein Foto. Die Grenze liegt darunter,
-  damit ein Motiv, das wegfällt, auffällt – nicht jede Woche.
-*/
+/* Seit dem 20.10.2026 jede Kachel (Betreiber: „es findet sich immer etwas"). */
+pruefe(`jede Kachel bekommt ein Foto (${mitFoto} von ${gesamt})`, mitFoto === gesamt)
+for (const id of RUECKFALL)
+  pruefe(
+    `Rückfall „${id}" ist ein angelegtes Motiv`,
+    MOTIVE.some((m) => m.id === id)
+  )
+/* Ein Beitrag, in dem keine Kachel ein Thema hat – mehr Kacheln als Rückfall. */
+const ohneThema = bebildere(
+  Array.from({ length: 6 }, (_, i) => ({ titel: `Meldung ${i}`, text: 'Nichts.' }))
+)
 pruefe(
-  `gut die Hälfte der Kacheln bekommt ein Foto (${mitFoto} von ${gesamt})`,
-  mitFoto >= gesamt * 0.5
+  'ohne Thema: jede Kachel ein Bild, erst alle Rückfälle, dann doppelt',
+  ohneThema.every((b) => b.motiv) &&
+    new Set(ohneThema.slice(0, RUECKFALL.length).map((b) => b.motiv)).size ===
+      RUECKFALL.length,
+  JSON.stringify(ohneThema.map((b) => b.motiv))
+)
+/* Die Kacheln vom 20.10.2026, an denen die Regel entstand. */
+const dienstag = bebildere(
+  JSON.parse(readFileSync('data/instagram/2026-10-20.json', 'utf8')).kacheln
+)
+pruefe(
+  '20.10.: Inflation → Euro, Frankreich → Palais Bourbon',
+  dienstag[0].motiv === 'euro' && dienstag[1].motiv === 'frankreich',
+  JSON.stringify(dienstag.map((b) => b.motiv))
 )
 for (const id of [
   'frankfurt',
@@ -144,7 +163,10 @@ pruefe(
 const ukraine = bebildere([
   { titel: 'Ukraine: Neuer Angriff', text: 'Die US-Regierung …' },
 ])[0]
-pruefe('„Ukraine" bekommt keine New Yorker Skyline', ukraine.motiv === null)
+pruefe(
+  '„Ukraine" bekommt keine Skyline, sondern den Rückfall',
+  RUECKFALL.includes(ukraine.motiv ?? '')
+)
 /* Der Sonntagsbeitrag vom 18.10.2026 – so hätte er aussehen sollen. */
 const sonntag = bebildere([
   {
@@ -159,7 +181,7 @@ const sonntag = bebildere([
 ])
 pruefe('„Trump hebt Sanktionen auf" bekommt Trump', sonntag[0].motiv === 'trump')
 pruefe('„US-Defizit" bekommt das Kapitol', sonntag[1].motiv === 'kapitol')
-pruefe('Trump nur im Text: kein Trump-Bild', sonntag[2].motiv === null)
+pruefe('Trump nur im Text: kein Trump-Bild', sonntag[2].motiv !== 'trump')
 
 /* Der Kurs rechnet aus dem Bestand. */
 const brent = await kachelKurs('brent')
