@@ -82,7 +82,7 @@ Foto auf Wikimedia Commons, das noch nie verwendet wurde (Register
 `data/instagram/bilder.json`); die festen Motive sind nur noch Rückfall,
 und keins vom Vortag.
 
-**Bilder von außen nur gemeinfrei oder CC0** (18.10.2026): Trump, Kapitol und Weißes
+**CC BY und CC BY-SA mit Nennung** (21.10.2026): Unter dem Beitrag steht je Foto Urheber und Lizenz (`bildnachweis()`). NC und ND nie. Zuvor galt: **Bilder von außen nur gemeinfrei oder CC0** (18.10.2026): Trump, Kapitol und Weißes
 Haus sind Werke der US-Regierung (Wikimedia Commons, `herkunft` am Motiv),
 geholt mit `bilder-holen.yml`. Bilder unter CC-BY-SA verlangen eine Nennung
 im Beitrag – die gibt es nicht, also werden sie nicht genommen.

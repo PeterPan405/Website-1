@@ -1,5 +1,6 @@
 import { instagramHeute } from '@/lib/instagram-heute'
 import { beschriftungTagesnews } from '@/lib/instagram-plan'
+import { bildnachweis } from '@/lib/instagram-tagesbilder'
 
 /**
  * Der Text unter dem Instagram-Beitrag, als `/instagram/beschriftung.txt`.
@@ -22,7 +23,7 @@ export function GET() {
   const stand = instagramHeute()
   const text =
     stand?.status === 'tagesnews'
-      ? beschriftungTagesnews(stand.plan)
+      ? beschriftungTagesnews(stand.plan, bildnachweis(stand.datum))
       : `Kein Beitrag. ${stand?.status === 'kein-beitrag' ? stand.grund : 'Es gibt keine Ausgabe.'}`
   return new Response(text, {
     headers: {

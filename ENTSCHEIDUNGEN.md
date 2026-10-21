@@ -5568,6 +5568,25 @@ zur Meldung nicht. Die Begriffe sind deshalb gegenständlich („container
 ship", nicht „trade"), und ein Firmenname zählt nur, wenn er im Dateititel
 steht.
 
+## Nachtrag: Gemeinfrei reicht nicht – 21. Oktober 2026
+
+Derselbe Tag, dreimal gelöscht. Der Morgenlauf fand Stadtplan, Diagramm und
+Eisvogel; die Wahl von Hand dann eine Gedenkflamme für „Soldaten-Einsatz",
+eine Sparkassen-Fassade für „Haushaltsvermögen", ein Ferienwohnzimmer für
+Netflix und ein Rechenzentrum in einer Windparklandschaft für Google. Der
+Betreiber: „Hast du denn überhaupt kein Feingefühl für Ästhetik?"
+
+Der Grund war die Lizenz. Gemeinfreie und CC0-Fotos zu Unternehmen und
+aktueller Politik gibt es kaum; was es gibt, sind Behördenfotos und alte
+Archivaufnahmen. Die Bilder der Tage davor sahen gut aus, weil sie aus den
+eigenen Titelbildern stammten. Seitdem sind auch **CC BY und CC BY-SA**
+erlaubt (Betreiber: „CC BY/BY-SA erlauben"), mit Urheber und Lizenz im
+Beitragstext (`bildnachweis()`). NC und ND bleiben draußen: Der Kanal wirbt,
+und der Zuschnitt ist eine Bearbeitung.
+
+**Eine Regel, die nur die erlaubte Menge verkleinert, macht die Auswahl
+nicht besser – nur ärmer.**
+
 # Meta merkt sich Bilder an der Adresse – 18. Oktober 2026
 
 Der neu gemachte Sonntagsbeitrag ging mit Kacheln hinaus, die es auf der

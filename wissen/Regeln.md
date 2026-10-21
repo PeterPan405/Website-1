@@ -163,7 +163,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
-  (`instagram-bilder.yml`), sonst `RUECKFALL`; nur gemeinfrei/CC0.
+  (`instagram-bilder.yml`), sonst `RUECKFALL`; PD/CC0/BY(-SA), genannt.
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
 - **Meta merkt sich Bilder an der Adresse.** Jede Adresse trägt eine
