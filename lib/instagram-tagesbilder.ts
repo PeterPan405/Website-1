@@ -30,6 +30,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { marketDefinitions } from '@/data/markets'
+import { MOTIVE } from '@/lib/instagram-motive'
 
 export const REGISTER = 'data/instagram/bilder.json'
 export const TAGESBILDER = 'lib/instagram/tagesbilder'
@@ -52,9 +53,25 @@ export function leseRegister(pfad = REGISTER): Register {
   return existsSync(pfad) ? JSON.parse(readFileSync(pfad, 'utf8')) : {}
 }
 
-/** Jede Commons-Datei, die je auf einer Kachel stand. */
+/**
+ * Jede Commons-Datei, die je auf einer Kachel stand – auch die der festen
+ * Motive: Am 21.10.2026 fand der erste Lauf für „Rekord bei
+ * Haushaltsvermögen" genau das Euro-Foto, das am Vortag als Motiv stand.
+ */
 export function verwendeteTitel(register: Register): Set<string> {
-  return new Set(Object.values(register).flatMap((tag) => tag.map((b) => b.titel)))
+  const motive = MOTIVE.flatMap((m) =>
+    m.herkunft ? [titelAusSeite(m.herkunft.seite)] : []
+  )
+  return new Set([
+    ...motive,
+    ...Object.values(register).flatMap((tag) => tag.map((b) => b.titel)),
+  ])
+}
+
+/** „https://commons.wikimedia.org/wiki/File:A_b.jpg" → „File:A b.jpg". */
+export function titelAusSeite(seite: string): string {
+  const name = decodeURIComponent(seite.split('/wiki/')[1] ?? '')
+  return name.replace(/_/g, ' ')
 }
 
 /** Das Tagesbild für eine Stelle, wenn es eins gibt. */
@@ -78,7 +95,7 @@ export const SUCHE: Record<string, string[]> = {
   trump: ['Donald Trump 2025 White House'],
   kapitol: ['United States Capitol'],
   'weisses-haus': ['White House Washington'],
-  frankreich: ['Paris France landmark', 'French flag', 'Palais Bourbon'],
+  frankreich: ['Eiffel Tower', 'Arc de Triomphe', 'Paris Seine', 'French flag'],
   'bank-of-england': ['Bank of England', 'City of London'],
   gericht: ['gavel', 'courtroom', 'Lady Justice statue'],
   luftfahrt: ['airliner takeoff', 'Airbus aircraft', 'airport aircraft apron'],
@@ -178,6 +195,62 @@ export interface Kandidat {
 
 const FREI = /^(Public domain|CC0|PD\b|PDM)/i
 
+/*
+  Was kein Foto zum Thema ist. Am 21.10.2026 fand der erste Lauf einen
+  Stadtplan von Paris, ein Netflix-Diagramm und eine Gruppenaufnahme vor
+  dem Googleplex – alle frei, alle quer, alle falsch.
+*/
+const KEIN_FOTO = new RegExp(
+  '\\b(' +
+    [
+      'map',
+      'karte',
+      'plan',
+      'diagram',
+      'diagramm',
+      'chart',
+      'graph',
+      'grafik',
+      'logo',
+      'poster',
+      'stamp',
+      'briefmarke',
+      'coat of arms',
+      'wappen',
+      'seal',
+      'document',
+      'page',
+      'p\\d+',
+      'scan',
+      'tabloid',
+      'newspaper',
+      'zeitung',
+      'students',
+      'visit',
+      'visiting',
+      'team',
+      'group',
+      'portrait',
+      'meeting',
+      'conference',
+      'screenshot',
+      'cartoon',
+      'caricature',
+      'drawing',
+      'painting',
+      'illustration',
+      'engraving',
+      'lithograph',
+      'postcard',
+      'tittar',
+      'andel',
+      'statistics',
+      'infographic',
+    ].join('|') +
+    ')\\b',
+  'i'
+)
+
 /** Taugt die Datei? – frei, Querformat, groß genug, unbelastet, neu. */
 export function taugt(
   k: Kandidat,
@@ -188,7 +261,8 @@ export function taugt(
   if (!FREI.test(k.lizenz.trim())) return false
   if (k.einschraenkung.trim()) return false
   if (k.breite < 1200 || k.breite / k.hoehe < 1.25) return false
-  if (!/\.(jpe?g|png|tiff?|webp)$/i.test(k.titel)) return false
+  if (!/\.jpe?g$/i.test(k.titel)) return false
+  if (KEIN_FOTO.test(k.titel)) return false
   if (mussEnthalten && !k.titel.toLowerCase().includes(mussEnthalten.toLowerCase()))
     return false
   return true

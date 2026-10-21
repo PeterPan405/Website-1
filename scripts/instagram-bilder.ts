@@ -53,7 +53,19 @@ const ohneHtml = (s = '') =>
     .replace(/\s+/g, ' ')
     .trim()
 
+/*
+  Zuerst unter den ausgezeichneten Fotos von Commons („Quality images"),
+  dann im ganzen Bestand – die ausgezeichneten sind scharf, gut belichtet
+  und fast immer Fotos.
+*/
 async function suche(begriff: string): Promise<Seite[]> {
+  return [
+    ...(await sucheIn(`${begriff} incategory:Quality_images`)),
+    ...(await sucheIn(begriff)),
+  ]
+}
+
+async function sucheIn(begriff: string): Promise<Seite[]> {
   const url = new URL(API)
   for (const [k, v] of Object.entries({
     action: 'query',
