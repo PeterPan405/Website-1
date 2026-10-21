@@ -11,7 +11,9 @@
  *
  * Von Wikimedia Commons, jeden Morgen neu gesucht
  * (`scripts/instagram-bilder.ts`, `.github/workflows/instagram-bilder.yml`).
- * Genommen wird nur, was gemeinfrei oder CC0 ist, im Querformat, groß genug,
+ * Genommen wird nur, was frei ist – gemeinfrei, CC0, und seit dem 21.10.2026
+ * auch CC BY und CC BY-SA mit Nennung im Beitragstext (`bildnachweis()`;
+ * Betreiber: „CC BY/BY-SA erlauben") –, im Querformat, groß genug,
  * ohne Einschränkung (Persönlichkeitsrecht, Marke) – und **was noch nie
  * genommen wurde**: Das Register `data/instagram/bilder.json` hält jede
  * Datei fest, die je auf einer Kachel stand.
@@ -209,7 +211,30 @@ export interface Kandidat {
   einschraenkung: string
 }
 
-const FREI = /^(Public domain|CC0|PD\b|PDM)/i
+/*
+  Frei heißt: gemeinfrei, CC0, CC BY, CC BY-SA. Nicht: NC (nicht kommerziell
+  – der Kanal wirbt für die Website), ND (keine Bearbeitung – der Zuschnitt
+  ist eine), GFDL allein (verlangt den ganzen Lizenztext).
+*/
+const FREI = /^(Public domain|CC0|PD\b|PDM|CC BY(-SA)? \d)/i
+
+/** Braucht die Lizenz eine Nennung? Gemeinfrei und CC0 nicht. */
+export function nennungNoetig(lizenz: string): boolean {
+  return /^CC BY/i.test(lizenz.trim())
+}
+
+/**
+ * Die Nennung unter dem Beitrag – je Foto mit CC-BY-Lizenz Urheber, Quelle
+ * und Lizenz, wie die Lizenz es verlangt. Leer, wenn keins eine braucht.
+ */
+export function bildnachweis(datum: string, register = leseRegister()): string {
+  const noetig = (register[datum] ?? []).filter((b) => nennungNoetig(b.lizenz))
+  if (!noetig.length) return ''
+  return [
+    'Fotos (Wikimedia Commons):',
+    ...noetig.map((b) => `Seite ${b.stelle}: ${b.urheber.slice(0, 60)}, ${b.lizenz}`),
+  ].join('\n')
+}
 
 /*
   Was kein Foto zum Thema ist. Am 21.10.2026 fand der erste Lauf einen

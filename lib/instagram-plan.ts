@@ -288,7 +288,7 @@ export function tagesstand(datum: string, rohtext: string | null): Tagesstand {
  * Die Schlagworte hängen am letzten Satz des Rechtshinweises, durch ein
  * Leerzeichen getrennt – so stehen sie in allen Beiträgen seit August.
  */
-export function beschriftungTagesnews(plan: InstagramPlan): string {
+export function beschriftungTagesnews(plan: InstagramPlan, nachweis = ''): string {
   return [
     KOPF,
     '',
@@ -296,6 +296,8 @@ export function beschriftungTagesnews(plan: InstagramPlan): string {
     '',
     UEBERBLICK,
     '',
+    /* Seit 21.10.2026: Fotos unter CC BY/BY-SA verlangen Urheber und Lizenz. */
+    ...(nachweis ? [nachweis, ''] : []),
     `${RECHTSHINWEIS} ${plan.schlagworte.map((w) => `#${w}`).join(' ')}`,
   ].join('\n')
 }

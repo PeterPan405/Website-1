@@ -14,6 +14,7 @@ import {
   suchenFuer,
   TAGESBILDER,
   taugt,
+  bildnachweis,
   titelAusSeite,
   verwendeteTitel,
 } from '@/lib/instagram-tagesbilder'
@@ -43,7 +44,43 @@ const leer = new Set<string>()
 pruefe('frei, quer, groß, neu: taugt', taugt(gut, leer))
 pruefe('CC0 taugt', taugt({ ...gut, lizenz: 'CC0' }, leer))
 pruefe('schon verwendet: taugt nicht', !taugt(gut, new Set([gut.titel])))
-pruefe('CC BY-SA: taugt nicht', !taugt({ ...gut, lizenz: 'CC BY-SA 4.0' }, leer))
+pruefe('CC BY-SA mit Nennung: taugt', taugt({ ...gut, lizenz: 'CC BY-SA 4.0' }, leer))
+pruefe('CC BY: taugt', taugt({ ...gut, lizenz: 'CC BY 2.0' }, leer))
+pruefe(
+  'nicht kommerziell: taugt nicht',
+  !taugt({ ...gut, lizenz: 'CC BY-NC-SA 2.0' }, leer)
+)
+pruefe('keine Bearbeitung: taugt nicht', !taugt({ ...gut, lizenz: 'CC BY-ND 4.0' }, leer))
+pruefe('GFDL allein: taugt nicht', !taugt({ ...gut, lizenz: 'GFDL' }, leer))
+const nachweis = bildnachweis('2099-01-01', {
+  '2099-01-01': [
+    {
+      stelle: 2,
+      datei: 'a.jpg',
+      titel: 'File:A.jpg',
+      seite: '',
+      lizenz: 'CC0',
+      urheber: 'X',
+      suche: '',
+    },
+    {
+      stelle: 3,
+      datei: 'b.jpg',
+      titel: 'File:B.jpg',
+      seite: '',
+      lizenz: 'CC BY-SA 4.0',
+      urheber: 'Anna Muster',
+      suche: '',
+    },
+  ],
+})
+pruefe(
+  'Nennung nur für CC BY/BY-SA, mit Urheber und Lizenz',
+  nachweis.includes('Seite 3: Anna Muster, CC BY-SA 4.0') &&
+    !nachweis.includes('Seite 2'),
+  nachweis
+)
+pruefe('ohne Nennungspflicht keine Zeile', bildnachweis('2099-01-02', {}) === '')
 pruefe(
   'Persönlichkeitsrecht: taugt nicht',
   !taugt({ ...gut, einschraenkung: 'personality' }, leer)
@@ -145,7 +182,7 @@ for (const [tag, bilder] of Object.entries(register))
     )
     pruefe(
       `${tag}, Kachel ${b.stelle}: frei`,
-      /^(Public domain|CC0|PD|PDM)/i.test(b.lizenz),
+      /^(Public domain|CC0|PD|PDM|CC BY(-SA)? \d)/i.test(b.lizenz),
       b.lizenz
     )
   }
