@@ -1,0 +1,87 @@
+name: Instagram-Bilder auswählen
+
+# Bilder für die Tagesnews von Hand wählen – wenn der Morgenlauf
+# (`instagram-bilder.yml`) nichts Gutes gefunden hat. Erst Kandidaten auf den
+# wurzellosen Zweig `bilder-kandidaten`, dann die Wahl auf `main`. Gründe in
+# `scripts/instagram-bilder-auswahl.ts`.
+#
+# Die Wahl stößt keinen Bau an – das geschieht von Hand, nachdem die Kacheln
+# gerendert angesehen sind.
+
+on:
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: 'kandidaten = suchen und zeigen, wahl = eintragen'
+        type: choice
+        options: [kandidaten, wahl]
+        default: kandidaten
+      datum:
+        description: 'Tag (JJJJ-MM-TT), leer = heute in Berlin'
+        required: false
+        type: string
+      eingabe:
+        description: 'Je Eintrag „Stelle|Suchbegriff" bzw. „Stelle|File:…", getrennt mit ;'
+        required: true
+        type: string
+
+concurrency:
+  group: instagram-bilder
+  cancel-in-progress: false
+
+jobs:
+  auswahl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Ausführen
+        env:
+          MODUS: ${{ inputs.modus }}
+          DATUM: ${{ inputs.datum }}
+          EINGABE: ${{ inputs.eingabe }}
+        run: |
+          [ -n "$DATUM" ] || unset DATUM
+          node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/instagram-bilder-auswahl.ts
+
+      - name: Kandidaten auf den Zweig
+        if: inputs.modus == 'kandidaten'
+        run: |
+          inhalt=$(mktemp -d)
+          cp -r kandidaten/. "$inhalt"/
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan bilder-kandidaten
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -r "$inhalt"/. .
+          git add .
+          git commit -m "Bildkandidaten $(date -u +%F)"
+          git push --force origin bilder-kandidaten
+
+      - name: Wahl eintragen
+        if: inputs.modus == 'wahl'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/instagram/bilder.json lib/instagram/tagesbilder
+          git commit -m "Instagram: Tagesbilder von Hand gewählt" || { echo "Nichts Neues."; exit 0; }
+          for versuch in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((versuch * 5))
+          done
+          echo "::error::Die Wahl ließ sich nicht eintragen."
+          exit 1
