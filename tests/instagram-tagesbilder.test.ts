@@ -81,6 +81,17 @@ pruefe(
   !taugt({ ...gut, titel: 'File:Euro coins and banknotes.jpg' }, verwendeteTitel({}))
 )
 pruefe(
+  'Handschlag mit Geldscheinen: sieht aus wie Bestechung',
+  !taugt(
+    {
+      ...gut,
+      titel:
+        'File:10 - hands shaking with euro bank notes inside handshake - public domain photo image 01.JPG',
+    },
+    leer
+  )
+)
+pruefe(
   'PNG taugt nicht – Fotos sind JPEG',
   !taugt({ ...gut, titel: 'File:Hafen.png' }, leer)
 )

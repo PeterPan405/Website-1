@@ -33,6 +33,10 @@ on:
         description: 'Steht der Tag schon im Register: trotzdem neue Bilder suchen'
         type: boolean
         default: false
+      nur:
+        description: 'Mit „neu": nur diese Stellen neu, z. B. „4" oder „3,5" (2 = erste Meldung)'
+        required: false
+        type: string
 
 concurrency:
   group: instagram-bilder
@@ -75,6 +79,7 @@ jobs:
         env:
           DATUM: ${{ steps.tag.outputs.tag }}
           NEU: ${{ inputs.neu && '1' || '0' }}
+          NUR: ${{ inputs.nur }}
         run: node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/instagram-bilder.ts
 
       # Ein Push, der scheitert, ist rot – sonst stünde im Register etwas

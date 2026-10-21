@@ -103,13 +103,21 @@ if (register[DATUM] && process.env.NEU !== '1') {
   process.exit(0)
 }
 const verwendet = verwendeteTitel(register)
-/* Ein zweiter Lauf am selben Tag ersetzt die Bilder – mit anderen, denn die ersten bleiben verbraucht. */
-const heute: Tagesbild[] = []
+/*
+  Ein zweiter Lauf am selben Tag ersetzt die Bilder – mit anderen, denn die
+  ersten bleiben verbraucht. Mit NUR=4,6 nur diese Stellen; die übrigen
+  bleiben, wie sie sind (21.10.2026: vier passten, eins nicht).
+*/
+const nur = (process.env.NUR ?? '').split(',').map(Number).filter(Boolean)
+const heute: Tagesbild[] = nur.length
+  ? (register[DATUM] ?? []).filter((b) => !nur.includes(b.stelle))
+  : []
 mkdirSync(TAGESBILDER, { recursive: true })
 
 const themen = bebildere(plan.kacheln)
 for (const [i, kachel] of plan.kacheln.entries()) {
   const stelle = i + 2
+  if (nur.length && !nur.includes(stelle)) continue
   let gefunden = false
   for (const s of suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse')) {
     let seiten: Seite[]
