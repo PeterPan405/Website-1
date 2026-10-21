@@ -130,7 +130,7 @@ for (const [i, kachel] of plan.kacheln.entries()) {
         lizenz: ohneHtml(meta.LicenseShortName?.value),
         einschraenkung: ohneHtml(meta.Restrictions?.value),
       }
-      if (!taugt(kandidat, verwendet, s.mussEnthalten)) continue
+      if (!taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter)) continue
       const roh = await fetch(info.thumburl ?? info.url, {
         headers: { 'User-Agent': UA },
       })

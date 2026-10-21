@@ -167,6 +167,20 @@ export interface Suche {
   begriff: string
   /** Nur Dateien, deren Titel dieses Wort trägt – bei Firmennamen. */
   mussEnthalten?: string
+  /**
+   * Nur Dateien, deren Titel eins dieser Wörter trägt. Am 21.10.2026 fand
+   * „Japan container ship" unter den ausgezeichneten Fotos einen Eisvogel –
+   * die Suche trifft auch Beschreibung und Kategorien, der Titel nicht.
+   */
+  stichwoerter?: string[]
+}
+
+/** Die tragenden Wörter eines Suchbegriffs – ab vier Buchstaben. */
+function stichwoerterVon(begriff: string): string[] {
+  return begriff
+    .split(/[\s.]+/)
+    .map((w) => w.toLowerCase())
+    .filter((w) => w.length >= 4)
 }
 
 /** Die Suchen für eine Kachel, die genaueste zuerst. */
@@ -179,8 +193,10 @@ export function suchenFuer(titel: string, motiv: string): Suche[] {
   }
   const land = LAENDER.find(([muster]) => muster.test(titel))?.[1]
   const begriffe = SUCHE[motiv] ?? SUCHE.boerse
-  if (land) for (const b of begriffe) liste.push({ begriff: `${land} ${b}` })
-  for (const b of begriffe) liste.push({ begriff: b })
+  if (land)
+    for (const b of begriffe)
+      liste.push({ begriff: `${land} ${b}`, stichwoerter: stichwoerterVon(b) })
+  for (const b of begriffe) liste.push({ begriff: b, stichwoerter: stichwoerterVon(b) })
   return liste
 }
 
@@ -251,13 +267,37 @@ const KEIN_FOTO = new RegExp(
   'i'
 )
 
+/**
+ * Der Kern eines Dateititels – ohne Klammerzusatz, Endung und Zählnummer.
+ * „Euro coins and banknotes (cropped).jpg" und „Euro coins and
+ * banknotes.jpg" sind dasselbe Foto (21.10.2026).
+ */
+export function kern(titel: string): string {
+  return titel
+    .toLowerCase()
+    .replace(/^file:/, '')
+    .replace(/\.[a-z]+$/, '')
+    .replace(/\([^)]*\)/g, '')
+    .replace(/[\s_-]*\d+$/, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+}
+
 /** Taugt die Datei? – frei, Querformat, groß genug, unbelastet, neu. */
 export function taugt(
   k: Kandidat,
   verwendet: Set<string>,
-  mussEnthalten?: string
+  mussEnthalten?: string,
+  stichwoerter?: string[]
 ): boolean {
   if (verwendet.has(k.titel)) return false
+  const kerne = new Set([...verwendet].map(kern))
+  if (kerne.has(kern(k.titel))) return false
+  if (
+    stichwoerter?.length &&
+    !stichwoerter.some((w) => k.titel.toLowerCase().includes(w))
+  )
+    return false
   if (!FREI.test(k.lizenz.trim())) return false
   if (k.einschraenkung.trim()) return false
   if (k.breite < 1200 || k.breite / k.hoehe < 1.25) return false
