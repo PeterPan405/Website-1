@@ -44,6 +44,8 @@
  * US-Inflation –, sähe aus wie ein Zusammenhang, den die Meldung nicht
  * behauptet.
  */
+import { existsSync, readFileSync } from 'node:fs'
+
 import { marketDefinitions } from '@/data/markets'
 
 export interface Motiv {
@@ -590,10 +592,12 @@ export function deckblattMotiv(
  */
 export function bebildere(
   kacheln: { titel: string; text: string }[],
-  /** Schon vergeben, etwa ans Deckblatt. */
-  ohne: string | null = null
+  /** Schon vergeben, etwa ans Deckblatt oder am Vortag. */
+  ohne: string | null | (string | null | undefined)[] = null
 ): Bebilderung[] {
-  const vergeben = new Set<string>(ohne ? [ohne] : [])
+  const vergeben = new Set<string>(
+    (Array.isArray(ohne) ? ohne : [ohne]).filter((x): x is string => !!x)
+  )
   return kacheln.map(({ titel, text }) => {
     let motiv: string
     const frei = MOTIVE.filter((x) => !vergeben.has(x.id))
@@ -603,4 +607,21 @@ export function bebildere(
     vergeben.add(motiv)
     return { motiv, kurs: kursZurKachel(titel) }
   })
+}
+
+/**
+ * Die Motive, die am Vortag in den Kacheln standen – sie kommen heute nicht
+ * noch einmal (Betreiber, 21.10.2026). Nur für Kacheln ohne Tagesbild.
+ */
+export function motiveVomVortag(datum: string): string[] {
+  const vortag = new Date(`${datum}T12:00:00Z`)
+  vortag.setUTCDate(vortag.getUTCDate() - 1)
+  const pfad = `data/instagram/${vortag.toISOString().slice(0, 10)}.json`
+  if (!existsSync(pfad)) return []
+  const plan = JSON.parse(readFileSync(pfad, 'utf8')) as {
+    kacheln: { titel: string; text: string }[]
+  }
+  return bebildere(plan.kacheln)
+    .map((b) => b.motiv)
+    .filter((m): m is string => !!m)
 }

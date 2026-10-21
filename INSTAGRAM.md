@@ -76,6 +76,12 @@ Kachel kein Motiv zu ihrem Thema, nimmt sie das erste freie aus `RUECKFALL`
 (Börsenparkett, Euro-Geld, Tresor, Einkaufswagen). Neu dazu: Frankreich
 (Palais Bourbon), Bank of England, Gericht, Smartphone.
 
+**Jeden Tag neue Bilder** (21.10.2026). Der Betreiber: „Es soll immer neue
+Bilder geben." `instagram-bilder.yml` sucht jeden Morgen für jede Kachel ein
+Foto auf Wikimedia Commons, das noch nie verwendet wurde (Register
+`data/instagram/bilder.json`); die festen Motive sind nur noch Rückfall,
+und keins vom Vortag.
+
 **Bilder von außen nur gemeinfrei oder CC0** (18.10.2026): Trump, Kapitol und Weißes
 Haus sind Werke der US-Regierung (Wikimedia Commons, `herkunft` am Motiv),
 geholt mit `bilder-holen.yml`. Bilder unter CC-BY-SA verlangen eine Nennung

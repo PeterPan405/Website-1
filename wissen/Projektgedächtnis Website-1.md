@@ -15,11 +15,12 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**35 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**36 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-10-21** – [[Jeden Tag neue Bilder]]
 - **2026-10-20** – [[Es findet sich immer etwas]]
 - **2026-10-18** – [[Lieber kein Bild als eine Skyline, lieber drei Meldungen als Wiederholungen]]
 - **2026-10-18** – [[Meta merkt sich Bilder an der Adresse]]
