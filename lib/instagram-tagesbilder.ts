@@ -105,7 +105,7 @@ export const SUCHE: Record<string, string[]> = {
   hafen: ['container ship', 'container terminal port', 'harbour cranes containers'],
   industrie: ['factory assembly line', 'car factory production', 'industrial plant'],
   wohnen: ['apartment buildings', 'residential houses street', 'house construction site'],
-  euro: ['euro coins', 'euro banknotes', 'coins money'],
+  euro: ['piggy bank', 'euro coins', 'coins money', 'euro banknotes'],
   konsum: ['supermarket', 'shopping cart', 'shopping street'],
   tresor: ['bank vault', 'gold bars', 'safe deposit boxes'],
   boerse: [
@@ -262,6 +262,13 @@ const KEIN_FOTO = new RegExp(
       'andel',
       'statistics',
       'infographic',
+      'handshake',
+      'hands shaking',
+      'bribe',
+      'bribery',
+      'corruption',
+      'crime',
+      'bandit',
     ].join('|') +
     ')\\b',
   'i'
