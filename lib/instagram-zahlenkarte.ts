@@ -1094,7 +1094,7 @@ function ranglistenGrafik(k: Rangkarte) {
   if (k.skala === 'kacheln') return kachelGrafik(k)
   const mitBalken = k.skala === 'balken'
   const akzent = akzentfarbe(k.datum)
-  const groesster = Math.max(...k.zeilen.map((z) => z.wert))
+  const groesster = Math.max(...k.zeilen.map((z) => z.wert), 0)
   const kleinster = Math.min(...k.zeilen.map((z) => z.wert), 0)
   const hundert = RL_BALKEN_X + (RL_BALKEN * 100) / groesster
   const nulllinie = RL_BALKEN_X + (RL_BALKEN * -kleinster) / (groesster - kleinster)

@@ -421,6 +421,43 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Öl: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 22.10.2026 – die Verlierer 2026, nur Minus. */
+{
+  const verlierer = zahlenkarten.find((k) => k.datum === '2026-10-22') as Rangkarte
+  /* Yahoo Finance, letzter Schluss 2025 → 20.10.2026. */
+  const kurse: Record<string, [number, number]> = {
+    Stellantis: [10.89, 4.33],
+    HelloFresh: [6.16, 2.94],
+    Nike: [63.71, 37.88],
+    LVMH: [645.0, 386.75],
+    BMW: [93.14, 57.64],
+    Volkswagen: [103.55, 69.66],
+    Rheinmetall: [1561.0, 1054.0],
+    Netflix: [93.76, 68.69],
+  }
+  for (const z of verlierer.zeilen) {
+    const [von, bis] = kurse[z.name]
+    const gerechnet = Math.round((bis / von - 1) * 1000) / 10
+    pruefe(`${z.name}: ${z.wert} % = gerechnet ${gerechnet} %`, z.wert === gerechnet)
+    pruefe(
+      `${z.name}: der Wert steht im Text`,
+      verlierer.text.includes(`${zahl1(Math.abs(z.wert))} %`)
+    )
+  }
+  pruefe(
+    'nur Verlierer',
+    verlierer.zeilen.every((z) => z.wert < 0)
+  )
+  pruefe(
+    'die Karte hält die Form ein',
+    pruefeZahlenkarte(verlierer).length === 0,
+    pruefeZahlenkarte(verlierer).join(' | ')
+  )
+  pruefe('Navy am 22.10.', akzentfarbe('2026-10-22') === '#17296F')
+  const png = await zahlenkartePng(verlierer, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
 /* Die Karte vom 21.10.2026 – Inflation 2025, Kacheln. */
 {
   const inflation = zahlenkarten.find((k) => k.datum === '2026-10-21') as Rangkarte

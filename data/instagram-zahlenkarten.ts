@@ -16,6 +16,54 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 21.10.2026: „ja Verlierer, aber nur
+      Verlierer". Anlass: Netflix-Zahlen und Gehalts-Aus bei VW (Ausgaben vom
+      20. und 21.10.). Form: Balken, nur Minus (am Vortag Kacheln). Farbe:
+      Navy (akzentfarbe('2026-10-22')).
+
+      Zahlen: Yahoo Finance, Tagesschlusskurse, abgerufen am 21.10.2026 über
+      quellen-holen.yml; Kursbestand der Website stimmt überein.
+      Letzter Schluss 2025 → 20.10.2026, jeweils in Handelswährung:
+        Stellantis (STLA)   10,89 →   4,33 $   −60,24 %
+        HelloFresh (HFG.DE)  6,16 →   2,94 €   −52,29 % (Jahresschluss 30.12.)
+        Nike (NKE)          63,71 →  37,88 $   −40,54 %
+        LVMH (MC.PA)       645,00 → 386,75 €   −40,04 %
+        BMW (BMW.DE)        93,14 →  57,64 €   −38,11 %
+        Volkswagen (VOW3)  103,55 →  69,66 €   −32,73 %
+        Rheinmetall (RHM)  1561,0 → 1054,0 €   −32,48 %
+        Netflix (NFLX)      93,76 →  68,69 $   −26,74 %
+      Lululemon (−51,91 %) weggelassen: kanadisches Unternehmen, keine Flagge.
+    */
+    art: 'rangliste',
+    skala: 'balken',
+    datum: '2026-10-22',
+    titel: [
+      { text: 'Die Verlierer 2026:' },
+      { text: 'Stellantis −60\u00a0%', gruen: true },
+    ],
+    unterzeile: 'Kursverlust seit Jahresbeginn, in Prozent:',
+    zeilen: [
+      { name: 'Netflix', wert: -26.7, land: 'USA' },
+      { name: 'Rheinmetall', wert: -32.5, land: 'DEU' },
+      { name: 'Volkswagen', wert: -32.7, land: 'DEU' },
+      { name: 'BMW', wert: -38.1, land: 'DEU' },
+      { name: 'LVMH', wert: -40.0, land: 'FRA' },
+      { name: 'Nike', wert: -40.5, land: 'USA' },
+      { name: 'HelloFresh', wert: -52.3, land: 'DEU' },
+      { name: 'Stellantis', wert: -60.2, land: 'NLD', hervor: true },
+    ],
+    fusszeile:
+      'Stand: Schlusskurse 20.10.2026 | Quelle: Yahoo Finance | in Handelswährung',
+    text:
+      'Stellantis hat seit Jahresbeginn 60,2 % an Wert verloren – die Aktie fiel von 10,89 auf 4,33 Dollar. 📉\n\n' +
+      'Dahinter HelloFresh (−52,3 %), Nike (−40,5 %), LVMH (−40,0 %) und BMW (−38,1 %). ' +
+      'Volkswagen liegt 32,7 % im Minus, Rheinmetall 32,5 %. Netflix verlor 26,7 %.\n\n' +
+      'Gerechnet vom letzten Schlusskurs 2025 bis zum 20.10.2026, jeweils in Handelswährung.\n' +
+      'Quelle: Yahoo Finance (Schlusskurse)',
+    schlagworte: ['aktien', 'börse', 'verlierer', 'investieren', 'dax'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 20.10.2026: „thema 4" – Inflation 2025,
       Anlass: Bundesbank-Monatsbericht (Handelsblatt, 19.10.2026, in
       data/editions/2026-10-20.ts). Form: Kacheln (am Vortag Balken).
