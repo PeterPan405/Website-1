@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Frankreich rüstet sich mit Soldaten gegen neue Proteste, Japans Exporte schwächeln, deutsche Haushalte sind so vermögend wie nie, Netflix fällt trotz Gewinnsprung, und ein Google-Ausfall legt Banken lahm.",
+  "kacheln": [
+    {
+      "titel": "Frankreich: Soldaten-Einsatz",
+      "text": "Frankreichs Innenminister kündigt für das Wochenende Soldaten gegen neue Proteste an. An der Wettplattform Kalshi steigen die Kurse auf einen Sieg von Marine Le Pen 2027."
+    },
+    {
+      "titel": "Japans Exporte schwächeln",
+      "text": "Japans Exporte wuchsen im September nur um 16,7 Prozent, die Importe um 18,9 Prozent. Beide Werte blieben unter den Erwartungen der Ökonomen."
+    },
+    {
+      "titel": "Rekord bei Haushaltsvermögen",
+      "text": "Das Geldvermögen deutscher Haushalte stieg auf 9.831 Milliarden Euro. Laut Bundesbank stammte der Großteil des Zuwachses aus Kursgewinnen, nicht aus neuem Sparen."
+    },
+    {
+      "titel": "Netflix-Aktie fällt",
+      "text": "Netflix verdiente im dritten Quartal mehr als erwartet. Wegen eines schwachen Ausblicks beim Werbegeschäft fiel die Aktie trotzdem."
+    },
+    {
+      "titel": "Google-Ausfall trifft Banken",
+      "text": "Ein Ausfall bei Google legte am Dienstag Bank-Apps von ING und Revolut lahm. Kunden kamen laut Handelsblatt stundenlang nicht an ihre Konten."
+    }
+  ],
+  "schlagworte": ["frankreich", "netflix", "google", "börse", "aktien"]
+}

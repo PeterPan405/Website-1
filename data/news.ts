@@ -101,6 +101,283 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'frankreich-soldaten-gegen-proteste-le-pen-wetten',
+    title: 'Frankreichs Regierung schickt Soldaten gegen neue Proteste',
+    teaser:
+      'Innenminister Nuñez kündigt Soldaten für das Wochenende an. An der Wettplattform Kalshi steigen zugleich die Kurse auf einen Sieg von Marine Le Pen 2027.',
+    category: 'Märkte',
+    publishedAt: '2026-10-21T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Frankreich', 'Politik', 'Proteste', 'Wahlen'],
+    relatedTopics: ['staatsanleihe'],
+    relatedSymbols: ['cac-40', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'CNBC, 20.10.2026, 17:01 Uhr MESZ: „France to deploy military as it braces for fresh unrest this weekend“',
+        url: 'https://www.cnbc.com/2026/10/20/france-protests-curfews-macron-gulf-trip.html',
+      },
+      {
+        label:
+          "CNBC, 20.10.2026, 09:19 Uhr MESZ: „What's making Europe so angry? The frustration behind the protests“",
+        url: 'https://www.cnbc.com/2026/10/20/france-protests-europe-cost-living-violence.html',
+      },
+      {
+        label:
+          'CNBC, 20.10.2026, 22:34 Uhr MESZ: „Prediction-market odds rise for Marine Le Pen in France 2027 presidential race as protests roil nation“',
+        url: 'https://www.cnbc.com/2026/10/20/marine-le-pen-france-2027-election-odds-kalshi.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 20.10.2026, 15:38 Uhr MESZ: „BörsenTag: Europas Aktienperlen trotzen Frankreichs Krise“',
+        url: 'https://www.wiwo.de/finanzen/boerse/boersentag-europas-aktienperlen-trotzen-frankreichs-krise/100263493.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die französische Regierung bereitet sich auf neue Proteste vor. Innenminister Laurent Nuñez kündigte für den kommenden Samstag den Einsatz von Soldaten der Eingreiftruppe Sentinelle an, berichtet CNBC. Zuvor war es in Frankreich und mehreren anderen europäischen Ländern zu Protesten gegen hohe Lebenshaltungskosten, schlechte Schulbedingungen und die Wohnungskrise gekommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Proteste in mehreren Ländern Europas',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC gingen die Proteste über Frankreich hinaus: Auch in anderen europäischen Staaten gab es Kundgebungen aus ähnlichen Gründen. Die Nachrichtenagentur ordnet die Unruhen als Ausdruck wachsenden Unmuts über die Lebenshaltungskosten ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wettmärkte sehen Le Pen im Aufwind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu beobachtete CNBC steigende Kurse für einen Sieg von Marine Le Pen bei der Präsidentschaftswahl 2027 auf der Wettplattform Kalshi. Solche Plattformen lassen Nutzer gegen echtes Geld auf den Ausgang politischer Ereignisse wetten. Sie sind keine repräsentative Umfrage, sondern bilden ab, worauf Marktteilnehmer aktuell Geld setzen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Wettquoten gegen eine amtierende Regierung sind kein Beleg für einen künftigen Wahlausgang. Sie zeigen aber, wie Finanzmarktteilnehmer politisches Risiko in Echtzeit einpreisen – ähnlich wie es sonst steigende Risikoaufschläge auf Staatsanleihen tun.',
+      },
+    ],
+  },
+  {
+    slug: 'japan-exporte-verfehlen-erwartungen-september',
+    title: 'Japans Exporte verfehlen im September deutlich die Erwartungen',
+    teaser:
+      'Japans Ausfuhren wuchsen im September nur um 16,7 Prozent, die Einfuhren verfehlten ebenfalls die Prognose – ein Zeichen für nachlassenden Außenhandel.',
+    category: 'Märkte',
+    publishedAt: '2026-10-21T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Japan', 'Außenhandel', 'Konjunktur', 'Yen'],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['nikkei-225', 'eur-jpy'],
+    sources: [
+      {
+        label:
+          'CNBC, 21.10.2026, 02:12 Uhr MESZ: „Japan exports post huge miss in September as growth slows to 16.7%“',
+        url: 'https://www.cnbc.com/2026/10/21/japan-trade-exports-semiconductor-yen.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Japans Exportwirtschaft hat im September an Tempo verloren. Die Ausfuhren legten im Jahresvergleich nur um 16,7 Prozent zu und blieben damit laut CNBC deutlich hinter den Erwartungen zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch die Einfuhren verfehlen die Prognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die japanischen Importe wuchsen im selben Zeitraum um 18,9 Prozent. Das lag unter den 19,6 Prozent, die von Reuters befragte Ökonomen laut CNBC im Schnitt erwartet hatten. Im Vormonat war das Importwachstum noch bei 28 Prozent gelegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine außenhandelsabhängige Volkswirtschaft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Japans Wirtschaft hängt traditionell stark vom Außenhandel ab, insbesondere von Elektronik- und Halbleiterausfuhren sowie von der Entwicklung des Yen-Kurses. Schwächere Außenhandelsdaten gelten deshalb als ein Signal, das die japanische Notenbank bei ihren geldpolitischen Entscheidungen im Blick behält.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Monatszahl ist noch kein Trend. Verfehlen Exporte und Importe aber gleichzeitig die Prognosen, ist das ein Hinweis darauf, dass die Nachfrage sowohl im In- als auch im Ausland nachlässt – ein Punkt, den auch die Bank of Japan beobachten dürfte.',
+      },
+    ],
+  },
+  {
+    slug: 'geldvermoegen-deutscher-haushalte-rekord-bundesbank',
+    title: 'Geldvermögen deutscher Haushalte steigt auf einen neuen Höchststand',
+    metaTitle: 'Deutsche Haushalte: Geldvermögen auf neuem Höchststand',
+    teaser:
+      'Das Geldvermögen privater Haushalte erreichte im zweiten Quartal 9.831 Milliarden Euro, der Großteil kam laut Bundesbank aus Kursgewinnen, nicht aus Sparen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-21T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bundesbank', 'Geldvermögen', 'Sparen', 'Deutschland'],
+    relatedTopics: ['budget-und-sparquote', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung vom 20.10.2026: „Geldvermögensbildung und Außenfinanzierung in Deutschland im zweiten Quartal 2026“',
+        url: 'https://www.bundesbank.de/de/presse/pressemitteilungen/geldvermoegensbildung-und-aussenfinanzierung-in-deutschland-im-zweiten-quartal-2026-1012260',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das Geldvermögen der privaten Haushalte in Deutschland hat einen neuen Höchststand erreicht. Es stieg im zweiten Quartal 2026 auf 9.831 Milliarden Euro, wie die Deutsche Bundesbank mitteilte – 335 Milliarden Euro mehr als im Quartal zuvor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Großteil ist Kursgewinn, nicht neues Geld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Bundesbank gingen 258 der 335 Milliarden Euro auf positive Bewertungseffekte an den Finanzmärkten zurück. Nur ein kleinerer Teil des Zuwachses stammte damit aus tatsächlich neu gesparten oder angelegten Mitteln.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erholung nach einem unsicheren ersten Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bundesbank begründet den Anstieg mit einer deutlichen Erholung der Finanzmärkte im zweiten Quartal, nachdem es im ersten Quartal 2026 noch Unsicherheiten gegeben hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigt ein Vermögen vor allem durch Kursgewinne, handelt es sich zunächst um einen Wert auf dem Papier. Er wächst und schrumpft mit den Kursen an den Finanzmärkten – anders als Geld, das tatsächlich zur Seite gelegt wurde.',
+      },
+    ],
+  },
+  {
+    slug: 'netflix-gewinn-schlaegt-erwartungen-aktie-faellt',
+    title: 'Netflix übertrifft die Gewinnerwartungen, die Aktie fällt trotzdem',
+    metaTitle: 'Netflix: Gewinn schlägt Prognose, Aktie fällt trotzdem',
+    teaser:
+      'Netflix hat im dritten Quartal mehr verdient als erwartet. Weil der Ausblick für Werbegeschäft und Umsatz schwächer ausfiel, gab die Aktie trotzdem nach.',
+    category: 'Märkte',
+    publishedAt: '2026-10-21T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Netflix', 'Quartalszahlen', 'Streaming', 'Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['netflix', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 21.10.2026, 00:29 Uhr MESZ: „Netflix posts third-quarter earnings beat, but shares fall on advertising and revenue guidance“',
+        url: 'https://www.cnbc.com/2026/10/20/netflix-nflx-earnings-q3-2026.html',
+      },
+      {
+        label:
+          "CNBC, 20.10.2026, 20:10 Uhr MESZ: „Traders are betting Netflix's stock drama may be coming to an end“",
+        url: 'https://www.cnbc.com/2026/10/20/traders-are-betting-netflixs-stock-drama-may-be-coming-to-an-end.html',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 20.10.2026, 21:10 Uhr, dpa-AFX: „Netflix wächst langsamer - Aktie fällt“',
+        url: 'https://www.onvista.de/news/2026/10-20-netflix-waechst-langsamer-aktie-faellt-0-10-26566325',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Netflix hat im dritten Quartal mehr verdient als von Analysten erwartet. Trotzdem fiel die Aktie nach Vorlage der Zahlen am Dienstag, wie dpa-AFX und CNBC übereinstimmend berichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ausblick belastet, nicht das abgelaufene Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grund für den Kursrückgang war laut CNBC der Ausblick: Netflix stellte für das Werbegeschäft und den Umsatz einen schwächeren Verlauf in Aussicht. Das Streaming-Geschäft wachse zudem langsamer als zuvor, meldet dpa-AFX.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Optionsmarkt erwartete ungewöhnlich große Bewegung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Optionshändler hatten im Vorfeld der Zahlen einen Kurssprung von rund 9 Prozent eingepreist. Das war laut CNBC der höchste Wert seit dem dritten Quartal 2022, als der Markt eine Bewegung von 11 Prozent erwartet hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gewinn über den Erwartungen ist kein verlässlicher Hinweis auf die Kursrichtung danach. Für den weiteren Kursverlauf zählt vor allem, welche Entwicklung ein Unternehmen für die kommenden Monate in Aussicht stellt – nicht nur, wie das bereits abgelaufene Quartal ausfiel.',
+      },
+    ],
+  },
+  {
+    slug: 'google-ausfall-ing-revolut-online-banking-stoerung',
+    title: 'Google-Ausfall legt Online-Banking von ING und Revolut lahm',
+    teaser:
+      'Ein technischer Ausfall bei Google hat am Dienstag Bank-Apps und weitere Dienste gestört. Kunden von ING und Revolut kamen stundenlang nicht an ihre Konten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-21T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Google', 'Online-Banking', 'ING', 'Revolut'],
+    relatedTopics: ['depot-und-broker'],
+    relatedSymbols: ['alphabet'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 20.10.2026, 15:14 Uhr MESZ: „Digitalbanken: Massive Störungen im Online-Banking von ING und Revolut – Auch britische Banken betroffen“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-massive-stoerungen-im-online-banking-von-ing-und-revolut/100263510.html',
+      },
+      {
+        label:
+          'Handelsblatt, 20.10.2026, 13:54 Uhr MESZ: „Onlinebanking: Großausfall bei Google führt zu Störungen bei Revolut und ING“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/onlinebanking-grossausfall-bei-google-fuehrt-zu-stoerungen-bei-revolut-und-ing/100263580.html',
+      },
+      {
+        label:
+          'FAZ, 20.10.2026, 15:00 Uhr MESZ: „ING und Revolut: IT-Störungen nerven Bankkunden“',
+        url: 'https://www.faz.net/aktuell/finanzen/google-cloud-ausfall-trifft-revolut-und-ing-in-europa-accg-201605159.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ausfall bei Google hat am Dienstag das Online-Banking mehrerer Institute gestört. Kunden von ING und Revolut konnten laut Handelsblatt stundenlang nicht auf ihre Konten zugreifen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Betroffen waren auch andere britische Institute',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben Revolut und ING waren laut Handelsblatt weitere britische Banken betroffen. Die Ausfälle beschränkten sich nicht auf Bank-Apps: Auch Webseiten und Unternehmensdienste kämpften mit Störungen, berichten Handelsblatt und FAZ übereinstimmend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ursache blieb zunächst unklar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Google arbeitete nach eigenen Angaben an einer Behebung des Problems. Ursache und genaues Ausmaß des Ausfalls waren zum Zeitpunkt der Berichterstattung noch offen, so Handelsblatt und FAZ.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Viele Banken und Unternehmen verlassen sich für ihre digitale Infrastruktur auf wenige große Cloud-Anbieter wie Google, Amazon oder Microsoft. Fällt einer dieser Anbieter aus, kann das gleichzeitig viele voneinander unabhängige Dienste treffen – ein Risiko, das mit der Größe des jeweiligen Anbieters wächst.',
+      },
+    ],
+  },
+  {
     slug: 'bundesbank-inflation-bleibt-bis-2027-erhoeht',
     title: 'Bundesbank erwartet noch bis 2027 hohe Inflation',
     teaser:
