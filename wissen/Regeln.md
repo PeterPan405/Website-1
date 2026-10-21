@@ -164,13 +164,14 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
   (`instagram-bilder.yml`), sonst `RUECKFALL`; PD/CC0/BY(-SA), genannt.
+  **Bildsprache wie Trade Republic/HKCM:** Marke, Logo, Ort erkennbar –
+  kein Behelfsbild; sonst erst zeigen (`halt.txt`).
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
-- **Meta merkt sich Bilder an der Adresse.** Jede Adresse trägt eine
-  Inhaltskennung (`?v=`) – ohne sie gingen Kacheln von gestern hinaus.
-- **Der Agenten-Prompt hat 21.000 Bytes, nicht Zeichen.** Darüber
-  verwirft GitHub `nachrichten-agent.yml` ganz („No jobs were run"); der
-  Test misst es. Neue Regeln dort kurz.
+- **Meta merkt sich Bilder an der Adresse** – jede trägt `?v=`, sonst
+  gingen Kacheln von gestern hinaus.
+- **Agenten-Prompt: höchstens 21.000 Bytes**, nicht Zeichen – sonst
+  „No jobs were run"; der Test misst es.
 - **Jede Kachel vor dem Hochladen gerendert ansehen.**
 
 → `ENTSCHEIDUNGEN.md`: [[Jeden Tag neue Bilder]], [[Meta merkt sich Bilder an der Adresse]], [[Der Prompt zählt in Bytes]]

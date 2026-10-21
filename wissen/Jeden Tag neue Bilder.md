@@ -56,3 +56,16 @@ und der Zuschnitt ist eine Bearbeitung.
 
 **Eine Regel, die nur die erlaubte Menge verkleinert, macht die Auswahl
 nicht besser – nur ärmer.**
+
+Der Maßstab für die Bildsprache, ebenfalls vom Betreiber an diesem Tag:
+„Orientiere dich an anderen Nachrichtenagenturen, zum Beispiel Trade
+Republic … auch von der HKCM. Das ist ästhetisch seriös und sieht gut aus."
+Heißt: Bei einem Unternehmen die Marke – Logo, Schild, Schriftzug –, bei
+einem Land ein erkennbarer Ort oder die Lage selbst (Soldaten auf Streife,
+nicht eine Gedenkflamme), bei Geld ein sauberes Sachfoto. Kein
+Ferienwohnzimmer, keine Fassade, die nur zufällig zur Branche gehört. Die
+Morgensuche fragt deshalb bei Firmen zuerst nach „logo" und „sign".
+
+Und: „Bevor du es jetzt wieder hochlädst, erst mal hier die Designs
+reinschicken." Dafür gibt es `data/instagram/halt.txt` – steht der Tag dort,
+geht die Tagesnews erst nach dem OK hinaus.

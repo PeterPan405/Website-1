@@ -82,6 +82,12 @@ Foto auf Wikimedia Commons, das noch nie verwendet wurde (Register
 `data/instagram/bilder.json`); die festen Motive sind nur noch Rückfall,
 und keins vom Vortag.
 
+**Bildsprache wie Trade Republic und HKCM** (21.10.2026): seriös und klar –
+bei Unternehmen Logo, Schild oder Schriftzug, bei Ländern ein erkennbarer
+Ort oder die Lage selbst, bei Geld ein sauberes Sachfoto. Kein Behelfsbild.
+Im Zweifel erst zeigen: Ein Tag in `data/instagram/halt.txt` hält die
+Tagesnews bis zum OK des Betreibers an.
+
 **CC BY und CC BY-SA mit Nennung** (21.10.2026): Unter dem Beitrag steht je Foto Urheber und Lizenz (`bildnachweis()`). NC und ND nie. Zuvor galt: **Bilder von außen nur gemeinfrei oder CC0** (18.10.2026): Trump, Kapitol und Weißes
 Haus sind Werke der US-Regierung (Wikimedia Commons, `herkunft` am Motiv),
 geholt mit `bilder-holen.yml`. Bilder unter CC-BY-SA verlangen eine Nennung
