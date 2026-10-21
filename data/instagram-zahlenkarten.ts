@@ -37,6 +37,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-22',
+    /* Freigegeben vom Betreiber am 21.10.2026: „passt" – hinaus am 22.10. ab 15 Uhr. */
+    freigabe: '2026-10-22',
     titel: [
       { text: 'Die Verlierer 2026:' },
       { text: 'Stellantis −60\u00a0%', gruen: true },
