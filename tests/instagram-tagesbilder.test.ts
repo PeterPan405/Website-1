@@ -68,6 +68,19 @@ for (const falsch of [
     !taugt({ ...gut, titel: falsch }, leer)
   )
 pruefe(
+  'Eisvogel für „Japan container ship": kein Stichwort im Titel',
+  !taugt(
+    { ...gut, titel: 'File:Common kingfisher in Japan, January 2019.jpg' },
+    leer,
+    undefined,
+    ['container', 'ship']
+  )
+)
+pruefe(
+  'dasselbe Foto unbeschnitten: verwendet',
+  !taugt({ ...gut, titel: 'File:Euro coins and banknotes.jpg' }, verwendeteTitel({}))
+)
+pruefe(
   'PNG taugt nicht – Fotos sind JPEG',
   !taugt({ ...gut, titel: 'File:Hafen.png' }, leer)
 )
