@@ -29,6 +29,10 @@ on:
         description: 'Danach den Bau anstoßen (und damit den Beitrag) – aus, um die Bilder erst anzusehen'
         type: boolean
         default: true
+      neu:
+        description: 'Steht der Tag schon im Register: trotzdem neue Bilder suchen'
+        type: boolean
+        default: false
 
 concurrency:
   group: instagram-bilder
@@ -70,6 +74,7 @@ jobs:
         if: steps.tag.outputs.plan == 'ja'
         env:
           DATUM: ${{ steps.tag.outputs.tag }}
+          NEU: ${{ inputs.neu && '1' || '0' }}
         run: node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/instagram-bilder.ts
 
       # Ein Push, der scheitert, ist rot – sonst stünde im Register etwas

@@ -79,6 +79,17 @@ const plan = JSON.parse(readFileSync(`data/instagram/${DATUM}.json`, 'utf8')) as
   kacheln: { titel: string; text: string }[]
 }
 const register = leseRegister()
+/*
+  Steht der Tag schon im Register, bleibt er – ein zweiter Anstoß aus dem
+  Bau ersetzte sonst Bilder, die schon geprüft oder veröffentlicht sind.
+  Neu gesucht wird nur mit NEU=1.
+*/
+if (register[DATUM] && process.env.NEU !== '1') {
+  console.log(
+    `Für ${DATUM} stehen schon Tagesbilder im Register – nichts zu tun (NEU=1 sucht neu).`
+  )
+  process.exit(0)
+}
 const verwendet = verwendeteTitel(register)
 /* Ein zweiter Lauf am selben Tag ersetzt die Bilder – mit anderen, denn die ersten bleiben verbraucht. */
 const heute: Tagesbild[] = []
