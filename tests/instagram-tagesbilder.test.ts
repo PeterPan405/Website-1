@@ -14,6 +14,8 @@ import {
   suchenFuer,
   TAGESBILDER,
   taugt,
+  titelAusSeite,
+  verwendeteTitel,
 } from '@/lib/instagram-tagesbilder'
 
 let failed = 0
@@ -53,6 +55,31 @@ pruefe(
   'Firmenname fehlt im Titel: taugt nicht',
   !taugt(gut, leer, 'Netflix') &&
     taugt({ ...gut, titel: 'File:Netflix HQ.jpg' }, leer, 'Netflix')
+)
+
+/* Der erste Lauf vom 21.10.2026 – vier von fünf Treffern waren keine Fotos zum Thema. */
+for (const falsch of [
+  'File:Guilmin map of Paris, France, Monuments - Geographicus - Paris-Guilmin.jpg',
+  'File:Tittar på Netflix 2015–2019.jpg',
+  'File:Outstanding Students for the World visiting the Googleplex, Tabloid Diplomasi 50 2012, p13.jpg',
+])
+  pruefe(
+    `kein Foto zum Thema: ${falsch.slice(5, 50)}…`,
+    !taugt({ ...gut, titel: falsch }, leer)
+  )
+pruefe(
+  'PNG taugt nicht – Fotos sind JPEG',
+  !taugt({ ...gut, titel: 'File:Hafen.png' }, leer)
+)
+pruefe(
+  'die festen Motive zählen als verwendet',
+  verwendeteTitel({}).has('File:Euro coins and banknotes (cropped).jpg')
+)
+pruefe(
+  'Fundstelle → Titel',
+  titelAusSeite(
+    'https://commons.wikimedia.org/wiki/File:Palais_Bourbon,_Paris_7e,_NW_View_140402_1.jpg'
+  ) === 'File:Palais Bourbon, Paris 7e, NW View 140402 1.jpg'
 )
 
 /* Die Suchen an den Kacheln vom 21.10.2026, an denen die Regel entstand. */
