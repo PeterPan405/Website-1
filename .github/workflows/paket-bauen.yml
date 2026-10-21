@@ -1077,6 +1077,20 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Erst die Tagesbilder (21.10.2026, „es soll immer neue Bilder
+          # geben"): Steht der Plan für heute, aber noch kein Eintrag im
+          # Register, sucht `instagram-bilder.yml` sie – und stößt danach
+          # diesen Bau wieder an, der dann den Beitrag anstößt.
+          tag=$(TZ=Europe/Berlin date +%F)
+          if [ -f "data/instagram/$tag.json" ] \
+             && ! jq -e --arg t "$tag" 'has($t)' data/instagram/bilder.json >/dev/null 2>&1; then
+            if gh workflow run instagram-bilder.yml --repo "${{ github.repository }}" --ref main \
+                 -f datum="$tag"; then
+              echo "Erst die Tagesbilder für $tag – der Beitrag folgt nach dem nächsten Bau."
+              exit 0
+            fi
+            echo "::warning::Die Bildersuche ließ sich nicht anstoßen – der Beitrag geht mit den festen Motiven."
+          fi
           if gh workflow run instagram-beitrag.yml \
                --repo "${{ github.repository }}" --ref main \
                -f veroeffentlichen=true; then

@@ -162,8 +162,8 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
   und 18.10.). Sonntag: nur Samstag und Sonntag; So/Mo 3–5 Kacheln.
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
-- **Jede Kachel ein Bild, nie ein falsches:** ohne Thema der Rückfall
-  (`RUECKFALL`); keine Skylines; nur gemeinfrei/CC0 (`bilder-holen.yml`).
+- **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
+  (`instagram-bilder.yml`), sonst `RUECKFALL`; nur gemeinfrei/CC0.
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
 - **Meta merkt sich Bilder an der Adresse.** Jede Adresse trägt eine
@@ -173,7 +173,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
   Test misst es. Neue Regeln dort kurz.
 - **Jede Kachel vor dem Hochladen gerendert ansehen.**
 
-→ `ENTSCHEIDUNGEN.md`: [[Es findet sich immer etwas]], [[Meta merkt sich Bilder an der Adresse]], [[Der Prompt zählt in Bytes]]
+→ `ENTSCHEIDUNGEN.md`: [[Jeden Tag neue Bilder]], [[Meta merkt sich Bilder an der Adresse]], [[Der Prompt zählt in Bytes]]
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
@@ -186,7 +186,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 | 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                     |
 | **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen, senden → live ab ~03:20 |
 | **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**               |
-| **↳ ~03:20**  | 01:20 | `paket-bauen.yml` **stößt den Instagram-Beitrag an**       |
+| **↳ ~03:20**  | 01:20 | `paket-bauen.yml` → Tagesbilder → **Instagram-Beitrag**    |
 | **~04:00**    | 02:00 | **die Folge ist online**                                   |
 | 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine          |
 | 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine     |

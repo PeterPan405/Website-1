@@ -1,0 +1,99 @@
+name: Instagram-Bilder
+
+# Sucht jeden Morgen für jede Kachel der Tagesnews ein neues Foto auf
+# Wikimedia Commons – gemeinfrei oder CC0, noch nie verwendet. Gründe in
+# `lib/instagram-tagesbilder.ts`.
+#
+# Betreiber, 21.10.2026: „Es soll immer neue Bilder geben. Es gibt ja genug
+# Bilder auf der Welt."
+#
+# ## Wo er in der Kette hängt
+#
+# Zwischen Paketbau und Instagram-Beitrag: `paket-bauen.yml` stößt diesen
+# Lauf an, solange für heute keine Tagesbilder eingetragen sind, und erst
+# danach den Beitrag. Dieser Lauf trägt die Bilder auf `main` ein und stößt
+# den Bau selbst an (ein Commit vom Bot löst nichts aus) – der zweite Bau
+# findet das Register und stößt den Beitrag an.
+#
+# Findet er für eine Kachel nichts, bleibt dort das feste Motiv. Er trägt
+# den Tag trotzdem ein, sonst drehte die Kette sich im Kreis.
+
+on:
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: 'Tag (JJJJ-MM-TT), leer = heute in Berlin'
+        required: false
+        type: string
+      anstossen:
+        description: 'Danach den Bau anstoßen (und damit den Beitrag) – aus, um die Bilder erst anzusehen'
+        type: boolean
+        default: true
+
+concurrency:
+  group: instagram-bilder
+  cancel-in-progress: false
+
+jobs:
+  suchen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tag bestimmen
+        id: tag
+        run: |
+          tag="${{ inputs.datum }}"
+          [ -n "$tag" ] || tag=$(TZ=Europe/Berlin date +%F)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if [ ! -f "data/instagram/$tag.json" ]; then
+            echo "::warning::Für $tag gibt es keinen Instagram-Plan – nichts zu suchen."
+            echo "plan=nein" >> "$GITHUB_OUTPUT"
+          else
+            echo "plan=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bilder suchen
+        if: steps.tag.outputs.plan == 'ja'
+        env:
+          DATUM: ${{ steps.tag.outputs.tag }}
+        run: node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/instagram-bilder.ts
+
+      # Ein Push, der scheitert, ist rot – sonst stünde im Register etwas
+      # anderes als auf der Website.
+      - name: Eintragen und Bau anstoßen
+        if: steps.tag.outputs.plan == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/instagram/bilder.json lib/instagram/tagesbilder
+          git commit -m "Instagram: Tagesbilder für ${{ steps.tag.outputs.tag }}" || { echo "Nichts Neues."; exit 0; }
+          for versuch in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              if [ "${{ inputs.anstossen }}" != "false" ]; then
+                gh workflow run paket-bauen.yml --repo "${{ github.repository }}" --ref main -f paket=false
+              else
+                echo "Eingetragen, Bau nicht angestoßen – erst ansehen."
+              fi
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((versuch * 5))
+          done
+          echo "::error::Die Tagesbilder ließen sich nicht eintragen."
+          exit 1

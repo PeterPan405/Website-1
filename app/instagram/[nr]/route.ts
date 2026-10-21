@@ -5,7 +5,8 @@ import {
   motivJpeg,
 } from '@/lib/instagram-bild'
 import { kachelKurs } from '@/lib/instagram-kurs'
-import { bebildere, deckblattMotiv } from '@/lib/instagram-motive'
+import { bebildere, deckblattMotiv, motiveVomVortag } from '@/lib/instagram-motive'
+import { tagesbild } from '@/lib/instagram-tagesbilder'
 import { instagramHeute } from '@/lib/instagram-heute'
 
 /**
@@ -78,9 +79,18 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
       Auswahl läuft über alle Kacheln, damit kein Motiv zweimal kommt – siehe
       `lib/instagram-motive.ts`.
     */
-    const bild = bebildere(plan!.kacheln, thema?.id ?? null)[stelle - 2]
+    const bild = bebildere(plan!.kacheln, [thema?.id, ...motiveVomVortag(stand.datum)])[
+      stelle - 2
+    ]
+    /*
+      Zuerst das Tagesbild (21.10.2026, „es soll immer neue Bilder geben"),
+      gesucht am Morgen von `instagram-bilder.yml`. Nur wo keins gefunden
+      wurde, das feste Motiv – und keins vom Vortag.
+    */
+    const foto =
+      tagesbild(stand.datum, stelle) ?? (bild.motiv ? motivJpeg(bild.motiv) : null)
     const png = await meldungskachel(kachel.titel, kachel.text, {
-      foto: bild.motiv ? motivJpeg(bild.motiv) : null,
+      foto,
       kurs: bild.kurs ? await kachelKurs(bild.kurs, kachel, stand.datum) : null,
     })
     const { default: sharp } = await import('sharp')
