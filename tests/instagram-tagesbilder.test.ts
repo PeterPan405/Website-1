@@ -129,6 +129,17 @@ pruefe(
   )
 )
 pruefe(
+  'Ferienwohnzimmer für Netflix (21.10.): taugt nicht',
+  !taugt(
+    {
+      ...gut,
+      titel:
+        'File:This room has a flat screen TV with Roku and a DVD player. The couch can convert to a bed.jpg',
+    },
+    leer
+  )
+)
+pruefe(
   'PNG taugt nicht – Fotos sind JPEG',
   !taugt({ ...gut, titel: 'File:Hafen.png' }, leer)
 )
@@ -152,8 +163,8 @@ pruefe(
 )
 const netflix = suchenFuer('Netflix-Aktie fällt', 'boerse')
 pruefe(
-  'Netflix: zuerst der Name, nur mit dem Namen im Titel',
-  netflix[0]?.mussEnthalten === 'Netflix',
+  'Netflix: zuerst das Logo, nur mit dem Namen im Titel',
+  netflix[0]?.begriff === 'Netflix logo' && netflix[0]?.mussEnthalten === 'Netflix',
   JSON.stringify(netflix[0])
 )
 const google = suchenFuer('Google-Ausfall trifft Banken', 'smartphone')

@@ -189,9 +189,15 @@ function stichwoerterVon(begriff: string): string[] {
 export function suchenFuer(titel: string, motiv: string): Suche[] {
   const liste: Suche[] = []
   const firma = unternehmenIn(titel)
+  /*
+    Bildsprache wie Trade Republic und HKCM (Betreiber, 21.10.2026): bei
+    einem Unternehmen zuerst die Marke – Logo, Schild, Schriftzug am
+    Gebäude –, dann der Firmensitz. Am 21.10. trugen „Netflix 2018" (Logo
+    auf dem Telefon) und „GoogleTorontoOffice4" (Schriftzug) die Kacheln.
+  */
   if (firma) {
-    liste.push({ begriff: `${firma} headquarters`, mussEnthalten: firma })
-    liste.push({ begriff: firma, mussEnthalten: firma })
+    for (const b of [`${firma} logo`, `${firma} sign`, `${firma} headquarters`, firma])
+      liste.push({ begriff: b, mussEnthalten: firma })
   }
   const land = LAENDER.find(([muster]) => muster.test(titel))?.[1]
   const begriffe = SUCHE[motiv] ?? SUCHE.boerse
@@ -287,6 +293,10 @@ const KEIN_FOTO = new RegExp(
       'andel',
       'statistics',
       'infographic',
+      'bedroom',
+      'couch',
+      'hotel room',
+      'apartment interior',
       'handshake',
       'hands shaking',
       'bribe',
