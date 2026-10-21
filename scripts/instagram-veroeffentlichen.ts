@@ -259,6 +259,24 @@ if (!beschriftung) {
     'Unter /instagram/beschriftung.txt liegt nichts – ohne Text geht kein Beitrag hinaus.'
   )
 }
+/*
+  Der Halt (21.10.2026): Nach dreimal gelöschten Beiträgen der Betreiber –
+  „bevor du es jetzt wieder hochlädst, erst mal hier die Designs
+  reinschicken". Steht der heutige Tag in data/instagram/halt.txt, geht die
+  Tagesnews erst nach seinem OK hinaus; dann wird der Tag dort gestrichen.
+  Gelesen aus dem Checkout von main – der Lauf holt ihn frisch.
+*/
+const HALT = 'data/instagram/halt.txt'
+if (
+  existsSync(HALT) &&
+  readFileSync(HALT, 'utf8')
+    .split('\n')
+    .some((z) => z.trim() === STICHTAG)
+) {
+  haltAn(
+    `Der ${STICHTAG} steht in ${HALT}: Die Kacheln warten auf das OK des Betreibers.`
+  )
+}
 melde(`Die Website zeigt den ${STICHTAG}, Tagesbeitrag liegt bereit.`)
 
 /*
