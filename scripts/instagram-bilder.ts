@@ -13,12 +13,15 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import sharp from 'sharp'
-
-import { BILDZONE } from '@/lib/instagram-bild'
+import {
+  kandidatVon,
+  type Seite,
+  suche,
+  urheberVon,
+  zuschnitt,
+} from '@/lib/commons-suche'
 import { bebildere } from '@/lib/instagram-motive'
 import {
-  type Kandidat,
   type Tagesbild,
   leseRegister,
   REGISTER,
@@ -31,62 +34,6 @@ import {
 const DATUM =
   process.env.DATUM ??
   new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date())
-const UA = 'IM-Invests-Bildersuche/1.0 (https://iminvests.de)'
-const API = 'https://commons.wikimedia.org/w/api.php'
-
-interface Seite {
-  title: string
-  index?: number
-  imageinfo?: {
-    thumburl?: string
-    url: string
-    descriptionurl: string
-    width: number
-    height: number
-    extmetadata?: Record<string, { value?: string }>
-  }[]
-}
-
-const ohneHtml = (s = '') =>
-  s
-    .replace(/<[^>]*>/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-
-/*
-  Zuerst unter den ausgezeichneten Fotos von Commons („Quality images"),
-  dann im ganzen Bestand – die ausgezeichneten sind scharf, gut belichtet
-  und fast immer Fotos.
-*/
-async function suche(begriff: string): Promise<Seite[]> {
-  return [
-    ...(await sucheIn(`${begriff} incategory:Quality_images`)),
-    ...(await sucheIn(begriff)),
-  ]
-}
-
-async function sucheIn(begriff: string): Promise<Seite[]> {
-  const url = new URL(API)
-  for (const [k, v] of Object.entries({
-    action: 'query',
-    format: 'json',
-    generator: 'search',
-    gsrnamespace: '6',
-    gsrsearch: `${begriff} filetype:bitmap`,
-    gsrlimit: '50',
-    prop: 'imageinfo',
-    iiprop: 'url|size|extmetadata',
-    iiurlwidth: '1600',
-  }))
-    url.searchParams.set(k, v)
-  const antwort = await fetch(url, { headers: { 'User-Agent': UA } })
-  if (!antwort.ok) throw new Error(`Commons ${antwort.status} für „${begriff}"`)
-  const daten = (await antwort.json()) as { query?: { pages?: Record<string, Seite> } }
-  return Object.values(daten.query?.pages ?? {}).sort(
-    (a, b) => (a.index ?? 0) - (b.index ?? 0)
-  )
-}
-
 const plan = JSON.parse(readFileSync(`data/instagram/${DATUM}.json`, 'utf8')) as {
   kacheln: { titel: string; text: string }[]
 }
@@ -128,34 +75,20 @@ for (const [i, kachel] of plan.kacheln.entries()) {
       continue
     }
     for (const seite of seiten) {
-      const info = seite.imageinfo?.[0]
-      if (!info) continue
-      const meta = info.extmetadata ?? {}
-      const kandidat: Kandidat = {
-        titel: seite.title,
-        breite: info.width,
-        hoehe: info.height,
-        lizenz: ohneHtml(meta.LicenseShortName?.value),
-        einschraenkung: ohneHtml(meta.Restrictions?.value),
-      }
-      if (!taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter)) continue
-      const roh = await fetch(info.thumburl ?? info.url, {
-        headers: { 'User-Agent': UA },
-      })
-      if (!roh.ok) continue
+      const kandidat = kandidatVon(seite)
+      if (!kandidat || !taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter))
+        continue
+      const jpeg = await zuschnitt(seite)
+      if (!jpeg) continue
       const datei = `${DATUM}-${stelle}.jpg`
-      const jpeg = await sharp(Buffer.from(await roh.arrayBuffer()))
-        .resize(BILDZONE.breite, 560, { fit: 'cover', position: 'attention' })
-        .jpeg({ quality: 82, mozjpeg: true })
-        .toBuffer()
       writeFileSync(join(TAGESBILDER, datei), jpeg)
       heute.push({
         stelle,
         datei,
         titel: seite.title,
-        seite: info.descriptionurl,
+        seite: seite.imageinfo![0].descriptionurl,
         lizenz: kandidat.lizenz,
-        urheber: ohneHtml(meta.Artist?.value) || 'unbekannt',
+        urheber: urheberVon(seite),
         suche: s.begriff,
       })
       verwendet.add(seite.title)
