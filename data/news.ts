@@ -101,6 +101,282 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'grossbritannien-inflation-zinserhoehung-erwartet',
+    title: 'Großbritanniens Inflation steigt, Zinserhöhung rückt näher',
+    teaser:
+      'Großbritanniens Inflation stieg im September überraschend auf 3,5 Prozent. Eine Zinserhöhung der Bank of England gilt nun als nahezu sicher.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-22T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Großbritannien', 'Inflation', 'Bank of England', 'Leitzins'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['ftse-100', 'eur-gbp'],
+    sources: [
+      {
+        label:
+          'ONS (Office for National Statistics), Statistical bulletin „Consumer price inflation, UK: September 2026“, veröffentlicht am 21.10.2026',
+        url: 'https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/september2026',
+      },
+      {
+        label:
+          'FAZ, Finanzmarkt, Philip Plickert, Meldung vom 21.10.2026, 15:08 Uhr: „3,5 Prozent Teuerung: England nähert sich einem Zinsanstieg“',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/inflation-in-grossbritannien-bank-of-england-vor-mehreren-zinsschritten-201608676.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Großbritanniens Inflation ist im September auf 3,5 Prozent gestiegen, teilte das Statistikamt ONS am Mittwoch mit. Im August hatte die Rate noch bei 3,1 Prozent gelegen. Haupttreiber waren laut ONS höhere Kraftstoffpreise, während günstigere Restaurant- und Hotelpreise die Rate etwas dämpften. Die um Energie, Nahrungsmittel, Alkohol und Tabak bereinigte Kernrate kletterte von 2,6 auf 2,8 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt rechnet jetzt mit höheren Zinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach der Veröffentlichung hielten Investoren und Analysten eine Erhöhung des Leitzinses der Bank of England von 3,75 auf 4,0 Prozent für nahezu unausweichlich, berichtete die FAZ. Die nächste Sitzung der Notenbank unter Gouverneur Andrew Bailey findet Anfang November statt. Sanjay Raja, Chefvolkswirt der Deutschen Bank in London, rechnet mit einem weiteren Anstieg der Inflationsrate auf vier Prozent zum Jahreswechsel und mit zwei Zinserhöhungen in den kommenden Monaten. Am Anleihemarkt sind laut FAZ sogar bis zu vier Zinsschritte binnen eines Jahres eingepreist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Pfund profitiert, der Finanzminister nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aussicht auf höhere Zinsen stützte das britische Pfund, das zum Euro mit 1,193 den höchsten Stand seit siebzehn Monaten erreichte. Für den britischen Schatzkanzler John Healey bedeuten steigende Zinsen dagegen höhere Kosten: Die Rendite zehnjähriger britischer Staatsanleihen liegt laut FAZ bei gut 5,4 Prozent, und ein Viertel der Staatspapiere ist an die Inflation gekoppelt. Healey muss am 28. Oktober sein erstes Budget vorlegen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Notenbanken stehen bei steigender Inflation vor einem Zielkonflikt. Höhere Zinsen dämpfen die Preise, verteuern aber zugleich Kredite für Verbraucher, Unternehmen und den Staat selbst – ein Zusammenhang, der sich hier direkt an den Finanzierungskosten der britischen Regierung zeigt.',
+      },
+    ],
+  },
+  {
+    slug: 'frankreich-anleiherendite-fuenf-prozent',
+    title: 'Frankreich: Anleiherendite springt auf fünf Prozent',
+    teaser:
+      'Die Rendite zehnjähriger französischer Staatsanleihen stieg auf fünf Prozent. Grund ist der Streit um Sparpläne von 43 Milliarden Euro.',
+    category: 'Märkte',
+    publishedAt: '2026-10-22T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Frankreich', 'Staatsanleihen', 'Renditen', 'Haushaltsstreit'],
+    relatedTopics: ['staatsanleihe', 'schulden-und-kredit'],
+    relatedSymbols: ['cac-40'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Märkte/Anleihen, Meldung vom 21.10.2026, 13:39 Uhr: „Staatsanleihen: Erstmals seit 2002: Frankreichs Zehn-Jahres-Rendite erreicht fünf Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/anleihen/staatsanleihen-erstmals-seit-2002-frankreichs-rendite-erreicht-fuenf-prozent/100263898.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Börse, dpa-AFX, Meldung vom 21.10.2026, 13:52 Uhr: „Staatsanleihen: Rendite französischer Staatsanleihen steigt auf über fünf Prozent“',
+        url: 'https://www.wiwo.de/finanzen/boerse/franzoesische-staatsanleihen-rendite-steigt-auf-ueber-fuenf-prozent/100263359.html',
+      },
+      {
+        label:
+          'FAZ, Finanzmarkt, Philip Plickert, Meldung vom 21.10.2026, 15:08 Uhr: „3,5 Prozent Teuerung: England nähert sich einem Zinsanstieg“ (nennt Frankreichs Rendite von 5,0 Prozent zum Vergleich)',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/inflation-in-grossbritannien-bank-of-england-vor-mehreren-zinsschritten-201608676.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger französischer Staatsanleihen ist am Mittwoch im Tageshoch auf fünf Prozent gestiegen, berichteten Handelsblatt und WirtschaftsWoche übereinstimmend. Das ist der höchste Stand seit 2002. Im Juli hatte die Rendite noch bei 3,6 Prozent gelegen, Ende August lag sie bereits über vier Prozent. Allein in der vergangenen Woche kletterte sie um weitere 25 Basispunkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Haushaltsstreit treibt die Investoren weg',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser ist laut Handelsblatt das wachsende Misstrauen der Investoren gegenüber Frankreichs Staatsfinanzen. Premierminister Sébastien Lecornu will den Haushalt 2027 mit Einsparungen von 43 Milliarden Euro durchs Parlament bringen, hat dafür aber noch keine Mehrheit. Frankreichs Schuldenquote dürfte 2026 auf knapp 120 Prozent der Wirtschaftsleistung steigen – doppelt so hoch wie die Maastricht-Obergrenze von 60 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch London zahlt mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankreich steht mit dem Problem nicht allein: Die britische Regierung zahlt für zehnjährige Anleihen laut FAZ sogar gut 5,4 Prozent, getrieben von der eigenen Inflation. Für den Dax spielte die Entwicklung am Mittwoch zunächst eine untergeordnete Rolle, wie tagesschau.de berichtete – die Sorgen um Frankreich traten hinter der Hoffnung auf eine gute Berichtssaison zurück.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Anleiherenditen bedeuten sinkende Anleihekurse. Über die Abzinsung künftiger Gewinne wirken höhere Renditen zudem auf die Bewertung von Aktien – ein Kanal, über den sich Sorgen um Staatsschulden auch an der Börse bemerkbar machen können.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-spacex-fusion-quartalszahlen',
+    title: 'Tesla übertrifft Erwartungen, Fusion mit SpaceX rückt näher',
+    teaser:
+      'Tesla meldete mehr Umsatz als erwartet, der Gewinn brach aber ein. Zugleich rückt eine Fusion mit SpaceX näher.',
+    category: 'Märkte',
+    publishedAt: '2026-10-22T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tesla', 'SpaceX', 'Elon Musk', 'Fusion', 'Quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, Meldung vom 21.10.2026, 23:32 Uhr (MESZ): „Tesla beats on earnings and sales even as auto revenue declines“',
+        url: 'https://www.cnbc.com/2026/10/21/tesla-tsla-q3-2026-earnings-report.html',
+      },
+      {
+        label:
+          'tagesschau.de, Wirtschaft/Unternehmen, Meldung vom 21.10.2026, 09:11 Uhr: „Tesla und SpaceX prüfen Zusammenschluss – noch mehr Macht für Musk?“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/tesla-spacex-zusammenschluss-moeglich-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, Technologie, Thomas Jahn, Meldung vom 21.10.2026, 16:28 Uhr: „USA: Fusion von SpaceX und Tesla rückt näher – JP Morgan verdoppelt Kursziel“',
+        url: 'https://www.handelsblatt.com/technik/it-internet/usa-fusion-von-spacex-und-tesla-rueckt-naeher-jp-morgan-verdoppelt-kursziel/100263828.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Tesla hat am Mittwoch nach US-Börsenschluss Quartalszahlen vorgelegt, die die Erwartungen der Analysten übertrafen. Der Umsatz lag bei 28,05 Milliarden Dollar, der bereinigte Gewinn je Aktie bei 48 Cent – beides mehr als von Analysten laut CNBC im Schnitt erwartet. Das Automobilgeschäft schrumpfte dennoch: Die Erlöse mit Fahrzeugen sanken um 3 Prozent auf 20,56 Milliarden Dollar, weil Tesla im Schnitt niedrigere Verkaufspreise erzielte und Probleme bei der Batterieversorgung hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Gewinn brach trotz des Umsatzplus ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter dem Strich sank der Tesla-Gewinn um 29 Prozent auf 787 Millionen Dollar, wie das Unternehmen mitteilte. Grund waren laut CNBC deutlich höhere Investitionen in die humanoiden Optimus-Roboter und andere KI-Vorhaben: Die Investitionsausgaben verdoppelten sich auf 3,73 Milliarden Dollar, der freie Cashflow brach um 62 Prozent ein. Die Aktie gab im nachbörslichen Handel trotz des Umsatzplus mehr als 3 Prozent ab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zugleich rückt die größte Fusion der Wirtschaftsgeschichte näher',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Tag zuvor hatte Tesla-Chef Elon Musk bei der Telefonkonferenz zu den SpaceX-Zahlen gesagt, eine Kombination beider Firmen habe „vieles für sich“, wie tagesschau.de berichtete. Beide Unternehmen haben dafür eigene Sonderausschüsse gebildet, denen Musk wegen des Interessenkonflikts selbst nicht angehört. Zusammen wären Tesla und SpaceX nach Handelsblatt-Angaben rund 3,5 Billionen Dollar wert und damit das fünftgrößte Unternehmen der Welt nach Börsenwert – größer als Amazon, etwas kleiner als Microsoft. Musk selbst dämpfte die Erwartungen: Es sei „übertrieben“, von einer sicheren Fusion zu sprechen, zudem brauche es die Zustimmung von mindestens der Hälfte der Tesla-Aktionäre.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Kurs reagierte stärker auf den eingebrochenen Gewinn als auf den übertroffenen Umsatz. Das zeigt, dass der Markt oft weniger auf den reinen Vergleich mit Analystenschätzungen schaut als auf die Richtung einzelner Kennziffern – hier auf die Profitabilität.',
+      },
+    ],
+  },
+  {
+    slug: 'sap-prognose-cloud-quartal',
+    title: 'SAP hebt nach starkem Cloud-Quartal den Ausblick an',
+    teaser:
+      'SAP gewann im dritten Quartal mehr Cloud-Kunden als erwartet und erzielte erstmals über 10 Milliarden Euro Umsatz in einem Quartal.',
+    category: 'Märkte',
+    publishedAt: '2026-10-22T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['SAP', 'Cloud', 'Quartalszahlen', 'Software'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sap', 'dax'],
+    sources: [
+      {
+        label:
+          'onvista, Unternehmensnachrichten, dpa-AFX, Meldung vom 21.10.2026, 22:24 Uhr: „ROUNDUP 2: SAP erwartet mit starkem Cloudbestand etwas mehr – Aktie steigt“',
+        url: 'https://www.onvista.de/news/2026/10-21-roundup-2-sap-erwartet-mit-starkem-cloudbestand-etwas-mehr-aktie-steigt-0-10-26566960',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensnachrichten, Meldung vom 21.10.2026: „Cloud-Wachstum sprengt alle Erwartungen: So stark sind die SAP-Zahlen“',
+        url: 'https://www.wallstreet-online.de/nachricht/21561515-prognose-angehoben-cloud-wachstum-sprengt-erwartungen-stark-sap-zahlen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'SAP hat im dritten Quartal mehr Cloud-Verträge abgeschlossen als von Analysten erwartet, teilte der Softwarekonzern am Mittwochabend mit. Der Gesamtumsatz stieg um 13 Prozent auf 10,3 Milliarden Euro – das erste Quartal in der Firmengeschichte mit mehr als 10 Milliarden Euro Umsatz. Das bereinigte Betriebsergebnis kletterte um 18 Prozent auf 3,03 Milliarden Euro, der Gewinn stieg um 11 Prozent auf 2,27 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Auftragsbestand wiegt mehr als der Quartalsgewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleger achteten laut dpa-AFX vor allem auf den Cloud-Auftragsbestand: Die über zwölf Monate erwarteten Erlöse aus laufenden Cloud-Abos legten währungsbereinigt um 26 Prozent auf 24,1 Milliarden Euro zu – mehr als von der UBS erwartet. Diese Kennziffer gilt als Frühindikator für künftige Umsätze. Vorstandschef Christian Klein rechnet deshalb beim Cloud-Umsatz für das Gesamtjahr nun mit dem oberen Ende der bisherigen Prognosespanne von 23 bis 25 Prozent Wachstum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Finanzchef bremst die Euphorie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Finanzchef Dominik Asam verwies laut dpa-AFX zugleich auf Risiken im vierten Quartal, in das üblicherweise rund die Hälfte der Jahresbuchungen fällt. Schlechte Stimmung in der Wirtschaft könne die Zahlen und den Ausblick fürs kommende Jahr belasten. Die Gewinnprognose für das Gesamtjahr von 11,8 bis 12,2 Milliarden Euro beließ SAP unverändert. Die Aktie gewann nachbörslich zunächst mehr als 4 Prozent, reduzierte den Anstieg aber auf 1,9 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Auftragsbestand zeigt an, wie viel Umsatz schon vertraglich gesichert ist, bevor er verbucht wird. Wächst er schneller als der laufende Umsatz, deutet das auf eine Beschleunigung in den kommenden Quartalen hin – wächst er langsamer, auf eine Abschwächung.',
+      },
+    ],
+  },
+  {
+    slug: 'eqt-uebernimmt-qiagen',
+    title: 'Finanzinvestor EQT will Qiagen für 10,8 Milliarden Euro übernehmen',
+    metaTitle: 'EQT will Qiagen für 10,8 Milliarden Euro übernehmen',
+    teaser:
+      'EQT bietet 46,50 Euro je Aktie für den Diagnostikkonzern Qiagen. Auch der Staatsfonds von Abu Dhabi ist an dem Übernahmevehikel beteiligt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-22T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Qiagen', 'EQT', 'Übernahme', 'Private Equity'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista, Unternehmensnachrichten, dpa-AFX, Meldung vom 21.10.2026, 22:30 Uhr: „KORREKTUR: Finanzinvestor EQT will Qiagen übernehmen“',
+        url: 'https://www.onvista.de/news/2026/10-21-korrektur-finanzinvestor-eqt-will-qiagen-uebernehmen-0-10-26566961',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Leonidas Exuzidis, Meldung vom 21.10.2026, 17:59 Uhr: „Dax aktuell: Dax schließt auf Vierwochenhoch – Bilanzsaison gibt Hoffnung“ (nennt Qiagen als Dax-Konzern im Übernahmefokus)',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-dreht-ins-plus-oelpreis-sinkt-nach-fuenf-monats-hoch/100263814.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der schwedische Finanzinvestor EQT will den Diagnostikkonzern Qiagen übernehmen, teilten beide Seiten am Mittwochabend mit. EQT will je Aktie 46,50 Euro in bar zahlen, berichtete dpa-AFX. Qiagen wird damit mit einem Unternehmenswert von rund 10,8 Milliarden Euro inklusive Schulden bewertet. Die Gremien des im niederländischen Venlo ansässigen Konzerns haben sich verpflichtet, das Angebot zu unterstützen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Staatsfonds und Pensionskasse sind mit im Boot',
+      },
+      {
+        type: 'paragraph',
+        text: 'An dem Übernahmevehikel sollen laut dpa-AFX auch der Staatsfonds von Abu Dhabi und der kanadische Pensionsfonds CPP Investment Board beteiligt sein. Das Angebot sieht eine Mindestannahmeschwelle von 50 Prozent des Kapitals plus einer Aktie vor. Qiagen legte mit der Mitteilung zugleich vorläufige Zahlen für das dritte Quartal vor und setzte seinen Ausblick für 2026 wegen des Angebots bis auf Weiteres aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt hatte den Deal schon erwartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Qiagen-Aktie schloss in Frankfurt kaum verändert bei 42,80 Euro, im US-Handel gewann das Papier 2,3 Prozent auf rund 50 Dollar. Über einen Verkauf war laut dpa-AFX schon länger spekuliert worden, auch die Nachrichtenagentur Bloomberg hatte bereits detailliert über das Vorhaben berichtet. Der Kurs hat sich auf Sicht von sechs Monaten bereits um fast ein Viertel verteuert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Übernahmeangebote werden meist mit einem Aufschlag auf den zuletzt gehandelten Kurs bezahlt. Gemessen am Schlusskurs von 42,80 Euro entspricht das Angebot einem Aufschlag von rund 8,6 Prozent – vergleichsweise wenig, weil die Spekulation über einen Verkauf den Kurs schon seit Monaten getrieben hatte.',
+      },
+    ],
+  },
+  {
     slug: 'frankreich-soldaten-gegen-proteste-le-pen-wetten',
     title: 'Frankreichs Regierung schickt Soldaten gegen neue Proteste',
     teaser:

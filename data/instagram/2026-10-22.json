@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "UK-Inflation springt auf 3,5 %, Frankreichs Anleiherendite erreicht ein 24-Jahres-Hoch, Tesla legt Zahlen vor einer möglichen Fusion mit SpaceX vor, SAP hebt den Ausblick an, und EQT greift nach Qiagen.",
+  "kacheln": [
+    {
+      "titel": "UK-Inflation auf 3,5 %",
+      "text": "Großbritanniens Inflation stieg im September auf 3,5 Prozent. Eine Zinserhöhung der Bank of England gilt nun als nahezu sicher."
+    },
+    {
+      "titel": "Frankreich: Rendite 5 %",
+      "text": "Die Rendite französischer Staatsanleihen kletterte auf fünf Prozent, höchster Stand seit 2002. Grund ist der Streit um Sparpläne von 43 Milliarden Euro."
+    },
+    {
+      "titel": "Tesla & SpaceX: Fusion?",
+      "text": "Tesla übertraf beim Umsatz die Erwartungen, der Gewinn brach aber ein. Zugleich rückt eine Fusion mit SpaceX näher, zusammen wären beide 3,5 Billionen Dollar wert."
+    },
+    {
+      "titel": "SAP hebt Prognose an",
+      "text": "SAP gewann im dritten Quartal mehr Cloud-Kunden als erwartet. Der Umsatz stieg um 13 Prozent auf 10,3 Milliarden Euro."
+    },
+    {
+      "titel": "EQT übernimmt Qiagen",
+      "text": "Der Finanzinvestor EQT bietet 46,50 Euro pro Aktie für den Diagnostikkonzern Qiagen. Das bewertet ihn mit 10,8 Milliarden Euro."
+    }
+  ],
+  "schlagworte": ["inflation", "anleihen", "tesla", "börse", "aktien"]
+}
