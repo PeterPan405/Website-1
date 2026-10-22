@@ -458,6 +458,50 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 23.10.2026 – Arbeitslosigkeit 2025, Kacheln. */
+{
+  const quote = zahlenkarten.find((k) => k.datum === '2026-10-23') as Rangkarte
+  type Wert = { wert: number; jahr: number }
+  const laender: Record<string, { arbeitslosenquote?: Wert }> = JSON.parse(
+    readFileSync('data/snapshots/laender.json', 'utf8')
+  ).laender
+  for (const z of quote.zeilen) {
+    const quelle = laender[z.land!]?.arbeitslosenquote
+    pruefe(
+      `${z.name}: ${z.wert} % wie im Bestand (${quelle?.wert}, ${quelle?.jahr})`,
+      quelle?.wert === z.wert && quelle?.jahr === 2025
+    )
+    pruefe(`${z.name}: der Wert steht im Text`, quote.text.includes(`${zahl1(z.wert)} %`))
+  }
+  pruefe(
+    'nicht nur Europa: mindestens fünf Länder außerhalb',
+    quote.zeilen.filter((z) =>
+      ['TUR', 'CHN', 'USA', 'IND', 'KOR', 'JPN'].includes(z.land!)
+    ).length >= 5
+  )
+  const alle = Object.values(laender)
+    .map((l) => l.arbeitslosenquote)
+    .filter((w): w is Wert => w?.jahr === 2025)
+    .map((w) => w.wert)
+    .sort((a, b) => b - a)
+  pruefe(`181 Länder mit Wert für 2025 (${alle.length})`, alle.length === 181)
+  pruefe(
+    `Deutschland auf Platz 119 (${alle.indexOf(3.7) + 1})`,
+    alle.indexOf(3.7) + 1 === 119 && quote.text.includes('Platz 119')
+  )
+  pruefe('die Karte hält die Form ein', pruefeZahlenkarte(quote).length === 0)
+  pruefe('Rot am 23.10.', akzentfarbe('2026-10-23') === '#8B2225')
+  pruefe(
+    'Form nicht wie am Vortag',
+    form(quote) !== form(zahlenkarten.find((k) => k.datum === '2026-10-22')!)
+  )
+  const png = await zahlenkartePng(quote, readFileSync('public/logo.svg', 'utf8'))
+  pruefe(
+    'Arbeitslosigkeit: das Bild ist ein PNG',
+    png.subarray(1, 4).toString() === 'PNG'
+  )
+}
+
 /* Die Karte vom 21.10.2026 – Inflation 2025, Kacheln. */
 {
   const inflation = zahlenkarten.find((k) => k.datum === '2026-10-21') as Rangkarte
