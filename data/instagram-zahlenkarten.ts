@@ -32,6 +32,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'kacheln',
     datum: '2026-10-23',
+    /* Freigegeben vom Betreiber am 22.10.2026: „passt" – hinaus am 23.10. ab 15 Uhr. */
+    freigabe: '2026-10-23',
     titel: [
       { text: 'Arbeitslosigkeit:' },
       { text: 'Deutschland 3,7\u00a0%', gruen: true },
