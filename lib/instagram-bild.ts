@@ -337,6 +337,11 @@ export async function meldungskachel(
   text: string,
   bild: { foto?: Buffer | null; kurs?: KachelKurs | null } = {}
 ): Promise<Buffer> {
+  /*
+    Zahl und Einheit bleiben zusammen: „UK-Inflation auf 3,5 %" brach am
+    22.10.2026 vor dem Prozentzeichen um, das dann allein in der Zeile stand.
+  */
+  titel = titel.replace(/(\d) (%|\$|€|Mrd\.|Mio\.|Prozent)/g, '$1\u00a0$2')
   const foto = bild.foto ?? null
   const kurs = bild.kurs && bild.kurs.punkte.length >= 2 ? bild.kurs : null
   const zone = BILDZONE.unten - BILDZONE.oben
