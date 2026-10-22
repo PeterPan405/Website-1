@@ -16,6 +16,59 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 22.10.2026: „Arbeitslosigkeit Quoten,
+      aber nicht nur in Europa, sondern zur Einordnung auch ein paar andere
+      Länder". Form: Kacheln (am Vortag Balken). Farbe: Rot
+      (akzentfarbe('2026-10-23')).
+
+      Zahlen: data/snapshots/laender.json, `arbeitslosenquote` – Weltbank,
+      World Development Indicators (SL.UEM.TOTL.ZS), Modellschätzung der
+      ILO, Jahr 2025, abgerufen am 01.10.2026. 181 Länder haben einen Wert
+      für 2025; Deutschland steht mit 3,7 % auf Platz 119 (Platz 1 = höchste
+      Quote: Südafrika 32,4). Südafrika, Schweden, Griechenland, Kanada und
+      Brasilien fehlen auf der Karte: keine Flagge im Satz.
+      Geprüft in tests/instagram-zahlenkarte.test.ts.
+    */
+    art: 'rangliste',
+    skala: 'kacheln',
+    datum: '2026-10-23',
+    titel: [
+      { text: 'Arbeitslosigkeit:' },
+      { text: 'Deutschland 3,7\u00a0%', gruen: true },
+    ],
+    unterzeile: 'Arbeitslose in Prozent der Erwerbspersonen, 2025:',
+    zeilen: [
+      { name: 'Spanien', wert: 10.4, land: 'ESP' },
+      { name: 'Türkei', wert: 8.5, land: 'TUR' },
+      { name: 'Frankreich', wert: 7.5, land: 'FRA' },
+      { name: 'Italien', wert: 6.4, land: 'ITA' },
+      { name: 'Schweiz', wert: 4.9, land: 'CHE' },
+      { name: 'Großbritannien', wert: 4.7, land: 'GBR' },
+      { name: 'China', wert: 4.6, land: 'CHN' },
+      { name: 'USA', wert: 4.2, land: 'USA' },
+      { name: 'Indien', wert: 4.2, land: 'IND' },
+      { name: 'Deutschland', wert: 3.7, land: 'DEU', hervor: true },
+      { name: 'Südkorea', wert: 2.7, land: 'KOR' },
+      { name: 'Japan', wert: 2.5, land: 'JPN' },
+    ],
+    fusszeile: 'Stand: 2025 | Quelle: Weltbank (WDI), Schätzung der ILO',
+    text:
+      'In Deutschland waren 2025 3,7 % der Erwerbspersonen arbeitslos. In Spanien waren es 10,4 %, in Japan nur 2,5 %. 📊\n\n' +
+      'Über Deutschland lagen die Türkei (8,5 %), Frankreich (7,5 %), Italien (6,4 %), die Schweiz (4,9 %), Großbritannien (4,7 %) und China (4,6 %). ' +
+      'Die USA und Indien kamen auf je 4,2 %, Südkorea auf 2,7 %. Von 181 Ländern mit einem Wert für 2025 steht Deutschland auf Platz 119.\n\n' +
+      'Gezählt ist die Schätzung der Internationalen Arbeitsorganisation (ILO), die alle Länder nach einer gemeinsamen Regel rechnet. ' +
+      'Sie weicht deshalb von der Quote ab, die ein Land selbst veröffentlicht – in Deutschland etwa von der Zahl der Bundesagentur für Arbeit.\n' +
+      'Quelle: Weltbank, World Development Indicators (ILO-Schätzung)',
+    schlagworte: [
+      'arbeitslosigkeit',
+      'wirtschaft',
+      'arbeitsmarkt',
+      'deutschland',
+      'finanzen',
+    ],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 21.10.2026: „ja Verlierer, aber nur
       Verlierer". Anlass: Netflix-Zahlen und Gehalts-Aus bei VW (Ausgaben vom
       20. und 21.10.). Form: Balken, nur Minus (am Vortag Kacheln). Farbe:
