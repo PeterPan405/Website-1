@@ -61,7 +61,8 @@ if (process.env.MODUS === 'kandidaten') {
     for (const seite of await suche(begriff)) {
       if (nr >= 8) break
       const k = kandidatVon(seite)
-      if (!k || gesehen.has(k.titel) || !taugt(k, verwendet)) continue
+      if (!k || gesehen.has(k.titel) || !taugt(k, verwendet, undefined, undefined, true))
+        continue
       gesehen.add(k.titel)
       const bild = await zuschnitt(seite, 505, 280)
       if (!bild) continue
@@ -80,7 +81,8 @@ if (process.env.MODUS === 'kandidaten') {
     const seite = await datei(titel)
     const k = seite && kandidatVon(seite)
     if (!seite || !k) throw new Error(`${titel}: nicht gefunden`)
-    if (!taugt(k, verwendet))
+    /* Von Hand gewählt: ein Mensch sieht hin, Pressekonferenz und Treffen dürfen. */
+    if (!taugt(k, verwendet, undefined, undefined, true))
       throw new Error(`${titel}: taugt nicht (Lizenz, Format oder verwendet)`)
     const jpeg = await zuschnitt(seite)
     if (!jpeg) throw new Error(`${titel}: nicht zu laden`)

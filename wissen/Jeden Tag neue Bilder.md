@@ -92,3 +92,31 @@ Marke ist, kommt deshalb nur noch aus den ausgezeichneten Fotos von Commons
 Motiv – die hochwertigen, die nie beanstandet wurden –, aber keins vom
 Vortag. **Ein Lauf, der nicht sehen kann, darf nur aus dem wählen, was
 jemand schon angesehen hat.**
+
+## Nachtrag: Der Mensch, nicht die Fassade – und nur, was die Masse packt – 22. Oktober 2026
+
+Zum Ersatz, der Bank of England als Gebäude, der Betreiber: „das kennt man
+nicht mal. Dort gibt es … einen Head of the Zentralbank, der bestimmt mal
+gesprochen hat mit Fahnen im Hintergrund." Und zu „EQT übernimmt Qiagen":
+„kennt kein Schwein … auf Insta sollen die Beiträge wirklich interessant
+sein, spannend sein und die Masse abholen." Auf der Website darf so eine
+Meldung stehen, auf Instagram nicht.
+
+- **Die Auswahl:** `ANWEISUNG_INSTAGRAM` (beide Fassungen) verlangt, was
+  die breite Masse packt – Zins, Inflation, Öl, Gold, DAX, Bitcoin,
+  Weltkonzerne. Fehlt in der Ausgabe eine fünfte solche Meldung, kommt sie
+  aus den Quellen, nicht aus der Nische.
+- **Das Bild:** Geht es um Inflation oder Zins, sucht der Lauf zuerst den
+  Notenbankchef – Pressekonferenz, Rede, dann jedes Foto (`NOTENBANKCHEFS`).
+  Gesucht wird über die **Commons-Kategorie**, nie über den Namen: „Andrew
+  Bailey" fand als ersten Treffer einen Baseballspieler der Red Sox.
+  Bei einem Amtsträger gelten „conference" und „meeting" nicht als
+  Ausschluss, der Hinweis auf Persönlichkeitsrechte auch nicht – er betrifft
+  Werbung, nicht die Nachricht über ein Amt.
+
+Geprüft und gefunden, 22.10.2026, über einen Läufer: Von Andrew Bailey gibt
+es auf Commons genau ein freies Querformat (mit Janet Yellen, IWF 2021);
+die Fotos der Bank of England selbst sind nicht frei. Von Kevin Warsh gibt
+es gemeinfreie Fotos der Pressekonferenz, von Lagarde und Ueda viele.
+**Ein Bild, das die Person zeigt, schlägt eins, das ihr Haus zeigt – wenn
+es die Person ist.**

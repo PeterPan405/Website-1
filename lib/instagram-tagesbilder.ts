@@ -186,6 +186,13 @@ export interface Suche {
    * prüft hier niemand außer der Auszeichnung.
    */
   nurAusgezeichnet?: boolean
+  /**
+   * Ein Mensch im Amt, bei einem öffentlichen Auftritt – Pressekonferenz,
+   * Rede, Treffen. Dafür gelten „conference" und „meeting" nicht als
+   * Ausschluss, und der Commons-Hinweis auf Persönlichkeitsrechte auch
+   * nicht: Er betrifft Werbung, nicht die Nachricht über ein Amt.
+   */
+  person?: boolean
 }
 
 /** Die tragenden Wörter eines Suchbegriffs – ab vier Buchstaben. */
@@ -216,6 +223,40 @@ export const WAHRZEICHEN: Record<string, string[]> = {
   Switzerland: ['Federal Palace of Switzerland', 'Paradeplatz Zurich'],
 }
 
+/**
+ * Wer die Notenbank führt – als Kategorie auf Commons, nicht als Name.
+ *
+ * Betreiber, 22.10.2026, zur Bank of England als Gebäude: „das kennt man
+ * nicht mal. Dort gibt es … einen Head of the Zentralbank, der bestimmt mal
+ * gesprochen hat mit Fahnen im Hintergrund." Bei Inflation und Zins zeigt
+ * die Kachel den Menschen, der entscheidet – nicht seine Fassade.
+ *
+ * Die Kategorie, weil der Name nicht reicht: „Andrew Bailey" fand am selben
+ * Tag zuerst einen Baseballspieler der Boston Red Sox. Gesucht wird mit
+ * `deepcat:`, denn die Fotos liegen oft in Unterkategorien („… by year").
+ *
+ * Stand 22.10.2026; ein Wechsel im Amt gehört hier nachgetragen.
+ */
+export const NOTENBANKCHEFS: Record<string, string> = {
+  'United Kingdom': 'Andrew Bailey (banker)',
+  'United States': 'Kevin Warsh',
+  'Euro area': 'Christine Lagarde',
+  Japan: 'Kazuo Ueda',
+}
+
+/** Worum es bei einer Notenbank geht – in Überschrift oder Text. */
+const GELDPOLITIK =
+  /Inflation|Teuerung|Zins|Notenbank|Zentralbank|\bEZB\b|\bFed\b|Bank of England|Bank of Japan|\bBoE\b|\bBoJ\b/u
+
+/** Das Land einer Notenbank-Meldung; die EZB und der Euroraum zählen als eins. */
+function notenbankLand(inhalt: string): string | undefined {
+  if (/\bEZB\b|Euroraum|Eurozone/u.test(inhalt)) return 'Euro area'
+  if (/\bFed\b/u.test(inhalt)) return 'United States'
+  if (/Bank of England|\bBoE\b/u.test(inhalt)) return 'United Kingdom'
+  if (/Bank of Japan|\bBoJ\b/u.test(inhalt)) return 'Japan'
+  return LAENDER.find(([muster]) => muster.test(inhalt))?.[1]
+}
+
 /** Allgemeine Motive – für sie zählt ein Land mehr als das Motiv. */
 const ALLGEMEIN = new Set(['euro', 'boerse', 'konsum', 'tresor'])
 
@@ -223,7 +264,7 @@ const ALLGEMEIN = new Set(['euro', 'boerse', 'konsum', 'tresor'])
 export const MARKENBILD =
   /\b(logo|sign|signage|headquarters|hq|head office|building|office|campus|store|shop|tower|zentrale|hauptsitz)\b/i
 
-export function suchenFuer(titel: string, motiv: string): Suche[] {
+export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
   const liste: Suche[] = []
   const firma = unternehmenIn(titel)
   /*
@@ -244,6 +285,17 @@ export function suchenFuer(titel: string, motiv: string): Suche[] {
       `${firma} building`,
     ])
       liste.push({ begriff: b, mussEnthalten: firma, marke: true })
+  }
+  /* Bei Inflation und Zins: der Notenbankchef am Pult – Name im Dateititel. */
+  if (GELDPOLITIK.test(`${titel} ${text}`)) {
+    const bank = notenbankLand(titel) ?? notenbankLand(text)
+    const kategorie = bank && NOTENBANKCHEFS[bank]
+    if (kategorie)
+      for (const b of ['press conference', 'speech', ''])
+        liste.push({
+          begriff: `${b} deepcat:"${kategorie}"`.trim(),
+          person: true,
+        })
   }
   const land = LAENDER.find(([muster]) => muster.test(titel))?.[1]
   const begriffe = SUCHE[motiv] ?? SUCHE.boerse
@@ -332,8 +384,6 @@ const KEIN_FOTO = new RegExp(
       'team',
       'group',
       'portrait',
-      'meeting',
-      'conference',
       'screenshot',
       'cartoon',
       'caricature',
@@ -363,6 +413,9 @@ const KEIN_FOTO = new RegExp(
   'i'
 )
 
+/** Bei Dingen ein Ausschluss, bei einem Menschen im Amt gerade das Bild. */
+const KEIN_SACHFOTO = /\b(meeting|conference)\b/i
+
 /**
  * Der Kern eines Dateititels – ohne Klammerzusatz, Endung und Zählnummer.
  * „Euro coins and banknotes (cropped).jpg" und „Euro coins and
@@ -384,7 +437,8 @@ export function taugt(
   k: Kandidat,
   verwendet: Set<string>,
   mussEnthalten?: string,
-  stichwoerter?: string[]
+  stichwoerter?: string[],
+  person = false
 ): boolean {
   if (verwendet.has(k.titel)) return false
   const kerne = new Set([...verwendet].map(kern))
@@ -403,10 +457,14 @@ export function taugt(
   )
     return false
   if (!FREI.test(k.lizenz.trim())) return false
-  if (k.einschraenkung.trim()) return false
+  const einschraenkung = person
+    ? k.einschraenkung.replace(/personality/gi, '')
+    : k.einschraenkung
+  if (einschraenkung.replace(/[\s|,]+/g, '').length) return false
   if (k.breite < 1200 || k.breite / k.hoehe < 1.25) return false
   if (!/\.jpe?g$/i.test(k.titel)) return false
   if (KEIN_FOTO.test(k.titel)) return false
+  if (!person && KEIN_SACHFOTO.test(k.titel)) return false
   if (mussEnthalten && !k.titel.toLowerCase().includes(mussEnthalten.toLowerCase()))
     return false
   return true
