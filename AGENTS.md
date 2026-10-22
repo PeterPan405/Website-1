@@ -141,10 +141,10 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 
 ## Instagram – was am 17. und 18.10.2026 schiefging
 
-- **Die News gehen ohne Freigabe hinaus** – sie müssen den Standard von
-  selbst halten: nur spannende Meldungen, nichts doppelt. **Der
-  Tagesbeitrag nie ohne sein „passt"**; „passt" heißt freigegeben, nicht
-  hochladen – ab 15 Uhr, erst die News, dann die Zahlenkarte.
+- **Die News gehen ohne Freigabe hinaus** – also nur, was die Masse packt
+  (Zins, Öl, Gold, DAX, Weltkonzerne; nicht EQT/Qiagen), nichts doppelt.
+  **Tagesbeitrag nie ohne „passt"** (= freigegeben, nicht hochladen), ab
+  15 Uhr, nach den News.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
 - **Kein Thema zweimal** – nicht im Beitrag, nicht am Folgetag (Öl am 17.
@@ -153,12 +153,12 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
   (`instagram-bilder.yml`), sonst `RUECKFALL`; PD/CC0/BY(-SA), genannt.
-  **Bildsprache wie Trade Republic/HKCM:** Marke, Logo, Ort erkennbar –
-  kein Behelfsbild; sonst erst zeigen (`halt.txt`).
+  **Bildsprache wie Trade Republic/HKCM:** Marke, Logo, Ort erkennbar,
+  bei Zins der Notenbankchef (`NOTENBANKCHEFS`, Kategorie statt Name);
+  sonst erst zeigen (`halt.txt`).
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
-- **Meta merkt sich Bilder an der Adresse** – jede trägt `?v=`, sonst
-  gingen Kacheln von gestern hinaus.
+- **Meta merkt sich Bilder an der Adresse** – daher `?v=`.
 - **Agenten-Prompt: höchstens 21.000 Bytes**, nicht Zeichen – sonst
   „No jobs were run"; der Test misst es.
 - **Jede Kachel vor dem Hochladen gerendert ansehen.**

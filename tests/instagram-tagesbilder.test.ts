@@ -189,15 +189,58 @@ pruefe(
     ['piggy', 'bank']
   )
 )
-const uk = suchenFuer('UK-Inflation auf 3,5 %', 'euro')
+const uk = suchenFuer(
+  'UK-Inflation auf 3,5 %',
+  'euro',
+  'Eine Zinserhöhung der Bank of England gilt nun als nahezu sicher.'
+)
 pruefe(
-  'UK: zuerst die Bank of England',
-  uk[0]?.begriff === 'Bank of England',
+  'UK-Inflation: zuerst der Notenbankchef am Pult, nicht die Fassade',
+  uk[0]?.begriff === 'press conference deepcat:"Andrew Bailey (banker)"' &&
+    uk[0]?.person === true,
   JSON.stringify(uk[0])
 )
 pruefe(
-  '… und nur ausgezeichnete Fotos',
-  uk.every((s) => s.nurAusgezeichnet)
+  '… danach die Bank of England, nur ausgezeichnete Fotos',
+  uk.find((s) => !s.person)?.begriff === 'Bank of England' &&
+    uk.filter((s) => !s.person).every((s) => s.nurAusgezeichnet)
+)
+pruefe(
+  'Fed im Text: Warsh',
+  suchenFuer('Fed senkt Zins', 'fed')[0]?.begriff.endsWith('deepcat:"Kevin Warsh"')
+)
+pruefe(
+  'EZB: Lagarde',
+  suchenFuer('EZB hält Zins', 'ezb')[0]?.begriff.endsWith('deepcat:"Christine Lagarde"')
+)
+pruefe(
+  'nie über den Namen allein – der Baseballspieler Andrew Bailey (22.10.)',
+  uk.filter((s) => s.person).every((s) => s.begriff.includes('deepcat:'))
+)
+pruefe(
+  'ohne Geldpolitik kein Notenbankchef',
+  !suchenFuer('Frankreich: Rendite 5 %', 'frankreich').some((s) => s.person)
+)
+const warsh: Kandidat = {
+  ...gut,
+  titel:
+    "File:Chairman Warsh answers reporters' questions at the FOMC press conference on June 17, 2026 (2).jpg",
+}
+pruefe(
+  'Pressekonferenz: beim Menschen im Amt das Bild …',
+  taugt(warsh, leer, 'Chairman Warsh', undefined, true)
+)
+pruefe('… bei einer Sache ein Ausschluss', !taugt(warsh, leer))
+pruefe(
+  'Persönlichkeitsrecht hält einen Amtsträger nicht auf, anderes schon',
+  taugt({ ...warsh, einschraenkung: 'personality' }, leer, 'Warsh', undefined, true) &&
+    !taugt(
+      { ...warsh, einschraenkung: 'personality|trademarked' },
+      leer,
+      'Warsh',
+      undefined,
+      true
+    )
 )
 const qiagen = suchenFuer('EQT übernimmt Qiagen', 'boerse')
 pruefe(

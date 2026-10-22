@@ -68,7 +68,7 @@ for (const [i, kachel] of plan.kacheln.entries()) {
   const stelle = i + 2
   if (nur.length && !nur.includes(stelle)) continue
   let gefunden = false
-  for (const s of suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse')) {
+  for (const s of suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse', kachel.text)) {
     let seiten: Seite[]
     try {
       seiten = s.nurAusgezeichnet
@@ -80,7 +80,10 @@ for (const [i, kachel] of plan.kacheln.entries()) {
     }
     for (const seite of seiten) {
       const kandidat = kandidatVon(seite)
-      if (!kandidat || !taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter))
+      if (
+        !kandidat ||
+        !taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter, s.person)
+      )
         continue
       if (s.marke && !MARKENBILD.test(seite.title)) continue
       const jpeg = await zuschnitt(seite)
