@@ -17,6 +17,7 @@ import {
   kandidatVon,
   type Seite,
   suche,
+  sucheIn,
   urheberVon,
   zuschnitt,
 } from '@/lib/commons-suche'
@@ -24,6 +25,7 @@ import { bebildere } from '@/lib/instagram-motive'
 import {
   type Tagesbild,
   leseRegister,
+  MARKENBILD,
   REGISTER,
   suchenFuer,
   TAGESBILDER,
@@ -69,7 +71,9 @@ for (const [i, kachel] of plan.kacheln.entries()) {
   for (const s of suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse')) {
     let seiten: Seite[]
     try {
-      seiten = await suche(s.begriff)
+      seiten = s.nurAusgezeichnet
+        ? await sucheIn(`${s.begriff} incategory:Quality_images`)
+        : await suche(s.begriff)
     } catch (fehler) {
       console.log(`  ${s.begriff}: ${(fehler as Error).message}`)
       continue
@@ -78,6 +82,7 @@ for (const [i, kachel] of plan.kacheln.entries()) {
       const kandidat = kandidatVon(seite)
       if (!kandidat || !taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter))
         continue
+      if (s.marke && !MARKENBILD.test(seite.title)) continue
       const jpeg = await zuschnitt(seite)
       if (!jpeg) continue
       const datei = `${DATUM}-${stelle}.jpg`

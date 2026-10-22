@@ -119,6 +119,9 @@ export const SUCHE: Record<string, string[]> = {
 
 /** Länder in der Überschrift – deutsch, wie sie dort stehen, und englisch. */
 const LAENDER: [RegExp, string][] = [
+  /* „UK-Inflation auf 3,5 %" (22.10.2026) fand kein Land – und Wasserbüffel. */
+  [/\bUK\b|\bBriten\b|\bbritisch/u, 'United Kingdom'],
+  [/\bUS-|\bUSA\b/u, 'United States'],
   [/\bJapans?\b/u, 'Japan'],
   [/\bChinas?\b/u, 'China'],
   [/\bIndiens?\b/u, 'India'],
@@ -175,6 +178,14 @@ export interface Suche {
    * die Suche trifft auch Beschreibung und Kategorien, der Titel nicht.
    */
   stichwoerter?: string[]
+  /** Nur Firmenfotos, die die Marke zeigen (`MARKENBILD`). */
+  marke?: boolean
+  /**
+   * Nur aus den ausgezeichneten Fotos von Commons („Quality images"). Für
+   * alles, was keine Marke ist – dort entscheidet die Ästhetik, und die
+   * prüft hier niemand außer der Auszeichnung.
+   */
+  nurAusgezeichnet?: boolean
 }
 
 /** Die tragenden Wörter eines Suchbegriffs – ab vier Buchstaben. */
@@ -186,6 +197,32 @@ function stichwoerterVon(begriff: string): string[] {
 }
 
 /** Die Suchen für eine Kachel, die genaueste zuerst. */
+/**
+ * Wahrzeichen und Institutionen je Land – das Bild zu einer Meldung über ein
+ * Land, wenn ihr Motiv allgemein ist (Geld, Börse, Konsum, Tresor). Am
+ * 22.10.2026 bekam „UK-Inflation auf 3,5 %" statt der Bank of England
+ * Wasserbüffel am Mekong.
+ */
+export const WAHRZEICHEN: Record<string, string[]> = {
+  'United Kingdom': ['Bank of England', 'Palace of Westminster', 'Tower Bridge'],
+  'United States': ['United States Capitol', 'New York Stock Exchange'],
+  France: ['Eiffel Tower', 'Arc de Triomphe', 'Palais Bourbon'],
+  Germany: ['Reichstag building', 'Brandenburg Gate', 'Deutsche Bundesbank'],
+  Japan: ['Tokyo Tower', 'Bank of Japan', 'Mount Fuji'],
+  China: ['Shanghai Lujiazui', 'Forbidden City', 'Great Wall of China'],
+  India: ['Bombay Stock Exchange', 'Gateway of India'],
+  Italy: ['Colosseum', 'Palazzo Montecitorio'],
+  Spain: ['Puerta de Alcalá', 'Plaza Mayor Madrid'],
+  Switzerland: ['Federal Palace of Switzerland', 'Paradeplatz Zurich'],
+}
+
+/** Allgemeine Motive – für sie zählt ein Land mehr als das Motiv. */
+const ALLGEMEIN = new Set(['euro', 'boerse', 'konsum', 'tresor'])
+
+/** Was ein Firmenfoto zeigen muss: die Marke, nicht ein Produkt im Labor. */
+export const MARKENBILD =
+  /\b(logo|sign|signage|headquarters|hq|head office|building|office|campus|store|shop|tower|zentrale|hauptsitz)\b/i
+
 export function suchenFuer(titel: string, motiv: string): Suche[] {
   const liste: Suche[] = []
   const firma = unternehmenIn(titel)
@@ -195,16 +232,33 @@ export function suchenFuer(titel: string, motiv: string): Suche[] {
     Gebäude –, dann der Firmensitz. Am 21.10. trugen „Netflix 2018" (Logo
     auf dem Telefon) und „GoogleTorontoOffice4" (Schriftzug) die Kacheln.
   */
+  /*
+    Nur die Marke, nie der bloße Name: „Qiagen" allein fand am 22.10.2026 ein
+    graues Laborgerät. Ohne Logo, Schild oder Sitz kein Firmenbild.
+  */
   if (firma) {
-    for (const b of [`${firma} logo`, `${firma} sign`, `${firma} headquarters`, firma])
-      liste.push({ begriff: b, mussEnthalten: firma })
+    for (const b of [
+      `${firma} logo`,
+      `${firma} sign`,
+      `${firma} headquarters`,
+      `${firma} building`,
+    ])
+      liste.push({ begriff: b, mussEnthalten: firma, marke: true })
   }
   const land = LAENDER.find(([muster]) => muster.test(titel))?.[1]
   const begriffe = SUCHE[motiv] ?? SUCHE.boerse
+  if (land && ALLGEMEIN.has(motiv))
+    for (const w of WAHRZEICHEN[land] ?? [])
+      liste.push({ begriff: w, stichwoerter: stichwoerterVon(w), nurAusgezeichnet: true })
   if (land)
     for (const b of begriffe)
-      liste.push({ begriff: `${land} ${b}`, stichwoerter: stichwoerterVon(b) })
-  for (const b of begriffe) liste.push({ begriff: b, stichwoerter: stichwoerterVon(b) })
+      liste.push({
+        begriff: `${land} ${b}`,
+        stichwoerter: stichwoerterVon(b),
+        nurAusgezeichnet: true,
+      })
+  for (const b of begriffe)
+    liste.push({ begriff: b, stichwoerter: stichwoerterVon(b), nurAusgezeichnet: true })
   return liste
 }
 
@@ -336,8 +390,16 @@ export function taugt(
   const kerne = new Set([...verwendet].map(kern))
   if (kerne.has(kern(k.titel))) return false
   if (
+    /*
+      Jedes Wort, als ganzes Wort: „piggy bank" fand am 22.10.2026 mit
+      „irgendein Wort" einen Flusslauf – „river bank".
+    */
     stichwoerter?.length &&
-    !stichwoerter.some((w) => k.titel.toLowerCase().includes(w))
+    !stichwoerter.every((w) =>
+      new RegExp(`(?<![\\p{L}])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'iu').test(
+        k.titel
+      )
+    )
   )
     return false
   if (!FREI.test(k.lizenz.trim())) return false

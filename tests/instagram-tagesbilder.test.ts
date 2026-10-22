@@ -15,6 +15,7 @@ import {
   TAGESBILDER,
   taugt,
   bildnachweis,
+  MARKENBILD,
   titelAusSeite,
   verwendeteTitel,
 } from '@/lib/instagram-tagesbilder'
@@ -176,6 +177,40 @@ pruefe(
 pruefe(
   'ohne Land und Firma: die Begriffe des Motivs',
   suchenFuer('Rekord bei Haushaltsvermögen', 'euro')[0]?.begriff === SUCHE.euro[0]
+)
+
+/* Der 22.10.2026 – Wasserbüffel für UK-Inflation, Laborgerät für Qiagen. */
+pruefe(
+  '„piggy bank" findet kein Flussufer: jedes Wort muss im Titel stehen',
+  !taugt(
+    { ...gut, titel: 'File:Don Puay river bank landscape at sunset.jpg' },
+    leer,
+    undefined,
+    ['piggy', 'bank']
+  )
+)
+const uk = suchenFuer('UK-Inflation auf 3,5 %', 'euro')
+pruefe(
+  'UK: zuerst die Bank of England',
+  uk[0]?.begriff === 'Bank of England',
+  JSON.stringify(uk[0])
+)
+pruefe(
+  '… und nur ausgezeichnete Fotos',
+  uk.every((s) => s.nurAusgezeichnet)
+)
+const qiagen = suchenFuer('EQT übernimmt Qiagen', 'boerse')
+pruefe(
+  'Qiagen: nie der bloße Name, nur Logo/Schild/Sitz/Gebäude',
+  qiagen.filter((s) => s.mussEnthalten).every((s) => s.marke && s.begriff !== 'Qiagen')
+)
+pruefe(
+  'Laborgerät ist kein Markenbild',
+  !MARKENBILD.test('File:Rotor-Gene Q thermocycle of Qiagen.jpg')
+)
+pruefe(
+  'Schriftzug am Gebäude ist eins',
+  MARKENBILD.test('File:Qiagen headquarters Hilden.jpg')
 )
 
 /* Das Register: keine Datei zweimal, jede liegt bereit. */

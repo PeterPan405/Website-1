@@ -69,3 +69,26 @@ Morgensuche fragt deshalb bei Firmen zuerst nach „logo" und „sign".
 Und: „Bevor du es jetzt wieder hochlädst, erst mal hier die Designs
 reinschicken." Dafür gibt es `data/instagram/halt.txt` – steht der Tag dort,
 geht die Tagesnews erst nach dem OK hinaus.
+
+## Nachtrag: Der erste Treffer ist nicht das Bild – 22. Oktober 2026
+
+Am Morgen danach, automatisch: Wasserbüffel am Mekong für „UK-Inflation auf
+3,5 %" und ein graues Laborgerät für „EQT übernimmt Qiagen". Der Betreiber:
+„Schau dir die Bilder an und versuch zu verstehen, was ich daran schrecklich
+fand." Drei Fehler, alle im Code:
+
+1. **Ein Stichwort reichte.** „piggy bank" fand „river bank" – genommen
+   wird jetzt nur, wenn **jedes** Wort als ganzes Wort im Titel steht.
+2. **„UK" war kein Land.** Und hätte es eins gegeben, wäre „United Kingdom
+   piggy bank" gesucht worden. Jetzt steht bei allgemeinen Motiven (Geld,
+   Börse, Konsum, Tresor) das Wahrzeichen des Landes vorn: Bank of England,
+   Westminster, Tokyo Tower (`WAHRZEICHEN`).
+3. **Der bloße Firmenname** fand ein Produkt statt der Marke. Jetzt nur noch
+   Logo, Schild, Sitz, Gebäude (`MARKENBILD`) – sonst kein Firmenbild.
+
+Und das Grundsätzliche: Ästhetik prüft der Lauf nicht. Alles, was keine
+Marke ist, kommt deshalb nur noch aus den ausgezeichneten Fotos von Commons
+(Quality images). Findet sich dort nichts, nimmt die Kachel ein eigenes
+Motiv – die hochwertigen, die nie beanstandet wurden –, aber keins vom
+Vortag. **Ein Lauf, der nicht sehen kann, darf nur aus dem wählen, was
+jemand schon angesehen hat.**
