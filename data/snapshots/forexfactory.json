@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-21T18:00:14.285Z",
+  "abgerufen": "2026-10-22T08:54:19.278Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -165,7 +165,7 @@
     {"title":"Crude Oil Inventories","country":"USD","date":"2026-10-21T10:30:00-04:00","impact":"Low","forecast":"-0.1M","previous":"-8.6M"},
     {"title":"CPI q/q","country":"NZD","date":"2026-10-21T17:45:00-04:00","impact":"High","forecast":"0.8%","previous":"1.5%"},
     {"title":"Summary of Monetary Policy Discussions","country":"CHF","date":"2026-10-22T03:30:00-04:00","impact":"Low","forecast":"","previous":""},
-    {"title":"Foreign Direct Investment ytd/y","country":"CNY","date":"2026-10-22T05:10:00-04:00","impact":"Low","forecast":"","previous":"-5.3%"},
+    {"title":"Foreign Direct Investment ytd/y","country":"CNY","date":"2026-10-22T03:41:00-04:00","impact":"Low","forecast":"","previous":"-5.3%"},
     {"title":"CBI Industrial Order Expectations","country":"GBP","date":"2026-10-22T06:00:00-04:00","impact":"Low","forecast":"-20","previous":"-9"},
     {"title":"IPPI m/m","country":"CAD","date":"2026-10-22T08:30:00-04:00","impact":"Low","forecast":"0.9%","previous":"1.3%"},
     {"title":"NHPI m/m","country":"CAD","date":"2026-10-22T08:30:00-04:00","impact":"Low","forecast":"-0.1%","previous":"-0.1%"},
