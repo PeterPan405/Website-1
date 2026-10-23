@@ -101,6 +101,288 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'meta-ki-investition-neue-aktienklasse',
+    title: 'Meta investiert 135 Milliarden Dollar in KI – Aktie fällt trotzdem',
+    metaTitle: 'Meta: 135 Milliarden Dollar für KI, Aktie fällt trotzdem',
+    teaser:
+      'Meta will mindestens 135 Milliarden Dollar in den Ausbau seiner KI-Infrastruktur stecken, finanziert über eine neue Aktienklasse ohne Stimmrecht.',
+    category: 'Märkte',
+    publishedAt: '2026-10-23T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Meta', 'Künstliche Intelligenz', 'Aktienmarkt', 'Zuckerberg'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['meta', 'nasdaq-100', 'dax'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, Wirtschaft/Unternehmen, Antje Sieb, Meldung vom 22.10.2026, 07:25 Uhr: „Meta investiert mindestens 135 Milliarden Dollar in KI“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/meta-quartalszahlen-ki-investitionen-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Julius Stockheim/Antonia Mannweiler, Meldung vom 22.10.2026, 19:28 Uhr: „Wall Street: Abverkauf von Tech-Werten belastet Wall Street – Meta verliert sieben Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-abverkauf-von-tech-werten-belastet-wall-street-meta-verliert-sieben-prozent/100264154.html',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Leonidas Exuzidis, Meldung vom 22.10.2026, 15:56 Uhr: „Dax aktuell: Dax verliert mehr als 270 Punkte und schließt im Minus“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-verliert-mehr-als-270-punkte-und-schliesst-im-minus/100264123.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Meta hat am Donnerstag die bisher größte Investitionsankündigung seiner Geschichte vorgelegt. Der Facebook- und Instagram-Konzern will mindestens 135 Milliarden Dollar in den Ausbau seiner Rechenzentren und seiner KI-Infrastruktur stecken. Zur Finanzierung schafft Meta eine neue Aktienklasse ohne Stimmrecht. Firmenchef Mark Zuckerberg sichert sich damit die Kontrolle über den Konzern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Börse reagierte trotzdem mit einem Ausverkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meta-Aktie verlor am Donnerstag an der Wall Street sieben Prozent. Sie fiel in einem breiten Ausverkauf von Technologiewerten. Der Nasdaq 100 gab rund 2,9 Prozent nach, der Nasdaq Composite 2,6 Prozent. Der Dow Jones hielt sich dagegen nahezu unverändert bei 52.868 Punkten. Die Rendite zehnjähriger US-Staatsanleihen fiel im Gegenzug unter die Marke von 5 Prozent, auf 4,957 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Dax und die Ölpreise spielten eine Rolle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der deutsche Leitindex Dax schloss am Donnerstag 1,1 Prozent schwächer bei 25.372 Punkten. Handelsblatt nannte als Gründe schwache Zahlen großer US-Technologiekonzerne und zugleich steigende Ölpreise. Beide Entwicklungen trafen die Märkte am selben Tag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf den Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Tagesverlauf richtet sich der Blick auch auf Großbritannien. Um 8 Uhr deutscher Zeit veröffentlicht das Statistikamt dort die Einzelhandelsumsätze für September. Ökonomen erwarten einen Rückgang von 0,1 Prozent gegenüber dem Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Aktienklasse ohne Stimmrecht trennt Kapital von Kontrolle. Wer solche Anteile kauft, trägt das unternehmerische Risiko der milliardenschweren KI-Wette mit, ohne über sie mitentscheiden zu können.',
+      },
+    ],
+  },
+  {
+    slug: 'drohnenangriff-oelfeld-saudi-arabien-brent-hoch',
+    title: 'Drohnenangriff auf Ölfeld treibt Brent auf Fünfmonatshoch',
+    teaser:
+      'Ein abgewehrter Drohnenangriff auf das saudische Ölfeld Shaiba schürte Sorgen vor Lieferausfällen. Brent stieg auf den höchsten Stand seit Mai.',
+    category: 'Märkte',
+    publishedAt: '2026-10-23T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Brent', 'Saudi-Arabien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'dax'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, Finanzen, Sören Imöhl, Live-Ticker vom 22.10.2026, 09:59 Uhr: „Ölpreis aktuell: Ölpreise steigen deutlich nach Angriff auf Ölfeld in Saudi-Arabien“',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-angriff-auf-oelfeld-in-saudi-arabien-oelpreis-ueber-112-dollar/100207502.html',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Julius Stockheim/Antonia Mannweiler, Meldung vom 22.10.2026, 19:28 Uhr: „Wall Street: Abverkauf von Tech-Werten belastet Wall Street – Meta verliert sieben Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-abverkauf-von-tech-werten-belastet-wall-street-meta-verliert-sieben-prozent/100264154.html',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Leonidas Exuzidis, Meldung vom 22.10.2026, 15:56 Uhr: „Dax aktuell: Dax verliert mehr als 270 Punkte und schließt im Minus“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-verliert-mehr-als-270-punkte-und-schliesst-im-minus/100264123.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstagmorgen griff eine Drohne das Ölfeld Shaiba der staatlichen saudi-arabischen Ölgesellschaft Aramco an. Die saudi-arabische Luftabwehr schoss die Drohne ab. Nach Angaben der WirtschaftsWoche wurden zwei Menschen durch herabfallende Trümmer getötet. Der Förderbetrieb auf dem Feld lief nach Unternehmensangaben weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brent steigt auf den höchsten Stand seit Mai',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Markt wuchs trotzdem die Sorge vor einer Verknappung des Ölangebots. Die Nordsee-Sorte Brent kletterte am Donnerstag zeitweise um bis zu 3,8 Prozent auf fast 113 Dollar pro Barrel. Das ist der höchste Stand seit Anfang Mai. Analysten verwiesen zudem auf die Gefahr einer erneuten Eskalation im Golf nach den amerikanischen Zwischenwahlen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Teurer Rohstoff belastete auch die Aktienmärkte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der höhere Ölpreis traf am selben Tag auch die Aktienmärkte. Handelsblatt nannte ihn neben schwachen US-Technologiezahlen als einen der beiden Gründe, warum der deutsche Dax 1,1 Prozent auf 25.372 Punkte verlor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Ölpreis wirkt wie eine zusätzliche Abgabe auf die Weltwirtschaft. Er verteuert Transport und Produktion und bremst damit potenziell das Wachstum, während er Förderländern zugleich höhere Einnahmen verschafft.',
+      },
+    ],
+  },
+  {
+    slug: 'coreweave-absturz-ki-anleihen-misstrauen',
+    title: 'CoreWeave-Absturz lässt Bondmarkt an KI-Finanzierung zweifeln',
+    metaTitle: 'CoreWeave: Bondmarkt misstraut der KI-Finanzierung',
+    teaser:
+      'Die CoreWeave-Aktie ist binnen eines Monats um fast 30 Prozent gefallen. Am Anleihemarkt steigen zugleich die Preise für Kreditausfallversicherungen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-23T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['CoreWeave', 'Künstliche Intelligenz', 'Anleihen', 'Nasdaq'],
+    relatedTopics: ['aktie', 'schuldverschreibung'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Märkte/Aktien, Andreas Neuhaus, Meldung vom 22.10.2026, 11:50 Uhr: „Nasdaq: Coreweave-Aktie bricht ein – Analysten halten das für ein Missverständnis“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/aktien-analysten-halten-kurseinbruch-von-coreweave-fuer-ein-missverstaendnis/100264117.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Börse, Saskia Littmann, Meldung vom 22.10.2026, 10:01 Uhr: „Coreweave-Anleihen: Was passiert, wenn der Bondmarkt den KI-Riesen misstraut?“',
+        url: 'https://www.wiwo.de/finanzen/boerse/coreweave-anleihen-was-folgt-wenn-der-bondmarkt-den-ki-riesen-misstraut/100263872.html',
+      },
+      {
+        label:
+          "CNBC, Markets, Meldung vom 21.10.2026, 20:12 Uhr (MESZ): „CoreWeave's market confidence erodes as bond yields spike and stock sinks“",
+        url: 'https://www.cnbc.com/2026/10/21/coreweaves-market-confidence-erodes-as-bond-yields-spike-stock-sinks.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'CoreWeave steht im Zentrum der jüngsten Korrektur bei Technologiewerten. Der Spezialist für KI-Rechenzentren hat seit seinem Jahreshoch 2026 rund 55 Prozent an Börsenwert verloren. Allein im Oktober waren es nach Angaben von Handelsblatt fast 30 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Analysten sehen die Aktie, der Bondmarkt sieht das Risiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehrere Analysten halten den Kursverlust der Aktie für überzogen. Im Durchschnitt liegen ihre Kursziele nach Handelsblatt-Angaben rund 140 Prozent über dem aktuellen Kurs. Am Anleihemarkt wächst dagegen das Misstrauen. Die Preise für Kreditausfallversicherungen auf CoreWeave-Anleihen steigen, ein Zeichen für ein höher eingepreistes Ausfallrisiko.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Anleihen stecken auch in Rentenfonds',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut WirtschaftsWoche liegen Anleihen von KI-Unternehmen wie CoreWeave und Oracle auch in zahlreichen Rentenfonds. Probleme im Bondmarkt dieser Firmen würden damit über den Technologiesektor hinaus auch gewöhnliche Sparer und Altersvorsorge-Depots erreichen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Aktienkurs und Anleiherisiko eines Unternehmens können sich unterschiedlich entwickeln. Steigende Preise für Kreditausfallversicherungen zeigen, wie der Bondmarkt ein Unternehmen einschätzt, unabhängig davon, was an der Börse mit der Aktie passiert.',
+      },
+    ],
+  },
+  {
+    slug: 'barclays-stellenabbau-ki-effizienz-banken',
+    title: 'Barclays eröffnet Bankensaison mit Gewinnplus und Stellenabbau',
+    metaTitle: 'Barclays: Gewinnplus und Stellenabbau zugleich',
+    teaser:
+      'Barclays hat die Berichtssaison der großen europäischen Banken mit einem Gewinnanstieg eröffnet und streicht dennoch 5000 Stellen wegen Künstlicher Intelligenz.',
+    category: 'Märkte',
+    publishedAt: '2026-10-23T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Barclays', 'Banken', 'Künstliche Intelligenz', 'Stellenabbau'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['ftse-100'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Banken/Versicherungen, Torsten Riecke (Reuters, Bloomberg), Meldung vom 22.10.2026, 12:14 Uhr: „Banken: Barclays streicht 5000 Stellen – trotz Gewinnplus“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-barclays-streicht-5000-stellen-trotz-gewinnplus/100264135.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Barclays hat am Donnerstag die Berichtssaison der großen europäischen Banken eröffnet. Die britische Bank profitierte vom starken Aktienmarkt und meldete einen Gewinnanstieg. Gleichzeitig kündigte Barclays an, 5000 Stellen zu streichen. Das sind etwa 5 Prozent der weltweit rund 93.000 Beschäftigten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Künstliche Intelligenz steigert die Produktivität',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nannte die Bank nach Angaben von Reuters und Bloomberg Kosteneinsparungen. Rund 60 Prozent der gestrichenen Stellen betreffen interne Unterstützungsfunktionen. Finanzchefin Anna Cross sagte, auch einige Entwicklerstellen seien betroffen, weil Künstliche Intelligenz die Produktivität der verbleibenden Mitarbeiter steigere. Barclays strebt bis 2027 Effizienzgewinne von mehr als 1,1 Milliarden Pfund an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Andere Banken kündigen Ähnliches an',
+      },
+      {
+        type: 'paragraph',
+        text: 'Barclays steht mit dem Schritt nicht allein. Standard Chartered will über vier Jahre mehr als 7000 Stellen abbauen, gut 15 Prozent der Tätigkeiten im Backoffice. Auch die HSBC plant laut Medienberichten weitere Stellenstreichungen. Beide Banken verweisen ebenfalls auf Künstliche Intelligenz.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Gewinne und eine sinkende Belegschaft schließen sich nicht aus, wenn Technologie Arbeit ersetzt. Für Anleger zählt dabei oft weniger der heutige Gewinn als die Kostenstruktur, mit der eine Bank künftige Gewinne erzielen will.',
+      },
+    ],
+  },
+  {
+    slug: 'tuerkei-leitzins-senkung-hohe-inflation',
+    title: 'Türkische Notenbank senkt Leitzins trotz hoher Inflation',
+    teaser:
+      'Die türkische Zentralbank hat ihren Leitzins erstmals seit fünf Sitzungen gesenkt, um einen Punkt auf 36 Prozent, trotz einer Inflation von fast 30 Prozent.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-23T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Türkei', 'Leitzins', 'Inflation', 'Notenbank'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Geldpolitik, Reuters, Meldung vom 22.10.2026, 12:14 Uhr: „Geldpolitik: Türkische Zentralbank senkt Leitzins nach längerer Pause“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/geldpolitik-tuerkische-zentralbank-senkt-leitzins-nach-laengerer-pause/100264256.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die türkische Zentralbank hat ihren Leitzins gesenkt. Sie reduzierte den Zinssatz am Donnerstag nach Reuters-Angaben um einen Prozentpunkt von 37 auf 36 Prozent. Zuvor hatte die Notenbank den Zins bei den vorangegangenen fünf Sitzungen unverändert belassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Inflation bleibt hoch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Entscheidung fällt in einem Umfeld anhaltend hoher Inflation. Die Teuerungsrate lag in der Türkei im September bei 29,73 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Notenbank signalisiert mit dem Zinsschritt trotzdem, dass sie den seit Monaten rückläufigen Trend der Inflation für stabil genug hält, um die Geldpolitik vorsichtig zu lockern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für Sparer bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Leitzins unter der Inflationsrate bedeutet einen negativen Realzins. Sparerinnen und Sparer in türkischer Lira verlieren dadurch weiterhin an Kaufkraft, selbst wenn ihr Guthaben nominal verzinst wird.',
+      },
+    ],
+  },
+  {
     slug: 'grossbritannien-inflation-zinserhoehung-erwartet',
     title: 'Großbritanniens Inflation steigt, Zinserhöhung rückt näher',
     teaser:

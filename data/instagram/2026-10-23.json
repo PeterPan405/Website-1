@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Meta investiert Milliarden in KI und verliert trotzdem an der Börse, ein Drohnenangriff treibt den Ölpreis, der Dax gibt nach, die Türkei senkt den Leitzins, und KI-Aktien stehen unter Druck.",
+  "kacheln": [
+    {
+      "titel": "Meta: 135 Mrd. für KI",
+      "text": "Meta investiert mindestens 135 Milliarden Dollar in KI-Rechenzentren. Trotzdem verlor die Aktie am Donnerstag sieben Prozent, inmitten eines breiten Tech-Ausverkaufs."
+    },
+    {
+      "titel": "Öl +3,8 % nach Angriff",
+      "text": "Ein Drohnenangriff auf ein Ölfeld in Saudi-Arabien trieb den Ölpreis auf ein Fünfmonatshoch. Brent kostete zeitweise fast 113 Dollar pro Barrel."
+    },
+    {
+      "titel": "Dax verliert 270 Punkte",
+      "text": "Schwache US-Techwerte und steigende Ölpreise drückten den Dax um 1,1 Prozent auf 25.372 Punkte. Auch Nasdaq und Dow gaben nach."
+    },
+    {
+      "titel": "Türkei senkt Leitzins",
+      "text": "Die türkische Notenbank senkte ihren Leitzins erstmals seit fünf Sitzungen, auf 36 Prozent. Die Inflation liegt weiter bei fast 30 Prozent."
+    },
+    {
+      "titel": "KI-Aktien unter Druck",
+      "text": "Die KI-Cloud-Aktie Coreweave verlor im Oktober fast 30 Prozent. Am Anleihemarkt steigen die Preise für Kreditausfallversicherungen auf solche Firmen."
+    }
+  ],
+  "schlagworte": ["ölpreis", "dax", "zinsen", "ki", "aktien"]
+}
