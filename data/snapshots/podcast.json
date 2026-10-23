@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-22T08:55:22.264Z",
+  "abgerufenAm": "2026-10-23T01:03:46.690Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "meta-investiert-135-milliarden-dollar-in-ki-und-angriff-auf-oelfeld-in-saudi-ara",
+      "titel": "Meta investiert 135 Milliarden Dollar in KI und Angriff auf Ölfeld in Saudi-Arabien treibt Brent",
+      "beschreibung": "Meta investiert 135 Milliarden Dollar in KI und verliert trotzdem an der Börse, ein Drohnenangriff treibt den Ölpreis, und die Türkei senkt den Leitzins. Meta zieht beim Ausbau seiner KI-Infrastruktur die Zügel noch stärker an.\n\nWir sprechen über CoreWeave-Absturz lässt Bondmarkt, Barclays eröffnet Bankensaison und Türkische Notenbank senkt Leitzins trotz. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:39) Meta investiert 135 Milliarden Dollar in KI\n(1:14) Angriff auf Ölfeld in Saudi-Arabien treibt\n(1:54) CoreWeave-Absturz lässt Bondmarkt\n(2:25) Barclays eröffnet Bankensaison\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-23",
+      "dauerSekunden": 235,
+      "url": "https://iminvests.de/podcast-audio/2026-10-23.mp3",
+      "youtubeId": "yMP84IUNqyg"
+    },
     {
       "slug": "grossbritanniens-inflation-steigt-und-frankreich-anleiherendite-springt-auf-fuen",
       "titel": "Großbritanniens Inflation steigt und Frankreich: Anleiherendite springt auf fünf Prozent",
