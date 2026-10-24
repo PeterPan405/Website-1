@@ -590,6 +590,45 @@ function vorhersagen(
   return bereinigt
 }
 
+/**
+ * Wie viele schon bekannte Meldezeiten ein neuer Lauf anders sieht.
+ *
+ * Eine vergangene Meldung hat **eine** Annahmezeit; sie ändert sich nicht.
+ * Am 23.10.2026 tat sie es trotzdem, bei fast allen Titeln zugleich und um
+ * genau den New Yorker Zeitversatz: Lockheed von 07:25 auf 12:25, Deckers von
+ * 16:08 auf 21:08. Die Quelle (`acceptanceDateTime`) lieferte ihre
+ * Zeitstempel verschoben, der Lauf schrieb sie ab, und am Morgen darauf hielt
+ * der Test „Die Ableitung erzeugt überhaupt noch Uhrzeiten" den Bau an –
+ * und mit ihm den Instagram-Beitrag des Tages.
+ *
+ * Gezählt wird nur, was beide Stände kennen: dasselbe Kürzel, derselbe Tag.
+ */
+export function verschobeneZeiten(
+  alt: Record<string, Record<string, string> | undefined>,
+  neu: Record<string, Record<string, string> | undefined>
+): { verglichen: number; abweichend: number; beispiele: string[] } {
+  let verglichen = 0
+  let abweichend = 0
+  const beispiele: string[] = []
+  for (const [kuerzel, zeiten] of Object.entries(neu)) {
+    const vorher = alt[kuerzel]
+    if (!zeiten || !vorher) continue
+    for (const [tag, zeit] of Object.entries(zeiten)) {
+      if (!vorher[tag]) continue
+      verglichen++
+      if (vorher[tag] !== zeit) {
+        abweichend++
+        if (beispiele.length < 5)
+          beispiele.push(`${kuerzel} ${tag}: ${vorher[tag]} → ${zeit}`)
+      }
+    }
+  }
+  return { verglichen, abweichend, beispiele }
+}
+
+/** Ab diesem Anteil geänderter Altzeiten hat sich die Quelle verschoben, nicht die Welt. */
+export const VERSCHIEBUNG_GRENZE = 0.2
+
 async function main(): Promise<void> {
   const heute = new Date().toISOString().slice(0, 10)
 
@@ -663,6 +702,8 @@ async function main(): Promise<void> {
   const unternehmen: Record<string, Eintrag> = {}
   /** Wann ein Kürzel zuletzt über den zweiten Weg versucht wurde. */
   const zuletztVersucht: Record<string, string> = {}
+  /** Die Meldezeiten des letzten Stands – die Gegenprobe vor dem Schreiben. */
+  const alteZeiten: Record<string, Record<string, string>> = {}
 
   try {
     const bisher = JSON.parse(await readFile(ZIEL, 'utf8')) as {
@@ -671,6 +712,7 @@ async function main(): Promise<void> {
     }
     for (const [kuerzel, eintrag] of Object.entries(bisher.unternehmen ?? {})) {
       if (gefuehrt.has(kuerzel)) unternehmen[kuerzel] = eintrag
+      alteZeiten[kuerzel] = { ...eintrag.bisherZeiten }
     }
     for (const [kuerzel, tag] of Object.entries(bisher.zuletztVersucht ?? {})) {
       if (gefuehrt.has(kuerzel)) zuletztVersucht[kuerzel] = tag
@@ -1330,6 +1372,30 @@ async function main(): Promise<void> {
     unternehmen,
     zuletztVersucht,
   }
+
+  /*
+    Vergangene Meldezeiten ändern sich nicht. Tun es viele auf einmal, hat
+    sich die Quelle verschoben – dann bleibt der alte Stand, und der Lauf ist
+    rot (siehe `verschobeneZeiten`). Ein Stand mit falschen Uhrzeiten hält
+    sonst am nächsten Morgen den Bau an.
+  */
+  const verschiebung = verschobeneZeiten(
+    alteZeiten,
+    Object.fromEntries(Object.entries(unternehmen).map(([k, e]) => [k, e.bisherZeiten]))
+  )
+  if (
+    verschiebung.verglichen >= 50 &&
+    verschiebung.abweichend / verschiebung.verglichen > VERSCHIEBUNG_GRENZE
+  ) {
+    throw new Error(
+      `${verschiebung.abweichend} von ${verschiebung.verglichen} schon bekannten Meldezeiten ` +
+        `haben sich geändert – die Quelle liefert ihre Zeitstempel verschoben. ` +
+        `Nichts geschrieben, der alte Stand bleibt.\n  ${verschiebung.beispiele.join('\n  ')}`
+    )
+  }
+  console.log(
+    `Gegenprobe: ${verschiebung.abweichend} von ${verschiebung.verglichen} bekannten Meldezeiten geändert.`
+  )
 
   await writeFile(ZIEL, `${JSON.stringify(momentaufnahme, null, 2)}\n`, 'utf8')
 
