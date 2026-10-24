@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-23T08:50:04.515Z",
+  "abgerufenAm": "2026-10-24T01:35:43.121Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "moody-s-bestaetigt-frankreichs-rating-trotz-schuldenkrise-und-brentoel-erreicht",
+      "titel": "Moody's bestätigt Frankreichs Rating trotz Schuldenkrise und Brentöl erreicht Sechsmonatshoch",
+      "beschreibung": "Moody's lässt Frankreichs Rating trotz Schuldenkrise unverändert, Brentöl steigt auf ein Sechsmonatshoch, und Munich Re hebt die Gewinnprognose an. Die Ratingagentur Moody's hat Frankreichs Kreditwürdigkeit am Freitag bestätigt.\n\nWir sprechen über Munich Re verdient mehr als erwartet, American Express streicht 3500 Stellen trotz und Deutsches Baugewerbe meldet höchsten. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:36) Moody's bestätigt Frankreichs Rating trotz\n(1:08) Brentöl erreicht Sechsmonatshoch\n(1:52) Munich Re verdient mehr als erwartet\n(2:26) American Express streicht 3500 Stellen trotz\n(2:57) Deutsches Baugewerbe meldet höchsten\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-24",
+      "dauerSekunden": 238,
+      "url": "https://iminvests.de/podcast-audio/2026-10-24.mp3",
+      "youtubeId": "vjqGX0r3N28"
+    },
     {
       "slug": "meta-investiert-135-milliarden-dollar-in-ki-und-angriff-auf-oelfeld-in-saudi-ara",
       "titel": "Meta investiert 135 Milliarden Dollar in KI und Angriff auf Ölfeld in Saudi-Arabien treibt Brent",
