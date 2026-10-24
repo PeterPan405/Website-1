@@ -458,6 +458,45 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 25.10.2026 – Erholung nach dem Crash, Zeitleiste (neue Form). */
+{
+  const crash = zahlenkarten.find((k) => k.datum === '2026-10-25') as Rangkarte
+  pruefe('Zeitleiste', form(crash) === 'zeitleiste')
+  pruefe(
+    'in der Reihenfolge der Zeit, nicht der Größe',
+    crash.zeilen
+      .map((z) => Number(z.name.slice(-4)))
+      .every((j, i, a) => i === 0 || j > a[i - 1])
+  )
+  pruefe(
+    'jede Zeile nennt den Einbruch',
+    crash.zeilen.every((z) => /^Einbruch −\d+ %$/.test(z.zusatz ?? ''))
+  )
+  pruefe(
+    'jede Dauer steht im Text',
+    crash.zeilen.every(
+      (z) =>
+        z.wert === 25 || z.wert === 0.5 || crash.text.includes(`${zahl1(z.wert)} Jahre`)
+    )
+  )
+  pruefe(
+    'die Karte hält die Form ein',
+    pruefeZahlenkarte(crash).length === 0,
+    pruefeZahlenkarte(crash).join('; ')
+  )
+  pruefe(
+    'Form nicht wie am Vortag',
+    form(crash) !== form(zahlenkarten.find((k) => k.datum === '2026-10-24')!)
+  )
+  pruefe(
+    'Farbe nicht wie am Vortag',
+    akzentfarbe('2026-10-25') !== akzentfarbe('2026-10-24')
+  )
+  pruefe('ohne Freigabe – die gibt nur der Betreiber', !crash.freigabe)
+  const png = await zahlenkartePng(crash, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Zeitleiste: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
 /* Die Karte vom 24.10.2026 – Börsenwerte, Balken. */
 {
   const wert = zahlenkarten.find((k) => k.datum === '2026-10-24') as Rangkarte

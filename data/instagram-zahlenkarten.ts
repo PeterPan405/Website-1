@@ -16,6 +16,53 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 24.10.2026: „Nach dem Crash: so lange
+      dauerte die Erholung" – nach „kreativer werden, mal was Neues". Neue
+      Form: Zeitleiste (am Vortag Balken). Farbe: akzentfarbe('2026-10-25').
+
+      Nicht aus data/crashes.ts – dort stehen Größenordnungen ohne Quelle.
+      Gerechnet aus den Tagesschlusskursen des S&P 500 seit 30.12.1927
+      (Yahoo Finance, ^GSPC, abgerufen am 24.10.2026 über quellen-holen.yml),
+      nominal, ohne Dividenden. Höchststand im Zeitraum → Tiefpunkt →
+      erster Schluss wieder auf dem alten Hoch:
+        1929  16.09.1929 31,86 → 01.06.1932 4,40 (−86,2 %) → 22.09.1954  25,0 J.
+        1987  25.08.1987 336,77 → 04.12.1987 223,92 (−33,5 %) → 26.07.1989  1,9 J.
+        2000  24.03.2000 1527,46 → 09.10.2002 776,76 (−49,1 %) → 30.05.2007  7,2 J.
+        2008  09.10.2007 1565,15 → 09.03.2009 676,53 (−56,8 %) → 28.03.2013  5,5 J.
+        2020  19.02.2020 3386,15 → 23.03.2020 2237,40 (−33,9 %) → 18.08.2020  0,5 J.
+        2022  03.01.2022 4796,56 → 12.10.2022 3577,03 (−25,4 %) → 19.01.2024  2,0 J.
+    */
+    art: 'rangliste',
+    skala: 'zeitleiste',
+    datum: '2026-10-25',
+    titel: [{ text: 'Nach dem Crash:' }, { text: 'bis zu 25 Jahre', gruen: true }],
+    unterzeile: 'So lange brauchte der S&P 500 zurück auf das alte Hoch:',
+    einheit: ' Jahre',
+    zeilen: [
+      {
+        name: 'Depression 1929',
+        zusatz: 'Einbruch −86 %',
+        wert: 25.0,
+        land: 'USA',
+        hervor: true,
+      },
+      { name: 'Crash 1987', zusatz: 'Einbruch −34 %', wert: 1.9, land: 'USA' },
+      { name: 'Dotcom 2000', zusatz: 'Einbruch −49 %', wert: 7.2, land: 'USA' },
+      { name: 'Finanzkrise 2008', zusatz: 'Einbruch −57 %', wert: 5.5, land: 'USA' },
+      { name: 'Corona 2020', zusatz: 'Einbruch −34 %', wert: 0.5, land: 'USA' },
+      { name: 'Zinsschock 2022', zusatz: 'Einbruch −25 %', wert: 2.0, land: 'USA' },
+    ],
+    fusszeile:
+      'Stand: Schlüsse bis 23.10.2026 | Quelle: Yahoo Finance (S&P 500) | ohne Dividenden',
+    text:
+      'Nach dem Crash von 1929 brauchte der S&P 500 25 Jahre zurück auf sein altes Hoch – der Index hatte 86 % verloren. Nach Corona 2020 war es nach einem halben Jahr geschafft. ⏳\n\n' +
+      'Dazwischen: Dotcom 2000 (−49 %) 7,2 Jahre, Finanzkrise 2008 (−57 %) 5,5 Jahre, Zinsschock 2022 (−25 %) 2,0 Jahre, Crash 1987 (−34 %) 1,9 Jahre.\n\n' +
+      'Gerechnet vom Höchststand vor dem Einbruch bis zum ersten Schlusskurs wieder auf diesem Stand, nominal und ohne Dividenden. Mit ausgeschütteten Dividenden ging es jeweils schneller.\n' +
+      'Quelle: Yahoo Finance (S&P 500, Tagesschlusskurse seit 1927)',
+    schlagworte: ['börse', 'crash', 'aktien', 'investieren', 'geldanlage'],
+  },
+  {
+    /*
       Ohne Wahl des Betreibers: der erste offene Vorschlag vom 23.10.2026
       („Tesla und SpaceX zusammen"), wie die Routine es vorsieht. Anlass:
       Fusion Tesla/SpaceX (Ausgabe vom 22.10.) und Apple kurz vor Nvidia

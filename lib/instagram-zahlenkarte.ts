@@ -97,6 +97,8 @@ export interface Rang {
   hervor?: boolean
   /** Ein Durchschnitt, eingereiht – grau, gestrichelt. */
   schnitt?: boolean
+  /** Nur Zeitleiste: die zweite Zahl unter dem Namen, etwa „Einbruch −86 %". */
+  zusatz?: string
 }
 
 export interface Rangkarte extends KarteGemeinsam {
@@ -111,7 +113,7 @@ export interface Rangkarte extends KarteGemeinsam {
    * Die Balken zeigen eine gestrichelte Linie bei 100 %. Kacheln: ein
    * Raster aus Karten mit großer Zahl, zwei Spalten, ohne Grafik.
    */
-  skala?: 'haeuser' | 'balken' | 'kacheln'
+  skala?: 'haeuser' | 'balken' | 'kacheln' | 'zeitleiste'
   /**
    * Was hinter der Zahl steht – voreingestellt „ %". Leer für Größen ohne
    * Einheit wie die Geburtenziffer (1,36 Kinder je Frau; die Einheit steht
@@ -542,7 +544,8 @@ function pruefeRangliste(k: Rangkarte): string[] {
         `${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100; darüber skala: 'balken'.`
       )
     if (!FLAGGEN[z.land]) f.push(`${z.name}: keine Flagge für „${z.land}" in FLAGGEN.`)
-    if (i > 0 && z.wert > k.zeilen[i - 1].wert)
+    /* Eine Zeitleiste steht in der Reihenfolge der Zeit, nicht der Größe. */
+    if (k.skala !== 'zeitleiste' && i > 0 && z.wert > k.zeilen[i - 1].wert)
       f.push(`${z.name} steht unter ${k.zeilen[i - 1].name}, hat aber mehr – absteigend.`)
   }
   return f
@@ -1085,13 +1088,158 @@ function kachelGrafik(k: Rangkarte) {
  */
 export function form(
   k: Zahlenkarte
-): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'verlauf' | 'duell' {
+): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'zeitleiste' | 'verlauf' | 'duell' {
   if (k.art === 'verlauf' || k.art === 'duell') return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
 
+/**
+ * Die Zeitleiste: je Zeile ein Ereignis, eine Spur von null bis zum größten
+ * Wert und darauf die Strecke dieser Zeile mit einem Punkt am Ende – für
+ * Dauern („25 Jahre bis zum alten Hoch"). Unter dem Namen steht `zusatz`,
+ * die zweite Zahl des Ereignisses. Eingeführt am 24.10.2026 für „Nach dem
+ * Crash" (Betreiber: „kreativer werden, mal was Neues").
+ */
+function zeitleisteGrafik(k: Rangkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const groesster = Math.max(...k.zeilen.map((z) => z.wert))
+  const hoehe = Math.min(118, Math.floor((RL_UNTEN + 30 - RL_OBEN) / k.zeilen.length))
+  const spurX = 370
+  const spurBreite = ZK_BREITE - 40 - spurX - 240
+  const zeile = (z: Rang, i: number) => {
+    const farbe = z.hervor ? akzent : SCHWARZ
+    const laenge = Math.max(16, (spurBreite * z.wert) / groesster)
+    const oben = RL_OBEN - 30 + i * hoehe
+    return [
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: 40,
+          right: 40,
+          top: oben,
+          height: hoehe - 10,
+          borderRadius: 18,
+          backgroundColor: z.hervor ? hell(akzent) : 'transparent',
+          border: `3px solid ${z.hervor ? akzent : 'transparent'}`,
+        },
+      }),
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: 66,
+            top: oben,
+            height: hoehe - 10,
+            width: spurX - 80,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 800, fontSize: 29, color: farbe } },
+          z.name
+        ),
+        ...(z.zusatz
+          ? [
+              h(
+                'div',
+                {
+                  style: {
+                    fontFamily: 'Open',
+                    fontWeight: 700,
+                    fontSize: 24,
+                    color: ROT,
+                  },
+                },
+                z.zusatz
+              ),
+            ]
+          : [])
+      ),
+      /* Die Spur – grau, so lang wie der größte Wert. */
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: spurX,
+          top: oben + (hoehe - 10) / 2 - 4,
+          width: spurBreite,
+          height: 8,
+          borderRadius: 4,
+          backgroundColor: '#e3e5e1',
+        },
+      }),
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: spurX,
+          top: oben + (hoehe - 10) / 2 - 7,
+          width: laenge,
+          height: 14,
+          borderRadius: 7,
+          backgroundColor: farbe,
+        },
+      }),
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: spurX + laenge - 13,
+          top: oben + (hoehe - 10) / 2 - 13,
+          width: 26,
+          height: 26,
+          borderRadius: 13,
+          backgroundColor: '#ffffff',
+          border: `6px solid ${farbe}`,
+        },
+      }),
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            right: 58,
+            top: oben,
+            height: hoehe - 10,
+            display: 'flex',
+            alignItems: 'center',
+            fontFamily: 'Open',
+            fontWeight: 800,
+            fontStyle: 'italic',
+            fontSize: 38,
+            color: farbe,
+          },
+        },
+        `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
+      ),
+    ]
+  }
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    ...k.zeilen.flatMap(zeile),
+  ]
+}
+
 function ranglistenGrafik(k: Rangkarte) {
   if (k.skala === 'kacheln') return kachelGrafik(k)
+  if (k.skala === 'zeitleiste') return zeitleisteGrafik(k)
   const mitBalken = k.skala === 'balken'
   const akzent = akzentfarbe(k.datum)
   const groesster = Math.max(...k.zeilen.map((z) => z.wert), 0)
