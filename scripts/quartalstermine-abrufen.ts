@@ -504,7 +504,7 @@ async function termineVon(
  * die Lage nicht: Zwischen 16:01 und 16:35 Uhr liegen fünfunddreißig Minuten
  * und keine Aussage, zwischen 8:30 und 16:05 Uhr liegt ein Handelstag.
  */
-function uhrzeitAus(
+export function uhrzeitAus(
   basis: string,
   vorjahr: string,
   zeiten: Record<string, string>
@@ -626,6 +626,47 @@ export function verschobeneZeiten(
   return { verglichen, abweichend, beispiele }
 }
 
+/** Eine Uhrzeit, gelesen als UTC, auf der New Yorker Wanduhr. */
+export function utcAlsNewYork(tag: string, zeit: string): string {
+  return newYorkerUhrzeit(`${tag}T${zeit}:00Z`)
+}
+
+/**
+ * Die Meldezeiten eines Unternehmens, berichtigt gegen den letzten Stand.
+ *
+ * Seit dem 1./2. Oktober 2026 liefert die SEC die Annahmezeit für manche
+ * Abrufe um den New Yorker Versatz verschoben – nicht für alle Titel auf
+ * einmal, sondern für die, die gerade neu abgerufen werden, und am 4.10.
+ * für einen Tag wieder richtig. Gemessen an der Geschichte der
+ * Momentaufnahme: jede geänderte Altzeit war genau die richtige, als UTC
+ * gelesen (Lockheed 06:30 → 10:30, im Winter 07:25 → 12:25). Ein Lauf, der
+ * sie abschrieb, schob den Anteil der Termine mit Uhrzeit von 95 auf 49 %.
+ *
+ * Darum zweierlei:
+ * - **Eine bekannte Zeit bleibt.** Eine vergangene Meldung hat eine
+ *   Annahmezeit, und die steht schon im letzten Stand.
+ * - **Ist ein Abruf verschoben**, erkennbar daran, dass seine bekannten
+ *   Zeiten öfter genau um den Versatz abweichen, als sie stimmen, werden
+ *   auch die neuen Zeiten zurückgerechnet.
+ */
+export function entschiebe(
+  neu: Record<string, string>,
+  alt: Record<string, string> = {}
+): { zeiten: Record<string, string>; geschoben: boolean } {
+  let schub = 0
+  let gleich = 0
+  for (const [tag, zeit] of Object.entries(neu)) {
+    if (!alt[tag]) continue
+    if (alt[tag] === zeit) gleich++
+    else if (utcAlsNewYork(tag, zeit) === alt[tag]) schub++
+  }
+  const geschoben = schub > gleich
+  const zeiten: Record<string, string> = {}
+  for (const [tag, zeit] of Object.entries(neu))
+    zeiten[tag] = alt[tag] ?? (geschoben ? utcAlsNewYork(tag, zeit) : zeit)
+  return { zeiten, geschoben }
+}
+
 /** Ab diesem Anteil geänderter Altzeiten hat sich die Quelle verschoben, nicht die Welt. */
 export const VERSCHIEBUNG_GRENZE = 0.2
 
@@ -704,6 +745,8 @@ async function main(): Promise<void> {
   const zuletztVersucht: Record<string, string> = {}
   /** Die Meldezeiten des letzten Stands – die Gegenprobe vor dem Schreiben. */
   const alteZeiten: Record<string, Record<string, string>> = {}
+  /** Titel, deren Abruf verschoben kam und zurückgerechnet wurde (`entschiebe`). */
+  const zurueckgerechnet: string[] = []
 
   try {
     const bisher = JSON.parse(await readFile(ZIEL, 'utf8')) as {
@@ -1055,7 +1098,9 @@ async function main(): Promise<void> {
     if (angekuendigt.has(kalenderkuerzel(katalog))) continue
 
     try {
-      const { name, termine, zeiten } = await termineVon(cik)
+      const { name, termine, zeiten: roh } = await termineVon(cik)
+      const { zeiten, geschoben } = entschiebe(roh, alteZeiten[katalog])
+      if (geschoben) zurueckgerechnet.push(katalog)
       const abgeleitet = vorhersagen(termine, heute, zeiten)
 
       if (abgeleitet.length === 0) {
@@ -1396,6 +1441,12 @@ async function main(): Promise<void> {
   console.log(
     `Gegenprobe: ${verschiebung.abweichend} von ${verschiebung.verglichen} bekannten Meldezeiten geändert.`
   )
+  if (zurueckgerechnet.length)
+    console.log(
+      `::warning::Die SEC lieferte für ${zurueckgerechnet.length} Titel um den New Yorker ` +
+        `Versatz verschobene Zeiten – zurückgerechnet: ${zurueckgerechnet.slice(0, 12).join(', ')}` +
+        (zurueckgerechnet.length > 12 ? ' …' : '')
+    )
 
   await writeFile(ZIEL, `${JSON.stringify(momentaufnahme, null, 2)}\n`, 'utf8')
 
