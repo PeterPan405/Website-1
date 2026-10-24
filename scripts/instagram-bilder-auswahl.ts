@@ -16,6 +16,9 @@
  *     Holt genau diese Dateien, prüft sie noch einmal mit `taugt()` und
  *     trägt sie für die Stelle ins Register ein; die übrigen Stellen bleiben.
  *
+ *   MODUS=kurs  EINGABE="4|munich-re"
+ *     Statt eines Fotos der Kursverlauf des Symbols (`kachelKurs()`).
+ *
  *   MODUS=logo  EINGABE="4|File:…logo.svg|#FFFFFF"
  *     Das Firmenlogo auf einer Fläche in der genannten Farbe (`logobild()`),
  *     eingetragen wie eine Wahl. Nur freie Lizenzen; der Markenhinweis von
@@ -24,6 +27,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { marketDefinitions } from '@/data/markets'
 import {
   datei,
   kandidatVon,
@@ -117,6 +121,28 @@ if (process.env.MODUS === 'kandidaten') {
   }
   register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
+} else if (process.env.MODUS === 'kurs') {
+  const heute = register[DATUM] ?? []
+  for (const { stelle, wert: symbol } of zeilen) {
+    if (!marketDefinitions.some((m) => m.symbol === symbol))
+      throw new Error(`${symbol}: steht nicht im Kursbestand`)
+    const eintrag = {
+      stelle,
+      datei: '',
+      titel: `Kurs: ${symbol}`,
+      seite: '',
+      lizenz: 'Kursgrafik',
+      urheber: '',
+      suche: 'von Hand: Kursverlauf',
+      kurs: symbol,
+    }
+    const alt = heute.findIndex((b) => b.stelle === stelle)
+    if (alt >= 0) heute[alt] = eintrag
+    else heute.push(eintrag)
+    console.log(`Stelle ${stelle}: Kursverlauf ${symbol}`)
+  }
+  register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
+  writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else if (process.env.MODUS === 'logo') {
   mkdirSync(TAGESBILDER, { recursive: true })
   const heute = register[DATUM] ?? []
@@ -149,5 +175,5 @@ if (process.env.MODUS === 'kandidaten') {
   register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else {
-  throw new Error('MODUS=kandidaten, MODUS=wahl oder MODUS=logo')
+  throw new Error('MODUS=kandidaten, wahl, logo oder kurs')
 }
