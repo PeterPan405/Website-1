@@ -35,9 +35,9 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'rangliste',
     skala: 'zeitleiste',
-    datum: '2026-10-25',
-    /* Freigegeben vom Betreiber am 24.10.2026: „passt" – hinaus am 25.10. ab 15 Uhr. */
-    freigabe: '2026-10-25',
+    datum: '2026-10-24',
+    /* Freigegeben vom Betreiber am 24.10.2026: „passt", dann „nein heute" – hinaus am 24.10. */
+    freigabe: '2026-10-24',
     titel: [{ text: 'Nach dem Crash:' }, { text: 'bis zum Hoch', gruen: true }],
     unterzeile: 'So lange brauchte der S&P 500 zurück auf das alte Hoch:',
     einheit: ' Jahre',
@@ -63,54 +63,6 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gerechnet vom Höchststand vor dem Einbruch bis zum ersten Schlusskurs wieder auf diesem Stand, nominal und ohne Dividenden. Mit ausgeschütteten Dividenden ging es jeweils schneller.\n' +
       'Quelle: Yahoo Finance (S&P 500, Tagesschlusskurse seit 1927)',
     schlagworte: ['börse', 'crash', 'aktien', 'investieren', 'geldanlage'],
-  },
-  {
-    /*
-      Ohne Wahl des Betreibers: der erste offene Vorschlag vom 23.10.2026
-      („Tesla und SpaceX zusammen"), wie die Routine es vorsieht. Anlass:
-      Fusion Tesla/SpaceX (Ausgabe vom 22.10.) und Apple kurz vor Nvidia
-      (Tagesnews vom 24.10.). Form: Balken (am Vortag Kacheln). Farbe:
-      Anthrazit (akzentfarbe('2026-10-24')).
-
-      Börsenwert = Schlusskurs 22.10.2026 (Kursbestand, Yahoo Finance) ×
-      Aktienzahl aus den SEC-Berichten (data/snapshots/fundamentaldaten.json,
-      Stand 17.10.2026). Die 3,5 Billionen für Tesla und SpaceX stehen so in
-      data/editions/2026-10-22.ts („Zusammen wären sie rund 3,5 Billionen
-      Dollar wert") – eine Schätzung aus der Meldung, keine Rechnung.
-        Nvidia     212,21 × 24,100 Mrd. = 5,11 Bio. $
-        Apple      348,22 × 14,594 Mrd. = 5,08
-        Alphabet   324,22 × 12,230 Mrd. = 3,97
-        Microsoft  521,08 ×  7,426 Mrd. = 3,87
-        Amazon     250,38 × 10,786 Mrd. = 2,70
-        Meta       648,85 ×  2,538 Mrd. = 1,65
-        Tesla      374,58 ×  3,950 Mrd. = 1,48
-      Geprüft in tests/instagram-zahlenkarte.test.ts. Kein „Platz 5 der
-      Welt": Saudi Aramco, Broadcom und TSMC stehen nicht im Bestand.
-    */
-    art: 'rangliste',
-    skala: 'balken',
-    datum: '2026-10-24',
-    titel: [{ text: 'Tesla + SpaceX:' }, { text: '3,5 Billionen $', gruen: true }],
-    unterzeile: 'Börsenwert in Billionen Dollar:',
-    einheit: ' Bio.',
-    stellen: 2,
-    zeilen: [
-      { name: 'Nvidia', wert: 5.11, land: 'USA' },
-      { name: 'Apple', wert: 5.08, land: 'USA' },
-      { name: 'Alphabet', wert: 3.97, land: 'USA' },
-      { name: 'Microsoft', wert: 3.87, land: 'USA' },
-      { name: 'Tesla + SpaceX', wert: 3.5, land: 'USA', hervor: true },
-      { name: 'Amazon', wert: 2.7, land: 'USA' },
-      { name: 'Meta', wert: 1.65, land: 'USA' },
-      { name: 'Tesla allein', wert: 1.48, land: 'USA' },
-    ],
-    fusszeile: 'Stand: Schlusskurse 22.10.2026 | Quellen: Yahoo Finance, SEC',
-    text:
-      'Tesla und SpaceX wären zusammen rund 3,5 Billionen Dollar wert – mehr als Amazon (2,70) und Meta (1,65), knapp hinter Microsoft (3,87). 🚀\n\n' +
-      'Vorn liegen Nvidia mit 5,11 und Apple mit 5,08 Billionen Dollar, dahinter Alphabet mit 3,97. Tesla allein kommt auf 1,48 Billionen.\n\n' +
-      'Börsenwert aus dem Schlusskurs vom 22.10.2026 und der Aktienzahl in den SEC-Berichten. Die 3,5 Billionen für Tesla und SpaceX sind die Schätzung aus der Fusionsmeldung, keine eigene Rechnung.\n' +
-      'Quellen: Yahoo Finance (Schlusskurse), US-Börsenaufsicht SEC',
-    schlagworte: ['tesla', 'spacex', 'aktien', 'börse', 'nvidia'],
   },
   {
     /*
