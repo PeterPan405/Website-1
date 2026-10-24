@@ -117,7 +117,8 @@ export function urheberVon(seite: Seite): string {
  * auch Trade Republic und HKCM: das Logo, nicht ein Zufallsfoto.
  *
  * Commons rechnet ein SVG über `thumburl` in ein PNG um; das wird auf
- * `farbe` gelegt, höchstens 62 % breit und 46 % hoch.
+ * `farbe` gelegt, höchstens 62 % breit und 62 % hoch – ein quadratisches Logo
+ * wie das von American Express ging mit 46 % Höhe am 24.10.2026 unter.
  */
 export async function logobild(
   seite: Seite,
@@ -129,7 +130,7 @@ export async function logobild(
   const roh = await fetch(info.thumburl ?? info.url, { headers: { 'User-Agent': UA } })
   if (!roh.ok) return null
   const logo = await sharp(Buffer.from(await roh.arrayBuffer()))
-    .resize(Math.round(breite * 0.62), Math.round(hoehe * 0.46), { fit: 'inside' })
+    .resize(Math.round(breite * 0.62), Math.round(hoehe * 0.62), { fit: 'inside' })
     .png()
     .toBuffer()
   return sharp({
