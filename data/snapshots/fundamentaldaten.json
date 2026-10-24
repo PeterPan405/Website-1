@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-17T10:44:34.347Z",
+  "abgerufenAm": "2026-10-24T10:53:17.645Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -379,8 +379,8 @@
       "umsatz": 10815000000,
       "gewinn": 735000000,
       "cashflow": 1157000000,
-      "eigenkapital": 2490000000,
-      "aktien": 73237217
+      "eigenkapital": 2459000000,
+      "aktien": 72006695
     },
     "AMAT": {
       "umsatz": 28368000000,
@@ -412,11 +412,11 @@
     },
     "AMS.MC": {
       "waehrung": "EUR",
-      "umsatz": 6141700000,
-      "gewinn": 1253000000,
-      "cashflow": 2146000000,
-      "eigenkapital": 5062400000,
-      "aktien": 436585366
+      "umsatz": 6517000000,
+      "gewinn": 1335700000,
+      "cashflow": 2200900000,
+      "eigenkapital": 4852400000,
+      "aktien": 439375000
     },
     "AMT": {
       "umsatz": 935900000,
@@ -571,8 +571,8 @@
       "umsatz": 41304000000,
       "gewinn": 10833000000,
       "cashflow": 18428000000,
-      "eigenkapital": 34280000000,
-      "aktien": 675309833
+      "eigenkapital": 35797000000,
+      "aktien": 670552018
     },
     "AZN.L": {
       "umsatz": 58739000000,
@@ -942,15 +942,15 @@
       "umsatz": 123707000000,
       "gewinn": 19998000000,
       "cashflow": 33643000000,
-      "eigenkapital": 89763000000,
-      "aktien": 3580000000
+      "eigenkapital": 92529000000,
+      "aktien": 3572000000
     },
     "CME": {
       "umsatz": 6520600000,
       "gewinn": 4072200000,
       "cashflow": 4277100000,
-      "eigenkapital": 26520400000,
-      "aktien": 360005000
+      "eigenkapital": 26560300000,
+      "aktien": 359336000
     },
     "CMG": {
       "umsatz": 11925601000,
@@ -1085,8 +1085,8 @@
       "umsatz": 14092000000,
       "gewinn": 2889000000,
       "cashflow": 4613000000,
-      "eigenkapital": 14088000000,
-      "aktien": 1852474917
+      "eigenkapital": 14382000000,
+      "aktien": 1843398210
     },
     "CTAS": {
       "umsatz": 11264761000,
@@ -1221,8 +1221,8 @@
       "umsatz": 24568000000,
       "gewinn": 3614000000,
       "cashflow": 6416000000,
-      "eigenkapital": 52581000000,
-      "aktien": 702986054
+      "eigenkapital": 53621000000,
+      "aktien": 703530815
     },
     "DIS": {
       "umsatz": 94425000000,
@@ -1247,16 +1247,16 @@
     },
     "DNB.OL": {
       "waehrung": "NOK",
-      "gewinn": 43870000000,
-      "cashflow": -156444000000,
-      "eigenkapital": 283325000000,
-      "aktien": 1495228357
+      "gewinn": 41944000000,
+      "cashflow": 72590000000,
+      "eigenkapital": 295855000000,
+      "aktien": 1474305800
     },
     "DOW": {
       "umsatz": 39968000000,
       "cashflow": 1032000000,
-      "eigenkapital": 15249000000,
-      "aktien": 720741438
+      "eigenkapital": 16153000000,
+      "aktien": 723881907
     },
     "DSY.PA": {
       "waehrung": "EUR",
@@ -1334,8 +1334,8 @@
       "umsatz": 199125000000,
       "gewinn": 5662000000,
       "cashflow": 4290000000,
-      "eigenkapital": 44883000000,
-      "aktien": 216869290
+      "eigenkapital": 44681000000,
+      "aktien": 216055891
     },
     "EMR": {
       "umsatz": 18016000000,
@@ -1583,10 +1583,10 @@
     },
     "GALP.LS": {
       "waehrung": "EUR",
-      "gewinn": 1040000000,
-      "cashflow": 2527000000,
-      "eigenkapital": 5638000000,
-      "aktien": 764705882
+      "gewinn": 1120000000,
+      "cashflow": 1403000000,
+      "eigenkapital": 5179000000,
+      "aktien": 741721854
     },
     "GD": {
       "umsatz": 52550000000,
@@ -1599,8 +1599,8 @@
       "umsatz": 45855000000,
       "gewinn": 8704000000,
       "cashflow": 8537000000,
-      "eigenkapital": 17640000000,
-      "aktien": 1037562513
+      "eigenkapital": 17522000000,
+      "aktien": 1033351921
     },
     "GEV": {
       "umsatz": 38068000000,
@@ -1662,8 +1662,8 @@
       "umsatz": 167971000000,
       "gewinn": 2780000000,
       "cashflow": 26867000000,
-      "eigenkapital": 62000000000,
-      "aktien": 877451541
+      "eigenkapital": 62806000000,
+      "aktien": 843549423
     },
     "GOOG": {
       "umsatz": 350018000000,
@@ -1717,8 +1717,8 @@
     "HAL": {
       "gewinn": 1283000000,
       "cashflow": 2926000000,
-      "eigenkapital": 11010000000,
-      "aktien": 833130367
+      "eigenkapital": 11118000000,
+      "aktien": 827126342
     },
     "HCA": {
       "umsatz": 75600000000,
@@ -1775,8 +1775,8 @@
       "umsatz": 37442000000,
       "gewinn": 4729000000,
       "cashflow": 6408000000,
-      "eigenkapital": 18537000000,
-      "aktien": 316940010
+      "eigenkapital": 22417000000,
+      "aktien": 317358518
     },
     "HOOD": {
       "umsatz": 4473000000,
@@ -1824,8 +1824,8 @@
       "umsatz": 67535000000,
       "gewinn": 10593000000,
       "cashflow": 13193000000,
-      "eigenkapital": 34452000000,
-      "aktien": 942134390
+      "eigenkapital": 35537000000,
+      "aktien": 945120805
     },
     "ICE": {
       "umsatz": 12640000000,
@@ -1928,8 +1928,8 @@
       "umsatz": 10064700000,
       "gewinn": 2856000000,
       "cashflow": 3030500000,
-      "eigenkapital": 18168400000,
-      "aktien": 353278038
+      "eigenkapital": 15986200000,
+      "aktien": 346643718
     },
     "IT": {
       "umsatz": 6497226000,
@@ -1976,18 +1976,18 @@
     },
     "JMT.LS": {
       "waehrung": "EUR",
-      "umsatz": 25385000000,
-      "gewinn": 590000000,
-      "cashflow": 2095000000,
-      "eigenkapital": 2585000000,
-      "aktien": 628528816
+      "umsatz": 35991000000,
+      "gewinn": 646000000,
+      "cashflow": 2425000000,
+      "eigenkapital": 3529000000,
+      "aktien": 627977058
     },
     "JNJ": {
       "umsatz": 94193000000,
       "gewinn": 26804000000,
       "cashflow": 24530000000,
-      "eigenkapital": 84971000000,
-      "aktien": 2409898597
+      "eigenkapital": 81529000000,
+      "aktien": 2407310266
     },
     "JPM": {
       "umsatz": 182447000000,
@@ -2042,8 +2042,8 @@
       "umsatz": 15202000000,
       "gewinn": 3056000000,
       "cashflow": 5917000000,
-      "eigenkapital": 31631000000,
-      "aktien": 2226802089
+      "eigenkapital": 31595000000,
+      "aktien": 2227715229
     },
     "KMX": {
       "umsatz": 25881100000,
@@ -2069,11 +2069,11 @@
     },
     "KOG.OL": {
       "waehrung": "NOK",
-      "umsatz": 48872000000,
-      "gewinn": 5126000000,
-      "cashflow": 13744000000,
-      "eigenkapital": 19269000000,
-      "aktien": 175909403
+      "umsatz": 31562000000,
+      "gewinn": 7953000000,
+      "cashflow": 12732000000,
+      "eigenkapital": 23212000000,
+      "aktien": 879756637
     },
     "KR": {
       "umsatz": 147642000000,
@@ -2175,8 +2175,8 @@
       "umsatz": 75048000000,
       "gewinn": 5017000000,
       "cashflow": 8557000000,
-      "eigenkapital": 8768000000,
-      "aktien": 230790753
+      "eigenkapital": 10063000000,
+      "aktien": 231004640
     },
     "LNG": {
       "umsatz": 19464000000,
@@ -2220,8 +2220,8 @@
       "umsatz": 23232690000,
       "gewinn": 7265396000,
       "cashflow": 5857657000,
-      "eigenkapital": 12470921000,
-      "aktien": 1251321000
+      "eigenkapital": 13908474000,
+      "aktien": 1249171000
     },
     "LSEG.L": {
       "waehrung": "GBP",
@@ -2242,15 +2242,15 @@
       "umsatz": 28063000000,
       "gewinn": 441000000,
       "cashflow": 1842000000,
-      "eigenkapital": 7082000000,
-      "aktien": 489208201
+      "eigenkapital": 7329000000,
+      "aktien": 489602380
     },
     "LVS": {
       "umsatz": 13017000000,
       "gewinn": 1627000000,
       "cashflow": 3023000000,
-      "eigenkapital": 581000000,
-      "aktien": 647701184
+      "eigenkapital": -344000000,
+      "aktien": 626990133
     },
     "MA": {
       "umsatz": 32791000000,
@@ -2291,8 +2291,8 @@
       "umsatz": 7718000000,
       "gewinn": 2459000000,
       "cashflow": 2901000000,
-      "eigenkapital": 3025000000,
-      "aktien": 173200000
+      "eigenkapital": 3268000000,
+      "aktien": 172400000
     },
     "MDLZ": {
       "umsatz": 38537000000,
@@ -2319,8 +2319,8 @@
       "umsatz": 200966000000,
       "gewinn": 60458000000,
       "cashflow": 115800000000,
-      "eigenkapital": 261221000000,
-      "aktien": 2538000000
+      "eigenkapital": 272386000000,
+      "aktien": 2543000000
     },
     "MGM": {
       "umsatz": 17537683000,
@@ -2348,8 +2348,8 @@
       "umsatz": 24948000000,
       "gewinn": 3250000000,
       "cashflow": 2306000000,
-      "eigenkapital": 2952000000,
-      "aktien": 515722417
+      "eigenkapital": 4127000000,
+      "aktien": 516729574
     },
     "MNDY": {
       "umsatz": 1231997000,
@@ -2388,11 +2388,11 @@
     },
     "MOWI.OL": {
       "waehrung": "EUR",
-      "umsatz": 5566400000,
-      "gewinn": 468500000,
-      "cashflow": 916600000,
-      "eigenkapital": 4005600000,
-      "aktien": 514835165
+      "umsatz": 5688700000,
+      "gewinn": 717900000,
+      "cashflow": 870900000,
+      "eigenkapital": 4565000000,
+      "aktien": 520217391
     },
     "MPC": {
       "umsatz": 132699000000,
@@ -2447,8 +2447,8 @@
       "umsatz": 3134459000,
       "gewinn": 1202305000,
       "cashflow": 1588446000,
-      "eigenkapital": -2689500000,
-      "aktien": 72700000
+      "eigenkapital": -3016400000,
+      "aktien": 71500000
     },
     "MSFT": {
       "umsatz": 281724000000,
@@ -2496,8 +2496,8 @@
       "umsatz": 8262000000,
       "gewinn": 1788000000,
       "cashflow": 2255000000,
-      "eigenkapital": 11988000000,
-      "aktien": 558977372
+      "eigenkapital": 11999000000,
+      "aktien": 554962751
     },
     "NEE": {
       "gewinn": 6835000000,
@@ -2509,8 +2509,8 @@
       "umsatz": 22669000000,
       "gewinn": 7085000000,
       "cashflow": 10334000000,
-      "eigenkapital": 35243000000,
-      "aktien": 1053692271
+      "eigenkapital": 35675000000,
+      "aktien": 1039193185
     },
     "NESTE.HE": {
       "waehrung": "EUR",
@@ -2538,8 +2538,8 @@
       "umsatz": 45183036000,
       "gewinn": 10981000000,
       "cashflow": 10149273000,
-      "eigenkapital": 30152052000,
-      "aktien": 4163939676
+      "eigenkapital": 29286253000,
+      "aktien": 4106325903
     },
     "NG.L": {
       "umsatz": 18378000000,
@@ -2566,8 +2566,8 @@
       "umsatz": 41954000000,
       "gewinn": 4182000000,
       "cashflow": 4757000000,
-      "eigenkapital": 17884000000,
-      "aktien": 142063026
+      "eigenkapital": 18683000000,
+      "aktien": 142064489
     },
     "NOVN.SW": {
       "gewinn": 13984000000,
@@ -2595,16 +2595,16 @@
       "umsatz": 12180000000,
       "gewinn": 2873000000,
       "cashflow": 4361000000,
-      "eigenkapital": 16253000000,
-      "aktien": 224608373
+      "eigenkapital": 16730000000,
+      "aktien": 224616686
     },
     "NTGY.MC": {
       "waehrung": "EUR",
-      "umsatz": 19267000000,
-      "gewinn": 1901000000,
-      "cashflow": 3992000000,
-      "eigenkapital": 11653000000,
-      "aktien": 960101010
+      "umsatz": 19455000000,
+      "gewinn": 2023000000,
+      "cashflow": 4525000000,
+      "eigenkapital": 11373000000,
+      "aktien": 932258065
     },
     "NTR.TO": {
       "umsatz": 26885000000,
@@ -2783,8 +2783,8 @@
       "umsatz": 84284000000,
       "gewinn": 15974000000,
       "cashflow": 17817000000,
-      "eigenkapital": 54311000000,
-      "aktien": 2324433060
+      "eigenkapital": 55337000000,
+      "aktien": 2317783143
     },
     "PGR": {
       "umsatz": 87671000000,
@@ -2833,8 +2833,8 @@
       "umsatz": 40648000000,
       "gewinn": 11348000000,
       "cashflow": 12233000000,
-      "eigenkapital": -8583000000,
-      "aktien": 1558613439
+      "eigenkapital": -7937000000,
+      "aktien": 1558655629
     },
     "PNC": {
       "umsatz": 23099000000,
@@ -2977,10 +2977,10 @@
     },
     "REP.MC": {
       "waehrung": "EUR",
-      "gewinn": 1756000000,
-      "cashflow": 4965000000,
-      "eigenkapital": 29099000000,
-      "aktien": 1227972028
+      "gewinn": 1899000000,
+      "cashflow": 5365000000,
+      "eigenkapital": 27618000000,
+      "aktien": 1172222222
     },
     "RI.PA": {
       "waehrung": "EUR",
@@ -3061,8 +3061,8 @@
       "umsatz": 88603000000,
       "gewinn": 6732000000,
       "cashflow": 10567000000,
-      "eigenkapital": 66377000000,
-      "aktien": 1347758144
+      "eigenkapital": 69250000000,
+      "aktien": 1349440548
     },
     "RXL.PA": {
       "waehrung": "EUR",
@@ -3302,7 +3302,7 @@
       "gewinn": 233000000,
       "cashflow": 615000000,
       "eigenkapital": 1404000000,
-      "aktien": 109905660
+      "aktien": 1099057
     },
     "SOP.PA": {
       "waehrung": "EUR",
@@ -3377,8 +3377,8 @@
       "umsatz": 18176581000,
       "gewinn": 1185595000,
       "cashflow": 1449534000,
-      "eigenkapital": 9419532000,
-      "aktien": 143328088
+      "eigenkapital": 9842428000,
+      "aktien": 142217487
     },
     "STMPA.PA": {
       "umsatz": 11800000000,
@@ -3471,8 +3471,8 @@
     "SYF": {
       "gewinn": 3552000000,
       "cashflow": 9851000000,
-      "eigenkapital": 16897000000,
-      "aktien": 325370840
+      "eigenkapital": 16550000000,
+      "aktien": 311404854
     },
     "SYK": {
       "umsatz": 25116000000,
@@ -3492,8 +3492,8 @@
       "umsatz": 125648000000,
       "gewinn": 21953000000,
       "cashflow": 40284000000,
-      "eigenkapital": 126434000000,
-      "aktien": 6852385650
+      "eigenkapital": 122754000000,
+      "aktien": 6736473433
     },
     "TD.TO": {
       "umsatz": 67777000000,
@@ -3526,11 +3526,11 @@
     },
     "TEL.OL": {
       "waehrung": "NOK",
-      "umsatz": 79928000000,
-      "gewinn": 18336000000,
-      "cashflow": 31481000000,
-      "eigenkapital": 81772000000,
-      "aktien": 1376576577
+      "umsatz": 76548000000,
+      "gewinn": 7034000000,
+      "cashflow": 31222000000,
+      "eigenkapital": 75629000000,
+      "aktien": 1368482490
     },
     "TEP.PA": {
       "waehrung": "EUR",
@@ -3628,10 +3628,10 @@
     },
     "TSLA": {
       "umsatz": 94827000000,
-      "gewinn": 3794000000,
+      "gewinn": 3855000000,
       "cashflow": 14747000000,
-      "eigenkapital": 86858000000,
-      "aktien": 3949547394
+      "eigenkapital": 89289000000,
+      "aktien": 3952757946
     },
     "TSM": {
       "umsatz": 88268000000,
@@ -3674,8 +3674,8 @@
       "umsatz": 17682000000,
       "gewinn": 5001000000,
       "cashflow": 7153000000,
-      "eigenkapital": 18007000000,
-      "aktien": 913247686
+      "eigenkapital": 19185000000,
+      "aktien": 913770316
     },
     "TXT": {
       "umsatz": 14799000000,
@@ -3688,8 +3688,8 @@
       "umsatz": 59070000000,
       "gewinn": 3353000000,
       "cashflow": 8431000000,
-      "eigenkapital": 16697000000,
-      "aktien": 324583772
+      "eigenkapital": 17754000000,
+      "aktien": 324894375
     },
     "UBER": {
       "umsatz": 52017000000,
@@ -3743,8 +3743,8 @@
       "umsatz": 24510000000,
       "gewinn": 7138000000,
       "cashflow": 9290000000,
-      "eigenkapital": 20673000000,
-      "aktien": 594075498
+      "eigenkapital": 22018000000,
+      "aktien": 594250416
     },
     "UPM.HE": {
       "waehrung": "EUR",
@@ -3881,8 +3881,8 @@
       "umsatz": 11167000000,
       "gewinn": 1170000000,
       "cashflow": 1759000000,
-      "eigenkapital": 11214000000,
-      "aktien": 168910851
+      "eigenkapital": 11333000000,
+      "aktien": 167802384
     },
     "WBC.AX": {
       "umsatz": 58046000000,
@@ -3891,13 +3891,6 @@
       "eigenkapital": 73093000000,
       "waehrung": "AUD",
       "aktien": 3420353305
-    },
-    "WBD": {
-      "umsatz": 37296000000,
-      "gewinn": 727000000,
-      "cashflow": 4319000000,
-      "eigenkapital": 32838000000,
-      "aktien": 2510703314
     },
     "WDAY": {
       "umsatz": 9552000000,
@@ -3910,8 +3903,8 @@
       "umsatz": 9520000000,
       "gewinn": 1643000000,
       "cashflow": 1691000000,
-      "eigenkapital": 8864000000,
-      "aktien": 360540944
+      "eigenkapital": 9348000000,
+      "aktien": 374323269
     },
     "WDS.AX": {
       "waehrung": "USD",
@@ -4049,10 +4042,10 @@
     },
     "YAR.OL": {
       "waehrung": "USD",
-      "umsatz": 13868000000,
-      "gewinn": 14000000,
-      "cashflow": 1286000000,
-      "eigenkapital": 7003000000,
+      "umsatz": 15623000000,
+      "gewinn": 1368000000,
+      "cashflow": 1894000000,
+      "eigenkapital": 8743000000,
       "aktien": 254725627
     },
     "YPF": {
