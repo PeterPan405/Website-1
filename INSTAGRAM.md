@@ -205,7 +205,11 @@ bekommen".
    Freigabe und Bau vor 15 Uhr.
 5. **Freigabe**, sonst Änderung und neuer Entwurf. Nach dem „passt" wird
    `freigabe: '<heute>'` an die Karte geschrieben, gemergt, gebaut – und
-   **nicht** von Hand veröffentlicht.
+   **nicht** von Hand veröffentlicht. Ein „passt" gilt **für heute**:
+   Kommt es nach 15 Uhr, geht die Karte sofort hinaus, nicht am nächsten
+   Tag (Betreiber, 24.10.2026: „nein heute" – „sofort"). Eine Karte mit
+   späterem Datum verdrängt außerdem die heutige: `aktuelleZahlenkarte()`
+   zeigt die jüngste im Bestand.
 6. **Online ab 15 Uhr** (bis 18.10.2026: 16 Uhr; Betreiber am 19.10.: „mach
    15 Uhr, wenn es schon fertig ist, zukünftig") – der Dauerlauf
    (`kurse-dauerlauf.yml`) fragt ab 15:00 alle zehn Minuten und stößt `instagram-zahlenkarte.yml` an, sobald
