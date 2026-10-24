@@ -47,6 +47,15 @@ export interface Tagesbild {
   lizenz: string
   urheber: string
   suche: string
+  /**
+   * Statt eines Fotos der Kursverlauf dieses Symbols (`kachelKurs()`).
+   *
+   * Betreiber, 24.10.2026, zu „Munich Re: Prognose steigt": „vielleicht dann
+   * mal wieder ein Chart. Wenn sich da kein richtiges Bild finden lässt,
+   * dann einfach ein Chart auch zukünftig." Der Morgenlauf trägt ihn ein,
+   * wenn er für ein Unternehmen kein Markenfoto findet.
+   */
+  kurs?: string
 }
 
 export type Register = Record<string, Tagesbild[]>
@@ -66,8 +75,19 @@ export function verwendeteTitel(register: Register): Set<string> {
   )
   return new Set([
     ...motive,
-    ...Object.values(register).flatMap((tag) => tag.map((b) => b.titel)),
+    ...Object.values(register).flatMap((tag) =>
+      tag.filter((b) => !b.kurs).map((b) => b.titel)
+    ),
   ])
+}
+
+/** Steht für die Stelle ein Kursverlauf statt eines Fotos? Dann sein Symbol. */
+export function tageskurs(
+  datum: string,
+  stelle: number,
+  register = leseRegister()
+): string | null {
+  return register[datum]?.find((x) => x.stelle === stelle)?.kurs ?? null
 }
 
 /** „https://commons.wikimedia.org/wiki/File:A_b.jpg" → „File:A b.jpg". */
@@ -83,7 +103,7 @@ export function tagesbild(
   register = leseRegister()
 ): Buffer | null {
   const b = register[datum]?.find((x) => x.stelle === stelle)
-  if (!b) return null
+  if (!b || b.kurs) return null
   const pfad = join(process.cwd(), TAGESBILDER, b.datei)
   return existsSync(pfad) ? readFileSync(pfad) : null
 }

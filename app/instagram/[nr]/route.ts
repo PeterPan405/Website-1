@@ -6,7 +6,7 @@ import {
 } from '@/lib/instagram-bild'
 import { kachelKurs } from '@/lib/instagram-kurs'
 import { bebildere, deckblattMotiv, motiveVomVortag } from '@/lib/instagram-motive'
-import { tagesbild } from '@/lib/instagram-tagesbilder'
+import { tagesbild, tageskurs } from '@/lib/instagram-tagesbilder'
 import { instagramHeute } from '@/lib/instagram-heute'
 
 /**
@@ -87,11 +87,21 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
       gesucht am Morgen von `instagram-bilder.yml`. Nur wo keins gefunden
       wurde, das feste Motiv – und keins vom Vortag.
     */
-    const foto =
-      tagesbild(stand.datum, stelle) ?? (bild.motiv ? motivJpeg(bild.motiv) : null)
+    /*
+      Oder statt des Fotos der Kursverlauf, wenn der Morgenlauf (oder die
+      Wahl von Hand) ihn eingetragen hat – bei einem Unternehmen ohne
+      brauchbares Markenfoto. Lässt sich der Verlauf nicht zeigen
+      (`kursFuerKachel()` lehnt ab), bleibt es beim Motiv.
+    */
+    const nurKurs = tageskurs(stand.datum, stelle)
+    const verlauf = nurKurs ? await kachelKurs(nurKurs, kachel, stand.datum) : null
+    const foto = verlauf
+      ? null
+      : (tagesbild(stand.datum, stelle) ?? (bild.motiv ? motivJpeg(bild.motiv) : null))
     const png = await meldungskachel(kachel.titel, kachel.text, {
       foto,
-      kurs: bild.kurs ? await kachelKurs(bild.kurs, kachel, stand.datum) : null,
+      kurs:
+        verlauf ?? (bild.kurs ? await kachelKurs(bild.kurs, kachel, stand.datum) : null),
     })
     const { default: sharp } = await import('sharp')
     jpeg = await sharp(png).jpeg({ quality: 90, mozjpeg: true }).toBuffer()

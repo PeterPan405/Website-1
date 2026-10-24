@@ -21,7 +21,7 @@ import {
   urheberVon,
   zuschnitt,
 } from '@/lib/commons-suche'
-import { bebildere } from '@/lib/instagram-motive'
+import { bebildere, kursZurKachel } from '@/lib/instagram-motive'
 import {
   type Tagesbild,
   leseRegister,
@@ -68,7 +68,33 @@ for (const [i, kachel] of plan.kacheln.entries()) {
   const stelle = i + 2
   if (nur.length && !nur.includes(stelle)) continue
   let gefunden = false
-  for (const s of suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse', kachel.text)) {
+  const suchen = suchenFuer(kachel.titel, themen[i].motiv ?? 'boerse', kachel.text)
+  /*
+    Ein Unternehmen ohne Markenfoto bekommt seinen Kursverlauf, nicht ein
+    Foto aus den allgemeinen Begriffen (Betreiber, 24.10.2026: „Wenn sich da
+    kein richtiges Bild finden lässt, dann einfach ein Chart"). Am selben Tag
+    kamen für Munich Re ein unbekannter Redner und für American Express eine
+    Kreditkarte mit fremdem Namen.
+  */
+  const symbol = suchen.some((s) => s.marke) ? kursZurKachel(kachel.titel) : null
+  for (const s of suchen) {
+    if (symbol && !s.marke) {
+      heute.push({
+        stelle,
+        datei: '',
+        titel: `Kurs: ${symbol}`,
+        seite: '',
+        lizenz: 'Kursgrafik',
+        urheber: '',
+        suche: 'kein Markenfoto – Kursverlauf',
+        kurs: symbol,
+      })
+      console.log(
+        `Kachel ${stelle} „${kachel.titel}": kein Markenfoto – Kursverlauf ${symbol}`
+      )
+      gefunden = true
+      break
+    }
     let seiten: Seite[]
     try {
       seiten = s.nurAusgezeichnet

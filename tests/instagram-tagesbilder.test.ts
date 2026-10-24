@@ -6,6 +6,7 @@
  */
 import { existsSync } from 'node:fs'
 
+import { marketDefinitions } from '@/data/markets'
 import { bebildere, MOTIVE, motiveVomVortag } from '@/lib/instagram-motive'
 import {
   type Kandidat,
@@ -16,6 +17,8 @@ import {
   taugt,
   bildnachweis,
   MARKENBILD,
+  tagesbild,
+  tageskurs,
   titelAusSeite,
   verwendeteTitel,
 } from '@/lib/instagram-tagesbilder'
@@ -256,22 +259,59 @@ pruefe(
   MARKENBILD.test('File:Qiagen headquarters Hilden.jpg')
 )
 
+/* Ein Kursverlauf statt eines Fotos (24.10.2026, Munich Re). */
+const mitKurs = {
+  '2099-01-01': [
+    {
+      stelle: 4,
+      datei: '',
+      titel: 'Kurs: munich-re',
+      seite: '',
+      lizenz: 'Kursgrafik',
+      urheber: '',
+      suche: '',
+      kurs: 'munich-re',
+    },
+  ],
+}
+pruefe(
+  'Kursverlauf statt Foto: kein Bild, aber das Symbol',
+  tagesbild('2099-01-01', 4, mitKurs) === null &&
+    tageskurs('2099-01-01', 4, mitKurs) === 'munich-re'
+)
+pruefe(
+  '… und er zählt nicht als verwendete Datei',
+  !verwendeteTitel(mitKurs).has('Kurs: munich-re')
+)
+pruefe('… und braucht keine Nennung', bildnachweis('2099-01-01', mitKurs) === '')
+
 /* Das Register: keine Datei zweimal, jede liegt bereit. */
 const register = leseRegister()
-const titel = Object.values(register).flatMap((tag) => tag.map((b) => b.titel))
+const titel = Object.values(register).flatMap((tag) =>
+  tag.filter((b) => !b.kurs).map((b) => b.titel)
+)
 pruefe(
   `keine Commons-Datei zweimal (${titel.length})`,
   new Set(titel).size === titel.length
 )
 for (const [tag, bilder] of Object.entries(register))
   for (const b of bilder) {
+    if (b.kurs) {
+      pruefe(
+        `${tag}, Kachel ${b.stelle}: Kursverlauf ${b.kurs} steht im Kursbestand`,
+        marketDefinitions.some((m) => m.symbol === b.kurs)
+      )
+      continue
+    }
     pruefe(
       `${tag}, Kachel ${b.stelle}: Datei liegt bereit`,
       existsSync(`${TAGESBILDER}/${b.datei}`)
     )
     pruefe(
       `${tag}, Kachel ${b.stelle}: frei`,
-      /^(Public domain|CC0|PD|PDM|CC BY(-SA)? \d)/i.test(b.lizenz),
+      /^(Public domain|CC0|PD|PDM|CC BY(-SA)? \d)/i.test(b.lizenz) ||
+        /* Ein Foto, das der Betreiber selbst geschickt hat (24.10.2026, Amex). */
+        b.lizenz === 'vom Betreiber gestellt',
       b.lizenz
     )
   }
