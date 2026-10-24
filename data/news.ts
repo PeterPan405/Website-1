@@ -101,6 +101,303 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'frankreich-moodys-rating-bestaetigt-schuldenkrise',
+    title: "Moody's bestätigt Frankreichs Rating trotz Schuldenkrise",
+    teaser:
+      "Moody's lässt Frankreichs Kreditwürdigkeit trotz der Haushaltskrise unverändert bei Aa3, senkt aber den Ausblick auf negativ.",
+    category: 'Märkte',
+    publishedAt: '2026-10-24T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Staatsanleihen', "Moody's", 'Schuldenkrise'],
+    relatedTopics: ['staatsanleihe', 'schulden-und-kredit'],
+    relatedSymbols: ['cac-40', 'dax'],
+    sources: [
+      {
+        label:
+          "Handelsblatt, Märkte/Anleihen, Friederike Hofmann und Andreas Neuhaus, Meldung vom 23.10.2026, 23:48 Uhr: „Staatsfinanzen: Frankreichs Schuldenkrise verschärft sich – Moody's hält Kreditrating trotzdem stabil“",
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/anleihen/frankreich-moodys-haelt-kreditrating-trotz-schuldenkrise-stabil/100264304.html',
+      },
+      {
+        label:
+          "CNBC, Meldung vom 23.10.2026, 22:49 Uhr GMT: „Moody's holds steady on France's credit rating as country grapples with turmoil and higher yields“",
+        url: 'https://www.cnbc.com/2026/10/23/moodys-holds-steady-on-frances-credit-rating-as-country-grapples-with-turmoil-and-higher-yields.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: "Die Ratingagentur Moody's hat Frankreichs Kreditwürdigkeit am Freitag bei der Stufe Aa3 bestätigt. Das liegt sieben Stufen über dem Ramschniveau. Zugleich senkte Moody's den Ausblick von stabil auf negativ. Die Entscheidung kam für viele Beobachter überraschend, weil sich die politische Lage in Frankreich seit Wochen zuspitzt.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Anleiherendite ist so hoch wie seit 2002 nicht mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Anleihemarkt bauten Investoren in der vergangenen Handelswoche weiter Druck auf. Die Rendite zehnjähriger französischer Staatsanleihen stieg über 5 Prozent. Das ist der höchste Stand seit dem Jahr 2002. Der Risikoaufschlag gegenüber deutschen Bundesanleihen erreichte nach Angaben des Handelsblatts den höchsten Stand seit der Eurokrise.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Analyst spricht von einem Zugunglück in Zeitlupe',
+      },
+      {
+        type: 'paragraph',
+        text: "Die Ökonomen der Bank ING um Padhraic Garvey beschrieben die Lage als „Zugunglück in Zeitlupe“. Hintergrund sind anhaltende Proteste gegen die Sparpläne der Regierung und die Suche nach einem tragfähigen Haushalt für 2027. Moody's gewährte Frankreich mit der Bestätigung des Ratings zunächst eine Atempause, mahnte aber zugleich zur Vorsicht.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was für den Euroraum auf dem Spiel steht',
+      },
+      {
+        type: 'paragraph',
+        text: "**Was daraus folgt:** Ein negativer Ausblick ist eine Warnung, keine Herabstufung. Er zeigt, dass Moody's die Lage weiter beobachtet, ohne sich schon festzulegen. Für Anleger bedeutet das: Die Unsicherheit über Frankreichs Finanzen bleibt bestehen, und sie könnte sich bei der nächsten Überprüfung auch auf andere hochverschuldete Euroländer auswirken.",
+      },
+    ],
+  },
+  {
+    slug: 'brentoel-sechsmonatshoch-trump-vorwurf-iran',
+    title: 'Brentöl erreicht Sechsmonatshoch – Trump wirft Iran Marktmanipulation vor',
+    metaTitle: 'Brentöl auf Sechsmonatshoch – Trump kritisiert Iran',
+    teaser:
+      'Die Ölsorte Brent ist auf über 116 Dollar gestiegen, den höchsten Stand seit sechs Monaten. Trump wirft Iran vor, den Ölmarkt zu manipulieren.',
+    category: 'Märkte',
+    publishedAt: '2026-10-24T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Brent', 'Nahost', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'dax'],
+    sources: [
+      {
+        label:
+          'CNBC, Meldung vom 23.10.2026, 19:21 Uhr GMT: „Brent crude oil tops $116, a six-month high, as tensions swell in the Middle East“',
+        url: 'https://www.cnbc.com/2026/10/23/oil-price-brent-wti-iran-war-saudi-arabia.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Finanzen, Sören Imöhl, Live-Ticker vom 23.10.2026, 16:01 Uhr: „Ölpreis aktuell: Ölpreise steigen weiter“',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-oelpreise-steigen-weiter-fed-zinsentscheid-im-fokus/100207502.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Ölmarkt ging es am Freitag weiter nach oben. Die Nordsee-Sorte Brent kostete zeitweise 116,83 Dollar pro Barrel, ein Plus von 3,3 Prozent. Nach Angaben von CNBC ist das der höchste Stand seit sechs Monaten. Auslöser sind anhaltende Spannungen im Nahen Osten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump wirft Iran vor, den Markt zu manipulieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump beschuldigte Iran am Donnerstag, gezielt auf den Ölpreis einzuwirken. Welche Belege er dafür anführte, geht aus der vorliegenden Meldung nicht hervor. Die Anschuldigung reiht sich ein in eine Serie von Zwischenfällen rund um die Straße von Hormus und saudi-arabische Ölanlagen, die den Ölpreis in den vergangenen Wochen bereits mehrfach bewegt haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der nächste Fed-Zinsentscheid rückt näher',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel richtet sich der Blick auf die US-Notenbank. Sie entscheidet am kommenden Mittwoch über ihren Leitzins. Die meisten Ökonomen erwarten laut der WirtschaftsWoche, dass die Fed ihn in der Spanne von 3,75 bis 4,00 Prozent hält. Auch die Europäische Zentralbank dürfte nach ihren Zinserhöhungen im Juni und September zunächst pausieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein teurerer Ölpreis verteuert Sprit, Heizkosten und viele Vorprodukte zugleich. Das erschwert es den Notenbanken, die Inflation weiter zu drücken, selbst wenn sie an ihren Leitzinsen vorerst nichts ändern.',
+      },
+    ],
+  },
+  {
+    slug: 'munich-re-quartalsgewinn-jahresziel-erhoeht',
+    title: 'Munich Re verdient mehr als erwartet, Jahresziel steigt',
+    teaser:
+      'Munich Re hat im dritten Quartal rund 1,7 Milliarden Euro verdient, mehr als Analysten erwartet hatten, und hebt die Jahresprognose auf 6,6 Milliarden Euro an.',
+    category: 'Märkte',
+    publishedAt: '2026-10-24T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Munich Re', 'Rückversicherung', 'Quartalszahlen', 'Dax'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['munich-re', 'dax'],
+    sources: [
+      {
+        label:
+          'Munich Re, Medieninformation vom 23.10.2026: „Munich Re erzielt Quartalsergebnis von 1,7 Mrd. € und erhöht Jahresziel“',
+        url: 'https://www.munichre.com/de/unternehmen/media-relations/medieninformationen-und-unternehmensnachrichten/medieninformationen/2026/media-release-2026-10-23.html',
+      },
+      {
+        label:
+          'Handelsblatt, Banken/Versicherungen/Versicherer, Meldung vom 23.10.2026, 13:39 Uhr: „Rückversicherung: Munich Re hebt nach starkem Quartal die Prognose“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/versicherer/rueckversicherung-munich-re-hebt-nach-starkem-quartal-die-prognose/100264519.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Rückversicherer Munich Re hat im dritten Quartal 2026 vorläufig rund 1,7 Milliarden Euro verdient. Das liegt über dem, was Analysten im Schnitt erwartet hatten: Sie waren von rund 1,48 Milliarden Euro ausgegangen. Nach den ersten neun Monaten summiert sich der Gewinn auf 5,7 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Jahresprognose steigt auf 6,6 Milliarden Euro',
+      },
+      {
+        type: 'paragraph',
+        text: 'Munich Re erhöhte wegen des starken Quartals seine Gewinnprognose für das Gesamtjahr 2026. Statt bislang 6,3 Milliarden Euro rechnet der Konzern jetzt mit 6,6 Milliarden Euro Jahresüberschuss. Die endgültigen Zahlen zum dritten Quartal will Munich Re am 12. November vorlegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher der überraschend gute Gewinn kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen wesentlichen Grund nennt Munich Re selbst: In der Rückversicherung für Schäden und Unfälle blieb die Belastung durch Großschäden unter dem langjährigen Durchschnitt. Auch die Erträge aus der Kapitalanlage trugen laut Handelsblatt zu dem Ergebnis bei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine angehobene Prognose ist kein Blick in die Zukunft, sondern eine Momentaufnahme. Wie wenige Großschäden es in einem Quartal gibt, hängt stark vom Zufall ab. Ein einziger schwerer Sturm kann die Rechnung im vierten Quartal wieder ändern.',
+      },
+    ],
+  },
+  {
+    slug: 'american-express-stellenabbau-ki-prognose',
+    title: 'American Express streicht 3500 Stellen trotz höherer Gewinnprognose',
+    metaTitle: 'Amex streicht 3500 Stellen für KI',
+    teaser:
+      'American Express baut 3500 Stellen ab, rund fünf Prozent der Belegschaft, und hebt zugleich die Gewinnprognose für 2026 an.',
+    category: 'Märkte',
+    publishedAt: '2026-10-24T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: [
+      'American Express',
+      'Stellenabbau',
+      'Künstliche Intelligenz',
+      'Quartalszahlen',
+    ],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Banken/Versicherungen/Banken, Meldung vom 23.10.2026, 17:07 Uhr: „Banken: American Express streicht 3500 Stellen“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-american-express-streicht-3500-stellen/100264576.html',
+      },
+      {
+        label:
+          "CNBC, Meldung vom 23.10.2026, 18:57 Uhr GMT: „American Express is cutting 5% of its workforce to 'prepare for AI'“",
+        url: 'https://www.cnbc.com/2026/10/23/american-express-job-cuts.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'American Express streicht rund 3500 Stellen. Das entspricht etwa fünf Prozent der weltweit rund 78.000 Beschäftigten. Konzernchef Steve Squeri sagte dem Sender Bloomberg TV, der Schritt solle die steigenden Kosten im Griff halten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Abbau soll den Konzern auf Künstliche Intelligenz vorbereiten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC begründet Amex den Stellenabbau damit, sich auf den verstärkten Einsatz von Künstlicher Intelligenz vorzubereiten. Im dritten Quartal verbuchte der Kreditkartenkonzern dafür eine Restrukturierungsbelastung von 336 Millionen Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Gewinnprognose steigt trotzdem',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz der Kosten hob American Express seine Gewinnprognose für 2026 an. Der Konzern erwartet nun einen Gewinn pro Aktie von 18,30 bis 18,60 Dollar. Das liegt nach Angaben des Handelsblatts mindestens 40 Cent über dem bisherigen oberen Ende der Spanne. Die Aktie fiel trotzdem leicht, um rund 3 Prozent zum New Yorker Handelsstart.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Stellenabbau und eine höhere Gewinnprognose schließen sich nicht aus. Sie zeigen, wie ein Unternehmen Kosten senken und zugleich in neue Technik investieren kann, ohne dass sich beides kurzfristig widerspricht.',
+      },
+    ],
+  },
+  {
+    slug: 'bauhauptgewerbe-auftragssprung-august-rekord',
+    title: 'Deutsches Baugewerbe meldet höchsten Auftragssprung seit 1991',
+    teaser:
+      'Die Aufträge im deutschen Bauhauptgewerbe sind im August um 23 Prozent zum Vormonat gesprungen – der stärkste Anstieg seit Beginn der Erhebung 1991.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-24T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Baugewerbe', 'Konjunktur', 'Großaufträge', 'Deutschland'],
+    relatedTopics: ['immobilien'],
+    relatedSymbols: ['vonovia'],
+    sources: [
+      {
+        label:
+          'Statistisches Bundesamt (Destatis), Pressemitteilung Nr. 375 vom 23.10.2026: „Auftragseingang im Bauhauptgewerbe im August 2026: +23,0 % zum Vormonat“',
+        url: 'https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_375_441.html',
+      },
+      {
+        label:
+          'Tagesschau, Wirtschaft/Konjunktur, Meldung vom 23.10.2026, 13:53 Uhr: „Deutsche Baubranche verzeichnet Rekordanstieg bei Großaufträgen“',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/baugewerbe-grossauftraege-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das deutsche Bauhauptgewerbe hat im August 2026 so viele neue Aufträge erhalten wie nie zuvor in einem einzelnen Monat seit Beginn der Erhebung 1991. Das meldete das Statistische Bundesamt am Freitag. Der reale, saisonbereinigte Auftragseingang stieg um 23,0 Prozent gegenüber dem Juli.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Großaufträge treiben den Sprung, nicht die Breite des Marktes',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Vergleich zum August 2025 legten die Aufträge real um 17,3 Prozent zu, nominal sogar um 23,8 Prozent. Innerhalb der Branche zeigte sich der Tiefbau besonders stark: Er wuchs zum Vormonat um 31,6 Prozent, der Hochbau um 12,4 Prozent. Destatis nennt mehrere einzelne Großaufträge als Grund für den kräftigen Sprung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Mietmarkt bleibt davon unberührt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der Tagesschau bleibt die Stimmung im Wohnungsbau trotz der Großaufträge gedämpft. Der Umsatz der Branche lag im August real um 4,9 Prozent über dem Vorjahr, die Beschäftigtenzahl stieg um 1,5 Prozent auf rund 548.000 Personen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Rekordmonat beim Auftragseingang sagt wenig über den breiten Wohnungsmarkt aus. Wenige große Tiefbauvorhaben können die Statistik stark bewegen, während sich an der Lage vieler kleinerer Bauherren kaum etwas ändert.',
+      },
+    ],
+  },
+  {
     slug: 'meta-ki-investition-neue-aktienklasse',
     title: 'Meta investiert 135 Milliarden Dollar in KI – Aktie fällt trotzdem',
     metaTitle: 'Meta: 135 Milliarden Dollar für KI, Aktie fällt trotzdem',

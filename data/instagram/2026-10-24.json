@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Frankreichs Rating, ein teurerer Ölpreis, Munich Re, American Express und ein Rekord am Bau – die wichtigsten Nachrichten des Tages im Überblick.",
+  "kacheln": [
+    {
+      "titel": "Frankreich: Aa3 bestätigt",
+      "text": "Moody's bestätigt Frankreichs Rating bei Aa3, senkt den Ausblick aber auf negativ. Die Anleiherendite liegt über 5 Prozent, höchster Stand seit 2002."
+    },
+    {
+      "titel": "Öl: 116 Dollar",
+      "text": "Brentöl stieg auf über 116 Dollar je Barrel, den höchsten Stand seit sechs Monaten. Trump warf Iran vor, den Ölmarkt zu manipulieren."
+    },
+    {
+      "titel": "Munich Re: Prognose steigt",
+      "text": "Munich Re verdiente im dritten Quartal 1,7 Milliarden Euro, mehr als erwartet. Die Jahresprognose steigt auf 6,6 Milliarden Euro."
+    },
+    {
+      "titel": "Amex streicht 3500 Jobs",
+      "text": "American Express baut 3500 Stellen ab, rund fünf Prozent der Belegschaft. Zugleich hob der Konzern seine Gewinnprognose für 2026 an."
+    },
+    {
+      "titel": "Bau-Rekord in Deutschland",
+      "text": "Die Aufträge im deutschen Bauhauptgewerbe sprangen im August um 23 Prozent. Das ist der stärkste Anstieg seit Beginn der Erhebung 1991."
+    }
+  ],
+  "schlagworte": ["ölpreis", "frankreich", "börse", "aktien", "wirtschaft"]
+}
