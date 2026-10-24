@@ -24,10 +24,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       Gerechnet aus den Tagesschlusskursen des S&P 500 seit 30.12.1927
       (Yahoo Finance, ^GSPC, abgerufen am 24.10.2026 über quellen-holen.yml),
       nominal, ohne Dividenden. Höchststand im Zeitraum → Tiefpunkt →
-      erster Schluss wieder auf dem alten Hoch. Gezeigt wird die Strecke
-      vom Tief bis zum Hoch (Betreiber, 24.10.: „nach dem Crash bis zum
-      Hoch"): 1929 22,3 J., 1987 1,6, 2000 4,6, 2008 4,1, 2020 0,4, 2022 1,3.
-      Hoch bis Hoch:
+      erster Schluss wieder auf dem alten Hoch (Überschrift auf Wunsch des
+      Betreibers: „Nach dem Crash: bis zum Hoch"):
         1929  16.09.1929 31,86 → 01.06.1932 4,40 (−86,2 %) → 22.09.1954  25,0 J.
         1987  25.08.1987 336,77 → 04.12.1987 223,92 (−33,5 %) → 26.07.1989  1,9 J.
         2000  24.03.2000 1527,46 → 09.10.2002 776,76 (−49,1 %) → 30.05.2007  7,2 J.
@@ -38,29 +36,29 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'zeitleiste',
     datum: '2026-10-25',
-    titel: [{ text: 'Vom Tief zum Hoch:' }, { text: 'bis zu 22 Jahre', gruen: true }],
-    unterzeile: 'So lange brauchte der S&P 500 vom Tiefpunkt zurück aufs alte Hoch:',
+    titel: [{ text: 'Nach dem Crash:' }, { text: 'bis zum Hoch', gruen: true }],
+    unterzeile: 'So lange brauchte der S&P 500 zurück auf das alte Hoch:',
     einheit: ' Jahre',
     zeilen: [
       {
         name: 'Depression 1929',
         zusatz: 'Einbruch −86 %',
-        wert: 22.3,
+        wert: 25.0,
         land: 'USA',
         hervor: true,
       },
-      { name: 'Crash 1987', zusatz: 'Einbruch −34 %', wert: 1.6, land: 'USA' },
-      { name: 'Dotcom 2000', zusatz: 'Einbruch −49 %', wert: 4.6, land: 'USA' },
-      { name: 'Finanzkrise 2008', zusatz: 'Einbruch −57 %', wert: 4.1, land: 'USA' },
-      { name: 'Corona 2020', zusatz: 'Einbruch −34 %', wert: 0.4, land: 'USA' },
-      { name: 'Zinsschock 2022', zusatz: 'Einbruch −25 %', wert: 1.3, land: 'USA' },
+      { name: 'Crash 1987', zusatz: 'Einbruch −34 %', wert: 1.9, land: 'USA' },
+      { name: 'Dotcom 2000', zusatz: 'Einbruch −49 %', wert: 7.2, land: 'USA' },
+      { name: 'Finanzkrise 2008', zusatz: 'Einbruch −57 %', wert: 5.5, land: 'USA' },
+      { name: 'Corona 2020', zusatz: 'Einbruch −34 %', wert: 0.5, land: 'USA' },
+      { name: 'Zinsschock 2022', zusatz: 'Einbruch −25 %', wert: 2.0, land: 'USA' },
     ],
     fusszeile:
       'Stand: Schlüsse bis 23.10.2026 | Quelle: Yahoo Finance (S&P 500) | ohne Dividenden',
     text:
-      'Nach dem Tiefpunkt von 1932 brauchte der S&P 500 22,3 Jahre zurück auf sein altes Hoch von 1929. Nach dem Corona-Tief im März 2020 waren es nur 0,4 Jahre – knapp fünf Monate. ⏳\n\n' +
-      'Dazwischen: Dotcom 2000 4,6 Jahre, Finanzkrise 2008 4,1 Jahre, Crash 1987 1,6 Jahre, Zinsschock 2022 1,3 Jahre.\n\n' +
-      'Gerechnet vom tiefsten Schlusskurs bis zum ersten Schlusskurs wieder auf dem Hoch vor dem Einbruch, nominal und ohne Dividenden. Mit ausgeschütteten Dividenden ging es jeweils schneller.\n' +
+      'Nach dem Crash von 1929 brauchte der S&P 500 25 Jahre zurück auf sein altes Hoch – der Index hatte 86 % verloren. Nach Corona 2020 war es nach einem halben Jahr geschafft. ⏳\n\n' +
+      'Dazwischen: Dotcom 2000 (−49 %) 7,2 Jahre, Finanzkrise 2008 (−57 %) 5,5 Jahre, Zinsschock 2022 (−25 %) 2,0 Jahre, Crash 1987 (−34 %) 1,9 Jahre.\n\n' +
+      'Gerechnet vom Höchststand vor dem Einbruch bis zum ersten Schlusskurs wieder auf diesem Stand, nominal und ohne Dividenden. Mit ausgeschütteten Dividenden ging es jeweils schneller.\n' +
       'Quelle: Yahoo Finance (S&P 500, Tagesschlusskurse seit 1927)',
     schlagworte: ['börse', 'crash', 'aktien', 'investieren', 'geldanlage'],
   },
