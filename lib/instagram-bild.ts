@@ -537,9 +537,31 @@ export function deckblattZumThema(
   return deckblatt(datum)
 }
 
+/**
+ * Die Deckblätter für die Reihe – nur, was zu jedem Tag passt: Skylines von
+ * Frankfurt und New York, die Zeitung, der Himmel.
+ *
+ * Betreiber, 24.10.2026: Der Beitrag ging mit einem startenden Flugzeug
+ * hinaus, an einem Tag ohne jede Luftfahrt-Meldung, und wurde gelöscht. Die
+ * Reihe lief über **alle** Deckblätter, auch über die mit Thema – Zug,
+ * Flugzeug, Fed, EZB, Fabrik, Barcelona. Die gibt es jetzt nur noch über
+ * `deckblattMotiv()`, wenn die erste Meldung dazu passt.
+ */
+export const NEUTRALE_DECKBLAETTER = [
+  '2026-08-21.jpg',
+  '2026-08-26.jpg',
+  '2026-08-27.jpg',
+  '2026-09-01.jpg',
+  '2026-09-07.jpg',
+  '2026-09-14.jpg',
+  '2026-09-23.jpg',
+  '2026-09-25.jpg',
+  '2026-10-09.jpg',
+]
+
 /** Das Deckblatt des Tages, als JPEG – reihum, an jedem Tag ein anderes. */
 export function deckblatt(datum: string): { datei: string; jpeg: Buffer } {
-  const liste = deckblaetter()
+  const liste = deckblaetter().filter((d) => NEUTRALE_DECKBLAETTER.includes(d))
   if (liste.length === 0) throw new Error('lib/instagram/titelbilder/ ist leer.')
   const datei = liste[((tagNummer(datum) % liste.length) + liste.length) % liste.length]
   return { datei, jpeg: readFileSync(join(ORDNER, 'titelbilder', datei)) }

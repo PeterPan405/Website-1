@@ -105,3 +105,37 @@ export async function zuschnitt(seite: Seite, breite = BILDZONE.breite, hoehe = 
 export function urheberVon(seite: Seite): string {
   return ohneHtml(seite.imageinfo?.[0]?.extmetadata?.Artist?.value) || 'unbekannt'
 }
+
+/**
+ * Ein Firmenlogo als Bild der Kachel – zentriert auf einer ruhigen Fläche.
+ *
+ * Betreiber, 24.10.2026, nach dem dritten gelöschten Beitrag: Für Munich Re
+ * kam ein unbekannter Redner, für American Express eine Kreditkarte mit dem
+ * Namen eines Fremden. Freie Fotos, auf denen eine Marke gut zu sehen ist,
+ * gibt es auf Commons für die wenigsten Unternehmen – die Logos selbst liegen
+ * dort fast immer gemeinfrei (zu einfach für ein Schutzrecht). So arbeiten
+ * auch Trade Republic und HKCM: das Logo, nicht ein Zufallsfoto.
+ *
+ * Commons rechnet ein SVG über `thumburl` in ein PNG um; das wird auf
+ * `farbe` gelegt, höchstens 62 % breit und 46 % hoch.
+ */
+export async function logobild(
+  seite: Seite,
+  farbe: string,
+  breite = BILDZONE.breite,
+  hoehe = 560
+) {
+  const info = seite.imageinfo![0]
+  const roh = await fetch(info.thumburl ?? info.url, { headers: { 'User-Agent': UA } })
+  if (!roh.ok) return null
+  const logo = await sharp(Buffer.from(await roh.arrayBuffer()))
+    .resize(Math.round(breite * 0.62), Math.round(hoehe * 0.46), { fit: 'inside' })
+    .png()
+    .toBuffer()
+  return sharp({
+    create: { width: breite, height: hoehe, channels: 3, background: farbe },
+  })
+    .composite([{ input: logo, gravity: 'center' }])
+    .jpeg({ quality: 90, mozjpeg: true })
+    .toBuffer()
+}

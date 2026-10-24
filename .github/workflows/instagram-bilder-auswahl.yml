@@ -12,16 +12,16 @@ on:
   workflow_dispatch:
     inputs:
       modus:
-        description: 'kandidaten = suchen und zeigen, wahl = eintragen'
+        description: 'kandidaten = suchen und zeigen, wahl = eintragen, logo = Firmenlogo auf Farbfläche eintragen'
         type: choice
-        options: [kandidaten, wahl]
+        options: [kandidaten, wahl, logo]
         default: kandidaten
       datum:
         description: 'Tag (JJJJ-MM-TT), leer = heute in Berlin'
         required: false
         type: string
       eingabe:
-        description: 'Je Eintrag „Stelle|Suchbegriff" bzw. „Stelle|File:…", getrennt mit ;'
+        description: 'Je Eintrag „Stelle|Suchbegriff", „Stelle|File:…" bzw. „Stelle|File:…svg|#Farbe", getrennt mit ;'
         required: true
         type: string
 
@@ -72,7 +72,7 @@ jobs:
           git push --force origin bilder-kandidaten
 
       - name: Wahl eintragen
-        if: inputs.modus == 'wahl'
+        if: inputs.modus == 'wahl' || inputs.modus == 'logo'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

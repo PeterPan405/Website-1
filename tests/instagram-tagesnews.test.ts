@@ -27,6 +27,7 @@ import sharp from 'sharp'
 import {
   deckblaetter,
   deckblatt,
+  NEUTRALE_DECKBLAETTER,
   meldungskachel,
   NICHT_ALS_DECKBLATT,
 } from '@/lib/instagram-bild'
@@ -351,6 +352,18 @@ for (const [datei, grund] of Object.entries(NICHT_ALS_DECKBLATT)) {
   if (grund.startsWith('mit dem Auge')) continue
   pruefen(`aussortiert fällt durch: ${datei}`, !besteht(await lesbarkeit(datei)))
 }
+pruefen(
+  'die Reihe nimmt nur neutrale Deckblätter – kein Flugzeug ohne Flugmeldung (24.10.)',
+  Array.from(
+    { length: 30 },
+    (_, i) => deckblatt(`2026-11-${String(i + 1).padStart(2, '0')}`).datei
+  ).every((d) => NEUTRALE_DECKBLAETTER.includes(d)) &&
+    !NEUTRALE_DECKBLAETTER.includes('2026-08-31.jpg')
+)
+pruefen(
+  'jedes neutrale Deckblatt gibt es und ist lesbar',
+  NEUTRALE_DECKBLAETTER.every((d) => liste.includes(d))
+)
 const montag = deckblatt('2026-10-12').datei
 const dienstag = deckblatt('2026-10-13').datei
 pruefen(

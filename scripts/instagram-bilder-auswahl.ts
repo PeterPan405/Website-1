@@ -15,11 +15,23 @@
  *   MODUS=wahl  EINGABE="2|File:…jpg\n4|File:…jpg"
  *     Holt genau diese Dateien, prüft sie noch einmal mit `taugt()` und
  *     trägt sie für die Stelle ins Register ein; die übrigen Stellen bleiben.
+ *
+ *   MODUS=logo  EINGABE="4|File:…logo.svg|#FFFFFF"
+ *     Das Firmenlogo auf einer Fläche in der genannten Farbe (`logobild()`),
+ *     eingetragen wie eine Wahl. Nur freie Lizenzen; der Markenhinweis von
+ *     Commons hält ein Logo nicht auf – er gilt jedem Logo.
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { datei, kandidatVon, suche, urheberVon, zuschnitt } from '@/lib/commons-suche'
+import {
+  datei,
+  kandidatVon,
+  logobild,
+  suche,
+  urheberVon,
+  zuschnitt,
+} from '@/lib/commons-suche'
 import {
   leseRegister,
   REGISTER,
@@ -105,6 +117,37 @@ if (process.env.MODUS === 'kandidaten') {
   }
   register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
+} else if (process.env.MODUS === 'logo') {
+  mkdirSync(TAGESBILDER, { recursive: true })
+  const heute = register[DATUM] ?? []
+  for (const { stelle, wert } of zeilen) {
+    const [titel, farbe = '#FFFFFF'] = wert.split('|').map((x) => x.trim())
+    const seite = await datei(titel)
+    const k = seite && kandidatVon(seite)
+    if (!seite || !k) throw new Error(`${titel}: nicht gefunden`)
+    if (!/^(Public domain|CC0|PD\b|PDM|CC BY(-SA)? \d)/i.test(k.lizenz))
+      throw new Error(`${titel}: Lizenz „${k.lizenz}" ist nicht frei`)
+    if (!/^#[0-9a-f]{6}$/i.test(farbe)) throw new Error(`${farbe}: keine Farbe`)
+    const jpeg = await logobild(seite, farbe)
+    if (!jpeg) throw new Error(`${titel}: nicht zu laden`)
+    const name = `${DATUM}-${stelle}.jpg`
+    writeFileSync(join(TAGESBILDER, name), jpeg)
+    const eintrag = {
+      stelle,
+      datei: name,
+      titel: seite.title,
+      seite: seite.imageinfo![0].descriptionurl,
+      lizenz: k.lizenz,
+      urheber: urheberVon(seite),
+      suche: `Logo auf ${farbe}`,
+    }
+    const alt = heute.findIndex((b) => b.stelle === stelle)
+    if (alt >= 0) heute[alt] = eintrag
+    else heute.push(eintrag)
+    console.log(`Stelle ${stelle}: ${seite.title} (${k.lizenz}) auf ${farbe}`)
+  }
+  register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
+  writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else {
-  throw new Error('MODUS=kandidaten oder MODUS=wahl')
+  throw new Error('MODUS=kandidaten, MODUS=wahl oder MODUS=logo')
 }
