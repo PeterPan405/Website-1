@@ -5,6 +5,7 @@
  * Ausführen mit `npm test`.
  */
 import {
+  entschiebe,
   VERSCHIEBUNG_GRENZE,
   verschobeneZeiten,
 } from '../scripts/quartalstermine-abrufen.ts'
@@ -74,6 +75,38 @@ pruefe(
 pruefe(
   'ein Titel ohne alten Stand wird nicht verglichen',
   verschobeneZeiten({}, verschoben).verglichen === 0
+)
+
+/* Die Berichtigung je Unternehmen – der Fall Lockheed vom 23.10.2026. */
+const lmt = entschiebe(verschoben.LMT, alt.LMT)
+pruefe('Lockheed: als verschoben erkannt', lmt.geschoben)
+pruefe(
+  '… die bekannten Zeiten bleiben',
+  lmt.zeiten['2026-07-23'] === '06:30' && lmt.zeiten['2026-01-29'] === '07:25'
+)
+pruefe(
+  '… die neue Meldung wird zurückgerechnet: 10:26 UTC → 06:26 New York',
+  lmt.zeiten['2026-10-22'] === '06:26',
+  JSON.stringify(lmt.zeiten)
+)
+const deck = entschiebe(verschoben.DECK, alt.DECK)
+pruefe(
+  'Deckers: 20:09 UTC → 16:09, nach dem Schluss wie immer',
+  deck.zeiten['2026-10-22'] === '16:09'
+)
+const richtig = entschiebe(gesund.LMT, alt.LMT)
+pruefe(
+  'ein richtiger Abruf bleibt, wie er ist',
+  !richtig.geschoben && richtig.zeiten['2026-10-22'] === '06:26'
+)
+pruefe(
+  'ohne alten Stand: nichts zu vergleichen, nichts gerechnet',
+  !entschiebe(verschoben.LMT).geschoben
+)
+pruefe(
+  'eine geänderte Zeit, die kein Versatz erklärt, zählt nicht als Schub',
+  !entschiebe({ '2026-07-23': '09:00', '2026-10-22': '09:05' }, { '2026-07-23': '06:30' })
+    .geschoben
 )
 
 console.log(

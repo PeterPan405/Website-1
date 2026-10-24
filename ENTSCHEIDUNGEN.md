@@ -3009,6 +3009,31 @@ Verglichen wird die Lage und nicht die Minute: Zwischen 16:01 und 16:35 liegen
 fünfunddreißig Minuten und keine Aussage, zwischen 8:30 und 16:05 liegt ein
 Handelstag.
 
+### Nachtrag: Die SEC verschiebt, und zwar nicht alle auf einmal – 24. Oktober 2026
+
+Am 24.10. hielt der Test „Die Ableitung erzeugt überhaupt noch Uhrzeiten"
+(49,1 %) jeden Bau an – und mit ihm den Instagram-Beitrag des Tages. Der
+Grund lag drei Wochen zurück: Seit dem 1./2. Oktober liefert die SEC
+`acceptanceDateTime` für manche Abrufe um den New Yorker Versatz verschoben.
+Jede geänderte Altzeit war genau die richtige, als UTC gelesen – Lockheed
+06:30 → 10:30, im Winter 07:25 → 12:25. Am 4.10. kam für einen Tag alles
+wieder richtig.
+
+Getroffen wurden jeden Tag die Titel, die gerade neu abgerufen wurden, 50
+bis 120 Zeiten. Eine Gegenprobe über den ganzen Bestand (über 20 % geändert
+→ rot) sah 68 von 2519 und ließ durch; der Anteil sank in drei Wochen von
+95 auf 49 %, ohne dass ein Lauf rot war.
+
+Jetzt rechnet `entschiebe()` **je Unternehmen**: Eine bekannte Zeit bleibt,
+denn eine vergangene Meldung hat eine Annahmezeit. Weichen die bekannten
+Zeiten öfter genau um den Versatz ab, als sie stimmen, wird auch die neue
+zurückgerechnet. Der Bestand ist gegen den Stand vom 30.09. repariert
+(1.889 Zeiten, 739 Vorhersagen; 55 statt 56 Meldungen während des
+US-Handels – wie vorher).
+
+**Eine Gegenprobe über den ganzen Bestand findet nicht, was jeden Tag ein
+kleines Stück kippt.** Sie muss an der Einheit fragen, die kippt.
+
 ## `000` ist der Hoster, `404` sind wir
 
 Am Morgen des 20. August 2026 kam die zweite Fehlermail aus `kurse.yml` binnen
