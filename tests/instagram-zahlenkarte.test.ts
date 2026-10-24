@@ -458,6 +458,51 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 24.10.2026 – Börsenwerte, Balken. */
+{
+  const wert = zahlenkarten.find((k) => k.datum === '2026-10-24') as Rangkarte
+  const kurse = JSON.parse(
+    readFileSync('data/snapshots/markets.json', 'utf8')
+  ).instruments
+  const firmen = JSON.parse(
+    readFileSync('data/snapshots/fundamentaldaten.json', 'utf8')
+  ).unternehmen
+  const gerechnet: [string, string, string][] = [
+    ['Nvidia', 'nvidia', 'NVDA'],
+    ['Apple', 'apple', 'AAPL'],
+    ['Alphabet', 'alphabet', 'GOOGL'],
+    ['Microsoft', 'microsoft', 'MSFT'],
+    ['Amazon', 'amazon', 'AMZN'],
+    ['Meta', 'meta', 'META'],
+    ['Tesla allein', 'tesla', 'TSLA'],
+  ]
+  for (const [name, symbol, kuerzel] of gerechnet) {
+    const punkt = kurse[symbol].points.find((p: { d: string }) => p.d === '2026-10-22')
+    const bio = Math.round((punkt.c * firmen[kuerzel].aktien) / 1e10) / 100
+    const zeile = wert.zeilen.find((z) => z.name === name)
+    pruefe(`${name}: ${zeile?.wert} Bio. = Kurs × Aktien (${bio})`, zeile?.wert === bio)
+  }
+  pruefe(
+    'Tesla + SpaceX: 3,5 Billionen stehen so in der Ausgabe vom 22.10.',
+    readFileSync('data/editions/2026-10-22.ts', 'utf8').includes(
+      'rund 3,5 Billionen Dollar'
+    ) && wert.zeilen.find((z) => z.hervor)?.wert === 3.5
+  )
+  pruefe('kein Platz der Welt behauptet', !/Platz|Welt/.test(wert.text))
+  pruefe(
+    'die Karte hält die Form ein',
+    pruefeZahlenkarte(wert).length === 0,
+    pruefeZahlenkarte(wert).join('; ')
+  )
+  pruefe(
+    'Form nicht wie am Vortag',
+    form(wert) !== form(zahlenkarten.find((k) => k.datum === '2026-10-23')!)
+  )
+  pruefe('ohne Freigabe – die gibt nur der Betreiber', !wert.freigabe)
+  const png = await zahlenkartePng(wert, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Börsenwerte: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
 /* Die Karte vom 23.10.2026 – Arbeitslosigkeit 2025, Kacheln. */
 {
   const quote = zahlenkarten.find((k) => k.datum === '2026-10-23') as Rangkarte
