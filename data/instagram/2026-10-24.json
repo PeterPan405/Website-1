@@ -1,13 +1,13 @@
 {
-  "zusammenfassung": "Frankreichs Rating, ein teurerer Ölpreis, Munich Re, American Express und ein Rekord am Bau – die wichtigsten Nachrichten des Tages im Überblick.",
+  "zusammenfassung": "Moody's und Frankreich, Apple kurz vor Nvidia, Munich Re, American Express und ein Rekord am Bau – die wichtigsten Nachrichten des Tages im Überblick.",
   "kacheln": [
     {
       "titel": "Frankreich: Aa3 bestätigt",
       "text": "Moody's bestätigt Frankreichs Rating bei Aa3, senkt den Ausblick aber auf negativ. Die Anleiherendite liegt über 5 Prozent, höchster Stand seit 2002."
     },
     {
-      "titel": "Öl: 116 Dollar",
-      "text": "Brentöl stieg auf über 116 Dollar je Barrel, den höchsten Stand seit sechs Monaten. Trump warf Iran vor, den Ölmarkt zu manipulieren."
+      "titel": "Apple kurz vor Nvidia",
+      "text": "Apple war am Freitag kurzzeitig wieder mehr wert als Nvidia. Der Rekordlauf fiel mit dem Verkaufsstart des faltbaren iPhone Duo zusammen, dann holte Nvidia die Führung zurück."
     },
     {
       "titel": "Munich Re: Prognose steigt",
@@ -22,5 +22,5 @@
       "text": "Die Aufträge im deutschen Bauhauptgewerbe sprangen im August um 23 Prozent. Das ist der stärkste Anstieg seit Beginn der Erhebung 1991."
     }
   ],
-  "schlagworte": ["ölpreis", "frankreich", "börse", "aktien", "wirtschaft"]
+  "schlagworte": ["apple", "frankreich", "börse", "aktien", "wirtschaft"]
 }
