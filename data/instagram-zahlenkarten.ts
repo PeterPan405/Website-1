@@ -36,6 +36,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'zeitleiste',
     datum: '2026-10-25',
+    /* Freigegeben vom Betreiber am 24.10.2026: „passt" – hinaus am 25.10. ab 15 Uhr. */
+    freigabe: '2026-10-25',
     titel: [{ text: 'Nach dem Crash:' }, { text: 'bis zum Hoch', gruen: true }],
     unterzeile: 'So lange brauchte der S&P 500 zurück auf das alte Hoch:',
     einheit: ' Jahre',
