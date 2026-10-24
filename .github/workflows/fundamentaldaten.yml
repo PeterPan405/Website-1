@@ -88,6 +88,13 @@ jobs:
           EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
         run: npm run edinet
 
+      # Eine Aktienzahl springt nicht um das Fünfzigfache (Solvay, 24.10.2026:
+      # ein Hundertstel). Gründe in scripts/fundamentaldaten-gegenprobe.ts.
+      - name: Aktienzahlen gegenprüfen
+        run: |
+          git show HEAD:data/snapshots/fundamentaldaten.json > "$RUNNER_TEMP/alt.json"
+          ALT="$RUNNER_TEMP/alt.json" node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/fundamentaldaten-gegenprobe.ts
+
       - name: Momentaufnahme committen
         run: |
           git config user.name  "github-actions[bot]"
