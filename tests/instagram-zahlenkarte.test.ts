@@ -492,7 +492,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     'Farbe nicht wie am Vortag',
     akzentfarbe('2026-10-25') !== akzentfarbe('2026-10-24')
   )
-  pruefe('ohne Freigabe – die gibt nur der Betreiber', !crash.freigabe)
+  pruefe('freigegeben für den 25.10.', crash.freigabe === '2026-10-25')
   const png = await zahlenkartePng(crash, readFileSync('public/logo.svg', 'utf8'))
   pruefe('Zeitleiste: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
