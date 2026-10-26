@@ -507,7 +507,17 @@ def sprich(stueck: str, tiefe: int = 0, anlauf: int = 1):
     )
     links, rate = sprich(teile[0], tiefe + 1)
     rechts, _ = sprich(teile[1], tiefe + 1)
-    return [np.concatenate([np.asarray(links[0]), np.asarray(rechts[0])])], rate
+    # Mit Rampe an der Naht: Die rechte Hälfte beginnt mit dem ersten Wert der
+    # Stimme, und der ist nicht null – hart angesetzt knackt es (siehe
+    # `sprechstimme.nahtlos`).
+    return [
+        np.concatenate(
+            [
+                sprechstimme.nahtlos(np.asarray(links[0]), rate),
+                sprechstimme.nahtlos(np.asarray(rechts[0]), rate),
+            ]
+        )
+    ], rate
 
 
 # Die Maße dazu – Sekunden je Zeichen, erlaubte Abweichung, Fensterlänge –
@@ -515,7 +525,7 @@ def sprich(stueck: str, tiefe: int = 0, anlauf: int = 1):
 # zwei Zahlen zu pflegen, von denen eine irgendwann die falsche ist.
 
 
-def brauchbar(stueck: str, audio, rate: int) -> str | None:
+def brauchbar(stueck: str, audio, rate: int, laut_anteil: float | None = None) -> str | None:
     """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
 
     ## Warum das hier nur noch ein Verweis ist
@@ -545,30 +555,95 @@ def brauchbar(stueck: str, audio, rate: int) -> str | None:
     """
     import sprechstimme
 
-    return sprechstimme.brauchbar(stueck, audio, rate)
+    return sprechstimme.brauchbar(stueck, audio, rate, laut_anteil)
+
+
+#: Wie oft ein Stück neu gesprochen wird, das die Prüfung beanstandet – die
+#: erste Fassung eingerechnet. Danach wird es geteilt (`TEIL_ANLAEUFE` je
+#: Hälfte). Bis zum 26. Oktober 2026 waren es drei, und die dritte Fassung
+#: wurde genommen, wie sie war; siehe `sauber_gesprochen`.
+STOERUNG_ANLAEUFE = 5
+TEIL_ANLAEUFE = 3
+#: Stille zwischen zwei Hälften eines geteilten Stücks – geteilt wird an einer
+#: Sprechgrenze, und dort atmet auch ein Sprecher.
+TEIL_PAUSE_S = 0.2
+
+
+def sauber_gesprochen(stueck: str, versuche: int, nummer: int):
+    """Spricht ein Stück, bis die Prüfung nichts mehr findet – oder gibt die beste Fassung.
+
+    ## Was am 25. und 26. Oktober 2026 schiefging
+
+    Der Betreiber meldete Störgeräusche und Aussetzer, „das war jetzt schon
+    öfters der Fall". Am 25.10. wurde Stück 12 dreimal verworfen, jedes Mal
+    um die achte Sekunde herum, und die **dritte** Fassung ging trotzdem in
+    die Folge – die letzte, nicht die beste. Beim Zusammenfügen fand
+    `nachbessern` die Stelle wieder und schaltete eine halbe Sekunde stumm:
+    Das Geräusch war weg, an seiner Stelle ein Loch im Satz.
+
+    Jetzt: mehr Anläufe, gemessen mit der strengeren Schwelle
+    (`sprechstimme.LAUT_ANTEIL_STUECK`), und behalten wird die Fassung mit der
+    **kürzesten** Störung. Bleibt sie nach allen Anläufen, wird das Stück
+    geteilt – ein anderer Zusammenhang nimmt beim Modell einen anderen Weg.
+    Erst was auch dann bleibt, erreicht das Stummschalten.
+
+    Gibt Ton, Abtastrate und den Grund der letzten Beanstandung zurück
+    (`None`, wenn sauber).
+    """
+    global verworfen
+    import sprechstimme
+
+    beste = None
+    for anlauf in range(1, versuche + 1):
+        wavs, rate = sprich(stueck)
+        audio = np.asarray(wavs[0])
+        grund = brauchbar(stueck, audio, rate, sprechstimme.LAUT_ANTEIL_STUECK)
+        if grund is None:
+            return audio, rate, None
+        verworfen += 1
+        melde(f"  Stück {nummer}, Anlauf {anlauf} verworfen – {grund}")
+        melde(f"    {stueck[:70]!r}")
+        stoerung = sprechstimme.stoerdauer(
+            stueck, audio, rate, sprechstimme.LAUT_ANTEIL_STUECK
+        )
+        if beste is None or stoerung < beste[0]:
+            beste = (stoerung, audio, rate, grund)
+    return beste[1], beste[2], beste[3]
 
 
 t0 = time.time()
 gesamtdauer = 0.0
 verworfen = 0
 for lauf, (index, (stueck, ruhe)) in enumerate(meine, start=1):
-    # Bis zu drei Anläufe. Gewürfelt wird bei jedem neu – derselbe Text nimmt
-    # beim nächsten Mal einen anderen Weg, und genau das hat die zweite
-    # Fassung der Folge vom 10. August bewiesen.
-    for anlauf in (1, 2, 3):
-        wavs, rate = sprich(stueck)
-        audio = np.asarray(wavs[0])
-        grund = brauchbar(stueck, audio, rate)
-        if grund is None:
-            break
-        verworfen += 1
-        melde(f"  Stück {index + 1}, Anlauf {anlauf} verworfen – {grund}")
-        melde(f"    {stueck[:70]!r}")
-    else:
-        # Drei entgleiste Anläufe: lieber ein schiefes Stück als ein Loch.
-        # Ein fehlendes Stück bricht das Zusammenfügen ab und kostet die
-        # ganze Folge; ein schiefes kostet vier Sekunden.
-        melde(f"::warning::Stück {index + 1} klingt auch nach drei Anläufen nicht sauber.")
+    # Gewürfelt wird bei jedem Anlauf neu – derselbe Text nimmt beim nächsten
+    # Mal einen anderen Weg, und genau das hat die zweite Fassung der Folge
+    # vom 10. August bewiesen.
+    audio, rate, grund = sauber_gesprochen(stueck, STOERUNG_ANLAEUFE, index + 1)
+    if grund is not None:
+        teile = haelften(stueck)
+        if teile:
+            import sprechstimme as _st
+
+            melde(
+                f"  Stück {index + 1} nach {STOERUNG_ANLAEUFE} Anläufen nicht sauber – "
+                f"geteilt in {len(teile[0])} + {len(teile[1])} Zeichen."
+            )
+            links, rate, grund_l = sauber_gesprochen(teile[0], TEIL_ANLAEUFE, index + 1)
+            rechts, _, grund_r = sauber_gesprochen(teile[1], TEIL_ANLAEUFE, index + 1)
+            luecke = np.zeros(int(rate * TEIL_PAUSE_S), dtype=links.dtype)
+            audio = np.concatenate(
+                [_st.nahtlos(links, rate), luecke, _st.nahtlos(rechts, rate)]
+            )
+            grund = grund_l or grund_r
+    if grund is not None:
+        # Lieber ein schiefes Stück als ein Loch: Ein fehlendes Stück bricht
+        # das Zusammenfügen ab und kostet die ganze Folge. Die Stelle dämpft
+        # danach `nachbessern` – das ist der Aussetzer, den der Betreiber
+        # hört, und darum steht diese Zeile als Warnung im Protokoll.
+        melde(
+            f"::warning::Stück {index + 1} klingt auch nach allen Anläufen "
+            f"und geteilt nicht sauber – {grund}"
+        )
 
     pause = np.zeros(int(rate * ruhe), dtype=audio.dtype)
     sf.write(f"podcast-folge/stueck-{index:03d}.wav", np.concatenate([audio, pause]), rate)

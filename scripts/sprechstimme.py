@@ -308,6 +308,32 @@ UEBERSTEUERT_ANTEIL = 0.02
 #: trotzdem in Ordnung – sie sind leise.
 LAUT_ANTEIL = 0.4
 
+#: Dasselbe für die Prüfung **je Stück** beim Sprechen – strenger als für die
+#: fertige Folge.
+#:
+#: ## Warum zwei Werte
+#:
+#: Am 26. Oktober 2026 meldete der Betreiber wieder Störgeräusche und
+#: „Aussetzer". Die Protokolle der Folgen vom 25. und 26.10.:
+#:
+#:     26.10.  alle 18 Stücke beim Sprechen unbeanstandet –
+#:             beim Zusammenfügen 1:24 „0.5 s rau“ gefunden und stumm geschaltet
+#:     25.10.  Stück 12 dreimal verworfen, die dritte Fassung trotzdem genommen –
+#:             beim Zusammenfügen 2:20 „0.5 s rau“ stumm geschaltet
+#:
+#: Das Stummschalten **ist** der Aussetzer: eine halbe Sekunde Loch mitten im
+#: Satz. Und es traf eine Störung, die die Prüfung je Stück nicht gesehen
+#: hatte – „laut" heißt hier 40 % des lauten Teils **des Betrachteten**, und
+#: ein lautes Stück hebt seine eigene Schwelle über eine Störung, die gegen
+#: den Pegel der ganzen Folge darüber liegt (so schon im Docstring von
+#: `nachbessern`, Fall vom 11. August 2026).
+#:
+#: Beim Sprechen kostet ein Fehlalarm einen weiteren Anlauf, beim
+#: Zusammenfügen eine stumme halbe Sekunde. Also wird vorn strenger geprüft
+#: als hinten: Ein Stück, dessen Schwelle bis zum 1,6-Fachen über der der
+#: Folge liegt, sieht vorn noch alles, was hinten gefunden würde.
+LAUT_ANTEIL_STUECK = 0.25
+
 #: Wie lange eine Auffälligkeit am Stück anhalten muss, damit sie zählt.
 #:
 #: **Das ist die eigentliche Trennlinie.** Ein Zischlaut dauert 40 bis 150
@@ -472,7 +498,7 @@ RUMPELN_FENSTER = max(
 )
 
 
-def merkmale(audio, rate: int):
+def merkmale(audio, rate: int, laut_anteil: float | None = None):
     """Misst jedes Fenster – ohne zu urteilen.
 
     Gibt die Messwerte je Fenster zurück, aus denen `auffaellige_stellen`
@@ -508,7 +534,8 @@ def merkmale(audio, rate: int):
     rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
     anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
 
-    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
+    anteil = LAUT_ANTEIL if laut_anteil is None else laut_anteil
+    schwelle = float(np.percentile(effektiv, 90)) * anteil
     laut = effektiv >= max(schwelle, 1e-4)
 
     return {
@@ -544,7 +571,9 @@ def _tiefenanteil(stuecke, rate: int):
     return np.sum(spektrum[:, tief], axis=1) / np.maximum(gesamt, 1e-20)
 
 
-def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
+def auffaellige_stellen(
+    audio, rate: int, laut_anteil: float | None = None
+) -> list[tuple[float, float, str]]:
     """Findet Stellen im Ton, die nicht wie gesprochene Sprache aussehen.
 
     Gibt je Fund Anfang und Ende in Sekunden und den Grund zurück.
@@ -653,7 +682,7 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     Fehler hat, und nicht jeden denkbaren. Die Antwort darauf bleibt deshalb
     ein neuer Versuch, kein Abbruch.
     """
-    gemessen = merkmale(audio, rate)
+    gemessen = merkmale(audio, rate, laut_anteil)
     if gemessen is None:
         return []
 
@@ -907,7 +936,9 @@ def nachbessern(audio, rate: int, melde=print):
     return gebessert, len(funde)
 
 
-def brauchbar(stueck: str, audio, rate: int) -> str | None:
+def brauchbar(
+    stueck: str, audio, rate: int, laut_anteil: float | None = None
+) -> str | None:
     """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
 
     Am 10. August 2026 lagen zwei Fassungen derselben Podcastfolge vor. Die
@@ -934,13 +965,26 @@ def brauchbar(stueck: str, audio, rate: int) -> str | None:
         if dauer > DAUER_OBEN * erwartet:
             return f"zu lang: {dauer:.1f} s statt rund {erwartet:.1f} s"
 
-    funde = auffaellige_stellen(audio, rate)
+    funde = auffaellige_stellen(audio, rate, laut_anteil)
     if funde:
         von, bis, grund = funde[0]
         weitere = f" (und {len(funde) - 1} weitere)" if len(funde) > 1 else ""
         return f"ab {von:.1f} s bis {bis:.1f} s: {grund}{weitere}"
 
     return None
+
+
+def stoerdauer(stueck: str, audio, rate: int, laut_anteil: float | None = None) -> float:
+    """Wie schlecht ein Anlauf ist – zum Vergleich mehrerer verworfener.
+
+    Sekunden auffälligen Tons; ein Stück mit falscher Dauer zählt hundert, denn
+    dort ist nicht eine Stelle, sondern das Ganze entgleist. Null heißt sauber.
+    """
+    dauer = len(audio) / rate
+    erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
+    if erwartet >= 1.0 and not (DAUER_UNTEN * erwartet <= dauer <= DAUER_OBEN * erwartet):
+        return 100.0
+    return float(sum(bis - von for von, bis, _ in auffaellige_stellen(audio, rate, laut_anteil)))
 
 
 class Sprecher:
@@ -1236,7 +1280,51 @@ def selbsttest(melde=print) -> int:
     else:
         melde("  OK   Nachbesserung: saubere Aufnahme bleibt unangetastet.")
 
-    gesamt = len(faelle) + 5
+    # Der Fall vom 25./26. Oktober 2026: eine Störung, die das Stück beim
+    # Sprechen nicht sah, die fertige Folge aber schon – leiser als 40 % des
+    # lauten Teils dieses Stücks, lauter als 25 %. Die Prüfung je Stück muss
+    # sie mit `LAUT_ANTEIL_STUECK` finden; die für die Folge sieht sie nicht,
+    # und genau darum hat es den Wert gegeben.
+    leise = _probeton(30, rate, 29).copy()
+    gemessen = merkmale(leise, rate)
+    p90 = float(np.percentile(gemessen["effektiv"], 90))
+    n = int(1.0 * rate)
+    i0 = int(14 * rate)
+    leise[i0 : i0 + n] = (0.32 * p90 * r.standard_normal(n)).astype(np.float32)
+    streng = brauchbar(text(30), leise, rate, LAUT_ANTEIL_STUECK)
+    locker = brauchbar(text(30), leise, rate)
+    if streng is None or locker is not None:
+        schief += 1
+        melde(
+            f"  FEHL Leise Störung: je Stück {streng or 'nicht gefunden'}, "
+            f"für die Folge {locker or 'nicht gefunden'} – erwartet: nur je Stück."
+        )
+    else:
+        melde(f"  OK   Leise Störung: je Stück gefunden ({streng}), für die Folge nicht.")
+
+    # Die strengere Schwelle darf saubere Stücke nicht beanstanden – jeder
+    # Fehlalarm ist ein Anlauf mehr, und die Anläufe sind gezählt.
+    falsch = [
+        str(keim)
+        for keim in keime
+        if brauchbar(text(30), _probeton(30, rate, keim), rate, LAUT_ANTEIL_STUECK)
+    ]
+    if falsch:
+        schief += 1
+        melde(f"  FEHL Strenge Schwelle: saubere Probetöne beanstandet (Keim {', '.join(falsch)}).")
+    else:
+        melde(f"  OK   Strenge Schwelle: {len(keime)} saubere Probetöne bleiben unbeanstandet.")
+
+    # Und die Wahl der besten Fassung: sauber ist null, gestört mehr als null.
+    if stoerdauer(text(30), _probeton(30, rate, 11), rate) != 0 or not (
+        stoerdauer(text(30), pfeifen, rate) > 0
+    ):
+        schief += 1
+        melde("  FEHL Störungsdauer: sauber und gestört nicht unterschieden.")
+    else:
+        melde("  OK   Störungsdauer: sauber null, gestört mehr.")
+
+    gesamt = len(faelle) + 8
 
     if schief:
         melde(f"::error::{schief} von {gesamt} Fällen falsch beurteilt.")
