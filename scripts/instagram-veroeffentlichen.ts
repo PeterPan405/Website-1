@@ -36,7 +36,7 @@
  * scharf gestellt werden. Dieselbe Vorsicht wie beim Podcast-Upload.
  */
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
 import {
   gesperrt,
@@ -520,6 +520,26 @@ if (schonHeute) {
       `${schonHeute.permalink ?? '(ohne Adresse)'}`
   )
 }
+/*
+  Heute schon einmal veröffentlicht, und der Kanal ist leer? Dann hat der
+  Betreiber den Beitrag gelöscht. Am 26.10.2026 lud ein Bau nach einem Merge
+  die gelöschte Fassung um 07:04 Uhr erneut hoch – der Riegel oben fragt nur
+  den Kanal, und der war leer. Neu hinaus geht es nur mit NOCHMAL=ja, also
+  von Hand nach dem OK des Betreibers.
+*/
+const GEPOSTET = 'out/instagram/gepostet.txt'
+if (
+  process.env.NOCHMAL !== 'ja' &&
+  existsSync(GEPOSTET) &&
+  readFileSync(GEPOSTET, 'utf8')
+    .split('\n')
+    .some((z) => z.trim() === STICHTAG)
+) {
+  haltAn(
+    `Der ${STICHTAG} wurde schon einmal veröffentlicht und steht nicht mehr im Kanal – ` +
+      'vom Betreiber gelöscht. Neu nur von Hand mit „nochmal".'
+  )
+}
 melde(`Im Kanal steht für den ${STICHTAG} noch nichts.`)
 
 // ---------------------------------------------------------------- Hochladen
@@ -563,6 +583,8 @@ const veroeffentlicht = await graph(`${KONTO}/media_publish`, {
 
 melde('')
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
+mkdirSync('out/instagram', { recursive: true })
+writeFileSync('out/instagram/gepostet-neu.txt', `${STICHTAG}\n`)
 melde('https://www.instagram.com/im_invests/')
 
 // Kommentare an (`lib/instagram-nachgang.ts`). Die Story teilt der
