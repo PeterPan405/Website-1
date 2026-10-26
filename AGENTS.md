@@ -147,8 +147,8 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
   nach den News), nie auf morgen.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
-- **Kein Thema zweimal** – nicht im Beitrag, nicht am Folgetag (Öl am 17.
-  und 18.10.). Sonntag: nur Samstag und Sonntag; So/Mo 3–5 Kacheln.
+- **Kein Thema zweimal** – nicht im Beitrag, nicht in 3 Tagen
+  (`themaWiederholt()`; Frankreich 22.–26.10.). So/Mo 3–5 Kacheln.
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu

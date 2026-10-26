@@ -49,6 +49,7 @@ import {
   SCHLAGWORTE as IG_SCHLAGWORTE,
   istErscheinungstag,
   pruefeInstagramPlan,
+  themaWiederholt,
 } from '../lib/instagram-plan.ts'
 
 // ---------------------------------------------------------------- Regelwerk
@@ -1174,6 +1175,24 @@ async function main() {
     diesem Tag eben kein Tagesbeitrag, und `instagram-beitrag.yml` sagt warum.
   */
   const igFehler = pruefeInstagramPlan(ergebnis.instagram, heute)
+  /* Kein Thema der letzten drei Tage (Betreiber, 26.10.2026) – `themaWiederholt()`. */
+  if (ergebnis.instagram && Array.isArray(ergebnis.instagram.kacheln)) {
+    const frueher = [1, 2, 3].flatMap((n) => {
+      const d = new Date(`${heute}T12:00:00Z`)
+      d.setUTCDate(d.getUTCDate() - n)
+      const tag = d.toISOString().slice(0, 10)
+      const pfad = `data/instagram/${tag}.json`
+      if (!existsSync(pfad)) return []
+      try {
+        return [
+          { datum: tag, kacheln: JSON.parse(readFileSync(pfad, 'utf8')).kacheln ?? [] },
+        ]
+      } catch {
+        return []
+      }
+    })
+    igFehler.push(...themaWiederholt(ergebnis.instagram.kacheln, frueher))
+  }
   const igTag = istErscheinungstag(heute)
   const igMelden = () => {
     if (!igTag) {

@@ -139,8 +139,8 @@ export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminv
  */
 export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags.
 
-- \`kacheln\`: **genau fünf**, wichtigste zuerst, nichts doppelt – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne. Kaum bekannte Firmen (EQT/Qiagen) nicht; fehlt eine fünfte, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge – „Öl über 100 Dollar", nicht die Zahl der Opfer.
-- **So/Mo 3–5 Kacheln**, kein Thema vom Vortag ohne neues Ereignis; Politik und Termine der Woche (nur aus Quellen) erlaubt.
+- \`kacheln\`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Kein Thema aus den Kacheln der letzten drei Tage** (\`data/instagram/\`), außer bei starker Veränderung – die Prüfung weist es zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
+- **So/Mo** auch Politik und Termine der Woche (nur aus Quellen).
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
   - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
 - \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen.
@@ -236,6 +236,101 @@ export function pruefeInstagramPlan(plan: unknown, datum?: string): string[] {
   }
 
   return fehler
+}
+
+/**
+ * Wörter, die in vielen Überschriften stehen und kein Thema bezeichnen.
+ */
+const KEIN_THEMA = new Set([
+  'rekord',
+  'prognose',
+  'zahlen',
+  'aktie',
+  'aktien',
+  'jobs',
+  'index',
+  'heute',
+  'woche',
+  'bilanzwoche',
+  'mrd',
+  'mio',
+  'milliarden',
+  'millionen',
+  'dollar',
+  'euro',
+  'prozent',
+  'plus',
+  'minus',
+  'hoch',
+  'tief',
+  'streik',
+  'warnstreik',
+  'gewinn',
+  'umsatz',
+  'rendite',
+  'inflation',
+  'zins',
+  'zinsen',
+  'leitzins',
+  'markt',
+  'märkte',
+  'börse',
+  'börsen',
+  'kurs',
+  'kurse',
+  'quartal',
+  'neue',
+  'neuer',
+  'mehr',
+  'weniger',
+  'nach',
+  'trotz',
+  'über',
+  'unter',
+  'gegen',
+  'banken',
+  'bank',
+  'werk',
+  'chef',
+  'co',
+])
+
+/** Die Themenwörter einer Überschrift: Namen von Ländern, Firmen, Rohstoffen. */
+export function themenwoerter(titel: string): Set<string> {
+  return new Set(
+    (titel.match(/\p{Lu}[\p{L}&]*/gu) ?? [])
+      .map((w) => w.toLowerCase())
+      .filter((w) => (w.length >= 3 || w === 'öl') && !KEIN_THEMA.has(w))
+  )
+}
+
+/**
+ * Kacheln, deren Thema schon in den letzten Tagen dran war.
+ *
+ * Betreiber, 26.10.2026, nach dem dritten Frankreich-Beitrag in fünf Tagen
+ * (22.10. „Frankreich: Rendite 5 %", 24.10. „Frankreich: Aa3 bestätigt",
+ * 26.10. „Frankreich: Rendite-Rekord"): „schau darauf, dass es keine
+ * Doppelungen zu den Vortagen gibt. Außer es hat sich irgendetwas stark
+ * verändert." Ob es das hat, kann eine Prüfung nicht wissen – sie meldet
+ * jede Überschneidung, und wer eine Ausnahme will, schreibt sie bewusst.
+ */
+export function themaWiederholt(
+  kacheln: { titel: string }[],
+  frueher: { datum: string; kacheln: { titel: string }[] }[]
+): string[] {
+  const meldungen: string[] = []
+  for (const [i, k] of kacheln.entries()) {
+    const jetzt = themenwoerter(k.titel)
+    for (const tag of frueher)
+      for (const alt of tag.kacheln) {
+        const gleich = [...themenwoerter(alt.titel)].filter((w) => jetzt.has(w))
+        if (gleich.length)
+          meldungen.push(
+            `Kachel ${i + 1} „${k.titel}" wiederholt „${alt.titel}" vom ${tag.datum} (${gleich.join(', ')}) – kein Thema der letzten drei Tage.`
+          )
+      }
+  }
+  return meldungen
 }
 
 /** Was an einem Tag für Instagram vorliegt – und wenn nichts, warum. */
