@@ -55,6 +55,12 @@ const sicht = sichtBefund(lies('sichtpruefung.json'), stellen)
 
 for (const k of heute)
   console.log(`Kachel ${k.stelle}: ${k.leer ? 'ohne Bild' : k.abdruck}`)
+/*
+  Das Urteil des Auges steht im Protokoll, nicht nur sein Ergebnis – sonst
+  lässt sich einem „in Ordnung" nicht ansehen, ob es hingesehen hat.
+*/
+for (const u of sicht.urteile)
+  console.log(`Sicht ${u.stelle}: ${u.passt ? 'passt' : 'passt nicht'} – ${u.grund}`)
 if (sicht.ausgefallen)
   console.log(
     '::warning::Sichtprüfung ausgefallen – kein Urteil zu jeder Kachel. Es gilt nur die gerechnete Prüfung.'

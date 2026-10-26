@@ -170,24 +170,30 @@ export function gerechneterBefund(
 export function sichtBefund(
   roh: string | null,
   stellen: number[]
-): { fehler: string[]; ausgefallen: boolean } {
-  if (!roh) return { fehler: [], ausgefallen: true }
+): {
+  fehler: string[]
+  ausgefallen: boolean
+  urteile: { stelle: number; passt: boolean; grund: string }[]
+} {
+  const leer = { fehler: [], ausgefallen: true, urteile: [] }
+  if (!roh) return leer
   let daten: unknown
   try {
     daten = JSON.parse(roh)
   } catch {
-    return { fehler: [], ausgefallen: true }
+    return leer
   }
   const liste = (daten as { kacheln?: unknown })?.kacheln
-  if (!Array.isArray(liste)) return { fehler: [], ausgefallen: true }
+  if (!Array.isArray(liste)) return leer
   const urteile = new Map<number, { passt: boolean; grund: string }>()
   for (const e of liste as { stelle?: unknown; passt?: unknown; grund?: unknown }[])
     if (typeof e?.stelle === 'number' && typeof e.passt === 'boolean')
       urteile.set(e.stelle, { passt: e.passt, grund: String(e.grund ?? '') })
   /* Ein Urteil, das eine Kachel auslässt, hat sie nicht angesehen. */
-  if (stellen.some((s) => !urteile.has(s))) return { fehler: [], ausgefallen: true }
+  const alle = [...urteile].map(([stelle, u]) => ({ stelle, ...u }))
+  if (stellen.some((s) => !urteile.has(s))) return { ...leer, urteile: alle }
   const fehler = stellen
     .filter((s) => !urteile.get(s)!.passt)
     .map((s) => `Kachel ${s}: ${urteile.get(s)!.grund || 'Bild passt nicht zur Meldung'}`)
-  return { fehler, ausgefallen: false }
+  return { fehler, ausgefallen: false, urteile: alle }
 }
