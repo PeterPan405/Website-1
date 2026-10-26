@@ -37,12 +37,26 @@ import {
   zuschnitt,
 } from '@/lib/commons-suche'
 import {
+  dateiname,
+  doppelteBilder,
   leseRegister,
   REGISTER,
+  type Tagesbild,
   TAGESBILDER,
   taugt,
   verwendeteTitel,
 } from '@/lib/instagram-tagesbilder'
+
+/**
+ * Sortiert die Einträge des Tages und hält an, wenn zwei Kacheln dasselbe
+ * Bild zeigten – dann bleibt das Register, wie es war. Am 26.10.2026 stand
+ * das Audi-Werk zweimal im Beitrag, auch bei der Ifo-Kachel.
+ */
+function einmalig(heute: Tagesbild[]): Tagesbild[] {
+  const fehler = doppelteBilder(heute)
+  if (fehler.length) throw new Error(`Doppelt: ${fehler.join('; ')}`)
+  return heute.sort((a, b) => a.stelle - b.stelle)
+}
 
 const DATUM =
   process.env.DATUM ??
@@ -102,7 +116,7 @@ if (process.env.MODUS === 'kandidaten') {
       throw new Error(`${titel}: taugt nicht (Lizenz, Format oder verwendet)`)
     const jpeg = await zuschnitt(seite)
     if (!jpeg) throw new Error(`${titel}: nicht zu laden`)
-    const name = `${DATUM}-${stelle}.jpg`
+    const name = dateiname(DATUM, stelle, seite.title)
     writeFileSync(join(TAGESBILDER, name), jpeg)
     const eintrag = {
       stelle,
@@ -119,7 +133,7 @@ if (process.env.MODUS === 'kandidaten') {
     verwendet.add(seite.title)
     console.log(`Stelle ${stelle}: ${seite.title} (${k.lizenz})`)
   }
-  register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
+  register[DATUM] = einmalig(heute)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else if (process.env.MODUS === 'kurs') {
   const heute = register[DATUM] ?? []
@@ -141,7 +155,7 @@ if (process.env.MODUS === 'kandidaten') {
     else heute.push(eintrag)
     console.log(`Stelle ${stelle}: Kursverlauf ${symbol}`)
   }
-  register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
+  register[DATUM] = einmalig(heute)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else if (process.env.MODUS === 'logo') {
   mkdirSync(TAGESBILDER, { recursive: true })
@@ -156,7 +170,7 @@ if (process.env.MODUS === 'kandidaten') {
     if (!/^#[0-9a-f]{6}$/i.test(farbe)) throw new Error(`${farbe}: keine Farbe`)
     const jpeg = await logobild(seite, farbe)
     if (!jpeg) throw new Error(`${titel}: nicht zu laden`)
-    const name = `${DATUM}-${stelle}.jpg`
+    const name = dateiname(DATUM, stelle, seite.title)
     writeFileSync(join(TAGESBILDER, name), jpeg)
     const eintrag = {
       stelle,
@@ -172,7 +186,7 @@ if (process.env.MODUS === 'kandidaten') {
     else heute.push(eintrag)
     console.log(`Stelle ${stelle}: ${seite.title} (${k.lizenz}) auf ${farbe}`)
   }
-  register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
+  register[DATUM] = einmalig(heute)
   writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 } else {
   throw new Error('MODUS=kandidaten, wahl, logo oder kurs')

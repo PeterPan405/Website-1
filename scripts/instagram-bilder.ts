@@ -23,6 +23,8 @@ import {
 } from '@/lib/commons-suche'
 import { bebildere, kursZurKachel } from '@/lib/instagram-motive'
 import {
+  dateiname,
+  doppelteBilder,
   type Tagesbild,
   leseRegister,
   MARKENBILD,
@@ -120,7 +122,7 @@ for (const [i, kachel] of plan.kacheln.entries()) {
       if (s.marke && !MARKENBILD.test(seite.title)) continue
       const jpeg = await zuschnitt(seite)
       if (!jpeg) continue
-      const datei = `${DATUM}-${stelle}.jpg`
+      const datei = dateiname(DATUM, stelle, seite.title)
       writeFileSync(join(TAGESBILDER, datei), jpeg)
       heute.push({
         stelle,
@@ -146,6 +148,8 @@ for (const [i, kachel] of plan.kacheln.entries()) {
     )
 }
 
+const doppelt = doppelteBilder(heute)
+if (doppelt.length) throw new Error(`Doppelt: ${doppelt.join('; ')}`)
 register[DATUM] = heute.sort((a, b) => a.stelle - b.stelle)
 writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
 console.log(`${heute.length} von ${plan.kacheln.length} Kacheln mit Tagesbild.`)
