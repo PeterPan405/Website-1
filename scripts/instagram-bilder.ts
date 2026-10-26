@@ -76,9 +76,15 @@ for (const [i, kachel] of plan.kacheln.entries()) {
     kamen für Munich Re ein unbekannter Redner und für American Express eine
     Kreditkarte mit fremdem Namen.
   */
+  /*
+    Und hat das Unternehmen einen Kurs im Bestand, kommt gleich der Verlauf –
+    ohne Umweg über die Markensuche. Am 26.10.2026 fand „Alphabet sign" eine
+    Tafel der tansanischen Gebärdensprache („Manual alphabet – F"): Wort und
+    Schild standen beide im Titel, das Bild hatte mit Google nichts zu tun.
+  */
   const symbol = suchen.some((s) => s.marke) ? kursZurKachel(kachel.titel) : null
   for (const s of suchen) {
-    if (symbol && !s.marke) {
+    if (symbol) {
       heute.push({
         stelle,
         datei: '',
