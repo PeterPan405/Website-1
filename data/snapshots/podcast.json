@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-25T08:43:34.458Z",
+  "abgerufenAm": "2026-10-26T00:59:03.149Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "moody-s-haelt-frankreich-rating-und-ifo-institut-veroeffentlicht-heute-den-gesch",
+      "titel": "Moody's hält Frankreich-Rating und Ifo-Institut veröffentlicht heute den Geschäftsklimaindex",
+      "beschreibung": "Frankreichs Schuldenkrise treibt die Zinsen, der ifo-Index kommt heute, Audi baut in den USA, drei Tech-Riesen legen Zahlen vor. Die Ratingagentur Moody's hat Frankreichs Kreditnote am Freitag unverändert bei Aa3 belassen. Der Ausblick bleibt negativ. Am Anleihemarkt zeigt sich trotzdem wenig Vertrauen: Die Rendite zehnjähriger Anleihen stieg erstmals seit 2002 über fünf Prozent.\n\nWir sprechen über Audi errichtet erstes eigenes US-Werk und Alphabet, Microsoft und Amazon legen diese. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:34) Moody's hält Frankreich-Rating\n(1:16) Ifo-Institut veröffentlicht heute\n(1:57) Audi errichtet erstes eigenes US-Werk\n(2:29) Alphabet, Microsoft und Amazon legen diese\n(3:02) Verdi ruft vor zweiter Verhandlungsrunde\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-26",
+      "dauerSekunden": 226,
+      "url": "https://iminvests.de/podcast-audio/2026-10-26.mp3",
+      "youtubeId": "BsWfwXJQlNE"
+    },
     {
       "slug": "moody-s-bestaetigt-frankreichs-rating-trotz-schuldenkrise-und-brentoel-erreicht",
       "titel": "Moody's bestätigt Frankreichs Rating trotz Schuldenkrise und Brentöl erreicht Sechsmonatshoch",
