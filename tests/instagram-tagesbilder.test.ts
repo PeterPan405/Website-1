@@ -285,6 +285,24 @@ pruefe(
 )
 pruefe('… und braucht keine Nennung', bildnachweis('2099-01-01', mitKurs) === '')
 
+/* Der 26.10.2026 – zwei beanstandete Bilder kamen wieder. */
+pruefe(
+  'Olympia-Ringe am Eiffelturm: abgelehnt, auch ohne Register',
+  !taugt(
+    { ...gut, titel: 'File:Olympic rings on the Eiffel Tower 2024 (5).jpg' },
+    verwendeteTitel({})
+  ) &&
+    !taugt({ ...gut, titel: 'File:Olympic rings on the Eiffel Tower 2024 (7).jpg' }, leer)
+)
+pruefe(
+  'Gebärdensprache ist kein Firmenschild',
+  !taugt(
+    { ...gut, titel: 'File:Tanzanian Sign Language (TSL) - Manual alphabet - G.jpg' },
+    leer,
+    'Alphabet'
+  )
+)
+
 /* Das Register: keine Datei zweimal, jede liegt bereit. */
 const register = leseRegister()
 const titel = Object.values(register).flatMap((tag) =>

@@ -598,13 +598,25 @@ export function bebildere(
   const vergeben = new Set<string>(
     (Array.isArray(ohne) ? ohne : [ohne]).filter((x): x is string => !!x)
   )
+  /*
+    Was in **diesem** Beitrag schon steht. Am 26.10.2026 waren alle vier
+    Rückfall-Motive vom Vortag gesperrt, und drei Kacheln bekamen dasselbe
+    Börsenparkett – `?? RUECKFALL[0]`. Der Vortag ist ein Wunsch, kein Muss;
+    zweimal dasselbe Bild im selben Beitrag ist ein Fehler.
+  */
+  const imBeitrag = new Set<string>()
   return kacheln.map(({ titel, text }) => {
     let motiv: string
     const frei = MOTIVE.filter((x) => !vergeben.has(x.id))
     const m = motivFuer({ titel, text }, frei)
     if (m) motiv = m.id
-    else motiv = RUECKFALL.find((id) => !vergeben.has(id)) ?? RUECKFALL[0]
+    else
+      motiv =
+        RUECKFALL.find((id) => !vergeben.has(id)) ??
+        RUECKFALL.find((id) => !imBeitrag.has(id)) ??
+        RUECKFALL[0]
     vergeben.add(motiv)
+    imBeitrag.add(motiv)
     return { motiv, kurs: kursZurKachel(titel) }
   })
 }

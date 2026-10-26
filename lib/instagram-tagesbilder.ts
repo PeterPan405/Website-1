@@ -69,11 +69,29 @@ export function leseRegister(pfad = REGISTER): Register {
  * Motive: Am 21.10.2026 fand der erste Lauf für „Rekord bei
  * Haushaltsvermögen" genau das Euro-Foto, das am Vortag als Motiv stand.
  */
+/**
+ * Was der Betreiber beanstandet hat – kommt nie wieder, auch wenn es im
+ * Register durch eine Wahl von Hand ersetzt wurde und dort nicht mehr steht.
+ * Am 26.10.2026 kam der Eiffelturm mit den Olympia-Ringen ein zweites Mal:
+ * Am 24.10. war er ersetzt worden und galt damit als unbenutzt.
+ */
+export const ABGELEHNT = [
+  'File:Olympic rings on the Eiffel Tower 2024 (5).jpg',
+  'File:Tanzanian Sign Language (TSL) - Manual alphabet - F.jpg',
+  'File:Rotor-Gene Q thermocycle of Qiagen.jpg',
+  'File:Seria Refinery flare stack in 2025 - 03.jpg',
+  'File:Palais Brongniart PARIS.JPG',
+  'File:Munich RE (1).jpg',
+  'File:American Express Centurion Card front.jpg',
+  'File:Andrew Bailey (9053038723).jpg',
+]
+
 export function verwendeteTitel(register: Register): Set<string> {
   const motive = MOTIVE.flatMap((m) =>
     m.herkunft ? [titelAusSeite(m.herkunft.seite)] : []
   )
   return new Set([
+    ...ABGELEHNT,
     ...motive,
     ...Object.values(register).flatMap((tag) =>
       tag.filter((b) => !b.kurs).map((b) => b.titel)
@@ -428,6 +446,12 @@ const KEIN_FOTO = new RegExp(
       'corruption',
       'crime',
       'bandit',
+      /* Ereignisse statt Orte: Olympia-Ringe am Eiffelturm (24. und 26.10.2026). */
+      'olympic',
+      'olympics',
+      'olympia',
+      'sign language',
+      'manual alphabet',
     ].join('|') +
     ')\\b',
   'i'

@@ -340,6 +340,19 @@ pruefe(
   [...mitte].some((v) => v < 250)
 )
 
+/* Der 26.10.2026: alle Rückfall-Motive vom Vortag gesperrt – trotzdem keins doppelt. */
+{
+  const gesperrt = bebildere(
+    [1, 2, 3, 4].map((n) => ({ titel: `Meldung ${n}`, text: 'ohne Stichwort' })),
+    ['boerse', 'euro', 'tresor', 'konsum']
+  ).map((b) => b.motiv)
+  pruefe(
+    'vier Kacheln ohne Thema, Rückfall vom Vortag gesperrt: kein Motiv doppelt',
+    new Set(gesperrt).size === gesperrt.length,
+    JSON.stringify(gesperrt)
+  )
+}
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )
