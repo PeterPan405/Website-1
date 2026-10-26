@@ -395,6 +395,14 @@ pruefe(
 )
 pruefe('kein Kapitel „Fazit"', folge.kapitel.includes('Fazit'), false)
 pruefe('keine Ziffern im Sprechtext', /\d/.test(folge.sprechtext), false)
+/* Der 25.10.2026: „Anfang der 2030er Jahre" ließ Ziffern stehen. */
+pruefe(
+  'Jahrzehnte werden gesprochen',
+  sprechbar(
+    'Die Produktion soll Anfang der 2030er Jahre starten, wie in den 90er-Jahren.'
+  ),
+  'Die Produktion soll Anfang der zweitausenddreißiger Jahre starten, wie in den neunziger-Jahren.'
+)
 pruefe('keine Klammern im Sprechtext', /[()]/.test(folge.sprechtext), false)
 pruefe('kein Prozentzeichen im Sprechtext', folge.sprechtext.includes('%'), false)
 pruefe('Titel ohne Datum', /\d{1,2}\.\s*(August|Juli)/.test(folge.titel), false)

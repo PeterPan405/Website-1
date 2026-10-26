@@ -1075,6 +1075,17 @@ export function sprechbar(text: string): string {
   /* Prozentzeichen, bevor die Zahl davor umgeschrieben wird. */
   s = s.replaceAll(/\s*%/g, ' Prozent')
 
+  /*
+    Jahrzehnte: „die 2030er Jahre", „die 90er". Die Regel unten fasst sie
+    nicht – zwischen „0" und „er" liegt keine Wortgrenze –, und die Ziffern
+    blieben stehen. Am 25.10.2026 hielt „Anfang der 2030er Jahre" (Audi)
+    deshalb die ganze Ausgabe an: Test „keine Ziffern im Sprechtext".
+  */
+  s = s.replaceAll(
+    /\b(\d{2,4})er(?=\b|-)/g,
+    (_, n: string) => `${zahlAlsSprechform(n)}er`
+  )
+
   /* Zahlen mit Tausenderpunkt und/oder Dezimalkomma. */
   s = s.replaceAll(
     /\b(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?\b/g,
