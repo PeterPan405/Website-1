@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Frankreich, der ifo-Index, Audis Milliardenwerk in den USA, die großen Tech-Bilanzen und ein Bankenstreik – das sind die Themen des Tages.",
+  "kacheln": [
+    {
+      "titel": "Frankreich: Rendite-Rekord",
+      "text": "Französische Staatsanleihen kosten so viel wie seit 2002 nicht mehr. Moody's beließ das Rating trotzdem bei Aa3."
+    },
+    {
+      "titel": "Ifo-Index heute",
+      "text": "Um 10:30 Uhr meldet das ifo-Institut die Stimmung deutscher Firmen für Oktober. Im September war sie auf 89,9 Punkte gestiegen."
+    },
+    {
+      "titel": "Audi: 4 Mrd. für Georgia",
+      "text": "Audi baut sein erstes US-Werk in Georgia. Trump kündigte die Vier-Milliarden-Dollar-Investition an, Audi-Chef Döllner verteidigte sie."
+    },
+    {
+      "titel": "Bilanzwoche: Alphabet & Co",
+      "text": "Alphabet und Microsoft legen am Mittwoch ihre Zahlen vor, Amazon am Donnerstag. Der Markt preist Kursausschläge von bis zu acht Prozent ein."
+    },
+    {
+      "titel": "Banken: Verdi-Warnstreik",
+      "text": "Verdi ruft 150.000 Beschäftigte privater Banken zu Warnstreiks auf. Die nächste Verhandlungsrunde ist am 2. November."
+    }
+  ],
+  "schlagworte": ["frankreich", "ezb", "dax", "börse", "aktien"]
+}

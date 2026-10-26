@@ -92,6 +92,7 @@ import { edition as edition20261021 } from './2026-10-21'
 import { edition as edition20261022 } from './2026-10-22'
 import { edition as edition20261023 } from './2026-10-23'
 import { edition as edition20261024 } from './2026-10-24'
+import { edition as edition20261026 } from './2026-10-26'
 
 /**
  * Alle veröffentlichten Tagesausgaben.
@@ -107,6 +108,7 @@ import { edition as edition20261024 } from './2026-10-24'
  * auf, statt still zu verschwinden.
  */
 export const editions: DailyEdition[] = [
+  edition20261026,
   edition20261024,
   edition20261023,
   edition20261022,

@@ -101,6 +101,332 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'frankreich-moodys-haelt-rating',
+    title: "Moody's hält Frankreich-Rating trotz Schuldenkrise",
+    teaser:
+      "Moody's lässt Frankreichs Bonität unverändert bei Aa3 – doch am Anleihemarkt kostet der Staat so viel wie seit 2002 nicht mehr für seine Schulden.",
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-26T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Staatsanleihen', "Moody's", 'Eurozone'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: ['cac-40', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 23.10.2026, 23:48 Uhr: „Frankreichs Schuldenkrise verschärft sich – Moody\'s hält Kreditrating trotzdem stabil"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/anleihen/frankreich-moodys-haelt-kreditrating-trotz-schuldenkrise-stabil/100264304.html',
+      },
+      {
+        label:
+          'Tagesschau, 23.10.2026, 11:13 Uhr: „Frankreichs Schuldenkrise: Droht eine neue Eurokrise?"',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/frankreich-anleiherenditen-schuldenkrise-eurokrise-ezb-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sieben Stufen über Ramsch, aber mit Warnung',
+      },
+      {
+        type: 'paragraph',
+        text: "Die Ratingagentur Moody's hat Frankreichs Kreditwürdigkeit am Freitagabend unverändert bei „Aa3\" belassen. Das ist die vierthöchste Stufe und liegt sieben Stufen über dem Ramsch-Status. Der Ausblick bleibt jedoch negativ – ein Hinweis, dass Moody's eine Herabstufung für möglich hält, sie aber noch nicht vollzieht.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt ist strenger als die Agentur',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während die Rating-Note gehalten hat, ist die Rendite zehnjähriger französischer Staatsanleihen in der vergangenen Handelswoche erstmals seit 2002 über fünf Prozent gestiegen. Der Risikoaufschlag gegenüber deutschen Bundesanleihen erreichte damit den höchsten Stand seit der Eurokrise.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Analysten der ING-Bank um Padhraic Garvey beschrieben die Entwicklung so: „Es wirkt derzeit wie ein Zugunglück in Zeitlupe." Frankreich ist die zweitgrößte Volkswirtschaft der Eurozone.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rating und Rendite ticken nach verschiedenen Uhren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger zeigt der Fall einen wichtigen Unterschied: Eine Ratingagentur überprüft die Bonität eines Staates nur in festen Abständen und bewertet die Lage über Jahre. Der Anleihemarkt bewertet dieselbe Lage jede Sekunde neu, über den Preis. Steigt die Rendite schneller, als die Agentur das Rating senkt, hat der Markt dem Urteil längst vorgegriffen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein unverändertes Rating ist keine Entwarnung, wenn die Renditen gleichzeitig steigen. Für Anleger in Staatsanleihen zählt am Ende der Preis, zu dem sie kaufen oder verkaufen können – nicht allein der Buchstabe, den eine Agentur vergibt.',
+      },
+    ],
+  },
+  {
+    slug: 'ifo-geschaeftsklima-oktober',
+    title: 'Der ifo-Index für Oktober kommt heute Vormittag',
+    teaser:
+      'Um 10:30 Uhr veröffentlicht das ifo-Institut die Stimmung deutscher Unternehmen für Oktober – im September war sie auf 89,9 Punkte gestiegen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-26T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Konjunktur', 'ifo-Index', 'Deutschland'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dax', 'eur-usd'],
+    sources: [
+      {
+        label: 'ifo Institut, ifo-Geschäftsklima Deutschland, abgerufen 26.10.2026',
+        url: 'https://www.ifo.de/umfrage/ifo-geschaeftsklima-deutschland',
+      },
+      {
+        label:
+          'Lebensmittel Praxis, 25.09.2026: „Konjunkturbarometer: ifo-Geschäftsklima steigt im September deutlich"',
+        url: 'https://lebensmittelpraxis.de/handel-aktuell/49918-konjunkturbarometer-ifo-geschaeftsklima-steigt-im-september-deutlich.html',
+      },
+    ],
+    body: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Termin mit fester Uhrzeit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 10:30 Uhr veröffentlicht das ifo-Institut heute den Geschäftsklimaindex für Oktober. Die Umfrage unter deutschen Unternehmen zählt zu den meistbeachteten Konjunkturindikatoren des Landes.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im September war die Stimmung bereits gestiegen, auf 89,9 Punkte nach 88,8 im August. Ob sich der Anstieg im Oktober fortsetzt, zeigt erst die heutige Veröffentlichung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Umfrage, keine Messung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ifo-Index misst keine harten Daten wie Umsatz oder Produktion, sondern die Einschätzung von Unternehmen zu ihrer aktuellen Lage und ihren Erwartungen für die kommenden Monate. Das macht ihn zu einem Frühindikator: Firmen spüren eine Abschwächung oder Belebung oft, bevor sie sich in Statistiken wie dem Bruttoinlandsprodukt zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Anleger trotzdem genau hinschauen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weicht der Wert deutlich von der bisherigen Richtung ab, bewegt das üblicherweise auch den Euro und deutsche Zinspapiere, weil Marktteilnehmer ihre Erwartungen an die Wirtschaftslage anpassen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Monatswert ist noch kein Trend. Erst eine Folge mehrerer Monate zeigt, ob sich die Stimmung in der deutschen Wirtschaft wirklich dreht oder ob es sich um eine kurze Schwankung handelt.',
+      },
+    ],
+  },
+  {
+    slug: 'audi-werk-georgia-vier-milliarden',
+    title: 'Audi baut für vier Milliarden Dollar ein Werk in Georgia',
+    teaser:
+      'Audi errichtet in Perry, Georgia, sein erstes eigenes US-Werk. Trump kündigte die Vier-Milliarden-Dollar-Investition an, der Audi-Chef verteidigt den Schritt.',
+    category: 'Märkte',
+    publishedAt: '2026-10-26T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Audi', 'Volkswagen', 'USA', 'Zölle'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'CNBC, 25.10.2026: „Audi defends plans for a $4 billion Georgia plant amid VW restructuring, tariffs"',
+        url: 'https://www.cnbc.com/2026/10/25/audi-georgia-us-plant-tariffs-volkswagen.html',
+      },
+      {
+        label:
+          'Reuters via Lufkin Daily News, 25.10.2026: „Audi defends decision to stand by Trump on $4 billion US factory in Georgia"',
+        url: 'https://lufkindailynews.com/news_reuters/top_news/audi-defends-decision-to-stand-by-trump-on-4-billion-us-factory-in-georgia/article_30157037-d43c-5356-a51e-4c8d73948bbf.html',
+      },
+    ],
+    body: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ankündigung auf der Wahlkampfbühne',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump kündigte das neue Audi-Werk am Samstag bei einer Wahlkampfveranstaltung an. Es soll im Ort Perry in Georgia, nahe Macon, entstehen – mit einer Investition von vier Milliarden Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Audi-Chef Gernot Döllner stand bei der Ankündigung neben Trump. Geplant ist eine Kapazität von bis zu 200.000 Fahrzeugen im Jahr, gebaut werden sollen die Modelle Q7, Q8 und Q9. Der Bau soll 2027 beginnen, die Produktion Anfang der 2030er-Jahre starten. Audi rechnet mit rund 4.500 neuen Arbeitsplätzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Audi-Chef verteidigt die Entscheidung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Sonntag erklärte Döllner: „This decision was preceded by many months of careful planning and intense negotiations." Zur Einladung durch Trump sagte er: „If the American president invites you, you accept the invitation."',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Zoll kostet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Audi importiert bislang jedes in den USA verkaufte Fahrzeug aus Europa oder Mexiko. Das kostete den Konzern im vergangenen Jahr rund 1,2 Milliarden Euro an US-Zöllen auf Autos, Stahl, Aluminium und Teile. Ein eigenes Werk in den USA würde einen Teil dieser Kosten künftig vermeiden – dafür entstehen neue Kosten für Aufbau und Betrieb vor Ort.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ankündigung ist noch kein Beschluss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Investition braucht noch eine endgültige Entscheidung des Volkswagen-Aufsichtsrats. Zwischen einer politischen Ankündigung und einem verbindlichen Unternehmensbeschluss liegt üblicherweise ein eigener Prozess – das gilt auch für ein Projekt dieser Größe.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Volkswagen ist die Rechnung eine Abwägung zwischen laufenden Zollkosten und einer hohen Vorabinvestition mit jahrelanger Bauzeit. Ob sich das Werk auszahlt, hängt auch davon ab, wie lange die aktuellen US-Zölle auf importierte Autos bestehen bleiben.',
+      },
+    ],
+  },
+  {
+    slug: 'alphabet-microsoft-amazon-bilanzwoche',
+    title: 'Alphabet, Microsoft und Amazon legen diese Woche ihre Zahlen vor',
+    teaser:
+      'Mit Alphabet und Microsoft am Mittwoch und Amazon am Donnerstag endet für drei der größten US-Technologiekonzerne das dritte Quartal.',
+    category: 'Märkte',
+    publishedAt: '2026-10-26T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Alphabet', 'Microsoft', 'Amazon', 'Quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet', 'microsoft', 'amazon', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, 25.10.2026, 10:00 Uhr: „Earnings Preview: Retten Alphabet, Microsoft und Amazon den Markt jetzt vor dem Totalabsturz?"',
+        url: 'https://www.wallstreet-online.de/nachricht/21552146-earnings-preview-retten-alphabet-microsoft-amazon-markt-totalabsturz',
+      },
+      {
+        label: 'InsiderFinance, 2026: „Alphabet Q3 2026 Earnings Preview"',
+        url: 'https://www.insiderfinance.io/news/alphabet-q3-2026-earnings-preview',
+      },
+    ],
+    body: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Termine in einer Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Alphabet und Microsoft legen am Mittwoch ihre Quartalszahlen vor, Amazon folgt am Donnerstag. Alphabet plant die Veröffentlichung nach US-Börsenschluss am 28. Oktober, die Telefonkonferenz ist für 16:30 Uhr Ostküstenzeit angesetzt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Analysten erwarten bei Alphabet einen Umsatz von 127,85 Milliarden Dollar, ein Plus von fast 25 Prozent gegenüber dem Vorjahr, und einen Gewinn von 2,97 Dollar je Aktie. Bei Microsoft liegt die Umsatzerwartung bei 90,72 Milliarden Dollar, bei Amazon bei 202,2 Milliarden Dollar – ein Plus von gut zwölf Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Markt schon eingepreist hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Optionsmarkt preist für den Tag nach den Zahlen einen Kursausschlag von rund sechs Prozent bei Alphabet, gut fünf Prozent bei Microsoft und knapp acht Prozent bei Amazon ein – in beide Richtungen. Diese Zahl sagt nichts darüber, ob eine Aktie steigt oder fällt, nur wie stark die Bewegung erwartet wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom Nettovermögen zur Nettoschuld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die hohen Investitionen in Künstliche Intelligenz verändern die Bilanzen. Microsoft wies vor drei Jahren noch ein Nettovermögen von fast 32 Milliarden Dollar aus, mittlerweile stehen Nettoschulden von rund 52 Milliarden Dollar in den Büchern. Bei Amazon war der freie Cashflow zuletzt zwei Quartale in Folge negativ, bei Investitionsausgaben von 43,2 und 53,1 Milliarden Dollar je Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Alphabet mit zwei zusätzlichen Fragezeichen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Alphabet richten Analysten den Blick auch auf die Beteiligung an Anthropic, deren Börsengang für November angesetzt ist, und darauf, ob die Investitionskosten den Cashflow stärker belasten als bisher.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je höher die eingepreiste Kursbewegung, desto teurer wird für Anleger eine Absicherung über Optionen gegen Überraschungen. Und eine Bilanz, die von Nettovermögen zu Nettoschulden wandert, verändert auch, wie verwundbar ein Unternehmen bei künftig höheren Zinsen wäre.',
+      },
+    ],
+  },
+  {
+    slug: 'verdi-warnstreik-privatbanken',
+    title: 'Verdi ruft zu Warnstreiks bei privaten Banken auf',
+    teaser:
+      'Vor der zweiten Verhandlungsrunde am 2. November erhöht die Gewerkschaft Verdi den Druck auf die privaten Banken. Rund 150.000 Beschäftigte sind betroffen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-26T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Verdi', 'Tarifrunde', 'Banken'],
+    relatedTopics: ['geldsystem'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 23.10.2026, 11:47 Uhr: „Banken: Verdi ruft zu bundesweiten Warnstreiks bei privaten Banken auf"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-verdi-ruft-zu-bundesweiten-warnstreiks-bei-privaten-banken-auf/100264474.html',
+      },
+      {
+        label:
+          'DGB-Tarifticker, 08.10.2026: „Tarifrunde private Banken startet ohne Arbeitgeberangebot"',
+        url: 'https://www.dgb.de/service/weiterer-service/tarifmeldungen/tarifmeldung/tarifrunde-private-banken-startet-ohne-arbeitgeberangebot/',
+      },
+    ],
+    body: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Druck vor der zweiten Runde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Gewerkschaft Verdi ruft zu bundesweiten Warnstreiks bei privaten Banken auf. Damit soll der Druck auf die Arbeitgeber vor der zweiten Verhandlungsrunde am 2. November in Frankfurt am Main erhöht werden. Rund 150.000 Beschäftigte sind von dem Tarifkonflikt betroffen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die erste Verhandlungsrunde am 8. Oktober in Berlin endete ohne ein Angebot der Arbeitgeberseite. Verdi fordert sechs Prozent mehr Gehalt bei zwölf Monaten Laufzeit, für Nachwuchskräfte zusätzlich 300 Euro im Monat. Ein dritter Termin ist für den 23. November in Berlin vereinbart.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Warnstreik ist kein Streik',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Warnstreik ist kurz, meist auf wenige Stunden oder einen Tag begrenzt, und braucht anders als ein unbefristeter Streik keine vorherige Urabstimmung unter den Mitgliedern. Gewerkschaften setzen ihn als Druckmittel während laufender Verhandlungen ein – als Signal, nicht als letztes Mittel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Künstliche Intelligenz als neues Streitthema',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der DGB-Tarifmeldung geht es Verdi in dieser Runde auch um den Umgang mit Künstlicher Intelligenz und veränderten Geschäftsmodellen. Sinngemäß soll das nicht zu einem Freibrief für Personalabbau werden – eine wörtliche Aussage der Verhandlungsführer liegt dazu nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Kunden privater Banken können Warnstreiks zu kürzeren Öffnungszeiten oder längeren Wartezeiten führen. Der eigentliche Streitpunkt reicht aber über die Lohnprozente hinaus: Es geht auch darum, wie viel Sicherheit ein Tarifvertrag bei fortschreitender Automatisierung noch bieten kann.',
+      },
+    ],
+  },
+  {
     slug: 'frankreich-moodys-rating-bestaetigt-schuldenkrise',
     title: "Moody's bestätigt Frankreichs Rating trotz Schuldenkrise",
     teaser:
