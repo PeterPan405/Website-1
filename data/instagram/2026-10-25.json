@@ -1,0 +1,32 @@
+{
+  "zusammenfassung": "Fed und EZB entscheiden diese Woche, Frankreich erlebt neue Proteste vor der Haushaltsdebatte, Audi baut ein US-Werk, eine PHP-Lücke alarmiert die IT-Welt, und Biotech-Aktien legen kräftig zu.",
+  "kacheln": [
+    {
+      "titel": "Fed-Entscheid am Mittwoch",
+      "text": "Die US-Notenbank entscheidet am Mittwoch über den Leitzins, die EZB tagt einen Tag später. Dazwischen legen Alphabet, Microsoft, Amazon und Intel ihre Zahlen vor."
+    },
+    {
+      "titel": "Frankreich: Proteste",
+      "text": "In Frankreich demonstrierten am Samstag laut Innenministerium 410.000 Menschen. Am Dienstag debattiert das Parlament erneut den Haushalt für 2027."
+    },
+    {
+      "titel": "Audi: US-Werk in Georgia",
+      "text": "Audi baut sein erstes eigenes US-Werk, 4.500 Jobs und vier Milliarden Dollar sind geplant. Baustart ist 2027, Serienstart Anfang der 2030er Jahre."
+    },
+    {
+      "titel": "PHP-Sicherheitslücke",
+      "text": "Eine kritische Lücke in der Programmiersprache PHP betrifft nach Schätzungen fast 70 Prozent aller Websites. Experten sprechen von „Black October“."
+    },
+    {
+      "titel": "Biotech-Rallye",
+      "text": "Eine Amgen-Studie zu Lungenkrebs senkt das Sterberisiko um 58 Prozent. Der Biotech-Index legte seit Jahresbeginn bereits 24 Prozent zu."
+    }
+  ],
+  "schlagworte": [
+    "fed",
+    "ezb",
+    "frankreich",
+    "börse",
+    "aktien"
+  ]
+}

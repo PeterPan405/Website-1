@@ -101,6 +101,319 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'fed-und-ezb-woche-trifft-auf-tech-quartalszahlen',
+    title: 'Fed und EZB entscheiden in der Woche der großen Tech-Bilanzen',
+    teaser: 'Die US-Notenbank entscheidet am Mittwoch über ihren Leitzins, die EZB tagt einen Tag später. Dazwischen legen vier große US-Konzerne ihre Zahlen vor.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-25T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'EZB', 'Leitzins', 'Quartalszahlen'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['alphabet', 'microsoft', 'amazon', 'intel', 'coca-cola'],
+    sources: [
+      {
+        label: 'WirtschaftsWoche, Finanzen, Sören Imöhl, Live-Ticker vom 23.10.2026, 16:01 Uhr: „Ölpreis aktuell: Ölpreise steigen weiter – Fed-Zinsentscheid im Fokus“',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-oelpreise-steigen-weiter-fed-zinsentscheid-im-fokus/100207502.html',
+      },
+      {
+        label: 'wallstreetONLINE, Earnings Preview, Stand 25.10.2026, 10:00 Uhr: „Retten Alphabet, Microsoft und Amazon den Markt jetzt vor dem Totalabsturz?“',
+        url: 'https://www.wallstreet-online.de/nachricht/21552146-earnings-preview-retten-alphabet-microsoft-amazon-markt-totalabsturz',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Diese Woche fallen zwei Zinsentscheidungen und vier große Quartalsberichte fast zusammen. Für Anlegerinnen und Anleger heißt das: Nach Tagen voller Unruhe an den Börsen kommt jetzt die Gegenprobe, ob die Wirtschaft die hohen Bewertungen noch trägt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Fed entscheidet am Mittwoch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hatte den Leitzins im September erstmals seit drei Jahren wieder angehoben, auf eine Spanne von 3,75 bis 4,00 Prozent. Nach Einschätzung vieler Experten dürfte sie ihn am Mittwoch zunächst dort belassen. An den Finanzmärkten wird erwartet, dass die Fed im Dezember erneut nachlegt, um der hartnäckigen Inflation entgegenzuwirken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die EZB tagt einen Tag später',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Europäische Zentralbank dürfte trotz der im Euroraum weiter hohen Inflation eine Pause einlegen, nachdem sie die Zinsen im Juni und im September bereits angehoben hatte. EZB-Chefin Christine Lagarde hat zuletzt signalisiert, dass die Zinsen nicht automatisch im Gleichschritt mit der Inflation steigen. Viele Experten rechnen trotzdem damit, dass die EZB zum Jahresende noch einmal nachlegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Schwergewichte legen in derselben Woche vor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Den Auftakt macht Coca-Cola am Dienstag. Analysten erwarten einen Umsatz von 12,93 Milliarden Dollar und einen Gewinn von 0,88 Dollar pro Aktie – ein Plus von 4,2 beziehungsweise 7,3 Prozent gegenüber dem Vorjahresquartal. Am Mittwoch folgen Alphabet und Microsoft, am Donnerstag Amazon und Intel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Zinsentscheid, der wie erwartet ausfällt, bewegt oft weniger als ein Quartalsbericht, der von der eingepreisten Erwartung abweicht. Für Coca-Cola bedeutet das: Nicht die absolute Zahl entscheidet, sondern ob sie über oder unter den 12,93 Milliarden Dollar liegt, auf die sich der Markt schon eingestellt hat.',
+      },
+    ],
+  },
+  {
+    slug: 'frankreich-massenproteste-haushaltsdebatte-ezb',
+    title: 'Frankreich: Massenproteste vor Haushaltsdebatte, EZB tagt unter Druck',
+    metaTitle: 'Frankreich: Proteste vor Haushaltsdebatte, EZB tagt unter Druck',
+    teaser: 'Hunderttausende demonstrierten am Samstag in Frankreich. Am Dienstag debattiert das Parlament den Haushalt, am Donnerstag tagt die EZB.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-25T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Proteste', 'Haushalt', 'EZB'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['cac-40', 'dax'],
+    sources: [
+      {
+        label: 'CNBC, Markets, Hugh Leask, Meldung vom 24.10.2026 (aktualisiert 25.10.2026): „What next for France as riots rattle markets? Three questions facing investors ahead of more protests“',
+        url: 'https://www.cnbc.com/2026/10/24/france-riots-paris-unrest-debt-budget.html',
+      },
+      {
+        label: 'FAZ.NET, Finanzen, Christian Siedenbiedel, Meldung vom 23.10.2026, 17:08 Uhr: „Oktober-Zinssitzung: Frankreich stellt die EZB auf die Probe“',
+        url: 'https://www.faz.net/aktuell/finanzen/geldpolitik-frankreich-krise-stellt-ezb-auf-die-probe-201614455.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In Frankreich sind am Samstag erneut Hunderttausende Menschen auf die Straße gegangen. Die größtenteils friedlichen Kundgebungen gingen mit Einbruch der Dunkelheit in Paris und Marseille in Zusammenstöße über.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen zur selben Kundgebung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das französische Innenministerium zählte landesweit 410.000 Teilnehmer. Die Gewerkschaft CGT kam auf eigene Rechnung auf rund 800.000, davon 250.000 allein in Paris. Dass Behörden und Veranstalter bei Demonstrationen unterschiedlich zählen, ist üblich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am Dienstag geht es im Parlament weiter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nationalversammlung nimmt am 27. Oktober die Debatte über die Steuerteile des Haushalts wieder auf. Die Regierung will das Defizit 2027 auf 5 Prozent der Wirtschaftsleistung senken, nach voraussichtlich 5,4 Prozent in diesem Jahr. Ökonomen verweisen darauf, dass die Regierung notfalls Artikel 49.3 der Verfassung nutzen könnte: Damit ließe sich ein Gesetz ohne Schlussabstimmung durchbringen, solange kein Misstrauensantrag Erfolg hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die EZB tagt mitten in der Krise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank entscheidet am Donnerstag über ihren Leitzins – ausgerechnet in der Woche, in der sich die Lage in Frankreich zuspitzt. Nach Angaben der FAZ muss EZB-Präsidentin Christine Lagarde dort auch die Frage beantworten, wie weit die Notenbank einem Euro-Mitglied in einer Haushaltskrise beistehen würde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Instrument wie Artikel 49.3 kann eine Regierung kurzfristig handlungsfähig halten, löst aber keinen Streit über die Sache. Für den Anleihemarkt zählt am Ende weniger das Verfahren als das Ergebnis: ob der Haushalt 2027 tatsächlich ein kleineres Defizit bringt.',
+      },
+    ],
+  },
+  {
+    slug: 'audi-erstes-eigenes-us-werk-georgia',
+    title: 'Audi kündigt erstes eigenes US-Werk an',
+    teaser: 'Mitten auf einer Trump-Wahlkampfveranstaltung hat Audi den Bau eines SUV-Werks in Georgia bekanntgegeben – 4.500 Jobs, vier Milliarden Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-10-25T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Audi', 'Volkswagen', 'USA', 'Investition'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label: 'wallstreetONLINE, dpa-AFX, Meldung vom 25.10.2026, 08:35 Uhr: „ROUNDUP/Auf Trump-Wahlkampftour: Audi kündigt SUV-Werk in den USA an“',
+        url: 'https://www.wallstreet-online.de/nachricht/21576985-roundup-auf-trump-wahlkampftour-audi-kuendigt-suv-werk-usa',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Audi hat mitten auf einer Wahlkampfveranstaltung von US-Präsident Donald Trump den Bau eines eigenen SUV-Werks in den USA bekanntgegeben. Trump kündigte vor Anhängern im Bundesstaat Georgia an, Audi werde im kommenden Monat mit dem Bau beginnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen zum Werk',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach einer Audi-Mitteilung sollen rund 4.500 Arbeitsplätze entstehen, verbunden mit einer Investition von etwa vier Milliarden Dollar. Der Baubeginn ist für 2027 vorgesehen, die Produktion soll Anfang der 2030er Jahre starten. Geplant sind jährlich 200.000 Premium-SUVs, die gezielt auf nordamerikanische Kundinnen und Kunden zugeschnitten sind. Es ist das erste eigene Werk der Marke in den USA.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zölle als Hintergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump fordert seit Beginn seiner zweiten Amtszeit im Januar 2025 von ausländischen Herstellern, ihre Produktion in die USA zu verlagern, und stellt dafür den Erlass von Einfuhrzöllen in Aussicht. Audi-Chef Gernot Döllner dankte Trump auf der Bühne für dessen Unterstützung – weniger als zehn Tage vor den US-Zwischenwahlen am 3. November.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwischen Ankündigung und erstem Fahrzeug liegen nach den eigenen Angaben rund sechs Jahre. Eine solche Investitionsentscheidung bindet Kapital über einen viel längeren Zeitraum, als ein einzelner Wahlkampf oder ein einzelnes Quartal reicht – unabhängig davon, zu welchem Anlass sie verkündet wird.',
+      },
+    ],
+  },
+  {
+    slug: 'php-sicherheitsluecke-black-october',
+    title: 'PHP-Sicherheitslücke: IT-Branche spricht von „Black October“',
+    metaTitle: 'PHP-Sicherheitslücke: IT-Branche spricht von Black October',
+    teaser: 'Kritische Lücken in der weit verbreiteten Programmiersprache PHP lösten weltweit einen Sicherheitsalarm aus. Nach Schätzungen ist fast jede Website betroffen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-25T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Cybersicherheit', 'PHP', 'IT-Sicherheit'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'CNBC, Tech, Ashley Capoot, Meldung vom 23.10.2026, 11:17 Uhr EDT: „AI\'s \'Black October\': Critical PHP flaws set off global security scramble“',
+        url: 'https://www.cnbc.com/2026/10/23/php-vulnerabilities-ai-cybersecurity.html',
+      },
+      {
+        label: 'Tagesschau, Wirtschaft/Digitales, Meldung vom 23.10.2026, 12:47 Uhr: „PHP-Sicherheitslücke: IT-Experten fordern Maßnahmen über Updates hinaus“',
+        url: 'https://www.tagesschau.de/wirtschaft/digitales/it-sicherheit-php-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Cybersicherheitsteams rund um den Globus haben in dieser Woche kritische Schwachstellen in der Programmiersprache PHP geschlossen. In der Branche ist bereits von einem „Black October“ die Rede.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie die Lücke entdeckt wurde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Forscher von Googles Sicherheitsteam Wiz hatten die Schwachstellen nach CNBC-Angaben im August mithilfe fortgeschrittener KI-Modelle entdeckt. Öffentlich bekannt wurden sie am Dienstag vergangener Woche, am Mittwochnachmittag veröffentlichten die PHP-Entwickler bereits aktualisierte Versionen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Ausmaß',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Schätzungen, die CNBC zitiert, läuft fast 70 Prozent aller Websites mit PHP. Der frühere US-Cybersicherheitschef Chris Krebs sagte dem Sender, drei Prozent aller je entdeckten kritischen Schwachstellen seien allein im vergangenen Monat gefunden worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was deutsche Behörden raten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Bundesamt für Sicherheit in der Informationstechnik rät Betreibern, ihre PHP-Webserver zusätzlich zum Update verstärkt auf Auffälligkeiten zu beobachten. Sicherheitsexperte Thomas Boele von Check Point empfahl laut Tagesschau, Logdaten bis zum 17. Oktober zurückzuprüfen – an diesem Tag registrierte eine digitale Falle von Amazon erste Angriffsversuche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass eine einzelne Schwachstelle in einer einzigen Programmiersprache weltweit Behörden und Unternehmen gleichzeitig beschäftigt, zeigt eine Kehrseite geteilter Software: Viele Websites tragen dasselbe Risiko gemeinsam, statt es durch Vielfalt zu streuen.',
+      },
+    ],
+  },
+  {
+    slug: 'amgen-studie-biotech-aktien-rallye',
+    title: 'Amgen-Studie beflügelt die Rallye der Biotech-Aktien',
+    teaser: 'Eine Studie zu Amgens Lungenkrebs-Kombitherapie zeigt starke Ergebnisse. Der breite Biotech-Index legte seit Jahresbeginn bereits um 24 Prozent zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-25T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Amgen', 'Biotech', 'Pharma'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['astrazeneca'],
+    sources: [
+      {
+        label: 'CNBC, Health and Science, Annika Kim Constantino, Meldung vom 24.10.2026, 10:30 Uhr EDT: „Amgen says drug combo cuts risk of death by 58% in patients with aggressive lung cancer“',
+        url: 'https://www.cnbc.com/2026/10/24/amgen-imdelltra-lung-cancer-data.html',
+      },
+      {
+        label: 'CNBC, Pro Analysis, Paulina Likos, Meldung vom 24.10.2026, 9:10 Uhr EDT: „Biotech stocks are surging. How investors can play the new drug innovation boom“',
+        url: 'https://www.cnbc.com/2026/10/24/biotech-stocks-drug-innovation-rally.html',
+      },
+      {
+        label: 'WirtschaftsWoche, Finanzen/Geldanlage, Michelle Jura, Meldung vom 23.10.2026: „Anlageideen: Fünf Biotech-Aktien, die vom Kaufrausch der Pharmariesen profitieren“',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/biotech-aktien-diese-fuenf-unternehmen-sind-jetzt-aussichtsreich/100263874.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine am Samstag veröffentlichte Studie zu einer Kombitherapie von Amgen hat dem ohnehin schon starken Biotech-Sektor weiteren Schwung gegeben. Die Daten betreffen eine besonders aggressive Form von Lungenkrebs.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Studiendaten im Detail',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wird Amgens Wirkstoff Imdelltra zusätzlich zu AstraZenecas Immuntherapie Imfinzi gegeben, sinkt das Sterberisiko bei kleinzelligem Lungenkrebs im fortgeschrittenen Stadium um 58 Prozent. Das mittlere Gesamtüberleben stieg auf 21,1 Monate, verglichen mit 12,7 Monaten unter Imfinzi allein. Amgens medizinischer Leiter Paul Burton sprach von einem Moment, der die Behandlung dieser Krebsart grundlegend verändern könnte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Sektor im Aufwind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der breite Biotech-Index iShares Biotechnology ETF legte bis zum 23. Oktober seit Jahresbeginn um 24 Prozent zu, nach einem Plus von 28 Prozent im Jahr 2025. Der Hersteller Moderna führt die Liste mit einem Kursplus von 587 Prozent in diesem Jahr an, trotz eines zwischenzeitlichen Rückgangs um 18 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gegenläufig zu den KI-Werten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während Technologie- und KI-Aktien in dieser Woche unter Druck standen, lief der Biotech-Sektor in die andere Richtung. Analysten führen das auf eine Serie positiver Studienergebnisse, auf Übernahmen und auf neue Technologien wie mRNA und Genomik zurück – nicht auf dieselben Treiber, die Tech-Werte bewegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Branchen, die in entgegengesetzte Richtungen laufen, zeigen, warum eine Streuung über mehrere Sektoren das Auf und Ab eines einzelnen Themas abfedern kann. Das gilt unabhängig davon, welcher der beiden Trends am Ende anhält.',
+      },
+    ],
+  },
+  {
     slug: 'frankreich-moodys-haelt-rating',
     title: "Moody's hält Frankreich-Rating trotz Schuldenkrise",
     teaser:
