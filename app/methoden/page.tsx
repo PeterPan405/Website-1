@@ -111,7 +111,7 @@ export default function MethodenSeite() {
 
                 <dl className="mt-6 space-y-4">
                   <div>
-                    <dt className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
                       Formel
                     </dt>
                     {/*
@@ -128,7 +128,7 @@ export default function MethodenSeite() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <dt className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                      <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
                         Datengrundlage
                       </dt>
                       <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
@@ -136,7 +136,7 @@ export default function MethodenSeite() {
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                      <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
                         Stichtag
                       </dt>
                       <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
@@ -146,7 +146,7 @@ export default function MethodenSeite() {
                   </div>
 
                   <div>
-                    <dt className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
                       Beispiel
                     </dt>
                     <dd className="border-border bg-surface-muted mt-1 rounded-lg border px-4 py-3 text-sm">
@@ -161,7 +161,7 @@ export default function MethodenSeite() {
                   </div>
 
                   <div>
-                    <dt className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
                       Was dabei wegfällt
                     </dt>
                     <dd className="mt-1">

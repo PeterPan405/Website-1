@@ -136,7 +136,7 @@ export function Jahresspannentafel({
         <div className="min-w-[14rem] flex-1">
           <label
             htmlFor="spanne-suche"
-            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+            className="text-fg-subtle text-[0.8125rem] font-semibold"
           >
             Suchen
           </label>
@@ -151,9 +151,7 @@ export function Jahresspannentafel({
         </div>
 
         <fieldset className="flex-1">
-          <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-            Art
-          </legend>
+          <legend className="text-fg-subtle text-[0.8125rem] font-semibold">Art</legend>
           <div className="mt-1.5 flex flex-wrap gap-2">
             {vorhandeneArten.map((art) => {
               const aktiv = arten.has(art)
@@ -220,7 +218,7 @@ export function Jahresspannentafel({
                         type="button"
                         onClick={() => umschalten(spalte.key)}
                         className={cn(
-                          'inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition',
+                          'inline-flex items-center gap-1 text-[0.8125rem] font-semibold transition',
                           aktiv ? 'text-fg' : 'text-fg-subtle hover:text-fg'
                         )}
                       >
@@ -239,7 +237,7 @@ export function Jahresspannentafel({
                   )
                 })}
                 <th scope="col" className="px-4 py-2.5 text-right">
-                  <span className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                  <span className="text-fg-subtle text-[0.8125rem] font-semibold">
                     <span className="hidden sm:inline">Tief / Hoch</span>
                     <span className="sm:hidden">Spanne</span>
                   </span>
@@ -253,7 +251,7 @@ export function Jahresspannentafel({
                   beide Richtungen.
                 */}
                 <th scope="col" className="px-4 py-2.5 text-right">
-                  <span className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                  <span className="text-fg-subtle text-[0.8125rem] font-semibold">
                     Stand
                   </span>
                 </th>

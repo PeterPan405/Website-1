@@ -212,7 +212,7 @@ export function EingepreistCalculator() {
 
         {/* ------------------------------------------- Empfindlichkeitstafel */}
         <div className="mt-6">
-          <h3 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <h3 className="text-fg-subtle text-[0.8125rem] font-semibold">
             Wie stark das Ergebnis an den Annahmen hängt
           </h3>
           <div className="mt-2 overflow-x-auto">

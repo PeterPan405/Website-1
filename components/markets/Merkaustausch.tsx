@@ -115,7 +115,7 @@ export function Merkaustausch({
         <div>
           <label
             htmlFor="merkcode-ausgabe"
-            className="text-fg-subtle text-xs font-medium tracking-wide uppercase"
+            className="text-fg-subtle text-[0.8125rem] font-medium"
           >
             Dein Code
           </label>
@@ -140,7 +140,7 @@ export function Merkaustausch({
         <div>
           <label
             htmlFor="merkcode-eingabe"
-            className="text-fg-subtle text-xs font-medium tracking-wide uppercase"
+            className="text-fg-subtle text-[0.8125rem] font-medium"
           >
             Code einlesen
           </label>

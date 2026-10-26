@@ -166,10 +166,7 @@ export default async function NewsOverviewPage() {
 
         {featured && (
           <section aria-labelledby="aktuelles" className="mt-10">
-            <h2
-              id="aktuelles"
-              className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
-            >
+            <h2 id="aktuelles" className="text-fg-subtle text-[0.8125rem] font-semibold">
               Aktuelles
             </h2>
             <div className="mt-5">
@@ -194,10 +191,7 @@ export default async function NewsOverviewPage() {
 
         {archivtage.length > 0 && (
           <section aria-labelledby="weitere" className="mt-12">
-            <h2
-              id="weitere"
-              className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
-            >
+            <h2 id="weitere" className="text-fg-subtle text-[0.8125rem] font-semibold">
               Weitere Artikel
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">

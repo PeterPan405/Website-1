@@ -60,7 +60,7 @@ export function Quartalstermin({
               befund.bald ? 'border-brand bg-brand/5' : 'border-border bg-surface'
             )}
           >
-            <p className="text-fg-subtle flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+            <p className="text-fg-subtle flex items-center gap-2 text-[0.8125rem] font-semibold">
               <Icon name="calendar" className="size-3.5" aria-hidden="true" />
               {befund.angekuendigt ? 'angekündigt' : 'erwartet'}
             </p>

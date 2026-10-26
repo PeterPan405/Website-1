@@ -385,7 +385,7 @@ function NavEntry({
             */
             className="fk-card border-border shadow-lift absolute top-full left-0 mt-2 w-80 origin-top-left overflow-hidden border p-2"
           >
-            <p className="text-fg-subtle px-3 pt-2 pb-1 text-xs font-semibold tracking-wide uppercase">
+            <p className="text-fg-subtle px-3 pt-2 pb-1 text-[0.8125rem] font-semibold">
               {item.label}
             </p>
             <ul>

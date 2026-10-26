@@ -61,7 +61,7 @@ export function Kennzahlentafel({
 
       {kennzahlen.performance.length > 0 && (
         <div className="fk-card mt-5 p-5 sm:p-6">
-          <h3 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <h3 className="text-fg-subtle text-[0.8125rem] font-semibold">
             Wertentwicklung
           </h3>
           <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -90,9 +90,7 @@ export function Kennzahlentafel({
       )}
 
       <div className="fk-card mt-4 p-5 sm:p-6">
-        <h3 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-          Risiko
-        </h3>
+        <h3 className="text-fg-subtle text-[0.8125rem] font-semibold">Risiko</h3>
         <dl className="mt-4 space-y-4">
           {kennzahlen.schwankung !== null && (
             <Kennzahlzeile

@@ -145,7 +145,7 @@ export function Urkunde({
         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
       >
         <div className="border-fg/30 border px-6 py-10 text-center sm:px-12 sm:py-14">
-          <p className="text-fg-subtle text-xs tracking-[0.3em] uppercase">
+          <p className="text-fg-subtle text-[0.8125rem]">
             {siteConfig.name} · {siteConfig.url.replace(/^https?:\/\//, '')}
           </p>
 

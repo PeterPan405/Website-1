@@ -55,10 +55,7 @@ export default async function WochenrueckblickSeite() {
         {/* --------------------------------------------------- Zahl der Woche */}
         {zahlDerWoche && (
           <section aria-labelledby="zahl" className="fk-card p-6 sm:p-8">
-            <h2
-              id="zahl"
-              className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
-            >
+            <h2 id="zahl" className="text-fg-subtle text-[0.8125rem] font-semibold">
               Die Zahl der Woche
             </h2>
             <p
@@ -102,7 +99,7 @@ export default async function WochenrueckblickSeite() {
           <div className="mt-6 overflow-x-auto">
             <table className="w-full min-w-[32rem] text-sm">
               <thead>
-                <tr className="border-border text-fg-subtle border-b text-left text-xs uppercase">
+                <tr className="border-border text-fg-subtle border-b text-left text-[0.8125rem]">
                   <th scope="col" className="py-2 pr-4 font-medium">
                     Wert
                   </th>

@@ -94,7 +94,7 @@ export default function AenderungenSeite() {
             <section key={tag} aria-labelledby={`tag-${tag}`}>
               <h2
                 id={`tag-${tag}`}
-                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold tracking-wide uppercase"
+                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold"
               >
                 {formatDate(tag)}
               </h2>

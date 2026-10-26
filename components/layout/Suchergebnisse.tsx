@@ -123,9 +123,7 @@ export function Suchergebnisse() {
               className="group border-border hover:bg-surface-muted flex items-start gap-5 border-b px-1 py-4 transition sm:px-3"
             >
               <span className="min-w-0 flex-1">
-                <span className="text-fg-subtle font-mono text-xs tracking-wide uppercase">
-                  {eintrag.kind}
-                </span>
+                <span className="text-fg-subtle text-[0.8125rem]">{eintrag.kind}</span>
                 <span className="text-fg font-display mt-1 block text-lg font-semibold">
                   {eintrag.title}
                 </span>

@@ -574,9 +574,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                           className="fk-card hover:border-border-strong block p-5 transition-colors"
                         >
                           <span className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
-                            <span className="font-semibold tracking-wide uppercase">
-                              {meldung.category}
-                            </span>
+                            <span className="font-semibold">{meldung.category}</span>
                             <span aria-hidden="true">·</span>
                             <time dateTime={meldung.publishedAt}>
                               {formatDate(meldung.publishedAt)}

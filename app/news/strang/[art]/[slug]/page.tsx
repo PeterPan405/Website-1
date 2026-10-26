@@ -170,7 +170,7 @@ export default async function StrangSeite({ params }: { params: Promise<Params> 
 
         {jahre.map((jahrgang) => (
           <section key={jahrgang.jahr} className="mt-10">
-            <h2 className="text-fg-subtle text-sm font-semibold tracking-wide uppercase">
+            <h2 className="text-fg-subtle text-sm font-semibold">
               {jahrgang.jahr}
               <span className="text-fg-subtle ml-2 font-normal normal-case">
                 · {formatNumber(jahrgang.artikel.length)}{' '}

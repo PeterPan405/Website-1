@@ -342,7 +342,7 @@ export function Screenertafel({
             <table className="w-full min-w-[42rem] text-sm">
               <caption className="sr-only">Aktien nach Kennzahlen, sortierbar</caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-xs uppercase">
+                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
                   {SPALTEN.map((spalte) => (
                     <th
                       key={spalte.key}

@@ -154,7 +154,7 @@ export default function KlumpenrisikoSeite() {
                 Die größten Einzelwerte im {satz.quelle.label}
               </caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-xs uppercase">
+                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
                   <th scope="col" className="py-2 pr-4 font-semibold">
                     Wert
                   </th>
@@ -259,7 +259,7 @@ export default function KlumpenrisikoSeite() {
                 Branchengewichte im {satz.quelle.label}
               </caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-xs uppercase">
+                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
                   <th scope="col" className="py-2 pr-4 font-semibold">
                     Branche
                   </th>

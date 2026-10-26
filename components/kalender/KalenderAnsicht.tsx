@@ -222,9 +222,7 @@ export function KalenderAnsicht({
     <div>
       {naechster && (
         <div className="rounded-card border-brand/30 bg-brand-soft border p-5">
-          <p className="text-brand text-xs font-semibold tracking-wide uppercase">
-            Als Nächstes
-          </p>
+          <p className="text-brand text-[0.8125rem] font-semibold">Als Nächstes</p>
           <p className="text-fg mt-1.5 text-lg font-bold">{naechster.titel}</p>
           <p className="text-fg-muted mt-1 text-sm">
             {/* Auch hier: erst kennzeichnen, dann datieren. Der hervorgehobene
@@ -255,7 +253,7 @@ export function KalenderAnsicht({
 
       {/* ------------------------------------------------------------ Filter */}
       <fieldset className={naechster ? 'mt-8' : ''}>
-        <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+        <legend className="text-fg-subtle text-[0.8125rem] font-semibold">
           Nach Art filtern
         </legend>
         <div className="mt-3 flex flex-wrap gap-2">

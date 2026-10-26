@@ -243,7 +243,7 @@ export function GlobusAnsicht({
   */
   const kennzahlwahl = (
     <fieldset>
-      <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+      <legend className="text-fg-subtle text-[0.8125rem] font-semibold">
         Einfärbung nach
       </legend>
       <div className="mt-3 flex flex-wrap gap-2">
@@ -345,7 +345,7 @@ export function GlobusAnsicht({
         <div>
           <label
             htmlFor="globus-suche"
-            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+            className="text-fg-subtle text-[0.8125rem] font-semibold"
           >
             Land suchen
           </label>
@@ -680,9 +680,7 @@ function Landtafel({
 
       {(land.indizes.length > 0 || land.aktien.length > 0) && (
         <div className="border-border mt-5 border-t pt-4">
-          <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-            Kurse von hier
-          </p>
+          <p className="text-fg-subtle text-[0.8125rem] font-semibold">Kurse von hier</p>
           <ul className="mt-3 space-y-2">
             {[...land.indizes, ...land.aktien].map((kurs) => (
               <li key={kurs.symbol}>

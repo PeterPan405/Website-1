@@ -5,7 +5,7 @@ import { NewsCarousel } from '@/components/home/NewsCarousel'
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { Tagesfrage } from '@/components/markets/Tagesfrage'
 import { SourceSummary } from '@/components/markets/SourceNote'
-import { Icon, type IconName } from '@/components/ui/Icon'
+import { Icon } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import {
@@ -19,20 +19,13 @@ import { begriffDesTages } from '@/lib/begriff-des-tages'
 import { gleicheGattung, tagesfrage } from '@/lib/tagesfrage'
 import { getGlossar } from '@/lib/glossar'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
-import {
-  getInstrument,
-  getInstruments,
-  getMarketOverview,
-  getQuotes,
-  getSeries,
-} from '@/lib/markets'
+import { getInstrument, getMarketOverview, getQuotes, getSeries } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcast'
 import { buildMetadata } from '@/lib/seo'
 import {
   areas,
   LEARN_TOPIC_COUNT,
-  RECHNER_ANZAHL,
   RECHNER_ANZAHL_WORT,
   siteConfig,
   type AreaId,
@@ -125,16 +118,13 @@ const GESCHICHTS_SYMBOLE = [
 ] as const
 
 export default async function HomePage() {
-  const [headlines, marketPreviews, learnStats, completeTopics, instrumente] =
-    await Promise.all([
-      // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
-      getNewsHeadlines(),
-      getMarketOverview(),
-      getLearnStats(),
-      getCompleteTopics(),
-      // Für die Zahlen-Sektion: die Anzahl folgt dem Bestand, nicht einem Text.
-      getInstruments(),
-    ])
+  const [headlines, marketPreviews, learnStats, completeTopics] = await Promise.all([
+    // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
+    getNewsHeadlines(),
+    getMarketOverview(),
+    getLearnStats(),
+    getCompleteTopics(),
+  ])
 
   // Die drei jüngsten Folgen; alles Weitere steht unter /podcast.
   const podcastfolgen = getFolgen().slice(0, 3)
@@ -208,7 +198,7 @@ export default async function HomePage() {
               Überschrift ist das erste, was nach Baukasten aussieht – die
               Information trägt auch eine gesperrte Kleinzeile.
             */}
-            <p className="text-brand font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+            <p className="text-brand text-[0.8125rem] font-semibold">
               Finanzbildung in drei Stufen
             </p>
 
@@ -250,33 +240,6 @@ export default async function HomePage() {
                 Zinsrechner ausprobieren
               </Link>
             </div>
-
-            <dl className="border-border mt-10 grid max-w-lg grid-cols-3 gap-4 border-t pt-6">
-              <div>
-                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
-                  Themen
-                </dt>
-                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
-                  {learnStats.topicCount}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
-                  Lernstufen
-                </dt>
-                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
-                  {learnStats.levelCount}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
-                  Rechner
-                </dt>
-                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
-                  {RECHNER_ANZAHL}
-                </dd>
-              </div>
-            </dl>
           </div>
 
           {/* Die drehende News-Säule. */}
@@ -297,7 +260,7 @@ export default async function HomePage() {
                   href={`/maerkte/${quote.symbol}`}
                   className="group flex items-baseline gap-2"
                 >
-                  <span className="text-fg-subtle group-hover:text-fg font-mono text-[0.7rem] font-semibold tracking-wider uppercase transition">
+                  <span className="text-fg-subtle group-hover:text-fg text-[0.7rem] font-semibold transition">
                     {quote.ticker}
                   </span>
                   <span className="text-fg text-sm font-medium tabular-nums">
@@ -336,7 +299,7 @@ export default async function HomePage() {
         */}
         <div className="border-border mt-10 border-t">
           <ul>
-            {areaTiles.map(({ area }, index) => {
+            {areaTiles.map(({ area }) => {
               const config = areas[area]
               return (
                 <li key={area}>
@@ -344,9 +307,6 @@ export default async function HomePage() {
                     href={config.href}
                     className="group border-border hover:bg-surface-muted flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
                   >
-                    <span className="text-fg-subtle w-7 shrink-0 font-mono text-sm tabular-nums">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                     <span className="text-fg font-display shrink-0 text-lg font-semibold sm:w-64 sm:text-xl">
                       {config.label}
                     </span>
@@ -410,7 +370,7 @@ export default async function HomePage() {
           */}
           {geschichte && (
             <div data-fliesst="" className="fk-card mt-6 p-5 sm:p-6">
-              <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+              <p className="text-fg-subtle text-[0.8125rem] font-semibold">
                 {geschichtsvorspann(geschichte)}
               </p>
               <p className="text-fg mt-2 leading-relaxed">
@@ -441,60 +401,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------- Zahlen */}
-      {/*
-        Drei Zahlen in Schaugröße auf einem **invertierten Band** – das
-        „Impact“-Muster des Vorbilds: Auf dessen heller Seite liegt genau ein
-        schwarzer Block mit weißen Riesenzahlen, mittig gesetzt. `bg-fg` und
-        `text-canvas` drehen die Token-Rollen um; im dunklen Thema wird das
-        Band dadurch von selbst hell – die Umkehrung bleibt in beiden Welten.
-
-        Alle drei Zahlen sind wahr und bleiben es von selbst: Die erste zählt
-        den Instrumentenbestand, die zweite folgt aus dem täglichen Takt seit
-        dem 9. August 2026, die dritte steht unter /keine-cookies.
-      */}
-      <section aria-labelledby="zahlen" className="bg-invert">
-        <div className="fk-container py-16 text-center sm:py-24">
-          <p className="text-on-invert/60 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
-            Die Zahlen dahinter
-          </p>
-          <h2
-            id="zahlen"
-            className="text-on-invert mx-auto mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl"
-          >
-            Was hier jeden Tag läuft
-          </h2>
-          <div className="mt-12 grid gap-12 sm:grid-cols-3 sm:gap-8">
-            {[
-              {
-                wert: formatNumber(instrumente.length, 0),
-                text: 'Wertpapiere und Kurse im Bestand – jeden Handelstag aktualisiert, jede Zahl mit Herkunft und Stand.',
-              },
-              {
-                wert: '365',
-                text: 'Ausgaben im Jahr: Nachrichten und Podcast-Folge, jeden Morgen um sechs.',
-              },
-              {
-                wert: '0',
-                text: 'Cookies, Tracker und Werbeverträge. Nachzuprüfen unter „Keine Cookies“ im Seitenfuß.',
-              },
-            ].map(({ wert, text }, index) => (
-              <Reveal key={wert} delay={index * 0.06}>
-                <div>
-                  <p className="text-on-invert font-display text-6xl font-semibold tracking-tight tabular-nums sm:text-7xl">
-                    {wert}
-                  </p>
-                  <p className="text-on-invert/70 mx-auto mt-3 max-w-xs text-sm leading-relaxed">
-                    {text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ------------------------------------------------------- Rechner */}
+      {/*
+        Hier stand bis zum 26.10.2026 ein dunkles Band mit drei Zahlen in
+        Schaugröße („1.075 · 365 · 0") und darüber im Seitenkopf noch einmal
+        drei (Themen, Lernstufen, Rechner). Zahlenzähler sind das
+        Erkennungszeichen generierter Startseiten – der Betreiber: „dass es
+        nicht mehr nach dem klassischen 0815-Vibe-Coding aussieht". Was sie
+        sagten, steht im Text: die Zahl der Themen und Rechner im Vorspann,
+        „verkauft nichts" im Schlussabsatz.
+      */}
       <section aria-labelledby="rechner" className="fk-container py-14 sm:py-20">
         <SectionHeading
           id="rechner"
@@ -517,9 +433,6 @@ export default async function HomePage() {
                   href={tile.href}
                   className="fk-card-interactive group flex h-full items-start gap-4 p-5"
                 >
-                  <span className="bg-tools-soft text-tools flex size-10 shrink-0 items-center justify-center rounded-xl">
-                    <Icon name="calculator" className="size-5" />
-                  </span>
                   <span className="min-w-0">
                     <span className="text-fg block font-semibold">{tile.label}</span>
                     <span className="text-fg-muted mt-1 block text-sm leading-relaxed">
@@ -552,25 +465,19 @@ export default async function HomePage() {
               {
                 label: 'Beginner',
                 text: 'Begriffe klären, Grundmechanik verstehen, die häufigsten Missverständnisse ausräumen.',
-                icon: 'sparkles' as IconName,
               },
               {
                 label: 'Fortgeschritten',
                 text: 'Varianten unterscheiden, Kennzahlen kritisch lesen, in der Praxis richtig umsetzen.',
-                icon: 'layers' as IconName,
               },
               {
                 label: 'Profi',
                 text: 'Bewertung, Bilanzwarnzeichen, Sonderfälle und die deutsche Besteuerung im Detail.',
-                icon: 'target' as IconName,
               },
             ].map((level, index) => (
               <Reveal key={level.label} delay={index * 0.06}>
                 <div className="fk-card h-full p-6">
-                  <span className="bg-learn-soft text-learn flex size-11 items-center justify-center rounded-xl">
-                    <Icon name={level.icon} className="size-5" />
-                  </span>
-                  <h3 className="text-fg mt-4 text-lg font-semibold">{level.label}</h3>
+                  <h3 className="text-fg text-lg font-semibold">{level.label}</h3>
                   <p className="text-fg-muted mt-2 text-sm leading-relaxed">
                     {level.text}
                   </p>
@@ -647,7 +554,7 @@ export default async function HomePage() {
       {frage && (
         <section aria-labelledby="tagesfrage" className="fk-container py-6 sm:py-8">
           <div className="fk-card p-6 sm:p-8">
-            <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+            <p className="text-fg-subtle text-[0.8125rem] font-semibold">
               Frage des Tages
             </p>
             <h2 id="tagesfrage" className="sr-only">
@@ -661,7 +568,7 @@ export default async function HomePage() {
       {begriff && (
         <section aria-labelledby="begriff" className="fk-container py-6 sm:py-8">
           <div className="fk-card p-6 sm:p-8">
-            <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+            <p className="text-fg-subtle text-[0.8125rem] font-semibold">
               Begriff des Tages
             </p>
             <h2 id="begriff" className="text-fg mt-2 text-2xl font-bold">
@@ -755,40 +662,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ------------------------------------------------- Schluss-Band */}
-      {/*
-        Das große Schluss-Band statt einer Karte mit Chip: mittig, eine
-        Serifen-These, ein Satz, zwei Knöpfe – wie der Abschluss des
-        Vorbilds. Die Haarlinie darüber trennt es vom Podcast-Abschnitt.
-      */}
-      <section aria-labelledby="anspruch" className="border-border border-t">
-        <div className="fk-container py-20 text-center sm:py-28">
-          <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
-            Unser Anspruch
-          </p>
-          <h2
-            id="anspruch"
-            className="text-fg mx-auto mt-5 max-w-3xl text-3xl leading-tight font-semibold sm:text-5xl"
-          >
-            Keine Produktempfehlungen, keine Renditeversprechen.
-          </h2>
-          <p className="text-fg-muted mx-auto mt-6 max-w-2xl leading-relaxed">
-            Diese Plattform verkauft nichts. Sie erklärt Mechanismen, legt Formeln offen
-            und benennt Risiken so deutlich wie Chancen. Wo eine Aussage von Annahmen
-            abhängt, stehen die Annahmen dabei.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/lernen" className="fk-btn-primary">
-              Jetzt lernen
-              <Icon name="arrow-right" className="size-4" />
-            </Link>
-            <Link href="/ueber-uns" className="fk-btn-secondary">
-              Über uns
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ------------------------------------------------------- Manifest */}
       {/*
         Der Absatz Haltung beschließt die Seite – auf Wunsch des Betreibers
@@ -802,7 +675,7 @@ export default async function HomePage() {
         Wirkung, ohne fremd zu sein.
       */}
       <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
-        <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+        <p className="text-fg-subtle text-[0.8125rem] font-semibold">
           Warum es diese Seite gibt
         </p>
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">

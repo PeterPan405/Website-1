@@ -180,7 +180,7 @@ export default async function TagesbildSeite() {
               { titel: 'Nach unten', liste: bericht.verlierer },
             ].map((block) => (
               <div key={block.titel}>
-                <h3 className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
+                <h3 className="text-fg-subtle text-[0.8125rem] font-medium">
                   {block.titel}
                 </h3>
                 <ul className="border-border mt-3 border-t">

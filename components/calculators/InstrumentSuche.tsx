@@ -130,7 +130,7 @@ export function InstrumentSuche<T extends Suchbar>({
         htmlFor={id}
         className={
           labelSichtbar
-            ? 'text-fg-subtle mb-1.5 block text-xs font-medium tracking-wide uppercase'
+            ? 'text-fg-subtle mb-1.5 block text-[0.8125rem] font-medium'
             : 'sr-only'
         }
       >

@@ -1,33 +1,27 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
 /**
- * Blendet Inhalte beim Hereinscrollen sanft ein.
+ * Hielt Inhalte unsichtbar, bis sie hereingescrollt wurden – und tut das
+ * seit dem 26.10.2026 nicht mehr.
  *
- * `once: true` verhindert, dass die Animation beim Zurückscrollen erneut
- * startet. Nutzer mit `prefers-reduced-motion` sehen dank der globalen
- * CSS-Regel in globals.css praktisch keine Bewegung.
+ * Betreiber: Die Website solle „nicht mehr nach dem klassischen
+ * 0815-Vibe-Coding aussehen". Das Einblenden beim Scrollen ist eines seiner
+ * deutlichsten Erkennungszeichen – und hatte einen handfesten Nachteil:
+ * Bis zum Scrollen standen ganze Abschnitte als leere Fläche da (im
+ * Bildschirmfoto der ganzen Seite blieben die Rechner, die Lernstufen und
+ * der Podcast leer). Eine Nachrichtenseite zeigt ihren Inhalt, statt ihn
+ * aufzuführen.
+ *
+ * Die Hülle bleibt, damit die zwanzig Stellen, die sie benutzen, nicht alle
+ * angefasst werden müssen; `delay` wird ignoriert.
  */
 export function Reveal({
   children,
-  delay = 0,
   className,
 }: {
   children: ReactNode
   delay?: number
   className?: string
 }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
+  return <div className={className}>{children}</div>
 }

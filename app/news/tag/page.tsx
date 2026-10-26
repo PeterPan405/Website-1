@@ -117,7 +117,7 @@ export default async function EditionLibraryPage() {
             >
               <h2
                 id={`monat-${month.key}`}
-                className="text-fg-subtle border-border border-b pb-2 text-xs font-semibold tracking-wide uppercase"
+                className="text-fg-subtle border-border border-b pb-2 text-[0.8125rem] font-semibold"
               >
                 {month.label}
               </h2>
