@@ -453,4 +453,12 @@ if (failed > 0) {
   )
 }
 
+/* Der 26.10.2026: „Alle fünf" unter vier Kacheln. */
+pruefen(
+  'der Überblick zählt die Kacheln',
+  beschriftungTagesnews({ ...NEUNTER, kacheln: NEUNTER.kacheln.slice(0, 4) }).includes(
+    'Alle vier Entwicklungen'
+  ) && beschriftungTagesnews(NEUNTER).includes('Alle fünf Entwicklungen')
+)
+
 console.log('\nAlle Prüfungen bestanden.')

@@ -128,6 +128,17 @@ export const KOPF = 'Die wichtigsten Börsennews des Tages. 📈'
 export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminvests.de'
 
 /**
+ * Der Überblick mit der wirklichen Zahl der Kacheln – sonntags und montags
+ * sind es drei bis fünf. Am 26.10.2026 stand „Alle fünf" unter vier.
+ */
+export function ueberblick(anzahl: number): string {
+  const zahl = ['', 'eine', 'zwei', 'drei', 'vier', 'fünf'][anzahl] ?? String(anzahl)
+  return anzahl === 1
+    ? 'Die Entwicklung im Überblick. Quelle: iminvests.de'
+    : `Alle ${zahl} Entwicklungen im Überblick. Quelle: iminvests.de`
+}
+
+/**
  * Die Anweisung an das Modell – **eine** Fassung für beide Wege.
  *
  * Sie steht wörtlich in `scripts/nachrichten-erzeugen.ts` (Weg über die
@@ -389,7 +400,7 @@ export function beschriftungTagesnews(plan: InstagramPlan, nachweis = ''): strin
     '',
     plan.zusammenfassung.trim(),
     '',
-    UEBERBLICK,
+    ueberblick(plan.kacheln.length),
     '',
     /* Seit 21.10.2026: Fotos unter CC BY/BY-SA verlangen Urheber und Lizenz. */
     ...(nachweis ? [nachweis, ''] : []),
