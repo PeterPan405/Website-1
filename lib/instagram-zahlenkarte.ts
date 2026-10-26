@@ -113,7 +113,7 @@ export interface Rangkarte extends KarteGemeinsam {
    * Die Balken zeigen eine gestrichelte Linie bei 100 %. Kacheln: ein
    * Raster aus Karten mit großer Zahl, zwei Spalten, ohne Grafik.
    */
-  skala?: 'haeuser' | 'balken' | 'kacheln' | 'zeitleiste'
+  skala?: 'haeuser' | 'balken' | 'kacheln' | 'zeitleiste' | 'burger'
   /**
    * Was hinter der Zahl steht – voreingestellt „ %". Leer für Größen ohne
    * Einheit wie die Geburtenziffer (1,36 Kinder je Frau; die Einheit steht
@@ -302,6 +302,13 @@ const FLAGGE_SCHWEIZ = quadrat(
     '<rect x="25" y="12" width="10" height="36" fill="#fff"/><rect x="12" y="25" width="36" height="10" fill="#fff"/>'
 )
 
+/* Norwegen (26.10.2026, Big-Mac-Index): das skandinavische Kreuz, rot mit weiß-blauem Kreuz. */
+const FLAGGE_NORWEGEN = quadrat(
+  '<rect width="60" height="60" fill="#BA0C2F"/>' +
+    '<rect x="16" width="14" height="60" fill="#fff"/><rect y="23" width="60" height="14" fill="#fff"/>' +
+    '<rect x="20" width="6" height="60" fill="#00205B"/><rect y="27" width="60" height="6" fill="#00205B"/>'
+)
+
 const WAPPEN_SLOWAKEI =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24">' +
   '<path d="M1 1H19V12C19 18 14 21 10 23C6 21 1 18 1 12Z" fill="#fff"/>' +
@@ -340,6 +347,7 @@ export const FLAGGEN: Record<string, Flagge> = {
   LVA: { streifen: ['#9E3039', '#FFFFFF', '#9E3039'], gewichte: [2, 1, 2] },
   LIE: { streifen: ['#002B7F'], svg: FLAGGE_LIECHTENSTEIN },
   NLD: { streifen: ['#AE1C28', '#FFFFFF', '#21468B'] },
+  NOR: { streifen: ['#BA0C2F'], svg: FLAGGE_NORWEGEN },
   POL: { streifen: ['#FFFFFF', '#DC143C'] },
   ROU: { streifen: ['#002B7F', '#FCD116', '#CE1126'], senkrecht: true },
   SVK: { streifen: ['#FFFFFF', '#0B4EA2', '#EE1C25'], wappen: WAPPEN_SLOWAKEI },
@@ -530,6 +538,8 @@ function pruefeRangliste(k: Rangkarte): string[] {
     f.push('Die Rangliste braucht genau eine hervorgehobene Zeile.')
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
   if (!k.unterzeile.trim()) f.push('Die Unterzeile fehlt.')
+  if (k.skala === 'burger' && k.zeilen.some((z) => z.wert > 10))
+    f.push('Ein Burger je Einheit, höchstens zehn – größere Werte mit Balken.')
   if (k.einheit !== undefined && (k.skala ?? 'haeuser') === 'haeuser')
     f.push(
       "Eine andere Einheit als Prozent nur mit skala: 'balken' – Häuschen zählen Prozent."
@@ -619,6 +629,19 @@ const flagge = (fl: Flagge, groesse: number, rand: number) =>
                 ]
               : []),
           ])
+  )
+
+/*
+  Ein Burger (26.10.2026, Big-Mac-Index – Betreiber: „werde mal ein bisschen
+  kreativer"): Brötchen oben, Salat, Fleisch, Brötchen unten, in einer Farbe.
+*/
+const burger = (farbe: string) =>
+  svgAdresse(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">' +
+      `<path d="M4 17 C4 7 36 7 36 17 Z" fill="${farbe}"/>` +
+      `<path d="M3 20 L37 20 L34 23 L29 20.5 L24 23 L19 20.5 L14 23 L9 20.5 L5 23 Z" fill="${farbe}" opacity="0.55"/>` +
+      `<rect x="4" y="24" width="32" height="6" rx="3" fill="${farbe}"/>` +
+      `<path d="M5 32 L35 32 C35 36 33 37 30 37 L10 37 C7 37 5 36 5 32 Z" fill="${farbe}"/></svg>`
   )
 
 const haus = (farbe: string) =>
@@ -918,13 +941,17 @@ function vergleichsGrafik(k: Vergleichskarte) {
   ]
 }
 
-/** Zehn Häuschen, das letzte anteilig – 47,2 % sind vier volle und eins zu 72 %. */
-function haeuser(wert: number, farbe: string) {
+/**
+ * Zehn Häuschen, das letzte anteilig – 47,2 % sind vier volle und eins zu 72 %.
+ * Mit `symbol` und `je` dieselbe Reihe aus anderen Zeichen: zehn Burger, einer
+ * je Euro (7,91 € sind sieben volle und einer zu 91 %).
+ */
+function haeuser(wert: number, farbe: string, symbol = haus, je = 10) {
   return h(
     'div',
     { style: { display: 'flex' } },
     ...Array.from({ length: 10 }, (_, i) => {
-      const anteil = Math.max(0, Math.min(1, wert / 10 - i))
+      const anteil = Math.max(0, Math.min(1, wert / je - i))
       return h(
         'div',
         {
@@ -937,7 +964,7 @@ function haeuser(wert: number, farbe: string) {
           },
         },
         h('img', {
-          src: haus(LEER),
+          src: symbol(LEER),
           width: HAUS,
           height: HAUS,
           style: { position: 'absolute', left: 0, top: 0 },
@@ -957,7 +984,7 @@ function haeuser(wert: number, farbe: string) {
                     display: 'flex',
                   },
                 },
-                h('img', { src: haus(farbe), width: HAUS, height: HAUS })
+                h('img', { src: symbol(farbe), width: HAUS, height: HAUS })
               ),
             ]
           : [])
@@ -1088,7 +1115,15 @@ function kachelGrafik(k: Rangkarte) {
  */
 export function form(
   k: Zahlenkarte
-): 'vergleich' | 'haeuser' | 'balken' | 'kacheln' | 'zeitleiste' | 'verlauf' | 'duell' {
+):
+  | 'vergleich'
+  | 'haeuser'
+  | 'balken'
+  | 'kacheln'
+  | 'zeitleiste'
+  | 'burger'
+  | 'verlauf'
+  | 'duell' {
   if (k.art === 'verlauf' || k.art === 'duell') return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
@@ -1294,7 +1329,9 @@ function ranglistenGrafik(k: Rangkarte) {
       ),
       mitBalken
         ? balken(z.wert, groesster, z.schnitt ? '#777777' : farbe, kleinster)
-        : haeuser(z.wert, z.schnitt ? '#777777' : farbe),
+        : k.skala === 'burger'
+          ? haeuser(z.wert, z.schnitt ? '#777777' : farbe, burger, 1)
+          : haeuser(z.wert, z.schnitt ? '#777777' : farbe),
       h(
         'div',
         {
@@ -1334,12 +1371,16 @@ function ranglistenGrafik(k: Rangkarte) {
         ? []
         : [
             h('img', {
-              src: haus(SCHWARZ),
+              src: k.skala === 'burger' ? burger(SCHWARZ) : haus(SCHWARZ),
               width: 30,
               height: 30,
               style: { marginLeft: 12 },
             }),
-            h('div', { style: { marginLeft: 8, fontWeight: 400 } }, '= 10 %'),
+            h(
+              'div',
+              { style: { marginLeft: 8, fontWeight: 400 } },
+              k.skala === 'burger' ? `= 1${k.einheit ?? ' %'}` : '= 10 %'
+            ),
           ])
     ),
     /* Die Nulllinie, wenn es negative Werte gibt. */
