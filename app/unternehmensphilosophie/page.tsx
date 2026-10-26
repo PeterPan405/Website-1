@@ -110,7 +110,7 @@ export default function PhilosophyPage() {
                     gedämpfte Farbe, ausdrücklicher Vorspann.
                   */
                   <div className="rounded-card border-border-strong bg-surface-muted mt-4 border border-dashed p-5">
-                    <p className="text-fg-subtle flex items-center gap-2 text-xs font-semibold tracking-wide uppercase">
+                    <p className="text-fg-subtle flex items-center gap-2 text-[0.8125rem] font-semibold">
                       <Icon name="clock" className="size-3.5" />
                       Noch zu schreiben
                     </p>

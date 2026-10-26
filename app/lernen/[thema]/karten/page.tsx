@@ -210,7 +210,7 @@ function Seite({
     <div className="break-after-page">
       <p
         data-drucken="aus"
-        className="text-fg-subtle mb-2 text-xs font-semibold tracking-wide uppercase"
+        className="text-fg-subtle mb-2 text-[0.8125rem] font-semibold"
       >
         {titel}
       </p>
@@ -232,7 +232,7 @@ function Seite({
                 >
                   {seite === 'vorn' ? platz.vorn : platz.hinten}
                 </p>
-                <p className="text-fg-subtle mt-2 flex items-baseline justify-between gap-2 text-[0.6rem] tracking-wide uppercase">
+                <p className="text-fg-subtle mt-2 flex items-baseline justify-between gap-2 text-[0.6rem]">
                   <span>{platz.art === 'begriff' ? 'Begriff' : 'Frage'}</span>
                   <span>{stufenName(platz.stufe) || thema}</span>
                 </p>

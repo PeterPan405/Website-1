@@ -130,7 +130,7 @@ export default async function ZeitSeite() {
                         <p className="text-fg-muted mt-1.5 text-sm leading-relaxed">
                           {vorschlag.hinweis}
                         </p>
-                        <p className="text-fg-subtle mt-2 text-xs tracking-wide uppercase">
+                        <p className="text-fg-subtle mt-2 text-[0.8125rem]">
                           {vorschlag.herkunft}
                         </p>
                       </Link>

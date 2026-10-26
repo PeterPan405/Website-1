@@ -124,7 +124,7 @@ export default function ZeitstrahlSeite() {
             >
               <h2
                 id={`jh-${abschnitt.jahrhundert}`}
-                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold tracking-wide uppercase"
+                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold"
               >
                 {abschnitt.label}
               </h2>

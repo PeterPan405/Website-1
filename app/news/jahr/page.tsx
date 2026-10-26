@@ -101,7 +101,7 @@ export default async function JahrgangsPage() {
 
                     <dl className="text-fg-muted mt-4 grid gap-3 text-sm sm:grid-cols-3">
                       <div>
-                        <dt className="text-fg-subtle text-xs tracking-wide uppercase">
+                        <dt className="text-fg-subtle text-[0.8125rem]">
                           Am weitesten oben
                         </dt>
                         <dd className="mt-0.5">
@@ -118,7 +118,7 @@ export default async function JahrgangsPage() {
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-fg-subtle text-xs tracking-wide uppercase">
+                        <dt className="text-fg-subtle text-[0.8125rem]">
                           Am weitesten unten
                         </dt>
                         <dd className="mt-0.5">
@@ -136,7 +136,7 @@ export default async function JahrgangsPage() {
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-fg-subtle text-xs tracking-wide uppercase">
+                        <dt className="text-fg-subtle text-[0.8125rem]">
                           Eigene Artikel
                         </dt>
                         <dd className="mt-0.5">

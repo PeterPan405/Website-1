@@ -143,9 +143,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               nicht als Beiwerk daneben.
             */}
             <div className="border-border mt-10 border-t pt-6">
-              <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-                Quellen
-              </h2>
+              <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">Quellen</h2>
               <ul className="mt-3 space-y-2">
                 {article.sources.map((source) => (
                   <li key={source.url} className="text-sm">
@@ -197,7 +195,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             */}
             {article.korrekturen && article.korrekturen.length > 0 && (
               <div className="border-border mt-10 border-t pt-6">
-                <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">
                   Was nach der Veröffentlichung geändert wurde
                 </h2>
                 <ul className="mt-3 space-y-2">
@@ -219,7 +217,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
 
             {article.tags.length > 0 && (
               <div className="border-border mt-10 border-t pt-6">
-                <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">
                   Schlagwörter
                 </h2>
                 <TagLinks

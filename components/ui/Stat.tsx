@@ -61,9 +61,7 @@ export function Stat({
 
   return (
     <div className={cn('border-border border-t pt-3', className)}>
-      <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
-        {label}
-      </dt>
+      <dt className="text-fg-subtle text-[0.8125rem] font-medium">{label}</dt>
       <dd
         className={cn(
           'font-display mt-1.5 text-2xl font-semibold tabular-nums sm:text-3xl',

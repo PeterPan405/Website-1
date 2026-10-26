@@ -95,7 +95,7 @@ export default function VerwechslungenSeite() {
                     <tr className="border-border border-b text-left">
                       <th
                         scope="col"
-                        className="text-fg-subtle w-[22%] py-2 pr-4 text-xs font-semibold tracking-wide uppercase"
+                        className="text-fg-subtle w-[22%] py-2 pr-4 text-[0.8125rem] font-semibold"
                       >
                         Frage
                       </th>
@@ -136,7 +136,7 @@ export default function VerwechslungenSeite() {
                 hervorgehoben und nicht als letzte Tabellenzeile.
               */}
               <div className="border-brand/40 bg-surface mt-6 rounded-lg border-l-4 p-5">
-                <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                <p className="text-fg-subtle text-[0.8125rem] font-semibold">
                   Der Satz zum Merken
                 </p>
                 <p className="text-fg mt-2 leading-relaxed font-medium">

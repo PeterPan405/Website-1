@@ -145,10 +145,7 @@ export default async function GlobusPage() {
           deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
-          <h2
-            id="quellen"
-            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
-          >
+          <h2 id="quellen" className="text-fg-subtle text-[0.8125rem] font-semibold">
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
@@ -225,10 +222,7 @@ export default async function GlobusPage() {
           deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
-          <h2
-            id="quellen"
-            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
-          >
+          <h2 id="quellen" className="text-fg-subtle text-[0.8125rem] font-semibold">
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">

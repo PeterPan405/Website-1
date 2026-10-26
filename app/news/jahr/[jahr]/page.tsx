@@ -149,9 +149,7 @@ function Randkachel({
   if (!eintrag) return null
   return (
     <div className="fk-card p-5">
-      <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-        {titel}
-      </p>
+      <p className="text-fg-subtle text-[0.8125rem] font-semibold">{titel}</p>
       <p className="text-fg mt-2 text-base font-semibold">{eintrag.name}</p>
       <p
         className={`mt-1 text-2xl font-bold tabular-nums ${
@@ -300,7 +298,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
                 ins Jahr.
               </caption>
               <thead>
-                <tr className="text-fg-subtle text-xs tracking-wide uppercase">
+                <tr className="text-fg-subtle text-[0.8125rem]">
                   <th scope="col" className="pr-3 pb-2 text-left font-semibold">
                     Markt
                   </th>

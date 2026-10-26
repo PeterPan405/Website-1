@@ -465,7 +465,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                         i === aktiv ? 'bg-surface-muted' : 'hover:bg-surface-muted'
                       )}
                     >
-                      <span className="text-fg-subtle mt-0.5 shrink-0 text-[11px] font-semibold tracking-wide uppercase">
+                      <span className="text-fg-subtle mt-0.5 shrink-0 text-[11px] font-semibold">
                         {entry.kind}
                       </span>
                       <span className="min-w-0">

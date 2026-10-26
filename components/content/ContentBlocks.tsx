@@ -198,7 +198,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
                   <th
                     key={cell}
                     scope="col"
-                    className="text-fg-subtle px-4 py-2.5 text-left text-xs font-semibold tracking-wide uppercase"
+                    className="text-fg-subtle px-4 py-2.5 text-left text-[0.8125rem] font-semibold"
                   >
                     {cell}
                   </th>
@@ -276,7 +276,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
               key={item.label}
               className="border-border bg-surface-muted rounded-xl border px-4 py-3"
             >
-              <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
+              <dt className="text-fg-subtle text-[0.8125rem] font-medium">
                 {item.label}
               </dt>
               <dd className="text-fg mt-1 text-sm font-semibold">

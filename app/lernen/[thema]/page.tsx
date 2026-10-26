@@ -178,7 +178,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               <section aria-labelledby="schlagwoerter" className="mt-12">
                 <h2
                   id="schlagwoerter"
-                  className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+                  className="text-fg-subtle text-[0.8125rem] font-semibold"
                 >
                   Begriffe in diesem Thema
                 </h2>

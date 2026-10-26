@@ -153,9 +153,7 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
             aria-roledescription="Folie"
             aria-label={`Schlagzeile ${index + 1} von ${count}`}
           >
-            <p className="text-news text-xs font-semibold tracking-wide uppercase">
-              {current.category}
-            </p>
+            <p className="text-news text-[0.8125rem] font-semibold">{current.category}</p>
             {/*
               Die Überschrift bleibt der eigentliche Verweis – für Tastatur,
               Screenreader und Suchmaschinen. Mit der Maus trifft man ohnehin

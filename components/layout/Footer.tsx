@@ -82,7 +82,7 @@ export function Footer() {
             <nav key={group.title} aria-labelledby={`footer-${group.title}`}>
               <h2
                 id={`footer-${group.title}`}
-                className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+                className="text-fg-subtle text-[0.8125rem] font-semibold"
               >
                 {group.title}
               </h2>

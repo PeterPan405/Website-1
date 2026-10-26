@@ -79,7 +79,7 @@ export function Zeitfenstertafel({
             Rendite desselben Werts in verschiedenen Zeitfenstern
           </caption>
           <thead>
-            <tr className="text-fg-subtle border-border border-b text-left text-xs uppercase">
+            <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
               <th scope="col" className="py-2 pr-4 font-semibold">
                 Zeitraum
               </th>

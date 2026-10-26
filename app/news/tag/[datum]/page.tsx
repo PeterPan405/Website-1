@@ -72,7 +72,7 @@ function Item({ item, top }: { item: EditionItem; top?: boolean }) {
       </div>
 
       <div className="bg-surface-muted mt-4 rounded-xl p-4">
-        <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+        <p className="text-fg-subtle text-[0.8125rem] font-semibold">
           Was das für dich bedeutet
         </p>
         <p className="text-fg mt-1.5 text-sm leading-relaxed">{item.whyItMatters}</p>

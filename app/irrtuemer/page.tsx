@@ -176,13 +176,13 @@ function IrrtumBlock({ irrtum }: { irrtum: Irrtum }) {
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
-          <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
             Was daran richtig ist
           </p>
           <p className="text-fg-muted mt-2 leading-relaxed">{irrtum.richtig}</p>
         </div>
         <div>
-          <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
             Was nicht stimmt
           </p>
           <p className="text-fg-muted mt-2 leading-relaxed">{irrtum.falsch}</p>
@@ -240,9 +240,7 @@ function Rechenblock({ rechnung }: { rechnung: Rechnung }) {
   if (rechnung.probe.art === 'keine') {
     return (
       <div className="border-border bg-surface-2 mt-5 rounded-lg border border-dashed p-5">
-        <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-          {rechnung.titel}
-        </p>
+        <p className="text-fg-subtle text-[0.8125rem] font-semibold">{rechnung.titel}</p>
         <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
           {rechnung.probe.warum}
         </p>
@@ -254,9 +252,7 @@ function Rechenblock({ rechnung }: { rechnung: Rechnung }) {
 
   return (
     <div className="border-brand/40 bg-surface mt-5 rounded-lg border p-5">
-      <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-        {rechnung.titel}
-      </p>
+      <p className="text-fg-subtle text-[0.8125rem] font-semibold">{rechnung.titel}</p>
       <dl className="mt-3 max-w-lg space-y-1.5 text-sm">
         {rechnung.zeilen.map((zeile) => (
           <div

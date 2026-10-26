@@ -90,7 +90,7 @@ export function Branchenvergleichstafel({
       <div className="mt-6 overflow-x-auto">
         <table className="w-full min-w-[34rem] text-sm">
           <thead>
-            <tr className="border-border text-fg-subtle border-b text-left text-xs uppercase">
+            <tr className="border-border text-fg-subtle border-b text-left text-[0.8125rem]">
               <th scope="col" className="py-2 pr-4 font-medium">
                 Kennzahl
               </th>

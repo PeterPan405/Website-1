@@ -83,7 +83,7 @@ export function Tagesfrage({ frage }: { frage: Frage }) {
 
       {aufgeloest && (
         <div className="border-brand/40 bg-surface mt-4 rounded-lg border-l-4 p-4">
-          <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
             {gewaehlt === frage.richtigIndex ? 'Richtig' : 'Nicht ganz'}
           </p>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">{frage.aufloesung}</p>

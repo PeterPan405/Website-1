@@ -150,7 +150,7 @@ export default function PrivacyPage() {
                       <th
                         key={head}
                         scope="col"
-                        className="text-fg-subtle px-4 py-2.5 text-left text-xs font-semibold tracking-wide uppercase"
+                        className="text-fg-subtle px-4 py-2.5 text-left text-[0.8125rem] font-semibold"
                       >
                         {head}
                       </th>
