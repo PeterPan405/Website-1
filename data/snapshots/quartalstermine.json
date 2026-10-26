@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-10-25T09:58:18.926Z",
+  "abgerufenAm": "2026-10-26T11:20:03.632Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -41,9 +41,9 @@
       "tageAbgefragt": 50,
       "tageMitZeilen": 39,
       "letzterTag": "2026-12-17",
-      "zeilen": 4209,
+      "zeilen": 4207,
       "imKatalog": 260,
-      "mitLage": 212,
+      "mitLage": 216,
       "beigetragen": 260
     }
   },
@@ -2852,10 +2852,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-04",
+          "erwartet": "2026-10-28",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-03",
@@ -3092,7 +3094,9 @@
           "erwartet": "2026-11-24",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-17",
@@ -7694,10 +7698,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-06",
+          "erwartet": "2026-11-09",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-23",
@@ -8172,24 +8178,24 @@
     "VZ": {
       "name": "VERIZON COMMUNICATIONS INC",
       "bisher": [
+        "2026-10-26",
         "2026-07-24",
         "2026-04-27",
         "2026-01-30",
         "2025-10-29",
         "2025-07-21",
         "2025-04-22",
-        "2025-01-24",
-        "2024-10-22"
+        "2025-01-24"
       ],
       "bisherZeiten": {
+        "2026-10-26": "07:00",
         "2026-07-24": "07:00",
         "2026-04-27": "07:00",
         "2026-01-30": "06:30",
         "2025-10-29": "06:31",
         "2025-07-21": "06:58",
         "2025-04-22": "06:55",
-        "2025-01-24": "06:55",
-        "2024-10-22": "07:00"
+        "2025-01-24": "06:55"
       },
       "vorhersagen": [
         {
@@ -8216,6 +8222,12 @@
           "erwartet": "2027-07-23",
           "basis": "2026-07-24",
           "streuungTage": 4,
+          "newYorkerZeit": "07:00"
+        },
+        {
+          "erwartet": "2027-10-25",
+          "basis": "2026-10-26",
+          "streuungTage": 2,
           "newYorkerZeit": "07:00"
         }
       ]
@@ -9058,7 +9070,9 @@
           "erwartet": "2026-11-18",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-24",
@@ -17744,7 +17758,7 @@
     "NN.AS": "2026-10-21",
     "NOVN.SW": "2026-10-22",
     "NOVO-B.CO": "2026-10-25",
-    "NST.AX": "2026-08-18",
+    "NST.AX": "2026-10-26",
     "NTGY.MC": "2026-08-18",
     "NTPC.NS": "2026-08-18",
     "NTR.TO": "2026-08-18",
