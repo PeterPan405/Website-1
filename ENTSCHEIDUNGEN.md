@@ -3542,6 +3542,37 @@ gemeldete Fall bliebe trotzdem offen. Dazu sieben saubere Probetöne, die
 unbeanstandet bleiben müssen, und die Nachbesserung, die das Poltern danach
 nicht mehr finden darf.
 
+### Nachtrag: Stummschalten ist der Aussetzer – 26. Oktober 2026
+
+Der Betreiber: „Dort gibt es immer noch komische Störgeräusche und solche
+Aussetzer … Das war jetzt schon öfters der Fall." Die Protokolle:
+
+    26.10.  alle 18 Stücke beim Sprechen unbeanstandet –
+            beim Zusammenfügen bei 1:24 „0.5 s rau“ gefunden, stumm geschaltet
+    25.10.  Stück 12 dreimal verworfen (je um die achte Sekunde), die dritte
+            Fassung trotzdem genommen – bei 2:20 stumm geschaltet
+
+Beides endet in `nachbessern()`, und dessen Abhilfe **ist** der Aussetzer:
+eine halbe Sekunde Loch mitten im Satz. Die Ursachen davor:
+
+- **Die Prüfung je Stück war lockerer als die der Folge.** „Laut" heißt 40 %
+  des lauten Teils _des Betrachteten_; ein lautes Stück hebt seine eigene
+  Schwelle über eine Störung, die gegen die ganze Folge darüber liegt. Jetzt
+  prüft das Stück mit `LAUT_ANTEIL_STUECK = 0.25` – vorn kostet ein
+  Fehlalarm einen Anlauf, hinten eine stumme halbe Sekunde.
+- **Nach drei Anläufen wurde die letzte Fassung genommen**, nicht die beste.
+  Jetzt fünf, behalten wird die mit der kürzesten Störung (`stoerdauer()`),
+  und bleibt sie, wird das Stück an einer Sprechgrenze geteilt und jede
+  Hälfte noch dreimal gesprochen.
+- Die Teilung eines hängenden Stücks setzte die Hälften hart aneinander –
+  jetzt mit Rampe (`nahtlos`), wie jede andere Naht.
+
+Der Selbsttest bekam den Fall: eine Störung bei 32 % des lauten Teils, die
+je Stück gefunden werden **muss** und für die Folge nicht gefunden wird, und
+die Gegenprobe, dass die strengere Schwelle sieben saubere Probetöne nicht
+beanstandet. Am echten Material ist die Schwelle noch nicht gemessen – die
+nächsten Folgen zeigen im Protokoll, wie viele Anläufe sie kostet.
+
 ## Eine Regel im Kommentar ist keine Regel
 
 Am selben Tag beanstandete der Betreiber die Aussprache englischer Wörter.
