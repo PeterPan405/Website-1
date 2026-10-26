@@ -165,11 +165,20 @@
     {
       "stelle": 2,
       "datei": "2026-10-26-2.jpg",
-      "titel": "File:Olympic rings on the Eiffel Tower 2024 (5).jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Olympic_rings_on_the_Eiffel_Tower_2024_(5).jpg",
-      "lizenz": "CC BY 4.0",
-      "urheber": "Ibex73",
-      "suche": "France Eiffel Tower"
+      "titel": "File:Eiffel Tower in 2022 01.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Eiffel_Tower_in_2022_01.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Maksim Sokolov (maxergon.com)",
+      "suche": "von Hand gewählt"
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-10-26-4.jpg",
+      "titel": "File:Audi A6 C9 IAA 2025 DSC 1920.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Audi_A6_C9_IAA_2025_DSC_1920.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Alexander-93",
+      "suche": "von Hand gewählt"
     },
     {
       "stelle": 5,
@@ -179,6 +188,15 @@
       "lizenz": "CC BY-SA 4.0",
       "urheber": "Rwebogora",
       "suche": "Alphabet sign"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-10-26-6.jpg",
+      "titel": "File:080306jr8311.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:080306jr8311.jpg",
+      "lizenz": "Public domain",
+      "urheber": "Unionist",
+      "suche": "von Hand gewählt"
     }
   ]
 }
