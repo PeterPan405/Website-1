@@ -33,6 +33,7 @@ import {
 } from '@/lib/instagram-bild'
 import {
   ANWEISUNG_INSTAGRAM,
+  themaWiederholt,
   type InstagramPlan,
   RECHTSHINWEIS,
   TEXT_MAX,
@@ -429,4 +430,27 @@ if (failed > 0) {
   console.log(`\n${failed} Prüfung(en) fehlgeschlagen.`)
   process.exit(1)
 }
+/* Kein Thema der letzten drei Tage (Betreiber, 26.10.2026). */
+{
+  const frueher = [
+    { datum: '2026-10-24', kacheln: [{ titel: 'Frankreich: Aa3 bestätigt' }] },
+    { datum: '2026-10-25', kacheln: [{ titel: 'Audi: US-Werk in Georgia' }] },
+  ]
+  pruefen(
+    'Frankreich zum dritten Mal: gemeldet',
+    themaWiederholt([{ titel: 'Frankreich: Rendite-Rekord' }], frueher).length === 1
+  )
+  pruefen(
+    'Audi und Georgia am Folgetag: gemeldet',
+    themaWiederholt([{ titel: 'Audi: 4 Mrd. für Georgia' }], frueher).length === 1
+  )
+  pruefen(
+    'ein neues Thema geht durch, auch mit „Rekord" und „Prognose"',
+    themaWiederholt(
+      [{ titel: 'Bau-Rekord in Deutschland' }, { titel: 'SAP hebt Prognose an' }],
+      frueher
+    ).length === 0
+  )
+}
+
 console.log('\nAlle Prüfungen bestanden.')

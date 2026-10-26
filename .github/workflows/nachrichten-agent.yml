@@ -714,8 +714,8 @@ jobs:
 
             Aus dem Feld `instagram` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags.
 
-            - `kacheln`: **genau fünf**, wichtigste zuerst, nichts doppelt – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne. Kaum bekannte Firmen (EQT/Qiagen) nicht; fehlt eine fünfte, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge – „Öl über 100 Dollar", nicht die Zahl der Opfer.
-            - **So/Mo 3–5 Kacheln**, kein Thema vom Vortag ohne neues Ereignis; Politik und Termine der Woche (nur aus Quellen) erlaubt.
+            - `kacheln`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Kein Thema aus den Kacheln der letzten drei Tage** (`data/instagram/`), außer bei starker Veränderung – die Prüfung weist es zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
+            - **So/Mo** auch Politik und Termine der Woche (nur aus Quellen).
               - `titel`: höchstens 28 Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
               - `text`: 100 bis 190 Zeichen, **höchstens 2 kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
             - `zusammenfassung`: ein bis zwei Sätze, 60 bis 300 Zeichen, die die fünf Themen nennen.
