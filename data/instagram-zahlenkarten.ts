@@ -16,6 +16,69 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 26.10.2026 aus fünf neuen Vorschlägen
+      („werde mal ein bisschen kreativer, das sind immer die gleichen
+      Muster"): Big-Mac-Index. Neue Form: Burger statt Häuschen oder Balken,
+      einer je Euro (am 24.10. Zeitleiste). Farbe: akzentfarbe('2026-10-26').
+
+      Aus The Economist, big-mac-data, output-data/big-mac-full-index.csv,
+      Erhebung 2026-07-01 (abgerufen am 26.10.2026 von GitHub). In Euro
+      umgerechnet als local_price / dollar_ex × 0,87439 (dollar_ex des
+      Euroraums, Euro je Dollar) – die Wechselkurse der Erhebung:
+        CHE 7,30 CHF  → 7,906 €    NOR 78 NOK   → 7,042 €
+        GBR 5,49 GBP  → 6,471 €    EUZ 6,19 EUR → 6,190 €
+        TUR 325 TRY   → 6,043 €    USA 6,22 USD → 5,439 €
+        CHN 26,50 CNY → 3,422 €    KOR 5700 KRW → 3,354 €
+        JPN 500 JPY   → 2,697 €
+      Indien weggelassen: Dort misst der Economist den Maharaja Mac (Huhn),
+      keinen Big Mac. Der Euroraum ist der Wert, den der Economist für ihn
+      führt, kein Land.
+    */
+    art: 'rangliste',
+    skala: 'burger',
+    datum: '2026-10-26',
+    /* Freigegeben vom Betreiber am 26.10.2026: „Okay, das passt. Dann später hochladen." – hinaus ab 15 Uhr. */
+    freigabe: '2026-10-26',
+    titel: [
+      { text: 'Big Mac:' },
+      { text: 'Schweiz 7,91\u00a0€, Japan 2,70\u00a0€', gruen: true },
+    ],
+    /*
+      Geschichte gelesen am 26.10.2026 (quellen-holen.yml, de.wikipedia.org/
+      wiki/Big-Mac-Index): „Er wurde 1986 von der britischen Wochenzeitung
+      The Economist erfunden" – entwickelt von der Volkswirtin Pamela Woodall.
+      Zur Frage des Betreibers (Währung oder Preisniveau?), ebenda: „Die
+      Big-Mac-Preise gelten zwar als einfache Messgröße zum Vergleich des
+      landesüblichen Preisniveaus", mit Einflüssen wie ortsüblichen
+      Beschaffungskosten; die nach BIP je Einwohner bereinigte Fassung steht
+      im README von big-mac-data.
+    */
+    erklaerung:
+      'Ein weit verbreiteter Vergleich: Die Zeitschrift The Economist erfand den Big-Mac-Index 1986. Derselbe Burger überall – das zeigt, wie teuer ein Land ist und ob seine Währung eher zu stark oder zu schwach ist.',
+    unterzeile: 'Ein Big Mac, umgerechnet in Euro:',
+    einheit: '\u00a0€',
+    stellen: 2,
+    zeilen: [
+      { name: 'Schweiz', wert: 7.91, land: 'CHE' },
+      { name: 'Norwegen', wert: 7.04, land: 'NOR' },
+      { name: 'Großbritannien', wert: 6.47, land: 'GBR' },
+      { name: 'Euroraum', wert: 6.19, land: 'EU27', hervor: true },
+      { name: 'Türkei', wert: 6.04, land: 'TUR' },
+      { name: 'USA', wert: 5.44, land: 'USA' },
+      { name: 'China', wert: 3.42, land: 'CHN' },
+      { name: 'Südkorea', wert: 3.35, land: 'KOR' },
+      { name: 'Japan', wert: 2.7, land: 'JPN' },
+    ],
+    fusszeile:
+      'Stand: Juli 2026 | Quelle: The Economist, Big-Mac-Index | eigene Umrechnung in Euro',
+    text:
+      'Was kostet ein Big Mac? Den Big-Mac-Index erfand die britische Zeitschrift The Economist 1986, entwickelt von der Volkswirtin Pamela Woodall. Er vergleicht den Preis desselben Burgers weltweit. Gedacht ist er als Test für Wechselkurse: Kostet der Burger umgerechnet viel mehr als anderswo, gilt die Währung als eher überbewertet. Zugleich gilt der Preis als einfache Messgröße für das Preisniveau im Land, in den auch Kosten vor Ort einfließen – deshalb rechnet der Economist zusätzlich eine Fassung, die die Wirtschaftsleistung je Einwohner berücksichtigt.\n\n' +
+      'Stand Juli 2026: In der Schweiz kostet er umgerechnet 7,91 €, im Euroraum 6,19 €, in den USA 5,44 € und in Japan 2,70 €. Umgerechnet zu den Wechselkursen der Erhebung.\n\n' +
+      'Quellen: The Economist, Big-Mac-Index (Juli 2026); Wikipedia, „Big-Mac-Index"; eigene Umrechnung in Euro',
+    schlagworte: ['bigmac', 'währungen', 'euro', 'preise', 'weltwirtschaft'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 24.10.2026: „Nach dem Crash: so lange
       dauerte die Erholung" – nach „kreativer werden, mal was Neues". Neue
       Form: Zeitleiste (am Vortag Balken). Farbe: akzentfarbe('2026-10-25').

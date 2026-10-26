@@ -458,6 +458,65 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 26.10.2026 – Big-Mac-Index, Burger (neue Form). */
+{
+  const mac = zahlenkarten.find((k) => k.datum === '2026-10-26') as Rangkarte
+  /*
+    Aus The Economist, big-mac-full-index.csv, Erhebung 2026-07-01:
+    Preis in Landeswährung und Landeswährung je Dollar. Euro je Dollar 0,87439.
+  */
+  const roh: Record<string, [number, number]> = {
+    CHE: [7.3, 0.80735],
+    NOR: [78, 9.68565],
+    GBR: [5.49, 0.74187],
+    EU27: [6.19, 0.87439],
+    TUR: [325, 47.0275],
+    USA: [6.22, 1],
+    CHN: [26.5, 6.7708],
+    KOR: [5700, 1485.9],
+    JPN: [500, 162.135],
+  }
+  for (const z of mac.zeilen) {
+    const [preis, kurs] = roh[z.land]
+    const euro = Math.round((preis / kurs) * 0.87439 * 100) / 100
+    pruefe(`${z.name}: ${z.wert} € aus der Erhebung (${euro})`, euro === z.wert)
+  }
+  pruefe('Burger', form(mac) === 'burger')
+  pruefe('freigegeben für den 26.10.', mac.freigabe === '2026-10-26')
+  pruefe(
+    'die Karte hält die Form ein',
+    pruefeZahlenkarte(mac).length === 0,
+    pruefeZahlenkarte(mac).join('; ')
+  )
+  pruefe(
+    'Form nicht wie am Vortag mit Karte (24.10.)',
+    form(mac) !== form(zahlenkarten.find((k) => k.datum === '2026-10-24')!)
+  )
+  pruefe(
+    'die Erklärung nennt Herkunft und Jahr',
+    /Economist.*1986/.test(mac.erklaerung ?? '')
+  )
+  pruefe(
+    'mehr als zehn Burger fällt auf',
+    pruefeZahlenkarte({
+      ...mac,
+      zeilen: [{ ...mac.zeilen[0], wert: 11 }, ...mac.zeilen.slice(1)],
+    }).length > 0
+  )
+  pruefe(
+    'eine dreizeilige Überschrift mit Erklärung fällt auf',
+    pruefeZahlenkarte({
+      ...mac,
+      titel: [
+        { text: 'Big Mac weltweit:' },
+        { text: 'Schweiz am teuersten, Japan günstig', gruen: true },
+      ],
+    }).length > 0
+  )
+  const png = await zahlenkartePng(mac, readFileSync('public/logo.svg', 'utf8'))
+  pruefe('Big Mac: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+}
+
 /* Die Karte vom 24.10.2026 – Erholung nach dem Crash, Zeitleiste (neue Form). */
 {
   const crash = zahlenkarten.find((k) => k.datum === '2026-10-24') as Rangkarte
