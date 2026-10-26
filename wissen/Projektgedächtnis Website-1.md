@@ -21,6 +21,10 @@ Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 ## Mit Datum
 
 - **2026-10-21** – [[Jeden Tag neue Bilder]]
+    - [[Jeden Tag neue Bilder#Nachtrag: Gemeinfrei reicht nicht – 21. Oktober 2026|Nachtrag: Gemeinfrei reicht nicht – 21. Oktober 2026]]
+    - [[Jeden Tag neue Bilder#Nachtrag: Der erste Treffer ist nicht das Bild – 22. Oktober 2026|Nachtrag: Der erste Treffer ist nicht das Bild – 22. Oktober 2026]]
+    - [[Jeden Tag neue Bilder#Nachtrag: Der Mensch, nicht die Fassade – und nur, was die Masse packt – 22. Oktober 2026|Nachtrag: Der Mensch, nicht die Fassade – und nur, was die Masse packt – 22. Oktober 2026]]
+    - [[Jeden Tag neue Bilder#Nachtrag: Geprüft wird das Ergebnis, nicht die Regel – 26. Oktober 2026|Nachtrag: Geprüft wird das Ergebnis, nicht die Regel – 26. Oktober 2026]]
 - **2026-10-20** – [[Es findet sich immer etwas]]
 - **2026-10-18** – [[Lieber kein Bild als eine Skyline, lieber drei Meldungen als Wiederholungen]]
 - **2026-10-18** – [[Meta merkt sich Bilder an der Adresse]]

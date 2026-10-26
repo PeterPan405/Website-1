@@ -120,3 +120,44 @@ die Fotos der Bank of England selbst sind nicht frei. Von Kevin Warsh gibt
 es gemeinfreie Fotos der Pressekonferenz, von Lagarde und Ueda viele.
 **Ein Bild, das die Person zeigt, schlägt eins, das ihr Haus zeigt – wenn
 es die Person ist.**
+
+## Nachtrag: Geprüft wird das Ergebnis, nicht die Regel – 26. Oktober 2026
+
+Am Morgen des 26.10. hatte der Beitrag dreimal dasselbe Börsenfoto, eine
+Tafel der Gebärdensprache für „Alphabet" und zum zweiten Mal die
+olympischen Ringe am Eiffelturm. Behoben, neu hochgeladen – und im neuen
+Beitrag zeigte die Ifo-Kachel das Audi-Werk. Die Bilder hießen nach Tag und
+Stelle; beim Umsortieren wurden die Stellen im Register umnummeriert, die
+Dateien nicht, und die Wahl des Werks für Stelle 3 überschrieb die Datei des
+Logos. Angesehen wurde nur die geänderte Kachel.
+
+Der Betreiber: „Bitte in Zukunft morgens eine doppelte Prüfung oder so
+einführen – nicht von mir, sondern von dir … und bitte speichere diese
+Kritik ab, welche ich schon jetzt mehrfach genannt habe."
+
+Jede frühere Antwort war eine Regel für den einen Fall: ein Stichwort in
+`KEIN_FOTO`, ein Eintrag in `ABGELEHNT`, eine Bedingung in `taugt()`. Der
+nächste Fehler kam jedes Mal durch eine Lücke, die keine Regel kannte. Seit
+dem 26.10. prüft `instagram-beitrag.yml` **das, was hinausginge** – die
+Kacheln von der Website –, mit zwei Prüfungen, die verschiedene Fehler
+finden (`lib/instagram-bildpruefung.ts`):
+
+- **Das Auge:** Ein Modell sieht jede Kachel an und sagt je Stelle „passt"
+  oder „passt nicht", mit Grund. Es findet, was keine Rechnung findet –
+  Büffel, Gebärdensprache, ein fremdes Gebäude.
+- **Die Waage:** Fingerabdruck der Bildzone. Dasselbe Bild auf zwei
+  Kacheln, eine Kachel ohne Bild, ein Bild aus den Beiträgen der letzten
+  14 Tage (Gedächtnis `bilder.txt` auf `instagram-gepostet`). Die Grenze
+  (8 von 64 Bits) ist am echten Material gewählt: dasselbe Bild 0, 36 Paare
+  verschiedener Bilder 22 bis 43.
+
+Beanstandet eine, geht nichts hinaus und der Lauf ist rot. **Lieber ein
+Beitrag später als ein falscher** – der Betreiber hat jeden falschen von
+Hand gelöscht. Fällt das Auge aus (Kontingent leer wie am 25.10.), warnt
+der Lauf und die Waage entscheidet allein; sonst hinge der Beitrag an
+einem leeren Wochenkontingent.
+
+Dazu: Der Dateiname eines Tagesbilds trägt ein Stück vom Commons-Titel
+(`dateiname()`), und die Auswahl hält an, bevor zwei Einträge auf dieselbe
+Datei zeigen (`doppelteBilder()`). Die Kritik selbst steht als Liste in
+`INSTAGRAM.md`, „Was der Betreiber beanstandet hat".
