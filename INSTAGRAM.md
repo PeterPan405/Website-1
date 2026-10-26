@@ -230,6 +230,32 @@ irgendetwas im Kanal steht: Ein Rückfalllauf der Tagesnews **nach** 17 Uhr
 schickt deshalb nichts mehr. Bewusst so gelassen – die Tagesnews gehen
 nachts hinaus, ein Nachzügler am Abend wäre keine Tagesnachricht mehr.
 
+## Was der Betreiber beanstandet hat – und was es seitdem abfängt
+
+Gesammelt, weil sich dieselben drei Fehler in immer neuer Gestalt
+wiederholt haben: **das Bild passt nicht, ein Bild kommt doppelt, ein Thema
+kommt doppelt.** Wer an der Bebilderung oder der Auswahl etwas ändert,
+liest diese Liste vorher.
+
+| Tag    | Beanstandet                                                                                 | Was es seitdem abfängt                                                    |
+| ------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 18.10. | Skylines, Bilder ohne Bezug zum Thema                                                       | keine Skylines; Deckblatt zum Thema                                       |
+| 20.10. | Kacheln ohne Bild                                                                           | jede Kachel ein Bild (`RUECKFALL`)                                        |
+| 21.10. | dieselben Bilder wie Tage zuvor                                                             | täglich neue Bilder, Register `bilder.json`                               |
+| 22.10. | Wasserbüffel für UK-Inflation, Laborgerät für Qiagen; EQT/Qiagen „kennt kein Schwein"       | Notenbankchef am Pult (`NOTENBANKCHEFS`); nur, was die Masse packt        |
+| 24.10. | „räudige" Amex-Karte statt Tower; kein Bild für Munich Re                                   | Bild vom Betreiber; sonst Kursverlauf (`kurs` im Register)                |
+| 26.10. | dreimal dasselbe Börsenfoto, Gebärdensprache für Alphabet, olympische Ringe zum zweiten Mal | kein Motiv doppelt im Beitrag; Kurs vor Markensuche; `ABGELEHNT`          |
+| 26.10. | Frankreich an vielen Tagen; nicht nach Relevanz sortiert                                    | `themaWiederholt()` über drei Tage; Rangfolge nach Relevanz               |
+| 26.10. | gelöschter Beitrag kam von selbst zurück                                                    | Gedächtnis `instagram-gepostet`; neu nur mit `nochmal`                    |
+| 26.10. | Ifo-Kachel zeigte das Audi-Werk                                                             | `dateiname()`, `doppelteBilder()` – und **die Prüfung vor dem Hochladen** |
+
+**Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
+`lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
+das Bild zur Meldung?), ein Skript rechnet (dasselbe Bild zweimal, eine
+Kachel ohne Bild, ein Bild der letzten 14 Tage). Beanstandet eine, geht
+nichts hinaus. Die Liste ist der Prüfstein: Jeder Fall darin ist einer,
+den sie beanstanden soll – ein neuer Fall gehört hinein.
+
 ## Die Beschriftung
 
 ### Bei „Top-News des Tages" – fest

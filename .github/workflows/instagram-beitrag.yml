@@ -97,11 +97,15 @@ jobs:
   beitrag:
     name: Karussell veröffentlichen
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # 15 für den Beitrag, dazu bis zu 8 für die Sichtprüfung.
+    timeout-minutes: 25
 
     permissions:
       # Zum Schreiben des wurzellosen Zweiges `instagram-sperre`.
       contents: write
+      # Für die Sichtprüfung: `claude-code-action` holt sich ihren Zugang
+      # über OIDC (siehe nachrichten-agent.yml).
+      id-token: write
 
     steps:
       - uses: actions/checkout@v5
@@ -258,13 +262,107 @@ jobs:
       # selbst wieder (26.10.2026: ein Bau nach einem Merge lud die gelöschte
       # Fassung um 07:04 erneut hoch). Gründe in scripts/instagram-veroeffentlichen.ts.
       - name: Schon veröffentlicht?
+        id: gepostet
         run: |
           mkdir -p out/instagram
           if git fetch --depth 1 origin instagram-gepostet 2>/dev/null; then
             git show FETCH_HEAD:gepostet.txt > out/instagram/gepostet.txt 2>/dev/null || true
+            # Das Gedächtnis der Bildprüfung: die Abdrücke der Kacheln, die
+            # schon draußen waren (`lib/instagram-bildpruefung.ts`).
+            git show FETCH_HEAD:bilder.txt > out/instagram/bilder-frueher.txt 2>/dev/null || true
           fi
-          touch out/instagram/gepostet.txt
+          touch out/instagram/gepostet.txt out/instagram/bilder-frueher.txt
           tail -3 out/instagram/gepostet.txt
+          tag=$(sed -n 1p out/instagram/stand.txt 2>/dev/null)
+          if [ -n "$tag" ] && grep -qx "$tag" out/instagram/gepostet.txt && [ "$NOCHMAL" != "ja" ]; then
+            echo "schon=ja" >> "$GITHUB_OUTPUT"
+          else
+            echo "schon=nein" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          NOCHMAL: ${{ inputs.nochmal && 'ja' || 'nein' }}
+
+      # Die doppelte Prüfung, bevor etwas hinausgeht – Betreiber, 26.10.2026:
+      # „morgens eine doppelte Prüfung … nicht von mir, sondern von dir".
+      #
+      # Erst sieht ein Modell jede Kachel an (das Auge), dann rechnet ein
+      # Skript (die Waage). Das Auge findet, was keine Rechnung findet –
+      # Wasserbüffel für die Bank of England, Gebärdensprache für Alphabet.
+      # Die Waage findet, was ein Auge übersieht – dasselbe Foto unter zwei
+      # Überschriften, ein Bild von vorgestern. Anlass und Grenzen in
+      # `lib/instagram-bildpruefung.ts`.
+      #
+      # Nur, wenn heute noch nichts draußen ist: Die meisten Läufe des Tages
+      # hören am Riegel „schon veröffentlicht" auf, und das Auge kostet
+      # Kontingent des Abonnements.
+      - name: Anmeldung der Sichtprüfung
+        id: anmeldung
+        if: steps.holen.outputs.kacheln != '0' && steps.gepostet.outputs.schon == 'nein'
+        run: |
+          # Genau eine Anmeldung, nie beide – Begründung in nachrichten-agent.yml.
+          if [ -n "$OAUTH" ]; then echo "art=abo" >> "$GITHUB_OUTPUT"
+          elif [ -n "$SCHLUESSEL" ]; then echo "art=schluessel" >> "$GITHUB_OUTPUT"
+          else echo "art=keine" >> "$GITHUB_OUTPUT"; echo "::warning::Keine Anmeldung – die Sichtprüfung fällt aus."
+          fi
+        env:
+          OAUTH: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SCHLUESSEL: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Fällt das Auge aus (Kontingent, Netz), wird der Lauf nicht rot: Die
+      # Waage entscheidet dann allein und warnt. Sonst hinge der Beitrag des
+      # Tages an einem leeren Wochenkontingent – am 25.10.2026 war es leer.
+      - name: Sichtprüfung
+        if: steps.anmeldung.outputs.art == 'abo' || steps.anmeldung.outputs.art == 'schluessel'
+        continue-on-error: true
+        timeout-minutes: 8
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ steps.anmeldung.outputs.art == 'abo' && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
+          anthropic_api_key: ${{ steps.anmeldung.outputs.art == 'schluessel' && secrets.ANTHROPIC_API_KEY || '' }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_bots: 'github-actions'
+          claude_args: |
+            --model claude-sonnet-5
+            --max-turns 20
+            --allowedTools Read,Write
+          prompt: |
+            Du prüfst die Kacheln eines Instagram-Beitrags von IM Invests, bevor
+            er hinausgeht. Niemand sieht sie danach noch an: Was du durchlässt,
+            sehen tausende Menschen.
+
+            Die Kacheln liegen als `out/instagram/2.jpg`, `3.jpg`, … (so viele,
+            wie es gibt; `1.jpg` ist das Deckblatt und wird nicht geprüft).
+            Sieh **jede** einzeln an (Read). Jede Kachel hat oben eine
+            Überschrift, in der Mitte ein Bild (Foto, Logo oder Kursverlauf),
+            unten einen kurzen Text.
+
+            Eine Kachel **passt nicht**, wenn
+            - das Bild etwas anderes zeigt, als die Meldung meint: ein anderes
+              Unternehmen, ein anderes Land, eine andere Notenbank, Sport,
+              Tiere, Gebärdensprache, ein beliebiges Gebäude, das niemand
+              erkennt;
+            - es für eine Notenbank nicht deren Chef/Chefin oder Gebäude zeigt,
+              für ein Unternehmen nicht Marke, Logo, Werk, Produkt oder
+              Kursverlauf;
+            - ein Kursverlauf eine Achse vermissen lässt oder in die andere
+              Richtung zeigt als die Überschrift sagt;
+            - zwei Kacheln dasselbe oder fast dasselbe Bild zeigen (dann beide);
+            - eine Kachel gar kein Bild hat.
+
+            Im Zweifel: passt nicht. Ein verschobener Beitrag kostet weniger
+            als ein falscher.
+
+            Schreibe das Ergebnis als `out/instagram/sichtpruefung.json`,
+            nur dieses JSON, für **jede** geprüfte Kachel einen Eintrag:
+
+                {"kacheln": [{"stelle": 2, "passt": true, "grund": "Kursverlauf Alphabet, Achsen da"},
+                             {"stelle": 3, "passt": false, "grund": "Foto zeigt das Audi-Werk, Meldung ist der Ifo-Index"}]}
+
+            `grund` immer ausfüllen, ein Satz, auf Deutsch.
+
+      - name: Bildprüfung
+        if: steps.holen.outputs.kacheln != '0' && steps.gepostet.outputs.schon == 'nein'
+        run: node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-hook.mjs scripts/instagram-bildpruefung.ts
 
       - name: Veröffentlichen
         run: npm run instagram
@@ -293,11 +391,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           inhalt=$(mktemp)
           cat out/instagram/gepostet.txt out/instagram/gepostet-neu.txt | sort -u | tail -60 > "$inhalt"
+          bilder=$(mktemp)
+          cat out/instagram/bilder-frueher.txt out/instagram/bilder-heute.txt 2>/dev/null | sort -u | tail -200 > "$bilder"
           git checkout --orphan instagram-gepostet
           git rm -rf --cached . > /dev/null
           find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           cp "$inhalt" gepostet.txt
-          git add gepostet.txt
+          cp "$bilder" bilder.txt
+          git add gepostet.txt bilder.txt
           git commit -m "Instagram veröffentlicht am $(date -u +%F)"
           for versuch in 1 2 3; do git push --force origin instagram-gepostet && exit 0; sleep $((versuch * 5)); done
           echo "::error::Die Veröffentlichung ließ sich nicht vermerken – ein gelöschter Beitrag käme sonst zurück."

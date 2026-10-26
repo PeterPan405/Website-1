@@ -150,7 +150,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 → `ENTSCHEIDUNGEN.md`: [[Nachrichten Aktuell heißt der jüngste Erscheinungstag|heißt der jüngste Erscheinungstag]], [[Diese Umgebung erreicht nur GitHub#Der Agent schreibt, der Läufer veröffentlicht|Der Agent schreibt, der Läufer veröffentlicht]], [[Diese Umgebung erreicht nur GitHub#Warum es Auffangnetz und Wächter gibt|Warum es Auffangnetz und Wächter gibt]],
 [[Diese Umgebung erreicht nur GitHub#Hat die Ausgabe etwas kaputt gemacht? – die Frage, die der Riegel stellt|Hat die Ausgabe etwas kaputt gemacht]], [[Nichts doppelt, und kein Streit der Quellen|Nichts doppelt]]
 
-## Instagram – was am 17. und 18.10.2026 schiefging
+## Instagram
 
 - **Die News gehen ohne Freigabe hinaus** – also nur, was die Masse packt
   (Zins, Öl, Gold, DAX, Weltkonzerne; nicht EQT/Qiagen), nichts doppelt.
@@ -170,9 +170,10 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
   `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
 - **Meta merkt sich Bilder an der Adresse** – daher `?v=`.
-- **Agenten-Prompt: höchstens 21.000 Bytes**, nicht Zeichen – sonst
-  „No jobs were run"; der Test misst es.
-- **Jede Kachel vor dem Hochladen gerendert ansehen.**
+- **Agenten-Prompt ≤ 21.000 Bytes** (nicht Zeichen) – sonst „No jobs
+  were run".
+- **Vor dem Hochladen prüft der Lauf selbst** (`instagram-bildpruefung.ts`);
+  von Hand **alle** Kacheln ansehen. Kritikliste: `INSTAGRAM.md`.
 
 → `ENTSCHEIDUNGEN.md`: [[Jeden Tag neue Bilder]], [[Meta merkt sich Bilder an der Adresse]], [[Der Prompt zählt in Bytes]]
 
