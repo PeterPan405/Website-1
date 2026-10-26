@@ -10,6 +10,8 @@ import { marketDefinitions } from '@/data/markets'
 import { bebildere, MOTIVE, motiveVomVortag } from '@/lib/instagram-motive'
 import {
   type Kandidat,
+  dateiname,
+  doppelteBilder,
   leseRegister,
   SUCHE,
   suchenFuer,
@@ -30,6 +32,54 @@ function pruefe(was: string, bedingung: boolean, hinweis = ''): void {
     failed++
     console.log(`FEHL ${was}${hinweis ? `\n     ${hinweis}` : ''}`)
   }
+}
+
+/*
+  Keine Kachel zeigt das Bild einer anderen – an keinem Tag im Register.
+  Am 26.10.2026 überschrieb die Wahl des Audi-Werks (Stelle 3) die Datei des
+  Ifo-Logos, das nach dem Umsortieren noch unter `…-3.jpg` lag.
+*/
+for (const [tag, eintraege] of Object.entries(leseRegister())) {
+  const fehler = doppelteBilder(eintraege)
+  pruefe(`${tag}: jede Kachel ein eigenes Bild`, fehler.length === 0, fehler.join('; '))
+}
+/* Und die Prüfung muss den Fall vom 26.10. beanstanden. */
+{
+  const e = (stelle: number, datei: string) => ({
+    stelle,
+    datei,
+    titel: `File:${stelle}.jpg`,
+    seite: '',
+    lizenz: 'CC0',
+    urheber: '',
+    suche: '',
+  })
+  const inhalt: Record<string, Buffer> = {
+    'a.jpg': Buffer.from('werk'),
+    'b.jpg': Buffer.from('werk'),
+    'c.jpg': Buffer.from('logo'),
+  }
+  const lesen = (d: string) => inhalt[d] ?? null
+  pruefe(
+    'dieselbe Datei an zwei Stellen fällt auf',
+    doppelteBilder([e(3, 'a.jpg'), e(5, 'a.jpg')], lesen).length > 0
+  )
+  pruefe(
+    'derselbe Inhalt unter zwei Namen fällt auf',
+    doppelteBilder([e(3, 'a.jpg'), e(5, 'b.jpg')], lesen).length > 0
+  )
+  pruefe(
+    'eine fehlende Datei fällt auf',
+    doppelteBilder([e(3, 'x.jpg')], lesen).length > 0
+  )
+  pruefe(
+    'zwei verschiedene Bilder sind in Ordnung',
+    doppelteBilder([e(3, 'a.jpg'), e(5, 'c.jpg')], lesen).length === 0
+  )
+  pruefe(
+    'der Dateiname hängt am Bild, nicht nur an der Stelle',
+    dateiname('2026-10-26', 3, 'File:A.jpg') !== dateiname('2026-10-26', 3, 'File:B.jpg')
+  )
 }
 
 /* Jedes Motiv hat Suchbegriffe – sonst sucht seine Kachel nach der Börse. */

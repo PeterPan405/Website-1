@@ -28,6 +28,7 @@
  * Titel den Namen trägt. Findet sich nichts Neues, bleibt das feste Motiv –
  * eins, das in den letzten Tagen nicht dran war.
  */
+import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -112,6 +113,55 @@ export function tageskurs(
 export function titelAusSeite(seite: string): string {
   const name = decodeURIComponent(seite.split('/wiki/')[1] ?? '')
   return name.replace(/_/g, ' ')
+}
+
+/**
+ * Der Dateiname eines Tagesbilds – mit einem Stück vom Titel.
+ *
+ * Bis zum 26.10.2026 hieß die Datei nur nach Tag und Stelle. Dann wurden die
+ * Kacheln umsortiert, die Stellen im Register von Hand umnummeriert, die
+ * Dateien nicht: Das Ifo-Logo (jetzt Stelle 5) lag weiter unter `…-3.jpg`.
+ * Die Wahl des Audi-Werks für Stelle 3 schrieb dieselbe Datei – und im
+ * Beitrag standen zweimal das Werk. Ein Name, der am Bild hängt, kann kein
+ * anderes Bild überschreiben.
+ */
+export function dateiname(datum: string, stelle: number, titel: string): string {
+  const kurz = createHash('sha1').update(titel).digest('hex').slice(0, 8)
+  return `${datum}-${stelle}-${kurz}.jpg`
+}
+
+/**
+ * Was an einem Tag doppelt wäre: zwei Einträge mit derselben Datei, oder zwei
+ * Dateien mit demselben Inhalt. Leer heißt: jede Kachel ein eigenes Bild.
+ */
+export function doppelteBilder(
+  eintraege: Tagesbild[],
+  lesen: (datei: string) => Buffer | null = (datei) => {
+    const pfad = join(process.cwd(), TAGESBILDER, datei)
+    return existsSync(pfad) ? readFileSync(pfad) : null
+  }
+): string[] {
+  const fehler: string[] = []
+  const namen = new Map<string, number>()
+  const inhalte = new Map<string, number>()
+  for (const e of eintraege) {
+    if (e.kurs || !e.datei) continue
+    const vorher = namen.get(e.datei)
+    if (vorher !== undefined)
+      fehler.push(`Stelle ${vorher} und ${e.stelle} teilen sich die Datei ${e.datei}`)
+    namen.set(e.datei, e.stelle)
+    const inhalt = lesen(e.datei)
+    if (!inhalt) {
+      fehler.push(`Stelle ${e.stelle}: ${e.datei} fehlt`)
+      continue
+    }
+    const h = createHash('sha1').update(inhalt).digest('hex')
+    const gleich = inhalte.get(h)
+    if (gleich !== undefined && gleich !== e.stelle)
+      fehler.push(`Stelle ${gleich} und ${e.stelle} zeigen dasselbe Bild`)
+    inhalte.set(h, e.stelle)
+  }
+  return fehler
 }
 
 /** Das Tagesbild für eine Stelle, wenn es eins gibt. */
