@@ -122,6 +122,13 @@ export interface Rangkarte extends KarteGemeinsam {
   einheit?: string
   /** Nachkommastellen der Werte – voreingestellt eine; die Geburtenziffer braucht zwei. */
   stellen?: number
+  /**
+   * Zwei, drei Sätze zwischen Überschrift und Unterzeile: was die Zahl ist,
+   * von wem, seit wann. Betreiber, 26.10.2026, zum Big-Mac-Index: „Leute,
+   * die davon das erste Mal hören, denken sonst, was ist das für ein …".
+   * Nur bei zweizeiliger Überschrift – die dritte Zeile bräuchte den Platz.
+   */
+  erklaerung?: string
 }
 
 /** Eine Linie im Verlauf – ein Index oder Wert aus dem Kursbestand. */
@@ -460,6 +467,8 @@ const XR = XL + BALKEN + LUECKE
   Elf Zeilen zu 62 px enden bei 1242 – über der Fußlinie bei 1276.
 */
 const RL_TITEL = 104
+/** Drei Zeilen Open Sans 25 px zwischen Überschrift und Unterzeile. */
+export const ERKLAERUNG_MAX = 210
 const RL_UNTERZEILE = 478
 const RL_OBEN = 560
 const RL_ZEILE = 62
@@ -538,6 +547,17 @@ function pruefeRangliste(k: Rangkarte): string[] {
     f.push('Die Rangliste braucht genau eine hervorgehobene Zeile.')
   if (k.zeilen.filter((z) => z.schnitt).length > 1) f.push('Höchstens ein Schnitt.')
   if (!k.unterzeile.trim()) f.push('Die Unterzeile fehlt.')
+  if (k.erklaerung !== undefined) {
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}, drei Zeilen.`
+      )
+    const titel = k.titel.map((t) => t.text).join(' ').length
+    if (titel > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${titel}.`
+      )
+  }
   if (k.skala === 'burger' && k.zeilen.some((z) => z.wert > 10))
     f.push('Ein Burger je Einheit, höchstens zehn – größere Werte mit Balken.')
   if (k.einheit !== undefined && (k.skala ?? 'haeuser') === 'haeuser')
@@ -756,6 +776,27 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           )
       )
     ),
+    ...(k.art === 'rangliste' && k.erklaerung
+      ? [
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 362,
+                left: 60,
+                right: 60,
+                display: 'flex',
+                fontFamily: 'Open',
+                fontSize: 25,
+                lineHeight: 1.3,
+                color: GRAU,
+              },
+            },
+            k.erklaerung
+          ),
+        ]
+      : []),
     ...grafik,
     h('div', {
       style: {
