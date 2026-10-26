@@ -103,7 +103,8 @@ export const newsArticles: NewsArticle[] = [
   {
     slug: 'fed-und-ezb-woche-trifft-auf-tech-quartalszahlen',
     title: 'Fed und EZB entscheiden in der Woche der großen Tech-Bilanzen',
-    teaser: 'Die US-Notenbank entscheidet am Mittwoch über ihren Leitzins, die EZB tagt einen Tag später. Dazwischen legen vier große US-Konzerne ihre Zahlen vor.',
+    teaser:
+      'Die US-Notenbank entscheidet am Mittwoch über ihren Leitzins, die EZB tagt einen Tag später. Dazwischen legen vier große US-Konzerne ihre Zahlen vor.',
     category: 'Geldpolitik',
     publishedAt: '2026-10-25T07:50:00+02:00',
     author: 'Redaktion IM Invests',
@@ -113,11 +114,13 @@ export const newsArticles: NewsArticle[] = [
     relatedSymbols: ['alphabet', 'microsoft', 'amazon', 'intel', 'coca-cola'],
     sources: [
       {
-        label: 'WirtschaftsWoche, Finanzen, Sören Imöhl, Live-Ticker vom 23.10.2026, 16:01 Uhr: „Ölpreis aktuell: Ölpreise steigen weiter – Fed-Zinsentscheid im Fokus“',
+        label:
+          'WirtschaftsWoche, Finanzen, Sören Imöhl, Live-Ticker vom 23.10.2026, 16:01 Uhr: „Ölpreis aktuell: Ölpreise steigen weiter – Fed-Zinsentscheid im Fokus“',
         url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-oelpreise-steigen-weiter-fed-zinsentscheid-im-fokus/100207502.html',
       },
       {
-        label: 'wallstreetONLINE, Earnings Preview, Stand 25.10.2026, 10:00 Uhr: „Retten Alphabet, Microsoft und Amazon den Markt jetzt vor dem Totalabsturz?“',
+        label:
+          'wallstreetONLINE, Earnings Preview, Stand 25.10.2026, 10:00 Uhr: „Retten Alphabet, Microsoft und Amazon den Markt jetzt vor dem Totalabsturz?“',
         url: 'https://www.wallstreet-online.de/nachricht/21552146-earnings-preview-retten-alphabet-microsoft-amazon-markt-totalabsturz',
       },
     ],
@@ -168,7 +171,8 @@ export const newsArticles: NewsArticle[] = [
     slug: 'frankreich-massenproteste-haushaltsdebatte-ezb',
     title: 'Frankreich: Massenproteste vor Haushaltsdebatte, EZB tagt unter Druck',
     metaTitle: 'Frankreich: Proteste vor Haushaltsdebatte, EZB tagt unter Druck',
-    teaser: 'Hunderttausende demonstrierten am Samstag in Frankreich. Am Dienstag debattiert das Parlament den Haushalt, am Donnerstag tagt die EZB.',
+    teaser:
+      'Hunderttausende demonstrierten am Samstag in Frankreich. Am Dienstag debattiert das Parlament den Haushalt, am Donnerstag tagt die EZB.',
     category: 'Geldpolitik',
     publishedAt: '2026-10-25T07:45:00+02:00',
     author: 'Redaktion IM Invests',
@@ -178,11 +182,13 @@ export const newsArticles: NewsArticle[] = [
     relatedSymbols: ['cac-40', 'dax'],
     sources: [
       {
-        label: 'CNBC, Markets, Hugh Leask, Meldung vom 24.10.2026 (aktualisiert 25.10.2026): „What next for France as riots rattle markets? Three questions facing investors ahead of more protests“',
+        label:
+          'CNBC, Markets, Hugh Leask, Meldung vom 24.10.2026 (aktualisiert 25.10.2026): „What next for France as riots rattle markets? Three questions facing investors ahead of more protests“',
         url: 'https://www.cnbc.com/2026/10/24/france-riots-paris-unrest-debt-budget.html',
       },
       {
-        label: 'FAZ.NET, Finanzen, Christian Siedenbiedel, Meldung vom 23.10.2026, 17:08 Uhr: „Oktober-Zinssitzung: Frankreich stellt die EZB auf die Probe“',
+        label:
+          'FAZ.NET, Finanzen, Christian Siedenbiedel, Meldung vom 23.10.2026, 17:08 Uhr: „Oktober-Zinssitzung: Frankreich stellt die EZB auf die Probe“',
         url: 'https://www.faz.net/aktuell/finanzen/geldpolitik-frankreich-krise-stellt-ezb-auf-die-probe-201614455.html',
       },
     ],
@@ -232,7 +238,8 @@ export const newsArticles: NewsArticle[] = [
   {
     slug: 'audi-erstes-eigenes-us-werk-georgia',
     title: 'Audi kündigt erstes eigenes US-Werk an',
-    teaser: 'Mitten auf einer Trump-Wahlkampfveranstaltung hat Audi den Bau eines SUV-Werks in Georgia bekanntgegeben – 4.500 Jobs, vier Milliarden Dollar.',
+    teaser:
+      'Mitten auf einer Trump-Wahlkampfveranstaltung hat Audi den Bau eines SUV-Werks in Georgia bekanntgegeben – 4.500 Jobs, vier Milliarden Dollar.',
     category: 'Märkte',
     publishedAt: '2026-10-25T07:40:00+02:00',
     author: 'Redaktion IM Invests',
@@ -242,7 +249,8 @@ export const newsArticles: NewsArticle[] = [
     relatedSymbols: ['volkswagen'],
     sources: [
       {
-        label: 'wallstreetONLINE, dpa-AFX, Meldung vom 25.10.2026, 08:35 Uhr: „ROUNDUP/Auf Trump-Wahlkampftour: Audi kündigt SUV-Werk in den USA an“',
+        label:
+          'wallstreetONLINE, dpa-AFX, Meldung vom 25.10.2026, 08:35 Uhr: „ROUNDUP/Auf Trump-Wahlkampftour: Audi kündigt SUV-Werk in den USA an“',
         url: 'https://www.wallstreet-online.de/nachricht/21576985-roundup-auf-trump-wahlkampftour-audi-kuendigt-suv-werk-usa',
       },
     ],
@@ -284,7 +292,8 @@ export const newsArticles: NewsArticle[] = [
     slug: 'php-sicherheitsluecke-black-october',
     title: 'PHP-Sicherheitslücke: IT-Branche spricht von „Black October“',
     metaTitle: 'PHP-Sicherheitslücke: IT-Branche spricht von Black October',
-    teaser: 'Kritische Lücken in der weit verbreiteten Programmiersprache PHP lösten weltweit einen Sicherheitsalarm aus. Nach Schätzungen ist fast jede Website betroffen.',
+    teaser:
+      'Kritische Lücken in der weit verbreiteten Programmiersprache PHP lösten weltweit einen Sicherheitsalarm aus. Nach Schätzungen ist fast jede Website betroffen.',
     category: 'Märkte',
     publishedAt: '2026-10-25T07:35:00+02:00',
     author: 'Redaktion IM Invests',
@@ -294,11 +303,13 @@ export const newsArticles: NewsArticle[] = [
     relatedSymbols: [],
     sources: [
       {
-        label: 'CNBC, Tech, Ashley Capoot, Meldung vom 23.10.2026, 11:17 Uhr EDT: „AI\'s \'Black October\': Critical PHP flaws set off global security scramble“',
+        label:
+          "CNBC, Tech, Ashley Capoot, Meldung vom 23.10.2026, 11:17 Uhr EDT: „AI's 'Black October': Critical PHP flaws set off global security scramble“",
         url: 'https://www.cnbc.com/2026/10/23/php-vulnerabilities-ai-cybersecurity.html',
       },
       {
-        label: 'Tagesschau, Wirtschaft/Digitales, Meldung vom 23.10.2026, 12:47 Uhr: „PHP-Sicherheitslücke: IT-Experten fordern Maßnahmen über Updates hinaus“',
+        label:
+          'Tagesschau, Wirtschaft/Digitales, Meldung vom 23.10.2026, 12:47 Uhr: „PHP-Sicherheitslücke: IT-Experten fordern Maßnahmen über Updates hinaus“',
         url: 'https://www.tagesschau.de/wirtschaft/digitales/it-sicherheit-php-100.html',
       },
     ],
@@ -348,7 +359,8 @@ export const newsArticles: NewsArticle[] = [
   {
     slug: 'amgen-studie-biotech-aktien-rallye',
     title: 'Amgen-Studie beflügelt die Rallye der Biotech-Aktien',
-    teaser: 'Eine Studie zu Amgens Lungenkrebs-Kombitherapie zeigt starke Ergebnisse. Der breite Biotech-Index legte seit Jahresbeginn bereits um 24 Prozent zu.',
+    teaser:
+      'Eine Studie zu Amgens Lungenkrebs-Kombitherapie zeigt starke Ergebnisse. Der breite Biotech-Index legte seit Jahresbeginn bereits um 24 Prozent zu.',
     category: 'Geldanlage',
     publishedAt: '2026-10-25T07:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -358,15 +370,18 @@ export const newsArticles: NewsArticle[] = [
     relatedSymbols: ['astrazeneca'],
     sources: [
       {
-        label: 'CNBC, Health and Science, Annika Kim Constantino, Meldung vom 24.10.2026, 10:30 Uhr EDT: „Amgen says drug combo cuts risk of death by 58% in patients with aggressive lung cancer“',
+        label:
+          'CNBC, Health and Science, Annika Kim Constantino, Meldung vom 24.10.2026, 10:30 Uhr EDT: „Amgen says drug combo cuts risk of death by 58% in patients with aggressive lung cancer“',
         url: 'https://www.cnbc.com/2026/10/24/amgen-imdelltra-lung-cancer-data.html',
       },
       {
-        label: 'CNBC, Pro Analysis, Paulina Likos, Meldung vom 24.10.2026, 9:10 Uhr EDT: „Biotech stocks are surging. How investors can play the new drug innovation boom“',
+        label:
+          'CNBC, Pro Analysis, Paulina Likos, Meldung vom 24.10.2026, 9:10 Uhr EDT: „Biotech stocks are surging. How investors can play the new drug innovation boom“',
         url: 'https://www.cnbc.com/2026/10/24/biotech-stocks-drug-innovation-rally.html',
       },
       {
-        label: 'WirtschaftsWoche, Finanzen/Geldanlage, Michelle Jura, Meldung vom 23.10.2026: „Anlageideen: Fünf Biotech-Aktien, die vom Kaufrausch der Pharmariesen profitieren“',
+        label:
+          'WirtschaftsWoche, Finanzen/Geldanlage, Michelle Jura, Meldung vom 23.10.2026: „Anlageideen: Fünf Biotech-Aktien, die vom Kaufrausch der Pharmariesen profitieren“',
         url: 'https://www.wiwo.de/finanzen/geldanlage/biotech-aktien-diese-fuenf-unternehmen-sind-jetzt-aussichtsreich/100263874.html',
       },
     ],
