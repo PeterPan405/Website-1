@@ -45,6 +45,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       Geschichte gelesen am 26.10.2026 (quellen-holen.yml, de.wikipedia.org/
       wiki/Big-Mac-Index): „Er wurde 1986 von der britischen Wochenzeitung
       The Economist erfunden" – entwickelt von der Volkswirtin Pamela Woodall.
+      Zur Frage des Betreibers (Währung oder Preisniveau?), ebenda: „Die
+      Big-Mac-Preise gelten zwar als einfache Messgröße zum Vergleich des
+      landesüblichen Preisniveaus", mit Einflüssen wie ortsüblichen
+      Beschaffungskosten; die nach BIP je Einwohner bereinigte Fassung steht
+      im README von big-mac-data.
     */
     erklaerung:
       'Ein weit verbreiteter Vergleich: Die Zeitschrift The Economist erfand den Big-Mac-Index 1986. Derselbe Burger überall – das zeigt, wie teuer ein Land ist und ob seine Währung eher zu stark oder zu schwach ist.',
@@ -65,7 +70,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile:
       'Stand: Juli 2026 | Quelle: The Economist, Big-Mac-Index | eigene Umrechnung in Euro',
     text:
-      'Was kostet ein Big Mac? Den Big-Mac-Index erfand die britische Zeitschrift The Economist 1986, entwickelt von der Volkswirtin Pamela Woodall. Er vergleicht den Preis desselben Burgers weltweit. Gedacht ist er als Test für Wechselkurse: Kostet der Burger umgerechnet viel mehr als anderswo, gilt die Währung als eher überbewertet. Zugleich spiegelt der Preis Löhne, Mieten und das Preisniveau im Land – deshalb rechnet der Economist zusätzlich eine Fassung, die die Wirtschaftsleistung je Einwohner berücksichtigt.\n\n' +
+      'Was kostet ein Big Mac? Den Big-Mac-Index erfand die britische Zeitschrift The Economist 1986, entwickelt von der Volkswirtin Pamela Woodall. Er vergleicht den Preis desselben Burgers weltweit. Gedacht ist er als Test für Wechselkurse: Kostet der Burger umgerechnet viel mehr als anderswo, gilt die Währung als eher überbewertet. Zugleich gilt der Preis als einfache Messgröße für das Preisniveau im Land, in den auch Kosten vor Ort einfließen – deshalb rechnet der Economist zusätzlich eine Fassung, die die Wirtschaftsleistung je Einwohner berücksichtigt.\n\n' +
       'Stand Juli 2026: In der Schweiz kostet er umgerechnet 7,91 €, im Euroraum 6,19 €, in den USA 5,44 € und in Japan 2,70 €. Umgerechnet zu den Wechselkursen der Erhebung.\n\n' +
       'Quellen: The Economist, Big-Mac-Index (Juli 2026); Wikipedia, „Big-Mac-Index"; eigene Umrechnung in Euro',
     schlagworte: ['bigmac', 'währungen', 'euro', 'preise', 'weltwirtschaft'],
