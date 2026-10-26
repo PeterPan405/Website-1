@@ -482,6 +482,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     pruefe(`${z.name}: ${z.wert} € aus der Erhebung (${euro})`, euro === z.wert)
   }
   pruefe('Burger', form(mac) === 'burger')
+  pruefe('freigegeben für den 26.10.', mac.freigabe === '2026-10-26')
   pruefe(
     'die Karte hält die Form ein',
     pruefeZahlenkarte(mac).length === 0,

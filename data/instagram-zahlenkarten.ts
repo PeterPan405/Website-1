@@ -37,6 +37,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'rangliste',
     skala: 'burger',
     datum: '2026-10-26',
+    /* Freigegeben vom Betreiber am 26.10.2026: „Okay, das passt. Dann später hochladen." – hinaus ab 15 Uhr. */
+    freigabe: '2026-10-26',
     titel: [
       { text: 'Big Mac:' },
       { text: 'Schweiz 7,91\u00a0€, Japan 2,70\u00a0€', gruen: true },
