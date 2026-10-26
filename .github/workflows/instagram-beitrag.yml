@@ -71,6 +71,10 @@ on:
         description: 'Wirklich veröffentlichen? (leer = nur Trockenlauf)'
         type: boolean
         default: false
+      nochmal:
+        description: 'Heute schon einmal veröffentlicht und vom Betreiber gelöscht – trotzdem neu hochladen (nur nach seinem OK)'
+        type: boolean
+        default: false
 
   # Der Rückfall, falls der Anstoß aus dem Paketbau ausbleibt: 04:52 deutscher
   # Zeit. Krumme Minute, weil runde am dichtesten belegt sind.
@@ -249,6 +253,19 @@ jobs:
             echo "Kein Zweig instagram-sperre – nichts gesperrt."
           fi
 
+      # Wurde heute schon einmal veröffentlicht? Dann hat der Betreiber den
+      # Beitrag gelöscht, wenn der Kanal leer ist – und er kommt nicht von
+      # selbst wieder (26.10.2026: ein Bau nach einem Merge lud die gelöschte
+      # Fassung um 07:04 erneut hoch). Gründe in scripts/instagram-veroeffentlichen.ts.
+      - name: Schon veröffentlicht?
+        run: |
+          mkdir -p out/instagram
+          if git fetch --depth 1 origin instagram-gepostet 2>/dev/null; then
+            git show FETCH_HEAD:gepostet.txt > out/instagram/gepostet.txt 2>/dev/null || true
+          fi
+          touch out/instagram/gepostet.txt
+          tail -3 out/instagram/gepostet.txt
+
       - name: Veröffentlichen
         run: npm run instagram
         env:
@@ -256,6 +273,7 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NOCHMAL: ${{ inputs.nochmal && 'ja' || 'nein' }}
           VEROEFFENTLICHEN: >-
             ${{ (steps.zugang.outputs.vorhanden == 'ja'
                  && steps.freigabe.outputs.heute == 'ja'
@@ -268,6 +286,23 @@ jobs:
       #
       # Der Zweig ist wurzellos und hat immer genau einen Commit: Es gibt
       # nichts zu sammeln, die Marke gilt einen Tag.
+      - name: Veröffentlichung vermerken
+        run: |
+          [ -f out/instagram/gepostet-neu.txt ] || { echo "Nichts veröffentlicht – nichts zu vermerken."; exit 0; }
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          inhalt=$(mktemp)
+          cat out/instagram/gepostet.txt out/instagram/gepostet-neu.txt | sort -u | tail -60 > "$inhalt"
+          git checkout --orphan instagram-gepostet
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" gepostet.txt
+          git add gepostet.txt
+          git commit -m "Instagram veröffentlicht am $(date -u +%F)"
+          for versuch in 1 2 3; do git push --force origin instagram-gepostet && exit 0; sleep $((versuch * 5)); done
+          echo "::error::Die Veröffentlichung ließ sich nicht vermerken – ein gelöschter Beitrag käme sonst zurück."
+          exit 1
+
       - name: Sperre auf den Zweig legen
         if: always()
         run: |
