@@ -55,7 +55,7 @@ export function Quellensteuertafel({
 
   return (
     <section aria-labelledby="quellensteuer" className={cn(className)}>
-      <h2 id="quellensteuer" className="text-fg text-2xl font-bold">
+      <h2 id="quellensteuer" className="text-fg text-xl font-bold">
         Quellensteuer
       </h2>
       <p className="text-fg-muted mt-2 leading-relaxed">

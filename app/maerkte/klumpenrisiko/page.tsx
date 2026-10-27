@@ -138,7 +138,7 @@ export default function KlumpenrisikoSeite() {
           Aussage nicht trägt, ist Schmuck.
         */}
         <div className="fk-card mt-10 p-5 sm:p-6">
-          <h2 className="text-fg text-lg font-semibold">
+          <h2 className="text-fg text-lg font-bold">
             Die {befund.anzahlGenannte} größten Werte
           </h2>
           <p className="text-fg-muted mt-1.5 text-sm leading-relaxed">
@@ -154,7 +154,7 @@ export default function KlumpenrisikoSeite() {
                 Die größten Einzelwerte im {satz.quelle.label}
               </caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
+                <tr className="text-fg-subtle border-border border-b text-left text-sm">
                   <th scope="col" className="py-2 pr-4 font-semibold">
                     Wert
                   </th>
@@ -244,7 +244,7 @@ export default function KlumpenrisikoSeite() {
         {/* --------------------------------------------------- Die Branchen */}
 
         <div className="fk-card mt-10 p-5 sm:p-6">
-          <h2 className="text-fg text-lg font-semibold">Und nach Branchen</h2>
+          <h2 className="text-fg text-lg font-bold">Und nach Branchen</h2>
           <p className="text-fg-muted mt-1.5 text-sm leading-relaxed">
             Dieselbe Frage eine Ebene höher. {obenAufAnzahl} der{' '}
             {formatNumber(befund.anzahlGenannte)} größten Werte gehören zu{' '}
@@ -259,7 +259,7 @@ export default function KlumpenrisikoSeite() {
                 Branchengewichte im {satz.quelle.label}
               </caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
+                <tr className="text-fg-subtle border-border border-b text-left text-sm">
                   <th scope="col" className="py-2 pr-4 font-semibold">
                     Branche
                   </th>

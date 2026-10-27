@@ -12,7 +12,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { mainNav, type NavItem } from '@/lib/navigation'
-import { areaStyles, siteConfig } from '@/lib/site'
+import { siteConfig } from '@/lib/site'
 
 /**
  * Sticky Kopfzeile mit Mega-Menü (Desktop) und Panel-Navigation (Mobil).
@@ -117,8 +117,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        'bg-canvas/80 sticky top-0 z-50 border-b backdrop-blur-md transition-shadow duration-200',
-        scrolled ? 'border-border shadow-card' : 'border-transparent'
+        // Milchglas: 82 % Seitengrund plus Weichzeichner (GESTALTUNG.md § 6).
+        'sticky top-0 z-50 border-b bg-[color-mix(in_srgb,var(--c-canvas)_82%,transparent)] backdrop-blur-xl transition-colors duration-150',
+        scrolled ? 'border-border' : 'border-transparent'
       )}
     >
       {/*
@@ -142,7 +143,7 @@ export function Header() {
       <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="text-fg hover:text-brand rounded-lg transition"
+          className="text-fg hover:text-brand rounded-md transition"
           aria-label={`Zur Startseite von ${siteConfig.name}`}
         >
           <Logo />
@@ -178,7 +179,7 @@ export function Header() {
           </button>
           <SprachUmschalter />
           <ThemeToggle />
-          <Link href="/lernen" className="fk-btn-primary hidden xl:inline-flex">
+          <Link href="/lernen" className="fk-btn-secondary hidden xl:inline-flex">
             Jetzt lernen
             <Icon name="arrow-right" className="size-4" />
           </Link>
@@ -216,7 +217,7 @@ export function Header() {
                 {mainNav.map((item) => (
                   <li key={item.label}>
                     {item.children ? (
-                      <details className="group open:border-border open:bg-surface-muted rounded-md border border-transparent">
+                      <details className="group open:bg-surface-muted rounded-md">
                         <summary className="flex cursor-pointer list-none items-center justify-between rounded-md px-3 py-3 font-medium">
                           <span>{item.label}</span>
                           <Icon
@@ -291,7 +292,6 @@ function NavEntry({
 }) {
   const panelId = useId()
   const active = isActive(pathname, item.href)
-  const style = areaStyles[item.area]
 
   if (!item.children) {
     return (
@@ -300,8 +300,14 @@ function NavEntry({
           href={item.href}
           aria-current={active ? 'page' : undefined}
           className={cn(
-            'rounded-[3px] px-3.5 py-2 text-sm font-medium transition',
-            active ? 'bg-surface-muted text-fg' : 'text-fg-muted hover:text-fg'
+            /*
+              Navigation: 15 px; nicht gewählt grau/500, gewählt Text/600 mit
+              einem 2-px-Strich in der Textfarbe darunter.
+            */
+            'relative block px-3 py-2 text-base transition-colors',
+            active
+              ? 'text-fg after:bg-fg font-semibold after:absolute after:inset-x-3 after:-bottom-px after:h-0.5'
+              : 'text-fg-muted hover:text-fg font-medium'
           )}
         >
           {item.label}
@@ -339,8 +345,12 @@ function NavEntry({
       */}
       <div
         className={cn(
-          'flex items-center text-sm font-medium transition',
-          active || isOpen ? 'text-fg' : 'text-fg-muted hover:text-fg'
+          'relative flex items-center text-base transition-colors',
+          active
+            ? 'text-fg after:bg-fg font-semibold after:absolute after:inset-x-3 after:-bottom-px after:h-0.5'
+            : isOpen
+              ? 'text-fg font-medium'
+              : 'text-fg-muted hover:text-fg font-medium'
         )}
       >
         <Link
@@ -383,7 +393,7 @@ function NavEntry({
               über fremdem Inhalt und brauchen Kante und Schatten, um sich
               davon zu lösen – wie jedes Systemmenü.
             */
-            className="fk-card border-border shadow-lift absolute top-full left-0 mt-2 w-60 origin-top-left overflow-hidden border py-2"
+            className="border-border bg-surface shadow-lift absolute top-full left-0 mt-2 w-60 origin-top-left overflow-hidden rounded-md border py-1.5"
           >
             {/*
               Ohne Überschrift und ohne Erklärzeile je Eintrag (27.10.2026):
@@ -397,7 +407,7 @@ function NavEntry({
                   <Link
                     href={child.href}
                     aria-current={pathname === child.href ? 'page' : undefined}
-                    className="text-fg hover:bg-surface-muted block px-4 py-2 text-sm transition"
+                    className="text-fg hover:bg-surface-muted mx-1.5 flex min-h-11 items-center rounded-sm px-3 text-base transition-colors"
                   >
                     {child.label}
                   </Link>
@@ -408,9 +418,8 @@ function NavEntry({
               <Link
                 href={item.footerLink.href}
                 className={cn(
-                  'border-border mt-2 flex items-center justify-between gap-2 border-t px-4 pt-3 pb-1',
-                  'text-sm font-semibold transition hover:underline',
-                  style.text
+                  'border-border mt-1.5 flex min-h-11 items-center justify-between gap-2 border-t px-4.5 pt-1.5',
+                  'text-brand text-base font-semibold transition hover:underline'
                 )}
               >
                 {item.footerLink.label}
@@ -441,8 +450,10 @@ function MobileLink({
       href={href}
       aria-current={active ? 'page' : undefined}
       className={cn(
-        'flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm transition',
-        active ? 'bg-brand-soft text-brand font-semibold' : 'text-fg-muted hover:text-fg',
+        'flex min-h-11 items-center gap-2.5 rounded-md px-3 py-2.5 text-base transition-colors',
+        active
+          ? 'bg-surface-muted text-fg font-semibold'
+          : 'text-fg-muted hover:text-fg font-medium',
         emphasis && !active && 'text-fg font-semibold'
       )}
     >

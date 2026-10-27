@@ -103,7 +103,7 @@ export function Quiz({
     return (
       <section
         aria-labelledby={`${groupId}-titel`}
-        className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7"
+        className="rounded-card bg-learn-soft p-6 sm:p-7"
       >
         <p className="fk-chip bg-learn text-on-fill">
           <Icon name="target" className="size-3.5" />
@@ -144,9 +144,7 @@ export function Quiz({
         aria-labelledby={`${groupId}-ergebnis`}
         className={cn(
           'rounded-card border p-6 sm:p-7',
-          passed
-            ? 'border-success/40 bg-success-soft'
-            : 'border-warning/40 bg-warning-soft'
+          passed ? 'bg-surface-muted' : 'bg-surface-muted'
         )}
       >
         <motion.div
@@ -159,7 +157,7 @@ export function Quiz({
             Auswertung
           </p>
 
-          <h2 id={`${groupId}-ergebnis`} className="text-fg mt-4 text-2xl font-bold">
+          <h2 id={`${groupId}-ergebnis`} className="text-fg mt-4 text-xl font-bold">
             {correctCount} von {questions.length} richtig
           </h2>
 
@@ -201,7 +199,7 @@ export function Quiz({
             )}
 
             {isLevelComplete && (
-              <span className="fk-chip bg-success-soft text-success">
+              <span className="fk-chip text-success">
                 <Icon name="check-circle" className="size-3.5" />
                 Stufe ist als erledigt markiert
               </span>
@@ -259,8 +257,8 @@ export function Quiz({
                   checked === null && isSelected
                     ? 'border-learn bg-learn-soft'
                     : 'border-border',
-                  showAsCorrect && 'border-success bg-success-soft',
-                  showAsWrong && 'border-danger bg-danger-soft',
+                  showAsCorrect && 'bg-success-soft',
+                  showAsWrong && 'bg-danger-soft',
                   checked !== null && 'cursor-default'
                 )}
               >
@@ -270,7 +268,7 @@ export function Quiz({
                   value={optionIndex}
                   checked={isSelected}
                   onChange={() => setSelected(optionIndex)}
-                  className="accent-learn mt-0.5 size-4 shrink-0"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--c-fg)]"
                 />
                 <span className="text-fg min-w-0 flex-1 text-sm leading-relaxed">
                   {option}
@@ -308,9 +306,7 @@ export function Quiz({
             transition={{ duration: 0.25 }}
             className={cn(
               'mt-5 rounded-md border p-4',
-              wasCorrect
-                ? 'border-success/40 bg-success-soft'
-                : 'border-warning/40 bg-warning-soft'
+              wasCorrect ? 'bg-surface-muted' : 'bg-surface-muted'
             )}
           >
             <p className="text-fg flex items-center gap-2 text-sm font-semibold">

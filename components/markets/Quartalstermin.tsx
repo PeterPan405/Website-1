@@ -48,23 +48,18 @@ export function Quartalstermin({
 
   return (
     <section aria-labelledby="quartalstermin" className={cn(className)}>
-      <h2 id="quartalstermin" className="text-fg text-2xl font-bold">
+      <h2 id="quartalstermin" className="text-fg text-xl font-bold">
         Nächste Quartalszahlen
       </h2>
 
       {befund ? (
         <>
-          <div
-            className={cn(
-              'mt-5 rounded-lg border p-5',
-              befund.bald ? 'border-brand bg-brand/5' : 'border-border bg-surface'
-            )}
-          >
-            <p className="text-fg-subtle flex items-center gap-2 text-[0.8125rem] font-semibold">
+          <div className="bg-surface-muted mt-5 rounded-md p-5">
+            <p className="text-fg-subtle flex items-center gap-2 text-sm font-semibold">
               <Icon name="calendar" className="size-3.5" aria-hidden="true" />
               {befund.angekuendigt ? 'angekündigt' : 'erwartet'}
             </p>
-            <p className="text-fg mt-2 text-2xl font-semibold tracking-[-0.02em]">
+            <p className="text-fg mt-2 text-2xl font-semibold">
               {formatDate(befund.erwartet)}
             </p>
 

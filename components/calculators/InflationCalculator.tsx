@@ -200,7 +200,7 @@ export function InflationCalculator() {
                   label: 'Heutiger Betrag',
                   value: amount,
                   display: formatCurrency(amount, 0),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: `Verbleibende Kaufkraft nach ${formatNumber(years, 0)} Jahren`,

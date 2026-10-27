@@ -23,7 +23,7 @@ export function TopicLinkList({
 
   return (
     <section aria-labelledby="verwandte-themen" className="fk-block">
-      <h2 id="verwandte-themen" className="text-fg text-lg font-semibold">
+      <h2 id="verwandte-themen" className="text-fg text-lg font-bold">
         {title}
       </h2>
       {description && <p className="text-fg-muted mt-2 text-sm">{description}</p>}
@@ -35,7 +35,7 @@ export function TopicLinkList({
               href={`/lernen/${topic.slug}`}
               className="group hover:bg-surface-muted flex items-start gap-3 rounded-md p-2.5 transition"
             >
-              <span className="bg-learn-soft text-learn mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg">
+              <span className="bg-learn-soft text-learn mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md">
                 <Icon name="book" className="size-4" />
               </span>
               <span className="min-w-0">

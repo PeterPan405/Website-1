@@ -268,7 +268,7 @@ export function RetirementGapCalculator() {
                   label: 'Gewünschtes Alterseinkommen',
                   value: desired,
                   display: formatCurrency(desired, 0),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: 'Erwartete gesetzliche Rente',

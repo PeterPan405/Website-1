@@ -1,19 +1,12 @@
 import type { Metadata, Viewport } from 'next'
 /*
-  Die Schriften kommen als Pakete über npm und nicht über next/font: Diese
+  Die Schrift kommt als Paket über npm und nicht über next/font: Diese
   Umgebung erreicht nur GitHub und npm, und next/font/google lädt beim Bauen
-  von Google. Seit dem 27.10.2026 IBM Plex (Richtung „Finanzhaus“) statt
-  Fraunces und Inter – siehe `--font-display` in globals.css.
+  von Google. Seit dem 27.10.2026 EINE Schrift, Inter, für Text, Zahlen und
+  Titel – Designsprache IM Capital, siehe GESTALTUNG.md.
 */
-import '@fontsource/ibm-plex-sans/400.css'
-import '@fontsource/ibm-plex-sans/400-italic.css'
-import '@fontsource/ibm-plex-sans/500.css'
-import '@fontsource/ibm-plex-sans/600.css'
-import '@fontsource/ibm-plex-sans/700.css'
-import '@fontsource/ibm-plex-serif/400.css'
-import '@fontsource/ibm-plex-serif/500.css'
-import '@fontsource/ibm-plex-serif/600.css'
-import '@fontsource/ibm-plex-serif/700.css'
+import '@fontsource-variable/inter/wght.css'
+import '@fontsource-variable/inter/wght-italic.css'
 
 import './globals.css'
 
@@ -189,7 +182,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}
         <a
           href="#inhalt"
-          className="focus:bg-brand focus:text-brand-contrast sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-[3px] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
+          className="focus:bg-fg focus:text-canvas sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
         >
           Direkt zum Inhalt springen
         </a>

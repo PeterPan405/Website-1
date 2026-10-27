@@ -152,7 +152,7 @@ export default function HandelsfreieTageSeite() {
             return (
               <div key={platz.kuerzel} className="fk-card p-5 sm:p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h2 className="text-fg text-base font-semibold">
+                  <h2 className="text-fg text-base font-bold">
                     {platz.name}
                     <span className="text-fg-subtle ml-2 text-sm font-normal">
                       {platz.land}

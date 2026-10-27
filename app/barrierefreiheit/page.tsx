@@ -47,7 +47,7 @@ export default function BarrierefreiheitPage() {
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
           <section aria-labelledby="anspruch" className="mt-4">
-            <h2 id="anspruch" className="text-fg text-2xl font-bold">
+            <h2 id="anspruch" className="text-fg text-xl font-bold">
               Der Anspruch
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -60,7 +60,7 @@ export default function BarrierefreiheitPage() {
           </section>
 
           <section aria-labelledby="geprueft" className="mt-12">
-            <h2 id="geprueft" className="text-fg text-2xl font-bold">
+            <h2 id="geprueft" className="text-fg text-xl font-bold">
               Was laufend geprüft wird
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -109,7 +109,7 @@ export default function BarrierefreiheitPage() {
           </section>
 
           <section aria-labelledby="grenzen" className="mt-12">
-            <h2 id="grenzen" className="text-fg text-2xl font-bold">
+            <h2 id="grenzen" className="text-fg text-xl font-bold">
               Bekannte Grenzen
             </h2>
             <ul className="text-fg-muted mt-4 list-disc space-y-3 pl-5 leading-relaxed">
@@ -138,7 +138,7 @@ export default function BarrierefreiheitPage() {
           </section>
 
           <section aria-labelledby="melden" className="mt-12">
-            <h2 id="melden" className="text-fg text-2xl font-bold">
+            <h2 id="melden" className="text-fg text-xl font-bold">
               Barriere gefunden?
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">

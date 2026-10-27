@@ -36,7 +36,7 @@ export default function ImprintPage() {
             Überschrift. Nicht wieder nach oben ziehen.
           */}
           <section aria-labelledby="haftung">
-            <h2 id="haftung" className="text-fg text-2xl font-bold">
+            <h2 id="haftung" className="text-fg text-xl font-bold">
               Haftung für Inhalte und Links
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -56,7 +56,7 @@ export default function ImprintPage() {
           </section>
 
           <section aria-labelledby="urheberrecht" className="mt-12">
-            <h2 id="urheberrecht" className="text-fg text-2xl font-bold">
+            <h2 id="urheberrecht" className="text-fg text-xl font-bold">
               Urheberrecht
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -94,7 +94,7 @@ export default function ImprintPage() {
           </section>
 
           <section aria-labelledby="kein-rat" className="mt-12">
-            <h2 id="kein-rat" className="text-fg text-2xl font-bold">
+            <h2 id="kein-rat" className="text-fg text-xl font-bold">
               Hinweis zu Finanzinhalten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -174,7 +174,7 @@ export default function ImprintPage() {
             aus benannten Quellen übernommen werden.
           */}
           <section aria-labelledby="ki-einsatz" className="mt-12">
-            <h2 id="ki-einsatz" className="text-fg text-2xl font-bold">
+            <h2 id="ki-einsatz" className="text-fg text-xl font-bold">
               Einsatz künstlicher Intelligenz
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -199,7 +199,7 @@ export default function ImprintPage() {
           </section>
 
           <section aria-labelledby="anbieter" className="mt-12">
-            <h2 id="anbieter" className="text-fg text-2xl font-bold">
+            <h2 id="anbieter" className="text-fg text-xl font-bold">
               Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)
             </h2>
             <dl className="mt-5 space-y-4">
@@ -230,7 +230,7 @@ export default function ImprintPage() {
           </section>
 
           <section aria-labelledby="kontaktangaben" className="mt-12">
-            <h2 id="kontaktangaben" className="text-fg text-2xl font-bold">
+            <h2 id="kontaktangaben" className="text-fg text-xl font-bold">
               Kontakt
             </h2>
             <dl className="mt-5 space-y-4">
@@ -261,7 +261,7 @@ export default function ImprintPage() {
           */}
 
           <section aria-labelledby="verantwortlich" className="mt-12">
-            <h2 id="verantwortlich" className="text-fg text-2xl font-bold">
+            <h2 id="verantwortlich" className="text-fg text-xl font-bold">
               Redaktionell verantwortlich
             </h2>
             {/*

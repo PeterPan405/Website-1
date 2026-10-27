@@ -63,7 +63,7 @@ export function Merkbericht({
 
   return (
     <section aria-labelledby="wochenbericht" className="mt-12">
-      <h2 id="wochenbericht" className="text-fg text-2xl font-bold">
+      <h2 id="wochenbericht" className="text-fg text-xl font-bold">
         Dein Wochenbericht
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -90,7 +90,7 @@ export function Merkbericht({
       <div className="mt-6 overflow-x-auto">
         <table className="w-full min-w-[36rem] text-sm">
           <thead>
-            <tr className="border-border text-fg-subtle border-b text-left text-[0.8125rem]">
+            <tr className="border-border text-fg-subtle border-b text-left text-sm">
               <th scope="col" className="py-2 pr-4 font-medium">
                 Titel
               </th>

@@ -62,7 +62,7 @@ export default async function LearnOverviewPage() {
           der drei Stufen (steht im Vorspann) und die farbige Linkzeile.
         */}
         <section aria-labelledby="loslegen">
-          <h2 id="loslegen" className="text-fg text-2xl font-semibold">
+          <h2 id="loslegen" className="text-fg text-xl font-bold">
             Wo willst du anfangen?
           </h2>
           <div className="border-border mt-6 grid gap-8 border-t pt-6 lg:grid-cols-3">
@@ -115,7 +115,7 @@ export default async function LearnOverviewPage() {
 
         {/* ---------------------------------------------- Inhaltsverzeichnis */}
         <section aria-labelledby="alle-themen" className="mt-14">
-          <h2 id="alle-themen" className="text-fg text-2xl font-semibold">
+          <h2 id="alle-themen" className="text-fg text-xl font-bold">
             Alle {stats.topicCount} Themen
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
@@ -179,7 +179,7 @@ export default async function LearnOverviewPage() {
         */}
         {completeTopics.length < stats.topicCount && (
           <section aria-labelledby="stand" className="border-border mt-12 border-t pt-8">
-            <h2 id="stand" className="text-fg text-lg font-semibold">
+            <h2 id="stand" className="text-fg text-lg font-bold">
               Bearbeitungsstand der Inhalte
             </h2>
             <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">

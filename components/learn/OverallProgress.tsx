@@ -35,7 +35,7 @@ export function OverallProgress({ topicSlugs }: { topicSlugs: string[] }) {
     <section aria-labelledby="fortschritt" className="fk-card p-6 sm:p-7">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 id="fortschritt" className="text-fg text-lg font-semibold">
+          <h2 id="fortschritt" className="text-fg text-lg font-bold">
             Dein Fortschritt
           </h2>
           <p className="text-fg-muted mt-1 text-sm">

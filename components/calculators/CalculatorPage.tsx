@@ -111,7 +111,7 @@ export async function CalculatorPage({
           />
 
           <section aria-labelledby="weitere-rechner" className="fk-card p-6">
-            <h2 id="weitere-rechner" className="text-fg text-lg font-semibold">
+            <h2 id="weitere-rechner" className="text-fg text-lg font-bold">
               Weitere Rechner
             </h2>
             <ul className="mt-4 space-y-2">
@@ -121,7 +121,7 @@ export async function CalculatorPage({
                     href={`/rechner/${calculator.slug}`}
                     className="group hover:bg-surface-muted flex items-start gap-3 rounded-md p-2.5 transition"
                   >
-                    <span className="bg-tools-soft text-tools mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg">
+                    <span className="bg-tools-soft text-tools mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md">
                       <Icon name="calculator" className="size-4" />
                     </span>
                     <span className="min-w-0">

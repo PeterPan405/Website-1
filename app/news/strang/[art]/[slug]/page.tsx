@@ -170,7 +170,7 @@ export default async function StrangSeite({ params }: { params: Promise<Params> 
 
         {jahre.map((jahrgang) => (
           <section key={jahrgang.jahr} className="mt-10">
-            <h2 className="text-fg-subtle text-sm font-semibold">
+            <h2 className="text-fg-subtle text-sm font-bold">
               {jahrgang.jahr}
               <span className="text-fg-subtle ml-2 font-normal normal-case">
                 · {formatNumber(jahrgang.artikel.length)}{' '}
@@ -202,7 +202,7 @@ export default async function StrangSeite({ params }: { params: Promise<Params> 
 
         {geschwisterNamen.length > 0 ? (
           <nav aria-label="Weitere Stränge" className="mt-14">
-            <h2 className="text-fg text-lg font-semibold">Weitere Stränge</h2>
+            <h2 className="text-fg text-lg font-bold">Weitere Stränge</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
               {geschwisterNamen.map((strang) => (
                 <li key={strang.slug}>

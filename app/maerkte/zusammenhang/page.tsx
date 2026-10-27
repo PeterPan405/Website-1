@@ -157,11 +157,11 @@ export default function ZusammenhangSeite() {
         */}
         {hoechstes && niedrigstes && (
           <section aria-labelledby="einstieg">
-            <h2 id="einstieg" className="text-fg text-2xl font-bold">
+            <h2 id="einstieg" className="text-fg text-xl font-bold">
               Die beiden Enden
             </h2>
             <div className="mt-4 grid gap-5 sm:grid-cols-2">
-              <div className="border-border bg-surface-muted rounded-md border p-5">
+              <div className="bg-surface-muted rounded-md p-5">
                 <p className="text-fg-muted text-sm">Am stärksten im Gleichschritt</p>
                 <p className="text-fg mt-1 text-lg font-bold">
                   {hoechstes.a} und {hoechstes.b}
@@ -177,7 +177,7 @@ export default function ZusammenhangSeite() {
                   Streuung, sondern zwei Namen für dieselbe Bewegung.
                 </p>
               </div>
-              <div className="border-border bg-surface-muted rounded-md border p-5">
+              <div className="bg-surface-muted rounded-md p-5">
                 <p className="text-fg-muted text-sm">Am wenigsten miteinander</p>
                 <p className="text-fg mt-1 text-lg font-bold">
                   {niedrigstes.a} und {niedrigstes.b}
@@ -198,7 +198,7 @@ export default function ZusammenhangSeite() {
         )}
 
         <section aria-labelledby="matrix" className="mt-12">
-          <h2 id="matrix" className="text-fg text-2xl font-bold">
+          <h2 id="matrix" className="text-fg text-xl font-bold">
             Alle Paare
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -283,7 +283,7 @@ export default function ZusammenhangSeite() {
         </section>
 
         <section aria-labelledby="schwankung" className="mt-12">
-          <h2 id="schwankung" className="text-fg text-2xl font-bold">
+          <h2 id="schwankung" className="text-fg text-xl font-bold">
             Wie weit die Wochen auseinanderlagen
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

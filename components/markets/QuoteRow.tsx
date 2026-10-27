@@ -11,16 +11,18 @@ import type { MarketQuote } from '@/lib/markets'
  * Überfliegen zählt – Kürzel, Kurs, Tagesveränderung – und führt zur
  * Detailseite, wo der Verlauf steht.
  *
- * Bei den Indizes, Rohstoffen und Devisen bleibt es bei `QuoteCard`: Dort sind
- * es wenige Werte, und der Verlauf ist auf einen Blick nützlich.
+ * Seit dem 27.10.2026 auch für Indizes, Rohstoffe und Devisen: „Listen statt
+ * Kacheln“ (GESTALTUNG.md). Den Verlauf zeigt die Seite jedes Kurses.
  */
 export function QuoteRow({ quote }: { quote: MarketQuote }) {
   return (
     <Link
       href={`/maerkte/${quote.symbol}`}
-      className="border-border hover:bg-surface-muted flex items-baseline gap-3 border-b py-2.5 transition"
+      // Listenzeile: Name 15 px/600 links, Werte rechts, Haarlinie dazwischen,
+      // mindestens 44 px hoch (GESTALTUNG.md § 6).
+      className="border-border hover:bg-surface-muted flex min-h-11 items-center gap-3 border-b px-1 py-2.5 transition-colors"
     >
-      <span className="text-fg w-20 shrink-0 truncate text-sm font-semibold">
+      <span className="text-fg w-24 shrink-0 truncate text-base font-semibold">
         {quote.ticker}
       </span>
       {/*
@@ -40,8 +42,12 @@ export function QuoteRow({ quote }: { quote: MarketQuote }) {
 
         Auf den Branchenseiten fiel nichts auf, weil die Liste dort einspaltig
         und kein Raster ist. Geprüft wird es jetzt von `npm run breite`.
+
+        Am Telefon unsichtbar, aber nicht weg: Neben Kürzel, Kurs und
+        Veränderung blieben dort nur „Euro /…" und „DA…" – drei Zeichen, die
+        nichts sagen. Die Spalte hält den Platz, damit die Zahlen rechts stehen.
       */}
-      <span className="text-fg-muted line-clamp-1 min-w-0 flex-1 text-sm">
+      <span className="text-fg-muted line-clamp-1 min-w-0 flex-1 text-sm max-sm:invisible">
         {quote.name}
       </span>
       {/*

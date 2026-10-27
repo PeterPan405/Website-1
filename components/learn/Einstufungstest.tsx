@@ -118,7 +118,7 @@ export function Einstufungstest({
         tabIndex={-1}
         role="status"
         aria-live="polite"
-        className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7"
+        className="rounded-card bg-learn-soft p-6 sm:p-7"
       >
         <p className="fk-chip bg-learn text-on-fill">
           <Icon name="sparkles" className="size-3.5" />
@@ -264,7 +264,7 @@ export function Einstufungstest({
                   value={index}
                   checked={gewaehlt === index}
                   onChange={() => setGewaehlt(index)}
-                  className="accent-learn mt-0.5 size-4 shrink-0"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--c-fg)]"
                 />
                 <span className="text-fg min-w-0 flex-1 text-sm leading-relaxed">
                   {option}
@@ -294,7 +294,7 @@ export function Einstufungstest({
 
   // --------------------------------------------------------------- Auftakt
   return (
-    <div className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7">
+    <div className="rounded-card bg-learn-soft p-6 sm:p-7">
       <p className="fk-chip bg-learn text-on-fill">
         <Icon name="target" className="size-3.5" />
         Einstufungstest

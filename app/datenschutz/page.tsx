@@ -77,7 +77,7 @@ export default function PrivacyPage() {
             Nicht wieder nach oben ziehen.
           */}
           <section aria-labelledby="ueberblick">
-            <h2 id="ueberblick" className="text-fg text-2xl font-bold">
+            <h2 id="ueberblick" className="text-fg text-xl font-bold">
               1. Überblick: Was diese Website nicht tut
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="server-logs" className="mt-12">
-            <h2 id="server-logs" className="text-fg text-2xl font-bold">
+            <h2 id="server-logs" className="text-fg text-xl font-bold">
               2. Aufruf der Website und Server-Protokolle
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -132,7 +132,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="local-storage" className="mt-12">
-            <h2 id="local-storage" className="text-fg text-2xl font-bold">
+            <h2 id="local-storage" className="text-fg text-xl font-bold">
               3. Speicherung im Browser (localStorage)
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -150,7 +150,7 @@ export default function PrivacyPage() {
                       <th
                         key={head}
                         scope="col"
-                        className="text-fg-subtle px-4 py-2.5 text-left text-[0.8125rem] font-semibold"
+                        className="text-fg-subtle px-4 py-2.5 text-left text-sm font-semibold"
                       >
                         {head}
                       </th>
@@ -205,12 +205,12 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="schriften" className="mt-12">
-            <h2 id="schriften" className="text-fg text-2xl font-bold">
+            <h2 id="schriften" className="text-fg text-xl font-bold">
               4. Schriftarten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Diese Website verwendet die Schriftarten IBM Plex Sans und IBM Plex Serif.
-              Sie werden nicht zur Laufzeit von einem externen Anbieter geladen, sondern
+              Diese Website verwendet die Schriftart Inter (SIL Open Font License). Sie
+              werden nicht zur Laufzeit von einem externen Anbieter geladen, sondern
               bereits bei der Erstellung der Website heruntergeladen und vom eigenen
               Server ausgeliefert. Beim Besuch entsteht dadurch{' '}
               <strong className="text-fg font-semibold">
@@ -221,7 +221,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="externe-daten" className="mt-12">
-            <h2 id="externe-daten" className="text-fg text-2xl font-bold">
+            <h2 id="externe-daten" className="text-fg text-xl font-bold">
               5. Marktdaten und Nachrichten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -256,7 +256,7 @@ export default function PrivacyPage() {
             Urheberrecht im Impressum.
           */}
           <section aria-labelledby="ki" className="mt-12">
-            <h2 id="ki" className="text-fg text-2xl font-bold">
+            <h2 id="ki" className="text-fg text-xl font-bold">
               6. Künstliche Intelligenz und deine Daten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -291,7 +291,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="kontaktaufnahme" className="mt-12">
-            <h2 id="kontaktaufnahme" className="text-fg text-2xl font-bold">
+            <h2 id="kontaktaufnahme" className="text-fg text-xl font-bold">
               7. Kontaktaufnahme per E-Mail
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -305,7 +305,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="rechte" className="mt-12">
-            <h2 id="rechte" className="text-fg text-2xl font-bold">
+            <h2 id="rechte" className="text-fg text-xl font-bold">
               8. Deine Rechte
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -327,7 +327,7 @@ export default function PrivacyPage() {
                 <li key={right} className="flex gap-3 leading-relaxed">
                   <span
                     aria-hidden="true"
-                    className="bg-brand mt-2 size-1.5 shrink-0 rounded-full"
+                    className="bg-fg mt-2 size-1.5 shrink-0 rounded-full"
                   />
                   <span>
                     <strong className="text-fg font-semibold">Recht auf {right}</strong> (
@@ -354,7 +354,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="aenderungen" className="mt-12">
-            <h2 id="aenderungen" className="text-fg text-2xl font-bold">
+            <h2 id="aenderungen" className="text-fg text-xl font-bold">
               9. Änderungen dieser Erklärung
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -365,7 +365,7 @@ export default function PrivacyPage() {
           </section>
 
           <section aria-labelledby="verantwortlicher" className="mt-12">
-            <h2 id="verantwortlicher" className="text-fg text-2xl font-bold">
+            <h2 id="verantwortlicher" className="text-fg text-xl font-bold">
               10. Verantwortlicher
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">

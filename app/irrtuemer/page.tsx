@@ -98,7 +98,7 @@ export default function IrrtuemerSeite() {
               <li key={gruppe.id}>
                 <a
                   href={`#${gruppe.id}`}
-                  className="border-border text-fg-muted hover:border-brand hover:text-fg inline-flex items-center gap-2 rounded-[3px] border px-3 py-1.5 transition-colors"
+                  className="border-border text-fg-muted hover:border-brand hover:text-fg inline-flex items-center gap-2 rounded-md border px-3 py-1.5 transition-colors"
                 >
                   {gruppe.titel}
                   <span className="text-fg-subtle tabular-nums">
@@ -115,7 +115,7 @@ export default function IrrtuemerSeite() {
             <section key={gruppe.id} id={gruppe.id} aria-labelledby={`g-${gruppe.id}`}>
               <h2
                 id={`g-${gruppe.id}`}
-                className="text-fg border-border border-b pb-3 text-2xl font-bold"
+                className="text-fg border-border border-b pb-3 text-xl font-bold"
               >
                 {gruppe.titel}
               </h2>
@@ -169,22 +169,18 @@ function IrrtumBlock({ irrtum }: { irrtum: Irrtum }) {
       */}
       <blockquote
         id={`s-${irrtum.slug}`}
-        className="border-border bg-surface text-fg rounded-lg border-l-4 p-5 text-lg leading-relaxed font-medium"
+        className="border-border bg-surface text-fg rounded-md border-l-4 p-5 text-lg leading-relaxed font-medium"
       >
         „{irrtum.satz}“
       </blockquote>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
-          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-            Was daran richtig ist
-          </p>
+          <p className="text-fg-subtle text-sm font-semibold">Was daran richtig ist</p>
           <p className="text-fg-muted mt-2 leading-relaxed">{irrtum.richtig}</p>
         </div>
         <div>
-          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-            Was nicht stimmt
-          </p>
+          <p className="text-fg-subtle text-sm font-semibold">Was nicht stimmt</p>
           <p className="text-fg-muted mt-2 leading-relaxed">{irrtum.falsch}</p>
         </div>
       </div>
@@ -239,8 +235,8 @@ function IrrtumBlock({ irrtum }: { irrtum: Irrtum }) {
 function Rechenblock({ rechnung }: { rechnung: Rechnung }) {
   if (rechnung.probe.art === 'keine') {
     return (
-      <div className="border-border bg-surface-2 mt-5 rounded-lg border border-dashed p-5">
-        <p className="text-fg-subtle text-[0.8125rem] font-semibold">{rechnung.titel}</p>
+      <div className="border-border bg-surface-2 mt-5 rounded-md border border-dashed p-5">
+        <p className="text-fg-subtle text-sm font-semibold">{rechnung.titel}</p>
         <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
           {rechnung.probe.warum}
         </p>
@@ -251,8 +247,8 @@ function Rechenblock({ rechnung }: { rechnung: Rechnung }) {
   const ergebnis = ergebniszeile(rechnung)
 
   return (
-    <div className="border-brand/40 bg-surface mt-5 rounded-lg border p-5">
-      <p className="text-fg-subtle text-[0.8125rem] font-semibold">{rechnung.titel}</p>
+    <div className="border-brand/40 bg-surface mt-5 rounded-md border p-5">
+      <p className="text-fg-subtle text-sm font-semibold">{rechnung.titel}</p>
       <dl className="mt-3 max-w-lg space-y-1.5 text-sm">
         {rechnung.zeilen.map((zeile) => (
           <div

@@ -26,7 +26,7 @@ import type { Termin, TerminArt } from '@/data/kalender/typen'
 const ARTFARBEN: Record<TerminArt, string> = {
   notenbank: 'bg-brand-soft text-brand',
   berichtssaison: 'bg-markets-soft text-markets',
-  verfallstag: 'bg-warning-soft text-warning',
+  verfallstag: 'text-warning',
   boersenfeiertag: 'bg-tools-soft text-tools',
   wahl: 'bg-debt-soft text-debt',
   konjunktur: 'bg-news-soft text-news',
@@ -221,8 +221,8 @@ export function KalenderAnsicht({
   return (
     <div>
       {naechster && (
-        <div className="rounded-card border-brand/30 bg-brand-soft border p-5">
-          <p className="text-brand text-[0.8125rem] font-semibold">Als Nächstes</p>
+        <div className="rounded-card bg-brand-soft p-5">
+          <p className="text-brand text-sm font-semibold">Als Nächstes</p>
           <p className="text-fg mt-1.5 text-lg font-bold">{naechster.titel}</p>
           <p className="text-fg-muted mt-1 text-sm">
             {/* Auch hier: erst kennzeichnen, dann datieren. Der hervorgehobene
@@ -253,9 +253,7 @@ export function KalenderAnsicht({
 
       {/* ------------------------------------------------------------ Filter */}
       <fieldset className={naechster ? 'mt-8' : ''}>
-        <legend className="text-fg-subtle text-[0.8125rem] font-semibold">
-          Nach Art filtern
-        </legend>
+        <legend className="text-fg-subtle text-sm font-semibold">Nach Art filtern</legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {/* Arten ohne Termine bekommen keinen Schalter: Ein Filter, der
               garantiert nichts findet, ist eine Sackgasse. */}
@@ -268,9 +266,9 @@ export function KalenderAnsicht({
                 onClick={() => umschalten(art)}
                 aria-pressed={aktiv.has(art)}
                 className={cn(
-                  'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
+                  'rounded-md border px-3 py-1.5 text-sm font-medium transition-colors',
                   aktiv.has(art)
-                    ? 'border-brand bg-brand text-brand-contrast'
+                    ? 'border-fg bg-fg text-canvas'
                     : 'border-border text-fg-muted hover:text-fg hover:border-border-strong'
                 )}
               >
@@ -317,7 +315,7 @@ export function KalenderAnsicht({
             type="checkbox"
             checked={zeigeVergangenes}
             onChange={(ereignis) => setZeigeVergangenes(ereignis.target.checked)}
-            className="accent-brand size-4"
+            className="size-4 accent-[var(--c-fg)]"
           />
           {vergangene} bereits vergangene Termine mit anzeigen
         </label>
@@ -356,13 +354,13 @@ export function KalenderAnsicht({
                         <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={cn(
-                              'rounded-[3px] px-2 py-0.5 text-[0.6875rem] font-semibold',
+                              'rounded-md px-2 py-0.5 text-xs font-semibold',
                               ARTFARBEN.berichtssaison
                             )}
                           >
                             {artMeta.berichtssaison.label}
                           </span>
-                          <span className="border-border text-fg-subtle rounded-[3px] border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+                          <span className="border-border text-fg-subtle rounded-md border border-dashed px-2 py-0.5 text-xs font-medium">
                             erwartet, nicht bestätigt
                           </span>
                           {istVorbei(zeile.termine[0]) && (
@@ -530,7 +528,7 @@ function ZeileEinzeln({
         <div className="flex flex-wrap items-center gap-2">
           <span
             className={cn(
-              'rounded-[3px] px-2 py-0.5 text-[0.6875rem] font-semibold',
+              'rounded-md px-2 py-0.5 text-xs font-semibold',
               ARTFARBEN[termin.art]
             )}
           >
@@ -544,7 +542,7 @@ function ZeileEinzeln({
             scrollen.
           */}
           {termin.geschaetzt && (
-            <span className="border-border text-fg-subtle rounded-[3px] border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+            <span className="border-border text-fg-subtle rounded-md border border-dashed px-2 py-0.5 text-xs font-medium">
               erwartet, nicht bestätigt
             </span>
           )}

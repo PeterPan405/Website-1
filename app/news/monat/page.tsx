@@ -58,9 +58,9 @@ export default async function MonatsRegisterSeite() {
               <Reveal delay={Math.min(index, 8) * 0.04}>
                 <Link
                   href={`/news/monat/${eintrag.monat}`}
-                  className="fk-card hover:border-news block p-5 transition-colors"
+                  className="fk-card-interactive block p-5 transition-colors"
                 >
-                  <h2 className="text-fg text-lg font-semibold">
+                  <h2 className="text-fg text-lg font-bold">
                     {formatMonthYearLong(`${eintrag.monat}-01`)}
                   </h2>
                   <p className="text-fg-subtle mt-1 text-sm">

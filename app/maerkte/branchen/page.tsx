@@ -62,7 +62,7 @@ export default function BranchenSeite() {
               <Reveal delay={Math.min(index, 12) * 0.03}>
                 <Link
                   href={`/maerkte/branchen/${branche.slug}`}
-                  className="border-border bg-surface hover:border-markets hover:bg-surface-muted flex h-full items-baseline justify-between gap-3 rounded-md border p-4 transition"
+                  className="fk-card-interactive flex h-full items-baseline justify-between gap-3 p-4"
                 >
                   <span className="text-fg font-semibold">{branche.name}</span>
                   <span className="text-fg-subtle shrink-0 text-sm tabular-nums">

@@ -51,10 +51,10 @@ export function LektionAbschluss({
       aria-labelledby="lektion-abschliessen"
       className={cn(
         'rounded-card mt-10 border p-6 transition-colors sm:p-7',
-        fertig ? 'border-success/40 bg-success-soft' : 'border-border bg-surface-muted'
+        fertig ? 'bg-surface-muted' : 'border-border bg-surface-muted'
       )}
     >
-      <h2 id="lektion-abschliessen" className="text-fg text-lg font-semibold">
+      <h2 id="lektion-abschliessen" className="text-fg text-lg font-bold">
         {fertig ? 'Diese Lektion ist erledigt' : 'Lektion durchgearbeitet?'}
       </h2>
 

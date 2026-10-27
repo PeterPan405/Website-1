@@ -129,9 +129,7 @@ export function InstrumentSuche<T extends Suchbar>({
       <label
         htmlFor={id}
         className={
-          labelSichtbar
-            ? 'text-fg-subtle mb-1.5 block text-[0.8125rem] font-medium'
-            : 'sr-only'
+          labelSichtbar ? 'text-fg-subtle mb-1.5 block text-sm font-medium' : 'sr-only'
         }
       >
         {label}
@@ -199,7 +197,7 @@ export function InstrumentSuche<T extends Suchbar>({
             zusammen mit Schatten und Zählzeile darüber liest sich die Liste als
             das, was sie ist: etwas, das über dem Formular schwebt.
           */
-          className="border-border-strong bg-surface-muted shadow-lift absolute z-20 mt-1 max-h-72 w-full overflow-y-auto rounded-md border p-2"
+          className="border-border bg-surface shadow-lift absolute z-20 mt-1 max-h-72 w-full overflow-y-auto rounded-md border p-2"
         >
           {/*
             Eine Kopfzeile über den Treffern.
@@ -244,7 +242,7 @@ export function InstrumentSuche<T extends Suchbar>({
                   }}
                   onMouseEnter={() => setAktiv(i)}
                   className={cn(
-                    'mt-1 flex w-full items-baseline justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm',
+                    'mt-1 flex w-full items-baseline justify-between gap-3 rounded-md px-3 py-2 text-left text-sm',
                     i === aktiv ? 'bg-brand-soft text-fg' : 'text-fg-muted'
                   )}
                 >

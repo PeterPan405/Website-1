@@ -49,7 +49,7 @@ export default function KeineCookiesPage() {
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
           <section aria-labelledby="konkret" className="mt-4">
-            <h2 id="konkret" className="text-fg text-2xl font-bold">
+            <h2 id="konkret" className="text-fg text-xl font-bold">
               Was das konkret heißt
             </h2>
             <ul className="text-fg-muted mt-4 list-disc space-y-3 pl-5 leading-relaxed">
@@ -87,7 +87,7 @@ export default function KeineCookiesPage() {
           </section>
 
           <section aria-labelledby="speicher" className="mt-12">
-            <h2 id="speicher" className="text-fg text-2xl font-bold">
+            <h2 id="speicher" className="text-fg text-xl font-bold">
               Was auf deinem Gerät bleibt
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -114,7 +114,7 @@ export default function KeineCookiesPage() {
           </section>
 
           <section aria-labelledby="nachpruefen" className="mt-12">
-            <h2 id="nachpruefen" className="text-fg text-2xl font-bold">
+            <h2 id="nachpruefen" className="text-fg text-xl font-bold">
               Glaub es nicht – prüf es nach
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -141,7 +141,7 @@ export default function KeineCookiesPage() {
           </section>
 
           <section aria-labelledby="warum" className="mt-12">
-            <h2 id="warum" className="text-fg text-2xl font-bold">
+            <h2 id="warum" className="text-fg text-xl font-bold">
               Warum wir das so machen
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">

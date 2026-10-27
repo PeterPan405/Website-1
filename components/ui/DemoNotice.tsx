@@ -21,7 +21,7 @@ export function DemoNotice({
   title?: string
 }) {
   return (
-    <aside className="rounded-card border-brand/25 bg-brand-soft border p-4 sm:p-5">
+    <aside className="rounded-card bg-brand-soft p-4 sm:p-5">
       <div className="flex gap-3">
         <Icon name="info" className="text-brand mt-0.5 size-5 shrink-0" />
         <div>

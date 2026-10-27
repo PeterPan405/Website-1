@@ -404,12 +404,13 @@ Zusage: höchstens sechs Minuten.
 → `ENTSCHEIDUNGEN.md`: [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine|Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine]], [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Was englisch ist, wird englisch gesprochen – auch Anglizismen|Was englisch ist, wird englisch gesprochen]],
 [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Die Lernseiten sprechen mit derselben Stimme wie der Podcast|Die Lernseiten sprechen mit derselben Stimme wie der Podcast]]
 
-## Farbschema
+## Farbschema und Gestaltung
 
+- **Gestaltung nach `GESTALTUNG.md`**: Inter, Schwarz/Weiß/ein Grau, Listen
+  statt Kacheln, Navy nur für Link und Fokus.
 - **Der erste Besuch ist weiß**, ausnahmslos – auch auf einem dunkel
-  gestellten Gerät. Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat nur
-  zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
-  nicht mehr vor.
+  gestellten Gerät. `startSkript()` (`lib/theme.ts`): gespeicherte Wahl,
+  sonst Weiß; kein `prefers-color-scheme`.
 - **Die Leistenfarbe entsteht per `document.write` im Startskript.** Safari
   liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos.
   `document.write` schiebt den Text in den Token-Strom – der Parser baut das
@@ -418,15 +419,14 @@ Zusage: höchstens sechs Minuten.
   im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
   zieht Next ihn nach vorn, und die erste Angabe gewinnt). Jedes einzeln
   entfernt ergibt wieder einen falschen Balken.
-- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst;
-  die Website navigiert clientseitig, der Balken bliebe die Sitzung falsch.
-- `tests/farbschema-start.test.ts` fängt `document.write` auf und lässt
-  `head`, `createElement`, `querySelectorAll` **werfen**.
+- **Der Umschalter lädt die Seite neu** – sonst bliebe der Balken falsch.
+- `tests/farbschema-start.test.ts` lässt `head`, `createElement`,
+  `querySelectorAll` **werfen**.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).
 
-→ `ENTSCHEIDUNGEN.md`: [[Der erste Besuch ist weiß]]
+→ `ENTSCHEIDUNGEN.md`: [[Der erste Besuch ist weiß]], [[Die Designsprache von IM Capital]]
 
 ## Der Alias `@/` gilt auch außerhalb des Bündlers
 

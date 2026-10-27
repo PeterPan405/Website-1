@@ -112,7 +112,7 @@ export default function WaehrungenImWeltindexSeite() {
           lang ist wie der nächste.
         */}
         <div className="fk-card mt-10 p-5 sm:p-6">
-          <h2 className="text-fg text-lg font-semibold">Die Währungen im Einzelnen</h2>
+          <h2 className="text-fg text-lg font-bold">Die Währungen im Einzelnen</h2>
           <p className="text-fg-muted mt-1.5 text-sm leading-relaxed">
             Aus den Ländergewichten des Factsheets. Für die einzeln genannten Länder ist
             die Zuordnung eindeutig; die Sammelposition bleibt stehen, weil das Blatt sie
@@ -122,7 +122,7 @@ export default function WaehrungenImWeltindexSeite() {
           <table className="mt-6 w-full text-sm">
             <caption className="sr-only">Währungsanteile im {satz.quelle.label}</caption>
             <thead>
-              <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
+              <tr className="text-fg-subtle border-border border-b text-left text-sm">
                 <th scope="col" className="py-2 pr-4 font-semibold">
                   Währung
                 </th>

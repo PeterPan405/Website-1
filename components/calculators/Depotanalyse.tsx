@@ -413,9 +413,7 @@ function Balken({ eintraege, summe }: { eintraege: Anteil[]; summe: number }) {
           </div>
           <div className="bg-surface-muted mt-1 h-2 overflow-hidden rounded-full">
             <div
-              className={
-                e.gruppe === null ? 'bg-border-strong h-full' : 'bg-brand h-full'
-              }
+              className={e.gruppe === null ? 'bg-border-strong h-full' : 'bg-fg h-full'}
               style={{ width: `${Math.max(e.anteil * 100, 0.5)}%` }}
             />
           </div>
@@ -436,7 +434,7 @@ function Balken({ eintraege, summe }: { eintraege: Anteil[]; summe: number }) {
 function Abschnitt({ titel, children }: { titel: string; children: React.ReactNode }) {
   return (
     <section className="fk-card p-5 sm:p-6">
-      <h2 className="text-fg text-lg font-semibold">{titel}</h2>
+      <h2 className="text-fg text-lg font-bold">{titel}</h2>
       <div className="mt-4">{children}</div>
     </section>
   )

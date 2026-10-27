@@ -324,8 +324,8 @@ export function Wiederholung() {
                   antwort.bestaetigt === null && gewaehlt
                     ? 'border-learn bg-learn-soft'
                     : 'border-border',
-                  zeigeRichtig && 'border-success bg-success-soft',
-                  zeigeFalsch && 'border-danger bg-danger-soft',
+                  zeigeRichtig && 'bg-success-soft',
+                  zeigeFalsch && 'bg-danger-soft',
                   antwort.bestaetigt !== null && 'cursor-default'
                 )}
               >
@@ -337,7 +337,7 @@ export function Wiederholung() {
                   onChange={() =>
                     setAntwort((vorher) => ({ ...vorher, gewaehlt: index }))
                   }
-                  className="accent-learn mt-0.5 size-4 shrink-0"
+                  className="mt-0.5 size-4 shrink-0 accent-[var(--c-fg)]"
                 />
                 <span className="text-fg min-w-0 flex-1 text-sm leading-relaxed">
                   {option}
@@ -370,9 +370,7 @@ export function Wiederholung() {
           aria-live="polite"
           className={cn(
             'mt-5 rounded-md border p-4',
-            warRichtig
-              ? 'border-success/40 bg-success-soft'
-              : 'border-warning/40 bg-warning-soft'
+            warRichtig ? 'bg-surface-muted' : 'bg-surface-muted'
           )}
         >
           <p className="text-fg flex items-center gap-2 text-sm font-semibold">

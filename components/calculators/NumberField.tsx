@@ -113,7 +113,7 @@ export function NumberField({
           value={Math.min(max, Math.max(min, value))}
           onChange={(event) => onChange(Number(event.target.value))}
           aria-label={`${label} – Schieberegler`}
-          className="accent-brand mt-2.5 w-full"
+          className="mt-2.5 w-full accent-[var(--c-fg)]"
         />
       )}
 

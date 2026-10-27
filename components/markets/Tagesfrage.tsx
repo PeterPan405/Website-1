@@ -48,14 +48,13 @@ export function Tagesfrage({ frage }: { frage: Frage }) {
                 disabled={aufgeloest}
                 aria-pressed={istGewaehlt}
                 className={[
-                  'flex w-full items-baseline justify-between gap-3 rounded-lg border px-4 py-3 text-left text-sm transition',
+                  // Getönte Knöpfe, gleichrangig – Fläche ohne Rahmen (GESTALTUNG.md § 6).
+                  'flex min-h-11 w-full items-baseline justify-between gap-3 rounded-md px-4 py-3 text-left text-base transition-colors',
                   aufgeloest && istRichtig
-                    ? 'border-brand bg-surface text-fg font-semibold'
-                    : aufgeloest && istGewaehlt
-                      ? 'border-border bg-surface-muted text-fg-muted'
-                      : aufgeloest
-                        ? 'border-border text-fg-subtle'
-                        : 'border-border text-fg hover:border-brand hover:bg-surface',
+                    ? 'bg-fg text-canvas font-semibold'
+                    : aufgeloest
+                      ? 'bg-surface-muted text-fg-muted'
+                      : 'bg-surface-muted text-fg font-medium hover:bg-[color-mix(in_srgb,var(--c-fg)_6%,var(--c-surface-muted))]',
                 ].join(' ')}
               >
                 <span>{antwort.label}</span>
@@ -82,8 +81,8 @@ export function Tagesfrage({ frage }: { frage: Frage }) {
       </ul>
 
       {aufgeloest && (
-        <div className="border-brand/40 bg-surface mt-4 rounded-lg border-l-4 p-4">
-          <p className="text-fg-subtle text-[0.8125rem] font-semibold">
+        <div className="mt-6">
+          <p className="text-fg text-base font-semibold">
             {gewaehlt === frage.richtigIndex ? 'Richtig' : 'Nicht ganz'}
           </p>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">{frage.aufloesung}</p>

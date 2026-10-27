@@ -51,9 +51,7 @@ export function Logo({
             direkt neben Menüpunkten in der Grotesk.
           */
           className={
-            large
-              ? 'font-sans text-2xl font-semibold tracking-tight'
-              : 'font-sans text-lg font-semibold tracking-tight'
+            large ? 'font-sans text-2xl font-semibold' : 'font-sans text-lg font-semibold'
           }
         >
           {siteConfig.name}

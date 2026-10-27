@@ -49,7 +49,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               <th
                 key={spalte}
                 scope="col"
-                className={`text-fg-subtle px-4 py-2.5 text-[0.8125rem] font-semibold ${
+                className={`text-fg-subtle px-4 py-2.5 text-sm font-semibold ${
                   index === 0 ? 'text-left' : 'text-right'
                 }`}
               >

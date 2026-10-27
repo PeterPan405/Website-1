@@ -119,7 +119,7 @@ export default async function BrancheSeite({
         </StatGrid>
 
         <section aria-labelledby="titel" className="mt-12">
-          <h2 id="titel" className="text-fg text-2xl font-bold">
+          <h2 id="titel" className="text-fg text-xl font-bold">
             Die Titel, nach Tagesveränderung
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -142,7 +142,7 @@ export default async function BrancheSeite({
         </section>
 
         <section aria-labelledby="einordnung" className="mt-12">
-          <h2 id="einordnung" className="text-fg text-2xl font-bold">
+          <h2 id="einordnung" className="text-fg text-xl font-bold">
             Was eine Branchenliste nicht ist
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

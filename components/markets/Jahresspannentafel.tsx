@@ -134,10 +134,7 @@ export function Jahresspannentafel({
       {/* ---------------------------------------------------------- Filter */}
       <div className="flex flex-wrap items-end gap-4">
         <div className="min-w-[14rem] flex-1">
-          <label
-            htmlFor="spanne-suche"
-            className="text-fg-subtle text-[0.8125rem] font-semibold"
-          >
+          <label htmlFor="spanne-suche" className="text-fg-subtle text-sm font-semibold">
             Suchen
           </label>
           <input
@@ -146,12 +143,12 @@ export function Jahresspannentafel({
             value={suche}
             onChange={(event) => setSuche(event.target.value)}
             placeholder="Name oder Kürzel"
-            className="border-border bg-surface text-fg mt-1.5 w-full rounded-lg border px-3 py-2 text-sm"
+            className="border-border bg-surface text-fg mt-1.5 w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
 
         <fieldset className="flex-1">
-          <legend className="text-fg-subtle text-[0.8125rem] font-semibold">Art</legend>
+          <legend className="text-fg-subtle text-sm font-semibold">Art</legend>
           <div className="mt-1.5 flex flex-wrap gap-2">
             {vorhandeneArten.map((art) => {
               const aktiv = arten.has(art)
@@ -162,7 +159,7 @@ export function Jahresspannentafel({
                   onClick={() => artUmschalten(art)}
                   aria-pressed={aktiv}
                   className={cn(
-                    'rounded-[3px] border px-3 py-1 text-xs transition',
+                    'rounded-md border px-3 py-1 text-xs transition',
                     aktiv
                       ? 'border-accent bg-accent/10 text-fg'
                       : 'border-border text-fg-muted hover:text-fg'
@@ -218,7 +215,7 @@ export function Jahresspannentafel({
                         type="button"
                         onClick={() => umschalten(spalte.key)}
                         className={cn(
-                          'inline-flex items-center gap-1 text-[0.8125rem] font-semibold transition',
+                          'inline-flex items-center gap-1 text-sm font-semibold transition',
                           aktiv ? 'text-fg' : 'text-fg-subtle hover:text-fg'
                         )}
                       >
@@ -237,7 +234,7 @@ export function Jahresspannentafel({
                   )
                 })}
                 <th scope="col" className="px-4 py-2.5 text-right">
-                  <span className="text-fg-subtle text-[0.8125rem] font-semibold">
+                  <span className="text-fg-subtle text-sm font-semibold">
                     <span className="hidden sm:inline">Tief / Hoch</span>
                     <span className="sm:hidden">Spanne</span>
                   </span>
@@ -251,9 +248,7 @@ export function Jahresspannentafel({
                   beide Richtungen.
                 */}
                 <th scope="col" className="px-4 py-2.5 text-right">
-                  <span className="text-fg-subtle text-[0.8125rem] font-semibold">
-                    Stand
-                  </span>
+                  <span className="text-fg-subtle text-sm font-semibold">Stand</span>
                 </th>
               </tr>
             </thead>

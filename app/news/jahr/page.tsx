@@ -77,13 +77,13 @@ export default async function JahrgangsPage() {
                 <Reveal delay={index * 0.05}>
                   <Link
                     href={`/news/jahr/${rueckblick.jahr}`}
-                    className="fk-card hover:border-news/40 block p-5 transition sm:p-6"
+                    className="fk-card-interactive block p-5 transition sm:p-6"
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
-                      <h2 className="text-fg text-xl font-semibold sm:text-2xl">
+                      <h2 className="text-fg text-xl font-bold">
                         {rueckblick.jahr}
                         {!rueckblick.vollesJahr && (
-                          <span className="fk-chip bg-warning-soft text-warning ml-3 align-middle">
+                          <span className="fk-chip text-warning ml-3 align-middle">
                             läuft noch
                           </span>
                         )}
@@ -101,9 +101,7 @@ export default async function JahrgangsPage() {
 
                     <dl className="text-fg-muted mt-4 grid gap-3 text-sm sm:grid-cols-3">
                       <div>
-                        <dt className="text-fg-subtle text-[0.8125rem]">
-                          Am weitesten oben
-                        </dt>
+                        <dt className="text-fg-subtle text-sm">Am weitesten oben</dt>
                         <dd className="mt-0.5">
                           {rueckblick.raender
                             ? `${
@@ -118,9 +116,7 @@ export default async function JahrgangsPage() {
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-fg-subtle text-[0.8125rem]">
-                          Am weitesten unten
-                        </dt>
+                        <dt className="text-fg-subtle text-sm">Am weitesten unten</dt>
                         <dd className="mt-0.5">
                           {rueckblick.raender
                             ? `${
@@ -136,9 +132,7 @@ export default async function JahrgangsPage() {
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-fg-subtle text-[0.8125rem]">
-                          Eigene Artikel
-                        </dt>
+                        <dt className="text-fg-subtle text-sm">Eigene Artikel</dt>
                         <dd className="mt-0.5">
                           {rueckblick.abdeckung.gesamtzahl === 0
                             ? 'keine'

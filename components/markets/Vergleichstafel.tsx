@@ -135,8 +135,8 @@ export function Vergleichstafel({
               Die Vorbehalte stehen über der Tabelle. Wer sie erst darunter
               liest, hat die Zahlen schon geglaubt.
             */
-            <div className="border-border bg-surface-subtle mt-8 rounded-lg border p-5">
-              <h2 className="text-fg flex items-center gap-2 text-sm font-semibold">
+            <div className="border-border bg-surface-subtle mt-8 rounded-md border p-5">
+              <h2 className="text-fg flex items-center gap-2 text-sm font-bold">
                 <Icon name="info" className="text-markets size-4" />
                 Was diesen Vergleich einschränkt
               </h2>

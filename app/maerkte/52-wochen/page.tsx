@@ -98,7 +98,7 @@ export default async function Jahresspannenseite() {
         </Callout>
 
         <section aria-labelledby="tafel" className="mt-12">
-          <h2 id="tafel" className="text-fg text-2xl font-bold">
+          <h2 id="tafel" className="text-fg text-xl font-bold">
             Alle Werte
           </h2>
           <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">

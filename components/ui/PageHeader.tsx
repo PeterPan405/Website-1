@@ -38,13 +38,11 @@ export function PageHeader({
 }) {
   return (
     /*
-      Kein weißer Kasten mehr um den Seitenkopf: Er steht direkt auf dem
-      grauen Seitengrund, die Trennung zum Inhalt macht der Weißraum. Der
-      weichgezeichnete Farbverlauf davor und die weiße Fläche danach waren
-      beide Versuche, eine Zone zu markieren, die keine Markierung braucht.
+      Kein Kasten um den Seitenkopf – die Trennung zum Inhalt macht der
+      Weißraum. Seitentitel 28 px/700, Lauftext 17 px (GESTALTUNG.md § 2).
     */
     <div>
-      <div className="fk-container pt-12 pb-10 sm:pt-16 sm:pb-12">
+      <div className="fk-container pt-12 pb-8">
         {breadcrumbs && <div className="mb-6">{breadcrumbs}</div>}
 
         {/*
@@ -54,15 +52,9 @@ export function PageHeader({
           `eyebrowIcon` bleiben in der Schnittstelle, damit die Seiten, die sie
           setzen, nicht alle angefasst werden müssen.
         */}
-        <h1 className="text-fg max-w-3xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
-          {title}
-        </h1>
+        <h1 className="text-fg max-w-3xl text-3xl font-bold">{title}</h1>
 
-        {lead && (
-          <p className="text-fg-muted mt-4 max-w-2xl text-base leading-relaxed sm:text-lg">
-            {lead}
-          </p>
-        )}
+        {lead && <p className="text-fg-muted mt-3 max-w-2xl text-lg">{lead}</p>}
 
         {meta && (
           <div className="text-fg-subtle mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
@@ -95,13 +87,10 @@ export function SectionHeading({
     <div className={cn('flex flex-wrap items-end justify-between gap-4', className)}>
       <div className="max-w-2xl">
         {/* Ohne Dachzeile (27.10.2026) – siehe PageHeader. */}
-        <h2
-          id={id}
-          className="text-fg text-2xl font-semibold tracking-[-0.02em] sm:text-3xl"
-        >
+        <h2 id={id} className="text-fg text-xl font-bold">
           {title}
         </h2>
-        {lead && <p className="text-fg-muted mt-3 leading-relaxed">{lead}</p>}
+        {lead && <p className="text-fg-muted mt-2">{lead}</p>}
       </div>
       {action}
     </div>

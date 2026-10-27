@@ -8,7 +8,7 @@ export function ChartSkeleton({ height = 340 }: { height?: number }) {
   return (
     <div
       style={{ height }}
-      className="border-border bg-surface-muted w-full overflow-hidden rounded-md border"
+      className="bg-surface-muted w-full overflow-hidden rounded-md"
       role="status"
       aria-live="polite"
     >

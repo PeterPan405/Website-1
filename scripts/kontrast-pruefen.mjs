@@ -298,6 +298,15 @@ for (const [thema, attribut, schema] of [
         dessen Regeln gewinnen. Wer nur das Systemschema stellt, prüft den Fall
         nicht, den ein Nutzer per Knopf herstellt.
       */
+      /*
+        Übergänge aus, bevor das Schema wechselt: Sonst misst die Prüfung
+        Farben mitten im Übergang (`transition-colors`, 0,15 s) – Schwarz auf
+        Schwarz, das nie jemand sieht. Am Bildschirm lädt der Umschalter die
+        Seite ohnehin neu (lib/theme.ts).
+      */
+      await seite.addStyleTag({
+        content: '*,::before,::after{transition:none!important;animation:none!important}',
+      })
       await seite.evaluate(
         (s) => document.documentElement.setAttribute('data-theme', s),
         attribut

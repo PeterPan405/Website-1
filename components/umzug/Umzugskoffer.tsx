@@ -143,7 +143,7 @@ export function Umzugskoffer() {
     <div className="grid gap-6 lg:grid-cols-2">
       {/* ------------------------------------------------------ Mitnehmen */}
       <section aria-labelledby="mitnehmen" className="fk-card p-6">
-        <h2 id="mitnehmen" className="text-fg text-lg font-semibold">
+        <h2 id="mitnehmen" className="text-fg text-lg font-bold">
           Von diesem Gerät mitnehmen
         </h2>
         {vorhanden.length === 0 ? (
@@ -179,7 +179,7 @@ export function Umzugskoffer() {
 
       {/* ------------------------------------------------------- Einlesen */}
       <section aria-labelledby="einlesen" className="fk-card p-6">
-        <h2 id="einlesen" className="text-fg text-lg font-semibold">
+        <h2 id="einlesen" className="text-fg text-lg font-bold">
           Auf diesem Gerät einlesen
         </h2>
         <p className="text-fg-muted mt-3 text-sm leading-relaxed">

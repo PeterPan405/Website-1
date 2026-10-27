@@ -324,7 +324,7 @@ export function Entnahmeplan() {
                 Entnahmeplan Jahr für Jahr, real und nominal
               </caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
+                <tr className="text-fg-subtle border-border border-b text-left text-sm">
                   <th scope="col" className="py-2 pr-3 font-semibold">
                     Jahr
                   </th>

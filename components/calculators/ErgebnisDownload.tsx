@@ -110,7 +110,7 @@ export function ErgebnisDownload() {
 
   return (
     <section className="fk-card mt-8 p-5 sm:p-6">
-      <h2 className="text-fg text-lg font-semibold">Ergebnis mitnehmen</h2>
+      <h2 className="text-fg text-lg font-bold">Ergebnis mitnehmen</h2>
       <p className="text-fg-muted mt-2 text-sm leading-relaxed">
         Das Blatt enthält die Annahmen, das Ergebnis und die Hinweise dazu – damit die
         Zahl auch in einem Jahr noch einzuordnen ist. Erstellt wird es im Browser; es

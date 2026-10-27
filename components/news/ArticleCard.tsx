@@ -16,8 +16,9 @@ export function ArticleCard({
   return (
     <article
       className={cn(
-        'fk-card-interactive group flex h-full flex-col p-6',
-        featured && 'sm:p-8'
+        // Abschnitt statt Kachel: Haarlinie darüber, keine Fläche.
+        'border-border group relative flex h-full flex-col border-t pt-5',
+        featured && 'pt-6'
       )}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -34,10 +35,13 @@ export function ArticleCard({
       <h3
         className={cn(
           'text-fg mt-3 leading-snug font-bold',
-          featured ? 'text-2xl sm:text-3xl' : 'text-lg'
+          featured ? 'text-3xl' : 'text-xl'
         )}
       >
-        <Link href={`/news/${article.slug}`} className="hover:text-brand transition">
+        <Link
+          href={`/news/${article.slug}`}
+          className="underline-offset-4 group-hover:underline"
+        >
           {/*
             Die gesamte Karte soll klickbar wirken; ein absolut positionierter
             Bereich über der Karte erweitert die Trefferfläche des Links, ohne

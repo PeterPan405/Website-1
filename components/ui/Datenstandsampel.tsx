@@ -48,17 +48,17 @@ import { formatDate, formatDateTime } from '@/lib/format'
 const stufen = {
   frisch: {
     farbe: 'bg-success',
-    rahmen: 'border-success/30 bg-success-soft',
+    rahmen: 'bg-surface-muted',
     wort: 'Aktuell',
   },
   aelter: {
     farbe: 'bg-warning',
-    rahmen: 'border-warning/30 bg-warning-soft',
+    rahmen: 'bg-surface-muted',
     wort: 'Älter',
   },
   veraltet: {
     farbe: 'bg-danger',
-    rahmen: 'border-danger/30 bg-danger-soft',
+    rahmen: 'bg-surface-muted',
     wort: 'Veraltet',
   },
 } as const
@@ -126,7 +126,7 @@ export function Datenstandsampel({
 
   return (
     <div
-      className={cn('rounded-lg border px-3 py-2 text-xs', stufe.rahmen, className)}
+      className={cn('rounded-md border px-3 py-2 text-xs', stufe.rahmen, className)}
       /*
         `polite`, nicht `assertive`: Der Befund erscheint eine Sekunde nach dem
         Laden. Ein Screenreader soll ihn erwähnen, wenn er ohnehin Luft hat,

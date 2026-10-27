@@ -2,22 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Fragment } from 'react'
 
-import { QuoteCard } from '@/components/markets/QuoteCard'
 import { QuoteRow } from '@/components/markets/QuoteRow'
 import { Stimmungskachel } from '@/components/markets/Stimmungskachel'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
 import { getBranchen } from '@/lib/branchen'
 import { collectionPageSchema } from '@/lib/jsonld'
-import {
-  getFundamentalkennzahlen,
-  getMarktstimmung,
-  getQuotes,
-  getSparkline,
-} from '@/lib/markets'
+import { getFundamentalkennzahlen, getMarktstimmung, getQuotes } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 /**
@@ -103,26 +96,6 @@ export default async function MarketsOverviewPage() {
       quote.kind === 'stock' &&
       !magnificentSeven.includes(quote.symbol as (typeof magnificentSeven)[number])
   )
-
-  /*
-    Mini-Verläufe nur für die Kachel-Abschnitte.
-
-    Für die über hundert Einzelaktien wären es über hundert zusätzliche
-    SVG-Verläufe auf einer Seite – ein Vielfaches an HTML für eine Grafik, die
-    bei dieser Anzahl ohnehin niemand einzeln ansieht. Die Aktien stehen deshalb
-    als kompakte Zeilen; ihren Verlauf gibt es auf der Detailseite.
-  */
-  const mitVerlauf = quotes.filter(
-    (quote) =>
-      quote.kind !== 'stock' ||
-      magnificentSeven.includes(quote.symbol as (typeof magnificentSeven)[number])
-  )
-  const sparklines = await Promise.all(
-    mitVerlauf.map(
-      async (quote) => [quote.symbol, await getSparkline(quote.symbol)] as const
-    )
-  )
-  const sparklineBySymbol = new Map(sparklines)
 
   return (
     <>
@@ -253,7 +226,7 @@ export default async function MarketsOverviewPage() {
         </nav>
 
         <section aria-labelledby="indizes" className="mt-12">
-          <h2 id="indizes" className="text-fg text-2xl font-bold">
+          <h2 id="indizes" className="text-fg text-xl font-bold">
             Aktienindizes
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -261,41 +234,26 @@ export default async function MarketsOverviewPage() {
             Stand in Punkten ist kein Geldbetrag, sondern ein Vergleichswert gegenüber dem
             Startdatum.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {indexQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {indexQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
-            {/*
-              Die Stimmung als letzte Kachel der Reihe.
-
-              Sie gehört zu den Indizes und nicht darüber: Sie beschreibt den
-              Aktienmarkt als Ganzes, genau wie ein Index – nur mit einer
-              anderen Größe. Über die volle Seitenbreite wirkte sie wie die
-              Hauptaussage der Seite.
-            */}
-            {stimmungAktien && (
-              <li>
-                <Reveal delay={indexQuotes.length * 0.04} className="h-full">
-                  <Stimmungskachel
-                    stimmung={stimmungAktien}
-                    titel="Angst und Gier am Aktienmarkt"
-                    bereich="aktien"
-                  />
-                </Reveal>
-              </li>
-            )}
           </ul>
+          {stimmungAktien && (
+            <div className="mt-8 max-w-md">
+              <Stimmungskachel
+                stimmung={stimmungAktien}
+                titel="Angst und Gier am Aktienmarkt"
+                bereich="aktien"
+              />
+            </div>
+          )}
         </section>
 
         <section aria-labelledby="magnificent-seven" className="mt-16">
-          <h2 id="magnificent-seven" className="text-fg text-2xl font-bold">
+          <h2 id="magnificent-seven" className="text-fg text-xl font-bold">
             Magnificent Seven
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -305,15 +263,10 @@ export default async function MarketsOverviewPage() {
             ETF. Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist
             deutlich mehr, als die Zahl der enthaltenen Titel vermuten lässt.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {magSevenQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {magSevenQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
@@ -328,7 +281,7 @@ export default async function MarketsOverviewPage() {
           er gehört deshalb direkt hinter die Indizes.
         */}
         <section aria-labelledby="etfs" className="mt-16">
-          <h2 id="etfs" className="text-fg text-2xl font-bold">
+          <h2 id="etfs" className="text-fg text-xl font-bold">
             Indexfonds (ETFs)
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -339,22 +292,17 @@ export default async function MarketsOverviewPage() {
             <strong className="text-fg font-semibold">keine Empfehlung</strong>, sondern
             das, was die Begriffe des Lernbereichs in der Wirklichkeit bedeuten.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {etfQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {etfQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
         </section>
 
         <section aria-labelledby="rohstoffe" className="mt-16">
-          <h2 id="rohstoffe" className="text-fg text-2xl font-bold">
+          <h2 id="rohstoffe" className="text-fg text-xl font-bold">
             Rohstoffe
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -364,44 +312,34 @@ export default async function MarketsOverviewPage() {
             Anleihen zahlen Rohstoffe keinen laufenden Ertrag – der gesamte Ertrag muss
             aus dem Preis kommen.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {commodityQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {commodityQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
         </section>
 
         <section aria-labelledby="waehrungen" className="mt-16">
-          <h2 id="waehrungen" className="text-fg text-2xl font-bold">
+          <h2 id="waehrungen" className="text-fg text-xl font-bold">
             Währungspaare
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
             Ein Wechselkurs gibt an, wie viel der zweiten Währung eine Einheit der ersten
             kostet. Steigt EUR/USD, wird der Euro gegenüber dem Dollar stärker.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {fxQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {fxQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
         </section>
 
         <section aria-labelledby="krypto" className="mt-16">
-          <h2 id="krypto" className="text-fg text-2xl font-bold">
+          <h2 id="krypto" className="text-fg text-xl font-bold">
             Kryptowährungen
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -410,31 +348,22 @@ export default async function MarketsOverviewPage() {
             herleiten: Der Preis ergibt sich allein daraus, was der nächste Käufer zu
             zahlen bereit ist.
           </p>
-          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {cryptoQuotes.map((quote, index) => (
+          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
+            {cryptoQuotes.map((quote) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
-            {/* Eigener Maßstab, gleiche Kachelgröße: Zehn Prozent Abstand zum
-                Halbjahrestrend sind hier ein ruhiger Monat. */}
-            {stimmungKrypto && (
-              <li>
-                <Reveal delay={cryptoQuotes.length * 0.04} className="h-full">
-                  <Stimmungskachel
-                    stimmung={stimmungKrypto}
-                    titel="Angst und Gier am Kryptomarkt"
-                    bereich="krypto"
-                  />
-                </Reveal>
-              </li>
-            )}
           </ul>
+          {stimmungKrypto && (
+            <div className="mt-8 max-w-md">
+              <Stimmungskachel
+                stimmung={stimmungKrypto}
+                titel="Angst und Gier am Kryptomarkt"
+                bereich="krypto"
+              />
+            </div>
+          )}
         </section>
 
         {/* Zuletzt, weil es der einzige Abschnitt ohne Kacheln ist: über
@@ -442,7 +371,7 @@ export default async function MarketsOverviewPage() {
             wegdrücken. Die Magnificent Seven stehen weiter oben, wo sie
             ihrem Gewicht nach hingehören. */}
         <section aria-labelledby="aktien" className="mt-16">
-          <h2 id="aktien" className="text-fg text-2xl font-bold">
+          <h2 id="aktien" className="text-fg text-xl font-bold">
             Weitere Aktien
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

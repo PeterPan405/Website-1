@@ -11,26 +11,26 @@ const variantConfig: Record<
 > = {
   info: {
     icon: 'info',
-    wrapper: 'border-brand/25 bg-brand-soft',
-    iconColor: 'text-brand',
+    wrapper: 'bg-surface-muted',
+    iconColor: 'text-fg',
     defaultTitle: 'Gut zu wissen',
   },
   tip: {
     icon: 'lightbulb',
-    wrapper: 'border-success/25 bg-success-soft',
-    iconColor: 'text-success',
+    wrapper: 'bg-surface-muted',
+    iconColor: 'text-fg',
     defaultTitle: 'Tipp',
   },
   warning: {
     icon: 'warning',
-    wrapper: 'border-warning/30 bg-warning-soft',
+    wrapper: 'bg-surface-muted',
     iconColor: 'text-warning',
     defaultTitle: 'Achtung',
   },
   draft: {
     icon: 'clock',
-    wrapper: 'border-border-strong border-dashed bg-surface-muted',
-    iconColor: 'text-fg-subtle',
+    wrapper: 'bg-surface-muted',
+    iconColor: 'text-fg-muted',
     defaultTitle: 'Noch in Arbeit',
   },
 }
@@ -50,7 +50,11 @@ export function Callout({
   const config = variantConfig[variant]
 
   return (
-    <aside className={cn('rounded-card border p-4 sm:p-5', config.wrapper, className)}>
+    /*
+      Karte nur, wo etwas abgesetzt werden muss: das eine Grau, kein Rahmen,
+      keine getönte Fläche. Farbe trägt allein das Warnzeichen (GESTALTUNG.md § 5).
+    */
+    <aside className={cn('rounded-card p-5 sm:p-6', config.wrapper, className)}>
       <div className="flex gap-3">
         <Icon
           name={config.icon}

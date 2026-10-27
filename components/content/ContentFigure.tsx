@@ -30,10 +30,7 @@ export function ContentFigure({ id, caption }: { id: FigureId; caption?: string 
         Zusammenfassung steht bereits als Unterschrift darunter – sichtbar für
         alle. Zweimal dasselbe zu sagen ist keine Barrierefreiheit.
       */}
-      <div
-        aria-hidden="true"
-        className="rounded-card border-border bg-surface-muted border p-4 sm:p-6"
-      >
+      <div aria-hidden="true" className="rounded-card bg-surface-muted p-4 sm:p-6">
         <Zeichnung />
       </div>
       <figcaption className="text-fg-subtle mt-2.5 text-sm leading-relaxed">

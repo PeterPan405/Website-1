@@ -389,7 +389,7 @@ export function KaufenOderMieten() {
                   label: 'Kaufen: Immobilie minus Restschuld',
                   value: Math.max(0, ergebnis.vermoegenKauf),
                   display: formatCurrency(ergebnis.vermoegenKauf, 0),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: 'Mieten: Depot nach Steuern',

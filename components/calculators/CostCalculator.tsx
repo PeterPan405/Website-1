@@ -234,7 +234,7 @@ export function CostCalculator() {
                   label: `Endvermögen bei ${formatNumber(guenstig, 2)} % Kosten`,
                   value: ergebnis.guenstig.endwert,
                   display: formatCurrency(ergebnis.guenstig.endwert, 0),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: `Endvermögen bei ${formatNumber(teuer, 2)} % Kosten`,

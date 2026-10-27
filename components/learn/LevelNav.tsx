@@ -62,9 +62,7 @@ export function LevelNav({
                   >
                     {done ? <Icon name="check" className="size-4" /> : index + 1}
                   </span>
-                  {done && (
-                    <span className="fk-chip bg-success-soft text-success">Erledigt</span>
-                  )}
+                  {done && <span className="fk-chip text-success">Erledigt</span>}
                   {!done && entry.status === 'outline' && (
                     <span className="fk-chip bg-surface-muted text-fg-subtle">
                       Gliederung

@@ -90,7 +90,7 @@ export default function AnleihenSeite() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <h2 className="text-fg text-2xl font-bold">
+          <h2 className="text-fg text-xl font-bold">
             Der Kupon steht fest, der Kurs nicht
           </h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
@@ -123,7 +123,7 @@ export default function AnleihenSeite() {
 
         {beleg && leitzins && (
           <section aria-labelledby="beleg" className="mt-16 max-w-3xl">
-            <h2 id="beleg" className="text-fg text-2xl font-bold">
+            <h2 id="beleg" className="text-fg text-xl font-bold">
               Das ist nicht ausgedacht
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
@@ -191,7 +191,7 @@ export default function AnleihenSeite() {
         )}
 
         <section aria-labelledby="weiter" className="mt-16 max-w-3xl">
-          <h2 id="weiter" className="text-fg text-2xl font-bold">
+          <h2 id="weiter" className="text-fg text-xl font-bold">
             Weiterlesen
           </h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
@@ -220,7 +220,7 @@ export default function AnleihenSeite() {
               <li key={eintrag.href}>
                 <Link
                   href={eintrag.href}
-                  className="fk-card hover:border-markets block p-5 transition"
+                  className="fk-card-interactive block p-5 transition"
                 >
                   <span className="text-fg font-semibold">{eintrag.titel}</span>
                   <span className="text-fg-muted mt-1 block text-sm leading-relaxed">

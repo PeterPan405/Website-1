@@ -56,15 +56,16 @@ export function Stat({
     neutral: 'text-fg',
     positive: 'text-success',
     negative: 'text-danger',
-    brand: 'text-brand',
+    brand: 'text-fg',
   }[tone]
 
   return (
     <div className={cn('border-border border-t pt-3', className)}>
-      <dt className="text-fg-subtle text-[0.8125rem] font-medium">{label}</dt>
+      {/* Kopfzahl: Beschriftung 15 px/500 grau ÜBER der Zahl, Zahl 28 px/700. */}
+      <dt className="text-fg-muted text-base font-medium">{label}</dt>
       <dd
         className={cn(
-          'font-display mt-1.5 text-2xl font-semibold tabular-nums sm:text-3xl',
+          'mt-1 text-2xl leading-[1.15] font-bold tabular-nums sm:text-3xl',
           toneClass
         )}
       >

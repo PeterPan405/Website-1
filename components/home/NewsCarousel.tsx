@@ -85,7 +85,7 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
         }
       }}
       onKeyDown={onKeyDown}
-      className="fk-card group hover:border-border-strong hover:shadow-lift relative flex flex-col overflow-hidden p-6 transition duration-200 ease-out sm:p-7"
+      className="fk-card group relative flex flex-col overflow-hidden p-6 transition duration-200 ease-out sm:p-7"
     >
       {/*
         Die ganze Kachel führt zur Meldung, nicht nur die Überschrift.
@@ -153,14 +153,14 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
             aria-roledescription="Folie"
             aria-label={`Schlagzeile ${index + 1} von ${count}`}
           >
-            <p className="text-news text-[0.8125rem] font-semibold">{current.category}</p>
+            <p className="text-news text-sm font-semibold">{current.category}</p>
             {/*
               Die Überschrift bleibt der eigentliche Verweis – für Tastatur,
               Screenreader und Suchmaschinen. Mit der Maus trifft man ohnehin
               die Fläche darüber, deshalb liegt der Hover-Effekt auf der
               gesamten Kachel (`group-hover`) und nicht nur auf diesem Wort.
             */}
-            <h2 className="text-fg group-hover:text-brand mt-2 text-xl leading-snug font-bold transition-colors sm:text-2xl">
+            <h2 className="text-fg group-hover:text-brand mt-2 text-xl leading-snug font-bold transition-colors">
               <Link href={`/news/${current.slug}`} className="rounded">
                 {current.title}
               </Link>

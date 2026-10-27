@@ -90,7 +90,7 @@ export default async function ZahlenSeite() {
               <p className="text-fg text-4xl font-bold tabular-nums">
                 {formatNumber(zahl.wert)}
               </p>
-              <h2 className="text-fg mt-1 text-base font-semibold">
+              <h2 className="text-fg mt-1 text-base font-bold">
                 {zahl.ziel ? (
                   <Link
                     href={zahl.ziel}

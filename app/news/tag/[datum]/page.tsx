@@ -54,9 +54,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 }
 
 /** Eine einzelne Meldung. Top-Meldungen werden hervorgehoben. */
-function Item({ item, top }: { item: EditionItem; top?: boolean }) {
+function Item({ item }: { item: EditionItem; top?: boolean }) {
   return (
-    <article className={`fk-card p-5 sm:p-6 ${top ? 'border-news/30' : ''}`}>
+    <article className={'fk-card p-5 sm:p-6'}>
       <p className="fk-chip bg-news-soft text-news">{item.category}</p>
       <h3 className="mt-3 text-lg font-semibold sm:text-xl">{item.headline}</h3>
 
@@ -72,9 +72,7 @@ function Item({ item, top }: { item: EditionItem; top?: boolean }) {
       </div>
 
       <div className="bg-surface-muted mt-4 rounded-md p-4">
-        <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-          Was das für dich bedeutet
-        </p>
+        <p className="text-fg-subtle text-sm font-semibold">Was das für dich bedeutet</p>
         <p className="text-fg mt-1.5 text-sm leading-relaxed">{item.whyItMatters}</p>
       </div>
 
@@ -162,7 +160,7 @@ export default async function EditionPage(props: PageProps) {
 
       <div className="fk-container py-12 sm:py-16">
         <section aria-labelledby="top-themen">
-          <h2 id="top-themen" className="text-xl font-semibold sm:text-2xl">
+          <h2 id="top-themen" className="text-xl font-bold">
             {edition.top.length === 1
               ? 'Die wichtigste Meldung'
               : 'Die wichtigsten Meldungen'}
@@ -181,7 +179,7 @@ export default async function EditionPage(props: PageProps) {
         {/* An ruhigen Tagen bleibt es bei den Top-Meldungen – dann keine leere Rubrik. */}
         {edition.further.length > 0 && (
           <section aria-labelledby="weitere-meldungen" className="mt-14">
-            <h2 id="weitere-meldungen" className="text-xl font-semibold sm:text-2xl">
+            <h2 id="weitere-meldungen" className="text-xl font-bold">
               Außerdem wichtig
             </h2>
             <ul className="mt-5 space-y-5">

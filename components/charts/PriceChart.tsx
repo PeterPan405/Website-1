@@ -84,7 +84,7 @@ export function PriceChart({
         <div
           role="group"
           aria-label="Zeitraum des Kursverlaufs"
-          className="border-border bg-surface-muted flex flex-wrap gap-1 rounded-[3px] border p-1"
+          className="flex flex-wrap gap-1"
         >
           {marketRanges.map((option) => {
             const active = option === range
@@ -96,10 +96,11 @@ export function PriceChart({
                 aria-pressed={active}
                 title={marketRangeLabels[option]}
                 className={cn(
-                  'rounded-[2px] px-3 py-1.5 text-sm font-semibold transition',
+                  // Umschalter: Textreihe ohne Spur, gewählt auf einer grauen Pille.
+                  'min-h-9 rounded-full px-3.5 py-1.5 text-sm transition-colors',
                   active
-                    ? 'bg-surface text-fg shadow-card'
-                    : 'text-fg-muted hover:text-fg'
+                    ? 'bg-surface-muted text-fg font-semibold'
+                    : 'text-fg-muted hover:text-fg font-medium'
                 )}
               >
                 {option}

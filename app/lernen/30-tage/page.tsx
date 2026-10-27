@@ -67,7 +67,7 @@ export default async function DreissigTageSeite() {
                 aria-labelledby={`woche-${woche.nummer}`}
                 className={woche.nummer === 1 ? undefined : 'mt-12'}
               >
-                <h2 id={`woche-${woche.nummer}`} className="text-fg text-2xl font-bold">
+                <h2 id={`woche-${woche.nummer}`} className="text-fg text-xl font-bold">
                   Woche {woche.nummer}: {woche.titel}
                 </h2>
                 <ol className="mt-6 space-y-4">
@@ -129,7 +129,7 @@ export default async function DreissigTageSeite() {
 
           <aside className="lg:sticky lg:top-24 lg:h-fit">
             <div className="fk-card p-5">
-              <h2 className="text-fg text-sm font-semibold">Dein Stand</h2>
+              <h2 className="text-fg text-sm font-bold">Dein Stand</h2>
               <PfadFortschritt kennungen={kennungen} className="mt-3" />
               <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
                 Gezählt wird derselbe Fortschritt wie im Lernbereich – was du dort
@@ -138,7 +138,7 @@ export default async function DreissigTageSeite() {
               </p>
             </div>
             <div className="fk-card mt-4 p-5">
-              <h2 className="text-fg text-sm font-semibold">Lieber nach Frage?</h2>
+              <h2 className="text-fg text-sm font-bold">Lieber nach Frage?</h2>
               <p className="text-fg-subtle mt-2 text-xs leading-relaxed">
                 Wer mit einer konkreten Frage kommt, fährt mit einem Lernpfad besser –
                 kürzer und aufs Ziel geschnitten.

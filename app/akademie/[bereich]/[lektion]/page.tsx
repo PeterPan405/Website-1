@@ -252,7 +252,7 @@ export default async function LektionPage({ params }: Props) {
           >
             {voraussetzungen.length > 0 && (
               <section className="fk-card p-5">
-                <h2 className="text-fg text-sm font-semibold">Setzt voraus</h2>
+                <h2 className="text-fg text-sm font-bold">Setzt voraus</h2>
                 <ul className="mt-3 space-y-2">
                   {voraussetzungen.map((eintrag) => (
                     <li key={eintrag.slug}>
@@ -270,7 +270,7 @@ export default async function LektionPage({ params }: Props) {
 
             {lernthemen.length > 0 && (
               <section className="fk-card p-5">
-                <h2 className="text-fg text-sm font-semibold">Grundlagen dazu</h2>
+                <h2 className="text-fg text-sm font-bold">Grundlagen dazu</h2>
                 <p className="text-fg-subtle mt-1 text-xs leading-relaxed">
                   Aus dem Lernbereich – falls ein Begriff hier vorausgesetzt wird.
                 </p>
@@ -291,7 +291,7 @@ export default async function LektionPage({ params }: Props) {
 
             {rechner.length > 0 && (
               <section className="fk-card p-5">
-                <h2 className="text-fg text-sm font-semibold">Selbst nachrechnen</h2>
+                <h2 className="text-fg text-sm font-bold">Selbst nachrechnen</h2>
                 <ul className="mt-3 space-y-2">
                   {rechner.map((eintrag) => (
                     <li key={eintrag.slug}>
@@ -309,7 +309,7 @@ export default async function LektionPage({ params }: Props) {
             )}
 
             <section className="fk-card p-5">
-              <h2 className="text-fg text-sm font-semibold">Stichworte</h2>
+              <h2 className="text-fg text-sm font-bold">Stichworte</h2>
               <div className="mt-3">
                 <TagLinks tags={gefunden.stichworte} />
               </div>

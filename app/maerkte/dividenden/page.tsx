@@ -200,7 +200,7 @@ export default async function DividendenSeite() {
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <section aria-labelledby="verlaesslich">
-            <h2 id="verlaesslich" className="text-fg text-2xl font-bold">
+            <h2 id="verlaesslich" className="text-fg text-xl font-bold">
               Seit Jahren ohne Kürzung
             </h2>
             <p className="text-fg-muted mt-2 leading-relaxed">
@@ -217,7 +217,7 @@ export default async function DividendenSeite() {
           </section>
 
           <section aria-labelledby="rendite">
-            <h2 id="rendite" className="text-fg text-2xl font-bold">
+            <h2 id="rendite" className="text-fg text-xl font-bold">
               Nach Rendite
             </h2>
             <p className="text-fg-muted mt-2 leading-relaxed">
@@ -238,7 +238,7 @@ export default async function DividendenSeite() {
 
         {auffaellig.length > 0 && (
           <section aria-labelledby="auffaellig" className="mt-12">
-            <h2 id="auffaellig" className="text-fg text-2xl font-bold">
+            <h2 id="auffaellig" className="text-fg text-xl font-bold">
               Auffällig hohe Renditen
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -253,7 +253,7 @@ export default async function DividendenSeite() {
         )}
 
         <section aria-labelledby="abgrenzung" className="mt-12">
-          <h2 id="abgrenzung" className="text-fg text-2xl font-bold">
+          <h2 id="abgrenzung" className="text-fg text-xl font-bold">
             Was hier fehlt
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

@@ -99,10 +99,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
       const id = slugifyHeading(block.text)
       if (block.level === 2) {
         return (
-          <h2
-            id={id}
-            className="text-fg mt-10 scroll-mt-28 text-2xl font-bold first:mt-0 sm:text-3xl"
-          >
+          <h2 id={id} className="text-fg mt-10 scroll-mt-28 text-xl font-bold first:mt-0">
             {block.text}
           </h2>
         )
@@ -147,7 +144,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
                 <>
                   <span
                     aria-hidden="true"
-                    className="bg-brand mt-2 size-1.5 shrink-0 rounded-full"
+                    className="bg-fg mt-2 size-1.5 shrink-0 rounded-full"
                   />
                   <span>{renderInline(item, glossar)}</span>
                 </>
@@ -198,7 +195,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
                   <th
                     key={cell}
                     scope="col"
-                    className="text-fg-subtle px-4 py-2.5 text-left text-[0.8125rem] font-semibold"
+                    className="text-fg-subtle px-4 py-2.5 text-left text-sm font-semibold"
                   >
                     {cell}
                   </th>
@@ -229,7 +226,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
 
     case 'formula':
       return (
-        <div className="rounded-card border-border bg-surface-muted mt-6 border p-4 sm:p-5">
+        <div className="rounded-card bg-surface-muted mt-6 p-4 sm:p-5">
           {/*
             `whitespace-pre-wrap`, weil eine Formel mehrzeilig sein darf.
 
@@ -272,13 +269,8 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
       return (
         <dl className="mt-6 grid gap-3 sm:grid-cols-2">
           {block.items.map((item) => (
-            <div
-              key={item.label}
-              className="border-border bg-surface-muted rounded-md border px-4 py-3"
-            >
-              <dt className="text-fg-subtle text-[0.8125rem] font-medium">
-                {item.label}
-              </dt>
+            <div key={item.label} className="bg-surface-muted rounded-md px-4 py-3">
+              <dt className="text-fg-subtle text-sm font-medium">{item.label}</dt>
               <dd className="text-fg mt-1 text-sm font-semibold">
                 {renderInline(item.value, glossar)}
               </dd>
@@ -305,7 +297,7 @@ export function ContentBlocks({
   glossar?: Glossarlage
 }) {
   return (
-    <div className="text-base sm:text-[1.0625rem]">
+    <div className="text-base sm:text-lg">
       {blocks.map((block, index) => (
         <Block key={index} block={block} glossar={glossar} />
       ))}

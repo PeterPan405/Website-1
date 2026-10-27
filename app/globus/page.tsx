@@ -90,7 +90,7 @@ export default async function GlobusPage() {
 
         {/* ------------------------------------------------------ Einordnung */}
         <section aria-labelledby="lesen" className="mt-14 max-w-3xl">
-          <h2 id="lesen" className="text-fg text-2xl font-bold">
+          <h2 id="lesen" className="text-fg text-xl font-bold">
             Wie die Karte zu lesen ist
           </h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
@@ -122,7 +122,7 @@ export default async function GlobusPage() {
 
         {/* --------------------------------------------------------- Tabelle */}
         <section aria-labelledby="tabelle" className="mt-16">
-          <h2 id="tabelle" className="text-fg text-2xl font-bold">
+          <h2 id="tabelle" className="text-fg text-xl font-bold">
             Alle Länder als Tabelle
           </h2>
           <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">
@@ -145,7 +145,7 @@ export default async function GlobusPage() {
           deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
-          <h2 id="quellen" className="text-fg-subtle text-[0.8125rem] font-semibold">
+          <h2 id="quellen" className="text-fg-subtle text-sm font-bold">
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
@@ -199,7 +199,7 @@ export default async function GlobusPage() {
 
         {/* --------------------------------------------------------- Tabelle */}
         <section aria-labelledby="tabelle" className="mt-16">
-          <h2 id="tabelle" className="text-fg text-2xl font-bold">
+          <h2 id="tabelle" className="text-fg text-xl font-bold">
             Alle Länder als Tabelle
           </h2>
           <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">
@@ -222,7 +222,7 @@ export default async function GlobusPage() {
           deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
-          <h2 id="quellen" className="text-fg-subtle text-[0.8125rem] font-semibold">
+          <h2 id="quellen" className="text-fg-subtle text-sm font-bold">
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">

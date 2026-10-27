@@ -226,7 +226,7 @@ export function DebtComparison({
                         type="button"
                         onClick={() => toggleSort(column.key)}
                         className={cn(
-                          'inline-flex items-center gap-1 text-[0.8125rem] font-semibold transition',
+                          'inline-flex items-center gap-1 text-sm font-semibold transition',
                           active ? 'text-fg' : 'text-fg-subtle hover:text-fg'
                         )}
                       >
@@ -245,9 +245,7 @@ export function DebtComparison({
                   )
                 })}
                 <th scope="col" className="px-4 py-2.5 text-left">
-                  <span className="text-fg-subtle text-[0.8125rem] font-semibold">
-                    Region
-                  </span>
+                  <span className="text-fg-subtle text-sm font-semibold">Region</span>
                 </th>
               </tr>
             </thead>

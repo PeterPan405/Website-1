@@ -221,7 +221,7 @@ export function Kaufkraftrechner() {
           <select
             value={waehrungscode}
             onChange={(ereignis) => setWaehrungscode(ereignis.target.value)}
-            className="border-border bg-canvas text-fg focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:outline-none"
+            className="border-border bg-canvas text-fg focus-visible:ring-ring mt-1.5 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:outline-none"
           >
             {WAEHRUNGEN.map((w) => (
               <option key={w.code} value={w.code}>
