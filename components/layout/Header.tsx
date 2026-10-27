@@ -179,10 +179,10 @@ export function Header() {
           </button>
           <SprachUmschalter />
           <ThemeToggle />
-          <Link href="/lernen" className="fk-btn-secondary hidden xl:inline-flex">
-            Jetzt lernen
-            <Icon name="arrow-right" className="size-4" />
-          </Link>
+          {/*
+            Kein „Jetzt lernen"-Knopf mehr (27.10.2026, „sieht nach sehr viel
+            aus"): „Lernen" steht zwei Zentimeter daneben im Menü.
+          */}
           <button
             type="button"
             className="fk-btn-ghost size-10 rounded-full p-0 xl:hidden"

@@ -86,7 +86,12 @@ export function Footer() {
               >
                 {group.title}
               </h2>
-              <ul className="mt-4 space-y-2.5">
+              <ul
+                className={`mt-4 [&>li]:break-inside-avoid [&>li]:py-1 ${
+                  // Lange Gruppen zweispaltig, damit keine Kolonne über die Seite läuft.
+                  group.links.length > 6 ? 'columns-2 gap-x-8' : ''
+                }`}
+              >
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -129,105 +134,120 @@ export function Footer() {
             eingesetzten Geldes.
           </p>
           {/*
-            Dieser Hinweis stand hier als pauschales „alles ist Demo“. Das ist
-            überholt, seit die Wechselkurse von der EZB kommen – und eine falsche
-            Angabe über die eigenen Daten ist kein Schutz, sondern ein Mangel.
-
-            Die jetzige Fassung sagt, was tatsächlich gilt: Tagesschlusskurse
-            statt Echtzeit, mögliche Abweichungen gegenüber anderen Quellen, keine
-            Gewähr – und der Verweis darauf, dass jede einzelne Angabe an Ort und
-            Stelle ihre Herkunft nennt. Welche Kurse noch Beispielwerte sind,
-            steht dort, wo sie stehen, statt hier in einer Pauschale.
+            Die vier weiteren Hinweise zugeklappt (27.10.2026, „sieht nach sehr
+            viel aus"): Sie stehen weiter auf jeder Seite und im Quelltext, der
+            erste Absatz – keine Beratung – bleibt offen.
           */}
-          {/*
-            Dieser Absatz stand als eigene Kachel oben auf der Rechnerseite.
-            Auf Wunsch hierher verlegt: Die Aufklärung gehört gesammelt ans
-            Seitenende, nicht als Kasten zwischen die Inhalte – inhaltlich
-            ändert sich nichts, jeder Rechner behält zudem seinen eigenen
-            Methodik- und Grenzen-Abschnitt.
-          */}
-          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-            <strong className="text-fg font-semibold">
-              Modellrechnungen, keine Prognosen:
-            </strong>{' '}
-            Alle Rechner arbeiten mit Annahmen, die du selbst vorgibst – vor allem Rendite
-            und Inflationsrate. Das Ergebnis ist genau so verlässlich wie diese Annahmen;
-            Steuern und Produktkosten sind nicht vollständig berücksichtigt (Näheres im
-            Methodik-Abschnitt der jeweiligen Seite). Rechne bei langen Zeiträumen mehrere
-            Szenarien – die Spannweite der Ergebnisse ist die eigentliche Information,
-            nicht die einzelne Zahl.
-          </p>
-          {/*
-            Kennzeichnung nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
-            anwendbar seit dem 2. August 2026. Streng genommen greift die
-            Ausnahme für redaktionell geprüfte Inhalte mit benanntem
-            Verantwortlichen – der Hinweis steht trotzdem hier, weil er wahr
-            ist und die Ausnahme nicht erst vor einer Behörde begründet werden
-            soll. Ausführlich im Impressum unter „Einsatz künstlicher
-            Intelligenz“.
-          */}
-          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-            <strong className="text-fg font-semibold">
-              Einsatz künstlicher Intelligenz:
-            </strong>{' '}
+          <details className="group mt-3">
+            <summary className="text-fg-muted hover:text-fg flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium">
+              Weitere Hinweise: Modellrechnungen, KI, Daten, Steuern
+              <Icon
+                name="chevron-down"
+                className="size-4 transition-transform group-open:rotate-180"
+              />
+            </summary>
             {/*
-              Am 17. August 2026 korrigiert. Hier stand „und werden vor der
-              Veröffentlichung von einem Menschen inhaltlich geprüft" – das
-              trifft auf die Nachrichten nicht zu: `nachrichten.yml` baut und
-              überträgt ohne Halt, an dem jemand zustimmen müsste. Ein Hinweis,
-              der mehr zusagt als geschieht, ist schlimmer als keiner.
+              Dieser Hinweis stand hier als pauschales „alles ist Demo“. Das ist
+              überholt, seit die Wechselkurse von der EZB kommen – und eine falsche
+              Angabe über die eigenen Daten ist kein Schutz, sondern ein Mangel.
+  
+              Die jetzige Fassung sagt, was tatsächlich gilt: Tagesschlusskurse
+              statt Echtzeit, mögliche Abweichungen gegenüber anderen Quellen, keine
+              Gewähr – und der Verweis darauf, dass jede einzelne Angabe an Ort und
+              Stelle ihre Herkunft nennt. Welche Kurse noch Beispielwerte sind,
+              steht dort, wo sie stehen, statt hier in einer Pauschale.
             */}
-            Texte und Erklärgrafiken dieser Website entstehen automatisiert mit
-            Unterstützung von KI-Werkzeugen; die redaktionelle Verantwortung liegt beim
-            Betreiber (siehe{' '}
-            <Link href="/impressum" className="hover:text-brand underline">
-              Impressum
-            </Link>
-            ). Beim Besuch der Website läuft keine KI – es gibt keinen Chatbot, und die
-            Rechner arbeiten mit festen, offengelegten Formeln.
-          </p>
-          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-            <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Kurse
-            werden während der Börsenzeit alle dreißig Minuten abgerufen, der Verlauf
-            zeigt Tagesschlusskurse; der angezeigte Stand kann eine halbe Stunde alt sein.
-            Quellen sind Yahoo Finance und die Europäische Zentralbank. Es sind keine
-            Echtzeitdaten. Sie können von den Angaben anderer Anbieter abweichen und sind
-            nicht für Handelszwecke bestimmt. Nachrichten geben den Stand ihrer
-            Veröffentlichung wieder; die Verschuldungszahlen sind Näherungswerte und keine
-            amtliche Statistik. Für Aktualität, Richtigkeit und Vollständigkeit wird keine
-            Gewähr übernommen. Herkunft und Stand stehen jeweils direkt an der Angabe.
-          </p>
-          {/*
-            Steuern brauchen einen eigenen Absatz, nicht nur das Wort „Steuerberatung“
-            in der Aufzählung darüber.
-
-            Der Grund steht im Steuerberatungsgesetz: Geschäftsmäßige Hilfe in
-            Steuersachen ist den dort genannten Berufen vorbehalten (§ 2 StBerG). Diese
-            Website rechnet Abgeltungsteuer, Vorabpauschale und Sparerpauschbetrag aus
-            und schreibt über die Besteuerung von Aktien, ETFs und Renten – also genau
-            an der Grenze entlang. Was sie tut, ist Information an unbestimmt viele
-            Leser, keine Anwendung des Steuerrechts auf einen konkreten Einzelfall. Der
-            Absatz sagt das ausdrücklich, statt es dem Leser zu überlassen.
-
-            Die zwei Sätze zur Rückwirkung und zur verbindlichen Auskunft stehen nicht
-            aus Vorsicht da, sondern weil beides stimmt und für den Leser wichtiger ist
-            als der Haftungssatz am Ende: Steuerrecht ändert sich, und wer Sicherheit
-            braucht, bekommt sie beim Finanzamt (§ 89 Abs. 2 AO) – nicht hier.
-          */}
-          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-            <strong className="text-fg font-semibold">Hinweis zu Steuerfragen:</strong>{' '}
-            Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
-            sind allgemeine und unverbindliche Information. Sie stellen keine
-            geschäftsmäßige Hilfeleistung in Steuersachen im Sinne des
-            Steuerberatungsgesetzes dar und ersetzen nicht die Beratung durch eine
-            Steuerberaterin, einen Steuerberater oder eine andere zur Hilfeleistung in
-            Steuersachen befugte Person. Wie ein Sachverhalt tatsächlich besteuert wird,
-            hängt von den persönlichen Verhältnissen ab und kann sich durch Gesetzgebung
-            und Rechtsprechung ändern, unter Umständen auch rückwirkend. Verbindliche
-            Auskunft erteilen allein das zuständige Finanzamt und die Angehörigen der
-            steuerberatenden Berufe. Für Entscheidungen, die auf steuerliche Angaben
-            dieser Website gestützt werden, wird keine Haftung übernommen.
-          </p>
+            {/*
+              Dieser Absatz stand als eigene Kachel oben auf der Rechnerseite.
+              Auf Wunsch hierher verlegt: Die Aufklärung gehört gesammelt ans
+              Seitenende, nicht als Kasten zwischen die Inhalte – inhaltlich
+              ändert sich nichts, jeder Rechner behält zudem seinen eigenen
+              Methodik- und Grenzen-Abschnitt.
+            */}
+            <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+              <strong className="text-fg font-semibold">
+                Modellrechnungen, keine Prognosen:
+              </strong>{' '}
+              Alle Rechner arbeiten mit Annahmen, die du selbst vorgibst – vor allem
+              Rendite und Inflationsrate. Das Ergebnis ist genau so verlässlich wie diese
+              Annahmen; Steuern und Produktkosten sind nicht vollständig berücksichtigt
+              (Näheres im Methodik-Abschnitt der jeweiligen Seite). Rechne bei langen
+              Zeiträumen mehrere Szenarien – die Spannweite der Ergebnisse ist die
+              eigentliche Information, nicht die einzelne Zahl.
+            </p>
+            {/*
+              Kennzeichnung nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
+              anwendbar seit dem 2. August 2026. Streng genommen greift die
+              Ausnahme für redaktionell geprüfte Inhalte mit benanntem
+              Verantwortlichen – der Hinweis steht trotzdem hier, weil er wahr
+              ist und die Ausnahme nicht erst vor einer Behörde begründet werden
+              soll. Ausführlich im Impressum unter „Einsatz künstlicher
+              Intelligenz“.
+            */}
+            <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+              <strong className="text-fg font-semibold">
+                Einsatz künstlicher Intelligenz:
+              </strong>{' '}
+              {/*
+                Am 17. August 2026 korrigiert. Hier stand „und werden vor der
+                Veröffentlichung von einem Menschen inhaltlich geprüft" – das
+                trifft auf die Nachrichten nicht zu: `nachrichten.yml` baut und
+                überträgt ohne Halt, an dem jemand zustimmen müsste. Ein Hinweis,
+                der mehr zusagt als geschieht, ist schlimmer als keiner.
+              */}
+              Texte und Erklärgrafiken dieser Website entstehen automatisiert mit
+              Unterstützung von KI-Werkzeugen; die redaktionelle Verantwortung liegt beim
+              Betreiber (siehe{' '}
+              <Link href="/impressum" className="hover:text-brand underline">
+                Impressum
+              </Link>
+              ). Beim Besuch der Website läuft keine KI – es gibt keinen Chatbot, und die
+              Rechner arbeiten mit festen, offengelegten Formeln.
+            </p>
+            <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+              <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong>{' '}
+              Kurse werden während der Börsenzeit alle dreißig Minuten abgerufen, der
+              Verlauf zeigt Tagesschlusskurse; der angezeigte Stand kann eine halbe Stunde
+              alt sein. Quellen sind Yahoo Finance und die Europäische Zentralbank. Es
+              sind keine Echtzeitdaten. Sie können von den Angaben anderer Anbieter
+              abweichen und sind nicht für Handelszwecke bestimmt. Nachrichten geben den
+              Stand ihrer Veröffentlichung wieder; die Verschuldungszahlen sind
+              Näherungswerte und keine amtliche Statistik. Für Aktualität, Richtigkeit und
+              Vollständigkeit wird keine Gewähr übernommen. Herkunft und Stand stehen
+              jeweils direkt an der Angabe.
+            </p>
+            {/*
+              Steuern brauchen einen eigenen Absatz, nicht nur das Wort „Steuerberatung“
+              in der Aufzählung darüber.
+  
+              Der Grund steht im Steuerberatungsgesetz: Geschäftsmäßige Hilfe in
+              Steuersachen ist den dort genannten Berufen vorbehalten (§ 2 StBerG). Diese
+              Website rechnet Abgeltungsteuer, Vorabpauschale und Sparerpauschbetrag aus
+              und schreibt über die Besteuerung von Aktien, ETFs und Renten – also genau
+              an der Grenze entlang. Was sie tut, ist Information an unbestimmt viele
+              Leser, keine Anwendung des Steuerrechts auf einen konkreten Einzelfall. Der
+              Absatz sagt das ausdrücklich, statt es dem Leser zu überlassen.
+  
+              Die zwei Sätze zur Rückwirkung und zur verbindlichen Auskunft stehen nicht
+              aus Vorsicht da, sondern weil beides stimmt und für den Leser wichtiger ist
+              als der Haftungssatz am Ende: Steuerrecht ändert sich, und wer Sicherheit
+              braucht, bekommt sie beim Finanzamt (§ 89 Abs. 2 AO) – nicht hier.
+            */}
+            <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+              <strong className="text-fg font-semibold">Hinweis zu Steuerfragen:</strong>{' '}
+              Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
+              sind allgemeine und unverbindliche Information. Sie stellen keine
+              geschäftsmäßige Hilfeleistung in Steuersachen im Sinne des
+              Steuerberatungsgesetzes dar und ersetzen nicht die Beratung durch eine
+              Steuerberaterin, einen Steuerberater oder eine andere zur Hilfeleistung in
+              Steuersachen befugte Person. Wie ein Sachverhalt tatsächlich besteuert wird,
+              hängt von den persönlichen Verhältnissen ab und kann sich durch Gesetzgebung
+              und Rechtsprechung ändern, unter Umständen auch rückwirkend. Verbindliche
+              Auskunft erteilen allein das zuständige Finanzamt und die Angehörigen der
+              steuerberatenden Berufe. Für Entscheidungen, die auf steuerliche Angaben
+              dieser Website gestützt werden, wird keine Haftung übernommen.
+            </p>
+          </details>
         </div>
 
         <div className="border-border text-fg-subtle mt-8 flex flex-col gap-3 border-t pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
