@@ -121,7 +121,7 @@ export function LevelNav({
                 href={`/lernen/${topicSlug}/${entry.id}`}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex items-center gap-3 rounded-xl px-3 py-2.5 transition',
+                  'flex items-center gap-3 rounded-md px-3 py-2.5 transition',
                   active
                     ? 'bg-learn-soft text-learn font-semibold'
                     : 'text-fg-muted hover:bg-surface-muted hover:text-fg'

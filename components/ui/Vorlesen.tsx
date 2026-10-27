@@ -272,7 +272,7 @@ export function Vorlesen({
   return (
     <div
       className={cn(
-        'border-border bg-surface-muted flex flex-wrap items-center gap-2 rounded-xl border px-3 py-2',
+        'border-border bg-surface-muted flex flex-wrap items-center gap-2 rounded-md border px-3 py-2',
         !bereit && 'hidden'
       )}
     >

@@ -162,7 +162,7 @@ export function Jahresspannentafel({
                   onClick={() => artUmschalten(art)}
                   aria-pressed={aktiv}
                   className={cn(
-                    'rounded-full border px-3 py-1 text-xs transition',
+                    'rounded-[3px] border px-3 py-1 text-xs transition',
                     aktiv
                       ? 'border-accent bg-accent/10 text-fg'
                       : 'border-border text-fg-muted hover:text-fg'

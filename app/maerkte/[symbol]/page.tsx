@@ -783,7 +783,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                     <li key={entry.symbol}>
                       <Link
                         href={`/maerkte/${entry.symbol}`}
-                        className="hover:bg-surface-muted flex items-center justify-between gap-3 rounded-xl p-2.5 transition"
+                        className="hover:bg-surface-muted flex items-center justify-between gap-3 rounded-md p-2.5 transition"
                       >
                         <span className="min-w-0">
                           <span className="text-fg block text-sm font-semibold">

@@ -162,17 +162,17 @@ export function Karteikarten({ begriffe }: { begriffe: Karteibegriff[] }) {
     <div className="fk-card mx-auto max-w-xl p-6 sm:p-8">
       <h2 className="text-fg text-xl font-bold">Dein Karteikasten</h2>
       <dl className="mt-4 grid grid-cols-3 gap-3 text-center">
-        <div className="bg-surface-muted rounded-xl p-3">
+        <div className="bg-surface-muted rounded-md p-3">
           <dt className="text-fg-subtle text-xs">Begonnen</dt>
           <dd className="text-fg mt-1 text-lg font-bold">
             {lage.begonnen} / {begriffe.length}
           </dd>
         </div>
-        <div className="bg-surface-muted rounded-xl p-3">
+        <div className="bg-surface-muted rounded-md p-3">
           <dt className="text-fg-subtle text-xs">Heute fällig</dt>
           <dd className="text-fg mt-1 text-lg font-bold">{lage.faellig}</dd>
         </div>
-        <div className="bg-surface-muted rounded-xl p-3">
+        <div className="bg-surface-muted rounded-md p-3">
           <dt className="text-fg-subtle text-xs">Gefestigt</dt>
           <dd className="text-fg mt-1 text-lg font-bold">{lage.gefestigt}</dd>
         </div>

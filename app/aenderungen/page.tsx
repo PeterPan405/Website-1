@@ -105,7 +105,7 @@ export default function AenderungenSeite() {
                   return (
                     <li key={eintrag.titel}>
                       <span
-                        className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-semibold ${art.klasse}`}
+                        className={`inline-block rounded-[3px] border px-2.5 py-0.5 text-xs font-semibold ${art.klasse}`}
                       >
                         {art.wort}
                       </span>

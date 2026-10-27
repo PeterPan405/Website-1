@@ -318,7 +318,7 @@ export function Wiederholung() {
               <label
                 key={index}
                 className={cn(
-                  'flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 transition',
+                  'flex cursor-pointer items-start gap-3 rounded-md border p-3.5 transition',
                   antwort.bestaetigt === null &&
                     'hover:border-learn/50 hover:bg-surface-muted',
                   antwort.bestaetigt === null && gewaehlt
@@ -369,7 +369,7 @@ export function Wiederholung() {
           role="status"
           aria-live="polite"
           className={cn(
-            'mt-5 rounded-xl border p-4',
+            'mt-5 rounded-md border p-4',
             warRichtig
               ? 'border-success/40 bg-success-soft'
               : 'border-warning/40 bg-warning-soft'

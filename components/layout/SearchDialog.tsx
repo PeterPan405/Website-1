@@ -288,7 +288,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                   onClick={() => setFilter({})}
                   aria-pressed={!filterGesetzt}
                   className={cn(
-                    'rounded-full px-2.5 py-1 text-xs font-medium transition',
+                    'rounded-[3px] px-2.5 py-1 text-xs font-medium transition',
                     filterGesetzt
                       ? 'text-fg-muted hover:bg-surface-muted'
                       : 'bg-brand text-on-fill'
@@ -310,7 +310,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     }}
                     aria-pressed={filter.art === art.wert}
                     className={cn(
-                      'rounded-full px-2.5 py-1 text-xs font-medium transition',
+                      'rounded-[3px] px-2.5 py-1 text-xs font-medium transition',
                       filter.art === art.wert
                         ? 'bg-brand text-on-fill'
                         : 'text-fg-muted hover:bg-surface-muted'
@@ -338,7 +338,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                       }}
                       aria-pressed={filter.stufe === stufe.wert}
                       className={cn(
-                        'rounded-full border px-2.5 py-1 text-xs font-medium transition',
+                        'rounded-[3px] border px-2.5 py-1 text-xs font-medium transition',
                         filter.stufe === stufe.wert
                           ? 'border-learn bg-learn text-on-fill'
                           : 'border-border text-fg-muted hover:bg-surface-muted'
@@ -368,7 +368,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     aria-pressed={filter.hoechstensTageAlt !== undefined}
                     title={`${datierte} der ${alleTreffer.length} Treffer haben ein Datum. Die übrigen sind nicht alt – sie haben keines.`}
                     className={cn(
-                      'rounded-full border px-2.5 py-1 text-xs font-medium transition',
+                      'rounded-[3px] border px-2.5 py-1 text-xs font-medium transition',
                       filter.hoechstensTageAlt !== undefined
                         ? 'border-news bg-news text-on-fill'
                         : 'border-border text-fg-muted hover:bg-surface-muted'
@@ -461,7 +461,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                       onMouseEnter={() => setAktiv(i)}
                       title={entry.href}
                       className={cn(
-                        'flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition',
+                        'flex w-full items-start gap-3 rounded-md px-3 py-2.5 text-left transition',
                         i === aktiv ? 'bg-surface-muted' : 'hover:bg-surface-muted'
                       )}
                     >

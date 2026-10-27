@@ -47,7 +47,7 @@ export function ChartTooltip({
     typeof label === 'string' ? (formatLabel?.(label) ?? label) : String(label ?? '')
 
   return (
-    <div className="border-border bg-surface shadow-lift rounded-xl border px-3 py-2">
+    <div className="border-border bg-surface shadow-lift rounded-md border px-3 py-2">
       {heading && <p className="text-fg-subtle text-xs font-medium">{heading}</p>}
       <ul className="mt-1 space-y-0.5">
         {payload.map((entry, index) => {

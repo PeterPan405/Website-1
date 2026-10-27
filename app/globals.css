@@ -31,9 +31,15 @@
     localStorage der Besucher, eine Umbenennung würfe gespeicherte
     Entscheidungen weg.
   */
-  --c-canvas: #f2ebdd;
-  --c-surface: #f8f2e6;
-  --c-surface-muted: #ece5d6;
+  /*
+    Seit dem 27.10.2026 Weiß statt Papierton. Der Betreiber: Die Website sehe
+    „überall nach Vibe-Coding“ aus, und aus drei Richtungen wählte er
+    „Finanzhaus“ – weißer Grund, dünne graue Linien, eckige Formen, IBM Plex.
+    Der warme Beigeton war das Erkennungszeichen der vorigen Fassung.
+  */
+  --c-canvas: #ffffff;
+  --c-surface: #ffffff;
+  --c-surface-muted: #f3f4f6;
 
   /*
     Das umgekehrte Band – ein eigenes Paar, kein geliehenes.
@@ -53,9 +59,9 @@
     Website statt eines Blaustichs – dieselbe Helligkeit wie zuvor, nur warm.
   */
   --c-invert: #0f172a;
-  --c-on-invert: #f2ebdd;
-  --c-border: #e1d9c8;
-  --c-border-strong: #c5bba6;
+  --c-on-invert: #ffffff;
+  --c-border: #dde1e7;
+  --c-border-strong: #b6bdc8;
 
   /* Text */
   --c-fg: #0f172a;
@@ -431,7 +437,7 @@
 
   --color-ring: var(--c-ring);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   /*
     Die Stimme der Seite: eine Serifenschrift für alles Große, gesetzt aus
     „Fraunces“ – warm, eigenständig, mit optischer Größenanpassung. Der
@@ -439,13 +445,20 @@
     Entschablonierung: Sans-Überschrift auf Sans-Fließtext sieht aus wie
     jede zweite generierte Seite; Serife auf Sans liest sich wie Redaktion.
   */
-  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  /*
+    Seit dem 27.10.2026 IBM Plex Serif zu IBM Plex Sans (Richtung „Finanzhaus“,
+    vom Betreiber gewählt). Fraunces zu Inter war die Mischung, die generierte
+    Seiten fast immer tragen – „die Schrift … sieht auch nach Vibe-Coding aus“.
+    Plex ist eine Hausschrift (IBM), sachlich, mit echten Tabellenziffern.
+  */
+  --font-display: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
 
   /*
     18 Pixel, das Kartenmaß von iOS/macOS. Zusammen mit dem Wegfall der
     Kartenrahmen die halbe Miete des ruhigeren Erscheinungsbilds.
   */
-  --radius-card: 1.125rem;
+  /* Eckig statt iOS-rund (27.10.2026, „Finanzhaus“). */
+  --radius-card: 0.1875rem;
 
   --shadow-card: var(--fk-shadow-card);
   --shadow-lift: var(--fk-shadow-lift);
@@ -664,9 +677,9 @@
   @apply [&:not(:first-child)]:border-border [&:not(:first-child)]:border-t [&:not(:first-child)]:pt-7;
 }
 
-/* Pillenform wie die Systemknöpfe von iOS/macOS. */
+/* Eckig seit dem 27.10.2026 – die Pille war das Baukasten-Zeichen. */
 @utility fk-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5;
+  @apply inline-flex items-center justify-center gap-2 rounded-[3px] px-5 py-2.5;
   @apply text-sm font-semibold whitespace-nowrap transition duration-150 ease-out;
   @apply active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
 }
@@ -685,7 +698,7 @@
 }
 
 @utility fk-input {
-  @apply border-border bg-surface w-full rounded-lg border px-3 py-2.5 text-sm;
+  @apply border-border bg-surface w-full rounded-[3px] border px-3 py-2.5 text-sm;
   @apply text-fg placeholder:text-fg-subtle transition;
   /*
     `focus:outline-none` stand hier allein – und schaltete damit die globale
@@ -756,7 +769,7 @@
 */
 @utility fk-chip {
   @apply inline-flex items-center gap-1.5 rounded-[0.3rem] px-2 py-0.5;
-  @apply font-mono text-[0.7rem] font-semibold tracking-wider uppercase;
+  @apply text-[0.75rem] font-semibold tabular-nums;
 }
 
 /* ---------------------------------------------------------------- Drucken */

@@ -73,7 +73,7 @@ export function LektionAbschluss({
             transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
             role="status"
             aria-live="polite"
-            className="bg-success mt-4 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white"
+            className="bg-success mt-4 flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold text-white"
           >
             <Icon name="sparkles" className="size-4" />
             {naechste

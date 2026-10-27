@@ -119,7 +119,7 @@ export async function CalculatorPage({
                 <li key={calculator.slug}>
                   <Link
                     href={`/rechner/${calculator.slug}`}
-                    className="group hover:bg-surface-muted flex items-start gap-3 rounded-xl p-2.5 transition"
+                    className="group hover:bg-surface-muted flex items-start gap-3 rounded-md p-2.5 transition"
                   >
                     <span className="bg-tools-soft text-tools mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg">
                       <Icon name="calculator" className="size-4" />

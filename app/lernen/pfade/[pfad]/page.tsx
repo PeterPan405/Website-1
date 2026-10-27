@@ -123,7 +123,7 @@ export default async function LernpfadSeite({
                             <>
                               <span>{schritt.themaTitel}</span>
                               <span aria-hidden="true">·</span>
-                              <span className="bg-learn-soft text-learn rounded-full px-2 py-0.5">
+                              <span className="bg-learn-soft text-learn rounded-[3px] px-2 py-0.5">
                                 {schritt.stufeLabel}
                               </span>
                               <span aria-hidden="true">·</span>
@@ -138,7 +138,7 @@ export default async function LernpfadSeite({
                               )}
                             </>
                           ) : (
-                            <span className="bg-tools-soft text-tools rounded-full px-2 py-0.5">
+                            <span className="bg-tools-soft text-tools rounded-[3px] px-2 py-0.5">
                               Rechner
                             </span>
                           )}

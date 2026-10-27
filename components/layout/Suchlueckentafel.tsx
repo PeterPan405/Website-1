@@ -45,7 +45,7 @@ export function Suchlueckentafel({ kontaktMail }: { kontaktMail: string }) {
 
   if (luecken.length === 0) {
     return (
-      <div className="border-border bg-surface-subtle rounded-xl border p-6">
+      <div className="border-border bg-surface-subtle rounded-md border p-6">
         <p className="text-fg font-medium">Hier steht noch nichts.</p>
         <p className="text-fg-muted mt-2 leading-relaxed">
           Aufgenommen wird eine Suche erst, wenn sie nichts gefunden hat und die Eingabe
@@ -70,7 +70,7 @@ export function Suchlueckentafel({ kontaktMail }: { kontaktMail: string }) {
         Suche sind Rauschen, drei mit je zwanzig sind eine Lücke.
       </p>
 
-      <ul className="border-border divide-border mt-6 divide-y rounded-xl border">
+      <ul className="border-border divide-border mt-6 divide-y rounded-md border">
         {luecken.map((eintrag) => (
           <li key={eintrag.anfrage} className="flex items-center gap-4 px-4 py-3">
             <span className="text-fg w-12 shrink-0 text-right font-semibold tabular-nums">
@@ -117,7 +117,7 @@ export function Suchlueckentafel({ kontaktMail }: { kontaktMail: string }) {
         etwas verschickt, soll vorher genau das sehen, was er verschickt, und
         nicht eine Zusammenfassung davon.
       */}
-      <details className="border-border mt-6 rounded-xl border">
+      <details className="border-border mt-6 rounded-md border">
         <summary className="text-fg cursor-pointer px-4 py-3 text-sm font-medium">
           Was genau kopiert wird
         </summary>

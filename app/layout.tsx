@@ -1,14 +1,19 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
-
 /*
-  Die Display-Schrift kommt als Paket über npm und nicht über next/font:
-  Diese Umgebung erreicht nur GitHub und npm, und next/font/google lädt beim
-  Bauen von Google – das wäre hier ein 403. Die opsz-Fassung, weil Fraunces
-  damit bei großen Graden die Zeichnung wechselt (optical sizing) – genau der
-  Unterschied zwischen einer Textserifen und einer Schaugröße.
+  Die Schriften kommen als Pakete über npm und nicht über next/font: Diese
+  Umgebung erreicht nur GitHub und npm, und next/font/google lädt beim Bauen
+  von Google. Seit dem 27.10.2026 IBM Plex (Richtung „Finanzhaus“) statt
+  Fraunces und Inter – siehe `--font-display` in globals.css.
 */
-import '@fontsource-variable/fraunces/opsz.css'
+import '@fontsource/ibm-plex-sans/400.css'
+import '@fontsource/ibm-plex-sans/400-italic.css'
+import '@fontsource/ibm-plex-sans/500.css'
+import '@fontsource/ibm-plex-sans/600.css'
+import '@fontsource/ibm-plex-sans/700.css'
+import '@fontsource/ibm-plex-serif/400.css'
+import '@fontsource/ibm-plex-serif/500.css'
+import '@fontsource/ibm-plex-serif/600.css'
+import '@fontsource/ibm-plex-serif/700.css'
 
 import './globals.css'
 
@@ -19,12 +24,6 @@ import { LEISTENFARBE, startSkript } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
 import { siteConfig, siteUrl } from '@/lib/site'
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   // Basis für alle relativen URLs in Metadaten (canonical, OG-Bilder, ...).
@@ -141,7 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       data-theme="weiss"
       // Das Inline-Script verändert data-theme vor der Hydration.
       suppressHydrationWarning
-      className={`${inter.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <head>
         {/*
@@ -190,7 +189,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}
         <a
           href="#inhalt"
-          className="focus:bg-brand focus:text-brand-contrast sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
+          className="focus:bg-brand focus:text-brand-contrast sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-[3px] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
         >
           Direkt zum Inhalt springen
         </a>

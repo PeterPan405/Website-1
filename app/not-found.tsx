@@ -61,7 +61,7 @@ export default function NotFound() {
               >
                 <span
                   className={cn(
-                    'flex size-10 items-center justify-center rounded-xl',
+                    'flex size-10 items-center justify-center rounded-md',
                     style.soft
                   )}
                 >

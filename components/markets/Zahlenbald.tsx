@@ -42,7 +42,7 @@ export function Zahlenbald({ befund }: { befund: Quartalsterminbefund | null }) 
         die Hälfte der Leser sieht es dort. Was erklärt werden muss, steht im
         sichtbaren Text oder im Abschnitt, auf den dieser Verweis springt.
       */
-      className="border-brand/40 bg-brand/10 text-brand hover:bg-brand/15 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition"
+      className="border-brand/40 bg-brand/10 text-brand hover:bg-brand/15 inline-flex items-center gap-1.5 rounded-[3px] border px-2.5 py-1 text-xs font-semibold transition"
     >
       <Icon name="calendar" className="size-3.5" aria-hidden="true" />
       <span>

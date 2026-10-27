@@ -253,7 +253,7 @@ export function Einstufungstest({
               <label
                 key={index}
                 className={cn(
-                  'flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 transition',
+                  'flex cursor-pointer items-start gap-3 rounded-md border p-3.5 transition',
                   'hover:border-learn/50 hover:bg-surface-muted',
                   gewaehlt === index ? 'border-learn bg-learn-soft' : 'border-border'
                 )}

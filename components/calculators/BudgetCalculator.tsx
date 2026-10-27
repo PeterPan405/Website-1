@@ -277,7 +277,7 @@ export function BudgetCalculator() {
           </p>
         </Callout>
 
-        <p className="border-border bg-surface-muted text-fg-muted flex items-start gap-2.5 rounded-xl border p-4 text-sm">
+        <p className="border-border bg-surface-muted text-fg-muted flex items-start gap-2.5 rounded-md border p-4 text-sm">
           <Icon name="shield" className="text-brand mt-0.5 size-4 shrink-0" />
           <span>
             Alle Eingaben werden ausschließlich in deinem Browser verarbeitet. Es findet

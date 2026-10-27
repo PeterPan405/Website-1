@@ -254,7 +254,7 @@ export function Quiz({
               <label
                 key={optionIndex}
                 className={cn(
-                  'flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 transition',
+                  'flex cursor-pointer items-start gap-3 rounded-md border p-3.5 transition',
                   checked === null && 'hover:border-learn/50 hover:bg-surface-muted',
                   checked === null && isSelected
                     ? 'border-learn bg-learn-soft'
@@ -307,7 +307,7 @@ export function Quiz({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
             className={cn(
-              'mt-5 rounded-xl border p-4',
+              'mt-5 rounded-md border p-4',
               wasCorrect
                 ? 'border-success/40 bg-success-soft'
                 : 'border-warning/40 bg-warning-soft'
