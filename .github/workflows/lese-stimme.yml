@@ -162,17 +162,7 @@ jobs:
       # `podcast-erzeugen.yml` hat diesen Schritt von Anfang an; hier fehlte er
       # schlicht.
       - name: ffmpeg einrichten
-        run: |
-          if command -v ffmpeg >/dev/null 2>&1; then
-            echo "ffmpeg liegt schon bereit."
-            ffmpeg -version | head -1
-            exit 0
-          fi
-
-          sudo apt-get update -qq \
-            || echo "::warning::apt-get update meldet Fehler – die Installation wird trotzdem versucht."
-          sudo apt-get install -y -qq ffmpeg
-          ffmpeg -version | head -1
+        uses: ./.github/actions/ffmpeg
 
       # ------------------------------------------------------------------
       # Prüft die Prüfung, bevor gesprochen wird.
