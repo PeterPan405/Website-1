@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-27T09:19:16.390Z",
+  "abgerufen": "2026-10-27T18:39:57.156Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -236,7 +236,7 @@
     {"title":"BOC Rate Statement","country":"CAD","date":"2026-10-28T09:45:00-04:00","impact":"High","forecast":"","previous":""},
     {"title":"Overnight Rate","country":"CAD","date":"2026-10-28T09:45:00-04:00","impact":"High","forecast":"2.50%","previous":"2.25%"},
     {"title":"BOC Press Conference","country":"CAD","date":"2026-10-28T10:30:00-04:00","impact":"High","forecast":"","previous":""},
-    {"title":"Crude Oil Inventories","country":"USD","date":"2026-10-28T10:30:00-04:00","impact":"Low","forecast":"-0.3M","previous":"-3.1M"},
+    {"title":"Crude Oil Inventories","country":"USD","date":"2026-10-28T10:30:00-04:00","impact":"Low","forecast":"-0.1M","previous":"-3.1M"},
     {"title":"Federal Funds Rate","country":"USD","date":"2026-10-28T14:00:00-04:00","impact":"High","forecast":"4.00%","previous":"4.00%"},
     {"title":"FOMC Statement","country":"USD","date":"2026-10-28T14:00:00-04:00","impact":"High","forecast":"","previous":""},
     {"title":"FOMC Press Conference","country":"USD","date":"2026-10-28T14:30:00-04:00","impact":"High","forecast":"","previous":""},
