@@ -1439,8 +1439,12 @@ function ranglistenGrafik(k: Rangkarte) {
           }),
         ]
       : []),
-    /* Die 100-%-Linie: links davon weniger Schulden als ein Jahr Wirtschaftsleistung. */
-    ...(mitBalken && groesster > 100
+    /*
+      Die 100-%-Linie: links davon weniger Schulden als ein Jahr Wirtschaftsleistung.
+      Nur bei Prozent – am 27.10.2026 stand sie in „Gewinn pro Sekunde" bei
+      100 Dollar, beschriftet mit „100 %".
+    */
+    ...(mitBalken && groesster > 100 && (k.einheit ?? ' %').trim() === '%'
       ? [
           h('div', {
             style: {

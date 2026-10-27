@@ -16,6 +16,56 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema: Für den 27.10.2026 hatte der Betreiber nichts gewählt – genommen
+      ist der erste offene Vorschlag vom 26.10. („So viel verdient Apple,
+      während du diesen Beitrag liest"; gewählt war dort der Big-Mac-Index).
+      Anlass: Alphabet und Microsoft berichten am Mittwoch (Ausgabe 26.10.).
+      Form: Balken (am 26.10. Burger). Farbe: akzentfarbe('2026-10-27').
+
+      Aus data/snapshots/fundamentaldaten.json (SEC, XBRL-Pflichtmeldungen,
+      abgerufen 24.10.2026): Nettogewinn des zuletzt gemeldeten
+      Geschäftsjahres, geteilt durch 31.536.000 Sekunden (365 Tage):
+        GOOGL 132,170 Mrd. $ → 4.191 $/s   NVDA 120,067 → 3.807
+        AAPL  112,010        → 3.552        MSFT 101,832 → 3.229
+        AMZN   77,670        → 2.463        BRK-B 66,968 → 2.124
+        META   60,458        → 1.917        JPM   57,000 → 1.807
+        TSLA    3,855        →   122
+      Die Geschäftsjahre enden nicht am selben Tag (Apple September,
+      Microsoft Juni, Nvidia Januar) – gesagt in der Erklärung.
+    */
+    art: 'rangliste',
+    skala: 'balken',
+    datum: '2026-10-27',
+    titel: [
+      { text: 'Gewinn pro Sekunde:' },
+      { text: 'Alphabet 4.191\u00a0$', gruen: true },
+    ],
+    erklaerung:
+      'Jahresgewinn geteilt durch die 31,5 Millionen Sekunden eines Jahres – aus dem zuletzt gemeldeten Geschäftsjahr jedes Konzerns. In fünf Sekunden sind das bei Alphabet knapp 21.000 Dollar.',
+    unterzeile: 'Nettogewinn je Sekunde, in US-Dollar:',
+    einheit: '\u00a0$',
+    stellen: 0,
+    zeilen: [
+      { name: 'Alphabet', wert: 4191, land: 'USA', hervor: true },
+      { name: 'Nvidia', wert: 3807, land: 'USA' },
+      { name: 'Apple', wert: 3552, land: 'USA' },
+      { name: 'Microsoft', wert: 3229, land: 'USA' },
+      { name: 'Amazon', wert: 2463, land: 'USA' },
+      { name: 'Berkshire', wert: 2124, land: 'USA' },
+      { name: 'Meta', wert: 1917, land: 'USA' },
+      { name: 'JPMorgan', wert: 1807, land: 'USA' },
+      { name: 'Tesla', wert: 122, land: 'USA' },
+    ],
+    fusszeile:
+      'Stand: letztes gemeldetes Geschäftsjahr | Quelle: US-Börsenaufsicht SEC | eigene Rechnung',
+    text:
+      'So viel Gewinn macht ein Konzern in einer Sekunde: Alphabet 4.191 Dollar, Nvidia 3.807, Apple 3.552, Microsoft 3.229. Tesla kommt auf 122 Dollar.\n\n' +
+      'Gerechnet aus dem Nettogewinn des zuletzt gemeldeten Geschäftsjahres, geteilt durch die Sekunden eines Jahres. Die Geschäftsjahre enden nicht am selben Tag – bei Apple im September, bei Microsoft im Juni, bei Nvidia im Januar. Alphabet und Microsoft legen am Mittwoch ihre Zahlen für das dritte Quartal vor.\n\n' +
+      'Quellen: US-Börsenaufsicht SEC (XBRL-Pflichtmeldungen, abgerufen am 24.10.2026); eigene Rechnung',
+    schlagworte: ['gewinn', 'bigtech', 'aktien', 'alphabet', 'börse'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 26.10.2026 aus fünf neuen Vorschlägen
       („werde mal ein bisschen kreativer, das sind immer die gleichen
       Muster"): Big-Mac-Index. Neue Form: Burger statt Häuschen oder Balken,
