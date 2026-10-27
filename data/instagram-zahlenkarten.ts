@@ -20,50 +20,55 @@ export const zahlenkarten: Zahlenkarte[] = [
       war der erste offene Vorschlag vom 26.10. („Gewinn pro Sekunde",
       zuerst mit US-Konzernen). Dann der Betreiber: „Nimm bitte die größten
       Unternehmen von ein paar Ländern, zum Beispiel Deutschland, USA,
-      China, und vergleiche diese miteinander … mit dem Gewinn pro Sekunde."
+      China … mit dem Gewinn pro Sekunde." Der erste Entwurf nahm je Land
+      den umsatzstärksten Konzern – in den USA also Amazon statt Alphabet,
+      und der Betreiber: „gar keinen Sinn, gerade irgendwas mit Alphabet
+      gezeigt, mit 4200 Dollar … und jetzt Amazon mit 2500". Jetzt je Land
+      der **gewinnstärkste** – freigegeben: „Wenn du diese Zahlen nimmst,
+      wie hier, dann passt der Beitrag auch für heute und ist freigegeben."
       Form: Balken (am 26.10. Burger). Farbe: akzentfarbe('2026-10-27').
 
-      „Größtes Unternehmen eines Landes" = höchster Umsatz in der Liste
-      der 50 umsatzstärksten Konzerne der Welt (Fortune Global 500 und
-      weitere Quellen), en.wikipedia.org/wiki/List_of_largest_companies_by_revenue,
-      gelesen am 27.10.2026 über quellen-holen.yml. Gewinn dort in Mrd.
-      US-Dollar, „most recent fiscal year, primarily 2024 or 2025";
-      geteilt durch 31.536.000 Sekunden (365 Tage):
-        Saudi Aramco  106   → 3.361 $/s   Amazon      79,9 → 2.534
-        Toyota         34,2 → 1.084        TotalEnergies 21,3 → 675
-        Shell          19,3 →   612        Volkswagen  17,9 →   568
-        Samsung        11,0 →   349        State Grid   9,2 →   292
-      Weggelassen: Schweiz und Singapur (Vitol, Trafigura – Rohstoffhändler,
-      kaum jemandem ein Begriff), Niederlande (Stellantis) und Taiwan
-      (Foxconn), damit die Liste bei acht Zeilen bleibt.
+      Quelle: die Liste der 50 umsatzstärksten Konzerne der Welt (Fortune
+      Global 500 und weitere), en.wikipedia.org/wiki/List_of_largest_companies_by_revenue,
+      gelesen am 27.10.2026 über quellen-holen.yml. Je Land der höchste
+      Gewinn **in dieser Liste**; Gewinn in Mrd. US-Dollar, „most recent
+      fiscal year, primarily 2024 or 2025", geteilt durch 31.536.000 s:
+        Alphabet     132   → 4.186 $/s   Saudi Aramco 106  → 3.361
+        ICBC          51,4 → 1.630        Toyota        34,2 → 1.084
+        TotalEnergies 21,3 →   675        Shell         19,3 →   612
+        Volkswagen    17,9 →   568        Samsung       11,0 →   349
+      Alphabet hier 4.186 statt 4.191 im SEC-Bestand: Die Liste rundet den
+      Gewinn auf 132 Mrd.
     */
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-27',
+    /* Freigegeben vom Betreiber am 27.10.2026 (Zitat oben) – hinaus ab 15 Uhr. */
+    freigabe: '2026-10-27',
     titel: [
       { text: 'Gewinn pro Sekunde:' },
-      { text: 'Aramco 3.361\u00a0$', gruen: true },
+      { text: 'Alphabet 4.186\u00a0$', gruen: true },
     ],
     erklaerung:
-      'Der umsatzstärkste Konzern jedes Landes – sein Jahresgewinn geteilt durch die 31,5 Millionen Sekunden eines Jahres. Volkswagen, Deutschlands größter Konzern, schafft 568 Dollar.',
+      'Der gewinnstärkste Konzern jedes Landes unter den 50 umsatzstärksten der Welt – sein Jahresgewinn geteilt durch die 31,5 Millionen Sekunden eines Jahres.',
     unterzeile: 'Nettogewinn je Sekunde, in US-Dollar:',
     einheit: '\u00a0$',
     stellen: 0,
     zeilen: [
+      { name: 'Alphabet', wert: 4186, land: 'USA' },
       { name: 'Saudi Aramco', wert: 3361, land: 'SAU' },
-      { name: 'Amazon', wert: 2534, land: 'USA' },
+      { name: 'ICBC', wert: 1630, land: 'CHN' },
       { name: 'Toyota', wert: 1084, land: 'JPN' },
       { name: 'TotalEnergies', wert: 675, land: 'FRA' },
       { name: 'Shell', wert: 612, land: 'GBR' },
       { name: 'Volkswagen', wert: 568, land: 'DEU', hervor: true },
       { name: 'Samsung', wert: 349, land: 'KOR' },
-      { name: 'State Grid', wert: 292, land: 'CHN' },
     ],
     fusszeile:
       'Stand: GJ 2024/25 | Quelle: Fortune Global 500 (Wikipedia) | eigene Rechnung',
     text:
-      'So viel Gewinn macht der größte Konzern eines Landes in einer Sekunde: Saudi Aramco 3.361 Dollar, Amazon 2.534, Toyota 1.084. Volkswagen kommt auf 568 Dollar, Chinas Stromnetzbetreiber State Grid auf 292.\n\n' +
-      'Der größte Konzern ist hier der mit dem höchsten Umsatz. Gerechnet aus dem Nettogewinn des zuletzt gemeldeten Geschäftsjahres – meist 2024 oder 2025 –, geteilt durch die Sekunden eines Jahres. Umsatz und Gewinn sind zwei Dinge: State Grid setzt mehr um als Toyota, verdient aber weniger als ein Drittel.\n\n' +
+      'So viel Gewinn macht der gewinnstärkste Konzern eines Landes in einer Sekunde: Alphabet 4.186 Dollar, Saudi Aramco 3.361, die chinesische Bank ICBC 1.630, Toyota 1.084. Volkswagen kommt auf 568 Dollar.\n\n' +
+      'Verglichen werden die 50 umsatzstärksten Konzerne der Welt; je Land steht der mit dem höchsten Gewinn. Gerechnet aus dem Nettogewinn des zuletzt gemeldeten Geschäftsjahres – meist 2024 oder 2025 –, geteilt durch die Sekunden eines Jahres.\n\n' +
       'Quellen: Wikipedia, „List of largest companies by revenue" (nach Fortune Global 500, abgerufen am 27.10.2026); eigene Rechnung',
     schlagworte: ['gewinn', 'konzerne', 'aktien', 'weltwirtschaft', 'börse'],
   },

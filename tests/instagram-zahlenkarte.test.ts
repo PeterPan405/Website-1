@@ -463,14 +463,14 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   const sek = zahlenkarten.find((k) => k.datum === '2026-10-27') as Rangkarte
   /* Gewinn in Mrd. US-Dollar laut Wikipedia „List of largest companies by revenue", 27.10.2026. */
   const gewinn: Record<string, number> = {
+    Alphabet: 132,
     'Saudi Aramco': 106,
-    Amazon: 79.9,
+    ICBC: 51.4,
     Toyota: 34.2,
     TotalEnergies: 21.3,
     Shell: 19.3,
     Volkswagen: 17.9,
     Samsung: 11.0,
-    'State Grid': 9.2,
   }
   for (const z of sek.zeilen) {
     const jeSekunde = Math.round((gewinn[z.name] * 1e9) / (365 * 24 * 3600))
@@ -498,7 +498,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     'Farbe nicht wie am Vortag',
     akzentfarbe('2026-10-27') !== akzentfarbe('2026-10-26')
   )
-  pruefe('ohne Freigabe', sek.freigabe === undefined)
+  pruefe('freigegeben für den 27.10.', sek.freigabe === '2026-10-27')
+  pruefe(
+    'je Land der gewinnstärkste: in den USA Alphabet',
+    sek.zeilen[0].name === 'Alphabet'
+  )
   const png = await zahlenkartePng(sek, readFileSync('public/logo.svg', 'utf8'))
   pruefe(
     'Gewinn pro Sekunde: das Bild ist ein PNG',
