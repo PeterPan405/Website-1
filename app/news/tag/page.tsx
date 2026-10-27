@@ -90,7 +90,7 @@ export default async function EditionLibraryPage() {
         */}
         {gebundene.length > 0 && (
           <section aria-labelledby="baende" className="mb-12">
-            <h2 id="baende" className="text-fg text-lg font-semibold">
+            <h2 id="baende" className="text-fg text-lg font-bold">
               Am Stück lesen
             </h2>
             <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
@@ -117,7 +117,7 @@ export default async function EditionLibraryPage() {
             >
               <h2
                 id={`monat-${month.key}`}
-                className="text-fg-subtle border-border border-b pb-2 text-[0.8125rem] font-semibold"
+                className="text-fg-subtle border-border border-b pb-2 text-sm font-bold"
               >
                 {month.label}
               </h2>

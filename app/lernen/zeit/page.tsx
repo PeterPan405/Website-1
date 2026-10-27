@@ -95,7 +95,7 @@ export default async function ZeitSeite() {
             <section key={fenster.id} id={fenster.id} aria-labelledby={`f-${fenster.id}`}>
               <h2
                 id={`f-${fenster.id}`}
-                className="text-fg border-border border-b pb-3 text-2xl font-bold"
+                className="text-fg border-border border-b pb-3 text-xl font-bold"
               >
                 {fenster.label}
               </h2>
@@ -119,7 +119,7 @@ export default async function ZeitSeite() {
                     <li key={vorschlag.id}>
                       <Link
                         href={vorschlag.href}
-                        className="border-border hover:border-brand hover:bg-surface block rounded-lg border p-4 transition"
+                        className="border-border hover:border-brand hover:bg-surface block rounded-md border p-4 transition"
                       >
                         <p className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                           <span className="text-fg font-semibold">{vorschlag.titel}</span>
@@ -130,7 +130,7 @@ export default async function ZeitSeite() {
                         <p className="text-fg-muted mt-1.5 text-sm leading-relaxed">
                           {vorschlag.hinweis}
                         </p>
-                        <p className="text-fg-subtle mt-2 text-[0.8125rem]">
+                        <p className="text-fg-subtle mt-2 text-sm">
                           {vorschlag.herkunft}
                         </p>
                       </Link>

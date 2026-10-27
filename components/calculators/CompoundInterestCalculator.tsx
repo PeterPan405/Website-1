@@ -335,7 +335,7 @@ export function CompoundInterestCalculator() {
                       <th
                         key={head}
                         scope="col"
-                        className="text-fg-subtle px-4 py-2.5 text-left text-[0.8125rem] font-semibold"
+                        className="text-fg-subtle px-4 py-2.5 text-left text-sm font-semibold"
                       >
                         {head}
                       </th>

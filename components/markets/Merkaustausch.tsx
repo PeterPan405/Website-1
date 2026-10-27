@@ -96,7 +96,7 @@ export function Merkaustausch({
 
   return (
     <section aria-labelledby="austausch" className="mt-12">
-      <h2 id="austausch" className="text-fg text-2xl font-bold">
+      <h2 id="austausch" className="text-fg text-xl font-bold">
         Mitnehmen und zusammenführen
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -115,7 +115,7 @@ export function Merkaustausch({
         <div>
           <label
             htmlFor="merkcode-ausgabe"
-            className="text-fg-subtle text-[0.8125rem] font-medium"
+            className="text-fg-subtle text-sm font-medium"
           >
             Dein Code
           </label>
@@ -124,7 +124,7 @@ export function Merkaustausch({
             readOnly
             value={code}
             rows={3}
-            className="border-border bg-surface-subtle text-fg mt-1.5 w-full rounded-lg border px-3 py-2.5 font-mono text-xs"
+            className="border-border bg-surface-subtle text-fg mt-1.5 w-full rounded-md border px-3 py-2.5 font-mono text-xs"
           />
           <button
             type="button"
@@ -140,7 +140,7 @@ export function Merkaustausch({
         <div>
           <label
             htmlFor="merkcode-eingabe"
-            className="text-fg-subtle text-[0.8125rem] font-medium"
+            className="text-fg-subtle text-sm font-medium"
           >
             Code einlesen
           </label>
@@ -150,7 +150,7 @@ export function Merkaustausch({
             onChange={(event) => setzeEingabe(event.target.value)}
             rows={3}
             placeholder="IMI1:…"
-            className="border-border bg-surface text-fg focus:border-markets focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2.5 font-mono text-xs focus-visible:ring-2 focus-visible:outline-none"
+            className="border-border bg-surface text-fg focus:border-markets focus-visible:ring-ring mt-1.5 w-full rounded-md border px-3 py-2.5 font-mono text-xs focus-visible:ring-2 focus-visible:outline-none"
           />
           <button
             type="button"

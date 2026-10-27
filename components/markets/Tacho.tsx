@@ -137,7 +137,7 @@ export function Tacho({
             x={MITTE_X - RADIUS}
             y={MITTE_Y + 32}
             textAnchor="middle"
-            className="fill-[var(--c-fg-subtle)] text-[12px]"
+            className="text-klein fill-[var(--c-fg-subtle)]"
           >
             0
           </text>
@@ -145,7 +145,7 @@ export function Tacho({
             x={MITTE_X + RADIUS}
             y={MITTE_Y + 32}
             textAnchor="middle"
-            className="fill-[var(--c-fg-subtle)] text-[12px]"
+            className="text-klein fill-[var(--c-fg-subtle)]"
           >
             100
           </text>

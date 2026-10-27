@@ -176,14 +176,14 @@ export default async function HomePage() {
               das volle Fettgewicht plump; die Eleganz kommt aus Größe und
               Laufweite, nicht aus Schwärze.
             */}
-            <h1 className="text-fg mt-5 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+            <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
               <span className="block">Finanzen verstehen,</span>
               {/*
                 Volle Farbe statt Farbverlauf: Verlaufs-Schrift ist das
                 Erkennungszeichen generierter Startseiten. Das Navy allein
                 setzt denselben Akzent, nur ruhiger.
               */}
-              <span className="text-brand block">Fehler vermeiden</span>
+              <span className="text-fg-muted block">Fehler vermeiden</span>
             </h1>
 
             <p className="text-fg-muted mt-6 max-w-xl text-lg leading-relaxed sm:text-xl">
@@ -223,7 +223,7 @@ export default async function HomePage() {
                   href={`/maerkte/${quote.symbol}`}
                   className="group flex items-baseline gap-2"
                 >
-                  <span className="text-fg-subtle group-hover:text-fg text-[0.7rem] font-semibold transition">
+                  <span className="text-fg-subtle group-hover:text-fg text-xs font-semibold transition">
                     {quote.ticker}
                   </span>
                   <span className="text-fg text-sm font-medium tabular-nums">
@@ -278,7 +278,7 @@ export default async function HomePage() {
             Zeitung – steht dieselbe Auskunft auf einem Drittel der Fläche;
             die Kurve gibt es auf der Seite jedes Kurses.
           */}
-          <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2">
+          <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2 [&>li]:min-w-0">
             {marketPreviews.map(({ quote }) => (
               <li key={quote.symbol}>
                 <QuoteRow quote={quote} />
@@ -300,7 +300,7 @@ export default async function HomePage() {
           */}
           {geschichte && (
             <div data-fliesst="" className="border-border mt-10 border-l-2 pl-5">
-              <p className="text-fg-subtle text-[0.8125rem] font-semibold">
+              <p className="text-fg-subtle text-sm font-semibold">
                 {geschichtsvorspann(geschichte)}
               </p>
               <p className="text-fg mt-2 leading-relaxed">
@@ -355,7 +355,7 @@ export default async function HomePage() {
           }
         />
 
-        <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2">
+        <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2 [&>li]:min-w-0">
           {calculatorTiles.map((tile) => (
             <li key={tile.href}>
               <Reveal>
@@ -457,9 +457,7 @@ export default async function HomePage() {
       {frage && (
         <section aria-labelledby="tagesfrage" className="fk-container py-6 sm:py-8">
           <div className="border-border border-t pt-8">
-            <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-              Frage des Tages
-            </p>
+            <p className="text-fg-subtle text-sm font-semibold">Frage des Tages</p>
             <h2 id="tagesfrage" className="sr-only">
               Frage des Tages
             </h2>
@@ -471,9 +469,7 @@ export default async function HomePage() {
       {begriff && (
         <section aria-labelledby="begriff" className="fk-container py-6 sm:py-8">
           <div className="border-border border-t pt-8">
-            <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-              Begriff des Tages
-            </p>
+            <p className="text-fg-subtle text-sm font-semibold">Begriff des Tages</p>
             <h2 id="begriff" className="text-fg mt-2 text-2xl font-bold">
               {begriff.begriff}
             </h2>
@@ -578,14 +574,9 @@ export default async function HomePage() {
         Wirkung, ohne fremd zu sein.
       */}
       <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
-        <p className="text-fg-subtle text-[0.8125rem] font-semibold">
-          Warum es diese Seite gibt
-        </p>
+        <p className="text-fg-subtle text-sm font-semibold">Warum es diese Seite gibt</p>
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <h2
-            id="haltung"
-            className="text-brand text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
-          >
+          <h2 id="haltung" className="text-fg text-3xl font-bold sm:text-4xl lg:text-5xl">
             Geldanlage ist kein Geheimwissen. Sie ist ein Handwerk – und ein Handwerk kann
             man lernen.
           </h2>

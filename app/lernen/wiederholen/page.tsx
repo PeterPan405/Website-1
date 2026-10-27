@@ -62,7 +62,7 @@ export default function WiederholenSeite() {
         <Wiederholung />
 
         <section aria-labelledby="verfahren" className="mt-16">
-          <h2 id="verfahren" className="text-fg text-2xl font-bold">
+          <h2 id="verfahren" className="text-fg text-xl font-bold">
             Warum Abstände und nicht Wiederlesen
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">
@@ -88,7 +88,7 @@ export default function WiederholenSeite() {
         </section>
 
         <section aria-labelledby="bestand" className="mt-12">
-          <h2 id="bestand" className="text-fg text-2xl font-bold">
+          <h2 id="bestand" className="text-fg text-xl font-bold">
             Woher die Fragen kommen
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

@@ -13,263 +13,179 @@
    Alle Farben sind semantisch benannt, nicht nach ihrem Farbton. So kann die
    Palette an einer Stelle getauscht werden, ohne Komponenten anzufassen.
 --------------------------------------------------------------------------- */
+/*
+  Designsprache IM Capital (27.10.2026, vom Betreiber vorgegeben: „in genau
+  diesen Vorgaben alles umsetzen"). Die Vorlage steht vollständig in
+  GESTALTUNG.md; hier ihre Marken, übersetzt auf die Namen dieser Website.
+
+  Die Haltung: Schwarz, Weiß und EIN Grau tragen die Seite; Hierarchie
+  entsteht über Größe, Gewicht und Luft, nicht über Kästen; Farbe steht nur
+  dort, wo sie etwas bedeutet.
+
+  Der interne Name der hellen Darstellung bleibt `weiss` – er steckt im
+  localStorage der Besucher.
+*/
 :root {
   color-scheme: light;
+  /* Wurzel 15 px – die Schriftskala unten ist auf sie gerechnet. */
+  font-size: 15px;
+
+  /* Flächen */
+  --c-canvas: #ffffff; /* Seitengrund */
+  --c-surface: #ffffff; /* erhöht: Blatt, Menü, Dialog */
+  --c-surface-muted: #f2f3f4; /* Feld, Überfahren, Karte */
+  --c-border: #e6e7e9; /* Haarlinie */
+  --c-border-strong: #b5b7ba; /* nur Linie, NIE Text */
 
   /*
-    Flächen – ein dezenter warmer Papierton statt reinem Weiß, vom
-    Betreiber am 9. August 2026 anhand einer Vorschau gewählt („das würde
-    es ein wenig hochwertiger aussehen lassen“) und noch am selben Abend
-    einen Hauch wärmer nachgezogen.
-
-    **Die Karten liegen im selben Register**, nur eine Spur heller als der
-    Grund – weiße Karten auf beigem Grund wirkten wie ein Fremdkörper. Der
-    Abstand zwischen Grund und Karte ist bewusst klein; die eigentliche
-    Trennung macht die feine Linie (siehe fk-card).
-
-    Der interne Name der Darstellung bleibt `weiss` – er steckt im
-    localStorage der Besucher, eine Umbenennung würfe gespeicherte
-    Entscheidungen weg.
+    Das umgekehrte Band – ein eigenes Paar, kein geliehenes: Gewollt ist die
+    Umkehrung, nicht die Textfarbe (gemeldet am 10. August 2026, als das Band
+    im Dunkeln zur kalt-weißen Fläche wurde).
   */
-  /*
-    Seit dem 27.10.2026 Weiß statt Papierton. Der Betreiber: Die Website sehe
-    „überall nach Vibe-Coding“ aus, und aus drei Richtungen wählte er
-    „Finanzhaus“ – weißer Grund, dünne graue Linien, eckige Formen, IBM Plex.
-    Der warme Beigeton war das Erkennungszeichen der vorigen Fassung.
-  */
-  --c-canvas: #ffffff;
-  --c-surface: #ffffff;
-  --c-surface-muted: #f3f4f6;
-
-  /*
-    Das umgekehrte Band – ein eigenes Paar, kein geliehenes.
-
-    Der Zahlenstreifen der Startseite lag auf `bg-fg` mit `text-canvas`: die
-    Rollen der Texttoken vertauscht. Im hellen Thema ergibt das den gewollten
-    schwarzen Block. Im dunklen wird `--c-fg` aber zu #e9edf7, und aus dem
-    Block wurde eine **kalt-weiße Fläche über die ganze Breite** – gemeldet am
-    10. August 2026, und im Bild kaum zu übersehen.
-
-    Geliehene Token halten nur so lange, wie beide Themen dieselbe Absicht
-    haben. Hier tun sie es nicht: Gewollt ist die Umkehrung, nicht die
-    Textfarbe. Also ein eigenes Paar, das in jedem Thema selbst sagt, welche
-    Fläche und welche Schrift gemeint sind.
-
-    Hell bleibt alles, wie es war. Dunkel trägt das Band den Papierton der
-    Website statt eines Blaustichs – dieselbe Helligkeit wie zuvor, nur warm.
-  */
-  --c-invert: #0f172a;
+  --c-invert: #000000;
   --c-on-invert: #ffffff;
-  --c-border: #dde1e7;
-  --c-border-strong: #b6bdc8;
 
-  /* Text */
-  --c-fg: #0f172a;
-  --c-fg-muted: #525e77;
   /*
-    Der leiseste Ton – und lange zu leise.
-
-    Bis Juli 2026 stand hier #78839a. Das sind auf Weiß 3,81:1 und auf der
-    Markenfläche #e9ecf9 nur 3,24:1; WCAG AA verlangt 4,5:1 für Text dieser
-    Größe. Betroffen war nicht eine Ecke, sondern jede Bildunterschrift, jedes
-    Tabellenetikett und jede „Stand …“-Zeile der Website.
-
-    #606b81 hält auf **allen** Flächen dieser Darstellung mindestens 4,55:1 –
-    geprüft gegen Weiß, Canvas, Surface-Muted und alle vier Soft-Töne. Die
-    Abstufung fg → muted → subtle bleibt dabei erhalten, sie wird nur enger.
-    Nachzurechnen mit `npm run kontrast`.
+    Schrift – genau zwei Stufen. `--c-fg-subtle` bleibt als Name, damit die
+    430 Stellen, die ihn tragen, nicht angefasst werden müssen; er ist
+    dieselbe zweite Stufe wie `--c-fg-muted` (5,33 : 1 auf Weiß).
   */
-  /*
-    Am 9. August 2026 eine Stufe nachgedunkelt: Auf der warmen gedämpften
-    Fläche #eee8dc erreichte #606b81 nur 4,39:1 – knapp unter AA. #5c6678
-    hält auf allen Flächen dieser Darstellung mindestens 4,75:1.
-  */
-  --c-fg-subtle: #5c6678;
+  --c-fg: #000000;
+  --c-fg-muted: #6a6b6d;
+  --c-fg-subtle: #6a6b6d;
 
   /*
-    Logo-Farben unverändert wie im Signet.
-    Nur für das Logo selbst gedacht – für Text und Flächen gelten die
-    abgeleiteten Tokens darunter, die auf Kontrast geprüft sind.
+    Logo-Farben unverändert wie im Signet – nur für das Logo selbst.
   */
   --c-logo-navy: #17296f;
   --c-logo-grey: #6e6e6e;
   --c-logo-green: #205437;
   --c-logo-red: #8b2225;
 
-  /* Primärfarbe: das Navy des Logos */
+  /*
+    Navy aus dem Logo: NUR Link, Fokus, Schreibmarke. Gefüllte Knöpfe,
+    gewählte Reiter und Balken tragen die Textfarbe (`fk-btn-primary`).
+  */
   --c-brand: #17296f;
   --c-brand-strong: #0f1c50;
   --c-brand-contrast: #ffffff;
+  /* Ein abgesetzter Kasten ist das eine Grau – keine getönte Fläche. */
+  --c-brand-soft: var(--c-surface-muted);
+  --c-accent: var(--c-brand);
+  --c-accent-soft: var(--c-surface-muted);
+
+  /* Bedeutungsfarben – jede hält 4,5 : 1 auf ihrem Grund. */
+  --c-success: #018133; /* Gewinn, positiv */
+  --c-warning: #a25e0e; /* Warnung */
+  --c-danger: #cf342a; /* Verlust, Löschen, Ausstieg – sonst NIE */
+
   /*
-    Die ruhige Fläche hinter Hinweiskästen – **im Papierton, nicht im Blau.**
-
-    Bis zum 10. August 2026 stand hier #e9ecf9, ein aufgehelltes Navy. Für sich
-    genommen ein feiner Ton; auf dem beigen Grund dieser Website las er sich
-    aber schlicht als weiß. Der Betreiber hat es an einem Kasten auf dem Telefon
-    gemeldet: „die weißen Felder sind immer noch weiß“ – und recht gehabt. Auf
-    Creme wirkt jedes kalte Hellblau wie ein Loch im Papier.
-
-    #f4ecd8 hält die Lesbarkeit auf die Nachkommastelle genau: 4,92 gegen
-    --c-fg-subtle, derselbe Wert wie das alte Blau. Erkennbar bleibt der Kasten
-    über seine Linie und das Zeichen darin, nicht über einen Farbwechsel.
-  */
-  --c-brand-soft: #f4ecd8;
-
-  /* Akzent: Petrol, harmoniert mit Navy und Grün des Logos */
-  --c-accent: #155e63;
-  --c-accent-soft: #e3f1f2;
-
-  /* Status */
-  --c-success: #205437;
-  --c-success-soft: #e5f1ea;
-  --c-warning: #8a5410;
-  --c-warning-soft: #faf0e2;
-  --c-danger: #8b2225;
-  --c-danger-soft: #faeaea;
-  /*
-    Die drei Zwischentöne des Angst-und-Gier-Bogens.
-
-    Die Enden übernehmen `--c-danger` und `--c-success` – Rot für Angst, Grün
-    für Gier, wie man es kennt. Dazwischen fehlten drei Stufen: ein Orange, ein
-    neutrales Gelb und ein helleres Grün. Eigene Werte und keine geliehenen,
-    weil sie eine Reihe bilden müssen und nicht einzeln stimmen sollen.
+    Die drei Zwischentöne des Angst-und-Gier-Bogens – eine Reihe mit
+    Bedeutung, kein Schmuck. Die Enden sind `--c-danger` und `--c-success`.
   */
   --c-stimmung-angst: #b4621a;
   --c-stimmung-neutral: #9a8412;
   --c-stimmung-gier: #4f7c33;
 
   /*
-    Bereichsfarben.
-
-    Vier der fünf Bereiche übernehmen direkt eine Logo-Farbe: News das Navy
-    (aufgehellt, damit es sich von der Primärfarbe abhebt), Märkte das Grün,
-    Rechner das Grau und Staatsverschuldung das Rot. Für den Lernbereich gibt
-    das Logo keine fünfte Farbe her – dort steht ein Ocker, das im gleichen
-    gedeckten Register liegt und sich von den vier anderen deutlich abgrenzt.
-
-    Alle Kombinationen aus Farbe und zugehöriger Soft-Fläche wurden auf
-    Kontrast geprüft und liegen über WCAG AA (4,5:1), die meisten über AAA.
+    Bereichsfarben – seit dem 27.10.2026 keine mehr. „Keine Farbe als
+    Schmuck": Ein Bereich erkennt man an Überschrift und Brotkrumen, nicht an
+    einem Farbton. Die Namen bleiben, damit die Bauteile, die sie tragen,
+    nicht alle angefasst werden müssen; sie zeigen auf Text und Grau und
+    stimmen damit in beiden Modi von selbst.
   */
-  --c-news: #1f4fb6;
-  --c-news-soft: #e8effc;
-  --c-markets: #205437;
-  --c-markets-soft: #e5f1ea;
-  --c-tools: #5a5f6b;
-  --c-tools-soft: #edeef1;
-  --c-learn: #8a5410;
-  --c-learn-soft: #faf0e2;
-  /*
-    Akademie: Magenta-Plum.
+  --c-news: var(--c-fg);
+  --c-news-soft: var(--c-surface-muted);
+  --c-markets: var(--c-fg);
+  --c-markets-soft: var(--c-surface-muted);
+  --c-tools: var(--c-fg);
+  --c-tools-soft: var(--c-surface-muted);
+  --c-learn: var(--c-fg);
+  --c-learn-soft: var(--c-surface-muted);
+  --c-akademie: var(--c-fg);
+  --c-akademie-soft: var(--c-surface-muted);
+  --c-debt: var(--c-fg);
+  --c-debt-soft: var(--c-surface-muted);
+  --c-globe: var(--c-fg);
+  --c-globe-soft: var(--c-surface-muted);
+  --c-calendar: var(--c-fg);
+  --c-calendar-soft: var(--c-surface-muted);
 
-    Die einzige Stelle im Farbkreis, die noch frei war. News liegt bei 220
-    Grad, Märkte bei 150, Lernen bei 33, Schulden bei 359, Globus bei 184 und
-    Kalender bei 271 – zwischen Kalender und Schulden klafft die Lücke, und
-    dort sitzt dieser Ton. Auf Weiß kommt er auf ein Kontrastverhältnis von
-    rund 8:1 und damit über WCAG AAA.
-  */
-  --c-akademie: #9b1c62;
-  --c-akademie-soft: #fbe9f3;
-  --c-debt: #8b2225;
-  --c-debt-soft: #faeaea;
-  --c-globe: #155e63;
-  --c-globe-soft: #e3f1f2;
-  --c-calendar: #6d4694;
-  --c-calendar-soft: #f0e9f7;
+  /* Schrift auf einer gefüllten Fläche – die Fläche ist jetzt die Textfarbe. */
+  --c-on-fill: var(--c-canvas);
 
   /*
-    Die Schrift auf einer gefüllten Bereichs- oder Statusfläche.
-
-    Bis Juli 2026 stand an all diesen Stellen `text-white`. Im hellen Thema ist
-    das richtig – die Bereichsfarben sind dort dunkel, Weiß kommt auf 6,3 bis
-    8,9:1. Im dunklen Thema sind dieselben Bereiche **aufgehellt**, und Weiß
-    darauf ergibt 2,08 bis 2,43:1. Bei allen acht, nicht bei einem.
-
-    Gefunden wurde zunächst nur der Lernchip, weil das der einzige gefüllte
-    Chip auf den geprüften Seiten ist. Eine Farbe, die je Thema kippt, löst das
-    an allen Stellen gleichzeitig – so wie es `--c-brand-contrast` für die
-    Marke längst tut.
-  */
-  --c-on-fill: #ffffff;
-
-  /* Fokus */
-  /*
-    Farbtreppe des Globus – fünf Stufen von hell nach dunkel.
-
-    Eine einzige Farbe in fünf Helligkeiten und nicht fünf verschiedene Farben:
-    Die Stufen sind eine Rangfolge, keine Kategorien. Ein Farbwechsel von Blau
-    nach Rot würde einen Bruch behaupten, den es in den Daten nicht gibt.
+    Farbtreppe des Globus – fünf Stufen einer Farbe: eine Rangfolge, keine
+    Kategorien. Ozean, Kante und „keine Angabe" haben eigene Werte, damit ein
+    Land ohne Datensatz nicht wie eines mit mittlerem Wert aussieht.
   */
   --c-globus-1: #dbe3f6;
   --c-globus-2: #b3c1ea;
   --c-globus-3: #7f93d5;
   --c-globus-4: #4a61ab;
   --c-globus-5: #17296f;
-  /*
-    Ozean, Kante und „keine Angabe“ haben eigene Werte und leihen sich keine.
-
-    Vorher war der Ozean `--c-surface-muted` und „keine Angabe“
-    `--c-border-strong`. Im dunklen Theme lag die unterste Farbstufe damit
-    dicht am Wasser, und „keine Angabe“ landete mitten in der Skala – ein Land
-    ohne Datensatz sah aus wie eins mit mittlerem Wert.
-
-    Im hellen Theme war der Ozean mit #edf1f9 vom Seitenhintergrund #f6f8fc
-    kaum zu unterscheiden. Die Kugel hatte damit keinen Rand: Man sah Länder,
-    aber keine Erde. Jetzt ist das Wasser ein deutliches Blaugrau – dunkler als
-    die Seite und dunkler als die hellste Länderstufe, sodass die Kugel als
-    Fläche dasteht und die Rangfolge trotzdem von hell nach dunkel läuft.
-
-    „keine Angabe“ ist bewusst grau und nicht blau: Es gehört nicht zur
-    Rangfolge, sondern daneben. Im Hellen liegt es jetzt über dem Wasser,
-    damit ein Land ohne Datensatz nicht im Meer verschwindet.
-  */
   --c-globus-ozean: #b6c2d6;
   --c-globus-leer: #cfd5de;
   --c-globus-kante: #7c8ba4;
 
-  --c-ring: #1f4fb6;
+  /* Fokus – Navy, wie jeder Link. */
+  --c-ring: var(--c-brand);
 
-  /*
-    Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar.
+  /* Nur was schwebt, wirft Schatten (Menü, Blatt, Dialog). */
+  --fk-shadow-card: none;
+  --fk-shadow-lift: 0 4px 40px #0000000d, 0 2px 8px #0000001a;
+}
 
-    Der Kartenschatten war 0,05 Deckkraft auf einer Kante von einem Pixel.
-    Das reicht auf Weiß; auf dem Papierton dieser Website nicht. Karte
-    (#f8f2e6) und Grund (#f2ebdd) liegen bewusst dicht beieinander – die
-    Trennung soll die Linie machen –, und ein Schatten, den man nicht sieht,
-    macht sie eben nicht. Auf dem Bildschirm des Betreibers standen sechs
-    Kurskacheln, die aussahen, als schwämmen sie ohne Rand.
-
-    Jetzt zwei Lagen: eine enge, die die Kante trägt, und eine weite, die die
-    Karte anhebt. Zusammen bleiben sie unter dem, was man als Schatten
-    bemerkt – gesucht war Kontur, nicht Tiefe.
-  */
-  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 4px 12px -6px rgb(15 23 42 / 0.1);
-  --fk-shadow-lift:
-    0 1px 2px rgb(15 23 42 / 0.05), 0 10px 24px -16px rgb(15 23 42 / 0.16);
+/* Tönungen aus den Grundfarben – stimmen in beiden Modi von selbst. */
+:root {
+  --c-success-soft: color-mix(in srgb, var(--c-success) 13%, var(--c-surface));
+  --c-danger-soft: color-mix(in srgb, var(--c-danger) 13%, var(--c-surface));
+  --c-warning-soft: color-mix(in srgb, var(--c-warning) 14%, var(--c-surface));
 }
 
 /*
-  Der dunkle Satz gilt am Bildschirm – **nicht auf Papier**.
-
-  Deshalb steht der ganze Block in `@media not print` statt in einer eigenen
-  Druckregel, die die hellen Werte noch einmal aufschreibt. Eine solche Kopie
-  müsste jeden neuen Farbwert zweimal mitbekommen, und beim ersten Vergessen
-  druckt ein Hinweiskasten dunkelblaue Fläche mit dunkelblauer Schrift – genau
-  das stand hier, solange die Druckregel nur `--c-fg` und `--c-surface`
-  zurücksetzte und die Akzentfarben vergaß.
-
-  So bleibt für den Druck einfach der helle Satz aus `:root` stehen – der
-  ganze, mit allen Akzent- und Flächenfarben, ohne dass hier eine Zeile davon
-  wiederholt wird.
+  Der dunkle Satz gilt am Bildschirm – **nicht auf Papier**. Deshalb steht er
+  in `@media not print`: Für den Druck bleibt einfach der helle aus `:root`.
 */
 @media not print {
   [data-theme='dark'] {
-    /*
-      Im Dunkeln läuft die Treppe von gedämpft nach hell.
+    color-scheme: dark;
 
-      Auf dunklem Grund liest sich „mehr Farbe“ als „mehr Wert“ – dieselbe
-      Richtung wie im Hellen, aber mit umgekehrter Helligkeit. Die Stufen des
-      hellen Themes wären hier fast unsichtbar.
+    --c-canvas: #000000; /* echtes Schwarz */
+    --c-surface: #121212;
+    --c-surface-muted: #1e1e1f;
+    --c-border: #202020;
+    --c-border-strong: #4a4c4f;
+
+    --c-invert: #ffffff;
+    --c-on-invert: #000000;
+
+    --c-fg: #ffffff;
+    --c-fg-muted: #93969a; /* 7,07 : 1 auf Schwarz */
+    --c-fg-subtle: #93969a;
+
+    /*
+      Aufgehellte Logo-Variante: Das Navy #17296F käme auf Schwarz nur auf
+      1,37 : 1. Das Volllogo in public/logo.svg behält die Originalfarben.
     */
+    --c-logo-navy: #7e8fd8;
+    --c-logo-grey: #9aa0ab;
+    --c-logo-green: #56a878;
+    --c-logo-red: #d47b7e;
+
+    --c-brand: #93a0ea;
+    --c-brand-strong: #b0baf2;
+    --c-brand-contrast: #000000;
+
+    --c-success: #02ca50;
+    --c-warning: #ffb118;
+    --c-danger: #ff4034;
+
+    --c-stimmung-angst: #e09a5a;
+    --c-stimmung-neutral: #d6c05a;
+    --c-stimmung-gier: #93cf72;
+
+    /* Im Dunkeln läuft die Treppe von gedämpft nach hell. */
     --c-globus-1: #2b3a63;
     --c-globus-2: #3d5199;
     --c-globus-3: #5a6ec6;
@@ -279,107 +195,8 @@
     --c-globus-leer: #414859;
     --c-globus-kante: #35405a;
 
-    color-scheme: dark;
-
-    /* Auch im Dunkeln neutral statt blaustichig – gleiche Begründung wie oben. */
-    --c-canvas: #0a0a0c;
-    --c-surface: #16161a;
-    --c-surface-muted: #1f1f24;
-
-    /* Das umgekehrte Band, hier herum: Papier als Fläche, Schrift fast
-       schwarz. Begründung oben beim hellen Paar. */
-    --c-invert: #f2ebdd;
-    --c-on-invert: #0a0a0c;
-    --c-border: #2b2b33;
-    --c-border-strong: #40404c;
-
-    --c-fg: #e9edf7;
-    --c-fg-muted: #9ba6be;
-    /*
-      Dasselbe Problem spiegelbildlich: #79839a erreichte auf der Markenfläche
-      #1a2242 nur 4,09:1 und auf dem Petrol-Ton #0c2a2d 3,99:1. Auf der reinen
-      Oberfläche reichte es knapp – und genau deshalb fiel es nie auf, denn dort
-      schaut man hin.
-
-      #8992a6 hält auf allen Flächen mindestens 4,86:1 und bleibt dunkler als
-      `--c-fg-muted`, die Abstufung stimmt also weiterhin.
-    */
-    --c-fg-subtle: #8992a6;
-
-    /*
-      Aufgehellte Logo-Variante für dunkle Flächen.
-
-      Die Originalfarben sind dafür zu dunkel: das Navy #17296F erreicht auf
-      der dunklen Fläche nur 1,37:1 und wäre praktisch unsichtbar. Die Tints
-      behalten den Farbton, liegen aber alle bei etwa 6:1 – dadurch bleibt der
-      Ring erkennbar und die vier Figuren wirken weiterhin gleich gewichtet.
-      Das Volllogo in public/logo.svg behält die Originalfarben, weil es für
-      Downloads und strukturierte Daten auf Weiß verwendet wird.
-    */
-    --c-logo-navy: #7e8fd8;
-    --c-logo-grey: #9aa0ab;
-    --c-logo-green: #56a878;
-    --c-logo-red: #d47b7e;
-
-    --c-brand: #93a0ea;
-    --c-brand-strong: #b0baf2;
-    --c-brand-contrast: #0a0f1f;
-    /* Das Gegenstück zum Papierton: warmes Dunkel statt Blau, damit ein Kasten
-       hier dieselbe Rolle spielt wie im hellen Thema. 5,07 gegen
-       --c-fg-subtle, zuvor 4,98. */
-    --c-brand-soft: #26221b;
-
-    --c-accent: #4fc4cc;
-    --c-accent-soft: #0c2a2d;
-
-    --c-success: #4fbe86;
-    --c-success-soft: #0d2a1d;
-    --c-warning: #e0a649;
-    --c-warning-soft: #2c2109;
-    --c-danger: #f08a8d;
-    --c-danger-soft: #2c1214;
-    /* Auf dunklem Grund heller und weniger gesättigt – wie die übrige Palette. */
-    --c-stimmung-angst: #e09a5a;
-    --c-stimmung-neutral: #d6c05a;
-    --c-stimmung-gier: #93cf72;
-
-    --c-news: #8da4f0;
-    --c-news-soft: #141f3e;
-    --c-markets: #4fbe86;
-    --c-markets-soft: #0d2a1d;
-    --c-tools: #aab0bc;
-    --c-tools-soft: #1b202b;
-    --c-learn: #e0a649;
-    --c-learn-soft: #2c2109;
-    --c-akademie: #f195c6;
-    --c-akademie-soft: #2e1122;
-    --c-debt: #f08a8d;
-    --c-debt-soft: #2c1214;
-    /*
-      Globus und Kalender – hier fehlten sie, und das war ein echter Fehler.
-
-      Die aufgehellten Töne standen versehentlich im **hellen** Block und wurden
-      dort vier Zeilen später von den hellen Werten überschrieben. Folge: Im
-      dunklen Thema blieben `--c-globe` und `--c-calendar` auf ihren hellen
-      Werten stehen – #155e63 kam damit auf 2,44:1 gegen die dunkle Oberfläche,
-      #6d4694 auf 2,56:1. Beides war auf dem Bildschirm kaum zu lesen, und keine
-      Prüfung hat es je gesehen, weil `tests/farbvariablen.test.ts` nur fragt, ob
-      eine Variable existiert – nicht, welchen Wert sie im jeweiligen Thema hat.
-
-      Aufgefallen ist es erst `npm run kontrast`. Jetzt: 8,77:1 und 7,49:1.
-    */
-    --c-globe: #4fc4cc;
-    --c-globe-soft: #0c2a2d;
-    --c-calendar: #b998e0;
-    --c-calendar-soft: #241a33;
-
-    /* Dunkle Schrift auf den aufgehellten Flächen – 7,86 bis 9,20:1. */
-    --c-on-fill: #0a0f1c;
-
-    --c-ring: #8da4f0;
-
-    --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.35);
-    --fk-shadow-lift: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 24px -16px rgb(0 0 0 / 0.6);
+    /* Im Dunkeln trennt die Fläche, kein Schatten. */
+    --fk-shadow-lift: none;
   }
 }
 
@@ -437,28 +254,15 @@
 
   --color-ring: var(--c-ring);
 
-  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   /*
-    Die Stimme der Seite: eine Serifenschrift für alles Große, gesetzt aus
-    „Fraunces“ – warm, eigenständig, mit optischer Größenanpassung. Der
-    Wechsel weg von der geometrischen Sans (Sora) ist der Kern der
-    Entschablonierung: Sans-Überschrift auf Sans-Fließtext sieht aus wie
-    jede zweite generierte Seite; Serife auf Sans liest sich wie Redaktion.
+    EINE Schrift: Inter, für Text, Zahlen und Titel, selbst ausgeliefert
+    (SIL Open Font License). `--font-display` bleibt als Name und zeigt auf
+    dieselbe Schrift – keine zweite für Überschriften.
   */
-  /*
-    Seit dem 27.10.2026 IBM Plex Serif zu IBM Plex Sans (Richtung „Finanzhaus“,
-    vom Betreiber gewählt). Fraunces zu Inter war die Mischung, die generierte
-    Seiten fast immer tragen – „die Schrift … sieht auch nach Vibe-Coding aus“.
-    Plex ist eine Hausschrift (IBM), sachlich, mit echten Tabellenziffern.
-  */
-  --font-display: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
-
-  /*
-    18 Pixel, das Kartenmaß von iOS/macOS. Zusammen mit dem Wegfall der
-    Kartenrahmen die halbe Miete des ruhigeren Erscheinungsbilds.
-  */
-  /* Eckig statt iOS-rund (27.10.2026, „Finanzhaus“). */
-  --radius-card: 0.1875rem;
+  --font-sans:
+    'Inter Variable', 'Inter', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --shadow-card: var(--fk-shadow-card);
   --shadow-lift: var(--fk-shadow-lift);
@@ -467,6 +271,69 @@
   --animate-fade-in: fk-fade-in 0.4s ease-out both;
   --animate-pop: fk-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   --animate-shimmer: fk-shimmer 1.6s linear infinite;
+}
+
+@theme {
+  /*
+    Schriftskala – neun Stufen auf Apples Textstilen (Wurzel 15 px), jede mit
+    ihrer Laufweite. Die Namen von Tailwind zeigen auf die Stufen, damit jede
+    Größe auf der Website aus der Skala kommt:
+    xs 11 · klein 12 · sm 13 · base 15 · lg 17 · xl 20 · 2xl 22 · 3xl 28 ·
+    4xl 34 · 5xl 40 und 6xl 56 (nur Startseite).
+  */
+  --text-xs: 0.734rem;
+  --text-xs--line-height: 1.45;
+  --text-xs--letter-spacing: 0.014em;
+  --text-klein: 0.8rem;
+  --text-klein--line-height: 1.45;
+  --text-klein--letter-spacing: 0.01em;
+  --text-sm: 0.867rem;
+  --text-sm--line-height: 1.5;
+  --text-sm--letter-spacing: 0.002em;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-base--letter-spacing: 0;
+  --text-lg: 1.133rem;
+  --text-lg--line-height: 1.5;
+  --text-lg--letter-spacing: -0.025em;
+  --text-xl: 1.333rem;
+  --text-xl--line-height: 1.3;
+  --text-xl--letter-spacing: -0.03em;
+  --text-2xl: 1.467rem;
+  --text-2xl--line-height: 1.2;
+  --text-2xl--letter-spacing: -0.032em;
+  --text-3xl: 1.867rem;
+  --text-3xl--line-height: 1.15;
+  --text-3xl--letter-spacing: -0.029em;
+  --text-4xl: 2.267rem;
+  --text-4xl--line-height: 1.15;
+  --text-4xl--letter-spacing: -0.031em;
+  --text-5xl: 2.667rem;
+  --text-5xl--line-height: 1.1;
+  --text-5xl--letter-spacing: -0.04em;
+  --text-6xl: 3.733rem;
+  --text-6xl--line-height: 1.05;
+  --text-6xl--letter-spacing: -0.04em;
+  --text-7xl: 3.733rem;
+  --text-7xl--line-height: 1.05;
+  --text-7xl--letter-spacing: -0.04em;
+
+  /*
+    Abstände – 8er-Raster mit Halbschritten, in Pixeln: Sie wachsen nicht mit
+    der Schrift. Eine Tailwind-Einheit sind 4 px, also p-2 = 8, p-3 = 12,
+    p-4 = 16, p-6 = 24, p-8 = 32, p-12 = 48.
+  */
+  --spacing: 4px;
+
+  /* Ecke folgt der Größe. */
+  --radius-xs: 4px; /* Abzeichen, Chips */
+  --radius-sm: 8px; /* kleine Knöpfe */
+  --radius-md: 12px; /* Knöpfe, Felder, Karten */
+  --radius-lg: 16px; /* Blätter, Dialoge */
+  --radius-xl: 24px; /* große Bühnen */
+  --radius-2xl: 24px;
+  --radius-3xl: 24px;
+  --radius-card: 12px;
 }
 
 @keyframes fk-fade-up {
@@ -567,18 +434,44 @@
   body {
     background-color: var(--c-canvas);
     color: var(--c-fg);
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04';
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv05' 1; /* offenes kleines l */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Sonst malt iOS Knopftext systemblau. */
+  button {
+    color: inherit;
+  }
+
+  /*
+    Überschriften: dieselbe Schrift, 700, Satzschreibung. Die Laufweite
+    bringt die Größenstufe mit (`--text-*--letter-spacing`).
+  */
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-display);
-    /* Serifen brauchen kaum Unterschneidung – zu eng wirkt gequetscht. */
-    letter-spacing: -0.01em;
+    font-weight: 700;
     text-wrap: balance;
+  }
+
+  /* Zahlen stehen untereinander bündig. */
+  table,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+    Aufklapper mit eigenem Winkel rechts – sonst zeichnet der Browser sein
+    Dreieck in eine eigene Zeile.
+  */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
   }
 
   p {
@@ -589,12 +482,17 @@
   :focus-visible {
     outline: 2px solid var(--c-ring);
     outline-offset: 2px;
-    border-radius: 0.25rem;
   }
 
   ::selection {
-    background-color: var(--c-brand);
-    color: var(--c-brand-contrast);
+    background-color: var(--c-fg);
+    color: var(--c-canvas);
+  }
+
+  /* Schreibmarke im Navy – eine der drei Stellen, an denen es stehen darf. */
+  input,
+  textarea {
+    caret-color: var(--c-brand);
   }
 
   /* Nutzer mit reduzierter Bewegungspräferenz bekommen keine Animationen. */
@@ -620,97 +518,85 @@
    lassen sich ausschließlich Utilities per `@apply` weiterverwenden. So kann
    `fk-btn-primary` auf `fk-btn` aufbauen, statt dessen Regeln zu duplizieren.
 --------------------------------------------------------------------------- */
+/* Inhalt höchstens 1120 px breit, mittig, Seitenrand 24 px. */
 @utility fk-container {
-  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-[1168px] px-6;
 }
 
 /*
-  Weiße Karte auf weißem Grund: Die Trennung macht eine feine Linie plus
-  ein kaum sichtbarer Schatten. Die randlose Zwischenfassung (graue Karten
-  auf Weiß) ließ die Seite insgesamt grau wirken; im dunklen Thema trägt
-  dieselbe Linie die Kanten auf der fast schattenfreien Fläche.
-
-  **Der Schatten ist am 28. August 2026 gefallen.** Er stammt aus der Zeit, in
-  der eine Karte sich von einer *weißen* Fläche abheben musste. Seit die
-  Website auf Papierton steht, hebt schon die Füllung eine Spur ab, und die
-  Linie zieht die Kante – der Schatten macht daraus einen schwebenden Kasten.
-  Wo vier davon untereinander in einer Seitenleiste stehen, sieht die Seite
-  aus wie ein Stapel und nicht wie eine Seite. Liegen statt schweben.
-
-  Bleiben darf er dort, wo etwas wirklich abhebt: unter dem Zeiger
-  (`fk-card-interactive`) und in der Suche, die über der Seite liegt.
+  Karte nur, wo etwas abgesetzt werden MUSS (Hinweis, Rechenweg, Urteil):
+  das eine Grau, kein Rahmen, Ecke 12 px, kein Schatten. „Rahmen oder
+  Fläche, nie beides." Wo eine Liste reicht, gehört keine Karte hin.
 */
 @utility fk-card {
-  @apply rounded-card border-border bg-surface border;
+  @apply rounded-card bg-surface-muted;
 }
 
 /*
-  Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an.
-
-  Hier ist der Schatten kein Schmuck, sondern die Auskunft „das hier lässt
-  sich anfassen". Deshalb behält diese Karte ihn – aber erst unter dem Zeiger,
-  nicht schon im Ruhezustand.
+  Karte, die als Ganzes ein Link ist. Kein Anheben, kein Schatten – sie liegt
+  auf der Seite; das Überfahren dunkelt die Fläche eine Spur.
 */
 @utility fk-card-interactive {
-  @apply fk-card relative transition duration-200 ease-out;
-  @apply hover:shadow-lift hover:-translate-y-0.5;
+  @apply fk-card relative transition-colors duration-150 ease-out;
+  @apply hover:bg-[color-mix(in_srgb,var(--c-fg)_6%,var(--c-surface-muted))];
 }
 
 /*
-  Abschnitt einer Seitenleiste – ohne Kasten.
-
-  Eine Seitenleiste besteht aus drei bis fünf Blöcken: Fortschritt, Karten zum
-  Ausdrucken, passende Rechner, Vertiefung. Als Karten übereinander gestapelt
-  ergaben sie am 28. August 2026 genau den Eindruck, den der Betreiber
-  „unübersichtlich" nannte: fünf Rahmen, fünf Füllungen, fünf Radien, und
-  dazwischen jedes Mal ein Rand, der noch einmal betont, dass hier etwas Neues
-  anfängt.
-
-  Das sagt eine Linie über dem Titel auch. Der erste Block braucht nicht
-  einmal die – über ihm steht schon der Rand des Bereichs.
-
-  Verwendet mit `space-y-*` am `<aside>`; die Linie sitzt an jedem Block außer
-  dem ersten (`[&:not(:first-child)]`), damit oben keine doppelte Kante
-  entsteht.
+  Abschnitt statt Kachel: keine Fläche, kein Rahmen – nur eine Haarlinie
+  darüber, bündig mit der Schrift. Die Linie sitzt an jedem Block außer dem
+  ersten, damit oben keine doppelte Kante entsteht.
 */
 @utility fk-block {
-  @apply [&:not(:first-child)]:border-border [&:not(:first-child)]:border-t [&:not(:first-child)]:pt-7;
+  @apply [&:not(:first-child)]:border-border [&:not(:first-child)]:border-t [&:not(:first-child)]:pt-6;
 }
 
-/* Eckig seit dem 27.10.2026 – die Pille war das Baukasten-Zeichen. */
+/*
+  Knöpfe: 40 px hoch (44 px, wo ein Finger zielt), Ecke 12 px, 15 px/700,
+  kein Rahmen. Je Bildschirm EINE gefüllte Hauptsache.
+*/
 @utility fk-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-[3px] px-5 py-2.5;
-  @apply text-sm font-semibold whitespace-nowrap transition duration-150 ease-out;
-  @apply active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-4 py-2;
+  @apply text-base font-bold whitespace-nowrap transition-colors duration-150 ease-out;
+  @apply disabled:pointer-events-none disabled:opacity-50 motion-safe:active:scale-[0.98];
+  @media (pointer: coarse) {
+    min-height: 44px;
+  }
 }
 
+/* Gefüllt: Fläche in der Textfarbe, nicht in der Akzentfarbe. */
 @utility fk-btn-primary {
-  @apply fk-btn bg-brand text-brand-contrast hover:bg-brand-strong;
+  @apply fk-btn bg-fg text-canvas hover:bg-[color-mix(in_srgb,var(--c-fg)_82%,transparent)];
 }
 
+/* Getönt: gleichrangige Wahl. */
 @utility fk-btn-secondary {
-  @apply fk-btn border-border-strong bg-surface text-fg border;
-  @apply hover:border-brand hover:text-brand;
+  @apply fk-btn bg-surface-muted text-fg;
+  @apply hover:bg-[color-mix(in_srgb,var(--c-fg)_6%,var(--c-surface-muted))];
 }
 
+/* Leise: Nebensache, Abbruch. */
 @utility fk-btn-ghost {
-  @apply fk-btn text-fg-muted hover:bg-surface-muted hover:text-fg;
+  @apply fk-btn text-fg hover:bg-surface-muted;
 }
 
+/*
+  Eingabefeld: das Grau, Rahmen transparent – der Fokus färbt ihn Navy und
+  hellt die Fläche auf. 44 px hoch; am Telefon 16 px Schrift, sonst zoomt
+  iOS beim Antippen hinein.
+*/
 @utility fk-input {
-  @apply border-border bg-surface w-full rounded-[3px] border px-3 py-2.5 text-sm;
-  @apply text-fg placeholder:text-fg-subtle transition;
-  /*
-    `focus:outline-none` stand hier allein – und schaltete damit die globale
-    `:focus-visible`-Regel für **jedes** Eingabefeld der Website ab. Übrig
-    blieb der Wechsel der Rahmenfarbe, ein Pixel breit; wer den Fokus mit der
-    Tastatur sucht, findet ihn daran nicht zuverlässig.
+  @apply bg-surface-muted min-h-11 w-full rounded-md border border-transparent px-3 py-2.5;
+  @apply text-fg placeholder:text-fg-muted text-[16px] transition-colors sm:text-base;
+  @apply focus:border-brand focus:bg-surface focus:outline-none;
+}
 
-    Jetzt mit Ring, wie ihn die übrigen Felder des Projekts schon tragen. Der
-    Rahmenwechsel bleibt, er ist die ruhigere Hälfte der Anzeige.
-  */
-  @apply focus:border-brand;
-  @apply focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none;
+/*
+  Auf einer Karte (dem einen Grau) wäre das graue Feld unsichtbar – dort
+  steht es auf der hellen Fläche, wie die Felder einer gruppierten Liste.
+*/
+.fk-card .fk-input,
+.fk-card-interactive .fk-input {
+  background-color: var(--c-surface);
 }
 
 /**
@@ -745,7 +631,7 @@
     width: 0.75rem;
     margin-top: -0.1875rem;
     border-radius: 9999px;
-    background: var(--c-brand);
+    background: var(--c-fg);
     box-shadow: 0 0 0 2px var(--c-surface-muted);
   }
 
@@ -754,7 +640,7 @@
     width: 0.75rem;
     border: none;
     border-radius: 9999px;
-    background: var(--c-brand);
+    background: var(--c-fg);
     box-shadow: 0 0 0 2px var(--c-surface-muted);
   }
 }
@@ -768,8 +654,8 @@
   Ein kleines, kaum gerundetes Etikett trägt dieselbe Information leiser.
 */
 @utility fk-chip {
-  @apply inline-flex items-center gap-1.5 rounded-[0.3rem] px-2 py-0.5;
-  @apply text-[0.75rem] font-semibold tabular-nums;
+  @apply inline-flex items-center gap-1.5 rounded-xs px-1.5 py-0.5;
+  @apply text-xs font-semibold tabular-nums;
 }
 
 /* ---------------------------------------------------------------- Drucken */
@@ -883,7 +769,7 @@
   a[href^='http']::after {
     content: ' (' attr(href) ')';
     font-size: 0.75em;
-    color: #55607a;
+    color: #6a6b6d;
     word-break: break-all;
   }
 
@@ -893,7 +779,8 @@
   */
   .fk-card {
     box-shadow: none !important;
-    border: 1px solid #c9ced9 !important;
+    background: none !important;
+    border: 1px solid #b5b7ba !important;
   }
 
   @page {

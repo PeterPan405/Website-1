@@ -44,7 +44,7 @@ export function Indexvergleichstafel({
 
   return (
     <section aria-labelledby="indexvergleich" className={cn(className)}>
-      <h2 id="indexvergleich" className="text-fg text-2xl font-bold">
+      <h2 id="indexvergleich" className="text-fg text-xl font-bold">
         Gegen den {index.name}
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

@@ -313,7 +313,7 @@ export function TaxCalculator() {
           <select
             value={fondsart}
             onChange={(ereignis) => setFondsart(ereignis.target.value as Fondsart)}
-            className="border-border bg-canvas text-fg focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:outline-none"
+            className="border-border bg-canvas text-fg focus-visible:ring-ring mt-1.5 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:outline-none"
           >
             {fondsarten.map((art) => (
               <option key={art.id} value={art.id}>
@@ -357,9 +357,9 @@ export function TaxCalculator() {
                 type="button"
                 onClick={() => setPauschbetrag(wahl.wert)}
                 aria-pressed={pauschbetrag === wahl.wert}
-                className={`rounded-lg border px-3 py-2 text-xs font-medium transition ${
+                className={`rounded-md border px-3 py-2 text-xs font-medium transition ${
                   pauschbetrag === wahl.wert
-                    ? 'border-brand bg-brand text-brand-contrast'
+                    ? 'border-fg bg-fg text-canvas'
                     : 'border-border text-fg-muted hover:text-fg'
                 }`}
               >
@@ -387,9 +387,9 @@ export function TaxCalculator() {
                 type="button"
                 onClick={() => setKirchensteuer(wahl.wert)}
                 aria-pressed={kirchensteuer === wahl.wert}
-                className={`flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition ${
+                className={`flex-1 rounded-md border px-3 py-2 text-xs font-medium transition ${
                   kirchensteuer === wahl.wert
-                    ? 'border-brand bg-brand text-brand-contrast'
+                    ? 'border-fg bg-fg text-canvas'
                     : 'border-border text-fg-muted hover:text-fg'
                 }`}
               >
@@ -479,7 +479,7 @@ export function TaxCalculator() {
                     fonds.durchFreibetrag + zins.durchFreibetrag,
                     0
                   ),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: 'Steuerpflichtig',

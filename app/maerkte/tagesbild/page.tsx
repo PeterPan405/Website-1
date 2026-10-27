@@ -132,7 +132,7 @@ export default async function TagesbildSeite() {
 
         {verlauf.length >= 2 && (
           <section aria-labelledby="breitenverlauf" className="mt-12">
-            <h2 id="breitenverlauf" className="text-fg text-2xl font-bold">
+            <h2 id="breitenverlauf" className="text-fg text-xl font-bold">
               Wie breit der Markt zuletzt war
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -149,7 +149,7 @@ export default async function TagesbildSeite() {
 
         {bericht.branchen.length > 0 && (
           <section aria-labelledby="branchen" className="mt-12">
-            <h2 id="branchen" className="text-fg text-2xl font-bold">
+            <h2 id="branchen" className="text-fg text-xl font-bold">
               Branchen des Tages
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -166,7 +166,7 @@ export default async function TagesbildSeite() {
         )}
 
         <section aria-labelledby="ausschlaege" className="mt-12">
-          <h2 id="ausschlaege" className="text-fg text-2xl font-bold">
+          <h2 id="ausschlaege" className="text-fg text-xl font-bold">
             Die größten Ausschläge
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -180,9 +180,7 @@ export default async function TagesbildSeite() {
               { titel: 'Nach unten', liste: bericht.verlierer },
             ].map((block) => (
               <div key={block.titel}>
-                <h3 className="text-fg-subtle text-[0.8125rem] font-medium">
-                  {block.titel}
-                </h3>
+                <h3 className="text-fg-subtle text-sm font-medium">{block.titel}</h3>
                 <ul className="border-border mt-3 border-t">
                   {block.liste.map((posten) => {
                     const quote = nachSymbol.get(posten.symbol)
@@ -199,7 +197,7 @@ export default async function TagesbildSeite() {
         </section>
 
         <section aria-labelledby="abgrenzung" className="mt-12">
-          <h2 id="abgrenzung" className="text-fg text-2xl font-bold">
+          <h2 id="abgrenzung" className="text-fg text-xl font-bold">
             Was hier bewusst fehlt
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

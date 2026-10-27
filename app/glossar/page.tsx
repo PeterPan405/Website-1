@@ -65,7 +65,7 @@ export default async function GlossarSeite() {
               <li key={gruppe.buchstabe}>
                 <a
                   href={`#buchstabe-${gruppe.buchstabe}`}
-                  className="bg-surface-muted text-fg-muted hover:bg-learn-soft hover:text-learn flex size-8 items-center justify-center rounded-lg text-sm font-semibold transition"
+                  className="bg-surface-muted text-fg-muted hover:bg-learn-soft hover:text-learn flex size-8 items-center justify-center rounded-md text-sm font-semibold transition"
                 >
                   {gruppe.buchstabe}
                 </a>
@@ -82,7 +82,7 @@ export default async function GlossarSeite() {
           >
             <h2
               id={`buchstabe-${gruppe.buchstabe}`}
-              className="text-learn scroll-mt-32 text-2xl font-bold"
+              className="text-learn scroll-mt-32 text-xl font-bold"
             >
               {gruppe.buchstabe}
             </h2>
@@ -175,9 +175,9 @@ export default async function GlossarSeite() {
 
         <section
           aria-labelledby="wie-verlinkt"
-          className="rounded-card border-border bg-surface-muted mt-14 border p-6 sm:p-8"
+          className="rounded-card bg-surface-muted mt-14 p-6 sm:p-8"
         >
-          <h2 id="wie-verlinkt" className="text-fg text-lg font-semibold">
+          <h2 id="wie-verlinkt" className="text-fg text-lg font-bold">
             Wie das Glossar in die Texte kommt
           </h2>
           <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">

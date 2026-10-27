@@ -88,7 +88,7 @@ function Zahlenfeld({
         step={schritt}
         value={wert}
         onChange={(ereignis) => setzen(ereignis.target.value)}
-        className="border-border bg-canvas text-fg focus:border-markets mt-1.5 w-full rounded-lg border px-3 py-2 text-sm tabular-nums outline-none"
+        className="border-border bg-canvas text-fg focus:border-markets mt-1.5 w-full rounded-md border px-3 py-2 text-sm tabular-nums outline-none"
       />
     </label>
   )
@@ -114,7 +114,7 @@ function Auswahlfeld({
       <select
         value={wert}
         onChange={(ereignis) => setzen(ereignis.target.value)}
-        className="border-border bg-canvas text-fg focus:border-markets mt-1.5 w-full rounded-lg border px-3 py-2 text-sm outline-none"
+        className="border-border bg-canvas text-fg focus:border-markets mt-1.5 w-full rounded-md border px-3 py-2 text-sm outline-none"
       >
         <option value="">{alle}</option>
         {optionen.map((eintrag) => (
@@ -206,7 +206,7 @@ export function Screenertafel({
   return (
     <div className={cn('fk-card p-5 sm:p-6', className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="text-fg text-lg font-semibold">Filtern</h2>
+        <h2 className="text-fg text-lg font-bold">Filtern</h2>
         {gesetzt ? (
           <button
             type="button"
@@ -342,7 +342,7 @@ export function Screenertafel({
             <table className="w-full min-w-[42rem] text-sm">
               <caption className="sr-only">Aktien nach Kennzahlen, sortierbar</caption>
               <thead>
-                <tr className="text-fg-subtle border-border border-b text-left text-[0.8125rem]">
+                <tr className="text-fg-subtle border-border border-b text-left text-sm">
                   {SPALTEN.map((spalte) => (
                     <th
                       key={spalte.key}
@@ -440,7 +440,7 @@ export function Screenertafel({
             <button
               type="button"
               onClick={() => setSichtbar(sichtbar + SEITE)}
-              className="border-border text-fg hover:border-markets hover:text-markets mt-5 w-full rounded-lg border px-4 py-2.5 text-sm font-medium transition"
+              className="border-border text-fg hover:border-markets hover:text-markets mt-5 w-full rounded-md border px-4 py-2.5 text-sm font-medium transition"
             >
               Weitere {formatNumber(Math.min(SEITE, sortiert.length - sichtbar))} von{' '}
               {formatNumber(sortiert.length - sichtbar)} anzeigen

@@ -107,7 +107,7 @@ export default async function DebtPage() {
 
         {/* -------------------------------------------------- Kennzahlen */}
         <section aria-labelledby="ueberblick" className="mt-12">
-          <h2 id="ueberblick" className="text-fg text-2xl font-bold">
+          <h2 id="ueberblick" className="text-fg text-xl font-bold">
             Überblick
           </h2>
           <StatGrid columns={4} className="mt-5">
@@ -145,7 +145,7 @@ export default async function DebtPage() {
 
         {/* ---------------------------------------------------- Vergleich */}
         <section aria-labelledby="vergleich" className="mt-12">
-          <h2 id="vergleich" className="text-fg text-2xl font-bold">
+          <h2 id="vergleich" className="text-fg text-xl font-bold">
             Ländervergleich
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -160,7 +160,7 @@ export default async function DebtPage() {
 
         {/* ------------------------------------------------- Einordnung */}
         <section aria-labelledby="einordnung" className="mt-16 max-w-3xl">
-          <h2 id="einordnung" className="text-fg text-2xl font-bold">
+          <h2 id="einordnung" className="text-fg text-xl font-bold">
             Warum die Schuldenquote allein wenig aussagt
           </h2>
 

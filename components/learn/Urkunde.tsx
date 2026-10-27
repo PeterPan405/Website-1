@@ -113,7 +113,7 @@ export function Urkunde({
   if (!komplett) {
     return (
       <div className="fk-card max-w-xl p-6" data-drucken="aus">
-        <h2 className="text-fg text-lg font-semibold">Noch nicht ganz</h2>
+        <h2 className="text-fg text-lg font-bold">Noch nicht ganz</h2>
         <ProgressBar
           value={fertig}
           max={stufenkennungen.length}
@@ -145,7 +145,7 @@ export function Urkunde({
         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
       >
         <div className="border-fg/30 border px-6 py-10 text-center sm:px-12 sm:py-14">
-          <p className="text-fg-subtle text-[0.8125rem]">
+          <p className="text-fg-subtle text-sm">
             {siteConfig.name} · {siteConfig.url.replace(/^https?:\/\//, '')}
           </p>
 
@@ -153,7 +153,7 @@ export function Urkunde({
               der Website würde hier gewinnen und das Blatt in zwei Schriften
               teilen. */}
           <h2
-            className="text-fg mt-6 text-4xl font-bold tracking-wide sm:text-5xl"
+            className="text-fg mt-6 text-xl font-bold sm:text-5xl"
             style={{ fontFamily: 'inherit' }}
           >
             Urkunde

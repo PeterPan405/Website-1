@@ -155,7 +155,7 @@ export default function PodcastSeite() {
                       {folge.datum && dauer && <span aria-hidden="true">·</span>}
                       {dauer && <span>{dauer}</span>}
                     </div>
-                    <h2 className="text-fg mt-1.5 text-xl font-semibold">
+                    <h2 className="text-fg mt-1.5 text-xl font-bold">
                       <a
                         href={`#${folge.slug}`}
                         className="hover:text-news transition-colors"
@@ -265,7 +265,7 @@ export default function PodcastSeite() {
         )}
 
         <section aria-labelledby="warum-hier" className="mt-14">
-          <h2 id="warum-hier" className="text-fg text-2xl font-bold">
+          <h2 id="warum-hier" className="text-fg text-xl font-bold">
             Warum die Folgen auch hier stehen
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

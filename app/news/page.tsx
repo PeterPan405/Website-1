@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArticleCard } from '@/components/news/ArticleCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
@@ -65,14 +66,14 @@ export default async function NewsOverviewPage() {
         {/* Tagesüberblick zuerst: die Rubrik, die sich am häufigsten ändert. */}
         {latestEdition && (
           <section aria-labelledby="tagesueberblick" className="mt-10">
-            <div className="fk-card border-news/30 p-6 sm:p-8">
+            <div className="fk-card p-6 sm:p-8">
               {/*
                 Stand „Neueste Ausgabe“ statt „Jeden Morgen neu“: Der
                 27. Juli 2026 hat eine Ausgabe, der 26. nicht. Ein Versprechen,
                 das die eigene Archivseite widerlegt, ist keins.
               */}
               <p className="fk-chip bg-news-soft text-news">Neueste Ausgabe</p>
-              <h2 id="tagesueberblick" className="mt-3 text-xl font-semibold sm:text-2xl">
+              <h2 id="tagesueberblick" className="mt-3 text-xl font-bold">
                 Tagesüberblick vom {formatEditionDate(latestEdition.date, false)}
               </h2>
               <p className="text-fg-muted mt-2 text-sm sm:text-base">
@@ -166,7 +167,7 @@ export default async function NewsOverviewPage() {
 
         {featured && (
           <section aria-labelledby="aktuelles" className="mt-10">
-            <h2 id="aktuelles" className="text-fg-subtle text-[0.8125rem] font-semibold">
+            <h2 id="aktuelles" className="text-fg-subtle text-sm font-bold">
               Aktuelles
             </h2>
             <div className="mt-5">
@@ -191,7 +192,7 @@ export default async function NewsOverviewPage() {
 
         {archivtage.length > 0 && (
           <section aria-labelledby="weitere" className="mt-12">
-            <h2 id="weitere" className="text-fg-subtle text-[0.8125rem] font-semibold">
+            <h2 id="weitere" className="text-fg-subtle text-sm font-bold">
               Weitere Artikel
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
@@ -212,10 +213,10 @@ export default async function NewsOverviewPage() {
               Mit `<details>` statt eines Schalters bleibt es ohne JavaScript
               bedienbar, und die Browsersuche findet auch zugeklappte Einträge.
             */}
-            <div className="mt-5 space-y-3">
+            <div className="border-border mt-5 border-b">
               {archivtage.map((tag) => (
-                <details key={tag.datum} className="fk-card group px-5 py-4 sm:px-6">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+                <details key={tag.datum} className="border-border group border-t">
+                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3">
                     <span className="text-fg font-semibold">
                       {formatEditionDate(tag.datum)}
                     </span>
@@ -224,16 +225,15 @@ export default async function NewsOverviewPage() {
                         {tag.artikel.length}{' '}
                         {tag.artikel.length === 1 ? 'Artikel' : 'Artikel'}
                       </span>
-                      <span
+                      <Icon
+                        name="chevron-right"
                         aria-hidden="true"
-                        className="transition-transform group-open:rotate-90"
-                      >
-                        ›
-                      </span>
+                        className="size-4 transition-transform group-open:rotate-90"
+                      />
                     </span>
                   </summary>
 
-                  <ul className="mt-4 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  <ul className="mt-2 mb-8 grid gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                     {tag.artikel.map((article) => (
                       <li key={article.slug} className="relative">
                         <ArticleCard article={article} />

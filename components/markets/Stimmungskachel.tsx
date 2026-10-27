@@ -38,7 +38,7 @@ export function Stimmungskachel({
       href={`/maerkte/stimmung/${bereich}`}
       className="fk-card-interactive group flex h-full flex-col p-5"
     >
-      <h3 className="text-fg-subtle text-[0.8125rem] font-semibold">{titel}</h3>
+      <h3 className="text-fg-subtle text-sm font-semibold">{titel}</h3>
 
       <div className="mt-2 flex justify-center">
         <Tacho stimmung={stimmung} />

@@ -102,10 +102,7 @@ export function Kachelzahlen({
           Kursabruf als Layoutfehler – siehe scripts/referenzbilder.mjs.
         */}
         <span
-          className={cn(
-            'fk-chip shrink-0',
-            positiv ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger'
-          )}
+          className={cn('fk-chip shrink-0', positiv ? 'text-success' : 'text-danger')}
           data-fliesst=""
         >
           <Icon name={positiv ? 'trending-up' : 'trending-down'} className="size-3.5" />

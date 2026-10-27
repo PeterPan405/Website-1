@@ -72,7 +72,7 @@ export default function VerwechslungenSeite() {
         <div className="mt-12 space-y-16">
           {VERWECHSLUNGEN.map((paar) => (
             <section key={paar.slug} id={paar.slug} aria-labelledby={`t-${paar.slug}`}>
-              <h2 id={`t-${paar.slug}`} className="text-fg text-2xl font-bold">
+              <h2 id={`t-${paar.slug}`} className="text-fg text-xl font-bold">
                 {paar.linksName} <span className="text-fg-subtle">gegen</span>{' '}
                 {paar.rechtsName}
               </h2>
@@ -95,7 +95,7 @@ export default function VerwechslungenSeite() {
                     <tr className="border-border border-b text-left">
                       <th
                         scope="col"
-                        className="text-fg-subtle w-[22%] py-2 pr-4 text-[0.8125rem] font-semibold"
+                        className="text-fg-subtle w-[22%] py-2 pr-4 text-sm font-semibold"
                       >
                         Frage
                       </th>
@@ -135,8 +135,8 @@ export default function VerwechslungenSeite() {
                 nächsten Mal wieder nachschlagen muss. Deshalb steht er
                 hervorgehoben und nicht als letzte Tabellenzeile.
               */}
-              <div className="border-brand/40 bg-surface mt-6 rounded-lg border-l-4 p-5">
-                <p className="text-fg-subtle text-[0.8125rem] font-semibold">
+              <div className="border-brand/40 bg-surface mt-6 rounded-md border-l-4 p-5">
+                <p className="text-fg-subtle text-sm font-semibold">
                   Der Satz zum Merken
                 </p>
                 <p className="text-fg mt-2 leading-relaxed font-medium">

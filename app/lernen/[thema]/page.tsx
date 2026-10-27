@@ -119,7 +119,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
           <div>
             {/* ------------------------------------------------ Einordnung */}
             <section aria-labelledby="einordnung">
-              <h2 id="einordnung" className="text-fg text-2xl font-bold">
+              <h2 id="einordnung" className="text-fg text-xl font-bold">
                 Worum es geht
               </h2>
               <div className="text-fg-muted mt-4 space-y-4 leading-relaxed">
@@ -161,7 +161,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             {/* ---------------------------------------------------- Stufen */}
             <section aria-labelledby="stufen" className="mt-12">
-              <h2 id="stufen" className="text-fg text-2xl font-bold">
+              <h2 id="stufen" className="text-fg text-xl font-bold">
                 Die drei Stufen
               </h2>
               <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -176,10 +176,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             {/* --------------------------------------------- Schlagwörter */}
             {topic.keywords.length > 0 && (
               <section aria-labelledby="schlagwoerter" className="mt-12">
-                <h2
-                  id="schlagwoerter"
-                  className="text-fg-subtle text-[0.8125rem] font-semibold"
-                >
+                <h2 id="schlagwoerter" className="text-fg-subtle text-sm font-bold">
                   Begriffe in diesem Thema
                 </h2>
                 {/*
@@ -199,7 +196,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
           {/* ------------------------------------------------ Seitenleiste */}
           <aside className="space-y-7 lg:sticky lg:top-24 lg:self-start">
             <section aria-labelledby="fortschritt-thema" className="fk-block">
-              <h2 id="fortschritt-thema" className="text-fg text-base font-semibold">
+              <h2 id="fortschritt-thema" className="text-fg text-base font-bold">
                 Dein Fortschritt
               </h2>
               <div className="mt-4">
@@ -220,7 +217,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             */}
             {kartenzahl > 0 && (
               <section aria-labelledby="karten-thema" className="fk-block">
-                <h2 id="karten-thema" className="text-fg text-base font-semibold">
+                <h2 id="karten-thema" className="text-fg text-base font-bold">
                   Zum Ausdrucken
                 </h2>
                 <p className="text-fg-muted mt-2 text-sm leading-relaxed">
@@ -239,7 +236,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             {topic.calculators && topic.calculators.length > 0 && (
               <section aria-labelledby="passende-rechner" className="fk-block">
-                <h2 id="passende-rechner" className="text-fg text-base font-semibold">
+                <h2 id="passende-rechner" className="text-fg text-base font-bold">
                   Passende Rechner
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -277,7 +274,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             */}
             {akademieLektionen.length > 0 && (
               <section aria-labelledby="vertiefung" className="fk-block">
-                <h2 id="vertiefung" className="text-fg text-base font-semibold">
+                <h2 id="vertiefung" className="text-fg text-base font-bold">
                   Vertiefung in der Akademie
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -314,7 +311,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             {quotes.length > 0 && (
               <section aria-labelledby="passende-kurse-thema" className="fk-block">
-                <h2 id="passende-kurse-thema" className="text-fg text-base font-semibold">
+                <h2 id="passende-kurse-thema" className="text-fg text-base font-bold">
                   Dazu passende Kurse
                 </h2>
                 <ul className="mt-4 space-y-2">

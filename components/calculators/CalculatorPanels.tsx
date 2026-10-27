@@ -29,7 +29,7 @@ export function InputPanel({
   return (
     <section aria-labelledby="rechner-eingaben" className="fk-card h-fit p-5 sm:p-6">
       <div className="flex items-center justify-between gap-3">
-        <h2 id="rechner-eingaben" className="text-fg text-lg font-semibold">
+        <h2 id="rechner-eingaben" className="text-fg text-lg font-bold">
           {title}
         </h2>
         {onReset && (
@@ -83,7 +83,7 @@ export function HeadlineResult({
   tone?: 'brand' | 'positive' | 'negative' | 'warning'
 }) {
   const toneClass = {
-    brand: 'text-brand',
+    brand: 'text-fg',
     positive: 'text-success',
     negative: 'text-danger',
     warning: 'text-warning',
@@ -91,8 +91,8 @@ export function HeadlineResult({
 
   return (
     <div className="fk-card p-6 sm:p-7">
-      <p className="text-fg-muted text-sm font-medium">{label}</p>
-      <p className={cn('mt-1.5 text-3xl font-bold tabular-nums sm:text-4xl', toneClass)}>
+      <p className="text-fg-muted text-base font-medium">{label}</p>
+      <p className={cn('mt-1 text-4xl leading-none font-bold tabular-nums', toneClass)}>
         {value}
       </p>
       {hint && <p className="text-fg-subtle mt-2 text-sm leading-relaxed">{hint}</p>}

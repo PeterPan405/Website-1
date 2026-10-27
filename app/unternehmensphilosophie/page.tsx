@@ -90,10 +90,7 @@ export default function PhilosophyPage() {
                 aria-labelledby={`abschnitt-${index}`}
                 className={index === 0 ? '' : 'mt-12'}
               >
-                <h2
-                  id={`abschnitt-${index}`}
-                  className="text-fg text-2xl font-bold sm:text-3xl"
-                >
+                <h2 id={`abschnitt-${index}`} className="text-fg text-xl font-bold">
                   {section.heading}
                 </h2>
 
@@ -109,8 +106,8 @@ export default function PhilosophyPage() {
                     als Aussage des Unternehmens gelesen – gestrichelter Rahmen,
                     gedämpfte Farbe, ausdrücklicher Vorspann.
                   */
-                  <div className="rounded-card border-border-strong bg-surface-muted mt-4 border border-dashed p-5">
-                    <p className="text-fg-subtle flex items-center gap-2 text-[0.8125rem] font-semibold">
+                  <div className="rounded-card bg-surface-muted mt-4 p-5">
+                    <p className="text-fg-subtle flex items-center gap-2 text-sm font-semibold">
                       <Icon name="clock" className="size-3.5" />
                       Noch zu schreiben
                     </p>
@@ -124,7 +121,7 @@ export default function PhilosophyPage() {
           </div>
 
           <div className="border-border mt-14 border-t pt-8">
-            <h2 className="text-fg text-lg font-semibold">Passend dazu</h2>
+            <h2 className="text-fg text-lg font-bold">Passend dazu</h2>
             <div className="mt-4 flex flex-wrap gap-3">
               <Link href="/ueber-uns" className="fk-btn-secondary">
                 Über uns

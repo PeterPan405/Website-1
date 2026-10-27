@@ -122,7 +122,7 @@ export default async function LernpfadeSeite() {
           className="fk-card mt-12 flex flex-wrap items-center justify-between gap-4 p-6"
         >
           <div className="min-w-0">
-            <h2 id="programm" className="text-fg text-lg font-semibold">
+            <h2 id="programm" className="text-fg text-lg font-bold">
               Lieber ein fester Rhythmus?
             </h2>
             <p className="text-fg-muted mt-1 max-w-2xl text-sm leading-relaxed">
@@ -138,9 +138,9 @@ export default async function LernpfadeSeite() {
 
         <section
           aria-labelledby="wozu"
-          className="rounded-card border-border bg-surface-muted mt-12 border p-6 sm:p-8"
+          className="rounded-card bg-surface-muted mt-12 p-6 sm:p-8"
         >
-          <h2 id="wozu" className="text-fg text-lg font-semibold">
+          <h2 id="wozu" className="text-fg text-lg font-bold">
             Was ein Pfad ist – und was nicht
           </h2>
           <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">

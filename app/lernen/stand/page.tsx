@@ -72,7 +72,7 @@ export default function LernstandSeite() {
 
       <div className="fk-container py-12 sm:py-16">
         <section aria-labelledby="stand">
-          <h2 id="stand" className="text-fg text-2xl font-bold">
+          <h2 id="stand" className="text-fg text-xl font-bold">
             Dein gespeicherter Stand
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -87,7 +87,7 @@ export default function LernstandSeite() {
         </section>
 
         <section aria-labelledby="einstufung" className="mt-16">
-          <h2 id="einstufung" className="text-fg text-2xl font-bold">
+          <h2 id="einstufung" className="text-fg text-xl font-bold">
             Einstufungstest
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -116,7 +116,7 @@ export default function LernstandSeite() {
         </Callout>
 
         <section aria-labelledby="grenzen" className="mt-16">
-          <h2 id="grenzen" className="text-fg text-2xl font-bold">
+          <h2 id="grenzen" className="text-fg text-xl font-bold">
             Was diese Seite nicht weiß
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

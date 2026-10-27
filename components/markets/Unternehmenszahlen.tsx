@@ -67,7 +67,7 @@ export function Unternehmenszahlen({
 
   return (
     <section aria-labelledby="unternehmenszahlen" className={className}>
-      <h2 id="unternehmenszahlen" className="text-fg text-2xl font-bold">
+      <h2 id="unternehmenszahlen" className="text-fg text-xl font-bold">
         Unternehmenszahlen
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

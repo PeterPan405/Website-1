@@ -67,20 +67,18 @@ export default function AkademiePage() {
           stehen, aber als Text – ein Verweis im Verweis ginge weder mit der
           Maus noch mit der Tastatur gut aus.
         */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid gap-x-12 gap-y-12 lg:grid-cols-2">
           {bereiche.map((bereich, stelle) => {
             const lektionen = getLektionen(bereich.id)
             return (
               <Reveal key={bereich.id} delay={stelle * 0.06} className="h-full">
                 <Link
                   href={`/akademie/${bereich.id}`}
-                  className="fk-card-interactive group flex h-full flex-col p-6 sm:p-7"
+                  className="border-border group flex h-full flex-col border-t pt-6"
                 >
-                  <span className="bg-akademie-soft text-akademie flex size-11 items-center justify-center rounded-md">
-                    <Icon name={bereich.sinnbild} className="size-5" />
-                  </span>
+                  <Icon name={bereich.sinnbild} className="text-fg size-6" />
 
-                  <h2 className="text-fg group-hover:text-akademie mt-4 text-2xl font-bold transition">
+                  <h2 className="text-fg mt-3 text-xl font-bold underline-offset-4 group-hover:underline">
                     {bereich.titel}
                   </h2>
                   <p className="text-fg-muted mt-2 leading-relaxed">
@@ -159,13 +157,11 @@ export default function AkademiePage() {
           */}
           <Link
             href="/akademie/drei-wochen"
-            className="fk-card-interactive group mt-6 flex items-center gap-4 p-5"
+            className="border-border group mt-12 flex items-center gap-4 border-t pt-6"
           >
-            <span className="bg-akademie-soft text-akademie flex size-11 shrink-0 items-center justify-center rounded-md">
-              <Icon name="calendar" className="size-5" />
-            </span>
+            <Icon name="calendar" className="text-fg size-6 shrink-0" />
             <span className="min-w-0">
-              <span className="text-fg group-hover:text-akademie block font-semibold transition">
+              <span className="text-fg block text-base font-semibold underline-offset-4 group-hover:underline">
                 Lieber alles der Reihe nach? Die Akademie in drei Wochen
               </span>
               <span className="text-fg-muted mt-1 block text-sm leading-relaxed">

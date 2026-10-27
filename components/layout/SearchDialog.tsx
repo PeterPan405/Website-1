@@ -239,7 +239,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
             exit={{ opacity: 0, y: -8, scale: 0.99 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
             onKeyDown={onKeyDown}
-            className="fk-card border-border shadow-lift relative w-full max-w-xl overflow-hidden border"
+            className="bg-surface border-border shadow-lift relative w-full max-w-xl overflow-hidden rounded-lg border"
           >
             <div className="border-border flex items-center gap-3 border-b px-4">
               <Icon name="search" className="text-fg-subtle size-5 shrink-0" />
@@ -288,10 +288,10 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                   onClick={() => setFilter({})}
                   aria-pressed={!filterGesetzt}
                   className={cn(
-                    'rounded-[3px] px-2.5 py-1 text-xs font-medium transition',
+                    'rounded-md px-2.5 py-1 text-xs font-medium transition',
                     filterGesetzt
                       ? 'text-fg-muted hover:bg-surface-muted'
-                      : 'bg-brand text-on-fill'
+                      : 'bg-fg text-canvas'
                   )}
                 >
                   Alle <span className="opacity-60">{alleTreffer.length}</span>
@@ -310,9 +310,9 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     }}
                     aria-pressed={filter.art === art.wert}
                     className={cn(
-                      'rounded-[3px] px-2.5 py-1 text-xs font-medium transition',
+                      'rounded-md px-2.5 py-1 text-xs font-medium transition',
                       filter.art === art.wert
-                        ? 'bg-brand text-on-fill'
+                        ? 'bg-fg text-canvas'
                         : 'text-fg-muted hover:bg-surface-muted'
                     )}
                   >
@@ -338,7 +338,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                       }}
                       aria-pressed={filter.stufe === stufe.wert}
                       className={cn(
-                        'rounded-[3px] border px-2.5 py-1 text-xs font-medium transition',
+                        'rounded-md border px-2.5 py-1 text-xs font-medium transition',
                         filter.stufe === stufe.wert
                           ? 'border-learn bg-learn text-on-fill'
                           : 'border-border text-fg-muted hover:bg-surface-muted'
@@ -368,7 +368,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     aria-pressed={filter.hoechstensTageAlt !== undefined}
                     title={`${datierte} der ${alleTreffer.length} Treffer haben ein Datum. Die übrigen sind nicht alt – sie haben keines.`}
                     className={cn(
-                      'rounded-[3px] border px-2.5 py-1 text-xs font-medium transition',
+                      'rounded-md border px-2.5 py-1 text-xs font-medium transition',
                       filter.hoechstensTageAlt !== undefined
                         ? 'border-news bg-news text-on-fill'
                         : 'border-border text-fg-muted hover:bg-surface-muted'
@@ -465,7 +465,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                         i === aktiv ? 'bg-surface-muted' : 'hover:bg-surface-muted'
                       )}
                     >
-                      <span className="text-fg-subtle mt-0.5 shrink-0 text-[11px] font-semibold">
+                      <span className="text-fg-subtle mt-0.5 shrink-0 text-xs font-semibold">
                         {entry.kind}
                       </span>
                       <span className="min-w-0">

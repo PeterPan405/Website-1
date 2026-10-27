@@ -109,7 +109,7 @@ export default function ZeitstrahlSeite() {
         */}
         <dl className="mt-10 grid gap-4 text-sm sm:grid-cols-2">
           {ARTEN.map((art) => (
-            <div key={art.id} className="border-border rounded-lg border p-4">
+            <div key={art.id} className="border-border rounded-md border p-4">
               <dt className="text-fg font-semibold">{art.label}</dt>
               <dd className="text-fg-muted mt-1 leading-relaxed">{art.beschreibung}</dd>
             </div>
@@ -124,7 +124,7 @@ export default function ZeitstrahlSeite() {
             >
               <h2
                 id={`jh-${abschnitt.jahrhundert}`}
-                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold"
+                className="text-fg-subtle border-border border-b pb-2 text-sm font-bold"
               >
                 {abschnitt.label}
               </h2>
@@ -182,14 +182,14 @@ function PunktBlock({ punkt }: { punkt: Zeitpunkt }) {
       {/* Der Punkt auf der Linie – rein dekorativ, die Ordnung trägt die Liste. */}
       <span
         aria-hidden="true"
-        className="bg-brand absolute top-2 -left-[1.9rem] h-2.5 w-2.5 rounded-full"
+        className="bg-fg absolute top-2 -left-[1.9rem] h-2.5 w-2.5 rounded-full"
       />
 
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="text-fg text-lg font-bold tabular-nums">
           {punkt.tag ?? punkt.jahr}
         </span>
-        <span className="text-fg-subtle border-border rounded-[3px] border px-2 py-0.5 text-xs">
+        <span className="text-fg-subtle border-border rounded-md border px-2 py-0.5 text-xs">
           {art?.label ?? punkt.art}
         </span>
         {/*

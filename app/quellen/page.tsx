@@ -134,8 +134,8 @@ export default async function QuellenPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl min-w-0">
-          <div className="fk-card border-brand/30 p-5 sm:p-6">
-            <h2 className="text-fg text-lg font-semibold">Drei Grundsätze</h2>
+          <div className="fk-card p-5 sm:p-6">
+            <h2 className="text-fg text-lg font-bold">Drei Grundsätze</h2>
             <ul className="text-fg-muted mt-3 space-y-2 text-sm leading-relaxed">
               <li>
                 <strong className="text-fg font-semibold">Nichts wird geschätzt,</strong>{' '}
@@ -163,10 +163,7 @@ export default async function QuellenPage() {
               aria-labelledby={kennung(gruppe.titel)}
               className="mt-12"
             >
-              <h2
-                id={kennung(gruppe.titel)}
-                className="text-fg text-2xl font-bold tracking-tight"
-              >
+              <h2 id={kennung(gruppe.titel)} className="text-fg text-xl font-bold">
                 {gruppe.titel}
               </h2>
               <p className="text-fg-muted mt-2 leading-relaxed">{gruppe.einleitung}</p>
@@ -191,7 +188,7 @@ export default async function QuellenPage() {
             erreicht.
           */}
           <section aria-labelledby="abdeckung" className="mt-14">
-            <h2 id="abdeckung" className="text-fg text-2xl font-bold tracking-tight">
+            <h2 id="abdeckung" className="text-fg text-xl font-bold">
               Wie vollständig diese Daten sind
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -249,7 +246,7 @@ export default async function QuellenPage() {
           </section>
 
           <section aria-labelledby="rechtliches" className="mt-14">
-            <h2 id="rechtliches" className="text-fg text-2xl font-bold tracking-tight">
+            <h2 id="rechtliches" className="text-fg text-xl font-bold">
               Zur Verwendung
             </h2>
             <p className="text-fg-muted mt-2 leading-relaxed">

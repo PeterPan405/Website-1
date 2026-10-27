@@ -55,7 +55,7 @@ export default async function WochenrueckblickSeite() {
         {/* --------------------------------------------------- Zahl der Woche */}
         {zahlDerWoche && (
           <section aria-labelledby="zahl" className="fk-card p-6 sm:p-8">
-            <h2 id="zahl" className="text-fg-subtle text-[0.8125rem] font-semibold">
+            <h2 id="zahl" className="text-fg-subtle text-sm font-bold">
               Die Zahl der Woche
             </h2>
             <p
@@ -88,7 +88,7 @@ export default async function WochenrueckblickSeite() {
 
         {/* ------------------------------------------------------ Die Tabelle */}
         <section aria-labelledby="werte" className="mt-12">
-          <h2 id="werte" className="text-fg text-2xl font-bold">
+          <h2 id="werte" className="text-fg text-xl font-bold">
             Die Woche in Zahlen
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -99,7 +99,7 @@ export default async function WochenrueckblickSeite() {
           <div className="mt-6 overflow-x-auto">
             <table className="w-full min-w-[32rem] text-sm">
               <thead>
-                <tr className="border-border text-fg-subtle border-b text-left text-[0.8125rem]">
+                <tr className="border-border text-fg-subtle border-b text-left text-sm">
                   <th scope="col" className="py-2 pr-4 font-medium">
                     Wert
                   </th>
@@ -153,7 +153,7 @@ export default async function WochenrueckblickSeite() {
 
         {/* ------------------------------------------------------- Die Ausgaben */}
         <section aria-labelledby="ausgaben" className="mt-12">
-          <h2 id="ausgaben" className="text-fg text-2xl font-bold">
+          <h2 id="ausgaben" className="text-fg text-xl font-bold">
             Was diese Woche geschrieben wurde
           </h2>
           {ausgaben.length === 0 ? (

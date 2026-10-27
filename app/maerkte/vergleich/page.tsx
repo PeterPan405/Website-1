@@ -187,7 +187,7 @@ export default async function VergleichSeite() {
         </Callout>
 
         <section aria-labelledby="regeln" className="mt-12">
-          <h2 id="regeln" className="text-fg text-2xl font-bold">
+          <h2 id="regeln" className="text-fg text-xl font-bold">
             Wann hier niemand vorn liegt
           </h2>
           <div className="text-fg-muted mt-3 max-w-2xl space-y-4 leading-relaxed">

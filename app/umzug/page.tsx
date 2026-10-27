@@ -39,7 +39,7 @@ export default function UmzugSeite() {
         <Umzugskoffer />
 
         <section aria-labelledby="warum" className="mt-12 max-w-3xl">
-          <h2 id="warum" className="text-fg text-2xl font-bold">
+          <h2 id="warum" className="text-fg text-xl font-bold">
             Warum eine Datei und kein Konto
           </h2>
           <p className="text-fg-muted mt-4 leading-relaxed">

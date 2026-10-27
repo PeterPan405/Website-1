@@ -236,7 +236,6 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     ? inEuro(quote.value, instrument.unit)
     : null
 
-  const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
   const kindLabel = marketKindMeta[instrument.kind].long
   /*
@@ -320,7 +319,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
           <div>
             {/* ------------------------------------------------ Kennzahlen */}
             <section aria-labelledby="kennzahlen">
-              <h2 id="kennzahlen" className="text-fg text-2xl font-bold">
+              <h2 id="kennzahlen" className="text-fg text-xl font-bold">
                 Kennzahlen
               </h2>
               <StatGrid columns={4} className="mt-5">
@@ -353,7 +352,6 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       : `${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
                   }
                   hinweisFliesst
-                  tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat
                   label={quote.intraday ? 'Letzter Schlusskurs' : 'Vortagesschluss'}
@@ -394,14 +392,14 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
             {/* ----------------------------------------------------- Chart */}
             <section aria-labelledby="verlauf" className="mt-12">
-              <h2 id="verlauf" className="text-fg text-2xl font-bold">
+              <h2 id="verlauf" className="text-fg text-xl font-bold">
                 Kursverlauf
               </h2>
               <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
                 Wähle den Zeitraum. Alle Zeiträume zeigen Tagesschlusskurse – einen Wert
                 je Handelstag, keinen Verlauf innerhalb eines Tages.
               </p>
-              <div className="fk-card mt-5 p-5 sm:p-6">
+              <div className="mt-6">
                 <PriceChart
                   ranges={ranges}
                   decimals={instrument.decimals}
@@ -444,7 +442,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               className="mt-12"
             >
               <section aria-labelledby="erklaerung">
-                <h2 id="erklaerung" className="text-fg text-2xl font-bold">
+                <h2 id="erklaerung" className="text-fg text-xl font-bold">
                   Was {instrument.ticker} eigentlich abbildet
                 </h2>
                 <div className="text-fg-muted mt-4 space-y-4 leading-relaxed">
@@ -478,7 +476,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             {volleReihe && volleReihe.length > 1 && (
               <Klappabschnitt titel="Dieselbe Zahl, andere Zeitfenster" className="mt-6">
                 <section aria-labelledby="zeitfenster">
-                  <h2 id="zeitfenster" className="text-fg text-2xl font-bold">
+                  <h2 id="zeitfenster" className="text-fg text-xl font-bold">
                     Dieselbe Zahl, andere Zeitfenster
                   </h2>
                   <p className="text-fg-muted mt-4 leading-relaxed">
@@ -502,7 +500,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             {zusammensetzung && (
               <Klappabschnitt titel="Woher das Gewicht kommt" className="mt-6">
                 <section aria-labelledby="zusammensetzung">
-                  <h2 id="zusammensetzung" className="text-fg text-2xl font-bold">
+                  <h2 id="zusammensetzung" className="text-fg text-xl font-bold">
                     Woher das Gewicht kommt
                   </h2>
                   <p className="text-fg-muted mt-4 leading-relaxed">
@@ -512,7 +510,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                     Marktwert der Unternehmen in ihnen.
                   </p>
                   <figure className="mt-6">
-                    <div className="rounded-card border-border bg-surface-muted border p-4 sm:p-6">
+                    <div className="rounded-card bg-surface-muted p-4 sm:p-6">
                       <IndexLaendergewichtung symbol={instrument.symbol} />
                     </div>
                     <figcaption className="text-fg-subtle mt-2.5 text-sm leading-relaxed">
@@ -559,7 +557,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 className="mt-6"
               >
                 <section aria-labelledby="meldungen">
-                  <h2 id="meldungen" className="text-fg text-2xl font-bold">
+                  <h2 id="meldungen" className="text-fg text-xl font-bold">
                     Nachrichten zu {instrument.name}
                   </h2>
                   <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -571,7 +569,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       <li key={meldung.slug}>
                         <Link
                           href={`/news/${meldung.slug}`}
-                          className="fk-card hover:border-border-strong block p-5 transition-colors"
+                          className="fk-card-interactive block p-5 transition-colors"
                         >
                           <span className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
                             <span className="font-semibold">{meldung.category}</span>
@@ -773,7 +771,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             />
 
             <section aria-labelledby="weitere-kurse" className="fk-block">
-              <h2 id="weitere-kurse" className="text-fg text-lg font-semibold">
+              <h2 id="weitere-kurse" className="text-fg text-lg font-bold">
                 Weitere Kurse
               </h2>
               <ul className="mt-4 space-y-1">

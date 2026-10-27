@@ -95,8 +95,8 @@ export function Handelsfenster({
         {offen !== null && (
           <span
             className={cn(
-              'rounded-[3px] px-2 py-0.5 text-xs font-semibold',
-              offen ? 'bg-success-soft text-success' : 'bg-surface-muted text-fg-muted'
+              'rounded-md px-2 py-0.5 text-xs font-semibold',
+              offen ? 'text-success' : 'bg-surface-muted text-fg-muted'
             )}
           >
             {offen ? 'handelt gerade' : 'geschlossen'}
@@ -105,7 +105,7 @@ export function Handelsfenster({
       </p>
 
       {verpasst > 0 && (
-        <p className="bg-warning-soft text-warning flex items-start gap-2 rounded-lg px-3 py-2 text-sm">
+        <p className="text-warning flex items-start gap-2 rounded-md px-3 py-2 text-sm">
           <Icon name="warning" className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           <span>
             <strong className="font-semibold">

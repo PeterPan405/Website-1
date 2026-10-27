@@ -143,7 +143,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               nicht als Beiwerk daneben.
             */}
             <div className="border-border mt-10 border-t pt-6">
-              <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">Quellen</h2>
+              <h2 className="text-fg-subtle text-sm font-bold">Quellen</h2>
               <ul className="mt-3 space-y-2">
                 {article.sources.map((source) => (
                   <li key={source.url} className="text-sm">
@@ -195,7 +195,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             */}
             {article.korrekturen && article.korrekturen.length > 0 && (
               <div className="border-border mt-10 border-t pt-6">
-                <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">
+                <h2 className="text-fg-subtle text-sm font-bold">
                   Was nach der Veröffentlichung geändert wurde
                 </h2>
                 <ul className="mt-3 space-y-2">
@@ -217,9 +217,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
 
             {article.tags.length > 0 && (
               <div className="border-border mt-10 border-t pt-6">
-                <h2 className="text-fg-subtle text-[0.8125rem] font-semibold">
-                  Schlagwörter
-                </h2>
+                <h2 className="text-fg-subtle text-sm font-bold">Schlagwörter</h2>
                 <TagLinks
                   tags={article.tags}
                   note="Schlagwörter mit Pfeil führen zum passenden Lernthema, Kurs oder Rechner."
@@ -248,7 +246,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
 
             {quotes.length > 0 && (
               <section aria-labelledby="passende-kurse" className="fk-card p-6">
-                <h2 id="passende-kurse" className="text-fg text-lg font-semibold">
+                <h2 id="passende-kurse" className="text-fg text-lg font-bold">
                   Passende Kurse
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -278,7 +276,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
 
         {relatedArticles.length > 0 && (
           <section aria-labelledby="weiterlesen" className="mt-16">
-            <h2 id="weiterlesen" className="text-fg text-2xl font-bold">
+            <h2 id="weiterlesen" className="text-fg text-xl font-bold">
               Weiterlesen
             </h2>
             <ul className="mt-6 grid gap-5 md:grid-cols-3">

@@ -58,7 +58,7 @@ export function Bandknopf({ band }: { band: Band }) {
       type="button"
       onClick={laden}
       disabled={laeuft}
-      className="border-border hover:border-brand hover:bg-surface flex w-full items-center justify-between gap-4 rounded-lg border p-4 text-left transition"
+      className="border-border hover:border-brand hover:bg-surface flex w-full items-center justify-between gap-4 rounded-md border p-4 text-left transition"
     >
       <span>
         <span className="text-fg block font-semibold">{band.label}</span>

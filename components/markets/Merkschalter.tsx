@@ -43,10 +43,9 @@ export function Merkschalter({
       onClick={() => merkenUmschalten(symbol)}
       aria-pressed={gemerkt}
       className={cn(
-        'border-border inline-flex items-center gap-1.5 rounded-[3px] border px-3 py-1.5 text-sm font-medium transition',
-        gemerkt
-          ? 'border-markets text-markets bg-surface-muted'
-          : 'text-fg-muted hover:text-fg hover:bg-surface-muted',
+        // Kleiner getönter Knopf: Fläche, kein Rahmen, Ecke 8 px.
+        'bg-surface-muted text-fg inline-flex min-h-9 items-center gap-1.5 rounded-sm px-3 py-1.5 text-sm font-semibold transition-colors',
+        'hover:bg-[color-mix(in_srgb,var(--c-fg)_6%,var(--c-surface-muted))]',
         className
       )}
     >

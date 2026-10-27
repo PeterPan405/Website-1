@@ -243,9 +243,7 @@ export function GlobusAnsicht({
   */
   const kennzahlwahl = (
     <fieldset>
-      <legend className="text-fg-subtle text-[0.8125rem] font-semibold">
-        Einfärbung nach
-      </legend>
+      <legend className="text-fg-subtle text-sm font-semibold">Einfärbung nach</legend>
       <div className="mt-3 flex flex-wrap gap-2">
         {metriken.map((eintrag) => (
           <button
@@ -254,9 +252,9 @@ export function GlobusAnsicht({
             onClick={() => setMetrikId(eintrag.id)}
             aria-pressed={eintrag.id === metrikId}
             className={cn(
-              'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
+              'rounded-md border px-3 py-1.5 text-sm font-medium transition-colors',
               eintrag.id === metrikId
-                ? 'border-brand bg-brand text-brand-contrast'
+                ? 'border-fg bg-fg text-canvas'
                 : 'border-border text-fg-muted hover:text-fg hover:border-border-strong'
             )}
           >
@@ -290,7 +288,7 @@ export function GlobusAnsicht({
   const tafelInhalt = land ? (
     <Landtafel land={land} quellen={quellen} weltbankJahr={weltbankJahr} />
   ) : (
-    <div className="rounded-card border-border bg-surface-muted border p-5">
+    <div className="rounded-card bg-surface-muted p-5">
       <p className="text-fg-muted text-sm leading-relaxed">
         Ein Land anklicken – oder oben suchen. Der Globus dreht sich dann dorthin und
         zeigt hier, was zu diesem Land hinterlegt ist.
@@ -343,10 +341,7 @@ export function GlobusAnsicht({
       {/* ------------------------------------------------------ Seitenspalte */}
       <div className="space-y-6">
         <div>
-          <label
-            htmlFor="globus-suche"
-            className="text-fg-subtle text-[0.8125rem] font-semibold"
-          >
+          <label htmlFor="globus-suche" className="text-fg-subtle text-sm font-semibold">
             Land suchen
           </label>
           <input
@@ -356,10 +351,10 @@ export function GlobusAnsicht({
             onChange={(ereignis) => setSuche(ereignis.target.value)}
             placeholder="z. B. Japan"
             autoComplete="off"
-            className="border-border bg-surface text-fg placeholder:text-fg-subtle focus-visible:ring-ring/60 mt-2 w-full rounded-lg border px-3 py-2 text-sm outline-none focus-visible:ring-2"
+            className="border-border bg-surface text-fg placeholder:text-fg-subtle focus-visible:ring-ring/60 mt-2 w-full rounded-md border px-3 py-2 text-sm outline-none focus-visible:ring-2"
           />
           {treffer.length > 0 && (
-            <ul className="border-border bg-surface mt-2 overflow-hidden rounded-lg border">
+            <ul className="border-border bg-surface mt-2 overflow-hidden rounded-md border">
               {treffer.map((eintrag) => (
                 <li key={eintrag.id}>
                   <button
@@ -652,7 +647,7 @@ function Landtafel({
                   {zeile.wert}
                 </dd>
                 {zeile.fussnote && (
-                  <dd className="text-fg-subtle mt-0.5 text-[0.6875rem] leading-snug">
+                  <dd className="text-fg-subtle mt-0.5 text-xs leading-snug">
                     {zeile.fussnote}
                   </dd>
                 )}
@@ -680,7 +675,7 @@ function Landtafel({
 
       {(land.indizes.length > 0 || land.aktien.length > 0) && (
         <div className="border-border mt-5 border-t pt-4">
-          <p className="text-fg-subtle text-[0.8125rem] font-semibold">Kurse von hier</p>
+          <p className="text-fg-subtle text-sm font-semibold">Kurse von hier</p>
           <ul className="mt-3 space-y-2">
             {[...land.indizes, ...land.aktien].map((kurs) => (
               <li key={kurs.symbol}>
@@ -691,12 +686,12 @@ function Landtafel({
                   <span className="text-fg group-hover:text-brand text-sm font-medium">
                     {kurs.name}
                   </span>
-                  <span className="text-fg-subtle shrink-0 text-[0.6875rem]">
+                  <span className="text-fg-subtle shrink-0 text-xs">
                     {kurs.kindLabel}
                   </span>
                 </Link>
                 {kurs.hinweis && (
-                  <p className="text-fg-subtle mt-0.5 text-[0.6875rem] leading-snug">
+                  <p className="text-fg-subtle mt-0.5 text-xs leading-snug">
                     {kurs.hinweis}
                   </p>
                 )}

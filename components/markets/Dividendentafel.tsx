@@ -65,7 +65,7 @@ export function Dividendentafel({
 }) {
   return (
     <section aria-labelledby="dividende" className={cn(className)}>
-      <h2 id="dividende" className="text-fg text-2xl font-bold">
+      <h2 id="dividende" className="text-fg text-xl font-bold">
         Dividende
       </h2>
       <p className="text-fg-muted mt-2 leading-relaxed">

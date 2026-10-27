@@ -176,7 +176,7 @@ export function Aufnahmeleiste({
   }
 
   return (
-    <div className="border-border bg-surface-muted flex flex-wrap items-center gap-2 rounded-md border px-3 py-2">
+    <div className="bg-surface-muted flex flex-wrap items-center gap-2 rounded-md px-3 py-2">
       <audio
         ref={tonRef}
         src={adresse}
@@ -304,7 +304,7 @@ export function Aufnahmeleiste({
                 className="bg-border relative overflow-hidden rounded-full"
               >
                 <span
-                  className="bg-brand absolute inset-y-0 left-0"
+                  className="bg-fg absolute inset-y-0 left-0"
                   style={{
                     width: `${Math.min(100, Math.max(0, ((jetzt - kap.beginn) / kap.laenge) * 100))}%`,
                   }}

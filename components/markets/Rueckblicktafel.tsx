@@ -56,7 +56,7 @@ export function Rueckblicktafel({
 
   return (
     <section aria-labelledby="rueckblick" className={cn(className)}>
-      <h2 id="rueckblick" className="text-fg text-2xl font-bold">
+      <h2 id="rueckblick" className="text-fg text-xl font-bold">
         Was daraus geworden wäre
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

@@ -126,7 +126,7 @@ export default async function RubrikSeite({
                       <span aria-hidden="true">·</span>
                       <span>{formatReadingTime(eintrag.readingMinutes)}</span>
                     </div>
-                    <h2 className="text-fg group-hover:text-news mt-1.5 text-lg font-semibold">
+                    <h2 className="text-fg group-hover:text-news mt-1.5 text-lg font-bold">
                       {eintrag.title}
                     </h2>
                     <p className="text-fg-muted mt-1.5 max-w-3xl leading-relaxed">

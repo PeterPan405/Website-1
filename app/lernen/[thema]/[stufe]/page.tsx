@@ -254,7 +254,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             className="space-y-6 lg:sticky lg:top-24 lg:self-start"
           >
             <section aria-labelledby="stufen-nav" className="fk-card p-6">
-              <h2 id="stufen-nav" className="text-fg text-base font-semibold">
+              <h2 id="stufen-nav" className="text-fg text-base font-bold">
                 {topic.title}
               </h2>
               <div className="mt-4">
@@ -286,7 +286,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             */}
             {pfade.length > 0 && (
               <section aria-labelledby="pfade-mit" className="fk-card p-6">
-                <h2 id="pfade-mit" className="text-fg text-base font-semibold">
+                <h2 id="pfade-mit" className="text-fg text-base font-bold">
                   Teil dieser Lernpfade
                 </h2>
                 <ul className="mt-4 space-y-3">

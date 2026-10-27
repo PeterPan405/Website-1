@@ -82,7 +82,7 @@ export function Footer() {
             <nav key={group.title} aria-labelledby={`footer-${group.title}`}>
               <h2
                 id={`footer-${group.title}`}
-                className="text-fg-subtle text-[0.8125rem] font-semibold"
+                className="text-fg-subtle text-sm font-bold"
               >
                 {group.title}
               </h2>
@@ -117,7 +117,7 @@ export function Footer() {
             überfliegt, liest die Überschrift und sonst nichts – und die Rechner zur
             Abgeltungsteuer und zur Vorabpauschale sind kein Randthema dieser Seite.
           */}
-          <h2 className="text-fg text-sm font-semibold">
+          <h2 className="text-fg text-sm font-bold">
             Keine Anlage- oder Steuerberatung – nur Wissensvermittlung
           </h2>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">

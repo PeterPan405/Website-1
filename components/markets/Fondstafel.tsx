@@ -49,7 +49,7 @@ export function Fondstafel({
 
   return (
     <section aria-labelledby="fondsangaben" className={className}>
-      <h2 id="fondsangaben" className="text-fg text-2xl font-bold">
+      <h2 id="fondsangaben" className="text-fg text-xl font-bold">
         Was dieser Fonds ist
       </h2>
 

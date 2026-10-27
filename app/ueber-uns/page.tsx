@@ -79,7 +79,7 @@ export default async function AboutPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <h2 className="text-fg text-2xl font-bold">Warum diese Plattform existiert</h2>
+          <h2 className="text-fg text-xl font-bold">Warum diese Plattform existiert</h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
             Finanzinformationen sind reichlich vorhanden. Viele davon entstehen im Umfeld
             eines Produktangebots – ein Fonds, eine Versicherung, ein Depot, ein
@@ -93,7 +93,7 @@ export default async function AboutPage() {
             wenn es unspektakulärer klingt.
           </p>
 
-          <h2 className="text-fg mt-12 text-2xl font-bold">Vier Grundsätze</h2>
+          <h2 className="text-fg mt-12 text-xl font-bold">Vier Grundsätze</h2>
         </div>
 
         <ul className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -111,7 +111,7 @@ export default async function AboutPage() {
         </ul>
 
         <div className="mt-14 max-w-3xl">
-          <h2 className="text-fg text-2xl font-bold">Wie die Inhalte entstehen</h2>
+          <h2 className="text-fg text-xl font-bold">Wie die Inhalte entstehen</h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
             Jedes Thema wird in drei Stufen aufgebaut, die sich inhaltlich nicht
             überschneiden. Zuerst entsteht die Gliederung aller drei Stufen – erst danach
@@ -179,7 +179,7 @@ export default async function AboutPage() {
             </Callout>
           </div>
 
-          <h2 className="text-fg mt-12 text-2xl font-bold">Fehler gefunden?</h2>
+          <h2 className="text-fg mt-12 text-xl font-bold">Fehler gefunden?</h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
             Fachliche Korrekturen sind willkommen – besonders bei Steuer- und
             Rechtsthemen, wo sich Regeln regelmäßig ändern. Hinweise gerne über die

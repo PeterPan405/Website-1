@@ -43,7 +43,9 @@ export function Klappabschnitt({
   return (
     <details
       className={cn(
-        'fk-card group px-5 py-4 sm:px-6',
+        // Abschnitt statt Kachel: Haarlinie darüber, fette Überschrift,
+        // Winkel rechts – kein Kasten (GESTALTUNG.md § 4 und § 6).
+        'group border-border border-t pt-4',
         // Beim Aufklappen die innere Abschnittsüberschrift verstecken – die
         // Summary trägt denselben Titel schon.
         '[&>div>section]:mt-0 [&>div>section>h2:first-of-type]:hidden',
@@ -51,11 +53,11 @@ export function Klappabschnitt({
         className
       )}
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4">
         <span className="min-w-0">
-          <span className="text-fg block text-lg font-semibold">{titel}</span>
+          <span className="text-fg block text-xl font-bold">{titel}</span>
           {hinweis && (
-            <span className="text-fg-subtle mt-0.5 block text-sm">{hinweis}</span>
+            <span className="text-fg-muted mt-0.5 block text-sm">{hinweis}</span>
           )}
         </span>
         <span

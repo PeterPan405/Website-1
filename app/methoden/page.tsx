@@ -104,16 +104,14 @@ export default function MethodenSeite() {
                 aria-labelledby={`${methode.slug}-titel`}
                 className="fk-card scroll-mt-28 p-6 sm:p-8"
               >
-                <h2 id={`${methode.slug}-titel`} className="text-fg text-2xl font-bold">
+                <h2 id={`${methode.slug}-titel`} className="text-fg text-xl font-bold">
                   {methode.titel}
                 </h2>
                 <p className="text-fg-muted mt-2 leading-relaxed">{methode.frage}</p>
 
                 <dl className="mt-6 space-y-4">
                   <div>
-                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
-                      Formel
-                    </dt>
+                    <dt className="text-fg-subtle text-sm font-semibold">Formel</dt>
                     {/*
                       Als `<code>`, weil es eine Rechnung ist und keine Prosa –
                       und weil die Zeichen − und ÷ in einer Fließschrift zu
@@ -128,7 +126,7 @@ export default function MethodenSeite() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
+                      <dt className="text-fg-subtle text-sm font-semibold">
                         Datengrundlage
                       </dt>
                       <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
@@ -136,9 +134,7 @@ export default function MethodenSeite() {
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
-                        Stichtag
-                      </dt>
+                      <dt className="text-fg-subtle text-sm font-semibold">Stichtag</dt>
                       <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
                         {methode.stichtag}
                       </dd>
@@ -146,10 +142,8 @@ export default function MethodenSeite() {
                   </div>
 
                   <div>
-                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
-                      Beispiel
-                    </dt>
-                    <dd className="border-border bg-surface-muted mt-1 rounded-lg border px-4 py-3 text-sm">
+                    <dt className="text-fg-subtle text-sm font-semibold">Beispiel</dt>
+                    <dd className="bg-surface-muted mt-1 rounded-md px-4 py-3 text-sm">
                       <span className="text-fg-muted">{beispiel.eingabe}</span>
                       <span aria-hidden="true" className="text-fg-subtle mx-2">
                         →
@@ -161,7 +155,7 @@ export default function MethodenSeite() {
                   </div>
 
                   <div>
-                    <dt className="text-fg-subtle text-[0.8125rem] font-semibold">
+                    <dt className="text-fg-subtle text-sm font-semibold">
                       Was dabei wegfällt
                     </dt>
                     <dd className="mt-1">

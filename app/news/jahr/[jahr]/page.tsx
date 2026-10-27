@@ -149,7 +149,7 @@ function Randkachel({
   if (!eintrag) return null
   return (
     <div className="fk-card p-5">
-      <p className="text-fg-subtle text-[0.8125rem] font-semibold">{titel}</p>
+      <p className="text-fg-subtle text-sm font-semibold">{titel}</p>
       <p className="text-fg mt-2 text-base font-semibold">{eintrag.name}</p>
       <p
         className={`mt-1 text-2xl font-bold tabular-nums ${
@@ -245,7 +245,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
         {/* ------------------------------------------------- Die Ränder */}
         {rueckblick.raender && (
           <section aria-labelledby="raender" className="mt-10 first:mt-0">
-            <h2 id="raender" className="text-xl font-semibold sm:text-2xl">
+            <h2 id="raender" className="text-xl font-bold">
               Die drei Ränder des Jahres
             </h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-3">
@@ -287,7 +287,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
 
         {/* ------------------------------------------------ Die Tabelle */}
         <section aria-labelledby="maerkte" className="mt-14">
-          <h2 id="maerkte" className="text-xl font-semibold sm:text-2xl">
+          <h2 id="maerkte" className="text-xl font-bold">
             Was die Märkte machten
           </h2>
           <div className="fk-card relative mt-5 overflow-x-auto p-4 sm:p-6">
@@ -298,7 +298,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
                 ins Jahr.
               </caption>
               <thead>
-                <tr className="text-fg-subtle text-[0.8125rem]">
+                <tr className="text-fg-subtle text-sm">
                   <th scope="col" className="pr-3 pb-2 text-left font-semibold">
                     Markt
                   </th>
@@ -334,7 +334,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
         {/* ------------------------------------------- Der Jahresverlauf */}
         {rueckblick.leitindex && rueckblick.monate.length > 0 && (
           <section aria-labelledby="verlauf" className="mt-14">
-            <h2 id="verlauf" className="text-xl font-semibold sm:text-2xl">
+            <h2 id="verlauf" className="text-xl font-bold">
               Wann es passierte
             </h2>
             <p className="text-fg-muted mt-3 leading-relaxed">
@@ -353,7 +353,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
 
         {/* ------------------------------------------------ Das Archiv */}
         <section aria-labelledby="archiv" className="mt-14">
-          <h2 id="archiv" className="text-xl font-semibold sm:text-2xl">
+          <h2 id="archiv" className="text-xl font-bold">
             Was wir dazu geschrieben haben
           </h2>
 
@@ -425,7 +425,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
 
         {/* --------------------------------------- Was hier nicht steht */}
         <section aria-labelledby="grenzen" className="mt-14">
-          <h2 id="grenzen" className="text-xl font-semibold sm:text-2xl">
+          <h2 id="grenzen" className="text-xl font-bold">
             Was dieser Rückblick nicht sagt
           </h2>
           <div className="mt-5 space-y-4">

@@ -753,7 +753,7 @@ export function Globus({
             <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />
 
             {ueberName && (
-              <span className="bg-invert text-on-invert pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-[3px] px-3 py-1 text-xs font-semibold">
+              <span className="bg-invert text-on-invert pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-md px-3 py-1 text-xs font-semibold">
                 {ueberName}
               </span>
             )}
@@ -787,7 +787,7 @@ export function Globus({
                   setDrehung({ lambda: -10, phi: 20 })
                   onAuswahl(null)
                 }}
-                className="border-border text-fg-muted hover:text-fg hover:border-border-strong rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+                className="border-border text-fg-muted hover:text-fg hover:border-border-strong rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
               >
                 Zurücksetzen
               </button>
@@ -795,7 +795,7 @@ export function Globus({
                 type="button"
                 onClick={vollbildUmschalten}
                 aria-pressed={vollbild}
-                className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+                className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
               >
                 <Icon name={vollbild ? 'compress' : 'expand'} className="size-3.5" />
                 {/* Im Vollbild kurz halten: Auf einem schmalen Gerät bricht
@@ -843,7 +843,7 @@ function Knopf({
       onClick={onKlick}
       disabled={aus}
       aria-label={beschriftung}
-      className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex size-8 items-center justify-center rounded-lg border text-sm font-semibold transition-colors disabled:opacity-40"
+      className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex size-8 items-center justify-center rounded-md border text-sm font-semibold transition-colors disabled:opacity-40"
     >
       {zeichen}
     </button>

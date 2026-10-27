@@ -296,7 +296,7 @@ export function PensionCalculator() {
                   label: 'Gesetzliche Bruttorente',
                   value: result.grossStatutoryMonthly,
                   display: formatCurrency(result.grossStatutoryMonthly, 0),
-                  barClass: 'bg-brand',
+                  barClass: 'bg-fg',
                 },
                 {
                   label: 'abzüglich Kranken- und Pflegeversicherung',

@@ -157,7 +157,7 @@ export default function GrafikenSeite() {
               aria-labelledby={`gruppe-${titel}`}
               className="mt-14 scroll-mt-24"
             >
-              <h2 id={`gruppe-${titel}`} className="text-fg text-2xl font-bold">
+              <h2 id={`gruppe-${titel}`} className="text-fg text-xl font-bold">
                 {titel}
               </h2>
               <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">

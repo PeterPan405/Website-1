@@ -30,7 +30,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="max-w-2xl">
             <section aria-labelledby="per-mail" className="fk-card p-6 sm:p-8">
-              <h2 id="per-mail" className="text-fg text-xl font-semibold">
+              <h2 id="per-mail" className="text-fg text-xl font-bold">
                 Per E-Mail
               </h2>
               <p className="text-fg-muted mt-3 leading-relaxed">
@@ -60,7 +60,7 @@ export default function ContactPage() {
             </section>
 
             <section aria-labelledby="per-telefon" className="fk-card mt-8 p-6 sm:p-8">
-              <h2 id="per-telefon" className="text-fg text-xl font-semibold">
+              <h2 id="per-telefon" className="text-fg text-xl font-bold">
                 Per Telefon
               </h2>
               <p className="text-fg-muted mt-3 leading-relaxed">
@@ -89,7 +89,7 @@ export default function ContactPage() {
             </section>
 
             <section aria-labelledby="hilfreich" className="mt-8">
-              <h2 id="hilfreich" className="text-fg text-xl font-semibold">
+              <h2 id="hilfreich" className="text-fg text-xl font-bold">
                 Was uns hilft
               </h2>
               <ul className="text-fg-muted mt-4 space-y-3">
@@ -174,7 +174,7 @@ export default function ContactPage() {
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
             <section aria-labelledby="rechtliches" className="fk-card p-6">
-              <h2 id="rechtliches" className="text-fg text-base font-semibold">
+              <h2 id="rechtliches" className="text-fg text-base font-bold">
                 Rechtliches
               </h2>
               <ul className="mt-4 space-y-2">

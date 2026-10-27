@@ -32,7 +32,7 @@ export function EingepreistKarte({
 
   return (
     <section aria-labelledby="eingepreist" className={className}>
-      <h2 id="eingepreist" className="text-fg text-2xl font-bold">
+      <h2 id="eingepreist" className="text-fg text-xl font-bold">
         Was der Kurs schon verspricht
       </h2>
       <div className="fk-card mt-6 p-6">
@@ -47,7 +47,7 @@ export function EingepreistKarte({
             <p className="text-fg-muted text-sm font-medium">
               Eingepreistes Gewinnwachstum
             </p>
-            <p className="text-brand mt-1.5 text-3xl font-bold tabular-nums sm:text-4xl">
+            <p className="text-fg mt-1.5 text-3xl font-bold tabular-nums sm:text-4xl">
               {formatPercentSigned(wachstum)} pro Jahr
             </p>
             <p className="text-fg-subtle mt-2 text-sm leading-relaxed">

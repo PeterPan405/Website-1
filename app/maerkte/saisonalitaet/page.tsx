@@ -187,7 +187,7 @@ export default function SaisonalitaetSeite() {
           vorher als Fließtext liest, hat ihn bis zur Tabelle vergessen.
         */}
         <section aria-labelledby="probe">
-          <h2 id="probe" className="text-fg text-2xl font-bold">
+          <h2 id="probe" className="text-fg text-xl font-bold">
             Die Probe: Muster oder Zufall?
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -276,7 +276,7 @@ export default function SaisonalitaetSeite() {
         </section>
 
         <section aria-labelledby="monate" className="mt-12">
-          <h2 id="monate" className="text-fg text-2xl font-bold">
+          <h2 id="monate" className="text-fg text-xl font-bold">
             Alle Monate
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -341,12 +341,12 @@ export default function SaisonalitaetSeite() {
         </section>
 
         <section aria-labelledby="sprueche" className="mt-12">
-          <h2 id="sprueche" className="text-fg text-2xl font-bold">
+          <h2 id="sprueche" className="text-fg text-xl font-bold">
             Was die Sprüche wert sind
           </h2>
 
           <div className="mt-6 space-y-6">
-            <div className="border-border bg-surface-muted rounded-md border p-5">
+            <div className="bg-surface-muted rounded-md p-5">
               <h3 className="text-fg text-lg font-bold">„Sell in May and go away“</h3>
               <p className="text-fg-muted mt-2 leading-relaxed">
                 Die Behauptung: Mai bis Oktober laufen schwächer als November bis April.
@@ -410,7 +410,7 @@ export default function SaisonalitaetSeite() {
               </p>
             </div>
 
-            <div className="border-border bg-surface-muted rounded-md border p-5">
+            <div className="bg-surface-muted rounded-md p-5">
               <h3 className="text-fg text-lg font-bold">
                 „Der September ist der schwächste Monat“
               </h3>
@@ -425,7 +425,7 @@ export default function SaisonalitaetSeite() {
               </p>
             </div>
 
-            <div className="border-border bg-surface-muted rounded-md border p-5">
+            <div className="bg-surface-muted rounded-md p-5">
               <h3 className="text-fg text-lg font-bold">Elf Belege sind ein Beleg</h3>
               <p className="text-fg-muted mt-2 leading-relaxed">
                 Denn die elf Werte sind nicht elf unabhängige Zeugen. DAX und Euro Stoxx
@@ -451,7 +451,7 @@ export default function SaisonalitaetSeite() {
         </section>
 
         <section aria-labelledby="einzeln" className="mt-12">
-          <h2 id="einzeln" className="text-fg text-2xl font-bold">
+          <h2 id="einzeln" className="text-fg text-xl font-bold">
             Was in einem Durchschnitt verschwindet
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -542,7 +542,7 @@ export default function SaisonalitaetSeite() {
         </section>
 
         <section aria-labelledby="befunde" className="mt-12">
-          <h2 id="befunde" className="text-fg text-2xl font-bold">
+          <h2 id="befunde" className="text-fg text-xl font-bold">
             Der Befund
           </h2>
 
@@ -569,10 +569,7 @@ export default function SaisonalitaetSeite() {
               </p>
               <ul className="mt-4 space-y-3">
                 {auffaellige.map(({ symbol, name, befund }) => (
-                  <li
-                    key={symbol}
-                    className="border-border bg-surface-muted rounded-md border p-4"
-                  >
+                  <li key={symbol} className="bg-surface-muted rounded-md p-4">
                     <p className="text-fg font-medium">{name}</p>
                     <p className="text-fg-muted mt-1 text-sm leading-relaxed">
                       {saisonSatz(befund!)}

@@ -95,7 +95,7 @@ export function Merklistentafel({
 
   if (zeilen.length === 0) {
     return (
-      <div className="border-border bg-surface-muted rounded-md border p-6">
+      <div className="bg-surface-muted rounded-md p-6">
         <p className="text-fg font-semibold">Noch nichts gemerkt</p>
         <p className="text-fg-muted mt-2 leading-relaxed">
           Auf jeder Kursseite steht oben ein Knopf „Merken“. Was du dort merkst, erscheint

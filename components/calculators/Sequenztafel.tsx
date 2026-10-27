@@ -52,7 +52,7 @@ export function Sequenztafel({ className }: { className?: string }) {
 
   return (
     <section aria-labelledby="sequenz" className={className}>
-      <h2 id="sequenz" className="text-fg text-2xl font-bold">
+      <h2 id="sequenz" className="text-fg text-xl font-bold">
         Dieselbe Rendite, anderes Ergebnis
       </h2>
       <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
@@ -124,7 +124,7 @@ export function Sequenztafel({ className }: { className?: string }) {
         </p>
       </Callout>
 
-      <details className="border-border mt-6 rounded-lg border p-4">
+      <details className="border-border mt-6 rounded-md border p-4">
         <summary className="text-fg cursor-pointer text-sm font-medium">
           Die verwendeten Jahresrenditen
         </summary>

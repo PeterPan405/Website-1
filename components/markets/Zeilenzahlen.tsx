@@ -64,7 +64,7 @@ export function Zeilenzahlen({
 
   return (
     <>
-      <span className="text-fg shrink-0 text-sm tabular-nums">
+      <span className="text-fg-muted shrink-0 text-base font-medium tabular-nums">
         {formatNumber(kurs.value, decimals)}
       </span>
       {/*
@@ -79,7 +79,7 @@ export function Zeilenzahlen({
       */}
       <span
         className={cn(
-          'flex w-24 shrink-0 items-center justify-end gap-0.5 text-sm font-medium whitespace-nowrap tabular-nums',
+          'flex w-24 shrink-0 items-center justify-end gap-0.5 text-base font-medium whitespace-nowrap tabular-nums',
           positiv ? 'text-success' : 'text-danger'
         )}
       >

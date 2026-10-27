@@ -102,10 +102,7 @@ export default function DreiWochenSeite() {
                 Woche {woche.nummer} · parallel zu {woche.parallelZu} ·{' '}
                 {woche.lektionen.length} Lektionen · rund {minuten[stelle]} Minuten
               </p>
-              <h2
-                id={`woche-${woche.nummer}`}
-                className="text-fg mt-1 text-2xl font-bold sm:text-3xl"
-              >
+              <h2 id={`woche-${woche.nummer}`} className="text-fg mt-1 text-xl font-bold">
                 {woche.titel}
               </h2>
               <p className="text-fg-muted mt-2 leading-relaxed">{woche.warum}</p>

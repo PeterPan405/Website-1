@@ -117,7 +117,7 @@ export default async function StimmungsSeite({ params }: SeitenProps) {
               <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-10">
                 <Tacho stimmung={jetzt} className="h-auto w-[230px] shrink-0" mitSkala />
                 <div className="min-w-0">
-                  <h2 className="text-fg text-2xl font-bold">
+                  <h2 className="text-fg text-xl font-bold">
                     {jetzt.wert} von 100 – {stufentext}
                   </h2>
                   <p className="text-fg-muted mt-3 leading-relaxed">
@@ -180,7 +180,7 @@ export default async function StimmungsSeite({ params }: SeitenProps) {
                       aria-hidden="true"
                     >
                       <div
-                        className="bg-brand h-full rounded-full"
+                        className="bg-fg h-full rounded-full"
                         style={{ width: `${Math.round(teil.wert)}%` }}
                       />
                     </div>

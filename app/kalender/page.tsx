@@ -124,7 +124,7 @@ export default async function KalenderPage() {
 
           {/* ---------------------------------------------------- Einordnung */}
           <section aria-labelledby="hinweis" className="mt-16">
-            <h2 id="hinweis" className="text-fg text-2xl font-bold">
+            <h2 id="hinweis" className="text-fg text-xl font-bold">
               Was hier feststeht – und was erwartet wird
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">

@@ -92,7 +92,7 @@ export default async function LernpfadSeite({
               kannst du"); jetzt ein Satz und der Knopf, der bei Schritt 1
               beginnt oder bei der nächsten offenen Stufe weitermacht.
             */}
-            <div className="rounded-card border-learn/30 bg-learn-soft border p-6">
+            <div className="rounded-card bg-learn-soft p-6">
               <p className="text-fg leading-relaxed">
                 <span className="font-semibold">Danach kannst du: </span>
                 {pfad.ergebnis}
@@ -103,7 +103,7 @@ export default async function LernpfadSeite({
               <span className="font-medium">Für wen: </span>
               {pfad.fuerWen}
             </p>
-            <h2 id="schritte" className="text-fg mt-10 text-2xl font-bold sm:text-3xl">
+            <h2 id="schritte" className="text-fg mt-10 text-xl font-bold">
               Die Schritte
             </h2>
 
@@ -123,7 +123,7 @@ export default async function LernpfadSeite({
                             <>
                               <span>{schritt.themaTitel}</span>
                               <span aria-hidden="true">·</span>
-                              <span className="bg-learn-soft text-learn rounded-[3px] px-2 py-0.5">
+                              <span className="bg-learn-soft text-learn rounded-md px-2 py-0.5">
                                 {schritt.stufeLabel}
                               </span>
                               <span aria-hidden="true">·</span>
@@ -138,7 +138,7 @@ export default async function LernpfadSeite({
                               )}
                             </>
                           ) : (
-                            <span className="bg-tools-soft text-tools rounded-[3px] px-2 py-0.5">
+                            <span className="bg-tools-soft text-tools rounded-md px-2 py-0.5">
                               Rechner
                             </span>
                           )}
@@ -191,7 +191,7 @@ export default async function LernpfadSeite({
           {/* ------------------------------------------------- Seitenspalte */}
           <aside className="lg:sticky lg:top-24 lg:h-fit">
             <div className="fk-card p-5">
-              <h2 className="text-fg text-sm font-semibold">Dein Stand</h2>
+              <h2 className="text-fg text-sm font-bold">Dein Stand</h2>
               <PfadFortschritt kennungen={pfad.stufenkennungen} className="mt-3" />
               <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
                 Gezählt wird derselbe Fortschritt wie im Lernbereich: Was du dort abhakst,
@@ -213,7 +213,7 @@ export default async function LernpfadSeite({
             </div>
 
             <div className="fk-card mt-4 p-5">
-              <h2 className="text-fg text-sm font-semibold">Andere Wege</h2>
+              <h2 className="text-fg text-sm font-bold">Andere Wege</h2>
               <p className="text-fg-subtle mt-2 text-xs leading-relaxed">
                 Wenn dieser Pfad nicht zu deiner Frage passt, passt vielleicht ein anderer
                 – oder die vollständige Übersicht.

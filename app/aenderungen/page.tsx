@@ -94,7 +94,7 @@ export default function AenderungenSeite() {
             <section key={tag} aria-labelledby={`tag-${tag}`}>
               <h2
                 id={`tag-${tag}`}
-                className="text-fg-subtle border-border border-b pb-2 text-sm font-semibold"
+                className="text-fg-subtle border-border border-b pb-2 text-sm font-bold"
               >
                 {formatDate(tag)}
               </h2>
@@ -105,7 +105,7 @@ export default function AenderungenSeite() {
                   return (
                     <li key={eintrag.titel}>
                       <span
-                        className={`inline-block rounded-[3px] border px-2.5 py-0.5 text-xs font-semibold ${art.klasse}`}
+                        className={`inline-block rounded-md border px-2.5 py-0.5 text-xs font-semibold ${art.klasse}`}
                       >
                         {art.wort}
                       </span>
