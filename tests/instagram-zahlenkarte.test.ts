@@ -458,6 +458,53 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* Die Karte vom 27.10.2026 – Gewinn pro Sekunde, Balken in Dollar. */
+{
+  const sek = zahlenkarten.find((k) => k.datum === '2026-10-27') as Rangkarte
+  const bestand: Record<string, { gewinn?: number }> = JSON.parse(
+    readFileSync('data/snapshots/fundamentaldaten.json', 'utf8')
+  ).unternehmen
+  const symbol: Record<string, string> = {
+    Alphabet: 'GOOGL',
+    Nvidia: 'NVDA',
+    Apple: 'AAPL',
+    Microsoft: 'MSFT',
+    Amazon: 'AMZN',
+    Berkshire: 'BRK-B',
+    Meta: 'META',
+    JPMorgan: 'JPM',
+    Tesla: 'TSLA',
+  }
+  for (const z of sek.zeilen) {
+    const gewinn = bestand[symbol[z.name]]?.gewinn ?? NaN
+    const jeSekunde = Math.round(gewinn / (365 * 24 * 3600))
+    pruefe(
+      `${z.name}: ${z.wert} $/s aus dem Bestand (${jeSekunde})`,
+      jeSekunde === z.wert
+    )
+  }
+  pruefe('Balken', form(sek) === 'balken')
+  pruefe(
+    'die Karte hält die Form ein',
+    pruefeZahlenkarte(sek).length === 0,
+    pruefeZahlenkarte(sek).join('; ')
+  )
+  pruefe(
+    'Form nicht wie am Vortag',
+    form(sek) !== form(zahlenkarten.find((k) => k.datum === '2026-10-26')!)
+  )
+  pruefe(
+    'Farbe nicht wie am Vortag',
+    akzentfarbe('2026-10-27') !== akzentfarbe('2026-10-26')
+  )
+  pruefe('ohne Freigabe', sek.freigabe === undefined)
+  const png = await zahlenkartePng(sek, readFileSync('public/logo.svg', 'utf8'))
+  pruefe(
+    'Gewinn pro Sekunde: das Bild ist ein PNG',
+    png.subarray(1, 4).toString() === 'PNG'
+  )
+}
+
 /* Die Karte vom 26.10.2026 – Big-Mac-Index, Burger (neue Form). */
 {
   const mac = zahlenkarten.find((k) => k.datum === '2026-10-26') as Rangkarte
