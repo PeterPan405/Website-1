@@ -309,6 +309,17 @@ const FLAGGE_SCHWEIZ = quadrat(
     '<rect x="25" y="12" width="10" height="36" fill="#fff"/><rect x="12" y="25" width="36" height="10" fill="#fff"/>'
 )
 
+/*
+  Saudi-Arabien (27.10.2026, Gewinn pro Sekunde): grünes Feld, darauf in
+  Weiß die Schriftzeile als Band und darunter das Schwert – die Schrift
+  selbst ist in 46 px ohnehin nicht zu lesen.
+*/
+const FLAGGE_SAUDI = quadrat(
+  '<rect width="60" height="60" fill="#006C35"/>' +
+    '<rect x="12" y="19" width="36" height="9" rx="4" fill="#fff"/>' +
+    '<rect x="13" y="36" width="34" height="3" fill="#fff"/><rect x="43" y="33" width="3" height="9" fill="#fff"/>'
+)
+
 /* Norwegen (26.10.2026, Big-Mac-Index): das skandinavische Kreuz, rot mit weiß-blauem Kreuz. */
 const FLAGGE_NORWEGEN = quadrat(
   '<rect width="60" height="60" fill="#BA0C2F"/>' +
@@ -357,6 +368,7 @@ export const FLAGGEN: Record<string, Flagge> = {
   NOR: { streifen: ['#BA0C2F'], svg: FLAGGE_NORWEGEN },
   POL: { streifen: ['#FFFFFF', '#DC143C'] },
   ROU: { streifen: ['#002B7F', '#FCD116', '#CE1126'], senkrecht: true },
+  SAU: { streifen: ['#006C35'], svg: FLAGGE_SAUDI },
   SVK: { streifen: ['#FFFFFF', '#0B4EA2', '#EE1C25'], wappen: WAPPEN_SLOWAKEI },
   /* Tschad: Streifen wie Rumänien, im Blau dunkler – so ist die Flagge. */
   TCD: { streifen: ['#002664', '#FECB00', '#C60C30'], senkrecht: true },

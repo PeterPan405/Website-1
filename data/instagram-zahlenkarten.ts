@@ -17,52 +17,55 @@ export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
       Thema: Für den 27.10.2026 hatte der Betreiber nichts gewählt – genommen
-      ist der erste offene Vorschlag vom 26.10. („So viel verdient Apple,
-      während du diesen Beitrag liest"; gewählt war dort der Big-Mac-Index).
-      Anlass: Alphabet und Microsoft berichten am Mittwoch (Ausgabe 26.10.).
+      war der erste offene Vorschlag vom 26.10. („Gewinn pro Sekunde",
+      zuerst mit US-Konzernen). Dann der Betreiber: „Nimm bitte die größten
+      Unternehmen von ein paar Ländern, zum Beispiel Deutschland, USA,
+      China, und vergleiche diese miteinander … mit dem Gewinn pro Sekunde."
       Form: Balken (am 26.10. Burger). Farbe: akzentfarbe('2026-10-27').
 
-      Aus data/snapshots/fundamentaldaten.json (SEC, XBRL-Pflichtmeldungen,
-      abgerufen 24.10.2026): Nettogewinn des zuletzt gemeldeten
-      Geschäftsjahres, geteilt durch 31.536.000 Sekunden (365 Tage):
-        GOOGL 132,170 Mrd. $ → 4.191 $/s   NVDA 120,067 → 3.807
-        AAPL  112,010        → 3.552        MSFT 101,832 → 3.229
-        AMZN   77,670        → 2.463        BRK-B 66,968 → 2.124
-        META   60,458        → 1.917        JPM   57,000 → 1.807
-        TSLA    3,855        →   122
-      Die Geschäftsjahre enden nicht am selben Tag (Apple September,
-      Microsoft Juni, Nvidia Januar) – gesagt in der Erklärung.
+      „Größtes Unternehmen eines Landes" = höchster Umsatz in der Liste
+      der 50 umsatzstärksten Konzerne der Welt (Fortune Global 500 und
+      weitere Quellen), en.wikipedia.org/wiki/List_of_largest_companies_by_revenue,
+      gelesen am 27.10.2026 über quellen-holen.yml. Gewinn dort in Mrd.
+      US-Dollar, „most recent fiscal year, primarily 2024 or 2025";
+      geteilt durch 31.536.000 Sekunden (365 Tage):
+        Saudi Aramco  106   → 3.361 $/s   Amazon      79,9 → 2.534
+        Toyota         34,2 → 1.084        TotalEnergies 21,3 → 675
+        Shell          19,3 →   612        Volkswagen  17,9 →   568
+        Samsung        11,0 →   349        State Grid   9,2 →   292
+      Weggelassen: Schweiz und Singapur (Vitol, Trafigura – Rohstoffhändler,
+      kaum jemandem ein Begriff), Niederlande (Stellantis) und Taiwan
+      (Foxconn), damit die Liste bei acht Zeilen bleibt.
     */
     art: 'rangliste',
     skala: 'balken',
     datum: '2026-10-27',
     titel: [
       { text: 'Gewinn pro Sekunde:' },
-      { text: 'Alphabet 4.191\u00a0$', gruen: true },
+      { text: 'Aramco 3.361\u00a0$', gruen: true },
     ],
     erklaerung:
-      'Jahresgewinn geteilt durch die 31,5 Millionen Sekunden eines Jahres – aus dem zuletzt gemeldeten Geschäftsjahr jedes Konzerns. In fünf Sekunden sind das bei Alphabet knapp 21.000 Dollar.',
+      'Der umsatzstärkste Konzern jedes Landes – sein Jahresgewinn geteilt durch die 31,5 Millionen Sekunden eines Jahres. Volkswagen, Deutschlands größter Konzern, schafft 568 Dollar.',
     unterzeile: 'Nettogewinn je Sekunde, in US-Dollar:',
     einheit: '\u00a0$',
     stellen: 0,
     zeilen: [
-      { name: 'Alphabet', wert: 4191, land: 'USA', hervor: true },
-      { name: 'Nvidia', wert: 3807, land: 'USA' },
-      { name: 'Apple', wert: 3552, land: 'USA' },
-      { name: 'Microsoft', wert: 3229, land: 'USA' },
-      { name: 'Amazon', wert: 2463, land: 'USA' },
-      { name: 'Berkshire', wert: 2124, land: 'USA' },
-      { name: 'Meta', wert: 1917, land: 'USA' },
-      { name: 'JPMorgan', wert: 1807, land: 'USA' },
-      { name: 'Tesla', wert: 122, land: 'USA' },
+      { name: 'Saudi Aramco', wert: 3361, land: 'SAU' },
+      { name: 'Amazon', wert: 2534, land: 'USA' },
+      { name: 'Toyota', wert: 1084, land: 'JPN' },
+      { name: 'TotalEnergies', wert: 675, land: 'FRA' },
+      { name: 'Shell', wert: 612, land: 'GBR' },
+      { name: 'Volkswagen', wert: 568, land: 'DEU', hervor: true },
+      { name: 'Samsung', wert: 349, land: 'KOR' },
+      { name: 'State Grid', wert: 292, land: 'CHN' },
     ],
     fusszeile:
-      'Stand: letztes gemeldetes Geschäftsjahr | Quelle: US-Börsenaufsicht SEC | eigene Rechnung',
+      'Stand: GJ 2024/25 | Quelle: Fortune Global 500 (Wikipedia) | eigene Rechnung',
     text:
-      'So viel Gewinn macht ein Konzern in einer Sekunde: Alphabet 4.191 Dollar, Nvidia 3.807, Apple 3.552, Microsoft 3.229. Tesla kommt auf 122 Dollar.\n\n' +
-      'Gerechnet aus dem Nettogewinn des zuletzt gemeldeten Geschäftsjahres, geteilt durch die Sekunden eines Jahres. Die Geschäftsjahre enden nicht am selben Tag – bei Apple im September, bei Microsoft im Juni, bei Nvidia im Januar. Alphabet und Microsoft legen am Mittwoch ihre Zahlen für das dritte Quartal vor.\n\n' +
-      'Quellen: US-Börsenaufsicht SEC (XBRL-Pflichtmeldungen, abgerufen am 24.10.2026); eigene Rechnung',
-    schlagworte: ['gewinn', 'bigtech', 'aktien', 'alphabet', 'börse'],
+      'So viel Gewinn macht der größte Konzern eines Landes in einer Sekunde: Saudi Aramco 3.361 Dollar, Amazon 2.534, Toyota 1.084. Volkswagen kommt auf 568 Dollar, Chinas Stromnetzbetreiber State Grid auf 292.\n\n' +
+      'Der größte Konzern ist hier der mit dem höchsten Umsatz. Gerechnet aus dem Nettogewinn des zuletzt gemeldeten Geschäftsjahres – meist 2024 oder 2025 –, geteilt durch die Sekunden eines Jahres. Umsatz und Gewinn sind zwei Dinge: State Grid setzt mehr um als Toyota, verdient aber weniger als ein Drittel.\n\n' +
+      'Quellen: Wikipedia, „List of largest companies by revenue" (nach Fortune Global 500, abgerufen am 27.10.2026); eigene Rechnung',
+    schlagworte: ['gewinn', 'konzerne', 'aktien', 'weltwirtschaft', 'börse'],
   },
   {
     /*
