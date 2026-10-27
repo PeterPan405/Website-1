@@ -339,14 +339,14 @@ function NavEntry({
       */}
       <div
         className={cn(
-          'flex items-center rounded-full text-sm font-medium transition',
-          active || isOpen ? 'bg-surface-muted text-fg' : 'text-fg-muted hover:text-fg'
+          'flex items-center text-sm font-medium transition',
+          active || isOpen ? 'text-fg' : 'text-fg-muted hover:text-fg'
         )}
       >
         <Link
           href={item.href}
           aria-current={active ? 'page' : undefined}
-          className="rounded-l-full py-2 pr-1 pl-3.5"
+          className="py-2 pr-1 pl-3"
         >
           {item.label}
         </Link>
@@ -358,7 +358,7 @@ function NavEntry({
           // beim Fokussieren würde beim Durchtabben jedes Menü aufklappen – und
           // ein anschließendes Enter hätte es sofort wieder geschlossen.
           onClick={onToggle}
-          className="rounded-r-full py-2 pr-3 pl-0.5"
+          className="py-2 pr-3 pl-0.5"
         >
           <Icon
             name="chevron-down"
@@ -383,27 +383,23 @@ function NavEntry({
               über fremdem Inhalt und brauchen Kante und Schatten, um sich
               davon zu lösen – wie jedes Systemmenü.
             */
-            className="fk-card border-border shadow-lift absolute top-full left-0 mt-2 w-80 origin-top-left overflow-hidden border p-2"
+            className="fk-card border-border shadow-lift absolute top-full left-0 mt-2 w-60 origin-top-left overflow-hidden border py-2"
           >
-            <p className="text-fg-subtle px-3 pt-2 pb-1 text-[0.8125rem] font-semibold">
-              {item.label}
-            </p>
+            {/*
+              Ohne Überschrift und ohne Erklärzeile je Eintrag (27.10.2026):
+              Der Betreiber fand das Lernen-Menü mit 13 Einträgen samt
+              Unterzeilen „einfach viel zu viel". Ein Menü ist ein Wegweiser,
+              kein Inhaltsverzeichnis – das steht auf der Seite dahinter.
+            */}
             <ul>
               {item.children.map((child) => (
                 <li key={child.href}>
                   <Link
                     href={child.href}
                     aria-current={pathname === child.href ? 'page' : undefined}
-                    className="group hover:bg-surface-muted flex items-start gap-3 rounded-md px-3 py-2.5 transition"
+                    className="text-fg hover:bg-surface-muted block px-4 py-2 text-sm transition"
                   >
-                    <span>
-                      <span className="text-fg block text-sm font-medium">
-                        {child.label}
-                      </span>
-                      {child.hint && (
-                        <span className="text-fg-muted block text-xs">{child.hint}</span>
-                      )}
-                    </span>
+                    {child.label}
                   </Link>
                 </li>
               ))}
@@ -412,8 +408,8 @@ function NavEntry({
               <Link
                 href={item.footerLink.href}
                 className={cn(
-                  'mt-1 flex items-center justify-between gap-2 rounded-md px-3 py-2.5',
-                  'hover:bg-surface-muted text-sm font-semibold transition',
+                  'border-border mt-2 flex items-center justify-between gap-2 border-t px-4 pt-3 pb-1',
+                  'text-sm font-semibold transition hover:underline',
                   style.text
                 )}
               >
