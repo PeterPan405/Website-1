@@ -22,14 +22,21 @@ import {
 /**
  * Das eigentliche Diagramm wird erst im Browser geladen.
  *
- * Recharts ist die größte Abhängigkeit der Website. Über den dynamischen Import
- * landet es nicht im ersten JavaScript-Bündel der Seite; die Zeitraum-Buttons
- * sind trotzdem sofort bedienbar.
+ * Seit dem 26.10.2026 TradingView Lightweight Charts (siehe `PriceArea`). Über
+ * den dynamischen Import landet es nicht im ersten JavaScript-Bündel der
+ * Seite; die Zeitraum-Buttons sind trotzdem sofort bedienbar.
  */
 const PriceArea = dynamic(
   () => import('@/components/charts/PriceArea').then((module) => module.PriceArea),
   { ssr: false, loading: () => <ChartSkeleton /> }
 )
+
+const IM_ZEITRAUM: Record<MarketRange, string> = {
+  '1W': 'in einer Woche',
+  '1M': 'in einem Monat',
+  '1J': 'in einem Jahr',
+  '5J': 'in fünf Jahren',
+}
 
 export function PriceChart({
   ranges,
@@ -109,9 +116,8 @@ export function PriceChart({
         >
           <Icon name={positive ? 'trending-up' : 'trending-down'} className="size-4" />
           {formatPercentSigned(changePercent)}
-          <span className="text-fg-subtle font-normal">
-            im Zeitraum {marketRangeLabels[range].toLowerCase()}
-          </span>
+          {/* „in einer Woche" statt „im Zeitraum eine woche" – kleingeschrieben las sich das wie ein Tippfehler. */}
+          <span className="text-fg-subtle font-normal">{IM_ZEITRAUM[range]}</span>
         </p>
       </div>
 
