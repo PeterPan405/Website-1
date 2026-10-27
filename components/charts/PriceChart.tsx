@@ -135,6 +135,26 @@ export function PriceChart({
         Angaben in {unit}. Die Prozentangabe bezieht sich auf den ersten und letzten Wert
         des gewählten Zeitraums.
       </p>
+      {/*
+        Der Lizenzhinweis, den die Bibliothek verlangt (README von
+        tradingview/lightweight-charts, Abschnitt „License“): den Hinweis aus
+        ihrer NOTICE-Datei **und** einen Verweis auf tradingview.com auf der
+        Seite. Das Logo im Diagramm deckt nur den Verweis ab – der Text steht
+        deshalb hier. Die Kurse selbst kommen nicht von TradingView, sondern
+        aus den Quellen, die die Seite nennt.
+      */}
+      <p className="text-fg-subtle mt-1 text-xs">
+        Diagramm: TradingView Lightweight Charts™, Copyright © 2025 TradingView, Inc.,{' '}
+        <a
+          href="https://www.tradingview.com/"
+          className="underline underline-offset-2"
+          rel="noopener"
+        >
+          tradingview.com
+        </a>{' '}
+        – freie Software unter der Apache-Lizenz 2.0. Die Kurse stammen nicht von
+        TradingView.
+      </p>
     </div>
   )
 }
