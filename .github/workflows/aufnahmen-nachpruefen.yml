@@ -54,13 +54,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: numpy und ffmpeg
-        run: |
-          pip install --quiet numpy
-          sudo apt-get update -qq \
-            || echo "::warning::apt-get update meldet Fehler – Installation wird versucht."
-          sudo apt-get install -y -qq ffmpeg
-          ffmpeg -version | head -1
+      - run: pip install --quiet numpy
+
+      - name: ffmpeg einrichten
+        uses: ./.github/actions/ffmpeg
 
       # Erst die Prüfung selbst prüfen. Ein Nachprüfer, der nichts findet,
       # weil er nichts finden kann, wäre schlimmer als keiner – er hieße
