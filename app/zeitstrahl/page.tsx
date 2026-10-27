@@ -189,7 +189,7 @@ function PunktBlock({ punkt }: { punkt: Zeitpunkt }) {
         <span className="text-fg text-lg font-bold tabular-nums">
           {punkt.tag ?? punkt.jahr}
         </span>
-        <span className="text-fg-subtle border-border rounded-full border px-2 py-0.5 text-xs">
+        <span className="text-fg-subtle border-border rounded-[3px] border px-2 py-0.5 text-xs">
           {art?.label ?? punkt.art}
         </span>
         {/*

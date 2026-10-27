@@ -43,7 +43,7 @@ export function Merkschalter({
       onClick={() => merkenUmschalten(symbol)}
       aria-pressed={gemerkt}
       className={cn(
-        'border-border inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition',
+        'border-border inline-flex items-center gap-1.5 rounded-[3px] border px-3 py-1.5 text-sm font-medium transition',
         gemerkt
           ? 'border-markets text-markets bg-surface-muted'
           : 'text-fg-muted hover:text-fg hover:bg-surface-muted',

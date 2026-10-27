@@ -83,7 +83,7 @@ export function LektionKacheln({
                   {fertig ? (
                     <span className="fk-chip bg-success-soft text-success">Erledigt</span>
                   ) : (
-                    <span className="border-border text-fg-subtle rounded-full border px-2 py-0.5 text-xs">
+                    <span className="border-border text-fg-subtle rounded-[3px] border px-2 py-0.5 text-xs">
                       {lektion.belegart}
                     </span>
                   )}

@@ -98,7 +98,7 @@ export default function IrrtuemerSeite() {
               <li key={gruppe.id}>
                 <a
                   href={`#${gruppe.id}`}
-                  className="border-border text-fg-muted hover:border-brand hover:text-fg inline-flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors"
+                  className="border-border text-fg-muted hover:border-brand hover:text-fg inline-flex items-center gap-2 rounded-[3px] border px-3 py-1.5 transition-colors"
                 >
                   {gruppe.titel}
                   <span className="text-fg-subtle tabular-nums">

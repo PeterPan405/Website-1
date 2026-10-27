@@ -356,13 +356,13 @@ export function KalenderAnsicht({
                         <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={cn(
-                              'rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold',
+                              'rounded-[3px] px-2 py-0.5 text-[0.6875rem] font-semibold',
                               ARTFARBEN.berichtssaison
                             )}
                           >
                             {artMeta.berichtssaison.label}
                           </span>
-                          <span className="border-border text-fg-subtle rounded-full border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+                          <span className="border-border text-fg-subtle rounded-[3px] border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
                             erwartet, nicht bestätigt
                           </span>
                           {istVorbei(zeile.termine[0]) && (
@@ -530,7 +530,7 @@ function ZeileEinzeln({
         <div className="flex flex-wrap items-center gap-2">
           <span
             className={cn(
-              'rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold',
+              'rounded-[3px] px-2 py-0.5 text-[0.6875rem] font-semibold',
               ARTFARBEN[termin.art]
             )}
           >
@@ -544,7 +544,7 @@ function ZeileEinzeln({
             scrollen.
           */}
           {termin.geschaetzt && (
-            <span className="border-border text-fg-subtle rounded-full border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+            <span className="border-border text-fg-subtle rounded-[3px] border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
               erwartet, nicht bestätigt
             </span>
           )}

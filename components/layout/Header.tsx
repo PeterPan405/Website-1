@@ -300,7 +300,7 @@ function NavEntry({
           href={item.href}
           aria-current={active ? 'page' : undefined}
           className={cn(
-            'rounded-full px-3.5 py-2 text-sm font-medium transition',
+            'rounded-[3px] px-3.5 py-2 text-sm font-medium transition',
             active ? 'bg-surface-muted text-fg' : 'text-fg-muted hover:text-fg'
           )}
         >

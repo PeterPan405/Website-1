@@ -769,7 +769,7 @@
 */
 @utility fk-chip {
   @apply inline-flex items-center gap-1.5 rounded-[0.3rem] px-2 py-0.5;
-  @apply font-mono text-[0.7rem] font-semibold tracking-wider uppercase;
+  @apply text-[0.75rem] font-semibold tabular-nums;
 }
 
 /* ---------------------------------------------------------------- Drucken */

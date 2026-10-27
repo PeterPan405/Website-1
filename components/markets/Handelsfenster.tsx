@@ -95,7 +95,7 @@ export function Handelsfenster({
         {offen !== null && (
           <span
             className={cn(
-              'rounded-full px-2 py-0.5 text-xs font-semibold',
+              'rounded-[3px] px-2 py-0.5 text-xs font-semibold',
               offen ? 'bg-success-soft text-success' : 'bg-surface-muted text-fg-muted'
             )}
           >

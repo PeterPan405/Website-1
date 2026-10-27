@@ -189,7 +189,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}
         <a
           href="#inhalt"
-          className="focus:bg-brand focus:text-brand-contrast sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
+          className="focus:bg-brand focus:text-brand-contrast sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-[3px] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
         >
           Direkt zum Inhalt springen
         </a>
