@@ -52,6 +52,16 @@ const gerechnet = gerechneterBefund(
 )
 const stellen = heute.filter((k) => k.stelle >= 2).map((k) => k.stelle)
 const sicht = sichtBefund(lies('sichtpruefung.json'), stellen)
+/*
+  Vom Betreiber abgenommen (Eingabe `abgenommen` in instagram-beitrag.yml):
+  Sein Urteil gilt statt dem des Modells. Gezeigt wird das Urteil trotzdem –
+  wer später nachliest, soll sehen, was überstimmt wurde.
+*/
+const abgenommen = process.env.ABGENOMMEN === 'ja'
+if (abgenommen && sicht.fehler.length)
+  console.log(
+    `::notice::Vom Betreiber abgenommen – ${sicht.fehler.length} Einwand/Einwände der Sichtprüfung überstimmt.`
+  )
 
 for (const k of heute)
   console.log(`Kachel ${k.stelle}: ${k.leer ? 'ohne Bild' : k.abdruck}`)
@@ -66,7 +76,7 @@ if (sicht.ausgefallen)
     '::warning::Sichtprüfung ausgefallen – kein Urteil zu jeder Kachel. Es gilt nur die gerechnete Prüfung.'
   )
 
-const fehler = [...gerechnet, ...sicht.fehler]
+const fehler = [...gerechnet, ...(abgenommen ? [] : sicht.fehler)]
 const zusammenfassung = process.env.GITHUB_STEP_SUMMARY
 if (zusammenfassung)
   appendFileSync(

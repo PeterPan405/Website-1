@@ -75,6 +75,10 @@ on:
         description: 'Heute schon einmal veröffentlicht und vom Betreiber gelöscht – trotzdem neu hochladen (nur nach seinem OK)'
         type: boolean
         default: false
+      abgenommen:
+        description: 'Der Betreiber hat die Kacheln gesehen und freigegeben – sein Urteil gilt statt der Sichtprüfung (die gerechnete Prüfung bleibt)'
+        type: boolean
+        default: false
 
   # Der Rückfall, falls der Anstoß aus dem Paketbau ausbleibt: 04:52 deutscher
   # Zeit. Krumme Minute, weil runde am dichtesten belegt sind.
@@ -349,6 +353,12 @@ jobs:
             - zwei Kacheln dasselbe oder fast dasselbe Bild zeigen (dann beide);
             - eine Kachel gar kein Bild hat.
 
+            Eine Kachel **passt**, wenn das Bild zeigt: die Firma (Logo,
+            Schild, Werk, Produkt), ihren Chef oder ihre Chefin, das Logo der
+            Mutter, wenn der Text die Firma als deren Tochter nennt, den
+            Kursverlauf, oder bei Rohstoffen und Energie eine Anlage, die
+            diesen Rohstoff zeigt (Raffinerie, Kraftwerk, Förderturm).
+
             Im Zweifel: passt nicht. Ein verschobener Beitrag kostet weniger
             als ein falscher.
 
@@ -360,9 +370,18 @@ jobs:
 
             `grund` immer ausfüllen, ein Satz, auf Deutsch.
 
+      # `abgenommen`: Am 27.10.2026 sah der Betreiber die Kacheln und gab sie
+      # frei („Die News des Tages passen so auch … Jetzt sofort hochladen"),
+      # die Sichtprüfung lehnte sie trotzdem ab – den Chef von Anthropic, das
+      # Logo der Mutter Deutsche Bank bei der DWS, Kühltürme beim Gaspreis,
+      # die zwei Stunden vorher noch durchgegangen waren. Ein Mensch, der
+      # hingesehen hat, schlägt das Modell; doppelte und leere Bilder findet
+      # die Rechnung trotzdem.
       - name: Bildprüfung
         if: steps.holen.outputs.kacheln != '0' && steps.gepostet.outputs.schon == 'nein'
         run: node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-hook.mjs scripts/instagram-bildpruefung.ts
+        env:
+          ABGENOMMEN: ${{ inputs.abgenommen && 'ja' || 'nein' }}
 
       - name: Veröffentlichen
         run: npm run instagram
