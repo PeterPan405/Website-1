@@ -458,31 +458,32 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Verlierer: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
-/* Die Karte vom 27.10.2026 – Gewinn pro Sekunde, Balken in Dollar. */
+/* Die Karte vom 27.10.2026 – Gewinn pro Sekunde der größten Konzerne je Land. */
 {
   const sek = zahlenkarten.find((k) => k.datum === '2026-10-27') as Rangkarte
-  const bestand: Record<string, { gewinn?: number }> = JSON.parse(
-    readFileSync('data/snapshots/fundamentaldaten.json', 'utf8')
-  ).unternehmen
-  const symbol: Record<string, string> = {
-    Alphabet: 'GOOGL',
-    Nvidia: 'NVDA',
-    Apple: 'AAPL',
-    Microsoft: 'MSFT',
-    Amazon: 'AMZN',
-    Berkshire: 'BRK-B',
-    Meta: 'META',
-    JPMorgan: 'JPM',
-    Tesla: 'TSLA',
+  /* Gewinn in Mrd. US-Dollar laut Wikipedia „List of largest companies by revenue", 27.10.2026. */
+  const gewinn: Record<string, number> = {
+    Alphabet: 132,
+    'Saudi Aramco': 106,
+    ICBC: 51.4,
+    Toyota: 34.2,
+    TotalEnergies: 21.3,
+    Shell: 19.3,
+    Volkswagen: 17.9,
+    Samsung: 11.0,
   }
   for (const z of sek.zeilen) {
-    const gewinn = bestand[symbol[z.name]]?.gewinn ?? NaN
-    const jeSekunde = Math.round(gewinn / (365 * 24 * 3600))
-    pruefe(
-      `${z.name}: ${z.wert} $/s aus dem Bestand (${jeSekunde})`,
-      jeSekunde === z.wert
-    )
+    const jeSekunde = Math.round((gewinn[z.name] * 1e9) / (365 * 24 * 3600))
+    pruefe(`${z.name}: ${z.wert} $/s aus der Quelle (${jeSekunde})`, jeSekunde === z.wert)
   }
+  pruefe(
+    'die Länder, nach denen der Betreiber fragte, sind dabei',
+    ['DEU', 'USA', 'CHN'].every((l) => sek.zeilen.some((z) => z.land === l))
+  )
+  pruefe(
+    'jedes Land nur einmal',
+    new Set(sek.zeilen.map((z) => z.land)).size === sek.zeilen.length
+  )
   pruefe('Balken', form(sek) === 'balken')
   pruefe(
     'die Karte hält die Form ein',
@@ -497,7 +498,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     'Farbe nicht wie am Vortag',
     akzentfarbe('2026-10-27') !== akzentfarbe('2026-10-26')
   )
-  pruefe('ohne Freigabe', sek.freigabe === undefined)
+  pruefe('freigegeben für den 27.10.', sek.freigabe === '2026-10-27')
+  pruefe(
+    'je Land der gewinnstärkste: in den USA Alphabet',
+    sek.zeilen[0].name === 'Alphabet'
+  )
   const png = await zahlenkartePng(sek, readFileSync('public/logo.svg', 'utf8'))
   pruefe(
     'Gewinn pro Sekunde: das Bild ist ein PNG',
