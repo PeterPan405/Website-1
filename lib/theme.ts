@@ -43,7 +43,7 @@ export const THEME_STORAGE_KEY = 'fk-theme'
  * deshalb nach.
  */
 export const LEISTENFARBE = {
-  weiss: '#f2ebdd',
+  weiss: '#ffffff',
   dark: '#0a0a0c',
 } as const
 

@@ -346,7 +346,7 @@ export default function SaisonalitaetSeite() {
           </h2>
 
           <div className="mt-6 space-y-6">
-            <div className="border-border bg-surface-muted rounded-xl border p-5">
+            <div className="border-border bg-surface-muted rounded-md border p-5">
               <h3 className="text-fg text-lg font-bold">„Sell in May and go away“</h3>
               <p className="text-fg-muted mt-2 leading-relaxed">
                 Die Behauptung: Mai bis Oktober laufen schwächer als November bis April.
@@ -410,7 +410,7 @@ export default function SaisonalitaetSeite() {
               </p>
             </div>
 
-            <div className="border-border bg-surface-muted rounded-xl border p-5">
+            <div className="border-border bg-surface-muted rounded-md border p-5">
               <h3 className="text-fg text-lg font-bold">
                 „Der September ist der schwächste Monat“
               </h3>
@@ -425,7 +425,7 @@ export default function SaisonalitaetSeite() {
               </p>
             </div>
 
-            <div className="border-border bg-surface-muted rounded-xl border p-5">
+            <div className="border-border bg-surface-muted rounded-md border p-5">
               <h3 className="text-fg text-lg font-bold">Elf Belege sind ein Beleg</h3>
               <p className="text-fg-muted mt-2 leading-relaxed">
                 Denn die elf Werte sind nicht elf unabhängige Zeugen. DAX und Euro Stoxx
@@ -571,7 +571,7 @@ export default function SaisonalitaetSeite() {
                 {auffaellige.map(({ symbol, name, befund }) => (
                   <li
                     key={symbol}
-                    className="border-border bg-surface-muted rounded-xl border p-4"
+                    className="border-border bg-surface-muted rounded-md border p-4"
                   >
                     <p className="text-fg font-medium">{name}</p>
                     <p className="text-fg-muted mt-1 text-sm leading-relaxed">

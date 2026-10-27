@@ -216,8 +216,8 @@ export function Header() {
                 {mainNav.map((item) => (
                   <li key={item.label}>
                     {item.children ? (
-                      <details className="group open:border-border open:bg-surface-muted rounded-xl border border-transparent">
-                        <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 font-medium">
+                      <details className="group open:border-border open:bg-surface-muted rounded-md border border-transparent">
+                        <summary className="flex cursor-pointer list-none items-center justify-between rounded-md px-3 py-3 font-medium">
                           <span>{item.label}</span>
                           <Icon
                             name="chevron-down"
@@ -394,7 +394,7 @@ function NavEntry({
                   <Link
                     href={child.href}
                     aria-current={pathname === child.href ? 'page' : undefined}
-                    className="group hover:bg-surface-muted flex items-start gap-3 rounded-xl px-3 py-2.5 transition"
+                    className="group hover:bg-surface-muted flex items-start gap-3 rounded-md px-3 py-2.5 transition"
                   >
                     <span>
                       <span className="text-fg block text-sm font-medium">
@@ -412,7 +412,7 @@ function NavEntry({
               <Link
                 href={item.footerLink.href}
                 className={cn(
-                  'mt-1 flex items-center justify-between gap-2 rounded-xl px-3 py-2.5',
+                  'mt-1 flex items-center justify-between gap-2 rounded-md px-3 py-2.5',
                   'hover:bg-surface-muted text-sm font-semibold transition',
                   style.text
                 )}
@@ -445,7 +445,7 @@ function MobileLink({
       href={href}
       aria-current={active ? 'page' : undefined}
       className={cn(
-        'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm transition',
+        'flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm transition',
         active ? 'bg-brand-soft text-brand font-semibold' : 'text-fg-muted hover:text-fg',
         emphasis && !active && 'text-fg font-semibold'
       )}

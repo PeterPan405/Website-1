@@ -461,7 +461,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                       onMouseEnter={() => setAktiv(i)}
                       title={entry.href}
                       className={cn(
-                        'flex w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left transition',
+                        'flex w-full items-start gap-3 rounded-md px-3 py-2.5 text-left transition',
                         i === aktiv ? 'bg-surface-muted' : 'hover:bg-surface-muted'
                       )}
                     >

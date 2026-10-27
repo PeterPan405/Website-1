@@ -161,7 +161,7 @@ export default function ZusammenhangSeite() {
               Die beiden Enden
             </h2>
             <div className="mt-4 grid gap-5 sm:grid-cols-2">
-              <div className="border-border bg-surface-muted rounded-xl border p-5">
+              <div className="border-border bg-surface-muted rounded-md border p-5">
                 <p className="text-fg-muted text-sm">Am stärksten im Gleichschritt</p>
                 <p className="text-fg mt-1 text-lg font-bold">
                   {hoechstes.a} und {hoechstes.b}
@@ -177,7 +177,7 @@ export default function ZusammenhangSeite() {
                   Streuung, sondern zwei Namen für dieselbe Bewegung.
                 </p>
               </div>
-              <div className="border-border bg-surface-muted rounded-xl border p-5">
+              <div className="border-border bg-surface-muted rounded-md border p-5">
                 <p className="text-fg-muted text-sm">Am wenigsten miteinander</p>
                 <p className="text-fg mt-1 text-lg font-bold">
                   {niedrigstes.a} und {niedrigstes.b}

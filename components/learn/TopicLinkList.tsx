@@ -33,7 +33,7 @@ export function TopicLinkList({
           <li key={topic.slug}>
             <Link
               href={`/lernen/${topic.slug}`}
-              className="group hover:bg-surface-muted flex items-start gap-3 rounded-xl p-2.5 transition"
+              className="group hover:bg-surface-muted flex items-start gap-3 rounded-md p-2.5 transition"
             >
               <span className="bg-learn-soft text-learn mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg">
                 <Icon name="book" className="size-4" />

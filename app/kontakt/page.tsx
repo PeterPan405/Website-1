@@ -181,7 +181,7 @@ export default function ContactPage() {
                 <li>
                   <Link
                     href="/impressum"
-                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-xl p-2.5 text-sm font-medium transition"
+                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-md p-2.5 text-sm font-medium transition"
                   >
                     <Icon name="info" className="text-fg-subtle size-4" />
                     Impressum
@@ -190,7 +190,7 @@ export default function ContactPage() {
                 <li>
                   <Link
                     href="/datenschutz"
-                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-xl p-2.5 text-sm font-medium transition"
+                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-md p-2.5 text-sm font-medium transition"
                   >
                     <Icon name="shield" className="text-fg-subtle size-4" />
                     Datenschutzerklärung
@@ -199,7 +199,7 @@ export default function ContactPage() {
                 <li>
                   <Link
                     href="/ueber-uns"
-                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-xl p-2.5 text-sm font-medium transition"
+                    className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2 rounded-md p-2.5 text-sm font-medium transition"
                   >
                     <Icon name="compass" className="text-fg-subtle size-4" />
                     Über uns

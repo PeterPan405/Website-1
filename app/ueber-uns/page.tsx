@@ -99,7 +99,7 @@ export default async function AboutPage() {
         <ul className="mt-6 grid gap-5 sm:grid-cols-2">
           {principles.map((principle) => (
             <li key={principle.title} className="fk-card h-full p-6">
-              <span className="bg-brand-soft text-brand flex size-10 items-center justify-center rounded-xl">
+              <span className="bg-brand-soft text-brand flex size-10 items-center justify-center rounded-md">
                 <Icon name={principle.icon} className="size-5" />
               </span>
               <h3 className="text-fg mt-4 font-semibold">{principle.title}</h3>

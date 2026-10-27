@@ -254,7 +254,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                       <li key={href}>
                         <Link
                           href={href}
-                          className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2.5 rounded-xl p-2.5 text-sm font-medium transition"
+                          className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2.5 rounded-md p-2.5 text-sm font-medium transition"
                         >
                           <Icon name="calculator" className="text-tools size-4" />
                           {definition.title}
@@ -285,7 +285,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                     <li key={lektion.slug}>
                       <Link
                         href={`/akademie/${lektion.bereich}/${lektion.slug}`}
-                        className="text-fg hover:bg-surface-muted hover:text-brand flex items-start gap-2.5 rounded-xl p-2.5 text-sm font-medium transition"
+                        className="text-fg hover:bg-surface-muted hover:text-brand flex items-start gap-2.5 rounded-md p-2.5 text-sm font-medium transition"
                       >
                         <Icon
                           name={
@@ -322,7 +322,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                     <li key={quote.symbol}>
                       <Link
                         href={`/maerkte/${quote.symbol}`}
-                        className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2.5 rounded-xl p-2.5 text-sm font-medium transition"
+                        className="text-fg hover:bg-surface-muted hover:text-brand flex items-center gap-2.5 rounded-md p-2.5 text-sm font-medium transition"
                       >
                         <Icon name="chart" className="text-markets size-4" />
                         {quote.ticker}

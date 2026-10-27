@@ -274,7 +274,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
           {block.items.map((item) => (
             <div
               key={item.label}
-              className="border-border bg-surface-muted rounded-xl border px-4 py-3"
+              className="border-border bg-surface-muted rounded-md border px-4 py-3"
             >
               <dt className="text-fg-subtle text-[0.8125rem] font-medium">
                 {item.label}

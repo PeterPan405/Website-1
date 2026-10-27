@@ -30,7 +30,7 @@ export function BudgetChart({
 }) {
   if (slices.length === 0) {
     return (
-      <p className="border-border-strong bg-surface-muted text-fg-muted rounded-xl border border-dashed p-6 text-center text-sm">
+      <p className="border-border-strong bg-surface-muted text-fg-muted rounded-md border border-dashed p-6 text-center text-sm">
         Trage Ausgaben ein, um die Verteilung zu sehen.
       </p>
     )

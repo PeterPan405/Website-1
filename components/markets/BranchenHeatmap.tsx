@@ -38,7 +38,7 @@ export function BranchenHeatmap({ branchen }: { branchen: Branchenbewegung[] }) 
           <li key={branche.name}>
             <Link
               href={`/maerkte/branchen/${brancheSlug(branche.name)}`}
-              className="border-border hover:border-border-strong block h-full rounded-xl border p-3 transition-colors"
+              className="border-border hover:border-border-strong block h-full rounded-md border p-3 transition-colors"
               style={{
                 backgroundColor: `color-mix(in oklab, var(${farbe}) ${anteil}%, var(--c-surface-muted))`,
               }}

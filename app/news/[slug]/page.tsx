@@ -256,7 +256,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
                     <li key={quote.symbol}>
                       <Link
                         href={`/maerkte/${quote.symbol}`}
-                        className="hover:bg-surface-muted flex items-center justify-between gap-3 rounded-xl p-2.5 transition"
+                        className="hover:bg-surface-muted flex items-center justify-between gap-3 rounded-md p-2.5 transition"
                       >
                         <span className="text-fg text-sm font-semibold">
                           {quote.ticker}

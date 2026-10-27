@@ -747,7 +747,7 @@ export function Globus({
               onHover(null)
             }}
             onKeyDown={beiTaste}
-            className="ring-ring/60 relative flex touch-none justify-center overflow-hidden rounded-2xl outline-none focus-visible:ring-2"
+            className="ring-ring/60 relative flex touch-none justify-center overflow-hidden rounded-md outline-none focus-visible:ring-2"
             style={{ cursor: zieht ? 'grabbing' : 'grab' }}
           >
             <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />

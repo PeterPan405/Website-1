@@ -31,7 +31,7 @@ export function TopicCard({ topic, index }: { topic: LearnTopic; index: number }
         eine solche Seite klickt, soll es vorher wissen.
       */}
       <div className="flex items-start justify-between gap-3">
-        <span className="bg-learn-soft text-learn flex size-9 items-center justify-center rounded-xl text-sm font-bold">
+        <span className="bg-learn-soft text-learn flex size-9 items-center justify-center rounded-md text-sm font-bold">
           {index + 1}
         </span>
         {!isComplete && (

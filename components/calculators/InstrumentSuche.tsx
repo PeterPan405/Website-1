@@ -199,7 +199,7 @@ export function InstrumentSuche<T extends Suchbar>({
             zusammen mit Schatten und Zählzeile darüber liest sich die Liste als
             das, was sie ist: etwas, das über dem Formular schwebt.
           */
-          className="border-border-strong bg-surface-muted shadow-lift absolute z-20 mt-1 max-h-72 w-full overflow-y-auto rounded-xl border p-2"
+          className="border-border-strong bg-surface-muted shadow-lift absolute z-20 mt-1 max-h-72 w-full overflow-y-auto rounded-md border p-2"
         >
           {/*
             Eine Kopfzeile über den Treffern.

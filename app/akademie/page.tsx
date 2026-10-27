@@ -76,7 +76,7 @@ export default function AkademiePage() {
                   href={`/akademie/${bereich.id}`}
                   className="fk-card-interactive group flex h-full flex-col p-6 sm:p-7"
                 >
-                  <span className="bg-akademie-soft text-akademie flex size-11 items-center justify-center rounded-xl">
+                  <span className="bg-akademie-soft text-akademie flex size-11 items-center justify-center rounded-md">
                     <Icon name={bereich.sinnbild} className="size-5" />
                   </span>
 
@@ -161,7 +161,7 @@ export default function AkademiePage() {
             href="/akademie/drei-wochen"
             className="fk-card-interactive group mt-6 flex items-center gap-4 p-5"
           >
-            <span className="bg-akademie-soft text-akademie flex size-11 shrink-0 items-center justify-center rounded-xl">
+            <span className="bg-akademie-soft text-akademie flex size-11 shrink-0 items-center justify-center rounded-md">
               <Icon name="calendar" className="size-5" />
             </span>
             <span className="min-w-0">
