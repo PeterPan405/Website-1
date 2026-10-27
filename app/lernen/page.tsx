@@ -3,13 +3,11 @@ import Link from 'next/link'
 
 import { OverallProgress } from '@/components/learn/OverallProgress'
 import { PfadStart } from '@/components/learn/PfadStart'
-import { TopicCard } from '@/components/learn/TopicCard'
+import { TopicZeile } from '@/components/learn/TopicZeile'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Icon } from '@/components/ui/Icon'
-import { PageHeader, SectionHeading } from '@/components/ui/PageHeader'
-import { Reveal } from '@/components/ui/Reveal'
-import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
+import { PageHeader } from '@/components/ui/PageHeader'
 import { collectionPageSchema } from '@/lib/jsonld'
 import {
   getCompleteTopics,
@@ -40,204 +38,130 @@ export default async function LearnOverviewPage() {
   const topicSlugs = topics.map((topic) => topic.slug)
   const einstieg = pfade.find((pfad) => pfad.slug === 'erste-schritte')
   const weitere = pfade.filter((pfad) => pfad !== einstieg)
-  const readingHours = Math.round(stats.totalReadingMinutes / 60)
 
   return (
     <>
       <PageHeader
         area="learn"
-        eyebrow="Lernbereich"
-        eyebrowIcon="book"
         title="Finanzwissen in drei Stufen"
-        lead="Jedes Thema gibt es dreimal – und jede Stufe geht weiter, statt sich zu wiederholen. Beginner klärt die Begriffe, Fortgeschritten die Umsetzung, Profi die Sonderfälle, Kennzahlen und Steuern."
+        lead="Jedes Thema gibt es dreimal: Beginner klärt die Begriffe, Fortgeschritten die Umsetzung, Profi die Sonderfälle, Kennzahlen und Steuern."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Lernen' }]} />}
-        meta={
-          <>
-            <span>{stats.topicCount} Themen</span>
-            <span aria-hidden="true">·</span>
-            <span>{stats.levelCount} Lernstufen</span>
-            <span aria-hidden="true">·</span>
-            <span>rund {readingHours} Stunden Lesestoff</span>
-            <span aria-hidden="true">·</span>
-            <span>{stats.quizQuestionCount} Quizfragen</span>
-          </>
-        }
       />
 
       <div className="fk-container py-12 sm:py-16">
         {/* ------------------------------------------------- Loslegen */}
         {/*
           Der Betreiber am 16.10.2026: „die Lernwelt mit den Pfaden einfacher
-          gestalten, dass man gleich loslegen kann – das ist ein wenig komplex
-          gestaltet". Bis dahin standen über den Themen ein Fortschrittsbalken,
-          drei Knöpfe, ein Pfade-Kasten mit fünf weiteren Knöpfen, die
-          Erklärung der Stufen und der Bearbeitungsstand – und nirgends ein
-          Knopf, der einfach mit dem ersten Schritt beginnt.
+          gestalten, dass man gleich loslegen kann". Am 27.10.2026 dann: „das
+          mit der Lernseite … ist einfach viel zu viel … übersichtlicher
+          gestaltet, nicht von den Lerninhalten, aber von den Anzeigen".
 
-          Jetzt zuerst eine Frage mit drei Antworten. Wer bei null anfängt,
-          kommt mit einem Klick in die erste Stufe – oder, wenn er schon
-          gelesen hat, in die nächste offene (`PfadStart`).
+          Die drei Einstiege bleiben, aber als Spalten ohne Kasten, Farbfläche
+          und Symbole; die Pfade ohne Unterzeile. Weg sind die Kachel-Wand der
+          34 Themen (jetzt ein Inhaltsverzeichnis, `TopicZeile`), die Erklärung
+          der drei Stufen (steht im Vorspann) und die farbige Linkzeile.
         */}
         <section aria-labelledby="loslegen">
-          <h2 id="loslegen" className="text-fg text-2xl font-bold sm:text-3xl">
+          <h2 id="loslegen" className="text-fg text-2xl font-semibold">
             Wo willst du anfangen?
           </h2>
-          <div className="mt-6 grid gap-5 lg:grid-cols-3">
+          <div className="border-border mt-6 grid gap-8 border-t pt-6 lg:grid-cols-3">
             {einstieg && (
-              <div className="rounded-card border-learn/30 bg-learn-soft flex flex-col border p-6">
-                <h3 className="text-fg text-lg font-bold">Ich fange bei null an</h3>
-                <p className="text-fg-muted mt-2 flex-1 text-sm leading-relaxed">
-                  {einstieg.kurz} Schritt für Schritt, jeder baut auf dem davor auf.
+              <div className="flex flex-col">
+                <h3 className="text-fg font-semibold">Ich fange bei null an</h3>
+                <p className="text-fg-muted mt-1 flex-1 text-sm leading-relaxed">
+                  {einstieg.kurz}
                 </p>
                 <PfadStart
                   schritte={startSchritte(einstieg)}
                   zusatz={`rund ${Math.round(einstieg.lesezeit / 5) * 5} Minuten insgesamt`}
-                  className="mt-5"
+                  className="mt-4"
                 />
               </div>
             )}
-            <div className="fk-card flex flex-col p-6">
-              <h3 className="text-fg text-lg font-bold">Ich habe eine konkrete Frage</h3>
-              <ul className="mt-3 flex-1 space-y-3">
+            <div>
+              <h3 className="text-fg font-semibold">Ich habe eine konkrete Frage</h3>
+              <ul className="mt-2 space-y-1.5 text-sm">
                 {weitere.map((pfad) => (
                   <li key={pfad.slug}>
                     <Link
                       href={`/lernen/pfade/${pfad.slug}`}
-                      className="group flex items-start gap-2"
+                      className="text-fg hover:text-brand underline-offset-4 hover:underline"
                     >
-                      <Icon
-                        name="compass"
-                        className="text-learn mt-0.5 size-4 shrink-0"
-                      />
-                      <span>
-                        <span className="text-fg group-hover:text-learn font-semibold">
-                          {pfad.titel}
-                        </span>
-                        <span className="text-fg-subtle block text-xs leading-relaxed">
-                          {pfad.kurz}
-                        </span>
-                      </span>
+                      {pfad.titel}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="fk-card flex flex-col p-6">
-              <h3 className="text-fg text-lg font-bold">Ich weiß schon einiges</h3>
-              <p className="text-fg-muted mt-2 flex-1 text-sm leading-relaxed">
-                Der Einstufungstest zeigt, welche Stufen du überspringen kannst – und wo
-                es sich lohnt, noch einmal hinzuschauen.
+            <div>
+              <h3 className="text-fg font-semibold">Ich weiß schon einiges</h3>
+              <p className="text-fg-muted mt-1 text-sm leading-relaxed">
+                Der Einstufungstest zeigt, welche Stufen du überspringen kannst.
               </p>
-              <Link href="/lernen/stand" className="fk-btn-secondary mt-5 self-start">
-                Zum Einstufungstest
-                <Icon name="arrow-right" className="size-4" />
+              <Link
+                href="/lernen/stand"
+                className="text-brand mt-3 inline-block text-sm font-semibold hover:underline"
+              >
+                Zum Einstufungstest →
               </Link>
             </div>
           </div>
         </section>
 
-        {/* ------------------------------------- Fortschritt und Werkzeuge */}
         <div className="mt-12">
           <OverallProgress topicSlugs={topicSlugs} />
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <Link
-              href="/lernen/wiederholen"
-              className="text-learn font-medium hover:underline"
-            >
-              Wiederholen
-            </Link>
-            <Link
-              href="/lernen/30-tage"
-              className="text-learn font-medium hover:underline"
-            >
-              30-Tage-Programm
-            </Link>
-            <Link href="/lernen/pfade" className="text-learn font-medium hover:underline">
-              Alle Pfade
-            </Link>
-            {/*
-              Das Schaufenster der Erklärgrafiken – gebaut, in der Sitemap und
-              lange ohne einen einzigen Verweis (gefunden von `npm run
-              verwaist`). Es bleibt verlinkt, nur leiser.
-            */}
-            <Link
-              href="/lernen/grafiken"
-              className="text-learn font-medium hover:underline"
-            >
-              Alle Erklärgrafiken
-            </Link>
-          </div>
         </div>
 
-        {/* -------------------------------------------------- Themen-Grid */}
+        {/* ---------------------------------------------- Inhaltsverzeichnis */}
         <section aria-labelledby="alle-themen" className="mt-14">
-          <SectionHeading
-            id="alle-themen"
-            eyebrow="Alle Themen"
-            title={`${stats.topicCount} Themen in ${sections.length} Abschnitten`}
-            lead="Die Reihenfolge baut aufeinander auf: erst die Größen, die über alles andere entscheiden, dann der sichere Sockel, dann die Anlageklassen. Ein Vorschlag, keine Vorgabe – jedes Thema ist auch für sich verständlich."
-          />
+          <h2 id="alle-themen" className="text-fg text-2xl font-semibold">
+            Alle {stats.topicCount} Themen
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
+            In dieser Reihenfolge bauen sie aufeinander auf – jedes ist aber auch für sich
+            verständlich.
+          </p>
 
           {/*
             Die Abschnitte kommen aus `data/learn`, nicht aus dieser Datei.
             Wer dort ein Thema verschiebt, verschiebt es damit auch hier.
           */}
-          {sections.map((section) => (
-            <div key={section.id} className="mt-12 first:mt-8">
-              <h3
-                id={`abschnitt-${section.id}`}
-                className="text-fg flex items-baseline gap-3 text-xl font-semibold"
-              >
-                <span className="text-learn tabular-nums">
-                  {section.offset + 1}–{section.offset + section.topics.length}
-                </span>
-                {section.label}
-              </h3>
-              <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
-                {section.description}
-              </p>
-
-              <ul
-                aria-labelledby={`abschnitt-${section.id}`}
-                className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-              >
-                {section.topics.map((topic, index) => (
-                  <li key={topic.slug} className="relative">
-                    <Reveal delay={Math.min(index, 8) * 0.03} className="h-full">
-                      <TopicCard topic={topic} index={section.offset + index} />
-                    </Reveal>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-        {/* --------------------------------------------- Stufen erklären */}
-        <section aria-labelledby="stufen" className="mt-14">
-          <SectionHeading
-            id="stufen"
-            eyebrow="Aufbau"
-            title="Was die drei Stufen unterscheidet"
-          />
-          <ul className="mt-6 grid gap-5 md:grid-cols-3">
-            {learnLevelIds.map((levelId, index) => (
-              <li key={levelId}>
-                <Reveal delay={index * 0.06}>
-                  <div className="fk-card h-full p-6">
-                    <span className="bg-learn-soft text-learn flex size-9 items-center justify-center rounded-full text-sm font-bold">
-                      {index + 1}
-                    </span>
-                    <h3 className="text-fg mt-4 text-lg font-semibold">
-                      {learnLevelMeta[levelId].label}
-                    </h3>
-                    <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                      {learnLevelMeta[levelId].promise}
-                    </p>
-                  </div>
-                </Reveal>
-              </li>
+          <div className="mt-8 grid gap-x-12 gap-y-10 lg:grid-cols-2">
+            {sections.map((section) => (
+              <div key={section.id}>
+                <h3
+                  id={`abschnitt-${section.id}`}
+                  className="text-fg border-fg border-b pb-2 font-semibold"
+                >
+                  {section.label}
+                </h3>
+                <ul aria-labelledby={`abschnitt-${section.id}`}>
+                  {section.topics.map((topic, index) => (
+                    <li key={topic.slug}>
+                      <TopicZeile topic={topic} index={section.offset + index} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          <p className="text-fg-muted mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <Link href="/lernen/wiederholen" className="hover:text-fg hover:underline">
+              Wiederholen
+            </Link>
+            <Link href="/lernen/30-tage" className="hover:text-fg hover:underline">
+              30-Tage-Programm
+            </Link>
+            <Link href="/lernen/pfade" className="hover:text-fg hover:underline">
+              Alle Pfade
+            </Link>
+            {/* Lange ohne einen einzigen Verweis (`npm run verwaist`) – bleibt verlinkt. */}
+            <Link href="/lernen/grafiken" className="hover:text-fg hover:underline">
+              Alle Erklärgrafiken
+            </Link>
+          </p>
         </section>
 
         {/* ------------------------------------------- Bearbeitungsstand */}

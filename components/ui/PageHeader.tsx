@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-import { Icon, type IconName } from '@/components/ui/Icon'
+import { type IconName } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
-import { areaStyles, type AreaId } from '@/lib/site'
+import { type AreaId } from '@/lib/site'
 
 /**
  * Einheitlicher Seitenkopf für alle Unterseiten.
@@ -12,9 +12,6 @@ import { areaStyles, type AreaId } from '@/lib/site'
  * sich befinden.
  */
 export function PageHeader({
-  area,
-  eyebrow,
-  eyebrowIcon,
   title,
   lead,
   meta,
@@ -39,8 +36,6 @@ export function PageHeader({
   actions?: ReactNode
   breadcrumbs?: ReactNode
 }) {
-  const style = areaStyles[area]
-
   return (
     /*
       Kein weißer Kasten mehr um den Seitenkopf: Er steht direkt auf dem
@@ -53,32 +48,13 @@ export function PageHeader({
         {breadcrumbs && <div className="mb-6">{breadcrumbs}</div>}
 
         {/*
-          Stille Dachzeile statt farbiger Kapsel – dasselbe Register wie im
-          Hero der Startseite: gesperrte Kleinzeile in der Bereichsfarbe.
+          Keine Dachzeile mehr über der Überschrift (27.10.2026, „die ganze
+          Seite ein wenig minimalistischer"). Wo sie stand, stehen schon die
+          Brotkrumen – sie sagte dasselbe ein zweites Mal. `eyebrow` und
+          `eyebrowIcon` bleiben in der Schnittstelle, damit die Seiten, die sie
+          setzen, nicht alle angefasst werden müssen.
         */}
-        {eyebrow && (
-          <p
-            className={cn(
-              'flex items-center gap-1.5 text-[0.8125rem] font-semibold',
-              style.text
-            )}
-          >
-            {eyebrowIcon && <Icon name={eyebrowIcon} className="size-3.5" />}
-            {eyebrow}
-          </p>
-        )}
-
-        {/*
-          Ohne Eyebrow entfällt auch dessen Abstand nach oben – sonst klaffte
-          über der Überschrift eine Lücke, wo nichts steht.
-        */}
-        {/* Halbfett statt fett: Eleganz aus Größe und Laufweite, nicht aus Schwärze. */}
-        <h1
-          className={cn(
-            'text-fg max-w-3xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl',
-            eyebrow && 'mt-4'
-          )}
-        >
+        <h1 className="text-fg max-w-3xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
           {title}
         </h1>
 
@@ -103,7 +79,6 @@ export function PageHeader({
 /** Zwischenüberschrift (h2) mit optionaler Einleitung. */
 export function SectionHeading({
   id,
-  eyebrow,
   title,
   lead,
   className,
@@ -119,12 +94,10 @@ export function SectionHeading({
   return (
     <div className={cn('flex flex-wrap items-end justify-between gap-4', className)}>
       <div className="max-w-2xl">
-        {eyebrow && (
-          <p className="text-fg-subtle text-[0.8125rem] font-semibold">{eyebrow}</p>
-        )}
+        {/* Ohne Dachzeile (27.10.2026) – siehe PageHeader. */}
         <h2
           id={id}
-          className="text-fg mt-1.5 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl"
+          className="text-fg text-2xl font-semibold tracking-[-0.02em] sm:text-3xl"
         >
           {title}
         </h2>

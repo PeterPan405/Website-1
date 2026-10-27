@@ -62,11 +62,6 @@ export const mainNav: NavItem[] = [
         hint: 'Werte aus Europa, Nordamerika und Asien',
       },
       {
-        label: 'Branchen',
-        href: '/maerkte/branchen',
-        hint: 'Nach Geschäftsfeld sortiert statt nach Herkunft',
-      },
-      {
         label: 'ETFs',
         href: '/maerkte#etfs',
         hint: 'Indexfonds mit Kosten und Abbildung',
@@ -85,26 +80,6 @@ export const mainNav: NavItem[] = [
         label: 'Krypto',
         href: '/maerkte#krypto',
         hint: 'Bitcoin, Ethereum und was daran anders ist',
-      },
-      {
-        label: 'Anleihen',
-        href: '/anleihen',
-        hint: 'Warum der Kurs fällt, wenn der Zins steigt – mit Rechner',
-      },
-      {
-        label: 'Dividenden',
-        href: '/maerkte/dividenden',
-        hint: 'Rendite, Historie und Ausschüttungstermine',
-      },
-      {
-        label: 'Vergleich',
-        href: '/maerkte/vergleich',
-        hint: 'Zwei Titel nebeneinander, mit Kurve',
-      },
-      {
-        label: '52 Wochen',
-        href: '/maerkte/52-wochen',
-        hint: 'Wo jeder Wert zwischen Jahrestief und Jahreshoch steht',
       },
     ],
     footerLink: { label: 'Alle Kurse ansehen', href: '/maerkte' },
@@ -130,16 +105,6 @@ export const mainNav: NavItem[] = [
         hint: 'Alterseinkommen abschätzen',
       },
       {
-        label: 'Rentenlücke',
-        href: '/rechner/rentenluecke',
-        hint: 'Bedarf gegen Erwartung',
-      },
-      {
-        label: 'Haushaltsrechner',
-        href: '/rechner/haushaltsrechner',
-        hint: 'Budget und Sparquote',
-      },
-      {
         label: 'Kostenrechner',
         href: '/rechner/kostenrechner',
         hint: 'Was eine Gebühr über 30 Jahre kostet',
@@ -149,11 +114,6 @@ export const mainNav: NavItem[] = [
         href: '/rechner/steuerrechner',
         hint: 'Kapitalerträge und Vorabpauschale',
       },
-      {
-        label: 'Vermögensübersicht',
-        href: '/rechner/vermoegensuebersicht',
-        hint: 'Bogen zum Ausfüllen und Abheften',
-      },
     ],
     footerLink: { label: 'Alle Rechner im Überblick', href: '/rechner' },
   },
@@ -161,64 +121,17 @@ export const mainNav: NavItem[] = [
     label: 'Lernen',
     href: '/lernen',
     area: 'learn',
+    /*
+      Fünf statt dreizehn (27.10.2026). Der Betreiber: „das mit den Dropdowns
+      bei Lernen, das ist einfach viel zu viel, das muss gekürzt werden".
+      Einzelne Themen stehen auf /lernen, nicht im Menü.
+    */
     children: [
-      {
-        label: 'Ich habe fünf Minuten',
-        href: '/lernen/zeit',
-        hint: 'Sortiert nach der Zeit, die du hast – nicht nach dem Thema',
-      },
-      {
-        label: 'Lernpfade',
-        href: '/lernen/pfade',
-        hint: 'Geführte Wege für einen bestimmten Anlass',
-      },
-      {
-        label: 'Glossar',
-        href: '/glossar',
-        hint: 'Fachbegriffe, in je einem Satz erklärt',
-      },
-      {
-        label: 'Verwechslungen',
-        href: '/verwechslungen',
-        hint: 'Begriffspaare, die durcheinandergehen – nebeneinander gestellt',
-      },
-      {
-        label: 'Das stimmt so nicht',
-        href: '/irrtuemer',
-        hint: 'Verbreitete Irrtümer – mit der Rechnung daneben',
-      },
-      {
-        label: 'Zeitstrahl',
-        href: '/zeitstrahl',
-        hint: 'Währungsordnungen, Notenbanken und Kurseinbrüche in zeitlicher Folge',
-      },
-      {
-        label: 'Aktie',
-        href: '/lernen/aktie',
-        hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
-      },
-      {
-        label: 'Zinseszins',
-        href: '/lernen/zinseszins',
-        hint: 'Das 8. Weltwunder – vollständig ausgearbeitet',
-      },
-      {
-        label: 'Rohstoffe',
-        href: '/lernen/rohstoffe',
-        hint: 'Gold und Silber – vollständig ausgearbeitet',
-      },
-      { label: 'ETF', href: '/lernen/etf', hint: 'Indexfonds als Basisbaustein' },
-      { label: 'Börse', href: '/lernen/boerse', hint: 'Wo Kurse entstehen' },
-      {
-        label: 'Cost-Average & Sparplan',
-        href: '/lernen/cost-average-sparplan',
-        hint: 'Regelmäßig investieren',
-      },
-      {
-        label: 'Einlagensicherung',
-        href: '/lernen/einlagensicherung',
-        hint: 'Was beim Bankguthaben geschützt ist',
-      },
+      { label: 'Ich habe fünf Minuten', href: '/lernen/zeit' },
+      { label: 'Lernpfade', href: '/lernen/pfade' },
+      { label: 'Glossar', href: '/glossar' },
+      { label: 'Das stimmt so nicht', href: '/irrtuemer' },
+      { label: 'Verwechslungen', href: '/verwechslungen' },
     ],
     footerLink: { label: `Alle ${LEARN_TOPIC_COUNT} Themen ansehen`, href: '/lernen' },
   },

@@ -23,13 +23,7 @@ import { getInstrument, getMarketOverview, getQuotes, getSeries } from '@/lib/ma
 import { getNewsHeadlines } from '@/lib/news'
 import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcast'
 import { buildMetadata } from '@/lib/seo'
-import {
-  areas,
-  LEARN_TOPIC_COUNT,
-  RECHNER_ANZAHL_WORT,
-  siteConfig,
-  type AreaId,
-} from '@/lib/site'
+import { LEARN_TOPIC_COUNT, RECHNER_ANZAHL_WORT, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
@@ -37,34 +31,6 @@ export const metadata: Metadata = buildMetadata({
   path: '/',
   ogTitle: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
 })
-
-/**
- * Kacheln für den Schnellzugriff auf die Hauptbereiche.
- *
- * Ohne Staatsverschuldung: Der Bereich bleibt über die Kopf- und Fußzeile
- * erreichbar, ist auf der Startseite aber kein gleichrangiger Einstieg neben
- * den übrigen. Die Überschrift darüber zählt die Kacheln selbst – wer hier
- * eine ergänzt, muss sie nirgends sonst nachtragen.
- */
-const areaTiles: { area: AreaId }[] = [
-  { area: 'learn' },
-  { area: 'tools' },
-  { area: 'markets' },
-  { area: 'globe' },
-  // Zwischen Globus und Kalender – dieselbe Stelle wie in der Kopfzeile.
-  { area: 'akademie' },
-  { area: 'calendar' },
-  { area: 'news' },
-]
-
-/**
- * Die Anzahl der Bereiche ausgeschrieben.
- *
- * Steht nicht als Wort im Text: Beim Anlegen des Globus wurde aus „Vier
- * Bereiche“ nicht von selbst „Fünf“ – dieselbe Sorte Fehler, die auf
- * `/ueber-uns` monatelang stand. Jetzt folgt das Wort der Liste.
- */
-const ZAHLWOERTER = ['Null', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben']
 
 const calculatorTiles = [
   {
@@ -198,9 +164,6 @@ export default async function HomePage() {
               Überschrift ist das erste, was nach Baukasten aussieht – die
               Information trägt auch eine gesperrte Kleinzeile.
             */}
-            <p className="text-brand text-[0.8125rem] font-semibold">
-              Finanzbildung in drei Stufen
-            </p>
 
             {/*
               Zwei Zeilen, erzwungen über `block` statt über einen Umbruch nach
@@ -281,50 +244,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------- Schnellzugriff */}
-      <section aria-labelledby="bereiche" className="fk-container py-14 sm:py-20">
-        <SectionHeading
-          id="bereiche"
-          eyebrow="Überblick"
-          title={`${ZAHLWOERTER[areaTiles.length] ?? areaTiles.length} Bereiche, ein Ziel`}
-          lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
-        />
-
-        {/*
-          Register statt Kachelraster: Sieben Karten mit Sinnbild oben links
-          waren die vielleicht deutlichste Baukasten-Stelle der Startseite –
-          und bei sieben Einträgen blieb in drei Spalten immer eine Kachel
-          allein. Eine Haarlinien-Liste mit laufender Nummer liest sich wie
-          ein Inhaltsverzeichnis: ruhig, eindeutig, ohne Restzeile.
-        */}
-        <div className="border-border mt-10 border-t">
-          <ul>
-            {areaTiles.map(({ area }) => {
-              const config = areas[area]
-              return (
-                <li key={area}>
-                  <Link
-                    href={config.href}
-                    className="group border-border hover:bg-surface-muted flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
-                  >
-                    <span className="text-fg font-display shrink-0 text-lg font-semibold sm:w-64 sm:text-xl">
-                      {config.label}
-                    </span>
-                    <span className="text-fg-muted hidden min-w-0 flex-1 truncate text-sm leading-relaxed md:block">
-                      {config.description}
-                    </span>
-                    <Icon
-                      name="arrow-right"
-                      className="text-fg-subtle ml-auto size-4 shrink-0 transition-transform group-hover:translate-x-1"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </section>
-
+      {/*
+        Hier stand bis zum 27.10.2026 „Sieben Bereiche, ein Ziel“ – eine Liste
+        der Menüpunkte, die zwei Zentimeter darüber schon im Kopf stehen. Der
+        Betreiber: „die ganze Seite ein wenig minimalistischer … ordentlich
+        strukturiert und übersichtlich“.
+      */}
       {/* -------------------------------------------------------- Märkte */}
       {/*
         Keine weißen Bänder mehr zwischen den Abschnitten: Auf dem

@@ -44,10 +44,16 @@ export function Logo({
         */}
         <span
           data-nicht-uebersetzen
+          /*
+            Dieselbe Schrift wie die Navigation daneben (27.10.2026). Der
+            Betreiber: „Das Logo oben links ist nicht in der gleichen Schrift
+            wie der Rest" – es stand in der Serifenschrift der Überschriften,
+            direkt neben Menüpunkten in der Grotesk.
+          */
           className={
             large
-              ? 'font-display text-2xl font-semibold tracking-tight'
-              : 'font-display text-lg font-semibold tracking-tight'
+              ? 'font-sans text-2xl font-semibold tracking-tight'
+              : 'font-sans text-lg font-semibold tracking-tight'
           }
         >
           {siteConfig.name}
