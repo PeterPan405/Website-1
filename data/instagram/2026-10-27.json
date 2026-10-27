@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Brasiliens Börse crasht nach Lulas Wahlsieg, Anthropic plant den Börsengang, Erdgas läuft in Europa und den USA gegensätzlich, DWS bremst einen Fonds und Microsoft bietet 60.000 Beschäftigten den Abschied an.",
+  "kacheln": [
+    {
+      "titel": "Brasilien: Börsen-Schock",
+      "text": "Nach dem Sieg von Lula da Silva brach Brasiliens Börse ein, der Handel wurde zeitweise ausgesetzt. Zuvor hatten Anleger auf einen Sieg von Bolsonaro gesetzt."
+    },
+    {
+      "titel": "Anthropic: Börsengang",
+      "text": "Die KI-Firma Anthropic hat den Börsengang beantragt. Die angestrebte Bewertung liegt bei rund zwei Billionen Dollar, bei zugleich hohen Verlusten."
+    },
+    {
+      "titel": "Gaspreis: Europa vs. USA",
+      "text": "Erdgas kostet in Europa so viel wie seit vier Jahren nicht mehr. In den USA fiel der Preis zur gleichen Zeit auf ein Zweijahrestief."
+    },
+    {
+      "titel": "DWS bremst Auszahlung",
+      "text": "Die Deutsche-Bank-Tochter DWS zahlt bei ihrem größten Immobilienfonds nur noch zehn Prozent der angeforderten Summen aus. Wer mehr will, muss erneut kündigen."
+    },
+    {
+      "titel": "Microsoft: 60.000 gehen",
+      "text": "Microsoft bietet nach einem Bericht von CNBC rund 60.000 Beschäftigten einen freiwilligen Abschied an. Grund ist der teure Ausbau der KI-Infrastruktur."
+    }
+  ],
+  "schlagworte": ["brasilien", "ki", "erdgas", "börse", "aktien"]
+}

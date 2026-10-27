@@ -101,6 +101,316 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'brasilien-boerse-bricht-nach-lula-sieg',
+    title: 'Lula gewinnt überraschend – Brasiliens Börse bricht ein',
+    teaser:
+      'Die Märkte hatten auf Bolsonaro gesetzt. Nach Lulas Wahlsieg kam es zum Handelsstopp an Brasiliens Börse – und zu heftigen Kursverlusten.',
+    category: 'Märkte',
+    publishedAt: '2026-10-27T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Brasilien', 'Wahl', 'Ibovespa', 'Prediction Markets'],
+    relatedTopics: ['aktien-laender-branchen', 'anlegerpsychologie'],
+    relatedSymbols: ['ibovespa'],
+    sources: [
+      {
+        label:
+          'FAZ.NET, Finanzmarkt, Gregor Brunner, Meldung vom 26.10.2026, 14:20 Uhr GMT: „Handelsstopp: Brasiliens Börse bricht nach Lula-Sieg ein“',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/lula-wiederwahl-brasiliens-boerse-stellt-sich-auf-unruhe-ein-accg-201621022.html',
+      },
+      {
+        label:
+          'Handelsblatt, Märkte, Leonidas Exuzidis, Meldung vom 26.10.2026, 14:09 Uhr GMT: „Brasilien: „Schock für die Märkte“ – Lulas Wiederwahl sorgt für heftige Kursturbulenzen“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/brasilien-lulas-wiederwahl-sorgt-fuer-heftige-turbulenzen-an-den-maerkten/100264954.html',
+      },
+      {
+        label:
+          'CNBC, Meldung vom 26.10.2026, 17:29 Uhr GMT: „Lula wins Brazil runoff after prediction markets favored Bolsonaro“',
+        url: 'https://www.cnbc.com/2026/10/26/lula-brazil-election-prediction-markets.html',
+      },
+      {
+        label:
+          'onvista, dpa-AFX, Meldung vom 26.10.2026, 20:43 Uhr: „ROUNDUP: Börse in Brasilien mit Kurseinbruch nach Lula-Wahlsieg“',
+        url: 'https://www.onvista.de/news/2026/10-26-roundup-boerse-in-brasilien-mit-kurseinbruch-nach-lula-wahlsieg-0-10-26568570',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Finanzmärkte hatten sich auf einen Sieg von Jair Bolsonaro eingestellt. Dann gewann der amtierende Präsident Luiz Inácio Lula da Silva die Stichwahl in Brasilien – und die Börse reagierte binnen Minuten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC hatten die Kurse an Prognosemärkten zuvor klar auf einen Sieg Bolsonaros hingedeutet. Das Ergebnis traf Investoren deshalb unvorbereitet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Handelsstopp an der Börse in São Paulo',
+      },
+      {
+        type: 'paragraph',
+        text: 'Brasiliens Leitbörse reagierte mit einem zeitweiligen Handelsstopp, berichtet die FAZ. Die WirtschaftsWoche spricht von heftigen Kursrücksetzern und Handelsunterbrechungen, die das Land seit dem Wahlsieg Lulas erlebt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Handelsblatt beschreibt die Reaktion als „Schock für die Märkte“: Vor der Wahl aufgebaute Kurs- und Wertgewinne, die auf einen Bolsonaro-Sieg gesetzt hatten, lösten sich wieder auf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine eingepreiste Erwartung trifft auf die Wirklichkeit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt, wie stark Kurse ein erwartetes Ereignis schon vorwegnehmen. Bestätigt sich die Erwartung nicht, muss der Markt die eingepreiste Wahrscheinlichkeit in kurzer Zeit neu bewerten – genau das trieb hier die Ausschläge.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer sich auf Prognosemärkte oder Umfragen verlässt, übernimmt deren Irrtumsrisiko mit. Ein einzelnes Wahlergebnis kann Kursbewegungen binnen Stunden umkehren, unabhängig von der wirtschaftlichen Substanz der betroffenen Unternehmen.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-beantragt-boersengang',
+    title: 'Anthropic beantragt den Börsengang in den USA',
+    teaser:
+      'Das KI-Unternehmen Anthropic hat seinen Börsenprospekt eingereicht. Er zeigt rasantes Wachstum, hohe Verluste und eine lange Risikoliste.',
+    category: 'Märkte',
+    publishedAt: '2026-10-27T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anthropic', 'Börsengang', 'KI', 'Risikofaktoren'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'Tagesschau, Wirtschaft/Unternehmen, Meldung vom 26.10.2026, 16:49 Uhr: „KI-Unternehmen Anthropic beantragt Börsengang und warnt vor Risiken“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/anthropic-bereitet-boersengang-vor-100.html',
+      },
+      {
+        label:
+          'FAZ.NET, Finanzmarkt, Roland Lindner, New York, Meldung vom 26.10.2026, 23:21 Uhr GMT: „Jeder der Anthropic-Gründer könnte bald bis zu 29 Milliarden Dollar schwer sein“',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/anthropic-strebt-boersenbewertung-von-zwei-billionen-dollar-an-201622644.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Börse, Susanne Bickel, Meldung vom 26.10.2026, 16:59 Uhr GMT: „KI-Pionier: Anthropic beantragt Börsengang in den USA und offenbart teure Abhängigkeit“',
+        url: 'https://www.wiwo.de/finanzen/boerse/anthropic-beantragt-boersengang-in-den-usa-und-offenbart-teure-abhaengigkeit/100265031.html',
+      },
+      {
+        label:
+          'CNBC, Meldung vom 26.10.2026, 20:08 Uhr GMT: „Prediction market traders say an Anthropic IPO is near-certain this year after company filed with SEC“',
+        url: 'https://www.cnbc.com/2026/10/26/prediction-markets-think-anthropic-ipo-near-certain-in-2026.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Anthropic hat am Montag die Unterlagen für einen Börsengang in den USA eingereicht, berichtet die Tagesschau. Der Börsengang könnte bereits im November erfolgen und zu den größten aller Zeiten zählen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Prospekt nennt laut FAZ eine mögliche Bewertung von rund zwei Billionen Dollar. Jeder der Gründer könnte dadurch bis zu 29 Milliarden Dollar schwer werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rasantes Wachstum, aber auch hohe Verluste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die FAZ berichtet, Anthropic weise vor dem Börsengang zwar schnelles Wachstum aus, zugleich aber hohe Verluste. Der Prospekt listet laut WirtschaftsWoche eine lange Reihe von Risikofaktoren und teuren finanziellen Verpflichtungen auf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Irritation sorgte laut WirtschaftsWoche die Angabe, der europäische Prospekt sei bereits von der BaFin bewilligt worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt hält den Börsengang schon für ausgemacht',
+      },
+      {
+        type: 'paragraph',
+        text: 'CNBC berichtet, Händler an Prognosemärkten hielten einen Anthropic-Börsengang noch in diesem Jahr für nahezu sicher. Offen bleibt dabei, wie stark der Markt die genannten Risiken schon einpreist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine hohe angestrebte Bewertung sagt nichts über die laufende Profitabilität aus. Die Risikofaktoren eines Prospekts verraten oft mehr über ein Geschäftsmodell als die Wachstumszahlen – beide gehören zur selben Geschichte.',
+      },
+    ],
+  },
+  {
+    slug: 'dws-bremst-auszahlungen-immobilienfonds',
+    title: 'DWS beschränkt Auszahlungen bei Immobilienfonds Grundbesitz Europa',
+    metaTitle: 'DWS bremst Auszahlungen beim Fonds Grundbesitz Europa',
+    teaser:
+      'Die Deutsche-Bank-Tochter DWS zahlt bei ihrem größten offenen Immobilienfonds nur noch zehn Prozent der angeforderten Summen aus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-10-27T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DWS', 'Immobilienfonds', 'Deutsche Bank', 'Liquidität'],
+    relatedTopics: ['fonds', 'immobilien', 'risiko-und-rendite'],
+    relatedSymbols: ['deutsche-bank'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Banken + Versicherungen, Markus Hinterberger, Martin Müller, Meldung vom 26.10.2026, 20:00 Uhr GMT: „Grundbesitz Europa: „Persönliche Belastung für Anleger möglich“: DWS schränkt Rücknahme bei Immobilienfonds ein“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/geldanlage-dws-beschraenkt-ruecknahme-ihres-groessten-offenen-immobilienfonds/100265044.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Geldanlage, Heike Schwerdtfeger, Meldung vom 26.10.2026, 18:18 Uhr GMT: „Grundbesitz Europa: Jetzt gibt es beim DWS-Immobilienfonds Geld nur noch kleckerweise“',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/dws-immobilienfonds-jetzt-gibt-es-geld-nur-noch-kleckerweise/100265056.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Anleger des Immobilienfonds „Grundbesitz Europa“ kommen vorerst nur noch begrenzt an ihr Geld. Das berichtet das Handelsblatt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche-Bank-Tochter DWS zahlt nach Angaben der WirtschaftsWoche nur noch zehn Prozent der angeforderten Summen aus. Wer mehr Geld möchte, muss seine Kündigung erneut einreichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein offener Fonds trägt Gebäude, die niemand schnell verkauft',
+      },
+      {
+        type: 'paragraph',
+        text: '„Grundbesitz Europa“ ist einer der größten offenen Immobilienfonds in Deutschland. Anteile lassen sich grundsätzlich täglich zurückgeben, das Geld der Anleger steckt aber in Bürogebäuden und Gewerbeimmobilien, die sich nicht in wenigen Tagen verkaufen lassen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trifft ein hoher Rückgabewunsch auf diese lange Verwertungszeit, kann der Fonds nicht sofort voll auszahlen – genau diese Lücke beschränkt die DWS jetzt laut Handelsblatt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein offener Immobilienfonds verspricht tägliche Liquidität für ein Gut, das selbst nicht liquide ist. Diese Lücke zeigt sich erst, wenn viele Anleger gleichzeitig aussteigen wollen – Rücknahmebeschränkungen sind dafür das vorgesehene Ventil, keine Ausnahme.',
+      },
+    ],
+  },
+  {
+    slug: 'erdgas-europa-rekordpreise-usa-tiefstand',
+    title: 'Erdgas: Europa zahlt Rekordpreise, in den USA stürzt der Preis',
+    teaser:
+      'In Europa kostet Erdgas so viel wie seit vier Jahren nicht mehr, in den USA fiel der Preis auf ein Zweijahrestief – zur gleichen Zeit.',
+    category: 'Märkte',
+    publishedAt: '2026-10-27T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Erdgas', 'Rohstoffe', 'Europa', 'USA'],
+    relatedTopics: ['rohstoffe', 'inflation'],
+    relatedSymbols: ['erdgas'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Devisen + Rohstoffe, Meldung vom 26.10.2026, 13:52 Uhr GMT: „Rohstoff: Europäischer Gaspreis weiter im Höhenflug – knapp unter 100 Euro“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/rohstoff-europaeischer-gaspreis-weiter-im-hoehenflug-knapp-unter-100-euro/100265010.html',
+      },
+      {
+        label:
+          'wallstreetONLINE, Redaktion, Meldung vom 26.10.2026: „Erdgas im freien Fall: Gaspreis-Schock in den USA: Erdgas stürzt auf tiefsten Stand seit 2 Jahren“',
+        url: 'https://www.wallstreet-online.de/nachricht/21582588-erdgas-freien-fall-gaspreis-schock-usa-erdgas-stuerzt-tiefsten-stand-2-jahren',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Erdgas kostet Großhändler in Europa so viel wie seit knapp vier Jahren nicht mehr. Der Preis liegt laut Handelsblatt knapp unter 100 Euro je Megawattstunde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Treiber nennt das Handelsblatt den Krieg um den Iran und das Auffüllen der deutschen Gasspeicher. Die höheren Preise kämen demnach allmählich auch bei privaten Haushaltskunden an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am US-Markt läuft es genau andersherum',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den USA ist der Erdgaspreis laut wallstreetONLINE auf den tiefsten Stand seit zwei Jahren gefallen. Einen Grund für den Rückgang nennt die Quelle nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Europa und die USA handeln Erdgas an weitgehend getrennten Märkten, die nur über Flüssiggas-Lieferungen verbunden sind. Deshalb können die Preise zur gleichen Zeit in entgegengesetzte Richtungen laufen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein globaler Rohstoff kann an verschiedenen Handelsplätzen gleichzeitig teurer und billiger werden. Wer nur auf einen der beiden Preise schaut, sieht nur die halbe Geschichte.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-abfindungsprogramm-ki-sparkurs',
+    title: 'Microsoft bietet 60.000 Beschäftigten einen freiwilligen Abschied an',
+    metaTitle: 'Microsoft bietet 60.000 Jobs zum freiwilligen Abschied an',
+    teaser:
+      'Microsoft bietet nach einem Bericht von CNBC rund 60.000 Beschäftigten einen freiwilligen Abschied an – mitten im KI-Investitionsschub.',
+    category: 'Märkte',
+    publishedAt: '2026-10-27T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Microsoft', 'KI', 'Stellenabbau', 'Kapitaleffizienz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['microsoft'],
+    sources: [
+      {
+        label:
+          'CNBC, Meldung vom 26.10.2026, 20:44 Uhr GMT: „Microsoft offers voluntary buyouts to 60,000 employees as AI leads to efficiency push“',
+        url: 'https://www.cnbc.com/2026/10/26/microsoft-msft-voluntary-buyouts.html',
+      },
+      {
+        label:
+          "CNBC, Meldung vom 26.10.2026, 18:51 Uhr GMT: „Federal Reserve is likely to hold interest rates steady in October. Here's what that means for consumers“",
+        url: 'https://www.cnbc.com/2026/10/26/fed-decision-expectations-october-meeting.html',
+      },
+      {
+        label:
+          'CNBC, Meldung vom 26.10.2026, 23:51 Uhr GMT: „Bank of Japan is expected to hold rates this week — but stay hawkish: CNBC survey“',
+        url: 'https://www.cnbc.com/2026/10/27/boj-october-meeting-rate-cnbc-survey.html',
+      },
+      {
+        label:
+          'wallstreetONLINE, Redaktion, Meldung vom 26.10.2026: „Earnings Preview: KI-Trade angeschlagen: Bringen jetzt Alphabet, Microsoft & Amazon neuen Schwung?“',
+        url: 'https://www.wallstreet-online.de/nachricht/21579624-earnings-preview-ki-trade-angeschlagen-alphabet-microsoft-amazon-schwung',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Microsoft bietet nach einem Bericht von CNBC rund 60.000 Beschäftigten einen freiwilligen Abschied an. Eine zweite Quelle hat die Zahl bislang nicht bestätigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut CNBC versucht der Konzern, den schnellen Ausbau seiner KI-Infrastruktur mit mehr Kapitaleffizienz in Einklang zu bringen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Diese Woche: Zinsentscheidungen und große Quartalszahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Microsoft legt in dieser Woche zudem seine Quartalszahlen vor, ebenso Alphabet und Amazon, berichtet wallstreetONLINE. Dazwischen entscheiden die US-Notenbank Fed und die Bank of Japan über ihre Leitzinsen. Eine CNBC-Umfrage erwartet von beiden Notenbanken zunächst unveränderte Zinsen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welche Abteilungen von den Abfindungen betroffen sind und zu welchen Konditionen der Abschied angeboten wird, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Hohe Investitionen in eine Technologie und Sparprogramme schließen sich nicht aus. Beide können aus derselben Entscheidung folgen, Kapital dorthin zu verschieben, wo der Konzern sich die größten Erträge erwartet.',
+      },
+    ],
+  },
+  {
     slug: 'fed-und-ezb-woche-trifft-auf-tech-quartalszahlen',
     title: 'Fed und EZB entscheiden in der Woche der großen Tech-Bilanzen',
     teaser:
