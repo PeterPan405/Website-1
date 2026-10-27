@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { NewsCarousel } from '@/components/home/NewsCarousel'
-import { QuoteCard } from '@/components/markets/QuoteCard'
+import { QuoteRow } from '@/components/markets/QuoteRow'
 import { Tagesfrage } from '@/components/markets/Tagesfrage'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
@@ -271,12 +271,17 @@ export default async function HomePage() {
             }
           />
 
-          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {marketPreviews.map(({ quote, sparkline }, index) => (
+          {/*
+            Zeilen statt Karten (27.10.2026): Acht gerahmte Kacheln mit
+            Kennzeichen, Kurve und Unterzeile waren der dichteste Kasten-Block
+            der Startseite. Als Kursliste – wie im Wirtschaftsteil einer
+            Zeitung – steht dieselbe Auskunft auf einem Drittel der Fläche;
+            die Kurve gibt es auf der Seite jedes Kurses.
+          */}
+          <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2">
+            {marketPreviews.map(({ quote }) => (
               <li key={quote.symbol}>
-                <Reveal delay={index * 0.05} className="h-full">
-                  <QuoteCard quote={quote} sparkline={sparkline} />
-                </Reveal>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
@@ -294,7 +299,7 @@ export default async function HomePage() {
             beweglichen Zahlen.
           */}
           {geschichte && (
-            <div data-fliesst="" className="fk-card mt-6 p-5 sm:p-6">
+            <div data-fliesst="" className="border-border mt-10 border-l-2 pl-5">
               <p className="text-fg-subtle text-[0.8125rem] font-semibold">
                 {geschichtsvorspann(geschichte)}
               </p>
@@ -350,13 +355,13 @@ export default async function HomePage() {
           }
         />
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {calculatorTiles.map((tile, index) => (
+        <ul className="border-border mt-8 grid gap-x-12 border-t sm:grid-cols-2">
+          {calculatorTiles.map((tile) => (
             <li key={tile.href}>
-              <Reveal delay={index * 0.04}>
+              <Reveal>
                 <Link
                   href={tile.href}
-                  className="fk-card-interactive group flex h-full items-start gap-4 p-5"
+                  className="group border-border flex h-full items-start gap-4 border-b py-4"
                 >
                   <span className="min-w-0">
                     <span className="text-fg block font-semibold">{tile.label}</span>
@@ -385,32 +390,6 @@ export default async function HomePage() {
             lead="Die Profi-Stufe wiederholt nicht die Grundlagen, sondern behandelt Kennzahlen, Sonderfälle, Risiken und Steuern."
           />
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {[
-              {
-                label: 'Beginner',
-                text: 'Begriffe klären, Grundmechanik verstehen, die häufigsten Missverständnisse ausräumen.',
-              },
-              {
-                label: 'Fortgeschritten',
-                text: 'Varianten unterscheiden, Kennzahlen kritisch lesen, in der Praxis richtig umsetzen.',
-              },
-              {
-                label: 'Profi',
-                text: 'Bewertung, Bilanzwarnzeichen, Sonderfälle und die deutsche Besteuerung im Detail.',
-              },
-            ].map((level, index) => (
-              <Reveal key={level.label} delay={index * 0.06}>
-                <div className="fk-card h-full p-6">
-                  <h3 className="text-fg text-lg font-semibold">{level.label}</h3>
-                  <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                    {level.text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
           {/*
             Nur der Anfang der Lernstrecke, nicht ihr Inhaltsverzeichnis.
 
@@ -422,21 +401,20 @@ export default async function HomePage() {
             man anfängt.
           */}
           {completeTopics.length > 0 && (
-            <div className="fk-card mt-10 p-6 sm:p-8">
+            <div className="mt-8">
               <h3 className="text-fg text-lg font-semibold">Womit man anfängt</h3>
               <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
                 Die Lernstrecke ist als Reihenfolge gedacht – das sind ihre ersten
                 Stationen. Alle {learnStats.topicCount} Themen liegen in den drei Stufen
                 als fertiger Text vor.
               </p>
-              <ul className="mt-5 flex flex-wrap gap-3">
+              <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
                 {completeTopics.slice(0, 6).map((topic) => (
                   <li key={topic.slug}>
                     <Link
                       href={`/lernen/${topic.slug}`}
-                      className="fk-btn-secondary border-learn/40 text-fg hover:border-learn hover:text-learn"
+                      className="text-fg hover:text-brand underline underline-offset-4"
                     >
-                      <Icon name="check-circle" className="text-learn size-4" />
                       {topic.title}
                     </Link>
                   </li>
@@ -478,7 +456,7 @@ export default async function HomePage() {
       */}
       {frage && (
         <section aria-labelledby="tagesfrage" className="fk-container py-6 sm:py-8">
-          <div className="fk-card p-6 sm:p-8">
+          <div className="border-border border-t pt-8">
             <p className="text-fg-subtle text-[0.8125rem] font-semibold">
               Frage des Tages
             </p>
@@ -492,7 +470,7 @@ export default async function HomePage() {
 
       {begriff && (
         <section aria-labelledby="begriff" className="fk-container py-6 sm:py-8">
-          <div className="fk-card p-6 sm:p-8">
+          <div className="border-border border-t pt-8">
             <p className="text-fg-subtle text-[0.8125rem] font-semibold">
               Begriff des Tages
             </p>
