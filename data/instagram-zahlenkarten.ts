@@ -76,12 +76,9 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'geschichte',
     datum: '2026-10-28',
-    titel: [
-      { text: '1984: 1.490\u00a0$. Heute:' },
-      { text: '810.106\u00a0$', gruen: true },
-    ],
+    titel: [{ text: '810.106\u00a0$', gruen: true }, { text: 'für eine Aktie?' }],
     erklaerung:
-      '1964 wollte Berkshire Warren Buffett seine Aktien für 11 3/8 $ abkaufen. Er lehnte ab und übernahm 1965 die ganze Firma. Geteilt wurde die A-Aktie nie.',
+      'So viel kostet eine A-Aktie von Berkshire Hathaway. 1964 wollte die Firma Buffett seine Aktien für rund 11,38 $ abkaufen – er kaufte stattdessen die Mehrheit.',
     unterzeile: 'Berkshire-A-Aktie, logarithmisch, in US-Dollar:',
     einheit: '\u00a0$',
     foto: 'warren-buffett.jpg',
@@ -139,7 +136,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile: 'Stand: 27.10.2026 | Quelle: Yahoo Finance, Wikipedia',
     text:
       'Die teuerste Aktie der Welt: Ende 1984 kostete eine A-Aktie von Berkshire Hathaway 1.490 Dollar. Heute sind es 810.106 Dollar – umgerechnet mehr als 726.000 Euro. 📈\n\n' +
-      'Angefangen hat es mit einem Streit. 1964 wollte Berkshire, damals eine Textilfirma, Warren Buffett seine Aktien für 11 3/8 Dollar abkaufen. Buffett ärgerte sich über das Angebot, lehnte ab und übernahm 1965 stattdessen die Mehrheit. Daraus baute er eine Holding mit über 80 Unternehmen – von der Versicherung GEICO bis Dairy Queen.\n\n' +
+      'Angefangen hat es mit einem Streit. 1964 wollte Berkshire, damals eine Textilfirma, Warren Buffett seine Aktien für 11 3/8 Dollar abkaufen – damals wurden Aktien in Achteldollar notiert, das sind rund 11,38 Dollar. Buffett ärgerte sich über das Angebot, lehnte ab und übernahm 1965 stattdessen die Mehrheit. Daraus baute er eine Holding mit über 80 Unternehmen – von der Versicherung GEICO bis Dairy Queen.\n\n' +
       'Die Meilensteine: 1992 schloss die Aktie erstmals über 10.000 Dollar, 2006 über 100.000, 2022 über 500.000. Geteilt wurde sie nie – deshalb ist sie so teuer.\n\n' +
       'Buffett, das „Orakel von Omaha“, kaufte seine erste Aktie mit elf Jahren. Ende 2025 gab er den Chefposten an Greg Abel ab. Er wohnt bis heute in dem Haus, das er 1958 für 31.500 Dollar gekauft hat, und will mehr als 99 % seines Vermögens spenden.\n\n' +
       'Kurse: Jahresendwerte seit 1984, Schluss am 27.10.2026; in Euro zum EZB-Referenzkurs.\n' +
