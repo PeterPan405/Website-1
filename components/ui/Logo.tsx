@@ -49,9 +49,16 @@ export function Logo({
             Betreiber: „Das Logo oben links ist nicht in der gleichen Schrift
             wie der Rest" – es stand in der Serifenschrift der Überschriften,
             direkt neben Menüpunkten in der Grotesk.
+
+            Dicker und größer seit dem Abend desselben Tages: „Das geht ein
+            wenig unter" – 17 px/600 stand gleichgewichtig neben den
+            Menüpunkten. 20 px/800 hebt die Marke ab; das Gewicht über 700
+            ist die eine Ausnahme von GESTALTUNG.md, auf Wunsch des Betreibers.
           */
           className={
-            large ? 'font-sans text-2xl font-semibold' : 'font-sans text-lg font-semibold'
+            large
+              ? 'font-sans text-3xl font-extrabold whitespace-nowrap'
+              : 'font-sans text-xl font-extrabold whitespace-nowrap'
           }
         >
           {siteConfig.name}
