@@ -155,6 +155,25 @@ pruefe(
   ohneLogo.join(' | ')
 )
 
+/* Die Pyramide (29.10.2026): Anthropics Kunden, drei Stufen wie in der Quelle. */
+const pyramide = zahlenkarten.find((k) => k.datum === '2026-10-29')
+if (pyramide?.art === 'pyramide') {
+  pruefe(
+    'Pyramide 29.10.: rund 250 / über 1.900 / über 11.900, ohne Freigabe',
+    pyramide.stufen.map((st) => st.zahl).join('|') ===
+      'rund 250|über 1.900|über 11.900' && pyramide.freigabe === undefined
+  )
+  const zweiStufen = pruefeZahlenkarte({
+    ...pyramide,
+    stufen: pyramide.stufen.slice(0, 2),
+  })
+  pruefe(
+    'beanstandet: Pyramide mit zwei Stufen',
+    zweiStufen.some((f) => f.includes('drei bis fünf')),
+    zweiStufen.join(' | ')
+  )
+} else pruefe('die Karte vom 29.10.2026 ist eine Pyramide', false)
+
 /* Beschriftung: Rechtshinweis mit KI-Hinweis wörtlich, fünf Schlagworte. */
 const b = beschriftungZahlenkarte(gut)
 pruefe('die Beschriftung trägt den Rechtshinweis wörtlich', b.includes(RECHTSHINWEIS))

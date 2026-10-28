@@ -35,35 +35,40 @@ export const zahlenkarten: Zahlenkarte[] = [
           rund 269 Milliarden Dollar"; „Rund 80 Prozent des Umsatzes stammen
           … aus nutzungsabhängigen Gebühren".
       Erster Entwurf als Steckbrief mit Foto von Dario Amodei – Betreiber:
-      „das gesicht und design kake". Jetzt ohne Gesicht, zwei Balken:
-      Umsatz gegen Nettoverlust, 80,7 / 16,3 = 4,95.
-      Form: Vergleich (am 28.10. Geschichte).
+      „das gesicht und design kake". Zweiter als zwei Balken (Umsatz gegen
+      Verlust) – „nein gib dir mühe kreativ und nicht immer das selbe".
+      Jetzt eine Pyramide aus derselben WiWo-Meldung: „Ende September hatte
+      das Unternehmen mehr als 11.900 Kunden, die innerhalb von zwölf
+      Monaten jeweils mindestens 100.000 Dollar Umsatz generierten. Mehr als
+      1900 Kunden kamen auf mindestens eine Million Dollar und rund 250
+      Kunden auf mindestens zehn Millionen Dollar." – „Die fünf größten
+      Kunden waren in den ersten neun Monaten für rund ein Viertel des
+      Umsatzes verantwortlich."
+      Logo: File:Anthropic logo.svg, gemeinfrei (Commons).
+      Form: Pyramide, neu (am 28.10. Geschichte).
     */
-    art: 'vergleich',
+    art: 'pyramide',
     datum: '2026-10-29',
     titel: [
-      { text: 'Anthropic:', gruen: true },
-      { text: 'Verlust fast 5× so hoch wie Umsatz' },
+      { text: 'Wer bei' },
+      { text: 'Anthropic', gruen: true },
+      { text: 'wie viel zahlt' },
     ],
-    /* Der Verlust links schwarz, der Umsatz rechts in der Akzentfarbe – Grün für einen Verlust läse sich falsch. */
-    links: {
-      name: 'Nettoverlust',
-      wert: 80.7,
-      anzeige: '80,7\u00a0Mrd.\u00a0$',
-      zusatz: '1. Halbjahr 2026',
-    },
-    rechts: {
-      name: 'Umsatz',
-      wert: 16.3,
-      anzeige: '16,3\u00a0Mrd.\u00a0$',
-      zusatz: '1. Halbjahr 2026',
-    },
-    differenz: { text: '×\u00a04,9', zusatz: 'so viel' },
-    fusszeile: 'Stand: 1. Hj. 2026 | Quelle: Börsenprospekt (Tagesschau, WiWo)',
+    erklaerung:
+      'Die Firma hinter dem KI-Modell Claude will an die Börse. Ihr Prospekt sortiert die Kunden danach, was sie in zwölf Monaten zahlten.',
+    unterzeile: 'Kunden, Stand Ende September 2026:',
+    logo: 'anthropic.png',
+    stufen: [
+      { zahl: 'rund 250', text: 'ab 10 Mio. $' },
+      { zahl: 'über 1.900', text: 'ab 1 Mio. $' },
+      { zahl: 'über 11.900', text: 'ab 100.000 $' },
+    ],
+    hinweis: 'Die 5 größten Kunden: rund ¼ des Umsatzes (Jan.–Sep.)',
+    fusszeile: 'Stand: Ende September 2026 | Quelle: Börsenprospekt (WiWo)',
     text:
-      'Anthropic will an die Börse – und der Prospekt zeigt zwei Seiten. Im ersten Halbjahr 2026 stieg der Umsatz von 1,2 auf 16,3 Milliarden Dollar. Der Nettoverlust lag im selben Zeitraum bei rund 80,7 Milliarden Dollar, fast fünfmal so viel. 🤖\n\n' +
-      'Den Verlust erklärt die Tagesschau mit den hohen Kosten für den Bau von Rechenzentren. Gegenüber Google, Microsoft und Amazon hat sich Anthropic laut WirtschaftsWoche zu Mindestausgaben von rund 269 Milliarden Dollar verpflichtet.\n\n' +
-      'Die Firma hinter dem KI-Modell Claude wurde 2021 unter anderem von Dario Amodei gegründet. Mehr als 1.900 Kunden zahlten ihr zuletzt jeweils mindestens eine Million Dollar im Jahr. An die Nasdaq soll sie unter dem Kürzel ANT; wie viele Aktien zu welchem Preis verkauft werden, nennt der Prospekt noch nicht.\n\n' +
+      'Wer bei Anthropic wie viel zahlt: Rund 250 Kunden haben der Firma hinter dem KI-Modell Claude in zwölf Monaten jeweils mindestens 10 Millionen Dollar bezahlt. Über 1.900 kamen auf mindestens eine Million, über 11.900 auf mindestens 100.000 Dollar. 🤖\n\n' +
+      'Die Zahlen stehen im Börsenprospekt, mit dem Anthropic an die Nasdaq will (Kürzel ANT). Laut WirtschaftsWoche brachten die fünf größten Kunden in den ersten neun Monaten rund ein Viertel des Umsatzes – und viele der größten sind nicht über langfristige Verträge gebunden.\n\n' +
+      'Im ersten Halbjahr 2026 stieg der Umsatz von 1,2 auf 16,3 Milliarden Dollar. Der Nettoverlust lag laut Tagesschau bei rund 80,7 Milliarden Dollar – vor allem wegen des Baus von Rechenzentren.\n\n' +
       'Quellen: Börsenprospekt von Anthropic, nach Tagesschau und WirtschaftsWoche (26.10.2026)',
     schlagworte: ['anthropic', 'börsengang', 'ki', 'aktien', 'börse'],
   },
