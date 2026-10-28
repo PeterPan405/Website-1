@@ -44,32 +44,62 @@ export const zahlenkarten: Zahlenkarte[] = [
       Kunden auf mindestens zehn Millionen Dollar." – „Die fünf größten
       Kunden waren in den ersten neun Monaten für rund ein Viertel des
       Umsatzes verantwortlich."
-      Logo: File:Anthropic logo.svg, gemeinfrei (Commons).
-      Form: Pyramide, neu (am 28.10. Geschichte).
+      Dritter Entwurf, die Pyramide – „ne gefällt mir nicht auch nicht
+      inhaltlich". Aus vier Geschichten gewählt: „Big Tech kassiert mit".
+      WiWo: „Anthropic hat sich laut Nachrichtenagentur Reuters zu Ausgaben
+      von mehr als 600 Milliarden Dollar verpflichtet. Allein gegenüber den
+      Tech-Konzernen Google, Microsoft und Amazon bestehen
+      Mindestverpflichtungen von rund 269 Milliarden Dollar. Das meiste
+      davon entfällt auf Google mit mindestens 114,5 Milliarden Dollar und
+      der geringste Betrag auf Microsoft mit knapp 45 Milliarden."
+      Amazon steht dort nicht – gerechnet als Rest: 269 − 114,5 − 45 =
+      109,5, daher „rund 110" und „der Rest, gerechnet".
+      Logos Google, Amazon, Microsoft: Commons, gemeinfrei (File:Google 2015
+      logo.svg, File:Amazon logo.svg, File:Microsoft logo (2012).svg), geholt
+      mit bilder-holen.yml.
+      Form: Torte, neu (am 28.10. Geschichte).
     */
-    art: 'pyramide',
+    art: 'torte',
     datum: '2026-10-29',
     titel: [
-      { text: 'Wer bei' },
-      { text: 'Anthropic', gruen: true },
-      { text: 'wie viel zahlt' },
+      { text: 'Anthropic:' },
+      { text: '269\u00a0Mrd.\u00a0$', gruen: true },
+      { text: 'für Big Tech' },
     ],
     erklaerung:
-      'Die Firma hinter dem KI-Modell Claude will an die Börse. Ihr Prospekt sortiert die Kunden danach, was sie in zwölf Monaten zahlten.',
-    unterzeile: 'Kunden, Stand Ende September 2026:',
-    logo: 'anthropic.png',
-    stufen: [
-      { zahl: 'rund 250', text: 'ab 10 Mio. $' },
-      { zahl: 'über 1.900', text: 'ab 1 Mio. $' },
-      { zahl: 'über 11.900', text: 'ab 100.000 $' },
+      'So viel muss die Firma hinter dem KI-Modell Claude laut Börsenprospekt mindestens bei Google, Amazon und Microsoft ausgeben.',
+    unterzeile: 'Mindestzusagen von Anthropic, in US-Dollar:',
+    mitte: { zahl: '269\u00a0Mrd.\u00a0$', text: 'zugesagt' },
+    stuecke: [
+      {
+        name: 'Google',
+        wert: 114.5,
+        anzeige: '114,5\u00a0Mrd.\u00a0$',
+        zusatz: 'mindestens',
+        logo: 'google.png',
+      },
+      {
+        name: 'Amazon',
+        wert: 109.5,
+        anzeige: 'rund 110\u00a0Mrd.\u00a0$',
+        zusatz: 'der Rest, gerechnet',
+        logo: 'amazon.png',
+      },
+      {
+        name: 'Microsoft',
+        wert: 45,
+        anzeige: 'knapp 45\u00a0Mrd.\u00a0$',
+        zusatz: 'der kleinste Teil',
+        logo: 'microsoft.png',
+      },
     ],
-    hinweis: 'Die 5 größten Kunden: rund ¼ des Umsatzes (Jan.–Sep.)',
-    fusszeile: 'Stand: Ende September 2026 | Quelle: Börsenprospekt (WiWo)',
+    hinweis: 'Alle Zusagen zusammen: über 600 Mrd. $ (Reuters)',
+    fusszeile: 'Stand: 26.10.2026 | Quelle: Börsenprospekt (WiWo, Reuters)',
     text:
-      'Wer bei Anthropic wie viel zahlt: Rund 250 Kunden haben der Firma hinter dem KI-Modell Claude in zwölf Monaten jeweils mindestens 10 Millionen Dollar bezahlt. Über 1.900 kamen auf mindestens eine Million, über 11.900 auf mindestens 100.000 Dollar. 🤖\n\n' +
-      'Die Zahlen stehen im Börsenprospekt, mit dem Anthropic an die Nasdaq will (Kürzel ANT). Laut WirtschaftsWoche brachten die fünf größten Kunden in den ersten neun Monaten rund ein Viertel des Umsatzes – und viele der größten sind nicht über langfristige Verträge gebunden.\n\n' +
-      'Im ersten Halbjahr 2026 stieg der Umsatz von 1,2 auf 16,3 Milliarden Dollar. Der Nettoverlust lag laut Tagesschau bei rund 80,7 Milliarden Dollar – vor allem wegen des Baus von Rechenzentren.\n\n' +
-      'Quellen: Börsenprospekt von Anthropic, nach Tagesschau und WirtschaftsWoche (26.10.2026)',
+      'Big Tech kassiert mit: Anthropic, die Firma hinter dem KI-Modell Claude, hat sich laut Börsenprospekt verpflichtet, bei Google, Amazon und Microsoft mindestens rund 269 Milliarden Dollar auszugeben. 🤖\n\n' +
+      'Den größten Teil bekommt Google mit mindestens 114,5 Milliarden Dollar, den kleinsten Microsoft mit knapp 45 Milliarden. Für Amazon bleibt rechnerisch der Rest von rund 110 Milliarden. Insgesamt hat sich Anthropic laut Reuters zu Ausgaben von mehr als 600 Milliarden Dollar verpflichtet.\n\n' +
+      'Dem stehen bisher Umsätze von 16,3 Milliarden Dollar im ersten Halbjahr 2026 gegenüber – und laut Tagesschau ein Nettoverlust von rund 80,7 Milliarden Dollar, vor allem wegen des Baus von Rechenzentren. An die Börse will Anthropic an der Nasdaq unter dem Kürzel ANT.\n\n' +
+      'Quellen: Börsenprospekt von Anthropic, nach WirtschaftsWoche (mit Reuters) und Tagesschau (26.10.2026); Amazon-Anteil eigene Rechnung',
     schlagworte: ['anthropic', 'börsengang', 'ki', 'aktien', 'börse'],
   },
   {
