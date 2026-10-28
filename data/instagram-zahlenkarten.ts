@@ -57,36 +57,89 @@ export const zahlenkarten: Zahlenkarte[] = [
         estimated net worth stood at US$148.9 billion"; im Mai 2025
         angekündigt, zum Jahresende als CEO zurückzutreten, Greg Abel ab
         1.1.2026.
+      Danach der Betreiber: „ne mach entwicklung von denen mit chart
+      geschichte usw" – daher die Form Geschichte. Kurse: Yahoo Finance,
+      chart BRK-A, range=max, interval=3mo, gelesen am 28.10.2026 über
+      quellen-holen.yml; je Jahr der letzte Quartalswert, ab Dezember 1984
+      (1.490 $; früher reicht die Reihe nicht). Meilensteine aus
+      en.wikipedia.org (action=raw, „Share price milestones"): „over
+      $10,000 on October 16, 1992 … over $100,000 for the first time on
+      October 23, 2006 … over $500,000 for the first time on March 16,
+      2022". Das Angebot von 1964: de.wikipedia.org/wiki/Berkshire_Hathaway
+      („das mündliche Angebot, die Anteile von Buffett für 11 1⁄2 $ pro Aktie
+      zurückzukaufen. Wenige Wochen später … für lediglich 11 3⁄8 $").
+      Form: Geschichte (am 27.10. Balken).
       Foto: File:Warren Buffett at the 2015 SelectUSA Investment Summit
       (cropped).jpg, gemeinfrei (US-Bundesbehörde), Commons, geholt mit
       bilder-holen.yml.
       Form: Steckbrief (am 27.10. Balken).
     */
-    art: 'steckbrief',
+    art: 'geschichte',
     datum: '2026-10-28',
-    titel: [
-      { text: 'Die teuerste Aktie der Welt:' },
-      { text: '726.552\u00a0€', gruen: true },
-    ],
+    titel: [{ text: '810.106\u00a0$', gruen: true }, { text: 'für eine Aktie?' }],
     erklaerung:
-      'Die A-Aktie von Berkshire Hathaway, der Holding von Warren Buffett – dem „Orakel von Omaha“. Sie wurde nie geteilt.',
-    logo: 'berkshire-hathaway.png',
+      'So viel kostet eine A-Aktie von Berkshire Hathaway. 1964 wollte die Firma Buffett seine Aktien für rund 11,38 $ abkaufen – er kaufte stattdessen die Mehrheit.',
+    unterzeile: 'Berkshire-A-Aktie, logarithmisch, in US-Dollar:',
+    einheit: '\u00a0$',
     foto: 'warren-buffett.jpg',
-    fakten: [
-      { name: 'Eine A-Aktie', wert: '726.552\u00a0€' },
-      { name: 'Buffetts erste Aktie', wert: 'mit 11 Jahren' },
-      { name: 'Übernimmt Berkshire', wert: '1965' },
-      { name: 'Sein Haus, gekauft 1958', wert: '31.500\u00a0$' },
-      { name: 'Vermögen (Forbes, 1/2026)', wert: '148,9\u00a0Mrd.\u00a0$' },
-      { name: 'Davon will er spenden', wert: 'über 99\u00a0%' },
+    /* Yahoo Finance, chart BRK-A, range=max, interval=3mo; je Jahr der letzte Wert. */
+    punkte: [
+      { t: '1984-12-01', wert: 1490 },
+      { t: '1985-12-01', wert: 2760 },
+      { t: '1986-12-01', wert: 3360 },
+      { t: '1987-12-01', wert: 3150 },
+      { t: '1988-12-01', wert: 4725 },
+      { t: '1989-12-01', wert: 7225 },
+      { t: '1990-12-01', wert: 8075 },
+      { t: '1991-12-01', wert: 8725 },
+      { t: '1992-12-01', wert: 12475 },
+      { t: '1993-12-01', wert: 15450 },
+      { t: '1994-12-01', wert: 22275 },
+      { t: '1995-12-01', wert: 35500 },
+      { t: '1996-12-01', wert: 35500 },
+      { t: '1997-12-01', wert: 55800 },
+      { t: '1998-12-01', wert: 71100 },
+      { t: '1999-12-01', wert: 44000 },
+      { t: '2000-12-01', wert: 70300 },
+      { t: '2001-12-01', wert: 73000 },
+      { t: '2002-12-01', wert: 61700 },
+      { t: '2003-12-01', wert: 94500 },
+      { t: '2004-12-01', wert: 90200 },
+      { t: '2005-12-01', wert: 86800 },
+      { t: '2006-12-01', wert: 106190 },
+      { t: '2007-12-01', wert: 140000 },
+      { t: '2008-12-01', wert: 78600 },
+      { t: '2009-12-01', wert: 119800 },
+      { t: '2010-12-01', wert: 131300 },
+      { t: '2011-12-01', wert: 117934 },
+      { t: '2012-12-01', wert: 152600 },
+      { t: '2013-12-01', wert: 173708 },
+      { t: '2014-12-01', wert: 221180 },
+      { t: '2015-12-01', wert: 202555 },
+      { t: '2016-12-01', wert: 257100 },
+      { t: '2017-12-01', wert: 310250 },
+      { t: '2018-12-01', wert: 302200 },
+      { t: '2019-12-01', wert: 309096 },
+      { t: '2020-12-01', wert: 364580 },
+      { t: '2021-12-01', wert: 476205 },
+      { t: '2022-12-01', wert: 463525 },
+      { t: '2023-12-01', wert: 616561 },
+      { t: '2024-12-01', wert: 775000 },
+      { t: '2025-12-01', wert: 757000 },
+      { t: '2026-10-27', wert: 810106 },
     ],
-    fusszeile: 'Stand: 27.10.2026 | Quelle: Yahoo Finance, Wikipedia | EZB-Kurs',
+    marken: [
+      { t: '1992-10-16', wert: 10000, text: 'erstmals, 1992' },
+      { t: '2006-10-23', wert: 100000, text: 'erstmals, 2006' },
+      { t: '2026-10-27', wert: 810106, text: 'heute' },
+    ],
+    fusszeile: 'Stand: 27.10.2026 | Quelle: Yahoo Finance, Wikipedia',
     text:
-      'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. Sie wurde nie gesplittet. 📈\n\n' +
-      'Dahinter steht Warren Buffett, das „Orakel von Omaha“, geboren 1930. Sein erstes Geld verdiente er 1936: Er kaufte Sixpacks Coca-Cola für 25 Cent und verkaufte die Flaschen einzeln für je 10 Cent. Seine erste Aktie kaufte er mit elf Jahren.\n\n' +
-      '1965 übernahm er die Mehrheit an Berkshire Hathaway, damals eine Textilfirma, und baute daraus eine Holding mit über 80 Unternehmen – von der Versicherung GEICO bis Dairy Queen. Ende 2025 gab er den Chefposten an Greg Abel ab.\n\n' +
-      'Forbes schätzte sein Vermögen im Januar 2026 auf 148,9 Milliarden Dollar. Trotzdem wohnt er laut Wikipedia noch in dem Haus in Omaha, das er 1958 für 31.500 Dollar gekauft hat. Mehr als 99 % seines Vermögens will er spenden.\n\n' +
-      'Kurs vom 27.10.2026, umgerechnet zum EZB-Referenzkurs.\n' +
+      'Die teuerste Aktie der Welt: Ende 1984 kostete eine A-Aktie von Berkshire Hathaway 1.490 Dollar. Heute sind es 810.106 Dollar – umgerechnet mehr als 726.000 Euro. 📈\n\n' +
+      'Angefangen hat es mit einem Streit. 1964 wollte Berkshire, damals eine Textilfirma, Warren Buffett seine Aktien für 11 3/8 Dollar abkaufen – damals wurden Aktien in Achteldollar notiert, das sind rund 11,38 Dollar. Buffett ärgerte sich über das Angebot, lehnte ab und übernahm 1965 stattdessen die Mehrheit. Daraus baute er eine Holding mit über 80 Unternehmen – von der Versicherung GEICO bis Dairy Queen.\n\n' +
+      'Die Meilensteine: 1992 schloss die Aktie erstmals über 10.000 Dollar, 2006 über 100.000, 2022 über 500.000. Geteilt wurde sie nie – deshalb ist sie so teuer.\n\n' +
+      'Buffett, das „Orakel von Omaha“, kaufte seine erste Aktie mit elf Jahren. Ende 2025 gab er den Chefposten an Greg Abel ab. Er wohnt bis heute in dem Haus, das er 1958 für 31.500 Dollar gekauft hat, und will mehr als 99 % seines Vermögens spenden.\n\n' +
+      'Kurse: Jahresendwerte seit 1984, Schluss am 27.10.2026; in Euro zum EZB-Referenzkurs.\n' +
       'Quellen: Yahoo Finance; Europäische Zentralbank; Wikipedia (Berkshire Hathaway, Warren Buffett, darin Forbes); Foto: USA International Trade Administration, gemeinfrei',
     schlagworte: ['warrenbuffett', 'berkshire', 'aktien', 'börse', 'geldanlage'],
   },

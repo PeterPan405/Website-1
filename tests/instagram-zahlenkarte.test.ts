@@ -95,37 +95,65 @@ if (kacheln?.art === 'rangliste') {
   )
 } else pruefe('es gibt eine Kachelkarte im Bestand', false)
 
-/* Der Steckbrief (28.10.2026): Logo da, vier bis sechs Kennzahlen. */
-const steckbrief = zahlenkarten.find((k) => k.datum === '2026-10-28')
-if (steckbrief?.art === 'steckbrief') {
+/* Die Geschichte (28.10.2026): Berkshire A seit 1984, Meilensteine, Foto. */
+const geschichte = zahlenkarten.find((k) => k.datum === '2026-10-28')
+if (geschichte?.art === 'geschichte') {
   pruefe(
-    'Steckbrief 28.10.: Berkshire allein, Logo, Buffett-Foto, A-Aktie zuerst',
-    steckbrief.logo === 'berkshire-hathaway.png' &&
-      steckbrief.foto === 'warren-buffett.jpg' &&
-      steckbrief.fakten[0].name === 'Eine A-Aktie'
+    'Geschichte 28.10.: 1.490 $ im Dezember 1984, 810.106 $ am 27.10.2026',
+    geschichte.punkte[0].wert === 1490 &&
+      geschichte.punkte[0].t === '1984-12-01' &&
+      geschichte.punkte.at(-1)!.wert === 810106 &&
+      geschichte.foto === 'warren-buffett.jpg'
   )
-  const ohneFoto = pruefeZahlenkarte({ ...steckbrief, foto: 'gibt-es-nicht.jpg' })
   pruefe(
-    'beanstandet: Steckbrief mit fehlender Fotodatei',
+    'Meilensteine wie in der Quelle: 10.000 $ 1992, 100.000 $ 2006',
+    geschichte.marken.some((m) => m.t === '1992-10-16' && m.wert === 10000) &&
+      geschichte.marken.some((m) => m.t === '2006-10-23' && m.wert === 100000)
+  )
+  const nullKurs = pruefeZahlenkarte({
+    ...geschichte,
+    punkte: geschichte.punkte.map((p, i) => (i === 3 ? { ...p, wert: 0 } : p)),
+  })
+  pruefe(
+    'beanstandet: ein Kurs von null auf der Log-Achse',
+    nullKurs.some((f) => f.includes('Log-Achse')),
+    nullKurs.join(' | ')
+  )
+  const ohneFoto = pruefeZahlenkarte({ ...geschichte, foto: 'gibt-es-nicht.jpg' })
+  pruefe(
+    'beanstandet: fehlende Fotodatei',
     ohneFoto.some((f) => f.includes('fehlt in lib/instagram/fotos')),
     ohneFoto.join(' | ')
   )
-  const zuWenig = pruefeZahlenkarte({
-    ...steckbrief,
-    fakten: steckbrief.fakten.slice(0, 2),
-  })
-  pruefe(
-    'beanstandet: Steckbrief mit zwei Kennzahlen',
-    zuWenig.some((f) => f.includes('vier bis sechs')),
-    zuWenig.join(' | ')
-  )
-  const ohneLogo = pruefeZahlenkarte({ ...steckbrief, logo: 'gibt-es-nicht.png' })
-  pruefe(
-    'beanstandet: Steckbrief ohne Logodatei',
-    ohneLogo.some((f) => f.includes('fehlt in lib/instagram/logos')),
-    ohneLogo.join(' | ')
-  )
-} else pruefe('die Karte vom 28.10.2026 ist ein Steckbrief', false)
+} else pruefe('die Karte vom 28.10.2026 ist eine Geschichte', false)
+
+/* Der Steckbrief: Logo da, vier bis sechs Kennzahlen – an einer Testkarte. */
+const steckbrief: Zahlenkarte = {
+  art: 'steckbrief',
+  datum: '2026-10-28',
+  titel: [{ text: 'Test:' }, { text: '1 $', gruen: true }],
+  erklaerung: 'Eine Testkarte.',
+  logo: 'berkshire-hathaway.png',
+  fakten: [
+    { name: 'A', wert: '1' },
+    { name: 'B', wert: '2' },
+  ],
+  fusszeile: 'Stand: 2026 | Quelle: Test',
+  text: 'Test.\nQuellen: Test',
+  schlagworte: ['a', 'b', 'c', 'd', 'e'],
+}
+const zuWenig = pruefeZahlenkarte(steckbrief)
+pruefe(
+  'beanstandet: Steckbrief mit zwei Kennzahlen',
+  zuWenig.some((f) => f.includes('vier bis sechs')),
+  zuWenig.join(' | ')
+)
+const ohneLogo = pruefeZahlenkarte({ ...steckbrief, logo: 'gibt-es-nicht.png' })
+pruefe(
+  'beanstandet: Steckbrief ohne Logodatei',
+  ohneLogo.some((f) => f.includes('fehlt in lib/instagram/logos')),
+  ohneLogo.join(' | ')
+)
 
 /* Beschriftung: Rechtshinweis mit KI-Hinweis wörtlich, fünf Schlagworte. */
 const b = beschriftungZahlenkarte(gut)
