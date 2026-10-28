@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
     inputs:
       suche:
-        description: 'Je Zeile „kennung|Suchbegriff", z. B. „trump|Donald Trump official portrait 2025"'
+        description: 'Je Zeile „kennung|Suchbegriff" oder „kennung|File:Name.svg" (genau diese Datei), z. B. „trump|Donald Trump official portrait 2025"'
         required: true
         type: string
 
@@ -49,16 +49,28 @@ jobs:
             kennung=$(echo "$kennung" | tr -cd 'a-z0-9-')
             echo "== $kennung: $begriff"
             api='https://commons.wikimedia.org/w/api.php'
+            # „File:…" holt genau diese Datei, auch ein SVG – als PNG-Vorschau
+            # in 1600 px (28.10.2026, Firmenlogos für die Zahlenkarte). Die
+            # Suche bleibt bei Fotos (filetype:bitmap).
+            if [[ "$begriff" == File:* ]]; then
+              curl -sS -A "$ua" -G "$api" \
+                --data-urlencode action=query --data-urlencode format=json \
+                --data-urlencode "titles=$begriff" \
+                --data-urlencode prop=imageinfo --data-urlencode iiprop='url|extmetadata|size' \
+                --data-urlencode iiurlwidth=1600 > antwort.json
+            else
             curl -sS -A "$ua" -G "$api" \
               --data-urlencode action=query --data-urlencode format=json \
               --data-urlencode generator=search --data-urlencode gsrnamespace=6 \
               --data-urlencode "gsrsearch=$begriff filetype:bitmap" --data-urlencode gsrlimit=5 \
               --data-urlencode prop=imageinfo --data-urlencode iiprop='url|extmetadata|size' \
               --data-urlencode iiurlwidth=1600 > antwort.json
+            fi
             jq -c '.query.pages // {} | to_entries | sort_by(.value.index) | .[].value' antwort.json | nl -nln | while read -r nr seite; do
               titel=$(echo "$seite" | jq -r '.title')
               bild=$(echo "$seite" | jq -r '.imageinfo[0].thumburl // .imageinfo[0].url')
-              datei="geholt/${kennung}-${nr}.jpg"
+              endung=jpg; [[ "$bild" == *.png* ]] && endung=png
+              datei="geholt/${kennung}-${nr}.${endung}"
               curl -sS -A "$ua" -L "$bild" -o "$datei" || { echo "  $titel: Laden scheiterte"; continue; }
               echo "$seite" | jq --arg datei "$(basename "$datei")" --arg kennung "$kennung" '{
                 kennung: $kennung, datei: $datei, titel: .title,
