@@ -70,26 +70,54 @@ for (const teil of [
   )
 
 /* Firmenlogos (28.10.2026): Die Datei muss da sein, und nur in Kacheln. */
-const lindt = zahlenkarten.find((k) => k.datum === '2026-10-28')
-if (lindt?.art === 'rangliste') {
+const kacheln = zahlenkarten.find((k) => k.art === 'rangliste' && k.skala === 'kacheln')
+if (kacheln?.art === 'rangliste') {
+  const mitLogo = (logo: string) =>
+    kacheln.zeilen.map((z, i) => (i === 0 ? { ...z, logo } : z))
   const ohneDatei = pruefeZahlenkarte({
-    ...lindt,
-    zeilen: lindt.zeilen.map((z, i) =>
-      i === 0 ? { ...z, logo: 'gibt-es-nicht.png' } : z
-    ),
+    ...kacheln,
+    zeilen: mitLogo('gibt-es-nicht.png'),
   })
   pruefe(
     'beanstandet: ein Logo, dessen Datei fehlt',
     ohneDatei.some((f) => f.includes('fehlt in lib/instagram/logos')),
     ohneDatei.join(' | ')
   )
-  const alsBalken = pruefeZahlenkarte({ ...lindt, skala: 'balken' as const })
+  const alsBalken = pruefeZahlenkarte({
+    ...kacheln,
+    skala: 'balken' as const,
+    zeilen: mitLogo('lpp.png'),
+  })
   pruefe(
     'beanstandet: Logos außerhalb der Kacheln',
     alsBalken.some((f) => f.includes('nur in Kacheln')),
     alsBalken.join(' | ')
   )
-} else pruefe('die Karte vom 28.10.2026 ist eine Rangliste', false)
+} else pruefe('es gibt eine Kachelkarte im Bestand', false)
+
+/* Der Steckbrief (28.10.2026): Logo da, vier bis sechs Kennzahlen. */
+const steckbrief = zahlenkarten.find((k) => k.datum === '2026-10-28')
+if (steckbrief?.art === 'steckbrief') {
+  pruefe(
+    'Steckbrief 28.10.: Berkshire allein, Logo und sechs Kennzahlen',
+    steckbrief.logo === 'berkshire-hathaway.png' && steckbrief.fakten.length === 6
+  )
+  const zuWenig = pruefeZahlenkarte({
+    ...steckbrief,
+    fakten: steckbrief.fakten.slice(0, 2),
+  })
+  pruefe(
+    'beanstandet: Steckbrief mit zwei Kennzahlen',
+    zuWenig.some((f) => f.includes('vier bis sechs')),
+    zuWenig.join(' | ')
+  )
+  const ohneLogo = pruefeZahlenkarte({ ...steckbrief, logo: 'gibt-es-nicht.png' })
+  pruefe(
+    'beanstandet: Steckbrief ohne Logodatei',
+    ohneLogo.some((f) => f.includes('fehlt in lib/instagram/logos')),
+    ohneLogo.join(' | ')
+  )
+} else pruefe('die Karte vom 28.10.2026 ist ein Steckbrief', false)
 
 /* Beschriftung: Rechtshinweis mit KI-Hinweis wörtlich, fünf Schlagworte. */
 const b = beschriftungZahlenkarte(gut)
