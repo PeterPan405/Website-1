@@ -42,17 +42,29 @@ export const zahlenkarten: Zahlenkarte[] = [
       Für Farmers & Merchants Bank und NVR gibt es auf Commons keins – sie
       tragen ihren Namen.
 
-      „Unter den teuersten", nicht „die teuersten": Eine vollständige
-      Weltrangliste nach Stückpreis war nicht abrufbar (companiesmarketcap,
-      stockanalysis: 404). Daher auch keine Rangnummern.
+      Danach der Betreiber: „auch die Überschrift irgendwie. Lieber die
+      teuersten Aktien der Welt … Oder mach nur Berkshire Hathaway, die
+      teuerste Aktie der Welt. Und dann stell mal Berkshire Hathaway vor."
+      Belegt ist das für Berkshire allein: en.wikipedia.org/wiki/Berkshire_Hathaway
+      („Its class A shares have the highest per-share price of any public
+      company in the world … because the board … has historically been
+      opposed to stock splits"), de.wikipedia.org/wiki/Berkshire_Hathaway
+      („wurde niemals gesplittet und ist somit die teuerste Stückaktie der
+      Welt"; Omaha, über 80 Unternehmen, 1965 Buffett, seit 1.1.2026 Greg
+      Abel), beide gelesen am 28.10.2026 über quellen-holen.yml. Für die
+      übrigen fünf gibt es keine vollständige Weltrangliste (companiesmarketcap,
+      stockanalysis: 404) – daher „dahinter", keine Rangnummern.
       Form: Kacheln (am 27.10. Balken).
     */
     art: 'rangliste',
     skala: 'kacheln',
     datum: '2026-10-28',
-    titel: [{ text: 'Eine Aktie Lindt:' }, { text: '92.326\u00a0€', gruen: true }],
+    titel: [
+      { text: 'Die teuerste Aktie der Welt:' },
+      { text: '726.552\u00a0€', gruen: true },
+    ],
     erklaerung:
-      'Der Preis einer einzelnen Aktie sagt nichts über den Wert des Unternehmens – nur, in wie viele Stücke es aufgeteilt ist.',
+      'Früher eine Textilfirma, seit 1965 Warren Buffetts Holding mit über 80 Firmen – von GEICO bis Dairy Queen. Die A-Aktie wurde nie geteilt.',
     unterzeile: 'Was eine einzige Aktie kostet, in Euro:',
     einheit: '\u00a0€',
     stellen: 0,
@@ -61,13 +73,13 @@ export const zahlenkarten: Zahlenkarte[] = [
         name: 'Berkshire Hathaway A',
         wert: 726552,
         land: 'USA',
+        hervor: true,
         logo: 'berkshire-hathaway.png',
       },
       {
         name: 'Lindt & Sprüngli',
         wert: 92326,
         land: 'CHE',
-        hervor: true,
         logo: 'lindt-spruengli.png',
       },
       { name: 'Lotus Bakeries', wert: 13360, land: 'BEL', logo: 'lotus-bakeries.png' },
@@ -75,13 +87,14 @@ export const zahlenkarten: Zahlenkarte[] = [
       { name: 'LPP', wert: 6061, land: 'POL', logo: 'lpp.png' },
       { name: 'NVR', wert: 5207, land: 'USA' },
     ],
-    fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance | EZB-Kurs 27.10.',
+    fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance, Wikipedia | EZB-Kurs',
     text:
-      'Eine einzige Aktie von Lindt & Sprüngli kostet rund 92.000 Euro. Noch teurer ist nur Berkshire Hathaway von Warren Buffett: Die A-Aktie kostet mehr als 726.000 Euro – pro Stück. 🍫\n\n' +
-      'Dahinter folgen der belgische Gebäckhersteller Lotus Bakeries (13.360 €), die kalifornische Farmers & Merchants Bank of Long Beach (8.852 €), der polnische Modekonzern LPP (6.061 €) und der US-Hausbauer NVR (5.207 €).\n\n' +
-      'Ein hoher Stückpreis heißt nicht, dass das Unternehmen besonders viel wert ist. Er zeigt nur, in wie viele Aktien es aufgeteilt ist – wer nicht teilt, hat wenige, aber teure Stücke.\n\n' +
+      'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. 📈\n\n' +
+      "Berkshire Hathaway sitzt in Omaha, Nebraska, und war ursprünglich ein Textilhersteller. 1965 übernahm Warren Buffett die Mehrheit und baute daraus eine Holding mit über 80 Unternehmen – von der Autoversicherung GEICO über die Bahn BNSF bis zu Dairy Queen und See's Candies. Seit dem 1. Januar 2026 führt Greg Abel das Unternehmen.\n\n" +
+      'Warum so teuer? Die A-Aktie wurde nie gesplittet. Wer nicht teilt, hat wenige, aber teure Stücke – über den Wert des Unternehmens sagt der Stückpreis nichts.\n\n' +
+      'Dahinter: Lindt & Sprüngli (92.326 €), Lotus Bakeries (13.360 €), Farmers & Merchants Bank of Long Beach (8.852 €), LPP (6.061 €) und NVR (5.207 €).\n\n' +
       'Kurse vom 27.10.2026 (Lindt vom 28.10.), umgerechnet zum EZB-Referenzkurs. Bei Lindt die Namensaktie.\n' +
-      'Quellen: Yahoo Finance; Europäische Zentralbank',
+      'Quellen: Yahoo Finance; Europäische Zentralbank; Wikipedia (Berkshire Hathaway)',
     schlagworte: ['aktien', 'börse', 'lindt', 'berkshire', 'geldanlage'],
   },
   {
