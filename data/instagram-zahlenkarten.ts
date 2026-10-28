@@ -16,6 +16,56 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber (27.10.2026): „Die teuersten Aktien der Welt …
+      Zum Beispiel könntest du da auch eine Lindt reinmachen." Der erste
+      Entwurf nahm die Liste aus dem Kursbestand der Website – „das sind
+      nicht die teuersten": Dort fehlen die teuren Werte außerhalb der
+      großen Indizes. Danach die bekannten Kandidaten einzeln abgerufen;
+      Betreiber: „top 5 reicht völlig".
+
+      Kurse (Yahoo Finance, chart-Schnittstelle, gelesen am 28.10.2026 über
+      quellen-holen.yml; US-Werte Schluss 27.10., Lindt 28.10. vormittags):
+        Berkshire Hathaway A  810.106 USD
+        Lindt & Sprüngli N     85.300 CHF   (Partizipationsschein 8.290 CHF –
+                                             dieselbe Firma, nicht doppelt)
+        Lotus Bakeries         13.360 EUR   (Kursbestand der Website)
+        Farmers & Merchants Bank of Long Beach 9.870 USD (OTCQX)
+        LPP                    26.680 PLN   (Kursbestand der Website)
+      Umgerechnet zum EZB-Referenzkurs vom 27.10.2026 (USD 1,115; CHF
+      0,9239; PLN 4,402 je Euro). Dahinter NVR mit 5.806 USD (5.207 €).
+
+      „Unter den teuersten", nicht „die teuersten": Eine vollständige
+      Weltrangliste nach Stückpreis war nicht abrufbar (companiesmarketcap,
+      stockanalysis: 404). Daher auch keine Rangnummern.
+      Form: Kacheln (am 27.10. Balken).
+    */
+    art: 'rangliste',
+    skala: 'kacheln',
+    datum: '2026-10-28',
+    titel: [{ text: 'Eine Aktie Lindt:' }, { text: '92.326\u00a0€', gruen: true }],
+    erklaerung:
+      'Der Preis einer einzelnen Aktie sagt nichts über den Wert des Unternehmens – nur, in wie viele Stücke es aufgeteilt ist.',
+    unterzeile: 'Was eine einzige Aktie kostet, in Euro:',
+    einheit: '\u00a0€',
+    stellen: 0,
+    zeilen: [
+      { name: 'Berkshire Hathaway A', wert: 726552, land: 'USA' },
+      { name: 'Lindt & Sprüngli', wert: 92326, land: 'CHE', hervor: true },
+      { name: 'Lotus Bakeries', wert: 13360, land: 'BEL' },
+      { name: 'Farmers & Merchants Bank', wert: 8852, land: 'USA' },
+      { name: 'LPP', wert: 6061, land: 'POL' },
+    ],
+    fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance | EZB-Kurs 27.10.',
+    text:
+      'Eine einzige Aktie von Lindt & Sprüngli kostet rund 92.000 Euro. Noch teurer ist nur Berkshire Hathaway von Warren Buffett: Die A-Aktie kostet mehr als 726.000 Euro – pro Stück. 🍫\n\n' +
+      'Dahinter folgen der belgische Gebäckhersteller Lotus Bakeries (13.360 €), die kalifornische Farmers & Merchants Bank of Long Beach (8.852 €) und der polnische Modekonzern LPP (6.061 €).\n\n' +
+      'Ein hoher Stückpreis heißt nicht, dass das Unternehmen besonders viel wert ist. Er zeigt nur, in wie viele Aktien es aufgeteilt ist – wer nicht teilt, hat wenige, aber teure Stücke.\n\n' +
+      'Kurse vom 27.10.2026 (Lindt vom 28.10.), umgerechnet zum EZB-Referenzkurs. Bei Lindt die Namensaktie.\n' +
+      'Quellen: Yahoo Finance; Europäische Zentralbank',
+    schlagworte: ['aktien', 'börse', 'lindt', 'berkshire', 'geldanlage'],
+  },
+  {
+    /*
       Thema: Für den 27.10.2026 hatte der Betreiber nichts gewählt – genommen
       war der erste offene Vorschlag vom 26.10. („Gewinn pro Sekunde",
       zuerst mit US-Konzernen). Dann der Betreiber: „Nimm bitte die größten
