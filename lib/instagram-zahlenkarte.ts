@@ -248,7 +248,31 @@ export interface Pyramidenkarte extends KarteGemeinsam {
   hinweis?: string
 }
 
+/**
+ * Eine Torte (28.10.2026, Betreiber für Anthropic: „Big Tech kassiert
+ * mit"). Ein Ring aus zwei bis fünf Stücken, in der Mitte die Summe;
+ * rechts je Stück das Logo, der Betrag und eine Zeile. Das größte Stück in
+ * der Akzentfarbe.
+ */
+export interface Tortenkarte extends KarteGemeinsam {
+  art: 'torte'
+  erklaerung: string
+  unterzeile: string
+  /** Groß in der Mitte des Rings, darunter klein `text`. */
+  mitte: { zahl: string; text: string }
+  /** Größtes zuerst. `wert` bestimmt den Winkel, `anzeige` steht da. */
+  stuecke: {
+    name: string
+    wert: number
+    anzeige: string
+    zusatz: string
+    logo?: string
+  }[]
+  hinweis?: string
+}
+
 export type Zahlenkarte =
+  | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
   | Rangkarte
@@ -592,7 +616,28 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else if (k.art === 'pyramide') {
+  else if (k.art === 'torte') {
+    if (k.stuecke.length < 2 || k.stuecke.length > 5)
+      f.push(`${k.stuecke.length} Stücke – die Torte trägt zwei bis fünf.`)
+    for (const [i, st] of k.stuecke.entries()) {
+      if (!(st.wert > 0))
+        f.push(`${st.name}: ${st.wert} – ein Stück braucht einen Wert über null.`)
+      if (i > 0 && st.wert > k.stuecke[i - 1].wert)
+        f.push(
+          `${st.name} steht unter ${k.stuecke[i - 1].name}, ist aber größer – absteigend.`
+        )
+      if (st.logo !== undefined && !existsSync(join(LOGO_ORDNER, st.logo)))
+        f.push(`Logo „${st.logo}" fehlt in lib/instagram/logos/.`)
+    }
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
+      )
+    if (zeichen > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+      )
+  } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
       f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
     if (k.erklaerung.length > ERKLAERUNG_MAX)
@@ -857,9 +902,11 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
             ? geschichtsGrafik(k)
             : k.art === 'pyramide'
               ? pyramidenGrafik(k)
-              : k.art === 'rangliste'
-                ? ranglistenGrafik(k)
-                : vergleichsGrafik(k)
+              : k.art === 'torte'
+                ? tortenGrafik(k)
+                : k.art === 'rangliste'
+                  ? ranglistenGrafik(k)
+                  : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -928,7 +975,8 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
     ...((k.art === 'rangliste' ||
       k.art === 'steckbrief' ||
       k.art === 'geschichte' ||
-      k.art === 'pyramide') &&
+      k.art === 'pyramide' ||
+      k.art === 'torte') &&
     k.erklaerung
       ? [
           h(
@@ -1692,6 +1740,190 @@ function pyramidenGrafik(k: Pyramidenkarte) {
   ]
 }
 
+/*
+  Die Torte: ein Ring links, das größte Stück in der Akzentfarbe, die
+  übrigen Schwarz und Grau, zwischen den Stücken ein weißer Spalt. In der
+  Mitte die Summe. Rechts die Legende: Farbfeld, Logo, Betrag, Zeile.
+*/
+function tortenGrafik(k: Tortenkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const farben = [akzent, SCHWARZ, '#8a8a8a', '#b5b5b5', '#d5d5d5']
+  const oben = 590
+  const d = 470
+  const r = d / 2
+  const innen = r * 0.64
+  const cx = r
+  const cy = r
+  const summe = k.stuecke.reduce((a, st) => a + st.wert, 0)
+  let winkel = -Math.PI / 2
+  const punkt = (rad: number, w: number) =>
+    `${(cx + rad * Math.cos(w)).toFixed(2)},${(cy + rad * Math.sin(w)).toFixed(2)}`
+  const stuecke = k.stuecke
+    .map((st, i) => {
+      const w0 = winkel
+      const w1 = winkel + (st.wert / summe) * 2 * Math.PI
+      winkel = w1
+      const gross = w1 - w0 > Math.PI ? 1 : 0
+      return `<path d="M ${punkt(r, w0)} A ${r} ${r} 0 ${gross} 1 ${punkt(r, w1)} L ${punkt(innen, w1)} A ${innen} ${innen} 0 ${gross} 0 ${punkt(innen, w0)} Z" fill="${farben[i]}" stroke="#ffffff" stroke-width="8"/>`
+    })
+    .join('')
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${d}" height="${d}" viewBox="0 0 ${d} ${d}">${stuecke}</svg>`
+  const links = 60
+  const legendeLinks = links + d + 50
+  const zeile = Math.floor(d / k.stuecke.length)
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    h('img', {
+      src: svgAdresse(svg),
+      width: d,
+      height: d,
+      style: { position: 'absolute', left: links, top: oben },
+    }),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: links,
+          width: d,
+          top: oben,
+          height: d,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      },
+      h(
+        'div',
+        { style: { fontFamily: 'Anton', fontSize: 50, lineHeight: 1, color: SCHWARZ } },
+        k.mitte.zahl
+      ),
+      h(
+        'div',
+        {
+          style: {
+            marginTop: 8,
+            fontFamily: 'Open',
+            fontWeight: 700,
+            fontSize: 24,
+            color: GRAU,
+          },
+        },
+        k.mitte.text
+      )
+    ),
+    ...k.stuecke.map((st, i) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: legendeLinks,
+            right: 60,
+            top: oben + i * zeile,
+            height: zeile,
+            display: 'flex',
+            alignItems: 'center',
+          },
+        },
+        h('div', {
+          style: {
+            width: 18,
+            height: zeile - 40,
+            borderRadius: 9,
+            backgroundColor: farben[i],
+            marginRight: 22,
+          },
+        }),
+        h(
+          'div',
+          { style: { display: 'flex', flexDirection: 'column' } },
+          st.logo
+            ? h('img', {
+                src: logoAdresse(st.logo),
+                width: ZK_BREITE - 60 - legendeLinks - 40,
+                height: 46,
+                style: { objectFit: 'contain', objectPosition: 'left center' },
+              })
+            : h(
+                'div',
+                {
+                  style: {
+                    fontFamily: 'Open',
+                    fontWeight: 800,
+                    fontSize: 30,
+                    color: SCHWARZ,
+                  },
+                },
+                st.name
+              ),
+          h(
+            'div',
+            {
+              style: {
+                marginTop: 6,
+                fontFamily: 'Anton',
+                fontSize: 50,
+                lineHeight: 1.05,
+                color: i === 0 ? akzent : SCHWARZ,
+              },
+            },
+            st.anzeige
+          ),
+          h(
+            'div',
+            { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 21, color: GRAU } },
+            st.zusatz
+          )
+        )
+      )
+    ),
+    ...(k.hinweis
+      ? [
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                left: 60,
+                right: 60,
+                top: oben + d + 40,
+                height: 76,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 18,
+                border: `4px solid ${akzent}`,
+                fontFamily: 'Open',
+                fontWeight: 800,
+                fontSize: 27,
+                color: SCHWARZ,
+              },
+            },
+            k.hinweis
+          ),
+        ]
+      : []),
+  ]
+}
+
 /** Wo die Fotos der Steckbriefe liegen. */
 const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
 
@@ -1897,13 +2129,15 @@ export function form(
   | 'duell'
   | 'steckbrief'
   | 'geschichte'
-  | 'pyramide' {
+  | 'pyramide'
+  | 'torte' {
   if (
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
     k.art === 'geschichte' ||
-    k.art === 'pyramide'
+    k.art === 'pyramide' ||
+    k.art === 'torte'
   )
     return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'

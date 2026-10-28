@@ -155,24 +155,27 @@ pruefe(
   ohneLogo.join(' | ')
 )
 
-/* Die Pyramide (29.10.2026): Anthropics Kunden, drei Stufen wie in der Quelle. */
-const pyramide = zahlenkarten.find((k) => k.datum === '2026-10-29')
-if (pyramide?.art === 'pyramide') {
+/* Die Torte (29.10.2026): Anthropics Zusagen an Big Tech, wie in der Quelle. */
+const torte = zahlenkarten.find((k) => k.datum === '2026-10-29')
+if (torte?.art === 'torte') {
   pruefe(
-    'Pyramide 29.10.: rund 250 / über 1.900 / über 11.900, ohne Freigabe',
-    pyramide.stufen.map((st) => st.zahl).join('|') ===
-      'rund 250|über 1.900|über 11.900' && pyramide.freigabe === undefined
+    'Torte 29.10.: Google 114,5, Microsoft 45, Amazon als Rest von 269',
+    torte.stuecke[0].name === 'Google' &&
+      torte.stuecke[0].wert === 114.5 &&
+      torte.stuecke.find((st) => st.name === 'Microsoft')?.wert === 45 &&
+      Math.abs(torte.stuecke.reduce((a, st) => a + st.wert, 0) - 269) < 1e-9 &&
+      torte.freigabe === undefined
   )
-  const zweiStufen = pruefeZahlenkarte({
-    ...pyramide,
-    stufen: pyramide.stufen.slice(0, 2),
+  const aufsteigend = pruefeZahlenkarte({
+    ...torte,
+    stuecke: [...torte.stuecke].reverse(),
   })
   pruefe(
-    'beanstandet: Pyramide mit zwei Stufen',
-    zweiStufen.some((f) => f.includes('drei bis fünf')),
-    zweiStufen.join(' | ')
+    'beanstandet: Stücke nicht absteigend',
+    aufsteigend.some((f) => f.includes('absteigend')),
+    aufsteigend.join(' | ')
   )
-} else pruefe('die Karte vom 29.10.2026 ist eine Pyramide', false)
+} else pruefe('die Karte vom 29.10.2026 ist eine Torte', false)
 
 /* Beschriftung: Rechtshinweis mit KI-Hinweis wörtlich, fünf Schlagworte. */
 const b = beschriftungZahlenkarte(gut)
