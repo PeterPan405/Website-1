@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Fed entscheidet über die Zinsen, die IG Metall lehnt ein Lohnangebot ab, Banken verschärfen Firmenkredite, der Dax handelt jetzt rund um die Uhr, und die EZB genehmigt eine große italienische Bankenübernahme.",
+  "kacheln": [
+    {
+      "titel": "Zinsentscheid heute",
+      "text": "Die US-Notenbank Fed entscheidet heute über die Leitzinsen. Vor der Entscheidung stand der Dax laut Handelsblatt bereits unter Druck."
+    },
+    {
+      "titel": "IG Metall: Angebot abgelehnt",
+      "text": "Die IG Metall hat das erste Lohnangebot der Arbeitgeber abgelehnt. Ab Sonntag sind in der Metall- und Elektroindustrie Warnstreiks möglich."
+    },
+    {
+      "titel": "Kredite für Firmen strenger",
+      "text": "Deutsche Banken haben ihre Kreditrichtlinien für Unternehmen im dritten Quartal weiter verschärft. Bei Wohnungsbaukrediten wurden sie dagegen lockerer."
+    },
+    {
+      "titel": "Dax-Aktien: Handel 24/7",
+      "text": "40 Dax-Aktien sind ab sofort rund um die Uhr handelbar. Die Deutsche Börse folgt damit einem Trend aus den USA."
+    },
+    {
+      "titel": "Italiens Bank-Deal: 32 Mrd.",
+      "text": "Die EZB hat Intesa Sanpaolo grünes Licht für die Übernahme der Bank MPS gegeben. Das Kaufangebot ist 32 Milliarden Euro schwer."
+    }
+  ],
+  "schlagworte": ["fed", "leitzins", "dax", "börse", "aktien"]
+}

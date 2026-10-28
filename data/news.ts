@@ -101,6 +101,305 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'fed-zinsentscheid-oktober-2026',
+    title: 'Die Fed entscheidet heute über die Leitzinsen',
+    teaser:
+      'Die US-Notenbank tagt zum zweiten Tag in Folge. Vor der Entscheidung stand der Dax laut Handelsblatt bereits unter Druck.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Leitzins', 'Notenbank', 'Dax'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'sp500', 'eur-usd'],
+    sources: [
+      {
+        label: 'Federal Reserve, FOMC-Sitzungskalender 2026 (offizielle Terminübersicht)',
+        url: 'https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm',
+      },
+      {
+        label:
+          'Handelsblatt, Marktbericht vom 27.10.2026, 17:00 Uhr: „Dax aktuell: Dax schließt im Plus – Autoaktie gegen den Trend größter Verlierer"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-im-plus-mercedes-aktie-verlierer-des-tages/100265163.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank Fed ist am Dienstag zu ihrer zweitägigen Sitzung zusammengekommen. Nach dem offiziellen Sitzungskalender der Fed fällt die Zinsentscheidung heute, am zweiten Sitzungstag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Dax schon vorher reagiert hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax schloss am Dienstag im Plus, blieb nach Angaben von Handelsblatt insgesamt aber unter Druck. Grund waren die anstehenden Zinsentscheidungen von Fed und Europäischer Zentralbank, die beide in dieser Woche tagen. Gleichzeitig legten mit Beiersdorf und Porsche zwei Dax-Konzerne ihre Quartalszahlen vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eingepreiste Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Börse bewegen sich Kurse oft schon vor einer Entscheidung, nicht erst danach. Händler kaufen und verkaufen anhand dessen, was sie erwarten – das nennt sich eingepreiste Erwartung. Weicht die Fed von dieser Erwartung ab, kann die Reaktion größer ausfallen als die Zinsänderung selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Einen Tag später die EZB',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank entscheidet nach Angaben von Handelsblatt ebenfalls in dieser Woche über ihre Leitzinsen. Beide Notenbanken ziehen damit kurz nacheinander, was Anleger zusätzlich zur Vorsicht mahnt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Dax-Werte hält, sieht an einem Tag wie diesem häufig mehr Kursbewegung, als die eigentliche Nachrichtenlage erklärt. Ein Teil davon ist schon vor der Entscheidung in die Kurse eingepreist – eine Überlegung, die bei jeder Zinsentscheidung wiederkehrt.',
+      },
+    ],
+  },
+  {
+    slug: 'ig-metall-lehnt-angebot-ab',
+    title: 'IG Metall lehnt erstes Lohnangebot ab',
+    teaser:
+      'Die Arbeitgeber der Metall- und Elektroindustrie haben ein erstes Angebot vorgelegt. Die IG Metall lehnt es ab, Warnstreiks drohen ab Sonntag.',
+    category: 'Märkte',
+    publishedAt: '2026-10-28T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['IG Metall', 'Tarifrunde', 'Warnstreik', 'Industrie'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'mercedes-benz', 'bmw'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 27.10.2026, 17:12 Uhr: „Tarifverhandlungen: IG Metall lehnt Angebot ab - Warnstreiks drohen"',
+        url: 'https://www.tagesschau.de/wirtschaft/ig-metall-wirtschaftsmeldung-oktober2026-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Arbeitgeber der deutschen Metall- und Elektroindustrie haben der IG Metall ein erstes Angebot in der laufenden Tarifrunde vorgelegt. Die Gewerkschaft weist es nach Angaben der Tagesschau als unzureichend zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ab Sonntag sind Warnstreiks möglich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ohne Einigung sind von diesem Sonntag an Warnstreiks in der Branche möglich, berichtet die Tagesschau. Eine zweite, unabhängige Bestätigung für diesen Zeitplan lag zum Zeitpunkt der Recherche nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine der größten Tarifrunden des Landes',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Metall- und Elektroindustrie beschäftigt in Deutschland mehrere Millionen Menschen, von Zulieferern bis zu den großen Autobauern und Maschinenbauern. Ihr Tarifabschluss gilt oft als Signal für andere Branchen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Warnstreik von einem Streik unterscheidet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Warnstreik ist zeitlich begrenzt und soll während laufender Verhandlungen Druck aufbauen. Ein unbefristeter Streik setzt dagegen erst ein, wenn die Tarifverhandlungen offiziell für gescheitert erklärt wurden – und eine Mitgliederbefragung ihm zustimmt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Anleger in Industriewerte ist eine Tarifrunde kein tagesaktuelles Kursthema, aber ein Kostenfaktor, der in die nächste Jahresplanung der Unternehmen einfließt.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-kreditrichtlinien-unternehmen-verschaerft',
+    title: 'Banken verschärfen Kreditrichtlinien für Firmen',
+    teaser:
+      'Die Bundesbank meldet: Banken haben ihre Kreditrichtlinien für Unternehmen im dritten Quartal weiter gestrafft. Wohnbaukredite wurden leichter.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesbank', 'Kredit', 'Unternehmen', 'Immobilien'],
+    relatedTopics: ['schulden-und-kredit', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung vom 27.10.2026: „Oktober-Ergebnisse der Umfrage zum Kreditgeschäft (Bank Lending Survey) in Deutschland"',
+        url: 'https://www.bundesbank.de/de/presse/pressemitteilungen/oktober-ergebnisse-der-umfrage-zum-kreditgeschaeft-bank-lending-survey-in-deutschland-1012864',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die deutschen Banken haben ihre Kreditrichtlinien im Unternehmenskreditgeschäft im dritten Quartal 2026 weiter gestrafft. Das geht aus der Oktober-Umfrage der Deutschen Bundesbank zum Kreditgeschäft hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Strenger für Firmen, lockerer für den Wohnungsbau',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei privaten Wohnungsbaukrediten lockerten die Banken ihre Richtlinien dagegen, meldet die Bundesbank. Bei Konsumenten- und sonstigen Krediten an private Haushalte sahen die Institute keinen Anpassungsbedarf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Kreditrichtlinie überhaupt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Kreditrichtlinie legt fest, unter welchen Bedingungen eine Bank einen Kredit vergibt – etwa welche Sicherheiten sie verlangt oder wie hoch der Zinsaufschlag für ein bestimmtes Risiko ausfällt. Eine Straffung bedeutet nicht, dass gar keine Kredite mehr vergeben werden, sondern dass die Bedingungen dafür strenger werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Frühindikator für die Wirtschaft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bank Lending Survey gilt als Frühindikator, weil sich strengere Kreditbedingungen erst mit Verzögerung in den Investitionen der Unternehmen zeigen. Lockerere Bedingungen beim Wohnungsbau könnten dagegen auf eine Stabilisierung an diesem Markt hindeuten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Investitionslaune deutscher Unternehmen einschätzen will, bekommt mit der Bank Lending Survey einen Hinweis, der oft vor den eigentlichen Investitionszahlen kommt.',
+      },
+    ],
+  },
+  {
+    slug: 'deutsche-boerse-dax-handel-rund-um-die-uhr',
+    title: 'Dax-Aktien sind jetzt rund um die Uhr handelbar',
+    teaser:
+      'Wer abends oder am Wochenende Dax-Aktien handeln will, kann das ab sofort tun. Die Deutsche Börse folgt damit einem Trend aus den USA.',
+    category: 'Märkte',
+    publishedAt: '2026-10-28T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Börse', 'Dax', 'Handel', 'Xetra'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'siemens'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 27.10.2026, 15:12 Uhr: „40 DAX-Aktien jetzt rund um die Uhr handelbar"',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/dax-aktien-handel-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 27.10.2026, 14:15 Uhr: „Vorbild USA: Deutsche Börse startet Handel mit Dax-Aktien rund um die Uhr"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/aktien-deutsche-boerse-startet-handel-mit-dax-aktien-rund-um-die-uhr/100264972.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 27.10.2026, 10:06 Uhr: „Dax: Deutsche Börse führt Handel rund um die Uhr ein"',
+        url: 'https://www.wiwo.de/finanzen/boerse/rund-um-die-uhr-deutsche-boerse-fuehrt-24-7-handel-fuer-dax-aktien-ein/100265233.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Börse ermöglicht seit Dienstag den Handel mit 40 Dax-Aktien rund um die Uhr. Wer spätabends oder am Wochenende Anteile von Siemens oder anderen Dax-Konzernen handeln will, kann das jetzt tun, berichtet die Tagesschau.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein kombiniertes Modell außerhalb der Auktionszyklen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der WirtschaftsWoche können Privatanleger damit auch außerhalb der regulären Auktionszyklen handeln. Ein kombiniertes Modell soll den durchgehenden Handel ermöglichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vorbild Wall Street',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Frankfurter Börsenbetreiber reagiert laut Handelsblatt auf einen Trend an der Wall Street, wo mehrere Handelsplätze ihre Öffnungszeiten bereits ausgeweitet haben. Bei entsprechender Nachfrage ist auch eine Ausweitung des Angebots über die 40 Werte hinaus denkbar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Unterschied zur regulären Auktion',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während der normalen Handelszeiten an der Xetra-Börse treffen viele Kauf- und Verkaufsaufträge zur gleichen Zeit aufeinander, was in der Regel engere Spannen zwischen An- und Verkaufskurs ermöglicht. Außerhalb dieser Zeiten handeln meist weniger Teilnehmer gleichzeitig, was die Spanne zwischen beiden Kursen tendenziell vergrößern kann.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Rund-um-die-Uhr-Handel schafft Flexibilität, ersetzt aber nicht die Liquidität der Haupthandelszeit. Wer außerhalb dieser Zeiten handelt, sollte Kauf- und Verkaufskurs vor einer Order genau vergleichen.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-intesa-sanpaolo-mps-uebernahme',
+    title: 'EZB gibt grünes Licht für Intesa-Übernahme von MPS',
+    teaser:
+      'Italiens größte Bank kommt ihrem 32 Milliarden Euro schweren Angebot für die Rivalin MPS näher. Zwei Genehmigungen fehlen noch.',
+    category: 'Märkte',
+    publishedAt: '2026-10-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Intesa Sanpaolo', 'MPS', 'Übernahme', 'EZB'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 27.10.2026, 23:59 Uhr (nach Reuters und Bloomberg): „Banken: EZB gibt Intesa Sanpaolo grünes Licht für MPS-Übernahme"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-ezb-gibt-intesa-sanpaolo-gruenes-licht-fuer-mps-uebernahme/100265409.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank hat Intesa Sanpaolo als Bankenaufsicht grünes Licht für die Übernahme der Banca Monte dei Paschi di Siena (MPS) gegeben. Das meldet Handelsblatt unter Berufung auf Reuters und Bloomberg.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein 32 Milliarden Euro schweres Angebot',
+      },
+      {
+        type: 'paragraph',
+        text: 'Italiens größte Bank kommt mit ihrem rund 32 Milliarden Euro schweren Kaufangebot damit einen wichtigen Schritt voran. Zwei weitere Genehmigungen stehen laut Handelsblatt noch aus: die der Börsenaufsicht und die Entscheidung der Wettbewerbshüter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Bankenübernahme mehrere Aufseher braucht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer Bankenübernahme prüft die EZB als Bankenaufsicht vor allem, ob die fusionierte Bank solide genug finanziert bleibt. Die Wettbewerbshüter schauen dagegen darauf, ob zu viel Marktmacht in einer Hand entsteht – deshalb braucht ein solcher Deal mehrere, voneinander unabhängige Zustimmungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Konsolidierung im italienischen Bankensektor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Italiens Bankensektor gilt seit Jahren als Kandidat für weitere Zusammenschlüsse. Eine Übernahme von MPS, die der italienische Staat nach ihrer Rettung lange Zeit mehrheitlich besaß, hätte dafür Symbolkraft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Anleger in europäische Bankaktien zeigt der Fall, dass eine Übernahme auch nach einem öffentlichen Angebot noch mehrere Zulassungsschritte durchlaufen muss, bevor sie endgültig ist.',
+      },
+    ],
+  },
+  {
     slug: 'brasilien-boerse-bricht-nach-lula-sieg',
     title: 'Lula gewinnt überraschend – Brasiliens Börse bricht ein',
     teaser:
