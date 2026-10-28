@@ -110,6 +110,8 @@ jobs:
       # Für die Sichtprüfung: `claude-code-action` holt sich ihren Zugang
       # über OIDC (siehe nachrichten-agent.yml).
       id-token: write
+      # Für die Selbstreparatur: `gh workflow run instagram-bilder.yml`.
+      actions: write
 
     steps:
       - uses: actions/checkout@v5
@@ -378,10 +380,40 @@ jobs:
       # hingesehen hat, schlägt das Modell; doppelte und leere Bilder findet
       # die Rechnung trotzdem.
       - name: Bildprüfung
+        id: bildpruefung
         if: steps.holen.outputs.kacheln != '0' && steps.gepostet.outputs.schon == 'nein'
         run: node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-hook.mjs scripts/instagram-bildpruefung.ts
         env:
           ABGENOMMEN: ${{ inputs.abgenommen && 'ja' || 'nein' }}
+
+      # Die Selbstreparatur (28.10.2026). Am 27. und 28.10. hielt die Prüfung
+      # zu Recht falsche Bilder auf – und nichts tauschte sie aus: Jeder
+      # weitere Lauf scheiterte am selben Bild, die News gingen nicht hinaus,
+      # bis jemand von Hand austauschte. Jetzt sucht `instagram-bilder.yml`
+      # genau die abgelehnten Stellen neu (bereits verwendete Bilder sind
+      # ausgeschlossen), stößt den Bau an, und der Bau diesen Beitrag.
+      #
+      # Höchstens drei Reparaturen am Tag, gezählt an den Commits
+      # „Instagram: Tagesbilder für <Tag>" auf `main` (der erste ist die
+      # Suche selbst) – sonst liefe eine Kachel ohne passendes Bild im Kreis.
+      # Der Lauf bleibt rot: Er hat nicht veröffentlicht.
+      - name: Abgelehnte Bilder neu suchen
+        if: failure() && steps.bildpruefung.outcome == 'failure' && hashFiles('out/instagram/abgelehnt.txt') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(head -1 out/instagram/stand.txt | tr -d '[:space:]')
+          nur=$(tr -d '[:space:]' < out/instagram/abgelehnt.txt)
+          [ -n "$nur" ] || { echo "::warning::Keine Stelle zum Austauschen benannt."; exit 0; }
+          suchen=$(gh api "repos/${{ github.repository }}/commits?sha=main&since=${tag}T00:00:00Z&per_page=100" \
+            --jq "[.[] | select(.commit.message | startswith(\"Instagram: Tagesbilder für ${tag}\"))] | length")
+          if [ "${suchen:-0}" -ge 4 ]; then
+            echo "::error::Schon $((suchen - 1)) Reparaturen für ${tag} – Kachel(n) ${nur} von Hand austauschen (instagram-bilder-auswahl.yml)."
+            exit 1
+          fi
+          echo "::warning::Kachel(n) ${nur} abgelehnt – suche neu (Reparatur $suchen von 3)."
+          gh workflow run instagram-bilder.yml --repo "${{ github.repository }}" --ref main \
+            -f datum="$tag" -f neu=true -f nur="$nur" -f anstossen=true
 
       - name: Veröffentlichen
         run: npm run instagram
