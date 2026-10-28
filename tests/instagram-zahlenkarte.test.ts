@@ -69,6 +69,28 @@ for (const teil of [
     fehler.join(' | ')
   )
 
+/* Firmenlogos (28.10.2026): Die Datei muss da sein, und nur in Kacheln. */
+const lindt = zahlenkarten.find((k) => k.datum === '2026-10-28')
+if (lindt?.art === 'rangliste') {
+  const ohneDatei = pruefeZahlenkarte({
+    ...lindt,
+    zeilen: lindt.zeilen.map((z, i) =>
+      i === 0 ? { ...z, logo: 'gibt-es-nicht.png' } : z
+    ),
+  })
+  pruefe(
+    'beanstandet: ein Logo, dessen Datei fehlt',
+    ohneDatei.some((f) => f.includes('fehlt in lib/instagram/logos')),
+    ohneDatei.join(' | ')
+  )
+  const alsBalken = pruefeZahlenkarte({ ...lindt, skala: 'balken' })
+  pruefe(
+    'beanstandet: Logos außerhalb der Kacheln',
+    alsBalken.some((f) => f.includes('nur in Kacheln')),
+    alsBalken.join(' | ')
+  )
+} else pruefe('die Karte vom 28.10.2026 ist eine Rangliste', false)
+
 /* Beschriftung: Rechtshinweis mit KI-Hinweis wörtlich, fünf Schlagworte. */
 const b = beschriftungZahlenkarte(gut)
 pruefe('die Beschriftung trägt den Rechtshinweis wörtlich', b.includes(RECHTSHINWEIS))

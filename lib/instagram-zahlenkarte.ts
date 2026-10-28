@@ -26,7 +26,7 @@
  * Themen der Beiträge mit mir bzw. mit unserer Social-Media-Abteilung
  * abgesprochen werden"). Der Ablauf steht in `INSTAGRAM.md`.
  */
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { ImageResponse } from 'next/og.js'
@@ -93,6 +93,13 @@ export interface Rang {
   wert: number
   /** Schlüssel in `FLAGGEN`: ISO-3, „EU27" oder „WELT" (Schnitt aller Länder). */
   land: string
+  /**
+   * Nur Kacheln: das Firmenlogo statt Flagge und Name – Dateiname in
+   * `lib/instagram/logos/` (28.10.2026, Betreiber: „mit logo vom
+   * unternehmen"). Nur gemeinfreie Logos von Commons, Fundstelle im
+   * Kommentar der Karte. Ohne Logo steht der Name wie bisher.
+   */
+  logo?: string
   /** Die Zeile, um die es geht – dunkelgrün, umrandet. Genau eine. */
   hervor?: boolean
   /** Ein Durchschnitt, eingereiht – grau, gestrichelt. */
@@ -586,6 +593,10 @@ function pruefeRangliste(k: Rangkarte): string[] {
         `${z.name}: ${z.wert} – ein Häuschen je zehn Prozent, also 0 bis 100; darüber skala: 'balken'.`
       )
     if (!FLAGGEN[z.land]) f.push(`${z.name}: keine Flagge für „${z.land}" in FLAGGEN.`)
+    if (z.logo !== undefined && k.skala !== 'kacheln')
+      f.push(`${z.name}: Logos gibt es nur in Kacheln.`)
+    if (z.logo !== undefined && !existsSync(join(LOGO_ORDNER, z.logo)))
+      f.push(`${z.name}: Logo „${z.logo}" fehlt in lib/instagram/logos/.`)
     /* Eine Zeitleiste steht in der Reihenfolge der Zeit, nicht der Größe. */
     if (k.skala !== 'zeitleiste' && i > 0 && z.wert > k.zeilen[i - 1].wert)
       f.push(`${z.name} steht unter ${k.zeilen[i - 1].name}, hat aber mehr – absteigend.`)
@@ -1077,15 +1088,126 @@ function balken(wert: number, groesster: number, farbe: string, kleinster = 0) {
   Zwei Spalten, je Land eine Karte mit Flagge, Name und großer Zahl; die
   hervorgehobene ist in der Akzentfarbe gefüllt, der Schnitt gestrichelt.
 */
+/*
+  Kacheln mit Firmenlogo (28.10.2026, „mit logo vom unternehmen"): oben eine
+  weiße Fläche mit dem Logo – die Logos sind farbig und brauchen Weiß, auch
+  auf der hervorgehobenen Kachel –, darunter Flagge klein und die Zahl. Eine
+  Firma ohne freies Logo trägt ihren Namen in derselben Fläche: kein
+  nachgebautes Zeichen, das es so nicht gibt.
+*/
+function logoKachel(
+  z: Rang,
+  k: Rangkarte,
+  i: number,
+  m: {
+    spalten: number
+    breite: number
+    hoehe: number
+    luecke: number
+    akzent: string
+    farbe: string
+  }
+) {
+  const innen = m.breite - 2 * 20
+  const flaeche = Math.round(m.hoehe * 0.55)
+  return h(
+    'div',
+    {
+      style: {
+        position: 'absolute',
+        left: 40 + (i % m.spalten) * (m.breite + m.luecke),
+        top: RL_OBEN - 20 + Math.floor(i / m.spalten) * (m.hoehe + m.luecke),
+        width: m.breite,
+        height: m.hoehe,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '0 20px',
+        borderRadius: 22,
+        backgroundColor: z.hervor ? m.akzent : '#f1f3f0',
+        border: `3px solid ${z.hervor ? m.akzent : '#f1f3f0'}`,
+      },
+    },
+    h(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: innen,
+          height: flaeche,
+          borderRadius: 14,
+          backgroundColor: '#ffffff',
+        },
+      },
+      z.logo
+        ? h('img', {
+            src: logoAdresse(z.logo),
+            width: innen - 40,
+            height: flaeche - 50,
+            style: { objectFit: 'contain' },
+          })
+        : h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Open',
+                fontWeight: 800,
+                fontSize: 30,
+                color: SCHWARZ,
+              },
+            },
+            z.name
+          )
+    ),
+    h(
+      'div',
+      { style: { display: 'flex', alignItems: 'center', marginTop: 12 } },
+      flagge(FLAGGEN[z.land] ?? { streifen: [LEER] }, 40, z.hervor ? 3 : 2),
+      h(
+        'div',
+        {
+          style: {
+            marginLeft: 14,
+            fontFamily: 'Open',
+            fontWeight: 800,
+            fontStyle: 'italic',
+            fontSize: 46,
+            lineHeight: 1.05,
+            color: m.farbe,
+          },
+        },
+        `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
+      )
+    )
+  )
+}
+
+/** Wo die Firmenlogos der Kacheln liegen. */
+const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
+
+/** Ein Logo als Adresse für `img` – PNG aus `LOGO_ORDNER`. */
+function logoAdresse(datei: string): string {
+  return `data:image/png;base64,${readFileSync(join(LOGO_ORDNER, datei)).toString('base64')}`
+}
+
 function kachelGrafik(k: Rangkarte) {
   const akzent = akzentfarbe(k.datum)
   const spalten = 2
   const reihen = Math.ceil(k.zeilen.length / spalten)
   const luecke = 18
   const breite = (ZK_BREITE - 80 - luecke) / spalten
-  const hoehe = Math.min(150, Math.floor((RL_UNTEN + 20 - RL_OBEN) / reihen) - luecke)
+  const mitLogos = k.zeilen.some((z) => z.logo)
+  /* Mit Logo höher: ein Logo im Hochformat (Lotus) wäre in 150 px nur eine Briefmarke. */
+  const hoehe = Math.min(
+    mitLogos ? 210 : 150,
+    Math.floor((RL_UNTEN + 20 - RL_OBEN) / reihen) - luecke
+  )
   const karte = (z: Rang, i: number) => {
     const farbe = z.hervor ? '#ffffff' : z.schnitt ? MITTELGRAU : SCHWARZ
+    if (mitLogos)
+      return logoKachel(z, k, i, { spalten, breite, hoehe, luecke, akzent, farbe })
     return h(
       'div',
       {
