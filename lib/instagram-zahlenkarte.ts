@@ -197,6 +197,13 @@ export interface Steckbriefkarte extends KarteGemeinsam {
   art: 'steckbrief'
   /** Datei in `lib/instagram/logos/` – nur gemeinfreie Logos. */
   logo: string
+  /**
+   * Ein Foto daneben – Datei in `lib/instagram/fotos/`, nur gemeinfrei oder
+   * CC BY(-SA) mit Nennung. Betreiber, 28.10.2026: „irgendwas zu Warren
+   * Buffett. Noch ein Bild von ihm." Mit Foto stehen Logo und Kennzahlen
+   * rechts daneben, untereinander.
+   */
+  foto?: string
   /** Zwei Sätze unter der Überschrift: wer das ist. */
   erklaerung: string
   fakten: { name: string; wert: string }[]
@@ -545,6 +552,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(`${k.fakten.length} Kennzahlen – der Steckbrief trägt vier bis sechs.`)
     if (!existsSync(join(LOGO_ORDNER, k.logo)))
       f.push(`Logo „${k.logo}" fehlt in lib/instagram/logos/.`)
+    if (k.foto !== undefined && !existsSync(join(FOTO_ORDNER, k.foto)))
+      f.push(`Foto „${k.foto}" fehlt in lib/instagram/fotos/.`)
     if (k.erklaerung.length > ERKLAERUNG_MAX)
       f.push(
         `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
@@ -1195,6 +1204,7 @@ function logoKachel(z: Rang, k: Rangkarte, i: number, m: { akzent: string }) {
   Haarlinien dazwischen. Die erste Kennzahl steht in der Akzentfarbe.
 */
 function steckbriefGrafik(k: Steckbriefkarte) {
+  if (k.foto) return steckbriefMitFoto(k, k.foto)
   const akzent = akzentfarbe(k.datum)
   const logoOben = RL_UNTERZEILE - 10
   const logoHoehe = 120
@@ -1249,6 +1259,96 @@ function steckbriefGrafik(k: Steckbriefkarte) {
               fontFamily: 'Open',
               fontWeight: 800,
               fontSize: 44,
+              color: i === 0 ? akzent : SCHWARZ,
+            },
+          },
+          x.wert
+        )
+      )
+    ),
+  ]
+}
+
+/** Wo die Fotos der Steckbriefe liegen. */
+const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
+
+/*
+  Steckbrief mit Foto: das Foto links, groß und hochkant, rechts das Logo
+  und darunter die Kennzahlen – Name klein in Grau über dem Wert, damit
+  beide in die halbe Breite passen.
+*/
+function steckbriefMitFoto(k: Steckbriefkarte, foto: string) {
+  const akzent = akzentfarbe(k.datum)
+  const oben = RL_UNTERZEILE - 10
+  const fotoBreite = 420
+  const links = 60 + fotoBreite + 40
+  const logoHoehe = 56
+  const listeOben = oben + logoHoehe + 22
+  const zeile = Math.floor((LOGO_LISTE_UNTEN - listeOben) / k.fakten.length)
+  const fotoAdresse = `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, foto)).toString('base64')}`
+  return [
+    h('img', {
+      src: fotoAdresse,
+      width: fotoBreite,
+      height: LOGO_LISTE_UNTEN - oben,
+      style: {
+        position: 'absolute',
+        left: 60,
+        top: oben,
+        objectFit: 'cover',
+        objectPosition: 'center top',
+        borderRadius: 22,
+      },
+    }),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: links,
+          right: 60,
+          top: oben,
+          height: logoHoehe,
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
+      h('img', {
+        src: logoAdresse(k.logo),
+        width: ZK_BREITE - 60 - links,
+        height: logoHoehe,
+        style: { objectFit: 'contain', objectPosition: 'left center' },
+      })
+    ),
+    ...k.fakten.map((x, i) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: links,
+            right: 60,
+            top: listeOben + i * zeile,
+            height: zeile,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            borderTop: '2px solid #e6e7e9',
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 23, color: GRAU } },
+          x.name
+        ),
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Open',
+              fontWeight: 800,
+              fontSize: 40,
+              lineHeight: 1.1,
               color: i === 0 ? akzent : SCHWARZ,
             },
           },

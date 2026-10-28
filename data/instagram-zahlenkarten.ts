@@ -43,6 +43,23 @@ export const zahlenkarten: Zahlenkarte[] = [
         Nachfolger von Warren Buffett" (de); GEICO, Dairy Queen, See's Candies
         als Töchter (en).
       Logo: File:Berkshire Hathaway.svg, gemeinfrei (PD-textlogo), Commons.
+
+      Danach der Betreiber: „das geht deutlich interessanter. Erstens mal
+      nimm die A-Aktie. Dann irgendwas zu Warren Buffett. Noch ein Bild von
+      ihm." Aus de.wikipedia.org/wiki/Warren_Buffett und
+      en.wikipedia.org/wiki/Warren_Buffett, gelesen am 28.10.2026:
+        geboren 30.8.1930 in Omaha; „das Orakel von Omaha"; 1936 Sixpacks
+        Coca-Cola für 25 Cent gekauft, Flaschen für je 10 Cent verkauft;
+        „Seine ersten Aktien erwarb er 1942 im Alter von elf Jahren";
+        wohnt „immer noch in dem Haus …, das er 1958 für 31.500 US-Dollar"
+        kaufte; „mehr als 99 Prozent seines Vermögens für wohltätige
+        Zwecke"; „According to Forbes, as of January 2026, Buffett's
+        estimated net worth stood at US$148.9 billion"; im Mai 2025
+        angekündigt, zum Jahresende als CEO zurückzutreten, Greg Abel ab
+        1.1.2026.
+      Foto: File:Warren Buffett at the 2015 SelectUSA Investment Summit
+      (cropped).jpg, gemeinfrei (US-Bundesbehörde), Commons, geholt mit
+      bilder-holen.yml.
       Form: Steckbrief (am 27.10. Balken).
     */
     art: 'steckbrief',
@@ -52,24 +69,26 @@ export const zahlenkarten: Zahlenkarte[] = [
       { text: '726.552\u00a0€', gruen: true },
     ],
     erklaerung:
-      'Früher eine Textilfirma, seit 1965 Warren Buffetts Holding mit über 80 Firmen – von GEICO bis Dairy Queen. Die A-Aktie wurde nie geteilt.',
+      'Die A-Aktie von Berkshire Hathaway, der Holding von Warren Buffett – dem „Orakel von Omaha“. Sie wurde nie geteilt.',
     logo: 'berkshire-hathaway.png',
+    foto: 'warren-buffett.jpg',
     fakten: [
-      { name: 'Eine B-Aktie', wert: '487\u00a0€' },
-      { name: 'Sitz', wert: 'Omaha, USA' },
-      { name: 'Buffett übernimmt', wert: '1965' },
-      { name: 'Unternehmen im Konzern', wert: 'über 80' },
-      { name: 'Umsatz 2025', wert: '371\u00a0Mrd.\u00a0$' },
-      { name: 'Chef seit 2026', wert: 'Greg Abel' },
+      { name: 'Eine A-Aktie', wert: '726.552\u00a0€' },
+      { name: 'Buffetts erste Aktie', wert: 'mit 11 Jahren' },
+      { name: 'Übernimmt Berkshire', wert: '1965' },
+      { name: 'Sein Haus, gekauft 1958', wert: '31.500\u00a0$' },
+      { name: 'Vermögen (Forbes, 1/2026)', wert: '148,9\u00a0Mrd.\u00a0$' },
+      { name: 'Davon will er spenden', wert: 'über 99\u00a0%' },
     ],
     fusszeile: 'Stand: 27.10.2026 | Quelle: Yahoo Finance, Wikipedia | EZB-Kurs',
     text:
-      'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. 📈\n\n' +
-      "Berkshire Hathaway sitzt in Omaha, Nebraska, und war ursprünglich ein Textilhersteller. 1965 übernahm Warren Buffett die Mehrheit und baute daraus eine Holding mit über 80 Unternehmen – von der Autoversicherung GEICO bis zu Dairy Queen und See's Candies. 2025 setzte der Konzern 371 Milliarden Dollar um. Seit dem 1. Januar 2026 führt Greg Abel das Unternehmen.\n\n" +
-      'Daneben gibt es die B-Aktie, sie kostet rund 487 Euro. Warum die A-Aktie so teuer ist? Sie wurde nie gesplittet. Wer nicht teilt, hat wenige, aber teure Stücke – über den Wert des Unternehmens sagt der Stückpreis nichts.\n\n' +
+      'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. Sie wurde nie gesplittet. 📈\n\n' +
+      'Dahinter steht Warren Buffett, das „Orakel von Omaha“, geboren 1930. Sein erstes Geld verdiente er 1936: Er kaufte Sixpacks Coca-Cola für 25 Cent und verkaufte die Flaschen einzeln für je 10 Cent. Seine erste Aktie kaufte er mit elf Jahren.\n\n' +
+      '1965 übernahm er die Mehrheit an Berkshire Hathaway, damals eine Textilfirma, und baute daraus eine Holding mit über 80 Unternehmen – von der Versicherung GEICO bis Dairy Queen. Ende 2025 gab er den Chefposten an Greg Abel ab.\n\n' +
+      'Forbes schätzte sein Vermögen im Januar 2026 auf 148,9 Milliarden Dollar. Trotzdem wohnt er laut Wikipedia noch in dem Haus in Omaha, das er 1958 für 31.500 Dollar gekauft hat. Mehr als 99 % seines Vermögens will er spenden.\n\n' +
       'Kurs vom 27.10.2026, umgerechnet zum EZB-Referenzkurs.\n' +
-      'Quellen: Yahoo Finance; Europäische Zentralbank; Wikipedia (Berkshire Hathaway)',
-    schlagworte: ['aktien', 'börse', 'berkshire', 'buffett', 'geldanlage'],
+      'Quellen: Yahoo Finance; Europäische Zentralbank; Wikipedia (Berkshire Hathaway, Warren Buffett, darin Forbes); Foto: USA International Trade Administration, gemeinfrei',
+    schlagworte: ['warrenbuffett', 'berkshire', 'aktien', 'börse', 'geldanlage'],
   },
   {
     /*

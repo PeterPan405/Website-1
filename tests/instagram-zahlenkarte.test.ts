@@ -99,8 +99,16 @@ if (kacheln?.art === 'rangliste') {
 const steckbrief = zahlenkarten.find((k) => k.datum === '2026-10-28')
 if (steckbrief?.art === 'steckbrief') {
   pruefe(
-    'Steckbrief 28.10.: Berkshire allein, Logo und sechs Kennzahlen',
-    steckbrief.logo === 'berkshire-hathaway.png' && steckbrief.fakten.length === 6
+    'Steckbrief 28.10.: Berkshire allein, Logo, Buffett-Foto, A-Aktie zuerst',
+    steckbrief.logo === 'berkshire-hathaway.png' &&
+      steckbrief.foto === 'warren-buffett.jpg' &&
+      steckbrief.fakten[0].name === 'Eine A-Aktie'
+  )
+  const ohneFoto = pruefeZahlenkarte({ ...steckbrief, foto: 'gibt-es-nicht.jpg' })
+  pruefe(
+    'beanstandet: Steckbrief mit fehlender Fotodatei',
+    ohneFoto.some((f) => f.includes('fehlt in lib/instagram/fotos')),
+    ohneFoto.join(' | ')
   )
   const zuWenig = pruefeZahlenkarte({
     ...steckbrief,
