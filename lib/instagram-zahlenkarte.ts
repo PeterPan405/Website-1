@@ -209,8 +209,34 @@ export interface Steckbriefkarte extends KarteGemeinsam {
   fakten: { name: string; wert: string }[]
 }
 
+/**
+ * Die Geschichte eines Kurses (28.10.2026). Betreiber zum Steckbrief
+ * Berkshire: „mach entwicklung von denen mit chart geschichte usw". Ein
+ * Verlauf über Jahrzehnte auf logarithmischer Achse – sonst wären 1.490 $
+ * neben 810.106 $ eine Nulllinie –, darauf die Meilensteine mit Jahr und
+ * Kurs, oben rechts optional ein Foto.
+ */
+export interface Geschichtskarte extends KarteGemeinsam {
+  art: 'geschichte'
+  erklaerung: string
+  unterzeile: string
+  /** Hinter jeder Zahl: „ $". */
+  einheit: string
+  /** Kurse, alt nach neu – je Jahr einer genügt. */
+  punkte: { t: string; wert: number }[]
+  /** Meilensteine auf der Linie: Tag, Kurs, kurze Zeile. */
+  marken: { t: string; wert: number; text: string }[]
+  /** Datei in `lib/instagram/fotos/`. */
+  foto?: string
+}
+
 export type Zahlenkarte =
-  Vergleichskarte | Rangkarte | Verlaufkarte | Duellkarte | Steckbriefkarte
+  | Vergleichskarte
+  | Rangkarte
+  | Verlaufkarte
+  | Duellkarte
+  | Steckbriefkarte
+  | Geschichtskarte
 
 /** Eine kreisrunde Flagge: Streifen, von oben oder von links, wahlweise mit Wappen. */
 export interface Flagge {
@@ -547,7 +573,27 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else if (k.art === 'steckbrief') {
+  else if (k.art === 'geschichte') {
+    if (k.punkte.length < 10) f.push('Eine Geschichte braucht mindestens zehn Kurse.')
+    if (k.marken.length < 2 || k.marken.length > 6)
+      f.push(`${k.marken.length} Meilensteine – zwei bis sechs.`)
+    for (const [i, p] of k.punkte.entries()) {
+      if (!(p.wert > 0))
+        f.push(`${p.t}: Kurs ${p.wert} – auf der Log-Achse nur über null.`)
+      if (i > 0 && p.t <= k.punkte[i - 1].t)
+        f.push(`${p.t}: Kurse alt nach neu, ohne Doppel.`)
+    }
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
+      )
+    if (zeichen > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+      )
+    if (k.foto !== undefined && !existsSync(join(FOTO_ORDNER, k.foto)))
+      f.push(`Foto „${k.foto}" fehlt in lib/instagram/fotos/.`)
+  } else if (k.art === 'steckbrief') {
     if (k.fakten.length < 4 || k.fakten.length > 6)
       f.push(`${k.fakten.length} Kennzahlen – der Steckbrief trägt vier bis sechs.`)
     if (!existsSync(join(LOGO_ORDNER, k.logo)))
@@ -773,9 +819,11 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
         ? duellGrafik(k)
         : k.art === 'steckbrief'
           ? steckbriefGrafik(k)
-          : k.art === 'rangliste'
-            ? ranglistenGrafik(k)
-            : vergleichsGrafik(k)
+          : k.art === 'geschichte'
+            ? geschichtsGrafik(k)
+            : k.art === 'rangliste'
+              ? ranglistenGrafik(k)
+              : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -841,7 +889,8 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           )
       )
     ),
-    ...((k.art === 'rangliste' || k.art === 'steckbrief') && k.erklaerung
+    ...((k.art === 'rangliste' || k.art === 'steckbrief' || k.art === 'geschichte') &&
+    k.erklaerung
       ? [
           h(
             'div',
@@ -1269,6 +1318,198 @@ function steckbriefGrafik(k: Steckbriefkarte) {
   ]
 }
 
+/*
+  Die Geschichtskarte: Linie in der Akzentfarbe auf logarithmischer Achse,
+  Zehnerpotenzen als Gitter, Jahrzehnte auf der X-Achse, die Meilensteine
+  als Punkte mit Kurs und Jahr daneben. Beide Achsen beschriftet (Betreiber:
+  „immer mit X- und Y-Achse").
+*/
+function geschichtsGrafik(k: Geschichtskarte) {
+  const akzent = akzentfarbe(k.datum)
+  const X0 = 190
+  const X1 = 1000
+  const Y0 = 660
+  const Y1 = 1170
+  const werte = k.punkte.map((p) => p.wert)
+  const lgU = Math.floor(Math.log10(Math.min(...werte)))
+  const lgO = Math.ceil(Math.log10(Math.max(...werte)))
+  const zeit = (t: string) => Date.parse(`${t}T00:00:00Z`)
+  const t0 = zeit(k.punkte[0].t)
+  const t1 = zeit(k.punkte.at(-1)!.t)
+  const x = (t: string) => X0 + ((zeit(t) - t0) / (t1 - t0)) * (X1 - X0)
+  const y = (w: number) => Y1 - ((Math.log10(w) - lgU) / (lgO - lgU)) * (Y1 - Y0)
+  const pfad = k.punkte
+    .map((p) => `${(x(p.t) - X0).toFixed(1)},${(y(p.wert) - Y0).toFixed(1)}`)
+    .join(' ')
+  const stufen: number[] = []
+  for (let e = lgU; e <= lgO; e++) stufen.push(10 ** e)
+  const gitter = stufen
+    .map((w) => {
+      const yy = (y(w) - Y0).toFixed(1)
+      return `<line x1="0" x2="${X1 - X0}" y1="${yy}" y2="${yy}" stroke="#c9c9c9" stroke-width="2" stroke-dasharray="7 7"/>`
+    })
+    .join('')
+  const kreise = k.marken
+    .map(
+      (m) =>
+        `<circle cx="${(x(m.t) - X0).toFixed(1)}" cy="${(y(m.wert) - Y0).toFixed(1)}" r="11" fill="#ffffff" stroke="${SCHWARZ}" stroke-width="5"/>`
+    )
+    .join('')
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${X1 - X0}" height="${Y1 - Y0}" viewBox="0 0 ${X1 - X0} ${Y1 - Y0}">` +
+    gitter +
+    `<line x1="1.5" x2="1.5" y1="0" y2="${Y1 - Y0}" stroke="#333" stroke-width="3"/>` +
+    `<line x1="0" x2="${X1 - X0}" y1="${Y1 - Y0 - 1.5}" y2="${Y1 - Y0 - 1.5}" stroke="#333" stroke-width="3"/>` +
+    `<polyline points="${pfad}" fill="none" stroke="${akzent}" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>` +
+    kreise +
+    `</svg>`
+  const schrift = { fontFamily: 'Open', fontSize: 24, color: GRAU }
+  const jahrA = Number(k.punkte[0].t.slice(0, 4))
+  const jahrE = Number(k.punkte.at(-1)!.t.slice(0, 4))
+  const jahre: number[] = []
+  for (let j = Math.ceil(jahrA / 10) * 10; j <= jahrE; j += 10) jahre.push(j)
+  const fotoGroesse = 170
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: k.foto ? 60 + fotoGroesse + 20 : 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    ...stufen.map((w) =>
+      h(
+        'div',
+        {
+          style: {
+            ...schrift,
+            position: 'absolute',
+            left: 10,
+            width: X0 - 24,
+            top: y(w) - 16,
+            display: 'flex',
+            justifyContent: 'flex-end',
+          },
+        },
+        `${zahl(w, 0)}${k.einheit}`
+      )
+    ),
+    h('img', {
+      src: svgAdresse(svg),
+      width: X1 - X0,
+      height: Y1 - Y0,
+      style: { position: 'absolute', left: X0, top: Y0 },
+    }),
+    ...jahre.map((j) =>
+      h(
+        'div',
+        {
+          style: {
+            ...schrift,
+            position: 'absolute',
+            left: x(`${j}-01-01`) - 40,
+            width: 80,
+            top: Y1 + 12,
+            display: 'flex',
+            justifyContent: 'center',
+          },
+        },
+        String(j)
+      )
+    ),
+    /*
+      Meilensteine rechts unterhalb des Punktes – die Linie steigt nach
+      rechts, dort ist frei. Nahe am rechten Rand links unterhalb. Der
+      letzte Wert ist groß und in der Akzentfarbe.
+    */
+    ...k.marken.map((m, i) => {
+      const letzter = i === k.marken.length - 1
+      /* Der letzte Punkt: Die Zahl steht schon in der Überschrift – hier nur sein Wort. */
+      if (letzter)
+        return h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              left: x(m.t) - 160,
+              width: 140,
+              top: y(m.wert) - 44,
+              display: 'flex',
+              justifyContent: 'flex-end',
+              fontFamily: 'Open',
+              fontWeight: 800,
+              fontSize: 26,
+              color: akzent,
+            },
+          },
+          m.text
+        )
+      const breite = 240
+      const links = x(m.t) > X1 - breite - 20
+      return h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: links ? x(m.t) - breite - 18 : x(m.t) + 18,
+            width: breite,
+            top: y(m.wert) + 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: links ? 'flex-end' : 'flex-start',
+          },
+        },
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Open',
+              fontWeight: 800,
+              fontSize: 30,
+              color: SCHWARZ,
+              lineHeight: 1.05,
+            },
+          },
+          `${zahl(m.wert, 0)}${k.einheit}`
+        ),
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 22, color: GRAU } },
+          m.text
+        )
+      )
+    }),
+    ...(k.foto
+      ? [
+          h('img', {
+            src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, k.foto)).toString('base64')}`,
+            width: fotoGroesse,
+            height: fotoGroesse,
+            style: {
+              position: 'absolute',
+              right: 60,
+              top: RL_UNTERZEILE - 44,
+              objectFit: 'cover',
+              objectPosition: 'center top',
+              borderRadius: fotoGroesse,
+              border: `5px solid ${akzent}`,
+            },
+          }),
+        ]
+      : []),
+  ]
+}
+
 /** Wo die Fotos der Steckbriefe liegen. */
 const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
 
@@ -1472,8 +1713,15 @@ export function form(
   | 'burger'
   | 'verlauf'
   | 'duell'
-  | 'steckbrief' {
-  if (k.art === 'verlauf' || k.art === 'duell' || k.art === 'steckbrief') return k.art
+  | 'steckbrief'
+  | 'geschichte' {
+  if (
+    k.art === 'verlauf' ||
+    k.art === 'duell' ||
+    k.art === 'steckbrief' ||
+    k.art === 'geschichte'
+  )
+    return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
 
