@@ -230,7 +230,26 @@ export interface Geschichtskarte extends KarteGemeinsam {
   foto?: string
 }
 
+/**
+ * Eine Pyramide (28.10.2026). Betreiber zu zwei Balken für Anthropic:
+ * „gib dir mühe kreativ und nicht immer das selbe". Stufen von der
+ * schmalen Spitze bis zur breiten Basis – wenige ganz oben, viele unten –,
+ * je Stufe eine große Zahl und eine Zeile. Die Spitze in der Akzentfarbe.
+ */
+export interface Pyramidenkarte extends KarteGemeinsam {
+  art: 'pyramide'
+  erklaerung: string
+  unterzeile: string
+  /** Von der Spitze zur Basis, drei bis fünf. */
+  stufen: { zahl: string; text: string }[]
+  /** Optional: Logo in `lib/instagram/logos/`, rechts neben der Spitze. */
+  logo?: string
+  /** Optional: ein Satz unter der Pyramide, in einer hervorgehobenen Zeile. */
+  hinweis?: string
+}
+
 export type Zahlenkarte =
+  | Pyramidenkarte
   | Vergleichskarte
   | Rangkarte
   | Verlaufkarte
@@ -573,7 +592,22 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else if (k.art === 'geschichte') {
+  else if (k.art === 'pyramide') {
+    if (k.stufen.length < 3 || k.stufen.length > 5)
+      f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
+      )
+    if (zeichen > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+      )
+    if (k.logo !== undefined && !existsSync(join(LOGO_ORDNER, k.logo)))
+      f.push(`Logo „${k.logo}" fehlt in lib/instagram/logos/.`)
+    for (const st of k.stufen)
+      if (!st.zahl.trim() || !st.text.trim()) f.push('Eine Stufe ohne Zahl oder Text.')
+  } else if (k.art === 'geschichte') {
     if (k.punkte.length < 10) f.push('Eine Geschichte braucht mindestens zehn Kurse.')
     if (k.marken.length < 2 || k.marken.length > 6)
       f.push(`${k.marken.length} Meilensteine – zwei bis sechs.`)
@@ -821,9 +855,11 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           ? steckbriefGrafik(k)
           : k.art === 'geschichte'
             ? geschichtsGrafik(k)
-            : k.art === 'rangliste'
-              ? ranglistenGrafik(k)
-              : vergleichsGrafik(k)
+            : k.art === 'pyramide'
+              ? pyramidenGrafik(k)
+              : k.art === 'rangliste'
+                ? ranglistenGrafik(k)
+                : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -889,7 +925,10 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           )
       )
     ),
-    ...((k.art === 'rangliste' || k.art === 'steckbrief' || k.art === 'geschichte') &&
+    ...((k.art === 'rangliste' ||
+      k.art === 'steckbrief' ||
+      k.art === 'geschichte' ||
+      k.art === 'pyramide') &&
     k.erklaerung
       ? [
           h(
@@ -1510,6 +1549,149 @@ function geschichtsGrafik(k: Geschichtskarte) {
   ]
 }
 
+/*
+  Die Pyramide: gleich hohe Stufen, jede breiter als die darüber, mittig
+  gesetzt. In jeder Stufe die Zahl groß und weiß, darunter die Zeile. Die
+  Spitze in der Akzentfarbe, die Stufen darunter von Schwarz zu Grau. Unter
+  der Pyramide optional ein Hinweis als Band in der Akzentfarbe.
+*/
+function pyramidenGrafik(k: Pyramidenkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const n = k.stufen.length
+  const oben = 600
+  const unten = k.hinweis ? 1100 : 1200
+  const luecke = 10
+  const hoehe = (unten - oben - (n - 1) * luecke) / n
+  const mitte = ZK_BREITE / 2
+  const spitze = 120
+  const basis = ZK_BREITE - 120
+  /* Breite an Ober- und Unterkante einer Stufe – eine durchgehende Schräge. */
+  const breiteBei = (yy: number) =>
+    spitze + ((yy - oben) / (unten - oben)) * (basis - spitze)
+  const farben = [akzent, SCHWARZ, '#3a3a3a', '#5a5a5a', '#7a7a7a']
+  const flaechen = k.stufen
+    .map((_, i) => {
+      const y0 = oben + i * (hoehe + luecke)
+      const y1 = y0 + hoehe
+      const b0 = breiteBei(y0) / 2
+      const b1 = breiteBei(y1) / 2
+      return `<polygon points="${mitte - b0},${y0 - oben} ${mitte + b0},${y0 - oben} ${mitte + b1},${y1 - oben} ${mitte - b1},${y1 - oben}" fill="${farben[i] ?? GRAU}"/>`
+    })
+    .join('')
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${ZK_BREITE}" height="${unten - oben}" viewBox="0 0 ${ZK_BREITE} ${unten - oben}">${flaechen}</svg>`
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: 60,
+          right: k.logo ? 360 : 60,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+    ...(k.logo
+      ? [
+          h('img', {
+            src: logoAdresse(k.logo),
+            width: 280,
+            height: 40,
+            style: {
+              position: 'absolute',
+              right: 60,
+              top: RL_UNTERZEILE + 2,
+              objectFit: 'contain',
+              objectPosition: 'right center',
+            },
+          }),
+        ]
+      : []),
+    h('img', {
+      src: svgAdresse(svg),
+      width: ZK_BREITE,
+      height: unten - oben,
+      style: { position: 'absolute', left: 0, top: oben },
+    }),
+    ...k.stufen.map((st, i) => {
+      const y0 = oben + i * (hoehe + luecke)
+      return h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: 0,
+            width: ZK_BREITE,
+            top: y0,
+            height: hoehe,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+        },
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Anton',
+              fontSize: i === 0 ? 52 : 60,
+              lineHeight: 1,
+              color: '#ffffff',
+            },
+          },
+          st.zahl
+        ),
+        h(
+          'div',
+          {
+            style: {
+              marginTop: 6,
+              fontFamily: 'Open',
+              fontWeight: 700,
+              fontSize: i === 0 ? 20 : 25,
+              color: '#ffffff',
+            },
+          },
+          st.text
+        )
+      )
+    }),
+    ...(k.hinweis
+      ? [
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                left: 60,
+                right: 60,
+                top: unten + 28,
+                height: 76,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 18,
+                border: `4px solid ${akzent}`,
+                fontFamily: 'Open',
+                fontWeight: 800,
+                fontSize: 28,
+                color: SCHWARZ,
+              },
+            },
+            k.hinweis
+          ),
+        ]
+      : []),
+  ]
+}
+
 /** Wo die Fotos der Steckbriefe liegen. */
 const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
 
@@ -1714,12 +1896,14 @@ export function form(
   | 'verlauf'
   | 'duell'
   | 'steckbrief'
-  | 'geschichte' {
+  | 'geschichte'
+  | 'pyramide' {
   if (
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
-    k.art === 'geschichte'
+    k.art === 'geschichte' ||
+    k.art === 'pyramide'
   )
     return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
