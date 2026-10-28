@@ -269,6 +269,12 @@ export interface Tortenkarte extends KarteGemeinsam {
     logo?: string
   }[]
   hinweis?: string
+  /**
+   * Eckdaten unter dem Ring, zwei bis drei nebeneinander – Betreiber,
+   * 28.10.2026: „die gesamte Börsenbewertung … und wann der IPO dann auch
+   * ist … Solche Daten fehlen da einfach". Statt `hinweis`.
+   */
+  infos?: { name: string; wert: string }[]
 }
 
 export type Zahlenkarte =
@@ -629,6 +635,9 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       if (st.logo !== undefined && !existsSync(join(LOGO_ORDNER, st.logo)))
         f.push(`Logo „${st.logo}" fehlt in lib/instagram/logos/.`)
     }
+    if (k.infos && (k.infos.length < 2 || k.infos.length > 3))
+      f.push(`${k.infos.length} Eckdaten – zwei oder drei.`)
+    if (k.infos && k.hinweis) f.push('Eckdaten oder Hinweis, nicht beides.')
     if (k.erklaerung.length > ERKLAERUNG_MAX)
       f.push(
         `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
@@ -1895,6 +1904,50 @@ function tortenGrafik(k: Tortenkarte) {
         )
       )
     ),
+    ...(k.infos
+      ? k.infos.map((x, i) => {
+          const n = k.infos!.length
+          const breite = (ZK_BREITE - 120 - (n - 1) * 24) / n
+          return h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                left: 60 + i * (breite + 24),
+                width: breite,
+                top: oben + d + 34,
+                height: 130,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                paddingLeft: 20,
+                borderRadius: 18,
+                border: `4px solid ${i === 0 ? akzent : '#e6e7e9'}`,
+              },
+            },
+            h(
+              'div',
+              {
+                style: { fontFamily: 'Open', fontWeight: 700, fontSize: 19, color: GRAU },
+              },
+              x.name
+            ),
+            h(
+              'div',
+              {
+                style: {
+                  marginTop: 4,
+                  fontFamily: 'Anton',
+                  fontSize: 40,
+                  lineHeight: 1.05,
+                  color: i === 0 ? akzent : SCHWARZ,
+                },
+              },
+              x.wert
+            )
+          )
+        })
+      : []),
     ...(k.hinweis
       ? [
           h(
