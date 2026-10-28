@@ -400,6 +400,58 @@ pruefe(
   ohneVortag[0].motiv !== 'frankreich'
 )
 
+/* Der 28.10.2026 – Tresor für IG Metall, Einkaufswagen für Firmenkredite,
+   New York für den Dax. Die echten Kacheln des Tages. */
+const igMetall = suchenFuer(
+  'IG Metall: Angebot abgelehnt',
+  'tresor',
+  'Die IG Metall hat das erste Lohnangebot der Arbeitgeber abgelehnt. Ab Sonntag sind in der Metall- und Elektroindustrie Warnstreiks möglich.'
+)
+pruefe(
+  'IG Metall: zuerst der Warnstreik, nicht der Tresor des Rückfalls',
+  igMetall[0]?.begriff === 'IG Metall Warnstreik' &&
+    igMetall[0]?.mussEnthalten === 'streik',
+  JSON.stringify(igMetall[0])
+)
+const kredite = suchenFuer(
+  'Kredite für Firmen strenger',
+  'konsum',
+  'Deutsche Banken haben ihre Kreditrichtlinien für Unternehmen im dritten Quartal weiter verschärft.'
+)
+pruefe(
+  'Firmenkredite: zuerst die Bundesbank, nicht der Einkaufswagen',
+  kredite[0]?.begriff === 'Deutsche Bundesbank Frankfurt',
+  JSON.stringify(kredite[0])
+)
+const dax = suchenFuer(
+  'Dax-Aktien: Handel 24/7',
+  'boerse',
+  '40 Dax-Aktien sind ab sofort rund um die Uhr handelbar.'
+)
+pruefe(
+  'Dax: die Frankfurter Börse, nicht die New Yorker',
+  dax[0]?.begriff === 'Frankfurt Stock Exchange' && dax[0]?.mussEnthalten === 'frankfurt',
+  JSON.stringify(dax[0])
+)
+pruefe(
+  '… nur der Titel einer Datei mit „frankfurt" taugt',
+  !taugt(
+    { ...gut, titel: 'File:New York Stock Exchange trading floor.jpg' },
+    leer,
+    'frankfurt'
+  )
+)
+const zins = suchenFuer(
+  'Zinsentscheid heute',
+  'fed',
+  'Die US-Notenbank Fed entscheidet heute über die Leitzinsen. Vor der Entscheidung stand der Dax laut Handelsblatt bereits unter Druck.'
+)
+pruefe(
+  'Fed-Kachel mit „Dax" nur im Text: der Notenbankchef bleibt vorn',
+  zins[0]?.person === true,
+  JSON.stringify(zins[0])
+)
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )
