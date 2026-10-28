@@ -76,6 +76,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'geschichte',
     datum: '2026-10-28',
+    /* Freigegeben vom Betreiber am 28.10.2026: „ja passt" – hinaus ab 15 Uhr. */
+    freigabe: '2026-10-28',
     titel: [{ text: '810.106\u00a0$', gruen: true }, { text: 'für eine Aktie?' }],
     erklaerung:
       'So viel kostet eine A-Aktie von Berkshire Hathaway. 1964 wollte die Firma Buffett seine Aktien für rund 11,38 $ abkaufen – er kaufte stattdessen die Mehrheit.',
