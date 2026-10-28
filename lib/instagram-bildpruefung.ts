@@ -164,8 +164,8 @@ export function gerechneterBefund(
 
 /**
  * Der Befund der Sichtprüfung. `ausgefallen` heißt: kein lesbares Urteil –
- * dann warnt der Lauf und verlässt sich auf die gerechnete Prüfung, statt den
- * Beitrag des Tages an einem leeren Kontingent scheitern zu lassen.
+ * dann geht seit dem 28.10.2026 nichts hinaus (scripts/instagram-bildpruefung.ts),
+ * außer der Betreiber hat abgenommen.
  */
 export function sichtBefund(
   roh: string | null,

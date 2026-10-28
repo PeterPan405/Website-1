@@ -5739,9 +5739,18 @@ finden (`lib/instagram-bildpruefung.ts`):
 
 Beanstandet eine, geht nichts hinaus und der Lauf ist rot. **Lieber ein
 Beitrag später als ein falscher** – der Betreiber hat jeden falschen von
-Hand gelöscht. Fällt das Auge aus (Kontingent leer wie am 25.10.), warnt
-der Lauf und die Waage entscheidet allein; sonst hinge der Beitrag an
-einem leeren Wochenkontingent.
+Hand gelöscht. Fällt das Auge aus (Kontingent leer wie am 25.10.), geht
+seit dem 28.10. ebenfalls nichts hinaus – bis dahin entschied die Waage
+allein, und die findet kein falsches Bild, nur ein doppeltes oder altes.
+
+**Nachgeprüft wird, bis die Bilder passen** (28.10.2026). Am 27. und 28.10.
+hielt die Prüfung falsche Bilder auf, aber nichts tauschte sie aus: Jeder
+weitere Lauf scheiterte am selben Bild, zwei Tage gingen keine News hinaus.
+Jetzt sucht `instagram-beitrag.yml` die abgelehnten Stellen neu
+(`abgelehnteStellen()`, verwendete Bilder ausgeschlossen), der Bau stößt
+den Beitrag wieder an, und der prüft wieder vollständig – höchstens acht
+Runden am Tag, dann tauscht der Betreiber von Hand. Durchgelassen wird
+nichts, um pünktlich zu sein.
 
 Dazu: Der Dateiname eines Tagesbilds trägt ein Stück vom Commons-Titel
 (`dateiname()`), und die Auswahl hält an, bevor zwei Einträge auf dieselbe
