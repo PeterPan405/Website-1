@@ -83,7 +83,7 @@ if (lindt?.art === 'rangliste') {
     ohneDatei.some((f) => f.includes('fehlt in lib/instagram/logos')),
     ohneDatei.join(' | ')
   )
-  const alsBalken = pruefeZahlenkarte({ ...lindt, skala: 'balken' })
+  const alsBalken = pruefeZahlenkarte({ ...lindt, skala: 'balken' as const })
   pruefe(
     'beanstandet: Logos außerhalb der Kacheln',
     alsBalken.some((f) => f.includes('nur in Kacheln')),
