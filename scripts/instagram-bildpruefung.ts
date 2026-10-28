@@ -72,12 +72,21 @@ for (const k of heute)
 */
 for (const u of sicht.urteile)
   console.log(`Sicht ${u.stelle}: ${u.passt ? 'passt' : 'passt nicht'} – ${u.grund}`)
+/*
+  Ohne Urteil des Auges geht nichts hinaus (28.10.2026). Bis dahin entschied
+  bei ausgefallener Sichtprüfung die Waage allein – sie findet doppelte und
+  alte Bilder, aber kein falsches. Der Betreiber: „nachgeprüft wird, bis die
+  Bilder passen". Ein leeres Kontingent kostet jetzt den Beitrag, nicht die
+  Qualität; der Rückfalltermin und der Betreiber (`abgenommen`) holen ihn nach.
+*/
+const ohneAuge =
+  sicht.ausgefallen && !abgenommen
+    ? ['Sichtprüfung ausgefallen – ohne geprüfte Bilder geht nichts hinaus']
+    : []
 if (sicht.ausgefallen)
-  console.log(
-    '::warning::Sichtprüfung ausgefallen – kein Urteil zu jeder Kachel. Es gilt nur die gerechnete Prüfung.'
-  )
+  console.log('::warning::Sichtprüfung ausgefallen – kein Urteil zu jeder Kachel.')
 
-const fehler = [...gerechnet, ...(abgenommen ? [] : sicht.fehler)]
+const fehler = [...gerechnet, ...ohneAuge, ...(abgenommen ? [] : sicht.fehler)]
 const zusammenfassung = process.env.GITHUB_STEP_SUMMARY
 if (zusammenfassung)
   appendFileSync(
@@ -93,7 +102,7 @@ if (fehler.length) {
   /* Für die Selbstreparatur in instagram-beitrag.yml: welche Stellen neu. */
   writeFileSync(join(ORDNER, 'abgelehnt.txt'), abgelehnteStellen(fehler).join(','))
   console.log(
-    'Nichts geht hinaus. Der Lauf sucht die abgelehnten Bilder selbst neu (bis zu dreimal am Tag).'
+    'Nichts geht hinaus. Der Lauf sucht die abgelehnten Bilder selbst neu (bis zu achtmal am Tag).'
   )
   process.exit(1)
 }
