@@ -352,6 +352,42 @@ const ALLGEMEIN = new Set(['euro', 'boerse', 'konsum', 'tresor'])
 export const MARKENBILD =
   /\b(logo|sign|signage|headquarters|hq|head office|building|office|campus|store|shop|tower|zentrale|hauptsitz)\b/i
 
+/**
+ * Themen, die ein allgemeines Motiv nicht trifft – mit dem Bild, das sie
+ * zeigen müssen.
+ *
+ * Am 28.10.2026 hielt die Bildprüfung den Beitrag dreimal an: „IG Metall
+ * lehnt ab" bekam einen Banktresor, „Kredite für Firmen strenger" einen
+ * Einkaufswagen, „Dax-Aktien: Handel 24/7" die New Yorker Börse. Keins der
+ * drei Themen hatte ein eigenes Motiv; die Suche lief deshalb mit den
+ * Begriffen des Rückfalls („bank vault", „shopping cart") und fand genau
+ * das. Ein Stichwort in Überschrift oder Text geht deshalb vor dem Motiv –
+ * und `mussEnthalten` hält den Titel der Datei am Thema.
+ */
+export const THEMENSUCHE: {
+  muster: RegExp
+  begriffe: string[]
+  mussEnthalten: string
+}[] = [
+  {
+    muster: /IG Metall|Warnstreik|Gewerkschaft|\bVerdi\b|Tarifrunde|Tarifverhandlung/u,
+    begriffe: ['IG Metall Warnstreik', 'Warnstreik', 'IG Metall'],
+    mussEnthalten: 'streik',
+  },
+  {
+    muster:
+      /(?<![\p{L}])(?:Dax|MDax|SDax|TecDax|Xetra|Deutsche Börse|Frankfurter Börse)(?![\p{L}])/iu,
+    begriffe: ['Frankfurt Stock Exchange', 'Börse Frankfurt'],
+    mussEnthalten: 'frankfurt',
+  },
+  {
+    muster:
+      /Bundesbank|Deutsche[nr]? Banken|Kreditrichtlinie|Kreditvergabe|Kredite für Firmen/u,
+    begriffe: ['Deutsche Bundesbank Frankfurt', 'Bankenviertel Frankfurt'],
+    mussEnthalten: 'bank',
+  },
+]
+
 export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
   const liste: Suche[] = []
   const firma = unternehmenIn(titel)
@@ -374,6 +410,16 @@ export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
     ])
       liste.push({ begriff: b, mussEnthalten: firma, marke: true })
   }
+  /*
+    Das Thema vor dem Motiv – siehe `THEMENSUCHE`. Aus der Überschrift geht
+    es auch dem Notenbankchef vor, aus dem Text nur dem Motiv: „Zinsentscheid
+    heute" mit „Dax" im Text bleibt beim Fed-Chef (28.10.2026).
+  */
+  const themaTitel = THEMENSUCHE.find((t) => t.muster.test(titel))
+  const themaText = themaTitel ? undefined : THEMENSUCHE.find((t) => t.muster.test(text))
+  const themaSuchen = (t: (typeof THEMENSUCHE)[number] | undefined) =>
+    (t?.begriffe ?? []).map((b) => ({ begriff: b, mussEnthalten: t!.mussEnthalten }))
+  liste.push(...themaSuchen(themaTitel))
   /* Bei Inflation und Zins: der Notenbankchef am Pult – Name im Dateititel. */
   if (GELDPOLITIK.test(`${titel} ${text}`)) {
     const bank = notenbankLand(titel) ?? notenbankLand(text)
@@ -385,6 +431,7 @@ export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
           person: true,
         })
   }
+  liste.push(...themaSuchen(themaText))
   const land = LAENDER.find(([muster]) => muster.test(titel))?.[1]
   const begriffe = SUCHE[motiv] ?? SUCHE.boerse
   if (land && ALLGEMEIN.has(motiv))
