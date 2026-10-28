@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-27T09:21:28.648Z",
+  "abgerufenAm": "2026-10-28T01:00:31.447Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "die-us-notenbank-fed-entscheidet-heute-ueber-die-zinsen-und-ig-metall-weist-erst",
+      "titel": "Die US-Notenbank Fed entscheidet heute über die Zinsen und IG Metall weist erstes Angebot der Arbeitgeber zurück",
+      "beschreibung": "Die Fed entscheidet heute über die Zinsen, die IG Metall lehnt ein Lohnangebot ab, und Dax-Aktien sind jetzt rund um die Uhr handelbar. Die US-Notenbank Fed trifft heute ihre Zinsentscheidung, am zweiten Tag ihrer Sitzung. Der Dax blieb laut Handelsblatt bereits vor der Entscheidung unter Druck.\n\nWir sprechen über Bundesbank: Banken straffen, Deutsche Börse startet und EZB genehmigt Intesa Sanpaolos Übernahme. Kompakt in rund drei Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:31) Die US-Notenbank Fed entscheidet heute\n(1:13) IG Metall weist erstes Angebot\n(1:47) Bundesbank: Banken straffen\n(2:26) Deutsche Börse startet und mehr\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-28",
+      "dauerSekunden": 175,
+      "url": "https://iminvests.de/podcast-audio/2026-10-28.mp3",
+      "youtubeId": "dLxTEzYVrw0"
+    },
     {
       "slug": "brasiliens-boerse-bricht-nach-lulas-wahlsieg-und-anthropic-beantragt-boersengang",
       "titel": "Brasiliens Börse bricht nach Lulas Wahlsieg und Anthropic beantragt Börsengang in den USA",
