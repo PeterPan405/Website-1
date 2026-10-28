@@ -57,6 +57,20 @@ export const zahlenkarten: Zahlenkarte[] = [
       Logos Google, Amazon, Microsoft: Commons, gemeinfrei (File:Google 2015
       logo.svg, File:Amazon logo.svg, File:Microsoft logo (2012).svg), geholt
       mit bilder-holen.yml.
+      Danach der Betreiber: „vielleicht noch dann die gesamte
+      Börsenbewertung, was Sie erwarten zu IPO und so und wann der IPO dann
+      auch ist, schätzungsweise". Belege, gelesen am 28.10.2026:
+        Tagesschau: „ebnet den Weg für den Börsengang, der schon in der
+        Woche ab dem 16. November erfolgen könnte. Berichten zufolge könnte
+        das Unternehmen dabei mit bis zu 2 Billionen Dollar bewertet werden."
+        WiWo: „Bislang wurde über eine mögliche Bewertung von rund zwei
+        Billionen Dollar spekuliert. Inzwischen soll diese aber auf rund
+        1,5 Billionen gesunken sein."
+        CNBC (26.10.2026): „Anthropic is aiming to start trading the week of
+        Nov. 16, according to a report in the Wall Street Journal"; Kalshi
+        95 % für eine offizielle Ankündigung bis Ende 2026; Polymarket 69 %
+        für den Handelsstart bis 20. November.
+        Tagesschau: Der Prospekt nennt weder Zahl noch Preis der Aktien.
       Form: Torte, neu (am 28.10. Geschichte).
     */
     art: 'torte',
@@ -93,13 +107,18 @@ export const zahlenkarten: Zahlenkarte[] = [
         logo: 'microsoft.png',
       },
     ],
-    hinweis: 'Alle Zusagen zusammen: über 600 Mrd. $ (Reuters)',
-    fusszeile: 'Stand: 26.10.2026 | Quelle: Börsenprospekt (WiWo, Reuters)',
+    infos: [
+      { name: 'Bewertung (berichtet)', wert: '1,5\u00a0Bio.\u00a0$' },
+      { name: 'Börsenstart (erwartet)', wert: 'ab 16.11.' },
+      { name: 'Alle Zusagen (Reuters)', wert: '600+\u00a0Mrd.\u00a0$' },
+    ],
+    fusszeile: 'Stand: 26.10.2026 | Quellen: Prospekt, WiWo, Reuters, CNBC/WSJ',
     text:
       'Big Tech kassiert mit: Anthropic, die Firma hinter dem KI-Modell Claude, hat sich laut Börsenprospekt verpflichtet, bei Google, Amazon und Microsoft mindestens rund 269 Milliarden Dollar auszugeben. 🤖\n\n' +
       'Den größten Teil bekommt Google mit mindestens 114,5 Milliarden Dollar, den kleinsten Microsoft mit knapp 45 Milliarden. Für Amazon bleibt rechnerisch der Rest von rund 110 Milliarden. Insgesamt hat sich Anthropic laut Reuters zu Ausgaben von mehr als 600 Milliarden Dollar verpflichtet.\n\n' +
+      'Und der Börsengang selbst? Laut Wall Street Journal (nach CNBC) soll der Handel in der Woche ab dem 16. November beginnen. Bei der Bewertung wurde zunächst über bis zu zwei Billionen Dollar spekuliert, laut WirtschaftsWoche sollen es inzwischen rund 1,5 Billionen sein. Wie viele Aktien zu welchem Preis verkauft werden, steht im Prospekt noch nicht.\n\n' +
       'Dem stehen bisher Umsätze von 16,3 Milliarden Dollar im ersten Halbjahr 2026 gegenüber – und laut Tagesschau ein Nettoverlust von rund 80,7 Milliarden Dollar, vor allem wegen des Baus von Rechenzentren. An die Börse will Anthropic an der Nasdaq unter dem Kürzel ANT.\n\n' +
-      'Quellen: Börsenprospekt von Anthropic, nach WirtschaftsWoche (mit Reuters) und Tagesschau (26.10.2026); Amazon-Anteil eigene Rechnung',
+      'Quellen: Börsenprospekt von Anthropic, nach WirtschaftsWoche (mit Reuters), Tagesschau und CNBC (mit Wall Street Journal), alle 26.10.2026; Amazon-Anteil eigene Rechnung',
     schlagworte: ['anthropic', 'börsengang', 'ki', 'aktien', 'börse'],
   },
   {
