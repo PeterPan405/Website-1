@@ -31,8 +31,16 @@ export const zahlenkarten: Zahlenkarte[] = [
         Lotus Bakeries         13.360 EUR   (Kursbestand der Website)
         Farmers & Merchants Bank of Long Beach 9.870 USD (OTCQX)
         LPP                    26.680 PLN   (Kursbestand der Website)
+        NVR                     5.806 USD
       Umgerechnet zum EZB-Referenzkurs vom 27.10.2026 (USD 1,115; CHF
-      0,9239; PLN 4,402 je Euro). Dahinter NVR mit 5.806 USD (5.207 €).
+      0,9239; PLN 4,402 je Euro). Danach „top 6" mit Logo (Betreiber).
+
+      Logos, alle gemeinfrei (PD-textlogo, als Marke geschützt), Wikimedia
+      Commons, geholt über bilder-holen.yml am 28.10.2026:
+        File:Berkshire Hathaway.svg, File:Lindt sprungli textlogo.png,
+        File:Lotus Bakeries logo.svg, File:LPP (company) logo.svg
+      Für Farmers & Merchants Bank und NVR gibt es auf Commons keins – sie
+      tragen ihren Namen.
 
       „Unter den teuersten", nicht „die teuersten": Eine vollständige
       Weltrangliste nach Stückpreis war nicht abrufbar (companiesmarketcap,
@@ -49,16 +57,28 @@ export const zahlenkarten: Zahlenkarte[] = [
     einheit: '\u00a0€',
     stellen: 0,
     zeilen: [
-      { name: 'Berkshire Hathaway A', wert: 726552, land: 'USA' },
-      { name: 'Lindt & Sprüngli', wert: 92326, land: 'CHE', hervor: true },
-      { name: 'Lotus Bakeries', wert: 13360, land: 'BEL' },
-      { name: 'Farmers & Merchants Bank', wert: 8852, land: 'USA' },
-      { name: 'LPP', wert: 6061, land: 'POL' },
+      {
+        name: 'Berkshire Hathaway A',
+        wert: 726552,
+        land: 'USA',
+        logo: 'berkshire-hathaway.png',
+      },
+      {
+        name: 'Lindt & Sprüngli',
+        wert: 92326,
+        land: 'CHE',
+        hervor: true,
+        logo: 'lindt-spruengli.png',
+      },
+      { name: 'Lotus Bakeries', wert: 13360, land: 'BEL', logo: 'lotus-bakeries.png' },
+      { name: 'F&M Bank Long Beach', wert: 8852, land: 'USA' },
+      { name: 'LPP', wert: 6061, land: 'POL', logo: 'lpp.png' },
+      { name: 'NVR', wert: 5207, land: 'USA' },
     ],
     fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance | EZB-Kurs 27.10.',
     text:
       'Eine einzige Aktie von Lindt & Sprüngli kostet rund 92.000 Euro. Noch teurer ist nur Berkshire Hathaway von Warren Buffett: Die A-Aktie kostet mehr als 726.000 Euro – pro Stück. 🍫\n\n' +
-      'Dahinter folgen der belgische Gebäckhersteller Lotus Bakeries (13.360 €), die kalifornische Farmers & Merchants Bank of Long Beach (8.852 €) und der polnische Modekonzern LPP (6.061 €).\n\n' +
+      'Dahinter folgen der belgische Gebäckhersteller Lotus Bakeries (13.360 €), die kalifornische Farmers & Merchants Bank of Long Beach (8.852 €), der polnische Modekonzern LPP (6.061 €) und der US-Hausbauer NVR (5.207 €).\n\n' +
       'Ein hoher Stückpreis heißt nicht, dass das Unternehmen besonders viel wert ist. Er zeigt nur, in wie viele Aktien es aufgeteilt ist – wer nicht teilt, hat wenige, aber teure Stücke.\n\n' +
       'Kurse vom 27.10.2026 (Lindt vom 28.10.), umgerechnet zum EZB-Referenzkurs. Bei Lindt die Namensaktie.\n' +
       'Quellen: Yahoo Finance; Europäische Zentralbank',
