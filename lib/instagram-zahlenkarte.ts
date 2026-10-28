@@ -187,7 +187,23 @@ export interface Duellkarte extends KarteGemeinsam {
   rechts: Duellseite
 }
 
-export type Zahlenkarte = Vergleichskarte | Rangkarte | Verlaufkarte | Duellkarte
+/**
+ * Ein Unternehmen allein (28.10.2026). Der Betreiber zur Liste der
+ * teuersten Aktien: „ich habe doch gesagt, nur Berkshire Hathaway
+ * vorstellen." Logo groß, darunter vier bis sechs Kennzahlen als Liste –
+ * Name links, Wert rechts. Jede Zahl mit Quelle im Kommentar der Karte.
+ */
+export interface Steckbriefkarte extends KarteGemeinsam {
+  art: 'steckbrief'
+  /** Datei in `lib/instagram/logos/` – nur gemeinfreie Logos. */
+  logo: string
+  /** Zwei Sätze unter der Überschrift: wer das ist. */
+  erklaerung: string
+  fakten: { name: string; wert: string }[]
+}
+
+export type Zahlenkarte =
+  Vergleichskarte | Rangkarte | Verlaufkarte | Duellkarte | Steckbriefkarte
 
 /** Eine kreisrunde Flagge: Streifen, von oben oder von links, wahlweise mit Wappen. */
 export interface Flagge {
@@ -524,7 +540,22 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
-  else if (k.art === 'duell') {
+  else if (k.art === 'steckbrief') {
+    if (k.fakten.length < 4 || k.fakten.length > 6)
+      f.push(`${k.fakten.length} Kennzahlen – der Steckbrief trägt vier bis sechs.`)
+    if (!existsSync(join(LOGO_ORDNER, k.logo)))
+      f.push(`Logo „${k.logo}" fehlt in lib/instagram/logos/.`)
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
+      )
+    if (zeichen > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+      )
+    for (const x of k.fakten)
+      if (!x.name.trim() || !x.wert.trim()) f.push('Eine Kennzahl ohne Namen oder Wert.')
+  } else if (k.art === 'duell') {
     for (const sei of [k.links, k.rechts]) {
       if (sei.punkte.length < 3) f.push(`${sei.name}: zu wenige Kurse.`)
       if (sei.land && !FLAGGEN[sei.land])
@@ -731,9 +762,11 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
       ? await verlaufGrafik(k)
       : k.art === 'duell'
         ? duellGrafik(k)
-        : k.art === 'rangliste'
-          ? ranglistenGrafik(k)
-          : vergleichsGrafik(k)
+        : k.art === 'steckbrief'
+          ? steckbriefGrafik(k)
+          : k.art === 'rangliste'
+            ? ranglistenGrafik(k)
+            : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -799,7 +832,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
           )
       )
     ),
-    ...(k.art === 'rangliste' && k.erklaerung
+    ...((k.art === 'rangliste' || k.art === 'steckbrief') && k.erklaerung
       ? [
           h(
             'div',
@@ -1156,6 +1189,76 @@ function logoKachel(z: Rang, k: Rangkarte, i: number, m: { akzent: string }) {
   )
 }
 
+/*
+  Der Steckbrief: das Logo groß auf Weiß, darunter die Kennzahlen als
+  Liste wie bei den Logokarten – Name links in Grau, Wert rechts fett,
+  Haarlinien dazwischen. Die erste Kennzahl steht in der Akzentfarbe.
+*/
+function steckbriefGrafik(k: Steckbriefkarte) {
+  const akzent = akzentfarbe(k.datum)
+  const logoOben = RL_UNTERZEILE - 10
+  const logoHoehe = 120
+  const oben = logoOben + logoHoehe + 40
+  const zeile = Math.floor((LOGO_LISTE_UNTEN - oben) / k.fakten.length)
+  return [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: logoOben,
+          left: 60,
+          right: 60,
+          height: logoHoehe,
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
+      h('img', {
+        src: logoAdresse(k.logo),
+        width: ZK_BREITE - 120,
+        height: logoHoehe,
+        style: { objectFit: 'contain', objectPosition: 'left center' },
+      })
+    ),
+    ...k.fakten.map((x, i) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: 60,
+            right: 60,
+            top: oben + i * zeile,
+            height: zeile,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderTop: '2px solid #e6e7e9',
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Open', fontWeight: 700, fontSize: 30, color: GRAU } },
+          x.name
+        ),
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Open',
+              fontWeight: 800,
+              fontSize: 44,
+              color: i === 0 ? akzent : SCHWARZ,
+            },
+          },
+          x.wert
+        )
+      )
+    ),
+  ]
+}
+
 /** Unterkante der Logoliste – über der Fußzeile. */
 const LOGO_LISTE_UNTEN = 1235
 
@@ -1268,8 +1371,9 @@ export function form(
   | 'zeitleiste'
   | 'burger'
   | 'verlauf'
-  | 'duell' {
-  if (k.art === 'verlauf' || k.art === 'duell') return k.art
+  | 'duell'
+  | 'steckbrief' {
+  if (k.art === 'verlauf' || k.art === 'duell' || k.art === 'steckbrief') return k.art
   return k.art === 'rangliste' ? (k.skala ?? 'haeuser') : 'vergleich'
 }
 

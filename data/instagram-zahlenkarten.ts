@@ -17,72 +17,59 @@ export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
       Thema vom Betreiber (27.10.2026): „Die teuersten Aktien der Welt …
-      Zum Beispiel könntest du da auch eine Lindt reinmachen." Der erste
-      Entwurf nahm die Liste aus dem Kursbestand der Website – „das sind
-      nicht die teuersten": Dort fehlen die teuren Werte außerhalb der
-      großen Indizes. Danach die bekannten Kandidaten einzeln abgerufen;
-      Betreiber: „top 5 reicht völlig".
+      Zum Beispiel könntest du da auch eine Lindt reinmachen." Über vier
+      Entwürfe (Liste aus dem Kursbestand – „das sind nicht die teuersten";
+      Top 5, Top 6 mit Logos, Liste statt Kacheln) dann der Betreiber: „Oder
+      mach nur Berkshire Hathaway, die teuerste Aktie der Welt. Und dann
+      stell mal Berkshire Hathaway vor." – und, als die Liste noch stand:
+      „Nein, ich habe doch gesagt, nur Berkshire Hathaway vorstellen."
 
-      Kurse (Yahoo Finance, chart-Schnittstelle, gelesen am 28.10.2026 über
-      quellen-holen.yml; US-Werte Schluss 27.10., Lindt 28.10. vormittags):
-        Berkshire Hathaway A  810.106 USD
-        Lindt & Sprüngli N     85.300 CHF   (Partizipationsschein 8.290 CHF –
-                                             dieselbe Firma, nicht doppelt)
-        Lotus Bakeries         13.360 EUR   (Kursbestand der Website)
-        Farmers & Merchants Bank of Long Beach 9.870 USD (OTCQX)
-        LPP                    26.680 PLN   (Kursbestand der Website)
-        NVR                     5.806 USD
-      Umgerechnet zum EZB-Referenzkurs vom 27.10.2026 (USD 1,115; CHF
-      0,9239; PLN 4,402 je Euro). Danach „top 6" mit Logo (Betreiber).
+      Kurs: Berkshire Hathaway A 810.106 USD, Schluss 27.10.2026 (Yahoo
+      Finance, chart-Schnittstelle, gelesen am 28.10. über quellen-holen.yml),
+      zum EZB-Referenzkurs vom 27.10. (1,115 USD je Euro) 726.552 €.
+      B-Aktie 542,99 USD (Kursbestand der Website, Yahoo, Schluss 27.10.)
+      → 487 €. Die erste Kennzahl wiederholte zuerst die Überschrift.
 
-      Logos, alle gemeinfrei (PD-textlogo, als Marke geschützt), Wikimedia
-      Commons, geholt über bilder-holen.yml am 28.10.2026:
-        File:Berkshire Hathaway.svg, File:Lindt sprungli textlogo.png,
-        File:Lotus Bakeries logo.svg, File:LPP (company) logo.svg
-      Für Farmers & Merchants Bank und NVR gibt es auf Commons keins – sie
-      tragen ihren Namen.
-
-      „Unter den teuersten", nicht „die teuersten": Eine vollständige
-      Weltrangliste nach Stückpreis war nicht abrufbar (companiesmarketcap,
-      stockanalysis: 404). Daher auch keine Rangnummern.
-      Form: Kacheln (am 27.10. Balken).
+      Alles andere aus en.wikipedia.org/wiki/Berkshire_Hathaway und
+      de.wikipedia.org/wiki/Berkshire_Hathaway, gelesen am 28.10.2026:
+        „Its class A shares have the highest per-share price of any public
+        company in the world … because the board of directors has
+        historically been opposed to stock splits" (en);
+        „Die Aktie wurde niemals gesplittet und ist somit die teuerste
+        Stückaktie der Welt" (de);
+        Sitz Omaha, Nebraska; „zu deren Konglomerat über 80 Unternehmen
+        gehören"; Umsatz 371,444 Mrd. US-Dollar (2025); 1965 übernahm Buffett
+        die Mehrheit; „Vorsitzender ist seit dem 1. Januar 2026 Greg Abel, als
+        Nachfolger von Warren Buffett" (de); GEICO, Dairy Queen, See's Candies
+        als Töchter (en).
+      Logo: File:Berkshire Hathaway.svg, gemeinfrei (PD-textlogo), Commons.
+      Form: Steckbrief (am 27.10. Balken).
     */
-    art: 'rangliste',
-    skala: 'kacheln',
+    art: 'steckbrief',
     datum: '2026-10-28',
-    titel: [{ text: 'Eine Aktie Lindt:' }, { text: '92.326\u00a0€', gruen: true }],
-    erklaerung:
-      'Der Preis einer einzelnen Aktie sagt nichts über den Wert des Unternehmens – nur, in wie viele Stücke es aufgeteilt ist.',
-    unterzeile: 'Was eine einzige Aktie kostet, in Euro:',
-    einheit: '\u00a0€',
-    stellen: 0,
-    zeilen: [
-      {
-        name: 'Berkshire Hathaway A',
-        wert: 726552,
-        land: 'USA',
-        logo: 'berkshire-hathaway.png',
-      },
-      {
-        name: 'Lindt & Sprüngli',
-        wert: 92326,
-        land: 'CHE',
-        hervor: true,
-        logo: 'lindt-spruengli.png',
-      },
-      { name: 'Lotus Bakeries', wert: 13360, land: 'BEL', logo: 'lotus-bakeries.png' },
-      { name: 'F&M Bank Long Beach', wert: 8852, land: 'USA' },
-      { name: 'LPP', wert: 6061, land: 'POL', logo: 'lpp.png' },
-      { name: 'NVR', wert: 5207, land: 'USA' },
+    titel: [
+      { text: 'Die teuerste Aktie der Welt:' },
+      { text: '726.552\u00a0€', gruen: true },
     ],
-    fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance | EZB-Kurs 27.10.',
+    erklaerung:
+      'Früher eine Textilfirma, seit 1965 Warren Buffetts Holding mit über 80 Firmen – von GEICO bis Dairy Queen. Die A-Aktie wurde nie geteilt.',
+    logo: 'berkshire-hathaway.png',
+    fakten: [
+      { name: 'Eine B-Aktie', wert: '487\u00a0€' },
+      { name: 'Sitz', wert: 'Omaha, USA' },
+      { name: 'Buffett übernimmt', wert: '1965' },
+      { name: 'Unternehmen im Konzern', wert: 'über 80' },
+      { name: 'Umsatz 2025', wert: '371\u00a0Mrd.\u00a0$' },
+      { name: 'Chef seit 2026', wert: 'Greg Abel' },
+    ],
+    fusszeile: 'Stand: 27.10.2026 | Quelle: Yahoo Finance, Wikipedia | EZB-Kurs',
     text:
-      'Eine einzige Aktie von Lindt & Sprüngli kostet rund 92.000 Euro. Noch teurer ist nur Berkshire Hathaway von Warren Buffett: Die A-Aktie kostet mehr als 726.000 Euro – pro Stück. 🍫\n\n' +
-      'Dahinter folgen der belgische Gebäckhersteller Lotus Bakeries (13.360 €), die kalifornische Farmers & Merchants Bank of Long Beach (8.852 €), der polnische Modekonzern LPP (6.061 €) und der US-Hausbauer NVR (5.207 €).\n\n' +
-      'Ein hoher Stückpreis heißt nicht, dass das Unternehmen besonders viel wert ist. Er zeigt nur, in wie viele Aktien es aufgeteilt ist – wer nicht teilt, hat wenige, aber teure Stücke.\n\n' +
-      'Kurse vom 27.10.2026 (Lindt vom 28.10.), umgerechnet zum EZB-Referenzkurs. Bei Lindt die Namensaktie.\n' +
-      'Quellen: Yahoo Finance; Europäische Zentralbank',
-    schlagworte: ['aktien', 'börse', 'lindt', 'berkshire', 'geldanlage'],
+      'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. 📈\n\n' +
+      "Berkshire Hathaway sitzt in Omaha, Nebraska, und war ursprünglich ein Textilhersteller. 1965 übernahm Warren Buffett die Mehrheit und baute daraus eine Holding mit über 80 Unternehmen – von der Autoversicherung GEICO bis zu Dairy Queen und See's Candies. 2025 setzte der Konzern 371 Milliarden Dollar um. Seit dem 1. Januar 2026 führt Greg Abel das Unternehmen.\n\n" +
+      'Daneben gibt es die B-Aktie, sie kostet rund 487 Euro. Warum die A-Aktie so teuer ist? Sie wurde nie gesplittet. Wer nicht teilt, hat wenige, aber teure Stücke – über den Wert des Unternehmens sagt der Stückpreis nichts.\n\n' +
+      'Kurs vom 27.10.2026, umgerechnet zum EZB-Referenzkurs.\n' +
+      'Quellen: Yahoo Finance; Europäische Zentralbank; Wikipedia (Berkshire Hathaway)',
+    schlagworte: ['aktien', 'börse', 'berkshire', 'buffett', 'geldanlage'],
   },
   {
     /*
