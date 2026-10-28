@@ -16,6 +16,57 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber (28.10.2026): aus den Vorschlägen „4 … für morgen"
+      – Anthropic vor dem Börsengang.
+
+      Zahlen aus dem Börsenprospekt, wie zwei Meldungen vom 26.10.2026 ihn
+      wiedergeben (gelesen am 28.10.2026 über quellen-holen.yml; die SEC
+      selbst antwortet dem Läufer mit 403, die FAZ mit 302):
+        tagesschau.de/wirtschaft/unternehmen/anthropic-bereitet-boersengang-vor-100.html
+          „In den ersten sechs Monaten des Jahres 2026 kletterte der Erlös …
+          von 1,2 Milliarden Dollar im Vorjahreszeitraum auf 16,3 Milliarden
+          Dollar"; Nettoverlust „im ersten Halbjahr 2026 rund 80,7 Milliarden
+          Dollar – bedingt durch die hohen Kosten für den Bau von
+          Rechenzentren"; Nasdaq, Tickersymbol „ANT"; 2021 von Dario Amodei
+          mitgegründet; Goldman Sachs und Morgan Stanley.
+        wiwo.de/finanzen/boerse/anthropic-beantragt-boersengang-in-den-usa-und-offenbart-teure-abhaengigkeit/100265031.html
+          „Mehr als 1900 Kunden kamen auf mindestens eine Million Dollar";
+          gegenüber Google, Microsoft und Amazon „Mindestverpflichtungen von
+          rund 269 Milliarden Dollar"; „Rund 80 Prozent des Umsatzes stammen
+          … aus nutzungsabhängigen Gebühren".
+      Logo: File:Anthropic logo.svg, gemeinfrei. Foto: File:Dario Amodei at
+      TechCrunch Disrupt 2023 01.jpg, TechCrunch, CC BY 2.0 – Nennung in der
+      Beschriftung. Beides Wikimedia Commons, geholt mit bilder-holen.yml.
+      Form: Steckbrief mit Foto (am 28.10. Geschichte).
+    */
+    art: 'steckbrief',
+    datum: '2026-10-29',
+    titel: [
+      { text: '16,3\u00a0Mrd.\u00a0$ Umsatz', gruen: true },
+      { text: '80,7\u00a0Mrd.\u00a0$ Verlust' },
+    ],
+    erklaerung:
+      'Anthropic, die Firma hinter dem KI-Modell Claude, will an die Börse. Die Zahlen gelten fürs erste Halbjahr 2026 – den Verlust treiben neue Rechenzentren.',
+    logo: 'anthropic.png',
+    foto: 'dario-amodei.jpg',
+    fakten: [
+      { name: 'Umsatz 1. Halbjahr 2026', wert: '16,3\u00a0Mrd.\u00a0$' },
+      { name: 'Ein Jahr zuvor', wert: '1,2\u00a0Mrd.\u00a0$' },
+      { name: 'Kunden mit 1 Mio. $ +', wert: 'über 1.900' },
+      { name: 'Zusagen an Google & Co.', wert: '269\u00a0Mrd.\u00a0$' },
+      { name: 'Börsenkürzel', wert: 'ANT (Nasdaq)' },
+      { name: 'Gegründet', wert: '2021' },
+    ],
+    fusszeile: 'Stand: 1. Hj. 2026 | Quelle: Börsenprospekt (Tagesschau, WiWo)',
+    text:
+      'Anthropic will an die Börse – und der Prospekt zeigt zwei Seiten. Im ersten Halbjahr 2026 stieg der Umsatz von 1,2 auf 16,3 Milliarden Dollar. Der Nettoverlust lag im selben Zeitraum bei rund 80,7 Milliarden Dollar. 🤖\n\n' +
+      'Den Verlust erklärt die Tagesschau mit den hohen Kosten für den Bau von Rechenzentren. Gegenüber Google, Microsoft und Amazon hat sich Anthropic laut WirtschaftsWoche zu Mindestausgaben von rund 269 Milliarden Dollar verpflichtet.\n\n' +
+      'Die Firma hinter dem KI-Modell Claude wurde 2021 unter anderem von Dario Amodei gegründet. Mehr als 1.900 Kunden zahlten ihr zuletzt jeweils mindestens eine Million Dollar im Jahr. An die Nasdaq soll sie unter dem Kürzel ANT; wie viele Aktien zu welchem Preis verkauft werden, nennt der Prospekt noch nicht.\n\n' +
+      'Quellen: Börsenprospekt von Anthropic, nach Tagesschau und WirtschaftsWoche (26.10.2026); Foto: TechCrunch, CC BY 2.0 (Wikimedia Commons)',
+    schlagworte: ['anthropic', 'börsengang', 'ki', 'aktien', 'börse'],
+  },
+  {
+    /*
       Thema vom Betreiber (27.10.2026): „Die teuersten Aktien der Welt …
       Zum Beispiel könntest du da auch eine Lindt reinmachen." Über vier
       Entwürfe (Liste aus dem Kursbestand – „das sind nicht die teuersten";
