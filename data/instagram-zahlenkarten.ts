@@ -90,7 +90,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile: 'Stand: 27./28.10.2026 | Quelle: Yahoo Finance, Wikipedia | EZB-Kurs',
     text:
       'Die teuerste Aktie der Welt: Eine einzige A-Aktie von Berkshire Hathaway kostet mehr als 726.000 Euro. 📈\n\n' +
-      "Berkshire Hathaway sitzt in Omaha, Nebraska, und war ursprünglich ein Textilhersteller. 1965 übernahm Warren Buffett die Mehrheit und baute daraus eine Holding mit über 80 Unternehmen – von der Autoversicherung GEICO über die Bahn BNSF bis zu Dairy Queen und See's Candies. Seit dem 1. Januar 2026 führt Greg Abel das Unternehmen.\n\n" +
+      "Berkshire Hathaway sitzt in Omaha, Nebraska, und war ursprünglich ein Textilhersteller. 1965 übernahm Warren Buffett die Mehrheit und baute daraus eine Holding mit über 80 Unternehmen – von der Autoversicherung GEICO bis zu Dairy Queen und See's Candies. Seit dem 1. Januar 2026 führt Greg Abel das Unternehmen.\n\n" +
       'Warum so teuer? Die A-Aktie wurde nie gesplittet. Wer nicht teilt, hat wenige, aber teure Stücke – über den Wert des Unternehmens sagt der Stückpreis nichts.\n\n' +
       'Dahinter: Lindt & Sprüngli (92.326 €), Lotus Bakeries (13.360 €), Farmers & Merchants Bank of Long Beach (8.852 €), LPP (6.061 €) und NVR (5.207 €).\n\n' +
       'Kurse vom 27.10.2026 (Lindt vom 28.10.), umgerechnet zum EZB-Referenzkurs. Bei Lindt die Namensaktie.\n' +
