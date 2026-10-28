@@ -1089,93 +1089,65 @@ function balken(wert: number, groesster: number, farbe: string, kleinster = 0) {
   hervorgehobene ist in der Akzentfarbe gefüllt, der Schnitt gestrichelt.
 */
 /*
-  Kacheln mit Firmenlogo (28.10.2026, „mit logo vom unternehmen"): oben eine
-  weiße Fläche mit dem Logo – die Logos sind farbig und brauchen Weiß, auch
-  auf der hervorgehobenen Kachel –, darunter Flagge klein und die Zahl. Eine
-  Firma ohne freies Logo trägt ihren Namen in derselben Fläche: kein
-  nachgebautes Zeichen, das es so nicht gibt.
+  Karten mit Firmenlogo (28.10.2026, „mit logo vom unternehmen"): eine Liste
+  statt Kacheln – das Logo links, die Zahl rechts, eine Haarlinie dazwischen.
+  Der erste Entwurf setzte jedes Logo in ein weißes Feld auf einer grauen
+  Kachel; der Betreiber: „gefällt mir irgendwie nicht so". Zwei Flächen
+  ineinander sind ein Kasten im Kasten, und die Logos brauchen keinen –
+  sie stehen auf dem Weiß der Karte.
+
+  Die hervorgehobene Zeile trägt ihre Zahl in der Akzentfarbe und einen
+  Strich in derselben Farbe links. Wer kein freies Logo hat, steht mit
+  seinem Namen da, in der Schrift der Karte – kein nachgebautes Zeichen.
 */
-function logoKachel(
-  z: Rang,
-  k: Rangkarte,
-  i: number,
-  m: {
-    spalten: number
-    breite: number
-    hoehe: number
-    luecke: number
-    akzent: string
-    farbe: string
-  }
-) {
-  const innen = m.breite - 2 * 20
-  const flaeche = Math.round(m.hoehe * 0.55)
+function logoKachel(z: Rang, k: Rangkarte, i: number, m: { akzent: string }) {
+  const oben = RL_OBEN - 30
+  const zeile = Math.floor((LOGO_LISTE_UNTEN - oben) / k.zeilen.length)
+  const logoHoehe = Math.min(76, zeile - 36)
   return h(
     'div',
     {
       style: {
         position: 'absolute',
-        left: 40 + (i % m.spalten) * (m.breite + m.luecke),
-        top: RL_OBEN - 20 + Math.floor(i / m.spalten) * (m.hoehe + m.luecke),
-        width: m.breite,
-        height: m.hoehe,
+        left: 60,
+        right: 60,
+        top: oben + i * zeile,
+        height: zeile,
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '0 20px',
-        borderRadius: 22,
-        backgroundColor: z.hervor ? m.akzent : '#f1f3f0',
-        border: `3px solid ${z.hervor ? m.akzent : '#f1f3f0'}`,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: 22,
+        borderLeft: `6px solid ${z.hervor ? m.akzent : 'transparent'}`,
+        borderBottom: i < k.zeilen.length - 1 ? '2px solid #e6e7e9' : 'none',
       },
     },
+    z.logo
+      ? h('img', {
+          src: logoAdresse(z.logo),
+          width: 440,
+          height: logoHoehe,
+          style: { objectFit: 'contain', objectPosition: 'left center' },
+        })
+      : h(
+          'div',
+          {
+            style: { fontFamily: 'Open', fontWeight: 800, fontSize: 38, color: SCHWARZ },
+          },
+          z.name
+        ),
     h(
       'div',
-      {
-        style: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: innen,
-          height: flaeche,
-          borderRadius: 14,
-          backgroundColor: '#ffffff',
-        },
-      },
-      z.logo
-        ? h('img', {
-            src: logoAdresse(z.logo),
-            width: innen - 40,
-            height: flaeche - 50,
-            style: { objectFit: 'contain' },
-          })
-        : h(
-            'div',
-            {
-              style: {
-                fontFamily: 'Open',
-                fontWeight: 800,
-                fontSize: 30,
-                color: SCHWARZ,
-              },
-            },
-            z.name
-          )
-    ),
-    h(
-      'div',
-      { style: { display: 'flex', alignItems: 'center', marginTop: 12 } },
-      flagge(FLAGGEN[z.land] ?? { streifen: [LEER] }, 40, z.hervor ? 3 : 2),
+      { style: { display: 'flex', alignItems: 'center' } },
+      flagge(FLAGGEN[z.land] ?? { streifen: [LEER] }, 38, 2),
       h(
         'div',
         {
           style: {
-            marginLeft: 14,
+            marginLeft: 16,
             fontFamily: 'Open',
             fontWeight: 800,
-            fontStyle: 'italic',
-            fontSize: 46,
-            lineHeight: 1.05,
-            color: m.farbe,
+            fontSize: 50,
+            color: z.hervor ? m.akzent : SCHWARZ,
           },
         },
         `${zahl(z.wert, k.stellen)}${k.einheit ?? ' %'}`
@@ -1183,6 +1155,9 @@ function logoKachel(
     )
   )
 }
+
+/** Unterkante der Logoliste – über der Fußzeile. */
+const LOGO_LISTE_UNTEN = 1235
 
 /** Wo die Firmenlogos der Kacheln liegen. */
 const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
@@ -1199,15 +1174,10 @@ function kachelGrafik(k: Rangkarte) {
   const luecke = 18
   const breite = (ZK_BREITE - 80 - luecke) / spalten
   const mitLogos = k.zeilen.some((z) => z.logo)
-  /* Mit Logo höher: ein Logo im Hochformat (Lotus) wäre in 150 px nur eine Briefmarke. */
-  const hoehe = Math.min(
-    mitLogos ? 210 : 150,
-    Math.floor((RL_UNTEN + 20 - RL_OBEN) / reihen) - luecke
-  )
+  const hoehe = Math.min(150, Math.floor((RL_UNTEN + 20 - RL_OBEN) / reihen) - luecke)
   const karte = (z: Rang, i: number) => {
     const farbe = z.hervor ? '#ffffff' : z.schnitt ? MITTELGRAU : SCHWARZ
-    if (mitLogos)
-      return logoKachel(z, k, i, { spalten, breite, hoehe, luecke, akzent, farbe })
+    if (mitLogos) return logoKachel(z, k, i, { akzent })
     return h(
       'div',
       {
