@@ -19,6 +19,7 @@ import {
   fingerabdruck,
   gerechneterBefund,
   liesFrueher,
+  abgelehnteStellen,
   sichtBefund,
 } from '@/lib/instagram-bildpruefung'
 
@@ -89,8 +90,10 @@ if (zusammenfassung)
 
 if (fehler.length) {
   for (const f of fehler) console.log(`::error::${f}`)
+  /* Für die Selbstreparatur in instagram-beitrag.yml: welche Stellen neu. */
+  writeFileSync(join(ORDNER, 'abgelehnt.txt'), abgelehnteStellen(fehler).join(','))
   console.log(
-    'Nichts geht hinaus. Bild austauschen (instagram-bilder-auswahl.yml), dann neu.'
+    'Nichts geht hinaus. Der Lauf sucht die abgelehnten Bilder selbst neu (bis zu dreimal am Tag).'
   )
   process.exit(1)
 }

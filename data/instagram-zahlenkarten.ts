@@ -75,6 +75,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'torte',
     datum: '2026-10-29',
+    /* Freigegeben vom Betreiber am 28.10.2026: „Ja, der passt. Morgen dann 15 Uhr." */
+    freigabe: '2026-10-29',
     titel: [
       { text: 'Anthropic:' },
       { text: '269\u00a0Mrd.\u00a0$', gruen: true },

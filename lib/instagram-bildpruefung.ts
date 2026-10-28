@@ -197,3 +197,22 @@ export function sichtBefund(
     .map((s) => `Kachel ${s}: ${urteile.get(s)!.grund || 'Bild passt nicht zur Meldung'}`)
   return { fehler, ausgefallen: false, urteile: alle }
 }
+
+/**
+ * Die Stellen, deren Bild neu gesucht werden muss – aus den Befunden gelesen.
+ *
+ * Bis zum 28.10.2026 hielt eine abgelehnte Kachel den Tagesbeitrag an, und
+ * nichts tauschte sie aus: Jeder weitere Lauf scheiterte am selben Bild, zwei
+ * Tage ging keine News hinaus. Jetzt sucht `instagram-beitrag.yml` für genau
+ * diese Stellen neu. Bei „Kachel 3 und 5 zeigen dasselbe Bild" wird die
+ * spätere getauscht; bei „zeigt das Bild vom … (Kachel 4)" die erste Zahl,
+ * nicht die alte Stelle.
+ */
+export function abgelehnteStellen(fehler: string[]): number[] {
+  const stellen = new Set<number>()
+  for (const f of fehler) {
+    const treffer = /^Kachel (\d+)(?: und (\d+))?/.exec(f)
+    if (treffer) stellen.add(Number(treffer[2] ?? treffer[1]))
+  }
+  return [...stellen].filter((s) => s >= 2).sort((a, b) => a - b)
+}

@@ -164,7 +164,7 @@ if (torte?.art === 'torte') {
       torte.stuecke[0].wert === 114.5 &&
       torte.stuecke.find((st) => st.name === 'Microsoft')?.wert === 45 &&
       Math.abs(torte.stuecke.reduce((a, st) => a + st.wert, 0) - 269) < 1e-9 &&
-      torte.freigabe === undefined
+      torte.freigabe === '2026-10-29'
   )
   const aufsteigend = pruefeZahlenkarte({
     ...torte,

@@ -12,6 +12,7 @@ import { join } from 'node:path'
 
 import { meldungskachel } from '@/lib/instagram-bild'
 import {
+  abgelehnteStellen,
   abstand,
   fingerabdruck,
   GLEICH_HOECHSTENS,
@@ -121,6 +122,23 @@ pruefe(
   'eine ausgelassene Kachel: ausgefallen, nicht „in Ordnung"',
   sichtBefund(urteil([{ stelle: 2, passt: true }]), [2, 3]).ausgefallen
 )
+
+// Selbstreparatur: aus den Befunden die Stellen, die neu gesucht werden.
+{
+  const stellen = abgelehnteStellen([
+    'Kachel 3 hat kein Bild',
+    'Kachel 4 und 6 zeigen dasselbe Bild',
+    'Kachel 5 zeigt das Bild vom 2026-10-27 (Kachel 2) noch einmal',
+    'Kachel 3: Kühltürme passen nicht zum Gaspreis',
+    'Sichtprüfung ausgefallen',
+  ])
+  pruefe(
+    'abgelehnteStellen: spätere bei Doppel, erste bei Wiederholung, ohne Doppel',
+    stellen.join(',') === '3,5,6',
+    stellen.join(',')
+  )
+  pruefe('abgelehnteStellen: ohne Befund nichts', abgelehnteStellen([]).length === 0)
+}
 
 if (failed) {
   console.log(`\n${failed} Prüfung(en) fehlgeschlagen.`)
