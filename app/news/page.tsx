@@ -213,8 +213,13 @@ export default async function NewsOverviewPage() {
               Mit `<details>` statt eines Schalters bleibt es ohne JavaScript
               bedienbar, und die Browsersuche findet auch zugeklappte Einträge.
             */}
+            {/*
+              Zwei Wochen hier, der Rest nach Monaten (29.10.2026, „deutlich
+              gekürzt"): Hundert Tageszeilen am Stück ergaben fast 10.000 px.
+              Kein Artikel fällt heraus – `/news/monat` führt jeden.
+            */}
             <div className="border-border mt-5 border-b">
-              {archivtage.map((tag) => (
+              {archivtage.slice(0, ARCHIV_TAGE).map((tag) => (
                 <details key={tag.datum} className="border-border group border-t">
                   <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3">
                     <span className="text-fg font-semibold">
@@ -243,6 +248,15 @@ export default async function NewsOverviewPage() {
                 </details>
               ))}
             </div>
+            {archivtage.length > ARCHIV_TAGE && (
+              <Link
+                href="/news/monat"
+                className="text-fg-muted hover:text-fg mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-medium"
+              >
+                Ältere Artikel nach Monaten
+                <Icon name="chevron-right" aria-hidden="true" className="size-4" />
+              </Link>
+            )}
           </section>
         )}
       </div>
@@ -262,3 +276,6 @@ export default async function NewsOverviewPage() {
     </>
   )
 }
+
+/** Wie viele Erscheinungstage das Archiv hier zeigt; der Rest steht unter /news/monat. */
+const ARCHIV_TAGE = 14
