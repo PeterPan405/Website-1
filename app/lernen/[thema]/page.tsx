@@ -18,6 +18,8 @@ import { collectionPageSchema } from '@/lib/jsonld'
 import { getLearnTopic, getLearnTopicSlugs, getRelatedTopics } from '@/lib/learn'
 import { kartenZumThema } from '@/lib/lernkarten-daten'
 import { getQuotes } from '@/lib/markets'
+import { straenge } from '@/lib/nachrichtenstrang'
+import { getNewsArticles } from '@/lib/news'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 type TopicPageProps = { params: Promise<{ thema: string }> }
@@ -71,6 +73,13 @@ export default async function TopicPage({ params }: TopicPageProps) {
   const akademieLektionen = lektionenZumThema(thema)
   const uebrigeLektionen = akademieLektionen.length - VERTIEFUNG_HOECHSTENS
   const kartenzahl = kartenZumThema(thema).length
+  /*
+    Die Meldungen zum Thema – der Strang unter /news/strang/thema/… war nur
+    über die Suche erreichbar (`npm run verwaist`, acht Themen).
+  */
+  const meldungen = straenge(await getNewsArticles(), 'thema').find(
+    (strang) => strang.schluessel === thema
+  )
 
   const [relatedTopics, quotes] = await Promise.all([
     getRelatedTopics(thema),
@@ -306,6 +315,21 @@ export default async function TopicPage({ params }: TopicPageProps) {
                     <Icon name="arrow-right" className="size-3.5" />
                   </Link>
                 )}
+              </section>
+            )}
+
+            {meldungen && (
+              <section aria-labelledby="meldungen-thema" className="fk-block">
+                <h2 id="meldungen-thema" className="text-fg text-base font-bold">
+                  In den Nachrichten
+                </h2>
+                <Link
+                  href={`/news/strang/thema/${thema}`}
+                  className="text-fg hover:bg-surface-muted hover:text-brand mt-3 flex items-center justify-between gap-2.5 rounded-md p-2.5 text-sm font-medium transition"
+                >
+                  {meldungen.artikel.length} Meldungen zu diesem Thema
+                  <Icon name="arrow-right" className="size-3.5 shrink-0" />
+                </Link>
               </section>
             )}
 

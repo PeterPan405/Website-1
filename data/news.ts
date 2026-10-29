@@ -12892,7 +12892,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'tankrabatt-kritik-planwirtschaft-uebergewinnsteuer',
     title:
       'Tankrabatt-Streit: Kubicki spricht von Planwirtschaft, SPD-Länder wollen mehr',
-    metaTitle: 'Streit um den Tankrabatt: Planwirtschaft-Vorwurf, Ruf nach EU-Steuer',
+    metaTitle: 'Tankrabatt-Streit: Planwirtschaft-Vorwurf, Ruf nach EU-Steuer',
     teaser:
       'Kaum ist der Tankrabatt vereinbart, gehen die Meinungen auseinander: Kritik von der FDP, zusätzliche Forderungen aus zwei SPD-geführten Ländern.',
     category: 'Steuern & Recht',

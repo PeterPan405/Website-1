@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { Icon } from '@/components/ui/Icon'
+
 import { GlobusAnsicht } from '@/components/globus/GlobusAnsicht'
 import { Laendertabelle } from '@/components/globus/Laendertabelle'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
@@ -125,12 +127,22 @@ export default async function GlobusPage() {
           <h2 id="tabelle" className="text-fg text-xl font-bold">
             Alle Länder als Tabelle
           </h2>
-          <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">
-            Dieselben Zahlen zum Nachlesen, sortiert nach Wirtschaftsleistung. Der Globus
-            ist eine Zeichenfläche und für Screenreader nicht lesbar – diese Tabelle ist
-            deshalb nicht die Beigabe, sondern die vollständige Fassung.
-          </p>
-          <Laendertabelle laender={laender} />
+          {/*
+            Zugeklappt (29.10.2026, „deutlich gekürzt"): Die Tabelle allein
+            machte gut 20.000 der 24.742 px auf dem Telefon aus. Sie bleibt die
+            vollständige Fassung für Screenreader – ein `<details>` lässt sich
+            mit Tastatur und Vorleser öffnen wie jeder Knopf.
+          */}
+          <details className="group mt-3">
+            <summary className="text-fg-muted hover:text-fg inline-flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+              {laender.length} Länder anzeigen, sortiert nach Wirtschaftsleistung
+              <Icon
+                name="chevron-right"
+                className="size-4 transition group-open:rotate-90"
+              />
+            </summary>
+            <Laendertabelle laender={laender} />
+          </details>
         </section>
 
         {/* --------------------------------------------------------- Quellen */}
@@ -202,12 +214,22 @@ export default async function GlobusPage() {
           <h2 id="tabelle" className="text-fg text-xl font-bold">
             Alle Länder als Tabelle
           </h2>
-          <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">
-            Dieselben Zahlen zum Nachlesen, sortiert nach Wirtschaftsleistung. Der Globus
-            ist eine Zeichenfläche und für Screenreader nicht lesbar – diese Tabelle ist
-            deshalb nicht die Beigabe, sondern die vollständige Fassung.
-          </p>
-          <Laendertabelle laender={laender} />
+          {/*
+            Zugeklappt (29.10.2026, „deutlich gekürzt"): Die Tabelle allein
+            machte gut 20.000 der 24.742 px auf dem Telefon aus. Sie bleibt die
+            vollständige Fassung für Screenreader – ein `<details>` lässt sich
+            mit Tastatur und Vorleser öffnen wie jeder Knopf.
+          */}
+          <details className="group mt-3">
+            <summary className="text-fg-muted hover:text-fg inline-flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+              {laender.length} Länder anzeigen, sortiert nach Wirtschaftsleistung
+              <Icon
+                name="chevron-right"
+                className="size-4 transition group-open:rotate-90"
+              />
+            </summary>
+            <Laendertabelle laender={laender} />
+          </details>
         </section>
 
         {/* --------------------------------------------------------- Quellen */}

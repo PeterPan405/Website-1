@@ -55,6 +55,13 @@ const OHNE_VERWEIS_IN_ORDNUNG: { muster: RegExp; grund: string }[] = [
     muster: /^\/suchindex\.json$/,
     grund: 'Datenbestand der Suche, keine Seite zum Ansehen.',
   },
+  {
+    muster: /^\/suche$/,
+    grund:
+      'Die Ergebnisseite der Suche. Der Suchdialog verweist erst nach einer Eingabe ' +
+      'darauf (`/suche?q=…`, components/layout/SearchDialog.tsx) – im gebauten HTML ' +
+      'steht der Verweis deshalb nicht.',
+  },
 ]
 
 function alleSeiten(ordner: string): string[] {

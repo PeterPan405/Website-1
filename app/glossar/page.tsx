@@ -106,65 +106,87 @@ export default async function GlossarSeite() {
                 <div
                   key={eintrag.slug}
                   id={eintrag.slug}
-                  className="border-border scroll-mt-32 border-b py-5"
+                  className="border-border scroll-mt-32 border-b py-4"
                 >
                   <dt className="text-fg font-display text-lg font-semibold">
                     {eintrag.begriff}
                   </dt>
                   <dd className="mt-1.5">
                     <p className="text-fg-muted leading-relaxed">{eintrag.kurz}</p>
-                    {eintrag.lang && (
-                      <p className="text-fg-subtle mt-2 text-sm leading-relaxed">
-                        {eintrag.lang}
-                      </p>
-                    )}
-
-                    {(eintrag.verwandt.length > 0 ||
+                    {/*
+                      Offen steht die Kurzfassung, der Rest zugeklappt
+                      (29.10.2026, „deutlich gekürzt … übersichtlicher"):
+                      124 Begriffe mit Langtext und Verweisen ergaben 38.616 px
+                      auf dem Telefon. Die Sprungmarke sitzt am Begriff, nicht
+                      im Zugeklappten – `/glossar#slug` kommt an.
+                    */}
+                    {(eintrag.lang ||
+                      eintrag.verwandt.length > 0 ||
                       eintrag.themaTitel ||
                       eintrag.lektionTitel ||
                       eintrag.rechnerTitel) && (
-                      <div className="border-border mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-3 text-sm">
-                        {eintrag.themaTitel && (
-                          <Link
-                            href={`/lernen/${eintrag.thema}`}
-                            className="text-learn hover:text-brand font-semibold transition"
-                          >
-                            Lernthema: {eintrag.themaTitel}
-                          </Link>
-                        )}
-                        {eintrag.lektionTitel && (
-                          <Link
-                            href={`/akademie/${eintrag.lektion}`}
-                            className="text-akademie hover:text-brand font-semibold transition"
-                          >
-                            Akademie: {eintrag.lektionTitel}
-                          </Link>
-                        )}
-                        {eintrag.rechnerTitel && (
-                          <Link
-                            href={`/rechner/${eintrag.rechner}`}
-                            className="text-tools hover:text-brand font-semibold transition"
-                          >
-                            Rechner: {eintrag.rechnerTitel}
-                          </Link>
-                        )}
-                        {eintrag.verwandt.length > 0 && (
-                          <p className="text-fg-subtle">
-                            Siehe auch:{' '}
-                            {eintrag.verwandt.map((verweis, stelle) => (
-                              <span key={verweis.slug}>
-                                {stelle > 0 && ', '}
-                                <a
-                                  href={`#${verweis.slug}`}
-                                  className="hover:text-brand underline decoration-dotted underline-offset-4"
-                                >
-                                  {verweis.begriff}
-                                </a>
-                              </span>
-                            ))}
+                      <details className="group mt-1">
+                        <summary className="text-fg-muted hover:text-fg inline-flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                          Mehr dazu
+                          <Icon
+                            name="chevron-right"
+                            className="size-4 transition group-open:rotate-90"
+                          />
+                        </summary>
+                        {eintrag.lang && (
+                          <p className="text-fg-subtle mt-1 text-sm leading-relaxed">
+                            {eintrag.lang}
                           </p>
                         )}
-                      </div>
+
+                        {(eintrag.verwandt.length > 0 ||
+                          eintrag.themaTitel ||
+                          eintrag.lektionTitel ||
+                          eintrag.rechnerTitel) && (
+                          <div className="border-border mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-3 text-sm">
+                            {eintrag.themaTitel && (
+                              <Link
+                                href={`/lernen/${eintrag.thema}`}
+                                className="text-learn hover:text-brand font-semibold transition"
+                              >
+                                Lernthema: {eintrag.themaTitel}
+                              </Link>
+                            )}
+                            {eintrag.lektionTitel && (
+                              <Link
+                                href={`/akademie/${eintrag.lektion}`}
+                                className="text-akademie hover:text-brand font-semibold transition"
+                              >
+                                Akademie: {eintrag.lektionTitel}
+                              </Link>
+                            )}
+                            {eintrag.rechnerTitel && (
+                              <Link
+                                href={`/rechner/${eintrag.rechner}`}
+                                className="text-tools hover:text-brand font-semibold transition"
+                              >
+                                Rechner: {eintrag.rechnerTitel}
+                              </Link>
+                            )}
+                            {eintrag.verwandt.length > 0 && (
+                              <p className="text-fg-subtle">
+                                Siehe auch:{' '}
+                                {eintrag.verwandt.map((verweis, stelle) => (
+                                  <span key={verweis.slug}>
+                                    {stelle > 0 && ', '}
+                                    <a
+                                      href={`#${verweis.slug}`}
+                                      className="hover:text-brand underline decoration-dotted underline-offset-4"
+                                    >
+                                      {verweis.begriff}
+                                    </a>
+                                  </span>
+                                ))}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </details>
                     )}
                   </dd>
                 </div>
