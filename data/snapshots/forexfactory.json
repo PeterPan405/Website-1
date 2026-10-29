@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-28T18:49:12.385Z",
+  "abgerufen": "2026-10-29T18:56:38.891Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -247,7 +247,7 @@
     {"title":"M4 Money Supply m/m","country":"GBP","date":"2026-10-29T05:30:00-04:00","impact":"Low","forecast":"0.3%","previous":"0.4%"},
     {"title":"Mortgage Approvals","country":"GBP","date":"2026-10-29T05:30:00-04:00","impact":"Low","forecast":"54K","previous":"55K"},
     {"title":"Net Lending to Individuals m/m","country":"GBP","date":"2026-10-29T05:30:00-04:00","impact":"Low","forecast":"6.2B","previous":"6.9B"},
-    {"title":"Italian 10-y Bond Auction","country":"EUR","date":"2026-10-29T05:33:00-04:00","impact":"Low","forecast":"","previous":"4.58|1.6"},
+    {"title":"Italian 10-y Bond Auction","country":"EUR","date":"2026-10-29T06:08:00-04:00","impact":"Low","forecast":"","previous":"4.58|1.6"},
     {"title":"Advance GDP Price Index q/q","country":"USD","date":"2026-10-29T08:30:00-04:00","impact":"Medium","forecast":"3.2%","previous":"6.2%"},
     {"title":"Advance GDP q/q","country":"USD","date":"2026-10-29T08:30:00-04:00","impact":"High","forecast":"3.2%","previous":"1.5%"},
     {"title":"Core PCE Price Index m/m","country":"USD","date":"2026-10-29T08:30:00-04:00","impact":"High","forecast":"0.3%","previous":"0.2%"},
