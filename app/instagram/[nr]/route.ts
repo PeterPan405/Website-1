@@ -1,5 +1,6 @@
 import {
   deckblaetter,
+  deckblattMitFoto,
   deckblattZumThema,
   meldungskachel,
   motivJpeg,
@@ -65,14 +66,25 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
 
   /* Das Deckblatt zum Thema der wichtigsten Meldung, wenn es eins gibt. */
   const plan = stand.status === 'tagesnews' ? stand.plan : null
-  const thema = plan
-    ? deckblattMotiv(plan.kacheln, deckblaetter(), kachelnVomVortag(stand.datum))
-    : null
+  /*
+    Ein Deckblatt mit dem Foto des Tages (29.10.2026) geht dem Thema-Deckblatt
+    vor; dann ist kein festes Motiv ans Deckblatt vergeben.
+  */
+  const deckblattFoto = plan ? tagesbild(stand.datum, 1) : null
+  const thema =
+    plan && !deckblattFoto
+      ? deckblattMotiv(plan.kacheln, deckblaetter(), kachelnVomVortag(stand.datum))
+      : null
 
   let jpeg: Buffer
   if (stelle === 1) {
     // Das Deckblatt ist schon ein JPEG aus dem Kanal – unverändert ausliefern.
-    jpeg = deckblattZumThema(stand.datum, thema?.quelle ?? null).jpeg
+    if (deckblattFoto) {
+      const { default: sharp } = await import('sharp')
+      jpeg = await sharp(await deckblattMitFoto(deckblattFoto))
+        .jpeg({ quality: 90, mozjpeg: true })
+        .toBuffer()
+    } else jpeg = deckblattZumThema(stand.datum, thema?.quelle ?? null).jpeg
   } else {
     /*
       JPEG, nicht PNG: Meta nimmt für Beiträge nur JPEG. `ImageResponse`

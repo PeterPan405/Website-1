@@ -448,6 +448,84 @@ export async function meldungskachel(
   return Buffer.from(await bildAntwort.arrayBuffer())
 }
 
+/**
+ * Das Deckblatt mit dem Foto des Tages (29.10.2026). Der Betreiber: „Das
+ * Deckblatt kann gern bisschen spannender sein mit irgendeinem aktuellen
+ * Thema. Das muss nicht immer so eine langweilige Skyline sein" – kommt in
+ * den News Trump vor, zeigt das Deckblatt Trump.
+ *
+ * Oben links „Top-News des Tages" in Anton, schwarz auf Weiß wie die alten
+ * Deckblätter; darunter das Foto über die volle Breite. Die alten hatten
+ * einen hellen Himmel hinter der Schrift – ein Tagesfoto hat ihn nicht.
+ */
+export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
+  const hoehe = IG_HOEHE - DECKBLATT_FOTO_OBEN
+  const antwort = new ImageResponse(
+    h(
+      'div',
+      {
+        style: {
+          width: IG_BREITE,
+          height: IG_HOEHE,
+          display: 'flex',
+          position: 'relative',
+          backgroundColor: '#ffffff',
+        },
+      },
+      h('img', {
+        src: `data:image/jpeg;base64,${foto.toString('base64')}`,
+        width: IG_BREITE,
+        height: hoehe,
+        style: {
+          position: 'absolute',
+          left: 0,
+          top: DECKBLATT_FOTO_OBEN,
+          objectFit: 'cover',
+        },
+      }),
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: 0,
+          top: DECKBLATT_FOTO_OBEN,
+          width: IG_BREITE,
+          height: 36,
+          backgroundImage:
+            'linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 100%)',
+        },
+      }),
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: 52,
+            top: 30,
+            width: 960,
+            display: 'flex',
+            flexDirection: 'column',
+            fontFamily: 'Anton',
+            fontSize: 150,
+            lineHeight: 1.2,
+            color: '#000000',
+          },
+        },
+        h('div', { style: { display: 'flex' } }, 'Top-News'),
+        h('div', { style: { display: 'flex' } }, 'des Tages')
+      )
+    ),
+    { width: IG_BREITE, height: IG_HOEHE, fonts: schriften() }
+  )
+  return Buffer.from(await antwort.arrayBuffer())
+}
+
+/**
+ * Wo das Foto beginnt – unter der Schrift, nicht hinter ihr: Ein Gesicht
+ * sitzt im Zuschnitt meist oben, und ein Verlauf über dem Foto hätte es
+ * verdeckt (Probe am 29.10.2026). Darüber Weiß, wie in den Meldungskacheln.
+ */
+export const DECKBLATT_FOTO_OBEN = 420
+
 /** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
 export function motivJpeg(id: string): Buffer {
   return readFileSync(join(ORDNER, 'motive', `${id}.jpg`))

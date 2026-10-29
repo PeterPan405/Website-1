@@ -123,6 +123,34 @@ pruefe(
   sichtBefund(urteil([{ stelle: 2, passt: true }]), [2, 3]).ausgefallen
 )
 
+// 29.10.2026: Deckblatt wie beim letzten Beitrag – muss beanstandet werden.
+{
+  const deck = { ...richtig[0], stelle: 1 }
+  const gestern = [{ datum: '2026-10-28', stelle: 1, abdruck: deck.abdruck }]
+  pruefe(
+    'Deckblatt wie am Vortag: beanstandet',
+    gerechneterBefund('2026-10-29', [deck], gestern).some((f) =>
+      f.startsWith('Kachel 1 zeigt dasselbe Deckblatt')
+    )
+  )
+  pruefe(
+    'Deckblatt wie vor einer Woche (feste Reihe): in Ordnung',
+    gerechneterBefund(
+      '2026-10-29',
+      [deck],
+      [
+        { datum: '2026-10-21', stelle: 1, abdruck: deck.abdruck },
+        { datum: '2026-10-28', stelle: 1, abdruck: '0000000000000000' },
+      ]
+    ).length === 0
+  )
+  pruefe(
+    'abgelehnteStellen: das Deckblatt wird neu gesucht',
+    abgelehnteStellen(['Kachel 1 zeigt dasselbe Deckblatt wie am 2026-10-28']).join() ===
+      '1'
+  )
+}
+
 // Selbstreparatur: aus den Befunden die Stellen, die neu gesucht werden.
 {
   const stellen = abgelehnteStellen([

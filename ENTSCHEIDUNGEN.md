@@ -5752,6 +5752,16 @@ den Beitrag wieder an, und der prüft wieder vollständig – höchstens acht
 Runden am Tag, dann tauscht der Betreiber von Hand. Durchgelassen wird
 nichts, um pünktlich zu sein.
 
+**Das Deckblatt trägt ein Foto zum Tag** (29.10.2026). Der Betreiber: „Das
+Deckblatt kann gern bisschen spannender sein mit irgendeinem aktuellen
+Thema. Das muss nicht immer so eine langweilige Skyline sein." Zuerst ein
+Mensch aus den Meldungen (`PERSONEN`, Trump vor dem Thema der ersten
+Meldung), sonst deren Thema – gesucht wie die Kacheln, geprüft wie sie,
+Auge und Waage. Die Schrift steht auf Weiß über dem Foto, nicht darin: Ein
+Verlauf über dem Foto verdeckte in der Probe das Gesicht. Ohne Treffer die
+feste Reihe; nie dasselbe Deckblatt wie beim letzten Beitrag – am 28. und
+29.10. kam zweimal die Fed, der Betreiber löschte den Beitrag.
+
 Dazu: Der Dateiname eines Tagesbilds trägt ein Stück vom Commons-Titel
 (`dateiname()`), und die Auswahl hält an, bevor zwei Einträge auf dieselbe
 Datei zeigen (`doppelteBilder()`). Die Kritik selbst steht als Liste in

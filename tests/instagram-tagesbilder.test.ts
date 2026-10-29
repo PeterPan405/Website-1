@@ -9,6 +9,7 @@ import { existsSync } from 'node:fs'
 import { marketDefinitions } from '@/data/markets'
 import { bebildere, MOTIVE, motiveVomVortag } from '@/lib/instagram-motive'
 import {
+  deckblattSuchen,
   type Kandidat,
   dateiname,
   doppelteBilder,
@@ -433,6 +434,24 @@ pruefe(
   israel[0]?.begriff === 'Tel Aviv Stock Exchange' &&
     israel[0]?.mussEnthalten === 'tel aviv',
   JSON.stringify(israel[0])
+)
+const deckTrump = deckblattSuchen([
+  { titel: 'Fed pausiert bei Zinsen', text: 'Die US-Notenbank …' },
+  { titel: 'Zölle: Neue Runde', text: 'Präsident Trump kündigte an …' },
+])
+pruefe(
+  'Deckblatt: Trump aus einer späteren Meldung vor dem Thema der ersten',
+  deckTrump[0]?.begriff === 'speech deepcat:"Donald Trump"' &&
+    deckTrump[0]?.person === true,
+  JSON.stringify(deckTrump[0])
+)
+const deckOhne = deckblattSuchen([
+  { titel: 'Israel-Wahl: Börse -3%', text: 'Der Leitindex fiel.' },
+])
+pruefe(
+  'Deckblatt ohne Person: das Thema der ersten Meldung',
+  deckOhne[0]?.begriff === 'Tel Aviv Stock Exchange',
+  JSON.stringify(deckOhne[0])
 )
 const dax = suchenFuer(
   'Dax-Aktien: Handel 24/7',

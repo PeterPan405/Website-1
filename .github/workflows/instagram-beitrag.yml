@@ -337,11 +337,17 @@ jobs:
             er hinausgeht. Niemand sieht sie danach noch an: Was du durchlässt,
             sehen tausende Menschen.
 
-            Die Kacheln liegen als `out/instagram/2.jpg`, `3.jpg`, … (so viele,
-            wie es gibt; `1.jpg` ist das Deckblatt und wird nicht geprüft).
-            Sieh **jede** einzeln an (Read). Jede Kachel hat oben eine
-            Überschrift, in der Mitte ein Bild (Foto, Logo oder Kursverlauf),
-            unten einen kurzen Text.
+            Die Kacheln liegen als `out/instagram/1.jpg`, `2.jpg`, … (so viele,
+            wie es gibt). Sieh **jede** einzeln an (Read). Ab `2.jpg` hat jede
+            Kachel oben eine Überschrift, in der Mitte ein Bild (Foto, Logo
+            oder Kursverlauf), unten einen kurzen Text.
+
+            `1.jpg` ist das Deckblatt: „Top-News des Tages" über einem Foto.
+            Es **passt**, wenn die Schrift gut lesbar ist und das Foto zu einer
+            Meldung des Beitrags gehört (die genannte Person, Ort, Marke) oder
+            neutral ist (Skyline, Börse, Zeitung). Es **passt nicht** bei
+            einem Foto, das zu keiner Meldung gehört, einer Person, die in
+            keiner Meldung vorkommt, oder Schrift, die im Bild untergeht.
 
             Eine Kachel **passt nicht**, wenn
             - das Bild etwas anderes zeigt, als die Meldung meint: ein anderes
