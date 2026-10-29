@@ -295,5 +295,45 @@
       "urheber": "DXR",
       "suche": "European Central Bank"
     }
+  ],
+  "2026-10-29": [
+    {
+      "stelle": 2,
+      "datei": "2026-10-29-2-293f992a.jpg",
+      "titel": "File:Swearing-in ceremony for Federal Reserve Chair Kevin Warsh at the White House, Friday, May 22, 2026 - 8.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Swearing-in_ceremony_for_Federal_Reserve_Chair_Kevin_Warsh_at_the_White_House,_Friday,_May_22,_2026_-_8.jpg",
+      "lizenz": "Public domain",
+      "urheber": "The White House",
+      "suche": "deepcat:\"Kevin Warsh\""
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-10-29-3-b27a60d7.jpg",
+      "titel": "File:Google bus at Sunnyvale campus.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Google_bus_at_Sunnyvale_campus.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Grendelkhan",
+      "suche": "Google logo"
+    },
+    {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: deutsche-bank",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "deutsche-bank"
+    },
+    {
+      "stelle": 6,
+      "datei": "",
+      "titel": "Kurs: ubs",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "ubs"
+    }
   ]
 }
