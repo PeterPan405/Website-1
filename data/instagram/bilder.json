@@ -299,12 +299,12 @@
   "2026-10-29": [
     {
       "stelle": 2,
-      "datei": "2026-10-29-2-c87df7c1.jpg",
-      "titel": "File:Kevin Warsh webtake.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Kevin_Warsh_webtake.jpg",
+      "datei": "2026-10-29-2-686e2036.jpg",
+      "titel": "File:Eccles Building (26088200676).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Eccles_Building_(26088200676).jpg",
       "lizenz": "Public domain",
-      "urheber": "The White House",
-      "suche": "deepcat:\"Kevin Warsh\""
+      "urheber": "Federalreserve",
+      "suche": "von Hand gewählt"
     },
     {
       "stelle": 3,
@@ -326,14 +326,22 @@
       "kurs": "deutsche-bank"
     },
     {
+      "stelle": 5,
+      "datei": "2026-10-29-5-10ffd9c1.jpg",
+      "titel": "File:TASE 2019.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:TASE_2019.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "דוד שי",
+      "suche": "von Hand gewählt"
+    },
+    {
       "stelle": 6,
-      "datei": "",
-      "titel": "Kurs: ubs",
-      "seite": "",
-      "lizenz": "Kursgrafik",
-      "urheber": "",
-      "suche": "kein Markenfoto – Kursverlauf",
-      "kurs": "ubs"
+      "datei": "2026-10-29-6-b945f8a6.jpg",
+      "titel": "File:UBS Building, New York City นายกรัฐมนตรี เข้าร่วมการ - Flickr - Abhisit Vejjajiva.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:UBS_Building,_New_York_City_%E0%B8%99%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B8%B1%E0%B8%90%E0%B8%A1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B5_%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3_-_Flickr_-_Abhisit_Vejjajiva.jpg",
+      "lizenz": "CC BY 2.0",
+      "urheber": "Government of Thailand",
+      "suche": "von Hand gewählt"
     }
   ]
 }
