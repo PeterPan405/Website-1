@@ -423,6 +423,17 @@ pruefe(
   kredite[0]?.begriff === 'Deutsche Bundesbank Frankfurt',
   JSON.stringify(kredite[0])
 )
+const israel = suchenFuer(
+  'Israel-Wahl: Börse -3%',
+  'boerse',
+  'Bei der Parlamentswahl in Israel verfehlte das Lager von Benjamin Netanyahu die Mehrheit. Der Leitindex fiel um drei Prozent, der Schekel ebenfalls.'
+)
+pruefe(
+  'Israel: zuerst die Börse Tel Aviv, nicht die Euro-Scheine des Rückfalls',
+  israel[0]?.begriff === 'Tel Aviv Stock Exchange' &&
+    israel[0]?.mussEnthalten === 'tel aviv',
+  JSON.stringify(israel[0])
+)
 const dax = suchenFuer(
   'Dax-Aktien: Handel 24/7',
   'boerse',

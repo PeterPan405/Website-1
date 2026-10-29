@@ -386,6 +386,16 @@ export const THEMENSUCHE: {
     begriffe: ['Deutsche Bundesbank Frankfurt', 'Bankenviertel Frankfurt'],
     mussEnthalten: 'bank',
   },
+  /*
+    Israel (29.10.2026): „Israel-Wahl: Börse -3%" fand nichts und bekam das
+    feste Motiv – Euro-Scheine für den Schekel, acht Reparaturen lang. Die
+    Börse Tel Aviv trägt ihren Namen am Gebäude und auf der Kurstafel.
+  */
+  {
+    muster: /Israel|Tel Aviv|Schekel|\bTA-35\b/u,
+    begriffe: ['Tel Aviv Stock Exchange', 'Tel Aviv skyline'],
+    mussEnthalten: 'tel aviv',
+  },
 ]
 
 export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
