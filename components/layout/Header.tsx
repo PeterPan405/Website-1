@@ -140,7 +140,7 @@ export function Header() {
         aus der Spalte heraus. Volle Breite ist dafür der großzügigere Weg
         als eine zweite, etwas breitere Spalte.
       */}
-      <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6">
         <Link
           href="/"
           className="text-fg hover:text-brand rounded-md transition"
@@ -168,7 +168,12 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        {/*
+          Enger auf dem Telefon: Mit dem kräftigeren Schriftzug (27.10.2026)
+          ragte die Leiste bei 375 px um 8 px über den Rand – jede Seite ließ
+          sich seitlich schieben (`npm run breite`).
+        */}
+        <div className="flex items-center gap-0.5 sm:gap-2">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}

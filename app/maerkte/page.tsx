@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import type { ReactNode } from 'react'
 
 import { QuoteRow } from '@/components/markets/QuoteRow'
-import { Stimmungskachel } from '@/components/markets/Stimmungskachel'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { magnificentSeven } from '@/data/markets'
-import { getBranchen } from '@/lib/branchen'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getFundamentalkennzahlen, getMarktstimmung, getQuotes } from '@/lib/markets'
+import { getFundamentalkennzahlen, getQuotes, type MarketQuote } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 /**
@@ -65,37 +64,47 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function MarketsOverviewPage() {
-  const [quotes, stimmungAktien, stimmungKrypto] = await Promise.all([
-    getQuotes(),
-    getMarktstimmung('aktien'),
-    getMarktstimmung('krypto'),
-  ])
+  const quotes = await getQuotes()
 
-  const branchenZahl = getBranchen().length
-
-  const fxQuotes = quotes.filter((quote) => quote.kind === 'fx')
-  const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
-  const commodityQuotes = quotes.filter((quote) => quote.kind === 'commodity')
-  const cryptoQuotes = quotes.filter((quote) => quote.kind === 'crypto')
-  const etfQuotes = quotes.filter((quote) => quote.kind === 'etf')
+  const art = (kind: MarketQuote['kind']) => quotes.filter((quote) => quote.kind === kind)
   /*
-    Die Magnificent Seven stehen getrennt von den übrigen Aktien.
-
-    Nicht wegen ihrer Bekanntheit, sondern wegen ihres Gewichts: Zusammen
-    machen sie einen erheblichen Teil des S&P 500 aus. Sie zwischen hundert
-    andere Zeilen zu setzen, hieße genau die Konzentration zu verstecken, um
-    die es geht.
+    Die Magnificent Seven stehen getrennt von den übrigen Aktien – nicht
+    wegen ihrer Bekanntheit, sondern wegen ihres Gewichts im S&P 500.
   */
   const magSevenQuotes = await sortiereNachBoersenwert(
     magnificentSeven
       .map((symbol) => quotes.find((quote) => quote.symbol === symbol))
-      .filter((quote): quote is (typeof quotes)[number] => Boolean(quote))
+      .filter((quote): quote is MarketQuote => Boolean(quote))
   )
-  const stockQuotes = quotes.filter(
-    (quote) =>
-      quote.kind === 'stock' &&
-      !magnificentSeven.includes(quote.symbol as (typeof magnificentSeven)[number])
-  )
+  const aktienZahl = art('stock').length
+
+  /*
+    Weniger, nicht anders (29.10.2026). Der Betreiber: „immer noch sehr
+    unübersichtlich … deutlich gekürzt … im Trade-Republic-Style". Die Seite
+    war 19.583 Pixel hoch, auf dem Telefon 52.124 – über tausend Aktienzeilen
+    am Stück, ein Vorspann unter jeder Überschrift, acht Verweise über den
+    Kursen und zwei Stimmungstachos, deren Zahl nicht stimmte (Aktien 71,
+    Krypto 82 „extreme Gier", während der verbreitete Kryptoindex am selben
+    Tag 51 „neutral" zeigte).
+
+    Jetzt: je Abschnitt Überschrift und Liste, die ersten Zeilen offen, der
+    Rest hinter „Alle …". Die Einzelaktien stehen nach Branchen, im Screener
+    und in den Auswertungen – nicht als Wand auf der Übersicht.
+  */
+  const abschnitte: { id: string; titel: string; liste: MarketQuote[]; offen: number }[] =
+    [
+      { id: 'indizes', titel: 'Indizes', liste: art('index'), offen: 8 },
+      {
+        id: 'magnificent-seven',
+        titel: 'Magnificent Seven',
+        liste: magSevenQuotes,
+        offen: 8,
+      },
+      { id: 'etfs', titel: 'ETFs', liste: art('etf'), offen: 6 },
+      { id: 'rohstoffe', titel: 'Rohstoffe', liste: art('commodity'), offen: 6 },
+      { id: 'waehrungen', titel: 'Währungen', liste: art('fx'), offen: 6 },
+      { id: 'krypto', titel: 'Krypto', liste: art('crypto'), offen: 6 },
+    ]
 
   return (
     <>
@@ -103,354 +112,89 @@ export default async function MarketsOverviewPage() {
         area="markets"
         eyebrow="Märkte"
         eyebrowIcon="chart"
-        title="Kurse, die auch erklärt werden"
-        /*
-          Ohne Vorspann. Er sagte, was auf jeder Detailseite steht – und stand
-          dabei zwischen dem Besucher und dem, weshalb er hier ist: den Kursen.
-          Was gelistet ist, sagt die Zeile darunter in sieben Wörtern.
-        */
+        title="Kurse"
         breadcrumbs={<Breadcrumbs items={[{ name: 'Märkte' }]} />}
-        /*
-          Die Zählung ist zugleich das Inhaltsverzeichnis.
-
-          Sie stand hier schon, sagte aber nur, wie viel kommt. Auf dem Telefon
-          ist diese Seite mehrere Bildschirmhöhen lang; wer die drei
-          Kryptowährungen sehen will, hat vorher an tausend Aktienzeilen
-          vorbeizuscrollen. Jetzt führt jede Zahl an ihren Abschnitt – dieselben
-          Ziele wie zuvor, nur anklickbar.
-
-          **Ohne Stand-Zeile.** Hier stand „Stand 10. August 2026 um 18:00 Uhr"
-          – der Zeitpunkt des letzten Baus, nicht der der Kurse. Seit die Zahlen
-          aus `kurse-live.json` kommen und wenige Minuten alt sind, war diese
-          Zeile die einzige veraltete Angabe auf der Seite und widersprach genau
-          dem, was daneben stand. Der tatsächliche Stand gehört an den einzelnen
-          Kurs, wo er auch steht.
-        */
-        meta={
-          <>
-            {[
-              { ziel: 'indizes', text: `${indexQuotes.length} Indizes` },
-              { ziel: 'etfs', text: `${etfQuotes.length} ETFs` },
-              { ziel: 'rohstoffe', text: `${commodityQuotes.length} Rohstoffe` },
-              { ziel: 'waehrungen', text: `${fxQuotes.length} Währungspaare` },
-              { ziel: 'krypto', text: `${cryptoQuotes.length} Kryptowährungen` },
-              {
-                ziel: 'aktien',
-                text: `${magSevenQuotes.length + stockQuotes.length} Einzelaktien`,
-              },
-            ].map((eintrag, stelle) => (
-              <Fragment key={eintrag.ziel}>
-                {stelle > 0 && <span aria-hidden="true">·</span>}
-                <a
-                  href={`#${eintrag.ziel}`}
-                  className="hover:text-markets underline underline-offset-2 transition"
-                >
-                  {eintrag.text}
-                </a>
-              </Fragment>
-            ))}
-          </>
-        }
       />
 
-      {/*
-        Oben knapper als unten – und das ist eine Folge davon, dass hier
-        Fließtext weggefallen ist.
-
-        Der Abstand war für einen Absatz gemacht: 48 Pixel Kopfzeilenfuß, 64
-        Pixel Innenabstand und 16 Pixel Rand am Verweis, zusammen gut 128. Mit
-        einem Textblock darin sah das richtig aus. Ohne ihn steht die
-        Verweiszeile allein in der Fläche und wirkt wie ein Rest, der nach
-        oben gerutscht ist – gemeldet vom Betreiber, sichtbar in einem
-        Bildausschnitt, auf dem zwischen „1029 Einzelaktien" und „Tagesbild"
-        nichts ist.
-
-        Die Zeile gehört zum Kopf, nicht zum Inhalt: Sie zählt auf, wohin es
-        von hier aus weitergeht, genau wie die Zeile mit den Stückzahlen
-        darüber. Also rückt sie an ihn heran. Der Innenabstand nach unten
-        bleibt, wie er war – dort steht wieder Inhalt.
-      */}
-      <div className="fk-container pt-2 pb-12 sm:pt-3 sm:pb-16">
-        {/*
-          Hier stand die Herkunftszeile – Abrufabstand, Quellen, Demo-Kurse. Sie
-          ist ersatzlos weg, und das ist keine Auslassung:
-
-          Der Abrufabstand und die Quellen stehen in der Fußzeile, also auf
-          jeder Seite. Und der Hinweis auf einen Demo-Kurs steht an jedem
-          einzelnen betroffenen Kurs – dort, wo er jemanden erreicht, der die
-          Zahl gerade liest. Als Absatz weit darüber war er eine Vorwarnung auf
-          Vorrat: sechs Zeilen, die vor den Kursen standen und nach dem dritten
-          Besuch niemand mehr las.
-        */}
-
-        {/*
-          Nur noch die Verweise, ohne den Fließtext drumherum.
-
-          Hier standen vier Sätze, die erklärten, was auf den vier Unterseiten
-          zu finden ist. Das ist genau die Arbeit, die eine Seite ihrem
-          Besucher abnehmen soll und nicht aufhalsen: Wer „Saisonalität“ liest,
-          klickt oder klickt nicht – ein Satz davor, was ihn dort erwartet,
-          ändert daran nichts und kostet vier Zeilen über den Kursen.
-
-          Die Verweise bleiben, weil sie der einzige Weg zu diesen Seiten sind.
-          Als Zeile statt als Absatz sind sie außerdem schneller zu erfassen.
-        */}
-        <nav aria-label="Auswertungen">
-          <ul className="text-markets flex flex-wrap items-center gap-x-5 gap-y-2 font-medium">
-            {[
-              { href: '/maerkte/tagesbild', text: 'Tagesbild' },
-              { href: '/maerkte/zusammenhang', text: 'Zusammenhang und Schwankung' },
-              { href: '/maerkte/saisonalitaet', text: 'Saisonalität' },
-              /*
-                Die beiden Seiten zum Weltindex. Sie standen zuerst nicht
-                hier – und waren damit nur über die Suche und einen
-                Querverweis erreichbar, obwohl im Kommentar darüber steht,
-                dass diese Zeile der einzige Weg zu solchen Seiten ist.
-              */
-              {
-                href: '/maerkte/waehrungen-im-weltindex',
-                text: 'Währungen im Weltindex',
-              },
-              { href: '/maerkte/klumpenrisiko', text: 'Klumpenrisiko' },
-              { href: '/maerkte/screener', text: 'Screener' },
-              { href: '/maerkte/handelsfreie-tage', text: 'Handelsfreie Tage' },
-              { href: '/maerkte/merkliste', text: 'Merkliste' },
-            ].map((ziel) => (
-              <li key={ziel.href}>
-                <Link href={ziel.href} className="underline underline-offset-2">
-                  {ziel.text}
-                </Link>
+      <div className="fk-container pb-16">
+        {/* Die Abschnitte als Leiste zum Springen – wie die Reiter einer App. */}
+        <nav aria-label="Abschnitte" className="-mx-1 overflow-x-auto">
+          <ul className="flex gap-2 px-1 pb-1">
+            {[...abschnitte, { id: 'aktien', titel: 'Aktien' }].map((a) => (
+              <li key={a.id} className="shrink-0">
+                <a
+                  href={`#${a.id}`}
+                  className="bg-surface-muted text-fg hover:bg-border inline-flex min-h-9 items-center rounded-full px-4 text-sm font-semibold transition-colors"
+                >
+                  {a.titel}
+                </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <section aria-labelledby="indizes" className="mt-12">
-          <h2 id="indizes" className="text-fg text-xl font-bold">
-            Aktienindizes
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Ein Index misst die Entwicklung eines festgelegten Korbs von Aktien. Sein
-            Stand in Punkten ist kein Geldbetrag, sondern ein Vergleichswert gegenüber dem
-            Startdatum.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {indexQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
+        {abschnitte
+          .filter((a) => a.liste.length > 0)
+          .map((a) => (
+            <Abschnitt key={a.id} id={a.id} titel={a.titel}>
+              <Kursliste quotes={a.liste.slice(0, a.offen)} />
+              {a.liste.length > a.offen && (
+                <details className="group">
+                  <summary className="text-fg-muted hover:text-fg flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                    <span className="group-open:hidden">
+                      Alle {a.liste.length} anzeigen
+                    </span>
+                    <span className="hidden group-open:inline">Weniger anzeigen</span>
+                    <Icon
+                      name="chevron-right"
+                      className="size-4 transition group-open:rotate-90"
+                    />
+                  </summary>
+                  <Kursliste quotes={a.liste.slice(a.offen)} />
+                </details>
+              )}
+            </Abschnitt>
+          ))}
+
+        <Abschnitt id="aktien" titel="Aktien">
+          <ul className="border-border grid gap-x-12 border-t sm:grid-cols-2">
+            {[
+              {
+                href: '/maerkte/branchen',
+                text: `Alle ${aktienZahl} Aktien nach Branchen`,
+              },
+              { href: '/maerkte/screener', text: 'Screener' },
+              { href: '/maerkte/52-wochen', text: '52 Wochen' },
+              { href: '/maerkte/dividenden', text: 'Dividenden' },
+              { href: '/maerkte/vergleich', text: 'Vergleich' },
+              { href: '/maerkte/merkliste', text: 'Merkliste' },
+            ].map((ziel) => (
+              <li key={ziel.href}>
+                <Verweiszeile href={ziel.href}>{ziel.text}</Verweiszeile>
               </li>
             ))}
           </ul>
-          {stimmungAktien && (
-            <div className="mt-8 max-w-md">
-              <Stimmungskachel
-                stimmung={stimmungAktien}
-                titel="Angst und Gier am Aktienmarkt"
-                bereich="aktien"
-              />
-            </div>
-          )}
-        </section>
+        </Abschnitt>
 
-        <section aria-labelledby="magnificent-seven" className="mt-16">
-          <h2 id="magnificent-seven" className="text-fg text-xl font-bold">
-            Magnificent Seven
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Die sieben schwersten Werte im S&amp;P 500, sortiert nach ihrem Börsenwert –
-            Kurs mal Aktienzahl, gerechnet aus den aktuellen Kursen. Zusammen machen sie
-            einen erheblichen Teil des Index aus und damit auch eines weltweit streuenden
-            ETF. Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist
-            deutlich mehr, als die Zahl der enthaltenen Titel vermuten lässt.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {magSevenQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
+        <Abschnitt id="auswertungen" titel="Auswertungen">
+          <ul className="border-border grid gap-x-12 border-t sm:grid-cols-2">
+            {[
+              { href: '/maerkte/tagesbild', text: 'Tagesbild' },
+              { href: '/maerkte/zusammenhang', text: 'Zusammenhang und Schwankung' },
+              { href: '/maerkte/saisonalitaet', text: 'Saisonalität' },
+              {
+                href: '/maerkte/waehrungen-im-weltindex',
+                text: 'Währungen im Weltindex',
+              },
+              { href: '/maerkte/klumpenrisiko', text: 'Klumpenrisiko' },
+              { href: '/maerkte/handelsfreie-tage', text: 'Handelsfreie Tage' },
+            ].map((ziel) => (
+              <li key={ziel.href}>
+                <Verweiszeile href={ziel.href}>{ziel.text}</Verweiszeile>
               </li>
             ))}
           </ul>
-        </section>
-
-        {/*
-          Die ETFs stehen vor den Rohstoffen und nach den Indizes.
-
-          Nicht alphabetisch, sondern nach dem Weg, den jemand nimmt: Wer den
-          Lernbereich gelesen hat, kommt mit der Frage hierher, wie man einen
-          Index tatsächlich kauft. Genau das beantwortet dieser Abschnitt, und
-          er gehört deshalb direkt hinter die Indizes.
-        */}
-        <section aria-labelledby="etfs" className="mt-16">
-          <h2 id="etfs" className="text-fg text-xl font-bold">
-            Indexfonds (ETFs)
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Ein Index ist eine Rechenvorschrift und nicht kaufbar. Ein ETF ist das Papier,
-            mit dem man ihn kauft: ein Fonds, der den Index nachbildet und selbst an der
-            Börse gehandelt wird. Die hier geführten acht sind eine Auswahl breit
-            gestreuter Fonds –{' '}
-            <strong className="text-fg font-semibold">keine Empfehlung</strong>, sondern
-            das, was die Begriffe des Lernbereichs in der Wirklichkeit bedeuten.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {etfQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="rohstoffe" className="mt-16">
-          <h2 id="rohstoffe" className="text-fg text-xl font-bold">
-            Rohstoffe
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Edelmetalle werden je Feinunze notiert – 31,1035 Gramm –, Rohöl je Fass zu 159
-            Litern. Beides in US-Dollar: Wer in Euro rechnet, hat deshalb zwei Bewegungen
-            im Preis, die des Rohstoffs und die des Wechselkurses. Anders als Aktien und
-            Anleihen zahlen Rohstoffe keinen laufenden Ertrag – der gesamte Ertrag muss
-            aus dem Preis kommen.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {commodityQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="waehrungen" className="mt-16">
-          <h2 id="waehrungen" className="text-fg text-xl font-bold">
-            Währungspaare
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Ein Wechselkurs gibt an, wie viel der zweiten Währung eine Einheit der ersten
-            kostet. Steigt EUR/USD, wird der Euro gegenüber dem Dollar stärker.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {fxQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="krypto" className="mt-16">
-          <h2 id="krypto" className="text-fg text-xl font-bold">
-            Kryptowährungen
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Gehandelt wird rund um die Uhr, auch an Wochenenden – einen Handelsschluss
-            gibt es nicht. Anders als bei Aktien und Anleihen lässt sich hier kein Wert
-            herleiten: Der Preis ergibt sich allein daraus, was der nächste Käufer zu
-            zahlen bereit ist.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-8 border-t sm:grid-cols-2 [&>li]:min-w-0">
-            {cryptoQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
-              </li>
-            ))}
-          </ul>
-          {stimmungKrypto && (
-            <div className="mt-8 max-w-md">
-              <Stimmungskachel
-                stimmung={stimmungKrypto}
-                titel="Angst und Gier am Kryptomarkt"
-                bereich="krypto"
-              />
-            </div>
-          )}
-        </section>
-
-        {/* Zuletzt, weil es der einzige Abschnitt ohne Kacheln ist: über
-            hundert Zeilen am Stück würden jeden folgenden Abschnitt
-            wegdrücken. Die Magnificent Seven stehen weiter oben, wo sie
-            ihrem Gewicht nach hingehören. */}
-        <section aria-labelledby="aktien" className="mt-16">
-          <h2 id="aktien" className="text-fg text-xl font-bold">
-            Weitere Aktien
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Einzelwerte aus den USA, Europa und Asien. Anders als ein Index trägt eine
-            einzelne Aktie das Risiko genau dieses Unternehmens – dafür lässt sich an ihr
-            nachvollziehen, was ein Geschäftsmodell für den Kurs bedeutet. Notiert wird in
-            der Währung der jeweiligen Heimatbörse.
-          </p>
-          {/*
-            Der Verweis auf die Branchen steht über der Liste, nicht darunter:
-            Wer hier ankommt und über tausend Zeilen vor sich hat, sucht meistens
-            keinen bestimmten Titel, sondern eine Gruppe. Unter der Liste hätte
-            er den Hinweis erst nach dem Scrollen gefunden – also dann, wenn er
-            ihn nicht mehr braucht.
-          */}
-          <p className="text-fg-muted mt-3 max-w-2xl leading-relaxed">
-            Sortiert nach Geschäft statt nach Alphabet:{' '}
-            <Link
-              href="/maerkte/branchen"
-              className="text-markets font-medium underline underline-offset-2"
-            >
-              die Aktien nach Branchen
-            </Link>{' '}
-            – {branchenZahl} Gruppen von Banken bis Versorger. Wer nur ein paar Titel
-            verfolgt, legt sie auf die{' '}
-            <Link
-              href="/maerkte/merkliste"
-              className="text-markets font-medium underline underline-offset-2"
-            >
-              Merkliste
-            </Link>{' '}
-            – sie bleibt im Browser und braucht kein Konto. Und wer zwischen zwei Titeln
-            schwankt, stellt sie im{' '}
-            <Link
-              href="/maerkte/vergleich"
-              className="text-markets font-medium underline underline-offset-2"
-            >
-              Vergleich
-            </Link>{' '}
-            nebeneinander. Wen vor allem interessiert, was ausgeschüttet wird, findet das
-            gesammelt bei den{' '}
-            <Link
-              href="/maerkte/dividenden"
-              className="text-markets font-medium underline underline-offset-2"
-            >
-              Dividenden
-            </Link>
-            . Und wer wissen will, wo ein Wert in seinem Jahr steht statt nur, was er
-            heute macht, findet alle nebeneinander unter{' '}
-            <Link
-              href="/maerkte/52-wochen"
-              className="text-markets font-medium underline underline-offset-2"
-            >
-              52 Wochen
-            </Link>
-            .
-          </p>
-          {/*
-            `[&>li]:min-w-0` – ohne das schiebt sich die Seite auf dem Telefon.
-
-            Ein Rasterfeld hat von sich aus `min-width: auto` und schrumpft
-            nicht unter die kleinste Breite seines Inhalts. Eine Kurszeile
-            besteht aus Kürzel (feste 5rem), Name, Kurs und Prozentspalte
-            (feste 6rem) – zusammen ergibt das eine Mindestbreite von 389
-            Pixeln, gemessen bei 375 Pixeln Fensterbreite. Das Feld gibt nicht
-            nach, das Raster wird breiter als der Bildschirm, und die ganze
-            Seite lässt sich seitlich schieben.
-
-            Auf den Branchenseiten fällt es nicht auf: Dort ist die Liste
-            einspaltig und kein Raster. Geprüft wird es von `npm run breite`.
-          */}
-          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3 [&>li]:min-w-0">
-            {stockQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
-              </li>
-            ))}
-          </ul>
-        </section>
+        </Abschnitt>
       </div>
 
       <JsonLd
@@ -466,5 +210,57 @@ export default async function MarketsOverviewPage() {
         })}
       />
     </>
+  )
+}
+
+/** Ein Abschnitt: Überschrift 20 px/700, darunter die Liste – kein Vorspann. */
+function Abschnitt({
+  id,
+  titel,
+  children,
+}: {
+  id: string
+  titel: string
+  children: ReactNode
+}) {
+  return (
+    <section aria-labelledby={id} className="mt-10 scroll-mt-24">
+      <h2 id={id} className="text-fg mb-3 text-xl font-bold">
+        {titel}
+      </h2>
+      {children}
+    </section>
+  )
+}
+
+/**
+ * Kurszeilen in zwei Spalten. `[&>li]:min-w-0` – ohne das schiebt sich die
+ * Seite auf dem Telefon (Mindestbreite einer Kurszeile 389 px bei 375 px
+ * Fenster; geprüft von `npm run breite`).
+ */
+function Kursliste({ quotes }: { quotes: MarketQuote[] }) {
+  return (
+    <ul className="border-border grid gap-x-12 border-t sm:grid-cols-2 [&>li]:min-w-0">
+      {quotes.map((quote) => (
+        <li key={quote.symbol}>
+          <QuoteRow quote={quote} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/** Verweiszeile: Name links, Winkel rechts, Haarlinie darunter. */
+function Verweiszeile({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="border-border group flex min-h-12 items-center justify-between gap-4 border-b py-2.5"
+    >
+      <span className="text-fg text-base font-semibold underline-offset-4 group-hover:underline">
+        {children}
+      </span>
+      <Icon name="chevron-right" className="text-fg-muted size-4 shrink-0" />
+    </Link>
   )
 }
