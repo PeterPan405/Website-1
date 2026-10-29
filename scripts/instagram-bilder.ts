@@ -21,10 +21,12 @@ import {
   urheberVon,
   zuschnitt,
 } from '@/lib/commons-suche'
+import { DECKBLATT_FOTO_OBEN } from '@/lib/instagram-bild'
 import { kachelKurs } from '@/lib/instagram-kurs'
 import { bebildere, kursZurKachel } from '@/lib/instagram-motive'
 import {
   dateiname,
+  deckblattSuchen,
   doppelteBilder,
   type Tagesbild,
   leseRegister,
@@ -157,6 +159,52 @@ for (const [i, kachel] of plan.kacheln.entries()) {
     console.log(
       `::warning::Kachel ${stelle} „${kachel.titel}": kein neues Bild – das feste Motiv bleibt.`
     )
+}
+
+/*
+  Das Deckblatt (Stelle 1) mit einem Foto zum Tag (29.10.2026). Unter der
+  Schrift über die volle Breite – `deckblattMitFoto()`. Ohne Treffer
+  bleibt die feste Reihe aus `lib/instagram/titelbilder/`.
+*/
+if (!nur.length || nur.includes(1)) {
+  let gefunden = false
+  for (const s of deckblattSuchen(plan.kacheln)) {
+    let seiten: Seite[]
+    try {
+      seiten = await suche(s.begriff)
+    } catch (fehler) {
+      console.log(`  ${s.begriff}: ${(fehler as Error).message}`)
+      continue
+    }
+    for (const seite of seiten) {
+      const kandidat = kandidatVon(seite)
+      if (
+        !kandidat ||
+        !taugt(kandidat, verwendet, s.mussEnthalten, s.stichwoerter, s.person)
+      )
+        continue
+      const jpeg = await zuschnitt(seite, 1080, 1350 - DECKBLATT_FOTO_OBEN)
+      if (!jpeg) continue
+      const datei = dateiname(DATUM, 1, seite.title)
+      writeFileSync(join(TAGESBILDER, datei), jpeg)
+      heute.push({
+        stelle: 1,
+        datei,
+        titel: seite.title,
+        seite: seite.imageinfo![0].descriptionurl,
+        lizenz: kandidat.lizenz,
+        urheber: urheberVon(seite),
+        suche: s.begriff,
+      })
+      verwendet.add(seite.title)
+      console.log(`Deckblatt: ${seite.title} (${kandidat.lizenz}, „${s.begriff}")`)
+      gefunden = true
+      break
+    }
+    if (gefunden) break
+  }
+  if (!gefunden)
+    console.log('::warning::Deckblatt: kein Foto zum Tag – die feste Reihe bleibt.')
 }
 
 const doppelt = doppelteBilder(heute)

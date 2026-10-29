@@ -41,7 +41,7 @@ for (let n = 1; existsSync(join(ORDNER, `${n}.jpg`)); n++)
 writeFileSync(
   join(ORDNER, 'bilder-heute.txt'),
   heute
-    .filter((k) => k.stelle >= 2 && !k.leer)
+    .filter((k) => !k.leer)
     .map((k) => `${datum} ${k.stelle} ${k.abdruck}\n`)
     .join('')
 )
@@ -51,7 +51,8 @@ const gerechnet = gerechneterBefund(
   heute,
   liesFrueher(lies('bilder-frueher.txt') ?? '')
 )
-const stellen = heute.filter((k) => k.stelle >= 2).map((k) => k.stelle)
+/* Seit dem 29.10.2026 mit dem Deckblatt – es trägt jetzt ein Foto zum Tag. */
+const stellen = heute.map((k) => k.stelle)
 const sicht = sichtBefund(lies('sichtpruefung.json'), stellen)
 /*
   Vom Betreiber abgenommen (Eingabe `abgenommen` in instagram-beitrag.yml):

@@ -124,8 +124,10 @@ export function liesFrueher(text: string): Frueher[] {
 
 /**
  * Was an den Kacheln des Tages nicht stimmt – leer heißt: in Ordnung.
- * Das Deckblatt (Stelle 1) gehört nicht hinein: Es wechselt mit Absicht
- * durch eine feste Reihe (`NEUTRALE_DECKBLAETTER`).
+ * Das Deckblatt (Stelle 1) zählt nicht bei doppelten und alten Bildern – die
+ * feste Reihe (`NEUTRALE_DECKBLAETTER`) wiederholt sich mit Absicht. Nur
+ * eins darf es nicht: dasselbe zeigen wie das Deckblatt des letzten
+ * Beitrags (29.10.2026, zweimal die Fed, vom Betreiber gelöscht).
  */
 export function gerechneterBefund(
   datum: string,
@@ -143,6 +145,24 @@ export function gerechneterBefund(
       if (abstand(a.abdruck, b.abdruck) <= GLEICH_HOECHSTENS)
         fehler.push(`Kachel ${a.stelle} und ${b.stelle} zeigen dasselbe Bild`)
     }
+  const deck = heute.find((k) => k.stelle === 1)
+  const vorher = frueher
+    .filter((f) => f.stelle === 1 && f.datum < datum)
+    .map((f) => f.datum)
+    .sort()
+    .at(-1)
+  if (
+    deck &&
+    !deck.leer &&
+    vorher &&
+    frueher.some(
+      (f) =>
+        f.stelle === 1 &&
+        f.datum === vorher &&
+        abstand(f.abdruck, deck.abdruck) <= GLEICH_HOECHSTENS
+    )
+  )
+    fehler.push(`Kachel 1 zeigt dasselbe Deckblatt wie am ${vorher}`)
   const grenze = new Date(`${datum}T00:00:00Z`)
   grenze.setUTCDate(grenze.getUTCDate() - TAGE_ZURUECK)
   const ab = grenze.toISOString().slice(0, 10)
@@ -214,5 +234,5 @@ export function abgelehnteStellen(fehler: string[]): number[] {
     const treffer = /^Kachel (\d+)(?: und (\d+))?/.exec(f)
     if (treffer) stellen.add(Number(treffer[2] ?? treffer[1]))
   }
-  return [...stellen].filter((s) => s >= 2).sort((a, b) => a - b)
+  return [...stellen].filter((s) => s >= 1).sort((a, b) => a - b)
 }

@@ -398,6 +398,48 @@ export const THEMENSUCHE: {
   },
 ]
 
+/**
+ * Menschen, die ein Deckblatt tragen (29.10.2026, „kommt in der letzten News
+ * irgendwas zu Trump", zeigt das Cover Trump). Muster auf Überschrift und
+ * Text, dazu die Commons-Kategorie. Notenbankchefs stehen in
+ * `NOTENBANKCHEFS`; wer hier fehlt, bekommt das Thema der ersten Meldung.
+ */
+export const PERSONEN: [RegExp, string][] = [
+  [/\bTrump/u, 'Donald Trump'],
+  [/\bXi\b|Xi Jinping/u, 'Xi Jinping'],
+  [/\bPutin/u, 'Vladimir Putin'],
+  [/Selenskyj|Selensky/u, 'Volodymyr Zelenskyy'],
+  [/\bMerz\b/u, 'Friedrich Merz'],
+  [/\bMacron/u, 'Emmanuel Macron'],
+  [/von der Leyen/u, 'Ursula von der Leyen'],
+  [/Netanjahu|Netanyahu/u, 'Benjamin Netanyahu'],
+  [/\bMusk\b/u, 'Elon Musk'],
+  [/\bLagarde/u, 'Christine Lagarde'],
+  [/\bWarsh/u, 'Kevin Warsh'],
+]
+
+/**
+ * Die Suchen für das Deckblatt: zuerst ein Mensch aus den Meldungen des
+ * Tages – in der Reihenfolge der Meldungen, Überschrift vor Text –, sonst
+ * das Thema der ersten Meldung. Ohne Treffer bleibt die feste Reihe.
+ */
+export function deckblattSuchen(kacheln: { titel: string; text: string }[]): Suche[] {
+  const liste: Suche[] = []
+  const gesehen = new Set<string>()
+  for (const feld of ['titel', 'text'] as const)
+    for (const k of kacheln)
+      for (const [muster, kategorie] of PERSONEN)
+        if (muster.test(k[feld]) && !gesehen.has(kategorie)) {
+          gesehen.add(kategorie)
+          for (const b of ['speech', 'press conference', ''])
+            liste.push({ begriff: `${b} deepcat:"${kategorie}"`.trim(), person: true })
+        }
+  const erste = kacheln[0]
+  if (erste)
+    liste.push(...suchenFuer(erste.titel, 'boerse', erste.text).filter((s) => !s.marke))
+  return liste
+}
+
 export function suchenFuer(titel: string, motiv: string, text = ''): Suche[] {
   const liste: Suche[] = []
   const firma = unternehmenIn(titel)
