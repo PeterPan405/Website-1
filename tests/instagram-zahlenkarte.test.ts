@@ -840,6 +840,18 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   pruefe('Duell: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
 }
 
+/* 30.10.2026: Erdgas-Schere – die Zahlen der Karte aus den Kursreihen. */
+{
+  const gas = zahlenkarten.find((k) => k.datum === '2026-10-30')
+  pruefe('Gas: Karte für den 30.10. ist ein Duell', gas?.art === 'duell')
+  if (gas?.art === 'duell') {
+    pruefe('Gas: TTF +247,3 %', duellProzent(gas.links).toFixed(1) === '247.3')
+    pruefe('Gas: Henry Hub −22,1 %', duellProzent(gas.rechts).toFixed(1) === '-22.1')
+    pruefe('Gas: ohne Freigabe', !gas.freigabe)
+    pruefe('Gas: letzter Kurs vom 28.10.', gas.links.punkte.at(-1)?.t === '2026-10-28')
+  }
+}
+
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
 for (let i = 1; i < nachDatum.length; i++)
