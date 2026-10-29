@@ -2756,10 +2756,15 @@ function duellGrafik(k: Duellkarte) {
   }))
   /* Beide Felder auf derselben Skala – sonst sähe −5 % aus wie +4 %. */
   const alle = seiten.flatMap((x) => x.reihe.map((r) => r.p))
+  /*
+    Höchstens vier Abschnitte. Die Liste endete bei 10, sonst 20 – bei der
+    Gas-Schere (30.10.2026, +247 %) ergab das vierzehn Teilstriche, deren
+    Beschriftung in die Nachbarzeile umbrach.
+  */
   const schritt =
-    [1, 2, 2.5, 5, 10].find(
+    [1, 2, 2.5, 5, 10, 20, 25, 50, 100, 200, 250, 500].find(
       (x) => (Math.max(...alle, 0) - Math.min(...alle, 0)) / x <= 4
-    ) ?? 20
+    ) ?? 1000
   const unten = Math.floor(Math.min(...alle, 0) / schritt) * schritt
   const oben = Math.ceil(Math.max(...alle, 0) / schritt) * schritt
   const teil: number[] = []
@@ -2768,7 +2773,8 @@ function duellGrafik(k: Duellkarte) {
   const FELD_B = 485
   const FELD_H = 470
   const OBEN = 560
-  const P_L = 74
+  /* 86 statt 74: „+300 %" brach bei 74 px in zwei Zeilen (30.10.2026). */
+  const P_L = 86
   const P_R = 18
   const P_O = 128
   const P_U = 46
@@ -2884,6 +2890,7 @@ function duellGrafik(k: Duellkarte) {
               fontSize: 19,
               fontWeight: w === 0 ? 700 : 400,
               color: GRAU,
+              whiteSpace: 'nowrap',
             },
           },
           `${w > 0 ? '+' : ''}${w.toLocaleString('de-DE')} %`

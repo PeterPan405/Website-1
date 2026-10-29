@@ -16,6 +16,138 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 29.10.2026 aus den Vorschlägen („1":
+      Erdgas-Schere Europa gegen USA). Form: Duell, neu im Kanal (am 29.10.
+      Torte).
+
+      Zahlen:
+      - Kursreihen: Yahoo Finance, TTF=F (Dutch TTF, Frontmonat, €/MWh) und
+        NG=F (Henry Hub, Frontmonat, $/MMBtu), Tagesschlusskurse vom
+        02.01. bis 28.10.2026, abgerufen am 29.10.2026 über
+        quellen-holen.yml. Hier je Freitag plus erster und letzter Tag.
+        TTF 29,00 → 100,72 € (+247,3 %), Henry Hub 3,618 → 2,817 $ (−22,1 %).
+      - Handelsblatt, 26.10.2026: TTF bis 97,64 €/MWh, „der höchste Preis
+        seit Ende 2022", seit Jahresbeginn „mehr als verdreifacht".
+      - wallstreetONLINE, 26.10.2026: US-Erdgas auf rund 2,53 $/MMBtu, „den
+        niedrigsten Stand seit rund zwei Jahren"; Gründe laut Meldung:
+        mildes Wetter und steigende Produktion.
+    */
+    art: 'duell',
+    datum: '2026-10-30',
+    titel: [
+      { text: 'Gas-Schere:' },
+      { text: 'Europa +247\u00a0%,', gruen: true },
+      { text: 'USA −22\u00a0%' },
+    ],
+    unterzeile: 'Erdgas seit Jahresbeginn, Terminkontrakt Frontmonat:',
+    links: {
+      name: 'Europa',
+      zusatz: 'TTF, €/MWh',
+      land: 'EU27',
+      punkte: [
+        { t: '2026-01-02', wert: 29.004 },
+        { t: '2026-01-09', wert: 28.374 },
+        { t: '2026-01-16', wert: 36.879 },
+        { t: '2026-01-23', wert: 40.039 },
+        { t: '2026-01-30', wert: 39.285 },
+        { t: '2026-02-06', wert: 35.694 },
+        { t: '2026-02-13', wert: 32.5 },
+        { t: '2026-02-20', wert: 32.029 },
+        { t: '2026-02-27', wert: 31.959 },
+        { t: '2026-03-06', wert: 53.385 },
+        { t: '2026-03-13', wert: 50.115 },
+        { t: '2026-03-20', wert: 59.255 },
+        { t: '2026-03-27', wert: 54.177 },
+        { t: '2026-04-10', wert: 43.638 },
+        { t: '2026-04-17', wert: 38.769 },
+        { t: '2026-04-24', wert: 44.861 },
+        { t: '2026-05-01', wert: 45.766 },
+        { t: '2026-05-08', wert: 44.143 },
+        { t: '2026-05-15', wert: 50.167 },
+        { t: '2026-05-22', wert: 48.683 },
+        { t: '2026-05-29', wert: 46.001 },
+        { t: '2026-06-05', wert: 48.496 },
+        { t: '2026-06-12', wert: 46.773 },
+        { t: '2026-06-26', wert: 40.782 },
+        { t: '2026-07-10', wert: 48.655 },
+        { t: '2026-07-17', wert: 57.395 },
+        { t: '2026-07-24', wert: 63.575 },
+        { t: '2026-07-31', wert: 59.071 },
+        { t: '2026-08-07', wert: 55.544 },
+        { t: '2026-08-14', wert: 61.424 },
+        { t: '2026-08-21', wert: 65.865 },
+        { t: '2026-08-28', wert: 66.979 },
+        { t: '2026-09-04', wert: 71.952 },
+        { t: '2026-09-11', wert: 79.52 },
+        { t: '2026-09-18', wert: 79.518 },
+        { t: '2026-09-25', wert: 72.071 },
+        { t: '2026-10-02', wert: 74.76 },
+        { t: '2026-10-09', wert: 81.434 },
+        { t: '2026-10-16', wert: 87.547 },
+        { t: '2026-10-23', wert: 93.853 },
+        { t: '2026-10-28', wert: 100.72 },
+      ],
+    },
+    rechts: {
+      name: 'USA',
+      zusatz: 'Henry Hub, $/MMBtu',
+      land: 'USA',
+      punkte: [
+        { t: '2026-01-02', wert: 3.618 },
+        { t: '2026-01-09', wert: 3.169 },
+        { t: '2026-01-16', wert: 3.103 },
+        { t: '2026-01-23', wert: 5.275 },
+        { t: '2026-01-30', wert: 4.354 },
+        { t: '2026-02-06', wert: 3.422 },
+        { t: '2026-02-13', wert: 3.243 },
+        { t: '2026-02-20', wert: 3.047 },
+        { t: '2026-02-27', wert: 2.859 },
+        { t: '2026-03-06', wert: 3.186 },
+        { t: '2026-03-13', wert: 3.131 },
+        { t: '2026-03-20', wert: 3.095 },
+        { t: '2026-03-27', wert: 3.095 },
+        { t: '2026-04-10', wert: 2.648 },
+        { t: '2026-04-17', wert: 2.674 },
+        { t: '2026-04-24', wert: 2.523 },
+        { t: '2026-05-01', wert: 2.78 },
+        { t: '2026-05-08', wert: 2.757 },
+        { t: '2026-05-15', wert: 2.96 },
+        { t: '2026-05-22', wert: 2.907 },
+        { t: '2026-05-29', wert: 3.29 },
+        { t: '2026-06-05', wert: 3.229 },
+        { t: '2026-06-12', wert: 3.12 },
+        { t: '2026-06-26', wert: 3.231 },
+        { t: '2026-07-10', wert: 2.94 },
+        { t: '2026-07-17', wert: 2.911 },
+        { t: '2026-07-24', wert: 2.871 },
+        { t: '2026-07-31', wert: 2.747 },
+        { t: '2026-08-07', wert: 2.662 },
+        { t: '2026-08-14', wert: 2.733 },
+        { t: '2026-08-21', wert: 2.773 },
+        { t: '2026-08-28', wert: 2.888 },
+        { t: '2026-09-04', wert: 2.975 },
+        { t: '2026-09-11', wert: 2.831 },
+        { t: '2026-09-18', wert: 2.912 },
+        { t: '2026-09-25', wert: 3.196 },
+        { t: '2026-10-02', wert: 3.035 },
+        { t: '2026-10-09', wert: 3.22 },
+        { t: '2026-10-16', wert: 3.116 },
+        { t: '2026-10-23', wert: 2.64 },
+        { t: '2026-10-28', wert: 2.817 },
+      ],
+    },
+    fusszeile:
+      'Stand: Schlusskurse 02.01.–28.10.2026 | Quellen: Yahoo Finance, Handelsblatt, wallstreetONLINE',
+    text:
+      'Dasselbe Gas, zwei Welten: In Europa hat sich der Großhandelspreis seit Jahresbeginn mehr als verdreifacht, in den USA ist er gefallen. 🔥\n\n' +
+      'Der europäische Terminkontrakt TTF stieg von 29,00 Euro je Megawattstunde am 2. Januar auf 100,72 Euro am 28. Oktober – ein Plus von 247 Prozent. Laut Handelsblatt ist das der höchste Stand seit Ende 2022; als Gründe nennt die Zeitung den Iran-Krieg und das Auffüllen der deutschen Speicher.\n\n' +
+      'Der US-Kontrakt Henry Hub fiel im selben Zeitraum von 3,62 auf 2,82 Dollar je Million British Thermal Units (−22 Prozent). Am 26. Oktober lag er laut wallstreetONLINE bei rund 2,53 Dollar, dem tiefsten Stand seit rund zwei Jahren – wegen milden Wetters und steigender Produktion.\n\n' +
+      'Gas hat keinen Weltmarktpreis: Es reist per Pipeline oder als verflüssigtes LNG, deshalb können die Preise weit auseinanderlaufen. Beide Werte sind in ihrer eigenen Währung und Einheit gerechnet.\n' +
+      'Quellen: Yahoo Finance (Schlusskurse 02.01.–28.10.2026), Handelsblatt und wallstreetONLINE (beide 26.10.2026)',
+    schlagworte: ['erdgas', 'gaspreis', 'energie', 'rohstoffe', 'börse'],
+  },
+  {
+    /*
       Thema vom Betreiber (28.10.2026): aus den Vorschlägen „4 … für morgen"
       – Anthropic vor dem Börsengang.
 
