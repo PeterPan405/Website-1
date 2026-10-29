@@ -5,7 +5,7 @@ import { vergleicheKaufMiete } from '@/lib/kaufen-mieten'
 import { notgroschen } from '@/lib/notgroschen'
 import { abstandZumHoch, spannenPosition } from '@/lib/jahresspanne'
 import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
-import { aufSkala, gleitenderDurchschnitt, marktbreite } from '@/lib/stimmungsindex'
+import { gleitenderDurchschnitt, marktbreite } from '@/lib/stimmungsindex'
 import { median } from '@/lib/marktbreite'
 import { einmalanlage } from '@/lib/rueckblick'
 
@@ -138,7 +138,7 @@ export const METHODEN: Methode[] = [
       'Die Grenzen sind weit: das Doppelte des Takts, mindestens eine Woche. Eine Meldung, die grundlos anschlägt, wird abgeschaltet.',
     ],
     herkunft: { datei: 'lib/datenstand.ts', funktion: 'beurteile' },
-    zuSehen: { text: 'Marktstimmung', href: '/maerkte/stimmung/aktien' },
+    zuSehen: { text: 'Kurse', href: '/maerkte' },
     beispiel: () => {
       const befund = beurteile(
         '2026-06-01',
@@ -169,7 +169,7 @@ export const METHODEN: Methode[] = [
       'Reihen ohne echte Kurse zählen nicht mit, statt mit einem geschätzten Wert einzugehen.',
     ],
     herkunft: { datei: 'lib/stimmungsindex.ts', funktion: 'marktbreite' },
-    zuSehen: { text: 'Marktstimmung', href: '/maerkte/stimmung/aktien' },
+    zuSehen: { text: 'Tagesbild', href: '/maerkte/tagesbild' },
     beispiel: () => {
       /*
         Acht Reihen und nicht vier: `marktbreite()` gibt unter acht brauchbaren
@@ -191,24 +191,6 @@ export const METHODEN: Methode[] = [
     },
   },
   {
-    slug: 'skala',
-    titel: 'Umrechnung auf die Skala 0 bis 100',
-    frage: 'Wie wird aus einer Messgröße ein Wert zwischen Angst und Gier?',
-    formel: '(Wert − beiNull) ÷ (beiHundert − beiNull) × 100, begrenzt auf 0…100',
-    quelle: 'Die jeweilige Messgröße – Abstand zum Trend, Schwankung, Marktbreite',
-    stichtag: 'Derselbe wie bei der Messgröße',
-    vereinfachungen: [
-      'Die beiden Ankerwerte sind gesetzt, nicht gemessen. Sie bestimmen, ab wann etwas als „viel" gilt, und eine andere Wahl ergäbe eine andere Zahl.',
-      'Werte außerhalb der Anker werden gekappt statt extrapoliert – jenseits der Skala ist „sehr viel" keine feinere Auskunft mehr.',
-    ],
-    herkunft: { datei: 'lib/stimmungsindex.ts', funktion: 'aufSkala' },
-    zuSehen: { text: 'Marktstimmung', href: '/maerkte/stimmung/aktien' },
-    beispiel: () => ({
-      eingabe: 'Wert 5, Skala von −10 (Angst) bis +10 (Gier)',
-      ergebnis: formatNumber(aufSkala(5, -10, 10), 0),
-    }),
-  },
-  {
     slug: 'gleitender-durchschnitt',
     titel: 'Gleitender Durchschnitt',
     frage: 'Wo liegt der Kurs im Verhältnis zu seinem eigenen Verlauf?',
@@ -220,7 +202,7 @@ export const METHODEN: Methode[] = [
       'Handelstage, keine Kalendertage. „50 Tage" sind rund zehn Wochen.',
     ],
     herkunft: { datei: 'lib/stimmungsindex.ts', funktion: 'gleitenderDurchschnitt' },
-    zuSehen: { text: 'Marktstimmung', href: '/maerkte/stimmung/aktien' },
+    zuSehen: { text: 'Tagesbild', href: '/maerkte/tagesbild' },
     beispiel: () => {
       const punkte = [100, 102, 98, 104, 106].map((c, i) => ({
         d: `2026-08-0${i + 1}`,
@@ -246,7 +228,7 @@ export const METHODEN: Methode[] = [
       'Er wird dort genommen, wo einzelne Ausreißer den Mittelwert verzerren würden – ein Mittelwert kann nichts finden, was er verdünnt.',
     ],
     herkunft: { datei: 'lib/marktbreite.ts', funktion: 'median' },
-    zuSehen: { text: 'Marktstimmung', href: '/maerkte/stimmung/aktien' },
+    zuSehen: { text: 'Tagesbild', href: '/maerkte/tagesbild' },
     beispiel: () => ({
       eingabe: 'Werte 10, 12, 14, 900',
       ergebnis: formatNumber(median([10, 12, 14, 900]) ?? 0, 1),

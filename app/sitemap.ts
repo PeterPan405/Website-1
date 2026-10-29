@@ -369,20 +369,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   /*
-    Die beiden Stimmungsseiten stehen fest und nicht in `symbols`.
-
-    Sie hängen nicht an einem Instrument, sondern an einem Marktbereich –
-    deshalb kommen sie nicht aus derselben Liste. Vergessen worden wären sie
-    beinahe; gefunden hat es die Paketprüfung, die jede erreichbare Seite gegen
-    die Sitemap hält.
-  */
-  const stimmungsPages: MetadataRoute.Sitemap = ['aktien', 'krypto'].map((bereich) => ({
-    url: absoluteUrl(`/maerkte/stimmung/${bereich}`),
-    changeFrequency: 'daily',
-    priority: 0.6,
-  }))
-
-  /*
     Die Rechner kommen aus ihrer eigenen Liste.
 
     Hier standen sie zweimal – einmal in `data/calculators.ts` und einmal
@@ -468,7 +454,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...calculatorPages,
     ...marketPages,
     ...branchenPages,
-    ...stimmungsPages,
     ...newsPages,
     ...strangPages,
     ...rubrikPages,

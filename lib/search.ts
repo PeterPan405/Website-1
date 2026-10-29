@@ -17,7 +17,7 @@ import { formatDate, formatMonthYearLong, formatNumber } from '@/lib/format'
 import { getLaender } from '@/lib/laender'
 import { getLearnTopics } from '@/lib/learn'
 import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
-import { getInstruments, STIMMUNG_SEITEN } from '@/lib/markets'
+import { getInstruments } from '@/lib/markets'
 import { calculators } from '@/data/calculators'
 import { IRRTUEMER } from '@/data/irrtuemer'
 import { zeitstrahl } from '@/lib/finanzgeschichte'
@@ -316,24 +316,6 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     hint: 'Geführte Reihenfolgen durch den Lernbereich – für alle, die nicht wissen, womit sie anfangen sollen.',
     keywords: ['lernpfad', 'pfad', 'reihenfolge', 'kurs', 'einstieg', 'gefuehrt'],
   })
-
-  /*
-    Die beiden Stimmungsseiten.
-
-    Sie hatten keinen Eintrag, obwohl „Angst und Gier“ zu den Begriffen gehört,
-    unter denen am ehesten gesucht wird. Aufgefallen ist das erst, als jede
-    gebaute Seite gegen den Index gehalten wurde – die Suche zu benutzen und
-    zufrieden zu sein, hätte es nie gezeigt.
-  */
-  for (const [bereich, meta] of Object.entries(STIMMUNG_SEITEN)) {
-    eintraege.push({
-      title: meta.titel,
-      href: `/maerkte/stimmung/${bereich}`,
-      kind: 'Plattform',
-      hint: meta.lead,
-      keywords: [...meta.stichworte],
-    })
-  }
 
   // 2. Lernthemen vor ihren einzelnen Stufen.
   for (const thema of themen) {

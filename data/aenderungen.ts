@@ -306,7 +306,7 @@ export const AENDERUNGEN: Aenderung[] = [
     art: 'neu',
     titel: 'Jede Zahl sagt, wie alt sie ist',
     text: 'Neben Angaben, die sich regelmäßig ändern, steht jetzt eine Ampel: wie alt der Wert ist und ab wann das zu alt wäre. Sie rechnet im Browser mit Ihrer Uhr – eine beim Bauen gerechnete Ampel stünde für immer auf Grün.',
-    ziel: { text: 'Beispiel: Marktstimmung', href: '/maerkte/stimmung/aktien' },
+    ziel: { text: 'Beispiel: Kurse', href: '/maerkte' },
   },
   {
     datum: '2026-08-17',
