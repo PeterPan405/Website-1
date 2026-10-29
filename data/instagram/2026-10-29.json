@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Fed pausiert bei den Zinsen, die EZB entscheidet heute. Microsoft und die Deutsche Bank überzeugen, Alphabet und die Israel-Wahl schicken Kurse auf Talfahrt, und die UBS kämpft mit der Schweiz-Debatte.",
+  "kacheln": [
+    {
+      "titel": "Fed pausiert bei Zinsen",
+      "text": "Die US-Notenbank Fed lässt den Leitzins bei 3,75 bis 4,0 Prozent. Am Nachmittag entscheidet auch die Europäische Zentralbank über ihre Zinsen."
+    },
+    {
+      "titel": "Google -8%, MSFT +4%",
+      "text": "Microsoft hat die Erwartungen übertroffen, die Aktie stieg deutlich. Alphabet verfehlte Umsatz und Gewinn, die Aktie brach ein."
+    },
+    {
+      "titel": "Deutsche Bank: Rekord",
+      "text": "Die Deutsche Bank steigerte ihren Gewinn im dritten Quartal und übertraf die Erwartungen. Die Aktie war Spitzenreiter im Dax."
+    },
+    {
+      "titel": "Israel-Wahl: Börse -3%",
+      "text": "Bei der Parlamentswahl in Israel verfehlte das Lager von Benjamin Netanyahu die Mehrheit. Der Leitindex fiel um drei Prozent, der Schekel ebenfalls."
+    },
+    {
+      "titel": "UBS: Zahlen gut, Kurs fällt",
+      "text": "Die UBS steigerte ihren Gewinn im dritten Quartal deutlich. Die Aktie fiel trotzdem, weil Fragen zu Kapitalauflagen in der Schweiz dominierten."
+    }
+  ],
+  "schlagworte": ["fed", "ezb", "dax", "börse", "aktien"]
+}

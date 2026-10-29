@@ -101,6 +101,305 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'fed-haelt-zins-ezb-entscheidet-heute',
+    title: 'Fed lässt Leitzins unverändert – zwei Notenbanker wollten mehr',
+    teaser:
+      'Die US-Notenbank hält die Zinsen stabil, zwei Mitglieder stimmten für eine Erhöhung. Am Nachmittag entscheidet auch die EZB über ihre eigenen Leitzinsen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-29T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['fed', 'ezb', 'leitzins', 'inflation'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['dax', 'sp500'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 28.10.2026, 21:22 Uhr (Antonia Mannweiler, Timm Seckel): „Geldpolitik: Fed lässt Zinsen unverändert – weniger Zinsentscheidungen ab 2027"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/geldpolitik-fed-laesst-zinsen-unveraendert-weniger-zinsentscheidungen-ab-2027/100264521.html',
+      },
+      {
+        label:
+          'wallstreet-online, 28.10.2026: „Leitzins bleibt stabil: Fed pausiert bei Zinsen: Zwei Währungshüter wollten mehr"',
+        url: 'https://www.wallstreet-online.de/nachricht/21597354-leitzins-bleibt-stabil-fed-pausiert-zinsen-waehrungshueter',
+      },
+      {
+        label:
+          'Handelsblatt, 28.10.2026, 17:09 Uhr (Stefan Reccius): „Zinsentscheid: Inflation trifft Schuldenkrise: Für die EZB ist die Lage heikel wie lange nicht mehr"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-inflation-trifft-schuldenkrise-heikle-lage-fuer-die-notenbank/100262258.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank Fed lässt sich Zeit. Nach der ersten Zinserhöhung seit mehr als drei Jahren im Vormonat legt sie nun eine Pause ein – der Leitzins bleibt bei 3,75 bis 4,0 Prozent. Einstimmig war die Entscheidung aber nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Stimmen für eine Erhöhung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gouverneurin Lisa Cook und die Chefin der Cleveland Fed, Beth Hammack, stimmten gegen die Pause. Beide wollten den Leitzins um einen Viertelprozentpunkt anheben. Für Cook war es die erste abweichende Stimme seit mehr als vier Jahren, Hammack hatte schon im Juli für eine straffere Geldpolitik votiert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fed-Chef Kevin Warsh erläuterte die Entscheidung am Nachmittag vor Journalisten. Als Belastungen nannte die Notenbank hohe Energiekosten, den Bauboom bei KI-Rechenzentren, hartnäckige Preisdaten und einen möglicherweise wieder aufflammenden Iran-Konflikt. Für die Sitzung im Dezember hält sie eine weitere Zinserhöhung ausdrücklich für möglich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die EZB steckt zwischen zwei Problemen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Nachmittag, um 14:15 Uhr, entscheidet auch die Europäische Zentralbank über ihre Zinsen. Die Inflation in der Eurozone liegt wegen des Irankriegs auf einem Dreijahreshoch. Gleichzeitig kämpft Frankreich mit seinen Staatsfinanzen, und Anleger verkaufen französische Staatsanleihen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unicredit-Chefvolkswirt Marco Valli beschreibt die Lage der EZB als einen schmalen Grat zwischen Risiken für die Inflation und für die Staatsfinanzen. Der Anleiheexperte David Zahn von Franklin Templeton sagt, Frankreichs Schuldenprobleme erschwerten der EZB die Entscheidung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für Anleger bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zinsentscheidungen wirken über zwei Kanäle auf Depots: über die Finanzierungskosten von Unternehmen und Staaten und über die Abzinsung künftiger Gewinne, mit der Aktien bewertet werden. Bewegen sich Fed und EZB in unterschiedliche Richtungen, verändert das außerdem die Zinsdifferenz – und damit den Wechselkurs zwischen Dollar und Euro.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-uebertrifft-alphabet-verfehlt',
+    title: 'Microsoft übertrifft, Alphabet verfehlt die Erwartungen deutlich',
+    teaser:
+      'Microsoft hat Umsatz und Gewinn klar übertroffen, die Aktie stieg nachbörslich kräftig. Alphabet verfehlte beides deutlich und brach regelrecht ein.',
+    category: 'Märkte',
+    publishedAt: '2026-10-29T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['microsoft', 'alphabet', 'quartalszahlen', 'ki'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['microsoft', 'alphabet'],
+    sources: [
+      {
+        label:
+          'onvista, 28.10.2026, 20:20 Uhr: „Wichtige Signale für die KI-Rally: Hyperscaler-Zahlen: Microsoft glänzt, Alphabet sackt ab"',
+        url: 'https://www.onvista.de/news/2026/10-28-hyperscaler-zahlen-microsoft-glaenzt-alphabet-sackt-ab-41121301-19-26569458',
+      },
+      {
+        label:
+          'CNBC, 28.10.2026, 22:07 Uhr: „Alphabet sinks 10% as it holds 2026 capex unchanged, expects significant increase in 2027"',
+        url: 'https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html',
+      },
+      {
+        label:
+          'CNBC, 28.10.2026, 22:34 Uhr: „Microsoft stock jumps 4% as cloud growth drives earnings and revenue beat"',
+        url: 'https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Abend, zwei Richtungen: Microsoft hat seine Anleger am Mittwoch nach Börsenschluss überrascht, Alphabet enttäuscht. Beide Konzerne meldeten ihre Quartalszahlen fast gleichzeitig – und zeigten, wie unterschiedlich sich Milliardeninvestitionen in künstliche Intelligenz schon auszahlen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Microsoft: Azure wächst schneller als erwartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Microsoft erzielte im abgelaufenen Quartal 92,3 Milliarden Dollar Umsatz, erwartet hatten Analysten 90,7 Milliarden. Der Gewinn je Aktie lag bei 4,89 Dollar statt der erwarteten 4,72 Dollar. Die Cloud-Sparte Azure wuchs auf 33,2 Milliarden Dollar – rund eine Milliarde mehr als vorhergesagt. Die Aktie sprang nachbörslich um gut vier Prozent auf ein Rekordhoch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Alphabet: Cloud wächst, aber nicht genug',
+      },
+      {
+        type: 'paragraph',
+        text: 'Alphabet kam auf 127,6 Milliarden Dollar Umsatz und verfehlte damit knapp die erwarteten 127,9 Milliarden. Der Gewinn je Aktie lag bei 2,12 Dollar, erwartet waren 2,97 Dollar – eine deutliche Lücke. Die Sparte Google Cloud setzte 30,7 Milliarden Dollar um, etwa doppelt so viel wie im Vorjahresquartal, aber weit unter den erhofften mehr als 39 Milliarden. Die Aktie brach nachbörslich um 7,7 Prozent ein und fiel unter 300 Dollar – so niedrig wie zuletzt im April.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wachstum ist nicht gleich Wachstum genug',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Beispiel zeigt einen Unterschied, der beim Lesen von Quartalszahlen oft übersehen wird: Es reicht nicht, besser zu wachsen als im Vorjahr. Entscheidend ist, wie das Ergebnis im Vergleich zu dem ausfällt, was der Markt bereits eingepreist hatte. Alphabets Cloud-Umsatz verdoppelte sich – und war trotzdem eine Enttäuschung, weil die Erwartungen noch höher lagen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit Jahresbeginn liegt Microsoft damit rund 9,6 Prozent im Plus, Alphabet nur noch rund 2,6 Prozent. Beide Werte bleiben zentrale Positionen in vielen breiten Indexfonds, ihre Kursschwankungen wirken sich deshalb auch auf Anleger aus, die keine Einzelaktien halten.',
+      },
+    ],
+  },
+  {
+    slug: 'deutsche-bank-rekordquartal-dax-spitze',
+    title: 'Deutsche Bank übertrifft Erwartungen – Aktie an der Dax-Spitze',
+    teaser:
+      'Die Deutsche Bank hat im dritten Quartal mehr verdient als erwartet und die eigene Jahresprognose in Reichweite. Die Aktie führte den Dax an.',
+    category: 'Märkte',
+    publishedAt: '2026-10-29T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['deutsche-bank', 'dax', 'quartalszahlen', 'banken'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['deutsche-bank', 'dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 28.10.2026, 09:31 Uhr (Yasmin Osman): „Quartalszahlen: Deutsche Bank erzielt Milliardengewinn und übertrifft Erwartungen – Aktie an der Dax-Spitze"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-deutsche-bank-uebertrifft-erwartungen-aktie-steigt-deutlich/100263571.html',
+      },
+      {
+        label:
+          'onvista, 28.10.2026, 11:57 Uhr: „Deutsche Bank mit Rekordzahlen – SK Hynix glänzt"',
+        url: 'https://www.onvista.de/news/2026/10-28-deutsche-bank-mit-rekordzahlen-sk-hynix-glaenzt-40338625-19-26569357',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Bank hat ein weiteres starkes Quartal vorgelegt. Der Gewinn vor Steuern stieg im dritten Quartal um acht Prozent auf gut 2,6 Milliarden Euro. Analysten hatten im Schnitt nur mit rund 2,4 Milliarden gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Gewinnzahlen unterschiedlich stark wachsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der den Aktionären zurechenbare Nettogewinn legte dagegen nur um gut ein Prozent auf 1,6 Milliarden Euro zu. Der Unterschied zum kräftigeren Plus beim Vorsteuergewinn zeigt, wie stark Steuern und Sondereffekte das Ergebnis einer Bank verändern können, bevor es überhaupt bei den Aktionären ankommt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Erträge übertrafen mit 8,3 Milliarden Euro die Konsensschätzung von 8,2 Milliarden leicht. Die Bank sieht sich damit auf gutem Weg, ihr selbst gestecktes Ertragsziel von rund 33 Milliarden Euro für das laufende Jahr zu übertreffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Aktie reagiert deutlicher als die Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie der Deutschen Bank stieg um gut drei Prozent und war damit am Mittwoch der Spitzenreiter im Dax. Ein eigenes, selbst gesetztes Jahresziel zu übertreffen, wird von Anlegern oft als Signal gewertet – unabhängig davon, wie die Zahl im Vergleich zu den Schätzungen externer Analysten ausfällt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Sparer und Anleger lohnt sich bei solchen Meldungen ein zweiter Blick: Vorsteuergewinn, Nettogewinn und Erträge messen unterschiedliche Dinge. Nur wer alle drei kennt, sieht, worauf sich eine Kursreaktion tatsächlich stützt.',
+      },
+    ],
+  },
+  {
+    slug: 'israel-wahl-ohne-mehrheit-boerse-faellt',
+    title: 'Israels Wahl bringt keine Mehrheit – Börse und Schekel fallen',
+    teaser:
+      'Nach der Parlamentswahl in Israel verfehlt das Lager von Benjamin Netanyahu die Mehrheit. Der Leitindex fiel um drei Prozent, der Schekel ebenfalls.',
+    category: 'Märkte',
+    publishedAt: '2026-10-29T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['israel', 'wahl', 'schekel', 'politik'],
+    relatedTopics: ['anlegerpsychologie', 'waehrungen-wechselkurse'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 28.10.2026, 13:27 Uhr (Reuters): „Parlamentswahl: Israels Leitindex fällt um drei Prozent – auch Währung unter Druck"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/parlamentswahl-israels-leitindex-faellt-um-drei-prozent-waehrung-unter-druck/100265623.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Israel hat gewählt – und eine klare Antwort blieb aus. Nach Auszählung von rund 70 Prozent der Stimmen kommt der rechte Block von Ministerpräsident Benjamin Netanyahu laut Hochrechnungen auf 54 Sitze. Der Oppositionsblock um den früheren Generalstabschef Gadi Eisenkot erreicht 47 Sitze. Für eine Regierungsbildung nötig wären 61 der 120 Sitze im Parlament.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt hatte auf die Opposition gesetzt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Leitindex in Tel Aviv war im Vorfeld der Wahl gestiegen, weil Anleger auf einen Sieg der Opposition und einen Regierungswechsel gesetzt hatten. Das Ergebnis enttäuschte diese Erwartung – und der Index fiel am Wahltag um rund drei Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der Schekel gab nach: Er verlor etwa zwei Prozent auf 3,1185 Dollar und steuerte damit auf seinen größten Tagesverlust seit fast anderthalb Jahren zu. Langlaufende israelische Staatsanleihen gerieten ebenfalls unter Druck.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Enttäuschung schwerer wiegt als das Ergebnis selbst',
+      },
+      {
+        type: 'paragraph',
+        text: '„Die Finanzmärkte Israels haben ablehnend auf das Ergebnis reagiert“, kommentierte das Analysehaus Capital Economics. Chefvolkswirt William Jackson erwartet zudem eine instabile nächste Regierung. Scheitert die Regierungsbildung, könnte es zu einer weiteren Wahl kommen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt ein Muster, das an Börsen immer wieder auftritt: Nicht das Ereignis selbst bewegt die Kurse am stärksten, sondern die Differenz zwischen dem, was Anleger vorher erwartet und eingepreist hatten, und dem, was tatsächlich eintritt.',
+      },
+    ],
+  },
+  {
+    slug: 'ubs-gewinn-steigt-schweiz-debatte',
+    title: 'UBS verdient deutlich mehr – doch die Schweiz-Debatte dominiert',
+    teaser:
+      'Die Schweizer Großbank UBS hat ihren Gewinn im dritten Quartal kräftig gesteigert. Die Aktie fiel trotzdem, weil Fragen zu Kapitalauflagen überwogen.',
+    category: 'Märkte',
+    publishedAt: '2026-10-29T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ubs', 'schweiz', 'quartalszahlen', 'banken'],
+    relatedTopics: ['aktie', 'schulden-und-kredit'],
+    relatedSymbols: ['ubs'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 28.10.2026, 12:35 Uhr (Bloomberg, Reuters, Tom Thiele): „Schweizer Großbank: „Reisepass reicht heute nicht mehr aus“: Wegzugsdebatte überlagert positive UBS-Zahlen"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/ubs-wegzugsdebatte-ueberlagert-positive-quartalszahlen-der-grossbank/100265319.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gute Zahlen, ein genervter Chef: So lässt sich das dritte Quartal der UBS zusammenfassen. Der Gewinn vor Steuern stieg um rund ein Viertel auf 3,6 Milliarden Dollar, getragen von höheren Erträgen und niedrigeren Kosten, vor allem in der Vermögensverwaltung und im Schweizer Heimmarkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Nettogewinn blieb davon weniger übrig: Kosten für einen Anleiherückkauf und eine höhere Steuerbelastung bremsten das Ergebnis. Die Aktie gab am Tag der Veröffentlichung trotz der guten operativen Zahlen leicht nach, um fast zwei Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die eigentliche Frage betrifft den Firmensitz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Mittelpunkt der Analystenkonferenz stand nicht das Quartalsergebnis, sondern eine ganz andere Frage: wie die Schweiz auf mögliche strengere Eigenkapitalauflagen für die Großbank reagiert – und ob UBS deshalb über einen Umzug ins Ausland nachdenkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vorstandschef Sergio Ermotti reagierte zunehmend verärgert auf die wiederholten Nachfragen. „Wir kommentieren keine Spekulationen, Annahmen oder Meinungen in Bezug auf Notfallpläne“, sagte er einem Analysten von Mediobanca. Es war im Call bereits die vierte Frage dieser Art.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Politik die Fundamentaldaten überlagert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger zeigt der Fall, dass ein gutes Quartalsergebnis allein eine Aktie nicht trägt, solange ein ungelöstes regulatorisches Risiko im Raum steht. Die Frage nach dem Firmensitz einer Bank mit Jahrzehnten Schweizer Geschichte wiegt für den Markt gerade schwerer als ihr operatives Geschäft.',
+      },
+    ],
+  },
+  {
     slug: 'fed-zinsentscheid-oktober-2026',
     title: 'Die Fed entscheidet heute über die Leitzinsen',
     teaser:
