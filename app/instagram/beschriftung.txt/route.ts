@@ -1,3 +1,4 @@
+import { allItems, getEdition } from '@/lib/editions'
 import { instagramHeute } from '@/lib/instagram-heute'
 import { beschriftungTagesnews } from '@/lib/instagram-plan'
 import { bildnachweis } from '@/lib/instagram-tagesbilder'
@@ -19,11 +20,17 @@ import { bildnachweis } from '@/lib/instagram-tagesbilder'
  */
 export const dynamic = 'force-static'
 
-export function GET() {
+export async function GET() {
   const stand = instagramHeute()
+  /* Die Meldungen derselben Ausgabe – daraus die Einordnung je Kachel. */
+  const ausgabe = stand ? await getEdition(stand.datum) : null
   const text =
     stand?.status === 'tagesnews'
-      ? beschriftungTagesnews(stand.plan, bildnachweis(stand.datum))
+      ? beschriftungTagesnews(
+          stand.plan,
+          bildnachweis(stand.datum),
+          ausgabe ? allItems(ausgabe) : []
+        )
       : `Kein Beitrag. ${stand?.status === 'kein-beitrag' ? stand.grund : 'Es gibt keine Ausgabe.'}`
   return new Response(text, {
     headers: {

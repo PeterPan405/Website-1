@@ -267,18 +267,35 @@ So seit dem 8. Oktober, und so erzeugt sie `lib/instagram-plan.ts`
 
     <ein bis zwei Sätze, die die fünf Themen nennen>
 
+    📌 <Überschrift der Kachel>
+    <die Einordnung derselben Meldung aus der Tagesausgabe, ein bis zwei Sätze>
+    … je Kachel ein Block
+
     Alle fünf Entwicklungen im Überblick. Quelle: iminvests.de
 
     Keine Anlageberatung – nur Wissensvermittlung
     Alle Inhalte dieses Accounts dienen … Hinweis: Die Inhalte wurden mit Unterstützung von KI erstellt. #a #b #c #d #e
 
+**Die Blöcke mit 📌 seit dem 29.10.2026** (Betreiber: „ganz cool, wenn
+generell … die Beschreibungen etwas länger wären, wenn da Themen noch etwas
+erläutert werden"). Der Text ist das `whyItMatters` der Meldung, die
+dieselbe Nachricht trägt – zugeordnet über gemeinsame Wörter
+(`erlaeuterungen()`), nie erfunden. Ohne sichere Zuordnung kein Block;
+passt nicht alles unter 2.200 Zeichen, ein Satz je Kachel, sonst keiner.
+
 ### Bei den anderen – eine Grammatik
 
 1. **Der Aufhänger** – ein Satz oder eine Frage, die den Beitrag trägt, oft
    mit einem Zeichen am Ende (📈 📊 📉).
-2. **Ein bis zwei kurze Absätze**: was es bedeutet, was erklärt wird.
-3. **`Quellen: …`** – namentlich, mit Komma getrennt. Keine erfundenen.
-4. **Der Rechtshinweis**, unverändert, mit dem KI-Hinweis am Ende.
+2. **Die Zahlen** in ein bis zwei kurzen Absätzen.
+3. **Bei der Zahlenkarte immer zwei Abschnitte mehr** (29.10.2026, Gas-Schere:
+   „eine kurze Erklärung, warum das so ist. Und was das für Auswirkungen …
+   hat"): **„Warum …?"** und **„Und jetzt?"** bzw. die passende Frage
+   („Und im Winter?") – beides nur aus gelesenen Quellen, mit „laut …",
+   keine eigene Prognose. Sagt keine Quelle etwas zu den Folgen, steht
+   das so da, statt einer Vermutung.
+4. **`Quellen: …`** – namentlich, mit Komma getrennt. Keine erfundenen.
+5. **Der Rechtshinweis**, unverändert, mit dem KI-Hinweis am Ende.
 
 ### Schlagworte
 
