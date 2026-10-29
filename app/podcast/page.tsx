@@ -147,7 +147,7 @@ export default function PodcastSeite() {
                 <li
                   key={folge.slug}
                   id={folge.slug}
-                  className="border-border scroll-mt-24 border-b py-6"
+                  className="border-border scroll-mt-24 border-b py-4"
                 >
                   <Reveal delay={Math.min(index, 12) * 0.03}>
                     <div className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
@@ -155,7 +155,7 @@ export default function PodcastSeite() {
                       {folge.datum && dauer && <span aria-hidden="true">·</span>}
                       {dauer && <span>{dauer}</span>}
                     </div>
-                    <h2 className="text-fg mt-1.5 text-xl font-bold">
+                    <h2 className="text-fg mt-1 text-lg font-bold">
                       <a
                         href={`#${folge.slug}`}
                         className="hover:text-news transition-colors"
@@ -163,17 +163,31 @@ export default function PodcastSeite() {
                         {folge.titel}
                       </a>
                     </h2>
+                    {/*
+                      Die Beschreibung zugeklappt (29.10.2026, „deutlich
+                      gekürzt … übersichtlicher"): 79 Folgen mit Kapitelmarken
+                      ergaben 92.914 px auf dem Telefon. Offen steht, was man
+                      zum Wählen braucht – Tag, Dauer, Titel, Wege zum Hören.
+                    */}
                     {folge.beschreibung && (
-                      <div className="text-fg-muted mt-2 max-w-3xl space-y-3 leading-relaxed">
-                        {/*
+                      <details className="group mt-2 max-w-3xl">
+                        <summary className="text-fg-muted hover:text-fg inline-flex min-h-11 cursor-pointer list-none items-center gap-1 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                          Inhalt der Folge
+                          <Icon
+                            name="chevron-right"
+                            className="size-4 transition group-open:rotate-90"
+                          />
+                        </summary>
+                        <div className="text-fg-muted mt-1 space-y-3 leading-relaxed">
+                          {/*
                           Die Beschreibung, wie sie im Feed steht – ungekürzt
                           und unverändert. Das ist der Text des Autors, kein
                           Rohmaterial. Absätze entstehen an Leerzeilen; mehr
                           Struktur gibt der Feed nicht her, weil die
                           Auszeichnung beim Einlesen entfernt wurde.
                         */}
-                        {folge.beschreibung.split(/\n\s*\n/).map((absatz, nummer) => (
-                          /*
+                          {folge.beschreibung.split(/\n\s*\n/).map((absatz, nummer) => (
+                            /*
                             `whitespace-pre-line`: Einzelne Zeilenumbrüche
                             bleiben stehen. Seit dem 9. August tragen die
                             Beschreibungen die Kapitelmarken, und die stehen
@@ -188,11 +202,12 @@ export default function PodcastSeite() {
                             Website eine halbe Stunde ohne die neuen
                             Nachrichten da.
                           */
-                          <p key={nummer} className="whitespace-pre-line">
-                            {absatz}
-                          </p>
-                        ))}
-                      </div>
+                            <p key={nummer} className="whitespace-pre-line">
+                              {absatz}
+                            </p>
+                          ))}
+                        </div>
+                      </details>
                     )}
                     {/*
                       Zwei Wege zu **dieser** Folge: hören bei Spotify, sehen
@@ -217,7 +232,7 @@ export default function PodcastSeite() {
                       Versprechen – und genau daran ist der frühere Verweis
                       aufgefallen: Er führte in den Verwaltungsbereich.
                     */}
-                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+                    <div className="mt-1 flex flex-wrap items-center gap-x-5 gap-y-2">
                       {folgenSpotify(folge) && (
                         <a
                           href={folgenSpotify(folge)!}

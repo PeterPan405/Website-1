@@ -126,6 +126,12 @@ export function KalenderAnsicht({
 }) {
   const [aktiv, setAktiv] = useState<Set<TerminArt>>(new Set())
   const [zeigeVergangenes, setZeigeVergangenes] = useState(false)
+  /*
+    Zwei Monate offen, der Rest auf Wunsch (29.10.2026, „deutlich gekürzt …
+    übersichtlicher"): Alle Monate bis 2027 ergaben 110.242 px auf dem
+    Telefon. Wer weiter planen will, klappt auf; das Abo enthält ohnehin alles.
+  */
+  const [alleMonate, setAlleMonate] = useState(false)
 
   /*
     Das heutige Datum kommt aus dem Browser, nicht aus dem Build.
@@ -328,7 +334,7 @@ export function KalenderAnsicht({
         </p>
       ) : (
         <div className="mt-10 space-y-12">
-          {gefiltert.map((gruppe) => (
+          {(alleMonate ? gefiltert : gefiltert.slice(0, OFFENE_MONATE)).map((gruppe) => (
             <section key={gruppe.monat} aria-labelledby={`monat-${gruppe.monat}`}>
               <h2
                 id={`monat-${gruppe.monat}`}
@@ -418,11 +424,23 @@ export function KalenderAnsicht({
               </ul>
             </section>
           ))}
+          {!alleMonate && gefiltert.length > OFFENE_MONATE && (
+            <button
+              type="button"
+              onClick={() => setAlleMonate(true)}
+              className="fk-btn-secondary"
+            >
+              Weitere {gefiltert.length - OFFENE_MONATE} Monate anzeigen
+            </button>
+          )}
         </div>
       )}
     </div>
   )
 }
+
+/** Wie viele Monate ohne Klick offen stehen. */
+const OFFENE_MONATE = 2
 
 /**
  * Die linke Spalte einer Terminzeile: wann.
