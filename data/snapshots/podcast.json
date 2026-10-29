@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-28T10:01:22.975Z",
+  "abgerufenAm": "2026-10-29T01:00:17.853Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "fed-laesst-den-leitzins-unveraendert-microsoft-uebertrifft-und-deutsche-bank-ueb",
+      "titel": "Fed lässt den Leitzins unverändert, Microsoft übertrifft und Deutsche Bank übertrifft Erwartungen",
+      "beschreibung": "Die Fed pausiert bei den Zinsen, die EZB entscheidet heute. Microsoft und die Deutsche Bank überzeugen, Alphabet und Israels Wahl schicken Kurse auf Talfahrt. Die Fed lässt den Leitzins unverändert. Er bleibt bei 3,75 bis 4,0 Prozent. Zwei Mitglieder stimmten dagegen und wollten ihn anheben: Gouverneurin Lisa Cook und die Chefin der Cleveland Fed, Beth Hammack.\n\nWir sprechen über Deutsche Bank übertrifft Erwartungen, Israels Wahl bringt keine Mehrheit und UBS verdient deutlich mehr. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:38) Fed lässt den Leitzins unverändert\n(1:10) Microsoft übertrifft\n(1:49) Deutsche Bank übertrifft Erwartungen\n(2:21) Israels Wahl bringt keine Mehrheit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-10-29",
+      "dauerSekunden": 219,
+      "url": "https://iminvests.de/podcast-audio/2026-10-29.mp3",
+      "youtubeId": "PFpCLepfC0s"
+    },
     {
       "slug": "die-us-notenbank-fed-entscheidet-heute-ueber-die-zinsen-und-ig-metall-weist-erst",
       "titel": "Die US-Notenbank Fed entscheidet heute über die Zinsen und IG Metall weist erstes Angebot der Arbeitgeber zurück",
