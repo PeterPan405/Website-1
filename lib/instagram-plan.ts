@@ -394,16 +394,124 @@ export function tagesstand(datum: string, rohtext: string | null): Tagesstand {
  * Die Schlagworte hängen am letzten Satz des Rechtshinweises, durch ein
  * Leerzeichen getrennt – so stehen sie in allen Beiträgen seit August.
  */
-export function beschriftungTagesnews(plan: InstagramPlan, nachweis = ''): string {
-  return [
+export function beschriftungTagesnews(
+  plan: InstagramPlan,
+  nachweis = '',
+  meldungen: Meldung[] = []
+): string {
+  const ohneErlaeuterung = [
     KOPF,
     '',
     plan.zusammenfassung.trim(),
     '',
     ueberblick(plan.kacheln.length),
     '',
+    ...(nachweis ? [nachweis, ''] : []),
+    `${RECHTSHINWEIS} ${plan.schlagworte.map((w) => `#${w}`).join(' ')}`,
+  ].join('\n')
+  const bloecke = erlaeuterungen(
+    plan.kacheln,
+    meldungen,
+    BESCHRIFTUNG_HOECHSTENS - ohneErlaeuterung.length - 2
+  )
+  return [
+    KOPF,
+    '',
+    plan.zusammenfassung.trim(),
+    '',
+    ...(bloecke ? [bloecke, ''] : []),
+    ueberblick(plan.kacheln.length),
+    '',
     /* Seit 21.10.2026: Fotos unter CC BY/BY-SA verlangen Urheber und Lizenz. */
     ...(nachweis ? [nachweis, ''] : []),
     `${RECHTSHINWEIS} ${plan.schlagworte.map((w) => `#${w}`).join(' ')}`,
   ].join('\n')
+}
+
+/** Instagram nimmt höchstens 2.200 Zeichen; etwas Luft für Zählweisen. */
+export const BESCHRIFTUNG_HOECHSTENS = 2150
+
+/** Eine Meldung der Tagesausgabe, so weit die Beschriftung sie braucht. */
+export interface Meldung {
+  headline: string
+  summary: string[]
+  whyItMatters: string
+}
+
+const FUELLWOERTER = new Set(
+  (
+    'dass denn doch eine einen einem einer eines nach noch über unter wird werden ' +
+    'wurde haben hatte sich sind seit auch mehr ihre ihren ihrem dies diese dieser ' +
+    'prozent milliarden millionen euro dollar heute gestern aktie aktien zahlen'
+  ).split(' ')
+)
+
+/** Die tragenden Wörter eines Textes – ab vier Buchstaben, ohne Füllwörter. */
+function woerter(text: string): Set<string> {
+  return new Set(
+    (text.toLowerCase().match(/[\p{L}\d]{4,}/gu) ?? []).filter(
+      (w) => !FUELLWOERTER.has(w)
+    )
+  )
+}
+
+/** Höchstens `n` Sätze vom Anfang eines Absatzes – Abkürzungen wie in `saetze()`. */
+function ersteSaetze(text: string, n: number): string {
+  const teile = text.trim().split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9„"])/)
+  const ganz: string[] = []
+  for (const teil of teile) {
+    const davor = ganz.at(-1)
+    if (davor && ABKUERZUNG.test(davor)) ganz[ganz.length - 1] = `${davor} ${teil}`
+    else ganz.push(teil)
+  }
+  return ganz.slice(0, n).join(' ')
+}
+
+/**
+ * Je Kachel ein paar Sätze Einordnung für die Beschriftung (29.10.2026).
+ *
+ * Der Betreiber: „ganz cool, wenn generell … die Beschreibungen etwas länger
+ * wären, wenn da Themen noch etwas erläutert werden." Erfunden wird dafür
+ * nichts: Der Text kommt aus der Meldung der Tagesausgabe, die dieselbe
+ * Nachricht trägt – ihr `whyItMatters`, die Einordnung, die auf der Website
+ * unter derselben Meldung samt Quellen steht.
+ *
+ * Zugeordnet wird über gemeinsame Wörter (mindestens drei), jede Meldung
+ * höchstens einmal. Eine Kachel ohne sichere Meldung bekommt keinen Block –
+ * lieber kürzer als die Erklärung zur falschen Nachricht. Passt nicht alles
+ * in `platz`, bleibt je Kachel ein Satz; passt auch das nicht, keiner.
+ */
+export function erlaeuterungen(
+  kacheln: { titel: string; text: string }[],
+  meldungen: Meldung[],
+  platz: number
+): string {
+  const frei = [...meldungen]
+  const paare = kacheln.map((k) => {
+    const kw = woerter(`${k.titel} ${k.text}`)
+    let beste: { m: Meldung; treffer: number } | null = null
+    for (const m of frei) {
+      const mw = woerter(`${m.headline} ${m.summary.join(' ')}`)
+      const treffer = [...kw].filter((w) => mw.has(w)).length
+      if (treffer >= 3 && (!beste || treffer > beste.treffer)) beste = { m, treffer }
+    }
+    if (beste) frei.splice(frei.indexOf(beste.m), 1)
+    return { k, m: beste?.m ?? null }
+  })
+  /*
+    Nur die Einordnung, kein „Hintergrund" aus der Zusammenfassung: Deren
+    zweiter Absatz beginnt oft mit „Sie" oder „Er" und meint den ersten –
+    allein gestellt hieß es am 25.10.2026 „Sie dürfte ihn in der Spanne von
+    3,75 bis 4,00 Prozent belassen". `whyItMatters` steht für sich.
+  */
+  const fassung = (saetzeJe: number) =>
+    paare
+      .filter((p) => p.m)
+      .map((p) => `📌 ${p.k.titel.trim()}\n${ersteSaetze(p.m!.whyItMatters, saetzeJe)}`)
+      .join('\n\n')
+  for (const n of [2, 1]) {
+    const text = fassung(n)
+    if (text.length <= platz) return text
+  }
+  return ''
 }

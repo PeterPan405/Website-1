@@ -39,6 +39,8 @@ import {
   TEXT_MAX,
   TITEL_MAX,
   beschriftungTagesnews,
+  BESCHRIFTUNG_HOECHSTENS,
+  erlaeuterungen,
   istErscheinungstag,
   pruefeInstagramPlan,
   tagesstand,
@@ -460,5 +462,38 @@ pruefen(
     'Alle vier Entwicklungen'
   ) && beschriftungTagesnews(NEUNTER).includes('Alle fünf Entwicklungen')
 )
+
+/* Einordnung je Kachel (29.10.2026) – am echten Material vom 29.10. */
+{
+  const plan = JSON.parse(readFileSync('data/instagram/2026-10-29.json', 'utf8'))
+  const { edition } = await import('@/data/editions/2026-10-29')
+  const meldungen = [...edition.top, ...(edition.further ?? [])]
+  const text = beschriftungTagesnews(plan, '', meldungen)
+  pruefen(
+    'Einordnung: alle fünf Kacheln haben einen Block',
+    (text.match(/📌 /g) ?? []).length === 5
+  )
+  pruefen(
+    'Einordnung: die UBS-Kachel bekommt die UBS-Einordnung, nicht eine andere',
+    /📌 UBS[^\n]*\n[^\n]*UBS/.test(text)
+  )
+  pruefen('Einordnung: höchstens 2.200 Zeichen', text.length <= BESCHRIFTUNG_HOECHSTENS)
+  pruefen(
+    'Einordnung: ohne passende Meldung kein Block',
+    erlaeuterungen(
+      [{ titel: 'Gold auf Rekord', text: 'Der Goldpreis stieg auf ein Rekordhoch.' }],
+      meldungen,
+      2000
+    ) === ''
+  )
+  pruefen(
+    'Einordnung: zu wenig Platz – nichts',
+    erlaeuterungen(plan.kacheln, meldungen, 50) === ''
+  )
+  pruefen(
+    'Einordnung: ohne Meldungen bleibt die Beschriftung wie bisher',
+    beschriftungTagesnews(NEUNTER, '', []) === BESCHRIFTUNG_NEUNTER
+  )
+}
 
 console.log('\nAlle Prüfungen bestanden.')
