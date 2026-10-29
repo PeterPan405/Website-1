@@ -21,6 +21,7 @@ import {
   urheberVon,
   zuschnitt,
 } from '@/lib/commons-suche'
+import { kachelKurs } from '@/lib/instagram-kurs'
 import { bebildere, kursZurKachel } from '@/lib/instagram-motive'
 import {
   dateiname,
@@ -84,7 +85,17 @@ for (const [i, kachel] of plan.kacheln.entries()) {
     Tafel der tansanischen Gebärdensprache („Manual alphabet – F"): Wort und
     Schild standen beide im Titel, das Bild hatte mit Google nichts zu tun.
   */
-  const symbol = suchen.some((s) => s.marke) ? kursZurKachel(kachel.titel) : null
+  /*
+    Nur ein Verlauf, den die Kachel auch zeichnen wird: Lehnt `kachelKurs()`
+    ab (Richtung offen, Zahl weicht ab, Kurs veraltet), stand bis zum
+    29.10.2026 trotzdem „Kurs" im Register – und die Kachel zeigte das feste
+    Motiv. Bei der UBS („Zahlen gut, Kurs fällt") war das ein Banktresor,
+    acht Reparaturen lang. Dann wird ein Foto gesucht.
+  */
+  const kandidat = suchen.some((s) => s.marke) ? kursZurKachel(kachel.titel) : null
+  const symbol = kandidat && (await kachelKurs(kandidat, kachel, DATUM)) ? kandidat : null
+  if (kandidat && !symbol)
+    console.log(`Kachel ${stelle}: Kursverlauf ${kandidat} taugt nicht – suche ein Foto.`)
   for (const s of suchen) {
     if (symbol) {
       heute.push({
