@@ -578,12 +578,34 @@ function motivFuer(k: { titel: string; text: string }, frei: Motiv[]): Motiv | u
  */
 export function deckblattMotiv(
   kacheln: { titel: string; text: string }[],
-  erlaubt: string[]
+  erlaubt: string[],
+  /**
+   * Die Kacheln des Vortags. Am 29.10.2026 begannen zwei Tage hintereinander
+   * mit der Fed, und der Beitrag ging mit demselben Deckblatt hinaus wie
+   * am 28. – der Betreiber nahm ihn herunter. Hatte der Vortag dasselbe
+   * Thema-Deckblatt, kommt die neutrale Reihe, die jeden Tag ein anderes zeigt.
+   */
+  vortag: { titel: string; text: string }[] = []
 ): Motiv | null {
   const erste = kacheln[0]
   if (!erste) return null
   const m = motivFuer(erste, MOTIVE)
-  return m?.quelle && erlaubt.includes(m.quelle) ? m : null
+  if (!m?.quelle || !erlaubt.includes(m.quelle)) return null
+  if (vortag.length && deckblattMotiv(vortag, erlaubt)?.quelle === m.quelle) return null
+  return m
+}
+
+/** Die Kacheln des Vortags aus `data/instagram/` – leer, wenn es keinen Plan gab. */
+export function kachelnVomVortag(datum: string): { titel: string; text: string }[] {
+  const vortag = new Date(`${datum}T12:00:00Z`)
+  vortag.setUTCDate(vortag.getUTCDate() - 1)
+  const pfad = `data/instagram/${vortag.toISOString().slice(0, 10)}.json`
+  if (!existsSync(pfad)) return []
+  return (
+    JSON.parse(readFileSync(pfad, 'utf8')) as {
+      kacheln: { titel: string; text: string }[]
+    }
+  ).kacheln
 }
 
 /**
@@ -626,14 +648,7 @@ export function bebildere(
  * noch einmal (Betreiber, 21.10.2026). Nur für Kacheln ohne Tagesbild.
  */
 export function motiveVomVortag(datum: string): string[] {
-  const vortag = new Date(`${datum}T12:00:00Z`)
-  vortag.setUTCDate(vortag.getUTCDate() - 1)
-  const pfad = `data/instagram/${vortag.toISOString().slice(0, 10)}.json`
-  if (!existsSync(pfad)) return []
-  const plan = JSON.parse(readFileSync(pfad, 'utf8')) as {
-    kacheln: { titel: string; text: string }[]
-  }
-  return bebildere(plan.kacheln)
+  return bebildere(kachelnVomVortag(datum))
     .map((b) => b.motiv)
     .filter((m): m is string => !!m)
 }

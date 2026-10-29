@@ -149,6 +149,19 @@ pruefe(
   '… und das Fed-Motiv kommt nicht noch einmal in einer Kachel',
   bebildere(fedKacheln, fedDeckblatt?.id).every((b) => b.motiv !== 'fed')
 )
+/* 29.10.2026: zwei Tage Fed oben – nicht zweimal dasselbe Deckblatt. */
+pruefe(
+  'Fed oben wie am Vortag → kein Fed-Deckblatt, die neutrale Reihe',
+  deckblattMotiv(fedKacheln, ['2026-09-16.jpg'], fedKacheln) === null
+)
+pruefe(
+  'Vortag mit anderem Thema → Fed-Deckblatt bleibt',
+  deckblattMotiv(
+    fedKacheln,
+    ['2026-09-16.jpg'],
+    [{ titel: 'Ukraine: Gespräche', text: 'Kiew …' }]
+  )?.id === 'fed'
+)
 pruefe(
   'taugt das Bild nicht als Deckblatt, gibt es keins zum Thema',
   deckblattMotiv(fedKacheln, []) === null

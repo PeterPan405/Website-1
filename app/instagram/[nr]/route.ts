@@ -5,7 +5,12 @@ import {
   motivJpeg,
 } from '@/lib/instagram-bild'
 import { kachelKurs } from '@/lib/instagram-kurs'
-import { bebildere, deckblattMotiv, motiveVomVortag } from '@/lib/instagram-motive'
+import {
+  bebildere,
+  deckblattMotiv,
+  kachelnVomVortag,
+  motiveVomVortag,
+} from '@/lib/instagram-motive'
 import { tagesbild, tageskurs } from '@/lib/instagram-tagesbilder'
 import { instagramHeute } from '@/lib/instagram-heute'
 
@@ -60,7 +65,9 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
 
   /* Das Deckblatt zum Thema der wichtigsten Meldung, wenn es eins gibt. */
   const plan = stand.status === 'tagesnews' ? stand.plan : null
-  const thema = plan ? deckblattMotiv(plan.kacheln, deckblaetter()) : null
+  const thema = plan
+    ? deckblattMotiv(plan.kacheln, deckblaetter(), kachelnVomVortag(stand.datum))
+    : null
 
   let jpeg: Buffer
   if (stelle === 1) {
