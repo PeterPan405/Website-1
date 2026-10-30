@@ -916,33 +916,43 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 01.11.2026: US-Zwischenwahlen, S&P 500 (Yahoo, abgerufen 30.10.). */
+/* 01.11.2026: US-Zwischenwahlen, Sitzverteilung (abgerufen 30.10.). */
 {
   const karte = zahlenkarten.find((k) => k.datum === '2026-11-01')
-  pruefe('Zwischenwahl: Karte für den 01.11. sind Säulen', karte?.art === 'saeulen')
-  if (karte?.art === 'saeulen') {
-    const werte = karte.saeulen.map((z) => z.wert)
-    const mittel = werte.reduce((a, b) => a + b, 0) / werte.length
+  pruefe('Zwischenwahl: Karte für den 01.11. sind Sitzbalken', karte?.art === 'sitze')
+  if (karte?.art === 'sitze') {
     pruefe(
       'Zwischenwahl: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
+    const [haus, senat] = karte.kammern
+    const summe = (km: typeof haus, partei: string, zurWahl?: boolean) =>
+      km.teile
+        .filter(
+          (t) => t.partei === partei && (zurWahl === undefined || !!t.zurWahl === zurWahl)
+        )
+        .reduce((a, t) => a + t.sitze, 0)
     pruefe(
-      'Zwischenwahl: Heldenzahl = Mittel der Säulen (±0,05)',
-      Math.abs(mittel - 14.0) < 0.05 && karte.helden[0].wert === '+14,0 %',
-      mittel.toFixed(3)
+      'Zwischenwahl: Heldenzahlen = Summen der Balken',
+      karte.helden[0].wert ===
+        `${summe(haus, 'republikaner')} : ${summe(haus, 'demokraten')}` &&
+        karte.helden[1].wert ===
+          `${summe(senat, 'republikaner')} : ${summe(senat, 'demokraten')}`
     )
     pruefe(
-      'Zwischenwahl: „10 von 10" = Säulen im Plus',
-      karte.helden[0].pille?.wert ===
-        `${werte.filter((w) => w > 0).length} von ${werte.length}`
+      'Zwischenwahl: 35 Senatssitze zur Wahl, 22 R und 13 D',
+      summe(senat, 'republikaner', true) === 22 && summe(senat, 'demokraten', true) === 13
     )
     pruefe(
-      'Zwischenwahl: Beschreibung nennt beide Mittel',
-      karte.text.includes('14,0 %') && karte.text.includes('9,5 %')
+      'Zwischenwahl: Beschreibung nennt die Zahlen der Karte',
+      ['218', '214', '53 zu 45', '35 der 100', '22', '13', '51'].every((z) =>
+        karte.text.includes(z)
+      )
     )
     pruefe('Zwischenwahl: ohne Freigabe', !karte.freigabe)
+    const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
+    pruefe('Zwischenwahl: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
   }
 }
 

@@ -26,8 +26,12 @@ jede Kartenart selbst mit. Die Farben stehen in `STIL`. **Wer hier etwas
 Zwei Kartenarten gibt es im Hausstil:
 
 - `kurven` – zwei Linien über dieselbe Zeit (zuerst am 31.10.2026, Halloween)
-- `saeulen` – drei bis zwölf gleichartige Fälle (zuerst am 01.11.2026,
-  US-Zwischenwahlen)
+- `saeulen` – drei bis zwölf gleichartige Fälle (Probekarte im Test)
+- `sitze` – Sitzverteilung je Kammer als Balken. Die Parteien stehen in
+  ihren üblichen Farben (gedeckt: Blau `#2b4c9b`, Rot `#b8323a`), was zur Wahl
+  steht, ist heller, und die Mitte markiert die Mehrheit. Zuerst am
+  01.11.2026, zu den US-Zwischenwahlen. Die Parteifarben sind die einzige
+  Ausnahme von „Grün und Rot nur für Richtung“.
 
 ## Woran man uns erkennt
 

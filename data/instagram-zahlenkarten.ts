@@ -17,70 +17,86 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Thema vom Betreiber am 30.10.2026: „lass uns das gleich noch für
-      sonntag machen wegen zwischenwahlen". Form: Säulen im Hausstil, neu
-      (am 31.10. Kurve).
+      Thema vom Betreiber am 30.10.2026: „für sonntag … wegen
+      zwischenwahlen“. Die Börsenrendite nach Zwischenwahlen lehnte er ab,
+      weil sie der Halloween-Karte ähnelt („vlt was anderes … aber trotzdem
+      mit zwischenwahlen“). Gewählt hat er „Was auf dem Spiel steht“.
+      Form: Sitzbalken im Hausstil, neu (am 31.10. Kurve).
 
-      Wahltag: Dienstag, 3. November 2026 – der Dienstag nach dem ersten
-      Montag im November (2 U.S.C. § 7); gewählt werden das ganze
-      Repräsentantenhaus und ein Drittel des Senats.
-
-      Zahlen: Yahoo Finance, ^GSPC, Monatsschlusskurse (interval=1mo, ab
-      01/1985), abgerufen am 30.10.2026 über quellen-holen.yml. Gerechnet:
-      Ende Oktober des Wahljahres bis Ende Oktober des Folgejahres, ohne
-      Dividenden (der S&P 500 ist ein Kursindex).
-        1986 +3,2 % (darin der Crash vom Oktober 1987), 1990 +29,1 %,
-        1994 +23,1 %, 1998 +24,1 %, 2002 +18,6 %, 2006 +12,4 %,
-        2010 +5,9 %, 2014 +3,0 %, 2018 +12,0 %, 2022 +8,3 %
-        Mittel +13,98 %, 10 von 10 im Plus.
-      Dieselbe Rechnung für die übrigen Jahre 1985–2024 (30 Zeiträume):
-        Mittel +9,50 %, 25 von 30 im Plus, schwächster 2007/08 −37,5 %.
+      Zahlen, abgerufen am 30.10.2026 um 20:56 UTC über quellen-holen.yml:
+      - Repräsentantenhaus: clerk.house.gov, „Republicans 218, Democrats 214,
+        Independents 1, Vacancies 2“ (zusammen 435). Alle Sitze stehen zur
+        Wahl; die Mehrheit sind 218 von 435.
+      - Senat: senate.gov/senators, 100 Einträge, gezählt: Republican 53,
+        Democratic 45, Independent 2. Klasse II: 20 Republikaner,
+        13 Demokraten.
+      - Wikipedia, „2026 United States Senate elections“: Wahl am
+        3. November 2026, „35 of the 100 seats“, „51 seats needed for a
+        majority“, alle 33 Sitze der Klasse II und zwei Nachwahlen (Ohio,
+        Florida; beide Amtsinhaber Republikaner). Zur Wahl stehen damit
+        22 republikanische und 13 demokratische Sitze.
     */
-    art: 'saeulen',
+    art: 'sitze',
     datum: '2026-11-01',
-    titel: [{ text: 'Nach der Zwischenwahl' }, { text: 'stieg die Börse.', gruen: true }],
+    titel: [
+      { text: 'US-Zwischenwahl:' },
+      { text: 'Wer hält den Kongress?', gruen: true },
+    ],
     symbol: 'usa',
     erklaerung:
-      'Am Dienstag wählen die USA das Repräsentantenhaus und ein Drittel des Senats. So lief der S&P 500 im Jahr danach.',
-    stichzeile: 'S&P 500 · Ende Oktober bis Ende Oktober',
+      'Am Dienstag stehen alle 435 Sitze im Repräsentantenhaus und 35 der 100 im Senat zur Wahl. So knapp ist es heute.',
+    stichzeile: 'US-Kongress · Stand 30. Oktober 2026',
     helden: [
       {
-        name: 'Nach Zwischenwahlen',
-        wert: '+14,0 %',
-        richtung: 'steigt',
-        pille: { wert: '10 von 10', name: 'im Plus', richtung: 'steigt' },
+        name: 'Haus · Rep. zu Dem.',
+        wert: '218 : 214',
+        pille: { wert: '218', name: 'für die Mehrheit' },
       },
       {
-        name: 'In anderen Jahren',
-        wert: '+9,5 %',
-        pille: { wert: '25 von 30', name: 'im Plus' },
+        name: 'Senat · Rep. zu Dem.',
+        wert: '53 : 45',
+        pille: { wert: '51', name: 'für die Mehrheit' },
       },
     ],
-    saeulen: [
-      { text: '1986', wert: 3.2 },
-      { text: '1990', wert: 29.1 },
-      { text: '1994', wert: 23.1 },
-      { text: '1998', wert: 24.1 },
-      { text: '2002', wert: 18.6 },
-      { text: '2006', wert: 12.4 },
-      { text: '2010', wert: 5.9 },
-      { text: '2014', wert: 3.0 },
-      { text: '2018', wert: 12.0 },
-      { text: '2022', wert: 8.3 },
+    kammern: [
+      {
+        name: 'Repräsentantenhaus',
+        gesamt: 435,
+        mehrheit: 'Mehrheit ab 218',
+        zusatz: 'alle 435 Sitze zur Wahl',
+        teile: [
+          { name: 'Demokraten', sitze: 214, partei: 'demokraten' },
+          { name: 'Unabhängig', sitze: 1, partei: 'unabhaengig' },
+          { name: 'Frei', sitze: 2, partei: 'frei' },
+          { name: 'Republikaner', sitze: 218, partei: 'republikaner' },
+        ],
+      },
+      {
+        name: 'Senat',
+        gesamt: 100,
+        mehrheit: 'Mehrheit ab 51',
+        zusatz: '35 Sitze zur Wahl (heller)',
+        teile: [
+          { name: 'Demokraten', sitze: 32, partei: 'demokraten' },
+          { name: 'Dem. zur Wahl', sitze: 13, partei: 'demokraten', zurWahl: true },
+          { name: 'Unabhängig', sitze: 2, partei: 'unabhaengig' },
+          { name: 'Rep. zur Wahl', sitze: 22, partei: 'republikaner', zurWahl: true },
+          { name: 'Republikaner', sitze: 31, partei: 'republikaner' },
+        ],
+      },
     ],
-    einheit: '%',
     fusszeile:
-      'Stand: Monatsschlusskurse S&P 500 10/1985–10/2025 | Quelle: Yahoo Finance, eigene Rechnung',
+      'Stand: 30.10.2026 | Quellen: clerk.house.gov, senate.gov, Wikipedia (Senatswahl 2026)',
     text:
-      'Am Dienstag, dem 3. November, wählen die USA – das ganze Repräsentantenhaus und ein Drittel des Senats. Die Wahllokale schließen am Dienstagabend US-Zeit, erste Ergebnisse kommen bei uns in der Nacht zum Mittwoch. Wir haben nachgesehen, wie die Börse in den Jahren danach lief. 🇺🇸\n\n' +
-      'Das Ergebnis: Nach jeder der letzten zehn Zwischenwahlen stand der S&P 500 zwölf Monate später höher – 10 von 10 Mal, im Schnitt um 14,0 %. Gemessen von Ende Oktober des Wahljahres bis Ende Oktober des Jahres danach.\n\n' +
-      'Zum Vergleich: In allen anderen Jahren seit 1985 lag der Index im selben Zeitraum im Schnitt um 9,5 % höher, in 25 von 30 Fällen im Plus. Der schwächste Zeitraum war 2007/08 mit −37,5 %.\n\n' +
-      'Selbst 1986 blieb ein kleines Plus von 3,2 % – obwohl in diesen zwölf Monaten der Crash vom Oktober 1987 lag. Den stärksten Zeitraum gab es nach 1990 mit +29,1 %.\n\n' +
+      'Am Dienstag, dem 3. November, wählen die USA. Die Wahllokale schließen am Dienstagabend US-Zeit, erste Ergebnisse kommen bei uns in der Nacht zum Mittwoch. Es geht um den Kongress – und die Mehrheiten dort sind knapp. 🇺🇸\n\n' +
+      'Im Repräsentantenhaus halten die Republikaner 218 Sitze, die Demokraten 214. Dazu kommt ein Unabhängiger, zwei Sitze sind frei. Für die Mehrheit braucht es 218 von 435 – die Republikaner haben also genau so viele, wie sie brauchen. Alle 435 Sitze werden neu gewählt.\n\n' +
+      'Im Senat steht es 53 zu 45, dazu zwei Unabhängige. Zur Wahl stehen 35 der 100 Sitze: 22 davon halten bisher Republikaner, 13 Demokraten. Für die Mehrheit braucht es 51 Sitze.\n\n' +
+      'Warum das für Anleger zählt: Wer die Mehrheit im Kongress hat, entscheidet über Haushalt, Steuern und Schuldengrenze mit.\n\n' +
       'Und jetzt?\n' +
-      'Die Zahlen beschreiben, was war – eine Begründung liefern sie nicht, und zehn Fälle sind wenig. Ob es nach dieser Wahl wieder so läuft, lässt sich daraus nicht ablesen.\n\n' +
-      'Gerechnet: Monatsschlusskurse, Ende Oktober bis Ende Oktober, ohne Dividenden. Keine Anlageberatung.\n' +
-      'Quelle: Yahoo Finance (S&P 500, Monatsschlusskurse), eigene Rechnung',
-    schlagworte: ['usa', 'zwischenwahlen', 'sp500', 'börse', 'aktien'],
+      'Wie die Wahl ausgeht, sagen diese Zahlen nicht – sie zeigen nur, wie wenig sich verschieben muss.\n\n' +
+      'Stand: 30. Oktober 2026.\n' +
+      'Quellen: clerk.house.gov (Sitzverteilung Repräsentantenhaus), senate.gov (Senatoren), Wikipedia (Senatswahl 2026)',
+    schlagworte: ['usa', 'zwischenwahlen', 'kongress', 'politik', 'börse'],
   },
   {
     /*
