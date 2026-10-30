@@ -287,18 +287,19 @@ export interface Tortenkarte extends KarteGemeinsam {
 }
 
 /**
- * Die Nachtkarte (30.10.2026). Der Betreiber zur hellen Kalenderfassung:
+ * Die Kurvenkarte (30.10.2026). Der Betreiber zur hellen Kalenderfassung:
  * „sieht sehr billig nach Vibecoding aus – nimm das Design von Phantom".
- * Die Vorlage liegt in `im-capital/docs/VORLAGE-PHANTOM.md`: fast schwarzer
- * Grund mit weichem Licht von oben, Montserrat (dünn über fett), Weiß, ein
- * leuchtender Kursverlauf in Grün und Rot. Übernommen ist nur die
- * Bildsprache – keine Figur, kein Name, kein Logo von HKCM.
+ * Die Vorlage liegt in `im-capital/docs/VORLAGE-PHANTOM.md`: weiches Licht
+ * von oben, Montserrat (dünn über fett), ein leuchtender Kursverlauf in Grün
+ * und Rot. Den schwarzen Grund der Vorlage fand der Betreiber „sehr billig" –
+ * der Grund ist weiß. Übernommen ist nur die Bildsprache – keine Figur, kein
+ * Name, kein Logo von HKCM.
  *
  * Zwei Linien über dieselbe Zeit, je Punkt ein Wert; am Ende jeder Linie
  * ihr Endstand, darunter zwei bis drei Kennzahlen.
  */
-export interface Nachtkarte extends KarteGemeinsam {
-  art: 'nacht'
+export interface Kurvenkarte extends KarteGemeinsam {
+  art: 'kurven'
   /** Die dünne Zeile über dem fetten Titel. */
   vorzeile: string
   erklaerung: string
@@ -317,7 +318,7 @@ export interface Nachtkarte extends KarteGemeinsam {
 }
 
 export type Zahlenkarte =
-  | Nachtkarte
+  | Kurvenkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -702,8 +703,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(
         `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
       )
-  } else if (k.art === 'nacht') {
-    if (k.linien.length !== 2) f.push('Die Nachtkarte hat genau zwei Linien.')
+  } else if (k.art === 'kurven') {
+    if (k.linien.length !== 2) f.push('Die Kurvenkarte hat genau zwei Linien.')
     else if (k.linien[0].punkte.length !== k.linien[1].punkte.length)
       f.push('Beide Linien brauchen gleich viele Punkte.')
     if (k.linien.some((l) => l.punkte.length < 2))
@@ -720,7 +721,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
         `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
       )
     if (zeichen > 18)
-      f.push(`Die Nachtkarte trägt eine Titelzeile – ${zeichen} Zeichen, höchstens 18.`)
+      f.push(`Die Kurvenkarte trägt eine Titelzeile – ${zeichen} Zeichen, höchstens 18.`)
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
       f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
@@ -978,8 +979,8 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'nacht') {
-    const antwort = new ImageResponse(nachtBild(k, logo), {
+  if (k.art === 'kurven') {
+    const antwort = new ImageResponse(kurvenBild(k, logo), {
       width: ZK_BREITE,
       height: ZK_HOEHE,
       fonts: schriften(),
@@ -2277,9 +2278,9 @@ export function form(
   | 'geschichte'
   | 'pyramide'
   | 'torte'
-  | 'nacht' {
+  | 'kurven' {
   if (
-    k.art === 'nacht' ||
+    k.art === 'kurven' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -2825,24 +2826,30 @@ async function verlaufGrafik(k: Verlaufkarte) {
   ]
 }
 
-/* ------------------------------------------------------------ Nachtkarte */
+/* ------------------------------------------------------------ Kurvenkarte */
 
-/** Die Farben der Vorlage, gemessen an den Bildern 15, 30 und 34. */
-const NACHT = {
-  grund: '#050506',
-  licht: '#1c1d22',
-  grau: '#9c9ea4',
-  linie: '#26272c',
-  gruen: '#2df964',
-  rot: '#ff3b3b',
+/**
+  Die Farben: Aufbau, Schrift und Leuchtlinie aus der Vorlage, der Grund
+  aber weiß – der Betreiber am 30.10.2026 zur schwarzen Fassung: „in schwarz
+  sieht es sehr billig aus". Grün und Rot sind dunkler als das Leuchtgrün
+  der Vorlage, sonst trägt es auf Weiß nicht.
+*/
+const KURVE = {
+  grund: '#ffffff',
+  licht: '#f3f4f6',
+  schrift: '#0a0a0b',
+  grau: '#6b6e75',
+  linie: '#e4e5e8',
+  gruen: '#12a150',
+  rot: '#e0262b',
 }
 
-function nachtFarbe(richtung?: 'steigt' | 'faellt') {
+function kurvenFarbe(richtung?: 'steigt' | 'faellt') {
   return richtung === 'steigt'
-    ? NACHT.gruen
+    ? KURVE.gruen
     : richtung === 'faellt'
-      ? NACHT.rot
-      : '#ffffff'
+      ? KURVE.rot
+      : KURVE.schrift
 }
 
 /** Ein runder Schritt für die y-Achse: 1, 2 oder 5 mal einer Zehnerpotenz. */
@@ -2852,7 +2859,7 @@ function achsenschritt(hoechst: number, linien: number) {
   return [1, 2, 5, 10].map((m) => m * zehner).find((m) => m >= roh)!
 }
 
-function nachtBild(k: Nachtkarte, logo: string) {
+function kurvenBild(k: Kurvenkarte, logo: string) {
   const links = 60
   const diagrammL = 150
   const diagrammR = ZK_BREITE - 60
@@ -2873,20 +2880,20 @@ function nachtBild(k: Nachtkarte, logo: string) {
   const gitter = striche
     .map(
       (v) =>
-        `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${NACHT.linie}" stroke-width="2" stroke-dasharray="${v ? '4 8' : '0'}"/>`
+        `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${KURVE.linie}" stroke-width="2" stroke-dasharray="${v ? '4 8' : '0'}"/>`
     )
     .join('')
   const linienSvg = k.linien
     .map((l, n) => {
-      const farbe = nachtFarbe(l.richtung)
+      const farbe = kurvenFarbe(l.richtung)
       const d = pfad(l.punkte)
       const flaeche = `${d} L${breite} ${hoehe} L0 ${hoehe} Z`
       return (
         `<linearGradient id="f${n}" x1="0" y1="0" x2="0" y2="1">` +
-        `<stop offset="0" stop-color="${farbe}" stop-opacity="0.28"/>` +
+        `<stop offset="0" stop-color="${farbe}" stop-opacity="0.16"/>` +
         `<stop offset="1" stop-color="${farbe}" stop-opacity="0"/></linearGradient>` +
         `<path d="${flaeche}" fill="url(#f${n})"/>` +
-        `<path d="${d}" fill="none" stroke="${farbe}" stroke-width="14" stroke-opacity="0.45" stroke-linejoin="round" filter="url(#glut)"/>` +
+        `<path d="${d}" fill="none" stroke="${farbe}" stroke-width="12" stroke-opacity="0.22" stroke-linejoin="round" filter="url(#glut)"/>` +
         `<path d="${d}" fill="none" stroke="${farbe}" stroke-width="4" stroke-linejoin="round"/>` +
         `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="9" fill="${farbe}"/>`
       )
@@ -2935,14 +2942,14 @@ function nachtBild(k: Nachtkarte, logo: string) {
           fontFamily: 'Montserrat',
         },
       },
-      h('div', { style: { fontSize: 26, color: NACHT.grau } }, l.name),
+      h('div', { style: { fontSize: 26, color: KURVE.grau } }, l.name),
       h(
         'div',
         {
           style: {
             fontSize: 64,
             fontWeight: 800,
-            color: nachtFarbe(l.richtung),
+            color: kurvenFarbe(l.richtung),
             lineHeight: 1.1,
           },
         },
@@ -2961,8 +2968,8 @@ function nachtBild(k: Nachtkarte, logo: string) {
         height: ZK_HOEHE,
         display: 'flex',
         position: 'relative',
-        backgroundColor: NACHT.grund,
-        backgroundImage: `radial-gradient(ellipse 90% 45% at 50% 0%, ${NACHT.licht} 0%, ${NACHT.grund} 100%)`,
+        backgroundColor: KURVE.grund,
+        backgroundImage: `radial-gradient(ellipse 90% 45% at 50% 0%, ${KURVE.licht} 0%, ${KURVE.grund} 100%)`,
       },
     },
     h(
@@ -2985,14 +2992,14 @@ function nachtBild(k: Nachtkarte, logo: string) {
             fontSize: 22,
             fontWeight: 700,
             letterSpacing: 5,
-            color: '#ffffff',
+            color: KURVE.schrift,
             marginLeft: 14,
           },
         },
         'IM INVESTS'
       )
     ),
-    text(k.vorzeile, { fontSize: 50, color: '#ffffff' }, { top: 140, left: links }),
+    text(k.vorzeile, { fontSize: 50, color: KURVE.schrift }, { top: 140, left: links }),
     h(
       'div',
       {
@@ -3010,14 +3017,14 @@ function nachtBild(k: Nachtkarte, logo: string) {
       ...k.titel.map((t, i) =>
         h(
           'span',
-          { style: { color: nachtFarbe(t.richtung), marginLeft: i ? 26 : 0 } },
+          { style: { color: kurvenFarbe(t.richtung), marginLeft: i ? 26 : 0 } },
           t.text
         )
       )
     ),
     text(
       k.erklaerung,
-      { fontSize: 27, lineHeight: 1.4, color: NACHT.grau },
+      { fontSize: 27, lineHeight: 1.4, color: KURVE.grau },
       { top: 346, left: links, right: links }
     ),
     h('img', {
@@ -3029,14 +3036,14 @@ function nachtBild(k: Nachtkarte, logo: string) {
     ...striche.map((v) =>
       text(
         `${v.toLocaleString('de-DE')} ${k.einheit}`,
-        { fontSize: 20, color: NACHT.grau, justifyContent: 'flex-end' },
+        { fontSize: 20, color: KURVE.grau, justifyContent: 'flex-end' },
         { top: diagrammO + y(v) - 13, left: 0, width: diagrammL - 16 }
       )
     ),
     ...k.achse.map((a) =>
       text(
         a.text,
-        { fontSize: 20, color: NACHT.grau, justifyContent: 'center' },
+        { fontSize: 20, color: KURVE.grau, justifyContent: 'center' },
         { top: diagrammU + 14, left: diagrammL + x(a.bei) - 40, width: 80 }
       )
     ),
@@ -3048,7 +3055,7 @@ function nachtBild(k: Nachtkarte, logo: string) {
         right: links,
         top: 1080,
         height: 2,
-        backgroundColor: NACHT.linie,
+        backgroundColor: KURVE.linie,
       },
     }),
     ...k.kennzahlen.map((z, i) =>
@@ -3065,14 +3072,14 @@ function nachtBild(k: Nachtkarte, logo: string) {
             fontFamily: 'Montserrat',
           },
         },
-        h('div', { style: { fontSize: 24, color: NACHT.grau } }, z.name),
+        h('div', { style: { fontSize: 24, color: KURVE.grau } }, z.name),
         h(
           'div',
           {
             style: {
               fontSize: 60,
               fontWeight: 800,
-              color: nachtFarbe(z.richtung),
+              color: kurvenFarbe(z.richtung),
               marginTop: 4,
             },
           },
@@ -3082,7 +3089,7 @@ function nachtBild(k: Nachtkarte, logo: string) {
     ),
     text(
       k.fusszeile,
-      { fontSize: 19, color: '#6c6e74' },
+      { fontSize: 19, color: KURVE.grau },
       { top: ZK_HOEHE - 58, left: links, right: links }
     )
   )

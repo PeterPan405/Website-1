@@ -21,7 +21,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       („das zu Halloween klingt doch ganz gut"). Zwei Balken: „voll
       langweilig"; Kalender: „sieht sehr billig nach Vibecoding aus – nimm
       das Design von Phantom". Dazu: längere Geschichte, „mindestens 2020,
-      besser 1990". Form: Nachtkarte, neu (am 30.10. Duell).
+      besser 1990". Form: Kurvenkarte, neu (am 30.10. Duell).
 
       Zahlen: Yahoo Finance, ^GDAXI und ^GSPC, Monatsschlusskurse
       (interval=1mo, ab 12/1987 bzw. 01/1985), abgerufen am 30.10.2026 über
@@ -33,7 +33,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         S&P 500  Winter +1,07 %, Sommer +0,52 % je Monat; verkettet
                  +752 % gegen +154 %
     */
-    art: 'nacht',
+    art: 'kurven',
     datum: '2026-10-31',
     vorzeile: 'Kauf an Halloween, raus im Mai?',
     titel: [{ text: 'Beim Dax:' }, { text: 'ja.', richtung: 'steigt' }],

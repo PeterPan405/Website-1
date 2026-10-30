@@ -865,8 +865,8 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 /* 31.10.2026: Halloween-Effekt, Dax 1990–2026 (Yahoo, abgerufen 30.10.). */
 {
   const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
-  pruefe('Halloween: Karte für den 31.10. ist eine Nachtkarte', karte?.art === 'nacht')
-  if (karte?.art === 'nacht') {
+  pruefe('Halloween: Karte für den 31.10. ist eine Kurvenkarte', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
     const [winter, sommer] = karte.linien
     const euro = (v: number) => `${v.toLocaleString('de-DE')} €`
     pruefe(
@@ -901,16 +901,16 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* Eine Nachtkarte mit ungleichen Linien wird beanstandet. */
+/* Eine Kurvenkarte mit ungleichen Linien wird beanstandet. */
 {
   const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
-  if (karte?.art === 'nacht') {
+  if (karte?.art === 'kurven') {
     const kaputt = {
       ...karte,
       linien: [karte.linien[0], { ...karte.linien[1], punkte: [100, 90] }],
     }
     pruefe(
-      'Nachtkarte: ungleich lange Linien werden beanstandet',
+      'Kurvenkarte: ungleich lange Linien werden beanstandet',
       pruefeZahlenkarte(kaputt).some((f) => f.includes('gleich viele'))
     )
   }

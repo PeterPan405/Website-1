@@ -184,14 +184,16 @@ wird dort angelegt, nicht im Datensatz.
 
     Stand: 10.10.2026 | Quellen: Kursdaten, STOXX Europe 600, EZB
 
-**Die Nachtkarte – Bildsprache „Phantom"** (`art: 'nacht'`, seit 31.10.2026).
+**Die Kurvenkarte – Bildsprache „Phantom"** (`art: 'kurven'`, seit 31.10.2026).
 Der Betreiber am 30.10.2026 zur hellen Kalenderfassung: „sieht sehr billig
 nach Vibecoding aus – nimm das Design von Phantom". Die Vorlage ist in
 `im-capital/docs/VORLAGE-PHANTOM.md` ausgelesen, mit 87 Bildern. Übernommen
 ist nur die Bildsprache:
 
-- fast schwarzer Grund mit weichem Licht von oben
-- Montserrat, die Vorzeile dünn, der Titel fett, ein Wort in Leuchtgrün `#2df964`
+- weiches Licht von oben – auf **weißem** Grund: Die schwarze Fassung der
+  Vorlage fand der Betreiber am selben Tag „sehr billig"
+- Montserrat, die Vorzeile dünn, der Titel fett, ein Wort in Grün `#12a150`
+  (das Leuchtgrün der Vorlage trägt auf Weiß nicht)
 - ein leuchtender Kursverlauf in Grün und Rot mit Fläche
 - die Endstände groß als Legende, darunter zwei bis drei Kennzahlen
 
