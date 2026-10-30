@@ -72,7 +72,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile:
       'Stand: Monatsschlusskurse S&P 500 10/1985–10/2025 | Quelle: Yahoo Finance, eigene Rechnung',
     text:
-      'Am Dienstag, dem 3. November, wählen die USA – das ganze Repräsentantenhaus und ein Drittel des Senats. Wir haben nachgesehen, wie die Börse in den Jahren danach lief. 🇺🇸\n\n' +
+      'Am Dienstag, dem 3. November, wählen die USA – das ganze Repräsentantenhaus und ein Drittel des Senats. Die Wahllokale schließen am Dienstagabend US-Zeit, erste Ergebnisse kommen bei uns in der Nacht zum Mittwoch. Wir haben nachgesehen, wie die Börse in den Jahren danach lief. 🇺🇸\n\n' +
       'Das Ergebnis: Nach jeder der letzten zehn Zwischenwahlen stand der S&P 500 zwölf Monate später höher – 10 von 10 Mal, im Schnitt um 14,0 %. Gemessen von Ende Oktober des Wahljahres bis Ende Oktober des Jahres danach.\n\n' +
       'Zum Vergleich: In allen anderen Jahren seit 1985 lag der Index im selben Zeitraum im Schnitt um 9,5 % höher, in 25 von 30 Fällen im Plus. Der schwächste Zeitraum war 2007/08 mit −37,5 %.\n\n' +
       'Selbst 1986 blieb ein kleines Plus von 3,2 % – obwohl in diesen zwölf Monaten der Crash vom Oktober 1987 lag. Den stärksten Zeitraum gab es nach 1990 mit +29,1 %.\n\n' +
