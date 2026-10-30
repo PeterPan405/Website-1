@@ -287,32 +287,37 @@ export interface Tortenkarte extends KarteGemeinsam {
 }
 
 /**
- * Ein Börsenkalender (30.10.2026, Halloween-Effekt). Der Betreiber zu zwei
- * Balken „Winter gegen Sommer": „Gefällt mir absolut nicht, voll
- * langweilig." Zwölf Monatskacheln in zwei Hälften, je Kachel die
- * Durchschnittsrendite – grün getönt im Plus, rot im Minus –, über jeder
- * Hälfte ihr Schnitt; zwischen den Hälften eine Linie mit Kürbis für den
- * Tag, um den es geht.
+ * Die Nachtkarte (30.10.2026). Der Betreiber zur hellen Kalenderfassung:
+ * „sieht sehr billig nach Vibecoding aus – nimm das Design von Phantom".
+ * Die Vorlage liegt in `im-capital/docs/VORLAGE-PHANTOM.md`: fast schwarzer
+ * Grund mit weichem Licht von oben, Montserrat (dünn über fett), Weiß, ein
+ * leuchtender Kursverlauf in Grün und Rot. Übernommen ist nur die
+ * Bildsprache – keine Figur, kein Name, kein Logo von HKCM.
+ *
+ * Zwei Linien über dieselbe Zeit, je Punkt ein Wert; am Ende jeder Linie
+ * ihr Endstand, darunter zwei bis drei Kennzahlen.
  */
-export interface Kalenderkarte extends KarteGemeinsam {
-  art: 'kalender'
+export interface Nachtkarte extends KarteGemeinsam {
+  art: 'nacht'
+  /** Die dünne Zeile über dem fetten Titel. */
+  vorzeile: string
   erklaerung: string
-  unterzeile: string
-  /** Genau zwei, je sechs Monate, in der Reihenfolge, in der sie stehen. */
-  haelften: {
+  /** Genau zwei, gleich lang; die erste liegt im Bild oben. */
+  linien: {
     name: string
-    /** Rechts neben dem Namen, schon gesetzt: „Ø +1,70 % je Monat". */
-    schnitt: string
-    /** Hebt die Hälfte hervor: Schnitt in Grün, Rahmen. */
-    vorn?: boolean
-    monate: { name: string; wert: number }[]
+    ende: string
+    richtung: 'steigt' | 'faellt'
+    punkte: readonly number[]
   }[]
-  /** Die Linie zwischen den Hälften: „31. Oktober – Halloween". */
-  trenner: string
+  /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
+  achse: { bei: number; text: string }[]
+  /** Hinter den Zahlen der y-Achse: „€". */
+  einheit: string
+  kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
 }
 
 export type Zahlenkarte =
-  | Kalenderkarte
+  | Nachtkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -596,6 +601,12 @@ function schriften() {
       weight: 800,
       style: 'italic',
     },
+    ...([400, 700, 800] as const).map((weight) => ({
+      name: 'Montserrat',
+      data: readFileSync(join(ORDNER, `montserrat-${weight}.woff`)),
+      weight,
+      style: 'normal' as const,
+    })),
   ]
   return schriftVorrat
 }
@@ -691,19 +702,25 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(
         `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
       )
-  } else if (k.art === 'kalender') {
-    if (k.haelften.length !== 2) f.push('Der Kalender hat genau zwei Hälften.')
-    for (const hf of k.haelften)
-      if (hf.monate.length !== 6)
-        f.push(`${hf.name}: ${hf.monate.length} Monate – sechs.`)
+  } else if (k.art === 'nacht') {
+    if (k.linien.length !== 2) f.push('Die Nachtkarte hat genau zwei Linien.')
+    else if (k.linien[0].punkte.length !== k.linien[1].punkte.length)
+      f.push('Beide Linien brauchen gleich viele Punkte.')
+    if (k.linien.some((l) => l.punkte.length < 2))
+      f.push('Eine Linie braucht zwei Punkte.')
+    for (const a of k.achse)
+      if (a.bei < 0 || a.bei >= (k.linien[0]?.punkte.length ?? 0))
+        f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
+    if (k.kennzahlen.length < 2 || k.kennzahlen.length > 3)
+      f.push(`${k.kennzahlen.length} Kennzahlen – zwei oder drei.`)
+    if (k.vorzeile.length > 34)
+      f.push(`Vorzeile hat ${k.vorzeile.length} Zeichen – höchstens 34.`)
     if (k.erklaerung.length > ERKLAERUNG_MAX)
       f.push(
         `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
       )
-    if (zeichen > 38)
-      f.push(
-        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
-      )
+    if (zeichen > 18)
+      f.push(`Die Nachtkarte trägt eine Titelzeile – ${zeichen} Zeichen, höchstens 18.`)
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
       f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
@@ -960,26 +977,32 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
+  const logo = svgAdresse(signetOhneMitte(logoSvg))
+  if (k.art === 'nacht') {
+    const antwort = new ImageResponse(nachtBild(k, logo), {
+      width: ZK_BREITE,
+      height: ZK_HOEHE,
+      fonts: schriften(),
+    })
+    return Buffer.from(await antwort.arrayBuffer())
+  }
   const rangliste = k.art !== undefined && k.art !== 'vergleich'
   const grafik =
-    k.art === 'kalender'
-      ? kalenderGrafik(k)
-      : k.art === 'verlauf'
-        ? await verlaufGrafik(k)
-        : k.art === 'duell'
-          ? duellGrafik(k)
-          : k.art === 'steckbrief'
-            ? steckbriefGrafik(k)
-            : k.art === 'geschichte'
-              ? geschichtsGrafik(k)
-              : k.art === 'pyramide'
-                ? pyramidenGrafik(k)
-                : k.art === 'torte'
-                  ? tortenGrafik(k)
-                  : k.art === 'rangliste'
-                    ? ranglistenGrafik(k)
-                    : vergleichsGrafik(k)
-  const logo = svgAdresse(signetOhneMitte(logoSvg))
+    k.art === 'verlauf'
+      ? await verlaufGrafik(k)
+      : k.art === 'duell'
+        ? duellGrafik(k)
+        : k.art === 'steckbrief'
+          ? steckbriefGrafik(k)
+          : k.art === 'geschichte'
+            ? geschichtsGrafik(k)
+            : k.art === 'pyramide'
+              ? pyramidenGrafik(k)
+              : k.art === 'torte'
+                ? tortenGrafik(k)
+                : k.art === 'rangliste'
+                  ? ranglistenGrafik(k)
+                  : vergleichsGrafik(k)
   const bild = h(
     'div',
     {
@@ -1052,7 +1075,6 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
       )
     ),
     ...((k.art === 'rangliste' ||
-      k.art === 'kalender' ||
       k.art === 'steckbrief' ||
       k.art === 'geschichte' ||
       k.art === 'pyramide' ||
@@ -2255,9 +2277,9 @@ export function form(
   | 'geschichte'
   | 'pyramide'
   | 'torte'
-  | 'kalender' {
+  | 'nacht' {
   if (
-    k.art === 'kalender' ||
+    k.art === 'nacht' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -2803,192 +2825,267 @@ async function verlaufGrafik(k: Verlaufkarte) {
   ]
 }
 
-/* ------------------------------------------------------------ Kalender */
+/* ------------------------------------------------------------ Nachtkarte */
 
-/** Ein Kürbis als SVG – orange, mit Stiel; das einzige Bild, das der Kalender trägt. */
-const KUERBIS =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
-  '<path d="M30 14 C30 8 34 5 38 6 L37 10 C34 10 33 12 33 15 Z" fill="#2f5e2a"/>' +
-  '<ellipse cx="20" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
-  '<ellipse cx="44" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
-  '<ellipse cx="32" cy="38" rx="14" ry="21" fill="#f08a2c"/>' +
-  '<path d="M22 32 L27 37 L22 37 Z M42 32 L37 37 L42 37 Z" fill="#3b1d06"/>' +
-  '<path d="M21 45 Q32 53 43 45 L40 47 L37 45 L34 48 L31 45 L28 48 L25 45 Z" fill="#3b1d06"/>' +
-  '</svg>'
+/** Die Farben der Vorlage, gemessen an den Bildern 15, 30 und 34. */
+const NACHT = {
+  grund: '#050506',
+  licht: '#1c1d22',
+  grau: '#9c9ea4',
+  linie: '#26272c',
+  gruen: '#2df964',
+  rot: '#ff3b3b',
+}
 
-function kalenderGrafik(k: Kalenderkarte) {
+function nachtFarbe(richtung?: 'steigt' | 'faellt') {
+  return richtung === 'steigt'
+    ? NACHT.gruen
+    : richtung === 'faellt'
+      ? NACHT.rot
+      : '#ffffff'
+}
+
+/** Ein runder Schritt für die y-Achse: 1, 2 oder 5 mal einer Zehnerpotenz. */
+function achsenschritt(hoechst: number, linien: number) {
+  const roh = hoechst / linien
+  const zehner = 10 ** Math.floor(Math.log10(roh))
+  return [1, 2, 5, 10].map((m) => m * zehner).find((m) => m >= roh)!
+}
+
+function nachtBild(k: Nachtkarte, logo: string) {
   const links = 60
-  const breite = ZK_BREITE - 2 * links
-  const luecke = 14
-  const kachelB = (breite - 2 * luecke) / 3
-  const kachelH = 112
-  const kopfH = 56
-  const trennerH = 84
-  const oben = 540
-  const haelfteH = kopfH + 2 * kachelH + luecke
-  const zahl = (w: number) =>
-    `${w > 0 ? '+' : w < 0 ? '−' : ''}${Math.abs(w).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-  const teile: ReturnType<typeof h>[] = [
+  const diagrammL = 150
+  const diagrammR = ZK_BREITE - 60
+  const diagrammO = 480
+  const diagrammU = 1000
+  const breite = diagrammR - diagrammL
+  const hoehe = diagrammU - diagrammO
+  const anzahl = k.linien[0].punkte.length
+  const schritt = achsenschritt(Math.max(...k.linien.flatMap((l) => l.punkte)), 5)
+  const oben =
+    Math.ceil(Math.max(...k.linien.flatMap((l) => l.punkte)) / schritt) * schritt
+  const x = (i: number) => (i / (anzahl - 1)) * breite
+  const y = (v: number) => hoehe - (v / oben) * hoehe
+  const pfad = (p: readonly number[]) =>
+    p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
+
+  const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
+  const gitter = striche
+    .map(
+      (v) =>
+        `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${NACHT.linie}" stroke-width="2" stroke-dasharray="${v ? '4 8' : '0'}"/>`
+    )
+    .join('')
+  const linienSvg = k.linien
+    .map((l, n) => {
+      const farbe = nachtFarbe(l.richtung)
+      const d = pfad(l.punkte)
+      const flaeche = `${d} L${breite} ${hoehe} L0 ${hoehe} Z`
+      return (
+        `<linearGradient id="f${n}" x1="0" y1="0" x2="0" y2="1">` +
+        `<stop offset="0" stop-color="${farbe}" stop-opacity="0.28"/>` +
+        `<stop offset="1" stop-color="${farbe}" stop-opacity="0"/></linearGradient>` +
+        `<path d="${flaeche}" fill="url(#f${n})"/>` +
+        `<path d="${d}" fill="none" stroke="${farbe}" stroke-width="14" stroke-opacity="0.45" stroke-linejoin="round" filter="url(#glut)"/>` +
+        `<path d="${d}" fill="none" stroke="${farbe}" stroke-width="4" stroke-linejoin="round"/>` +
+        `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="9" fill="${farbe}"/>`
+      )
+    })
+    .join('')
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe}" viewBox="0 0 ${breite} ${hoehe}" overflow="visible">` +
+    `<defs><filter id="glut" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="9"/></filter></defs>` +
+    gitter +
+    linienSvg +
+    '</svg>'
+
+  const text = (
+    inhalt: string,
+    stil: Record<string, string | number>,
+    wo: Record<string, string | number>
+  ) =>
     h(
       'div',
       {
         style: {
           position: 'absolute',
-          top: RL_UNTERZEILE,
-          left: links,
-          right: links,
           display: 'flex',
-          fontFamily: 'Open',
-          fontWeight: 700,
-          fontSize: 28,
-          color: GRAU,
+          fontFamily: 'Montserrat',
+          ...wo,
+          ...stil,
         },
       },
-      k.unterzeile
+      inhalt
+    )
+
+  /*
+    Die Endstände als Legende oben links im Diagramm – dort ist bei einer
+    steigenden Linie Platz. Am Linienende stießen sie an Achse und Erklärung.
+  */
+  const endstaende = k.linien.map((l, n) =>
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: diagrammL + 24 + n * 300,
+          top: diagrammO + 20,
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Montserrat',
+        },
+      },
+      h('div', { style: { fontSize: 26, color: NACHT.grau } }, l.name),
+      h(
+        'div',
+        {
+          style: {
+            fontSize: 64,
+            fontWeight: 800,
+            color: nachtFarbe(l.richtung),
+            lineHeight: 1.1,
+          },
+        },
+        l.ende
+      )
+    )
+  )
+
+  const spalte = (ZK_BREITE - 2 * links) / k.kennzahlen.length
+
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: NACHT.grund,
+        backgroundImage: `radial-gradient(ellipse 90% 45% at 50% 0%, ${NACHT.licht} 0%, ${NACHT.grund} 100%)`,
+      },
+    },
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 52,
+          left: links,
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
+      h('img', { src: logo, width: 40, height: 40 }),
+      h(
+        'div',
+        {
+          style: {
+            fontFamily: 'Montserrat',
+            fontSize: 22,
+            fontWeight: 700,
+            letterSpacing: 5,
+            color: '#ffffff',
+            marginLeft: 14,
+          },
+        },
+        'IM INVESTS'
+      )
     ),
-  ]
-  k.haelften.forEach((hf, j) => {
-    const y = oben + j * (haelfteH + trennerH)
-    teile.push(
+    text(k.vorzeile, { fontSize: 50, color: '#ffffff' }, { top: 140, left: links }),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 196,
+          left: links,
+          display: 'flex',
+          fontFamily: 'Montserrat',
+          fontWeight: 800,
+          fontSize: 112,
+          letterSpacing: -2,
+        },
+      },
+      ...k.titel.map((t, i) =>
+        h(
+          'span',
+          { style: { color: nachtFarbe(t.richtung), marginLeft: i ? 26 : 0 } },
+          t.text
+        )
+      )
+    ),
+    text(
+      k.erklaerung,
+      { fontSize: 27, lineHeight: 1.4, color: NACHT.grau },
+      { top: 346, left: links, right: links }
+    ),
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite,
+      height: hoehe,
+      style: { position: 'absolute', left: diagrammL, top: diagrammO },
+    }),
+    ...striche.map((v) =>
+      text(
+        `${v.toLocaleString('de-DE')} ${k.einheit}`,
+        { fontSize: 20, color: NACHT.grau, justifyContent: 'flex-end' },
+        { top: diagrammO + y(v) - 13, left: 0, width: diagrammL - 16 }
+      )
+    ),
+    ...k.achse.map((a) =>
+      text(
+        a.text,
+        { fontSize: 20, color: NACHT.grau, justifyContent: 'center' },
+        { top: diagrammU + 14, left: diagrammL + x(a.bei) - 40, width: 80 }
+      )
+    ),
+    ...endstaende,
+    h('div', {
+      style: {
+        position: 'absolute',
+        left: links,
+        right: links,
+        top: 1080,
+        height: 2,
+        backgroundColor: NACHT.linie,
+      },
+    }),
+    ...k.kennzahlen.map((z, i) =>
       h(
         'div',
         {
           style: {
             position: 'absolute',
-            top: y,
-            left: links,
-            width: breite,
-            height: kopfH - 10,
+            top: 1104,
+            left: links + i * spalte,
+            width: spalte,
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            flexDirection: 'column',
+            fontFamily: 'Montserrat',
           },
         },
-        h(
-          'div',
-          { style: { fontFamily: 'Anton', fontSize: 40, color: SCHWARZ } },
-          hf.name
-        ),
+        h('div', { style: { fontSize: 24, color: NACHT.grau } }, z.name),
         h(
           'div',
           {
             style: {
-              fontFamily: 'Open',
-              fontWeight: 700,
-              fontSize: 30,
-              color: hf.vorn ? '#ffffff' : SCHWARZ,
-              backgroundColor: hf.vorn ? LOGO_GRUEN : '#eeeeee',
-              borderRadius: 999,
-              padding: '6px 22px',
+              fontSize: 60,
+              fontWeight: 800,
+              color: nachtFarbe(z.richtung),
+              marginTop: 4,
             },
           },
-          hf.schnitt
+          z.wert
         )
       )
+    ),
+    text(
+      k.fusszeile,
+      { fontSize: 19, color: '#6c6e74' },
+      { top: ZK_HOEHE - 58, left: links, right: links }
     )
-    hf.monate.forEach((m, i) => {
-      const plus = m.wert >= 0
-      const farbe = plus ? LOGO_GRUEN : LOGO_ROT
-      teile.push(
-        h(
-          'div',
-          {
-            style: {
-              position: 'absolute',
-              top: y + kopfH + Math.floor(i / 3) * (kachelH + luecke),
-              left: links + (i % 3) * (kachelB + luecke),
-              width: kachelB,
-              height: kachelH,
-              borderRadius: 18,
-              backgroundColor: hell(farbe),
-              border: hf.vorn ? `3px solid ${farbe}` : '3px solid transparent',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              paddingLeft: 24,
-            },
-          },
-          h(
-            'div',
-            {
-              style: {
-                fontFamily: 'Open',
-                fontWeight: 700,
-                fontSize: 24,
-                color: MITTELGRAU,
-              },
-            },
-            m.name
-          ),
-          h(
-            'div',
-            {
-              style: {
-                fontFamily: 'Anton',
-                fontSize: 52,
-                color: farbe,
-                lineHeight: 1.05,
-              },
-            },
-            zahl(m.wert)
-          )
-        )
-      )
-    })
-    if (j === 0) {
-      const ty = y + haelfteH + 6
-      teile.push(
-        h('div', {
-          style: {
-            position: 'absolute',
-            top: ty + trennerH / 2 - 8,
-            left: links,
-            width: breite,
-            height: 0,
-            borderTop: '4px dashed #e2701c',
-          },
-        }),
-        h(
-          'div',
-          {
-            style: {
-              position: 'absolute',
-              top: ty + 4,
-              left: 0,
-              width: ZK_BREITE,
-              display: 'flex',
-              justifyContent: 'center',
-            },
-          },
-          h(
-            'div',
-            {
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: '#ffffff',
-                padding: '0 18px',
-              },
-            },
-            h('img', { src: svgAdresse(KUERBIS), width: 56, height: 56 }),
-            h(
-              'div',
-              {
-                style: {
-                  fontFamily: 'Anton',
-                  fontSize: 36,
-                  color: '#c25a12',
-                  marginLeft: 12,
-                },
-              },
-              k.trenner
-            )
-          )
-        )
-      )
-    }
-  })
-  return teile
+  )
 }
 
 /* ------------------------------------------------------------ Duell */
