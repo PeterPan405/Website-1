@@ -1,5 +1,11 @@
 # Instagram für den privaten Account „Igor Original" – Hochladen vom Rechner
 
+> **Noch nicht loslegen.** Igor (30.10.2026): „er soll noch nicht direkt
+> loslegen … erstmal noch kurz warten. Ich mache das dann später." Diese
+> Anleitung liegt bereit. Begonnen wird erst, wenn Igor es im Chat
+> ausdrücklich sagt – keinen Schritt vorher, auch nicht Teil A (er macht den
+> Account öffentlich).
+
 **Für wen:** den Betreiber am Rechner und die lokale Claude-Sitzung
 **„Alles-Mögliche-Chat"** auf seinem Computer. Sie soll später Beiträge auf
 den privaten Account **Igor Original** hochladen können, wenn dort Inhalte
