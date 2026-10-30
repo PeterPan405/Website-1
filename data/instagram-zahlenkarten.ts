@@ -73,6 +73,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gerechnet: Mittel der monatlichen Renditen je Kalendermonat, Januar 1990 bis September 2026. Der Dax ist ein Performanceindex (Dividenden eingerechnet), der S&P 500 nicht. Hochrechnung ohne Kosten und Steuern. Keine Anlageberatung.\n' +
       'Quelle: Yahoo Finance (Monatsschlusskurse), eigene Rechnung',
     schlagworte: ['halloween', 'dax', 'börse', 'aktien', 'investieren'],
+    freigabe: '2026-10-31',
   },
   {
     /*

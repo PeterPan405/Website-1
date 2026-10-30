@@ -299,13 +299,25 @@ export interface Tortenkarte extends KarteGemeinsam {
  * Darunter: die zwei Endstände als große Zahlen, unter jeder ihre Kennzahl
  * als Pille, und beide Linien über dieselbe Zeit.
  */
-export interface Kurvenkarte extends KarteGemeinsam {
-  art: 'kurven'
+/** Was alle Karten im Hausstil (`INSTAGRAM-STIL.md`) gemeinsam haben. */
+interface StilGemeinsam extends KarteGemeinsam {
   erklaerung: string
-  /** Ein Symbol zum Anlass hinter der ersten Titelzeile – nur eins, nur dort. */
-  symbol?: 'kuerbis'
   /** Die gesperrte Zeile über den Zahlen: „Dax · 100 € ab Januar 1990". */
   stichzeile: string
+  /** Ein Symbol zum Anlass hinter der ersten Titelzeile – nur eins, nur dort. */
+  symbol?: Anlass
+}
+
+/** Eine große Zahl im Hausstil, mit ihrer Kennzahl als Pille darunter. */
+export interface Held {
+  name: string
+  wert: string
+  richtung?: 'steigt' | 'faellt'
+  pille?: { wert: string; name: string; richtung?: 'steigt' | 'faellt' }
+}
+
+export interface Kurvenkarte extends StilGemeinsam {
+  art: 'kurven'
   /** Genau zwei, gleich lang. */
   linien: {
     name: string
@@ -320,8 +332,23 @@ export interface Kurvenkarte extends KarteGemeinsam {
   kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
 }
 
+/**
+ * Säulen im Hausstil (01.11.2026, US-Zwischenwahlen): je Säule ein Wert,
+ * über ihr der Wert, unter ihr die Beschriftung; darüber ein oder zwei
+ * Heldenzahlen. Für eine Reihe gleichartiger Fälle, etwa „jedes Jahr nach
+ * einer Zwischenwahl".
+ */
+export interface Saeulenkarte extends StilGemeinsam {
+  art: 'saeulen'
+  helden: Held[]
+  saeulen: { text: string; wert: number }[]
+  /** Hinter den Werten: „%". */
+  einheit: string
+}
+
 export type Zahlenkarte =
   | Kurvenkarte
+  | Saeulenkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -657,6 +684,18 @@ const HAUS_ABSTAND = 7
 const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
 const RL_BALKEN = 430
 
+/** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
+function stilBefunde(k: Kurvenkarte | Saeulenkarte): string[] {
+  const f: string[] = []
+  if (k.stichzeile.length > 40)
+    f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
+  if (k.erklaerung.length > ERKLAERUNG_MAX)
+    f.push(`Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`)
+  if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
+    f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
+  return f
+}
+
 /** Was an einer Karte nicht stimmt – leer heißt: in Ordnung. */
 export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const f: string[] = []
@@ -717,16 +756,13 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
         f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
     if (k.kennzahlen.length !== k.linien.length)
       f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
-    if (k.stichzeile.length > 40)
-      f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
-    if (k.erklaerung.length > ERKLAERUNG_MAX)
-      f.push(
-        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
-      )
-    if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
-      f.push(
-        'Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.'
-      )
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'saeulen') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.saeulen.length < 3 || k.saeulen.length > 12)
+      f.push(`${k.saeulen.length} Säulen – drei bis zwölf.`)
+    f.push(...stilBefunde(k))
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
       f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
@@ -984,8 +1020,12 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'kurven') {
-    const antwort = new ImageResponse(kurvenBild(k, logo), {
+  if (k.art === 'kurven' || k.art === 'saeulen') {
+    const bild =
+      k.art === 'kurven'
+        ? kurvenBild(k, logo)
+        : stilBild(k, logo, k.helden, saeulenGrafik(k))
+    const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
       fonts: schriften(),
@@ -2283,9 +2323,11 @@ export function form(
   | 'geschichte'
   | 'pyramide'
   | 'torte'
-  | 'kurven' {
+  | 'kurven'
+  | 'saeulen' {
   if (
     k.art === 'kurven' ||
+    k.art === 'saeulen' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -2892,7 +2934,7 @@ function stilKopf(logo: string) {
 }
 
 /** Die Symbole zum Anlass, flach gezeichnet wie ein Piktogramm. */
-const SYMBOLE: Record<NonNullable<Kurvenkarte['symbol']>, string> = {
+const SYMBOLE = {
   kuerbis:
     '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
     '<path d="M31 15c0-6 3-9 8-9" fill="none" stroke="#3f6b2a" stroke-width="4" stroke-linecap="round"/>' +
@@ -2902,76 +2944,62 @@ const SYMBOLE: Record<NonNullable<Kurvenkarte['symbol']>, string> = {
     '<path d="M24 34l4-5 4 5zM36 34l4-5 4 5z" fill="#4a2208"/>' +
     '<path d="M23 44q9 7 18 0l-3 1-2 3-3-3-3 3-2-3z" fill="#4a2208"/>' +
     '</svg>',
-}
-
-function kurvenBild(k: Kurvenkarte, logo: string) {
-  const rand = 60
-  const mitte = ZK_BREITE / 2
-  const diagrammL = rand
-  const diagrammR = ZK_BREITE - rand - 76
-  const diagrammO = 736
-  const diagrammU = 1200
-  /* Rand im SVG, damit der Punkt am Linienende nicht abgeschnitten wird. */
-  const luft = 10
-  const breite = diagrammR - diagrammL
-  const hoehe = diagrammU - diagrammO
-  const anzahl = k.linien[0].punkte.length
-  const alle = k.linien.flatMap((l) => l.punkte)
-  const schritt = achsenschritt(Math.max(...alle), 5)
-  const oben = Math.ceil(Math.max(...alle) / schritt) * schritt
-  const x = (i: number) => (i / (anzahl - 1)) * breite
-  const y = (v: number) => hoehe - (v / oben) * hoehe
-  const pfad = (p: readonly number[]) =>
-    p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
-  const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
-
-  const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
-    striche
+  /* Die US-Flagge vereinfacht: sieben Streifen, das Feld ohne Sterne. */
+  usa:
+    '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
+    '<clipPath id="r"><rect x="4" y="14" width="56" height="38" rx="6"/></clipPath>' +
+    '<g clip-path="url(#r)"><rect x="4" y="14" width="56" height="38" fill="#ffffff"/>' +
+    [0, 2, 4, 6]
       .map(
-        (v) =>
-          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+        (i) =>
+          `<rect x="4" y="${14 + i * (38 / 7)}" width="56" height="${38 / 7}" fill="#b22234"/>`
       )
       .join('') +
-    k.linien
-      .map((l) => {
-        const farbe = stilFarbe(l.richtung)
-        return (
-          `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
-          `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
-        )
-      })
-      .join('') +
-    '</svg>'
+    '<rect x="4" y="14" width="26" height="21" fill="#3c3b6e"/></g>' +
+    '<rect x="4" y="14" width="56" height="38" rx="6" fill="none" stroke="#d8dbe0" stroke-width="1.5"/>' +
+    '</svg>',
+}
+type Anlass = keyof typeof SYMBOLE
 
-  const block = (inhalt: string, stil: Record<string, string | number>) =>
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          display: 'flex',
-          fontFamily: 'Montserrat',
-          ...stil,
-        },
-      },
-      inhalt
-    )
-  const gesperrt = {
-    fontSize: 17,
-    fontWeight: 700,
-    letterSpacing: 3,
-    color: STIL.hellgrau,
-  }
+/* Das Raster des Hausstils – siehe `INSTAGRAM-STIL.md`, „Aufbau einer Karte". */
+const STIL_RAND = 60
+const STIL_GRAFIK_O = 736
+const STIL_GRAFIK_U = 1200
+
+function stilBlock(inhalt: string, stil: Record<string, string | number>) {
+  return h(
+    'div',
+    {
+      style: { position: 'absolute', display: 'flex', fontFamily: 'Montserrat', ...stil },
+    },
+    inhalt
+  )
+}
+
+const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.hellgrau }
+
+/**
+ * Der Rahmen jeder Karte im Hausstil: Kopf, Titel mit Symbol, Unterzeile,
+ * Stichzeile, ein oder zwei Heldenzahlen mit Pille, Quelle. Die Grafik
+ * dazwischen (y 736–1200) bringt die Kartenart mit.
+ */
+function stilBild(
+  k: Kurvenkarte | Saeulenkarte,
+  logo: string,
+  helden: Held[],
+  grafik: ReturnType<typeof h>[]
+) {
+  const rand = STIL_RAND
+  const mitte = ZK_BREITE / 2
 
   /*
-    Je Linie eine Spalte: Name, Endstand, darunter ihre Kennzahl als Pille –
-    die Zahl, die zur großen gehört, steht unter ihr statt in einer eigenen
-    Reihe am Fuß (Betreiber, 30.10.2026: „noch nicht perfekt").
+    Je Held eine Spalte: Name, Zahl, darunter die Pille – die Kennzahl, die
+    zur großen gehört, steht unter ihr statt in einer eigenen Reihe am Fuß
+    (Betreiber, 30.10.2026: „noch nicht perfekt").
   */
-  const spalten = k.linien.map((l, n) => {
-    const z = k.kennzahlen[n]
-    const farbe = stilFarbe(z?.richtung)
+  const spalten = helden.map((held, n) => {
+    const pille = held.pille
+    const farbe = stilFarbe(pille?.richtung)
     return h(
       'div',
       {
@@ -2985,7 +3013,7 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
           fontFamily: 'Montserrat',
         },
       },
-      h('div', { style: gesperrt }, l.name.toUpperCase()),
+      h('div', { style: GESPERRT }, held.name.toUpperCase()),
       h(
         'div',
         {
@@ -2994,13 +3022,13 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
             fontWeight: 800,
             letterSpacing: -3,
             lineHeight: 1.05,
-            color: stilFarbe(l.richtung),
+            color: stilFarbe(held.richtung),
             marginTop: 6,
           },
         },
-        l.ende
+        held.wert
       ),
-      ...(z
+      ...(pille
         ? [
             h(
               'div',
@@ -3011,18 +3039,18 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
                   marginTop: 14,
                   padding: '9px 18px',
                   borderRadius: 999,
-                  backgroundColor: z.richtung ? hell(farbe) : '#f1f2f4',
+                  backgroundColor: pille.richtung ? hell(farbe) : '#f1f2f4',
                 },
               },
               h(
                 'div',
                 { style: { fontSize: 24, fontWeight: 800, color: farbe } },
-                z.wert
+                pille.wert
               ),
               h(
                 'div',
                 { style: { fontSize: 22, color: STIL.grau, marginLeft: 10 } },
-                z.name
+                pille.name
               )
             ),
           ]
@@ -3084,7 +3112,7 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
         )
       )
     ),
-    block(k.erklaerung, {
+    stilBlock(k.erklaerung, {
       top: 300,
       left: rand,
       right: rand,
@@ -3092,40 +3120,102 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
       lineHeight: 1.42,
       color: STIL.grau,
     }),
-    block(k.stichzeile.toUpperCase(), {
+    stilBlock(k.stichzeile.toUpperCase(), {
       top: 430,
       left: rand,
-      ...gesperrt,
+      ...GESPERRT,
       color: STIL.navy,
     }),
     ...spalten,
-    h('div', {
-      style: {
-        position: 'absolute',
-        top: 486,
-        left: mitte,
-        width: 1.5,
-        height: 196,
-        backgroundColor: STIL.rand,
-      },
-    }),
+    ...(helden.length === 2
+      ? [
+          h('div', {
+            style: {
+              position: 'absolute',
+              top: 486,
+              left: mitte,
+              width: 1.5,
+              height: 196,
+              backgroundColor: STIL.rand,
+            },
+          }),
+        ]
+      : []),
+    ...grafik,
+    stilBlock(k.fusszeile, {
+      top: ZK_HOEHE - 64,
+      left: rand,
+      right: rand,
+      fontSize: 16,
+      color: STIL.hellgrau,
+    })
+  )
+}
+
+/** Die y-Achse des Hausstils: durchgezogene Hilfslinien, Zahlen rechts. */
+function stilAchse(
+  striche: number[],
+  y: (v: number) => number,
+  rechts: number,
+  einheit: string
+) {
+  return striche.map((v) =>
+    stilBlock(`${v.toLocaleString('de-DE')} ${einheit}`, {
+      top: STIL_GRAFIK_O + y(v) - 11,
+      left: rechts + 18,
+      fontSize: 17,
+      color: STIL.hellgrau,
+    })
+  )
+}
+
+function kurvenGrafik(k: Kurvenkarte) {
+  const diagrammL = STIL_RAND
+  const diagrammR = ZK_BREITE - STIL_RAND - 76
+  /* Rand im SVG, damit der Punkt am Linienende nicht abgeschnitten wird. */
+  const luft = 10
+  const breite = diagrammR - diagrammL
+  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
+  const anzahl = k.linien[0].punkte.length
+  const alle = k.linien.flatMap((l) => l.punkte)
+  const schritt = achsenschritt(Math.max(...alle), 5)
+  const oben = Math.ceil(Math.max(...alle) / schritt) * schritt
+  const x = (i: number) => (i / (anzahl - 1)) * breite
+  const y = (v: number) => hoehe - (v / oben) * hoehe
+  const pfad = (p: readonly number[]) =>
+    p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
+  const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    k.linien
+      .map((l) => {
+        const farbe = stilFarbe(l.richtung)
+        return (
+          `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+          `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
+        )
+      })
+      .join('') +
+    '</svg>'
+
+  return [
     h('img', {
       src: svgAdresse(svg),
       width: breite + 2 * luft,
       height: hoehe + 2 * luft,
-      style: { position: 'absolute', left: diagrammL - luft, top: diagrammO - luft },
+      style: { position: 'absolute', left: diagrammL - luft, top: STIL_GRAFIK_O - luft },
     }),
-    ...striche.map((v) =>
-      block(`${v.toLocaleString('de-DE')} ${k.einheit}`, {
-        top: diagrammO + y(v) - 11,
-        left: diagrammR + 18,
-        fontSize: 17,
-        color: STIL.hellgrau,
-      })
-    ),
+    ...stilAchse(striche, y, diagrammR, k.einheit),
     ...k.achse.map((a, i) =>
-      block(a.text, {
-        top: diagrammU + 16,
+      stilBlock(a.text, {
+        top: STIL_GRAFIK_U + 16,
         /* Erste und letzte Jahreszahl bündig mit dem Rand, nicht über ihn hinaus. */
         left:
           i === 0
@@ -3140,14 +3230,91 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
         color: STIL.hellgrau,
       })
     ),
-    block(k.fusszeile, {
-      top: ZK_HOEHE - 64,
-      left: rand,
-      right: rand,
-      fontSize: 16,
-      color: STIL.hellgrau,
-    })
+  ]
+}
+
+function kurvenBild(k: Kurvenkarte, logo: string) {
+  const helden: Held[] = k.linien.map((l, n) => ({
+    name: l.name,
+    wert: l.ende,
+    richtung: l.richtung,
+    pille: k.kennzahlen[n],
+  }))
+  return stilBild(k, logo, helden, kurvenGrafik(k))
+}
+
+/**
+ * Die Säulen: Wert über jeder Säule in ihrer Richtungsfarbe, Beschriftung
+ * darunter, Hilfslinien und Zahlen rechts wie bei der Kurve. Negative Werte
+ * hängen unter der Nulllinie.
+ */
+function saeulenGrafik(k: Saeulenkarte) {
+  const links = STIL_RAND
+  const rechts = ZK_BREITE - STIL_RAND - 76
+  const breite = rechts - links
+  /* Platz über der höchsten Säule für ihren Wert. */
+  const kopf = 40
+  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
+  const werte = k.saeulen.map((z) => z.wert)
+  const schritt = achsenschritt(Math.max(...werte.map(Math.abs)), 4)
+  const oben = Math.ceil(Math.max(0, ...werte) / schritt) * schritt
+  const unten = Math.floor(Math.min(0, ...werte) / schritt) * schritt
+  const y = (v: number) => kopf + ((oben - v) / (oben - unten)) * hoehe
+  const striche = Array.from(
+    { length: (oben - unten) / schritt + 1 },
+    (_, i) => unten + i * schritt
   )
+  const fach = breite / k.saeulen.length
+  const saeule = Math.min(64, fach * 0.62)
+  const zahl = (v: number) =>
+    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${k.einheit}`
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + kopf}" viewBox="0 0 ${breite} ${hoehe + kopf}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    k.saeulen
+      .map((z, i) => {
+        const x = i * fach + (fach - saeule) / 2
+        const o = Math.min(y(z.wert), y(0))
+        const hh = Math.abs(y(z.wert) - y(0))
+        return `<rect x="${x}" y="${o}" width="${saeule}" height="${hh}" rx="6" fill="${stilFarbe(z.wert >= 0 ? 'steigt' : 'faellt')}"/>`
+      })
+      .join('') +
+    '</svg>'
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite,
+      height: hoehe + kopf,
+      style: { position: 'absolute', left: links, top: STIL_GRAFIK_O - kopf },
+    }),
+    ...stilAchse(striche, (v) => y(v) - kopf, rechts, k.einheit),
+    ...k.saeulen.flatMap((z, i) => [
+      stilBlock(zahl(z.wert), {
+        top: STIL_GRAFIK_O - kopf + (z.wert >= 0 ? y(z.wert) - 30 : y(z.wert) + 6),
+        left: links + i * fach,
+        width: fach,
+        justifyContent: 'center',
+        fontSize: 18,
+        fontWeight: 800,
+        color: stilFarbe(z.wert >= 0 ? 'steigt' : 'faellt'),
+      }),
+      stilBlock(z.text, {
+        top: STIL_GRAFIK_U + 16,
+        left: links + i * fach,
+        width: fach,
+        justifyContent: 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      }),
+    ]),
+  ]
 }
 
 /* ------------------------------------------------------------ Duell */
