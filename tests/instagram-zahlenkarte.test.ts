@@ -140,7 +140,7 @@ const steckbrief: Zahlenkarte = {
   ],
   fusszeile: 'Stand: 2026 | Quelle: Test',
   text: 'Test.\nQuellen: Test',
-  schlagworte: ['a', 'b', 'c', 'd', 'e'],
+  schlagworte: ['probe', 'saeulen', 'test', 'boerse', 'aktien'],
 }
 const zuWenig = pruefeZahlenkarte(steckbrief)
 pruefe(
@@ -895,7 +895,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Halloween: Achse 2000 liegt auf Dezember 1999',
       karte.achse.find((a) => a.text === '2000')?.bei === 120
     )
-    pruefe('Halloween: ohne Freigabe', !karte.freigabe)
+    pruefe('Halloween: freigegeben für den 31.10.', karte.freigabe === '2026-10-31')
     const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
     pruefe('Halloween: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
   }
@@ -914,6 +914,50 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte(kaputt).some((f) => f.includes('gleich viele'))
     )
   }
+}
+
+/* Säulen im Hausstil: Rechnung, Prüfung, Bild – an einer Probekarte. */
+{
+  const probe: Zahlenkarte = {
+    art: 'saeulen',
+    datum: '2099-01-01',
+    titel: [{ text: 'Probe' }, { text: 'mit Säulen', gruen: true }],
+    erklaerung: 'Eine Probekarte für den Test.',
+    stichzeile: 'Probe · eins bis drei',
+    helden: [{ name: 'Mittel', wert: '+1,0 %', richtung: 'steigt' }],
+    saeulen: [
+      { text: 'A', wert: 2 },
+      { text: 'B', wert: -1.5 },
+      { text: 'C', wert: 2.5 },
+    ],
+    einheit: '%',
+    fusszeile: 'Stand: Probe | Quelle: Probe',
+    text: 'Probe.\nQuelle: Probe',
+    schlagworte: ['probe', 'saeulen', 'test', 'boerse', 'aktien'],
+  }
+  pruefe(
+    'Säulen: die Probekarte ist in Ordnung',
+    pruefeZahlenkarte(probe).length === 0,
+    pruefeZahlenkarte(probe).join(' | ')
+  )
+  pruefe(
+    'Säulen: zwei Säulen werden beanstandet',
+    pruefeZahlenkarte({ ...probe, saeulen: probe.saeulen.slice(0, 2) }).some((f) =>
+      f.includes('Säulen')
+    )
+  )
+  pruefe(
+    'Hausstil: ein Titel über 22 Zeichen je Zeile wird beanstandet',
+    pruefeZahlenkarte({
+      ...probe,
+      titel: [{ text: 'Ein viel zu langer Titel hier' }],
+    }).some((f) => f.includes('22 Zeichen'))
+  )
+  const png = await zahlenkartePng(probe, readFileSync('public/logo.svg', 'utf8'))
+  pruefe(
+    'Säulen: das Bild ist ein PNG, auch mit negativem Wert',
+    png.subarray(1, 4).toString() === 'PNG'
+  )
 }
 
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */

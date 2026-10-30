@@ -18,9 +18,16 @@ Karte durch. Der Betreiber sagte zu jeder:
 Seine Forderung: „eigene Design-Vorgaben, … dass wir ein Muster haben und uns
 daran orientieren können, … einen eigenen Style, der nicht nach Slop aussieht“.
 
-Die erste Karte in diesem Stil ist die Kurvenkarte vom 31.10.2026
-(`art: 'kurven'`, `kurvenBild()` in `lib/instagram-zahlenkarte.ts`). Die Werte
-stehen dort in `STIL`. **Wer hier etwas ändert, zieht `STIL` nach.**
+Gesetzt wird der Hausstil in `lib/instagram-zahlenkarte.ts`. Den Rahmen
+(Kopf, Titel, Heldenzahlen, Quelle) zeichnet `stilBild()`, die Grafik bringt
+jede Kartenart selbst mit. Die Farben stehen in `STIL`. **Wer hier etwas
+ändert, zieht `STIL` nach.**
+
+Zwei Kartenarten gibt es im Hausstil:
+
+- `kurven` – zwei Linien über dieselbe Zeit (zuerst am 31.10.2026, Halloween)
+- `saeulen` – drei bis zwölf gleichartige Fälle (zuerst am 01.11.2026,
+  US-Zwischenwahlen)
 
 ## Woran man uns erkennt
 
@@ -91,7 +98,7 @@ Jeder Punkt ist einmal danebengegangen oder sieht nach Baukasten aus:
   Aussage. Das war die Kalenderfassung.
 - **Keine Deko-Wände, keine Emojis, keine Clipart.** Zu einem Anlass passt
   höchstens **ein** flaches Symbol hinter der ersten Titelzeile (`symbol`,
-  etwa der Kürbis an Halloween – Betreiber, 30.10.2026: „vlt ein kürbis noch
+  etwa der Kürbis an Halloween oder die US-Flagge zur Wahl – Betreiber, 30.10.2026: „vlt ein kürbis noch
   … wg halloween"). Nicht im Diagramm, nicht als Trenner.
 - **Keine Rangnummern bei einer Auswahl**, kein „Rekordhoch“, das die Quelle
   nicht sagt (`AGENTS.md`).
