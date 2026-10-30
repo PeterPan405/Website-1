@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Alphabet verliert an einem Tag 500 Milliarden Dollar, die US-Wirtschaft wächst kräftig, EZB-Chefin Lagarde tritt vorzeitig zurück, VW meldet einen Milliardenverlust und die EU rückt beim Kanada-Gipfel vorsichtiger vor.",
+  "kacheln": [
+    {
+      "titel": "Alphabet: -500 Mrd. $",
+      "text": "Die Google-Mutter Alphabet verlor an einem Tag fast 13 Prozent und 500 Milliarden Dollar Börsenwert. Es war ihr schlechtester Handelstag überhaupt."
+    },
+    {
+      "titel": "US-Wirtschaft: +3,4 %",
+      "text": "Die US-Wirtschaft wuchs im dritten Quartal um 3,4 Prozent, so stark wie seit einem Jahr nicht mehr. Gleichzeitig zog die Inflation weiter an."
+    },
+    {
+      "titel": "EZB: Lagarde tritt zurück",
+      "text": "EZB-Chefin Christine Lagarde gibt ihr Amt im Februar vorzeitig auf. Die Leitzinsen blieben bei 2,5 Prozent unverändert."
+    },
+    {
+      "titel": "VW: Milliardenverlust",
+      "text": "Volkswagen verbuchte im dritten Quartal 5,8 Milliarden Euro Verlust. Die Aktie legte am Nachmittag trotzdem zu."
+    },
+    {
+      "titel": "EU-Kanada-Gipfel",
+      "text": "Kanzler Merz und andere EU-Chefs schwächten Pläne für eine engere Kanada-Bindung ab, kurz vor dem Gipfel in Montreal."
+    }
+  ],
+  "schlagworte": ["ezb", "inflation", "aktien", "börse", "wirtschaft"]
+}

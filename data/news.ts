@@ -101,6 +101,275 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'alphabet-verliert-500-milliarden-dollar',
+    title: 'Alphabet verliert an einem Tag 500 Milliarden Dollar',
+    teaser:
+      'Die Google-Mutter erlebte an der Nasdaq ihren schlechtesten Handelstag überhaupt. Microsoft kam mit Kursgewinnen davon – aus einem bestimmten Grund.',
+    category: 'Märkte',
+    publishedAt: '2026-10-30T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['alphabet', 'nasdaq', 'ki-aktien', 'gewinnsaison'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet', 'microsoft', 'amazon', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label: 'Handelsblatt, Massiver Kursrutsch von Alphabet, 29.10.2026, 20:58 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-alphabet-kursrutsch-vernichtet-500-milliarden-dollar-boersenwert/100265906.html',
+      },
+      {
+        label:
+          'CNBC, Alphabet tanks nearly 13% for worst day ever, 29.10.2026, 20:15 Uhr',
+        url: 'https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html',
+      },
+      {
+        label:
+          'CNBC, Intel stock plunges 21% as chipmaker blames PC slowdown, 29.10.2026, 22:37 Uhr',
+        url: 'https://www.cnbc.com/2026/10/29/intel-intc-q3-earnings-report-2026-.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Google-Mutter Alphabet hat am Donnerstag an der Nasdaq fast 13 Prozent verloren und damit rund 500 Milliarden Dollar an Börsenwert eingebüßt. Es war laut CNBC der schlechteste Handelstag der Unternehmensgeschichte. Auch Nasdaq und Dow Jones schlossen schwächer, berichtete das Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Freier Cashflow enttäuscht trotz gehaltener Prognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der freie Cashflow misst, wie viel Geld einem Unternehmen nach Investitionen tatsächlich bleibt. Bei Alphabet fiel dieser Wert laut CNBC negativer aus, als Analysten erwartet hatten – obwohl der Konzern seine Ausgabenprognose für das Jahr unverändert ließ. Anleger lasen darin offenbar ein Warnsignal für die hohen KI-Investitionen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Microsoft kommt davon, andere nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Microsoft-Aktien legten dagegen zu, nachdem der Konzern ein starkes Wachstum im Cloud-Geschäft Azure gemeldet hatte, wie onvista berichtete. Intel brach um 21 Prozent ein, nachdem der Chipkonzern eine schwache Prognose mit einer Flaute im PC-Geschäft begründet hatte. ServiceNow verlor 27 Prozent und damit den schlechtesten Tag der Firmengeschichte nach enttäuschenden Quartalszahlen. Der TV-Moderator Jim Cramer sagte dazu am Donnerstag laut CNBC, Anleger bestraften Alphabet für seine KI-Ausgaben, während sie Microsoft deswegen verschonten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Tag zeigt, dass hohe KI-Investitionen allein Anleger nicht beeindrucken. Entscheidend ist, wie stark sie den freien Cashflow belasten und ob ein Konzern zugleich beim operativen Geschäft überzeugt. Eine Kaufempfehlung ist das nicht – wohl aber ein Grund, bei Kennzahlen genauer hinzuschauen als bei Schlagzeilen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-wirtschaft-waechst-inflation-zieht-an',
+    title: 'US-Wirtschaft wächst kräftig, die Inflation zieht an',
+    teaser:
+      'Das Bruttoinlandsprodukt legte so stark zu wie seit einem Jahr nicht mehr. Für die Notenbank Fed ist das eine schwierigere Nachricht, als es klingt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-30T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'fed', 'konjunktur', 'usa'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, Third-quarter U.S. GDP increases a better-than-expected 3.4%, 29.10.2026, 18:06 Uhr',
+        url: 'https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html',
+      },
+      {
+        label: 'Handelsblatt, Wichtiges US-Inflationsmaß steigt, 29.10.2026, 12:46 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/preise-wichtiges-us-inflationsmass-steigt-druck-auf-fed-waechst/100265861.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Wirtschaft ist im dritten Quartal nach einer ersten Schätzung um 3,4 Prozent gewachsen – kräftiger als erwartet und so stark wie seit einem Jahr nicht mehr, berichtete CNBC. Parallel zog der von der Notenbank Fed beachtete Preisindex für die privaten Konsumausgaben weiter an, schreibt das Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der PCE-Index ist das Maß, auf das die Fed schaut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als der bekanntere Verbraucherpreisindex misst der PCE-Index die Preise aus Sicht der tatsächlichen Konsumausgaben und gilt der Fed als genaueres Inflationsmaß. Ökonomen hatten laut CNBC im Schnitt mit einem Anstieg um 0,5 Prozent im Monatsvergleich gerechnet, einer Jahresrate von 3,7 Prozent entsprechend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, ein Dilemma für die Fed',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst am Mittwoch hatte die Fed ihren Leitzins unverändert gelassen, wobei zwei Notenbanker einem Bericht von Goldreporter zufolge einen anderen Kurs wollten. Starkes Wachstum und anziehende Inflation zugleich lassen sich nicht mit einem einzigen Zinsschritt beantworten – welchen die Fed als Nächstes wählt, geht aus den Berichten nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Sparer und Anleger zeigt die Kombination aus Wachstum und Inflation, warum Notenbanken selten beides gleichzeitig feiern können. Wer auf Zinsentscheide wartet, sollte deshalb Wachstum und Inflation stets zusammen betrachten – nicht nur die Zahl, die gerade besser in die eigene Erwartung passt.',
+      },
+    ],
+  },
+  {
+    slug: 'lagarde-tritt-vorzeitig-als-ezb-chefin-zurueck',
+    title: 'EZB-Chefin Lagarde tritt im Februar vorzeitig zurück',
+    teaser:
+      'Die Notenbank beließ ihren Leitzins unverändert bei 2,5 Prozent. Für Aufsehen sorgte stattdessen die Ankündigung ihrer Präsidentin zum eigenen Abschied.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-30T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'lagarde', 'leitzins', 'frankreich'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['euro-stoxx-50', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'Tagesschau, EZB-Chefin Lagarde tritt im Februar vorzeitig zurück, 29.10.2026, 13:51 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/lagarde-ezb-ruecktritt-100.html',
+      },
+      {
+        label: 'Handelsblatt, Ich will frei sprechen können, 29.10.2026, 14:42 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-das-sagt-ezb-praesidentin-lagarde-zu-ihrem-vorzeitigen-abschied/100265926.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank hat ihren Leitzins am Donnerstag wie erwartet bei 2,5 Prozent belassen, meldete die Tagesschau. Für mehr Aufsehen sorgte eine zweite Nachricht desselben Tages: EZB-Chefin Christine Lagarde kündigte an, ihr Amt bereits im Februar vorzeitig aufzugeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet jetzt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lagarde sagte laut Handelsblatt, sie wolle wieder frei sprechen können, vor allem zur anstehenden Präsidentschaftswahl in Frankreich. Die Neutralität des Amtes lasse sich damit nicht vereinbaren. Gerüchte über einen vorzeitigen Abschied hatte es laut Tagesschau schon länger gegeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Suche nach einer Nachfolge beginnt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Staats- und Regierungschefs der EU arbeiten laut Handelsblatt bereits an einem Personalpaket für die Nachfolge. Die Tagesschau berichtet, der frühe Rücktritt solle eine Entscheidung noch vor der Präsidentschaftswahl in Frankreich ermöglichen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Wechsel an der EZB-Spitze berührt, wie die Notenbank künftig zwischen Wachstum und Inflation abwägt. Wer europäische Anleihen oder Aktien hält, bekommt in den kommenden Monaten eine zusätzliche Unsicherheit dazu – unabhängig davon, wer am Ende nachfolgt.',
+      },
+    ],
+  },
+  {
+    slug: 'volkswagen-milliardenverlust-aktie-legt-zu',
+    title: 'Volkswagen schreibt Milliardenverlust – Aktie legt zu',
+    teaser:
+      'Abschreibungen und ein schwaches China-Geschäft drücken VW tief in die roten Zahlen. An der Börse kam das Quartal trotzdem gut an.',
+    category: 'Märkte',
+    publishedAt: '2026-10-30T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['volkswagen', 'dax', 'quartalszahlen', 'automarkt'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen', 'dax'],
+    sources: [
+      {
+        label: 'Tagesschau, Milliardenverlust bei Volkswagen, 29.10.2026, 09:16 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/volkswagen-milliardenverlust-102.html',
+      },
+      {
+        label:
+          'onvista, Volkswagen: Trotz Milliardenverlust steigt die Aktie, 29.10.2026, 15:43 Uhr',
+        url: 'https://www.onvista.de/news/2026/10-29-volkswagen-trotz-milliardenverlust-steigt-die-aktie-40338625-19-26570010',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen hat im dritten Quartal einen Konzernverlust von 5,8 Milliarden Euro verbucht, meldete die Tagesschau. Als Gründe nennt das Unternehmen hohe Abschreibungen und ein schwaches Geschäft in China.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Abschreibungen sind keine Barausgabe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Abschreibung mindert den ausgewiesenen Gewinn, ohne dass an diesem Tag Geld das Unternehmen verlässt – sie bildet ab, dass ein Vermögenswert weniger wert ist als zuvor in der Bilanz angesetzt. Ein Konzernverlust kann deshalb ganz andere Ursachen haben als ein schwaches operatives Geschäft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs zeigt das Gegenteil der Schlagzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz des Rekordverlusts legte die VW-Aktie am Nachmittag zu, berichtete onvista. Einen Grund für die Kursbewegung nennen die Berichte nicht. Der Dax insgesamt schloss an diesem Tag laut Handelsblatt über 26.000 Punkten, mehrere Einzelwerte gewannen nach Quartalsüberraschungen zweistellig.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Verlust allein sagt wenig darüber, wie eine Aktie reagiert – entscheidend ist, ob das Ergebnis besser oder schlechter ausfällt als das, was der Markt schon eingepreist hatte. Das macht Kursreaktionen an Tagen wie diesem schwerer vorhersehbar, als die Schlagzeile suggeriert.',
+      },
+    ],
+  },
+  {
+    slug: 'eu-und-kanada-gipfel-in-montreal',
+    title: 'EU und Kanada: Pläne für engere Bindung abgeschwächt',
+    teaser:
+      "Kurz vor dem Gipfel in Montreal ist von einer 'assoziierten Mitgliedschaft' Kanadas keine Rede mehr. Das Land spürt derweil Trumps Zölle deutlich.",
+    category: 'Märkte',
+    publishedAt: '2026-10-30T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['eu', 'kanada', 'zoelle', 'handelspolitik'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['tsx-composite', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'Tagesschau, EU-Kanada-Gipfel: Kanada wird vorerst kein assoziiertes EU-Mitglied, 29.10.2026, 07:20 Uhr',
+        url: 'https://www.tagesschau.de/ausland/europa/eu-kanada-gipfel-100.html',
+      },
+      {
+        label: 'Tagesschau, Wie Kanada unter Trumps Zöllen leidet, 29.10.2026, 14:12 Uhr',
+        url: 'https://www.tagesschau.de/ausland/amerika/kanada-zoelle-trump-eu-100.html',
+      },
+      {
+        label: "Il Foglio, Von der Leyen's proposal to Canada fizzles out, 24.10.2026",
+        url: 'https://www.ilfoglio.it/en/world/2026/10/24/news/von-der-leyens-proposal-to-canada-fizzles-out-carneys-plan-is-on-the-table--411491',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: "Bundeskanzler Merz und andere Staats- und Regierungschefs der EU haben die Pläne von EU-Kommissionspräsidentin von der Leyen für eine engere Bindung Kanadas an die EU abgeschwächt, berichtete die Tagesschau. Von einer 'assoziierten Mitgliedschaft' ist demnach keine Rede mehr. Der Gipfel der EU mit Kanada begann am Donnerstag in Montreal.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine engere Bindung bringen soll',
+      },
+      {
+        type: 'paragraph',
+        text: "Die EU und Kanada wollen wirtschaftlich und politisch enger zusammenrücken, um Lieferketten zu sichern, Preise stabil zu halten und Abhängigkeiten zu verringern, schreibt die Tagesschau. Deutschland und Frankreich gehörten laut der italienischen Zeitung Il Foglio zu den Staaten, die dem Begriff 'assoziierte Mitgliedschaft' ablehnend gegenüberstanden; ein EU-Diplomat sagte dem Blatt, man wisse schlicht nicht, was der Begriff bedeuten solle.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kanada leidet unter Trumps Zöllen',
+      },
+      {
+        type: 'paragraph',
+        text: "In Kanada sind die Erwartungen an den Gipfel groß, denn die Folgen der von US-Präsident Trump verhängten Zölle sind laut Tagesschau längst spürbar. Im Mittelpunkt des zweitägigen Treffens steht laut Il Foglio stattdessen die von Kanadas Premierminister Mark Carney unterstützte 'Alliance for the Future' zu Handel, Technologie, Rohstoffen und Sicherheit.",
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je stärker sich ein Land wie Kanada von einem einzigen Handelspartner abhängig macht, desto empfindlicher reagiert seine Wirtschaft auf dessen Zollpolitik. Eine engere EU-Bindung wäre ein Schritt zu mehr Streuung – wie weit er geht, zeigt sich erst nach dem Gipfel.',
+      },
+    ],
+  },
+  {
     slug: 'fed-haelt-zins-ezb-entscheidet-heute',
     title: 'Fed lässt Leitzins unverändert – zwei Notenbanker wollten mehr',
     teaser:
