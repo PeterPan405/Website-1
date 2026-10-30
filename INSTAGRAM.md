@@ -189,6 +189,7 @@ Der Betreiber am 30.10.2026 zur hellen Kalenderfassung: „sieht sehr billig
 nach Vibecoding aus – nimm das Design von Phantom". Die Vorlage ist in
 `im-capital/docs/VORLAGE-PHANTOM.md` ausgelesen, mit 87 Bildern. Übernommen
 ist nur die Bildsprache:
+
 - fast schwarzer Grund mit weichem Licht von oben
 - Montserrat, die Vorzeile dünn, der Titel fett, ein Wort in Leuchtgrün `#2df964`
 - ein leuchtender Kursverlauf in Grün und Rot mit Fläche
