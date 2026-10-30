@@ -16,6 +16,55 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 30.10.2026 aus den Vorschlägen
+      („das zu Halloween klingt doch ganz gut"). Form: Vergleich (am 30.10.
+      Duell).
+
+      Zahlen: eigene Rechnung mit `saisonalitaetVon()` und
+      `halbjahresprobe()` (lib/saisonalitaet.ts) aus den Monatsschlusskursen
+      des Kursbestands (Yahoo Finance), Stand 30.10.2026, Monatsrenditen
+      Januar 2022 bis September 2026 – je Kalendermonat vier bis fünf Werte.
+      Mittel der Monatsmittel:
+        Dax         Winter (Nov–Apr) +1,70 %, Sommer (Mai–Okt) +0,32 %,
+                    Abstand +1,39 Prozentpunkte
+        S&P 500     Winter +0,84 %, Sommer +1,13 %
+        Nasdaq 100  Winter +0,83 %, Sommer +1,68 %
+      Bester Dax-Monat im Schnitt: Mai +4,02 %, dann November +3,97 %.
+      Dieselben Zahlen zeigt /maerkte/saisonalitaet.
+    */
+    art: 'vergleich',
+    datum: '2026-10-31',
+    titel: [
+      { text: 'Halloween-Effekt:' },
+      { text: 'Dax im Winter klar vorn', gruen: true },
+    ],
+    links: {
+      name: 'Sommerhalbjahr',
+      wert: 0.32,
+      anzeige: '+0,32 %',
+      zusatz: 'Mai–Okt., je Monat',
+    },
+    rechts: {
+      name: 'Winterhalbjahr',
+      wert: 1.7,
+      anzeige: '+1,70 %',
+      zusatz: 'Nov.–Apr., je Monat',
+    },
+    differenz: { text: '+1,39', zusatz: 'Prozentpunkte' },
+    fusszeile:
+      'Stand: Monatsrenditen Dax 01/2022–09/2026 | Quelle: Yahoo Finance, eigene Rechnung',
+    text:
+      'Heute ist Halloween – und an der Börse der Tag einer alten Regel: „Sell in May and go away", und an Halloween wieder einsteigen. Wir haben nachgerechnet. 🎃\n\n' +
+      'Beim Dax stimmt sie zuletzt: Im Winterhalbjahr von November bis April legte er im Schnitt um 1,70 % pro Monat zu, im Sommerhalbjahr von Mai bis Oktober nur um 0,32 %. Der November war mit +3,97 % einer der stärksten Monate.\n\n' +
+      'In den USA lief es umgekehrt: Der S&P 500 machte im Sommer +1,13 % pro Monat, im Winter +0,84 %. Beim Nasdaq 100 waren es +1,68 % im Sommer und +0,83 % im Winter.\n\n' +
+      'Und jetzt?\n' +
+      'Die Zahlen beschreiben, was war – eine Begründung liefern sie nicht. Und es sind nur knapp fünf Jahre: je Monat vier bis fünf Werte. Ob der kommende Winter wieder so läuft, lässt sich daraus nicht ablesen. Wer die Regel befolgt, war außerdem bei den US-Indizes in den besseren Monaten nicht investiert.\n\n' +
+      'Gerechnet: Mittel der monatlichen Renditen je Kalendermonat, Januar 2022 bis September 2026, ohne Dividenden. Keine Anlageberatung.\n' +
+      'Quelle: Yahoo Finance (Monatsschlusskurse), eigene Rechnung – nachzulesen auf iminvests.de/maerkte/saisonalitaet',
+    schlagworte: ['halloween', 'dax', 'börse', 'aktien', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 29.10.2026 aus den Vorschlägen („1":
       Erdgas-Schere Europa gegen USA). Form: Duell, neu im Kanal (am 29.10.
       Torte). Betreiber zum Entwurf: Warum und Folgen für den Winter in die

@@ -862,6 +862,31 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   )
 }
 
+/* 31.10.2026: Halloween-Effekt – die Karte zeigt, was die Saisonrechnung liefert. */
+{
+  const { saisonalitaetVon } = await import('@/lib/reihenstatistik-daten')
+  const { halbjahresprobe } = await import('@/lib/saisonalitaet')
+  const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
+  const befund = await saisonalitaetVon('dax')
+  pruefe('Halloween: Karte für den 31.10. ist ein Vergleich', karte?.art === 'vergleich')
+  if (befund && karte && (karte.art === 'vergleich' || karte.art === undefined)) {
+    const p = halbjahresprobe(befund)
+    pruefe(
+      'Halloween: Winter +1,70 %',
+      p.winter.toFixed(2) === '1.70' && karte.rechts.anzeige === '+1,70 %'
+    )
+    pruefe(
+      'Halloween: Sommer +0,32 %',
+      p.sommer.toFixed(2) === '0.32' && karte.links.anzeige === '+0,32 %'
+    )
+    pruefe(
+      'Halloween: Abstand +1,39',
+      p.abstand.toFixed(2) === '1.39' && karte.differenz.text === '+1,39'
+    )
+    pruefe('Halloween: ohne Freigabe', !karte.freigabe)
+  }
+}
+
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
 for (let i = 1; i < nachDatum.length; i++)
