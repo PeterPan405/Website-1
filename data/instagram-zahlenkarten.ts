@@ -38,6 +38,18 @@ export const zahlenkarten: Zahlenkarte[] = [
       lost an average of 26 seats in the House". Gewonnen hat sie nur 1998
       (Clinton) und 2002 (George W. Bush). Im Bild stehen die letzten zehn.
       Wahltag 2026: 3. November.
+
+      Porträts (Betreiber: „kleine Bilder von den Gesichtern der Präsidenten
+      zu jedem Balken“): die offiziellen Porträts von Wikimedia Commons, alle
+      „Public domain“ als Werke der US-Regierung, geholt am 30.10.2026 über
+      bilder-holen.yml und auf den Kopf zugeschnitten:
+        Reagan – Official Portrait of President Reagan 1981 (Michael Evans)
+        G. H. W. Bush – presidential portrait, cropped (David Valdez)
+        Clinton – Bill Clinton.jpg (Bob McNeely)
+        G. W. Bush – George-W-Bush.jpeg (Eric Draper)
+        Obama – President Barack Obama.jpg (Pete Souza)
+        Trump – Donald Trump official portrait.jpg (Shealeah Craighead)
+        Biden – Joe Biden presidential portrait.jpg (Adam Schultz)
     */
     art: 'saeulen',
     datum: '2026-11-01',
@@ -58,16 +70,16 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
     ],
     saeulen: [
-      { text: '1986', wert: -5 },
-      { text: '1990', wert: -8 },
-      { text: '1994', wert: -54 },
-      { text: '1998', wert: 4 },
-      { text: '2002', wert: 8 },
-      { text: '2006', wert: -32 },
-      { text: '2010', wert: -63 },
-      { text: '2014', wert: -13 },
-      { text: '2018', wert: -41 },
-      { text: '2022', wert: -9 },
+      { text: '1986', wert: -5, bild: 'praesident-reagan.jpg' },
+      { text: '1990', wert: -8, bild: 'praesident-bush-sen.jpg' },
+      { text: '1994', wert: -54, bild: 'praesident-clinton.jpg' },
+      { text: '1998', wert: 4, bild: 'praesident-clinton.jpg' },
+      { text: '2002', wert: 8, bild: 'praesident-bush-jun.jpg' },
+      { text: '2006', wert: -32, bild: 'praesident-bush-jun.jpg' },
+      { text: '2010', wert: -63, bild: 'praesident-obama.jpg' },
+      { text: '2014', wert: -13, bild: 'praesident-obama.jpg' },
+      { text: '2018', wert: -41, bild: 'praesident-trump.jpg' },
+      { text: '2022', wert: -9, bild: 'praesident-biden.jpg' },
     ],
     einheit: 'Sitze',
     nachkomma: 0,
@@ -80,7 +92,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Diesmal stellt Donald Trump den Präsidenten – seine Republikaner verteidigen die Mehrheit im Repräsentantenhaus.\n\n' +
       'Und jetzt?\n' +
       'Eine Regel ist keine Vorhersage. Wie die Wahl am Dienstag ausgeht, sagen diese Zahlen nicht.\n\n' +
-      'Quelle: Wikipedia, „United States midterm election", Sitzveränderungen der Präsidentenpartei 1946–2022',
+      'Quelle: Wikipedia, „United States midterm election", Sitzveränderungen der Präsidentenpartei 1946–2022\n' +
+      'Fotos: offizielle Porträts des Weißen Hauses, gemeinfrei, über Wikimedia Commons',
     schlagworte: ['usa', 'zwischenwahlen', 'kongress', 'politik', 'wahlen'],
   },
   {

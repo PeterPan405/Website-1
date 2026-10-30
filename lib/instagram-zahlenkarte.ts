@@ -341,7 +341,8 @@ export interface Kurvenkarte extends StilGemeinsam {
 export interface Saeulenkarte extends StilGemeinsam {
   art: 'saeulen'
   helden: Held[]
-  saeulen: { text: string; wert: number }[]
+  /** `bild`: ein rundes Porträt über der Beschriftung, Datei in `lib/instagram/fotos/`. */
+  saeulen: { text: string; wert: number; bild?: string }[]
   /** Hinter den Werten: „%". */
   einheit: string
   /** Nachkommastellen der Werte über den Säulen – ohne Angabe eine. */
@@ -764,6 +765,9 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
     if (k.saeulen.length < 3 || k.saeulen.length > 12)
       f.push(`${k.saeulen.length} Säulen – drei bis zwölf.`)
+    for (const z of k.saeulen)
+      if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
+        f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
     f.push(...stilBefunde(k))
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
@@ -3256,7 +3260,10 @@ function saeulenGrafik(k: Saeulenkarte) {
   const breite = rechts - links
   /* Platz über der höchsten Säule für ihren Wert. */
   const kopf = 40
-  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
+  /* Mit Porträts wird die Grafik um ihre Reihe kürzer; die Jahreszahlen bleiben, wo sie sind. */
+  const mitBild = k.saeulen.some((z) => z.bild)
+  const bild = 78
+  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O - (mitBild ? bild + 18 : 0)
   const werte = k.saeulen.map((z) => z.wert)
   const schritt = achsenschritt(Math.max(...werte.map(Math.abs)), 4)
   const oben = Math.ceil(Math.max(0, ...werte) / schritt) * schritt
@@ -3311,6 +3318,22 @@ function saeulenGrafik(k: Saeulenkarte) {
         fontWeight: 800,
         color: stilFarbe(z.wert >= 0 ? 'steigt' : 'faellt'),
       }),
+      ...(z.bild
+        ? [
+            h('img', {
+              src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, z.bild)).toString('base64')}`,
+              width: bild,
+              height: bild,
+              style: {
+                position: 'absolute',
+                top: STIL_GRAFIK_U - bild + 4,
+                left: links + i * fach + (fach - bild) / 2,
+                borderRadius: bild,
+                border: `2px solid ${STIL.rand}`,
+              },
+            }),
+          ]
+        : []),
       stilBlock(z.text, {
         top: STIL_GRAFIK_U + 16,
         left: links + i * fach,
