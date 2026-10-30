@@ -2841,8 +2841,6 @@ const STIL = {
   rand: '#e3e7ee',
   gruen: '#205437',
   rot: '#8B2225',
-  /** Die Vierfarbleiste: die Logofarben in ihrer Reihenfolge im Signet. */
-  leiste: ['#17296F', '#6E6E6E', '#205437', '#8B2225'],
 }
 
 function stilFarbe(richtung?: 'steigt' | 'faellt') {
@@ -2892,9 +2890,11 @@ function stilKopf(logo: string) {
   )
 }
 
+const GLUT = false
+
 function kurvenBild(k: Kurvenkarte, logo: string) {
   const rand = 60
-  const feldL = 44
+  const feldL = 20
   const feldO = 432
   const feldU = ZK_HOEHE - 44
   const innen = feldL + 40
@@ -2916,6 +2916,7 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + 12}" viewBox="0 -6 ${breite} ${hoehe + 12}">` +
+    '<defs><filter id="glut" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="8"/></filter></defs>' +
     striche
       .map(
         (v) =>
@@ -2928,6 +2929,9 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
         const ex = x(anzahl - 1)
         const ey = y(l.punkte[anzahl - 1])
         return (
+          (GLUT
+            ? `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="12" stroke-opacity="0.22" stroke-linejoin="round" filter="url(#glut)"/>`
+            : '') +
           `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
           `<circle cx="${ex}" cy="${ey}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
         )
@@ -3033,32 +3037,6 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
       lineHeight: 1.42,
       color: STIL.grau,
     }),
-    /* Das Datenfeld: hellgrau, feiner Rand, oben die Vierfarbleiste. */
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          top: feldO,
-          left: feldL,
-          right: feldL,
-          height: feldU - feldO,
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: STIL.feld,
-          border: `1.5px solid ${STIL.rand}`,
-          borderRadius: 26,
-          overflow: 'hidden',
-        },
-      },
-      h(
-        'div',
-        { style: { display: 'flex', height: 8, width: '100%' } },
-        ...STIL.leiste.map((farbe) =>
-          h('div', { style: { flexGrow: 1, height: 8, backgroundColor: farbe } })
-        )
-      )
-    ),
     block(k.stichzeile.toUpperCase(), {
       top: feldO + 44,
       left: innen,
