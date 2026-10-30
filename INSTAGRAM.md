@@ -194,7 +194,7 @@ Die Vorgaben stehen jetzt in `INSTAGRAM-STIL.md`:
 
 - weißer Grund, Logo oben mittig
 - Titel in zwei Zeilen, schwarz und Navy
-- Datenfeld mit Vierfarbleiste
+- alles frei auf Weiß, kein Kasten, keine Leiste
 - Heldenzahl, feine Linien, Pillen
 
 Die erste Karte im Hausstil ist die Kurvenkarte (`art: 'kurven'`). Die
