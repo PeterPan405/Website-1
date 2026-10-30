@@ -132,6 +132,9 @@ jobs:
           basis="${NEXT_PUBLIC_SITE_URL:-https://iminvests.de}"
           basis="${basis%/}"
           mkdir -p out/instagram
+          # Wiederholen statt abbrechen (30.10.2026): Ein einzelnes curl 28
+          # beendete den Lauf und damit die ganze Reparaturkette.
+          curl() { command curl --retry 5 --retry-delay 20 --retry-all-errors --max-time 60 "$@"; }
 
           # Zuerst: Gibt es heute überhaupt einen Beitrag? An Tagen ohne gültigen
           # Plan steht unter /instagram/ nur das Deckblatt.
@@ -330,7 +333,7 @@ jobs:
           allowed_bots: 'github-actions'
           claude_args: |
             --model claude-sonnet-5
-            --max-turns 20
+            --max-turns 30
             --allowedTools Read,Write
           prompt: |
             Du prüfst die Kacheln eines Instagram-Beitrags von IM Invests, bevor
