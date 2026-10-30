@@ -260,6 +260,8 @@ jobs:
           alarmgestellt=0
           # Der Tag, an dem dieser Lauf die Zahlenkarte angestoßen hat.
           zkangestossen=''
+          # Wie oft dieser Lauf die Tagesnews schon angestoßen hat (siehe unten).
+          tnanstoesse=0
           alarmantwort=0
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
@@ -495,6 +497,36 @@ jobs:
                   zkangestossen=$(TZ=Europe/Berlin date +%F)
                 else
                   echo "::warning::Runde $runde: Die Zahlenkarte ließ sich nicht anstoßen – nächster Versuch in zehn Minuten."
+                fi
+              fi
+            fi
+
+            # ## Die Tagesnews, falls die Kette abgerissen ist
+            #
+            # Am 30.10.2026 antwortete die Website um 01:35 UTC nicht (curl
+            # 28) – der Beitragslauf brach ab, bevor er prüfen oder reparieren
+            # konnte, und niemand stieß ihn wieder an; der Cron um 02:52 fiel
+            # aus. Um 04:30 deutscher Zeit war nichts draußen.
+            #
+            # Deshalb alle 30 Minuten von 04 bis 20 Uhr: Steht der Tag nicht
+            # auf `instagram-gepostet` und läuft kein Beitragslauf, wird einer
+            # angestoßen. Höchstens sechsmal je Dauerlauf – ein Bild, das die
+            # Prüfung jedes Mal ablehnt, soll nicht stündlich das Kontingent
+            # der Sichtprüfung verbrauchen. Nichts geht dadurch ungeprüft
+            # hinaus: Der Lauf hat alle Riegel und die Bildprüfung.
+            stunde=$(TZ=Europe/Berlin date +%-H)
+            if [ $((runde % 15)) -eq 7 ] && [ "$stunde" -ge 4 ] && [ "$stunde" -lt 20 ] \
+               && [ "$tnanstoesse" -lt 6 ]; then
+              tntag=$(TZ=Europe/Berlin date +%F)
+              gepostet=$(gh api "repos/$GITHUB_REPOSITORY/contents/gepostet.txt?ref=instagram-gepostet" \
+                           --jq .content 2>/dev/null | base64 -d 2>/dev/null || true)
+              laeuft=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/instagram-beitrag.yml/runs?per_page=5" \
+                         --jq '[.workflow_runs[] | select(.status != "completed")] | length' 2>/dev/null || echo 1)
+              if [ -n "$gepostet" ] && ! printf '%s\n' "$gepostet" | grep -qx "$tntag" && [ "$laeuft" = "0" ]; then
+                if gh workflow run instagram-beitrag.yml --repo "$GITHUB_REPOSITORY" --ref main \
+                     -f veroeffentlichen=true; then
+                  tnanstoesse=$((tnanstoesse + 1))
+                  echo "::warning::Runde $runde: Tagesnews vom $tntag noch nicht draußen – Beitragslauf angestoßen ($tnanstoesse von 6)."
                 fi
               fi
             fi
