@@ -287,32 +287,39 @@ export interface Tortenkarte extends KarteGemeinsam {
 }
 
 /**
- * Ein Börsenkalender (30.10.2026, Halloween-Effekt). Der Betreiber zu zwei
- * Balken „Winter gegen Sommer": „Gefällt mir absolut nicht, voll
- * langweilig." Zwölf Monatskacheln in zwei Hälften, je Kachel die
- * Durchschnittsrendite – grün getönt im Plus, rot im Minus –, über jeder
- * Hälfte ihr Schnitt; zwischen den Hälften eine Linie mit Kürbis für den
- * Tag, um den es geht.
+ * Die Kurvenkarte (30.10.2026) – die erste Karte im Hausstil von
+ * `INSTAGRAM-STIL.md`: weiß, Logo oben mittig, Titel in Montserrat schwarz
+ * mit einer Pointe in Logo-Navy, darunter das Datenfeld mit der Vierfarbleiste.
+ *
+ * Der Weg dahin, alles am 30.10.2026: zwei Balken „voll langweilig",
+ * Monatskacheln „billig nach Vibecoding", Phantom-Schwarz „in schwarz sieht
+ * es sehr billig aus", Weiß mit Leuchtlinie „KI-Slop … nicht ein wirklich
+ * eigenes Design". Daraus die Vorgaben.
+ *
+ * Im Datenfeld: zwei Endstände als große Zahlen, darunter beide Linien über
+ * dieselbe Zeit, darunter zwei bis drei Kennzahlen als Pillen.
  */
-export interface Kalenderkarte extends KarteGemeinsam {
-  art: 'kalender'
+export interface Kurvenkarte extends KarteGemeinsam {
+  art: 'kurven'
   erklaerung: string
-  unterzeile: string
-  /** Genau zwei, je sechs Monate, in der Reihenfolge, in der sie stehen. */
-  haelften: {
+  /** Die gesperrte Zeile oben im Datenfeld: „Dax · 100 € ab Januar 1990". */
+  stichzeile: string
+  /** Genau zwei, gleich lang. */
+  linien: {
     name: string
-    /** Rechts neben dem Namen, schon gesetzt: „Ø +1,70 % je Monat". */
-    schnitt: string
-    /** Hebt die Hälfte hervor: Schnitt in Grün, Rahmen. */
-    vorn?: boolean
-    monate: { name: string; wert: number }[]
+    ende: string
+    richtung: 'steigt' | 'faellt'
+    punkte: readonly number[]
   }[]
-  /** Die Linie zwischen den Hälften: „31. Oktober – Halloween". */
-  trenner: string
+  /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
+  achse: { bei: number; text: string }[]
+  /** Hinter den Zahlen der y-Achse: „€". */
+  einheit: string
+  kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
 }
 
 export type Zahlenkarte =
-  | Kalenderkarte
+  | Kurvenkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -596,6 +603,12 @@ function schriften() {
       weight: 800,
       style: 'italic',
     },
+    ...([400, 700, 800] as const).map((weight) => ({
+      name: 'Montserrat',
+      data: readFileSync(join(ORDNER, `montserrat-${weight}.woff`)),
+      weight,
+      style: 'normal' as const,
+    })),
   ]
   return schriftVorrat
 }
@@ -691,18 +704,26 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(
         `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
       )
-  } else if (k.art === 'kalender') {
-    if (k.haelften.length !== 2) f.push('Der Kalender hat genau zwei Hälften.')
-    for (const hf of k.haelften)
-      if (hf.monate.length !== 6)
-        f.push(`${hf.name}: ${hf.monate.length} Monate – sechs.`)
+  } else if (k.art === 'kurven') {
+    if (k.linien.length !== 2) f.push('Die Kurvenkarte hat genau zwei Linien.')
+    else if (k.linien[0].punkte.length !== k.linien[1].punkte.length)
+      f.push('Beide Linien brauchen gleich viele Punkte.')
+    if (k.linien.some((l) => l.punkte.length < 2))
+      f.push('Eine Linie braucht zwei Punkte.')
+    for (const a of k.achse)
+      if (a.bei < 0 || a.bei >= (k.linien[0]?.punkte.length ?? 0))
+        f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
+    if (k.kennzahlen.length < 2 || k.kennzahlen.length > 3)
+      f.push(`${k.kennzahlen.length} Kennzahlen – zwei oder drei.`)
+    if (k.stichzeile.length > 40)
+      f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
     if (k.erklaerung.length > ERKLAERUNG_MAX)
       f.push(
         `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
       )
-    if (zeichen > 38)
+    if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
       f.push(
-        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+        'Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.'
       )
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
@@ -960,26 +981,32 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
+  const logo = svgAdresse(signetOhneMitte(logoSvg))
+  if (k.art === 'kurven') {
+    const antwort = new ImageResponse(kurvenBild(k, logo), {
+      width: ZK_BREITE,
+      height: ZK_HOEHE,
+      fonts: schriften(),
+    })
+    return Buffer.from(await antwort.arrayBuffer())
+  }
   const rangliste = k.art !== undefined && k.art !== 'vergleich'
   const grafik =
-    k.art === 'kalender'
-      ? kalenderGrafik(k)
-      : k.art === 'verlauf'
-        ? await verlaufGrafik(k)
-        : k.art === 'duell'
-          ? duellGrafik(k)
-          : k.art === 'steckbrief'
-            ? steckbriefGrafik(k)
-            : k.art === 'geschichte'
-              ? geschichtsGrafik(k)
-              : k.art === 'pyramide'
-                ? pyramidenGrafik(k)
-                : k.art === 'torte'
-                  ? tortenGrafik(k)
-                  : k.art === 'rangliste'
-                    ? ranglistenGrafik(k)
-                    : vergleichsGrafik(k)
-  const logo = svgAdresse(signetOhneMitte(logoSvg))
+    k.art === 'verlauf'
+      ? await verlaufGrafik(k)
+      : k.art === 'duell'
+        ? duellGrafik(k)
+        : k.art === 'steckbrief'
+          ? steckbriefGrafik(k)
+          : k.art === 'geschichte'
+            ? geschichtsGrafik(k)
+            : k.art === 'pyramide'
+              ? pyramidenGrafik(k)
+              : k.art === 'torte'
+                ? tortenGrafik(k)
+                : k.art === 'rangliste'
+                  ? ranglistenGrafik(k)
+                  : vergleichsGrafik(k)
   const bild = h(
     'div',
     {
@@ -1052,7 +1079,6 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
       )
     ),
     ...((k.art === 'rangliste' ||
-      k.art === 'kalender' ||
       k.art === 'steckbrief' ||
       k.art === 'geschichte' ||
       k.art === 'pyramide' ||
@@ -2255,9 +2281,9 @@ export function form(
   | 'geschichte'
   | 'pyramide'
   | 'torte'
-  | 'kalender' {
+  | 'kurven' {
   if (
-    k.art === 'kalender' ||
+    k.art === 'kurven' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -2803,192 +2829,326 @@ async function verlaufGrafik(k: Verlaufkarte) {
   ]
 }
 
-/* ------------------------------------------------------------ Kalender */
+/* ------------------------------------------------------------ Kurvenkarte */
 
-/** Ein Kürbis als SVG – orange, mit Stiel; das einzige Bild, das der Kalender trägt. */
-const KUERBIS =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
-  '<path d="M30 14 C30 8 34 5 38 6 L37 10 C34 10 33 12 33 15 Z" fill="#2f5e2a"/>' +
-  '<ellipse cx="20" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
-  '<ellipse cx="44" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
-  '<ellipse cx="32" cy="38" rx="14" ry="21" fill="#f08a2c"/>' +
-  '<path d="M22 32 L27 37 L22 37 Z M42 32 L37 37 L42 37 Z" fill="#3b1d06"/>' +
-  '<path d="M21 45 Q32 53 43 45 L40 47 L37 45 L34 48 L31 45 L28 48 L25 45 Z" fill="#3b1d06"/>' +
-  '</svg>'
+/** Der Hausstil, Werte aus `INSTAGRAM-STIL.md` – dort ändern, hier nachziehen. */
+const STIL = {
+  tinte: '#0b1220',
+  navy: '#17296F',
+  grau: '#5b6472',
+  hellgrau: '#8a93a0',
+  feld: '#f5f7fa',
+  rand: '#e3e7ee',
+  gruen: '#205437',
+  rot: '#8B2225',
+  /** Die Vierfarbleiste: die Logofarben in ihrer Reihenfolge im Signet. */
+  leiste: ['#17296F', '#6E6E6E', '#205437', '#8B2225'],
+}
 
-function kalenderGrafik(k: Kalenderkarte) {
-  const links = 60
-  const breite = ZK_BREITE - 2 * links
-  const luecke = 14
-  const kachelB = (breite - 2 * luecke) / 3
-  const kachelH = 112
-  const kopfH = 56
-  const trennerH = 84
-  const oben = 540
-  const haelfteH = kopfH + 2 * kachelH + luecke
-  const zahl = (w: number) =>
-    `${w > 0 ? '+' : w < 0 ? '−' : ''}${Math.abs(w).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-  const teile: ReturnType<typeof h>[] = [
+function stilFarbe(richtung?: 'steigt' | 'faellt') {
+  return richtung === 'steigt'
+    ? STIL.gruen
+    : richtung === 'faellt'
+      ? STIL.rot
+      : STIL.tinte
+}
+
+/** Ein runder Schritt für die y-Achse: 1, 2 oder 5 mal einer Zehnerpotenz. */
+function achsenschritt(hoechst: number, linien: number) {
+  const roh = hoechst / linien
+  const zehner = 10 ** Math.floor(Math.log10(roh))
+  return [1, 2, 5, 10].map((m) => m * zehner).find((m) => m >= roh)!
+}
+
+/** Der Kopf aller Karten im Hausstil: Signet und Wortmarke, oben mittig. */
+function stilKopf(logo: string) {
+  return h(
+    'div',
+    {
+      style: {
+        position: 'absolute',
+        top: 48,
+        left: 0,
+        width: ZK_BREITE,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    },
+    h('img', { src: logo, width: 44, height: 44 }),
+    h(
+      'div',
+      {
+        style: {
+          fontFamily: 'Montserrat',
+          fontWeight: 700,
+          fontSize: 26,
+          color: STIL.tinte,
+          marginLeft: 12,
+        },
+      },
+      'IM Invests'
+    )
+  )
+}
+
+function kurvenBild(k: Kurvenkarte, logo: string) {
+  const rand = 60
+  const feldL = 44
+  const feldO = 432
+  const feldU = ZK_HOEHE - 44
+  const innen = feldL + 40
+  const diagrammL = innen
+  const diagrammR = ZK_BREITE - feldL - 96
+  const diagrammO = feldO + 248
+  const diagrammU = feldU - 196
+  const breite = diagrammR - diagrammL
+  const hoehe = diagrammU - diagrammO
+  const anzahl = k.linien[0].punkte.length
+  const alle = k.linien.flatMap((l) => l.punkte)
+  const schritt = achsenschritt(Math.max(...alle), 5)
+  const oben = Math.ceil(Math.max(...alle) / schritt) * schritt
+  const x = (i: number) => (i / (anzahl - 1)) * breite
+  const y = (v: number) => hoehe - (v / oben) * hoehe
+  const pfad = (p: readonly number[]) =>
+    p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
+  const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + 12}" viewBox="0 -6 ${breite} ${hoehe + 12}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    k.linien
+      .map((l) => {
+        const farbe = stilFarbe(l.richtung)
+        const ex = x(anzahl - 1)
+        const ey = y(l.punkte[anzahl - 1])
+        return (
+          `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+          `<circle cx="${ex}" cy="${ey}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
+        )
+      })
+      .join('') +
+    '</svg>'
+
+  const block = (inhalt: string, stil: Record<string, string | number>) =>
     h(
       'div',
       {
         style: {
           position: 'absolute',
-          top: RL_UNTERZEILE,
-          left: links,
-          right: links,
           display: 'flex',
-          fontFamily: 'Open',
-          fontWeight: 700,
-          fontSize: 28,
-          color: GRAU,
+          fontFamily: 'Montserrat',
+          ...stil,
         },
       },
-      k.unterzeile
-    ),
-  ]
-  k.haelften.forEach((hf, j) => {
-    const y = oben + j * (haelfteH + trennerH)
-    teile.push(
+      inhalt
+    )
+  const gesperrt = {
+    fontSize: 17,
+    fontWeight: 700,
+    letterSpacing: 3,
+    color: STIL.hellgrau,
+  }
+
+  const haelfte = feldL + (ZK_BREITE - 2 * feldL) / 2
+  const helden = k.linien.map((l, n) =>
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: feldO + 104,
+          left: n ? haelfte + 40 : innen,
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Montserrat',
+        },
+      },
+      h('div', { style: gesperrt }, l.name.toUpperCase()),
       h(
         'div',
         {
           style: {
-            position: 'absolute',
-            top: y,
-            left: links,
-            width: breite,
-            height: kopfH - 10,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            fontSize: 96,
+            fontWeight: 800,
+            letterSpacing: -3,
+            lineHeight: 1.05,
+            color: stilFarbe(l.richtung),
+            marginTop: 6,
           },
         },
-        h(
-          'div',
-          { style: { fontFamily: 'Anton', fontSize: 40, color: SCHWARZ } },
-          hf.name
-        ),
-        h(
-          'div',
-          {
-            style: {
-              fontFamily: 'Open',
-              fontWeight: 700,
-              fontSize: 30,
-              color: hf.vorn ? '#ffffff' : SCHWARZ,
-              backgroundColor: hf.vorn ? LOGO_GRUEN : '#eeeeee',
-              borderRadius: 999,
-              padding: '6px 22px',
-            },
-          },
-          hf.schnitt
-        )
+        l.ende
       )
     )
-    hf.monate.forEach((m, i) => {
-      const plus = m.wert >= 0
-      const farbe = plus ? LOGO_GRUEN : LOGO_ROT
-      teile.push(
+  )
+
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+      },
+    },
+    stilKopf(logo),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 132,
+          left: rand,
+          right: rand,
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Montserrat',
+          fontWeight: 800,
+          fontSize: 64,
+          lineHeight: 1.14,
+          letterSpacing: -1,
+        },
+      },
+      /* Je Stück eine Zeile – ein Umbruch mitten in der Frage liest sich schlecht. */
+      ...k.titel.map((t) =>
+        h(
+          'div',
+          { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+          t.text
+        )
+      )
+    ),
+    block(k.erklaerung, {
+      top: 300,
+      left: rand,
+      right: rand,
+      fontSize: 28,
+      lineHeight: 1.42,
+      color: STIL.grau,
+    }),
+    /* Das Datenfeld: hellgrau, feiner Rand, oben die Vierfarbleiste. */
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: feldO,
+          left: feldL,
+          right: feldL,
+          height: feldU - feldO,
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundColor: STIL.feld,
+          border: `1.5px solid ${STIL.rand}`,
+          borderRadius: 26,
+          overflow: 'hidden',
+        },
+      },
+      h(
+        'div',
+        { style: { display: 'flex', height: 8, width: '100%' } },
+        ...STIL.leiste.map((farbe) =>
+          h('div', { style: { flexGrow: 1, height: 8, backgroundColor: farbe } })
+        )
+      )
+    ),
+    block(k.stichzeile.toUpperCase(), {
+      top: feldO + 44,
+      left: innen,
+      ...gesperrt,
+      color: STIL.navy,
+    }),
+    ...helden,
+    h('div', {
+      style: {
+        position: 'absolute',
+        top: feldO + 108,
+        left: haelfte,
+        width: 1.5,
+        height: 116,
+        backgroundColor: STIL.rand,
+      },
+    }),
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite,
+      height: hoehe + 12,
+      style: { position: 'absolute', left: diagrammL, top: diagrammO - 6 },
+    }),
+    ...striche.map((v) =>
+      block(`${v.toLocaleString('de-DE')} ${k.einheit}`, {
+        top: diagrammO + y(v) - 11,
+        left: diagrammR + 14,
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+    ...k.achse.map((a) =>
+      block(a.text, {
+        top: diagrammU + 14,
+        left: diagrammL + x(a.bei) - 40,
+        width: 80,
+        justifyContent: 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: feldU - 130,
+          left: innen,
+          display: 'flex',
+          fontFamily: 'Montserrat',
+        },
+      },
+      ...k.kennzahlen.map((z) =>
         h(
           'div',
           {
             style: {
-              position: 'absolute',
-              top: y + kopfH + Math.floor(i / 3) * (kachelH + luecke),
-              left: links + (i % 3) * (kachelB + luecke),
-              width: kachelB,
-              height: kachelH,
-              borderRadius: 18,
-              backgroundColor: hell(farbe),
-              border: hf.vorn ? `3px solid ${farbe}` : '3px solid transparent',
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              paddingLeft: 24,
+              alignItems: 'center',
+              backgroundColor: '#ffffff',
+              border: `1.5px solid ${STIL.rand}`,
+              borderRadius: 999,
+              padding: '12px 22px',
+              marginRight: 14,
             },
           },
+          h('div', { style: { fontSize: 22, color: STIL.grau } }, z.name),
           h(
             'div',
             {
               style: {
-                fontFamily: 'Open',
-                fontWeight: 700,
-                fontSize: 24,
-                color: MITTELGRAU,
+                fontSize: 26,
+                fontWeight: 800,
+                color: stilFarbe(z.richtung),
+                marginLeft: 12,
               },
             },
-            m.name
-          ),
-          h(
-            'div',
-            {
-              style: {
-                fontFamily: 'Anton',
-                fontSize: 52,
-                color: farbe,
-                lineHeight: 1.05,
-              },
-            },
-            zahl(m.wert)
+            z.wert
           )
         )
       )
+    ),
+    block(k.fusszeile, {
+      top: feldU - 46,
+      left: innen,
+      right: innen,
+      fontSize: 16,
+      color: STIL.hellgrau,
     })
-    if (j === 0) {
-      const ty = y + haelfteH + 6
-      teile.push(
-        h('div', {
-          style: {
-            position: 'absolute',
-            top: ty + trennerH / 2 - 8,
-            left: links,
-            width: breite,
-            height: 0,
-            borderTop: '4px dashed #e2701c',
-          },
-        }),
-        h(
-          'div',
-          {
-            style: {
-              position: 'absolute',
-              top: ty + 4,
-              left: 0,
-              width: ZK_BREITE,
-              display: 'flex',
-              justifyContent: 'center',
-            },
-          },
-          h(
-            'div',
-            {
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: '#ffffff',
-                padding: '0 18px',
-              },
-            },
-            h('img', { src: svgAdresse(KUERBIS), width: 56, height: 56 }),
-            h(
-              'div',
-              {
-                style: {
-                  fontFamily: 'Anton',
-                  fontSize: 36,
-                  color: '#c25a12',
-                  marginLeft: 12,
-                },
-              },
-              k.trenner
-            )
-          )
-        )
-      )
-    }
-  })
-  return teile
+  )
 }
 
 /* ------------------------------------------------------------ Duell */

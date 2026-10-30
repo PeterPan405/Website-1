@@ -865,35 +865,54 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 /* 31.10.2026: Halloween-Effekt, Dax 1990–2026 (Yahoo, abgerufen 30.10.). */
 {
   const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
-  pruefe('Halloween: Karte für den 31.10. ist ein Kalender', karte?.art === 'kalender')
-  if (karte?.art === 'kalender') {
-    const mittel = (i: number) =>
-      karte.haelften[i].monate.reduce((s, m) => s + m.wert, 0) /
-      karte.haelften[i].monate.length
-    const zahl = (x: number) =>
-      (x < 0 ? '−' : '+') + Math.abs(x).toFixed(2).replace('.', ',')
+  pruefe('Halloween: Karte für den 31.10. ist eine Kurvenkarte', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
+    const [winter, sommer] = karte.linien
+    const euro = (v: number) => `${v.toLocaleString('de-DE')} €`
     pruefe(
-      'Halloween: Sommer-Ø = Mittel der Kacheln',
-      karte.haelften[0].schnitt.includes(zahl(mittel(0))),
-      `${karte.haelften[0].schnitt} / ${zahl(mittel(0))}`
+      'Halloween: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
-      'Halloween: Winter-Ø = Mittel der Kacheln',
-      karte.haelften[1].schnitt.includes(zahl(mittel(1))),
-      `${karte.haelften[1].schnitt} / ${zahl(mittel(1))}`
+      'Halloween: beide Linien beginnen bei 100 €',
+      winter.punkte[0] === 100 && sommer.punkte[0] === 100
+    )
+    pruefe('Halloween: 442 Monatsstände, 12/1989–09/2026', winter.punkte.length === 442)
+    pruefe(
+      'Halloween: Endstände = letzter Punkt der Reihe',
+      winter.ende === euro(winter.punkte.at(-1)!) &&
+        sommer.ende === euro(sommer.punkte.at(-1)!),
+      `${winter.ende}/${winter.punkte.at(-1)}, ${sommer.ende}/${sommer.punkte.at(-1)}`
     )
     pruefe(
-      'Halloween: Winter vorn',
-      karte.haelften[1].vorn === true && mittel(1) > mittel(0)
+      'Halloween: Beschreibung nennt dieselben Endstände und Mittel',
+      karte.text.includes(winter.ende) &&
+        karte.text.includes(sommer.ende) &&
+        karte.kennzahlen.every((z) => karte.text.includes(z.wert.replace('+', '')))
     )
     pruefe(
-      'Halloween: Beschreibung nennt dieselben Mittel',
-      karte.text.includes(zahl(mittel(1)).slice(1) + ' %') &&
-        karte.text.includes('−0,01 %')
+      'Halloween: Achse 2000 liegt auf Dezember 1999',
+      karte.achse.find((a) => a.text === '2000')?.bei === 120
     )
     pruefe('Halloween: ohne Freigabe', !karte.freigabe)
     const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
     pruefe('Halloween: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+  }
+}
+
+/* Eine Kurvenkarte mit ungleichen Linien wird beanstandet. */
+{
+  const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
+  if (karte?.art === 'kurven') {
+    const kaputt = {
+      ...karte,
+      linien: [karte.linien[0], { ...karte.linien[1], punkte: [100, 90] }],
+    }
+    pruefe(
+      'Kurvenkarte: ungleich lange Linien werden beanstandet',
+      pruefeZahlenkarte(kaputt).some((f) => f.includes('gleich viele'))
+    )
   }
 }
 

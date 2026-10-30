@@ -184,6 +184,22 @@ wird dort angelegt, nicht im Datensatz.
 
     Stand: 10.10.2026 | Quellen: Kursdaten, STOXX Europe 600, EZB
 
+**Der Hausstil – `INSTAGRAM-STIL.md`** (seit 31.10.2026).
+
+Am 30.10.2026 hat der Betreiber vier Fassungen derselben Karte verworfen:
+Balken, Kacheln, Phantom-Schwarz und Weiß mit Leuchtlinie. Er verlangte
+„eigene Design-Vorgaben … ein Muster“.
+
+Die Vorgaben stehen jetzt in `INSTAGRAM-STIL.md`:
+
+- weißer Grund, Logo oben mittig
+- Titel in zwei Zeilen, schwarz und Navy
+- Datenfeld mit Vierfarbleiste
+- Heldenzahl, feine Linien, Pillen
+
+Die erste Karte im Hausstil ist die Kurvenkarte (`art: 'kurven'`). Die
+älteren Arten werden umgestellt.
+
 Die jüngste Sorte – die erste erschien am 11.10.2026. Der Betreiber will davon
 künftig mehr.
 
