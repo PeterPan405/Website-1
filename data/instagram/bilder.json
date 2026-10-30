@@ -343,5 +343,44 @@
       "urheber": "Government of Thailand",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-10-30": [
+    {
+      "stelle": 1,
+      "datei": "2026-10-30-1-f9677ccb.jpg",
+      "titel": "File:Cumbre de líderes del G20 (28826003394).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Cumbre_de_l%C3%ADderes_del_G20_(28826003394).jpg",
+      "lizenz": "CC BY 2.0",
+      "urheber": "Presidencia de la República Mexicana",
+      "suche": "speech deepcat:\"Christine Lagarde\""
+    },
+    {
+      "stelle": 2,
+      "datei": "",
+      "titel": "Kurs: alphabet",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "alphabet"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-10-30-3-293f992a.jpg",
+      "titel": "File:Swearing-in ceremony for Federal Reserve Chair Kevin Warsh at the White House, Friday, May 22, 2026 - 8.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Swearing-in_ceremony_for_Federal_Reserve_Chair_Kevin_Warsh_at_the_White_House,_Friday,_May_22,_2026_-_8.jpg",
+      "lizenz": "Public domain",
+      "urheber": "The White House",
+      "suche": "deepcat:\"Kevin Warsh\""
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-10-30-4-912d219d.jpg",
+      "titel": "File:New ECB Chief Lagarde to address plenary for first time (49521491927).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:New_ECB_Chief_Lagarde_to_address_plenary_for_first_time_(49521491927).jpg",
+      "lizenz": "CC BY 2.0",
+      "urheber": "European Parliament from EU",
+      "suche": "speech deepcat:\"Christine Lagarde\""
+    }
   ]
 }
