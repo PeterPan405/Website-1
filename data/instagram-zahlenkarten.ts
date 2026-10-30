@@ -148,12 +148,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Der europäische Terminkontrakt TTF stieg von 29,00 Euro je Megawattstunde am 2. Januar auf 100,72 Euro am 28. Oktober – ein Plus von 247 Prozent und laut Handelsblatt der höchste Stand seit Ende 2022. Der US-Kontrakt Henry Hub fiel im selben Zeitraum von 3,62 auf 2,82 Dollar je Million British Thermal Units (−22 Prozent); am 26. Oktober lag er laut wallstreetONLINE bei rund 2,53 Dollar, dem tiefsten Stand seit rund zwei Jahren.\n\n' +
       'Warum so unterschiedlich?\n' +
       '🇪🇺 Europa: Laut Handelsblatt treiben der Iran-Krieg und das Auffüllen der deutschen Gasspeicher den Preis.\n' +
-      '🇺🇸 USA: Laut wallstreetONLINE rechnen Meteorologen bis Anfang November mit ungewöhnlich mildem Wetter, das senkt den Heizbedarf. Zugleich fördern die USA mit rund 113 Milliarden Kubikfuß am Tag fast so viel wie zu den Rekorden im August und September.\n' +
-      'Gas hat keinen Weltmarktpreis: Es reist per Pipeline oder als verflüssigtes LNG, deshalb können die Preise weit auseinanderlaufen.\n\n' +
+      '🇺🇸 USA: Laut wallstreetONLINE rechnen Meteorologen bis Anfang November mit ungewöhnlich mildem Wetter, das senkt den Heizbedarf. Zugleich fördern die USA fast so viel wie zu den Rekorden im August und September.\n' +
+      'Gas hat keinen Weltmarktpreis – es reist per Pipeline oder als LNG.\n\n' +
       'Und im Winter?\n' +
       '🇪🇺 Mit dem Preisanstieg wächst laut Handelsblatt der Druck auf Verbraucher und Industrie – allmählich steigen auch die Preise für Haushaltskunden.\n' +
       '🇺🇸 Laut wallstreetONLINE entscheidet jetzt der Beginn der Heizsaison: Bleibt es mild, dürfte der Preis weiter unter Druck bleiben; eine plötzliche Kältewelle würde die Erwartungen an den Verbrauch rasch ändern.\n\n' +
-      'Beide Werte sind in ihrer eigenen Währung und Einheit gerechnet. Keine Anlageberatung.\n' +
+      'Beide Werte in eigener Währung und Einheit.\n' +
       'Quellen: Yahoo Finance (Schlusskurse 02.01.–28.10.2026), Handelsblatt und wallstreetONLINE (beide 26.10.2026)',
     schlagworte: ['erdgas', 'gaspreis', 'energie', 'rohstoffe', 'börse'],
   },

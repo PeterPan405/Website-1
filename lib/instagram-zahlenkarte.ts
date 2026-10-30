@@ -627,6 +627,16 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     )
   if (!k.titel.some((t) => t.gruen || t.richtung))
     f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
+  /*
+    Meta nimmt höchstens 2.200 Zeichen. Am 30.10.2026 waren es mit
+    Rechtshinweis und Schlagworten 2.225 – „The caption was too long" um
+    15 Uhr, bei freigegebener Karte. Jetzt meldet es der Test vorher.
+  */
+  const laenge = beschriftungZahlenkarte(k).length
+  if (laenge > BESCHRIFTUNG_GRENZE)
+    f.push(
+      `Beschriftung hat ${laenge} Zeichen mit Rechtshinweis – höchstens ${BESCHRIFTUNG_GRENZE} (Meta: 2.200).`
+    )
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
@@ -786,6 +796,9 @@ function pruefeRangliste(k: Rangkarte): string[] {
   }
   return f
 }
+
+/** Etwas Luft unter Metas 2.200 – Emoji zählen dort teils doppelt. */
+export const BESCHRIFTUNG_GRENZE = 2150
 
 /** Die Beschriftung, wie sie hinausgeht: Text, Rechtshinweis, Schlagworte. */
 export function beschriftungZahlenkarte(k: Zahlenkarte): string {
