@@ -852,6 +852,16 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 30.10.2026: „The caption was too long" – die Prüfung muss das vorher sehen. */
+{
+  const gas = zahlenkarten.find((k) => k.datum === '2026-10-30')!
+  const lang = { ...gas, text: gas.text + ' Zusatz.'.repeat(30) }
+  pruefe(
+    'Beschriftung über der Grenze wird beanstandet',
+    pruefeZahlenkarte(lang).some((f) => f.includes('Beschriftung hat'))
+  )
+}
+
 /* Die Form wechselt: zwei Tage hintereinander nie dieselbe (Betreiber, 18.10.2026). */
 const nachDatum = [...zahlenkarten].sort((a, b) => a.datum.localeCompare(b.datum))
 for (let i = 1; i < nachDatum.length; i++)
