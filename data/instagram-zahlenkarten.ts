@@ -35,10 +35,10 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'kurven',
     datum: '2026-10-31',
-    vorzeile: 'Kauf an Halloween, raus im Mai?',
-    titel: [{ text: 'Beim Dax:' }, { text: 'ja.', richtung: 'steigt' }],
+    titel: [{ text: 'Die Halloween-Regel' }, { text: 'ging beim Dax auf.', gruen: true }],
+    stichzeile: 'Dax · 100 € ab Januar 1990',
     erklaerung:
-      '100 € im Dax ab Januar 1990 – angelegt nur von November bis April oder nur von Mai bis Oktober. Ohne Kosten und Steuern.',
+      'An Halloween kaufen, im Mai verkaufen: 100 € im Dax seit 1990, nur im Winter oder nur im Sommer angelegt.',
     linien: [
       {
         name: 'Nur im Winter',

@@ -184,22 +184,21 @@ wird dort angelegt, nicht im Datensatz.
 
     Stand: 10.10.2026 | Quellen: Kursdaten, STOXX Europe 600, EZB
 
-**Die Kurvenkarte – Bildsprache „Phantom"** (`art: 'kurven'`, seit 31.10.2026).
-Der Betreiber am 30.10.2026 zur hellen Kalenderfassung: „sieht sehr billig
-nach Vibecoding aus – nimm das Design von Phantom". Die Vorlage ist in
-`im-capital/docs/VORLAGE-PHANTOM.md` ausgelesen, mit 87 Bildern. Übernommen
-ist nur die Bildsprache:
+**Der Hausstil – `INSTAGRAM-STIL.md`** (seit 31.10.2026).
 
-- weiches Licht von oben – auf **weißem** Grund: Die schwarze Fassung der
-  Vorlage fand der Betreiber am selben Tag „sehr billig"
-- Montserrat, die Vorzeile dünn, der Titel fett, ein Wort in Grün `#12a150`
-  (das Leuchtgrün der Vorlage trägt auf Weiß nicht)
-- ein leuchtender Kursverlauf in Grün und Rot mit Fläche
-- die Endstände groß als Legende, darunter zwei bis drei Kennzahlen
+Am 30.10.2026 hat der Betreiber vier Fassungen derselben Karte verworfen:
+Balken, Kacheln, Phantom-Schwarz und Weiß mit Leuchtlinie. Er verlangte
+„eigene Design-Vorgaben … ein Muster“.
 
-Nicht übernommen wird Figur, Name oder Logo von HKCM. Die Karte nimmt zwei
-gleich lange Reihen; die y-Achse rechnet sie selbst (`achsenschritt()`).
-Ob die helle Anton-Karte daneben bleibt, entscheidet der Betreiber.
+Die Vorgaben stehen jetzt in `INSTAGRAM-STIL.md`:
+
+- weißer Grund, Logo oben mittig
+- Titel in zwei Zeilen, schwarz und Navy
+- Datenfeld mit Vierfarbleiste
+- Heldenzahl, feine Linien, Pillen
+
+Die erste Karte im Hausstil ist die Kurvenkarte (`art: 'kurven'`). Die
+älteren Arten werden umgestellt.
 
 Die jüngste Sorte – die erste erschien am 11.10.2026. Der Betreiber will davon
 künftig mehr.
