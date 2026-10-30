@@ -283,6 +283,10 @@ Ab dann läuft der Abruf montags um 05:00 UTC von allein.
 
 Damit die Top-News des Tages täglich als Karussell erscheinen.
 
+> **Für IM Capital** (eigenes Konto, Veröffentlichen von `imcapital.cloud`
+> aus): `ANLEITUNG-IM-CAPITAL-INSTAGRAM.md` – dieselbe Kette, mit der
+> vorhandenen Meta-App und den Zugangsdaten auf dem VPS.
+
 **Rechnen Sie mit dreißig bis fünfundvierzig Minuten.** Nicht weil es schwer
 wäre, sondern weil die Oberfläche von Meta an mehreren Stellen anders heißt,
 als man erwartet, und weil zwischen zwei Schritten Wartezeiten liegen.
