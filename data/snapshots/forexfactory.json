@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-10-30T10:26:16.247Z",
+  "abgerufen": "2026-10-30T18:34:55.248Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -293,6 +293,7 @@
     {"title":"Chicago PMI","country":"USD","date":"2026-10-30T09:45:00-04:00","impact":"Low","forecast":"55.8","previous":"58.8"},
     {"title":"FOMC Member Daly Speaks","country":"USD","date":"2026-10-30T12:00:00-04:00","impact":"Low","forecast":"","previous":""},
     {"title":"FOMC Member Musalem Speaks","country":"USD","date":"2026-10-30T12:30:00-04:00","impact":"Low","forecast":"","previous":""},
+    {"title":"FOMC Member Logan Speaks","country":"USD","date":"2026-10-30T13:30:00-04:00","impact":"Low","forecast":"","previous":""},
     {"title":"Manufacturing PMI","country":"CNY","date":"2026-10-30T21:30:00-04:00","impact":"Low","forecast":"49.9","previous":"50.1"},
     {"title":"Non-Manufacturing PMI","country":"CNY","date":"2026-10-30T21:30:00-04:00","impact":"Low","forecast":"50.0","previous":"50.2"}
   ]
