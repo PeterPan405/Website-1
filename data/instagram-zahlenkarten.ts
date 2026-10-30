@@ -35,6 +35,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'duell',
     datum: '2026-10-30',
+    /* Freigegeben vom Betreiber am 30.10.2026: „Ja, passt, hast die Freigabe." */
+    freigabe: '2026-10-30',
     /* Betreiber 30.10.: „Gasschere ist nicht optimal … versteht nicht jeder". */
     titel: [
       { text: 'Gaspreis: Europa' },

@@ -847,7 +847,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   if (gas?.art === 'duell') {
     pruefe('Gas: TTF +247,3 %', duellProzent(gas.links).toFixed(1) === '247.3')
     pruefe('Gas: Henry Hub −22,1 %', duellProzent(gas.rechts).toFixed(1) === '-22.1')
-    pruefe('Gas: ohne Freigabe', !gas.freigabe)
+    pruefe('Gas: freigegeben für den 30.10.', gas.freigabe === '2026-10-30')
     pruefe('Gas: letzter Kurs vom 28.10.', gas.links.punkte.at(-1)?.t === '2026-10-28')
   }
 }
