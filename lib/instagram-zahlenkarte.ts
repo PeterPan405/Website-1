@@ -346,30 +346,9 @@ export interface Saeulenkarte extends StilGemeinsam {
   einheit: string
 }
 
-/**
- * Sitzverteilung im Hausstil (01.11.2026, US-Zwischenwahlen): je Kammer ein
- * Balken aus Sitzen, die Parteien in ihren üblichen Farben, was zur Wahl
- * steht heller; die Mitte markiert die Mehrheit.
- */
-export interface Sitzkarte extends StilGemeinsam {
-  art: 'sitze'
-  helden: Held[]
-  kammern: {
-    name: string
-    gesamt: number
-    /** Unter der Mitte: „218 für die Mehrheit". */
-    mehrheit: string
-    /** Rechts neben dem Namen: „alle 435 Sitze zur Wahl". */
-    zusatz: string
-    teile: { name: string; sitze: number; partei: Partei; zurWahl?: boolean }[]
-  }[]
-}
-type Partei = 'demokraten' | 'republikaner' | 'unabhaengig' | 'frei'
-
 export type Zahlenkarte =
   | Kurvenkarte
   | Saeulenkarte
-  | Sitzkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -706,7 +685,7 @@ const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
 const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
-function stilBefunde(k: Kurvenkarte | Saeulenkarte | Sitzkarte): string[] {
+function stilBefunde(k: Kurvenkarte | Saeulenkarte): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
     f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
@@ -777,15 +756,6 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
         f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
     if (k.kennzahlen.length !== k.linien.length)
       f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
-    f.push(...stilBefunde(k))
-  } else if (k.art === 'sitze') {
-    if (k.kammern.length < 1 || k.kammern.length > 2)
-      f.push(`${k.kammern.length} Kammern – eine oder zwei.`)
-    for (const km of k.kammern) {
-      const summe = km.teile.reduce((a, t) => a + t.sitze, 0)
-      if (summe !== km.gesamt)
-        f.push(`${km.name}: Teile ergeben ${summe} Sitze, nicht ${km.gesamt}.`)
-    }
     f.push(...stilBefunde(k))
   } else if (k.art === 'saeulen') {
     if (k.helden.length < 1 || k.helden.length > 2)
@@ -1050,16 +1020,11 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'kurven' || k.art === 'saeulen' || k.art === 'sitze') {
+  if (k.art === 'kurven' || k.art === 'saeulen') {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
-        : stilBild(
-            k,
-            logo,
-            k.helden,
-            k.art === 'sitze' ? sitzGrafik(k) : saeulenGrafik(k)
-          )
+        : stilBild(k, logo, k.helden, saeulenGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2359,12 +2324,10 @@ export function form(
   | 'pyramide'
   | 'torte'
   | 'kurven'
-  | 'saeulen'
-  | 'sitze' {
+  | 'saeulen' {
   if (
     k.art === 'kurven' ||
     k.art === 'saeulen' ||
-    k.art === 'sitze' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -3021,7 +2984,7 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte | Sitzkarte,
+  k: Kurvenkarte | Saeulenkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3626,135 +3589,4 @@ function duellGrafik(k: Duellkarte) {
       )
     ),
   ]
-}
-
-/* Die Parteifarben – gedeckt, damit sie neben Navy und Tinte bestehen. */
-const PARTEIFARBE: Record<Partei, string> = {
-  demokraten: '#2b4c9b',
-  republikaner: '#b8323a',
-  unabhaengig: '#6b7280',
-  frei: '#c9cfd8',
-}
-
-/**
- * Je Kammer: Name und Zusatz, darunter der Sitzbalken – was zur Wahl steht,
- * heller, mit der Zahl darin –, die Mitte gestrichelt mit der Mehrheit
- * darunter, und eine Legende.
- */
-function sitzGrafik(k: Sitzkarte) {
-  const links = STIL_RAND
-  const breite = ZK_BREITE - 2 * STIL_RAND
-  const balkenH = 64
-  const abstand = 264
-  return k.kammern.flatMap((km, n) => {
-    const oben = STIL_GRAFIK_O + n * abstand
-    let x = 0
-    const stuecke = km.teile.map((t) => {
-      const w = (t.sitze / km.gesamt) * breite
-      const stueck = { t, x, w }
-      x += w
-      return stueck
-    })
-    const farbe = (t: (typeof km.teile)[number]) =>
-      t.zurWahl ? hell(PARTEIFARBE[t.partei]) : PARTEIFARBE[t.partei]
-    return [
-      stilBlock(km.name.toUpperCase(), {
-        top: oben,
-        left: links,
-        ...GESPERRT,
-        color: STIL.tinte,
-      }),
-      stilBlock(km.zusatz, {
-        top: oben - 3,
-        right: STIL_RAND,
-        fontSize: 20,
-        color: STIL.grau,
-      }),
-      h(
-        'div',
-        {
-          style: {
-            position: 'absolute',
-            top: oben + 36,
-            left: links,
-            width: breite,
-            height: balkenH,
-            display: 'flex',
-            borderRadius: 12,
-            overflow: 'hidden',
-          },
-        },
-        ...stuecke.map(({ t, w }) =>
-          h(
-            'div',
-            {
-              style: {
-                width: w,
-                height: balkenH,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: farbe(t),
-                fontFamily: 'Montserrat',
-                fontWeight: 800,
-                fontSize: 24,
-                color: t.zurWahl ? PARTEIFARBE[t.partei] : '#ffffff',
-              },
-            },
-            w > 54 ? String(t.sitze) : ''
-          )
-        )
-      ),
-      /* Die Mitte: Wer sie überschreitet, hat die Mehrheit. */
-      h('div', {
-        style: {
-          position: 'absolute',
-          top: oben + 26,
-          left: links + breite / 2 - 1.5,
-          width: 3,
-          height: balkenH + 20,
-          backgroundColor: STIL.tinte,
-        },
-      }),
-      stilBlock(km.mehrheit, {
-        top: oben + 36 + balkenH + 14,
-        left: links + breite / 2 - 200,
-        width: 400,
-        justifyContent: 'center',
-        fontSize: 19,
-        fontWeight: 700,
-        color: STIL.tinte,
-      }),
-      h(
-        'div',
-        {
-          style: {
-            position: 'absolute',
-            top: oben + 36 + balkenH + 50,
-            left: links,
-            display: 'flex',
-            fontFamily: 'Montserrat',
-            fontSize: 18,
-            color: STIL.grau,
-          },
-        },
-        ...km.teile.map((t) =>
-          h(
-            'div',
-            { style: { display: 'flex', alignItems: 'center', marginRight: 16 } },
-            h('div', {
-              style: {
-                width: 16,
-                height: 16,
-                borderRadius: 4,
-                backgroundColor: farbe(t),
-                marginRight: 8,
-              },
-            }),
-            `${t.name} ${t.sitze}`
-          )
-        )
-      ),
-    ]
-  })
 }
