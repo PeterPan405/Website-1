@@ -34,21 +34,18 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'vergleich',
     datum: '2026-10-31',
-    titel: [
-      { text: 'Halloween-Effekt:' },
-      { text: 'Dax im Winter klar vorn', gruen: true },
-    ],
+    titel: [{ text: 'Halloween beim Dax:' }, { text: 'Winter klar vorn', gruen: true }],
     links: {
-      name: 'Sommerhalbjahr',
+      name: 'Mai bis Okt.',
       wert: 0.32,
       anzeige: '+0,32 %',
-      zusatz: 'Mai–Okt., je Monat',
+      zusatz: 'Ø je Monat',
     },
     rechts: {
-      name: 'Winterhalbjahr',
+      name: 'Nov. bis Apr.',
       wert: 1.7,
       anzeige: '+1,70 %',
-      zusatz: 'Nov.–Apr., je Monat',
+      zusatz: 'Ø je Monat',
     },
     differenz: { text: '+1,39', zusatz: 'Prozentpunkte' },
     fusszeile:
