@@ -6,12 +6,14 @@ Die Website hat ihre eigene Gestaltung (`GESTALTUNG.md`).
 **Warum es diese Datei gibt.** Am 30.10.2026 gingen vier Fassungen derselben
 Karte durch. Der Betreiber sagte zu jeder:
 
-| Fassung                 | Urteil                                        |
-| ----------------------- | --------------------------------------------- |
-| Zwei Balken             | „voll langweilig“                             |
-| Zwölf Monatskacheln     | „sieht sehr billig nach Vibecoding aus“       |
-| Schwarz mit Leuchtlinie | „in schwarz sieht es sehr billig aus“         |
-| Weiß mit Leuchtlinie    | „KI-Slop … nicht ein wirklich eigenes Design“ |
+| Fassung                      | Urteil                                             |
+| ---------------------------- | -------------------------------------------------- |
+| Zwei Balken                  | „voll langweilig“                                  |
+| Zwölf Monatskacheln          | „sieht sehr billig nach Vibecoding aus“            |
+| Schwarz mit Leuchtlinie      | „in schwarz sieht es sehr billig aus“              |
+| Weiß mit Leuchtlinie         | „KI-Slop … nicht ein wirklich eigenes Design“      |
+| Datenfeld mit Vierfarbleiste | „noch schlimmer … mit dieser komischen Leiste“     |
+| Frei auf Weiß (heute gültig) | „links, aber immer noch nicht perfekt“ – Grundlage |
 
 Seine Forderung: „eigene Design-Vorgaben, … dass wir ein Muster haben und uns
 daran orientieren können, … einen eigenen Style, der nicht nach Slop aussieht“.
@@ -27,10 +29,9 @@ stehen dort in `STIL`. **Wer hier etwas ändert, zieht `STIL` nach.**
 2. **Logo oben mittig.** Signet 44 px und Wortmarke „IM Invests“ in
    Montserrat 700, 26 px, bei y = 48. Auf **jeder** Karte, nie links. Dazu der
    Betreiber: „Überall … oben in die Mitte“.
-3. **Die Vierfarbleiste.** Über jedem Datenfeld liegt ein Band von 8 px in den
-   vier Logofarben, in ihrer Reihenfolge im Signet: Navy `#17296F`, Grau
-   `#6E6E6E`, Grün `#205437`, Rot `#8B2225`. Das ist unser Wiedererkennungs-
-   zeichen; keine andere Marke trägt es.
+3. **Frei auf Weiß, kein Kasten.** Alles steht bündig an einem Rand von
+   60 px. Keine Rahmen, keine farbigen Bänder, keine hellgrauen Felder.
+   Getrennt wird mit Abstand und höchstens einem feinen Strich.
 4. **Titel in zwei Zeilen, zwei Farben.** Montserrat 800, 64 px. Die erste
    Zeile ist schwarz (`#0b1220`) und nennt das Thema, die zweite ist Navy
    (`#17296F`) und bringt die Pointe. Jedes Stück steht auf einer eigenen
@@ -38,14 +39,16 @@ stehen dort in `STIL`. **Wer hier etwas ändert, zieht `STIL` nach.**
 
 ## Aufbau einer Karte (1080 × 1350)
 
-| Bereich    | Lage                            | Inhalt                                                               |
-| ---------- | ------------------------------- | -------------------------------------------------------------------- |
-| Kopf       | y 48                            | Logo mittig                                                          |
-| Titel      | ab y 132                        | zwei Zeilen, höchstens 22 Zeichen je Zeile                           |
-| Unterzeile | ab y 300                        | Montserrat 400, 28 px, Grau `#5b6472`, höchstens zwei Zeilen         |
-| Datenfeld  | ab y 432 bis 44 px vor dem Rand | `#f5f7fa`, Rand 1,5 px `#e3e7ee`, Radius 26, oben die Vierfarbleiste |
+| Bereich    | Lage               | Inhalt                                                       |
+| ---------- | ------------------ | ------------------------------------------------------------ |
+| Kopf       | y 48               | Logo mittig                                                  |
+| Titel      | ab y 132           | zwei Zeilen, höchstens 22 Zeichen je Zeile                   |
+| Unterzeile | ab y 300           | Montserrat 400, 28 px, Grau `#5b6472`, höchstens zwei Zeilen |
+| Zahlen     | ab y 430           | Stichzeile, Heldenzahlen mit Pille                           |
+| Grafik     | y 736 bis 1200     | Linien, Achsen                                               |
+| Quelle     | 64 px vor dem Rand | eine Zeile                                                   |
 
-Im Datenfeld, von oben nach unten:
+Von oben nach unten unter der Unterzeile:
 
 - **Stichzeile:** gesperrte Großbuchstaben, Montserrat 700, 17 px, Abstand 3,
   in Navy: „DAX · 100 € AB JANUAR 1990“. Sie sagt, **was** gemessen wird.
@@ -56,9 +59,11 @@ Im Datenfeld, von oben nach unten:
   Waagerechte Hilfslinien durchgezogen in `#e3e7ee`, die Nulllinie etwas
   dunkler. Die Achsenbeschriftung steht **rechts**, 17 px, Hellgrau. Ein
   hohler Punkt markiert jedes Linienende. Immer mit x- und y-Achse.
-- **Kennzahlen als Pillen:** weiß, Rand `#e3e7ee`, ganz rund. Links der Name
-  (Grau, 22 px), rechts der Wert (800, 26 px).
-- **Quelle:** im Feld unten, 16 px, Hellgrau `#8a93a0`, mit Stand.
+- **Die Kennzahl als Pille unter ihrer Heldenzahl:** ganz rund, ohne Rand,
+  in der Richtungsfarbe aufgehellt (neutral: `#f1f2f4`). Erst der Wert
+  (800, 24 px, in der Richtungsfarbe), dann der Name (Grau, 22 px). Keine
+  eigene Pillenreihe am Fuß.
+- **Quelle:** ganz unten, 16 px, Hellgrau `#8a93a0`, mit Stand.
 
 ## Farben – wofür welche
 
@@ -80,10 +85,14 @@ Jeder Punkt ist einmal danebengegangen oder sieht nach Baukasten aus:
 
 - **Kein Leuchten, kein Glühen, keine Neonfarben, kein schwarzer Grund.**
   Das war die Phantom-Fassung.
+- **Keine Kästen, Rahmen oder Farbbänder als Schmuck.** Der hellgraue
+  Datenkasten mit Vierfarbleiste war „noch schlimmer“.
 - **Keine Kachelwände.** Zwölf gleich große Kästchen sind eine Tabelle, keine
   Aussage. Das war die Kalenderfassung.
-- **Keine Emojis, Kürbisse oder Clipart im Bild.** Zu einem Anlass passt das
-  Thema, nicht die Deko. Emojis gehören höchstens in die Beschreibung.
+- **Keine Deko-Wände, keine Emojis, keine Clipart.** Zu einem Anlass passt
+  höchstens **ein** flaches Symbol hinter der ersten Titelzeile (`symbol`,
+  etwa der Kürbis an Halloween – Betreiber, 30.10.2026: „vlt ein kürbis noch
+  … wg halloween"). Nicht im Diagramm, nicht als Trenner.
 - **Keine Rangnummern bei einer Auswahl**, kein „Rekordhoch“, das die Quelle
   nicht sagt (`AGENTS.md`).
 - **Nicht mehr als eine Heldenzahl je Seite**, zwei nur im direkten

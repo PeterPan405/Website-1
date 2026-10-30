@@ -289,20 +289,22 @@ export interface Tortenkarte extends KarteGemeinsam {
 /**
  * Die Kurvenkarte (30.10.2026) – die erste Karte im Hausstil von
  * `INSTAGRAM-STIL.md`: weiß, Logo oben mittig, Titel in Montserrat schwarz
- * mit einer Pointe in Logo-Navy, darunter das Datenfeld mit der Vierfarbleiste.
+ * mit einer Pointe in Logo-Navy, darunter frei auf Weiß Zahlen und Grafik.
  *
  * Der Weg dahin, alles am 30.10.2026: zwei Balken „voll langweilig",
  * Monatskacheln „billig nach Vibecoding", Phantom-Schwarz „in schwarz sieht
  * es sehr billig aus", Weiß mit Leuchtlinie „KI-Slop … nicht ein wirklich
  * eigenes Design". Daraus die Vorgaben.
  *
- * Im Datenfeld: zwei Endstände als große Zahlen, darunter beide Linien über
- * dieselbe Zeit, darunter zwei bis drei Kennzahlen als Pillen.
+ * Darunter: die zwei Endstände als große Zahlen, unter jeder ihre Kennzahl
+ * als Pille, und beide Linien über dieselbe Zeit.
  */
 export interface Kurvenkarte extends KarteGemeinsam {
   art: 'kurven'
   erklaerung: string
-  /** Die gesperrte Zeile oben im Datenfeld: „Dax · 100 € ab Januar 1990". */
+  /** Ein Symbol zum Anlass hinter der ersten Titelzeile – nur eins, nur dort. */
+  symbol?: 'kuerbis'
+  /** Die gesperrte Zeile über den Zahlen: „Dax · 100 € ab Januar 1990". */
   stichzeile: string
   /** Genau zwei, gleich lang. */
   linien: {
@@ -713,8 +715,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const a of k.achse)
       if (a.bei < 0 || a.bei >= (k.linien[0]?.punkte.length ?? 0))
         f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
-    if (k.kennzahlen.length < 2 || k.kennzahlen.length > 3)
-      f.push(`${k.kennzahlen.length} Kennzahlen – zwei oder drei.`)
+    if (k.kennzahlen.length !== k.linien.length)
+      f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
     if (k.stichzeile.length > 40)
       f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
     if (k.erklaerung.length > ERKLAERUNG_MAX)
@@ -2837,12 +2839,9 @@ const STIL = {
   navy: '#17296F',
   grau: '#5b6472',
   hellgrau: '#8a93a0',
-  feld: '#f5f7fa',
   rand: '#e3e7ee',
   gruen: '#205437',
   rot: '#8B2225',
-  /** Die Vierfarbleiste: die Logofarben in ihrer Reihenfolge im Signet. */
-  leiste: ['#17296F', '#6E6E6E', '#205437', '#8B2225'],
 }
 
 function stilFarbe(richtung?: 'steigt' | 'faellt') {
@@ -2892,16 +2891,28 @@ function stilKopf(logo: string) {
   )
 }
 
+/** Die Symbole zum Anlass, flach gezeichnet wie ein Piktogramm. */
+const SYMBOLE: Record<NonNullable<Kurvenkarte['symbol']>, string> = {
+  kuerbis:
+    '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
+    '<path d="M31 15c0-6 3-9 8-9" fill="none" stroke="#3f6b2a" stroke-width="4" stroke-linecap="round"/>' +
+    '<ellipse cx="20" cy="38" rx="13" ry="19" fill="#d9661a"/>' +
+    '<ellipse cx="44" cy="38" rx="13" ry="19" fill="#d9661a"/>' +
+    '<ellipse cx="32" cy="38" rx="13" ry="21" fill="#ef7f24"/>' +
+    '<path d="M24 34l4-5 4 5zM36 34l4-5 4 5z" fill="#4a2208"/>' +
+    '<path d="M23 44q9 7 18 0l-3 1-2 3-3-3-3 3-2-3z" fill="#4a2208"/>' +
+    '</svg>',
+}
+
 function kurvenBild(k: Kurvenkarte, logo: string) {
   const rand = 60
-  const feldL = 44
-  const feldO = 432
-  const feldU = ZK_HOEHE - 44
-  const innen = feldL + 40
-  const diagrammL = innen
-  const diagrammR = ZK_BREITE - feldL - 96
-  const diagrammO = feldO + 248
-  const diagrammU = feldU - 196
+  const mitte = ZK_BREITE / 2
+  const diagrammL = rand
+  const diagrammR = ZK_BREITE - rand - 76
+  const diagrammO = 736
+  const diagrammU = 1200
+  /* Rand im SVG, damit der Punkt am Linienende nicht abgeschnitten wird. */
+  const luft = 10
   const breite = diagrammR - diagrammL
   const hoehe = diagrammU - diagrammO
   const anzahl = k.linien[0].punkte.length
@@ -2915,7 +2926,7 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
   const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
 
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + 12}" viewBox="0 -6 ${breite} ${hoehe + 12}">` +
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
     striche
       .map(
         (v) =>
@@ -2925,11 +2936,9 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
     k.linien
       .map((l) => {
         const farbe = stilFarbe(l.richtung)
-        const ex = x(anzahl - 1)
-        const ey = y(l.punkte[anzahl - 1])
         return (
           `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
-          `<circle cx="${ex}" cy="${ey}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
+          `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
         )
       })
       .join('') +
@@ -2955,17 +2964,24 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
     color: STIL.hellgrau,
   }
 
-  const haelfte = feldL + (ZK_BREITE - 2 * feldL) / 2
-  const helden = k.linien.map((l, n) =>
-    h(
+  /*
+    Je Linie eine Spalte: Name, Endstand, darunter ihre Kennzahl als Pille –
+    die Zahl, die zur großen gehört, steht unter ihr statt in einer eigenen
+    Reihe am Fuß (Betreiber, 30.10.2026: „noch nicht perfekt").
+  */
+  const spalten = k.linien.map((l, n) => {
+    const z = k.kennzahlen[n]
+    const farbe = stilFarbe(z?.richtung)
+    return h(
       'div',
       {
         style: {
           position: 'absolute',
-          top: feldO + 104,
-          left: n ? haelfte + 40 : innen,
+          top: 482,
+          left: n ? mitte + 40 : rand,
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'flex-start',
           fontFamily: 'Montserrat',
         },
       },
@@ -2983,9 +2999,36 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
           },
         },
         l.ende
-      )
+      ),
+      ...(z
+        ? [
+            h(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginTop: 14,
+                  padding: '9px 18px',
+                  borderRadius: 999,
+                  backgroundColor: z.richtung ? hell(farbe) : '#f1f2f4',
+                },
+              },
+              h(
+                'div',
+                { style: { fontSize: 24, fontWeight: 800, color: farbe } },
+                z.wert
+              ),
+              h(
+                'div',
+                { style: { fontSize: 22, color: STIL.grau, marginLeft: 10 } },
+                z.name
+              )
+            ),
+          ]
+        : [])
     )
-  )
+  })
 
   return h(
     'div',
@@ -3017,11 +3060,27 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
         },
       },
       /* Je Stück eine Zeile – ein Umbruch mitten in der Frage liest sich schlecht. */
-      ...k.titel.map((t) =>
+      ...k.titel.map((t, i) =>
         h(
           'div',
-          { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
-          t.text
+          {
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              color: t.gruen ? STIL.navy : STIL.tinte,
+            },
+          },
+          t.text,
+          ...(i === 0 && k.symbol
+            ? [
+                h('img', {
+                  src: svgAdresse(SYMBOLE[k.symbol]),
+                  width: 64,
+                  height: 64,
+                  style: { marginLeft: 18 },
+                }),
+              ]
+            : [])
         )
       )
     ),
@@ -3033,118 +3092,58 @@ function kurvenBild(k: Kurvenkarte, logo: string) {
       lineHeight: 1.42,
       color: STIL.grau,
     }),
-    /* Das Datenfeld: hellgrau, feiner Rand, oben die Vierfarbleiste. */
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          top: feldO,
-          left: feldL,
-          right: feldL,
-          height: feldU - feldO,
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: STIL.feld,
-          border: `1.5px solid ${STIL.rand}`,
-          borderRadius: 26,
-          overflow: 'hidden',
-        },
-      },
-      h(
-        'div',
-        { style: { display: 'flex', height: 8, width: '100%' } },
-        ...STIL.leiste.map((farbe) =>
-          h('div', { style: { flexGrow: 1, height: 8, backgroundColor: farbe } })
-        )
-      )
-    ),
     block(k.stichzeile.toUpperCase(), {
-      top: feldO + 44,
-      left: innen,
+      top: 430,
+      left: rand,
       ...gesperrt,
       color: STIL.navy,
     }),
-    ...helden,
+    ...spalten,
     h('div', {
       style: {
         position: 'absolute',
-        top: feldO + 108,
-        left: haelfte,
+        top: 486,
+        left: mitte,
         width: 1.5,
-        height: 116,
+        height: 196,
         backgroundColor: STIL.rand,
       },
     }),
     h('img', {
       src: svgAdresse(svg),
-      width: breite,
-      height: hoehe + 12,
-      style: { position: 'absolute', left: diagrammL, top: diagrammO - 6 },
+      width: breite + 2 * luft,
+      height: hoehe + 2 * luft,
+      style: { position: 'absolute', left: diagrammL - luft, top: diagrammO - luft },
     }),
     ...striche.map((v) =>
       block(`${v.toLocaleString('de-DE')} ${k.einheit}`, {
         top: diagrammO + y(v) - 11,
-        left: diagrammR + 14,
+        left: diagrammR + 18,
         fontSize: 17,
         color: STIL.hellgrau,
       })
     ),
-    ...k.achse.map((a) =>
+    ...k.achse.map((a, i) =>
       block(a.text, {
-        top: diagrammU + 14,
-        left: diagrammL + x(a.bei) - 40,
+        top: diagrammU + 16,
+        /* Erste und letzte Jahreszahl bündig mit dem Rand, nicht über ihn hinaus. */
+        left:
+          i === 0
+            ? diagrammL
+            : i === k.achse.length - 1
+              ? diagrammL + x(a.bei) - 80
+              : diagrammL + x(a.bei) - 40,
         width: 80,
-        justifyContent: 'center',
+        justifyContent:
+          i === 0 ? 'flex-start' : i === k.achse.length - 1 ? 'flex-end' : 'center',
         fontSize: 17,
         color: STIL.hellgrau,
       })
-    ),
-    h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          top: feldU - 130,
-          left: innen,
-          display: 'flex',
-          fontFamily: 'Montserrat',
-        },
-      },
-      ...k.kennzahlen.map((z) =>
-        h(
-          'div',
-          {
-            style: {
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#ffffff',
-              border: `1.5px solid ${STIL.rand}`,
-              borderRadius: 999,
-              padding: '12px 22px',
-              marginRight: 14,
-            },
-          },
-          h('div', { style: { fontSize: 22, color: STIL.grau } }, z.name),
-          h(
-            'div',
-            {
-              style: {
-                fontSize: 26,
-                fontWeight: 800,
-                color: stilFarbe(z.richtung),
-                marginLeft: 12,
-              },
-            },
-            z.wert
-          )
-        )
-      )
     ),
     block(k.fusszeile, {
-      top: feldU - 46,
-      left: innen,
-      right: innen,
+      top: ZK_HOEHE - 64,
+      left: rand,
+      right: rand,
       fontSize: 16,
       color: STIL.hellgrau,
     })

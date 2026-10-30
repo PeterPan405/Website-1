@@ -36,6 +36,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'kurven',
     datum: '2026-10-31',
     titel: [{ text: 'Die Halloween-Regel' }, { text: 'ging beim Dax auf.', gruen: true }],
+    symbol: 'kuerbis',
     stichzeile: 'Dax · 100 € ab Januar 1990',
     erklaerung:
       'An Halloween kaufen, im Mai verkaufen: 100 € im Dax seit 1990, nur im Winter oder nur im Sommer angelegt.',
@@ -57,8 +58,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     ],
     einheit: '€',
     kennzahlen: [
-      { name: 'Ø je Wintermonat', wert: '+1,58 %', richtung: 'steigt' },
-      { name: 'Ø je Sommermonat', wert: '−0,01 %' },
+      { name: 'Ø je Monat', wert: '+1,58 %', richtung: 'steigt' },
+      { name: 'Ø je Monat', wert: '−0,01 %' },
     ],
     fusszeile:
       'Stand: Monatsschlusskurse Dax 12/1989–09/2026 | Quelle: Yahoo Finance, eigene Rechnung',
