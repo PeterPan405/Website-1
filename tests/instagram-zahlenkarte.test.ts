@@ -862,28 +862,32 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   )
 }
 
-/* 31.10.2026: Halloween-Effekt – die Karte zeigt, was die Saisonrechnung liefert. */
+/* 31.10.2026: Halloween-Effekt, Dax 1990–2026 (Yahoo, abgerufen 30.10.). */
 {
-  const { saisonalitaetVon } = await import('@/lib/reihenstatistik-daten')
-  const { halbjahresprobe } = await import('@/lib/saisonalitaet')
   const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
-  const befund = await saisonalitaetVon('dax')
-  pruefe('Halloween: Karte für den 31.10. ist ein Vergleich', karte?.art === 'vergleich')
-  if (befund && karte && (karte.art === 'vergleich' || karte.art === undefined)) {
-    const p = halbjahresprobe(befund)
+  pruefe('Halloween: Karte für den 31.10. ist ein Kalender', karte?.art === 'kalender')
+  if (karte?.art === 'kalender') {
+    const mittel = (i: number) =>
+      karte.haelften[i].monate.reduce((s, m) => s + m.wert, 0) / karte.haelften[i].monate.length
+    const zahl = (x: number) => (x < 0 ? '−' : '+') + Math.abs(x).toFixed(2).replace('.', ',')
     pruefe(
-      'Halloween: Winter +1,70 %',
-      p.winter.toFixed(2) === '1.70' && karte.rechts.anzeige === '+1,70 %'
+      'Halloween: Sommer-Ø = Mittel der Kacheln',
+      karte.haelften[0].schnitt.includes(zahl(mittel(0))),
+      `${karte.haelften[0].schnitt} / ${zahl(mittel(0))}`
     )
     pruefe(
-      'Halloween: Sommer +0,32 %',
-      p.sommer.toFixed(2) === '0.32' && karte.links.anzeige === '+0,32 %'
+      'Halloween: Winter-Ø = Mittel der Kacheln',
+      karte.haelften[1].schnitt.includes(zahl(mittel(1))),
+      `${karte.haelften[1].schnitt} / ${zahl(mittel(1))}`
     )
+    pruefe('Halloween: Winter vorn', karte.haelften[1].vorn === true && mittel(1) > mittel(0))
     pruefe(
-      'Halloween: Abstand +1,39',
-      p.abstand.toFixed(2) === '1.39' && karte.differenz.text === '+1,39'
+      'Halloween: Beschreibung nennt dieselben Mittel',
+      karte.text.includes(zahl(mittel(1)).slice(1) + ' %') && karte.text.includes('−0,01 %')
     )
     pruefe('Halloween: ohne Freigabe', !karte.freigabe)
+    const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
+    pruefe('Halloween: das Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
   }
 }
 
