@@ -916,31 +916,40 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 01.11.2026: US-Zwischenwahlen, S&P 500 (Yahoo, abgerufen 30.10.). */
+/* 01.11.2026: US-Zwischenwahlen, Sitze der Präsidentenpartei (Wikipedia, 30.10.). */
 {
   const karte = zahlenkarten.find((k) => k.datum === '2026-11-01')
   pruefe('Zwischenwahl: Karte für den 01.11. sind Säulen', karte?.art === 'saeulen')
   if (karte?.art === 'saeulen') {
-    const werte = karte.saeulen.map((z) => z.wert)
-    const mittel = werte.reduce((a, b) => a + b, 0) / werte.length
+    /* Alle 20 Wahlen seit 1946 – im Bild stehen nur die letzten zehn. */
+    const alle = [
+      -54, -28, -18, -48, -4, -47, -12, -48, -15, -26, -5, -8, -54, 4, 8, -32, -63, -13,
+      -41, -9,
+    ]
     pruefe(
       'Zwischenwahl: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
-      'Zwischenwahl: Heldenzahl = Mittel der Säulen (±0,05)',
-      Math.abs(mittel - 14.0) < 0.05 && karte.helden[0].wert === '+14,0 %',
-      mittel.toFixed(3)
+      'Zwischenwahl: die Säulen sind die letzten zehn der Reihe',
+      karte.saeulen.map((z) => z.wert).join() === alle.slice(-10).join()
     )
     pruefe(
-      'Zwischenwahl: „10 von 10" = Säulen im Plus',
-      karte.helden[0].pille?.wert ===
-        `${werte.filter((w) => w > 0).length} von ${werte.length}`
+      'Zwischenwahl: „18 von 20" = Verluste in der Reihe',
+      karte.helden[0].wert === `${alle.filter((v) => v < 0).length} von ${alle.length}`
+    )
+    const mittel = alle.reduce((a, b) => a + b, 0) / alle.length
+    pruefe(
+      'Zwischenwahl: „−26 Sitze im Schnitt" = gerundetes Mittel',
+      karte.helden[0].pille?.wert === `−${Math.round(-mittel)}`,
+      mittel.toFixed(2)
     )
     pruefe(
-      'Zwischenwahl: Beschreibung nennt beide Mittel',
-      karte.text.includes('14,0 %') && karte.text.includes('9,5 %')
+      'Zwischenwahl: Beschreibung nennt dieselben Zahlen',
+      ['18 von 20', '26 Sitze', '63 Sitze', '(+4)', '(+8)'].every((z) =>
+        karte.text.includes(z)
+      )
     )
     pruefe('Zwischenwahl: ohne Freigabe', !karte.freigabe)
   }

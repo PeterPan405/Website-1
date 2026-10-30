@@ -344,6 +344,8 @@ export interface Saeulenkarte extends StilGemeinsam {
   saeulen: { text: string; wert: number }[]
   /** Hinter den Werten: „%". */
   einheit: string
+  /** Nachkommastellen der Werte über den Säulen – ohne Angabe eine. */
+  nachkomma?: number
 }
 
 export type Zahlenkarte =
@@ -3160,7 +3162,7 @@ function stilAchse(
   einheit: string
 ) {
   return striche.map((v) =>
-    stilBlock(`${v.toLocaleString('de-DE')} ${einheit}`, {
+    stilBlock(`${v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE')} ${einheit}`, {
       top: STIL_GRAFIK_O + y(v) - 11,
       left: rechts + 18,
       fontSize: 17,
@@ -3266,8 +3268,12 @@ function saeulenGrafik(k: Saeulenkarte) {
   )
   const fach = breite / k.saeulen.length
   const saeule = Math.min(64, fach * 0.62)
+  /* Über den Säulen nur „%" hinter der Zahl; ein Wort wie „Sitze" steht an der Achse. */
   const zahl = (v: number) =>
-    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${k.einheit}`
+    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE', {
+      minimumFractionDigits: k.nachkomma ?? 1,
+      maximumFractionDigits: k.nachkomma ?? 1,
+    })}${k.einheit === '%' ? ' %' : ''}`
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + kopf}" viewBox="0 0 ${breite} ${hoehe + kopf}">` +
@@ -3301,7 +3307,7 @@ function saeulenGrafik(k: Saeulenkarte) {
         left: links + i * fach,
         width: fach,
         justifyContent: 'center',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 800,
         color: stilFarbe(z.wert >= 0 ? 'steigt' : 'faellt'),
       }),
