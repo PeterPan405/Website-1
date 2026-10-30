@@ -35,12 +35,13 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'duell',
     datum: '2026-10-30',
+    /* Betreiber 30.10.: „Gasschere ist nicht optimal … versteht nicht jeder". */
     titel: [
-      { text: 'Gas-Schere:' },
-      { text: 'Europa +247\u00a0%,', gruen: true },
+      { text: 'Gaspreis: Europa' },
+      { text: '+247\u00a0%,', gruen: true },
       { text: 'USA −22\u00a0%' },
     ],
-    unterzeile: 'Erdgas seit Jahresbeginn, Terminkontrakt Frontmonat:',
+    unterzeile: 'Großhandelspreis für Erdgas seit Jahresbeginn (Terminkontrakt):',
     links: {
       name: 'Europa',
       zusatz: 'TTF, €/MWh',
