@@ -37,9 +37,9 @@ export const zahlenkarten: Zahlenkarte[] = [
     datum: '2026-10-30',
     /* Betreiber 30.10.: „Gasschere ist nicht optimal … versteht nicht jeder". */
     titel: [
-      { text: 'Gaspreis: Europa' },
-      { text: '+247\u00a0%,', gruen: true },
-      { text: 'USA −22\u00a0%' },
+      { text: 'Gaspreis:' },
+      { text: 'Europa +247\u00a0%,', richtung: 'steigt' },
+      { text: 'USA −22\u00a0%', richtung: 'faellt' },
     ],
     unterzeile: 'Großhandelspreis für Erdgas seit Jahresbeginn (Terminkontrakt):',
     links: {

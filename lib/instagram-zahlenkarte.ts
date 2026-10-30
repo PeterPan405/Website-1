@@ -61,7 +61,16 @@ interface KarteGemeinsam {
    * Akzentfarbe des Tages (`akzentfarbe()`), seit dem 18.10.2026 nicht mehr
    * immer grün. Der Feldname blieb, damit die Karten im Bestand gelten.
    */
-  titel: { text: string; gruen?: boolean }[]
+  titel: {
+    text: string
+    gruen?: boolean
+    /**
+     * Statt der Akzentfarbe die Farbe einer Kurve: „steigt" grün, „faellt"
+     * rot (30.10.2026, Gaspreis: „Europa grün und …" USA rot – dieselben
+     * Töne wie die Linien im Duell).
+     */
+    richtung?: 'steigt' | 'faellt'
+  }[]
   /** Unter der Linie, klein: „Stand: 2025 | Quelle: Eurostat …" */
   fusszeile: string
   /** Aufhänger, ein bis zwei Absätze, „Quellen: …" – ohne Rechtshinweis. */
@@ -616,7 +625,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     f.push(
       `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
     )
-  if (!k.titel.some((t) => t.gruen))
+  if (!k.titel.some((t) => t.gruen || t.richtung))
     f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
@@ -972,7 +981,14 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
               'span',
               {
                 style: {
-                  color: stueck.gruen ? akzentfarbe(k.datum) : SCHWARZ,
+                  color:
+                    stueck.richtung === 'steigt'
+                      ? LOGO_GRUEN
+                      : stueck.richtung === 'faellt'
+                        ? LOGO_ROT
+                        : stueck.gruen
+                          ? akzentfarbe(k.datum)
+                          : SCHWARZ,
                   marginRight: rangliste ? 24 : 26,
                 },
               },
