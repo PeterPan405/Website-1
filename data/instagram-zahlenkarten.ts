@@ -17,6 +17,73 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber am 30.10.2026: „lass uns das gleich noch für
+      sonntag machen wegen zwischenwahlen". Form: Säulen im Hausstil, neu
+      (am 31.10. Kurve).
+
+      Wahltag: Dienstag, 3. November 2026 – der Dienstag nach dem ersten
+      Montag im November (2 U.S.C. § 7); gewählt werden das ganze
+      Repräsentantenhaus und ein Drittel des Senats.
+
+      Zahlen: Yahoo Finance, ^GSPC, Monatsschlusskurse (interval=1mo, ab
+      01/1985), abgerufen am 30.10.2026 über quellen-holen.yml. Gerechnet:
+      Ende Oktober des Wahljahres bis Ende Oktober des Folgejahres, ohne
+      Dividenden (der S&P 500 ist ein Kursindex).
+        1986 +3,2 % (darin der Crash vom Oktober 1987), 1990 +29,1 %,
+        1994 +23,1 %, 1998 +24,1 %, 2002 +18,6 %, 2006 +12,4 %,
+        2010 +5,9 %, 2014 +3,0 %, 2018 +12,0 %, 2022 +8,3 %
+        Mittel +13,98 %, 10 von 10 im Plus.
+      Dieselbe Rechnung für die übrigen Jahre 1985–2024 (30 Zeiträume):
+        Mittel +9,50 %, 25 von 30 im Plus, schwächster 2007/08 −37,5 %.
+    */
+    art: 'saeulen',
+    datum: '2026-11-01',
+    titel: [{ text: 'Nach der Zwischenwahl' }, { text: 'stieg die Börse.', gruen: true }],
+    symbol: 'usa',
+    erklaerung:
+      'Am Dienstag wählen die USA das Repräsentantenhaus und ein Drittel des Senats. So lief der S&P 500 im Jahr danach.',
+    stichzeile: 'S&P 500 · Ende Oktober bis Ende Oktober',
+    helden: [
+      {
+        name: 'Nach Zwischenwahlen',
+        wert: '+14,0 %',
+        richtung: 'steigt',
+        pille: { wert: '10 von 10', name: 'im Plus', richtung: 'steigt' },
+      },
+      {
+        name: 'In anderen Jahren',
+        wert: '+9,5 %',
+        pille: { wert: '25 von 30', name: 'im Plus' },
+      },
+    ],
+    saeulen: [
+      { text: '1986', wert: 3.2 },
+      { text: '1990', wert: 29.1 },
+      { text: '1994', wert: 23.1 },
+      { text: '1998', wert: 24.1 },
+      { text: '2002', wert: 18.6 },
+      { text: '2006', wert: 12.4 },
+      { text: '2010', wert: 5.9 },
+      { text: '2014', wert: 3.0 },
+      { text: '2018', wert: 12.0 },
+      { text: '2022', wert: 8.3 },
+    ],
+    einheit: '%',
+    fusszeile:
+      'Stand: Monatsschlusskurse S&P 500 10/1985–10/2025 | Quelle: Yahoo Finance, eigene Rechnung',
+    text:
+      'Am Dienstag, dem 3. November, wählen die USA – das ganze Repräsentantenhaus und ein Drittel des Senats. Wir haben nachgesehen, wie die Börse in den Jahren danach lief. 🇺🇸\n\n' +
+      'Das Ergebnis: Nach jeder der letzten zehn Zwischenwahlen stand der S&P 500 zwölf Monate später höher – 10 von 10 Mal, im Schnitt um 14,0 %. Gemessen von Ende Oktober des Wahljahres bis Ende Oktober des Jahres danach.\n\n' +
+      'Zum Vergleich: In allen anderen Jahren seit 1985 lag der Index im selben Zeitraum im Schnitt um 9,5 % höher, in 25 von 30 Fällen im Plus. Der schwächste Zeitraum war 2007/08 mit −37,5 %.\n\n' +
+      'Selbst 1986 blieb ein kleines Plus von 3,2 % – obwohl in diesen zwölf Monaten der Crash vom Oktober 1987 lag. Den stärksten Zeitraum gab es nach 1990 mit +29,1 %.\n\n' +
+      'Und jetzt?\n' +
+      'Die Zahlen beschreiben, was war – eine Begründung liefern sie nicht, und zehn Fälle sind wenig. Ob es nach dieser Wahl wieder so läuft, lässt sich daraus nicht ablesen.\n\n' +
+      'Gerechnet: Monatsschlusskurse, Ende Oktober bis Ende Oktober, ohne Dividenden. Keine Anlageberatung.\n' +
+      'Quelle: Yahoo Finance (S&P 500, Monatsschlusskurse), eigene Rechnung',
+    schlagworte: ['usa', 'zwischenwahlen', 'sp500', 'börse', 'aktien'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 30.10.2026 aus den Vorschlägen
       („das zu Halloween klingt doch ganz gut"). Zwei Balken: „voll
       langweilig"; Kalender: „sieht sehr billig nach Vibecoding aus – nimm

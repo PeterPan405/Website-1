@@ -916,6 +916,36 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 01.11.2026: US-Zwischenwahlen, S&P 500 (Yahoo, abgerufen 30.10.). */
+{
+  const karte = zahlenkarten.find((k) => k.datum === '2026-11-01')
+  pruefe('Zwischenwahl: Karte für den 01.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
+    const werte = karte.saeulen.map((z) => z.wert)
+    const mittel = werte.reduce((a, b) => a + b, 0) / werte.length
+    pruefe(
+      'Zwischenwahl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Zwischenwahl: Heldenzahl = Mittel der Säulen (±0,05)',
+      Math.abs(mittel - 14.0) < 0.05 && karte.helden[0].wert === '+14,0 %',
+      mittel.toFixed(3)
+    )
+    pruefe(
+      'Zwischenwahl: „10 von 10" = Säulen im Plus',
+      karte.helden[0].pille?.wert ===
+        `${werte.filter((w) => w > 0).length} von ${werte.length}`
+    )
+    pruefe(
+      'Zwischenwahl: Beschreibung nennt beide Mittel',
+      karte.text.includes('14,0 %') && karte.text.includes('9,5 %')
+    )
+    pruefe('Zwischenwahl: ohne Freigabe', !karte.freigabe)
+  }
+}
+
 /* Säulen im Hausstil: Rechnung, Prüfung, Bild – an einer Probekarte. */
 {
   const probe: Zahlenkarte = {
