@@ -2761,7 +2761,12 @@ const LOGO_GRUEN = '#205437'
 const LOGO_ROT = '#8B2225'
 
 function duellGrafik(k: Duellkarte) {
-  const akzent = akzentfarbe(k.datum)
+  /*
+    Tragen die Zahlen der Überschrift schon Grün und Rot (`richtung`), steht
+    die Differenz schwarz – sonst wären es mit Schwarz vier Farben (Betreiber,
+    30.10.2026: „Das wird dann zu bunt").
+  */
+  const akzent = k.titel.some((t) => t.richtung) ? SCHWARZ : akzentfarbe(k.datum)
   const seiten = [k.links, k.rechts].map((sei) => ({
     sei,
     reihe: sei.punkte.map((p) => ({
