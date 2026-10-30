@@ -16,6 +16,83 @@ import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema gewählt vom Betreiber am 30.10.2026 aus den Vorschlägen
+      („das zu Halloween klingt doch ganz gut"). Form: Kalender, neu (am 30.10.
+      Duell).
+
+      Zahlen: eigene Rechnung mit `saisonalitaetVon()` und
+      `halbjahresprobe()` (lib/saisonalitaet.ts) aus den Monatsschlusskursen
+      des Kursbestands (Yahoo Finance), Stand 30.10.2026, Monatsrenditen
+      Januar 2022 bis September 2026 – je Kalendermonat vier bis fünf Werte.
+      Mittel der Monatsmittel:
+        Dax         Winter (Nov–Apr) +1,70 %, Sommer (Mai–Okt) +0,32 %,
+                    Abstand +1,39 Prozentpunkte
+        S&P 500     Winter +0,84 %, Sommer +1,13 %
+        Nasdaq 100  Winter +0,83 %, Sommer +1,68 %
+      Bester Dax-Monat im Schnitt: Mai +4,02 %, dann November +3,97 %.
+      Dieselben Zahlen zeigt /maerkte/saisonalitaet.
+    */
+    art: 'kalender',
+    datum: '2026-10-31',
+    /*
+      Betreiber 30.10.: zwei Balken „voll langweilig" – jetzt ein Kalender;
+      dann: längere Geschichte, „mindestens 2020, besser 1990".
+
+      Zahlen: Yahoo Finance, ^GDAXI und ^GSPC, Monatsschlusskurse
+      (interval=1mo, ab 12/1987 bzw. 01/1985), abgerufen am 30.10.2026 über
+      quellen-holen.yml. Gerechnet: Rendite je Monat gegen den Vormonat,
+      01/1990–09/2026 (36–37 Werte je Kalendermonat), Mittel je Monat.
+      Dax: Sommer Ø −0,01 %, Winter Ø +1,58 %; nur Winter investiert
+      (verkettet) +2.147 %, nur Sommer −37 %. S&P 500: Sommer Ø +0,52 %,
+      Winter Ø +1,07 %; verkettet +752 % gegen +154 %.
+    */
+    titel: [{ text: 'Kauf an Halloween?' }, { text: 'Beim Dax: ja', richtung: 'steigt' }],
+    erklaerung:
+      'Die alte Börsenregel: im Mai verkaufen, an Halloween wieder einsteigen. So lief der Dax seit 1990 – im Schnitt je Kalendermonat.',
+    unterzeile: 'Durchschnittliche Dax-Rendite je Monat, 1990–2026:',
+    haelften: [
+      {
+        name: 'Sommer',
+        schnitt: 'Ø −0,01 % je Monat',
+        monate: [
+          { name: 'Mai', wert: 0.96 },
+          { name: 'Juni', wert: -0.32 },
+          { name: 'Juli', wert: 1.45 },
+          { name: 'August', wert: -2.0 },
+          { name: 'September', wert: -2.34 },
+          { name: 'Oktober', wert: 2.16 },
+        ],
+      },
+      {
+        name: 'Winter',
+        schnitt: 'Ø +1,58 % je Monat',
+        vorn: true,
+        monate: [
+          { name: 'November', wert: 2.66 },
+          { name: 'Dezember', wert: 1.81 },
+          { name: 'Januar', wert: 1.09 },
+          { name: 'Februar', wert: 0.76 },
+          { name: 'März', wert: 0.41 },
+          { name: 'April', wert: 2.72 },
+        ],
+      },
+    ],
+    trenner: '31. Oktober – Halloween',
+    fusszeile:
+      'Stand: Monatsrenditen Dax 01/1990–09/2026 | Quelle: Yahoo Finance, eigene Rechnung',
+    text:
+      'Heute ist Halloween – und an der Börse der Tag einer alten Regel: „Sell in May and go away", und an Halloween wieder einsteigen. Wir haben nachgerechnet, mit dem Dax seit 1990. 🎃\n\n' +
+      'Das Ergebnis ist deutlich: Von November bis April legte der Dax im Schnitt um 1,58 % pro Monat zu, von Mai bis Oktober um −0,01 % – also gar nicht. August und September waren die schwächsten Monate, November und April die stärksten.\n\n' +
+      'Hochgerechnet: Wer seit 1990 nur in den Wintermonaten im Dax war, kam auf rund +2.147 %. Wer nur in den Sommermonaten investiert war, lag bei −37 %.\n\n' +
+      'In den USA ist das Muster schwächer: Der S&P 500 machte im Winter +1,07 % pro Monat, im Sommer +0,52 % – auch dort war der Sommer positiv.\n\n' +
+      'Und jetzt?\n' +
+      'Die Zahlen beschreiben, was war – eine Begründung liefern sie nicht. Es sind Durchschnitte über 36 Jahre, einzelne Jahre wichen stark ab. Ob der kommende Winter wieder so läuft, lässt sich daraus nicht ablesen. Und wer im Sommer aussteigt, verpasst auch starke Sommermonate wie Juli und Oktober.\n\n' +
+      'Gerechnet: Mittel der monatlichen Renditen je Kalendermonat, Januar 1990 bis September 2026. Der Dax ist ein Performanceindex (Dividenden eingerechnet), der S&P 500 nicht. Hochrechnung ohne Kosten und Steuern. Keine Anlageberatung.\n' +
+      'Quelle: Yahoo Finance (Monatsschlusskurse), eigene Rechnung',
+    schlagworte: ['halloween', 'dax', 'börse', 'aktien', 'investieren'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 29.10.2026 aus den Vorschlägen („1":
       Erdgas-Schere Europa gegen USA). Form: Duell, neu im Kanal (am 29.10.
       Torte). Betreiber zum Entwurf: Warum und Folgen für den Winter in die

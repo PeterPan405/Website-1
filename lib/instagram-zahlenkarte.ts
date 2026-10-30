@@ -286,7 +286,33 @@ export interface Tortenkarte extends KarteGemeinsam {
   infos?: { name: string; wert: string }[]
 }
 
+/**
+ * Ein Börsenkalender (30.10.2026, Halloween-Effekt). Der Betreiber zu zwei
+ * Balken „Winter gegen Sommer": „Gefällt mir absolut nicht, voll
+ * langweilig." Zwölf Monatskacheln in zwei Hälften, je Kachel die
+ * Durchschnittsrendite – grün getönt im Plus, rot im Minus –, über jeder
+ * Hälfte ihr Schnitt; zwischen den Hälften eine Linie mit Kürbis für den
+ * Tag, um den es geht.
+ */
+export interface Kalenderkarte extends KarteGemeinsam {
+  art: 'kalender'
+  erklaerung: string
+  unterzeile: string
+  /** Genau zwei, je sechs Monate, in der Reihenfolge, in der sie stehen. */
+  haelften: {
+    name: string
+    /** Rechts neben dem Namen, schon gesetzt: „Ø +1,70 % je Monat". */
+    schnitt: string
+    /** Hebt die Hälfte hervor: Schnitt in Grün, Rahmen. */
+    vorn?: boolean
+    monate: { name: string; wert: number }[]
+  }[]
+  /** Die Linie zwischen den Hälften: „31. Oktober – Halloween". */
+  trenner: string
+}
+
 export type Zahlenkarte =
+  | Kalenderkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -665,6 +691,19 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(
         `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
       )
+  } else if (k.art === 'kalender') {
+    if (k.haelften.length !== 2) f.push('Der Kalender hat genau zwei Hälften.')
+    for (const hf of k.haelften)
+      if (hf.monate.length !== 6)
+        f.push(`${hf.name}: ${hf.monate.length} Monate – sechs.`)
+    if (k.erklaerung.length > ERKLAERUNG_MAX)
+      f.push(
+        `Erklärung hat ${k.erklaerung.length} Zeichen – höchstens ${ERKLAERUNG_MAX}.`
+      )
+    if (zeichen > 38)
+      f.push(
+        `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
+      )
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
       f.push(`${k.stufen.length} Stufen – die Pyramide trägt drei bis fünf.`)
@@ -923,21 +962,23 @@ export function signetOhneMitte(svg: string): string {
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const rangliste = k.art !== undefined && k.art !== 'vergleich'
   const grafik =
-    k.art === 'verlauf'
-      ? await verlaufGrafik(k)
-      : k.art === 'duell'
-        ? duellGrafik(k)
-        : k.art === 'steckbrief'
-          ? steckbriefGrafik(k)
-          : k.art === 'geschichte'
-            ? geschichtsGrafik(k)
-            : k.art === 'pyramide'
-              ? pyramidenGrafik(k)
-              : k.art === 'torte'
-                ? tortenGrafik(k)
-                : k.art === 'rangliste'
-                  ? ranglistenGrafik(k)
-                  : vergleichsGrafik(k)
+    k.art === 'kalender'
+      ? kalenderGrafik(k)
+      : k.art === 'verlauf'
+        ? await verlaufGrafik(k)
+        : k.art === 'duell'
+          ? duellGrafik(k)
+          : k.art === 'steckbrief'
+            ? steckbriefGrafik(k)
+            : k.art === 'geschichte'
+              ? geschichtsGrafik(k)
+              : k.art === 'pyramide'
+                ? pyramidenGrafik(k)
+                : k.art === 'torte'
+                  ? tortenGrafik(k)
+                  : k.art === 'rangliste'
+                    ? ranglistenGrafik(k)
+                    : vergleichsGrafik(k)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   const bild = h(
     'div',
@@ -1011,6 +1052,7 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
       )
     ),
     ...((k.art === 'rangliste' ||
+      k.art === 'kalender' ||
       k.art === 'steckbrief' ||
       k.art === 'geschichte' ||
       k.art === 'pyramide' ||
@@ -2212,8 +2254,10 @@ export function form(
   | 'steckbrief'
   | 'geschichte'
   | 'pyramide'
-  | 'torte' {
+  | 'torte'
+  | 'kalender' {
   if (
+    k.art === 'kalender' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
     k.art === 'steckbrief' ||
@@ -2757,6 +2801,194 @@ async function verlaufGrafik(k: Verlaufkarte) {
       )
     ),
   ]
+}
+
+/* ------------------------------------------------------------ Kalender */
+
+/** Ein Kürbis als SVG – orange, mit Stiel; das einzige Bild, das der Kalender trägt. */
+const KUERBIS =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
+  '<path d="M30 14 C30 8 34 5 38 6 L37 10 C34 10 33 12 33 15 Z" fill="#2f5e2a"/>' +
+  '<ellipse cx="20" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
+  '<ellipse cx="44" cy="38" rx="14" ry="20" fill="#e2701c"/>' +
+  '<ellipse cx="32" cy="38" rx="14" ry="21" fill="#f08a2c"/>' +
+  '<path d="M22 32 L27 37 L22 37 Z M42 32 L37 37 L42 37 Z" fill="#3b1d06"/>' +
+  '<path d="M21 45 Q32 53 43 45 L40 47 L37 45 L34 48 L31 45 L28 48 L25 45 Z" fill="#3b1d06"/>' +
+  '</svg>'
+
+function kalenderGrafik(k: Kalenderkarte) {
+  const links = 60
+  const breite = ZK_BREITE - 2 * links
+  const luecke = 14
+  const kachelB = (breite - 2 * luecke) / 3
+  const kachelH = 112
+  const kopfH = 56
+  const trennerH = 84
+  const oben = 540
+  const haelfteH = kopfH + 2 * kachelH + luecke
+  const zahl = (w: number) =>
+    `${w > 0 ? '+' : w < 0 ? '−' : ''}${Math.abs(w).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+  const teile: ReturnType<typeof h>[] = [
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: RL_UNTERZEILE,
+          left: links,
+          right: links,
+          display: 'flex',
+          fontFamily: 'Open',
+          fontWeight: 700,
+          fontSize: 28,
+          color: GRAU,
+        },
+      },
+      k.unterzeile
+    ),
+  ]
+  k.haelften.forEach((hf, j) => {
+    const y = oben + j * (haelfteH + trennerH)
+    teile.push(
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            top: y,
+            left: links,
+            width: breite,
+            height: kopfH - 10,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          },
+        },
+        h(
+          'div',
+          { style: { fontFamily: 'Anton', fontSize: 40, color: SCHWARZ } },
+          hf.name
+        ),
+        h(
+          'div',
+          {
+            style: {
+              fontFamily: 'Open',
+              fontWeight: 700,
+              fontSize: 30,
+              color: hf.vorn ? '#ffffff' : SCHWARZ,
+              backgroundColor: hf.vorn ? LOGO_GRUEN : '#eeeeee',
+              borderRadius: 999,
+              padding: '6px 22px',
+            },
+          },
+          hf.schnitt
+        )
+      )
+    )
+    hf.monate.forEach((m, i) => {
+      const plus = m.wert >= 0
+      const farbe = plus ? LOGO_GRUEN : LOGO_ROT
+      teile.push(
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: y + kopfH + Math.floor(i / 3) * (kachelH + luecke),
+              left: links + (i % 3) * (kachelB + luecke),
+              width: kachelB,
+              height: kachelH,
+              borderRadius: 18,
+              backgroundColor: hell(farbe),
+              border: hf.vorn ? `3px solid ${farbe}` : '3px solid transparent',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingLeft: 24,
+            },
+          },
+          h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Open',
+                fontWeight: 700,
+                fontSize: 24,
+                color: MITTELGRAU,
+              },
+            },
+            m.name
+          ),
+          h(
+            'div',
+            {
+              style: {
+                fontFamily: 'Anton',
+                fontSize: 52,
+                color: farbe,
+                lineHeight: 1.05,
+              },
+            },
+            zahl(m.wert)
+          )
+        )
+      )
+    })
+    if (j === 0) {
+      const ty = y + haelfteH + 6
+      teile.push(
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: ty + trennerH / 2 - 8,
+            left: links,
+            width: breite,
+            height: 0,
+            borderTop: '4px dashed #e2701c',
+          },
+        }),
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: ty + 4,
+              left: 0,
+              width: ZK_BREITE,
+              display: 'flex',
+              justifyContent: 'center',
+            },
+          },
+          h(
+            'div',
+            {
+              style: {
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: '#ffffff',
+                padding: '0 18px',
+              },
+            },
+            h('img', { src: svgAdresse(KUERBIS), width: 56, height: 56 }),
+            h(
+              'div',
+              {
+                style: {
+                  fontFamily: 'Anton',
+                  fontSize: 36,
+                  color: '#c25a12',
+                  marginLeft: 12,
+                },
+              },
+              k.trenner
+            )
+          )
+        )
+      )
+    }
+  })
+  return teile
 }
 
 /* ------------------------------------------------------------ Duell */
