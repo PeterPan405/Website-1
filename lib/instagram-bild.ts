@@ -491,12 +491,10 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
           width: IG_BREITE,
           height: DECKBLATT_VERLAUF,
           /*
-            Weich auslaufend statt linear: oben fast deckend, unten lange
-            dünn. Der Betreiber am 31.10.2026 zum 36-px-Verlauf: „Der
+            Eine S-Kurve, siehe `VERLAUF_WEISS`. Der Betreiber am 31.10.2026 zum 36-px-Verlauf: „Der
             Übergang sieht sehr hart aus."
           */
-          backgroundImage:
-            'linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.92) 18%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.42) 58%, rgba(255,255,255,0.18) 78%, rgba(255,255,255,0) 100%)',
+          backgroundImage: VERLAUF_WEISS,
         },
       }),
       h(
@@ -538,6 +536,18 @@ export const DECKBLATT_FOTO_OBEN = 410
  * Zuschnitt sitzt.
  */
 export const DECKBLATT_VERLAUF = 100
+
+/**
+ * Das Weiß über dem Foto, als S-Kurve (1 − smoothstep): Es beginnt und endet
+ * ohne Knick. Zuerst lief es linear, dann stufig: oben schnell nachgebend
+ * ergab das eine Kante am Fotoanfang – „die weiße starke Linie schillert noch
+ * hervor" (Betreiber, 31.10.2026).
+ */
+const VERLAUF_WEISS = `linear-gradient(180deg, ${Array.from({ length: 11 }, (_, i) => {
+  const t = i / 10
+  const deckung = 1 - t * t * (3 - 2 * t)
+  return `rgba(255,255,255,${deckung.toFixed(3)}) ${i * 10}%`
+}).join(', ')})`
 
 /** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
 export function motivJpeg(id: string): Buffer {
