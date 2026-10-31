@@ -489,9 +489,14 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
           left: 0,
           top: DECKBLATT_FOTO_OBEN,
           width: IG_BREITE,
-          height: 36,
+          height: DECKBLATT_VERLAUF,
+          /*
+            Weich auslaufend statt linear: oben fast deckend, unten lange
+            dünn. Der Betreiber am 31.10.2026 zum 36-px-Verlauf: „Der
+            Übergang sieht sehr hart aus."
+          */
           backgroundImage:
-            'linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 100%)',
+            'linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.92) 18%, rgba(255,255,255,0.7) 38%, rgba(255,255,255,0.42) 58%, rgba(255,255,255,0.18) 78%, rgba(255,255,255,0) 100%)',
         },
       }),
       h(
@@ -524,7 +529,14 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
  * sitzt im Zuschnitt meist oben, und ein Verlauf über dem Foto hätte es
  * verdeckt (Probe am 29.10.2026). Darüber Weiß, wie in den Meldungskacheln.
  */
-export const DECKBLATT_FOTO_OBEN = 420
+export const DECKBLATT_FOTO_OBEN = 400
+
+/**
+ * Wie weit das Weiß ins Foto ausläuft. 36 px waren eine Kante (31.10.2026);
+ * mehr als ein Achtel der Fotohöhe verdeckt ein Gesicht, das oben im
+ * Zuschnitt sitzt.
+ */
+export const DECKBLATT_VERLAUF = 170
 
 /** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
 export function motivJpeg(id: string): Buffer {
