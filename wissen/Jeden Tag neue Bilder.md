@@ -162,9 +162,19 @@ hielt die Prüfung falsche Bilder auf, aber nichts tauschte sie aus: Jeder
 weitere Lauf scheiterte am selben Bild, zwei Tage gingen keine News hinaus.
 Jetzt sucht `instagram-beitrag.yml` die abgelehnten Stellen neu
 (`abgelehnteStellen()`, verwendete Bilder ausgeschlossen), der Bau stößt
-den Beitrag wieder an, und der prüft wieder vollständig – höchstens acht
-Runden am Tag, dann tauscht der Betreiber von Hand. Durchgelassen wird
-nichts, um pünktlich zu sein.
+den Beitrag wieder an, und der prüft wieder vollständig – höchstens vier
+Runden am Tag, dann wird der Lauf rot und sagt, welche Kachel von Hand muss.
+Durchgelassen wird nichts, um pünktlich zu sein.
+
+**Gezählt werden Suchläufe, nicht ihre Ergebnisse** (31.10.2026). Bis dahin
+zählte die Schleife die Commits „Tagesbilder für …“. Findet die Suche nichts
+Neues, entsteht aber kein Commit. Am 31.10. fand sie für Binance-Hack,
+Inflation und Arbeitsmarkt in Deutschland nichts, und der Zähler stand fünf
+Stunden lang auf „1 von 8“. Die Kette drehte sich alle halbe Stunde, ohne
+rot zu werden, und der Beitrag ging erst nach der Handauswahl hinaus. Jetzt
+zählen die Läufe von `instagram-bilder.yml` des Tages, und nach vier
+erfolglosen Reparaturen meldet sich der Lauf. **Ein Zähler, der an einem
+Erfolg hängt, zählt den Misserfolg nicht.**
 
 **Das Deckblatt trägt ein Foto zum Tag** (29.10.2026). Der Betreiber: „Das
 Deckblatt kann gern bisschen spannender sein mit irgendeinem aktuellen
