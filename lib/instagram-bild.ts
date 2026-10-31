@@ -529,14 +529,15 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
  * sitzt im Zuschnitt meist oben, und ein Verlauf über dem Foto hätte es
  * verdeckt (Probe am 29.10.2026). Darüber Weiß, wie in den Meldungskacheln.
  */
-export const DECKBLATT_FOTO_OBEN = 400
+export const DECKBLATT_FOTO_OBEN = 410
 
 /**
- * Wie weit das Weiß ins Foto ausläuft. 36 px waren eine Kante (31.10.2026);
+ * Wie weit das Weiß ins Foto ausläuft. 36 px waren eine Kante, 170 px
+ * „zu lange" (Betreiber, 31.10.2026);
  * mehr als ein Achtel der Fotohöhe verdeckt ein Gesicht, das oben im
  * Zuschnitt sitzt.
  */
-export const DECKBLATT_VERLAUF = 170
+export const DECKBLATT_VERLAUF = 100
 
 /** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
 export function motivJpeg(id: string): Buffer {
