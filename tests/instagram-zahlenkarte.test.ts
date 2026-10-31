@@ -947,11 +947,19 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     )
     pruefe(
       'Zwischenwahl: Beschreibung nennt dieselben Zahlen',
-      ['18 von 20', '26 Sitze', '63 Sitze', '(+4)', '(+8)'].every((z) =>
+      ['18 von 20', 'im Schnitt 26', '63 Sitzen', '(+4)', '(+8)'].every((z) =>
         karte.text.includes(z)
       )
     )
-    pruefe('Zwischenwahl: ohne Freigabe', !karte.freigabe)
+    pruefe(
+      'Zwischenwahl: die Liste in der Beschreibung = die Säulen',
+      karte.saeulen.every(
+        (z) =>
+          karte.text.includes(`${z.text} – `) &&
+          karte.text.includes(`: ${z.wert > 0 ? '+' : '−'}${Math.abs(z.wert)}\n`)
+      )
+    )
+    pruefe('Zwischenwahl: freigegeben für den 01.11.', karte.freigabe === '2026-11-01')
   }
 }
 

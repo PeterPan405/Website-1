@@ -87,13 +87,26 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Stand: Zwischenwahlen 1946–2022 | Quelle: Wikipedia (United States midterm election)',
     text:
       'Am Dienstag, dem 3. November, wählen die USA. Die Wahllokale schließen am Dienstagabend US-Zeit, erste Ergebnisse kommen bei uns in der Nacht zum Mittwoch. 🇺🇸\n\n' +
-      'Eine Regel hält sich seit Jahrzehnten: Die Partei des Präsidenten verliert bei der Zwischenwahl. Seit 1946 hat sie bei 18 von 20 Zwischenwahlen Sitze im Repräsentantenhaus abgegeben – im Schnitt 26 Sitze.\n\n' +
-      'Die größten Verluste: 63 Sitze 2010 unter Barack Obama, 54 Sitze 1994 unter Bill Clinton und 1946 unter Harry S. Truman. Dazugewonnen hat die Partei im Weißen Haus nur zweimal: 1998 unter Clinton (+4) und 2002 unter George W. Bush (+8).\n\n' +
+      'Zur Wahl stehen alle 435 Sitze im Repräsentantenhaus und ein Drittel des Senats. Weil sie in der Mitte der vierjährigen Amtszeit liegt, heißt sie Zwischenwahl – und gilt als Urteil über den Präsidenten und seine Partei.\n\n' +
+      'Eine Regel hält sich seit Jahrzehnten: Die Partei des Präsidenten verliert. Seit 1946 hat sie bei 18 von 20 Zwischenwahlen Sitze im Repräsentantenhaus abgegeben – im Schnitt 26. Im Senat sind es im Schnitt vier.\n\n' +
+      'Die Säulen im Bild, Jahr für Jahr:\n' +
+      '1986 – Ronald Reagan: −5\n' +
+      '1990 – George H. W. Bush: −8\n' +
+      '1994 – Bill Clinton: −54\n' +
+      '1998 – Bill Clinton: +4\n' +
+      '2002 – George W. Bush: +8\n' +
+      '2006 – George W. Bush: −32\n' +
+      '2010 – Barack Obama: −63\n' +
+      '2014 – Barack Obama: −13\n' +
+      '2018 – Donald Trump: −41\n' +
+      '2022 – Joe Biden: −9\n\n' +
+      'Den größten Verlust gab es 2010 unter Obama mit 63 Sitzen. Dazugewonnen hat sie nur zweimal: 1998 unter Clinton (+4) und 2002 unter George W. Bush (+8). Auffällig: Bei der zweiten Zwischenwahl eines Präsidenten fallen die Verluste oft höher aus – in den USA heißt das „six-year itch\".\n\n' +
       'Diesmal stellt Donald Trump den Präsidenten – seine Republikaner verteidigen die Mehrheit im Repräsentantenhaus.\n\n' +
       'Und jetzt?\n' +
       'Eine Regel ist keine Vorhersage. Wie die Wahl am Dienstag ausgeht, sagen diese Zahlen nicht.\n\n' +
-      'Quelle: Wikipedia, „United States midterm election", Sitzveränderungen der Präsidentenpartei 1946–2022\n' +
+      'Quelle: Wikipedia, „United States midterm election\", Sitzveränderungen der Präsidentenpartei 1946–2022\n' +
       'Fotos: offizielle Porträts des Weißen Hauses, gemeinfrei, über Wikimedia Commons',
+    freigabe: '2026-11-01',
     schlagworte: ['usa', 'zwischenwahlen', 'kongress', 'politik', 'wahlen'],
   },
   {
