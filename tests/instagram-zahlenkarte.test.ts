@@ -916,6 +916,53 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 01.11.2026: US-Zwischenwahlen, Sitze der Präsidentenpartei (Wikipedia, 30.10.). */
+{
+  const karte = zahlenkarten.find((k) => k.datum === '2026-11-01')
+  pruefe('Zwischenwahl: Karte für den 01.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
+    /* Alle 20 Wahlen seit 1946 – im Bild stehen nur die letzten zehn. */
+    const alle = [
+      -54, -28, -18, -48, -4, -47, -12, -48, -15, -26, -5, -8, -54, 4, 8, -32, -63, -13,
+      -41, -9,
+    ]
+    pruefe(
+      'Zwischenwahl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Zwischenwahl: die Säulen sind die letzten zehn der Reihe',
+      karte.saeulen.map((z) => z.wert).join() === alle.slice(-10).join()
+    )
+    pruefe(
+      'Zwischenwahl: „18 von 20" = Verluste in der Reihe',
+      karte.helden[0].wert === `${alle.filter((v) => v < 0).length} von ${alle.length}`
+    )
+    const mittel = alle.reduce((a, b) => a + b, 0) / alle.length
+    pruefe(
+      'Zwischenwahl: „−26 Sitze im Schnitt" = gerundetes Mittel',
+      karte.helden[0].pille?.wert === `−${Math.round(-mittel)}`,
+      mittel.toFixed(2)
+    )
+    pruefe(
+      'Zwischenwahl: Beschreibung nennt dieselben Zahlen',
+      ['18 von 20', 'im Schnitt 26', '63 Sitzen', '(+4)', '(+8)'].every((z) =>
+        karte.text.includes(z)
+      )
+    )
+    pruefe(
+      'Zwischenwahl: die Liste in der Beschreibung = die Säulen',
+      karte.saeulen.every(
+        (z) =>
+          karte.text.includes(`${z.text} – `) &&
+          karte.text.includes(`: ${z.wert > 0 ? '+' : '−'}${Math.abs(z.wert)}\n`)
+      )
+    )
+    pruefe('Zwischenwahl: freigegeben für den 01.11.', karte.freigabe === '2026-11-01')
+  }
+}
+
 /* Säulen im Hausstil: Rechnung, Prüfung, Bild – an einer Probekarte. */
 {
   const probe: Zahlenkarte = {

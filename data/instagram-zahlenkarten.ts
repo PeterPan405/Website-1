@@ -17,6 +17,100 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber am 30.10.2026: Zwischenwahl, aber einfach. Verworfen
+      hatte er:
+      - die Rendite nach Zwischenwahlen: „der halloweenbeitrag ist ja
+        ähnlich"
+      - die Sitzverteilung: „zu kompliziert"
+      Gewählt hat er „Zwischenwahl, simpel": eine Aussage, eine Zahl. Form:
+      Säulen im Hausstil, neu (am 31.10. Kurve).
+
+      Quelle: Wikipedia, „United States midterm election", Tabelle „Net
+      gain/loss of president's party", abgerufen am 30.10.2026 über
+      quellen-holen.yml. Repräsentantenhaus, Partei des Präsidenten, seit
+      1946:
+        1946 −54, 1950 −28, 1954 −18, 1958 −48, 1962 −4, 1966 −47,
+        1970 −12, 1974 −48, 1978 −15, 1982 −26, 1986 −5, 1990 −8,
+        1994 −54, 1998 +4, 2002 +8, 2006 −32, 2010 −63, 2014 −13,
+        2018 −41, 2022 −9
+      Das sind 20 Wahlen mit 18 Verlusten, im Mittel −25,65 Sitze. Der
+      Artikel schreibt dazu: „Since World War II, the president's party has
+      lost an average of 26 seats in the House". Gewonnen hat sie nur 1998
+      (Clinton) und 2002 (George W. Bush). Im Bild stehen die letzten zehn.
+      Wahltag 2026: 3. November.
+
+      Porträts (Betreiber: „kleine Bilder von den Gesichtern der Präsidenten
+      zu jedem Balken“): die offiziellen Porträts von Wikimedia Commons, alle
+      „Public domain“ als Werke der US-Regierung, geholt am 30.10.2026 über
+      bilder-holen.yml und auf den Kopf zugeschnitten:
+        Reagan – Official Portrait of President Reagan 1981 (Michael Evans)
+        G. H. W. Bush – presidential portrait, cropped (David Valdez)
+        Clinton – Bill Clinton.jpg (Bob McNeely)
+        G. W. Bush – George-W-Bush.jpeg (Eric Draper)
+        Obama – President Barack Obama.jpg (Pete Souza)
+        Trump – Donald Trump official portrait.jpg (Shealeah Craighead)
+        Biden – Joe Biden presidential portrait.jpg (Adam Schultz)
+    */
+    art: 'saeulen',
+    datum: '2026-11-01',
+    titel: [
+      { text: 'US-Zwischenwahl:' },
+      { text: 'Wer regiert, verliert.', gruen: true },
+    ],
+    symbol: 'usa',
+    erklaerung:
+      'Seit 1946 hat die Partei des Präsidenten bei fast jeder Zwischenwahl Sitze im Repräsentantenhaus verloren.',
+    stichzeile: 'Sitze der Präsidentenpartei · je Wahl',
+    helden: [
+      {
+        name: 'Verluste seit 1946',
+        wert: '18 von 20',
+        richtung: 'faellt',
+        pille: { wert: '−26', name: 'Sitze im Schnitt', richtung: 'faellt' },
+      },
+    ],
+    saeulen: [
+      { text: '1986', wert: -5, bild: 'praesident-reagan.jpg' },
+      { text: '1990', wert: -8, bild: 'praesident-bush-sen.jpg' },
+      { text: '1994', wert: -54, bild: 'praesident-clinton.jpg' },
+      { text: '1998', wert: 4, bild: 'praesident-clinton.jpg' },
+      { text: '2002', wert: 8, bild: 'praesident-bush-jun.jpg' },
+      { text: '2006', wert: -32, bild: 'praesident-bush-jun.jpg' },
+      { text: '2010', wert: -63, bild: 'praesident-obama.jpg' },
+      { text: '2014', wert: -13, bild: 'praesident-obama.jpg' },
+      { text: '2018', wert: -41, bild: 'praesident-trump.jpg' },
+      { text: '2022', wert: -9, bild: 'praesident-biden.jpg' },
+    ],
+    einheit: 'Sitze',
+    nachkomma: 0,
+    fusszeile:
+      'Stand: Zwischenwahlen 1946–2022 | Quelle: Wikipedia (United States midterm election)',
+    text:
+      'Am Dienstag, dem 3. November, wählen die USA. Die Wahllokale schließen am Dienstagabend US-Zeit, erste Ergebnisse kommen bei uns in der Nacht zum Mittwoch. 🇺🇸\n\n' +
+      'Zur Wahl stehen alle 435 Sitze im Repräsentantenhaus und ein Drittel des Senats. Weil sie in der Mitte der vierjährigen Amtszeit liegt, heißt sie Zwischenwahl – und gilt als Urteil über den Präsidenten und seine Partei.\n\n' +
+      'Eine Regel hält sich seit Jahrzehnten: Die Partei des Präsidenten verliert. Seit 1946 hat sie bei 18 von 20 Zwischenwahlen Sitze im Repräsentantenhaus abgegeben – im Schnitt 26. Im Senat sind es im Schnitt vier.\n\n' +
+      'Die Säulen im Bild, Jahr für Jahr:\n' +
+      '1986 – Ronald Reagan: −5\n' +
+      '1990 – George H. W. Bush: −8\n' +
+      '1994 – Bill Clinton: −54\n' +
+      '1998 – Bill Clinton: +4\n' +
+      '2002 – George W. Bush: +8\n' +
+      '2006 – George W. Bush: −32\n' +
+      '2010 – Barack Obama: −63\n' +
+      '2014 – Barack Obama: −13\n' +
+      '2018 – Donald Trump: −41\n' +
+      '2022 – Joe Biden: −9\n\n' +
+      'Den größten Verlust gab es 2010 unter Obama mit 63 Sitzen. Dazugewonnen hat sie nur zweimal: 1998 unter Clinton (+4) und 2002 unter George W. Bush (+8). Auffällig: Bei der zweiten Zwischenwahl eines Präsidenten fallen die Verluste oft höher aus – in den USA heißt das „six-year itch\".\n\n' +
+      'Diesmal stellt Donald Trump den Präsidenten – seine Republikaner verteidigen die Mehrheit im Repräsentantenhaus.\n\n' +
+      'Und jetzt?\n' +
+      'Eine Regel ist keine Vorhersage. Wie die Wahl am Dienstag ausgeht, sagen diese Zahlen nicht.\n\n' +
+      'Quelle: Wikipedia, „United States midterm election\", Sitzveränderungen der Präsidentenpartei 1946–2022\n' +
+      'Fotos: offizielle Porträts des Weißen Hauses, gemeinfrei, über Wikimedia Commons',
+    freigabe: '2026-11-01',
+    schlagworte: ['usa', 'zwischenwahlen', 'kongress', 'politik', 'wahlen'],
+  },
+  {
+    /*
       Thema gewählt vom Betreiber am 30.10.2026 aus den Vorschlägen
       („das zu Halloween klingt doch ganz gut"). Zwei Balken: „voll
       langweilig"; Kalender: „sieht sehr billig nach Vibecoding aus – nimm

@@ -963,12 +963,12 @@
       "aktien": 264756000
     },
     "COLO-B.CO": {
-      "waehrung": "EUR",
-      "umsatz": 22579000000,
-      "gewinn": 4706000000,
-      "cashflow": 5099000000,
-      "eigenkapital": 8292000000,
-      "aktien": 212556459
+      "waehrung": "DKK",
+      "umsatz": 27874000000,
+      "gewinn": 3636000000,
+      "cashflow": 6645000000,
+      "eigenkapital": 16122000000,
+      "aktien": 225418475
     },
     "COP": {
       "umsatz": 51824000000,
@@ -1000,12 +1000,12 @@
       "aktien": 869554740
     },
     "CPG.L": {
-      "waehrung": "GBP",
-      "umsatz": 25512000000,
-      "gewinn": 1113000000,
-      "cashflow": 1596000000,
-      "eigenkapital": 5905000000,
-      "aktien": 1777955272
+      "waehrung": "USD",
+      "umsatz": 46070000000,
+      "gewinn": 1868000000,
+      "cashflow": 3366000000,
+      "eigenkapital": 7760000000,
+      "aktien": 1696639419
     },
     "CRDA.L": {
       "waehrung": "GBP",
@@ -1827,11 +1827,11 @@
     },
     "INVE-B.ST": {
       "waehrung": "SEK",
-      "umsatz": 40737000000,
-      "gewinn": 228065000000,
-      "cashflow": 14256000000,
-      "eigenkapital": 683505000000,
-      "aktien": 3063331095
+      "umsatz": 63196000000,
+      "gewinn": 113338000000,
+      "cashflow": 23582000000,
+      "eigenkapital": 819752000000,
+      "aktien": 3063189189
     },
     "IP": {
       "umsatz": 23634000000,
@@ -2037,11 +2037,11 @@
     },
     "LGEN.L": {
       "waehrung": "GBP",
-      "umsatz": -89294000000,
-      "gewinn": 2291000000,
-      "cashflow": 20464000000,
-      "eigenkapital": 12139000000,
-      "aktien": 5977041482
+      "umsatz": 2167000000,
+      "gewinn": 592000000,
+      "cashflow": 4548000000,
+      "eigenkapital": 2312000000,
+      "aktien": 5925925926
     },
     "LH": {
       "umsatz": 13951700000,
@@ -2911,12 +2911,12 @@
       "aktien": 304639653
     },
     "RTO.L": {
-      "waehrung": "GBP",
-      "umsatz": 3714000000,
-      "gewinn": 232000000,
-      "cashflow": 600000000,
-      "eigenkapital": 4098000000,
-      "aktien": 2005185825
+      "waehrung": "USD",
+      "umsatz": 6908000000,
+      "gewinn": 470000000,
+      "cashflow": 972000000,
+      "eigenkapital": 5494000000,
+      "aktien": 2524167562
     },
     "RTX": {
       "umsatz": 88603000000,

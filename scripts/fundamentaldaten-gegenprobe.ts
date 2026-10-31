@@ -20,7 +20,59 @@ import { pathToFileURL } from 'node:url'
 
 export const SPRUNG_GRENZE = 50
 
-type Bestand = { unternehmen: Record<string, { aktien?: number }> }
+type Eintrag = {
+  aktien?: number
+  umsatz?: number
+  gewinn?: number
+  waehrung?: string
+}
+type Bestand = { unternehmen: Record<string, Eintrag> }
+
+/**
+ * Was an einem Eintrag für sich nicht stimmen kann – dieselben Regeln wie in
+ * `tests/fundamentalplausibel.test.ts`. Leer heißt: unauffällig.
+ */
+export function unplausibel(e: Eintrag): string | null {
+  if (typeof e.umsatz === 'number' && e.umsatz <= 0) return `Umsatz ${e.umsatz}`
+  if (
+    typeof e.gewinn === 'number' &&
+    typeof e.umsatz === 'number' &&
+    e.umsatz > 0 &&
+    Math.abs(e.gewinn) > e.umsatz * 5
+  )
+    return `Gewinn das ${(e.gewinn / e.umsatz).toFixed(1)}fache des Umsatzes`
+  return null
+}
+
+/**
+ * Die Einträge, die schlechter sind als ihr Vorgänger: für sich unplausibel,
+ * oder in einer anderen Berichtswährung als zuvor.
+ *
+ * Am 31.10.2026 kamen aus den ESEF-Meldungen ältere Abschlüsse statt der
+ * jüngsten: Compass mit dem Umsatz von 2022 in Pfund statt dem aktuellen in
+ * Dollar, Legal & General mit negativem Umsatz, Investor mit einem Gewinn
+ * beim 5,6fachen des Umsatzes. Der Lauf schrieb es ab, und der nächste Bau
+ * stand rot. Ein Unternehmen wechselt seine Berichtswährung selten – und
+ * wenn, wartet die Website lieber einen Lauf, als drei Kennzahlen falsch zu
+ * zeigen.
+ */
+export function verschlechtert(
+  alt: Bestand,
+  neu: Bestand
+): { k: string; grund: string }[] {
+  const treffer: { k: string; grund: string }[] = []
+  for (const [k, e] of Object.entries(neu.unternehmen)) {
+    const vorher = alt.unternehmen[k]
+    if (!vorher || unplausibel(vorher)) continue
+    const grund =
+      unplausibel(e) ??
+      (vorher.waehrung && e.waehrung && vorher.waehrung !== e.waehrung
+        ? `Berichtswährung ${e.waehrung} statt ${vorher.waehrung}`
+        : null)
+    if (grund) treffer.push({ k, grund })
+  }
+  return treffer
+}
 
 /** Die Einträge, deren Aktienzahl um mindestens `SPRUNG_GRENZE` gesprungen ist. */
 export function gesprungen(alt: Bestand, neu: Bestand): string[] {
@@ -46,6 +98,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     )
     neu.unternehmen[k].aktien = alt.unternehmen[k].aktien
   }
-  if (liste.length) writeFileSync(ZIEL, `${JSON.stringify(neu, null, 2)}\n`)
-  console.log(`Gegenprobe Aktienzahlen: ${liste.length} zurückgesetzt.`)
+  const schlechter = verschlechtert(alt, neu)
+  for (const { k, grund } of schlechter) {
+    console.log(`::warning::${k}: ${grund} – der Eintrag vom letzten Lauf bleibt.`)
+    neu.unternehmen[k] = alt.unternehmen[k]
+  }
+  if (liste.length || schlechter.length)
+    writeFileSync(ZIEL, `${JSON.stringify(neu, null, 2)}\n`)
+  console.log(
+    `Gegenprobe: ${liste.length} Aktienzahlen, ${schlechter.length} Einträge zurückgesetzt.`
+  )
 }
