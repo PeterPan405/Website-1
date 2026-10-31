@@ -101,6 +101,301 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'tech-ausverkauf-nasdaq-drei-monats-tief',
+    title: 'Tech-Ausverkauf schickt Nasdaq auf Drei-Monats-Tief',
+    teaser:
+      'Intel erlebte seinen schlechtesten Handelstag seit dem Börsengang 1971, der Nasdaq fiel auf ein Drei-Monats-Tief. Selbst Gold gab nach.',
+    category: 'Märkte',
+    publishedAt: '2026-10-31T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['intel', 'nasdaq', 'ki-aktien', 'tech-ausverkauf'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['intel', 'nasdaq-100', 'dax', 'gold'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, US-Börsen: „Absolut brutale Woche“ für Tech-Investoren – Nasdaq rutscht ab, Intel verliert rund 29 Prozent, 30.10.2026, 20:57 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-nasdaq-100-auf-talfahrt-intel-aktie-verliert-29-prozent/100266181.html',
+      },
+      {
+        label:
+          'Handelsblatt, Dax aktuell: Dax schließt im Minus – und reißt die 26.000-Punkte-Marke, 30.10.2026, 18:39 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-im-minus-und-reisst-die-26.000-punkte-marke/100266086.html',
+      },
+      {
+        label:
+          "CNBC, Intel stock has worst day since 1970s, wiping about $12 billion off government's stake, 30.10.2026, 21:30 Uhr",
+        url: 'https://www.cnbc.com/2026/10/30/amazon-intel-earnings-big-tech-ai-spending-concerns.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Technologiebranche hat einen schweren Tag erlebt. Der Nasdaq Composite fiel am Freitag um 2,9 Prozent auf 25.437 Punkte, der Nasdaq 100 verlor 3,5 Prozent. Es war laut Handelsblatt der schwächste Handelstag seit Wochen für Tech-Investoren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Intels Prognose enttäuscht, der Kurs bricht ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser war vor allem Intel. Der Chipkonzern erwartet im laufenden Quartal einen bereinigten Gewinn von 25 Cent je Aktie bei 15 bis 16 Milliarden Dollar Umsatz. Analysten hatten mit 43 Cent und 17,1 Milliarden Dollar gerechnet, wie CNBC berichtete. Eine Explosion in einer Fabrik in Israel koste zusätzlich rund 600 Millionen Dollar Umsatz über zwei Quartale, sagte Finanzchef David Zinsner. Die Intel-Aktie brach um 28,6 Prozent ein – der schlechteste Handelstag seit dem Börsengang 1971. Die zehnprozentige Beteiligung der US-Regierung an Intel verlor dadurch nach CNBC-Berechnungen rund 12 Milliarden Dollar an Wert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn der sichere Hafen mitfällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Normalerweise gilt Gold als Schutz, wenn Aktien fallen. An diesem Freitag passierte das Gegenteil. Der Goldpreis fiel laut Goldreporter unter 4.000 Dollar, belastet vom selben Tech-Ausverkauf. Auch der Dax blieb nicht verschont. Er schloss laut Handelsblatt 0,9 Prozent schwächer bei 25.808 Punkten. Auf Wochen- und Monatssicht stand trotzdem ein Plus von 2,5 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass Gold und Technologieaktien am selben Tag fielen, zeigt eine Grenze der Diversifikation. In einem breiten Ausverkauf verkaufen Anleger oft, was sich noch verkaufen lässt, unabhängig von der üblichen Gegenläufigkeit zwischen Aktien und Gold. Wer ein Depot auf Absicherung durch unkorrelierte Werte aufbaut, sollte solche Tage als Erinnerung lesen: Keine Korrelation ist garantiert.',
+      },
+    ],
+  },
+  {
+    slug: 'binance-hack-groesster-krypto-diebstahl',
+    title: 'Binance meldet größten Krypto-Diebstahl aller Zeiten',
+    teaser:
+      'Hacker erbeuteten bei der Kryptobörse Binance Digitalwährungen im Wert von 6,3 Milliarden Dollar – der größte Diebstahl der Kryptogeschichte.',
+    category: 'Märkte',
+    publishedAt: '2026-10-31T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['binance', 'bitcoin', 'hackerangriff', 'cybersicherheit'],
+    relatedTopics: ['bitcoin-krypto', 'einlagensicherung'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'Tagesschau, Größter Krypto-Hack trifft Börse Binance, 30.10.2026, 08:24 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/technologie/hackerangriff-kryptoboerse-binance-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, Kryptobörse: Größter Krypto-Diebstahl aller Zeiten – Binance meldet Hackerangriff, 30.10.2026, 15:50 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/binance-kryptoboerse-meldet-hackerangriff-bitcoin-verliert-deutlich/100266046.html',
+      },
+      {
+        label:
+          'CNBC, $6.3 billion Binance hack is largest crypto theft on record, 30.10.2026, 22:21 Uhr',
+        url: 'https://www.cnbc.com/2026/10/29/circle-tether-freeze-funds-impacted-by-potential-binance-security-issue.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Binance wurde Opfer des größten Krypto-Diebstahls aller Zeiten. Nach eigenen Angaben sind Digitalwährungen im Wert von rund 6,3 Milliarden Dollar betroffen, wie die Tagesschau berichtete. Das Unternehmen fror zunächst alle Ein- und Auszahlungen ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nordkoreanische Hacker sollen hinter dem Angriff stecken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Analysefirma TRM Labs schreibt den Angriff nordkoreanischen Hackern zu, berichtete die Tagesschau. Die Täter bewegten den Großteil der erbeuteten Kryptowerte binnen 20 Minuten. Binance konnte nach eigenen Angaben zusammen mit Partnern bislang rund drei Milliarden Dollar einfrieren. Das Unternehmen kündigte an, alle Verluste aus eigenen Mitteln und einem Sicherheitsfonds auszugleichen, der laut Tagesschau vollständig in Bitcoin gehalten wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer ein Konto führt, ist kein Besitzer von Schlüsseln',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer Kryptobörse liegt das Geld technisch im Depot des Anbieters, nicht direkt beim Kunden. Anders als Bankeinlagen fällt ein Börsenguthaben nicht automatisch unter eine gesetzliche Einlagensicherung. Binance verspricht zwar eine vollständige Entschädigung aus eigenen Mitteln. Ob und wie schnell das bei einem Angriff dieser Größenordnung gelingt, bleibt nach den bisherigen Berichten offen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Fall erinnert daran, dass eine Kryptobörse kein Bankkonto ist. Wer Digitalwährungen in einer eigenen Wallet hält, trägt selbst die Verantwortung für die Schlüssel. Wer sie bei einer Börse liegen lässt, verlässt sich auf deren Kulanz und Rücklagen. Beides hat Vor- und Nachteile, die unabhängig von diesem einzelnen Vorfall gelten.',
+      },
+    ],
+  },
+  {
+    slug: 'deutsches-bip-ueberrascht-teuerung-laesst-nach',
+    title: 'Deutschlands BIP überrascht, die Teuerung lässt nach',
+    teaser:
+      'Das Bruttoinlandsprodukt legte im dritten Quartal überraschend zu, die Inflation fiel auf 2,8 Prozent. Dahinter steckt auch ein Tankrabatt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-31T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['inflation', 'konjunktur', 'arbeitsmarkt', 'deutschland'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Tagesschau, Deutsche Wirtschaft wächst überraschend, 30.10.2026, 10:50 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/entwicklung-bip-deutschland-sommer-100.html',
+      },
+      {
+        label:
+          'Tagesschau, Inflationsrate fällt im Oktober auf 2,8 Prozent, 30.10.2026, 15:08 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/verbraucher/inflationsrate-deutschland-oktober-100.html',
+      },
+      {
+        label:
+          'Tagesschau, Fast drei Millionen Arbeitslose im Oktober, 30.10.2026, 11:32 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/arbeitsmarkt/arbeitslose-statistik-oktober-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, Preise: Zwei-Prozent-Ziel der EZB rückt in weite Ferne, 30.10.2026, 14:01 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/inflation-tankrabatt-sorgt-fuer-entlastung-aber-nur-bis-dezember/100262259.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Drei Konjunkturdaten kamen am Freitag auf einmal. Das Bruttoinlandsprodukt wuchs im dritten Quartal um 0,2 Prozent zum Vorquartal, mehr als von Volkswirten erwartet, wie das Statistische Bundesamt mitteilte. Gleichzeitig sank die Inflationsrate im Oktober auf 2,8 Prozent, von 3,3 Prozent im September.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Tankrabatt drückt die Zahl nach unten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bundesregierung senkte Anfang Oktober die Energiesteuer auf Benzin und Diesel sowie die Mehrwertsteuer darauf, berichtete das Handelsblatt. Das drückte die Preise an den Zapfsäulen merklich. Ökonomen hatten im Schnitt mit 3,0 Prozent Inflation gerechnet, tatsächlich waren es 2,8 Prozent. Commerzbank-Chefvolkswirt Jörg Krämer warnte laut Tagesschau vor einer Entwarnung: Um die Jahreswende dürfte die Rate wieder über drei Prozent steigen, sobald der Rabatt ausläuft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Arbeitsmarkt zeigt die Kehrseite',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Arbeitsmarkt sieht das Bild gemischter aus. Rund 2,955 Millionen Menschen waren im Oktober arbeitslos gemeldet, 40.000 weniger als im September, saisonbereinigt stieg die Zahl aber leicht. Verglichen mit dem Vorjahresmonat gab es sogar 44.000 Arbeitslose mehr, berichtete die Tagesschau. BA-Vorstandschefin Andrea Nahles sagte, die wirtschaftlichen Rahmenbedingungen reichten für eine echte Besserung noch nicht aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die drei Zahlen zusammen ergeben kein einheitliches Bild. Ein stärkeres Wachstum und eine niedrigere Inflation klingen zunächst gut. Doch beides hat einen befristeten Anteil: staatliche Ausgabenprogramme beim Wachstum, ein zeitlich begrenzter Rabatt bei der Inflation. Wer daraus auf einen dauerhaften Aufschwung schließt, übersieht nach den vorliegenden Berichten, dass tragende private Investitionen und ein spürbar entlasteter Arbeitsmarkt noch fehlen.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-praesidenten-fordern-zinserhoehungen',
+    title: 'Fed-Präsidenten fordern weitere Zinserhöhungen',
+    teaser:
+      'Zwei Mitglieder der US-Notenbank verlangen trotz der jüngsten Zinspause neue Erhöhungen. Nicht jeder von ihnen darf im Dezember mitstimmen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-10-31T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['fed', 'leitzins', 'zinserhoehung', 'usa'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          "CNBC, Fed officials are already saying they'll need to get back to hiking rates, 30.10.2026, 22:53 Uhr",
+        url: 'https://www.cnbc.com/2026/10/30/musalem-fed-monetary-policy-tightening.html',
+      },
+      {
+        label:
+          'Handelsblatt, Inflation: Japans Notenbank hält Zinsen stabil – Inflationsrisiken im Blick, 30.10.2026, 07:55 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/inflation-japans-notenbank-haelt-zinsen-stabil-inflationsrisiken-im-blick/100266049.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Fed hat gerade erst pausiert. Zwei ihrer Präsidenten fordern nun trotzdem weitere Zinserhöhungen, wie CNBC berichtete. Alberto Musalem von der Fed St. Louis sagte bei einer Rede, eine zusätzliche Straffung der Geldpolitik sei nötig, und zwar bald.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Reden, dieselbe Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lorie Logan von der Fed Dallas äußerte sich ähnlich. Sie forderte laut CNBC mindestens zwei weitere Zinsschritte von je 0,25 Prozentpunkten. Eine Pause bei einzelnen Sitzungen ändere daran nichts, sagte sie wörtlich: Das Ziel der Geldpolitik bleibe dasselbe. Musalem verwies dabei auf ein US-Wirtschaftswachstum von 3,4 Prozent und eine Arbeitslosenquote von 4,2 Prozent. Aus seiner Sicht bleibt vor allem die Inflation der Hauptgrund für eine straffere Politik.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht jeder, der redet, stimmt auch ab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Reden sind Meinungen, keine Beschlüsse. Musalem hat nach den Rotationsregeln der Fed erst 2028 wieder ein Stimmrecht im Zinsausschuss. Logan stimmt dagegen im Dezember mit ab. Der Markt rechnet laut CNBC mit rund 76 Prozent Wahrscheinlichkeit für eine Erhöhung um 0,25 Prozentpunkte bei der nächsten Sitzung. Auch die japanische Notenbank ließ ihren Leitzins zuletzt unverändert, kündigte aber laut Handelsblatt mögliche Anhebungen an und hob ihre Inflationsprognose an.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Reden einzelner Notenbanker sind nicht dasselbe wie ein Beschluss des gesamten Ausschusses. Wer daraus den nächsten Zinsschritt ableiten will, sollte auf das Stimmrecht schauen, nicht nur auf das Mikrofon. Dass Fed und Bank von Japan trotz einer Pause von künftigen Erhöhungen sprechen, zeigt immerhin, in welche Richtung beide Notenbanken aktuell denken.',
+      },
+    ],
+  },
+  {
+    slug: 'chevron-exxon-rekordgewinne-raffineriemargen',
+    title: 'Chevron und Exxon verdienen Rekordsummen mit Diesel',
+    teaser:
+      'Beide Ölkonzerne verdoppelten ihre Quartalsgewinne fast, getrieben vom Raffineriegeschäft. US-Diesel kostet 70 Prozent mehr als vor einem Jahr.',
+    category: 'Märkte',
+    publishedAt: '2026-10-31T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['chevron', 'exxon', 'oelpreis', 'diesel'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['chevron', 'exxon', 'wti', 'brent'],
+    sources: [
+      {
+        label:
+          'CNBC, Chevron and Exxon hit all-time highs as refining profits soar in reaction to Iran and Ukraine wars, 30.10.2026, 17:44 Uhr',
+        url: 'https://www.cnbc.com/2026/10/30/chevron-exxon-cvx-xom-earnings-q3-2026.html',
+      },
+      {
+        label:
+          'SEC-Mitteilung, Chevron Corporation, Form 8-K zum dritten Quartal 2026, 30.10.2026',
+        url: 'https://www.sec.gov/Archives/edgar/data/0000093410/000009341026000196/a09302026ex9918-k.htm',
+      },
+      {
+        label:
+          'SEC-Mitteilung, ExxonMobil, Form 8-K zum dritten Quartal 2026, 30.10.2026',
+        url: 'https://www.sec.gov/Archives/edgar/data/0002115436/000211543626000018/livef8k3q26991.htm',
+      },
+      {
+        label:
+          'CNBC, Tankers defy sharp escalation of Iranian attacks to keep crude oil flowing through Strait of Hormuz, 30.10.2026, 19:28 Uhr',
+        url: 'https://www.cnbc.com/2026/10/30/tanker-attack-strait-hormuz-iran-war-oil.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chevron und Exxon haben ihre Gewinne fast verdoppelt. Chevron verdiente im dritten Quartal 9,9 Milliarden Dollar, mehr als doppelt so viel wie vor einem Jahr, zeigt die Mitteilung an die US-Börsenaufsicht SEC. Exxon kam auf 15,4 Milliarden Dollar, ebenfalls deutlich mehr als im Vorjahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht die Förderung, sondern die Raffinerien treiben den Gewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Konzerne verdienten ihr Geld diesmal vor allem im Raffineriegeschäft, nicht in der Öl- und Gasförderung. Bei Chevron stieg das Ergebnis aus Raffinerien und Tankstellen auf 4,9 Milliarden Dollar, mehr als das Vierfache des Vorjahreswerts. Bei Exxon wuchs der entsprechende Bereich in den ersten neun Monaten des Jahres auf 11,4 Milliarden Dollar, nach 4 Milliarden Dollar im Vorjahreszeitraum. Grund ist eine enge Raffineriekapazität. Angriffe im Ukraine-Krieg und im Nahost-Konflikt haben laut CNBC Raffinerien in Russland und im Nahen Osten getroffen. Importeure weichen deshalb auf Anlagen an der US-Golfküste aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Diesel in den USA so teuer wie nie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Folge zeigt sich an der Tankstelle. Der US-Dieselpreis lag laut CNBC am Freitag bei 6,32 Dollar je Gallone, mehr als 70 Prozent über dem Vorjahreswert. Exxon-Chef Darren Woods sagte laut CNBC, die Raffineriekapazität sei derzeit sehr knapp. Trotz der Angriffe auf Tanker in der Straße von Hormus fließt das Rohöl aber weiter, berichtete CNBC gesondert. Der Durchsatz lag im Oktober nur rund 2 Prozent unter dem Vorjahresmonat. Engpass ist damit nicht das Rohöl selbst, sondern die Kapazität, es zu Diesel zu verarbeiten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Fall zeigt den Unterschied zwischen Förderung und Verarbeitung. Ein Ölkonzern verdient nicht automatisch mehr, nur weil der Rohölpreis steigt, entscheidend ist auch, was er aus dem Rohöl herstellt und zu welchem Preis. Wer Öl- oder Energieaktien betrachtet, findet diesen Unterschied in jedem Quartalsbericht als getrennte Segmente wieder: Förderung einerseits, Raffinerie und Vertrieb andererseits.',
+      },
+    ],
+  },
+  {
     slug: 'alphabet-verliert-500-milliarden-dollar',
     title: 'Alphabet verliert an einem Tag 500 Milliarden Dollar',
     teaser:

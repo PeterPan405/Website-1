@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Intel erlebt seinen schlechtesten Börsentag seit 1971, Binance meldet einen Rekord-Hack, Deutschlands Wirtschaft überrascht, und Chevron sowie Exxon verdienen Rekordsummen mit Diesel.",
+  "kacheln": [
+    {
+      "titel": "Intel: -28,6 %",
+      "text": "Intel brach am Freitag um 28,6 Prozent ein, der schlechteste Tag seit dem Börsengang 1971. Auch Nasdaq und Dax gaben nach."
+    },
+    {
+      "titel": "Binance-Hack: 6,3 Mrd. $",
+      "text": "Hacker erbeuteten bei der Kryptobörse Binance Digitalwährungen im Wert von 6,3 Milliarden Dollar, der größte Diebstahl der Kryptogeschichte."
+    },
+    {
+      "titel": "Inflation: 2,8 %",
+      "text": "Deutschlands Inflation sank im Oktober auf 2,8 Prozent, auch dank eines befristeten Tankrabatts. Das Wirtschaftswachstum überraschte positiv."
+    },
+    {
+      "titel": "Arbeitsmarkt: 2,955 Mio.",
+      "text": "Im Oktober waren in Deutschland rund 2,955 Millionen Menschen arbeitslos gemeldet, 44.000 mehr als vor einem Jahr. Die übliche Herbstbelebung blieb aus."
+    },
+    {
+      "titel": "Diesel treibt Ölriesen",
+      "text": "Chevron und Exxon verdienten deutlich mehr, weil Raffinerien in Russland und Nahost getroffen wurden. US-Diesel kostet 70 Prozent mehr als vor einem Jahr."
+    }
+  ],
+  "schlagworte": ["inflation", "ölpreis", "fed", "börse", "aktien"]
+}
