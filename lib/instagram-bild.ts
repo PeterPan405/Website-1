@@ -489,9 +489,12 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
           left: 0,
           top: DECKBLATT_FOTO_OBEN,
           width: IG_BREITE,
-          height: 36,
-          backgroundImage:
-            'linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 100%)',
+          height: DECKBLATT_VERLAUF,
+          /*
+            Eine S-Kurve, siehe `VERLAUF_WEISS`. Der Betreiber am 31.10.2026 zum 36-px-Verlauf: „Der
+            Übergang sieht sehr hart aus."
+          */
+          backgroundImage: VERLAUF_WEISS,
         },
       }),
       h(
@@ -524,7 +527,27 @@ export async function deckblattMitFoto(foto: Buffer): Promise<Buffer> {
  * sitzt im Zuschnitt meist oben, und ein Verlauf über dem Foto hätte es
  * verdeckt (Probe am 29.10.2026). Darüber Weiß, wie in den Meldungskacheln.
  */
-export const DECKBLATT_FOTO_OBEN = 420
+export const DECKBLATT_FOTO_OBEN = 410
+
+/**
+ * Wie weit das Weiß ins Foto ausläuft. 36 px waren eine Kante, 170 px
+ * „zu lange" (Betreiber, 31.10.2026);
+ * mehr als ein Achtel der Fotohöhe verdeckt ein Gesicht, das oben im
+ * Zuschnitt sitzt.
+ */
+export const DECKBLATT_VERLAUF = 100
+
+/**
+ * Das Weiß über dem Foto, als S-Kurve (1 − smoothstep): Es beginnt und endet
+ * ohne Knick. Zuerst lief es linear, dann stufig: oben schnell nachgebend
+ * ergab das eine Kante am Fotoanfang – „die weiße starke Linie schillert noch
+ * hervor" (Betreiber, 31.10.2026).
+ */
+const VERLAUF_WEISS = `linear-gradient(180deg, ${Array.from({ length: 11 }, (_, i) => {
+  const t = i / 10
+  const deckung = 1 - t * t * (3 - 2 * t)
+  return `rgba(255,255,255,${deckung.toFixed(3)}) ${i * 10}%`
+}).join(', ')})`
 
 /** Ein Fotomotiv aus `lib/instagram/motive/` (siehe `lib/instagram-motive.ts`). */
 export function motivJpeg(id: string): Buffer {
