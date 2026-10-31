@@ -425,13 +425,19 @@ jobs:
           tag=$(head -1 out/instagram/stand.txt | tr -d '[:space:]')
           nur=$(tr -d '[:space:]' < out/instagram/abgelehnt.txt)
           [ -n "$nur" ] || { echo "::warning::Keine Stelle zum Austauschen benannt."; exit 0; }
-          suchen=$(gh api "repos/${{ github.repository }}/commits?sha=main&since=${tag}T00:00:00Z&per_page=100" \
-            --jq "[.[] | select(.commit.message | startswith(\"Instagram: Tagesbilder für ${tag}\"))] | length")
-          if [ "${suchen:-0}" -ge 9 ]; then
-            echo "::error::Schon $((suchen - 1)) Reparaturen für ${tag} – Kachel(n) ${nur} von Hand austauschen (instagram-bilder-auswahl.yml)."
+          # Gezählt werden die Suchläufe des Tages, nicht ihre Commits: Findet
+          # die Suche nichts Neues, committet sie nichts – am 31.10.2026 stand
+          # der Zähler deshalb fünf Stunden lang auf „1 von 8", und die Kette
+          # drehte sich, ohne dass jemand davon erfuhr. Der erste Lauf des
+          # Tages ist die normale Suche, danach bis zu vier Reparaturen; dann
+          # wird der Lauf rot, und die Mail sagt, welche Kachel von Hand muss.
+          suchen=$(gh api "repos/${{ github.repository }}/actions/workflows/instagram-bilder.yml/runs?created=>=${tag}T00:00:00Z&per_page=100" \
+            --jq '.workflow_runs | length')
+          if [ "${suchen:-0}" -ge 5 ]; then
+            echo "::error::Schon $((suchen - 1)) Reparaturen für ${tag}, keine fand ein passendes Bild – Kachel(n) ${nur} von Hand austauschen (instagram-bilder-auswahl.yml)."
             exit 1
           fi
-          echo "::warning::Kachel(n) ${nur} abgelehnt – suche neu (Reparatur $suchen von 8)."
+          echo "::warning::Kachel(n) ${nur} abgelehnt – suche neu (Reparatur $suchen von 4)."
           gh workflow run instagram-bilder.yml --repo "${{ github.repository }}" --ref main \
             -f datum="$tag" -f neu=true -f nur="$nur" -f anstossen=true
 
