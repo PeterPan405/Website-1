@@ -400,5 +400,35 @@
       "urheber": "Taxiarchos228",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-10-31": [
+    {
+      "stelle": 1,
+      "datei": "2026-10-31-1-674a543e.jpg",
+      "titel": "File:Börse Frankfurt stock exchange - Germany - Luminale 2014 - April 3rd 2014 - 02.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:B%C3%B6rse_Frankfurt_stock_exchange_-_Germany_-_Luminale_2014_-_April_3rd_2014_-_02.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Norbert Nagel",
+      "suche": "Frankfurt Stock Exchange"
+    },
+    {
+      "stelle": 2,
+      "datei": "",
+      "titel": "Kurs: intel",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "intel"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-10-31-6-a7ddda93.jpg",
+      "titel": "File:Vapor burst from Preemraff oil refinery.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Vapor_burst_from_Preemraff_oil_refinery.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "W.carter",
+      "suche": "oil refinery"
+    }
   ]
 }
