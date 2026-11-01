@@ -457,5 +457,43 @@
       "urheber": "Chris Yarzab",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-11-01": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-01-1-5327d700.jpg",
+      "titel": "File:Shigeru Ishiba, Kazuo Ueda 20241002.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Shigeru_Ishiba,_Kazuo_Ueda_20241002.jpg",
+      "lizenz": "CC BY 4.0",
+      "urheber": "内閣官房内閣広報室",
+      "suche": "deepcat:\"Kazuo Ueda\""
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-01-2-9108448f.jpg",
+      "titel": "File:Prime Minister Fumio Kishida and Governor Kazuo Ueda of the Bank of Japan on July 3, 2024.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Prime_Minister_Fumio_Kishida_and_Governor_Kazuo_Ueda_of_the_Bank_of_Japan_on_July_3,_2024.jpg",
+      "lizenz": "CC BY 4.0",
+      "urheber": "内閣官房内閣広報室",
+      "suche": "press conference deepcat:\"Kazuo Ueda\""
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-11-01-4-1c369bc6.jpg",
+      "titel": "File:City of London from Canary Wharf.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:City_of_London_from_Canary_Wharf.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Saytosid",
+      "suche": "City of London"
+    },
+    {
+      "stelle": 5,
+      "datei": "2026-11-01-5-867575b6.jpg",
+      "titel": "File:Wall Street - New York Stock Exchange.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Wall_Street_-_New_York_Stock_Exchange.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Carlos Delgado",
+      "suche": "New York Stock Exchange"
+    }
   ]
 }
