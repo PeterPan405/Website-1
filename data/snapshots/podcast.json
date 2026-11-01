@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-10-31T09:57:49.296Z",
+  "abgerufenAm": "2026-11-01T00:58:49.412Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "bank-of-japan-haelt-leitzins-und-binance-nimmt-nach-rekord-hack-die-auszahlungen",
+      "titel": "Bank of Japan hält Leitzins und Binance nimmt nach Rekord-Hack die Auszahlungen wieder",
+      "beschreibung": "Japans Notenbank hält den Zins, Binance zahlt nach dem größten Krypto-Hack wieder aus, und Frankreichs Schuldenkrise drückt den Euro zum Pfund. Japans Notenbank lässt ihren Leitzins unverändert. Sie hält ihn bei 1,25 Prozent, dem höchsten Stand seit 1995. Nach eigenen Angaben ist ihr Inflationsziel von zwei Prozent damit erreicht.\n\nWir sprechen über Frankreichs Schuldenkrise drückt den Euro, Berkshire markiert Rekordhoch und S&P senkt den Ausblick für Meta auf negativ. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:30) Bank of Japan hält Leitzins\n(1:04) Binance nimmt nach Rekord-Hack\n(1:49) Frankreichs Schuldenkrise drückt den Euro\n(2:25) Berkshire markiert Rekordhoch\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-01",
+      "dauerSekunden": 203,
+      "url": "https://iminvests.de/podcast-audio/2026-11-01.mp3",
+      "youtubeId": "p93EqtaDWeE"
+    },
     {
       "slug": "tech-ausverkauf-schickt-nasdaq-auf-drei-monats-tief-und-binance-meldet-groessten",
       "titel": "Tech-Ausverkauf schickt Nasdaq auf Drei-Monats-Tief und Binance meldet größten Krypto-Diebstahl aller Zeiten",
