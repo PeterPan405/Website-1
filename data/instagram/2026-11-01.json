@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Fünf Themen des Tages: Japans Notenbank, OpenAIs gesenktes Finanzierungsziel, Frankreichs Schuldenkrise, Rekorde bei Berkshire Hathaway und ein gesenkter Ausblick für Meta.",
+  "kacheln": [
+    {
+      "titel": "BOJ hält den Zins",
+      "text": "Japans Notenbank ließ den Leitzins bei 1,25 Prozent unverändert und sprach von einem erreichten Inflationsziel. Der Markt erwartet nun eine Zinserhöhung im Dezember."
+    },
+    {
+      "titel": "OpenAI: 20 Mrd. Dollar",
+      "text": "OpenAI senkt laut CNBC sein Finanzierungsziel auf bis zu 20 Milliarden Dollar. Die Finanzierungsrunde läuft noch und ist noch nicht abgeschlossen."
+    },
+    {
+      "titel": "Euro nahe Jahrestief",
+      "text": "Der Euro fiel im Oktober so stark zum Pfund wie seit 2022 nicht mehr. Grund ist Frankreichs Schuldenkrise, begleitet von Protesten mit 320.000 Teilnehmern."
+    },
+    {
+      "titel": "Berkshire: Rekordhoch",
+      "text": "Die Berkshire-Aktie markierte im Oktober mehrere Rekordstände, während der Nasdaq Composite im selben Monat 5,3 Prozent verlor."
+    },
+    {
+      "titel": "Meta: Ausblick gesenkt",
+      "text": "Die Ratingagentur S&P senkte ihren Ausblick für Meta auf negativ. Grund sind Investitionen von bis zu 145 Milliarden Dollar und ein erstmals negativer Cashflow."
+    }
+  ],
+  "schlagworte": ["zinsen", "krypto", "euro", "börse", "aktien"]
+}

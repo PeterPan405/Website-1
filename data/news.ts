@@ -101,6 +101,311 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'boj-haelt-leitzins-bei-125-prozent',
+    title: 'Bank of Japan hält Leitzins bei 1,25 Prozent',
+    teaser:
+      'Japans Notenbank lässt den Leitzins unverändert und erklärt ihr Inflationsziel für erreicht. Am Markt wird schon der nächste Zinsschritt im Dezember erwartet.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-01T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Notenbanken', 'Japan', 'Zinsen', 'Yen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['nikkei-225', 'eur-jpy'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Inflation: Japans Notenbank hält Zinsen stabil – Inflationsrisiken im Blick, 30.10.2026, 07:55 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/inflation-japans-notenbank-haelt-zinsen-stabil-inflationsrisiken-im-blick/100266049.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Japanische Aktien: Die Japan-Wette gerät ins Stocken, 29.10.2026, 13:25 Uhr',
+        url: 'https://www.wiwo.de/finanzen/boerse/japanischer-index-nikkei-die-japan-wette-geraet-ins-stocken/100264300.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Bank of Japan lässt ihren Leitzins unverändert. Sie bleibt bei 1,25 Prozent, dem höchsten Stand seit 1995. Das Niveau hatte die Notenbank erst Mitte September angehoben, um 0,25 Prozentpunkte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach eigenen Angaben ist ihr Inflationsziel von zwei Prozent damit erreicht. Zugleich signalisiert sie, dass eine weitere Anhebung möglich ist. Am Markt wird mehrheitlich mit einem nächsten Schritt im Dezember gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine erwartete Entscheidung bewegt wenig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger war die Entscheidung keine Überraschung. Volkswirte hatten mehrheitlich genau diesen Ausgang erwartet. An Finanzmärkten bewegt eine Nachricht vor allem dann etwas, wenn sie von der Erwartung abweicht, nicht, wenn sie sie bestätigt. Diese Logik heißt eingepreiste Erwartung: Ist ein Ergebnis schon vorher in den Kursen enthalten, bleibt die Reaktion gering.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der billige Yen und seine Grenzen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinter dem Börsenboom in Tokio steckt seit Jahren vor allem ein billiger Yen, schreibt die WirtschaftsWoche. Steigende Löhne und steigende Zinsen in Japan könnten die Währung jetzt aber stärken.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein stärkerer Yen würde japanische Exporte teurer machen. Er könnte Anleger zudem dazu bringen, günstige Kredite in Yen, sogenannte Carry Trades, aufzulösen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer auf Japan setzt, sollte nicht nur den Leitzins im Blick behalten, sondern auch die Erwartung dahinter. Die nächste Bewegung entsteht vermutlich nicht am Tag der Entscheidung selbst, sondern an dem Tag, an dem die Notenbank von ihrem bisherigen Pfad abweicht.',
+      },
+    ],
+  },
+  {
+    slug: 'binance-nimmt-auszahlungen-wieder-auf',
+    title: 'Binance startet Auszahlungen nach Rekord-Hack',
+    teaser:
+      'Nach dem größten Krypto-Diebstahl der Geschichte lässt Binance ab heute wieder Auszahlungen zu und erklärt neun von zehn gestohlenen Werten für gedeckt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-01T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Krypto', 'Binance', 'Hackerangriff', 'Bitcoin'],
+    relatedTopics: ['bitcoin-krypto', 'einlagensicherung'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'CNBC, Binance says 90% of $6.3 billion hack losses are now covered, plans to resume withdrawals Sunday, 31.10.2026, 23:27 Uhr',
+        url: 'https://www.cnbc.com/2026/10/31/binance-hack-asset-coverage-withdrawals.html',
+      },
+      {
+        label:
+          'Tagesschau, Milliardenschwerer Hackerangriff auf Kryptobörse Binance, 30.10.2026, 09:24 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/technologie/hackerangriff-kryptoboerse-binance-100.html',
+      },
+      {
+        label:
+          'Tagesschau, Experte zum Krypto-Angriff: „Drei Milliarden sind definitiv weg“, 30.10.2026, 14:32 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/technologie/hackerangriff-binance-interview-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Binance lässt ab heute wieder Auszahlungen zu. Das kündigte die Kryptobörse nach dem größten Diebstahl in der Geschichte digitaler Währungen an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Betroffen waren nach Unternehmensangaben Digitalwährungen im Wert von rund 6,3 Milliarden Dollar, erbeutet aus den sogenannten Hot Wallets der Börse. Binance erklärt inzwischen 90 Prozent der gestohlenen Werte für gedeckt, finanziert aus einem eigenen Sicherungsfonds, einem Teil der Versicherungsrücklage fürs Terminhandelsgeschäft und der Unternehmenskasse.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen für einen Schaden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Binance selbst spricht von einer weitgehend gelösten Krise. Ein deutscher Cybersicherheitsexperte widerspricht im Interview mit der Tagesschau. Er geht davon aus, dass drei Milliarden Dollar endgültig verloren sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied zeigt ein Grundproblem von Kryptobörsen. Wer sein Geld bei einer Bank hält, ist bis 100.000 Euro gesetzlich abgesichert. Für Guthaben auf einer Kryptobörse gibt es keine vergleichbare staatliche Garantie, nur das, was die Börse selbst zur Deckung bereithält.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Spur nach Nordkorea',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das FBI schreibt den Angriff nordkoreanischen Hackern zu. Die Täter hätten die erbeuteten Werte in Ethereum umgetauscht, teilte die Analysefirma TRM Labs mit. Sie sieht Parallelen zu früheren Fällen wie dem Bybit-Hack.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zusage zur Deckung ist kein Beweis, sondern ein Versprechen für die Zukunft. Wer Kryptowerte auf einer Börse statt in der eigenen Wallet lagert, tauscht Bequemlichkeit gegen genau das Risiko, das sich hier gezeigt hat.',
+      },
+    ],
+  },
+  {
+    slug: 'frankreich-schuldenkrise-drueckt-euro-zum-pfund',
+    title: 'Frankreichs Schulden drücken den Euro zum Pfund',
+    teaser:
+      'Der Euro hat im Oktober so stark zum britischen Pfund verloren wie seit Juli 2022 nicht mehr. Grund ist Frankreichs Schuldenkrise.',
+    category: 'Märkte',
+    publishedAt: '2026-11-01T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Frankreich', 'Euro', 'Schuldenkrise', 'Devisen'],
+    relatedTopics: ['waehrungen-wechselkurse', 'staatsanleihe'],
+    relatedSymbols: ['eur-gbp'],
+    sources: [
+      {
+        label:
+          'wallstreet-online (zitiert Bloomberg), Frankreichs Schuldenkrise: Euro vor schwächstem Monat zum Pfund seit 2022, 30.10.2026',
+        url: 'https://www.wallstreet-online.de/nachricht/21609900-frankreichs-schuldenkrise-euro-schwaechstem-monat-pfund-2022',
+      },
+      {
+        label:
+          'onvista (dpa-AFX), ROUNDUP 3: 320.000 demonstrieren in Frankreich – erste Spannungen, 31.10.2026, 17:35 Uhr',
+        url: 'https://www.onvista.de/news/2026/10-31-roundup-3-320-000-demonstrieren-in-frankreich-erste-spannungen-0-10-26570754',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro hat im Oktober kräftig zum britischen Pfund verloren. Laut Bloomberg, zitiert von wallstreet-online, büßte er mehr als zwei Prozent ein, der schwächste Monat seit Juli 2022. Zum Pfund fiel die Gemeinschaftswährung zugleich auf ihren niedrigsten Stand seit April 2025.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Belastung gilt Frankreichs Schuldenkrise. Das Haushaltsdefizit der zweitgrößten Volkswirtschaft der Eurozone treibt die Finanzierungskosten des Landes auf den höchsten Stand seit 25 Jahren. Hinzu kommt politische Unsicherheit vor der Wahl 2027, sagte Rabobank-Expertin Jane Foley laut dem Bericht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '320.000 Demonstranten und ein ruhigeres Pfund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Unsicherheit zeigte sich auch auf der Straße. Am Freitag demonstrierten nach Angaben des französischen Innenministeriums 320.000 Menschen landesweit, davon 70.000 in Paris. In Paris und Lyon setzte die Polizei Tränengas ein, in Marseille brannten Gegenstände auf der Straße.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das britische Pfund gilt dagegen als vergleichsweise stabil. Der Internationale Währungsfonds hob seine Wachstumsprognose für Großbritannien an, und das Pfund legte im Oktober unter den G10-Währungen am stärksten zum Euro zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Währung als Fieberthermometer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Wechselkurs bewegt sich nicht nur über Zinsunterschiede zwischen Notenbanken. Er spiegelt auch, wie sehr Anleger einem Staat zutrauen, seine Schulden zu bedienen. Steigt diese Sorge, verlangen Investoren für Anleihen eine höhere Risikoprämie und meiden zugleich die Währung des Landes.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein schwacher Euro gegenüber dem Pfund ist für sich kein Urteil über die gesamte Eurozone. Er zeigt vor allem, dass Anleger das Risiko eines einzelnen Mitgliedstaats derzeit höher einpreisen als das eines anderen.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-rekordhoch-nasdaq-schwaechster-monat',
+    title: 'Berkshire auf Rekordhoch, Nasdaq auf Monatstief',
+    teaser:
+      'Während der Nasdaq Composite im Oktober seinen schwächsten Monat seit Jahren hinter sich brachte, erreichte die Berkshire-Hathaway-Aktie mehrere Rekordstände.',
+    category: 'Märkte',
+    publishedAt: '2026-11-01T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Berkshire', 'Aktienmarkt', 'Nasdaq', 'USA'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['berkshire', 'sp500', 'alphabet'],
+    sources: [
+      {
+        label:
+          'CNBC, Berkshire ekes out some new highs, but October rally stalls, 31.10.2026, 13:26 Uhr',
+        url: 'https://www.cnbc.com/2026/10/31/berkshire-ekes-out-some-new-highs-but-october-rally-stalls.html',
+      },
+      {
+        label:
+          '247wallst.com, Berkshire Hathaway Closes at a Record $548.56, Again, 26.10.2026',
+        url: 'https://247wallst.com/cards/berkshire-s-class-b-shares-closed-at-a-record-548-56-toppi-brk-b-price-extreme-01m5x9ps6ese4czs18q8m01sxv',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Berkshire-Hathaway-Aktie hat im Oktober mehrere Rekorde aufgestellt. Die Klasse-B-Aktie schloss am 26. Oktober bei 548,56 Dollar, laut 24/7 Wall St. ein Rekordschluss.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitag markierte sie im Tagesverlauf mit 550,47 Dollar ein weiteres Hoch, berichtet CNBC. Die teurere Klasse-A-Aktie verpasste ihr eigenes Rekordhoch von 824.765 Dollar dagegen knapp und schloss die Woche bei 815.600 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Gegenbewegung zum Tech-Ausverkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Oktober war für Berkshire ungewöhnlich stark. Die Aktie legte um 8,9 Prozent zu, während der S&P 500 im selben Monat 0,9 Prozent verlor und der Nasdaq Composite 5,3 Prozent. CNBC führt das auf eine Rotation weg von Technologie- und KI-Werten hin zu defensiveren Titeln zurück.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rückstand von Berkshire zum S&P 500 seit Jahresbeginn verringerte sich dadurch von 3,5 auf 2,8 Prozentpunkte. Über die vergangenen zwölf Monate liegt die Aktie nach Angaben von CNBC mehr als zwei Prozentpunkte vor dem Index.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Index nicht gleich ein Index ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt, wie stark ein Index von seiner Gewichtung abhängt. Der S&P 500 wird nach Marktkapitalisierung gewichtet, und wenige Technologiewerte bestimmen einen großen Teil seiner Bewegung. Berkshire hält zwar auch Technologieaktien, der Wert seiner Alphabet-Beteiligung fiel laut CNBC von rund 40 Milliarden Dollar Anfang August auf 29,6 Milliarden Dollar am Freitag, ist insgesamt aber deutlich breiter aufgestellt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Monat sagt wenig darüber, welche Strategie langfristig überlegen ist. Er zeigt aber, dass ein Portfolio aus wenigen großen Technologiewerten anders schwankt als eines mit breiterer Streuung über Branchen.',
+      },
+    ],
+  },
+  {
+    slug: 'sp-senkt-ausblick-fuer-meta-auf-negativ',
+    title: 'S&P senkt Meta-Ausblick wegen hoher Investitionen',
+    teaser:
+      'Die Ratingagentur S&P hat ihren Ausblick für Meta von stabil auf negativ gesenkt. Grund sind hohe Investitionen und ein erstmals negativer Cashflow.',
+    category: 'Märkte',
+    publishedAt: '2026-11-01T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Meta', 'Rating', 'Cashflow', 'Technologie'],
+    relatedTopics: ['aktie', 'schulden-und-kredit'],
+    relatedSymbols: ['meta'],
+    sources: [
+      {
+        label:
+          'CNBC, Meta outlook revised downward by S&P on cash flow and capex concerns, 30.10.2026, 23:42 Uhr',
+        url: 'https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Ratingagentur S&P Global Ratings hat ihren Ausblick für Meta gesenkt. Aus „stabil“ wird „negativ“, das Rating selbst bleibt bei AA-.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Gründe nennt S&P die hohen Investitionsausgaben des Konzerns und Zweifel, ob Meta sie wie bisher angekündigt zurückfahren wird. Hinzu kommt Unsicherheit, ob sich die KI-Investitionen rechtzeitig in Umsätze übersetzen, die die steigenden Kosten übertreffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erstmals ein negativer freier Cashflow',
+      },
+      {
+        type: 'paragraph',
+        text: 'Meta hatte seine Capex-Prognose für das laufende Jahr zuletzt auf 135 bis 145 Milliarden Dollar angehoben. Im dritten Quartal lagen die Investitionsausgaben bei 34,91 Milliarden Dollar und damit über dem operativen Cashflow von 32,79 Milliarden Dollar. Der freie Cashflow war mit minus 2,12 Milliarden Dollar erstmals negativ.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz eines Umsatzes über den Erwartungen fiel die Aktie nach den Zahlen um rund 7 Prozent. Im gesamten Oktober verlor sie etwa 15 Prozent, ihren schlechtesten Monat seit vier Jahren. Meta widersprach der Einschätzung von S&P und verwies auf seine starke Bonität.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guidance gegen Ist-Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt den Unterschied zwischen Gewinn und Cashflow. Meta verdient weiterhin Geld und übertrifft sogar die Umsatzerwartungen. Für eine Ratingagentur zählt aber auch, wie viel Geld am Ende eines Quartals tatsächlich übrig bleibt, und das war diesmal weniger als null.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein negativer Ausblick ist noch keine Herabstufung. Er zeigt aber, worauf Gläubiger in den kommenden Quartalen achten werden: ob sich die hohen Ausgaben für Rechenzentren rechtzeitig in Erträgen niederschlagen.',
+      },
+    ],
+  },
+  {
     slug: 'tech-ausverkauf-nasdaq-drei-monats-tief',
     title: 'Tech-Ausverkauf schickt Nasdaq auf Drei-Monats-Tief',
     teaser:
