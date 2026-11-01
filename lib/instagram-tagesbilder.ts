@@ -523,15 +523,24 @@ export function nennungNoetig(lizenz: string): boolean {
 }
 
 /**
- * Die Nennung unter dem Beitrag – je Foto mit CC-BY-Lizenz Urheber, Quelle
- * und Lizenz, wie die Lizenz es verlangt. Leer, wenn keins eine braucht.
+ * Die Bildnachweise unter dem Beitrag – **jedes** Bild, nicht nur die, deren
+ * Lizenz eine Nennung verlangt: Bei CC BY Urheber und Lizenz, sonst
+ * „gemeinfrei". Eine Kursgrafik ist eigene Darstellung und braucht keinen.
+ * Der Betreiber am 01.11.2026, als drei Logos ohne Angabe blieben: „Fehlt da
+ * nicht eine Quellenangabe … in Zukunft beachten, dass sowas nicht fehlt."
  */
 export function bildnachweis(datum: string, register = leseRegister()): string {
-  const noetig = (register[datum] ?? []).filter((b) => nennungNoetig(b.lizenz))
-  if (!noetig.length) return ''
+  const bilder = (register[datum] ?? [])
+    .filter((b) => b.datei && b.lizenz !== 'Kursgrafik')
+    .sort((a, b) => a.stelle - b.stelle)
+  if (!bilder.length) return ''
   return [
-    'Fotos (Wikimedia Commons):',
-    ...noetig.map((b) => `Seite ${b.stelle}: ${b.urheber.slice(0, 60)}, ${b.lizenz}`),
+    'Bilder (Wikimedia Commons):',
+    ...bilder.map((b) =>
+      nennungNoetig(b.lizenz)
+        ? `Seite ${b.stelle}: ${b.urheber.slice(0, 60)}, ${b.lizenz}`
+        : `Seite ${b.stelle}: gemeinfrei (${b.lizenz})`
+    ),
   ].join('\n')
 }
 

@@ -399,6 +399,7 @@ export function beschriftungTagesnews(
   nachweis = '',
   meldungen: Meldung[] = []
 ): string {
+  const quellen = quellenzeile(meldungen)
   const ohneErlaeuterung = [
     KOPF,
     '',
@@ -406,6 +407,7 @@ export function beschriftungTagesnews(
     '',
     ueberblick(plan.kacheln.length),
     '',
+    ...(quellen ? [quellen, ''] : []),
     ...(nachweis ? [nachweis, ''] : []),
     `${RECHTSHINWEIS} ${plan.schlagworte.map((w) => `#${w}`).join(' ')}`,
   ].join('\n')
@@ -422,7 +424,8 @@ export function beschriftungTagesnews(
     ...(bloecke ? [bloecke, ''] : []),
     ueberblick(plan.kacheln.length),
     '',
-    /* Seit 21.10.2026: Fotos unter CC BY/BY-SA verlangen Urheber und Lizenz. */
+    ...(quellen ? [quellen, ''] : []),
+    /* Jedes Bild mit Herkunft – siehe `bildnachweis()`. */
     ...(nachweis ? [nachweis, ''] : []),
     `${RECHTSHINWEIS} ${plan.schlagworte.map((w) => `#${w}`).join(' ')}`,
   ].join('\n')
@@ -436,6 +439,23 @@ export interface Meldung {
   headline: string
   summary: string[]
   whyItMatters: string
+  sources?: { label: string }[]
+}
+
+/**
+ * Die Quellen der Meldungen in einer Zeile – je Herausgeber einmal, der Name
+ * vor dem ersten Komma der Quellenangabe („Reuters, BOJ hält …" → Reuters).
+ * Seit 01.11.2026: Unter dem Beitrag stand nur „Quelle: iminvests.de".
+ */
+export function quellenzeile(meldungen: Meldung[]): string {
+  const namen = [
+    ...new Set(
+      meldungen.flatMap((m) =>
+        (m.sources ?? []).map((q) => q.label.split(',')[0]!.trim())
+      )
+    ),
+  ].filter(Boolean)
+  return namen.length ? `Quellen der Meldungen: ${namen.join(', ')}` : ''
 }
 
 const FUELLWOERTER = new Set(

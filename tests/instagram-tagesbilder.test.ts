@@ -130,12 +130,12 @@ const nachweis = bildnachweis('2099-01-01', {
   ],
 })
 pruefe(
-  'Nennung nur für CC BY/BY-SA, mit Urheber und Lizenz',
+  'jedes Bild genannt: CC BY mit Urheber und Lizenz, CC0 als gemeinfrei (01.11.2026)',
   nachweis.includes('Seite 3: Anna Muster, CC BY-SA 4.0') &&
-    !nachweis.includes('Seite 2'),
+    nachweis.includes('Seite 2: gemeinfrei (CC0)'),
   nachweis
 )
-pruefe('ohne Nennungspflicht keine Zeile', bildnachweis('2099-01-02', {}) === '')
+pruefe('ohne Bilder keine Zeile', bildnachweis('2099-01-02', {}) === '')
 pruefe(
   'Persönlichkeitsrecht: taugt nicht',
   !taugt({ ...gut, einschraenkung: 'personality' }, leer)
