@@ -176,6 +176,23 @@ zählen die Läufe von `instagram-bilder.yml` des Tages, und nach vier
 erfolglosen Reparaturen meldet sich der Lauf. **Ein Zähler, der an einem
 Erfolg hängt, zählt den Misserfolg nicht.**
 
+**Aufhören heißt, nichts hochzuladen** (01.11.2026). Am Morgen danach stand
+die Schleife nach vier Versuchen still. Die Grenze griff also, aber für
+OpenAI, Berkshire und Meta war wieder kein Bild da. Der Betreiber dazu:
+„es ist nicht korrekt zu stoppen, denn das bedeutet nichts hochzuladen …
+und irgendwas Falsches ist auch falsch. Daher muss so lange daran
+gearbeitet werden, bis es passt.“ Zwei Antworten darauf:
+
+- **Firmenlogo als Rückfall** in `scripts/instagram-bilder.ts`
+  (`logoName()`, `sucheLogo()`): Findet die Suche zu einem Unternehmen kein
+  Foto, nimmt sie dessen freies Logo von Commons auf heller Fläche. So war
+  es an beiden Tagen von Hand geschehen. Themen wie Inflation oder
+  Arbeitsmarkt haben kein Logo (`KEIN_UNTERNEHMEN`).
+- **Ein Morgen-Check** dieser Sitzung um 05:07 Uhr (geplante Aufgabe
+  „Tagesbeitrag Instagram nachsehen“): Fehlt der Beitrag, sucht sie die
+  Bilder von Hand, sieht alle Kacheln an und lädt hoch. Rot und Mail
+  bleiben, damit der Betreiber davon erfährt.
+
 **Das Deckblatt trägt ein Foto zum Tag** (29.10.2026). Der Betreiber: „Das
 Deckblatt kann gern bisschen spannender sein mit irgendeinem aktuellen
 Thema. Das muss nicht immer so eine langweilige Skyline sein." Zuerst ein

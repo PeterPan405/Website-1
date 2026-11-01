@@ -72,6 +72,20 @@ export function sucheIn(begriff: string): Promise<Seite[]> {
   })
 }
 
+/**
+ * Logos zu einem Namen – Zeichnungen (SVG), nicht Fotos. Für den Rückfall,
+ * wenn zu einem Unternehmen kein freies Foto da ist (31.10./01.11.2026:
+ * Binance, OpenAI, Meta – jedes Mal von Hand).
+ */
+export function sucheLogo(name: string): Promise<Seite[]> {
+  return abfrage({
+    generator: 'search',
+    gsrnamespace: '6',
+    gsrsearch: `"${name}" logo filetype:drawing`,
+    gsrlimit: '20',
+  })
+}
+
 /** Eine Datei beim Titel – für die Wahl von Hand. */
 export async function datei(titel: string): Promise<Seite | null> {
   return (await abfrage({ titles: titel }))[0] ?? null
