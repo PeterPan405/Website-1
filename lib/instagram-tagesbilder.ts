@@ -662,3 +662,71 @@ export function taugt(
     return false
   return true
 }
+
+/**
+ * Wörter am Titelanfang, die ein Thema sind und kein Unternehmen – zu ihnen
+ * gibt es kein Logo, und eine Suche danach fände nur Zufälliges.
+ */
+const KEIN_UNTERNEHMEN = new Set([
+  'inflation',
+  'arbeitsmarkt',
+  'arbeitslose',
+  'zins',
+  'zinsen',
+  'leitzins',
+  'euro',
+  'dollar',
+  'pfund',
+  'yen',
+  'gold',
+  'silber',
+  'öl',
+  'ölpreis',
+  'gas',
+  'diesel',
+  'dax',
+  'nasdaq',
+  'dow',
+  'börse',
+  'bitcoin',
+  'krypto',
+  'wachstum',
+  'bip',
+  'konjunktur',
+  'anleihen',
+  'renditen',
+  'fed',
+  'ezb',
+  'boj',
+  'notenbank',
+  'zölle',
+  'handel',
+  'streik',
+  'wahl',
+  'regierung',
+  'deutschland',
+  'usa',
+  'china',
+  'japan',
+  'frankreich',
+  'europa',
+  'tech',
+  'chips',
+  'aktien',
+])
+
+/**
+ * Der Name, nach dessen Logo gesucht wird: das erste Wort des Kacheltitels,
+ * ohne Bindestrich-Zusatz („Binance-Hack" → „Binance"). Nur, wenn es wie ein
+ * Name aussieht (groß geschrieben) und kein Thema ist (`KEIN_UNTERNEHMEN`).
+ */
+export function logoName(titel: string): string | null {
+  const wort =
+    titel
+      .trim()
+      .split(/[\s:,]/)[0]
+      ?.split('-')[0] ?? ''
+  if (wort.length < 2 || !/^[A-ZÄÖÜ0-9]/.test(wort)) return null
+  if (KEIN_UNTERNEHMEN.has(wort.toLowerCase())) return null
+  return wort
+}

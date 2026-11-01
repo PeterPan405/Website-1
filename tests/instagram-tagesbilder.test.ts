@@ -482,6 +482,25 @@ pruefe(
   JSON.stringify(zins[0])
 )
 
+/* Logo-Rückfall (01.11.2026): der Name aus dem Kacheltitel. */
+{
+  const { logoName } = await import('../lib/instagram-tagesbilder.ts')
+  const faelle: [string, string | null][] = [
+    ['OpenAI: 20 Mrd. Dollar', 'OpenAI'],
+    ['Meta: Ausblick gesenkt', 'Meta'],
+    ['Binance-Hack: 6,3 Mrd. $', 'Binance'],
+    ['Inflation: 2,8 %', null],
+    ['Arbeitsmarkt: 2,955 Mio.', null],
+    ['BOJ hält den Zins', null],
+    ['Euro nahe Jahrestief', null],
+  ]
+  for (const [titel, erwartet] of faelle)
+    pruefe(
+      `Logo-Name aus „${titel}" ist ${erwartet ?? 'keiner'}`,
+      logoName(titel) === erwartet
+    )
+}
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )

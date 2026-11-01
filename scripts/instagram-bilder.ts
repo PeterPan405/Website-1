@@ -15,9 +15,11 @@ import { join } from 'node:path'
 
 import {
   kandidatVon,
+  logobild,
   type Seite,
   suche,
   sucheIn,
+  sucheLogo,
   urheberVon,
   zuschnitt,
 } from '@/lib/commons-suche'
@@ -30,6 +32,7 @@ import {
   doppelteBilder,
   type Tagesbild,
   leseRegister,
+  logoName,
   MARKENBILD,
   REGISTER,
   suchenFuer,
@@ -154,6 +157,54 @@ for (const [i, kachel] of plan.kacheln.entries()) {
       break
     }
     if (gefunden) break
+  }
+  /*
+    Kein Foto, aber ein Unternehmen im Titel: dann sein Logo auf heller
+    Fläche – so, wie es am 31.10. und 01.11.2026 jedes Mal von Hand gesetzt
+    wurde (Binance, OpenAI, Meta). Der Name ist das erste Wort des Titels;
+    genommen wird nur eine freie Zeichnung, deren Titel den Namen und
+    „logo" trägt. Ob das Logo zur Meldung passt, prüft danach die
+    Sichtprüfung wie jedes andere Bild.
+  */
+  if (!gefunden) {
+    const name = logoName(kachel.titel)
+    if (name) {
+      try {
+        for (const seite of await sucheLogo(name)) {
+          const k = kandidatVon(seite)
+          const titel = seite.title.toLowerCase()
+          if (
+            !k ||
+            !titel.includes(name.toLowerCase()) ||
+            !titel.includes('logo') ||
+            verwendet.has(seite.title) ||
+            !/^(Public domain|CC0|PD\b|PDM|CC BY(-SA)? \d)/i.test(k.lizenz)
+          )
+            continue
+          const jpeg = await logobild(seite, '#F2F2F2')
+          if (!jpeg) continue
+          const datei = dateiname(DATUM, stelle, seite.title)
+          writeFileSync(join(TAGESBILDER, datei), jpeg)
+          heute.push({
+            stelle,
+            datei,
+            titel: seite.title,
+            seite: seite.imageinfo![0].descriptionurl,
+            lizenz: k.lizenz,
+            urheber: urheberVon(seite),
+            suche: `Logo „${name}"`,
+          })
+          verwendet.add(seite.title)
+          console.log(
+            `Kachel ${stelle} „${kachel.titel}": Logo ${seite.title} (${k.lizenz})`
+          )
+          gefunden = true
+          break
+        }
+      } catch (fehler) {
+        console.log(`  Logo ${name}: ${(fehler as Error).message}`)
+      }
+    }
   }
   if (!gefunden)
     console.log(
