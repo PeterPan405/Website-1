@@ -264,6 +264,9 @@ liest diese Liste vorher.
 | 26.10. | Frankreich an vielen Tagen; nicht nach Relevanz sortiert                                    | `themaWiederholt()` über drei Tage; Rangfolge nach Relevanz               |
 | 26.10. | gelöschter Beitrag kam von selbst zurück                                                    | Gedächtnis `instagram-gepostet`; neu nur mit `nochmal`                    |
 | 26.10. | Ifo-Kachel zeigte das Audi-Werk                                                             | `dateiname()`, `doppelteBilder()` – und **die Prüfung vor dem Hochladen** |
+| 30.10. | harter Übergang Weiß/Foto auf dem Deckblatt                                                 | `VERLAUF_WEISS`, 100 px als S-Kurve                                       |
+| 01.11. | Nationalversammlung hinter Glas, gespiegelt                                                 | Sichtprüfung: unscharf, Glas, Spiegelung = passt nicht                    |
+| 01.11. | Quellenangabe fehlte (drei Logos ohne Nennung, keine Quellen der Meldungen)                 | `bildnachweis()` nennt jedes Bild, `quellenzeile()` die Quellen           |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt

@@ -496,4 +496,28 @@ pruefen(
   )
 }
 
+/* 01.11.2026: Die Quellen der Meldungen stehen unter dem Beitrag. */
+{
+  const { quellenzeile } = await import('../lib/instagram-plan.ts')
+  const zeile = quellenzeile([
+    {
+      headline: 'a',
+      summary: [],
+      whyItMatters: '',
+      sources: [{ label: 'Reuters, BOJ hält, 31.10.2026' }],
+    },
+    {
+      headline: 'b',
+      summary: [],
+      whyItMatters: '',
+      sources: [{ label: 'CNBC, OpenAI, 31.10.2026' }, { label: 'Reuters, x' }],
+    },
+  ])
+  pruefen(
+    'Quellenzeile: jeder Herausgeber einmal',
+    zeile === 'Quellen der Meldungen: Reuters, CNBC',
+    zeile
+  )
+}
+
 console.log('\nAlle Prüfungen bestanden.')
