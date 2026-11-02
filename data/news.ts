@@ -101,6 +101,331 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'midterms-maerkte-positionieren-sich',
+    title: 'Vor den Midterms: Anleger in Asien sichern sich ab',
+    teaser:
+      'Vor der US-Wahl am Dienstag positionieren sich Anlegerinnen in Asien neu – mit möglichen Folgen für Technologie- und Energiewerte.',
+    category: 'Märkte',
+    publishedAt: '2026-11-02T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Midterms', 'USA', 'Politik', 'Märkte'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'bitcoin'],
+    sources: [
+      {
+        label:
+          'handelsblatt.com, Artikel vom 1.11.2026, 15:38 Uhr: „Geldanlage: Öl, Anleihen und Aktien: So schauen asiatische Profianleger auf die bevorstehenden US-Midterms“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/geldanlage-so-schauen-profianleger-auf-die-bevorstehenden-usmidterms/100266440.html',
+      },
+      {
+        label:
+          'cnbc.com, Artikel vom 1.11.2026, 13:30 Uhr: „The midterm election could reshape the muni bond market“',
+        url: 'https://www.cnbc.com/2026/11/01/election-municipal-bonds.html',
+      },
+      {
+        label:
+          'cnbc.com, Artikel vom 31.10.2026, 14:04 Uhr: „Crypto industry pours more than $200 million into 2026 midterms to pressure Congress on favorable rules“',
+        url: 'https://www.cnbc.com/2026/10/31/crypto-industry-spends-more-than-200-million-to-sway-the-midterms.html',
+      },
+      {
+        label:
+          'cnbc.com, Artikel vom 31.10.2026, 13:00 Uhr: „‘Pop-up’ super PACs pour $637 million into 2026 midterm races“',
+        url: 'https://www.cnbc.com/2026/10/31/2026-midterm-election-super-pacs-donor-disclosure.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag wählen die USA einen neuen Kongress, und Börsen in Asien haben sich darauf schon vor dem Wochenende eingestellt. Nach Angaben des Handelsblatts rechnen asiatische Profianleger mit neuen politischen Unwägbarkeiten für Technologie- und Energie-Aktien.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was bei den Midterms auf dem Spiel steht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Wahl stehen das gesamte Repräsentantenhaus und ein Drittel des Senats. Nach Recherchen von CNBC entscheidet die neue Mehrheit unter anderem mit darüber, ob der Kongress die Rentenkasse der Sozialversicherung vor einer möglichen Leistungskürzung im Jahr 2032 stützt. Auch die Regeln für den Markt für Kommunalanleihen könnten sich laut CNBC durch neue Steuermaßnahmen einzelner Bundesstaaten und ein verändertes Anleihenangebot verschieben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lobbyisten investieren schon vor der Wahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehr als 200 Millionen Dollar hat die Kryptobranche laut CNBC in die Zwischenwahlen gesteckt, um den Kongress zu für sie günstigen Regeln zu bewegen. Rund 22 erst kurzfristig gegründete Super-PACs gaben nach denselben Angaben zusammen etwa 637 Millionen Dollar aus – teils bevor Wähler ihre Geldgeber überhaupt erfahren konnten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Lehrwinkel: eine Risikoprämie für ein feststehendes Datum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ungewöhnlich ist, dass der Wahltermin seit Monaten bekannt ist und trotzdem Unsicherheit auslöst. Anders als ein überraschendes Ereignis lässt sich ein feststehender Termin im Voraus einpreisen: Optionsmärkte verlangen in den Tagen davor häufig eine höhere Prämie, weil niemand das Ergebnis kennt, wohl aber den Zeitpunkt. Diese Risikoprämie sinkt meist, sobald das Ergebnis feststeht – unabhängig davon, wie es ausfällt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer verstehen will, warum Kurse schon vor einem bekannten Termin schwanken, sollte nicht nach einer Überraschung suchen, sondern nach der Unsicherheit selbst – sie allein bewegt bereits Preise, bevor überhaupt eine Stimme ausgezählt ist.',
+      },
+    ],
+  },
+  {
+    slug: 'ig-metall-warnstreiks-beginnen',
+    title: 'IG Metall beginnt Warnstreiks in der Metallindustrie',
+    teaser:
+      'Nach dem abgelehnten Lohnangebot beginnt die IG Metall Warnstreiks in Auto- und Maschinenbaubranche, um Druck auf die Tarifverhandlungen auszuüben.',
+    category: 'Märkte',
+    publishedAt: '2026-11-02T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['IG Metall', 'Tarifstreit', 'Industrie', 'Deutschland'],
+    relatedTopics: ['inflation', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'volkswagen', 'bmw'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, Artikel vom 1.11.2026, 04:48 Uhr: „Warnstreiks der IG Metall kurz nach Mitternacht angelaufen“',
+        url: 'https://www.tagesschau.de/wirtschaft/arbeitsmarkt/ig-metall-warnstreiks-108.html',
+      },
+      {
+        label:
+          'wallstreet-online.de, Meldung vom 1.11.2026 (dpa-AFX): „WDH/ROUNDUP 3: Metaller-Warnstreiks nehmen Fahrt auf“',
+        url: 'https://www.wallstreet-online.de/nachricht/21617718-wdh-roundup-3-metaller-warnstreiks-fahrt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kurz nach Mitternacht hat die IG Metall in der Nacht zum Sonntag „starke Warnstreiks“ begonnen. Nach Angaben der Tagesschau sind wichtige Industriezweige wie die Auto- und die Maschinenbaubranche betroffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom abgelehnten Angebot zum Streik',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Gewerkschaft hatte das erste Lohnangebot der Arbeitgeber in der vergangenen Woche abgelehnt. Nach einer dpa-Meldung über wallstreet-online nehmen die Warnstreiks nun „Fahrt auf“ und sollen Druck auf die laufenden Tarifverhandlungen ausüben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warnstreik ist nicht Streik',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Warnstreik dauert nach deutschem Arbeitsrecht nur wenige Stunden bis Tage und läuft parallel zu laufenden Verhandlungen. Ein unbefristeter Erzwingungsstreik setzt dagegen eine für gescheitert erklärte Verhandlung und meist eine Urabstimmung voraus. Die Gewerkschaft nutzt den kürzeren Ausstand, um Druck aufzubauen, ohne die Verhandlungen formal abzubrechen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Lehrwinkel: Wofür Unternehmen einen Ausstand einpreisen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Unternehmen bedeutet ein Warnstreik entgangene Produktion für wenige Stunden, kein bilanzielles Großereignis. Hält der Tarifkonflikt dagegen länger an, wiegt das anders: Ein höherer Lohnabschluss erhöht die Kosten dauerhaft, während ein Streik nur kurzfristig Umsatz kostet – ein Unterschied, den Bilanzen und Kurse unterschiedlich behandeln.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Wirkung von Tarifkonflikten auf Aktienkurse einschätzen will, sollte zwischen dem kurzfristigen Produktionsausfall eines Warnstreiks und der langfristigen Kostenwirkung eines Tarifabschlusses unterscheiden – nur Letztere verändert die Kostenbasis eines Unternehmens dauerhaft.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-fallen-tech-ausverkauf',
+    title: 'Gold und Silber fallen im Sog des Tech-Ausverkaufs',
+    teaser:
+      'Gold fällt unter 4.000 Dollar, Silber unter 50 – beide Edelmetalle gaben zusammen mit Technologiewerten nach, entgegen ihrem Ruf als sicherer Hafen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-02T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Rohstoffe', 'Tech-Ausverkauf'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Marktbericht vom 30.10.2026: „Goldpreis fällt unter 4.000 USD – Tech-Ausverkauf belastet“',
+        url: 'https://www.goldreporter.de/goldpreis-30-10-2026/marktbericht-gold/262690/',
+      },
+      {
+        label:
+          'handelsblatt.com, Artikel vom 30.10.2026, 20:57 Uhr: „US-Börsen: ‚Absolut brutale Woche‘ für Tech-Investoren – Nasdaq rutscht ab, Intel verliert rund 29 Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-nasdaq-100-auf-talfahrt-intel-aktie-verliert-29-prozent/100266181.html',
+      },
+      {
+        label:
+          'wallstreet-online.de, Meldung vom 1.11.2026: „Silber (noch) im Crash-Modus: Silberpreis kracht unter 50 USD: Das könnte die Silberrallye jetzt noch retten“',
+        url: 'https://www.wallstreet-online.de/nachricht/21616224-silber-noch-crash-modus-silberpreis-kracht-50-usd-silberrallye-retten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist am Freitag unter die Marke von 4.000 Dollar gefallen. Nach Angaben von Goldreporter erfasste der Ausverkauf bei Technologieaktien auch die Edelmetalle, Silber verlor dabei besonders deutlich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch Silber fällt unter eine runde Marke',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Silberpreis krachte nach Angaben von wallstreet-online unter 50 Dollar. Das Handelsblatt berichtet, die Preise für Gold und Silber lägen inzwischen so niedrig wie seit einem Jahr nicht mehr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ungewöhnlich: Gold fällt mit den Aktien, nicht gegen sie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Normalerweise gilt Gold als Gegenpol zu Aktien: Fallen Kurse, suchen Anleger dort Schutz, und der Goldpreis steigt. Diesmal fielen Technologiewerte und Edelmetalle gleichzeitig – ein Hinweis darauf, dass Anleger nicht gezielt in Gold flüchteten, sondern eher Gewinne nach dem starken Anstieg der vergangenen Monate mitnahmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Lehrwinkel: Korrelation ist keine Naturkonstante',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die übliche Gegenläufigkeit zwischen Aktien und Gold ist eine beobachtete Tendenz, keine feste Regel. Müssen viele Anleger gleichzeitig Kredite zurückzahlen oder Verluste ausgleichen, verkaufen sie, was sich verkaufen lässt – auch das, was eigentlich als Absicherung gedacht war.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Gold allein als Schutz vor fallenden Aktien kauft, sollte wissen, dass dieser Schutz in Phasen allgemeiner Verkaufswellen aussetzen kann – die Gegenläufigkeit gilt im Durchschnitt, nicht an jedem einzelnen Tag.',
+      },
+    ],
+  },
+  {
+    slug: 'binance-fbi-nordkorea-abfluesse',
+    title: 'Binance: FBI macht Nordkorea für Krypto-Hack verantwortlich',
+    teaser:
+      'Das FBI schreibt den 6,3-Milliarden-Dollar-Diebstahl bei Binance nordkoreanischen Hackern zu, während der Börse weiter Geld in Milliardenhöhe abfließt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-02T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Binance', 'Krypto', 'Hackerangriff', 'Bitcoin'],
+    relatedTopics: ['bitcoin-krypto', 'einlagensicherung'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'handelsblatt.com, Artikel vom 1.11.2026, 14:30 Uhr: „Hackerangriff: FBI: Nordkoreanische Hacker stecken hinter milliardenschwerem Krypto-Diebstahl bei Binance“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/binance-fbi-sieht-nordkoreanische-hacker-hinter-krypto-diebstahl/100266403.html',
+      },
+      {
+        label:
+          'cnbc.com, Artikel vom 2.11.2026, 01:11 Uhr: „Binance sees $3.64 billion in net outflows as withdrawals resume after massive hack“',
+        url: 'https://www.cnbc.com/2026/11/02/binance-outflow-hack-bitcoin.html',
+      },
+      {
+        label:
+          'wiwo.de, Artikel vom 1.11.2026, 11:44 Uhr: „Cyberangriff: Binance gibt Kundenauszahlungen nach Hackerangriff frei“',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/binance-kryptoboerse-nimmt-nach-milliarden-raub-auszahlungen-wieder-auf/100266414.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Bundespolizei FBI macht nach Angaben des Handelsblatts die nordkoreanische Hackergruppe „TraderTraitor“ für den Krypto-Diebstahl bei der Börse Binance verantwortlich. Betroffen sind nach bisherigen Schätzungen Werte von 6,3 Milliarden Dollar – der größte digitale Diebstahl, der bislang bekannt wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auszahlungen laufen wieder, doch Geld fließt ab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Binance hat die Kundenauszahlungen nach Angaben der WirtschaftsWoche wieder freigegeben. Nach CNBC-Berechnungen flossen der Börse in der Folge netto 3,64 Milliarden Dollar ab – umgerechnet 2,1 Prozent ihrer gesamten Vermögenswerte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Nettoabflüsse die aussagekräftigere Kennzahl sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine einzelne Auszahlung sagt wenig; erst der Saldo aus allen Ein- und Auszahlungen zeigt, ob Kundinnen und Kunden einer Börse insgesamt vertrauen. 2,1 Prozent der Vermögenswerte sind ein Teilabzug, kein Ansturm, der eine Börse sofort zahlungsunfähig machen würde – eine Kennzahl, mit der sich auch ein klassischer Bank Run einordnen lässt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Lehrwinkel: Eine Kryptobörse ist keine Bank',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Bankguthaben bis 100.000 Euro greift in Deutschland die gesetzliche Einlagensicherung, finanziert von den Banken selbst. Für Guthaben auf einer Kryptobörse gibt es keine vergleichbare, gesetzlich garantierte Sicherung – wessen Geld dort liegt, trägt im Fall eines Diebstahls grundsätzlich das volle Risiko, unabhängig davon, wie kulant eine Börse sich anschließend zeigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Kryptowährungen über eine Börse hält statt in einer eigenen Wallet, tauscht Bequemlichkeit gegen ein Risiko, das es bei einem Bankkonto in dieser Form nicht gibt – unabhängig davon, wie der aktuelle Fall bei Binance ausgeht.',
+      },
+    ],
+  },
+  {
+    slug: 'private-credit-zinsen-stresstest',
+    title: 'Private Credit: Steigende Zinsen werden zum Stresstest',
+    teaser:
+      'Im wenig regulierten Kreditmarkt außerhalb der Banken verdienen Investoren bei steigenden Zinsen mehr – doch ihre Schuldner geraten stärker unter Druck.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-02T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Private Credit', 'Zinsen', 'Schattenbanken'],
+    relatedTopics: ['risiko-und-rendite', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'handelsblatt.com, Artikel vom 1.11.2026, 13:20 Uhr (Reuters, AFP): „Markt: Mehr Rendite, mehr Pleiten: Steigende Zinsen werden zum neuen Stresstest für Private Credit“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/zinsanstieg-auswirkungen-auf-private-credit-und-schuldner/100263351.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Private Credit, also Kredite außerhalb des regulierten Bankensystems, hat in den vergangenen Jahren stark an Bedeutung gewonnen. Das Handelsblatt berichtet unter Berufung auf Reuters und AFP, dass steigende Zinsen diesen Markt nun zum Stresstest machen: Investoren verdienen mehr, doch ihre Schuldner geraten stärker unter Druck.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer in diesem Markt verdient – und wer das Risiko trägt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Private-Credit-Fonds verleihen Geld meist an Unternehmen, die über klassische Bankkredite schwerer an Geld kommen – oft zu höheren Zinsen, als eine Bank verlangen würde. Für die Fondsinvestoren bedeutet ein höheres Zinsniveau zunächst höhere Erträge. Für die Schuldner bedeutet dasselbe Zinsniveau höhere Kosten, die bei schwächeren Unternehmen die Zahlungsfähigkeit belasten können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Lehrwinkel: Höherer Zins heißt nicht automatisch höherer Ertrag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine höhere Rendite ist niemals umsonst – sie ist die Vergütung für ein Risiko, das jemand trägt. Steigt mit den Zinsen auch die Zahl der ausfallenden Schuldner, kann der tatsächliche Ertrag nach Verlusten niedriger ausfallen, als die ursprünglich gebotene Rendite vermuten lässt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das über den Kreis der Fondsanleger hinausgeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben des Berichts könnten die Risiken im Ernstfall nicht allein bei den Fondsinvestoren bleiben, sondern am Ende auch Steuerzahler betreffen – etwa dann, wenn in Schwierigkeiten geratene Kreditnehmer gesamtwirtschaftlich bedeutsam genug sind, um Rettungsmaßnahmen auszulösen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Private Credit zeigt im Kleinen ein Grundprinzip der Geldanlage: Eine Rendite, die deutlich über dem Marktdurchschnitt liegt, trägt fast immer ein Risiko, das ebenso deutlich über dem Durchschnitt liegt – nur zeigt sich das oft erst, wenn sich die Zinsen ändern.',
+      },
+    ],
+  },
+  {
     slug: 'boj-haelt-leitzins-bei-125-prozent',
     title: 'Bank of Japan hält Leitzins bei 1,25 Prozent',
     teaser:
