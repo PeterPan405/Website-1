@@ -18,6 +18,89 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber am 02.11.2026 gewählt („Thema 2": Kriege und der
+      Ölpreis), nachdem er Lagarde und Atomwaffen zurückgestellt hatte.
+      Form: waagerechte Balken im Hausstil, neu (am 01.11. Säulen).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, Stand 02.10.2026, abgerufen am
+      02.11.2026 über quellen-holen.yml (blatt 2). Reihe „Crude oil,
+      average" (Mittel aus Brent, Dubai, WTI), $ je Fass, Monatsmittel.
+      Gerechnet: Monat vor Beginn gegen den teuersten (Kriege) bzw.
+      billigsten Monat (Krisen) der zwölf Monate ab Beginn (2026: Februar
+      bis September, acht Monate). Krisen auf Wunsch des Betreibers
+      („ein paar andere Beispiele extreme … nicht nur Kriege, sondern auch
+      Krisen"):
+        1986 (Jan.)  12/1985  26,5 → 07/1986   9,6    −64 %
+        2008 (Sept.) 08/2008 114,6 → 12/2008  41,3    −64 %
+        2020 (März)  02/2020  53,3 → 04/2020  21,0    −61 %
+        1973 (Okt.)  09/1973   2,7 → 03/1974  13,0   +381 %
+        1979 (Jan.)  12/1978  14,5 → 11/1979  40,8   +181 %
+        1990 (Aug.)  07/1990  17,2 → 10/1990  34,5   +101 %
+        2022 (Feb.)  01/2022  83,9 → 06/2022 116,8    +39 %
+        2026 (Feb.)  01/2026  63,7 → 04/2026 103,9    +63 %
+        2026 weiter: 05 100,4 · 06 81,7 · 07 79,8 · 08 84,4 · 09 102,3
+      Kriegsbeginn 2026 „Ende Februar" laut goldreporter.de (unsere Ausgabe
+      vom 01.10.2026). Die Brent-Spalte nicht genommen: Sie zeigt für
+      September 116,8 $, unsere Quellen nannten zum Quartalsende knapp
+      98 $ – die Mittelreihe passt dazu.
+    */
+    art: 'balken',
+    datum: '2026-11-02',
+    titel: [
+      { text: 'Krieg, Krise, Ölpreis:' },
+      { text: 'Teuer, aber kein 1973.', gruen: true },
+    ],
+    erklaerung:
+      'Stärkster Ausschlag des Ölpreises im Jahr nach Beginn: teuerster oder billigster Monat gegen den Monat davor.',
+    stichzeile: 'Rohöl · nach Kriegen und Krisen',
+    helden: [
+      {
+        name: 'Krieg um den Iran',
+        wert: '+63 %',
+        pille: { wert: '103,9 $', name: 'je Fass im April' },
+      },
+    ],
+    balken: [
+      { marke: '1973', text: 'Ölembargo', wert: 381.48 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 181.38 },
+      { marke: '1986', text: 'Ölpreisverfall', wert: -63.77 },
+      { marke: '1990', text: 'Irak besetzt Kuwait', wert: 100.58 },
+      { marke: '2008', text: 'Finanzkrise', wert: -63.96 },
+      { marke: '2020', text: 'Corona', wert: -60.6 },
+      { marke: '2022', text: 'Krieg in der Ukraine', wert: 39.21 },
+      { marke: '2026', text: 'Krieg um den Iran', wert: 63.11, hervor: true },
+    ],
+    einheit: '%',
+    fusszeile:
+      'Stand: 09/2026 | Quelle: Weltbank (Pink Sheet), Rohöl-Mittel aus Brent, Dubai, WTI; eigene Rechnung',
+    text:
+      'Krieg treibt den Ölpreis, Krisen lassen ihn abstürzen – aber wie stark? Gemessen mit Monatspreisen der Weltbank: stärkster Ausschlag im Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Die Balken im Bild, Fall für Fall ($ je Fass):\n' +
+      '1973 – Ölembargo: 2,70 → 13,00, +381 %\n' +
+      '1979 – Revolution im Iran: 14,50 → 40,80, +181 %\n' +
+      '1986 – Ölpreisverfall: 26,50 → 9,60, −64 %\n' +
+      '1990 – Irak besetzt Kuwait: 17,20 → 34,50, +101 %\n' +
+      '2008 – Finanzkrise: 114,60 → 41,30, −64 %\n' +
+      '2020 – Corona: 53,30 → 21,00, −61 %\n' +
+      '2022 – Krieg in der Ukraine: 83,90 → 116,80, +39 %\n' +
+      '2026 – Krieg um den Iran: 63,70 → 103,90, +63 % (bis September)\n\n' +
+      'Warum war 1973 so extrem?\n' +
+      'Die Zahlen nennen keinen Grund, aber den Ausgangspunkt: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
+      'Schon gewusst?\n' +
+      '– Von 1960 bis 1972 kostete ein Fass nie mehr als 1,90 $ – 13 Jahre fast Stillstand, dann kam 1973.\n' +
+      '– Der teuerste Monat überhaupt war der Juli 2008 mit 132,80 $. Im Dezember, mitten in der Finanzkrise: 41,30 $.\n' +
+      '– Im April 2020 fiel der Preis auf 21,00 $ – so billig wie seit Februar 2002 nicht mehr.\n' +
+      '– Der Iran-Krieg brachte bisher höchstens 103,90 $, weniger als der Ukraine-Krieg im Juni 2022 mit 116,80 $.\n\n' +
+      'Und jetzt?\n' +
+      'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli bei 79,80 $, im September wieder bei 102,30 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt, nicht inflationsbereinigt.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 2. Oktober 2026; eigene Rechnung',
+    freigabe: '2026-11-02',
+    schlagworte: ['oelpreis', 'iran', 'krieg', 'rohstoffe', 'geopolitik'],
+  },
+  {
+    /*
       Thema vom Betreiber am 30.10.2026: Zwischenwahl, aber einfach. Verworfen
       hatte er:
       - die Rendite nach Zwischenwahlen: „der halloweenbeitrag ist ja

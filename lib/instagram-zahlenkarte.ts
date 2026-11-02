@@ -379,10 +379,33 @@ export interface Zeitstrahlkarte extends StilGemeinsam {
   achse: number[]
 }
 
+/**
+ * Waagerechte Balken im Hausstil (02.11.2026, Kriege und der Ölpreis): je
+ * Zeile ein Fall mit Jahr und Name links, der Balken nach rechts, sein Wert
+ * dahinter. Für drei bis acht Fälle, die man nebeneinander misst – anders
+ * als `saeulen` ohne Zeitachse, die Reihenfolge ist die der Zeilen.
+ */
+export interface Balkenkarte extends StilGemeinsam {
+  art: 'balken'
+  helden: Held[]
+  balken: {
+    /** Fett, vorn: „1973". */
+    marke: string
+    /** Grau, dahinter: „Ölembargo". */
+    text: string
+    wert: number
+    /** In Tinte statt Grau – der eine Fall, um den es geht. */
+    hervor?: boolean
+  }[]
+  /** Hinter den Werten: „%". */
+  einheit: string
+}
+
 export type Zahlenkarte =
   | Kurvenkarte
   | Saeulenkarte
   | Zeitstrahlkarte
+  | Balkenkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -719,7 +742,9 @@ const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
 const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
-function stilBefunde(k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte): string[] {
+function stilBefunde(
+  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte
+): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
     f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
@@ -799,6 +824,17 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'balken') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.balken.length < 3 || k.balken.length > 8)
+      f.push(`${k.balken.length} Balken – drei bis acht.`)
+    for (const b of k.balken)
+      if (b.text.length > 22)
+        f.push(`„${b.text}" hat ${b.text.length} Zeichen – höchstens 22 neben dem Jahr.`)
+    if (k.balken.filter((b) => b.hervor).length > 1)
+      f.push('Höchstens ein Balken hervorgehoben.')
     f.push(...stilBefunde(k))
   } else if (k.art === 'zeitstrahl') {
     if (k.helden.length < 1 || k.helden.length > 2)
@@ -1072,13 +1108,20 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'kurven' || k.art === 'saeulen' || k.art === 'zeitstrahl') {
+  if (
+    k.art === 'kurven' ||
+    k.art === 'saeulen' ||
+    k.art === 'zeitstrahl' ||
+    k.art === 'balken'
+  ) {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
         : k.art === 'saeulen'
           ? stilBild(k, logo, k.helden, saeulenGrafik(k))
-          : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
+          : k.art === 'balken'
+            ? stilBild(k, logo, k.helden, balkenGrafik(k))
+            : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2379,7 +2422,9 @@ export function form(
   | 'torte'
   | 'kurven'
   | 'saeulen'
-  | 'zeitstrahl' {
+  | 'zeitstrahl'
+  | 'hausbalken' {
+  if (k.art === 'balken') return 'hausbalken'
   if (
     k.art === 'kurven' ||
     k.art === 'zeitstrahl' ||
@@ -3040,7 +3085,7 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte,
+  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3408,6 +3453,97 @@ function saeulenGrafik(k: Saeulenkarte) {
         color: STIL.hellgrau,
       }),
     ]),
+  ]
+}
+
+function balkenGrafik(k: Balkenkarte) {
+  /*
+    Links die Beschriftung (Jahr fett, Anlass grau), rechts die Balken an
+    einer Nulllinie: fallende Werte nach links, steigende nach rechts.
+  */
+  const spalte = STIL_RAND + 330
+  const rechts = ZK_BREITE - STIL_RAND - 110
+  const plus = Math.max(0, ...k.balken.map((b) => b.wert))
+  const minus = Math.max(0, ...k.balken.map((b) => -b.wert))
+  /* Links der Nulllinie Platz für die Zahl hinter dem längsten fallenden Balken. */
+  const luftLinks = minus > 0 ? 100 : 0
+  const massstab = (rechts - spalte - luftLinks) / (plus + minus)
+  const null_ = spalte + luftLinks + minus * massstab
+  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O + 40) / k.balken.length
+  const dicke = Math.min(30, zeile * 0.45)
+  const oben0 = STIL_GRAFIK_O - 30
+  const zahl = (v: number) =>
+    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v)).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
+  return [
+    h('div', {
+      style: {
+        position: 'absolute',
+        top: oben0,
+        left: null_ - 1,
+        width: 2,
+        height: zeile * k.balken.length,
+        backgroundColor: '#c9cfd8',
+      },
+    }),
+    ...k.balken.flatMap((b, i) => {
+      const mitte = oben0 + i * zeile + zeile / 2
+      const laenge = Math.max(4, Math.abs(b.wert) * massstab)
+      const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
+      const links = b.wert >= 0 ? null_ : null_ - laenge
+      return [
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: mitte - 19,
+              left: STIL_RAND,
+              width: spalte - STIL_RAND - 16,
+              display: 'flex',
+              alignItems: 'baseline',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'span',
+            {
+              style: {
+                fontSize: 22,
+                fontWeight: 800,
+                color: STIL.tinte,
+                marginRight: 12,
+              },
+            },
+            b.marke
+          ),
+          h(
+            'span',
+            { style: { fontSize: 19, color: b.hervor ? STIL.tinte : STIL.grau } },
+            b.text
+          )
+        ),
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: mitte - dicke / 2,
+            left: links,
+            width: laenge,
+            height: dicke,
+            borderRadius: 5,
+            backgroundColor: farbe,
+          },
+        }),
+        stilBlock(zahl(b.wert), {
+          top: mitte - 15,
+          ...(b.wert >= 0
+            ? { left: null_ + laenge + 12 }
+            : { left: links - 112, width: 100, justifyContent: 'flex-end' }),
+          fontSize: 22,
+          fontWeight: 800,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+      ]
+    }),
   ]
 }
 
