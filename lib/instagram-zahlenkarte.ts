@@ -349,9 +349,35 @@ export interface Saeulenkarte extends StilGemeinsam {
   nachkomma?: number
 }
 
+/**
+ * Zeitstrahl im Hausstil (02.11.2026, Lagardes vorzeitiger Abschied): je
+ * Person ein waagerechter Balken über ihre Amtszeit, mit rundem Porträt
+ * davor. Was regulär noch übrig gewesen wäre, steht gestrichelt dahinter.
+ * Für eine Abfolge von Amtsinhabern oder Zeitabschnitten.
+ */
+export interface Zeitstrahlkarte extends StilGemeinsam {
+  art: 'zeitstrahl'
+  helden: Held[]
+  /** Daten als JJJJ-MM-TT; `regelEnde` nur, wenn `ende` davor liegt. */
+  balken: {
+    name: string
+    beginn: string
+    ende: string
+    regelEnde?: string
+    /** Hinter dem Balken: „5,4 Jahre". */
+    text: string
+    bild?: string
+    /** Der eine Balken, um den es geht – in Tinte, die anderen grau. */
+    hervor?: boolean
+  }[]
+  /** Jahre, an denen die x-Achse beschriftet wird. */
+  achse: number[]
+}
+
 export type Zahlenkarte =
   | Kurvenkarte
   | Saeulenkarte
+  | Zeitstrahlkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -688,7 +714,7 @@ const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
 const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
-function stilBefunde(k: Kurvenkarte | Saeulenkarte): string[] {
+function stilBefunde(k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
     f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
@@ -768,6 +794,21 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'zeitstrahl') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.balken.length < 2 || k.balken.length > 6)
+      f.push(`${k.balken.length} Balken – zwei bis sechs.`)
+    if (k.balken.filter((b) => b.hervor).length > 1)
+      f.push('Höchstens ein Balken hervorgehoben.')
+    for (const b of k.balken) {
+      if (!(b.beginn < b.ende)) f.push(`${b.name}: Beginn nicht vor Ende.`)
+      if (b.regelEnde !== undefined && !(b.ende < b.regelEnde))
+        f.push(`${b.name}: regelEnde nicht nach Ende.`)
+      if (b.bild !== undefined && !existsSync(join(FOTO_ORDNER, b.bild)))
+        f.push(`Foto „${b.bild}" fehlt in lib/instagram/fotos/.`)
+    }
     f.push(...stilBefunde(k))
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
@@ -1026,11 +1067,13 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'kurven' || k.art === 'saeulen') {
+  if (k.art === 'kurven' || k.art === 'saeulen' || k.art === 'zeitstrahl') {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
-        : stilBild(k, logo, k.helden, saeulenGrafik(k))
+        : k.art === 'saeulen'
+          ? stilBild(k, logo, k.helden, saeulenGrafik(k))
+          : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2330,9 +2373,11 @@ export function form(
   | 'pyramide'
   | 'torte'
   | 'kurven'
-  | 'saeulen' {
+  | 'saeulen'
+  | 'zeitstrahl' {
   if (
     k.art === 'kurven' ||
+    k.art === 'zeitstrahl' ||
     k.art === 'saeulen' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
@@ -2990,7 +3035,7 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte,
+  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3343,6 +3388,109 @@ function saeulenGrafik(k: Saeulenkarte) {
         color: STIL.hellgrau,
       }),
     ]),
+  ]
+}
+
+/** Ein Datum JJJJ-MM-TT als Jahr mit Bruchteil – genug für eine Balkenlänge. */
+function jahrBruch(d: string): number {
+  const [j, m, t] = d.split('-').map(Number)
+  return j + (m - 1) / 12 + (t - 1) / 365
+}
+
+function zeitstrahlGrafik(k: Zeitstrahlkarte) {
+  const bild = 72
+  const links = STIL_RAND + bild + 24
+  const rechts = ZK_BREITE - STIL_RAND
+  const anfang = Math.min(...k.balken.map((b) => jahrBruch(b.beginn)), ...k.achse)
+  const schluss = Math.max(
+    ...k.balken.map((b) => jahrBruch(b.regelEnde ?? b.ende)),
+    ...k.achse
+  )
+  /* Platz rechts für die Beschriftung hinter dem längsten Balken. */
+  const x = (j: number) =>
+    links + ((j - anfang) / (schluss - anfang)) * (rechts - links - 110)
+  const achseY = STIL_GRAFIK_U - 10
+  const zeile = (achseY - STIL_GRAFIK_O) / k.balken.length
+  const dicke = 30
+  const oben = STIL_GRAFIK_O
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${ZK_BREITE}" height="${achseY - oben + 2}" viewBox="0 ${oben} ${ZK_BREITE} ${achseY - oben + 2}">` +
+    k.achse
+      .map(
+        (j) =>
+          `<line x1="${x(j)}" x2="${x(j)}" y1="${oben}" y2="${achseY}" stroke="${STIL.rand}" stroke-width="1.5"/>`
+      )
+      .join('') +
+    `<line x1="${links}" x2="${rechts}" y1="${achseY}" y2="${achseY}" stroke="#c9cfd8" stroke-width="2"/>` +
+    k.balken
+      .map((b, i) => {
+        const mitte = oben + zeile * i + zeile / 2 + 12
+        const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
+        const x0 = x(jahrBruch(b.beginn))
+        const x1 = x(jahrBruch(b.ende))
+        const rest = b.regelEnde
+          ? `<rect x="${x1 + 3}" y="${mitte - dicke / 2 + 1.5}" width="${x(jahrBruch(b.regelEnde)) - x1 - 4.5}" height="${dicke - 3}" rx="5" fill="none" stroke="${farbe}" stroke-width="2.5" stroke-dasharray="7 6"/>`
+          : ''
+        return `<rect x="${x0}" y="${mitte - dicke / 2}" width="${x1 - x0}" height="${dicke}" rx="6" fill="${farbe}"/>${rest}`
+      })
+      .join('') +
+    '</svg>'
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: ZK_BREITE,
+      height: achseY - oben + 2,
+      style: { position: 'absolute', left: 0, top: oben },
+    }),
+    ...k.balken.flatMap((b, i) => {
+      const mitte = oben + zeile * i + zeile / 2 + 12
+      const ende = x(jahrBruch(b.regelEnde ?? b.ende))
+      return [
+        ...(b.bild
+          ? [
+              h('img', {
+                src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, b.bild)).toString('base64')}`,
+                width: bild,
+                height: bild,
+                style: {
+                  position: 'absolute',
+                  top: mitte - bild / 2 - 10,
+                  left: STIL_RAND,
+                  borderRadius: bild,
+                  objectFit: 'cover',
+                  border: `2px solid ${STIL.rand}`,
+                },
+              }),
+            ]
+          : []),
+        stilBlock(b.name, {
+          top: mitte - dicke / 2 - 32,
+          left: x(jahrBruch(b.beginn)),
+          fontSize: 20,
+          fontWeight: 700,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+        stilBlock(b.text, {
+          top: mitte - 14,
+          left: ende + 14,
+          fontSize: 22,
+          fontWeight: 800,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+      ]
+    }),
+    ...k.achse.map((j) =>
+      stilBlock(String(j), {
+        top: achseY + 12,
+        left: x(j) - 40,
+        width: 80,
+        justifyContent: 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
   ]
 }
 
