@@ -735,7 +735,9 @@ export function logoName(titel: string): string | null {
       .trim()
       .split(/[\s:,]/)[0]
       ?.split('-')[0] ?? ''
-  if (wort.length < 2 || !/^[A-ZÄÖÜ0-9]/.test(wort)) return null
+  /* Kürzel aus zwei Buchstaben sind fast immer Länder („US-Zwischenwahlen"
+     fand am 02.11.2026 das Logo von Toys "R" Us). */
+  if (wort.length < 3 || !/^[A-ZÄÖÜ0-9]/.test(wort)) return null
   if (KEIN_UNTERNEHMEN.has(wort.toLowerCase())) return null
   return wort
 }

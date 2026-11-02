@@ -493,6 +493,8 @@ pruefe(
     ['Arbeitsmarkt: 2,955 Mio.', null],
     ['BOJ hält den Zins', null],
     ['Euro nahe Jahrestief', null],
+    ['US-Zwischenwahlen', null],
+    ['Krypto-Raub: FBI ermittelt', null],
   ]
   for (const [titel, erwartet] of faelle)
     pruefe(
