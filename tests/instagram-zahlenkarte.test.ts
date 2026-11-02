@@ -5,7 +5,11 @@
  */
 import { readFileSync } from 'node:fs'
 
-import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
+import {
+  zahlenkarten,
+  aktuelleZahlenkarte,
+  zurueckgestellt,
+} from '@/data/instagram-zahlenkarten'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
   akzentfarbe,
@@ -991,10 +995,48 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 02.11.2026: Lagarde geht vorzeitig – Amtszeiten der EZB-Präsidenten (Wikipedia, Tagesschau). */
+/* 02.11.2026: Atomsprengköpfe (FAS 2026, Our World in Data). */
 {
   const karte = karteVom('2026-11-02')
-  pruefe('EZB: Karte für den 02.11. ist ein Zeitstrahl', karte?.art === 'zeitstrahl')
+  pruefe('Atom: Karte für den 02.11. ist eine Kurvenkarte', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
+    pruefe(
+      'Atom: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Atom: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-01')!)
+    )
+    const [ru, us] = karte.linien
+    pruefe('Atom: 82 Jahre 1945–2026', ru.punkte.length === 82 && us.punkte.length === 82)
+    pruefe(
+      'Atom: 2026 Russland 4.400, USA 3.700 (FAS)',
+      ru.punkte.at(-1) === 4400 && us.punkte.at(-1) === 3700
+    )
+    const minus = (r: readonly number[]) =>
+      Math.round((r.at(-1)! / Math.max(...r) - 1) * 100)
+    pruefe(
+      'Atom: Russland −89 % seit 1986',
+      minus(ru.punkte) === -89 && ru.punkte.indexOf(Math.max(...ru.punkte)) === 41
+    )
+    pruefe(
+      'Atom: USA −88 % seit 1967',
+      minus(us.punkte) === -88 && us.punkte.indexOf(Math.max(...us.punkte)) === 22
+    )
+    const liste = [5420, 5042, 620, 370, 225, 190, 170, 90, 60]
+    pruefe(
+      'Atom: die neun Bestände ergeben 12.187',
+      liste.reduce((a, b) => a + b) === 12187 && karte.text.includes('12.187')
+    )
+  }
+}
+
+/* 02.11.2026: Lagarde geht vorzeitig – Amtszeiten der EZB-Präsidenten (Wikipedia, Tagesschau). */
+{
+  const karte = zurueckgestellt.find((z) => z.art === 'zeitstrahl')
+  pruefe('EZB: Lagarde-Karte liegt zurückgestellt bereit', karte?.art === 'zeitstrahl')
   if (karte?.art === 'zeitstrahl') {
     pruefe(
       'EZB: keine Beanstandung',

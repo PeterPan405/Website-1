@@ -322,7 +322,10 @@ export interface Kurvenkarte extends StilGemeinsam {
   linien: {
     name: string
     ende: string
-    richtung: 'steigt' | 'faellt'
+    /** Ohne Richtung steht die Linie in Tinte – etwa wenn beide fallen und sich sonst nicht unterscheiden. */
+    richtung?: 'steigt' | 'faellt'
+    /** „grau" setzt die zweite Linie ab, wenn beide keine Richtung tragen. */
+    ton?: 'grau'
     punkte: readonly number[]
   }[]
   /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
@@ -330,6 +333,8 @@ export interface Kurvenkarte extends StilGemeinsam {
   /** Hinter den Zahlen der y-Achse: „€". */
   einheit: string
   kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
+  /** Den Namen jeder Linie über ihren Höchststand schreiben – nötig, wenn die Farben keine Richtung tragen. */
+  namenAnKurve?: boolean
 }
 
 /**
@@ -3247,7 +3252,7 @@ function kurvenGrafik(k: Kurvenkarte) {
       .join('') +
     k.linien
       .map((l) => {
-        const farbe = stilFarbe(l.richtung)
+        const farbe = l.ton === 'grau' ? STIL.hellgrau : stilFarbe(l.richtung)
         return (
           `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
           `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
@@ -3264,6 +3269,21 @@ function kurvenGrafik(k: Kurvenkarte) {
       style: { position: 'absolute', left: diagrammL - luft, top: STIL_GRAFIK_O - luft },
     }),
     ...stilAchse(striche, y, diagrammR, k.einheit),
+    ...(k.namenAnKurve
+      ? k.linien.map((l) => {
+          const hoch = Math.max(...l.punkte)
+          const i = l.punkte.indexOf(hoch)
+          return stilBlock(l.name, {
+            top: STIL_GRAFIK_O + y(hoch) - 36,
+            left: diagrammL + x(i) - 100,
+            width: 200,
+            justifyContent: 'center',
+            fontSize: 20,
+            fontWeight: 700,
+            color: l.ton === 'grau' ? STIL.hellgrau : stilFarbe(l.richtung),
+          })
+        })
+      : []),
     ...k.achse.map((a, i) =>
       stilBlock(a.text, {
         top: STIL_GRAFIK_U + 16,

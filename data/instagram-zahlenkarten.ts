@@ -12,106 +12,78 @@
  * IM Invests hinaus – dieselbe Regel wie für die Nachrichten.
  */
 import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
+import { ATOM_RUSSLAND, ATOM_USA } from './instagram-reihen-atomwaffen.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
-      Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
-      Zeitstrahl im Hausstil, neu (am 01.11. Säulen).
+      Thema vom Betreiber am 02.11.2026: „was Spannendes … wegen dem
+      Iran-Krieg jetzt. Atomwaffen und so." Verworfen hatte er Lagarde
+      (zurückgestellt), Gold, Binance, Meta, VW, Termine der Woche.
+      Form: Kurven (am 01.11. Säulen).
 
       Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
-      - Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück",
-        29.10.2026: Lagarde gibt ihr Amt zum 7. Februar 2027 auf, die
-        achtjährige Amtszeit endete regulär Ende Oktober 2027. Nachfolge
-        vor der Präsidentschaftswahl in Frankreich (April 2027); Merz:
-        Besetzung bis Jahresende; Favoriten Klaas Knot und Pablo Hernández
-        de Cos, Joachim Nagel hat sich ins Spiel gebracht; Deutschland
-        stellte noch nie die EZB-Spitze.
-      - Handelsblatt, 29.10.2026: Lagarde will offen sprechen können, vor
-        allem zur Frankreich-Wahl; die Neutralität des Amtes sei damit
-        nicht vereinbar.
-      - Wikipedia, „Präsident der Europäischen Zentralbank" (Stand
-        01.11.2026): reguläre Amtszeit 8 Jahre, keine Wiederwahl.
-        Duisenberg 01.06.1998–31.10.2003 (aus Altersgründen etwa zur Mitte
-        der Amtszeit zurückgetreten), Trichet 01.11.2003–31.10.2011,
-        Draghi 01.11.2011–31.10.2019, Lagarde seit 01.11.2019.
-      Gerechnet: Duisenberg 5 Jahre 5 Monate = 5,4; Lagarde bis 07.02.2027
-      7 Jahre 3 Monate = 7,3.
-
-      Porträts von Wikimedia Commons, geholt am 02.11.2026 über
-      bilder-holen.yml, auf den Kopf zugeschnitten:
-        Duisenberg – Wim Duisenberg (cropped).jpg, IWF, gemeinfrei
-        Trichet – Jean-Claude Trichet - World Economic Forum Annual Meeting
-          Davos 2010.jpg, World Economic Forum, CC BY-SA 2.0
-        Draghi – Mario Draghi 2019.jpg, Quirinale, Namensnennung
-        Lagarde – Lagarde ECB Portrait 2019.jpg, Lemrich / EZB, Namensnennung
+      - FAS, „Status of World Nuclear Forces 2026": 12.187 Sprengköpfe in
+        neun Staaten, davon 9.745 im Militärbestand; USA und Russland
+        besitzen rund 86 % des Gesamtbestands; Höhepunkt rund 70.300 im
+        Jahr 1986. Gesamtbestand je Land: Russland 5.420, USA 5.042,
+        China 620, Frankreich 370, Großbritannien 225, Indien 190,
+        Pakistan 170, Israel 90, Nordkorea 60. Der Abbau verlangsamt sich
+        und läuft nur noch über die Verschrottung ausgemusterter
+        Sprengköpfe; die Militärbestände wachsen wieder. China baut aus,
+        laut US-Verteidigungsministerium (2022) bis 2030 rund 1.000.
+        Seit 2023 tauschen USA und Russland keine öffentlichen Daten mehr.
+      - Our World in Data, Militärbestand je Jahr (data/instagram-reihen-atomwaffen.ts):
+        Russland/Sowjetunion Höchststand 1986 mit 40.159, 2026: 4.400
+        (−89 %); USA Höchststand 1967 mit 31.255, 2026: 3.700 (−88 %).
+      Iran: steht nicht in der FAS-Liste der neun Atommächte.
     */
-    art: 'zeitstrahl',
+    art: 'kurven',
     datum: '2026-11-02',
-    titel: [{ text: 'EZB-Chefin Lagarde' }, { text: 'geht früher.', gruen: true }],
+    titel: [{ text: 'Atomsprengköpfe:' }, { text: 'Weniger, nicht weg.', gruen: true }],
+    stichzeile: 'Sprengköpfe · USA und Russland ab 1945',
     erklaerung:
-      'Christine Lagarde gibt ihr Amt am 7. Februar 2027 auf – fast neun Monate vor dem regulären Ende ihrer achtjährigen Amtszeit.',
-    stichzeile: 'EZB-Präsidenten · Amtszeit seit 1998',
-    helden: [
-      {
-        name: 'Amtszeit Lagarde',
-        wert: '7,3 Jahre',
-        pille: { wert: '8 Jahre', name: 'wären regulär' },
-      },
+      'USA und Russland haben seit dem Kalten Krieg fast 90 % ihrer Sprengköpfe abgebaut – und halten noch 86 % aller.',
+    linien: [
+      { name: 'Russland', ende: '4.400', punkte: ATOM_RUSSLAND },
+      { name: 'USA', ende: '3.700', ton: 'grau', punkte: ATOM_USA },
     ],
-    balken: [
-      {
-        name: 'Wim Duisenberg',
-        beginn: '1998-06-01',
-        ende: '2003-10-31',
-        regelEnde: '2006-05-31',
-        text: '5,4 J.',
-        bild: 'ezb-duisenberg.jpg',
-      },
-      {
-        name: 'Jean-Claude Trichet',
-        beginn: '2003-11-01',
-        ende: '2011-10-31',
-        text: '8 J.',
-        bild: 'ezb-trichet.jpg',
-      },
-      {
-        name: 'Mario Draghi',
-        beginn: '2011-11-01',
-        ende: '2019-10-31',
-        text: '8 J.',
-        bild: 'ezb-draghi.jpg',
-      },
-      {
-        name: 'Christine Lagarde',
-        beginn: '2019-11-01',
-        ende: '2027-02-07',
-        regelEnde: '2027-10-31',
-        text: '7,3 J.',
-        bild: 'ezb-lagarde.jpg',
-        hervor: true,
-      },
+    achse: [
+      { bei: 0, text: '1945' },
+      { bei: 15, text: '1960' },
+      { bei: 35, text: '1980' },
+      { bei: 55, text: '2000' },
+      { bei: 81, text: '2026' },
     ],
-    achse: [2000, 2005, 2010, 2015, 2020, 2025],
+    einheit: '',
+    namenAnKurve: true,
+    kennzahlen: [
+      { name: 'seit 1986', wert: '−89 %', richtung: 'faellt' },
+      { name: 'seit 1967', wert: '−88 %', richtung: 'faellt' },
+    ],
     fusszeile:
-      'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
+      'Stand: Anfang 2026 | Quellen: Federation of American Scientists, Our World in Data',
     text:
-      'Christine Lagarde hört früher auf. Die EZB-Präsidentin gibt ihr Amt am 7. Februar 2027 auf (Tagesschau, 29.10.). Regulär endete ihre achtjährige Amtszeit Ende Oktober 2027.\n\n' +
-      'Die Balken im Bild, Präsident für Präsident:\n' +
-      'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
-      'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
-      'Mario Draghi (Italien): November 2011 – Oktober 2019, 8 Jahre\n' +
-      'Christine Lagarde (Frankreich): November 2019 – Februar 2027, 7,3 Jahre\n\n' +
-      'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
-      'Warum geht Lagarde?\n' +
-      'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
+      'Krieg um den Iran, Drohungen, Aufrüstung – wie viele Atomwaffen gibt es eigentlich? Laut der Federation of American Scientists (FAS) Anfang 2026 rund 12.187 Sprengköpfe, verteilt auf neun Staaten. 1986 waren es rund 70.300.\n\n' +
+      'Alle neun Atommächte, Gesamtbestand laut FAS:\n' +
+      'Russland: 5.420\n' +
+      'USA: 5.042\n' +
+      'China: 620\n' +
+      'Frankreich: 370\n' +
+      'Großbritannien: 225\n' +
+      'Indien: 190\n' +
+      'Pakistan: 170\n' +
+      'Israel: 90\n' +
+      'Nordkorea: 60\n' +
+      'Der Iran steht nicht auf dieser Liste.\n\n' +
+      'Die Kurven zeigen den einsatzbereiten Militärbestand: Russland (bis 1991 Sowjetunion) von 40.159 im Jahr 1986 auf 4.400, die USA von 31.255 im Jahr 1967 auf 3.700.\n\n' +
+      'Warum so viel weniger?\n' +
+      'Laut FAS bauten beide nach dem Kalten Krieg ab. Inzwischen gehe der Abbau aber nur noch weiter, weil ausgemusterte Sprengköpfe verschrottet werden.\n\n' +
       'Und jetzt?\n' +
-      'Die Eurostaaten suchen die Nachfolge. Kanzler Merz will den Prozess laut Tagesschau bis zum Jahresende abschließen. Als Favoriten gelten demnach Klaas Knot, früher Chef der niederländischen Notenbank, und der Spanier Pablo Hernández de Cos. Bundesbank-Präsident Joachim Nagel hat sich selbst ins Spiel gebracht – Deutschland stellte die EZB-Spitze noch nie.\n\n' +
-      'Quellen: Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück", 29.10.2026; Handelsblatt, 29.10.2026; Wikipedia, „Präsident der Europäischen Zentralbank"\n' +
-      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
-    schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
+      'Die einsatzbereiten Bestände wachsen laut FAS wieder. China baut aus – das US-Verteidigungsministerium rechnete 2022 mit rund 1.000 Sprengköpfen bis 2030. Seit 2023 tauschen die USA und Russland keine öffentlichen Daten mehr aus.\n\n' +
+      'Quellen: Federation of American Scientists, „Status of World Nuclear Forces 2026"; Our World in Data, „Nuclear warhead stockpiles"',
+    schlagworte: ['atomwaffen', 'geopolitik', 'iran', 'russland', 'usa'],
   },
   {
     /*
@@ -1270,6 +1242,113 @@ export const zahlenkarten: Zahlenkarte[] = [
 ]
 
 /** Die jüngste Karte – die, um die es heute geht. */
+/**
+ * Gebaut, aber zurückgestellt. Betreiber, 02.11.2026, zur Lagarde-Karte:
+ * „So ähnlich können wir das speichern für wann anders, aber heute ist es
+ * … wichtigere Themen." Wer eine davon bringt, setzt das Datum und hängt sie
+ * oben in `zahlenkarten` ein.
+ */
+export const zurueckgestellt: Zahlenkarte[] = [
+  {
+    /*
+      Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
+      Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
+      Zeitstrahl im Hausstil, neu (am 01.11. Säulen).
+
+      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
+      - Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück",
+        29.10.2026: Lagarde gibt ihr Amt zum 7. Februar 2027 auf, die
+        achtjährige Amtszeit endete regulär Ende Oktober 2027. Nachfolge
+        vor der Präsidentschaftswahl in Frankreich (April 2027); Merz:
+        Besetzung bis Jahresende; Favoriten Klaas Knot und Pablo Hernández
+        de Cos, Joachim Nagel hat sich ins Spiel gebracht; Deutschland
+        stellte noch nie die EZB-Spitze.
+      - Handelsblatt, 29.10.2026: Lagarde will offen sprechen können, vor
+        allem zur Frankreich-Wahl; die Neutralität des Amtes sei damit
+        nicht vereinbar.
+      - Wikipedia, „Präsident der Europäischen Zentralbank" (Stand
+        01.11.2026): reguläre Amtszeit 8 Jahre, keine Wiederwahl.
+        Duisenberg 01.06.1998–31.10.2003 (aus Altersgründen etwa zur Mitte
+        der Amtszeit zurückgetreten), Trichet 01.11.2003–31.10.2011,
+        Draghi 01.11.2011–31.10.2019, Lagarde seit 01.11.2019.
+      Gerechnet: Duisenberg 5 Jahre 5 Monate = 5,4; Lagarde bis 07.02.2027
+      7 Jahre 3 Monate = 7,3.
+
+      Porträts von Wikimedia Commons, geholt am 02.11.2026 über
+      bilder-holen.yml, auf den Kopf zugeschnitten:
+        Duisenberg – Wim Duisenberg (cropped).jpg, IWF, gemeinfrei
+        Trichet – Jean-Claude Trichet - World Economic Forum Annual Meeting
+          Davos 2010.jpg, World Economic Forum, CC BY-SA 2.0
+        Draghi – Mario Draghi 2019.jpg, Quirinale, Namensnennung
+        Lagarde – Lagarde ECB Portrait 2019.jpg, Lemrich / EZB, Namensnennung
+    */
+    art: 'zeitstrahl',
+    datum: '2026-11-02', // Datum anpassen, wenn sie dran ist
+    titel: [{ text: 'EZB-Chefin Lagarde' }, { text: 'geht früher.', gruen: true }],
+    erklaerung:
+      'Christine Lagarde gibt ihr Amt am 7. Februar 2027 auf – fast neun Monate vor dem regulären Ende ihrer achtjährigen Amtszeit.',
+    stichzeile: 'EZB-Präsidenten · Amtszeit seit 1998',
+    helden: [
+      {
+        name: 'Amtszeit Lagarde',
+        wert: '7,3 Jahre',
+        pille: { wert: '8 Jahre', name: 'wären regulär' },
+      },
+    ],
+    balken: [
+      {
+        name: 'Wim Duisenberg',
+        beginn: '1998-06-01',
+        ende: '2003-10-31',
+        regelEnde: '2006-05-31',
+        text: '5,4 J.',
+        bild: 'ezb-duisenberg.jpg',
+      },
+      {
+        name: 'Jean-Claude Trichet',
+        beginn: '2003-11-01',
+        ende: '2011-10-31',
+        text: '8 J.',
+        bild: 'ezb-trichet.jpg',
+      },
+      {
+        name: 'Mario Draghi',
+        beginn: '2011-11-01',
+        ende: '2019-10-31',
+        text: '8 J.',
+        bild: 'ezb-draghi.jpg',
+      },
+      {
+        name: 'Christine Lagarde',
+        beginn: '2019-11-01',
+        ende: '2027-02-07',
+        regelEnde: '2027-10-31',
+        text: '7,3 J.',
+        bild: 'ezb-lagarde.jpg',
+        hervor: true,
+      },
+    ],
+    achse: [2000, 2005, 2010, 2015, 2020, 2025],
+    fusszeile:
+      'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
+    text:
+      'Christine Lagarde hört früher auf. Die EZB-Präsidentin gibt ihr Amt am 7. Februar 2027 auf (Tagesschau, 29.10.). Regulär endete ihre achtjährige Amtszeit Ende Oktober 2027.\n\n' +
+      'Die Balken im Bild, Präsident für Präsident:\n' +
+      'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
+      'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
+      'Mario Draghi (Italien): November 2011 – Oktober 2019, 8 Jahre\n' +
+      'Christine Lagarde (Frankreich): November 2019 – Februar 2027, 7,3 Jahre\n\n' +
+      'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
+      'Warum geht Lagarde?\n' +
+      'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
+      'Und jetzt?\n' +
+      'Die Eurostaaten suchen die Nachfolge. Kanzler Merz will den Prozess laut Tagesschau bis zum Jahresende abschließen. Als Favoriten gelten demnach Klaas Knot, früher Chef der niederländischen Notenbank, und der Spanier Pablo Hernández de Cos. Bundesbank-Präsident Joachim Nagel hat sich selbst ins Spiel gebracht – Deutschland stellte die EZB-Spitze noch nie.\n\n' +
+      'Quellen: Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück", 29.10.2026; Handelsblatt, 29.10.2026; Wikipedia, „Präsident der Europäischen Zentralbank"\n' +
+      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
+    schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
+  },
+]
+
 export function aktuelleZahlenkarte(): Zahlenkarte | null {
   return [...zahlenkarten].sort((a, b) => b.datum.localeCompare(a.datum))[0] ?? null
 }
