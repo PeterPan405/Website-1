@@ -1006,28 +1006,33 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe('Öl: Form anders als am Vortag', form(karte) !== form(karteVom('2026-11-01')!))
-    /* Monat davor → teuerster Monat danach, $ je Fass. */
+    /* Monat davor → teuerster (Krieg) bzw. billigster (Krise) Monat danach, $ je Fass. */
     const paare: [number, number][] = [
       [2.7, 13.0],
       [14.5, 40.8],
+      [26.5, 9.6],
       [17.2, 34.5],
+      [114.6, 41.3],
+      [53.3, 21.0],
       [83.9, 116.8],
       [63.7, 103.9],
     ]
     paare.forEach(([vor, hoch], i) => {
       const prozent = (hoch / vor - 1) * 100
       pruefe(
-        `Öl: ${karte.balken[i].marke} +${Math.round(prozent)} %`,
+        `Öl: ${karte.balken[i].marke} ${Math.round(prozent)} %`,
         Math.abs(karte.balken[i].wert - prozent) < 0.05
       )
       pruefe(
         `Öl: ${karte.balken[i].marke} steht so in der Beschreibung`,
-        karte.text.includes(`+${Math.round(prozent)} %`)
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
       )
     })
     pruefe(
       'Öl: Heldenzahl ist der Iran-Balken',
-      karte.helden[0].wert === `+${Math.round(karte.balken[4].wert)} %`
+      karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
     )
   }
 }

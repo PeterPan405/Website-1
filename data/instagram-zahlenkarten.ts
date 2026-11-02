@@ -26,8 +26,14 @@ export const zahlenkarten: Zahlenkarte[] = [
       CMO-Historical-Data-Monthly.xlsx, Stand 02.10.2026, abgerufen am
       02.11.2026 über quellen-holen.yml (blatt 2). Reihe „Crude oil,
       average" (Mittel aus Brent, Dubai, WTI), $ je Fass, Monatsmittel.
-      Gerechnet: Monat vor Kriegsbeginn gegen den höchsten Monat der zwölf
-      Monate ab Kriegsbeginn (2026: Februar bis September, acht Monate).
+      Gerechnet: Monat vor Beginn gegen den teuersten (Kriege) bzw.
+      billigsten Monat (Krisen) der zwölf Monate ab Beginn (2026: Februar
+      bis September, acht Monate). Krisen auf Wunsch des Betreibers
+      („ein paar andere Beispiele extreme … nicht nur Kriege, sondern auch
+      Krisen"):
+        1986 (Jan.)  12/1985  26,5 → 07/1986   9,6    −64 %
+        2008 (Sept.) 08/2008 114,6 → 12/2008  41,3    −64 %
+        2020 (März)  02/2020  53,3 → 04/2020  21,0    −61 %
         1973 (Okt.)  09/1973   2,7 → 03/1974  13,0   +381 %
         1979 (Jan.)  12/1978  14,5 → 11/1979  40,8   +181 %
         1990 (Aug.)  07/1990  17,2 → 10/1990  34,5   +101 %
@@ -42,12 +48,12 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'balken',
     datum: '2026-11-02',
     titel: [
-      { text: 'Krieg und Ölpreis:' },
+      { text: 'Krieg, Krise, Ölpreis:' },
       { text: 'Teuer, aber kein 1973.', gruen: true },
     ],
     erklaerung:
-      'So stark stieg der Ölpreis nach Kriegsbeginn: höchster Monatspreis im Jahr danach gegen den Monat davor.',
-    stichzeile: 'Rohöl · Anstieg nach Kriegsbeginn',
+      'Stärkster Ausschlag des Ölpreises im Jahr nach Beginn: teuerster oder billigster Monat gegen den Monat davor.',
+    stichzeile: 'Rohöl · nach Kriegen und Krisen',
     helden: [
       {
         name: 'Krieg um den Iran',
@@ -56,28 +62,34 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
     ],
     balken: [
-      { marke: '1973', text: 'Jom-Kippur-Krieg, Ölembargo', wert: 381.48 },
-      { marke: '1979', text: 'Revolution im Iran', wert: 181.4 },
-      { marke: '1990', text: 'Irak besetzt Kuwait', wert: 100.6 },
-      { marke: '2022', text: 'Russland greift die Ukraine an', wert: 39.2 },
-      { marke: '2026', text: 'Krieg um den Iran (bis Sept.)', wert: 63.1, hervor: true },
+      { marke: '1973', text: 'Ölembargo', wert: 381.48 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 181.38 },
+      { marke: '1986', text: 'Ölpreisverfall', wert: -63.77 },
+      { marke: '1990', text: 'Irak besetzt Kuwait', wert: 100.58 },
+      { marke: '2008', text: 'Finanzkrise', wert: -63.96 },
+      { marke: '2020', text: 'Corona', wert: -60.6 },
+      { marke: '2022', text: 'Krieg in der Ukraine', wert: 39.21 },
+      { marke: '2026', text: 'Krieg um den Iran', wert: 63.11, hervor: true },
     ],
     einheit: '%',
     fusszeile:
       'Stand: 09/2026 | Quelle: Weltbank (Pink Sheet), Rohöl-Mittel aus Brent, Dubai, WTI; eigene Rechnung',
     text:
-      'Krieg treibt den Ölpreis – aber wie stark? Wir haben bei der Weltbank nachgesehen: Monatspreise für Rohöl seit 1960, jeweils der Monat vor Kriegsbeginn gegen den teuersten Monat im Jahr danach.\n\n' +
-      'Die Balken im Bild, Krise für Krise:\n' +
-      '1973 – Jom-Kippur-Krieg und Ölembargo: von 2,70 $ auf 13,00 $ je Fass, +381 %\n' +
-      '1979 – Revolution im Iran: von 14,50 $ auf 40,80 $, +181 %\n' +
-      '1990 – Irak besetzt Kuwait: von 17,20 $ auf 34,50 $, +101 %\n' +
-      '2022 – Russland greift die Ukraine an: von 83,90 $ auf 116,80 $, +39 %\n' +
-      '2026 – Krieg um den Iran: von 63,70 $ auf 103,90 $, +63 % (bis September)\n\n' +
-      'Warum war es 1973 so viel schlimmer?\n' +
+      'Krieg treibt den Ölpreis, Krisen lassen ihn abstürzen – aber wie stark? Wir haben bei der Weltbank nachgesehen: Monatspreise für Rohöl seit 1960. Gemessen ist der stärkste Ausschlag im Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Die Balken im Bild, Fall für Fall ($ je Fass):\n' +
+      '1973 – Ölembargo: 2,70 → 13,00, +381 %\n' +
+      '1979 – Revolution im Iran: 14,50 → 40,80, +181 %\n' +
+      '1986 – Ölpreisverfall: 26,50 → 9,60, −64 %\n' +
+      '1990 – Irak besetzt Kuwait: 17,20 → 34,50, +101 %\n' +
+      '2008 – Finanzkrise: 114,60 → 41,30, −64 %\n' +
+      '2020 – Corona: 53,30 → 21,00, −61 %\n' +
+      '2022 – Krieg in der Ukraine: 83,90 → 116,80, +39 %\n' +
+      '2026 – Krieg um den Iran: 63,70 → 103,90, +63 % (bis September)\n\n' +
+      'Warum war 1973 so extrem?\n' +
       'Die Zahlen nennen keinen Grund. Sie zeigen aber, von wo es losging: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
       'Und jetzt?\n' +
-      'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli fiel er auf 79,80 $, im September stieg er wieder auf 102,30 $. Die Daten reichen bis September – wie es weitergeht, sagen sie nicht.\n\n' +
-      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt in US-Dollar, nicht inflationsbereinigt.\n' +
+      'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli bei 79,80 $, im September wieder bei 102,30 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt, nicht inflationsbereinigt. Zeitraum je zwölf Monate ab Beginn, 2026 bis September.\n' +
       'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 2. Oktober 2026; eigene Rechnung',
     schlagworte: ['oelpreis', 'iran', 'krieg', 'rohstoffe', 'geopolitik'],
   },

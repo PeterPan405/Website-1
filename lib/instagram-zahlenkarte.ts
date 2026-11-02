@@ -830,7 +830,9 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
     if (k.balken.length < 3 || k.balken.length > 8)
       f.push(`${k.balken.length} Balken – drei bis acht.`)
-    if (k.balken.some((b) => b.wert < 0)) f.push('Balken nur für Werte ab null.')
+    for (const b of k.balken)
+      if (b.text.length > 22)
+        f.push(`„${b.text}" hat ${b.text.length} Zeichen – höchstens 22 neben dem Jahr.`)
     if (k.balken.filter((b) => b.hervor).length > 1)
       f.push('Höchstens ein Balken hervorgehoben.')
     f.push(...stilBefunde(k))
@@ -3455,61 +3457,94 @@ function saeulenGrafik(k: Saeulenkarte) {
 }
 
 function balkenGrafik(k: Balkenkarte) {
-  const links = STIL_RAND
-  const rechts = ZK_BREITE - STIL_RAND
-  /* Platz hinter dem längsten Balken für seinen Wert. */
-  const breite = rechts - links - 150
-  const hoch = Math.max(...k.balken.map((b) => b.wert))
-  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O + 20) / k.balken.length
-  const dicke = 30
+  /*
+    Links die Beschriftung (Jahr fett, Anlass grau), rechts die Balken an
+    einer Nulllinie: fallende Werte nach links, steigende nach rechts.
+  */
+  const spalte = STIL_RAND + 330
+  const rechts = ZK_BREITE - STIL_RAND - 110
+  const plus = Math.max(0, ...k.balken.map((b) => b.wert))
+  const minus = Math.max(0, ...k.balken.map((b) => -b.wert))
+  /* Links der Nulllinie Platz für die Zahl hinter dem längsten fallenden Balken. */
+  const luftLinks = minus > 0 ? 100 : 0
+  const massstab = (rechts - spalte - luftLinks) / (plus + minus)
+  const null_ = spalte + luftLinks + minus * massstab
+  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O + 40) / k.balken.length
+  const dicke = Math.min(30, zeile * 0.45)
+  const oben0 = STIL_GRAFIK_O - 30
   const zahl = (v: number) =>
-    `+${Math.round(v).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
-  return k.balken.flatMap((b, i) => {
-    const oben = STIL_GRAFIK_O - 20 + i * zeile
-    const laenge = Math.max(6, (b.wert / hoch) * breite)
-    const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
-    return [
-      h(
-        'div',
-        {
+    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v)).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
+  return [
+    h('div', {
+      style: {
+        position: 'absolute',
+        top: oben0,
+        left: null_ - 1,
+        width: 2,
+        height: zeile * k.balken.length,
+        backgroundColor: '#c9cfd8',
+      },
+    }),
+    ...k.balken.flatMap((b, i) => {
+      const mitte = oben0 + i * zeile + zeile / 2
+      const laenge = Math.max(4, Math.abs(b.wert) * massstab)
+      const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
+      const links = b.wert >= 0 ? null_ : null_ - laenge
+      return [
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: mitte - 19,
+              left: STIL_RAND,
+              width: spalte - STIL_RAND - 16,
+              display: 'flex',
+              alignItems: 'baseline',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'span',
+            {
+              style: {
+                fontSize: 22,
+                fontWeight: 800,
+                color: STIL.tinte,
+                marginRight: 12,
+              },
+            },
+            b.marke
+          ),
+          h(
+            'span',
+            { style: { fontSize: 19, color: b.hervor ? STIL.tinte : STIL.grau } },
+            b.text
+          )
+        ),
+        h('div', {
           style: {
             position: 'absolute',
-            top: oben,
+            top: mitte - dicke / 2,
             left: links,
-            display: 'flex',
-            alignItems: 'baseline',
-            fontFamily: 'Montserrat',
+            width: laenge,
+            height: dicke,
+            borderRadius: 5,
+            backgroundColor: farbe,
           },
-        },
-        h(
-          'span',
-          {
-            style: { fontSize: 22, fontWeight: 800, color: STIL.tinte, marginRight: 12 },
-          },
-          b.marke
-        ),
-        h('span', { style: { fontSize: 20, color: STIL.grau } }, b.text)
-      ),
-      h('div', {
-        style: {
-          position: 'absolute',
-          top: oben + 38,
-          left: links,
-          width: laenge,
-          height: dicke,
-          borderRadius: 6,
-          backgroundColor: farbe,
-        },
-      }),
-      stilBlock(zahl(b.wert), {
-        top: oben + 38,
-        left: links + laenge + 14,
-        fontSize: 24,
-        fontWeight: 800,
-        color: b.hervor ? STIL.tinte : STIL.grau,
-      }),
-    ]
-  })
+        }),
+        stilBlock(zahl(b.wert), {
+          top: mitte - 15,
+          ...(b.wert >= 0
+            ? { left: null_ + laenge + 12 }
+            : { left: links - 112, width: 100, justifyContent: 'flex-end' }),
+          fontSize: 22,
+          fontWeight: 800,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+      ]
+    }),
+  ]
 }
 
 /** Ein Datum JJJJ-MM-TT als Jahr mit Bruchteil – genug für eine Balkenlänge. */
