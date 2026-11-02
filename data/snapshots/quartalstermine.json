@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-01T11:58:40.786Z",
+  "abgerufenAm": "2026-11-02T13:43:47.279Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,8 +10,8 @@
       "stand": "2026-10-01",
       "von": "2026-09-15",
       "bis": "2026-11-19",
-      "zeilen": 3394,
-      "kommendGesamt": 2456,
+      "zeilen": 3395,
+      "kommendGesamt": 2457,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年10月1日 現在 As of 2026/10/1 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
@@ -41,9 +41,9 @@
       "tageAbgefragt": 50,
       "tageMitZeilen": 36,
       "letzterTag": "2026-12-22",
-      "zeilen": 3399,
+      "zeilen": 3402,
       "imKatalog": 148,
-      "mitLage": 110,
+      "mitLage": 112,
       "beigetragen": 148
     }
   },
@@ -1724,11 +1724,6 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-02",
-          "basis": "2025-11-03",
-          "streuungTage": 0
-        },
-        {
           "erwartet": "2027-03-01",
           "basis": "2026-03-02",
           "streuungTage": 7,
@@ -3108,24 +3103,24 @@
     "MRVL": {
       "name": "Marvell Technology, Inc.",
       "bisher": [
+        "2026-11-02",
         "2026-08-27",
         "2026-05-27",
         "2026-03-05",
         "2025-12-02",
         "2025-08-28",
         "2025-05-29",
-        "2025-05-06",
-        "2025-03-05"
+        "2025-05-06"
       ],
       "bisherZeiten": {
+        "2026-11-02": "08:06",
         "2026-08-27": "16:05",
         "2026-05-27": "16:06",
         "2026-03-05": "16:06",
         "2025-12-02": "16:11",
         "2025-08-28": "16:06",
         "2025-05-29": "16:06",
-        "2025-05-06": "17:02",
-        "2025-03-05": "16:09"
+        "2025-05-06": "17:02"
       },
       "vorhersagen": [
         {
@@ -3328,7 +3323,9 @@
           "erwartet": "2026-11-19",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-25",
@@ -5473,24 +5470,24 @@
     "IDXX": {
       "name": "IDEXX LABORATORIES INC /DE",
       "bisher": [
+        "2026-11-02",
         "2026-08-04",
         "2026-05-05",
         "2026-02-02",
         "2025-11-03",
         "2025-08-04",
         "2025-05-01",
-        "2025-02-03",
-        "2024-10-31"
+        "2025-02-03"
       ],
       "bisherZeiten": {
+        "2026-11-02": "06:30",
         "2026-08-04": "06:32",
         "2026-05-05": "06:31",
         "2026-02-02": "06:39",
         "2025-11-03": "06:34",
         "2025-08-04": "06:30",
         "2025-05-01": "06:30",
-        "2025-02-03": "06:30",
-        "2024-10-31": "06:30"
+        "2025-02-03": "06:30"
       },
       "vorhersagen": [
         {
@@ -5518,6 +5515,12 @@
           "basis": "2026-08-04",
           "streuungTage": 1,
           "newYorkerZeit": "06:32"
+        },
+        {
+          "erwartet": "2027-11-01",
+          "basis": "2026-11-02",
+          "streuungTage": 0,
+          "newYorkerZeit": "06:30"
         }
       ]
     },
@@ -8558,24 +8561,24 @@
     "EL": {
       "name": "ESTEE LAUDER COMPANIES INC",
       "bisher": [
+        "2026-11-02",
         "2026-08-19",
         "2026-05-01",
         "2026-02-05",
         "2025-10-30",
         "2025-08-20",
         "2025-05-01",
-        "2025-02-04",
-        "2024-10-31"
+        "2025-02-04"
       ],
       "bisherZeiten": {
+        "2026-11-02": "08:01",
         "2026-08-19": "08:02",
         "2026-05-01": "08:08",
         "2026-02-05": "08:05",
         "2025-10-30": "08:03",
         "2025-08-20": "08:01",
         "2025-05-01": "08:01",
-        "2025-02-04": "07:51",
-        "2024-10-31": "08:01"
+        "2025-02-04": "07:51"
       },
       "vorhersagen": [
         {
@@ -8603,6 +8606,12 @@
           "basis": "2026-08-19",
           "streuungTage": 0,
           "newYorkerZeit": "08:02"
+        },
+        {
+          "erwartet": "2027-11-01",
+          "basis": "2026-11-02",
+          "streuungTage": 4,
+          "newYorkerZeit": "08:01"
         }
       ]
     },
@@ -9208,24 +9217,24 @@
     "MAR": {
       "name": "MARRIOTT INTERNATIONAL INC /MD/",
       "bisher": [
+        "2026-11-02",
         "2026-08-03",
         "2026-05-06",
         "2026-02-10",
         "2025-11-04",
         "2025-08-05",
         "2025-05-06",
-        "2025-02-11",
-        "2024-11-04"
+        "2025-02-11"
       ],
       "bisherZeiten": {
+        "2026-11-02": "07:00",
         "2026-08-03": "07:00",
         "2026-05-06": "07:00",
         "2026-02-10": "07:00",
         "2025-11-04": "07:00",
         "2025-08-05": "07:00",
         "2025-05-06": "07:01",
-        "2025-02-11": "07:30",
-        "2024-11-04": "07:21"
+        "2025-02-11": "07:30"
       },
       "vorhersagen": [
         {
@@ -9251,6 +9260,12 @@
         {
           "erwartet": "2027-08-02",
           "basis": "2026-08-03",
+          "streuungTage": 1,
+          "newYorkerZeit": "07:00"
+        },
+        {
+          "erwartet": "2027-11-01",
+          "basis": "2026-11-02",
           "streuungTage": 1,
           "newYorkerZeit": "07:00"
         }
@@ -10859,7 +10874,9 @@
           "erwartet": "2026-11-23",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-24",
@@ -17855,7 +17872,7 @@
     "NWG.L": "2026-10-30",
     "NXT.L": "2026-10-31",
     "O39.SI": "2026-11-01",
-    "OMV.VI": "2026-08-18",
+    "OMV.VI": "2026-11-02",
     "ONGC.NS": "2026-08-18",
     "OR.PA": "2026-08-18",
     "ORA.PA": "2026-08-18",
