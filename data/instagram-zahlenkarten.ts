@@ -75,7 +75,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile:
       'Stand: 09/2026 | Quelle: Weltbank (Pink Sheet), Rohöl-Mittel aus Brent, Dubai, WTI; eigene Rechnung',
     text:
-      'Krieg treibt den Ölpreis, Krisen lassen ihn abstürzen – aber wie stark? Wir haben bei der Weltbank nachgesehen: Monatspreise für Rohöl seit 1960. Gemessen ist der stärkste Ausschlag im Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Krieg treibt den Ölpreis, Krisen lassen ihn abstürzen – aber wie stark? Gemessen mit Monatspreisen der Weltbank: stärkster Ausschlag im Jahr nach Beginn, gegen den Monat davor.\n\n' +
       'Die Balken im Bild, Fall für Fall ($ je Fass):\n' +
       '1973 – Ölembargo: 2,70 → 13,00, +381 %\n' +
       '1979 – Revolution im Iran: 14,50 → 40,80, +181 %\n' +
@@ -86,11 +86,17 @@ export const zahlenkarten: Zahlenkarte[] = [
       '2022 – Krieg in der Ukraine: 83,90 → 116,80, +39 %\n' +
       '2026 – Krieg um den Iran: 63,70 → 103,90, +63 % (bis September)\n\n' +
       'Warum war 1973 so extrem?\n' +
-      'Die Zahlen nennen keinen Grund. Sie zeigen aber, von wo es losging: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
+      'Die Zahlen nennen keinen Grund, aber den Ausgangspunkt: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
+      'Schon gewusst?\n' +
+      '– Von 1960 bis 1972 kostete ein Fass nie mehr als 1,90 $ – 13 Jahre fast Stillstand, dann kam 1973.\n' +
+      '– Der teuerste Monat überhaupt war der Juli 2008 mit 132,80 $. Im Dezember, mitten in der Finanzkrise: 41,30 $.\n' +
+      '– Im April 2020 fiel der Preis auf 21,00 $ – so billig wie seit Februar 2002 nicht mehr.\n' +
+      '– Der Iran-Krieg brachte bisher höchstens 103,90 $, weniger als der Ukraine-Krieg im Juni 2022 mit 116,80 $.\n\n' +
       'Und jetzt?\n' +
       'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli bei 79,80 $, im September wieder bei 102,30 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
-      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt, nicht inflationsbereinigt. Zeitraum je zwölf Monate ab Beginn, 2026 bis September.\n' +
+      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt, nicht inflationsbereinigt.\n' +
       'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 2. Oktober 2026; eigene Rechnung',
+    freigabe: '2026-11-02',
     schlagworte: ['oelpreis', 'iran', 'krieg', 'rohstoffe', 'geopolitik'],
   },
   {
