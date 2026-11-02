@@ -221,7 +221,7 @@ export function sichtBefund(
 /**
  * Die Stellen, deren Bild neu gesucht werden muss – aus den Befunden gelesen.
  *
- * Bis zum 28.10.2026 hielt eine abgelehnte Kachel den Tagesbeitrag an, und
+ * Bis zum 28.10.2026 hielt eine abgelehnte Kachel die Daily News an, und
  * nichts tauschte sie aus: Jeder weitere Lauf scheiterte am selben Bild, zwei
  * Tage ging keine News hinaus. Jetzt sucht `instagram-beitrag.yml` für genau
  * diese Stellen neu. Bei „Kachel 3 und 5 zeigen dasselbe Bild" wird die
