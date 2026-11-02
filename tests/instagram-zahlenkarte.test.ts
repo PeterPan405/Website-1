@@ -991,6 +991,50 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 02.11.2026: Lagarde geht vorzeitig – Amtszeiten der EZB-Präsidenten (Wikipedia, Tagesschau). */
+{
+  const karte = karteVom('2026-11-02')
+  pruefe('EZB: Karte für den 02.11. ist ein Zeitstrahl', karte?.art === 'zeitstrahl')
+  if (karte?.art === 'zeitstrahl') {
+    pruefe(
+      'EZB: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    const jahre = (a: string, b: string) =>
+      (Date.parse(b) - Date.parse(a)) / (365.25 * 24 * 3600 * 1000)
+    for (const b of karte.balken) {
+      const gerechnet = jahre(b.beginn, b.ende).toLocaleString('de-DE', {
+        maximumFractionDigits: 1,
+      })
+      pruefe(
+        `EZB: ${b.name} ${b.text} passt zur Amtszeit (${gerechnet})`,
+        b.text === `${gerechnet} J.`
+      )
+    }
+    pruefe(
+      'EZB: Lagarde geht am 7. Februar 2027',
+      karte.balken.at(-1)?.ende === '2027-02-07'
+    )
+    pruefe(
+      'EZB: Heldenzahl ist Lagardes Amtszeit',
+      karte.helden[0].wert === `${karte.balken.at(-1)?.text.replace(' J.', '')} Jahre`
+    )
+    pruefe(
+      'EZB: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-01')!)
+    )
+    const kaputt = {
+      ...karte,
+      balken: [{ ...karte.balken[0], ende: '1990-01-01' }, karte.balken[1]],
+    }
+    pruefe(
+      'Zeitstrahl: Ende vor Beginn wird beanstandet',
+      pruefeZahlenkarte(kaputt).some((f) => f.includes('Beginn nicht vor Ende'))
+    )
+  }
+}
+
 /* Säulen im Hausstil: Rechnung, Prüfung, Bild – an einer Probekarte. */
 {
   const probe: Zahlenkarte = {
