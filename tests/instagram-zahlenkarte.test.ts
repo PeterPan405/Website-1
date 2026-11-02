@@ -995,6 +995,43 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 02.11.2026: Krieg und Ölpreis (Weltbank, Pink Sheet, Rohöl-Mittel). */
+{
+  const karte = karteVom('2026-11-02')
+  pruefe('Öl: Karte für den 02.11. sind waagerechte Balken', karte?.art === 'balken')
+  if (karte?.art === 'balken') {
+    pruefe(
+      'Öl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Öl: Form anders als am Vortag', form(karte) !== form(karteVom('2026-11-01')!))
+    /* Monat davor → teuerster Monat danach, $ je Fass. */
+    const paare: [number, number][] = [
+      [2.7, 13.0],
+      [14.5, 40.8],
+      [17.2, 34.5],
+      [83.9, 116.8],
+      [63.7, 103.9],
+    ]
+    paare.forEach(([vor, hoch], i) => {
+      const prozent = (hoch / vor - 1) * 100
+      pruefe(
+        `Öl: ${karte.balken[i].marke} +${Math.round(prozent)} %`,
+        Math.abs(karte.balken[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Öl: ${karte.balken[i].marke} steht so in der Beschreibung`,
+        karte.text.includes(`+${Math.round(prozent)} %`)
+      )
+    })
+    pruefe(
+      'Öl: Heldenzahl ist der Iran-Balken',
+      karte.helden[0].wert === `+${Math.round(karte.balken[4].wert)} %`
+    )
+  }
+}
+
 /* 02.11.2026: Atomsprengköpfe (FAS 2026, Our World in Data). */
 {
   const karte = zurueckgestellt.find((z) => z.titel[0].text === 'Atomsprengköpfe:')

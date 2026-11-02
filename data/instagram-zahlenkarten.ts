@@ -18,6 +18,71 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber am 02.11.2026 gewählt („Thema 2": Kriege und der
+      Ölpreis), nachdem er Lagarde und Atomwaffen zurückgestellt hatte.
+      Form: waagerechte Balken im Hausstil, neu (am 01.11. Säulen).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, Stand 02.10.2026, abgerufen am
+      02.11.2026 über quellen-holen.yml (blatt 2). Reihe „Crude oil,
+      average" (Mittel aus Brent, Dubai, WTI), $ je Fass, Monatsmittel.
+      Gerechnet: Monat vor Kriegsbeginn gegen den höchsten Monat der zwölf
+      Monate ab Kriegsbeginn (2026: Februar bis September, acht Monate).
+        1973 (Okt.)  09/1973   2,7 → 03/1974  13,0   +381 %
+        1979 (Jan.)  12/1978  14,5 → 11/1979  40,8   +181 %
+        1990 (Aug.)  07/1990  17,2 → 10/1990  34,5   +101 %
+        2022 (Feb.)  01/2022  83,9 → 06/2022 116,8    +39 %
+        2026 (Feb.)  01/2026  63,7 → 04/2026 103,9    +63 %
+        2026 weiter: 05 100,4 · 06 81,7 · 07 79,8 · 08 84,4 · 09 102,3
+      Kriegsbeginn 2026 „Ende Februar" laut goldreporter.de (unsere Ausgabe
+      vom 01.10.2026). Die Brent-Spalte nicht genommen: Sie zeigt für
+      September 116,8 $, unsere Quellen nannten zum Quartalsende knapp
+      98 $ – die Mittelreihe passt dazu.
+    */
+    art: 'balken',
+    datum: '2026-11-02',
+    titel: [
+      { text: 'Krieg und Ölpreis:' },
+      { text: 'Teuer, aber kein 1973.', gruen: true },
+    ],
+    erklaerung:
+      'So stark stieg der Ölpreis nach Kriegsbeginn: höchster Monatspreis im Jahr danach gegen den Monat davor.',
+    stichzeile: 'Rohöl · Anstieg nach Kriegsbeginn',
+    helden: [
+      {
+        name: 'Krieg um den Iran',
+        wert: '+63 %',
+        pille: { wert: '103,9 $', name: 'je Fass im April' },
+      },
+    ],
+    balken: [
+      { marke: '1973', text: 'Jom-Kippur-Krieg, Ölembargo', wert: 381.48 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 181.4 },
+      { marke: '1990', text: 'Irak besetzt Kuwait', wert: 100.6 },
+      { marke: '2022', text: 'Russland greift die Ukraine an', wert: 39.2 },
+      { marke: '2026', text: 'Krieg um den Iran (bis Sept.)', wert: 63.1, hervor: true },
+    ],
+    einheit: '%',
+    fusszeile:
+      'Stand: 09/2026 | Quelle: Weltbank (Pink Sheet), Rohöl-Mittel aus Brent, Dubai, WTI; eigene Rechnung',
+    text:
+      'Krieg treibt den Ölpreis – aber wie stark? Wir haben bei der Weltbank nachgesehen: Monatspreise für Rohöl seit 1960, jeweils der Monat vor Kriegsbeginn gegen den teuersten Monat im Jahr danach.\n\n' +
+      'Die Balken im Bild, Krise für Krise:\n' +
+      '1973 – Jom-Kippur-Krieg und Ölembargo: von 2,70 $ auf 13,00 $ je Fass, +381 %\n' +
+      '1979 – Revolution im Iran: von 14,50 $ auf 40,80 $, +181 %\n' +
+      '1990 – Irak besetzt Kuwait: von 17,20 $ auf 34,50 $, +101 %\n' +
+      '2022 – Russland greift die Ukraine an: von 83,90 $ auf 116,80 $, +39 %\n' +
+      '2026 – Krieg um den Iran: von 63,70 $ auf 103,90 $, +63 % (bis September)\n\n' +
+      'Warum war es 1973 so viel schlimmer?\n' +
+      'Die Zahlen nennen keinen Grund. Sie zeigen aber, von wo es losging: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
+      'Und jetzt?\n' +
+      'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli fiel er auf 79,80 $, im September stieg er wieder auf 102,30 $. Die Daten reichen bis September – wie es weitergeht, sagen sie nicht.\n\n' +
+      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt in US-Dollar, nicht inflationsbereinigt.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 2. Oktober 2026; eigene Rechnung',
+    schlagworte: ['oelpreis', 'iran', 'krieg', 'rohstoffe', 'geopolitik'],
+  },
+  {
+    /*
       Thema vom Betreiber am 30.10.2026: Zwischenwahl, aber einfach. Verworfen
       hatte er:
       - die Rendite nach Zwischenwahlen: „der halloweenbeitrag ist ja
