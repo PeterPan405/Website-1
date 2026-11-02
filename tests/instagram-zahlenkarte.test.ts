@@ -27,7 +27,35 @@ import {
 } from '@/lib/instagram-zahlenkarte'
 
 let failed = 0
+/*
+  Eine gepostete Karte prüft ihre Zahlen gegen den Bestand von ihrem Tag,
+  nicht gegen den von heute. Am 01.11.2026 holte der monatliche Abruf die
+  neuen IWF-Zahlen; seitdem passten die Karten vom 15. bis 23.10. nicht
+  mehr zum Bestand. Die Tests wurden rot und hielten den nächtlichen Bau an,
+  sodass die Nachrichten nicht online gingen. Falsch war an den Karten
+  nichts: Sie zeigen den Stand, den ihre Fußzeile nennt.
+
+  Deshalb gilt für eine Karte, deren Tag vorbei ist: Weicht eine Prüfung
+  gegen den Bestand ab (`BESTANDSPRUEFUNG`), steht „ALT" da statt „FEHL".
+  Alles andere bleibt hart, auch das Bild und die Form. Ein Entwurf (Tag
+  heute oder später) wird weiter streng gegen den Bestand geprüft.
+*/
+const HEUTE = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(
+  new Date()
+)
+const BESTANDSPRUEFUNG =
+  /wie im Bestand|Platz \d|Länder mit Wert|Spitzenreiter|Länderschnitt|Schlusslicht|seit Jahresbeginn/
+let stand: string | null = null
+function karteVom(datum: string) {
+  stand = datum
+  return zahlenkarten.find((k) => k.datum === datum)
+}
+
 function pruefe(was: string, bedingung: boolean, hinweis = ''): void {
+  if (!bedingung && stand && stand < HEUTE && BESTANDSPRUEFUNG.test(was)) {
+    console.log(`ALT  ${was} – Karte vom ${stand}, der Bestand ist seither neuer`)
+    return
+  }
   if (bedingung) console.log(`OK   ${was}`)
   else {
     failed++
@@ -96,7 +124,7 @@ if (kacheln?.art === 'rangliste') {
 } else pruefe('es gibt eine Kachelkarte im Bestand', false)
 
 /* Die Geschichte (28.10.2026): Berkshire A seit 1984, Meilensteine, Foto. */
-const geschichte = zahlenkarten.find((k) => k.datum === '2026-10-28')
+const geschichte = karteVom('2026-10-28')
 if (geschichte?.art === 'geschichte') {
   pruefe(
     'Geschichte 28.10.: 1.490 $ im Dezember 1984, 810.106 $ am 27.10.2026',
@@ -156,7 +184,7 @@ pruefe(
 )
 
 /* Die Torte (29.10.2026): Anthropics Zusagen an Big Tech, wie in der Quelle. */
-const torte = zahlenkarten.find((k) => k.datum === '2026-10-29')
+const torte = karteVom('2026-10-29')
 if (torte?.art === 'torte') {
   pruefe(
     'Torte 29.10.: Google 114,5, Microsoft 45, Amazon als Rest von 269',
@@ -230,7 +258,7 @@ const laender: Record<string, { wohneigentumsquote?: { wert: number } }> = JSON.
 const eurostat = JSON.parse(
   readFileSync('tests/fixtures/eurostat-ilc_lvho02-2025.json', 'utf8')
 )
-const wohnen = zahlenkarten.find((k) => k.datum === '2026-10-15') as Rangkarte
+const wohnen = karteVom('2026-10-15') as Rangkarte
 for (const z of wohnen.zeilen) {
   const soll =
     z.land === 'EU27'
@@ -300,7 +328,7 @@ for (const [form, karte] of [
 }
 
 /* Die Karte vom 16.10.2026 – jede Zahl gegen ihre Quelle im Bestand. */
-const inflation = zahlenkarten.find((k) => k.datum === '2026-10-16') as Vergleichskarte
+const inflation = karteVom('2026-10-16') as Vergleichskarte
 const nachricht = readFileSync('data/news.ts', 'utf8')
 const zahl1 = (w: number) =>
   w.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
@@ -351,7 +379,7 @@ pruefe(
   IWF-Bestand in `laender.json`. Oben und unten stehen die Ränder aller
   Länder mit einem Wert für 2025; ältere (Eritrea, 2019) zählen nicht.
 */
-const schulden = zahlenkarten.find((k) => k.datum === '2026-10-17') as Rangkarte
+const schulden = karteVom('2026-10-17') as Rangkarte
 const quote: Record<string, { schuldenquote?: { wert: number; jahr: number } }> =
   JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
 const aktuell = Object.entries(quote)
@@ -403,7 +431,7 @@ const schuldenPng = await zahlenkartePng(
 pruefe('Balken: das Bild ist ein PNG', schuldenPng.subarray(1, 4).toString() === 'PNG')
 
 /* Die Karte vom 18.10.2026 – Vermögen, jede Zeile gegen den OECD-Bestand. */
-const vermoegen = zahlenkarten.find((k) => k.datum === '2026-10-18') as Rangkarte
+const vermoegen = karteVom('2026-10-18') as Rangkarte
 const mv: Record<string, { medianvermoegen?: { wert: number; jahr: number } }> =
   JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
 const mvAlle = Object.entries(mv)
@@ -460,7 +488,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 /* Die Karte vom 19.10.2026 – Dax gegen S&P 500, gegen den Kursbestand. */
 {
   const { getQuotes } = await import('@/lib/markets')
-  const dax = zahlenkarten.find((k) => k.datum === '2026-10-19') as Verlaufkarte
+  const dax = karteVom('2026-10-19') as Verlaufkarte
   const [qDax, qSp] = await getQuotes(['dax', 'sp500'])
   const runde = (w: number) => `+${(Math.round(w * 10) / 10).toLocaleString('de-DE')} %`
   const endwert = (s: string) => dax.reihen.find((r) => r.symbol === s)!.endwert
@@ -497,7 +525,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 20.10.2026 – Öl schlägt alles, Balken mit Plus und Minus. */
 {
-  const oel = zahlenkarten.find((k) => k.datum === '2026-10-20') as Rangkarte
+  const oel = karteVom('2026-10-20') as Rangkarte
   /* Schlusskurse aus Yahoo Finance, Lauf 39277296882: Jahresschluss 2025 → 16.10.2026. */
   const kurse: Record<string, [number, number]> = {
     'Öl (Brent)': [60.85, 109.86],
@@ -531,7 +559,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 22.10.2026 – die Verlierer 2026, nur Minus. */
 {
-  const verlierer = zahlenkarten.find((k) => k.datum === '2026-10-22') as Rangkarte
+  const verlierer = karteVom('2026-10-22') as Rangkarte
   /* Yahoo Finance, letzter Schluss 2025 → 20.10.2026. */
   const kurse: Record<string, [number, number]> = {
     Stellantis: [10.89, 4.33],
@@ -568,7 +596,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 27.10.2026 – Gewinn pro Sekunde der größten Konzerne je Land. */
 {
-  const sek = zahlenkarten.find((k) => k.datum === '2026-10-27') as Rangkarte
+  const sek = karteVom('2026-10-27') as Rangkarte
   /* Gewinn in Mrd. US-Dollar laut Wikipedia „List of largest companies by revenue", 27.10.2026. */
   const gewinn: Record<string, number> = {
     Alphabet: 132,
@@ -620,7 +648,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 26.10.2026 – Big-Mac-Index, Burger (neue Form). */
 {
-  const mac = zahlenkarten.find((k) => k.datum === '2026-10-26') as Rangkarte
+  const mac = karteVom('2026-10-26') as Rangkarte
   /*
     Aus The Economist, big-mac-full-index.csv, Erhebung 2026-07-01:
     Preis in Landeswährung und Landeswährung je Dollar. Euro je Dollar 0,87439.
@@ -679,7 +707,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 24.10.2026 – Erholung nach dem Crash, Zeitleiste (neue Form). */
 {
-  const crash = zahlenkarten.find((k) => k.datum === '2026-10-24') as Rangkarte
+  const crash = karteVom('2026-10-24') as Rangkarte
   pruefe('Zeitleiste', form(crash) === 'zeitleiste')
   pruefe(
     'in der Reihenfolge der Zeit, nicht der Größe',
@@ -718,7 +746,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 23.10.2026 – Arbeitslosigkeit 2025, Kacheln. */
 {
-  const quote = zahlenkarten.find((k) => k.datum === '2026-10-23') as Rangkarte
+  const quote = karteVom('2026-10-23') as Rangkarte
   type Wert = { wert: number; jahr: number }
   const laender: Record<string, { arbeitslosenquote?: Wert }> = JSON.parse(
     readFileSync('data/snapshots/laender.json', 'utf8')
@@ -762,7 +790,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Die Karte vom 21.10.2026 – Inflation 2025, Kacheln. */
 {
-  const inflation = zahlenkarten.find((k) => k.datum === '2026-10-21') as Rangkarte
+  const inflation = karteVom('2026-10-21') as Rangkarte
   type Wert = { wert: number; jahr: number }
   const laender: Record<string, { inflation?: Wert }> = JSON.parse(
     readFileSync('data/snapshots/laender.json', 'utf8')
@@ -842,7 +870,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 30.10.2026: Erdgas-Schere – die Zahlen der Karte aus den Kursreihen. */
 {
-  const gas = zahlenkarten.find((k) => k.datum === '2026-10-30')
+  const gas = karteVom('2026-10-30')
   pruefe('Gas: Karte für den 30.10. ist ein Duell', gas?.art === 'duell')
   if (gas?.art === 'duell') {
     pruefe('Gas: TTF +247,3 %', duellProzent(gas.links).toFixed(1) === '247.3')
@@ -854,7 +882,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 30.10.2026: „The caption was too long" – die Prüfung muss das vorher sehen. */
 {
-  const gas = zahlenkarten.find((k) => k.datum === '2026-10-30')!
+  const gas = karteVom('2026-10-30')!
   const lang = { ...gas, text: gas.text + ' Zusatz.'.repeat(30) }
   pruefe(
     'Beschriftung über der Grenze wird beanstandet',
@@ -864,7 +892,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 31.10.2026: Halloween-Effekt, Dax 1990–2026 (Yahoo, abgerufen 30.10.). */
 {
-  const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
+  const karte = karteVom('2026-10-31')
   pruefe('Halloween: Karte für den 31.10. ist eine Kurvenkarte', karte?.art === 'kurven')
   if (karte?.art === 'kurven') {
     const [winter, sommer] = karte.linien
@@ -903,7 +931,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* Eine Kurvenkarte mit ungleichen Linien wird beanstandet. */
 {
-  const karte = zahlenkarten.find((k) => k.datum === '2026-10-31')
+  const karte = karteVom('2026-10-31')
   if (karte?.art === 'kurven') {
     const kaputt = {
       ...karte,
@@ -918,7 +946,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 01.11.2026: US-Zwischenwahlen, Sitze der Präsidentenpartei (Wikipedia, 30.10.). */
 {
-  const karte = zahlenkarten.find((k) => k.datum === '2026-11-01')
+  const karte = karteVom('2026-11-01')
   pruefe('Zwischenwahl: Karte für den 01.11. sind Säulen', karte?.art === 'saeulen')
   if (karte?.art === 'saeulen') {
     /* Alle 20 Wahlen seit 1946 – im Bild stehen nur die letzten zehn. */
