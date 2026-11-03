@@ -101,6 +101,315 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-faellt-usa-iran-diplomatie',
+    title: 'Ölpreis bricht ein – USA und Iran signalisieren Diplomatie',
+    teaser:
+      'Brent und WTI fielen am Montag so stark wie seit Monaten nicht. Grund sind Signale aus Washington und Teheran, den Konflikt diplomatisch zu lösen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['öl', 'brent', 'iran', 'risikoprämie'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 20:19 Uhr: „Crude oil prices sell off more than 7% on Iran peace talk hopes ahead of U.S. midterms"',
+        url: 'https://www.cnbc.com/2026/11/02/oil-prices-fall-as-iran-us-pursue-diplomacy.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 02.11.2026, 08:22 Uhr: „Ölpreis aktuell: Ölpreise starten mit Verlusten in die neue Handelswoche"',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-oelpreise-starten-mit-verlusten-in-die-neue-handelswoche/100207502.html',
+      },
+      {
+        label:
+          'Handelsblatt, 02.11.2026, 17:14 Uhr: „Dax aktuell: Dax schließt im Plus – Öl- und Gaspreise geben nach"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-im-plus-oel-und-gaspreise-fallen/100266531.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist am Montag so stark gefallen wie seit Monaten nicht. Die Nordsee-Sorte Brent verlor 7,6 Prozent und schloss bei 104,77 Dollar je Barrel, die US-Sorte WTI gab 7,4 Prozent nach auf 96,46 Dollar – der größte Tagesverlust seit dem 27. Juli.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Acht Monate Konflikt, ein Signal zur Diplomatie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit Ende Februar liefern sich die USA und Israel einerseits und der Iran andererseits einen Konflikt, der die Energiemärkte seither immer wieder belastet hat. Am Montag äußerten sich beide Seiten versöhnlicher: Präsident Trump sagte vor Reportern, der Iran wolle „einen Deal, und das könnte passieren". Außenminister Marco Rubio erklärte, Trump bevorzuge eine diplomatische statt einer militärischen Lösung, habe aber noch keine Entscheidung über weitere Angriffe getroffen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Irans Präsident Masoud Pezeshkian erklärte laut der staatlichen Nachrichtenagentur IRNA, Teheran suche eine Lösung über Dialog. Außenminister Abbas Araghchi nannte eine Einigung möglich, wenn Washington „guten Willen zeigt" und Sanktionen aufhebe, die US-Militärpräsenz in der Region verringere und eine Blockade aufhebe. Zugleich rief der geistliche Führer Chamenei die Streitkräfte am Samstag dazu auf, auf jede Bedrohung „sofort und uneingeschränkt" zu reagieren – die Lage bleibt angespannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Signal reicht, um den Preis so stark zu bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Teil der Erklärung liegt in der Preisbildung selbst. Der Ölmarkt hatte im Oktober mehr als zehn Prozent zugelegt, weil Händler eine militärische Eskalation nach den US-Zwischenwahlen einpreisten – eine sogenannte Risikoprämie, die nichts mit dem tatsächlichen Angebot zu tun hat. Ryan McKay, Rohstoffstratege bei TD Securities, sagte, Berichte über Diplomatie wirkten deshalb so stark auf den Preis, weil ein großer Teil der jüngsten Gewinne genau diese Prämie gewesen sei. Solange der Konflikt aber nicht tatsächlich beendet sei und Angriffe auf Tanker vorkämen, erwarte er keinen vollständigen Abbau der Prämie allein durch Schlagzeilen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der fallende Ölpreis strahlte am Montag auch auf die europäischen Börsen aus: Der Dax schloss nach Angaben des Handelsblatts im Plus und landete zum Monatsanfang knapp unter der Marke von 26.000 Punkten, unterstützt von den gesunkenen Öl- und Gaspreisen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer einen Rohstoffpreis als Signal liest, sollte zwischen einem realen Angebotsschock und einer eingepreisten Erwartung unterscheiden. Beide bewegen den Preis, aber nur Ersteres verändert dauerhaft, wie viel Öl am Markt ist – Zweiteres kann sich schon mit einer einzigen Pressekonferenz wieder auflösen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-zwischenwahlen-wall-street-schwankt',
+    title: 'Amerika wählt: Wall Street schwankt vor den Zwischenwahlen',
+    teaser:
+      'Am Dienstag entscheiden die US-Zwischenwahlen über Kongress und Senat. An den Terminmärkten steigen die Chancen der Demokraten auf die Senatsmehrheit.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['usa', 'zwischenwahlen', 'wall-street', 'volatilität'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    relatedSymbols: ['sp500', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 20:48 Uhr: „Prediction market traders now see nearly 75% chance of Democrats winning the Senate"',
+        url: 'https://www.cnbc.com/2026/11/02/prediction-market-traders-now-see-nearly-75percent-chance-of-democrats-winning-the-senate.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 02.11.2026, 12:56 Uhr: „US-Midterms: Wie Anleger von den US-Wahlen profitieren können"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/midterms-2026-wie-anleger-von-den-us-zwischenwahlen-profitieren-koennen/100266139.html',
+      },
+      {
+        label:
+          'CNBC, 02.11.2026, 23:13 Uhr: „Stock market after midterm elections: What S&P 500 history shows"',
+        url: 'https://www.cnbc.com/2026/11/02/stock-market-after-midterm-elections-sp-500-history.html',
+      },
+      {
+        label:
+          "CNBC, 02.11.2026, 15:30 Uhr: „Wall Street's Fear Index is doing something strange. Here's what it means for stocks\"",
+        url: 'https://www.cnbc.com/2026/11/02/wall-streets-fear-index-is-doing-something-strange-heres-what-it-means-for-stocks.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag wählen die Amerikanerinnen und Amerikaner ein neues Repräsentantenhaus und etwa ein Drittel des Senats neu. An der Wall Street schloss der Dow Jones am Montag 0,43 Prozent höher, der Nasdaq 100 gab 1,38 Prozent ab – ein uneinheitlicher Handelstag kurz vor der Abstimmung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Terminmärkte verschieben sich zugunsten der Demokraten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der Wettplattform Kalshi stieg die eingepreiste Wahrscheinlichkeit für eine demokratische Mehrheit im Senat am Montag auf 74 Prozent – der höchste Stand, seit der Markt 2024 eröffnet wurde. Hintergrund war unter anderem eine Umfrage der New York Times mit der Siena University vom Sonntag, die den Demokraten in mehreren umkämpften Bundesstaaten einen Vorsprung zeigte. Auch einzelne Senatsrennen verschoben sich binnen 24 Stunden deutlich: In Texas stiegen die Chancen für die demokratische Seite von 68,4 auf 74 Prozent, in Iowa von 42 auf 50 Prozent, in Kansas von 52 auf 63 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein auffällig ruhiger Angstindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach der schwächsten Börsenwoche seit Juni fiel am vergangenen Freitag auch auf, wie ruhig der Angstindex VIX blieb: Trotz eines Tagesverlusts von fast zwei Prozent im S&P 500 stieg der VIX nur um 2,2 Punkte und schloss bei 19,4. Optionshändler erklärten das unter anderem damit, dass viele Vermögensverwalter ihre Aktienpositionen laut Daten von Morgan Stanley bereits direkt verkauft hatten, statt sich über Optionen abzusichern – die Gesamtposition langfristig orientierter Fonds lag demnach acht Prozent unter ihrem jüngsten Höchststand, der größte Rückgang seit mindestens zehn Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Statistik sagt – und was sie nicht sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Auswertung von CNBC zeigt, dass der S&P 500 im Jahr nach einer Zwischenwahl seit 1982 im Schnitt um 13,7 Prozent zulegte, in 91 Prozent der Fälle positiv. Besonders gut schnitt der Index historisch bei einer geteilten Regierung ab. Jim Reid, Makro-Stratege der Deutschen Bank, warnte aber: Die Saisonalität sei kein Schicksal, Sorgen um Iran, Künstliche Intelligenz und Frankreich verschwänden durch die Wahl nicht einfach. Nach der Zwischenwahl 2018 etwa fiel der S&P 500 im Folgejahr zunächst, weil die Fed damals viermal die Zinsen anhob – ein Beleg dafür, dass andere Faktoren oft stärker wirken als der Wahltermin selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine historische Durchschnittsrendite nach einem Ereignis ist keine Garantie für das nächste Mal. Wer eine Statistik wie „Aktien steigen fast immer nach Zwischenwahlen" liest, sollte nachsehen, ob im jeweiligen Jahr nicht etwas anderes – eine Zinswende, eine Gewinnsaison – den größeren Ausschlag gegeben hat.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-warsh-weniger-zinsentscheide',
+    title: 'Fed-Chef Warsh kündigt ab 2027 weniger Zinsentscheide an',
+    teaser:
+      'Die Fed tagt weiter achtmal im Jahr, stimmt künftig aber seltener über den Leitzins ab. Verbraucher könnten dadurch länger auf günstigere Kredite warten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-03T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['fed', 'leitzins', 'notenbank', 'kredite'],
+    relatedTopics: ['notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 19:21 Uhr: „Fed will vote on rates less often. What that could mean for borrowers"',
+        url: 'https://www.cnbc.com/2026/11/02/fed-rate-votes-consumer-borrowing-costs.html',
+      },
+      {
+        label:
+          'Goldreporter, 29.10.2026: „US-Notenbank hält Leitzins stabil – zwei Gegenstimmen"',
+        url: 'https://www.goldreporter.de/fed-leitzins-unveraendert-warsh-oktober-2026/hot-links/262679/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank Fed hat ihren Leitzins am 28. Oktober bei 3,75 bis 4 Prozent belassen, zwei Mitglieder des Offenmarktausschusses stimmten dagegen. Auf der anschließenden Pressekonferenz kündigte Fed-Chef Kevin Warsh eine Änderung an, die weit über diese eine Sitzung hinausreicht: Ab 2027 wird die Notenbank seltener über den Zins abstimmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Acht Sitzungen bleiben, aber nicht alle entscheiden über Zinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fed tagt weiterhin achtmal im Jahr. Aber eines dieser Treffen wird 2027 ausschließlich der geldpolitischen Strategie gewidmet, ohne Abstimmung über den Leitzins und ohne Erklärung danach. 2028 soll es zwei solcher Strategiesitzungen geben – dann entscheiden nur noch sechs der acht Treffen über den Zins, Ausnahmen bilden Notfallsitzungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Leitzins und Verbraucherzins sind zwei verschiedene Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Verbraucher ist die Änderung deshalb relevant, weil der Leitzins nicht automatisch die Kreditkarten-, Hypotheken- oder Autokreditzinsen bewegt. Viele Kreditkartenanbieter koppeln ihre Zinsen an den Leitzins, passen sie aber laut der Analyseplattform LendingTree zuletzt trotz unveränderter Fed-Politik nach oben an, um sich gegen Zahlungsausfälle abzusichern. Jordan Ricciardi, Vermögensstrategin bei UBS, sagte, weniger Sitzungstermine könnten bedeuten, dass die Fed langsamer auf veränderte Wirtschaftsdaten reagiert – mit Folgen für Immobilienkäufer, die auf eine Refinanzierung warten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ökonom Mark Hamrick merkte zudem an, Warsh halte sich mit Hinweisen auf künftige Zinsschritte bereits jetzt zurücker als seine Vorgänger – weniger Pressekonferenzen bedeuteten deshalb auch weniger Gelegenheiten, die Begründung der Notenbank direkt zu hören. Einen Vorteil nannte er auch: Solange der Leitzins hoch bleibt, werfen gute Tagesgeld- und Festgeldangebote weiterhin bis zu vier Prozent Zinsen ab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein unveränderter Leitzins ist kein Versprechen auf unveränderte Kreditkonditionen. Wer einen Kredit plant oder Erspartes anlegt, sollte Angebote vergleichen, statt allein auf die nächste Fed-Sitzung zu warten – die kommt jetzt seltener als gedacht.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-rekordquartal-china-schwach',
+    title: 'Apple meldet Rekordumsatz mit iPhones – China bleibt schwach',
+    teaser:
+      'Apple hat Umsatz und Gewinn im vierten Geschäftsquartal übertroffen. Weil die Erwartungen schon hoch waren und China enttäuschte, gab die Aktie trotzdem nach.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['apple', 'iphone', 'quartalszahlen', 'bewertung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'onvista, 02.11.2026, 21:43 Uhr: „Apple schlägt Gewinnerwartungen - Kurs dennoch schwächer"',
+        url: 'https://www.onvista.de/news/2026/11-02-apple-schlaegt-gewinnerwartungen-kurs-dennoch-schwaecher-41121301-19-26571396',
+      },
+      {
+        label:
+          'wallstreet-online, 02.11.2026: „Trotz Lieferengpässen: Apple liefert ab: Starke iPhone-Verkäufe sorgen für Rekordquartal"',
+        url: 'https://www.wallstreet-online.de/nachricht/21625203-trotz-lieferengpaessen-apple-liefert-ab-starke-iphone-verkaeufe-sorgen-rekordquartal',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple hat am Montagabend – erstmals unter dem neuen Chef John Ternus – die Erwartungen übertroffen. Der Umsatz stieg im vierten Geschäftsquartal auf 114,5 Milliarden Dollar, der Gewinn je Aktie lag bei 2,10 Dollar. Analysten hatten mit 113,4 Milliarden Dollar Umsatz und 1,99 Dollar Gewinn je Aktie gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Starke iPhones, schwaches China',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatz mit dem iPhone fiel mit 57,6 Milliarden Dollar ebenfalls höher aus als erwartet. In China setzte Apple dagegen nur 17,54 Milliarden Dollar um – die Wall Street hatte dort mit knapp 18,8 Milliarden Dollar gerechnet. Die Aktie gab nachbörslich von einem hohen Niveau aus 1,1 Prozent auf 334,98 Dollar nach, nachdem sie erst Ende Oktober bei 351,73 Dollar ihren bisherigen Höchststand erreicht hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Gewinn über der Prognose trotzdem nicht reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als die übrigen „Magnificent Seven" ist Apple nur marginal in das Thema Künstliche Intelligenz investiert – während Alphabet und Amazon zuletzt für ihre hohen KI-Investitionen abgestraft wurden, galt Apple als verlässlicher Umsatz- und Gewinnbringer und war mit einem Plus von 24,5 Prozent seit Jahresbeginn der bisher stärkste Wert der Gruppe. Entsprechend gering war die Toleranz für eine Enttäuschung bei den Zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinzu kommt die Bewertung: Mit einem Kurs-Gewinn-Verhältnis von 36 auf Basis der erwarteten Gewinne der nächsten zwölf Monate ist Apple nach Daten von Bloomberg fast doppelt so teuer wie der marktbreite S&P 500 – und damit so hoch bewertet wie zuletzt 2008. Ben Carew, Co-Investmentchef bei Tandem Investment Advisors, sagte, Apple sei derzeit teurer als 99 Prozent aller historischen Vergleichswerte; bleibe das Wachstum hinter den Erwartungen zurück, drohe eine Neubewertung dieser hohen Kennzahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gewinn über der Prognose sagt wenig darüber aus, wie eine Aktie reagiert, wenn die Prognose selbst schon hoch war. Bei einer teuren Bewertung genügt oft eine einzelne enttäuschende Kennzahl – hier die Umsätze in China –, um den Kurs trotz guter Gesamtzahlen zu belasten.',
+      },
+    ],
+  },
+  {
+    slug: 'palantir-firmenkunden-ueberholen-staat',
+    title: 'Palantir: Firmenkunden überholen erstmals den Staat',
+    teaser:
+      'Palantir knackte im dritten Quartal erstmals zwei Milliarden Dollar Umsatz. Firmenkunden wuchsen so schnell, dass sie die Regierungseinnahmen überholten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-03T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['palantir', 'ki', 'quartalszahlen', 'wachstum'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['palantir'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 22:53 Uhr: „Palantir reports booming U.S. commercial revenue growth, topping government for first time"',
+        url: 'https://www.cnbc.com/2026/11/02/palantir-pltr-earnings-q3-2026.html',
+      },
+      {
+        label:
+          'wallstreet-online, 02.11.2026: „Palantir, AMD & Co: Rekordgewinne, null Steuern – diese US-Konzerne kassieren Milliarden"',
+        url: 'https://www.wallstreet-online.de/nachricht/21623253-palantir-amd-co-rekordgewinne-null-steuern-us-konzerne-kassieren-milliarden',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Palantir hat am Montag nach Börsenschluss Zahlen vorgelegt, die die Erwartungen der Wall Street übertrafen. Der Umsatz lag erstmals über 2 Milliarden Dollar, fast doppelt so viel wie vor einem Jahr. Der Gewinn stieg auf 1,13 Milliarden Dollar oder 44 Cent je Aktie, nach rund 476 Millionen Dollar oder 18 Cent im Vorjahresquartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Firmenkunden wachsen schneller als der Staat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders auffällig: Der Umsatz mit US-Firmenkunden sprang um 148 Prozent auf 984 Millionen Dollar und übertraf damit erstmals die Einnahmen aus US-Regierungsaufträgen von 953 Millionen Dollar, die ihrerseits um 96 Prozent zulegten. Firmenkunden in den USA setzen nach Unternehmensangaben inzwischen mehr als fünfmal so viel bei Palantir um wie noch vor zwei Jahren. Konzernchef Alex Karp sagte dem Sender CNBC, er glaube nicht, dass es in der Geschichte der Software- und KI-Branche je vergleichbar konstante Ergebnisse gegeben habe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das kleinere Geschäft das größere überholt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Palantir war lange vor allem für Aufträge von Regierungen und Militär bekannt. Dass das Firmenkundengeschäft das Regierungsgeschäft nun übertrifft, liegt auch an unterschiedlichen Ausgangsgrößen: Eine Wachstumsrate von 148 Prozent auf einer kleineren Basis reicht aus, um eine Wachstumsrate von 96 Prozent auf einer größeren Basis zu überholen – das Regierungsgeschäft schrumpft dabei nicht, es wächst nur langsamer als das jüngere Firmenkundengeschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Palantir erhöhte zugleich die Prognose für das US-Firmenkundengeschäft im Gesamtjahr auf „mehr als 3,56 Milliarden Dollar“, nach zuvor 3,42 Milliarden Dollar. Für das vierte Quartal erwartet der Konzern rund 2,65 Milliarden Dollar Umsatz, für das Gesamtjahr 2026 rund 8,53 Milliarden Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine hohe Wachstumsrate sagt für sich genommen wenig aus, solange die Ausgangsgröße fehlt. 148 Prozent Wachstum auf rund 400 Millionen Dollar sind ein anderer Vorgang als 148 Prozent Wachstum auf 4 Milliarden – wer Wachstumsraten zwischen zwei Sparten vergleicht, sollte deshalb immer auch die absoluten Zahlen danebenlegen.',
+      },
+    ],
+  },
+  {
     slug: 'midterms-maerkte-positionieren-sich',
     title: 'Vor den Midterms: Anleger in Asien sichern sich ab',
     teaser:

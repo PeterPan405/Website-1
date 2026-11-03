@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Öl bricht ein, die USA wählen neu, die Fed stimmt künftig seltener ab, Apple und Palantir legen Quartalszahlen vor.",
+  "kacheln": [
+    {
+      "titel": "Öl: -7,6 % an einem Tag",
+      "text": "Brent-Öl fiel am Montag um 7,6 Prozent auf 104,77 Dollar. Die USA und Iran signalisierten Bereitschaft zu einer diplomatischen Lösung ihres Konflikts."
+    },
+    {
+      "titel": "Wahltag in den USA",
+      "text": "Am Dienstag wählen die Amerikaner ein neues Repräsentantenhaus und einen Teil des Senats. An der Wall Street schloss der Dow höher, der Nasdaq 100 gab nach."
+    },
+    {
+      "titel": "Fed: Weniger Sitzungen",
+      "text": "Fed-Chef Kevin Warsh kündigte an, ab 2027 seltener über den Leitzins abzustimmen. Der Zins liegt aktuell bei 3,75 bis 4 Prozent."
+    },
+    {
+      "titel": "Apple übertrifft Erwartungen",
+      "text": "Apple meldete 114,5 Milliarden Dollar Umsatz, mehr als erwartet. Weil das China-Geschäft enttäuschte, gab die Aktie nachbörslich leicht nach."
+    },
+    {
+      "titel": "Palantir: Rekordquartal",
+      "text": "Palantir knackte erstmals die Marke von 2 Milliarden Dollar Quartalsumsatz. Das Geschäft mit Firmenkunden überholte erstmals die Einnahmen vom Staat."
+    }
+  ],
+  "schlagworte": ["ölpreis", "zinsen", "wahlen", "börse", "aktien"]
+}
