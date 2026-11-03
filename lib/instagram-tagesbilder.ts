@@ -198,9 +198,15 @@ export const SUCHE: Record<string, string[]> = {
   euro: ['piggy bank', 'euro coins', 'coins money', 'euro banknotes'],
   konsum: ['supermarket', 'shopping cart', 'shopping street'],
   tresor: ['bank vault', 'gold bars', 'safe deposit boxes'],
+  /*
+    Kein Handelssaal mehr (03.11.2026: ein leeres, dunkles Parkett auf dem
+    Deckblatt – Betreiber: „schon wieder nicht ästhetisch und nicht
+    schön"). Bekannte Fassaden bei Tag sind hell und erkennbar.
+  */
   boerse: [
-    'stock exchange trading floor',
-    'stock market ticker',
+    'New York Stock Exchange facade',
+    'Frankfurt Stock Exchange bull and bear',
+    'Wall Street sign',
     'stock exchange building',
   ],
 }
