@@ -569,5 +569,62 @@
       "urheber": "Binance",
       "suche": "Logo auf #1E2026"
     }
+  ],
+  "2026-11-03": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-03-1-93e33d9c.jpg",
+      "titel": "File:Stock-exchange-trading-floor.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Stock-exchange-trading-floor.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "S.aderogba",
+      "suche": "stock exchange trading floor"
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-03-2-a7ddda93.jpg",
+      "titel": "File:Vapor burst from Preemraff oil refinery.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Vapor_burst_from_Preemraff_oil_refinery.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "W.carter",
+      "suche": "oil refinery"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-03-3-867575b6.jpg",
+      "titel": "File:Wall Street - New York Stock Exchange.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Wall_Street_-_New_York_Stock_Exchange.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Carlos Delgado",
+      "suche": "United States New York Stock Exchange"
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-11-03-4-c87df7c1.jpg",
+      "titel": "File:Kevin Warsh webtake.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Kevin_Warsh_webtake.jpg",
+      "lizenz": "Public domain",
+      "urheber": "The White House",
+      "suche": "deepcat:\"Kevin Warsh\""
+    },
+    {
+      "stelle": 5,
+      "datei": "",
+      "titel": "Kurs: apple",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "apple"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-03-6-d880662a.jpg",
+      "titel": "File:Palantir Technologies logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Palantir_Technologies_logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Palantir Technologies. The original uploader was KarimKoueider at English Wikipedia.",
+      "suche": "Logo „Palantir\""
+    }
   ]
 }
