@@ -67,7 +67,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       { text: 'Weniger, nicht weg.', gruen: true },
     ],
     erklaerung:
-      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte.',
+      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte – logarithmische Skala.',
     stichzeile: 'Atomsprengköpfe · 1945 bis 2026',
     helden: [
       { name: 'Höchststand 1986', wert: '70.374' },
@@ -111,6 +111,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Israel: 90\n' +
       'Nordkorea: 60\n' +
       'Zusammen 9.745. Der Rest der 12.187 ist ausgemustert und wartet auf die Verschrottung. Der Iran steht nicht auf der Liste.\n\n' +
+      'So liest du die Grafik: Die Skala ist logarithmisch – jede Linie steht für das Zehnfache der darunter. Nur so sind die 60 Sprengköpfe Nordkoreas neben den 4.400 Russlands zu sehen.\n\n' +
       'Schon gewusst?\n' +
       '– Russland (bis 1991 Sowjetunion) hatte 1986 allein 40.159 Sprengköpfe, die USA 1967 31.255.\n' +
       '– China hat so viele wie nie: 620. Indien, Pakistan und Nordkorea stehen ebenfalls auf ihrem Höchststand.\n' +
@@ -120,6 +121,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Und jetzt?\n' +
       'Die einsatzbereiten Bestände wachsen laut FAS wieder. Das US-Verteidigungsministerium rechnete 2022 mit rund 1.000 chinesischen Sprengköpfen bis 2030.\n\n' +
       'Quellen: Federation of American Scientists, „Status of World Nuclear Forces 2026"; Our World in Data, „Nuclear warhead stockpiles"',
+    freigabe: '2026-11-03',
     schlagworte: ['atomwaffen', 'geopolitik', 'iran', 'russland', 'usa'],
   },
   {

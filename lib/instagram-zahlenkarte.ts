@@ -3503,7 +3503,8 @@ function vielfachGrafik(k: Vielfachkarte) {
   /*
     Alle Reihen in einem Koordinatensystem (Betreiber, 03.11.2026: „jedes
     Land hat seinen eigenen Graphen, aber zusammen in einer
-    XY-Koordinate"). Die Gesamtkurve gestrichelt in Grau.
+    XY-Koordinate"). Logarithmische y-Achse, sonst lägen 60 Nordkoreas
+    unsichtbar unter 4.400 Russlands. Die Gesamtkurve gestrichelt in Grau.
   */
   const links = STIL_RAND + 70
   const rechts = ZK_BREITE - STIL_RAND - 190
@@ -3511,19 +3512,26 @@ function vielfachGrafik(k: Vielfachkarte) {
   const oben = STIL_GRAFIK_O - 30
   const hoehe = STIL_GRAFIK_U - oben
   const anzahl = k.gesamt.punkte.length
-  /*
-    Lineare y-Achse (Betreiber, 03.11.2026, zur logarithmischen: „Stell das
-    mal bitte ganz normal dar"). Die kleinen Bestände liegen dann nah an
-    der Nulllinie; ihre Zahl steht am Linienende.
-  */
-  const hoch = Math.max(...[k.gesamt, ...k.teile].flatMap((r) => r.punkte))
-  const schritt = achsenschritt(hoch, 4)
-  const decke = Math.ceil(hoch / schritt) * schritt
-  const y = (v: number) => hoehe - (v / decke) * hoehe
+  const alle = [k.gesamt, ...k.teile].flatMap((r) => r.punkte).filter((v) => v > 0)
+  const unten = Math.pow(10, Math.floor(Math.log10(Math.min(...alle))))
+  const decke = Math.pow(10, Math.ceil(Math.log10(Math.max(...alle))))
+  const y = (v: number) =>
+    hoehe -
+    ((Math.log10(Math.max(v, unten)) - Math.log10(unten)) /
+      (Math.log10(decke) - Math.log10(unten))) *
+      hoehe
   const x = (i: number) => (i / (anzahl - 1)) * breite
-  const pfad = (p: readonly number[]) =>
-    p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
-  const striche = Array.from({ length: decke / schritt + 1 }, (_, i) => i * schritt)
+  /* Erst ab dem ersten Sprengkopf zeichnen – log(0) gibt es nicht. */
+  const pfad = (p: readonly number[]) => {
+    let d = ''
+    p.forEach((v, i) => {
+      if (v <= 0) return
+      d += `${d ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+    })
+    return d
+  }
+  const striche: number[] = []
+  for (let v = unten; v <= decke; v *= 10) striche.push(v)
   const reihen = [
     {
       name: k.gesamt.name,
