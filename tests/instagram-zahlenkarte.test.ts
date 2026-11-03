@@ -1039,8 +1039,12 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 02.11.2026: Atomsprengköpfe (FAS 2026, Our World in Data). */
 {
-  const karte = zurueckgestellt.find((z) => z.titel[0].text === 'Atomsprengköpfe:')
-  pruefe('Atom: Karte liegt zurückgestellt bereit', karte?.art === 'kurven')
+  const karte = karteVom('2026-11-03')
+  pruefe('Atom: Karte für den 03.11. ist eine Kurvenkarte', karte?.art === 'kurven')
+  pruefe(
+    'Atom: Form anders als am Vortag',
+    form(karte!) !== form(karteVom('2026-11-02')!)
+  )
   if (karte?.art === 'kurven') {
     pruefe(
       'Atom: keine Beanstandung',
