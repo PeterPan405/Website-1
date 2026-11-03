@@ -1037,15 +1037,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 02.11.2026: Atomsprengköpfe (FAS 2026, Our World in Data). */
+/* 03.11.2026: Atomwaffen weltweit (FAS 2026, Our World in Data). */
 {
   const karte = karteVom('2026-11-03')
-  pruefe('Atom: Karte für den 03.11. ist eine Kurvenkarte', karte?.art === 'kurven')
-  pruefe(
-    'Atom: Form anders als am Vortag',
-    form(karte!) !== form(karteVom('2026-11-02')!)
-  )
-  if (karte?.art === 'kurven') {
+  pruefe('Atom: Karte für den 03.11. ist eine Vielfachkarte', karte?.art === 'vielfach')
+  if (karte?.art === 'vielfach') {
     pruefe(
       'Atom: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
@@ -1053,29 +1049,25 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     )
     pruefe(
       'Atom: Form anders als am Vortag',
-      form(karte) !== form(karteVom('2026-11-01')!)
+      form(karte) !== form(karteVom('2026-11-02')!)
     )
-    const [ru, us] = karte.linien
-    pruefe('Atom: 82 Jahre 1945–2026', ru.punkte.length === 82 && us.punkte.length === 82)
+    const welt = karte.gesamt.punkte
     pruefe(
-      'Atom: 2026 Russland 4.400, USA 3.700 (FAS)',
-      ru.punkte.at(-1) === 4400 && us.punkte.at(-1) === 3700
+      'Atom: Welt 1986 70.374, 2026 12.187',
+      welt[41] === 70374 && welt.at(-1) === 12187 && Math.max(...welt) === 70374
     )
-    const minus = (r: readonly number[]) =>
-      Math.round((r.at(-1)! / Math.max(...r) - 1) * 100)
+    pruefe('Atom: −83 % seit 1986', Math.round((12187 / 70374 - 1) * 100) === -83)
+    const summe = karte.teile.reduce((a, t) => a + t.punkte.at(-1)!, 0)
     pruefe(
-      'Atom: Russland −89 % seit 1986',
-      minus(ru.punkte) === -89 && ru.punkte.indexOf(Math.max(...ru.punkte)) === 41
+      'Atom: neun Länder ergeben 9.745 (FAS-Militärbestand)',
+      karte.teile.length === 9 && summe === 9745 && karte.text.includes('9.745')
     )
-    pruefe(
-      'Atom: USA −88 % seit 1967',
-      minus(us.punkte) === -88 && us.punkte.indexOf(Math.max(...us.punkte)) === 22
-    )
-    const liste = [5420, 5042, 620, 370, 225, 190, 170, 90, 60]
-    pruefe(
-      'Atom: die neun Bestände ergeben 12.187',
-      liste.reduce((a, b) => a + b) === 12187 && karte.text.includes('12.187')
-    )
+    for (const t of karte.teile)
+      pruefe(
+        `Atom: ${t.name} ${t.wert} = letzter Wert`,
+        t.wert === t.punkte.at(-1)!.toLocaleString('de-DE') &&
+          karte.text.includes(`${t.name}: ${t.wert}`)
+      )
   }
 }
 
