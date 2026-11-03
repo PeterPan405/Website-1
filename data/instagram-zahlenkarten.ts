@@ -67,7 +67,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       { text: 'Weniger, nicht weg.', gruen: true },
     ],
     erklaerung:
-      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte – logarithmische Skala.',
+      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte.',
     stichzeile: 'Atomsprengköpfe · 1945 bis 2026',
     helden: [
       { name: 'Höchststand 1986', wert: '70.374' },
