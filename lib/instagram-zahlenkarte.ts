@@ -401,7 +401,24 @@ export interface Balkenkarte extends StilGemeinsam {
   einheit: string
 }
 
+/**
+ * Eine Gesamtkurve und darunter kleine Kurven je Teil, jede auf eigener
+ * Skala (03.11.2026, Atomsprengköpfe weltweit und je Atommacht –
+ * Betreiber: „insgesamt Sprengköpfe … dann halt noch ein paar Charts
+ * dazu. Von China, Nordkorea und so weiter"). Alle Reihen gleich lang.
+ */
+export interface Vielfachkarte extends StilGemeinsam {
+  art: 'vielfach'
+  helden: Held[]
+  gesamt: { name: string; punkte: readonly number[] }
+  /** Beschriftung der x-Achse der Gesamtkurve: Stelle in `punkte` und Text. */
+  achse: { bei: number; text: string }[]
+  /** Drei bis neun, in Reihen zu drei. `wert` steht neben dem Namen. */
+  teile: { name: string; wert: string; punkte: readonly number[] }[]
+}
+
 export type Zahlenkarte =
+  | Vielfachkarte
   | Kurvenkarte
   | Saeulenkarte
   | Zeitstrahlkarte
@@ -743,7 +760,7 @@ const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
 function stilBefunde(
-  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte
+  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte | Vielfachkarte
 ): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
@@ -824,6 +841,14 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'vielfach') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.teile.length < 3 || k.teile.length > 9)
+      f.push(`${k.teile.length} kleine Kurven – drei bis neun.`)
+    if (k.teile.some((t) => t.punkte.length !== k.gesamt.punkte.length))
+      f.push('Alle Reihen müssen gleich viele Punkte haben wie die Gesamtkurve.')
     f.push(...stilBefunde(k))
   } else if (k.art === 'balken') {
     if (k.helden.length < 1 || k.helden.length > 2)
@@ -1112,16 +1137,19 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
     k.art === 'kurven' ||
     k.art === 'saeulen' ||
     k.art === 'zeitstrahl' ||
-    k.art === 'balken'
+    k.art === 'balken' ||
+    k.art === 'vielfach'
   ) {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
         : k.art === 'saeulen'
           ? stilBild(k, logo, k.helden, saeulenGrafik(k))
-          : k.art === 'balken'
-            ? stilBild(k, logo, k.helden, balkenGrafik(k))
-            : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
+          : k.art === 'vielfach'
+            ? stilBild(k, logo, k.helden, vielfachGrafik(k))
+            : k.art === 'balken'
+              ? stilBild(k, logo, k.helden, balkenGrafik(k))
+              : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2423,8 +2451,10 @@ export function form(
   | 'kurven'
   | 'saeulen'
   | 'zeitstrahl'
-  | 'hausbalken' {
+  | 'hausbalken'
+  | 'vielfach' {
   if (k.art === 'balken') return 'hausbalken'
+  if (k.art === 'vielfach') return 'vielfach'
   if (
     k.art === 'kurven' ||
     k.art === 'zeitstrahl' ||
@@ -3085,7 +3115,7 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte,
+  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte | Vielfachkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3453,6 +3483,159 @@ function saeulenGrafik(k: Saeulenkarte) {
         color: STIL.hellgrau,
       }),
     ]),
+  ]
+}
+
+/* Je Linie eine Farbe – gedeckt, ohne Grün und Rot, die eine Richtung tragen. */
+const LINIENFARBEN = [
+  '#0b1220',
+  '#17296F',
+  '#3f6fb5',
+  '#6b4fa0',
+  '#b07a2a',
+  '#2f8a8a',
+  '#8a5a44',
+  '#c0568a',
+  '#5b6472',
+]
+
+function vielfachGrafik(k: Vielfachkarte) {
+  /*
+    Alle Reihen in einem Koordinatensystem (Betreiber, 03.11.2026: „jedes
+    Land hat seinen eigenen Graphen, aber zusammen in einer
+    XY-Koordinate"). Logarithmische y-Achse, sonst lägen 60 Nordkoreas
+    unsichtbar unter 4.400 Russlands. Die Gesamtkurve gestrichelt in Grau.
+  */
+  const links = STIL_RAND + 70
+  const rechts = ZK_BREITE - STIL_RAND - 190
+  const breite = rechts - links
+  const oben = STIL_GRAFIK_O - 30
+  const hoehe = STIL_GRAFIK_U - oben
+  const anzahl = k.gesamt.punkte.length
+  const alle = [k.gesamt, ...k.teile].flatMap((r) => r.punkte).filter((v) => v > 0)
+  const unten = Math.pow(10, Math.floor(Math.log10(Math.min(...alle))))
+  const decke = Math.pow(10, Math.ceil(Math.log10(Math.max(...alle))))
+  const y = (v: number) =>
+    hoehe -
+    ((Math.log10(Math.max(v, unten)) - Math.log10(unten)) /
+      (Math.log10(decke) - Math.log10(unten))) *
+      hoehe
+  const x = (i: number) => (i / (anzahl - 1)) * breite
+  /* Erst ab dem ersten Sprengkopf zeichnen – log(0) gibt es nicht. */
+  const pfad = (p: readonly number[]) => {
+    let d = ''
+    p.forEach((v, i) => {
+      if (v <= 0) return
+      d += `${d ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+    })
+    return d
+  }
+  const striche: number[] = []
+  for (let v = unten; v <= decke; v *= 10) striche.push(v)
+  const reihen = [
+    {
+      name: k.gesamt.name,
+      wert: k.gesamt.punkte.at(-1)!.toLocaleString('de-DE'),
+      punkte: k.gesamt.punkte,
+      farbe: '#9aa3b0',
+      welt: true,
+    },
+    ...k.teile.map((t, n) => ({
+      ...t,
+      farbe: LINIENFARBEN[n % LINIENFARBEN.length],
+      welt: false,
+    })),
+  ]
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 20}" height="${hoehe + 20}" viewBox="-10 -10 ${breite + 20} ${hoehe + 20}">` +
+    striche
+      .map(
+        (v, i) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${i ? STIL.rand : '#c9cfd8'}" stroke-width="${i ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    reihen
+      .map(
+        (r) =>
+          `<path d="${pfad(r.punkte)}" fill="none" stroke="${r.farbe}" stroke-width="${r.welt ? 3 : 3}" ${r.welt ? 'stroke-dasharray="8 6"' : ''} stroke-linejoin="round" stroke-linecap="round"/>` +
+          `<circle cx="${x(anzahl - 1)}" cy="${y(r.punkte[anzahl - 1])}" r="5" fill="#fff" stroke="${r.farbe}" stroke-width="3"/>`
+      )
+      .join('') +
+    '</svg>'
+
+  /* Namen am Linienende, auseinandergeschoben, wo sie sich sonst überlägen. */
+  const abstand = 25
+  const schilder = reihen
+    .map((r) => ({ r, ziel: y(r.punkte[anzahl - 1]) }))
+    .sort((a, b) => a.ziel - b.ziel)
+  let zuletzt = -Infinity
+  for (const s of schilder) {
+    const lage = Math.max(s.ziel, zuletzt + abstand)
+    ;(s as { lage?: number }).lage = lage
+    zuletzt = lage
+  }
+  /* Ragt der unterste über den Rand, rückt alles nach oben. */
+  const ueber = zuletzt - (hoehe + 6)
+  if (ueber > 0) for (const s of schilder) (s as { lage?: number }).lage! -= ueber
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 20,
+      height: hoehe + 20,
+      style: { position: 'absolute', left: links - 10, top: oben - 10 },
+    }),
+    ...striche.map((v) =>
+      stilBlock(v.toLocaleString('de-DE'), {
+        top: oben + y(v) - 11,
+        left: STIL_RAND - 10,
+        width: 70,
+        justifyContent: 'flex-end',
+        fontSize: 16,
+        color: STIL.hellgrau,
+      })
+    ),
+    ...k.achse.map((a) =>
+      stilBlock(a.text, {
+        top: oben + hoehe + 12,
+        left: links + x(a.bei) - 40,
+        width: 80,
+        justifyContent: 'center',
+        fontSize: 16,
+        color: STIL.hellgrau,
+      })
+    ),
+    ...schilder.map((s) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            top: oben + (s as { lage?: number }).lage! - 12,
+            left: rechts + 16,
+            display: 'flex',
+            alignItems: 'baseline',
+            fontFamily: 'Montserrat',
+          },
+        },
+        h(
+          'span',
+          { style: { fontSize: 18, fontWeight: 800, color: s.r.farbe, marginRight: 8 } },
+          s.r.wert
+        ),
+        h(
+          'span',
+          {
+            style: {
+              fontSize: 17,
+              fontWeight: 700,
+              color: s.r.welt ? STIL.grau : s.r.farbe,
+            },
+          },
+          s.r.name
+        )
+      )
+    ),
   ]
 }
 

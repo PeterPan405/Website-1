@@ -12,10 +12,118 @@
  * IM Invests hinaus – dieselbe Regel wie für die Nachrichten.
  */
 import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
-import { ATOM_RUSSLAND, ATOM_USA } from './instagram-reihen-atomwaffen.ts'
+import {
+  ATOM_CHINA,
+  ATOM_FRANKREICH,
+  ATOM_GROSSBRITANNIEN,
+  ATOM_INDIEN,
+  ATOM_ISRAEL,
+  ATOM_NORDKOREA,
+  ATOM_PAKISTAN,
+  ATOM_RUSSLAND,
+  ATOM_USA,
+  ATOM_WELT,
+} from './instagram-reihen-atomwaffen.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Thema vom Betreiber am 02.11.2026: „was Spannendes … wegen dem
+      Iran-Krieg jetzt. Atomwaffen und so." Verworfen hatte er Lagarde
+      (zurückgestellt), Gold, Binance, Meta, VW, Termine der Woche.
+      Form: Kurven (am 01.11. Säulen).
+      Am 02.11.2026 zurückgestellt (an dem Tag lief „Kriege und der
+      Ölpreis"). Für den 03.11. erster offener Vorschlag. Betreiber zum
+      ersten Entwurf: „oben nicht USA und Russland so groß, sondern
+      insgesamt Sprengköpfe … damals und heute, dann halt noch ein paar
+      Charts dazu. Von China, Nordkorea und so weiter." Form: Gesamtkurve
+      mit kleinen Kurven je Atommacht (am 02.11. waagerechte Balken).
+      Welt: OWID 1986 70.374, 2026 12.187 (= FAS-Gesamtbestand); Länder:
+      OWID = FAS-Militärbestand, Summe 9.745. Höchststände: Frankreich
+      1991 540, Großbritannien 1973 500; China, Indien, Nordkorea 2026,
+      Pakistan 170 seit 2023, Israel 90 seit 2020.
+
+      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
+      - FAS, „Status of World Nuclear Forces 2026": 12.187 Sprengköpfe in
+        neun Staaten, davon 9.745 im Militärbestand; USA und Russland
+        besitzen rund 86 % des Gesamtbestands; Höhepunkt rund 70.300 im
+        Jahr 1986. Gesamtbestand je Land: Russland 5.420, USA 5.042,
+        China 620, Frankreich 370, Großbritannien 225, Indien 190,
+        Pakistan 170, Israel 90, Nordkorea 60. Der Abbau verlangsamt sich
+        und läuft nur noch über die Verschrottung ausgemusterter
+        Sprengköpfe; die Militärbestände wachsen wieder. China baut aus,
+        laut US-Verteidigungsministerium (2022) bis 2030 rund 1.000.
+        Seit 2023 tauschen USA und Russland keine öffentlichen Daten mehr.
+      - Our World in Data, Militärbestand je Jahr (data/instagram-reihen-atomwaffen.ts):
+        Russland/Sowjetunion Höchststand 1986 mit 40.159, 2026: 4.400
+        (−89 %); USA Höchststand 1967 mit 31.255, 2026: 3.700 (−88 %).
+      Iran: steht nicht in der FAS-Liste der neun Atommächte.
+    */
+    art: 'vielfach',
+    datum: '2026-11-03',
+    titel: [
+      { text: 'Atomwaffen weltweit:' },
+      { text: 'Weniger, nicht weg.', gruen: true },
+    ],
+    erklaerung:
+      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte – logarithmische Skala.',
+    stichzeile: 'Atomsprengköpfe · 1945 bis 2026',
+    helden: [
+      { name: 'Höchststand 1986', wert: '70.374' },
+      {
+        name: 'Anfang 2026',
+        wert: '12.187',
+        pille: { wert: '−83 %', name: 'seit 1986', richtung: 'faellt' },
+      },
+    ],
+    gesamt: { name: 'Welt', punkte: ATOM_WELT },
+    achse: [
+      { bei: 0, text: '1945' },
+      { bei: 15, text: '1960' },
+      { bei: 35, text: '1980' },
+      { bei: 55, text: '2000' },
+      { bei: 81, text: '2026' },
+    ],
+    teile: [
+      { name: 'Russland', wert: '4.400', punkte: ATOM_RUSSLAND },
+      { name: 'USA', wert: '3.700', punkte: ATOM_USA },
+      { name: 'China', wert: '620', punkte: ATOM_CHINA },
+      { name: 'Frankreich', wert: '290', punkte: ATOM_FRANKREICH },
+      { name: 'Großbritannien', wert: '225', punkte: ATOM_GROSSBRITANNIEN },
+      { name: 'Indien', wert: '190', punkte: ATOM_INDIEN },
+      { name: 'Pakistan', wert: '170', punkte: ATOM_PAKISTAN },
+      { name: 'Israel', wert: '90', punkte: ATOM_ISRAEL },
+      { name: 'Nordkorea', wert: '60', punkte: ATOM_NORDKOREA },
+    ],
+    fusszeile:
+      'Stand: Anfang 2026 | Quellen: Federation of American Scientists, Our World in Data',
+    text:
+      'Krieg um den Iran, Drohungen, Aufrüstung – wie viele Atomwaffen gibt es eigentlich? Laut der Federation of American Scientists (FAS) Anfang 2026 rund 12.187 Sprengköpfe auf der Welt. 1986, auf dem Höhepunkt des Kalten Kriegs, waren es 70.374 – heute 83 % weniger.\n\n' +
+      'Die neun Atommächte und ihr einsatzbereiter Bestand laut FAS:\n' +
+      'Russland: 4.400\n' +
+      'USA: 3.700\n' +
+      'China: 620\n' +
+      'Frankreich: 290\n' +
+      'Großbritannien: 225\n' +
+      'Indien: 190\n' +
+      'Pakistan: 170\n' +
+      'Israel: 90\n' +
+      'Nordkorea: 60\n' +
+      'Zusammen 9.745. Der Rest der 12.187 ist ausgemustert und wartet auf die Verschrottung. Der Iran steht nicht auf der Liste.\n\n' +
+      'So liest du die Grafik: Die Skala ist logarithmisch – jede Linie steht für das Zehnfache der darunter. Nur so sind die 60 Sprengköpfe Nordkoreas neben den 4.400 Russlands zu sehen.\n\n' +
+      'Schon gewusst?\n' +
+      '– Russland (bis 1991 Sowjetunion) hatte 1986 allein 40.159 Sprengköpfe, die USA 1967 31.255.\n' +
+      '– China hat so viele wie nie: 620. Indien, Pakistan und Nordkorea stehen ebenfalls auf ihrem Höchststand.\n' +
+      '– Frankreich hatte 1991 540, Großbritannien 1973 500 – beide haben seitdem abgebaut.\n\n' +
+      'Warum so viel weniger?\n' +
+      'Laut FAS bauten die USA und Russland nach dem Kalten Krieg ab. Inzwischen gehe der Abbau nur noch weiter, weil ausgemusterte Sprengköpfe verschrottet werden.\n\n' +
+      'Und jetzt?\n' +
+      'Die einsatzbereiten Bestände wachsen laut FAS wieder. Das US-Verteidigungsministerium rechnete 2022 mit rund 1.000 chinesischen Sprengköpfen bis 2030.\n\n' +
+      'Quellen: Federation of American Scientists, „Status of World Nuclear Forces 2026"; Our World in Data, „Nuclear warhead stockpiles"',
+    freigabe: '2026-11-03',
+    schlagworte: ['atomwaffen', 'geopolitik', 'iran', 'russland', 'usa'],
+  },
   {
     /*
       Thema vom Betreiber am 02.11.2026 gewählt („Thema 2": Kriege und der
@@ -1263,77 +1371,6 @@ export const zahlenkarten: Zahlenkarte[] = [
  * oben in `zahlenkarten` ein.
  */
 export const zurueckgestellt: Zahlenkarte[] = [
-  {
-    /*
-      Thema vom Betreiber am 02.11.2026: „was Spannendes … wegen dem
-      Iran-Krieg jetzt. Atomwaffen und so." Verworfen hatte er Lagarde
-      (zurückgestellt), Gold, Binance, Meta, VW, Termine der Woche.
-      Form: Kurven (am 01.11. Säulen).
-      Zurückgestellt am 02.11.2026: Der Betreiber wollte stattdessen
-      „gescheite Vorschläge" und wählte „Kriege und der Ölpreis".
-
-      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
-      - FAS, „Status of World Nuclear Forces 2026": 12.187 Sprengköpfe in
-        neun Staaten, davon 9.745 im Militärbestand; USA und Russland
-        besitzen rund 86 % des Gesamtbestands; Höhepunkt rund 70.300 im
-        Jahr 1986. Gesamtbestand je Land: Russland 5.420, USA 5.042,
-        China 620, Frankreich 370, Großbritannien 225, Indien 190,
-        Pakistan 170, Israel 90, Nordkorea 60. Der Abbau verlangsamt sich
-        und läuft nur noch über die Verschrottung ausgemusterter
-        Sprengköpfe; die Militärbestände wachsen wieder. China baut aus,
-        laut US-Verteidigungsministerium (2022) bis 2030 rund 1.000.
-        Seit 2023 tauschen USA und Russland keine öffentlichen Daten mehr.
-      - Our World in Data, Militärbestand je Jahr (data/instagram-reihen-atomwaffen.ts):
-        Russland/Sowjetunion Höchststand 1986 mit 40.159, 2026: 4.400
-        (−89 %); USA Höchststand 1967 mit 31.255, 2026: 3.700 (−88 %).
-      Iran: steht nicht in der FAS-Liste der neun Atommächte.
-    */
-    art: 'kurven',
-    datum: '2026-11-02',
-    titel: [{ text: 'Atomsprengköpfe:' }, { text: 'Weniger, nicht weg.', gruen: true }],
-    stichzeile: 'Sprengköpfe · USA und Russland ab 1945',
-    erklaerung:
-      'USA und Russland haben seit dem Kalten Krieg fast 90 % ihrer Sprengköpfe abgebaut – und halten noch 86 % aller.',
-    linien: [
-      { name: 'Russland', ende: '4.400', punkte: ATOM_RUSSLAND },
-      { name: 'USA', ende: '3.700', ton: 'grau', punkte: ATOM_USA },
-    ],
-    achse: [
-      { bei: 0, text: '1945' },
-      { bei: 15, text: '1960' },
-      { bei: 35, text: '1980' },
-      { bei: 55, text: '2000' },
-      { bei: 81, text: '2026' },
-    ],
-    einheit: '',
-    namenAnKurve: true,
-    kennzahlen: [
-      { name: 'seit 1986', wert: '−89 %', richtung: 'faellt' },
-      { name: 'seit 1967', wert: '−88 %', richtung: 'faellt' },
-    ],
-    fusszeile:
-      'Stand: Anfang 2026 | Quellen: Federation of American Scientists, Our World in Data',
-    text:
-      'Krieg um den Iran, Drohungen, Aufrüstung – wie viele Atomwaffen gibt es eigentlich? Laut der Federation of American Scientists (FAS) Anfang 2026 rund 12.187 Sprengköpfe, verteilt auf neun Staaten. 1986 waren es rund 70.300.\n\n' +
-      'Alle neun Atommächte, Gesamtbestand laut FAS:\n' +
-      'Russland: 5.420\n' +
-      'USA: 5.042\n' +
-      'China: 620\n' +
-      'Frankreich: 370\n' +
-      'Großbritannien: 225\n' +
-      'Indien: 190\n' +
-      'Pakistan: 170\n' +
-      'Israel: 90\n' +
-      'Nordkorea: 60\n' +
-      'Der Iran steht nicht auf dieser Liste.\n\n' +
-      'Die Kurven zeigen den einsatzbereiten Militärbestand: Russland (bis 1991 Sowjetunion) von 40.159 im Jahr 1986 auf 4.400, die USA von 31.255 im Jahr 1967 auf 3.700.\n\n' +
-      'Warum so viel weniger?\n' +
-      'Laut FAS bauten beide nach dem Kalten Krieg ab. Inzwischen gehe der Abbau aber nur noch weiter, weil ausgemusterte Sprengköpfe verschrottet werden.\n\n' +
-      'Und jetzt?\n' +
-      'Die einsatzbereiten Bestände wachsen laut FAS wieder. China baut aus – das US-Verteidigungsministerium rechnete 2022 mit rund 1.000 Sprengköpfen bis 2030. Seit 2023 tauschen die USA und Russland keine öffentlichen Daten mehr aus.\n\n' +
-      'Quellen: Federation of American Scientists, „Status of World Nuclear Forces 2026"; Our World in Data, „Nuclear warhead stockpiles"',
-    schlagworte: ['atomwaffen', 'geopolitik', 'iran', 'russland', 'usa'],
-  },
   {
     /*
       Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
