@@ -20,10 +20,7 @@
  *      um 17 Uhr längst drin.
  */
 import { nachgang } from '../lib/instagram-nachgang.ts'
-import {
-  berlinJetzt,
-  leseZahlenkarteText,
-} from '../lib/zahlenkarten-wecker.ts'
+import { berlinJetzt, leseZahlenkarteText } from '../lib/zahlenkarten-wecker.ts'
 
 const API = 'https://graph.facebook.com/v21.0'
 const TOKEN = process.env.IG_ACCESS_TOKEN?.trim() ?? ''

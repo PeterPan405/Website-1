@@ -1037,6 +1037,48 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 04.11.2026: Ergebnis der US-Zwischenwahl, S&P 500 ein Jahr danach (Yahoo). */
+{
+  const karte = karteVom('2026-11-04')
+  pruefe('Wahl: Karte für den 04.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
+    pruefe(
+      'Wahl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Wahl: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-03')!)
+    )
+    pruefe('Wahl: ausnahmsweise ab 10:30', karte.ab === '10:30')
+    /* Oktober des Wahljahrs → Oktober ein Jahr später, Schlusskurse ^GSPC. */
+    const paare: [string, number, number][] = [
+      ['1986', 243.98, 251.79],
+      ['1990', 304.0, 392.45],
+      ['1994', 472.35, 581.5],
+      ['1998', 1098.67, 1362.93],
+      ['2002', 885.76, 1050.71],
+      ['2006', 1377.94, 1549.38],
+      ['2010', 1183.26, 1253.3],
+      ['2014', 2018.05, 2079.36],
+      ['2018', 2711.74, 3037.56],
+      ['2022', 3871.98, 4193.8],
+    ]
+    for (const [jahr, vor, nach] of paare) {
+      const p = Math.round((nach / vor - 1) * 1000) / 10
+      const s = karte.saeulen.find((x) => x.text === jahr)
+      pruefe(`Wahl: ${jahr} +${p} %`, s?.wert === p)
+      pruefe(
+        `Wahl: ${jahr} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${jahr} +${p.toLocaleString('de-DE', { minimumFractionDigits: 1 })} %`
+        )
+      )
+    }
+  }
+}
+
 /* 03.11.2026: Atomwaffen weltweit (FAS 2026, Our World in Data). */
 {
   const karte = karteVom('2026-11-03')
