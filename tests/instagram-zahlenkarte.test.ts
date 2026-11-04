@@ -5,11 +5,7 @@
  */
 import { readFileSync } from 'node:fs'
 
-import {
-  zahlenkarten,
-  aktuelleZahlenkarte,
-  zurueckgestellt,
-} from '@/data/instagram-zahlenkarten'
+import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
   akzentfarbe,
@@ -1093,8 +1089,9 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 02.11.2026: Lagarde geht vorzeitig – Amtszeiten der EZB-Präsidenten (Wikipedia, Tagesschau). */
 {
-  const karte = zurueckgestellt.find((z) => z.art === 'zeitstrahl')
-  pruefe('EZB: Lagarde-Karte liegt zurückgestellt bereit', karte?.art === 'zeitstrahl')
+  const karte = karteVom('2026-11-05')
+  pruefe('EZB: Karte für den 05.11. ist ein Zeitstrahl', karte?.art === 'zeitstrahl')
+  pruefe('EZB: Form anders als am Vortag', form(karte!) !== form(karteVom('2026-11-04')!))
   if (karte?.art === 'zeitstrahl') {
     pruefe(
       'EZB: keine Beanstandung',

@@ -29,6 +29,104 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
+      Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
+      Zeitstrahl im Hausstil, neu (am 01.11. Säulen).
+
+      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
+      - Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück",
+        29.10.2026: Lagarde gibt ihr Amt zum 7. Februar 2027 auf, die
+        achtjährige Amtszeit endete regulär Ende Oktober 2027. Nachfolge
+        vor der Präsidentschaftswahl in Frankreich (April 2027); Merz:
+        Besetzung bis Jahresende; Favoriten Klaas Knot und Pablo Hernández
+        de Cos, Joachim Nagel hat sich ins Spiel gebracht; Deutschland
+        stellte noch nie die EZB-Spitze.
+      - Handelsblatt, 29.10.2026: Lagarde will offen sprechen können, vor
+        allem zur Frankreich-Wahl; die Neutralität des Amtes sei damit
+        nicht vereinbar.
+      - Wikipedia, „Präsident der Europäischen Zentralbank" (Stand
+        01.11.2026): reguläre Amtszeit 8 Jahre, keine Wiederwahl.
+        Duisenberg 01.06.1998–31.10.2003 (aus Altersgründen etwa zur Mitte
+        der Amtszeit zurückgetreten), Trichet 01.11.2003–31.10.2011,
+        Draghi 01.11.2011–31.10.2019, Lagarde seit 01.11.2019.
+      Gerechnet: Duisenberg 5 Jahre 5 Monate = 5,4; Lagarde bis 07.02.2027
+      7 Jahre 3 Monate = 7,3.
+
+      Porträts von Wikimedia Commons, geholt am 02.11.2026 über
+      bilder-holen.yml, auf den Kopf zugeschnitten:
+        Duisenberg – Wim Duisenberg (cropped).jpg, IWF, gemeinfrei
+        Trichet – Jean-Claude Trichet - World Economic Forum Annual Meeting
+          Davos 2010.jpg, World Economic Forum, CC BY-SA 2.0
+        Draghi – Mario Draghi 2019.jpg, Quirinale, Namensnennung
+        Lagarde – Lagarde ECB Portrait 2019.jpg, Lemrich / EZB, Namensnennung
+    */
+    art: 'zeitstrahl',
+    datum: '2026-11-05',
+    titel: [{ text: 'EZB-Chefin Lagarde' }, { text: 'geht früher.', gruen: true }],
+    erklaerung:
+      'Christine Lagarde gibt ihr Amt am 7. Februar 2027 auf – fast neun Monate vor dem regulären Ende ihrer achtjährigen Amtszeit.',
+    stichzeile: 'EZB-Präsidenten · Amtszeit seit 1998',
+    helden: [
+      {
+        name: 'Amtszeit Lagarde',
+        wert: '7,3 Jahre',
+        pille: { wert: '8 Jahre', name: 'wären regulär' },
+      },
+    ],
+    balken: [
+      {
+        name: 'Wim Duisenberg',
+        beginn: '1998-06-01',
+        ende: '2003-10-31',
+        regelEnde: '2006-05-31',
+        text: '5,4 J.',
+        bild: 'ezb-duisenberg.jpg',
+      },
+      {
+        name: 'Jean-Claude Trichet',
+        beginn: '2003-11-01',
+        ende: '2011-10-31',
+        text: '8 J.',
+        bild: 'ezb-trichet.jpg',
+      },
+      {
+        name: 'Mario Draghi',
+        beginn: '2011-11-01',
+        ende: '2019-10-31',
+        text: '8 J.',
+        bild: 'ezb-draghi.jpg',
+      },
+      {
+        name: 'Christine Lagarde',
+        beginn: '2019-11-01',
+        ende: '2027-02-07',
+        regelEnde: '2027-10-31',
+        text: '7,3 J.',
+        bild: 'ezb-lagarde.jpg',
+        hervor: true,
+      },
+    ],
+    achse: [2000, 2005, 2010, 2015, 2020, 2025],
+    fusszeile:
+      'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
+    text:
+      'Christine Lagarde hört früher auf. Die EZB-Präsidentin gibt ihr Amt am 7. Februar 2027 auf (Tagesschau, 29.10.). Regulär endete ihre achtjährige Amtszeit Ende Oktober 2027.\n\n' +
+      'Die Balken im Bild, Präsident für Präsident:\n' +
+      'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
+      'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
+      'Mario Draghi (Italien): November 2011 – Oktober 2019, 8 Jahre\n' +
+      'Christine Lagarde (Frankreich): November 2019 – Februar 2027, 7,3 Jahre\n\n' +
+      'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
+      'Warum geht Lagarde?\n' +
+      'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
+      'Und jetzt?\n' +
+      'Die Eurostaaten suchen die Nachfolge. Kanzler Merz will den Prozess laut Tagesschau bis zum Jahresende abschließen. Als Favoriten gelten demnach Klaas Knot, früher Chef der niederländischen Notenbank, und der Spanier Pablo Hernández de Cos. Bundesbank-Präsident Joachim Nagel hat sich selbst ins Spiel gebracht – Deutschland stellte die EZB-Spitze noch nie.\n\n' +
+      'Quellen: Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück", 29.10.2026; Handelsblatt, 29.10.2026; Wikipedia, „Präsident der Europäischen Zentralbank"\n' +
+      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
+    schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
+  },
+  {
+    /*
       Thema vom Betreiber am 04.11.2026: „content für heute Zwischenwahlen
       USA Ergebnis und in der Beschreibung erläutern, … dass das
       Auswirkungen hat", ausnahmsweise 10:30–11:00 Uhr (`ab`).
@@ -1475,106 +1573,7 @@ export const zahlenkarten: Zahlenkarte[] = [
  * … wichtigere Themen." Wer eine davon bringt, setzt das Datum und hängt sie
  * oben in `zahlenkarten` ein.
  */
-export const zurueckgestellt: Zahlenkarte[] = [
-  {
-    /*
-      Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
-      Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
-      Zeitstrahl im Hausstil, neu (am 01.11. Säulen).
-
-      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
-      - Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück",
-        29.10.2026: Lagarde gibt ihr Amt zum 7. Februar 2027 auf, die
-        achtjährige Amtszeit endete regulär Ende Oktober 2027. Nachfolge
-        vor der Präsidentschaftswahl in Frankreich (April 2027); Merz:
-        Besetzung bis Jahresende; Favoriten Klaas Knot und Pablo Hernández
-        de Cos, Joachim Nagel hat sich ins Spiel gebracht; Deutschland
-        stellte noch nie die EZB-Spitze.
-      - Handelsblatt, 29.10.2026: Lagarde will offen sprechen können, vor
-        allem zur Frankreich-Wahl; die Neutralität des Amtes sei damit
-        nicht vereinbar.
-      - Wikipedia, „Präsident der Europäischen Zentralbank" (Stand
-        01.11.2026): reguläre Amtszeit 8 Jahre, keine Wiederwahl.
-        Duisenberg 01.06.1998–31.10.2003 (aus Altersgründen etwa zur Mitte
-        der Amtszeit zurückgetreten), Trichet 01.11.2003–31.10.2011,
-        Draghi 01.11.2011–31.10.2019, Lagarde seit 01.11.2019.
-      Gerechnet: Duisenberg 5 Jahre 5 Monate = 5,4; Lagarde bis 07.02.2027
-      7 Jahre 3 Monate = 7,3.
-
-      Porträts von Wikimedia Commons, geholt am 02.11.2026 über
-      bilder-holen.yml, auf den Kopf zugeschnitten:
-        Duisenberg – Wim Duisenberg (cropped).jpg, IWF, gemeinfrei
-        Trichet – Jean-Claude Trichet - World Economic Forum Annual Meeting
-          Davos 2010.jpg, World Economic Forum, CC BY-SA 2.0
-        Draghi – Mario Draghi 2019.jpg, Quirinale, Namensnennung
-        Lagarde – Lagarde ECB Portrait 2019.jpg, Lemrich / EZB, Namensnennung
-    */
-    art: 'zeitstrahl',
-    datum: '2026-11-02', // Datum anpassen, wenn sie dran ist
-    titel: [{ text: 'EZB-Chefin Lagarde' }, { text: 'geht früher.', gruen: true }],
-    erklaerung:
-      'Christine Lagarde gibt ihr Amt am 7. Februar 2027 auf – fast neun Monate vor dem regulären Ende ihrer achtjährigen Amtszeit.',
-    stichzeile: 'EZB-Präsidenten · Amtszeit seit 1998',
-    helden: [
-      {
-        name: 'Amtszeit Lagarde',
-        wert: '7,3 Jahre',
-        pille: { wert: '8 Jahre', name: 'wären regulär' },
-      },
-    ],
-    balken: [
-      {
-        name: 'Wim Duisenberg',
-        beginn: '1998-06-01',
-        ende: '2003-10-31',
-        regelEnde: '2006-05-31',
-        text: '5,4 J.',
-        bild: 'ezb-duisenberg.jpg',
-      },
-      {
-        name: 'Jean-Claude Trichet',
-        beginn: '2003-11-01',
-        ende: '2011-10-31',
-        text: '8 J.',
-        bild: 'ezb-trichet.jpg',
-      },
-      {
-        name: 'Mario Draghi',
-        beginn: '2011-11-01',
-        ende: '2019-10-31',
-        text: '8 J.',
-        bild: 'ezb-draghi.jpg',
-      },
-      {
-        name: 'Christine Lagarde',
-        beginn: '2019-11-01',
-        ende: '2027-02-07',
-        regelEnde: '2027-10-31',
-        text: '7,3 J.',
-        bild: 'ezb-lagarde.jpg',
-        hervor: true,
-      },
-    ],
-    achse: [2000, 2005, 2010, 2015, 2020, 2025],
-    fusszeile:
-      'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
-    text:
-      'Christine Lagarde hört früher auf. Die EZB-Präsidentin gibt ihr Amt am 7. Februar 2027 auf (Tagesschau, 29.10.). Regulär endete ihre achtjährige Amtszeit Ende Oktober 2027.\n\n' +
-      'Die Balken im Bild, Präsident für Präsident:\n' +
-      'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
-      'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
-      'Mario Draghi (Italien): November 2011 – Oktober 2019, 8 Jahre\n' +
-      'Christine Lagarde (Frankreich): November 2019 – Februar 2027, 7,3 Jahre\n\n' +
-      'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
-      'Warum geht Lagarde?\n' +
-      'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
-      'Und jetzt?\n' +
-      'Die Eurostaaten suchen die Nachfolge. Kanzler Merz will den Prozess laut Tagesschau bis zum Jahresende abschließen. Als Favoriten gelten demnach Klaas Knot, früher Chef der niederländischen Notenbank, und der Spanier Pablo Hernández de Cos. Bundesbank-Präsident Joachim Nagel hat sich selbst ins Spiel gebracht – Deutschland stellte die EZB-Spitze noch nie.\n\n' +
-      'Quellen: Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück", 29.10.2026; Handelsblatt, 29.10.2026; Wikipedia, „Präsident der Europäischen Zentralbank"\n' +
-      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
-    schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
-  },
-]
+export const zurueckgestellt: Zahlenkarte[] = []
 
 export function aktuelleZahlenkarte(): Zahlenkarte | null {
   return [...zahlenkarten].sort((a, b) => b.datum.localeCompare(a.datum))[0] ?? null
