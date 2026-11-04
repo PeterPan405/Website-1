@@ -101,6 +101,278 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'bundesbank-nagel-ezb-zinserhoehung-dezember',
+    title:
+      'Bundesbank-Präsident Nagel hält EZB-Zinserhöhung im Dezember für wahrscheinlich',
+    metaTitle: 'Nagel: EZB-Zinserhöhung im Dezember wahrscheinlich',
+    teaser:
+      'Bundesbankpräsident Joachim Nagel hält eine Zinserhöhung der EZB im Dezember für wahrscheinlich – die Inflation im Euroraum bleibt hoch.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-04T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'zinsen', 'inflation', 'geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 03.11.2026, 19:23 Uhr: „Geldpolitik: Bundesbankpräsident Nagel: EZB-Zinserhöhung im Dezember wahrscheinlich"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/geldpolitik-nagel-zinserhoehung-im-dezember-wahrscheinlich/100267104.html',
+      },
+      {
+        label:
+          'trading-treff.de, 08.10.2026, 13:27 Uhr: „EZB steuert wegen hoher Teuerung auf Zinserhöhung im Dezember zu"',
+        url: 'https://trading-treff.de/wirtschaft/ezb-steuert-wegen-hoher-teuerung-auf-zinserhoehung-im-dezember-zu',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bundesbankpräsident Joachim Nagel hat sich am Dienstagabend in Berlin zur Zinspolitik der Europäischen Zentralbank geäußert. Eine Zinserhöhung im Dezember sei nach seiner Einschätzung sehr wahrscheinlich nötig, sagte er laut einem Bericht des Handelsblatts. Ohne eine deutliche Verbesserung des Inflationsausblicks führe kaum ein Weg an einem solchen Schritt vorbei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '3,8 Prozent Inflation, 2,5 Prozent Einlagensatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Verbraucherpreise im Euroraum lagen im September 3,8 Prozent über dem Vorjahresniveau – der höchste Stand seit drei Jahren. Der Einlagensatz der EZB liegt seit der Sitzung in der vergangenen Woche unverändert bei 2,5 Prozent. In diesem Jahr hat die Notenbank den Satz bereits zweimal angehoben, zuletzt im September.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Termin im Dezember, eine Mehrheit der Ökonomen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der EZB-Rat entscheidet turnusgemäß am 17. Dezember erneut über den Leitzins, dann mit aktualisierten Projektionen bis 2028. Nach einer Umfrage unter Volkswirten, über die bereits im Oktober berichtet wurde, rechneten fast 90 Prozent der Befragten für den Dezember mit einer Anhebung um 25 Basispunkte. Ein knappes Drittel hielt zu diesem Zeitpunkt sogar einen Einlagensatz von 3,0 Prozent für möglich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Aussage wie „eine Erhöhung ist wahrscheinlich nötig“ ist keine Ankündigung, sondern eine Einschätzung eines von mehreren Ratsmitgliedern. Der EZB-Rat entscheidet gemeinsam, und die Dezember-Projektionen zur Inflation können das Bild bis zur Sitzung noch verändern – wer einen Zinsschritt einpreist, sollte das als Wahrscheinlichkeit lesen, nicht als feststehendes Ergebnis.',
+      },
+    ],
+  },
+  {
+    slug: 'schaeffler-stellenabbau-vier-werke',
+    title: 'Schaeffler streicht 3.460 Stellen – vier Werke vor dem Aus',
+    teaser:
+      'Der Autozulieferer Schaeffler schließt vier deutsche Werke und streicht europaweit 3.460 Stellen. Grund sind die Autokrise und hohe Kosten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['schaeffler', 'autoindustrie', 'stellenabbau', 'zulieferer'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 03.11.2026, 14:38 Uhr: „Krise der Autoindustrie: Schaeffler streicht Tausende Jobs und schließt Werke"',
+        url: 'https://www.handelsblatt.com/politik/deutschland/krise-der-autoindustrie-schaeffler-streicht-tausende-jobs-und-schliesst-werke/100266863.html',
+      },
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 10:02 Uhr: „Kahlschlag bei Schaeffler: Stellenabbau und Standortschließungen"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/schaeffler-154.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Automobil- und Industriezulieferer Schaeffler streicht nach eigenen Angaben 3.460 Stellen in Europa, davon 2.660 in Deutschland. Fünf europäische Standorte sollen ganz aufgegeben werden, vier davon in Deutschland: Dortmund, Berlin, Morbach in Rheinland-Pfalz und Schwalbach in Hessen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an den einzelnen Standorten passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Berlin sind rund 270 Beschäftigte betroffen, dort sollen die Aktivitäten eingestellt werden. Der Standort Schwalbach wird aufgegeben, ein Großteil der dort rund 190 Beschäftigten soll nach Frankfurt wechseln. Rund die Hälfte des gesamten Stellenabbaus trifft die Produktion, etwa 30 Prozent Forschung und Entwicklung, der Rest weitere Funktionsbereiche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '17,5 Milliarden Euro Umsatz, elf Millionen Euro Gewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt der Vorstand die Krise der europäischen Automobilindustrie und hohe Kosten. Sinkende Verbrennerabsätze und der Preiskampf chinesischer Hersteller belasten das Geschäft zusätzlich. Der Umsatz ging in den ersten neun Monaten des Jahres leicht auf 17,5 Milliarden Euro zurück, unter dem Strich blieb ein Nettogewinn von nur elf Millionen Euro. Der Konzernbetriebsrat und die IG Metall kritisierten die Pläne scharf und bemängelten ein fehlendes Zukunftskonzept für den Standort Deutschland.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 17,5 Milliarden Euro Umsatz und elf Millionen Euro Gewinn zeigen, wie wenig ein hoher Umsatz über die tatsächliche Ertragskraft eines Unternehmens aussagt. Zwischen Umsatz und Gewinn liegen Kosten für Material, Personal und Zinsen – bleibt davon fast nichts übrig, reicht schon ein kleiner zusätzlicher Belastungsfaktor, um das Ergebnis ins Minus zu drücken.',
+      },
+    ],
+  },
+  {
+    slug: 'eu-genehmigt-jdcom-mediamarktsaturn',
+    title: 'EU genehmigt Übernahme von MediaMarkt und Saturn durch JD.com',
+    teaser:
+      'Die EU-Kommission erlaubt dem chinesischen Konzern JD.com die Übernahme von MediaMarkt und Saturn – mit Auflagen für zehn Jahre.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['mediamarkt', 'jdcom', 'uebernahme', 'eu-kommission'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'ZDFheute, 03.11.2026, 13:08 Uhr: „Mediamarkt-Saturn: Brüssel genehmigt chinesische Übernahme"',
+        url: 'https://www.zdfheute.de/wirtschaft/mediamarkt-saturn-china-eu-uebernahme-100.html',
+      },
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 14:25 Uhr: „EU genehmigt MediaMarktSaturn-Übernahme durch JD.com"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/eu-mediamarkt-saturn-jd-genehmigung-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die EU-Kommission hat die Übernahme der Ceconomy AG, der Muttergesellschaft von MediaMarkt und Saturn, durch den chinesischen Onlinehändler JD.com genehmigt. Die Freigabe ist an Auflagen gebunden, die zehn Jahre gelten sollen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sorge vor chinesischen Staatssubventionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kommission sah das Risiko, dass JD.com von chinesischen Subventionen wie Steuervorteilen und Staatskrediten profitiert und damit Teile seiner Logistik und IT finanziert. MediaMarkt und Saturn könnten davon profitieren und so einen unfairen Vorteil gegenüber europäischen Konkurrenten erhalten. JD.com muss seine Logistikdienste, Lager und Technologien deshalb anderen Marktteilnehmern zu denselben Bedingungen anbieten wie der eigenen Tochter, und jede Finanzierung zwischen beiden Unternehmen muss zu marktüblichen Konditionen erfolgen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '59,8 Prozent der Anteile, mehr als 85 Prozent der Stimmen',
+      },
+      {
+        type: 'paragraph',
+        text: 'JD.com hält nach der Transaktion 59,8 Prozent der Aktien und Stimmrechte an Ceconomy. Die Gründerfamilie Kellerhals behält 25,4 Prozent, hat sich aber verpflichtet, mit JD.com zu stimmen – damit kontrolliert der chinesische Konzern faktisch mehr als 85 Prozent der Stimmrechte. Ceconomy betreibt mehr als 1.000 MediaMarkt- und Saturn-Filialen in elf europäischen Ländern, rund 400 davon in Deutschland. Geschäftsmodell und Führung sollen zunächst bestehen bleiben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 59,8 Prozent der Anteile und mehr als 85 Prozent der Stimmrechte sind zwei verschiedene Zahlen. Eine Stimmbindung mit einem weiteren Großaktionär kann die tatsächliche Kontrolle über ein Unternehmen deutlich über den eigenen Kapitalanteil hinaus vergrößern – wer nur auf die Beteiligungsquote schaut, unterschätzt leicht, wer am Ende wirklich entscheidet.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-evonik-fusion-groesste-chemiebranche',
+    title: 'BASF und Evonik: Größte Fusion der Chemiebranche weiter offen',
+    teaser:
+      'Fusionierten BASF und Evonik, entstünde ein Konzern mit rund 74 Milliarden Euro Umsatz. Doch Evonik hält das Angebot weiter für zu niedrig.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['basf', 'evonik', 'chemie', 'fusion'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['basf'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 15:59 Uhr: „Evonik wehrt sich gegen Chemieriese BASF"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/evonik-basf-fusion-100.html',
+      },
+      {
+        label:
+          'Börse Online / dpa-AFX, 28.10.2026: „ROUNDUP 3: BASF drückt bei Evonik-Kauf aufs Gas – höheres Ergebnisziel für 2026"',
+        url: 'https://www.boerse-online.de/dpa-afx/roundup-3-basf-drueckt-bei-evonik-kauf-aufs-gas-hoeheres-ergebnisziel-fuer-2026-561520.html',
+      },
+      {
+        label:
+          'Industriemagazin, 28.10.2026: „BASF greift nach Evonik: Der größte Deal der Konzerngeschichte soll die Chemiekrise beantworten"',
+        url: 'https://industriemagazin.at/chemie/basf-evonik-uebernahme-kamieth-chemieindustrie/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'BASF wirbt weiter um den Chemiekonzern Evonik. Es wäre die größte Fusion in der deutschen Chemiebranche: Zusammen kämen beide Konzerne auf einen Jahresumsatz von rund 74 Milliarden Euro. Doch noch sträubt sich Evonik gegen eine Einigung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Angebot, das Evonik für zu niedrig hält',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ende September hatte BASF ein Übernahmeangebot öffentlich gemacht. Zuletzt bot der Konzern nach Informationen von dpa-AFX rund 11 Milliarden Euro beziehungsweise etwa 24 Euro je Evonik-Aktie, nachdem ein früheres Angebot von 22,15 Euro je Aktie abgelehnt worden war. Die RAG-Stiftung, mit rund 43 Prozent größte Evonik-Aktionärin, hat bei einer Entscheidung besonderes Gewicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Größe allein kein Ziel ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'BASF-Chef Markus Kamieth nannte einen Zusammenschluss zuletzt einen logischen Schritt, sagte aber: „Wir werden keinen überhöhten Preis zahlen.“ Ein größerer Konzern solle Anlagen besser auslasten, Kosten senken und im Wettbewerb mit asiatischen Produzenten mehr Gewicht haben. Die IG BCE äußerte bereits kritische Fragen zu den Plänen, und die Landesregierung von Nordrhein-Westfalen sprach sich gegen eine Übernahme aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein zurückgewiesenes Angebot zeigt, dass der Preis für ein Unternehmen keine feste Zahl ist, sondern Verhandlungssache zwischen Vorstand und Großaktionären. Selbst eine Fusion, die betriebswirtschaftlich sinnvoll erscheint, kann an Belegschaft, Landespolitik und Kartellrecht noch scheitern – Größe allein ist kein Freibrief für eine Genehmigung.',
+      },
+    ],
+  },
+  {
+    slug: 'amd-data-center-geschaeft-quartalszahlen',
+    title: 'AMD: Data-Center-Geschäft treibt Gewinn und Aktie',
+    teaser:
+      'AMD hat die Erwartungen im dritten Quartal übertroffen. Der Umsatz im Data-Center-Geschäft verdoppelte sich fast, die Aktie legte deutlich zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-04T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['amd', 'halbleiter', 'ki', 'quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['amd'],
+    sources: [
+      {
+        label:
+          'CNBC, 03.11.2026, 23:04 Uhr: „AMD stock jumps 8% on earnings as data center revenue nearly doubles"',
+        url: 'https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 03.11.2026, 21:39 Uhr: „KI-Boom heizt AMD-Wachstum weiter an - Aktie legt nachbörslich kräftig zu"',
+        url: 'https://www.onvista.de/news/2026/11-03-ki-boom-heizt-amd-wachstum-weiter-an-aktie-legt-nachboerslich-kraeftig-zu-0-10-26572031',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'AMD hat am Dienstag nach Börsenschluss Zahlen für das dritte Quartal vorgelegt, die die Erwartungen der Wall Street übertrafen. Der Umsatz stieg um 45 Prozent auf 13,4 Milliarden Dollar, der bereinigte Gewinn je Aktie lag bei 2,09 Dollar nach zuvor erwarteten 1,95 Dollar. Die Aktie legte nachbörslich rund 8 Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Data Center macht inzwischen zwei Drittel des Umsatzes aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatz im Geschäft mit Rechenzentren hat sich binnen eines Jahres fast verdoppelt. Er macht inzwischen 64 Prozent des Konzernumsatzes aus, vor einem Jahr waren es 47 Prozent. Den genauen Dollarbetrag des Data-Center-Umsatzes nennt die Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'PC- und Gaming-Geschäft schrumpft deutlich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Gegensatz dazu sank der Umsatz mit PC- und Gaming-Chips um 8 Prozent auf 3,7 Milliarden Dollar, der reine Gaming-Umsatz brach um 40 Prozent ein. Für das laufende vierte Quartal erwartet AMD einen Umsatz von rund 17 Milliarden Dollar, etwa zwei Drittel mehr als im Vorjahresquartal, bei einer Bruttomarge von rund 55 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Konzernumsatz, der um 45 Prozent wächst, kann zwei sehr unterschiedliche Geschäfte überdecken. Hier wächst das Rechenzentrumsgeschäft kräftig, während das Geschäft mit Spielekonsolen-Chips schrumpft – wer nur auf die Gesamtzahl schaut, übersieht, dass ein Unternehmen gleichzeitig einen Boom und einen Rückgang erleben kann.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-faellt-usa-iran-diplomatie',
     title: 'Ölpreis bricht ein – USA und Iran signalisieren Diplomatie',
     teaser:
