@@ -405,6 +405,8 @@ export interface Balkenkarte extends StilGemeinsam {
   }[]
   /** Hinter den Werten: „%". */
   einheit: string
+  /** false: Werte ohne „+" – für Anzahlen wie Sitze, nicht für Veränderungen. */
+  vorzeichen?: boolean
 }
 
 /**
@@ -3662,7 +3664,7 @@ function balkenGrafik(k: Balkenkarte) {
   const dicke = Math.min(30, zeile * 0.45)
   const oben0 = STIL_GRAFIK_O - 30
   const zahl = (v: number) =>
-    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v)).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
+    `${k.vorzeichen === false ? '' : v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v)).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
   return [
     h('div', {
       style: {

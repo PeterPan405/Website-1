@@ -32,7 +32,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       Thema vom Betreiber am 04.11.2026: „content für heute Zwischenwahlen
       USA Ergebnis und in der Beschreibung erläutern, … dass das
       Auswirkungen hat", ausnahmsweise 10:30–11:00 Uhr (`ab`).
-      Form: Säulen (am 03.11. vielfach).
+      Erster Entwurf (S&P 500 nach Zwischenwahlen) verworfen: „nicht im
+      historischen Kontext, sondern die Ergebnisse von diesem Jahr".
+      Form: waagerechte Balken (am 03.11. vielfach). Stand der Sitze:
+      CNBC Live-Updates, abgerufen 04.11. 09:17 UTC – Demokraten im Haus
+      mindestens 245, Republikaner mindestens 160.
 
       Quellen, gelesen am 04.11.2026 gegen 6 Uhr über quellen-holen.yml:
       - tagesschau.de, Eilmeldung und Liveblog Midterms 2026: Demokraten
@@ -63,17 +67,14 @@ export const zahlenkarten: Zahlenkarte[] = [
           2010 1.183,26 → 1.253,30 +5,9 · 2014 2.018,05 → 2.079,36 +3,0 ·
           2018 2.711,74 → 3.037,56 +12,0 · 2022 3.871,98 → 4.193,80 +8,3
     */
-    art: 'saeulen',
+    art: 'balken',
     datum: '2026-11-04',
     ab: '10:30',
-    titel: [
-      { text: 'US-Zwischenwahl:' },
-      { text: 'Die blaue Welle kommt.', gruen: true },
-    ],
+    titel: [{ text: 'US-Zwischenwahl:' }, { text: 'Die blaue Welle kam.', gruen: true }],
     symbol: 'usa',
     erklaerung:
-      'Demokraten erobern den Senat, laut CNBC auch das Haus. Und die Börse? Der S&P 500 im Jahr nach jeder Zwischenwahl.',
-    stichzeile: 'S&P 500 · ein Jahr nach der Wahl',
+      'Demokraten erobern Senat und Repräsentantenhaus – Sitze laut AP und CNBC-Hochrechnung, es wird noch gezählt.',
+    stichzeile: 'Sitze im Kongress · Wahl 2026',
     helden: [
       {
         name: 'Senat · Demokraten',
@@ -81,29 +82,24 @@ export const zahlenkarten: Zahlenkarte[] = [
         pille: { wert: '6', name: 'Sitze erobert' },
       },
       {
-        name: 'Repräsentantenhaus',
-        wert: '235+',
+        name: 'Haus · Demokraten',
+        wert: '245+',
         pille: { wert: '218', name: 'für die Mehrheit' },
       },
     ],
-    saeulen: [
-      { text: '1986', wert: 3.2 },
-      { text: '1990', wert: 29.1 },
-      { text: '1994', wert: 23.1 },
-      { text: '1998', wert: 24.1 },
-      { text: '2002', wert: 18.6 },
-      { text: '2006', wert: 12.4 },
-      { text: '2010', wert: 5.9 },
-      { text: '2014', wert: 3.0 },
-      { text: '2018', wert: 12.0 },
-      { text: '2022', wert: 8.3 },
+    balken: [
+      { marke: 'Haus', text: 'Demokraten, mind.', wert: 245, hervor: true },
+      { marke: 'Haus', text: 'Republikaner, mind.', wert: 160 },
+      { marke: 'Haus', text: 'Republikaner bisher', wert: 218 },
+      { marke: 'Senat', text: 'Demokraten, mind.', wert: 51 },
+      { marke: 'Senat', text: 'Republikaner bisher', wert: 53 },
     ],
-    einheit: '%',
-    nachkomma: 1,
+    einheit: 'Sitze',
+    vorzeichen: false,
     fusszeile:
-      'Stand: 04.11.2026, 6 Uhr, Auszählung läuft | Quellen: AP über tagesschau, CNBC, Yahoo Finance',
+      'Stand: 04.11.2026, 10 Uhr, Auszählung läuft | Quellen: AP über tagesschau, CNBC Election Desk',
     text:
-      'Die Nacht der Demokraten. 🇺🇸 Bei den Zwischenwahlen haben sie laut der Nachrichtenagentur AP den Senat erobert – mit mindestens 51 von 100 Sitzen. Im Repräsentantenhaus sieht das CNBC Election Desk sie bei mindestens 235 Sitzen, 218 reichen für die Mehrheit.\n\n' +
+      'Die Nacht der Demokraten. 🇺🇸 Bei den Zwischenwahlen haben sie laut der Nachrichtenagentur AP den Senat erobert – mit mindestens 51 von 100 Sitzen. Bisher hatten die Republikaner 53. Im Repräsentantenhaus sieht das CNBC Election Desk die Demokraten bei mindestens 245 der 435 Sitze, die Republikaner bei mindestens 160 – bisher hielten sie 218. Für die Mehrheit reichen 218.\n\n' +
       'Die sechs eroberten Senatssitze laut AP:\n' +
       'Texas – James Talarico, erstmals seit fast 40 Jahren\n' +
       'Kansas – Adam Hamilton\n' +
@@ -111,13 +107,15 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Iowa – Josh Turek\n' +
       'North Carolina – Roy Cooper\n' +
       'South Carolina – Annie Andrews, erste Demokratin seit 28 Jahren\n' +
-      'Dazu die Gouverneure in Texas und Ohio.\n\n' +
+      'Dazu die Gouverneure in Texas (Gina Hinojosa) und Ohio (Amy Acton).\n\n' +
       'Warum?\n' +
       'Laut tagesschau spricht das Ergebnis für erhebliche Unzufriedenheit mit Trumps Politik. In einer Fox-Umfrage machten 62 % seine Politik für gestiegene Preise verantwortlich. In Iowa trafen laut CNBC Zölle und teurer Dünger durch den Iran-Krieg die Landwirte.\n\n' +
-      'Und die Börse?\n' +
-      'Laut CNBC rechnete JPMorgan bei einer blauen Welle mit etwa −0,5 % für den S&P 500 heute. Unter Druck stehen könnten KI- und Rechenzentrumswerte – Texas ist ihr wichtigster Standort – sowie Rüstung, Rückenwind gäbe es für Gesundheitswerte. Langfristig stieg der S&P 500 nach jeder Zwischenwahl seit 1986 (Säulen im Bild): 1986 +3,2 %, 1990 +29,1 %, 1994 +23,1 %, 1998 +24,1 %, 2002 +18,6 %, 2006 +12,4 %, 2010 +5,9 %, 2014 +3,0 %, 2018 +12,0 %, 2022 +8,3 %. BTIG warnt laut CNBC: Diesmal sei das Gegenteil wahrscheinlicher.\n\n' +
-      'Quellen: AP über tagesschau.de (Liveblog Midterms), CNBC (Live-Updates, Markt-Ausblick), Yahoo Finance (S&P 500, Oktober bis Oktober)',
-    schlagworte: ['usa', 'zwischenwahlen', 'wahlen', 'börse', 'sp500'],
+      'Was das bedeutet:\n' +
+      '– Trump regiert bis Anfang 2029 gegen einen Kongress der Gegenseite. Er will das Ergebnis laut New York Times anerkennen und mit den Demokraten zusammenarbeiten.\n' +
+      '– Börse: JPMorgan rechnete laut CNBC bei einer blauen Welle mit etwa −0,5 % für den S&P 500 heute.\n' +
+      '– Unter Druck stehen könnten laut CNBC KI- und Rechenzentrumswerte – Texas ist ihr wichtigster Standort – sowie Rüstung. Rückenwind gäbe es für Gesundheitswerte.\n\n' +
+      'Quellen: AP über tagesschau.de (Liveblog Midterms), CNBC (Live-Updates, Election Desk, Markt-Ausblick)',
+    schlagworte: ['usa', 'zwischenwahlen', 'wahlen', 'kongress', 'börse'],
   },
   {
     /*
