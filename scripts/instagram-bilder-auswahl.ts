@@ -28,6 +28,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { marketDefinitions } from '@/data/markets'
+import { DECKBLATT_FOTO_OBEN } from '@/lib/instagram-bild'
 import {
   datei,
   kandidatVon,
@@ -69,7 +70,15 @@ const zeilen = (process.env.EINGABE ?? '')
     const [stelle, ...rest] = z.split('|')
     return { stelle: Number(stelle), wert: rest.join('|').trim() }
   })
-  .filter((z) => z.stelle >= 2 && z.wert)
+  /*
+    Stelle 1 ist das Deckblatt – seit 04.11.2026 auch von Hand wählbar
+    (nur `wahl`): Am Morgen trug es ein Gipfelfoto von 2013 mit
+    Menschen, die in keiner Meldung vorkamen, und die Workflows ließen
+    nur Stellen ab 2 zu.
+  */
+  .filter(
+    (z) => (z.stelle >= 2 || (z.stelle === 1 && process.env.MODUS === 'wahl')) && z.wert
+  )
 
 const register = leseRegister()
 const verwendet = verwendeteTitel(register)
@@ -114,7 +123,10 @@ if (process.env.MODUS === 'kandidaten') {
     /* Von Hand gewählt: ein Mensch sieht hin, Pressekonferenz und Treffen dürfen. */
     if (!taugt(k, verwendet, undefined, undefined, true))
       throw new Error(`${titel}: taugt nicht (Lizenz, Format oder verwendet)`)
-    const jpeg = await zuschnitt(seite)
+    /* Das Deckblatt hat sein eigenes Format: Foto unter der Schrift. */
+    const jpeg = await (stelle === 1
+      ? zuschnitt(seite, 1080, 1350 - DECKBLATT_FOTO_OBEN)
+      : zuschnitt(seite))
     if (!jpeg) throw new Error(`${titel}: nicht zu laden`)
     const name = dateiname(DATUM, stelle, seite.title)
     writeFileSync(join(TAGESBILDER, name), jpeg)
