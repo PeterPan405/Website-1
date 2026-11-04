@@ -50,19 +50,23 @@ export function berlinJetzt(jetzt: Date): { tag: string; minute: number } {
  * `zahlenkarte.txt` gelesen:
  *
  *     Zeile 1     JJJJ-MM-TT – der Tag der Karte
- *     Zeile 2     „Freigabe: JJJJ-MM-TT" oder „Freigabe: -"
+ *     Zeile 2     „Freigabe: JJJJ-MM-TT", „Freigabe: JJJJ-MM-TT ab HH:MM"
+ *                 (Ausnahme vor 15 Uhr, `ab` an der Karte) oder „Freigabe: -"
  *     ab Zeile 3  die Beschriftung, wie sie hinausgeht
  */
 export function leseZahlenkarteText(text: string): {
   datum: string
   freigabe: string | null
+  /** Ab welcher Minute sie hinaus darf – `AB_MINUTE`, außer die Karte nennt eine eigene Zeit. */
+  abMinute: number
   beschriftung: string
 } {
   const [z1 = '', z2 = '', ...rest] = text.split('\n')
-  const f = /^Freigabe: (\d{4}-\d{2}-\d{2})\s*$/.exec(z2)
+  const f = /^Freigabe: (\d{4}-\d{2}-\d{2})(?: ab (\d{2}):(\d{2}))?\s*$/.exec(z2)
   return {
     datum: z1.trim(),
     freigabe: f ? f[1] : null,
+    abMinute: f && f[2] ? Number(f[2]) * 60 + Number(f[3]) : AB_MINUTE,
     beschriftung: rest.join('\n').trim(),
   }
 }
@@ -76,6 +80,8 @@ export interface Zahlenkartenlage {
   datum: string
   /** Zeile 2 der Website. */
   freigabe: string | null
+  /** Frühestens ab dieser Minute; ohne Angabe 15 Uhr. */
+  abMinute?: number
   /** Der Tag, an dem dieser Dauerlauf schon angestoßen hat – oder leer. */
   angestossenAm: string
 }
@@ -85,8 +91,12 @@ export function sollZahlenkarteAnstossen(l: Zahlenkartenlage): {
   anstossen: boolean
   grund: string
 } {
-  if (l.minute < AB_MINUTE)
-    return { anstossen: false, grund: 'vor 15 Uhr geht keine Zahlenkarte hinaus' }
+  const ab = l.abMinute ?? AB_MINUTE
+  if (l.minute < ab)
+    return {
+      anstossen: false,
+      grund: `vor ${String(Math.floor(ab / 60)).padStart(2, '0')}:${String(ab % 60).padStart(2, '0')} Uhr geht keine Zahlenkarte hinaus`,
+    }
   if (l.datum !== l.tag)
     return {
       anstossen: false,

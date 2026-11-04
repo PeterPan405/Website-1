@@ -83,6 +83,12 @@ interface KarteGemeinsam {
    * Gesetzt wird es **nach** seinem „passt", nie davor; ein Entwurf hat keins.
    */
   freigabe?: string
+  /**
+   * Ausnahmsweise früher als 15 Uhr hinaus, „HH:MM" deutscher Zeit
+   * (Betreiber, 04.11.2026, zu den US-Zwischenwahlen: „ausnahmsweise um
+   * 10:30 Uhr bis 11:00 Uhr"). Nur zusammen mit der Freigabe wirksam.
+   */
+  ab?: string
 }
 
 /** Zwei Balken gegeneinander – die Form des Vorbilds vom 12.10.2026. */
