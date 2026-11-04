@@ -20,11 +20,7 @@
  *      um 17 Uhr längst drin.
  */
 import { nachgang } from '../lib/instagram-nachgang.ts'
-import {
-  AB_MINUTE,
-  berlinJetzt,
-  leseZahlenkarteText,
-} from '../lib/zahlenkarten-wecker.ts'
+import { berlinJetzt, leseZahlenkarteText } from '../lib/zahlenkarten-wecker.ts'
 
 const API = 'https://graph.facebook.com/v21.0'
 const TOKEN = process.env.IG_ACCESS_TOKEN?.trim() ?? ''
@@ -43,18 +39,20 @@ const halt = (s: string): never => {
 
 const { tag: HEUTE, minute } = berlinJetzt(new Date())
 
-// Riegel 0
-if (minute < AB_MINUTE)
-  halt(
-    `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um 15 Uhr hinaus.`
-  )
-
 const textAntwort = await fetch(`${BASIS}/instagram/zahlenkarte.txt`, {
   cache: 'no-store',
 })
 if (!textAntwort.ok)
   halt(`${BASIS}/instagram/zahlenkarte.txt antwortet mit ${textAntwort.status}.`)
-const { datum, freigabe, beschriftung } = leseZahlenkarteText(await textAntwort.text())
+const { datum, freigabe, abMinute, beschriftung } = leseZahlenkarteText(
+  await textAntwort.text()
+)
+
+// Riegel 0
+if (minute < abMinute)
+  halt(
+    `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um ${String(Math.floor(abMinute / 60)).padStart(2, '0')}:${String(abMinute % 60).padStart(2, '0')} Uhr hinaus.`
+  )
 
 // Riegel 1
 if (freigabe !== HEUTE)

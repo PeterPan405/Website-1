@@ -34,12 +34,13 @@ try {
   // bleibt leer – dann zeigt die Website „keine Karte von heute"
 }
 
-const { datum, freigabe } = leseZahlenkarteText(text)
+const { datum, freigabe, abMinute } = leseZahlenkarteText(text)
 const e = sollZahlenkarteAnstossen({
   tag,
   minute,
   datum,
   freigabe,
+  abMinute,
   angestossenAm: (process.env.ZK_ANGESTOSSEN_AM ?? '').trim(),
 })
 console.log(`ANSTOSS=${e.anstossen ? 1 : 0}`)

@@ -29,6 +29,111 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Thema vom Betreiber am 04.11.2026: „content für heute Zwischenwahlen
+      USA Ergebnis und in der Beschreibung erläutern, … dass das
+      Auswirkungen hat", ausnahmsweise 10:30–11:00 Uhr (`ab`).
+      Erster Entwurf (S&P 500 nach Zwischenwahlen) verworfen: „nicht im
+      historischen Kontext, sondern die Ergebnisse von diesem Jahr".
+      Zweiter Entwurf (Balken): „ziemlich unverständlich". Jetzt je
+      Kammer ein Balken über alle Sitze mit Mehrheitsstrich.
+      Form: Kammern (am 03.11. vielfach). Stand der Sitze:
+      CNBC Live-Updates, abgerufen 04.11. 09:17 UTC – Demokraten im Haus
+      mindestens 245, Republikaner mindestens 160.
+
+      Quellen, gelesen am 04.11.2026 gegen 6 Uhr über quellen-holen.yml:
+      - tagesschau.de, Eilmeldung und Liveblog Midterms 2026: Demokraten
+        laut AP mit mindestens 51 der 100 Senatssitze; erobert in Texas
+        (Talarico gegen Paxton, erstmals seit fast 40 Jahren), Kansas
+        (Hamilton gegen Marshall), Ohio (Brown gegen Husted), Iowa, North
+        Carolina (Cooper gegen Whatley), South Carolina (Andrews, erste
+        Demokratin seit 28 Jahren). Vorher Republikaner 53 Senatoren, im
+        Haus 218 von 435. Trump will laut NYT-Interview das Ergebnis
+        anerkennen. Fox-Umfrage: 62 % machen Trumps Politik für
+        gestiegene Preise verantwortlich.
+      - CNBC, Live-Updates: Election Desk sieht die Demokraten bei
+        mindestens 235 Sitzen im Repräsentantenhaus (218 nötig);
+        Gouverneursämter in Texas (Hinojosa gegen Abbott) und Ohio
+        (Acton gegen Ramaswamy) gedreht; Iowa: Zölle und durch den
+        Iran-Krieg gestiegene Düngerkosten.
+      - CNBC, „Midterm elections could jolt stocks …", 03.11.2026:
+        JPMorgan erwartet bei blauer Welle etwa −0,5 % für den S&P 500 am
+        Mittwoch, Futures zeigten mehr; Druck auf KI/Rechenzentren und
+        Rüstung, Rückenwind für Gesundheitswerte; S&P 500 ein Jahr nach
+        jeder Zwischenwahl seit Anfang der 1980er höher; BTIG (Krinsky)
+        hält diesmal das Gegenteil für wahrscheinlicher.
+      - Yahoo Finance, ^GSPC Monatsschluss (ab 1985), abgerufen 04.11.:
+        Oktober des Wahljahrs → Oktober ein Jahr später
+          1986 243,98 → 251,79 +3,2 · 1990 304,00 → 392,45 +29,1 ·
+          1994 472,35 → 581,50 +23,1 · 1998 1.098,67 → 1.362,93 +24,1 ·
+          2002 885,76 → 1.050,71 +18,6 · 2006 1.377,94 → 1.549,38 +12,4 ·
+          2010 1.183,26 → 1.253,30 +5,9 · 2014 2.018,05 → 2.079,36 +3,0 ·
+          2018 2.711,74 → 3.037,56 +12,0 · 2022 3.871,98 → 4.193,80 +8,3
+    */
+    art: 'kammern',
+    datum: '2026-11-04',
+    ab: '10:30',
+    titel: [{ text: 'US-Zwischenwahl:' }, { text: 'Die blaue Welle kam.', gruen: true }],
+    symbol: 'usa',
+    erklaerung:
+      'Die Demokraten haben jetzt die Mehrheit in beiden Kammern des Kongresses. Stand Mittwochvormittag – es wird noch gezählt.',
+    stichzeile: 'Sitze der Demokraten · Wahl 2026',
+    helden: [
+      {
+        name: 'Senat · von 100 Sitzen',
+        wert: '51',
+        pille: { wert: '+6', name: 'Sitze erobert' },
+      },
+      {
+        name: 'Haus · von 435 Sitzen',
+        wert: '245',
+        pille: { wert: '218', name: 'für die Mehrheit' },
+      },
+    ],
+    kammern: [
+      {
+        name: 'Senat',
+        gesamt: 100,
+        mehrheit: 51,
+        teile: [
+          { name: 'Demokraten', wert: 51, farbe: 'blau' },
+          { name: 'Republikaner und noch offen', wert: 49, farbe: 'rot' },
+        ],
+      },
+      {
+        name: 'Repräsentantenhaus',
+        gesamt: 435,
+        mehrheit: 218,
+        teile: [
+          { name: 'Demokraten', wert: 245, farbe: 'blau' },
+          { name: 'noch offen', wert: 30, farbe: 'offen' },
+          { name: 'Republikaner', wert: 160, farbe: 'rot' },
+        ],
+      },
+    ],
+    fusszeile:
+      'Stand: 04.11.2026, 10 Uhr, Auszählung läuft | Quellen: AP über tagesschau, CNBC Election Desk',
+    text:
+      'Die Nacht der Demokraten. 🇺🇸 Bei den Zwischenwahlen haben sie laut der Nachrichtenagentur AP den Senat erobert – mit mindestens 51 von 100 Sitzen. Bisher hatten die Republikaner 53. Im Repräsentantenhaus sieht das CNBC Election Desk die Demokraten bei mindestens 245 der 435 Sitze, die Republikaner bei mindestens 160 – bisher hielten sie 218. Für die Mehrheit reichen 218.\n\n' +
+      'Die sechs eroberten Senatssitze laut AP:\n' +
+      'Texas – James Talarico, erstmals seit fast 40 Jahren\n' +
+      'Kansas – Adam Hamilton\n' +
+      'Ohio – Sherrod Brown\n' +
+      'Iowa – Josh Turek\n' +
+      'North Carolina – Roy Cooper\n' +
+      'South Carolina – Annie Andrews, erste Demokratin seit 28 Jahren\n' +
+      'Dazu die Gouverneure in Texas (Gina Hinojosa) und Ohio (Amy Acton). Elon Musk hatte laut CNBC rund 224 Mio. $ auf die Texas-Republikaner gesetzt.\n\n' +
+      'Warum?\n' +
+      'Laut tagesschau spricht das Ergebnis für erhebliche Unzufriedenheit mit Trumps Politik. In einer Fox-Umfrage machten 62 % seine Politik für gestiegene Preise verantwortlich. In Iowa trafen laut CNBC Zölle und teurer Dünger durch den Iran-Krieg die Landwirte.\n\n' +
+      'Was das bedeutet:\n' +
+      '– Trump regiert bis Anfang 2029 gegen einen Kongress der Gegenseite. Er will das Ergebnis laut New York Times anerkennen und mit den Demokraten zusammenarbeiten.\n' +
+      '– Börse: JPMorgan rechnete laut CNBC bei einer blauen Welle mit etwa −0,5 % für den S&P 500 heute.\n' +
+      '– Unter Druck stehen könnten laut CNBC KI- und Rechenzentrumswerte – Texas ist ihr wichtigster Standort – sowie Rüstung. Rückenwind gäbe es für Gesundheitswerte.\n\n' +
+      'Quellen: AP über tagesschau.de (Liveblog Midterms), CNBC (Live-Updates, Election Desk, Markt-Ausblick)',
+    freigabe: '2026-11-04',
+    schlagworte: ['usa', 'zwischenwahlen', 'wahlen', 'kongress', 'börse'],
+  },
+  {
+    /*
       Thema vom Betreiber am 02.11.2026: „was Spannendes … wegen dem
       Iran-Krieg jetzt. Atomwaffen und so." Verworfen hatte er Lagarde
       (zurückgestellt), Gold, Binance, Meta, VW, Termine der Woche.
