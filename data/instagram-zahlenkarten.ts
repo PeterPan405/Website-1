@@ -34,7 +34,9 @@ export const zahlenkarten: Zahlenkarte[] = [
       Auswirkungen hat", ausnahmsweise 10:30–11:00 Uhr (`ab`).
       Erster Entwurf (S&P 500 nach Zwischenwahlen) verworfen: „nicht im
       historischen Kontext, sondern die Ergebnisse von diesem Jahr".
-      Form: waagerechte Balken (am 03.11. vielfach). Stand der Sitze:
+      Zweiter Entwurf (Balken): „ziemlich unverständlich". Jetzt je
+      Kammer ein Balken über alle Sitze mit Mehrheitsstrich.
+      Form: Kammern (am 03.11. vielfach). Stand der Sitze:
       CNBC Live-Updates, abgerufen 04.11. 09:17 UTC – Demokraten im Haus
       mindestens 245, Republikaner mindestens 160.
 
@@ -67,35 +69,47 @@ export const zahlenkarten: Zahlenkarte[] = [
           2010 1.183,26 → 1.253,30 +5,9 · 2014 2.018,05 → 2.079,36 +3,0 ·
           2018 2.711,74 → 3.037,56 +12,0 · 2022 3.871,98 → 4.193,80 +8,3
     */
-    art: 'balken',
+    art: 'kammern',
     datum: '2026-11-04',
     ab: '10:30',
     titel: [{ text: 'US-Zwischenwahl:' }, { text: 'Die blaue Welle kam.', gruen: true }],
     symbol: 'usa',
     erklaerung:
-      'Demokraten erobern Senat und Repräsentantenhaus – Sitze laut AP und CNBC-Hochrechnung, es wird noch gezählt.',
-    stichzeile: 'Sitze im Kongress · Wahl 2026',
+      'Die Demokraten haben jetzt die Mehrheit in beiden Kammern des Kongresses. Stand Mittwochvormittag – es wird noch gezählt.',
+    stichzeile: 'Sitze der Demokraten · Wahl 2026',
     helden: [
       {
-        name: 'Senat · Demokraten',
-        wert: '51+',
-        pille: { wert: '6', name: 'Sitze erobert' },
+        name: 'Senat · von 100 Sitzen',
+        wert: '51',
+        pille: { wert: '+6', name: 'Sitze erobert' },
       },
       {
-        name: 'Haus · Demokraten',
-        wert: '245+',
+        name: 'Haus · von 435 Sitzen',
+        wert: '245',
         pille: { wert: '218', name: 'für die Mehrheit' },
       },
     ],
-    balken: [
-      { marke: 'Haus', text: 'Demokraten, mind.', wert: 245, hervor: true },
-      { marke: 'Haus', text: 'Republikaner, mind.', wert: 160 },
-      { marke: 'Haus', text: 'Republikaner bisher', wert: 218 },
-      { marke: 'Senat', text: 'Demokraten, mind.', wert: 51 },
-      { marke: 'Senat', text: 'Republikaner bisher', wert: 53 },
+    kammern: [
+      {
+        name: 'Senat',
+        gesamt: 100,
+        mehrheit: 51,
+        teile: [
+          { name: 'Demokraten', wert: 51, farbe: 'blau' },
+          { name: 'Republikaner und noch offen', wert: 49, farbe: 'rot' },
+        ],
+      },
+      {
+        name: 'Repräsentantenhaus',
+        gesamt: 435,
+        mehrheit: 218,
+        teile: [
+          { name: 'Demokraten', wert: 245, farbe: 'blau' },
+          { name: 'noch offen', wert: 30, farbe: 'offen' },
+          { name: 'Republikaner', wert: 160, farbe: 'rot' },
+        ],
+      },
     ],
-    einheit: 'Sitze',
-    vorzeichen: false,
     fusszeile:
       'Stand: 04.11.2026, 10 Uhr, Auszählung läuft | Quellen: AP über tagesschau, CNBC Election Desk',
     text:

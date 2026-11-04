@@ -1040,8 +1040,8 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 /* 04.11.2026: Ergebnis der US-Zwischenwahl (AP über tagesschau, CNBC Election Desk). */
 {
   const karte = karteVom('2026-11-04')
-  pruefe('Wahl: Karte für den 04.11. sind waagerechte Balken', karte?.art === 'balken')
-  if (karte?.art === 'balken') {
+  pruefe('Wahl: Karte für den 04.11. zeigt die Kammern', karte?.art === 'kammern')
+  if (karte?.art === 'kammern') {
     pruefe(
       'Wahl: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
@@ -1052,7 +1052,6 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       form(karte) !== form(karteVom('2026-11-03')!)
     )
     pruefe('Wahl: ausnahmsweise ab 10:30', karte.ab === '10:30')
-    pruefe('Wahl: Sitze ohne Vorzeichen', karte.vorzeichen === false)
     for (const z of ['51', '53', '245', '160', '218'])
       pruefe(`Wahl: ${z} steht in der Beschreibung`, karte.text.includes(z))
   }

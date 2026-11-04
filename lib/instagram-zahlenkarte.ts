@@ -425,7 +425,25 @@ export interface Vielfachkarte extends StilGemeinsam {
   teile: { name: string; wert: string; punkte: readonly number[] }[]
 }
 
+/**
+ * Sitzverteilung je Kammer als ein Balken über alle Sitze (04.11.2026,
+ * US-Zwischenwahl – Betreiber zur Balkenfassung: „ziemlich
+ * unverständlich"). Ein Strich markiert die Mehrheit. Parteifarben
+ * stehen hier für Parteien, nicht für eine Richtung.
+ */
+export interface Kammerkarte extends StilGemeinsam {
+  art: 'kammern'
+  helden: Held[]
+  kammern: {
+    name: string
+    gesamt: number
+    mehrheit: number
+    teile: { name: string; wert: number; farbe: 'blau' | 'rot' | 'offen' }[]
+  }[]
+}
+
 export type Zahlenkarte =
+  | Kammerkarte
   | Vielfachkarte
   | Kurvenkarte
   | Saeulenkarte
@@ -768,7 +786,13 @@ const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
 function stilBefunde(
-  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte | Vielfachkarte
+  k:
+    | Kurvenkarte
+    | Saeulenkarte
+    | Zeitstrahlkarte
+    | Balkenkarte
+    | Vielfachkarte
+    | Kammerkarte
 ): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
@@ -849,6 +873,13 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'kammern') {
+    for (const ka of k.kammern) {
+      const summe = ka.teile.reduce((a, t) => a + t.wert, 0)
+      if (summe !== ka.gesamt)
+        f.push(`${ka.name}: Teile ergeben ${summe}, nicht ${ka.gesamt}.`)
+    }
     f.push(...stilBefunde(k))
   } else if (k.art === 'vielfach') {
     if (k.helden.length < 1 || k.helden.length > 2)
@@ -1146,18 +1177,21 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
     k.art === 'saeulen' ||
     k.art === 'zeitstrahl' ||
     k.art === 'balken' ||
-    k.art === 'vielfach'
+    k.art === 'vielfach' ||
+    k.art === 'kammern'
   ) {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
         : k.art === 'saeulen'
           ? stilBild(k, logo, k.helden, saeulenGrafik(k))
-          : k.art === 'vielfach'
-            ? stilBild(k, logo, k.helden, vielfachGrafik(k))
-            : k.art === 'balken'
-              ? stilBild(k, logo, k.helden, balkenGrafik(k))
-              : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
+          : k.art === 'kammern'
+            ? stilBild(k, logo, k.helden, kammerGrafik(k))
+            : k.art === 'vielfach'
+              ? stilBild(k, logo, k.helden, vielfachGrafik(k))
+              : k.art === 'balken'
+                ? stilBild(k, logo, k.helden, balkenGrafik(k))
+                : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2460,7 +2494,9 @@ export function form(
   | 'saeulen'
   | 'zeitstrahl'
   | 'hausbalken'
-  | 'vielfach' {
+  | 'vielfach'
+  | 'kammern' {
+  if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
   if (k.art === 'vielfach') return 'vielfach'
   if (
@@ -3123,7 +3159,13 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte | Zeitstrahlkarte | Balkenkarte | Vielfachkarte,
+  k:
+    | Kurvenkarte
+    | Saeulenkarte
+    | Zeitstrahlkarte
+    | Balkenkarte
+    | Vielfachkarte
+    | Kammerkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3506,6 +3548,103 @@ const LINIENFARBEN = [
   '#c0568a',
   '#5b6472',
 ]
+
+const PARTEIFARBE = { blau: '#1f4fa3', rot: '#b3262d', offen: '#d5dae2' }
+
+function kammerGrafik(k: Kammerkarte) {
+  const links = STIL_RAND
+  const breite = ZK_BREITE - 2 * STIL_RAND
+  const dicke = 70
+  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O) / k.kammern.length
+  return k.kammern.flatMap((ka, n) => {
+    const oben = STIL_GRAFIK_O + n * zeile
+    const balkenOben = oben + 44
+    let x = links
+    const stuecke = ka.teile.map((t) => {
+      const w = (t.wert / ka.gesamt) * breite
+      const s = { t, x, w }
+      x += w
+      return s
+    })
+    const strich = links + (ka.mehrheit / ka.gesamt) * breite
+    return [
+      stilBlock(ka.name, {
+        top: oben,
+        left: links,
+        fontSize: 26,
+        fontWeight: 800,
+        color: STIL.tinte,
+      }),
+      stilBlock(
+        `${ka.gesamt.toLocaleString('de-DE')} Sitze · Mehrheit ab ${ka.mehrheit}`,
+        {
+          top: oben + 6,
+          left: links,
+          width: breite,
+          justifyContent: 'flex-end',
+          fontSize: 19,
+          color: STIL.grau,
+        }
+      ),
+      ...stuecke.map((s, i) =>
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: balkenOben,
+            left: s.x + (i ? 2 : 0),
+            width: s.w - (i ? 2 : 0),
+            height: dicke,
+            backgroundColor: PARTEIFARBE[s.t.farbe],
+            borderTopLeftRadius: i === 0 ? 8 : 0,
+            borderBottomLeftRadius: i === 0 ? 8 : 0,
+            borderTopRightRadius: i === stuecke.length - 1 ? 8 : 0,
+            borderBottomRightRadius: i === stuecke.length - 1 ? 8 : 0,
+          },
+        })
+      ),
+      h('div', {
+        style: {
+          position: 'absolute',
+          top: balkenOben - 10,
+          left: strich - 1.5,
+          width: 3,
+          height: dicke + 20,
+          backgroundColor: STIL.tinte,
+        },
+      }),
+      ...stuecke.map((s, i) =>
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: balkenOben + dicke + 14,
+              /* Das letzte Stück rechtsbündig – sonst überlappt es ein schmales davor. */
+              left: i === stuecke.length - 1 && i > 0 ? links + breite - 320 : s.x,
+              width: i === stuecke.length - 1 && i > 0 ? 320 : Math.max(s.w, 150),
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: i === stuecke.length - 1 && i > 0 ? 'flex-end' : 'flex-start',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'span',
+            {
+              style: {
+                fontSize: 30,
+                fontWeight: 800,
+                color: s.t.farbe === 'offen' ? STIL.hellgrau : PARTEIFARBE[s.t.farbe],
+              },
+            },
+            s.t.wert.toLocaleString('de-DE')
+          ),
+          h('span', { style: { fontSize: 18, color: STIL.grau } }, s.t.name)
+        )
+      ),
+    ]
+  })
+}
 
 function vielfachGrafik(k: Vielfachkarte) {
   /*
