@@ -121,7 +121,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Iowa – Josh Turek\n' +
       'North Carolina – Roy Cooper\n' +
       'South Carolina – Annie Andrews, erste Demokratin seit 28 Jahren\n' +
-      'Dazu die Gouverneure in Texas (Gina Hinojosa) und Ohio (Amy Acton).\n\n' +
+      'Dazu die Gouverneure in Texas (Gina Hinojosa) und Ohio (Amy Acton). Elon Musk hatte laut CNBC rund 224 Mio. $ auf die Texas-Republikaner gesetzt.\n\n' +
       'Warum?\n' +
       'Laut tagesschau spricht das Ergebnis für erhebliche Unzufriedenheit mit Trumps Politik. In einer Fox-Umfrage machten 62 % seine Politik für gestiegene Preise verantwortlich. In Iowa trafen laut CNBC Zölle und teurer Dünger durch den Iran-Krieg die Landwirte.\n\n' +
       'Was das bedeutet:\n' +
@@ -129,6 +129,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       '– Börse: JPMorgan rechnete laut CNBC bei einer blauen Welle mit etwa −0,5 % für den S&P 500 heute.\n' +
       '– Unter Druck stehen könnten laut CNBC KI- und Rechenzentrumswerte – Texas ist ihr wichtigster Standort – sowie Rüstung. Rückenwind gäbe es für Gesundheitswerte.\n\n' +
       'Quellen: AP über tagesschau.de (Liveblog Midterms), CNBC (Live-Updates, Election Desk, Markt-Ausblick)',
+    freigabe: '2026-11-04',
     schlagworte: ['usa', 'zwischenwahlen', 'wahlen', 'kongress', 'börse'],
   },
   {
