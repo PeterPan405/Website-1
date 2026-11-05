@@ -3361,7 +3361,36 @@ function stilBild(
       right: rand,
       fontSize: 16,
       color: STIL.hellgrau,
-    })
+    }),
+    /*
+      Hinweis aufs Weiterwischen, wenn es eine zweite Seite gibt (Betreiber,
+      05.11.2026: „irgendwie ein Vermerk, dass es eine zweite Seite gibt.
+      Vielleicht so ein Pfeil").
+    */
+    ...('zweiteSeite' in k && k.zweiteSeite
+      ? [
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: ZK_HOEHE - 126,
+                right: rand,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '8px 20px',
+                borderRadius: 40,
+                backgroundColor: STIL.navy,
+                color: '#ffffff',
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+                fontWeight: 700,
+              },
+            },
+            `${k.zweiteSeite.titel.map((t) => t.text).join(' ')}  →`
+          ),
+        ]
+      : [])
   )
 }
 
