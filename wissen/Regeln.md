@@ -31,24 +31,17 @@ danebenging.
 
 ## Wie berichtet wird
 
-**Ausführlich arbeiten, kurz berichten.** Im Chat **zwei bis drei Zeilen**, so
-kurz wie möglich: was getan ist, was gefunden wurde, was der Betreiber
-entscheiden muss. Kein Nacherzählen des Wegs; Tabellen nur, wenn sie
-kürzer sind als der Satz, den sie ersetzen.
+**Ausführlich arbeiten, kurz berichten.** Im Chat **zwei bis drei Zeilen**: was getan ist, was gefunden wurde, was der Betreiber
+entscheiden muss. Kein Nacherzählen des Wegs; Tabellen nur, wenn
+kürzer als der Satz.
 
 Commits, Pull Requests und Kommentare bleiben ausführlich – sie sind das
-Gedächtnis des Projekts.
+Gedächtnis des Projekts; das aller Chats: `gedaechtnis/` in `alles-m-gliche-`
+(`claude/jarvis-cloud`), Regeln dort im `README.md`.
 
 **Und es wird gespiegelt:** nach jeder Änderung an `ENTSCHEIDUNGEN.md` oder
 `AGENTS.md` `ANWENDEN=1 npm run wissen`, sonst rot. In den Vault holt es die
 lokale Sitzung (`werkzeuge/wissen-in-vault.ps1`).
-
-**Gemeinsames Gedächtnis** (Dauerregel, 05.11.2026): Ergebnisse,
-Entscheidungen samt Grund, Messwerte, Fehler samt Ursache, Quellen, offene
-Fragen – nie Geheimnisse – als `gedaechtnis/JJJJ-MM-TT Thema.md` im Repo
-`PeterPan405/alles-m-gliche-`, Zweig `claude/jarvis-cloud`, pushen. Kopf:
-`Chat:`, `Stand:`, `Kurz:`. Ergänzen statt ersetzen, Fremdes nicht löschen;
-vorher dort nachsehen. Am Ende jeder Aufgabe.
 
 ## Arbeitsweise
 
@@ -76,19 +69,19 @@ vorher dort nachsehen. Am Ende jeder Aufgabe.
 
 ## Diese Umgebung erreicht nur GitHub – **erst nachsehen, ob das stimmt**
 
-Die Sitzung auf dem Rechner des Betreibers hat vollen Zugang; dann gilt hier
-nichts. Ein `curl` klärt es in einer Sekunde. „Von hier nicht erreichbar"
+Die Sitzung auf dem Rechner des Betreibers hat vollen Zugang. Ein `curl`
+klärt es. „Von hier nicht erreichbar"
 ist eine Aussage über die **Umgebung**, nicht die Quelle – solche Notizen
 brauchen Datum und Ort.
 
-Sonst scheitern `WebFetch` und `curl` an **jeder** Adresse außer GitHub und
-npm (`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
+Sonst scheitern `WebFetch` und `curl` an **allem** außer GitHub und npm
+(`CONNECT tunnel failed, response 403`), auch an `iminvests.de`.
 Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
 **Der Ausweg: ein Läufer holt es.** GitHub-Läufer haben vollen Netzzugang.
 
-- `quellen-holen.yml` – nimmt Adressen, holt sie, schreibt den Text ins
-  Protokoll (`actions_list` + `get_job_logs`).
+- `quellen-holen.yml` – holt Adressen, schreibt den Text ins Protokoll
+  (`actions_list` + `get_job_logs`).
 - `quellen-sammeln.yml` – legt `quellen.txt` auf den wurzellosen Zweig
   `quellen-heute`, zu lesen mit `git show origin/quellen-heute:quellen.txt`.
 - **Ein Lauf, dessen Ergebnis eine Datei ist, legt sie auf einen wurzellosen
