@@ -158,6 +158,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       text: '',
       schlagworte: [],
     },
+    freigabe: '2026-11-05',
     schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
   },
   {
