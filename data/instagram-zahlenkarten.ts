@@ -110,7 +110,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile:
       'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
     text:
-      'Christine Lagarde hört früher auf. Die EZB-Präsidentin gibt ihr Amt am 7. Februar 2027 auf (Tagesschau, 29.10.). Regulär endete ihre achtjährige Amtszeit Ende Oktober 2027.\n\n' +
+      'Christine Lagarde gibt ihr Amt als EZB-Präsidentin am 7. Februar 2027 auf – regulär wäre Ende Oktober 2027 Schluss gewesen (Tagesschau).\n\n' +
       'Die Balken im Bild, Präsident für Präsident:\n' +
       'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
       'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
@@ -119,9 +119,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
       'Warum geht Lagarde?\n' +
       'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
-      'Und jetzt?\n' +
-      'Die Eurostaaten suchen die Nachfolge. Kanzler Merz will den Prozess laut Tagesschau bis zum Jahresende abschließen. Als Favoriten gelten demnach Klaas Knot, früher Chef der niederländischen Notenbank, und der Spanier Pablo Hernández de Cos. Bundesbank-Präsident Joachim Nagel hat sich selbst ins Spiel gebracht – Deutschland stellte die EZB-Spitze noch nie.\n\n' +
-      'Quellen: Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück", 29.10.2026; Handelsblatt, 29.10.2026; Wikipedia, „Präsident der Europäischen Zentralbank"\n' +
+      'Wer folgt auf Lagarde?\n' +
+      '– Klaas Knot (Niederlande), 59, bis 2025 Chef der niederländischen Notenbank – seit 4.11. offiziell nominiert\n' +
+      '– Pablo Hernández de Cos (Spanien), Chef der BIZ – gilt als aussichtsreich\n' +
+      '– Joachim Nagel (Deutschland), Bundesbank-Präsident – hat Interesse angemeldet, Chancen gelten als gering. Deutschland stellte nie die EZB-Spitze.\n' +
+      'Die Eurostaaten benennen ihre Kandidaten bis Freitag, kommende Woche wird beraten (tagesschau, WirtschaftsWoche/dpa).\n\n' +
+      'Quellen: Tagesschau (29.10., 04.11.), Handelsblatt (29.10.), WirtschaftsWoche/dpa (04.11.), Wikipedia „Präsident der EZB"\n' +
       'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
     schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
   },
