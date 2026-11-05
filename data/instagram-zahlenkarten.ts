@@ -132,7 +132,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       titel: [{ text: 'Wer folgt' }, { text: 'auf Lagarde?', gruen: true }],
       erklaerung:
         'Die Eurostaaten benennen ihre Kandidaten bis Freitag, beraten wird kommende Woche.',
-      stichzeile: 'Mögliche Nachfolger · Wettquote Polymarket',
+      stichzeile: 'Mögliche Nachfolger · Quote Polymarket',
       personen: [
         {
           name: 'Pablo Hernández de Cos',
