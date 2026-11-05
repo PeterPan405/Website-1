@@ -101,6 +101,285 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-kongresswahl-demokraten-boersen-plus',
+    title: 'US-Kongresswahl: Demokraten siegen, Börsen legen kräftig zu',
+    teaser:
+      'Die Demokraten übernehmen beide Kammern des US-Kongresses. Der Dow Jones schließt drei Prozent höher, doch KI-nahe Aktien fallen aus der Reihe.',
+    category: 'Märkte',
+    publishedAt: '2026-11-05T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['us-wahl', 'dow-jones', 'dax', 'ki-aktien'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones', 'dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 20:27 Uhr: „US-Börsen: Dow Jones schließt drei Prozent höher"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-dow-jones-schliesst-drei-prozent-hoeher/100267318.html',
+      },
+      {
+        label:
+          'CNBC, 04.11.2026, 23:44 Uhr: „Democrats flip dozens of GOP seats. Republicans haven\'t flipped a single one"',
+        url: 'https://www.cnbc.com/2026/11/04/democrats-2026-midterm-election-results.html',
+      },
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 21:41 Uhr: „US-Börsen: CoreWeave fällt, Amazon gewinnt – Wie die Midterms den KI-Sektor spalten"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/us-boeren-coreweave-faellt-amazon-gewinnt-midterms-spalten-ki-sektor/100267383.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 04.11.2026, 17:08 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax nähert sich nach US-Zwischenwahlen Rekord"',
+        url: 'https://www.onvista.de/news/2026/11-04-roundup-aktien-frankfurt-schluss-dax-naehert-sich-nach-us-zwischenwahlen-rekord-0-10-26572536',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Demokratische Partei hat bei den US-Zwischenwahlen die Kontrolle über beide Kammern des Kongresses übernommen. Nach ersten Auszählungen gewannen die Demokraten sieben Senatssitze, fast 30 Sitze im Repräsentantenhaus und fünf Gouverneursposten hinzu – einer der deutlichsten Umschwünge bei einer Zwischenwahl seit Jahrzehnten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dow Jones drei Prozent höher, Dax nahe am Rekord',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kam das Ergebnis gut an. Der Dow Jones schloss drei Prozent höher bei 53.356 Punkten, der S&P 500 legte 1,6 Prozent auf 7.689 Punkte zu, der Nasdaq stieg um 1,4 Prozent auf 25.737 Punkte. Der Dax zog um 2,98 Prozent auf 26.614 Punkte an und rückte damit nahe an sein Rekordhoch heran. Der Vermögensverwalter Thomas Altmann von QC Markets sagte, dem Präsidenten seien damit "politische Handschellen" angelegt worden – Anleger müssten künftig weniger mit sprunghaften Entscheidungen rechnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hyperscaler gewinnen, Rechenzentrumswerte fallen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht alle Aktien profitierten gleich. Amazon und Microsoft legten jeweils um mehr als sechs Prozent zu, Alphabet gewann gut drei Prozent zurück. Die Aktie des Rechenzentrumsbetreibers CoreWeave fiel dagegen. Der Tech-Investor Dan Ives von Yorkville sagte, das lasse sich "nicht beschönigen" – er erwarte durch die demokratische Mehrheit im Kongress erhebliche Hürden für neue Gesetze der kommenden zwei Jahre. In mehreren US-Bundesstaaten stimmten Wähler am selben Tag über den Bau neuer Rechenzentren ab und lehnten die Vorhaben in fast allen Fällen ab. Der Ölpreis fiel unterdessen unter 90 Dollar je Barrel, nachdem US-Vizepräsident JD Vance die Verluste der Republikaner teilweise auf die amerikanische Iran-Politik zurückgeführt hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesamtindex, der um drei Prozent steigt, kann eine gegenläufige Bewegung innerhalb des Marktes verdecken. Hier zogen breit aufgestellte Technologiekonzerne an, während ein einzelnes, stark auf Rechenzentren spezialisiertes Unternehmen fiel – wer nur auf den Index schaut, übersieht, dass ein Wahlergebnis einzelne Branchen sehr unterschiedlich treffen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'eurozone-inflation-vier-prozent-oktober',
+    title: 'Eurozone: Inflation klettert im Oktober auf 4,0 Prozent',
+    teaser:
+      'Die Teuerung im Euroraum ist im Oktober auf 4,0 Prozent gestiegen, den höchsten Stand seit September 2023. Energie bleibt der stärkste Treiber.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-05T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'eurozone', 'ezb', 'energiepreise'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 12:12 Uhr: „Inflation im Euroraum steigt auf 4,0 Prozent"',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/inflation-eurozone-oktober-102.html',
+      },
+      {
+        label: 'Eurostat, 04.11.2026: „Annual inflation up to 4.0% in the euro area"',
+        url: 'https://ec.europa.eu/eurostat/product?code=2-04112026-ap',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Inflation im Euroraum ist im Oktober auf 4,0 Prozent gestiegen. Das teilte die europäische Statistikbehörde Eurostat in ihrer Schnellschätzung mit. Es ist der höchste Stand seit September 2023, nach 3,8 Prozent im September.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Energie treibt die Rate stärker an als im Vormonat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Energie war mit einem Anstieg von 20,8 Prozent gegenüber dem Vorjahr erneut die stärkste Einzelkomponente unter den Hauptgruppen, nach 18,9 Prozent im September. Vor Dienstleistungen, Nahrungsmitteln und Industriegütern bleibt Energie damit der mit Abstand größte Treiber der Teuerung im Euroraum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rückenwind für die Dezember-Debatte der EZB',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst am Dienstag hatte Bundesbank-Präsident Joachim Nagel eine Zinserhöhung der EZB im Dezember für wahrscheinlich gehalten – mit Blick auf die Teuerung im Euroraum. Der nun gemeldete Wert liegt noch über der Rate, auf die sich diese Einschätzung damals bezog. Der EZB-Rat entscheidet turnusgemäß am 17. Dezember über den Leitzins.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Anstieg der Gesamtrate, der überwiegend von einer einzelnen Komponente wie Energie getragen wird, hat andere Folgen für die Geldpolitik als eine breit verteilte Teuerung in vielen Bereichen zugleich. Die Notenbank muss einschätzen, ob ein Preisschub von außen oder eine grundsätzlich zu hohe Nachfrage im Inland dahintersteckt.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-spitze-niederlande-klaas-knot',
+    title: 'EZB-Spitze: Niederlande nominieren Klaas Knot',
+    teaser:
+      'Die Niederlande haben den früheren Notenbankchef Klaas Knot offiziell als Kandidaten für die EZB-Präsidentschaft nominiert – als Nachfolger von Lagarde.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-05T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'knot', 'lagarde-nachfolge'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 15:30 Uhr: „Neuer EZB-Chef: Niederlande nominieren Ex-Zentralbanker Knot"',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/knot-nominierung-ezb-100.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche / dpa, 04.11.2026, 12:20 Uhr: „Notenbank: Niederlande nominieren Ex-Zentralbanker Knot als EZB-Chef"',
+        url: 'https://www.wiwo.de/unternehmen/notenbank-niederlande-nominieren-ex-zentralbanker-knot-als-ezb-chef/100267274.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Niederlande haben den früheren Zentralbankchef Klaas Knot offiziell als Kandidaten für die Präsidentschaft der Europäischen Zentralbank nominiert. Das teilte der niederländische Finanzminister Eelco Heinen dem Parlament in Den Haag mit. Knot, 59 Jahre alt, war von 2011 bis 2025 Präsident der niederländischen Zentralbank.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lagarde geht im Februar, der Zeitplan ist eng',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Posten wird frei, weil EZB-Chefin Christine Lagarde im Februar vorzeitig zurücktritt. Die Länder der Eurozone müssen ihre Kandidaten bis zu diesem Freitag offiziell benennen, in der kommenden Woche soll über die Nachfolge beraten werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei weitere Namen im Rennen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben Knot gilt der Spanier Pablo Hernández de Cos als aussichtsreicher Kandidat. Auch Bundesbank-Präsident Joachim Nagel hat Interesse an dem Posten angemeldet, seine Chancen gelten jedoch als gering.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer an der Spitze der EZB steht, prägt die geldpolitische Ausrichtung für Jahre. Eine Personalentscheidung dieser Art wirkt deshalb oft länger nach als ein einzelner Zinsschritt – sie entscheidet mit darüber, wie die Notenbank künftig zwischen Inflationsbekämpfung und Wirtschaftswachstum abwägt.',
+      },
+    ],
+  },
+  {
+    slug: 'bmw-gewinn-china-krise-prognose',
+    title: 'BMW: Gewinn bricht wegen China-Krise weiter ein',
+    teaser:
+      'BMW meldet im dritten Quartal 15 Prozent weniger Gewinn. Die Verkäufe in China brachen um ein Viertel ein, die Jahresprognose wird erneut gesenkt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-05T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['bmw', 'autoindustrie', 'quartalszahlen', 'china'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['bmw'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 09:21 Uhr: „BMW erwirtschaftet noch weniger Gewinn"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/bmw-gewinnwarnung-100.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 04.11.2026, 15:53 Uhr: „BMW: Die schwache Prognose spricht für Vorsicht"',
+        url: 'https://www.onvista.de/news/2026/11-04-bmw-die-schwache-prognose-spricht-fuer-vorsicht-40338625-19-26572453',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'BMW hat im dritten Quartal einen Nettogewinn von rund 1,5 Milliarden Euro erzielt, 15 Prozent weniger als vor einem Jahr. Der Umsatz sank um 6 Prozent auf 30,5 Milliarden Euro. Die operative Marge im Autogeschäft fiel von 5,2 auf 3,4 Prozent – schwächer als im Vorjahr, aber besser, als Analysten gefürchtet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'China-Absatz bricht um ein Viertel ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Auslieferungen sanken insgesamt um 6,3 Prozent. Allein in China gingen die Verkäufe um 25 Prozent zurück, während Europa und die USA zulegten. Hinzu kommen teure Abfindungen und das vorgezogene Ende älterer Modelle, die das Ergebnis zusätzlich belasteten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose für das Gesamtjahr erneut gesenkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'BMW kappte deshalb seine Jahresprognose. Die Automobil-Ebit-Marge wird nun bei -0,5 bis 0,5 Prozent erwartet, zuvor bei 1 bis 3 Prozent. Die Auslieferungen sollen um 5 bis 10 Prozent sinken statt der zuvor erwarteten 1 bis 5 Prozent, der Nettogewinn soll um mindestens 15 Prozent fallen. Der freie Cashflow im Autogeschäft bleibt mit 2,5 Milliarden Euro unverändert geplant.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Umsatzrückgang von sechs Prozent erklärt nicht, warum das operative Ergebnis um rund dreißig Prozent einbricht. Das zeigt, wie stark hohe Fixkosten in der Autoproduktion die Marge belasten, wenn der Absatz schon in einem einzelnen großen Markt deutlich zurückgeht.',
+      },
+    ],
+  },
+  {
+    slug: 'immobilienfonds-dws-grundbesitz-europa',
+    title: 'Immobilienfonds-Krise: DWS begrenzt Rückgaben auf zehn Prozent',
+    teaser:
+      'Der offene Immobilienfonds Grundbesitz Europa der DWS zahlt fällige Rückgaben nur noch zu zehn Prozent aus. Grund sind hohe Abflüsse und sinkende Werte.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-05T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['immobilienfonds', 'dws', 'vonovia', 'zinsen'],
+    relatedTopics: ['immobilien', 'fonds'],
+    relatedSymbols: ['vonovia'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 15:49 Uhr: „Immobilien: Milliardenrisiko? Die Krise der Immobilienfonds spitzt sich zu"',
+        url: 'https://www.handelsblatt.com/finanzen/immobilien/immobilien-milliardenrisiko-die-krise-der-immobilienfonds-spitzt-sich-zu/100265249.html',
+      },
+      {
+        label:
+          'cash-online.de, 30.10.2026, 12:15 Uhr: „Offener Immobilienfonds der DWS: Anleger erhalten nur zehn Prozent ihrer Rückgaben"',
+        url: 'https://www.cash-online.de/a/offener-immobilienfonds-der-dws-anleger-erhalten-nur-zehn-prozent-ihrer-rueckgaben-729112/',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 04.11.2026, 12:19 Uhr: „Immobilienkonzern: Sechs Punkte, die die Krise bei Vonovia erklären"',
+        url: 'https://www.wiwo.de/finanzen/immobilien/krise-bei-vonovia-sechs-gruende-und-was-jetzt-aktionaeren-droht/100267169.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Fondsgesellschaft DWS hat ihren offenen Immobilienfonds Grundbesitz Europa eingeschränkt. Seit dem 28. Oktober zahlt sie fällige Rückgabeaufträge nur noch zu zehn Prozent aus, der Rest des Auftrags verfällt. Angekündigt hatte DWS die Maßnahme bereits am 26. Oktober.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '7,3 Prozent Abwertung, hohe Mittelabflüsse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im September hatte der Fonds seinen Wert bereits um 7,3 Prozent nach unten korrigiert. In den ersten acht Monaten des Jahres zogen Anleger netto mehr als 640 Millionen Euro aus dem Fonds ab – Geld, das lange als sicher angelegt galt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'An der Börse mit deutlichem Abschlag gehandelt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer seine Anteile nicht über die Fondsgesellschaft, sondern an der Börse verkauft, muss einen hohen Abschlag hinnehmen: Ende Oktober notierten die Anteile rund 47,5 bis 50 Prozent unter dem von DWS ausgewiesenen Rücknahmewert. Die Beschränkung kann bis zu zwölf Monate gelten. Auch bei anderen Anbietern wächst der Druck: Deutschlands größter Vermieter Vonovia hat seine Jahresprognose gesenkt und verliert in Kürze seinen Finanzvorstand.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der von der Fondsgesellschaft errechnete Rücknahmewert und der Preis, den der Markt an der Börse tatsächlich zahlt, können weit auseinanderliegen. Ein Fonds kann auf dem Papier noch werthaltig erscheinen, während der Preis am Zweitmarkt schon eine deutlich pessimistischere Einschätzung vorwegnimmt.',
+      },
+    ],
+  },
+  {
     slug: 'bundesbank-nagel-ezb-zinserhoehung-dezember',
     title:
       'Bundesbank-Präsident Nagel hält EZB-Zinserhöhung im Dezember für wahrscheinlich',
