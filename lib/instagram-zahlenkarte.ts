@@ -3366,29 +3366,18 @@ function stilBild(
       Hinweis aufs Weiterwischen, wenn es eine zweite Seite gibt (Betreiber,
       05.11.2026: „irgendwie ein Vermerk, dass es eine zweite Seite gibt.
       Vielleicht so ein Pfeil").
+      Schlicht, ohne Fläche (Betreiber zur Navy-Pille: „sieht komisch aus
+      und vibe gecodet"): ein grauer Hinweis rechts in der Fußzeile.
     */
     ...('zweiteSeite' in k && k.zweiteSeite
       ? [
-          h(
-            'div',
-            {
-              style: {
-                position: 'absolute',
-                top: ZK_HOEHE - 126,
-                right: rand,
-                display: 'flex',
-                alignItems: 'center',
-                padding: '8px 20px',
-                borderRadius: 40,
-                backgroundColor: STIL.navy,
-                color: '#ffffff',
-                fontFamily: 'Montserrat',
-                fontSize: 20,
-                fontWeight: 700,
-              },
-            },
-            `${k.zweiteSeite.titel.map((t) => t.text).join(' ')}  →`
-          ),
+          stilBlock('Weiter  →', {
+            top: ZK_HOEHE - 79,
+            right: rand,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
         ]
       : [])
   )
