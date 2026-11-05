@@ -119,13 +119,44 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
       'Warum geht Lagarde?\n' +
       'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar. Laut Tagesschau kann so noch vor dieser Wahl über die Nachfolge entschieden werden.\n\n' +
-      'Wer folgt auf Lagarde?\n' +
-      '– Klaas Knot (Niederlande), 59, bis 2025 Chef der niederländischen Notenbank – seit 4.11. offiziell nominiert\n' +
+      'Wer folgt auf Lagarde? (Seite 2)\n' +
+      '– Klaas Knot (Niederlande), Ex-Chef der niederländischen Notenbank – seit 4.11. offiziell nominiert\n' +
       '– Pablo Hernández de Cos (Spanien), Chef der BIZ – gilt als aussichtsreich\n' +
-      '– Joachim Nagel (Deutschland), Bundesbank-Präsident – hat Interesse angemeldet, Chancen gelten als gering. Deutschland stellte nie die EZB-Spitze.\n' +
-      'Die Eurostaaten benennen ihre Kandidaten bis Freitag, kommende Woche wird beraten (tagesschau, WirtschaftsWoche/dpa).\n\n' +
+      '– Joachim Nagel (Deutschland), Bundesbank-Präsident – Chancen gelten als gering\n' +
+      'Benannt wird bis Freitag, beraten kommende Woche (tagesschau, WirtschaftsWoche/dpa).\n\n' +
       'Quellen: Tagesschau (29.10., 04.11.), Handelsblatt (29.10.), WirtschaftsWoche/dpa (04.11.), Wikipedia „Präsident der EZB"\n' +
-      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB',
+      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB; Knot – WEF, CC BY 3.0; Hernández de Cos – Chospo, CC0; Nagel – Leonhard Lenz, CC BY 4.0',
+    zweiteSeite: {
+      art: 'personen',
+      datum: '2026-11-05',
+      titel: [{ text: 'Wer folgt' }, { text: 'auf Lagarde?', gruen: true }],
+      erklaerung:
+        'Die Eurostaaten benennen ihre Kandidaten bis Freitag, beraten wird kommende Woche.',
+      stichzeile: 'Mögliche Nachfolger · Stand 04.11.2026',
+      personen: [
+        {
+          name: 'Klaas Knot',
+          zeile: 'Niederlande · bis 2025 Chef der Notenbank',
+          stand: 'Offiziell nominiert',
+          bild: 'ezb-knot.jpg',
+        },
+        {
+          name: 'Pablo Hernández de Cos',
+          zeile: 'Spanien · Chef der BIZ',
+          stand: 'Gilt als aussichtsreich',
+          bild: 'ezb-hernandez.jpg',
+        },
+        {
+          name: 'Joachim Nagel',
+          zeile: 'Deutschland · Bundesbank-Präsident',
+          stand: 'Interessiert, Chancen gelten als gering',
+          bild: 'ezb-nagel.jpg',
+        },
+      ],
+      fusszeile: 'Stand: 04.11.2026 | Quellen: tagesschau, WirtschaftsWoche/dpa',
+      text: '',
+      schlagworte: [],
+    },
     schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
   },
   {

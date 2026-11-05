@@ -1110,6 +1110,19 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       )
     }
     pruefe(
+      'EZB: zweite Seite mit drei möglichen Nachfolgern',
+      karte.zweiteSeite?.personen.length === 3
+    )
+    pruefe(
+      'EZB: zweite Seite ohne Beanstandung (außer Text, den trägt Seite 1)',
+      karte.zweiteSeite !== undefined &&
+        pruefeZahlenkarte(karte.zweiteSeite).every((f) =>
+          /Beschrift|Text|text|Schlagw|schlagw/.test(f)
+        )
+    )
+    for (const pe of karte.zweiteSeite?.personen ?? [])
+      pruefe(`EZB: ${pe.name} steht in der Beschreibung`, karte.text.includes(pe.name))
+    pruefe(
       'EZB: Lagarde geht am 7. Februar 2027',
       karte.balken.at(-1)?.ende === '2027-02-07'
     )

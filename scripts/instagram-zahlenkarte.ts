@@ -44,7 +44,7 @@ const textAntwort = await fetch(`${BASIS}/instagram/zahlenkarte.txt`, {
 })
 if (!textAntwort.ok)
   halt(`${BASIS}/instagram/zahlenkarte.txt antwortet mit ${textAntwort.status}.`)
-const { datum, freigabe, abMinute, beschriftung } = leseZahlenkarteText(
+const { datum, freigabe, abMinute, seiten, beschriftung } = leseZahlenkarteText(
   await textAntwort.text()
 )
 
@@ -73,11 +73,20 @@ melde(`Karte vom ${HEUTE}: ${aufhaenger}`)
 // Riegel 3
 /* Jedes Mal eine neue Adresse – Meta merkt sich Bilder an ihr (18.10.2026). */
 const bildAdresse = `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}&t=${Date.now()}`
-const bild = await fetch(bildAdresse, { method: 'HEAD', cache: 'no-store' })
-if (!bild.ok || !(bild.headers.get('content-type') ?? '').includes('image/jpeg'))
-  halt(
-    `Das Bild antwortet mit ${bild.status} (${bild.headers.get('content-type') ?? '?'}).`
-  )
+/* Zwei Seiten (05.11.2026, Lagarde und ihre möglichen Nachfolger) gehen als Karussell. */
+const bildAdressen = [
+  bildAdresse,
+  ...(seiten === 2
+    ? [`${BASIS}/instagram/zahlenkarte-2.jpg?d=${HEUTE}&t=${Date.now()}`]
+    : []),
+]
+for (const adresse of bildAdressen) {
+  const bild = await fetch(adresse, { method: 'HEAD', cache: 'no-store' })
+  if (!bild.ok || !(bild.headers.get('content-type') ?? '').includes('image/jpeg'))
+    halt(
+      `${adresse} antwortet mit ${bild.status} (${bild.headers.get('content-type') ?? '?'}).`
+    )
+}
 
 if (!TOKEN || !KONTO) {
   melde(
@@ -121,29 +130,55 @@ async function graph(pfad: string, felder: Record<string, string>) {
   return daten
 }
 
-const behaelter = String(
-  (
-    await graph(`${KONTO}/media`, {
-      image_url: bildAdresse,
-      caption: beschriftung,
-      is_ai_generated: 'true',
-    })
-  ).id
-)
-const frist = Date.now() + 90_000
-for (;;) {
-  const z = (await (
-    await fetch(
-      `${API}/${behaelter}?fields=status_code&access_token=${encodeURIComponent(TOKEN)}`
-    )
-  ).json()) as {
-    status_code?: string
+async function warteAufFertig(kennung: string) {
+  const frist = Date.now() + 120_000
+  for (;;) {
+    const z = (await (
+      await fetch(
+        `${API}/${kennung}?fields=status_code&access_token=${encodeURIComponent(TOKEN)}`
+      )
+    ).json()) as {
+      status_code?: string
+    }
+    if (z.status_code === 'FINISHED') return
+    if (z.status_code === 'ERROR' || Date.now() > frist)
+      throw new Error(`Behälter ${kennung}: ${z.status_code ?? 'unbekannt'}`)
+    await new Promise((r) => setTimeout(r, 3000))
   }
-  if (z.status_code === 'FINISHED') break
-  if (z.status_code === 'ERROR' || Date.now() > frist)
-    throw new Error(`Behälter ${behaelter}: ${z.status_code ?? 'unbekannt'}`)
-  await new Promise((r) => setTimeout(r, 3000))
 }
+
+let behaelter: string
+if (bildAdressen.length === 1) {
+  behaelter = String(
+    (
+      await graph(`${KONTO}/media`, {
+        image_url: bildAdresse,
+        caption: beschriftung,
+        is_ai_generated: 'true',
+      })
+    ).id
+  )
+} else {
+  const kinder: string[] = []
+  for (const adresse of bildAdressen) {
+    const kind = String(
+      (await graph(`${KONTO}/media`, { image_url: adresse, is_carousel_item: 'true' })).id
+    )
+    await warteAufFertig(kind)
+    kinder.push(kind)
+  }
+  behaelter = String(
+    (
+      await graph(`${KONTO}/media`, {
+        media_type: 'CAROUSEL',
+        children: kinder.join(','),
+        caption: beschriftung,
+        is_ai_generated: 'true',
+      })
+    ).id
+  )
+}
+await warteAufFertig(behaelter)
 const veroeffentlicht = await graph(`${KONTO}/media_publish`, { creation_id: behaelter })
 melde(`Veröffentlicht: ${String(veroeffentlicht.id)}`)
 melde('https://www.instagram.com/im_invests/')

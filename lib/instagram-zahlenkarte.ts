@@ -89,6 +89,12 @@ interface KarteGemeinsam {
    * 10:30 Uhr bis 11:00 Uhr"). Nur zusammen mit der Freigabe wirksam.
    */
   ab?: string
+  /**
+   * Eine zweite Seite – dann geht die Karte als Karussell aus zwei Bildern
+   * hinaus (`/instagram/zahlenkarte-2.jpg`). Sie teilt Datum, Freigabe und
+   * Beschriftung der ersten.
+   */
+  zweiteSeite?: Personenkarte
 }
 
 /** Zwei Balken gegeneinander – die Form des Vorbilds vom 12.10.2026. */
@@ -442,7 +448,19 @@ export interface Kammerkarte extends StilGemeinsam {
   }[]
 }
 
+/**
+ * Eine Seite mit Personen im Hausstil – rundes Porträt, Name, eine Zeile
+ * zu Herkunft und Amt, eine zum Stand (05.11.2026, mögliche Nachfolger
+ * Lagardes; Betreiber: „Mach doch noch eine zweite Seite für mögliche
+ * Nachfolger"). Bisher nur als zweite Seite (`zweiteSeite`).
+ */
+export interface Personenkarte extends StilGemeinsam {
+  art: 'personen'
+  personen: { name: string; zeile: string; stand: string; bild?: string }[]
+}
+
 export type Zahlenkarte =
+  | Personenkarte
   | Kammerkarte
   | Vielfachkarte
   | Kurvenkarte
@@ -793,6 +811,7 @@ function stilBefunde(
     | Balkenkarte
     | Vielfachkarte
     | Kammerkarte
+    | Personenkarte
 ): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
@@ -873,6 +892,13 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'personen') {
+    if (k.personen.length < 2 || k.personen.length > 4)
+      f.push(`${k.personen.length} Personen – zwei bis vier.`)
+    for (const pe of k.personen)
+      if (pe.bild !== undefined && !existsSync(join(FOTO_ORDNER, pe.bild)))
+        f.push(`Foto „${pe.bild}" fehlt in lib/instagram/fotos/.`)
     f.push(...stilBefunde(k))
   } else if (k.art === 'kammern') {
     for (const ka of k.kammern) {
@@ -1178,20 +1204,23 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
     k.art === 'zeitstrahl' ||
     k.art === 'balken' ||
     k.art === 'vielfach' ||
-    k.art === 'kammern'
+    k.art === 'kammern' ||
+    k.art === 'personen'
   ) {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
         : k.art === 'saeulen'
           ? stilBild(k, logo, k.helden, saeulenGrafik(k))
-          : k.art === 'kammern'
-            ? stilBild(k, logo, k.helden, kammerGrafik(k))
-            : k.art === 'vielfach'
-              ? stilBild(k, logo, k.helden, vielfachGrafik(k))
-              : k.art === 'balken'
-                ? stilBild(k, logo, k.helden, balkenGrafik(k))
-                : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
+          : k.art === 'personen'
+            ? stilBild(k, logo, [], personenGrafik(k))
+            : k.art === 'kammern'
+              ? stilBild(k, logo, k.helden, kammerGrafik(k))
+              : k.art === 'vielfach'
+                ? stilBild(k, logo, k.helden, vielfachGrafik(k))
+                : k.art === 'balken'
+                  ? stilBild(k, logo, k.helden, balkenGrafik(k))
+                  : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2495,7 +2524,9 @@ export function form(
   | 'zeitstrahl'
   | 'hausbalken'
   | 'vielfach'
-  | 'kammern' {
+  | 'kammern'
+  | 'personen' {
+  if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
   if (k.art === 'vielfach') return 'vielfach'
@@ -3165,7 +3196,8 @@ function stilBild(
     | Zeitstrahlkarte
     | Balkenkarte
     | Vielfachkarte
-    | Kammerkarte,
+    | Kammerkarte
+    | Personenkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3548,6 +3580,57 @@ const LINIENFARBEN = [
   '#c0568a',
   '#5b6472',
 ]
+
+function personenGrafik(k: Personenkarte) {
+  const bild = 150
+  const oben = 500
+  const zeile = (1210 - oben) / k.personen.length
+  return k.personen.flatMap((pe, i) => {
+    const o = oben + i * zeile
+    const textLinks = STIL_RAND + bild + 36
+    return [
+      ...(pe.bild
+        ? [
+            h('img', {
+              src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, pe.bild)).toString('base64')}`,
+              width: bild,
+              height: bild,
+              style: {
+                position: 'absolute',
+                top: o,
+                left: STIL_RAND,
+                borderRadius: bild,
+                objectFit: 'cover',
+                border: `3px solid ${STIL.rand}`,
+              },
+            }),
+          ]
+        : []),
+      stilBlock(pe.name, {
+        top: o + 14,
+        left: textLinks,
+        fontSize: 36,
+        fontWeight: 800,
+        color: STIL.tinte,
+      }),
+      stilBlock(pe.zeile, {
+        top: o + 64,
+        left: textLinks,
+        width: ZK_BREITE - textLinks - STIL_RAND,
+        fontSize: 22,
+        color: STIL.grau,
+      }),
+      stilBlock(pe.stand, {
+        top: o + 100,
+        left: textLinks,
+        width: ZK_BREITE - textLinks - STIL_RAND,
+        fontSize: 22,
+        fontWeight: 700,
+        color: STIL.navy,
+      }),
+    ]
+  })
+}
 
 const PARTEIFARBE = { blau: '#1f4fa3', rot: '#b3262d', offen: '#d5dae2' }
 
