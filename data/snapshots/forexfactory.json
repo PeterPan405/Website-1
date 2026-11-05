@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-11-04T11:31:29.669Z",
+  "abgerufen": "2026-11-05T11:28:00.996Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -368,9 +368,9 @@
     {"title":"Unemployment Rate","country":"CHF","date":"2026-11-05T03:00:00-05:00","impact":"Low","forecast":"3.1%","previous":"3.1%"},
     {"title":"Italian Retail Sales m/m","country":"EUR","date":"2026-11-05T04:00:00-05:00","impact":"Low","forecast":"0.0%","previous":"0.3%"},
     {"title":"Construction PMI","country":"GBP","date":"2026-11-05T04:30:00-05:00","impact":"Low","forecast":"46.4","previous":"46.1"},
+    {"title":"Spanish 10-y Bond Auction","country":"EUR","date":"2026-11-05T04:39:00-05:00","impact":"Low","forecast":"","previous":"4.18|1.6"},
+    {"title":"French 10-y Bond Auction","country":"EUR","date":"2026-11-05T04:55:00-05:00","impact":"Low","forecast":"","previous":"4.93|2.0"},
     {"title":"PPI m/m","country":"EUR","date":"2026-11-05T05:00:00-05:00","impact":"Low","forecast":"2.5%","previous":"1.9%"},
-    {"title":"Spanish 10-y Bond Auction","country":"EUR","date":"2026-11-05T05:03:00-05:00","impact":"Low","forecast":"","previous":"4.18|1.6"},
-    {"title":"French 10-y Bond Auction","country":"EUR","date":"2026-11-05T05:18:00-05:00","impact":"Low","forecast":"","previous":"4.93|2.0"},
     {"title":"Challenger Job Cuts y/y","country":"USD","date":"2026-11-05T05:30:00-05:00","impact":"Low","forecast":"","previous":"-19.9%"},
     {"title":"BOE Monetary Policy Report","country":"GBP","date":"2026-11-05T07:00:00-05:00","impact":"High","forecast":"","previous":""},
     {"title":"Monetary Policy Summary","country":"GBP","date":"2026-11-05T07:00:00-05:00","impact":"High","forecast":"","previous":""},
