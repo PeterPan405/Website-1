@@ -15,7 +15,7 @@ export const dynamic = 'force-static'
 export function GET() {
   const karte = aktuelleZahlenkarte()
   const rumpf = karte
-    ? `${karte.datum}\nFreigabe: ${karte.freigabe ?? '-'}${karte.freigabe && karte.ab ? ` ab ${karte.ab}` : ''}\n${beschriftungZahlenkarte(karte)}\n`
+    ? `${karte.datum}\nFreigabe: ${karte.freigabe ?? '-'}${karte.freigabe && karte.ab ? ` ab ${karte.ab}` : ''}${karte.freigabe && karte.zweiteSeite ? ' seiten 2' : ''}\n${beschriftungZahlenkarte(karte)}\n`
     : '-\nFreigabe: -\n'
   return new Response(rumpf, {
     headers: {

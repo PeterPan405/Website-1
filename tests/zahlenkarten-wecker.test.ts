@@ -135,6 +135,23 @@ pruefe(
   )
 }
 
+/* Zwei Seiten (05.11.2026): „seiten 2" in Zeile 2. */
+{
+  const z = leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05 seiten 2\nText')
+  pruefe(
+    '„seiten 2" wird gelesen',
+    z.freigabe === '2026-11-05' && z.seiten === 2 && z.abMinute === 15 * 60
+  )
+  const y = leseZahlenkarteText(
+    '2026-11-05\nFreigabe: 2026-11-05 ab 10:30 seiten 2\nText'
+  )
+  pruefe('„ab" und „seiten" zusammen', y.abMinute === 630 && y.seiten === 2)
+  pruefe(
+    'ohne Angabe eine Seite',
+    leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05\nText').seiten === 1
+  )
+}
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )

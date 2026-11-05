@@ -59,14 +59,18 @@ export function leseZahlenkarteText(text: string): {
   freigabe: string | null
   /** Ab welcher Minute sie hinaus darf – `AB_MINUTE`, außer die Karte nennt eine eigene Zeit. */
   abMinute: number
+  /** 2, wenn die Karte eine zweite Seite hat (Karussell), sonst 1. */
+  seiten: number
   beschriftung: string
 } {
   const [z1 = '', z2 = '', ...rest] = text.split('\n')
-  const f = /^Freigabe: (\d{4}-\d{2}-\d{2})(?: ab (\d{2}):(\d{2}))?\s*$/.exec(z2)
+  const f =
+    /^Freigabe: (\d{4}-\d{2}-\d{2})(?: ab (\d{2}):(\d{2}))?(?: seiten (\d))?\s*$/.exec(z2)
   return {
     datum: z1.trim(),
     freigabe: f ? f[1] : null,
     abMinute: f && f[2] ? Number(f[2]) * 60 + Number(f[3]) : AB_MINUTE,
+    seiten: f && f[4] ? Number(f[4]) : 1,
     beschriftung: rest.join('\n').trim(),
   }
 }
