@@ -31,6 +31,13 @@ Gedächtnis des Projekts.
 `AGENTS.md` `ANWENDEN=1 npm run wissen`, sonst rot. In den Vault holt es die
 lokale Sitzung (`werkzeuge/wissen-in-vault.ps1`).
 
+**Gemeinsames Gedächtnis** (Dauerregel, 05.11.2026): Ergebnisse,
+Entscheidungen samt Grund, Messwerte, Fehler samt Ursache, Quellen, offene
+Fragen – nie Geheimnisse – als `gedaechtnis/JJJJ-MM-TT Thema.md` im Repo
+`PeterPan405/alles-m-gliche-`, Zweig `claude/jarvis-cloud`, pushen. Kopf:
+`Chat:`, `Stand:`, `Kurz:`. Ergänzen statt ersetzen, Fremdes nicht löschen;
+vorher dort nachsehen. Am Ende jeder Aufgabe.
+
 ## Arbeitsweise
 
 - **Ist etwas offen, wird es abgearbeitet** – ohne Rückfrage, ob. Anordnung
