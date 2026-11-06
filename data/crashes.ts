@@ -39,6 +39,18 @@ export interface Kurseinbruch {
   ausloeser: string
 }
 
+/*
+  Nachgerechnet am 06.11.2026 aus den Tagesschlusskursen des S&P 500
+  (Kursindex, Yahoo ^GSPC), auf ganze Prozent gerundet:
+    1987         25.08. 336,77 → 04.12. 223,92   −33,5 %  (vorher stand hier
+                 20 – der Eintagesverlust vom 19.10., nicht Hoch bis Tief)
+    Dotcom       24.03.2000 1.527,46 → 09.10.2002 776,76   −49,1 %
+    Finanzkrise  09.10.2007 1.565,15 → 09.03.2009 676,53   −56,8 %
+                 (Höhepunkt 2007, nicht 2008; vorher „50“)
+    Pandemie     19.02. → 23.03.2020                        −33,9 %
+  Dadurch sind jetzt 1987 und Pandemie die zwei Fälle gleicher Tiefe
+  (`erholungsbefund()`), nicht mehr Dotcom und Finanzkrise.
+*/
 export const kurseinbrueche: Kurseinbruch[] = [
   {
     name: '1929',
@@ -50,21 +62,21 @@ export const kurseinbrueche: Kurseinbruch[] = [
   {
     name: '1987',
     jahr: 1987,
-    rueckgangProzent: 20,
+    rueckgangProzent: 34,
     erholungJahre: 2,
     ausloeser: 'kein klarer Anlass; automatisierte Absicherungsprogramme',
   },
   {
     name: 'Dotcom',
     jahr: 2000,
-    rueckgangProzent: 50,
+    rueckgangProzent: 49,
     erholungJahre: 7,
     ausloeser: 'Bewertungen von Technologiewerten ohne Gewinne',
   },
   {
     name: 'Finanzkrise',
-    jahr: 2008,
-    rueckgangProzent: 50,
+    jahr: 2007,
+    rueckgangProzent: 57,
     erholungJahre: 5,
     ausloeser: 'Immobilienkredite, Verbriefungen, ein Bankensystem am Rand',
   },

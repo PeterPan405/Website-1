@@ -214,7 +214,13 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Crash-Daten, Renditeangaben, Indexstände, Jahreszahlen in Lerntexten ' +
       'und Akademie. Jede Zahl gegen eine Quelle, und die Quelle notieren.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 06.11.2026: crashes.ts gegen S&P-500-Tageskurse nachgerechnet (Quelle
+    // dort im Kommentar) – 1987 und Finanzkrise korrigiert; 19 weitere Zahlen
+    // in learn/akademie ohne Mangel. Nicht belegt (plausibel, ohne URL):
+    // BIS 7,5 Bio. $/Tag 2022, Gold-Hoch 1980, Hongkong-Bindung 1983,
+    // Nixon 15.08.1971; DAX-Basis 30. oder 31.12.1987 – Quellen uneins.
+    // Quiz-Dateien nicht durchgesehen.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/crashes.ts', 'data/learn/', 'data/akademie/'],
     quelle: 'je Zahl verschieden – im Text hinterlegen',
   },
