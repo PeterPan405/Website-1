@@ -740,5 +740,55 @@
       "urheber": "Leonhard Lenz",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-11-06": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-06-1-2e4d1655.jpg",
+      "titel": "File:New York Stock Exchange Broad Street facade, 20231002 1720 1842.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:New_York_Stock_Exchange_Broad_Street_facade,_20231002_1720_1842.jpg",
+      "lizenz": "CC BY 4.0",
+      "urheber": "Jakub Hałun",
+      "suche": "New York Stock Exchange facade"
+    },
+    {
+      "stelle": 2,
+      "datei": "",
+      "titel": "Kurs: nasdaq-100",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "nasdaq-100"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-06-3-7c99765b.jpg",
+      "titel": "File:Jane Yellen and Andrew Bailey at the 2021 IMF Autumn Meeting.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Jane_Yellen_and_Andrew_Bailey_at_the_2021_IMF_Autumn_Meeting.jpg",
+      "lizenz": "Public domain",
+      "urheber": "U.S. Department of the Treasury",
+      "suche": "deepcat:\"Andrew Bailey (banker)\""
+    },
+    {
+      "stelle": 5,
+      "datei": "",
+      "titel": "Kurs: commerzbank",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "commerzbank"
+    },
+    {
+      "stelle": 6,
+      "datei": "",
+      "titel": "Kurs: vonovia",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "vonovia"
+    }
   ]
 }
