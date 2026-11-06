@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Ein KI-Ausverkauf erschüttert die Wall Street, die Bank of England erhöht die Zinsen, und bei Rheinmetall, Commerzbank und Vonovia geht es in unterschiedliche Richtungen.",
+  "kacheln": [
+    {
+      "titel": "Nasdaq: Minus 6,3 %",
+      "text": "Der Nasdaq 100 brach über Nacht um 6,3 Prozent ein. Grund ist die Sorge vor strengeren Regeln für KI-Konzerne nach dem Sieg der Demokraten."
+    },
+    {
+      "titel": "BoE: Zins auf 4 %",
+      "text": "Die Bank of England erhöhte ihren Leitzins erstmals seit drei Jahren auf 4,0 Prozent. Hohe Energiepreise treiben die Inflation in Großbritannien."
+    },
+    {
+      "titel": "Rüstung: Plus und Minus",
+      "text": "Rheinmetall senkte seine Prognose, Hensoldt hob sie an. Der Bund übernahm zugleich alle Anteile am Panzerbauer KNDS."
+    },
+    {
+      "titel": "Commerzbank unter Druck",
+      "text": "Die Commerzbank verfehlte die Erwartungen leicht. Der harte Wettbewerb um Spareinlagen drückt auf die Zinsmarge der Bank."
+    },
+    {
+      "titel": "Vonovia: Chef geht",
+      "text": "Vonovia senkte seine Prognose und verliert den Finanzchef. Deutschlands größter Vermieter leidet weiter unter hohen Zinsen."
+    }
+  ],
+  "schlagworte": ["nasdaq", "zinsen", "dax", "börse", "aktien"]
+}

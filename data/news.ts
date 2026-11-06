@@ -101,6 +101,337 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'wall-street-ki-ausverkauf-drei-billionen-dollar',
+    title: 'Wall Street verliert an einem Tag drei Billionen Dollar',
+    teaser:
+      'Nach dem Sieg der Demokraten bei den Midterms bricht die Wall Street ein: Der Nasdaq 100 verliert 6,33 Prozent, die Angst vor KI-Regulierung wächst.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wall Street', 'KI-Aktien', 'Volatilität', 'Nasdaq'],
+    relatedTopics: ['boerse', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'dax'],
+    sources: [
+      {
+        label:
+          "Handelsblatt, 5.11.2026, 23:40 Uhr: „Wall Street: 'KI-Blutbad' an Börse – rund drei Billionen Dollar Börsenwert an einem Tag vernichtet\"",
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/wall-street-ki-blutbad-an-us-boersen-sp-500-bricht-um-vier-prozent-ein/100267625.html',
+      },
+      {
+        label: 'CNBC, 6.11.2026, 00:39 Uhr: „Magnificent 7 loses $1 trillion"',
+        url: 'https://www.cnbc.com/2026/11/05/stock-market-selloff-ai-fears.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 5.11.2026, 20:19 Uhr: „Börse: Techaktien stürzen ab – das steckt dahinter"',
+        url: 'https://www.wiwo.de/finanzen/boerse/nasdaq-bricht-ein-warum-halbleiter-und-ki-aktien-abstuerzen/100267704.html',
+      },
+      {
+        label: 'CNBC, 5.11.2026, 22:32 Uhr: „The October jobs report is out Friday"',
+        url: 'https://www.cnbc.com/2026/11/05/october-jobs-report-preview.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Nasdaq 100 brach in der Nacht zum Freitag um 6,33 Prozent ein, der Dow Jones gab 3,41 Prozent ab (Stand 06.11.2026, 01:11 Uhr, wallstreet-online). Nach Angaben von Handelsblatt fiel der marktbreite S&P 500 um vier Prozent. Allein die sieben größten US-Technologiewerte verloren nach Berechnungen von CNBC an einem Tag zusammen rund eine Billion Dollar an Börsenwert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Demokraten wollen den Ausbau bremsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach dem Wahlsieg der Demokraten bei den Midterms fordern führende Abgeordnete laut CNBC ein nationales Moratorium für neue Rechenzentren. Investoren befürchten strengere Regeln für den KI-Ausbau der großen Technologiekonzerne.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Angstmesser schlägt aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Volatilitätsindex VIX bewegte sich laut CNBC vom Tagestief bis zum Tageshoch um mehr als elf Punkte – der größte Tagesausschlag seit dem 9. April. Auch Tesla und SpaceX verloren zusammen rund 420 Milliarden Dollar an Börsenwert, berichtet CNBC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Dow glimpflicher davonkam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones verlor mit 3,41 Prozent deutlich weniger als der technologieschwere Nasdaq 100 mit 6,33 Prozent. Der Grund liegt in der Zusammensetzung: Im Dow wiegen Industrie- und Konsumwerte schwerer, im Nasdaq 100 dominieren wenige große, KI-nahe Technologiewerte. Ein Index mit konzentrierten Gewichten schwankt stärker als ein breit gestreuter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitag veröffentlicht das US-Arbeitsministerium den Oktober-Bericht zum Arbeitsmarkt, wie CNBC meldet – um 8:30 Uhr Ortszeit, 14:30 Uhr MEZ. Nach dem Kursrutsch dürfte jede Abweichung von den Erwartungen die Schwankungen verstärken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssturz, der aus politischer Unsicherheit entsteht, lässt sich nicht aus Bilanzen ablesen. Wer regulatorische Risiken in KI-nahen Branchen verfolgen will, kommt nicht an Ankündigungen aus der Politik vorbei – unabhängig davon, wie die nächsten Quartalszahlen ausfallen.',
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-england-leitzins-vier-prozent',
+    title: 'Bank of England hebt Leitzins erstmals seit drei Jahren an',
+    teaser:
+      'Die Bank of England erhöht ihren Leitzins erstmals seit drei Jahren auf 4,0 Prozent – ein Energiepreisschock treibt Großbritanniens Inflation.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-06T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of England', 'Leitzins', 'Großbritannien', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-gbp'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 5.11.2026, 14:27 Uhr: „Bank of England: Britische Notenbank hebt Zinsen erstmals seit drei Jahren an – auf 4,0 Prozent"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/bank-of-england-britische-notenbank-hebt-zinsen-erstmals-seit-drei-jahren-an/100266567.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Bank of England hat ihren Leitzins erstmals seit drei Jahren erhöht. Der neue Satz liegt bei 4,0 Prozent, berichtet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Energiepreisschock treibt die Inflation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Großbritanniens Inflation ist zuletzt auf 3,5 Prozent gestiegen. Handelsblatt macht dafür einen Energiepreisschock verantwortlich, der das Land besonders hart trifft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Notenbank bereitet weitere Schritte vor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dem Bericht zufolge stimmt die Bank of England die Märkte zugleich auf weitere Zinserhöhungen ein. Welche konkreten Schritte und Termine das betrifft, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zinserhöhung mitten in einem Preisschock',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank, die die Zinsen anhebt, während hohe Energiepreise ohnehin auf Haushalte und Unternehmen drücken, verschärft diesen Druck zusätzlich. Sie nimmt dafür in Kauf, dass sich die Konjunktur weiter abkühlt, um die Inflation nicht außer Kontrolle geraten zu lassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für den Euro bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt der Leitzins in Großbritannien schneller als im Euroraum, wird das Pfund für Anleger, die auf Zinsunterschiede achten, tendenziell attraktiver – ein Effekt, der unabhängig vom Konjunkturausblick wirkt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer britische Anleihen oder Pfund-Anlagen hält, sieht sich mit einer Notenbank konfrontiert, die Inflationsbekämpfung über kurzfristiges Wachstum stellt. Ob das die Wirtschaft stärker abbremst als gedacht, zeigt sich erst in den kommenden Quartalszahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'ruestungsbranche-rheinmetall-hensoldt-knds',
+    title: 'Rüstungsboom trennt sich: Rheinmetall kappt, Hensoldt hebt an',
+    teaser:
+      'Rheinmetall senkt die Prognose, Hensoldt hebt sie an, und der Bund übernimmt den Panzerbauer KNDS vollständig – ein Tag, zwei Rüstungs-Geschichten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Rheinmetall', 'Hensoldt', 'KNDS', 'Verteidigung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 5.11.2026, 15:20 Uhr: „BörsenTag: Der Rüstungsboom allein reicht nicht mehr"',
+        url: 'https://www.wiwo.de/finanzen/boerse/rheinmetall-aktie-warum-der-ruestungsboom-an-der-boerse-kippt/100267604.html',
+      },
+      {
+        label:
+          'tagesschau.de, 5.11.2026, 15:11 Uhr: „Bund und Eigentümerfamilien einigen sich auf Kaufpreis bei KNDS"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/knds-bundesregierung-100.html',
+      },
+      {
+        label:
+          'onvista, 5.11.2026, 16:50 Uhr: „Dax nach Rekord im Minus: KI-Sorgen und Rheinmetall belasten"',
+        url: 'https://www.onvista.de/news/2026/11-05-dax-nach-rekord-im-minus-ki-sorgen-und-rheinmetall-belasten-41121301-19-26573123',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Rüstungsboom an der Börse zeigt am Donnerstag zwei Gesichter. Rheinmetall senkt seine Prognose, Hensoldt hebt sie an – trotz derselben Branche und desselben politischen Rückenwinds, schreibt die WirtschaftsWoche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Volle Auftragsbücher reichen nicht mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der WirtschaftsWoche zählen an der Börse inzwischen nicht mehr nur Bestellungen, sondern auch, wie zuverlässig ein Unternehmen seine eigenen Prognosen erfüllt. Rheinmetall belastete am Donnerstag zusätzlich den Dax, der nach einem Rekordhoch ins Minus drehte, berichtet onvista.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Bund kauft sich bei KNDS ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag einigten sich Bund und die Eigentümerfamilien auf einen Kaufpreis für den Panzerbauer KNDS. Die Bundesregierung übernimmt damit alle Anteile der Familien, berichtet die Tagesschau. Der Bund sichert sich so Einfluss auf das, was die Tagesschau „Schlüsseltechnologien" nennt – und gibt dafür offenbar weniger Geld aus als ursprünglich geplant.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Firmen in der gleichen Branche gegenläufig laufen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Prognose ist ein Versprechen für die Zukunft, eine Order im Buch nur ein Versprechen für heute. Verzögert sich die Umsetzung oder steigen die Kosten, kann ein Unternehmen seine Prognose senken, obwohl der Auftragsbestand wächst – während ein Wettbewerber mit schlankeren Projekten genau in diesem Umfeld seine Zahlen anhebt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Boom in einer Branche bedeutet nicht, dass alle Unternehmen darin gleich profitieren. Wer in Einzeltitel statt in den gesamten Sektor investiert, trägt das Risiko, dass ausgerechnet die eigene Aktie die Ausnahme ist.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-wettbewerb-spareinlagen',
+    title: 'Wettbewerb um Spareinlagen setzt Commerzbank zu',
+    teaser:
+      'Die Commerzbank verfehlt die Markterwartungen leicht: Der Wettbewerb um Spareinlagen drückt die Zinsmarge, die Aktie gerät unter Druck.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'Bankenbranche', 'Zinsmarge'],
+    relatedTopics: ['tagesgeld', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 5.11.2026, 14:44 Uhr: „Geldinstitut: Harter Wettbewerb um Spareinlagen setzt Commerzbank zu – Aktie unter Druck"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/commerzbank-harter-wettbewerb-um-einlagen-setzt-institut-zu/100266237.html',
+      },
+      {
+        label:
+          "wallstreet-online, 5.11.2026: „ANALYSE-FLASH: RBC senkt Ziel für Commerzbank auf 39 Euro – 'Sector Perform'\" (dpa-AFX)",
+        url: 'https://www.wallstreet-online.de/nachricht/21649197-analyse-flash-rbc-ziel-commerzbank-39-euro-sector-perform',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Commerzbank hat die Markterwartungen leicht verfehlt. Das Geldhaus rechnet künftig mit weniger Zinseinnahmen, berichtet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher der Druck kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Wettbewerb um Spareinlagen müssen Banken Kunden höhere Zinsen bieten, um ihr Geld zu halten – das schmälert die Marge zwischen dem, was eine Bank für Einlagen zahlt, und dem, was sie mit diesem Geld verdient. Laut Handelsblatt sind zudem die Sorgen groß, dass Mitarbeiter kündigen und sich Kunden anders orientieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Analysten senken das Kursziel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ratingagentur RBC senkte ihr Kursziel für die Commerzbank-Aktie auf 39 Euro und stufte sie auf „Sector Perform" herab, meldet wallstreet-online unter Berufung auf dpa-AFX.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zinsspanne ist kein Naturgesetz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie viel eine Bank verdient, hängt nicht allein davon ab, wie hoch die Zinsen insgesamt sind, sondern von der Spanne zwischen Einlagen- und Kreditzinsen. Steigt der Wettbewerb um Einlagen, kann diese Spanne schrumpfen, selbst wenn das Kreditgeschäft unverändert bleibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Ergebnisse einer Bank beurteilt, kommt an der Zinsspanne nicht vorbei – sie sagt oft mehr über die Qualität des Geschäfts aus als die Gewinnzahl allein.',
+      },
+    ],
+  },
+  {
+    slug: 'vonovia-krise-prognose-finanzchef',
+    title: 'Vonovia kappt Prognose und verliert den Finanzchef',
+    teaser:
+      'Vonovia senkt seine Prognose und verliert den Finanzchef – Deutschlands größter Vermieter leidet weiter unter hohen Zinsen, schreibt die WirtschaftsWoche.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Vonovia', 'Immobilien', 'Zinsen'],
+    relatedTopics: ['immobilien', 'schulden-und-kredit', 'risiko-und-rendite'],
+    relatedSymbols: ['vonovia'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 4.11.2026, 13:19 Uhr: „Immobilienkonzern: Sechs Punkte, die die Krise bei Vonovia erklären"',
+        url: 'https://www.wiwo.de/finanzen/immobilien/krise-bei-vonovia-sechs-gruende-und-was-jetzt-aktionaeren-droht/100267169.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschlands größter Vermieter kappt seine Prognose. Vonovia leidet weiter unter den hohen Zinsen, schreibt die WirtschaftsWoche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Finanzchef geht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der WirtschaftsWoche verliert Vonovia zudem bald seinen Finanzchef. Weitere Einzelheiten zum Zeitpunkt oder zur Nachfolge nennt der Bericht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum hohe Zinsen einen Vermieter besonders treffen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Wohnungskonzern finanziert seinen Bestand zu großen Teilen mit Krediten und Anleihen. Steigen die Zinsen, werden auslaufende Finanzierungen teurer, während die Mieten nur langsam nachziehen – ein Vermieter trägt dieses Risiko stärker als ein Unternehmen mit wenig Fremdkapital.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognosesenkung sagt nicht automatisch, wie sich eine Aktie entwickelt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob ein Kurs nach einer gesenkten Prognose fällt oder steigt, hängt davon ab, was der Markt vorher bereits erwartet hatte. Die WirtschaftsWoche benennt sechs Gründe für die Krise bei Vonovia – wie die Aktie selbst darauf reagierte, nennt die Kurzfassung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Vermieter mit hohem Fremdkapitalanteil zeigt beispielhaft, wie stark Zinsentscheidungen – ob in London, Frankfurt oder Washington – auch auf Branchen abseits der Finanzmärkte durchschlagen.',
+      },
+    ],
+  },
+  {
     slug: 'us-kongresswahl-demokraten-boersen-plus',
     title: 'US-Kongresswahl: Demokraten siegen, Börsen legen kräftig zu',
     teaser:
