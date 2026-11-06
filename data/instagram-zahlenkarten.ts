@@ -29,6 +29,83 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 06.11.2026. Keine Wahl des Betreibers für heute; der erste
+      offene Vorschlag (Bank of England) stand schon in der Tagesausgabe vom
+      06.11. – der Betreiber verwarf am 02.11. Themen, die „doch alles schon
+      in den News“ waren. Daher der dritte Vorschlag: Gold gegen Krisen.
+      Form: waagerechte Balken (am 05.11. Zeitstrahl).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, „Updated on November 03, 2026",
+      abgerufen am 06.11.2026 über quellen-holen.yml (blatt 2). Reihe „Gold",
+      $ je Feinunze, Monatsmittel, nominal. Gerechnet: Monat vor Beginn
+      gegen den zwölften Monat ab Beginn (2026: Februar bis Oktober, neun
+      Monate):
+        1973 (Okt.)  09/1973   103 → 09/1974   152    +48 %
+        1979 (Jan.)  12/1978   208 → 12/1979   455   +119 %
+        1987 (Okt.)  09/1987   460 → 09/1988   413    −10 %
+        (1990, Irak/Kuwait: 363 → 368, +1 % – weggelassen, höchstens acht Balken)
+        2001 (Sept.) 08/2001   272 → 08/2002   310    +14 %
+        2008 (Sept.) 08/2008   839 → 08/2009   949    +13 %
+        2020 (März)  02/2020 1.597 → 02/2021 1.808    +13 %
+        2022 (Feb.)  01/2022 1.816 → 01/2023 1.898     +5 %
+        2026 (Feb.)  01/2026 4.753 → 10/2026 4.105    −14 %
+        2026 weiter: 02 5.020 (Höchststand der Reihe) · 03 4.856 · 04 4.721
+        · 05 4.587 · 06 4.228 · 07 4.073 · 08 4.411 · 09 4.319
+      Abgleich: unsere Ausgaben nennen Ende Oktober/Anfang November 2026
+      Gold um 4.000 bis 4.200 $ (Goldreporter) – passt zur Reihe.
+    */
+    art: 'balken',
+    datum: '2026-11-06',
+    titel: [{ text: 'Gold in der Krise:' }, { text: 'Nicht immer sicher.', gruen: true }],
+    erklaerung:
+      'Goldpreis ein Jahr nach Beginn gegen den Monat davor. 2026: bis Oktober.',
+    stichzeile: 'Gold · nach Kriegen und Krisen',
+    helden: [
+      {
+        name: 'Krieg um den Iran',
+        wert: '−14 %',
+        pille: { wert: '4.105 $', name: 'je Unze im Oktober' },
+      },
+    ],
+    balken: [
+      { marke: '1973', text: 'Ölembargo', wert: 47.57 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 118.75 },
+      { marke: '1987', text: 'Börsencrash', wert: -10.22 },
+      { marke: '2001', text: '11. September', wert: 13.97 },
+      { marke: '2008', text: 'Finanzkrise', wert: 13.11 },
+      { marke: '2020', text: 'Corona', wert: 13.21 },
+      { marke: '2022', text: 'Krieg in der Ukraine', wert: 4.52 },
+      { marke: '2026', text: 'Krieg um den Iran', wert: -13.63, hervor: true },
+    ],
+    einheit: '%',
+    fusszeile: 'Stand: 10/2026 | Quelle: Weltbank (Pink Sheet), Gold; eigene Rechnung',
+    text:
+      'Gold gilt als sicherer Hafen in der Krise. Stimmt das? Gemessen mit Monatspreisen der Weltbank: der Goldpreis ein Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Die Balken im Bild, Fall für Fall ($ je Unze):\n' +
+      '1973 – Ölembargo: 103 → 152, +48 %\n' +
+      '1979 – Revolution im Iran: 208 → 455, +119 %\n' +
+      '1987 – Börsencrash: 460 → 413, −10 %\n' +
+      '2001 – 11. September: 272 → 310, +14 %\n' +
+      '2008 – Finanzkrise: 839 → 949, +13 %\n' +
+      '2020 – Corona: 1.597 → 1.808, +13 %\n' +
+      '2022 – Krieg in der Ukraine: 1.816 → 1.898, +5 %\n' +
+      '2026 – Krieg um den Iran: 4.753 → 4.105, −14 % (bis Oktober)\n\n' +
+      'Sechs von acht Mal stieg Gold. Zweimal fiel es: nach dem Crash 1987 – und jetzt.\n\n' +
+      'Warum fällt Gold 2026?\n' +
+      'Die Preisreihe nennt keinen Grund. Ein Hinweis aus unseren News: Am 30. Oktober fiel Gold laut Goldreporter unter 4.000 $ – mitgerissen vom Ausverkauf bei Technologieaktien.\n\n' +
+      'Schon gewusst?\n' +
+      '– Im Februar 2026, als der Krieg begann, kostete Gold im Schnitt 5.020 $ – so viel wie nie zuvor in der Reihe seit 1960.\n' +
+      '– Im August 1971 kostete eine Unze 43 $. Im Januar 1980 waren es 675 $.\n' +
+      '– Trotz des Rückgangs liegt Gold rund 50 % über Januar 2025 (2.710 $).\n\n' +
+      'Und jetzt?\n' +
+      'Seit Juli schwankt der Preis zwischen 4.073 und 4.411 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Monatsdurchschnitt, nicht inflationsbereinigt.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; Goldreporter; eigene Rechnung',
+    schlagworte: ['gold', 'krise', 'iran', 'rohstoffe', 'geopolitik'],
+  },
+  {
+    /*
       Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
       Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
       Zeitstrahl im Hausstil, neu (am 01.11. Säulen).

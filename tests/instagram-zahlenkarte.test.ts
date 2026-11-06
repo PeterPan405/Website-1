@@ -1033,6 +1033,51 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 06.11.2026: Gold nach Kriegen und Krisen (Weltbank, Pink Sheet, Gold). */
+{
+  const karte = karteVom('2026-11-06')
+  pruefe('Gold: Karte für den 06.11. sind waagerechte Balken', karte?.art === 'balken')
+  if (karte?.art === 'balken') {
+    pruefe(
+      'Gold: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Gold: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-05')!)
+    )
+    /* Monat davor → zwölfter Monat ab Beginn (2026: Oktober), $ je Unze. */
+    const paare: [number, number][] = [
+      [103, 152],
+      [208, 455],
+      [460, 413],
+      [272, 310],
+      [839, 949],
+      [1597, 1808],
+      [1816, 1898],
+      [4753, 4105],
+    ]
+    paare.forEach(([vor, nach], i) => {
+      const prozent = (nach / vor - 1) * 100
+      pruefe(
+        `Gold: ${karte.balken[i].marke} ${Math.round(prozent)} %`,
+        Math.abs(karte.balken[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Gold: ${karte.balken[i].marke} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
+      )
+    })
+    pruefe(
+      'Gold: Heldenzahl ist der Iran-Balken',
+      karte.helden[0].wert === `−${Math.abs(Math.round(karte.balken[7].wert))} %`
+    )
+  }
+}
+
 /* 04.11.2026: Ergebnis der US-Zwischenwahl (AP über tagesschau, CNBC Election Desk). */
 {
   const karte = karteVom('2026-11-04')
