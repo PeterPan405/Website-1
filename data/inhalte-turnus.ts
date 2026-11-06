@@ -155,8 +155,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       der Portalangabe überein – das ist eine Gegenprobe auf zwei Wegen und
       kein neues Dokument. Ihr `stand` bleibt deshalb das Datum des Dokuments;
       nur die sechs Portalangaben tragen den neuen Tag der Durchsicht.
+
+      06.11.2026: lokal per Invoke-WebRequest bei justETF, alle acht wieder
+      wie oben – keine Änderung. Die sechs Portalangaben tragen 2026-11-06.
     */
-    zuletztGeprueft: '2026-09-26',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/etf-kosten.ts'],
     quelle: 'Factsheets der Anbieter, ISIN steht je Eintrag',
   },
@@ -182,7 +185,15 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // Abrufe 0 bis 4 Tage alt, keine abweichende Zahl im Fließtext, alle
     // acht ETF-Kosten hinterlegt. Ob die hinterlegten Kosten noch den
     // Factsheets entsprechen, sagt das nicht – das ist `etf-kosten`.
-    zuletztGeprueft: '2026-09-20',
+    //
+    // 06.11.2026: `npm run frische`, alles innerhalb der Grenzen:
+    //     Leitzins der EZB              2 von 10 Tagen
+    //     Inflation Euroraum           36 von 75 Tagen (DE 5)
+    //     Aktienkurse, Kursverläufe,
+    //     Marktbreite                   0 Tage
+    // Abrufe 0 bis 6 Tage alt (fundamentaldaten.json 6). Den Fließtext
+    // selbst habe ich diesmal nicht nach Zahlen durchsucht.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/snapshots/', 'data/stichtagswerte.ts'],
   },
 
