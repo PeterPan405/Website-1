@@ -328,7 +328,7 @@ export const etf: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Über lange Zeiträume ist der Unterschied gewaltig. Der DAX wird üblicherweise als Performanceindex zitiert, der Dow Jones und der S&P 500 als Kursindex – wer beide Zahlen nebeneinanderlegt, vergleicht Ungleiches. Für ETF-Vergleiche gilt: Fast alle messen sich am Net Return, und genau daran gehört die Tracking-Differenz gemessen.',
+          text: 'Über lange Zeiträume ist der Unterschied gewaltig. Der DAX wird üblicherweise als Performanceindex zitiert, der Dow Jones und der S&P 500 als Kursindex – wer beide Zahlen nebeneinanderlegt, vergleicht Ungleiches. Für ETF-Vergleiche gilt: Die meisten messen sich am Net Return, und genau daran gehört die Tracking-Differenz gemessen.',
         },
         {
           type: 'figure',

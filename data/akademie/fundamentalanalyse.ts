@@ -598,7 +598,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
         items: [
           '**Die Zielmarge ist geraten.** Sie ist der einzige Freiheitsgrad in dieser Rechnung und trägt das ganze Ergebnis. Wer sie um fünf Punkte höher ansetzt, halbiert das rechnerische KGV.',
           '**Sie wird regelmäßig aus der Branche abgeleitet** – aus den Margen der bereits erfolgreichen Anbieter. Das setzt voraus, dass dieses Unternehmen einer von ihnen wird, und genau das ist die offene Frage.',
-          '**Umsatzwachstum verbessert das KUV automatisch**, ohne dass sich am Geschäft etwas ändert. Deshalb sieht ein schnell wachsendes Unternehmen mit dieser Kennzahl immer besser aus als ein stagnierendes – auch wenn beide dasselbe verdienen.',
+          '**Umsatzwachstum verbessert das KUV automatisch**, solange der Börsenwert nicht mitwächst – ohne dass sich an der Ertragskraft etwas ändert. Deshalb sieht ein schnell wachsendes Unternehmen mit dieser Kennzahl bei gleichem Börsenwert besser aus als ein stagnierendes – auch wenn beide dasselbe verdienen.',
         ],
       },
     ],

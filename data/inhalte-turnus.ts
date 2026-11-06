@@ -205,7 +205,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Performance- gegen Kursindex, Gewichtungsmethoden, Aktienrückkauf gegen ' +
       'Dividende, FFO, Book-to-Bill, KUV.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 06.11.2026: Ex-Tag statt Zahltag (Glossar, Börse), Rückkauf-Steuer
+    // als Aufschub, „fast alle“/„immer“ entschärft, Preisgewichtung (Dow,
+    // Nikkei) erwähnt. FFO und Book-to-Bill kommen in Glossar/Lerntexten
+    // nicht vor – nur in Nachrichten; nichts zu prüfen.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/glossar.ts', 'data/learn/', 'data/akademie/'],
   },
   {

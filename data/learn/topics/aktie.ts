@@ -204,7 +204,7 @@ export const aktie: LearnTopic = {
             '**Dividende.** Ein Teil des Gewinns wird ausgezahlt. Das ist der sichtbarste Weg und der einzige, bei dem Geld auf dem Konto ankommt.',
             '**Investition.** Der Gewinn bleibt im Unternehmen und finanziert neue Fabriken, Forschung, Zukäufe. Er soll später zu mehr Gewinn führen – ob das gelingt, ist die eigentliche Frage bei jeder Aktie.',
             '**Schuldenabbau.** Weniger Zinsen heißt mehr Gewinn in den Folgejahren. Unspektakulär und oft der beste Weg.',
-            '**Aktienrückkauf.** Das Unternehmen kauft eigene Aktien und zieht sie ein. Danach gibt es weniger Anteile am selben Gewinn – jeder verbleibende Anteil wird wertvoller. Wirtschaftlich ähnlich einer Dividende, nur ohne sofortige Steuer.',
+            '**Aktienrückkauf.** Das Unternehmen kauft eigene Aktien und zieht sie meist ein. Danach gibt es weniger Anteile am selben Gewinn – jeder verbleibende Anteil wird wertvoller. Wirtschaftlich ähnlich einer Dividende, nur dass Geld nur bekommt, wer verkauft, und die Steuer erst beim eigenen Verkauf auf den Kursgewinn anfällt statt sofort.',
           ],
         },
         {
@@ -388,7 +388,7 @@ export const aktie: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Sinnvoll ist ein Rückkauf, wenn die eigene Aktie unterbewertet ist. Kauft ein Unternehmen dagegen auf dem Höchstkurs zurück, vernichtet es Wert – zu beobachten war das bei mehreren Konzernen, die kurz vor Krisen Rekordsummen für Rückkäufe ausgaben und danach neues Kapital aufnehmen mussten.',
+          text: 'Sinnvoll ist ein Rückkauf, wenn die eigene Aktie unterbewertet ist. Kauft ein Unternehmen dagegen zu mehr zurück, als die Aktie wert ist, vernichtet es Wert – das Geld wäre anderswo besser angelegt gewesen. Besonders teuer wird es, wenn kurz vor einer Krise Rekordsummen in Rückkäufe fließen und danach neues Kapital aufgenommen werden muss.',
         },
         {
           type: 'heading',

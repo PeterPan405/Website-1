@@ -173,7 +173,7 @@ export const aktienLaenderBranchen: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Fast alle breiten Indizes gewichten nach **Marktkapitalisierung**: Ein Unternehmen zählt so viel, wie alle seine Aktien zusammen wert sind. Das klingt technisch und hat zwei Folgen, die man kennen sollte, bevor man sich über die Zusammensetzung wundert.',
+          text: 'Fast alle breiten Indizes gewichten nach **Marktkapitalisierung**: Ein Unternehmen zählt so viel, wie seine Aktien zusammen wert sind – genauer: die frei handelbaren, dazu gleich mehr. Ausnahmen sind ältere Indizes wie der Dow Jones und der Nikkei 225, die nach dem Aktienkurs gewichten. Das klingt technisch und hat zwei Folgen, die man kennen sollte, bevor man sich über die Zusammensetzung wundert.',
         },
         {
           type: 'list',
