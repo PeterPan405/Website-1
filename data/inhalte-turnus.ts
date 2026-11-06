@@ -253,7 +253,16 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // Nicht geprüft, weil von hier aus nicht erreichbar: ob die Angaben zu
     // Anbieter und Hoster noch stimmen und ob sich an § 5 DDG oder der
     // DSGVO-Auslegung etwas geändert hat. Das braucht einen Blick von aussen.
-    zuletztGeprueft: '2026-09-20',
+    //
+    // 06.11.2026, lokal: § 5 DDG (gesetze-im-internet.de) und Art. 50 KI-VO
+    // (EUR-Lex, Ursprungsfassung) gelesen; Impressum vollständig, kein „TMG“
+    // mehr, keine Fremdeinbindung ohne Erwähnung in der Datenschutzerklärung,
+    // alle 95 Folgen im Feed mit KI- und Anlageberatungs-Satz. Behoben: Stand
+    // der Datenschutzerklärung (2. August → 27. Oktober, Schriftabsatz war
+    // geändert) und ein Footer-Kommentar, der dem Impressum widersprach.
+    // Offen: Hoster-Angaben von aussen, Wortlaut § 18 Abs. 2 MStV, ob der
+    // Footer-Hinweis allein Art. 50 Abs. 4 genügt (Auslegung).
+    zuletztGeprueft: '2026-11-06',
     dateien: [
       'app/impressum/page.tsx',
       'app/datenschutz/page.tsx',
