@@ -112,8 +112,12 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       steht – „nicht gefunden" hiess hier „falsch gesucht".
 
       Nichts zu ändern, zum zweiten Mal.
+
+      06.11.2026 – lokal, alle Werte erneut am Gesetzestext bzw. BMF-Schreiben
+      vom 13.01.2026 (Basiszins 3,20 %) gelesen: keine Mängel. Kirchensteuer
+      8/9 % ist nur über die Kirchenbeschlüsse belegbar, nicht amtlich gelesen.
     */
-    zuletztGeprueft: '2026-09-26',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['lib/kapitalertragsteuer.ts', 'data/stichtagswerte.ts'],
     quelle: 'https://dejure.org/ (über quellen-holen.yml), BMF für den Basiszins',
   },
@@ -208,8 +212,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     auftrag:
       'Je Rechner ein Beispiel von Hand nachrechnen und die Formel im Code ' +
       'gegen die auf der Seite angegebene Methodik halten.',
+    // 06.11.2026: drei Rechner nachgerechnet. Mangel: Deckel der
+    // Vorabpauschale ohne Ausschüttungen (§ 18 Abs. 1 S. 3 InvStG) – behoben;
+    // dazu falsche Prozentzahlen in der Prosa (28,375 → 28,625; Fünftel → Viertel).
     taktTage: 28,
-    zuletztGeprueft: '2026-09-06',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['lib/kapitalertragsteuer.ts', 'lib/kosten.ts', 'lib/kredit.ts'],
   },
   {

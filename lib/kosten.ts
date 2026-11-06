@@ -46,7 +46,7 @@ export interface Kostenergebnis {
   endwert: number
   /** Was insgesamt eingezahlt wurde. */
   eingezahlt: number
-  /** Summe aller entnommenen Gebühren, ohne deren entgangenen Zinsertrag. */
+  /** Summe aller entnommenen Gebühren, samt deren entgangenem Zinsertrag (Differenz zum kostenfreien Verlauf). */
   gebuehren: number
   /** Die Nettorendite, mit der tatsächlich gerechnet wurde. */
   nettorendite: number

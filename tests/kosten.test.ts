@@ -112,7 +112,7 @@ pruefe(
 
 /*
   Die Zahl, um derentwillen der Rechner existiert: 1,3 Prozentpunkte mehr
-  Kosten fressen über dreissig Jahre rund ein Fünftel des Endvermögens. Die
+  Kosten fressen über dreissig Jahre rund ein Viertel des Endvermögens. Die
   Grenzen sind weit gesetzt – geprüft wird die Größenordnung, nicht die
   Nachkommastelle.
 */

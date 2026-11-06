@@ -40,7 +40,7 @@ pruefe(
   `${(gesamtsteuersatz(0) * 100).toFixed(4)} %`
 )
 pruefe(
-  'mit 9 Prozent Kirchensteuer sind es 27,99 Prozent',
+  'mit 9 Prozent Kirchensteuer sind es 27,995 Prozent',
   nahe(gesamtsteuersatz(0.09), 0.279951, 1e-5),
   `${(gesamtsteuersatz(0.09) * 100).toFixed(4)} %`
 )
@@ -52,7 +52,7 @@ pruefe(
 
 /*
   Die Gegenprobe zum häufigsten Rechenfehler: Wer 25 Prozent nimmt und die
-  Kirchensteuer obendrauf schlägt, kommt auf 28,375 Prozent. Das ist zu viel,
+  Kirchensteuer obendrauf schlägt, kommt auf 28,625 Prozent. Das ist zu viel,
   weil die Kirchensteuer ihre eigene Bemessungsgrundlage mindert.
 */
 const naiv = ABGELTUNGSTEUERSATZ * (1 + 0.055 + 0.09)
@@ -209,6 +209,21 @@ pruefe(
   'kleinere Ausschüttungen werden abgezogen',
   nahe(teilweise.vorabpauschale, 77.1, 1e-6),
   teilweise.vorabpauschale.toFixed(2)
+)
+
+// § 18 Abs. 1 Satz 3 InvStG: Deckel = Wertzuwachs ZUZÜGLICH Ausschüttungen.
+// Beispiel aus dem Kommentar in lib/kapitalertragsteuer.ts: nach Lesart A
+// kämen 30 € heraus, nach dem Gesetz 50 €.
+const deckelMitAusschuettung = berechneVorabpauschale({
+  wertJahresbeginn: 10_000,
+  wertJahresende: 10_050,
+  ausschuettung: 20,
+  basiszins: 0.032,
+})
+pruefe(
+  'die Ausschüttung zählt in den Deckel (§ 18 Abs. 1 S. 3 InvStG)',
+  nahe(deckelMitAusschuettung.vorabpauschale, 50),
+  deckelMitAusschuettung.vorabpauschale.toFixed(2)
 )
 
 console.log('\n— Was nicht schiefgehen darf —')
