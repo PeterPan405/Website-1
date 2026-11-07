@@ -260,8 +260,13 @@ interessant und interaktiv cool gestaltet“ – und ausdrücklich: das gehört
 nur „immer eine Seite“ (16.10.): Die Zahlenkarte bleibt eine Seite, der
 **Zahlenstrahl ist ein Karussell**.
 
-**Was das Vorbild ausmacht** (abgelesen an Kachel 4/11 und 11/11):
+**Was das Vorbild ausmacht** (abgelesen an 4 von 11 Kacheln – Titel, 4, 9
+und 11; die übrigen liefen im 8-Sekunden-Video zu schnell durch):
 
+- **Titelkachel:** oben links groß „Vergleich“, darunter eine Zeile
+  „Deutsche Konzerne und Big Tech im Maßstab.“ – darunter nur die Achse mit
+  drei leeren Punkten, die nach rechts aus dem Bild läuft. Kein Foto, kein
+  Logo des Absenders auf der Kachel.
 - **Eine waagrechte Achse läuft durch alle Kacheln.** Wer wischt, wandert
   auf ihr nach rechts – zu immer größeren Werten. Die Linie endet nie am
   Kachelrand, sie geht in die nächste über; der Punkt eines Werts kann auf
@@ -271,10 +276,13 @@ nur „immer eine Seite“ (16.10.): Die Zahlenkarte bleibt eine Seite, der
   Stadtbild –, **abwechselnd über und unter der Linie**, dazu die Zahl
   („880 Mrd. €“, „4,4 Bio. €“) und klein, was es ist („Vermögen von Elon
   Musk“, „BIP Niederlande 2025“).
-- **Unten links ein Satz, der den Vergleich zuspitzt** – ein Kontrast, den
-  man nicht erwartet: „Adidas, VW, Siemens, SAP und Coca-Cola kommen
-  zusammen auf rund 873 Mrd. €. Walmart allein ist mehr wert.“ –
-  „NVIDIA liegt 130 Mrd. € vor Apple … VW passt 125-mal in NVIDIA.“
+- **Unten ein Satz, der den Vergleich zuspitzt** – mal links, mal rechts
+  unten, je nachdem, wo Platz ist – ein Kontrast, den man nicht erwartet:
+  „Adidas, VW, Siemens, SAP und Coca-Cola kommen zusammen auf rund 873 Mrd.
+  €. Walmart allein ist mehr wert.“ – „NVIDIA liegt 130 Mrd. € vor Apple …
+  VW passt 125-mal in NVIDIA.“ Oder eine Einordnung mit Rang: „Microsoft,
+  bekannt für Windows und Office, ist mit 3,4 Bio. € das drittwertvollste
+  Unternehmen der Welt.“ (Kachel 9).
 - **Fremde Größen dazwischen** machen die Zahlen greifbar: ein
   Privatvermögen, das BIP eines Landes. Ohne sie wären es nur Firmen.
 - Weißer Grund, viel Luft, Zähler oben rechts („4/11“), Wiederholung der
