@@ -41,28 +41,46 @@ export const zahlenkarten: Zahlenkarte[] = [
         Alibaba 2014 25,0 · SoftBank Corp. 2018 23,5 · Agricultural Bank of
         China 2010 22,1 · ICBC 2006 21,9 · AIA 2010 20,5 · Visa 2008 19,7 ·
         General Motors 2010 18,15 · Facebook 2012 16,01
-      Gezeigt: sechs davon – sonst stehen die Etiketten übereinander.
+      Dazu Arm, 14.09.2023, 4,87 Mrd. $ (Wikipedia „Arm Holdings").
       SK Hynix: Zweitnotiz (American depositary receipts) an der Nasdaq am
-      10.07.2026, 26,5 Mrd. $ (Wikipedia „SK Hynix").
-      SpaceX: Ausgabepreis 135 $ am 11.06.2026, Bewertung 1,77 Bio. $
-      („the highest-valued IPO ever", Wikipedia „SpaceX").
-      Anthropic: privat im Mai mit 965 Mrd. $ bewertet (Handelsblatt,
-      06.11.2026); Investoren halten 1,5 Bio. $ für „a stretch" (CNBC,
-      06.11.2026) – beides aus der Ausgabe vom 07.11.
-      Logos: Wikimedia Commons, alle gemeinfrei (bilder-holen.yml):
-        SpaceX-Logo.svg, Saudi aramco logo.svg, SK Hynix.svg,
-        Alibaba en logo.svg, Visa Inc. logo (2021–present).svg,
-        Facebook Logo (2019).svg
+      10.07.2026 (Wikipedia „SK Hynix"). SpaceX: Ausgabepreis 135 $ am
+      11.06.2026, Bewertung 1,77 Bio. $ (Wikipedia „SpaceX").
+      Anthropic: privat 965 Mrd. $ (Handelsblatt, 06.11.2026), 1,5 Bio. $
+      „a stretch" (CNBC, 06.11.2026); Verlust 1. Hj. 2026 rund 80,7 Mrd. $
+      (Tagesschau, 26.10.2026).
+
+      Betreiber zum Entwurf: keine leeren Kacheln, „keine BIPs … sondern
+      nur Börsengänge", Abstände dürfen ungleich dem Maßstab sein →
+      `gleichmaessig`, „nicht maßstäblich" steht in der Unterzeile.
+      Dann: „nimm mal die Unbekannten weg … begrenze dich auf die 7" –
+      nur bekannte Namen, Anthropic als geplanter Börsengang am Ende
+      (`offen`, ohne Erlös). Raus: ICBC, AIA, Agricultural Bank of China,
+      SoftBank Corp., SK Hynix, Arm.
+      Danach: „nicht nach Volumen, sondern schon nach Zeit" – geordnet nach
+      Jahr; die drei aus 2010 ohne Monatsangabe der Quelle, in Listenfolge.
+      Weggelassen: Rivian 2021 – Wikipedia nennt 153 Mio. Aktien zu 78 $
+      und „net proceeds" von 13,5 Mrd. $, zwei Zahlen ohne Abgleich.
+      Für Porsche, Uber, Telekom nennt Wikipedia keinen Erlös.
+      Logos: Wikimedia Commons, gemeinfrei (bilder-holen.yml).
     */
     art: 'zahlenstrahl',
     datum: '2026-11-08',
     titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
-    erklaerung: 'Erlös beim Börsengang · Mrd. US-Dollar · nominal',
-    kacheln: 7,
+    erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar · nicht maßstäblich',
+    kacheln: 6,
     bis: 90,
     schritt: 10,
+    gleichmaessig: true,
     einheit: 'Mrd. $',
     punkte: [
+      { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
+      {
+        name: 'General Motors',
+        wert: 18.15,
+        anzeige: '18,2',
+        zusatz: '2010',
+        logo: 'gm.png',
+      },
       {
         name: 'Facebook',
         wert: 16.01,
@@ -70,15 +88,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         zusatz: '2012',
         logo: 'facebook.png',
       },
-      { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
       { name: 'Alibaba', wert: 25, anzeige: '25,0', zusatz: '2014', logo: 'alibaba.png' },
-      {
-        name: 'SK Hynix',
-        wert: 26.5,
-        anzeige: '26,5',
-        zusatz: 'Juli 2026, Nasdaq',
-        logo: 'skhynix.png',
-      },
       {
         name: 'Saudi Aramco',
         wert: 29.4,
@@ -90,49 +100,56 @@ export const zahlenkarten: Zahlenkarte[] = [
         name: 'SpaceX',
         wert: 85.7,
         anzeige: '85,7',
-        zusatz: 'Juni 2026',
+        zusatz: 'Juni 2026 · Rekord',
         logo: 'spacex.png',
         hervor: true,
+      },
+      {
+        name: 'Anthropic',
+        wert: 0,
+        anzeige: '?',
+        zusatz: 'Börsengang geplant',
+        logo: 'anthropic.png',
+        offen: true,
       },
     ],
     saetze: [
       {
         kachel: 2,
+        text: 'Visa 2008: 19,7 Mrd. $ – bis heute unter den zehn größten der Welt.',
+      },
+      { kachel: 3, text: 'General Motors 2010, Facebook 2012: beide unter 20 Mrd. $.' },
+      {
+        kachel: 4,
         text: 'Alibaba 2014: 25 Mrd. $ – fünf Jahre lang der größte Börsengang der Welt.',
       },
       {
-        kachel: 3,
-        text: 'Saudi Aramco 2019: 29,4 Mrd. $ – der Rekord hielt sechseinhalb Jahre.',
-      },
-      { kachel: 4, text: 'Danach kommt lange nichts.' },
-      {
         kachel: 5,
-        text: 'Bei 50 Mrd. $: Vor 2026 kam kein Börsengang auch nur in die Nähe.',
+        text: 'SpaceX 2026: 85,7 Mrd. $ – fast dreimal so viel wie der Rekord von Aramco.',
       },
-      { kachel: 6, text: 'Immer noch nichts.' },
       {
-        kachel: 7,
-        text: 'SpaceX: fast dreimal so viel wie Aramco. Bewertung zum Ausgabepreis: 1,77 Billionen $.',
+        kachel: 6,
+        text: 'Als Nächstes will Anthropic an die Börse. Wie viel Geld es einsammeln will, ist offen.',
       },
     ],
     fusszeile:
       'Stand: 07.11.2026 | Quelle: Wikipedia (Largest IPOs by amount raised) | Logos: Wikimedia Commons, gemeinfrei',
     text:
-      'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld:\n\n' +
-      'Facebook (2012): 16,0 Mrd. $\n' +
+      'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
       'Visa (2008): 19,7 Mrd. $\n' +
+      'General Motors (2010): 18,2 Mrd. $\n' +
+      'Facebook (2012): 16,0 Mrd. $\n' +
       'Alibaba (2014): 25,0 Mrd. $\n' +
-      'SK Hynix (2026, Zweitnotiz an der Nasdaq): 26,5 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
-      'SpaceX (Juni 2026): 85,7 Mrd. $\n\n' +
+      'SpaceX (Juni 2026): 85,7 Mrd. $ – Rekord\n' +
+      'Anthropic: Börsengang geplant\n\n' +
       'Schon gewusst?\n' +
       '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
-      '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n' +
-      '– Zwei der drei größten Börsengänge fielen ins Jahr 2026.\n\n' +
+      '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n\n' +
       'Und Anthropic?\n' +
-      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren inzwischen schon 1,5 Billionen für gewagt. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
-      'Gerechnet: Erlös beim Börsengang in US-Dollar, nominal, nicht inflationsbereinigt.\n' +
-      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised) und „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
+      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren schon 1,5 Billionen für gewagt. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
+      'Im Bild nach Jahr geordnet, die Abstände sind nicht maßstäblich. Erlös in US-Dollar, nominal.\n' +
+      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],
   },

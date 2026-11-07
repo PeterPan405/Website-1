@@ -477,8 +477,17 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
   /** Unterzeile auf der Titelkachel – Stichpunkte, keine Sätze. */
   erklaerung: string
   kacheln: number
-  /** Ende der Achse und Abstand der Striche, in der Einheit der Werte. */
+  /** Anfang und Ende der Achse, Abstand der Striche – in der Einheit der Werte. */
+  start?: number
   bis: number
+  /**
+   * Gleiche Abstände statt Maßstab (07.11.2026, Betreiber: „es reicht ja,
+   * wenn der Zeitstrahl nicht richtig ist, also von den Abständen her, das
+   * ist egal"; „nicht nach Volumen … sondern schon nach Zeit"). Die Punkte
+   * stehen in der Reihenfolge der Liste, ohne Striche – die Zahl steht am
+   * Punkt.
+   */
+  gleichmaessig?: boolean
   schritt: number
   /** An den Strichen: „Mrd. $". */
   einheit: string
@@ -490,6 +499,13 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
     zusatz: string
     logo?: string
     hervor?: boolean
+    /** Eine fremde Größe zum Vergleich (BIP eines Landes) – grau, hohler Punkt. */
+    vergleich?: boolean
+    /**
+     * Noch offen, etwa ein geplanter Börsengang (Anthropic, 07.11.2026):
+     * grau, hohler Punkt, `wert` zählt nicht – nur mit `gleichmaessig`.
+     */
+    offen?: boolean
   }[]
   /** Der Satz unten auf einer Kachel (ab Kachel 2), der den Vergleich zuspitzt. */
   saetze: { kachel: number; text: string }[]
@@ -4456,24 +4472,36 @@ function duellGrafik(k: Duellkarte) {
 /* Zahlenstrahl (Sorte D, 07.11.2026)                                        */
 /* ------------------------------------------------------------------------ */
 
-const ZS_ACHSE = 780
-const ZS_LINKS = 80
-const ZS_RECHTS = 160
-const ZS_LOGO_B = 240
-const ZS_LOGO_H = 104
-const ZS_ETIKETT = 300
+const ZS_ACHSE = 640
+const ZS_RECHTS = 150
+const ZS_LOGO_B = 210
+const ZS_LOGO_H = 86
+const ZS_ETIKETT = 250
+/** Höhe eines Etiketts: Logo, Zahl, Name, Zusatz. */
+const ZS_HOCH = 224
+/** Abstand der nahen Reihe zur Achse; die ferne liegt eine Etiketthöhe weiter. */
+const ZS_NAH = 56
+
+/*
+  Vier Reihen für Etiketten (08.11.2026, Betreiber: „noch ein paar weitere
+  Börsengänge rein"): nah über, nah unter, fern über, fern unter der Achse.
+  Elf Börsengänge zwischen 16 und 29 Mrd. $ fänden in zwei Reihen keinen
+  Platz.
+*/
+type Reihe = 0 | 1 | 2 | 3
 
 function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
   const f: string[] = []
   if (k.kacheln < 5 || k.kacheln > 8) f.push(`${k.kacheln} Kacheln – fünf bis acht.`)
   if (k.punkte.length < 3) f.push(`${k.punkte.length} Punkte – mindestens drei.`)
-  for (let i = 1; i < k.punkte.length; i++)
+  /* Mit gleichen Abständen gilt die Reihenfolge der Liste – etwa nach Jahr (07.11.2026). */
+  for (let i = 1; i < k.punkte.length && !k.gleichmaessig; i++)
     if (k.punkte[i].wert < k.punkte[i - 1].wert)
       f.push(
         `Punkt „${k.punkte[i].name}" ist kleiner als der davor – aufsteigend ordnen.`
       )
   for (const p of k.punkte) {
-    if (p.wert < 0 || p.wert > k.bis)
+    if (!p.offen && (p.wert < (k.start ?? 0) || p.wert > k.bis))
       f.push(`Punkt „${p.name}" liegt außerhalb der Achse.`)
     if (p.logo !== undefined && !existsSync(join(LOGO_ORDNER, p.logo)))
       f.push(`Logo „${p.logo}" fehlt in lib/instagram/logos/.`)
@@ -4485,41 +4513,85 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
     f.push(`Unterzeile hat ${k.erklaerung.length} Zeichen – höchstens 60, Stichpunkte.`)
   if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
     f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
+  /* Keine leere Kachel (08.11.2026, Betreiber: „gar keine, die leer sind"). */
+  const belegt = new Set(
+    k.punkte.map((p, i) => Math.floor(zahlenstrahlX(k, p.wert, i) / ZK_BREITE) + 1)
+  )
+  for (let nr = 2; nr <= k.kacheln; nr++)
+    if (!belegt.has(nr)) f.push(`Kachel ${nr} hat keinen Punkt – keine leere Kachel.`)
+  for (const [i, p] of k.punkte.entries()) {
+    const rand = zahlenstrahlX(k, p.wert, i) % ZK_BREITE
+    if (rand < 24 || rand > ZK_BREITE - 24)
+      f.push(
+        `Punkt „${p.name}" liegt auf der Kante zweier Kacheln – \`bis\` verschieben.`
+      )
+  }
+  const plan = zahlenstrahlPlan(k)
+  if (plan.some((e) => e.reihe === undefined))
+    f.push('Zu viele Punkte zu dicht – nicht jedes Etikett findet Platz.')
   return f
 }
 
-/** Wo ein Wert auf der Panoramafläche liegt – linear ab null. */
-function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number): number {
+/**
+ * Wo ein Wert auf der Panoramafläche liegt – linear. Kachel 1 trägt den
+ * Titel; die Werte beginnen auf Kachel 2, die Achse läuft schon herein.
+ */
+function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number, stelle = -1): number {
   const breite = k.kacheln * ZK_BREITE
-  return ZS_LINKS + (wert / k.bis) * (breite - ZS_LINKS - ZS_RECHTS)
+  if (k.gleichmaessig) {
+    /* Die Stelle in der Reihe, nicht der Wert: gleiche Abstände ab Kachel 2. */
+    const schritt = (breite - ZK_BREITE) / k.punkte.length
+    return ZK_BREITE + (Math.max(stelle, 0) + 0.5) * schritt
+  }
+  const start = ZK_BREITE + 60
+  const ab = k.start ?? 0
+  return start + ((wert - ab) / (k.bis - ab)) * (breite - start - ZS_RECHTS)
 }
 
-/**
- * Wo das Etikett eines Punkts steht: über ihm, aber ganz auf der Kachel,
- * auf der er liegt – ein Etikett, das über die Kante ragt, zerfiele beim
- * Wischen in zwei Hälften.
- */
-function zahlenstrahlEtikett(x: number): number {
+/** Etikett: ganz auf der Kachel seines Punkts, nie über die Kante. */
+function zahlenstrahlEtikettX(x: number, breite = ZS_ETIKETT): number {
   const kachel = Math.floor(x / ZK_BREITE)
-  const links = kachel * ZK_BREITE + 40
-  const rechts = (kachel + 1) * ZK_BREITE - 40 - ZS_ETIKETT
-  return Math.min(Math.max(x - ZS_ETIKETT / 2, links), rechts)
+  const links = kachel * ZK_BREITE + 30
+  const rechts = (kachel + 1) * ZK_BREITE - 30 - breite
+  return Math.min(Math.max(x - breite / 2, links), rechts)
+}
+
+/** Größer, wenn gleiche Abstände Platz lassen. */
+function zahlenstrahlMass(k: Zahlenstrahlkarte): number {
+  return k.gleichmaessig ? 1.35 : 1
+}
+
+/** Je Punkt Lage und Reihe – die erste freie, nahe vor fern. */
+function zahlenstrahlPlan(k: Zahlenstrahlkarte) {
+  const ende: number[] = [-Infinity, -Infinity, -Infinity, -Infinity]
+  return k.punkte.map((p) => {
+    const x = zahlenstrahlX(k, p.wert, k.punkte.indexOf(p))
+    const ex = zahlenstrahlEtikettX(x, ZS_ETIKETT * zahlenstrahlMass(k))
+    /* Gleiche Abstände: abwechselnd über und unter der Linie, groß. */
+    const reihe = k.gleichmaessig
+      ? ((k.punkte.indexOf(p) % 2) as Reihe)
+      : ([0, 1, 2, 3] as Reihe[]).find((r) => ex >= ende[r] + 16)
+    if (reihe !== undefined) ende[reihe] = ex + ZS_ETIKETT
+    return { p, x, ex, reihe }
+  })
 }
 
 function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
   const versatz = (nr - 1) * ZK_BREITE
   const breite = k.kacheln * ZK_BREITE
   const ende = breite - ZS_RECHTS / 2
-  const striche = Array.from(
-    { length: Math.floor(k.bis / k.schritt) + 1 },
-    (_, i) => i * k.schritt
-  )
+  const ab = k.start ?? 0
+  const striche = k.gleichmaessig
+    ? []
+    : Array.from(
+        { length: Math.floor((k.bis - ab) / k.schritt) + 1 },
+        (_, i) => ab + i * k.schritt
+      )
   const zahl = (v: number) => v.toLocaleString('de-DE')
 
-  /* Die Achse und ihre Striche als ein SVG über die ganze Fläche. */
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="80" viewBox="0 0 ${breite} 80">` +
-    `<line x1="${ZS_LINKS}" x2="${ende}" y1="20" y2="20" stroke="${STIL.tinte}" stroke-width="4"/>` +
+    `<line x1="${STIL_RAND}" x2="${ende}" y1="20" y2="20" stroke="${STIL.tinte}" stroke-width="4"/>` +
     `<path d="M ${ende - 18} 8 L ${ende} 20 L ${ende - 18} 32" fill="none" stroke="${STIL.tinte}" stroke-width="4"/>` +
     striche
       .map((v) => {
@@ -4538,113 +4610,131 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
     }),
     ...striche.map((v) =>
       stilBlock(`${zahl(v)} ${k.einheit}`, {
-        top: ZS_ACHSE + 18,
+        top: ZS_ACHSE + 14,
         left: zahlenstrahlX(k, v) - 80 - versatz,
         width: 160,
         justifyContent: 'center',
-        fontSize: 18,
+        fontSize: 17,
         color: STIL.hellgrau,
       })
     ),
   ]
 
-  k.punkte.forEach((p, i) => {
-    const x = zahlenstrahlX(k, p.wert)
-    const oben = i % 2 === 0
-    const ex = zahlenstrahlEtikett(x)
-    const farbe = p.hervor ? STIL.navy : STIL.tinte
-    /* Punkt und Verbindung zum Etikett. */
+  const g = zahlenstrahlMass(k)
+  for (const { p, x, ex, reihe } of zahlenstrahlPlan(k)) {
+    if (reihe === undefined) continue
+    const oben = reihe === 0 || reihe === 2
+    const fern = reihe >= 2
+    const abstand = ZS_NAH + (fern ? ZS_HOCH + 20 : 0)
+    const grau = p.vergleich || p.offen
+    const farbe = grau ? STIL.grau : p.hervor ? STIL.navy : STIL.tinte
+    /* Verbindung vom Punkt zum Etikett, dann der Punkt selbst. */
     elemente.push(
       h('div', {
         style: {
           position: 'absolute',
-          left: x - 2 - versatz,
-          top: oben ? ZS_ACHSE - 92 : ZS_ACHSE + 46,
-          width: 4,
-          height: 46,
+          left: x - 1.5 - versatz,
+          top: oben ? ZS_ACHSE - abstand : ZS_ACHSE,
+          width: 3,
+          height: abstand,
           backgroundColor: STIL.rand,
         },
       }),
       h('div', {
         style: {
           position: 'absolute',
-          left: x - 13 - versatz,
-          top: ZS_ACHSE - 13,
-          width: 26,
-          height: 26,
-          borderRadius: 26,
-          backgroundColor: farbe,
-          border: '4px solid #ffffff',
+          left: x - 12 - versatz,
+          top: ZS_ACHSE - 12,
+          width: 24,
+          height: 24,
+          borderRadius: 24,
+          backgroundColor: grau ? '#ffffff' : farbe,
+          border: grau ? `4px solid ${STIL.grau}` : '4px solid #ffffff',
         },
       })
     )
-    const block = h(
-      'div',
-      {
-        style: {
-          position: 'absolute',
-          left: ex - versatz,
-          top: oben ? ZS_ACHSE - 92 - 300 : ZS_ACHSE + 92,
-          width: ZS_ETIKETT,
-          height: 300,
-          display: 'flex',
-          flexDirection: oben ? 'column-reverse' : 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          fontFamily: 'Montserrat',
-        },
-      },
-      ...(p.logo
-        ? [
-            h(
-              'div',
-              {
-                style: {
-                  width: ZS_LOGO_B,
-                  height: ZS_LOGO_H,
-                  borderRadius: 20,
-                  border: `2px solid ${STIL.rand}`,
-                  backgroundColor: '#ffffff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '6px 0',
-                },
-              },
-              h('img', {
-                src: logoAdresse(p.logo),
-                width: ZS_LOGO_B - 48,
-                height: ZS_LOGO_H - 36,
-                style: { objectFit: 'contain' },
-              })
-            ),
-          ]
-        : []),
+    elemente.push(
       h(
         'div',
         {
           style: {
+            position: 'absolute',
+            left: ex - versatz,
+            top: oben ? ZS_ACHSE - abstand - ZS_HOCH * g : ZS_ACHSE + abstand,
+            width: ZS_ETIKETT * g,
+            height: ZS_HOCH * g,
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: oben ? 'column-reverse' : 'column',
             alignItems: 'center',
-            margin: '6px 0',
+            justifyContent: 'flex-start',
+            fontFamily: 'Montserrat',
           },
         },
+        ...(p.logo
+          ? [
+              h(
+                'div',
+                {
+                  style: {
+                    width: ZS_LOGO_B * g,
+                    height: ZS_LOGO_H * g,
+                    borderRadius: 18,
+                    border: `2px solid ${STIL.rand}`,
+                    backgroundColor: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '4px 0',
+                  },
+                },
+                h('img', {
+                  src: logoAdresse(p.logo),
+                  width: (ZS_LOGO_B - 40) * g,
+                  height: (ZS_LOGO_H - 28) * g,
+                  style: { objectFit: 'contain' },
+                })
+              ),
+            ]
+          : []),
         h(
           'div',
-          { style: { fontSize: 46, fontWeight: 800, letterSpacing: -1, color: farbe } },
-          p.anzeige
-        ),
-        h(
-          'div',
-          { style: { fontSize: 22, fontWeight: 600, color: STIL.tinte, marginTop: 2 } },
-          p.name
-        ),
-        h('div', { style: { fontSize: 20, color: STIL.grau, marginTop: 2 } }, p.zusatz)
+          {
+            style: {
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              margin: '4px 0',
+            },
+          },
+          h(
+            'div',
+            {
+              style: {
+                fontSize: (p.vergleich ? 40 : 48) * g,
+                fontWeight: 800,
+                letterSpacing: -1,
+                color: farbe,
+              },
+            },
+            p.anzeige
+          ),
+          h(
+            'div',
+            {
+              style: {
+                fontSize: 22 * g,
+                fontWeight: 600,
+                color: grau ? STIL.grau : STIL.tinte,
+                textAlign: 'center',
+              },
+            },
+            p.name
+          ),
+          h('div', { style: { fontSize: 19 * g, color: STIL.grau } }, p.zusatz)
+        )
       )
     )
-    elemente.push(block)
-  })
+  }
 
   const satz = k.saetze.find((z) => z.kachel === nr)
   return h(
@@ -4667,15 +4757,15 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
             {
               style: {
                 position: 'absolute',
-                top: 150,
+                top: 170,
                 left: STIL_RAND,
                 right: STIL_RAND,
                 display: 'flex',
                 flexDirection: 'column',
                 fontFamily: 'Montserrat',
                 fontWeight: 800,
-                fontSize: 84,
-                lineHeight: 1.1,
+                fontSize: 96,
+                lineHeight: 1.08,
                 letterSpacing: -2,
               },
             },
@@ -4688,7 +4778,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
             )
           ),
           stilBlock(k.erklaerung, {
-            top: 360,
+            top: 400,
             left: STIL_RAND,
             right: STIL_RAND,
             fontSize: 30,
