@@ -1044,10 +1044,18 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
-      'Supermarkt: Heldenzahl ist die Destatis-Rate für Nahrungsmittel',
-      karte.helden.length === 1 &&
-        karte.helden[0].wert === '+0,4 %' &&
-        karte.text.includes('0,4 %')
+      'Supermarkt: drei Heldenzahlen – Welt, Euroraum, Deutschland',
+      karte.helden.map((h) => `${h.name} ${h.wert}`).join(' | ') ===
+        'Welt +5,9 % | Euroraum +1,6 % | Deutschland +0,4 %'
+    )
+    /* FAO Food Price Index, nominal: 10/2026 133,92 gegen 10/2025 126,42. */
+    pruefe(
+      'Supermarkt: FAO +5,9 %',
+      Math.round((133.917 / 126.423 - 1) * 1000) / 10 === 5.9
+    )
+    pruefe(
+      'Supermarkt: jede Heldenzahl steht in der Beschreibung',
+      karte.helden.every((h) => karte.text.includes(`${h.name}: ${h.wert}`))
     )
     pruefe(
       'Supermarkt: jede Säule hat ihr Bildchen',

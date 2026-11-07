@@ -360,9 +360,10 @@ export interface Saeulenkarte extends StilGemeinsam {
   helden: Held[]
   /**
    * `bild`: ein rundes Porträt über der Beschriftung, Datei in `lib/instagram/fotos/`.
-   * `symbol`: ein kleines Bildchen unter der Beschriftung, SVG in
+   * `symbol`: ein kleines rundes Produktfoto unter der Beschriftung, Datei in
    * `lib/instagram/symbole/` (07.11.2026, Betreiber: „unten drunter so ganz
-   * kleine Bildchen machen von den Produkten").
+   * kleine Bildchen machen von den Produkten"; Emoji verworfen: „sehen aus
+   * wie Kindersymbole und nicht wie das mögliche Produkt").
    */
   saeulen: { text: string; wert: number; bild?: string; symbol?: string }[]
   /** Hinter den Werten: „%". */
@@ -890,8 +891,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
     f.push(...stilBefunde(k))
   } else if (k.art === 'saeulen') {
-    if (k.helden.length < 1 || k.helden.length > 2)
-      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.helden.length < 1 || k.helden.length > 3)
+      f.push(`${k.helden.length} Heldenzahlen – eine bis drei.`)
     if (k.saeulen.length < 3 || k.saeulen.length > 12)
       f.push(`${k.saeulen.length} Säulen – drei bis zwölf.`)
     for (const z of k.saeulen)
@@ -3221,6 +3222,12 @@ function stilBild(
     zur großen gehört, steht unter ihr statt in einer eigenen Reihe am Fuß
     (Betreiber, 30.10.2026: „noch nicht perfekt").
   */
+  /*
+    Drei Helden (07.11.2026, „weltweite Teuerung und Euro und Teuerung in
+    Deutschland"): drei gleich breite Spalten, die Zahl etwas kleiner.
+  */
+  const drei = helden.length === 3
+  const spalte = (ZK_BREITE - 2 * rand) / 3
   const spalten = helden.map((held, n) => {
     const pille = held.pille
     const farbe = stilFarbe(pille?.richtung)
@@ -3230,7 +3237,7 @@ function stilBild(
         style: {
           position: 'absolute',
           top: 482,
-          left: n ? mitte + 40 : rand,
+          left: drei ? rand + n * spalte + (n ? 30 : 0) : n ? mitte + 40 : rand,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -3242,7 +3249,7 @@ function stilBild(
         'div',
         {
           style: {
-            fontSize: 96,
+            fontSize: drei ? 76 : 96,
             fontWeight: 800,
             letterSpacing: -3,
             lineHeight: 1.05,
@@ -3351,6 +3358,20 @@ function stilBild(
       color: STIL.navy,
     }),
     ...spalten,
+    ...(drei
+      ? [1, 2].map((n) =>
+          h('div', {
+            style: {
+              position: 'absolute',
+              top: 486,
+              left: rand + n * spalte,
+              width: 1.5,
+              height: 196,
+              backgroundColor: STIL.rand,
+            },
+          })
+        )
+      : []),
     ...(helden.length === 2
       ? [
           h('div', {
@@ -3521,9 +3542,9 @@ function saeulenGrafik(k: Saeulenkarte) {
     ohnehin frei lässt.
   */
   const mitSymbol = k.saeulen.some((z) => z.symbol)
-  const symbol = 46
+  const symbol = 74
   const anheben = mitSymbol ? 40 : 0
-  const unterkante = STIL_GRAFIK_U - (mitSymbol ? 30 : 0)
+  const unterkante = STIL_GRAFIK_U - (mitSymbol ? 58 : 0)
   const oberkante = STIL_GRAFIK_O - anheben
   const hoehe = unterkante - STIL_GRAFIK_O + anheben - (mitBild ? bild + 18 : 0)
   const werte = k.saeulen.map((z) => z.wert)
@@ -3607,13 +3628,16 @@ function saeulenGrafik(k: Saeulenkarte) {
       ...(z.symbol
         ? [
             h('img', {
-              src: `data:image/svg+xml;base64,${readFileSync(join(SYMBOL_ORDNER, z.symbol)).toString('base64')}`,
+              src: `data:image/${z.symbol.endsWith('.svg') ? 'svg+xml' : 'jpeg'};base64,${readFileSync(join(SYMBOL_ORDNER, z.symbol)).toString('base64')}`,
               width: symbol,
               height: symbol,
               style: {
                 position: 'absolute',
-                top: unterkante + 46,
+                top: unterkante + 42,
                 left: links + i * fach + (fach - symbol) / 2,
+                ...(z.symbol.endsWith('.svg')
+                  ? {}
+                  : { borderRadius: symbol, border: `2px solid ${STIL.rand}` }),
               },
             }),
           ]
