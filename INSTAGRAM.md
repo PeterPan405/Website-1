@@ -270,6 +270,9 @@ liest diese Liste vorher.
 | 01.11. | Nationalversammlung hinter Glas, gespiegelt                                                 | Sichtprüfung: unscharf, Glas, Spiegelung = passt nicht                    |
 | 01.11. | Quellenangabe fehlte (drei Logos ohne Nennung, keine Quellen der Meldungen)                 | `bildnachweis()` nennt jedes Bild, `quellenzeile()` die Quellen           |
 | 03.11. | Deckblatt: leerer, dunkler Handelssaal – „nicht ästhetisch und nicht schön"                 | Sichtprüfung: Deckblatt muss hell und ein Blickfang sein; keine Säle      |
+| 07.11. | Zahlenkarte: Gold als Balken und Kurve „langweilig … das weiß schon jeder"                  | Überraschendes vorschlagen, nicht Bekanntes                               |
+| 07.11. | Zahlenkarte: Emoji unter den Säulen „sehen aus wie Kindersymbole"                           | echte Produktfotos (`symbol` der Säulenkarte), mit Nachweis               |
+| 07.11. | Titel „Essen an der Börse" „klingt nicht gut"                                               | Sprache wie im Wirtschaftsteil: „Lebensmittel", nicht „Essen"             |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
