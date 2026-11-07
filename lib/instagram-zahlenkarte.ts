@@ -480,6 +480,12 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
   /** Anfang und Ende der Achse, Abstand der Striche – in der Einheit der Werte. */
   start?: number
   bis: number
+  /**
+   * Gleiche Abstände statt Maßstab (07.11.2026, Betreiber: „es reicht ja,
+   * wenn der Zeitstrahl nicht richtig ist, also von den Abständen her, das
+   * ist egal"). Dann gibt es keine Striche – die Zahl steht am Punkt.
+   */
+  gleichmaessig?: boolean
   schritt: number
   /** An den Strichen: „Mrd. $". */
   einheit: string
@@ -4524,17 +4530,28 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
  */
 function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number): number {
   const breite = k.kacheln * ZK_BREITE
+  if (k.gleichmaessig) {
+    /* Die Stelle in der Reihe, nicht der Wert: gleiche Abstände ab Kachel 2. */
+    const i = k.punkte.findIndex((p) => p.wert === wert)
+    const schritt = (breite - ZK_BREITE) / k.punkte.length
+    return ZK_BREITE + (Math.max(i, 0) + 0.5) * schritt
+  }
   const start = ZK_BREITE + 60
   const ab = k.start ?? 0
   return start + ((wert - ab) / (k.bis - ab)) * (breite - start - ZS_RECHTS)
 }
 
 /** Etikett: ganz auf der Kachel seines Punkts, nie über die Kante. */
-function zahlenstrahlEtikettX(x: number): number {
+function zahlenstrahlEtikettX(x: number, breite = ZS_ETIKETT): number {
   const kachel = Math.floor(x / ZK_BREITE)
   const links = kachel * ZK_BREITE + 30
-  const rechts = (kachel + 1) * ZK_BREITE - 30 - ZS_ETIKETT
-  return Math.min(Math.max(x - ZS_ETIKETT / 2, links), rechts)
+  const rechts = (kachel + 1) * ZK_BREITE - 30 - breite
+  return Math.min(Math.max(x - breite / 2, links), rechts)
+}
+
+/** Größer, wenn gleiche Abstände Platz lassen. */
+function zahlenstrahlMass(k: Zahlenstrahlkarte): number {
+  return k.gleichmaessig ? 1.35 : 1
 }
 
 /** Je Punkt Lage und Reihe – die erste freie, nahe vor fern. */
@@ -4542,8 +4559,11 @@ function zahlenstrahlPlan(k: Zahlenstrahlkarte) {
   const ende: number[] = [-Infinity, -Infinity, -Infinity, -Infinity]
   return k.punkte.map((p) => {
     const x = zahlenstrahlX(k, p.wert)
-    const ex = zahlenstrahlEtikettX(x)
-    const reihe = ([0, 1, 2, 3] as Reihe[]).find((r) => ex >= ende[r] + 16)
+    const ex = zahlenstrahlEtikettX(x, ZS_ETIKETT * zahlenstrahlMass(k))
+    /* Gleiche Abstände: abwechselnd über und unter der Linie, groß. */
+    const reihe = k.gleichmaessig
+      ? ((k.punkte.indexOf(p) % 2) as Reihe)
+      : ([0, 1, 2, 3] as Reihe[]).find((r) => ex >= ende[r] + 16)
     if (reihe !== undefined) ende[reihe] = ex + ZS_ETIKETT
     return { p, x, ex, reihe }
   })
@@ -4554,10 +4574,12 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
   const breite = k.kacheln * ZK_BREITE
   const ende = breite - ZS_RECHTS / 2
   const ab = k.start ?? 0
-  const striche = Array.from(
-    { length: Math.floor((k.bis - ab) / k.schritt) + 1 },
-    (_, i) => ab + i * k.schritt
-  )
+  const striche = k.gleichmaessig
+    ? []
+    : Array.from(
+        { length: Math.floor((k.bis - ab) / k.schritt) + 1 },
+        (_, i) => ab + i * k.schritt
+      )
   const zahl = (v: number) => v.toLocaleString('de-DE')
 
   const svg =
@@ -4591,6 +4613,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
     ),
   ]
 
+  const g = zahlenstrahlMass(k)
   for (const { p, x, ex, reihe } of zahlenstrahlPlan(k)) {
     if (reihe === undefined) continue
     const oben = reihe === 0 || reihe === 2
@@ -4629,9 +4652,9 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
           style: {
             position: 'absolute',
             left: ex - versatz,
-            top: oben ? ZS_ACHSE - abstand - ZS_HOCH : ZS_ACHSE + abstand,
-            width: ZS_ETIKETT,
-            height: ZS_HOCH,
+            top: oben ? ZS_ACHSE - abstand - ZS_HOCH * g : ZS_ACHSE + abstand,
+            width: ZS_ETIKETT * g,
+            height: ZS_HOCH * g,
             display: 'flex',
             flexDirection: oben ? 'column-reverse' : 'column',
             alignItems: 'center',
@@ -4645,8 +4668,8 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
                 'div',
                 {
                   style: {
-                    width: ZS_LOGO_B,
-                    height: ZS_LOGO_H,
+                    width: ZS_LOGO_B * g,
+                    height: ZS_LOGO_H * g,
                     borderRadius: 18,
                     border: `2px solid ${STIL.rand}`,
                     backgroundColor: '#ffffff',
@@ -4658,8 +4681,8 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
                 },
                 h('img', {
                   src: logoAdresse(p.logo),
-                  width: ZS_LOGO_B - 40,
-                  height: ZS_LOGO_H - 28,
+                  width: (ZS_LOGO_B - 40) * g,
+                  height: (ZS_LOGO_H - 28) * g,
                   style: { objectFit: 'contain' },
                 })
               ),
@@ -4679,7 +4702,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
             'div',
             {
               style: {
-                fontSize: p.vergleich ? 40 : 48,
+                fontSize: (p.vergleich ? 40 : 48) * g,
                 fontWeight: 800,
                 letterSpacing: -1,
                 color: farbe,
@@ -4691,7 +4714,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
             'div',
             {
               style: {
-                fontSize: 22,
+                fontSize: 22 * g,
                 fontWeight: 600,
                 color: p.vergleich ? STIL.grau : STIL.tinte,
                 textAlign: 'center',
@@ -4699,7 +4722,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
             },
             p.name
           ),
-          h('div', { style: { fontSize: 19, color: STIL.grau } }, p.zusatz)
+          h('div', { style: { fontSize: 19 * g, color: STIL.grau } }, p.zusatz)
         )
       )
     )
