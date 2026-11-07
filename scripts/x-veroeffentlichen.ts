@@ -103,7 +103,7 @@ if (ART === 'tagesnews') {
   // Riegel 1
   if (t.datum !== HEUTE)
     halt(`Die Website zeigt die Ausgabe vom ${t.datum}, nicht von heute (${HEUTE}).`)
-  if ('grund' in t) halt(`Heute kein Tagesbeitrag: ${t.grund}`)
+  if ('grund' in t) halt(`Heute keine Daily News: ${t.grund}`)
   const bild = (n: number) => `${BASIS}/instagram/${n}.jpg?d=${HEUTE}`
   posts.push({ text: t.haupt, bilder: t.bilder.haupt.map(bild) })
   if (t.bilder.antwort.length > 0)

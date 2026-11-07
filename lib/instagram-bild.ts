@@ -6,7 +6,7 @@
  * Bis zum 11. Oktober 2026 erzeugte diese Datei eine eigene Gestaltung –
  * weiße Titelkachel, „DIE MELDUNGEN DES TAGES" in blauen Versalien, Rubrik
  * und „1 von 3". Veröffentlicht wurde sie nie: Im Kanal standen 54
- * Tagesbeiträge in einer ganz anderen Form. Der Betreiber am 11.10.2026: „Du
+ * Daily News in einer ganz anderen Form. Der Betreiber am 11.10.2026: „Du
  * sollst das gleiche Design wiedergeben … keine neuen Experimente."
  *
  * Die Maße hier sind deshalb an den veröffentlichten Kacheln gemessen

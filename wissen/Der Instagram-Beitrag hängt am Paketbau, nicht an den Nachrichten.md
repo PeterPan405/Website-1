@@ -87,7 +87,7 @@ Ohne gesetzte Variable ist nichts freigegeben. Das ist der Normalzustand, und
 der Lauf sagt in der Zusammenfassung, was hinausginge und mit welchem Befehl
 man es freigibt.
 
-**Nachtrag, derselbe Abend:** Für den Tagesbeitrag gilt die Freigabe seither
+**Nachtrag, derselbe Abend:** Für die Daily News gilt die Freigabe seither
 von selbst. Der Betreiber, nachdem „Top-News des Tages" nach dem Muster der
 54 bisherigen Beiträge nachgebaut war: „Sobald die Daily News nachts gemacht
 werden … soll bei Instagram die Daily News nun vollautomatisch erscheinen.
@@ -109,7 +109,7 @@ neuen Schalter: „tagesnews" steht dort nur, wenn die Prüfung bestanden ist.
 Am Abend des 11. Oktober 2026 stellte sich heraus, dass der Generator in
 `lib/instagram-bild.tsx` seit August Kacheln erzeugte, die im Kanal **nie**
 erschienen waren: weiß, „DIE MELDUNGEN DES TAGES" in blauen Versalien, drei
-Schlagzeilen. Im Kanal standen 54 Tagesbeiträge in einer ganz anderen Form –
+Schlagzeilen. Im Kanal standen 54 Daily News in einer ganz anderen Form –
 Foto-Deckblatt, fünf weiße Kacheln mit Wasserzeichen. Veröffentlicht hatte sie
 der Dienst; was das Repository baute, sah niemand.
 
@@ -139,7 +139,7 @@ dafür nicht. Die Ausgabe ist Website, Podcast und der Rest des Tages; der
 Beitrag ist einer von fünf Abnehmern. Fiele der Tag wegen einer zu langen
 Kachelüberschrift aus, wäre das der teuerste denkbare Tausch.
 
-Dass es **nur werktags** einen Tagesbeitrag gibt, ist ebenfalls gemessen:
+Dass es **nur werktags** Daily News gibt, ist ebenfalls gemessen:
 54 von 54 Werktagen, 0 von 22 Wochenendtagen. Am 11.10.2026 wurde das
 Wochenende zuerst für einen Ausfall gehalten – es war keiner.
 

@@ -3,7 +3,7 @@
  *
  * ## Woher das Muster stammt
  *
- * Nicht ausgedacht, sondern abgelesen: an den 54 Tagesbeiträgen, die von
+ * Nicht ausgedacht, sondern abgelesen: an den 54 Daily News, die von
  * Ende Juli bis zum 9. Oktober 2026 bei @im_invests erschienen sind (Abzug
  * über die Graph-Schnittstelle am 11.10.2026). Der Betreiber hat es so
  * angeordnet: „Ich möchte keine neuen Experimente, sondern erstmal dabei
@@ -123,7 +123,7 @@ export const RECHTSHINWEIS =
   'Kapitalanlage ist mit Risiken verbunden, bis zum vollständigen Verlust des ' +
   'eingesetzten Geldes. Hinweis: Die Inhalte wurden mit Unterstützung von KI erstellt.'
 
-/** Der feste Kopf – so in den jüngsten Tagesbeiträgen (8. und 9. Oktober). */
+/** Der feste Kopf – so in den jüngsten Daily News (8. und 9. Oktober). */
 export const KOPF = 'Die wichtigsten Börsennews des Tages. 📈'
 export const UEBERBLICK = 'Alle fünf Entwicklungen im Überblick. Quelle: iminvests.de'
 
@@ -163,7 +163,7 @@ export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-N
 const BILDZEICHEN = /\p{Extended_Pictographic}/u
 
 /**
- * Erscheint an diesem Tag ein Tagesbeitrag?
+ * Erscheinen an diesem Tag Daily News?
  *
  * Seit dem 17.10.2026 an **jedem** Tag – der Betreiber: „mache aber jetzt
  * täglich News des Tages". Bis dahin nur montags bis freitags, so wie es im
@@ -389,7 +389,7 @@ export function tagesstand(datum: string, rohtext: string | null): Tagesstand {
 }
 
 /**
- * Die Beschriftung unter dem Beitrag, in der Form der jüngsten Tagesbeiträge.
+ * Die Beschriftung unter dem Beitrag, in der Form der jüngsten Daily News.
  *
  * Die Schlagworte hängen am letzten Satz des Rechtshinweises, durch ein
  * Leerzeichen getrennt – so stehen sie in allen Beiträgen seit August.

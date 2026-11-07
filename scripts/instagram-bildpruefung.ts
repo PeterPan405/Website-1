@@ -31,7 +31,7 @@ const lies = (name: string) => {
 
 const [datum = '', art = ''] = (lies('stand.txt') ?? '').split('\n').map((z) => z.trim())
 if (!/^\d{4}-\d{2}-\d{2}$/.test(datum) || art !== 'tagesnews') {
-  console.log('Kein Tagesbeitrag – nichts zu prüfen.')
+  console.log('Keine Daily News – nichts zu prüfen.')
   process.exit(0)
 }
 

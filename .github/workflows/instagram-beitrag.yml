@@ -27,8 +27,8 @@ name: Instagram-Beitrag
 # ## Vier Riegel – drei im Skript, einer hier
 #
 # Der vierte steht weiter unten in diesem Workflow: **die Freigabe des
-# Tages.** Der Tagesbeitrag „Top-News des Tages" ist seit dem Abend des
-# 11. Oktober 2026 dauerhaft freigegeben und geht seit dem 17.10. täglich von selbst hinaus;
+# Tages.** Die Daily News („Top-News des Tages") sind seit dem Abend des
+# 11. Oktober 2026 dauerhaft freigegeben und gehen seit dem 17.10. täglich von selbst hinaus;
 # jeder andere Beitrag braucht die Freigabe für genau seinen Tag.
 #
 # ## Zwei Riegel im Skript, keiner davon in diesem Workflow
@@ -204,12 +204,12 @@ jobs:
       #   1. Nachmittags, als der direkte Weg zu Meta zum ersten Mal stand:
       #      nichts geht hinaus, was er nicht vorher gesehen hat.
       #   2. Abends, nachdem „Top-News des Tages" nach dem Muster der 54
-      #      bisherigen Tagesbeiträge nachgebaut war: „Sobald die Daily News
+      #      bisherigen Daily News nachgebaut war: „Sobald die Daily News
       #      nachts gemacht werden … soll bei Instagram die Daily News nun
       #      vollautomatisch erscheinen."
       #
-      # Daraus folgt: **Der Tagesbeitrag ist freigegeben, jeden Tag, ohne
-      # Zutun.** Ob es heute einen gibt, sagt /instagram/stand.txt – „tagesnews"
+      # Daraus folgt: **Die Daily News sind freigegeben, jeden Tag, ohne
+      # Zutun.** Ob es sie heute gibt, sagt /instagram/stand.txt – „tagesnews"
       # (seit dem 17.10.2026 täglich, davor montags bis freitags) nur mit einem Plan, der die Prüfung in
       # lib/instagram-plan.ts bestanden hat. Alles andere – ein Erklärbeitrag,
       # eine Zahlenkarte, sobald es dafür einen Erzeuger gibt – braucht weiter
@@ -229,13 +229,13 @@ jobs:
 
           if [ "$art" = "tagesnews" ]; then
             echo "heute=ja" >> "$GITHUB_OUTPUT"
-            echo "Tagesbeitrag – freigegeben ohne Zutun (Anordnung vom 11.10.2026)."
+            echo "Daily News – freigegeben ohne Zutun (Anordnung vom 11.10.2026)."
           elif [ "$frei" = "$heute" ]; then
             echo "heute=ja" >> "$GITHUB_OUTPUT"
             echo "Freigegeben für $heute."
           else
             echo "heute=nein" >> "$GITHUB_OUTPUT"
-            echo "Kein Tagesbeitrag und keine Freigabe für $heute (INSTAGRAM_FREIGABE: ${frei:-nicht gesetzt})."
+            echo "Keine Daily News und keine Freigabe für $heute (INSTAGRAM_FREIGABE: ${frei:-nicht gesetzt})."
             echo "Dieser Lauf zeigt nur, was hinausginge."
           fi
 
@@ -247,7 +247,7 @@ jobs:
       #   Anstoss aus dem Paketbau  ja, per `-f veroeffentlichen=true`
       #
       # **Und in allen drei Faellen zusaetzlich: nur mit der Freigabe** – für
-      # den Tagesbeitrag gilt sie von selbst, für alles andere je Tag.
+      # die Daily News gilt sie von selbst, für alles andere je Tag.
       #
       # Ohne Zugangsdaten bleibt es beim Trockenlauf – das Skript zaehlt dann
       # die Kacheln auf und hoert vor dem ersten Behaelter auf.

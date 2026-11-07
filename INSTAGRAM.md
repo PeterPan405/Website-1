@@ -9,6 +9,8 @@ an, die wir schon haben, und nutze die als Vorgabe … keine neuen Experimente."
 Wer einen Beitrag baut, baut ihn so. Wer davon abweichen will, ändert zuerst
 diese Datei – mit dem Grund daneben.
 
+> **Die Namen:** „Daily News" ist das Karussell „Top-News des Tages", gebaut aus den News auf iminvests.de, und geht von selbst hinaus. „Tagesbeitrag" ist der zweite Beitrag des Tages mit eigenem Thema, abgestimmt und vom Betreiber freigegeben (Klarstellung des Betreibers, 11.10.2026).
+>
 > [!warning] Was von selbst hinausgeht – und was nicht
 > **„Top-News des Tages" geht täglich vollautomatisch hinaus**, nach der
 > nächtlichen Ausgabe – Anordnung vom 11.10.2026, abends; seit dem 17.10.2026
@@ -32,8 +34,8 @@ Gezählt über 77 Tage, 27.07. bis 11.10.2026:
 | „Top-News des Tages"     | morgens, meist zwischen 06:45 und 07:45 Uhr (Median 07:02) | **nur montags bis freitags** – 54 von 54 |
 | Erklär- oder Zahlbeitrag | nachmittags oder abends                                    | **jeden Tag**, auch am Wochenende        |
 
-Bis dahin gab es an Samstagen und Sonntagen nie einen Tagesbeitrag. **Seit dem
-17.10.2026 erscheint er täglich** – Anordnung des Betreibers. Ein Wochenende
+Bis dahin gab es an Samstagen und Sonntagen nie Daily News. **Seit dem
+17.10.2026 erscheinen sie täglich** – Anordnung des Betreibers. Ein Wochenende
 ohne „Top-News" ist seither ein Ausfall.
 
 ## Drei Sorten
@@ -108,7 +110,7 @@ runden Kurswerten und eine X-Achse mit vier Tagen** – „sonst kann man damit
 nichts anfangen".
 
 Kriege und Politik kamen nur über ihre Marktfolge vor („Öl über 100", „USA &
-Iran", „UN-Protest"). In den Beschriftungen aller 54 Tagesbeiträge steht kein
+Iran", „UN-Protest"). In den Beschriftungen aller 54 Daily News steht kein
 Wort wie „Tote" oder „Opfer", auf den durchgesehenen Kacheln ebenso wenig.
 
 ### B — Erklärbeitrag
