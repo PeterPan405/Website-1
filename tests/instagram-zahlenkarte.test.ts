@@ -1044,6 +1044,25 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
+      'Supermarkt: Heldenzahl ist die Destatis-Rate für Nahrungsmittel',
+      karte.helden.length === 1 &&
+        karte.helden[0].wert === '+0,4 %' &&
+        karte.text.includes('0,4 %')
+    )
+    pruefe(
+      'Supermarkt: jede Säule hat ihr Bildchen',
+      karte.saeulen.every((z) => z.symbol)
+    )
+    pruefe(
+      'Supermarkt: ein fehlendes Bildchen wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        saeulen: karte.saeulen.map((z, i) =>
+          i ? z : { ...z, symbol: 'gibt-es-nicht.svg' }
+        ),
+      }).some((f) => f.includes('gibt-es-nicht.svg'))
+    )
+    pruefe(
       'Supermarkt: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-06')!)
     )

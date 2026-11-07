@@ -49,6 +49,16 @@ export const zahlenkarten: Zahlenkarte[] = [
         Orangen (Orange)         1,11 → 0,75 $/kg   −32,4 %
       Die Weltbank gibt Zucker auf zwei Nachkommastellen an; die Prozente
       sind aus diesen Werten gerechnet.
+
+      Heldenzahl auf Wunsch des Betreibers („die durchschnittliche Teuerung
+      im Supermarkt"): Destatis, Pressemitteilung Nr. 382 vom 30.10.2026
+      (PD26_382_611), Tabelle „Jährliche Veränderung": Nahrungsmittel
+      Oktober 2026 +0,4 % (vorläufig; Juli 0,4, August 0,1, September 0,4).
+      Gesamt +2,8 %, Energie +12,2 %. Abgerufen am 07.11.2026 über
+      quellen-holen.yml. Kein Mittel aus den Säulen – das wäre eine
+      selbst gewählte Auswahl.
+
+      Symbole: Twemoji 15.0 (npm @twemoji/svg), Grafiken CC BY 4.0.
     */
     art: 'saeulen',
     datum: '2026-11-07',
@@ -57,26 +67,29 @@ export const zahlenkarten: Zahlenkarte[] = [
       { text: 'Nicht alles steigt.', gruen: true },
     ],
     erklaerung:
-      'Weltmarktpreise für Lebensmittel, Oktober gegen Januar 2026 – vor dem Krieg um den Iran.',
-    stichzeile: 'Weltmarkt · seit Januar 2026',
+      'Weltmarktpreise für Lebensmittel, Oktober gegen Januar 2026 – und was im Laden ankam.',
+    stichzeile: 'Weltmarkt gegen Ladenpreise',
     helden: [
-      { name: 'Zucker', wert: '+34 %', pille: { wert: '0,43 $', name: 'je Kilo' } },
-      { name: 'Orangen', wert: '−32 %', pille: { wert: '0,75 $', name: 'je Kilo' } },
+      {
+        name: 'Im Supermarkt',
+        wert: '+0,4 %',
+        pille: { wert: 'Oktober', name: 'Nahrungsmittel zum Vorjahr' },
+      },
     ],
     saeulen: [
-      { text: 'Zucker', wert: 34.38 },
-      { text: 'Weizen', wert: 26.85 },
-      { text: 'Reis', wert: 19.85 },
-      { text: 'Kakao', wert: 15.69 },
-      { text: 'Hähnchen', wert: 5.14 },
-      { text: 'Kaffee', wert: -7.73 },
-      { text: 'Rind', wert: -14.3 },
-      { text: 'Orangen', wert: -32.43 },
+      { text: 'Zucker', wert: 34.38, symbol: 'zucker.svg' },
+      { text: 'Weizen', wert: 26.85, symbol: 'weizen.svg' },
+      { text: 'Reis', wert: 19.85, symbol: 'reis.svg' },
+      { text: 'Kakao', wert: 15.69, symbol: 'kakao.svg' },
+      { text: 'Hähnchen', wert: 5.14, symbol: 'haehnchen.svg' },
+      { text: 'Kaffee', wert: -7.73, symbol: 'kaffee.svg' },
+      { text: 'Rind', wert: -14.3, symbol: 'rind.svg' },
+      { text: 'Orangen', wert: -32.43, symbol: 'orangen.svg' },
     ],
     einheit: '%',
     nachkomma: 0,
     fusszeile:
-      'Stand: 10/2026 | Quelle: Weltbank (Pink Sheet), Monatsmittel; eigene Rechnung',
+      'Stand: 10/2026 | Quellen: Weltbank (Pink Sheet), Destatis | Symbole: Twemoji, CC BY 4.0',
     text:
       'Krieg um den Iran, Öl teurer – und im Supermarkt? Wir haben die Weltmarktpreise der Weltbank verglichen: Oktober gegen Januar 2026, den Monat vor dem Krieg.\n\n' +
       'Die Säulen im Bild:\n' +
@@ -88,16 +101,16 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Kaffee: 8,02 → 7,40 $ je Kilo, −8 %\n' +
       'Rind: 7,97 → 6,83 $ je Kilo, −14 %\n' +
       'Orangen: 1,11 → 0,75 $ je Kilo, −32 %\n\n' +
+      'Und im Laden?\n' +
+      'Kaum etwas davon. Nahrungsmittel kosteten im Oktober laut Statistischem Bundesamt nur 0,4 % mehr als ein Jahr zuvor (vorläufig). Die Inflation insgesamt lag bei 2,8 %, Energie bei +12,2 %.\n\n' +
       'Schon gewusst?\n' +
-      '– Erdgas in Europa kostete im Oktober 142 % mehr als im Januar, in den USA 61 % weniger.\n' +
-      '– Sojaöl legte 34 % zu, Rindfleisch wurde 14 % billiger.\n' +
+      '– Erdgas in Europa kostete im Oktober auf dem Weltmarkt 142 % mehr als im Januar, in den USA 61 % weniger.\n' +
       '– Kakao kostete im Januar 2025 noch 10,75 $ je Kilo – heute nur noch gut die Hälfte.\n\n' +
       'Warum?\n' +
-      'Die Preisreihe nennt keine Gründe, und wir raten nicht. Sie zeigt nur: Nicht jedes Lebensmittel folgt dem Ölpreis.\n\n' +
-      'Und jetzt?\n' +
-      'Das sind Weltmarktpreise für Rohware, nicht die Preise im Laden. Wie viel davon an der Kasse ankommt, sagen die Daten nicht.\n\n' +
-      'Gerechnet: Monatsdurchschnitt in US-Dollar, nicht inflationsbereinigt. Zucker: Weltmarkt; Weizen: US Hard Red Winter; Reis: Thai 5 %; Kaffee: Arabica.\n' +
-      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; eigene Rechnung',
+      'Die Zahlen nennen keine Gründe, und wir raten nicht. Sie zeigen nur: Nicht jedes Lebensmittel folgt dem Ölpreis, und der Weltmarkt ist nicht der Supermarkt.\n\n' +
+      'Gerechnet: Weltmarkt in US-Dollar, Monatsdurchschnitt, Oktober gegen Januar 2026 (Zucker: Weltmarkt; Weizen: US Hard Red Winter; Reis: Thai 5 %; Kaffee: Arabica). Supermarkt: Verbraucherpreisindex Nahrungsmittel, Oktober 2026 gegen Oktober 2025.\n' +
+      'Quellen: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; Statistisches Bundesamt, Pressemitteilung Nr. 382 vom 30. Oktober 2026; eigene Rechnung\n' +
+      'Symbole: Twemoji (Twitter, Inc. und weitere), CC BY 4.0',
     schlagworte: ['lebensmittel', 'inflation', 'iran', 'rohstoffe', 'supermarkt'],
   },
   {
