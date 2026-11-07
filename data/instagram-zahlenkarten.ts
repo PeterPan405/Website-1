@@ -29,7 +29,9 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 07.11.2026, „Krieg im Supermarkt“ – vom Betreiber gewählt
+      Zahlenkarte 07.11.2026, „Krieg im Supermarkt“ (Titel nach dem ersten
+      Posten geändert: „Essen an der Börse“ → „Lebensmittel an der Börse“,
+      Betreiber: „klingt nicht gut“; der erste Beitrag wurde gelöscht) – vom Betreiber gewählt
       aus drei Vorschlägen, nachdem er Gold (Balken, Kurve) als „langweilig
       … das weiß schon jeder“ verworfen hatte. Form: Säulen (am 06.11.
       Balken).
@@ -70,10 +72,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'saeulen',
     datum: '2026-11-07',
-    titel: [
-      { text: 'Essen an der Börse:' },
-      { text: 'Nicht alles steigt.', gruen: true },
-    ],
+    titel: [{ text: 'Lebensmittel' }, { text: 'an der Börse.', gruen: true }],
     erklaerung:
       'Oben: Teuerung bei Lebensmitteln im Oktober. Unten: Weltmarktpreise von Agrarrohstoffen, Oktober gegen Januar 2026.',
     stichzeile: 'Lebensmittel · Oktober zum Vorjahr',
@@ -105,7 +104,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     fusszeile:
       'Stand: 10/2026 | Quellen: FAO, Eurostat, Destatis, Weltbank (Pink Sheet) | Fotos: Wikimedia Commons',
     text:
-      'Krieg um den Iran – wird Essen teurer? Teuerung bei Lebensmitteln im Oktober, gegenüber Oktober 2025:\n' +
+      'Krieg um den Iran – werden Lebensmittel teurer? Teuerung bei Lebensmitteln im Oktober, gegenüber Oktober 2025:\n' +
       'Welt: +5,9 % (FAO-Lebensmittelpreisindex)\n' +
       'Euroraum: +1,6 % (inkl. Alkohol und Tabak, Schnellschätzung Eurostat)\n' +
       'Deutschland: +0,4 % (vorläufig, Statistisches Bundesamt)\n\n' +
