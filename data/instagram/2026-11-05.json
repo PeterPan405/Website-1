@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Demokraten gewinnen die US-Zwischenwahlen, die Inflation im Euroraum steigt auf 4,0 Prozent, die Niederlande schlagen Klaas Knot als EZB-Chef vor, BMW senkt die Prognose, und die DWS begrenzt Rückgaben bei ihrem Immobilienfonds.",
+  "kacheln": [
+    {
+      "titel": "US-Wahl: Dow +3 %",
+      "text": "Die Demokraten gewannen die Mehrheit im US-Kongress. Der Dow Jones legte darauf drei Prozent zu, der Dax rückte nahe an sein Rekordhoch heran."
+    },
+    {
+      "titel": "Inflation: 4,0 %",
+      "text": "Die Teuerung im Euroraum stieg im Oktober auf 4,0 Prozent, den höchsten Stand seit September 2023. Energie war erneut der größte Preistreiber."
+    },
+    {
+      "titel": "Qualcomm-Aktie fällt 7 %",
+      "text": "Qualcomm übertraf im vierten Quartal die Erwartungen, doch der Ausblick fiel schwach aus. Die Aktie fiel im nachbörslichen Handel um sieben Prozent."
+    },
+    {
+      "titel": "BMW: Gewinn bricht ein",
+      "text": "BMW verdiente im dritten Quartal 15 Prozent weniger als im Vorjahr. Grund ist vor allem der Einbruch der Verkäufe in China um ein Viertel."
+    },
+    {
+      "titel": "Immobilienfonds in Not",
+      "text": "Die Fondsgesellschaft DWS zahlt Anlegern ihres Immobilienfonds nur noch zehn Prozent der fälligen Rückgaben aus. Die Werte sind zuletzt deutlich gefallen."
+    }
+  ],
+  "schlagworte": ["zwischenwahlen", "inflation", "ezb", "dax", "börse"]
+}

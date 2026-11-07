@@ -12,9 +12,517 @@
  * IM Invests hinaus – dieselbe Regel wie für die Nachrichten.
  */
 import type { Zahlenkarte } from '../lib/instagram-zahlenkarte.ts'
+import {
+  ATOM_CHINA,
+  ATOM_FRANKREICH,
+  ATOM_GROSSBRITANNIEN,
+  ATOM_INDIEN,
+  ATOM_ISRAEL,
+  ATOM_NORDKOREA,
+  ATOM_PAKISTAN,
+  ATOM_RUSSLAND,
+  ATOM_USA,
+  ATOM_WELT,
+} from './instagram-reihen-atomwaffen.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 06.11.2026. Keine Wahl des Betreibers für heute; der erste
+      offene Vorschlag (Bank of England) stand schon in der Tagesausgabe vom
+      06.11. – der Betreiber verwarf am 02.11. Themen, die „doch alles schon
+      in den News“ waren. Daher der dritte Vorschlag: Gold gegen Krisen.
+      Form: waagerechte Balken (am 05.11. Zeitstrahl).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, „Updated on November 03, 2026",
+      abgerufen am 06.11.2026 über quellen-holen.yml (blatt 2). Reihe „Gold",
+      $ je Feinunze, Monatsmittel, nominal. Gerechnet: Monat vor Beginn
+      gegen den zwölften Monat ab Beginn (2026: Februar bis Oktober, neun
+      Monate):
+        1973 (Okt.)  09/1973   103 → 09/1974   152    +48 %
+        1979 (Jan.)  12/1978   208 → 12/1979   455   +119 %
+        1987 (Okt.)  09/1987   460 → 09/1988   413    −10 %
+        (1990, Irak/Kuwait: 363 → 368, +1 % – weggelassen, höchstens acht Balken)
+        2001 (Sept.) 08/2001   272 → 08/2002   310    +14 %
+        2008 (Sept.) 08/2008   839 → 08/2009   949    +13 %
+        2020 (März)  02/2020 1.597 → 02/2021 1.808    +13 %
+        2022 (Feb.)  01/2022 1.816 → 01/2023 1.898     +5 %
+        2026 (Feb.)  01/2026 4.753 → 10/2026 4.105    −14 %
+        2026 weiter: 02 5.020 (Höchststand der Reihe) · 03 4.856 · 04 4.721
+        · 05 4.587 · 06 4.228 · 07 4.073 · 08 4.411 · 09 4.319
+      Abgleich: unsere Ausgaben nennen Ende Oktober/Anfang November 2026
+      Gold um 4.000 bis 4.200 $ (Goldreporter) – passt zur Reihe.
+    */
+    art: 'balken',
+    datum: '2026-11-06',
+    titel: [{ text: 'Gold in der Krise:' }, { text: 'Nicht immer sicher.', gruen: true }],
+    erklaerung:
+      'Goldpreis ein Jahr nach Beginn gegen den Monat davor. 2026: bis Oktober.',
+    stichzeile: 'Gold · nach Kriegen und Krisen',
+    helden: [
+      {
+        name: 'Krieg um den Iran',
+        wert: '−14 %',
+        pille: { wert: '4.105 $', name: 'je Unze im Oktober' },
+      },
+    ],
+    balken: [
+      { marke: '1973', text: 'Ölembargo', wert: 47.57 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 118.75 },
+      { marke: '1987', text: 'Börsencrash', wert: -10.22 },
+      { marke: '2001', text: '11. September', wert: 13.97 },
+      { marke: '2008', text: 'Finanzkrise', wert: 13.11 },
+      { marke: '2020', text: 'Corona', wert: 13.21 },
+      { marke: '2022', text: 'Krieg in der Ukraine', wert: 4.52 },
+      { marke: '2026', text: 'Krieg um den Iran', wert: -13.63, hervor: true },
+    ],
+    einheit: '%',
+    fusszeile: 'Stand: 10/2026 | Quelle: Weltbank (Pink Sheet), Gold; eigene Rechnung',
+    text:
+      'Gold gilt als sicherer Hafen in der Krise. Stimmt das? Gemessen mit Monatspreisen der Weltbank: der Goldpreis ein Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Die Balken im Bild, Fall für Fall ($ je Unze):\n' +
+      '1973 – Ölembargo: 103 → 152, +48 %\n' +
+      '1979 – Revolution im Iran: 208 → 455, +119 %\n' +
+      '1987 – Börsencrash: 460 → 413, −10 %\n' +
+      '2001 – 11. September: 272 → 310, +14 %\n' +
+      '2008 – Finanzkrise: 839 → 949, +13 %\n' +
+      '2020 – Corona: 1.597 → 1.808, +13 %\n' +
+      '2022 – Krieg in der Ukraine: 1.816 → 1.898, +5 %\n' +
+      '2026 – Krieg um den Iran: 4.753 → 4.105, −14 % (bis Oktober)\n\n' +
+      'Sechs von acht Mal stieg Gold. Zweimal fiel es: nach dem Crash 1987 – und jetzt.\n\n' +
+      'Warum fällt Gold 2026?\n' +
+      'Die Preisreihe nennt keinen Grund. Ein Hinweis aus unseren News: Am 30. Oktober fiel Gold laut Goldreporter unter 4.000 $ – mitgerissen vom Ausverkauf bei Technologieaktien.\n\n' +
+      'Schon gewusst?\n' +
+      '– Im Februar 2026, als der Krieg begann, kostete Gold im Schnitt 5.020 $ – so viel wie nie zuvor in der Reihe seit 1960.\n' +
+      '– Im August 1971 kostete eine Unze 43 $. Im Januar 1980 waren es 675 $.\n' +
+      '– Trotz des Rückgangs liegt Gold rund 50 % über Januar 2025 (2.710 $).\n\n' +
+      'Und jetzt?\n' +
+      'Seit Juli schwankt der Preis zwischen 4.073 und 4.411 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Monatsdurchschnitt, nicht inflationsbereinigt.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; Goldreporter; eigene Rechnung',
+    schlagworte: ['gold', 'krise', 'iran', 'rohstoffe', 'geopolitik'],
+  },
+  {
+    /*
+      Thema: Vorschlag 1 vom 01.11.2026 („Lagarde geht vorzeitig"). Der
+      Betreiber hat keinen Vorschlag gewählt, also der erste offene. Form:
+      Zeitstrahl im Hausstil, neu (am 01.11. Säulen).
+
+      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
+      - Tagesschau, „EZB-Chefin Lagarde tritt im Februar vorzeitig zurück",
+        29.10.2026: Lagarde gibt ihr Amt zum 7. Februar 2027 auf, die
+        achtjährige Amtszeit endete regulär Ende Oktober 2027. Nachfolge
+        vor der Präsidentschaftswahl in Frankreich (April 2027); Merz:
+        Besetzung bis Jahresende; Favoriten Klaas Knot und Pablo Hernández
+        de Cos, Joachim Nagel hat sich ins Spiel gebracht; Deutschland
+        stellte noch nie die EZB-Spitze.
+      - Handelsblatt, 29.10.2026: Lagarde will offen sprechen können, vor
+        allem zur Frankreich-Wahl; die Neutralität des Amtes sei damit
+        nicht vereinbar.
+      - Wikipedia, „Präsident der Europäischen Zentralbank" (Stand
+        01.11.2026): reguläre Amtszeit 8 Jahre, keine Wiederwahl.
+        Duisenberg 01.06.1998–31.10.2003 (aus Altersgründen etwa zur Mitte
+        der Amtszeit zurückgetreten), Trichet 01.11.2003–31.10.2011,
+        Draghi 01.11.2011–31.10.2019, Lagarde seit 01.11.2019.
+      Gerechnet: Duisenberg 5 Jahre 5 Monate = 5,4; Lagarde bis 07.02.2027
+      7 Jahre 3 Monate = 7,3.
+
+      Porträts von Wikimedia Commons, geholt am 02.11.2026 über
+      bilder-holen.yml, auf den Kopf zugeschnitten:
+        Duisenberg – Wim Duisenberg (cropped).jpg, IWF, gemeinfrei
+        Trichet – Jean-Claude Trichet - World Economic Forum Annual Meeting
+          Davos 2010.jpg, World Economic Forum, CC BY-SA 2.0
+        Draghi – Mario Draghi 2019.jpg, Quirinale, Namensnennung
+        Lagarde – Lagarde ECB Portrait 2019.jpg, Lemrich / EZB, Namensnennung
+    */
+    art: 'zeitstrahl',
+    datum: '2026-11-05',
+    titel: [{ text: 'EZB-Chefin Lagarde' }, { text: 'geht früher.', gruen: true }],
+    erklaerung:
+      'Christine Lagarde gibt ihr Amt am 7. Februar 2027 auf – fast neun Monate vor dem regulären Ende ihrer achtjährigen Amtszeit.',
+    stichzeile: 'EZB-Präsidenten · Amtszeit seit 1998',
+    helden: [
+      {
+        name: 'Amtszeit Lagarde',
+        wert: '7,3 Jahre',
+        pille: { wert: '8 Jahre', name: 'wären regulär' },
+      },
+    ],
+    balken: [
+      {
+        name: 'Wim Duisenberg',
+        beginn: '1998-06-01',
+        ende: '2003-10-31',
+        regelEnde: '2006-05-31',
+        text: '5,4 J.',
+        bild: 'ezb-duisenberg.jpg',
+      },
+      {
+        name: 'Jean-Claude Trichet',
+        beginn: '2003-11-01',
+        ende: '2011-10-31',
+        text: '8 J.',
+        bild: 'ezb-trichet.jpg',
+      },
+      {
+        name: 'Mario Draghi',
+        beginn: '2011-11-01',
+        ende: '2019-10-31',
+        text: '8 J.',
+        bild: 'ezb-draghi.jpg',
+      },
+      {
+        name: 'Christine Lagarde',
+        beginn: '2019-11-01',
+        ende: '2027-02-07',
+        regelEnde: '2027-10-31',
+        text: '7,3 J.',
+        bild: 'ezb-lagarde.jpg',
+        hervor: true,
+      },
+    ],
+    achse: [2000, 2005, 2010, 2015, 2020, 2025],
+    fusszeile:
+      'Stand: 29.10.2026 | Quellen: EZB über Tagesschau, Wikipedia (Präsident der EZB)',
+    text:
+      'Christine Lagarde gibt ihr Amt als EZB-Präsidentin am 7. Februar 2027 auf – regulär wäre Ende Oktober 2027 Schluss gewesen (Tagesschau).\n\n' +
+      'Die Balken im Bild, Präsident für Präsident:\n' +
+      'Wim Duisenberg (Niederlande): Juni 1998 – Oktober 2003, 5,4 Jahre\n' +
+      'Jean-Claude Trichet (Frankreich): November 2003 – Oktober 2011, 8 Jahre\n' +
+      'Mario Draghi (Italien): November 2011 – Oktober 2019, 8 Jahre\n' +
+      'Christine Lagarde (Frankreich): November 2019 – Februar 2027, 7,3 Jahre\n\n' +
+      'Gestrichelt: der Rest bis zum regulären Ende. Vorzeitig ging bisher nur Duisenberg – laut Wikipedia aus Altersgründen.\n\n' +
+      'Warum geht Lagarde?\n' +
+      'Laut Handelsblatt will sie offen sprechen können, vor allem zur Präsidentschaftswahl in Frankreich im April 2027. Mit der Neutralität des Amtes sei das nicht vereinbar.\n\n' +
+      'Wer folgt auf Lagarde? (Seite 2)\n' +
+      '– Pablo Hernández de Cos (Spanien), seit 2025 Chef der BIZ, davor der Banco de España – Polymarket: 42,5 %\n' +
+      '– Klaas Knot (Niederlande), 2011–2025 Chef der niederländischen Notenbank, offiziell nominiert – 40 %\n' +
+      '– Joachim Nagel (Deutschland), Bundesbank-Präsident seit 2022, Chancen gelten als gering – 6,5 %\n' +
+      'Polymarket ist ein Wettmarkt mit wenig Einsatz, keine Umfrage (Stand 5.11.). Benannt wird bis Freitag (tagesschau, WiWo/dpa).\n\n' +
+      'Quellen: Tagesschau, Handelsblatt, WirtschaftsWoche/dpa, Wikipedia, Polymarket\n' +
+      'Fotos (Wikimedia Commons): Duisenberg – IWF, gemeinfrei; Trichet – World Economic Forum, CC BY-SA 2.0; Draghi – Quirinale; Lagarde – Lemrich/EZB; Knot – WEF, CC BY 3.0; Hernández de Cos – Chospo, CC0; Nagel – Leonhard Lenz, CC BY 4.0',
+    zweiteSeite: {
+      art: 'personen',
+      datum: '2026-11-05',
+      titel: [{ text: 'Wer folgt' }, { text: 'auf Lagarde?', gruen: true }],
+      erklaerung:
+        'Die Eurostaaten benennen ihre Kandidaten bis Freitag, beraten wird kommende Woche.',
+      stichzeile: 'Mögliche Nachfolger · Quote Polymarket',
+      personen: [
+        {
+          name: 'Pablo Hernández de Cos',
+          zeile: 'Spanien · seit 2025 Chef der BIZ, davor Banco de España',
+          stand: 'Gilt als aussichtsreich · Polymarket 42,5 %',
+          bild: 'ezb-hernandez.jpg',
+        },
+        {
+          name: 'Klaas Knot',
+          zeile: 'Niederlande · 2011–2025 Chef der Notenbank DNB',
+          stand: 'Offiziell nominiert · Polymarket 40 %',
+          bild: 'ezb-knot.jpg',
+        },
+        {
+          name: 'Joachim Nagel',
+          zeile: 'Deutschland · seit 2022 Präsident der Bundesbank',
+          stand: 'Chancen gelten als gering · Polymarket 6,5 %',
+          bild: 'ezb-nagel.jpg',
+        },
+      ],
+      fusszeile:
+        'Stand: 05.11.2026 | Quellen: tagesschau, WirtschaftsWoche/dpa, Wikipedia, Polymarket (Wettquote)',
+      text: '',
+      schlagworte: [],
+    },
+    freigabe: '2026-11-05',
+    schlagworte: ['ezb', 'lagarde', 'notenbank', 'euro', 'geldpolitik'],
+  },
+  {
+    /*
+      Thema vom Betreiber am 04.11.2026: „content für heute Zwischenwahlen
+      USA Ergebnis und in der Beschreibung erläutern, … dass das
+      Auswirkungen hat", ausnahmsweise 10:30–11:00 Uhr (`ab`).
+      Erster Entwurf (S&P 500 nach Zwischenwahlen) verworfen: „nicht im
+      historischen Kontext, sondern die Ergebnisse von diesem Jahr".
+      Zweiter Entwurf (Balken): „ziemlich unverständlich". Jetzt je
+      Kammer ein Balken über alle Sitze mit Mehrheitsstrich.
+      Form: Kammern (am 03.11. vielfach). Stand der Sitze:
+      CNBC Live-Updates, abgerufen 04.11. 09:17 UTC – Demokraten im Haus
+      mindestens 245, Republikaner mindestens 160.
+
+      Quellen, gelesen am 04.11.2026 gegen 6 Uhr über quellen-holen.yml:
+      - tagesschau.de, Eilmeldung und Liveblog Midterms 2026: Demokraten
+        laut AP mit mindestens 51 der 100 Senatssitze; erobert in Texas
+        (Talarico gegen Paxton, erstmals seit fast 40 Jahren), Kansas
+        (Hamilton gegen Marshall), Ohio (Brown gegen Husted), Iowa, North
+        Carolina (Cooper gegen Whatley), South Carolina (Andrews, erste
+        Demokratin seit 28 Jahren). Vorher Republikaner 53 Senatoren, im
+        Haus 218 von 435. Trump will laut NYT-Interview das Ergebnis
+        anerkennen. Fox-Umfrage: 62 % machen Trumps Politik für
+        gestiegene Preise verantwortlich.
+      - CNBC, Live-Updates: Election Desk sieht die Demokraten bei
+        mindestens 235 Sitzen im Repräsentantenhaus (218 nötig);
+        Gouverneursämter in Texas (Hinojosa gegen Abbott) und Ohio
+        (Acton gegen Ramaswamy) gedreht; Iowa: Zölle und durch den
+        Iran-Krieg gestiegene Düngerkosten.
+      - CNBC, „Midterm elections could jolt stocks …", 03.11.2026:
+        JPMorgan erwartet bei blauer Welle etwa −0,5 % für den S&P 500 am
+        Mittwoch, Futures zeigten mehr; Druck auf KI/Rechenzentren und
+        Rüstung, Rückenwind für Gesundheitswerte; S&P 500 ein Jahr nach
+        jeder Zwischenwahl seit Anfang der 1980er höher; BTIG (Krinsky)
+        hält diesmal das Gegenteil für wahrscheinlicher.
+      - Yahoo Finance, ^GSPC Monatsschluss (ab 1985), abgerufen 04.11.:
+        Oktober des Wahljahrs → Oktober ein Jahr später
+          1986 243,98 → 251,79 +3,2 · 1990 304,00 → 392,45 +29,1 ·
+          1994 472,35 → 581,50 +23,1 · 1998 1.098,67 → 1.362,93 +24,1 ·
+          2002 885,76 → 1.050,71 +18,6 · 2006 1.377,94 → 1.549,38 +12,4 ·
+          2010 1.183,26 → 1.253,30 +5,9 · 2014 2.018,05 → 2.079,36 +3,0 ·
+          2018 2.711,74 → 3.037,56 +12,0 · 2022 3.871,98 → 4.193,80 +8,3
+    */
+    art: 'kammern',
+    datum: '2026-11-04',
+    ab: '10:30',
+    titel: [{ text: 'US-Zwischenwahl:' }, { text: 'Die blaue Welle kam.', gruen: true }],
+    symbol: 'usa',
+    erklaerung:
+      'Die Demokraten haben jetzt die Mehrheit in beiden Kammern des Kongresses. Stand Mittwochvormittag – es wird noch gezählt.',
+    stichzeile: 'Sitze der Demokraten · Wahl 2026',
+    helden: [
+      {
+        name: 'Senat · von 100 Sitzen',
+        wert: '51',
+        pille: { wert: '+6', name: 'Sitze erobert' },
+      },
+      {
+        name: 'Haus · von 435 Sitzen',
+        wert: '245',
+        pille: { wert: '218', name: 'für die Mehrheit' },
+      },
+    ],
+    kammern: [
+      {
+        name: 'Senat',
+        gesamt: 100,
+        mehrheit: 51,
+        teile: [
+          { name: 'Demokraten', wert: 51, farbe: 'blau' },
+          { name: 'Republikaner und noch offen', wert: 49, farbe: 'rot' },
+        ],
+      },
+      {
+        name: 'Repräsentantenhaus',
+        gesamt: 435,
+        mehrheit: 218,
+        teile: [
+          { name: 'Demokraten', wert: 245, farbe: 'blau' },
+          { name: 'noch offen', wert: 30, farbe: 'offen' },
+          { name: 'Republikaner', wert: 160, farbe: 'rot' },
+        ],
+      },
+    ],
+    fusszeile:
+      'Stand: 04.11.2026, 10 Uhr, Auszählung läuft | Quellen: AP über tagesschau, CNBC Election Desk',
+    text:
+      'Die Nacht der Demokraten. 🇺🇸 Bei den Zwischenwahlen haben sie laut der Nachrichtenagentur AP den Senat erobert – mit mindestens 51 von 100 Sitzen. Bisher hatten die Republikaner 53. Im Repräsentantenhaus sieht das CNBC Election Desk die Demokraten bei mindestens 245 der 435 Sitze, die Republikaner bei mindestens 160 – bisher hielten sie 218. Für die Mehrheit reichen 218.\n\n' +
+      'Die sechs eroberten Senatssitze laut AP:\n' +
+      'Texas – James Talarico, erstmals seit fast 40 Jahren\n' +
+      'Kansas – Adam Hamilton\n' +
+      'Ohio – Sherrod Brown\n' +
+      'Iowa – Josh Turek\n' +
+      'North Carolina – Roy Cooper\n' +
+      'South Carolina – Annie Andrews, erste Demokratin seit 28 Jahren\n' +
+      'Dazu die Gouverneure in Texas (Gina Hinojosa) und Ohio (Amy Acton). Elon Musk hatte laut CNBC rund 224 Mio. $ auf die Texas-Republikaner gesetzt.\n\n' +
+      'Warum?\n' +
+      'Laut tagesschau spricht das Ergebnis für erhebliche Unzufriedenheit mit Trumps Politik. In einer Fox-Umfrage machten 62 % seine Politik für gestiegene Preise verantwortlich. In Iowa trafen laut CNBC Zölle und teurer Dünger durch den Iran-Krieg die Landwirte.\n\n' +
+      'Was das bedeutet:\n' +
+      '– Trump regiert bis Anfang 2029 gegen einen Kongress der Gegenseite. Er will das Ergebnis laut New York Times anerkennen und mit den Demokraten zusammenarbeiten.\n' +
+      '– Börse: JPMorgan rechnete laut CNBC bei einer blauen Welle mit etwa −0,5 % für den S&P 500 heute.\n' +
+      '– Unter Druck stehen könnten laut CNBC KI- und Rechenzentrumswerte – Texas ist ihr wichtigster Standort – sowie Rüstung. Rückenwind gäbe es für Gesundheitswerte.\n\n' +
+      'Quellen: AP über tagesschau.de (Liveblog Midterms), CNBC (Live-Updates, Election Desk, Markt-Ausblick)',
+    freigabe: '2026-11-04',
+    schlagworte: ['usa', 'zwischenwahlen', 'wahlen', 'kongress', 'börse'],
+  },
+  {
+    /*
+      Thema vom Betreiber am 02.11.2026: „was Spannendes … wegen dem
+      Iran-Krieg jetzt. Atomwaffen und so." Verworfen hatte er Lagarde
+      (zurückgestellt), Gold, Binance, Meta, VW, Termine der Woche.
+      Form: Kurven (am 01.11. Säulen).
+      Am 02.11.2026 zurückgestellt (an dem Tag lief „Kriege und der
+      Ölpreis"). Für den 03.11. erster offener Vorschlag. Betreiber zum
+      ersten Entwurf: „oben nicht USA und Russland so groß, sondern
+      insgesamt Sprengköpfe … damals und heute, dann halt noch ein paar
+      Charts dazu. Von China, Nordkorea und so weiter." Form: Gesamtkurve
+      mit kleinen Kurven je Atommacht (am 02.11. waagerechte Balken).
+      Welt: OWID 1986 70.374, 2026 12.187 (= FAS-Gesamtbestand); Länder:
+      OWID = FAS-Militärbestand, Summe 9.745. Höchststände: Frankreich
+      1991 540, Großbritannien 1973 500; China, Indien, Nordkorea 2026,
+      Pakistan 170 seit 2023, Israel 90 seit 2020.
+
+      Quellen, gelesen am 02.11.2026 über quellen-holen.yml:
+      - FAS, „Status of World Nuclear Forces 2026": 12.187 Sprengköpfe in
+        neun Staaten, davon 9.745 im Militärbestand; USA und Russland
+        besitzen rund 86 % des Gesamtbestands; Höhepunkt rund 70.300 im
+        Jahr 1986. Gesamtbestand je Land: Russland 5.420, USA 5.042,
+        China 620, Frankreich 370, Großbritannien 225, Indien 190,
+        Pakistan 170, Israel 90, Nordkorea 60. Der Abbau verlangsamt sich
+        und läuft nur noch über die Verschrottung ausgemusterter
+        Sprengköpfe; die Militärbestände wachsen wieder. China baut aus,
+        laut US-Verteidigungsministerium (2022) bis 2030 rund 1.000.
+        Seit 2023 tauschen USA und Russland keine öffentlichen Daten mehr.
+      - Our World in Data, Militärbestand je Jahr (data/instagram-reihen-atomwaffen.ts):
+        Russland/Sowjetunion Höchststand 1986 mit 40.159, 2026: 4.400
+        (−89 %); USA Höchststand 1967 mit 31.255, 2026: 3.700 (−88 %).
+      Iran: steht nicht in der FAS-Liste der neun Atommächte.
+    */
+    art: 'vielfach',
+    datum: '2026-11-03',
+    titel: [
+      { text: 'Atomwaffen weltweit:' },
+      { text: 'Weniger, nicht weg.', gruen: true },
+    ],
+    erklaerung:
+      'Sprengköpfe auf der Welt seit 1945 und der einsatzbereite Bestand jeder der neun Atommächte – logarithmische Skala.',
+    stichzeile: 'Atomsprengköpfe · 1945 bis 2026',
+    helden: [
+      { name: 'Höchststand 1986', wert: '70.374' },
+      {
+        name: 'Anfang 2026',
+        wert: '12.187',
+        pille: { wert: '−83 %', name: 'seit 1986', richtung: 'faellt' },
+      },
+    ],
+    gesamt: { name: 'Welt', punkte: ATOM_WELT },
+    achse: [
+      { bei: 0, text: '1945' },
+      { bei: 15, text: '1960' },
+      { bei: 35, text: '1980' },
+      { bei: 55, text: '2000' },
+      { bei: 81, text: '2026' },
+    ],
+    teile: [
+      { name: 'Russland', wert: '4.400', punkte: ATOM_RUSSLAND },
+      { name: 'USA', wert: '3.700', punkte: ATOM_USA },
+      { name: 'China', wert: '620', punkte: ATOM_CHINA },
+      { name: 'Frankreich', wert: '290', punkte: ATOM_FRANKREICH },
+      { name: 'Großbritannien', wert: '225', punkte: ATOM_GROSSBRITANNIEN },
+      { name: 'Indien', wert: '190', punkte: ATOM_INDIEN },
+      { name: 'Pakistan', wert: '170', punkte: ATOM_PAKISTAN },
+      { name: 'Israel', wert: '90', punkte: ATOM_ISRAEL },
+      { name: 'Nordkorea', wert: '60', punkte: ATOM_NORDKOREA },
+    ],
+    fusszeile:
+      'Stand: Anfang 2026 | Quellen: Federation of American Scientists, Our World in Data',
+    text:
+      'Krieg um den Iran, Drohungen, Aufrüstung – wie viele Atomwaffen gibt es eigentlich? Laut der Federation of American Scientists (FAS) Anfang 2026 rund 12.187 Sprengköpfe auf der Welt. 1986, auf dem Höhepunkt des Kalten Kriegs, waren es 70.374 – heute 83 % weniger.\n\n' +
+      'Die neun Atommächte und ihr einsatzbereiter Bestand laut FAS:\n' +
+      'Russland: 4.400\n' +
+      'USA: 3.700\n' +
+      'China: 620\n' +
+      'Frankreich: 290\n' +
+      'Großbritannien: 225\n' +
+      'Indien: 190\n' +
+      'Pakistan: 170\n' +
+      'Israel: 90\n' +
+      'Nordkorea: 60\n' +
+      'Zusammen 9.745. Der Rest der 12.187 ist ausgemustert und wartet auf die Verschrottung. Der Iran steht nicht auf der Liste.\n\n' +
+      'So liest du die Grafik: Die Skala ist logarithmisch – jede Linie steht für das Zehnfache der darunter. Nur so sind die 60 Sprengköpfe Nordkoreas neben den 4.400 Russlands zu sehen.\n\n' +
+      'Schon gewusst?\n' +
+      '– Russland (bis 1991 Sowjetunion) hatte 1986 allein 40.159 Sprengköpfe, die USA 1967 31.255.\n' +
+      '– China hat so viele wie nie: 620. Indien, Pakistan und Nordkorea stehen ebenfalls auf ihrem Höchststand.\n' +
+      '– Frankreich hatte 1991 540, Großbritannien 1973 500 – beide haben seitdem abgebaut.\n\n' +
+      'Warum so viel weniger?\n' +
+      'Laut FAS bauten die USA und Russland nach dem Kalten Krieg ab. Inzwischen gehe der Abbau nur noch weiter, weil ausgemusterte Sprengköpfe verschrottet werden.\n\n' +
+      'Und jetzt?\n' +
+      'Die einsatzbereiten Bestände wachsen laut FAS wieder. Das US-Verteidigungsministerium rechnete 2022 mit rund 1.000 chinesischen Sprengköpfen bis 2030.\n\n' +
+      'Quellen: Federation of American Scientists, „Status of World Nuclear Forces 2026"; Our World in Data, „Nuclear warhead stockpiles"',
+    freigabe: '2026-11-03',
+    schlagworte: ['atomwaffen', 'geopolitik', 'iran', 'russland', 'usa'],
+  },
+  {
+    /*
+      Thema vom Betreiber am 02.11.2026 gewählt („Thema 2": Kriege und der
+      Ölpreis), nachdem er Lagarde und Atomwaffen zurückgestellt hatte.
+      Form: waagerechte Balken im Hausstil, neu (am 01.11. Säulen).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, Stand 02.10.2026, abgerufen am
+      02.11.2026 über quellen-holen.yml (blatt 2). Reihe „Crude oil,
+      average" (Mittel aus Brent, Dubai, WTI), $ je Fass, Monatsmittel.
+      Gerechnet: Monat vor Beginn gegen den teuersten (Kriege) bzw.
+      billigsten Monat (Krisen) der zwölf Monate ab Beginn (2026: Februar
+      bis September, acht Monate). Krisen auf Wunsch des Betreibers
+      („ein paar andere Beispiele extreme … nicht nur Kriege, sondern auch
+      Krisen"):
+        1986 (Jan.)  12/1985  26,5 → 07/1986   9,6    −64 %
+        2008 (Sept.) 08/2008 114,6 → 12/2008  41,3    −64 %
+        2020 (März)  02/2020  53,3 → 04/2020  21,0    −61 %
+        1973 (Okt.)  09/1973   2,7 → 03/1974  13,0   +381 %
+        1979 (Jan.)  12/1978  14,5 → 11/1979  40,8   +181 %
+        1990 (Aug.)  07/1990  17,2 → 10/1990  34,5   +101 %
+        2022 (Feb.)  01/2022  83,9 → 06/2022 116,8    +39 %
+        2026 (Feb.)  01/2026  63,7 → 04/2026 103,9    +63 %
+        2026 weiter: 05 100,4 · 06 81,7 · 07 79,8 · 08 84,4 · 09 102,3
+      Kriegsbeginn 2026 „Ende Februar" laut goldreporter.de (unsere Ausgabe
+      vom 01.10.2026). Die Brent-Spalte nicht genommen: Sie zeigt für
+      September 116,8 $, unsere Quellen nannten zum Quartalsende knapp
+      98 $ – die Mittelreihe passt dazu.
+    */
+    art: 'balken',
+    datum: '2026-11-02',
+    titel: [
+      { text: 'Krieg, Krise, Ölpreis:' },
+      { text: 'Teuer, aber kein 1973.', gruen: true },
+    ],
+    erklaerung:
+      'Stärkster Ausschlag des Ölpreises im Jahr nach Beginn: teuerster oder billigster Monat gegen den Monat davor.',
+    stichzeile: 'Rohöl · nach Kriegen und Krisen',
+    helden: [
+      {
+        name: 'Krieg um den Iran',
+        wert: '+63 %',
+        pille: { wert: '103,9 $', name: 'je Fass im April' },
+      },
+    ],
+    balken: [
+      { marke: '1973', text: 'Ölembargo', wert: 381.48 },
+      { marke: '1979', text: 'Revolution im Iran', wert: 181.38 },
+      { marke: '1986', text: 'Ölpreisverfall', wert: -63.77 },
+      { marke: '1990', text: 'Irak besetzt Kuwait', wert: 100.58 },
+      { marke: '2008', text: 'Finanzkrise', wert: -63.96 },
+      { marke: '2020', text: 'Corona', wert: -60.6 },
+      { marke: '2022', text: 'Krieg in der Ukraine', wert: 39.21 },
+      { marke: '2026', text: 'Krieg um den Iran', wert: 63.11, hervor: true },
+    ],
+    einheit: '%',
+    fusszeile:
+      'Stand: 09/2026 | Quelle: Weltbank (Pink Sheet), Rohöl-Mittel aus Brent, Dubai, WTI; eigene Rechnung',
+    text:
+      'Krieg treibt den Ölpreis, Krisen lassen ihn abstürzen – aber wie stark? Gemessen mit Monatspreisen der Weltbank: stärkster Ausschlag im Jahr nach Beginn, gegen den Monat davor.\n\n' +
+      'Die Balken im Bild, Fall für Fall ($ je Fass):\n' +
+      '1973 – Ölembargo: 2,70 → 13,00, +381 %\n' +
+      '1979 – Revolution im Iran: 14,50 → 40,80, +181 %\n' +
+      '1986 – Ölpreisverfall: 26,50 → 9,60, −64 %\n' +
+      '1990 – Irak besetzt Kuwait: 17,20 → 34,50, +101 %\n' +
+      '2008 – Finanzkrise: 114,60 → 41,30, −64 %\n' +
+      '2020 – Corona: 53,30 → 21,00, −61 %\n' +
+      '2022 – Krieg in der Ukraine: 83,90 → 116,80, +39 %\n' +
+      '2026 – Krieg um den Iran: 63,70 → 103,90, +63 % (bis September)\n\n' +
+      'Warum war 1973 so extrem?\n' +
+      'Die Zahlen nennen keinen Grund, aber den Ausgangspunkt: 1973 kostete ein Fass 2,70 $ – ein Sprung von wenigen Dollar war schon eine Vervielfachung.\n\n' +
+      'Schon gewusst?\n' +
+      '– Von 1960 bis 1972 kostete ein Fass nie mehr als 1,90 $ – 13 Jahre fast Stillstand, dann kam 1973.\n' +
+      '– Der teuerste Monat überhaupt war der Juli 2008 mit 132,80 $. Im Dezember, mitten in der Finanzkrise: 41,30 $.\n' +
+      '– Im April 2020 fiel der Preis auf 21,00 $ – so billig wie seit Februar 2002 nicht mehr.\n' +
+      '– Der Iran-Krieg brachte bisher höchstens 103,90 $, weniger als der Ukraine-Krieg im Juni 2022 mit 116,80 $.\n\n' +
+      'Und jetzt?\n' +
+      'Der Krieg um den Iran begann Ende Februar. Im April lag der Preis am höchsten, im Juli bei 79,80 $, im September wieder bei 102,30 $. Wie es weitergeht, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Rohöl-Mittel aus Brent, Dubai und WTI, Monatsdurchschnitt, nicht inflationsbereinigt.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 2. Oktober 2026; eigene Rechnung',
+    freigabe: '2026-11-02',
+    schlagworte: ['oelpreis', 'iran', 'krieg', 'rohstoffe', 'geopolitik'],
+  },
   {
     /*
       Thema vom Betreiber am 30.10.2026: Zwischenwahl, aber einfach. Verworfen
@@ -1172,6 +1680,14 @@ export const zahlenkarten: Zahlenkarte[] = [
 ]
 
 /** Die jüngste Karte – die, um die es heute geht. */
+/**
+ * Gebaut, aber zurückgestellt. Betreiber, 02.11.2026, zur Lagarde-Karte:
+ * „So ähnlich können wir das speichern für wann anders, aber heute ist es
+ * … wichtigere Themen." Wer eine davon bringt, setzt das Datum und hängt sie
+ * oben in `zahlenkarten` ein.
+ */
+export const zurueckgestellt: Zahlenkarte[] = []
+
 export function aktuelleZahlenkarte(): Zahlenkarte | null {
   return [...zahlenkarten].sort((a, b) => b.datum.localeCompare(a.datum))[0] ?? null
 }

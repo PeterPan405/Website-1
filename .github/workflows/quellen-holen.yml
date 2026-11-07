@@ -96,6 +96,11 @@ on:
         required: false
         default: ''
         type: string
+      blatt:
+        description: 'Bei XLSX: Nummer des Arbeitsblatts (sheetN.xml) – leer heißt das erste'
+        required: false
+        default: ''
+        type: string
 
 # Zwei gleichzeitige Läufe stören einander nicht, aber sie machen das Protokoll
 # unübersichtlich. Der laufende wird nicht abgebrochen.
@@ -151,6 +156,7 @@ jobs:
           ZEICHEN: ${{ inputs.zeichen }}
           SUCHE: ${{ inputs.suche }}
           VERWEISE: ${{ inputs.verweise }}
+          BLATT: ${{ inputs.blatt }}
         run: |
           python3 - <<'ENDE' | tee quellen.txt
           import html
@@ -259,10 +265,18 @@ jobs:
                       datei.flush()
                       with zipfile.ZipFile(datei.name) as archiv:
                           namen = archiv.namelist()
-                          blatt = next(
-                              (n for n in sorted(namen) if n.startswith("xl/worksheets/sheet")),
-                              None,
-                          )
+                          # Die Weltbank legt ihre Monatspreise (Pink Sheet) ins
+                          # zweite Blatt; das erste ist ein Abgleichsprotokoll.
+                          gewuenscht = (os.environ.get("BLATT") or "").strip()
+                          if gewuenscht:
+                              blatt = f"xl/worksheets/sheet{gewuenscht}.xml"
+                              if blatt not in namen:
+                                  return f"[XLSX ohne {blatt}; vorhanden: {', '.join(n for n in namen if 'worksheets/sheet' in n)}]"
+                          else:
+                              blatt = next(
+                                  (n for n in sorted(namen) if n.startswith("xl/worksheets/sheet")),
+                                  None,
+                              )
                           if not blatt:
                               return "[XLSX ohne Arbeitsblatt]"
 

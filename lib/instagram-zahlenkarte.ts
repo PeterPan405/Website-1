@@ -83,6 +83,18 @@ interface KarteGemeinsam {
    * Gesetzt wird es **nach** seinem „passt", nie davor; ein Entwurf hat keins.
    */
   freigabe?: string
+  /**
+   * Ausnahmsweise früher als 15 Uhr hinaus, „HH:MM" deutscher Zeit
+   * (Betreiber, 04.11.2026, zu den US-Zwischenwahlen: „ausnahmsweise um
+   * 10:30 Uhr bis 11:00 Uhr"). Nur zusammen mit der Freigabe wirksam.
+   */
+  ab?: string
+  /**
+   * Eine zweite Seite – dann geht die Karte als Karussell aus zwei Bildern
+   * hinaus (`/instagram/zahlenkarte-2.jpg`). Sie teilt Datum, Freigabe und
+   * Beschriftung der ersten.
+   */
+  zweiteSeite?: Personenkarte
 }
 
 /** Zwei Balken gegeneinander – die Form des Vorbilds vom 12.10.2026. */
@@ -322,7 +334,10 @@ export interface Kurvenkarte extends StilGemeinsam {
   linien: {
     name: string
     ende: string
-    richtung: 'steigt' | 'faellt'
+    /** Ohne Richtung steht die Linie in Tinte – etwa wenn beide fallen und sich sonst nicht unterscheiden. */
+    richtung?: 'steigt' | 'faellt'
+    /** „grau" setzt die zweite Linie ab, wenn beide keine Richtung tragen. */
+    ton?: 'grau'
     punkte: readonly number[]
   }[]
   /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
@@ -330,6 +345,8 @@ export interface Kurvenkarte extends StilGemeinsam {
   /** Hinter den Zahlen der y-Achse: „€". */
   einheit: string
   kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
+  /** Den Namen jeder Linie über ihren Höchststand schreiben – nötig, wenn die Farben keine Richtung tragen. */
+  namenAnKurve?: boolean
 }
 
 /**
@@ -349,9 +366,107 @@ export interface Saeulenkarte extends StilGemeinsam {
   nachkomma?: number
 }
 
+/**
+ * Zeitstrahl im Hausstil (02.11.2026, Lagardes vorzeitiger Abschied): je
+ * Person ein waagerechter Balken über ihre Amtszeit, mit rundem Porträt
+ * davor. Was regulär noch übrig gewesen wäre, steht gestrichelt dahinter.
+ * Für eine Abfolge von Amtsinhabern oder Zeitabschnitten.
+ */
+export interface Zeitstrahlkarte extends StilGemeinsam {
+  art: 'zeitstrahl'
+  helden: Held[]
+  /** Daten als JJJJ-MM-TT; `regelEnde` nur, wenn `ende` davor liegt. */
+  balken: {
+    name: string
+    beginn: string
+    ende: string
+    regelEnde?: string
+    /** Hinter dem Balken: „5,4 Jahre". */
+    text: string
+    bild?: string
+    /** Der eine Balken, um den es geht – in Tinte, die anderen grau. */
+    hervor?: boolean
+  }[]
+  /** Jahre, an denen die x-Achse beschriftet wird. */
+  achse: number[]
+}
+
+/**
+ * Waagerechte Balken im Hausstil (02.11.2026, Kriege und der Ölpreis): je
+ * Zeile ein Fall mit Jahr und Name links, der Balken nach rechts, sein Wert
+ * dahinter. Für drei bis acht Fälle, die man nebeneinander misst – anders
+ * als `saeulen` ohne Zeitachse, die Reihenfolge ist die der Zeilen.
+ */
+export interface Balkenkarte extends StilGemeinsam {
+  art: 'balken'
+  helden: Held[]
+  balken: {
+    /** Fett, vorn: „1973". */
+    marke: string
+    /** Grau, dahinter: „Ölembargo". */
+    text: string
+    wert: number
+    /** In Tinte statt Grau – der eine Fall, um den es geht. */
+    hervor?: boolean
+  }[]
+  /** Hinter den Werten: „%". */
+  einheit: string
+  /** false: Werte ohne „+" – für Anzahlen wie Sitze, nicht für Veränderungen. */
+  vorzeichen?: boolean
+}
+
+/**
+ * Eine Gesamtkurve und darunter kleine Kurven je Teil, jede auf eigener
+ * Skala (03.11.2026, Atomsprengköpfe weltweit und je Atommacht –
+ * Betreiber: „insgesamt Sprengköpfe … dann halt noch ein paar Charts
+ * dazu. Von China, Nordkorea und so weiter"). Alle Reihen gleich lang.
+ */
+export interface Vielfachkarte extends StilGemeinsam {
+  art: 'vielfach'
+  helden: Held[]
+  gesamt: { name: string; punkte: readonly number[] }
+  /** Beschriftung der x-Achse der Gesamtkurve: Stelle in `punkte` und Text. */
+  achse: { bei: number; text: string }[]
+  /** Drei bis neun, in Reihen zu drei. `wert` steht neben dem Namen. */
+  teile: { name: string; wert: string; punkte: readonly number[] }[]
+}
+
+/**
+ * Sitzverteilung je Kammer als ein Balken über alle Sitze (04.11.2026,
+ * US-Zwischenwahl – Betreiber zur Balkenfassung: „ziemlich
+ * unverständlich"). Ein Strich markiert die Mehrheit. Parteifarben
+ * stehen hier für Parteien, nicht für eine Richtung.
+ */
+export interface Kammerkarte extends StilGemeinsam {
+  art: 'kammern'
+  helden: Held[]
+  kammern: {
+    name: string
+    gesamt: number
+    mehrheit: number
+    teile: { name: string; wert: number; farbe: 'blau' | 'rot' | 'offen' }[]
+  }[]
+}
+
+/**
+ * Eine Seite mit Personen im Hausstil – rundes Porträt, Name, eine Zeile
+ * zu Herkunft und Amt, eine zum Stand (05.11.2026, mögliche Nachfolger
+ * Lagardes; Betreiber: „Mach doch noch eine zweite Seite für mögliche
+ * Nachfolger"). Bisher nur als zweite Seite (`zweiteSeite`).
+ */
+export interface Personenkarte extends StilGemeinsam {
+  art: 'personen'
+  personen: { name: string; zeile: string; stand: string; bild?: string }[]
+}
+
 export type Zahlenkarte =
+  | Personenkarte
+  | Kammerkarte
+  | Vielfachkarte
   | Kurvenkarte
   | Saeulenkarte
+  | Zeitstrahlkarte
+  | Balkenkarte
   | Tortenkarte
   | Pyramidenkarte
   | Vergleichskarte
@@ -688,7 +803,16 @@ const RL_BALKEN_X = 40 + 3 + 18 + 46 + 16 + 250
 const RL_BALKEN = 430
 
 /** Was jede Karte im Hausstil einhalten muss (`INSTAGRAM-STIL.md`). */
-function stilBefunde(k: Kurvenkarte | Saeulenkarte): string[] {
+function stilBefunde(
+  k:
+    | Kurvenkarte
+    | Saeulenkarte
+    | Zeitstrahlkarte
+    | Balkenkarte
+    | Vielfachkarte
+    | Kammerkarte
+    | Personenkarte
+): string[] {
   const f: string[] = []
   if (k.stichzeile.length > 40)
     f.push(`Stichzeile hat ${k.stichzeile.length} Zeichen – höchstens 40.`)
@@ -768,6 +892,54 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'personen') {
+    if (k.personen.length < 2 || k.personen.length > 4)
+      f.push(`${k.personen.length} Personen – zwei bis vier.`)
+    for (const pe of k.personen)
+      if (pe.bild !== undefined && !existsSync(join(FOTO_ORDNER, pe.bild)))
+        f.push(`Foto „${pe.bild}" fehlt in lib/instagram/fotos/.`)
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'kammern') {
+    for (const ka of k.kammern) {
+      const summe = ka.teile.reduce((a, t) => a + t.wert, 0)
+      if (summe !== ka.gesamt)
+        f.push(`${ka.name}: Teile ergeben ${summe}, nicht ${ka.gesamt}.`)
+    }
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'vielfach') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.teile.length < 3 || k.teile.length > 9)
+      f.push(`${k.teile.length} kleine Kurven – drei bis neun.`)
+    if (k.teile.some((t) => t.punkte.length !== k.gesamt.punkte.length))
+      f.push('Alle Reihen müssen gleich viele Punkte haben wie die Gesamtkurve.')
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'balken') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.balken.length < 3 || k.balken.length > 8)
+      f.push(`${k.balken.length} Balken – drei bis acht.`)
+    for (const b of k.balken)
+      if (b.text.length > 22)
+        f.push(`„${b.text}" hat ${b.text.length} Zeichen – höchstens 22 neben dem Jahr.`)
+    if (k.balken.filter((b) => b.hervor).length > 1)
+      f.push('Höchstens ein Balken hervorgehoben.')
+    f.push(...stilBefunde(k))
+  } else if (k.art === 'zeitstrahl') {
+    if (k.helden.length < 1 || k.helden.length > 2)
+      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.balken.length < 2 || k.balken.length > 6)
+      f.push(`${k.balken.length} Balken – zwei bis sechs.`)
+    if (k.balken.filter((b) => b.hervor).length > 1)
+      f.push('Höchstens ein Balken hervorgehoben.')
+    for (const b of k.balken) {
+      if (!(b.beginn < b.ende)) f.push(`${b.name}: Beginn nicht vor Ende.`)
+      if (b.regelEnde !== undefined && !(b.ende < b.regelEnde))
+        f.push(`${b.name}: regelEnde nicht nach Ende.`)
+      if (b.bild !== undefined && !existsSync(join(FOTO_ORDNER, b.bild)))
+        f.push(`Foto „${b.bild}" fehlt in lib/instagram/fotos/.`)
+    }
     f.push(...stilBefunde(k))
   } else if (k.art === 'pyramide') {
     if (k.stufen.length < 3 || k.stufen.length > 5)
@@ -1026,11 +1198,29 @@ export function signetOhneMitte(svg: string): string {
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
   const logo = svgAdresse(signetOhneMitte(logoSvg))
-  if (k.art === 'kurven' || k.art === 'saeulen') {
+  if (
+    k.art === 'kurven' ||
+    k.art === 'saeulen' ||
+    k.art === 'zeitstrahl' ||
+    k.art === 'balken' ||
+    k.art === 'vielfach' ||
+    k.art === 'kammern' ||
+    k.art === 'personen'
+  ) {
     const bild =
       k.art === 'kurven'
         ? kurvenBild(k, logo)
-        : stilBild(k, logo, k.helden, saeulenGrafik(k))
+        : k.art === 'saeulen'
+          ? stilBild(k, logo, k.helden, saeulenGrafik(k))
+          : k.art === 'personen'
+            ? stilBild(k, logo, [], personenGrafik(k))
+            : k.art === 'kammern'
+              ? stilBild(k, logo, k.helden, kammerGrafik(k))
+              : k.art === 'vielfach'
+                ? stilBild(k, logo, k.helden, vielfachGrafik(k))
+                : k.art === 'balken'
+                  ? stilBild(k, logo, k.helden, balkenGrafik(k))
+                  : stilBild(k, logo, k.helden, zeitstrahlGrafik(k))
     const antwort = new ImageResponse(bild, {
       width: ZK_BREITE,
       height: ZK_HOEHE,
@@ -2330,9 +2520,19 @@ export function form(
   | 'pyramide'
   | 'torte'
   | 'kurven'
-  | 'saeulen' {
+  | 'saeulen'
+  | 'zeitstrahl'
+  | 'hausbalken'
+  | 'vielfach'
+  | 'kammern'
+  | 'personen' {
+  if (k.art === 'personen') return 'personen'
+  if (k.art === 'kammern') return 'kammern'
+  if (k.art === 'balken') return 'hausbalken'
+  if (k.art === 'vielfach') return 'vielfach'
   if (
     k.art === 'kurven' ||
+    k.art === 'zeitstrahl' ||
     k.art === 'saeulen' ||
     k.art === 'verlauf' ||
     k.art === 'duell' ||
@@ -2990,7 +3190,14 @@ const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.
  * dazwischen (y 736–1200) bringt die Kartenart mit.
  */
 function stilBild(
-  k: Kurvenkarte | Saeulenkarte,
+  k:
+    | Kurvenkarte
+    | Saeulenkarte
+    | Zeitstrahlkarte
+    | Balkenkarte
+    | Vielfachkarte
+    | Kammerkarte
+    | Personenkarte,
   logo: string,
   helden: Held[],
   grafik: ReturnType<typeof h>[]
@@ -3154,7 +3361,25 @@ function stilBild(
       right: rand,
       fontSize: 16,
       color: STIL.hellgrau,
-    })
+    }),
+    /*
+      Hinweis aufs Weiterwischen, wenn es eine zweite Seite gibt (Betreiber,
+      05.11.2026: „irgendwie ein Vermerk, dass es eine zweite Seite gibt.
+      Vielleicht so ein Pfeil").
+      Schlicht, ohne Fläche (Betreiber zur Navy-Pille: „sieht komisch aus
+      und vibe gecodet"): ein grauer Hinweis rechts in der Fußzeile.
+    */
+    ...('zweiteSeite' in k && k.zweiteSeite
+      ? [
+          stilBlock('Weiter  →', {
+            top: ZK_HOEHE - 79,
+            right: rand,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : [])
   )
 }
 
@@ -3202,7 +3427,7 @@ function kurvenGrafik(k: Kurvenkarte) {
       .join('') +
     k.linien
       .map((l) => {
-        const farbe = stilFarbe(l.richtung)
+        const farbe = l.ton === 'grau' ? STIL.hellgrau : stilFarbe(l.richtung)
         return (
           `<path d="${pfad(l.punkte)}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
           `<circle cx="${x(anzahl - 1)}" cy="${y(l.punkte[anzahl - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
@@ -3219,6 +3444,21 @@ function kurvenGrafik(k: Kurvenkarte) {
       style: { position: 'absolute', left: diagrammL - luft, top: STIL_GRAFIK_O - luft },
     }),
     ...stilAchse(striche, y, diagrammR, k.einheit),
+    ...(k.namenAnKurve
+      ? k.linien.map((l) => {
+          const hoch = Math.max(...l.punkte)
+          const i = l.punkte.indexOf(hoch)
+          return stilBlock(l.name, {
+            top: STIL_GRAFIK_O + y(hoch) - 36,
+            left: diagrammL + x(i) - 100,
+            width: 200,
+            justifyContent: 'center',
+            fontSize: 20,
+            fontWeight: 700,
+            color: l.ton === 'grau' ? STIL.hellgrau : stilFarbe(l.richtung),
+          })
+        })
+      : []),
     ...k.achse.map((a, i) =>
       stilBlock(a.text, {
         top: STIL_GRAFIK_U + 16,
@@ -3343,6 +3583,501 @@ function saeulenGrafik(k: Saeulenkarte) {
         color: STIL.hellgrau,
       }),
     ]),
+  ]
+}
+
+/* Je Linie eine Farbe – gedeckt, ohne Grün und Rot, die eine Richtung tragen. */
+const LINIENFARBEN = [
+  '#0b1220',
+  '#17296F',
+  '#3f6fb5',
+  '#6b4fa0',
+  '#b07a2a',
+  '#2f8a8a',
+  '#8a5a44',
+  '#c0568a',
+  '#5b6472',
+]
+
+function personenGrafik(k: Personenkarte) {
+  const bild = 150
+  const oben = 500
+  const zeile = (1210 - oben) / k.personen.length
+  return k.personen.flatMap((pe, i) => {
+    const o = oben + i * zeile
+    const textLinks = STIL_RAND + bild + 36
+    return [
+      ...(pe.bild
+        ? [
+            h('img', {
+              src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, pe.bild)).toString('base64')}`,
+              width: bild,
+              height: bild,
+              style: {
+                position: 'absolute',
+                top: o,
+                left: STIL_RAND,
+                borderRadius: bild,
+                objectFit: 'cover',
+                border: `3px solid ${STIL.rand}`,
+              },
+            }),
+          ]
+        : []),
+      stilBlock(pe.name, {
+        top: o + 14,
+        left: textLinks,
+        fontSize: 36,
+        fontWeight: 800,
+        color: STIL.tinte,
+      }),
+      stilBlock(pe.zeile, {
+        top: o + 64,
+        left: textLinks,
+        width: ZK_BREITE - textLinks - STIL_RAND,
+        fontSize: 22,
+        color: STIL.grau,
+      }),
+      stilBlock(pe.stand, {
+        top: o + 100,
+        left: textLinks,
+        width: ZK_BREITE - textLinks - STIL_RAND,
+        fontSize: 22,
+        fontWeight: 700,
+        color: STIL.navy,
+      }),
+    ]
+  })
+}
+
+const PARTEIFARBE = { blau: '#1f4fa3', rot: '#b3262d', offen: '#d5dae2' }
+
+function kammerGrafik(k: Kammerkarte) {
+  const links = STIL_RAND
+  const breite = ZK_BREITE - 2 * STIL_RAND
+  const dicke = 70
+  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O) / k.kammern.length
+  return k.kammern.flatMap((ka, n) => {
+    const oben = STIL_GRAFIK_O + n * zeile
+    const balkenOben = oben + 44
+    let x = links
+    const stuecke = ka.teile.map((t) => {
+      const w = (t.wert / ka.gesamt) * breite
+      const s = { t, x, w }
+      x += w
+      return s
+    })
+    const strich = links + (ka.mehrheit / ka.gesamt) * breite
+    return [
+      stilBlock(ka.name, {
+        top: oben,
+        left: links,
+        fontSize: 26,
+        fontWeight: 800,
+        color: STIL.tinte,
+      }),
+      stilBlock(
+        `${ka.gesamt.toLocaleString('de-DE')} Sitze · Mehrheit ab ${ka.mehrheit}`,
+        {
+          top: oben + 6,
+          left: links,
+          width: breite,
+          justifyContent: 'flex-end',
+          fontSize: 19,
+          color: STIL.grau,
+        }
+      ),
+      ...stuecke.map((s, i) =>
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: balkenOben,
+            left: s.x + (i ? 2 : 0),
+            width: s.w - (i ? 2 : 0),
+            height: dicke,
+            backgroundColor: PARTEIFARBE[s.t.farbe],
+            borderTopLeftRadius: i === 0 ? 8 : 0,
+            borderBottomLeftRadius: i === 0 ? 8 : 0,
+            borderTopRightRadius: i === stuecke.length - 1 ? 8 : 0,
+            borderBottomRightRadius: i === stuecke.length - 1 ? 8 : 0,
+          },
+        })
+      ),
+      h('div', {
+        style: {
+          position: 'absolute',
+          top: balkenOben - 10,
+          left: strich - 1.5,
+          width: 3,
+          height: dicke + 20,
+          backgroundColor: STIL.tinte,
+        },
+      }),
+      ...stuecke.map((s, i) =>
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: balkenOben + dicke + 14,
+              /* Das letzte Stück rechtsbündig – sonst überlappt es ein schmales davor. */
+              left: i === stuecke.length - 1 && i > 0 ? links + breite - 320 : s.x,
+              width: i === stuecke.length - 1 && i > 0 ? 320 : Math.max(s.w, 150),
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: i === stuecke.length - 1 && i > 0 ? 'flex-end' : 'flex-start',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'span',
+            {
+              style: {
+                fontSize: 30,
+                fontWeight: 800,
+                color: s.t.farbe === 'offen' ? STIL.hellgrau : PARTEIFARBE[s.t.farbe],
+              },
+            },
+            s.t.wert.toLocaleString('de-DE')
+          ),
+          h('span', { style: { fontSize: 18, color: STIL.grau } }, s.t.name)
+        )
+      ),
+    ]
+  })
+}
+
+function vielfachGrafik(k: Vielfachkarte) {
+  /*
+    Alle Reihen in einem Koordinatensystem (Betreiber, 03.11.2026: „jedes
+    Land hat seinen eigenen Graphen, aber zusammen in einer
+    XY-Koordinate"). Logarithmische y-Achse, sonst lägen 60 Nordkoreas
+    unsichtbar unter 4.400 Russlands. Die Gesamtkurve gestrichelt in Grau.
+  */
+  const links = STIL_RAND + 70
+  const rechts = ZK_BREITE - STIL_RAND - 190
+  const breite = rechts - links
+  const oben = STIL_GRAFIK_O - 30
+  const hoehe = STIL_GRAFIK_U - oben
+  const anzahl = k.gesamt.punkte.length
+  const alle = [k.gesamt, ...k.teile].flatMap((r) => r.punkte).filter((v) => v > 0)
+  const unten = Math.pow(10, Math.floor(Math.log10(Math.min(...alle))))
+  const decke = Math.pow(10, Math.ceil(Math.log10(Math.max(...alle))))
+  const y = (v: number) =>
+    hoehe -
+    ((Math.log10(Math.max(v, unten)) - Math.log10(unten)) /
+      (Math.log10(decke) - Math.log10(unten))) *
+      hoehe
+  const x = (i: number) => (i / (anzahl - 1)) * breite
+  /* Erst ab dem ersten Sprengkopf zeichnen – log(0) gibt es nicht. */
+  const pfad = (p: readonly number[]) => {
+    let d = ''
+    p.forEach((v, i) => {
+      if (v <= 0) return
+      d += `${d ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+    })
+    return d
+  }
+  const striche: number[] = []
+  for (let v = unten; v <= decke; v *= 10) striche.push(v)
+  const reihen = [
+    {
+      name: k.gesamt.name,
+      wert: k.gesamt.punkte.at(-1)!.toLocaleString('de-DE'),
+      punkte: k.gesamt.punkte,
+      farbe: '#9aa3b0',
+      welt: true,
+    },
+    ...k.teile.map((t, n) => ({
+      ...t,
+      farbe: LINIENFARBEN[n % LINIENFARBEN.length],
+      welt: false,
+    })),
+  ]
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 20}" height="${hoehe + 20}" viewBox="-10 -10 ${breite + 20} ${hoehe + 20}">` +
+    striche
+      .map(
+        (v, i) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${i ? STIL.rand : '#c9cfd8'}" stroke-width="${i ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    reihen
+      .map(
+        (r) =>
+          `<path d="${pfad(r.punkte)}" fill="none" stroke="${r.farbe}" stroke-width="${r.welt ? 3 : 3}" ${r.welt ? 'stroke-dasharray="8 6"' : ''} stroke-linejoin="round" stroke-linecap="round"/>` +
+          `<circle cx="${x(anzahl - 1)}" cy="${y(r.punkte[anzahl - 1])}" r="5" fill="#fff" stroke="${r.farbe}" stroke-width="3"/>`
+      )
+      .join('') +
+    '</svg>'
+
+  /* Namen am Linienende, auseinandergeschoben, wo sie sich sonst überlägen. */
+  const abstand = 25
+  const schilder = reihen
+    .map((r) => ({ r, ziel: y(r.punkte[anzahl - 1]) }))
+    .sort((a, b) => a.ziel - b.ziel)
+  let zuletzt = -Infinity
+  for (const s of schilder) {
+    const lage = Math.max(s.ziel, zuletzt + abstand)
+    ;(s as { lage?: number }).lage = lage
+    zuletzt = lage
+  }
+  /* Ragt der unterste über den Rand, rückt alles nach oben. */
+  const ueber = zuletzt - (hoehe + 6)
+  if (ueber > 0) for (const s of schilder) (s as { lage?: number }).lage! -= ueber
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 20,
+      height: hoehe + 20,
+      style: { position: 'absolute', left: links - 10, top: oben - 10 },
+    }),
+    ...striche.map((v) =>
+      stilBlock(v.toLocaleString('de-DE'), {
+        top: oben + y(v) - 11,
+        left: STIL_RAND - 10,
+        width: 70,
+        justifyContent: 'flex-end',
+        fontSize: 16,
+        color: STIL.hellgrau,
+      })
+    ),
+    ...k.achse.map((a) =>
+      stilBlock(a.text, {
+        top: oben + hoehe + 12,
+        left: links + x(a.bei) - 40,
+        width: 80,
+        justifyContent: 'center',
+        fontSize: 16,
+        color: STIL.hellgrau,
+      })
+    ),
+    ...schilder.map((s) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            top: oben + (s as { lage?: number }).lage! - 12,
+            left: rechts + 16,
+            display: 'flex',
+            alignItems: 'baseline',
+            fontFamily: 'Montserrat',
+          },
+        },
+        h(
+          'span',
+          { style: { fontSize: 18, fontWeight: 800, color: s.r.farbe, marginRight: 8 } },
+          s.r.wert
+        ),
+        h(
+          'span',
+          {
+            style: {
+              fontSize: 17,
+              fontWeight: 700,
+              color: s.r.welt ? STIL.grau : s.r.farbe,
+            },
+          },
+          s.r.name
+        )
+      )
+    ),
+  ]
+}
+
+function balkenGrafik(k: Balkenkarte) {
+  /*
+    Links die Beschriftung (Jahr fett, Anlass grau), rechts die Balken an
+    einer Nulllinie: fallende Werte nach links, steigende nach rechts.
+  */
+  const spalte = STIL_RAND + 330
+  const rechts = ZK_BREITE - STIL_RAND - 110
+  const plus = Math.max(0, ...k.balken.map((b) => b.wert))
+  const minus = Math.max(0, ...k.balken.map((b) => -b.wert))
+  /* Links der Nulllinie Platz für die Zahl hinter dem längsten fallenden Balken. */
+  const luftLinks = minus > 0 ? 100 : 0
+  const massstab = (rechts - spalte - luftLinks) / (plus + minus)
+  const null_ = spalte + luftLinks + minus * massstab
+  const zeile = (STIL_GRAFIK_U - STIL_GRAFIK_O + 40) / k.balken.length
+  const dicke = Math.min(30, zeile * 0.45)
+  const oben0 = STIL_GRAFIK_O - 30
+  const zahl = (v: number) =>
+    `${k.vorzeichen === false ? '' : v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(Math.round(v)).toLocaleString('de-DE')}${k.einheit === '%' ? ' %' : ` ${k.einheit}`}`
+  return [
+    h('div', {
+      style: {
+        position: 'absolute',
+        top: oben0,
+        left: null_ - 1,
+        width: 2,
+        height: zeile * k.balken.length,
+        backgroundColor: '#c9cfd8',
+      },
+    }),
+    ...k.balken.flatMap((b, i) => {
+      const mitte = oben0 + i * zeile + zeile / 2
+      const laenge = Math.max(4, Math.abs(b.wert) * massstab)
+      const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
+      const links = b.wert >= 0 ? null_ : null_ - laenge
+      return [
+        h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: mitte - 19,
+              left: STIL_RAND,
+              width: spalte - STIL_RAND - 16,
+              display: 'flex',
+              alignItems: 'baseline',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'span',
+            {
+              style: {
+                fontSize: 22,
+                fontWeight: 800,
+                color: STIL.tinte,
+                marginRight: 12,
+              },
+            },
+            b.marke
+          ),
+          h(
+            'span',
+            { style: { fontSize: 19, color: b.hervor ? STIL.tinte : STIL.grau } },
+            b.text
+          )
+        ),
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: mitte - dicke / 2,
+            left: links,
+            width: laenge,
+            height: dicke,
+            borderRadius: 5,
+            backgroundColor: farbe,
+          },
+        }),
+        stilBlock(zahl(b.wert), {
+          top: mitte - 15,
+          ...(b.wert >= 0
+            ? { left: null_ + laenge + 12 }
+            : { left: links - 112, width: 100, justifyContent: 'flex-end' }),
+          fontSize: 22,
+          fontWeight: 800,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+      ]
+    }),
+  ]
+}
+
+/** Ein Datum JJJJ-MM-TT als Jahr mit Bruchteil – genug für eine Balkenlänge. */
+function jahrBruch(d: string): number {
+  const [j, m, t] = d.split('-').map(Number)
+  return j + (m - 1) / 12 + (t - 1) / 365
+}
+
+function zeitstrahlGrafik(k: Zeitstrahlkarte) {
+  const bild = 72
+  const links = STIL_RAND + bild + 24
+  const rechts = ZK_BREITE - STIL_RAND
+  const anfang = Math.min(...k.balken.map((b) => jahrBruch(b.beginn)), ...k.achse)
+  const schluss = Math.max(
+    ...k.balken.map((b) => jahrBruch(b.regelEnde ?? b.ende)),
+    ...k.achse
+  )
+  /* Platz rechts für die Beschriftung hinter dem längsten Balken. */
+  const x = (j: number) =>
+    links + ((j - anfang) / (schluss - anfang)) * (rechts - links - 110)
+  const achseY = STIL_GRAFIK_U - 10
+  const zeile = (achseY - STIL_GRAFIK_O) / k.balken.length
+  const dicke = 30
+  const oben = STIL_GRAFIK_O
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${ZK_BREITE}" height="${achseY - oben + 2}" viewBox="0 ${oben} ${ZK_BREITE} ${achseY - oben + 2}">` +
+    k.achse
+      .map(
+        (j) =>
+          `<line x1="${x(j)}" x2="${x(j)}" y1="${oben}" y2="${achseY}" stroke="${STIL.rand}" stroke-width="1.5"/>`
+      )
+      .join('') +
+    `<line x1="${links}" x2="${rechts}" y1="${achseY}" y2="${achseY}" stroke="#c9cfd8" stroke-width="2"/>` +
+    k.balken
+      .map((b, i) => {
+        const mitte = oben + zeile * i + zeile / 2 + 12
+        const farbe = b.hervor ? STIL.tinte : '#b4bcc8'
+        const x0 = x(jahrBruch(b.beginn))
+        const x1 = x(jahrBruch(b.ende))
+        const rest = b.regelEnde
+          ? `<rect x="${x1 + 3}" y="${mitte - dicke / 2 + 1.5}" width="${x(jahrBruch(b.regelEnde)) - x1 - 4.5}" height="${dicke - 3}" rx="5" fill="none" stroke="${farbe}" stroke-width="2.5" stroke-dasharray="7 6"/>`
+          : ''
+        return `<rect x="${x0}" y="${mitte - dicke / 2}" width="${x1 - x0}" height="${dicke}" rx="6" fill="${farbe}"/>${rest}`
+      })
+      .join('') +
+    '</svg>'
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: ZK_BREITE,
+      height: achseY - oben + 2,
+      style: { position: 'absolute', left: 0, top: oben },
+    }),
+    ...k.balken.flatMap((b, i) => {
+      const mitte = oben + zeile * i + zeile / 2 + 12
+      const ende = x(jahrBruch(b.regelEnde ?? b.ende))
+      return [
+        ...(b.bild
+          ? [
+              h('img', {
+                src: `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, b.bild)).toString('base64')}`,
+                width: bild,
+                height: bild,
+                style: {
+                  position: 'absolute',
+                  top: mitte - bild / 2 - 10,
+                  left: STIL_RAND,
+                  borderRadius: bild,
+                  objectFit: 'cover',
+                  border: `2px solid ${STIL.rand}`,
+                },
+              }),
+            ]
+          : []),
+        stilBlock(b.name, {
+          top: mitte - dicke / 2 - 32,
+          left: x(jahrBruch(b.beginn)),
+          fontSize: 20,
+          fontWeight: 700,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+        stilBlock(b.text, {
+          top: mitte - 14,
+          left: ende + 14,
+          fontSize: 22,
+          fontWeight: 800,
+          color: b.hervor ? STIL.tinte : STIL.grau,
+        }),
+      ]
+    }),
+    ...k.achse.map((j) =>
+      stilBlock(String(j), {
+        top: achseY + 12,
+        left: x(j) - 40,
+        width: 80,
+        justifyContent: 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
   ]
 }
 

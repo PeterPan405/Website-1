@@ -991,6 +991,205 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 02.11.2026: Krieg und Ölpreis (Weltbank, Pink Sheet, Rohöl-Mittel). */
+{
+  const karte = karteVom('2026-11-02')
+  pruefe('Öl: Karte für den 02.11. sind waagerechte Balken', karte?.art === 'balken')
+  if (karte?.art === 'balken') {
+    pruefe(
+      'Öl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Öl: Form anders als am Vortag', form(karte) !== form(karteVom('2026-11-01')!))
+    /* Monat davor → teuerster (Krieg) bzw. billigster (Krise) Monat danach, $ je Fass. */
+    const paare: [number, number][] = [
+      [2.7, 13.0],
+      [14.5, 40.8],
+      [26.5, 9.6],
+      [17.2, 34.5],
+      [114.6, 41.3],
+      [53.3, 21.0],
+      [83.9, 116.8],
+      [63.7, 103.9],
+    ]
+    paare.forEach(([vor, hoch], i) => {
+      const prozent = (hoch / vor - 1) * 100
+      pruefe(
+        `Öl: ${karte.balken[i].marke} ${Math.round(prozent)} %`,
+        Math.abs(karte.balken[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Öl: ${karte.balken[i].marke} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
+      )
+    })
+    pruefe(
+      'Öl: Heldenzahl ist der Iran-Balken',
+      karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
+    )
+  }
+}
+
+/* 06.11.2026: Gold nach Kriegen und Krisen (Weltbank, Pink Sheet, Gold). */
+{
+  const karte = karteVom('2026-11-06')
+  pruefe('Gold: Karte für den 06.11. sind waagerechte Balken', karte?.art === 'balken')
+  if (karte?.art === 'balken') {
+    pruefe(
+      'Gold: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Gold: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-05')!)
+    )
+    /* Monat davor → zwölfter Monat ab Beginn (2026: Oktober), $ je Unze. */
+    const paare: [number, number][] = [
+      [103, 152],
+      [208, 455],
+      [460, 413],
+      [272, 310],
+      [839, 949],
+      [1597, 1808],
+      [1816, 1898],
+      [4753, 4105],
+    ]
+    paare.forEach(([vor, nach], i) => {
+      const prozent = (nach / vor - 1) * 100
+      pruefe(
+        `Gold: ${karte.balken[i].marke} ${Math.round(prozent)} %`,
+        Math.abs(karte.balken[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Gold: ${karte.balken[i].marke} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
+      )
+    })
+    pruefe(
+      'Gold: Heldenzahl ist der Iran-Balken',
+      karte.helden[0].wert === `−${Math.abs(Math.round(karte.balken[7].wert))} %`
+    )
+  }
+}
+
+/* 04.11.2026: Ergebnis der US-Zwischenwahl (AP über tagesschau, CNBC Election Desk). */
+{
+  const karte = karteVom('2026-11-04')
+  pruefe('Wahl: Karte für den 04.11. zeigt die Kammern', karte?.art === 'kammern')
+  if (karte?.art === 'kammern') {
+    pruefe(
+      'Wahl: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Wahl: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-03')!)
+    )
+    pruefe('Wahl: ausnahmsweise ab 10:30', karte.ab === '10:30')
+    for (const z of ['51', '53', '245', '160', '218'])
+      pruefe(`Wahl: ${z} steht in der Beschreibung`, karte.text.includes(z))
+  }
+}
+
+/* 03.11.2026: Atomwaffen weltweit (FAS 2026, Our World in Data). */
+{
+  const karte = karteVom('2026-11-03')
+  pruefe('Atom: Karte für den 03.11. ist eine Vielfachkarte', karte?.art === 'vielfach')
+  if (karte?.art === 'vielfach') {
+    pruefe(
+      'Atom: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Atom: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-02')!)
+    )
+    const welt = karte.gesamt.punkte
+    pruefe(
+      'Atom: Welt 1986 70.374, 2026 12.187',
+      welt[41] === 70374 && welt.at(-1) === 12187 && Math.max(...welt) === 70374
+    )
+    pruefe('Atom: −83 % seit 1986', Math.round((12187 / 70374 - 1) * 100) === -83)
+    const summe = karte.teile.reduce((a, t) => a + t.punkte.at(-1)!, 0)
+    pruefe(
+      'Atom: neun Länder ergeben 9.745 (FAS-Militärbestand)',
+      karte.teile.length === 9 && summe === 9745 && karte.text.includes('9.745')
+    )
+    for (const t of karte.teile)
+      pruefe(
+        `Atom: ${t.name} ${t.wert} = letzter Wert`,
+        t.wert === t.punkte.at(-1)!.toLocaleString('de-DE') &&
+          karte.text.includes(`${t.name}: ${t.wert}`)
+      )
+  }
+}
+
+/* 02.11.2026: Lagarde geht vorzeitig – Amtszeiten der EZB-Präsidenten (Wikipedia, Tagesschau). */
+{
+  const karte = karteVom('2026-11-05')
+  pruefe('EZB: Karte für den 05.11. ist ein Zeitstrahl', karte?.art === 'zeitstrahl')
+  pruefe('EZB: Form anders als am Vortag', form(karte!) !== form(karteVom('2026-11-04')!))
+  if (karte?.art === 'zeitstrahl') {
+    pruefe(
+      'EZB: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    const jahre = (a: string, b: string) =>
+      (Date.parse(b) - Date.parse(a)) / (365.25 * 24 * 3600 * 1000)
+    for (const b of karte.balken) {
+      const gerechnet = jahre(b.beginn, b.ende).toLocaleString('de-DE', {
+        maximumFractionDigits: 1,
+      })
+      pruefe(
+        `EZB: ${b.name} ${b.text} passt zur Amtszeit (${gerechnet})`,
+        b.text === `${gerechnet} J.`
+      )
+    }
+    pruefe(
+      'EZB: zweite Seite mit drei möglichen Nachfolgern',
+      karte.zweiteSeite?.personen.length === 3
+    )
+    pruefe(
+      'EZB: zweite Seite ohne Beanstandung (außer Text, den trägt Seite 1)',
+      karte.zweiteSeite !== undefined &&
+        pruefeZahlenkarte(karte.zweiteSeite).every((f) =>
+          /Beschrift|Text|text|Schlagw|schlagw/.test(f)
+        )
+    )
+    for (const pe of karte.zweiteSeite?.personen ?? [])
+      pruefe(`EZB: ${pe.name} steht in der Beschreibung`, karte.text.includes(pe.name))
+    pruefe(
+      'EZB: Lagarde geht am 7. Februar 2027',
+      karte.balken.at(-1)?.ende === '2027-02-07'
+    )
+    pruefe(
+      'EZB: Heldenzahl ist Lagardes Amtszeit',
+      karte.helden[0].wert === `${karte.balken.at(-1)?.text.replace(' J.', '')} Jahre`
+    )
+    pruefe(
+      'EZB: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-01')!)
+    )
+    const kaputt = {
+      ...karte,
+      balken: [{ ...karte.balken[0], ende: '1990-01-01' }, karte.balken[1]],
+    }
+    pruefe(
+      'Zeitstrahl: Ende vor Beginn wird beanstandet',
+      pruefeZahlenkarte(kaputt).some((f) => f.includes('Beginn nicht vor Ende'))
+    )
+  }
+}
+
 /* Säulen im Hausstil: Rechnung, Prüfung, Bild – an einer Probekarte. */
 {
   const probe: Zahlenkarte = {

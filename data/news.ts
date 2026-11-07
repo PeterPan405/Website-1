@@ -101,6 +101,1486 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-faellt-asiens-chipboersen-brechen-ein',
+    title: 'Dax fällt weiter, Asiens Chipbörsen brechen ein',
+    teaser:
+      'Nach dem Rekordhoch vom Donnerstag gibt der Dax erneut nach. Japans Nikkei und Südkoreas Kospi stürzen ab, während sich die Wall Street am Freitag stabilisiert.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dax', 'Nikkei', 'Kospi', 'Wall Street', 'Chipaktien'],
+    relatedTopics: ['boerse', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nikkei-225', 'kospi', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 18:18 Uhr: „Dax aktuell: Dax schließt im Minus und fällt weit von Rekord zurück – Rüstungsaktie verliert"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-sackt-trotz-stabiler-chip-werte-fast-600-punkte-ab/100267806.html',
+      },
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 07:13 Uhr: „Nikkei, Kospi und Topix: Abverkauf bei Chipaktien erfasst Japan und Südkorea"',
+        url: 'https://www.handelsblatt.com/finanzen/asiens-boersen-setzen-abschwung-von-chipaktien-in-den-usa-fort/100267767.html',
+      },
+      {
+        label:
+          'onvista, 6.11.2026, 21:30 Uhr (dpa-AFX): „ROUNDUP/Aktien New York Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf"',
+        url: 'https://www.onvista.de/news/2026/11-06-roundup-aktien-new-york-schluss-tech-sektor-erholt-sich-etwas-nach-ausverkauf-0-10-26573622',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat sein Rekordhoch vom Donnerstag nicht gehalten. Am Freitag schloss der deutsche Leitindex bei 25.820 Punkten. Das war ein Minus von 1,9 Prozent, meldet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Asiens Chipbörsen trifft es härter',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Asien fiel der Ausverkauf deutlich schärfer aus. Japans Nikkei verlor zeitweise 6,7 Prozent und schloss knapp sechs Prozent im Minus, berichtet Handelsblatt. Der breiter gefasste Topix gab 5,9 Prozent ab. Südkoreas Kospi fiel zu Handelsbeginn zeitweise mehr als acht Prozent und schloss sechs Prozent niedriger.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Wall Street dreht ins Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kehrte dagegen etwas Ruhe ein. Der Dow Jones schloss 0,46 Prozent niedriger bei 51.286 Punkten, meldet die Nachrichtenagentur dpa-AFX. Der S&P 500 gewann 0,31 Prozent. Der technologieschwere Nasdaq 100 stieg um 1,35 Prozent auf 26.990 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Seoul und Tokio heftiger schwanken als New York',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Erklärung liegt in der Zusammensetzung der Indizes. Halbleiterwerte wiegen am Kospi und am Nikkei besonders schwer. Ein Ausverkauf bei Chipaktien trifft solche Indizes deshalb stärker als breiter gestreute amerikanische Indizes wie den Dow Jones.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index mit wenigen schwergewichtigen Branchen schwankt stärker als ein breit gestreuter. Wer das weiß, liest einen Tagesverlust nicht als Urteil über eine ganze Volkswirtschaft, sondern über die Gewichtung eines Indexes.',
+      },
+    ],
+  },
+  {
+    slug: 'us-arbeitsmarkt-oktober-langzeitarbeitslosigkeit',
+    title: 'US-Jobmarkt wächst kräftig, Langzeitarbeitslosigkeit steigt',
+    metaTitle: 'US-Jobmarkt wächst, Langzeitarbeitslosigkeit steigt',
+    teaser:
+      'Die US-Wirtschaft schafft im Oktober 165.000 neue Stellen, mehr als doppelt so viele wie erwartet. Die Langzeitarbeitslosigkeit steigt auf ein Mehrjahreshoch.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['US-Arbeitsmarkt', 'Jobbericht', 'Beschäftigung'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'CNBC, 6.11.2026, 20:11 Uhr: „A disturbing employment trend is hiding beneath the latest strong job numbers"',
+        url: 'https://www.cnbc.com/2026/11/06/long-term-unemployment-october-jobs-report.html',
+      },
+      {
+        label:
+          'Goldreporter, 6.11.2026: „US-Arbeitsmarkt überrascht mit 165.000 neuen Stellen"',
+        url: 'https://www.goldreporter.de/us-arbeitsmarkt-ueberrascht-mit-165-000-neuen-stellen/konjunktur/262896/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der amerikanische Arbeitsmarkt hat im Oktober 165.000 neue Stellen außerhalb der Landwirtschaft geschaffen. Volkswirte hatten nur mit 65.000 gerechnet, meldet Goldreporter. Die Arbeitslosenquote sank von 4,2 auf 4,1 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweites Signal zeigt in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter der starken Schlagzeile liegt ein anderer Trend. Wer im Oktober arbeitslos war, suchte im Schnitt 27,1 Wochen nach einem neuen Job, berichtet CNBC. Das ist die längste Dauer außerhalb der Pandemie seit zehn Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Langzeitarbeitslose als seit 2021',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rund zwei Millionen Menschen waren mindestens 27 Wochen ohne Arbeit. Das entspricht 27,6 Prozent aller Arbeitslosen in den USA, dem höchsten Anteil seit Ende 2021, so CNBC. Auch die weiter gefasste U-6-Quote, die Unterbeschäftigte mitzählt, stieg von 7,6 auf 7,9 Prozent, meldet Goldreporter.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Arbeitslosenquote ist ein Durchschnittswert. Sie zeigt nicht, wie lange einzelne Menschen ohne Arbeit bleiben. Wer nur auf die Quote schaut, kann eine wachsende Gruppe von Langzeitarbeitslosen leicht übersehen.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-nachfolge-spanien-nominiert-hernandez-de-cos',
+    title: 'EZB-Nachfolge: Spanien nominiert Hernández de Cos',
+    teaser:
+      'Nach den Niederlanden schickt auch Spanien einen Kandidaten ins Rennen um die EZB-Spitze: BIZ-Chef Pablo Hernández de Cos tritt gegen Klaas Knot an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-07T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Lagarde-Nachfolge', 'Geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 21:00 Uhr (Reuters): „EZB: Spanien nominiert Pablo Hernandez de Cos für Lagarde-Nachfolge"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-spanien-nominiertpablo-hernandez-de-cos-fuer-lagarde-nachfolge/100267919.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Rennen um die EZB-Spitze gibt es jetzt zwei Namen. Spanien hat Pablo Hernández de Cos nominiert, den Chef der Bank für Internationalen Zahlungsausgleich, berichtet Handelsblatt unter Berufung auf Reuters.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Niederlande waren zuerst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am Mittwoch hatten die Niederlande den früheren Notenbankchef Klaas Knot offiziell vorgeschlagen. Laut Eurogruppen-Präsident Kyriakos Pierrakakis gingen bis Freitagnachmittag nur diese beiden Bewerbungen ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Finanzminister entscheiden am Montag mit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Euro-Finanzminister wollen die beiden Kandidaturen am Montag, dem 9. November, sichten, berichtet Handelsblatt. Danach geben die Eurostaaten eine Empfehlung ab. Am Ende ernennen die Staats- und Regierungschefs der EU das neue EZB-Direktorium.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein vorzeitiger Wechsel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Christine Lagarde verlässt die EZB laut Handelsblatt bereits am 7. Februar 2027. Das ist fast neun Monate vor dem regulären Ende ihrer Amtszeit.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die EZB führt, entscheidet mit über Zinsen, die Kredite, Anleihen und Sparzinsen in der ganzen Eurozone beeinflussen. Die Kandidatenauswahl ist deshalb mehr als eine Personalie.',
+      },
+    ],
+  },
+  {
+    slug: 'daimler-truck-gewinn-steigt-auftraege-schwach',
+    title: 'Daimler Truck: Gewinn springt, Aufträge schwächeln',
+    teaser:
+      'Daimler Truck verdient im dritten Quartal 73 Prozent mehr, getragen vom US-Geschäft. Der Auftragseingang bleibt dagegen hinter den Erwartungen zurück.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Daimler Truck', 'Quartalszahlen', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista, 6.11.2026, 15:32 Uhr: „Daimler Truck: Das Gewinnplus verlangt Vorsicht"',
+        url: 'https://www.onvista.de/news/2026/11-06-daimler-truck-das-gewinnplus-verlangt-vorsicht-40338625-19-26573515',
+      },
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 10:13 Uhr: „Daimler Truck meldet deutlichen Gewinnsprung wegen USA-Geschäft"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/daimlertruck-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Daimler Truck hat im dritten Quartal deutlich mehr verdient. Der Umsatz im Industriegeschäft stieg um 20 Prozent auf 11,6 Milliarden Euro, das Ebit um 73 Prozent auf rund 1,1 Milliarden Euro, meldet onvista.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Bestellungen passen nicht zum Gewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Auftragseingang sieht es anders aus. Der Nutzfahrzeughersteller verbuchte 71.170 bestellte Fahrzeuge, weniger als von Analysten erwartet. Die Tagesschau bestätigt den Gewinnsprung und führt ihn auf das anspringende US-Geschäft zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kennzahlen, zwei Zeithorizonte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Gewinn blickt zurück. Er zeigt, was im abgelaufenen Quartal bereits verkauft und ausgeliefert wurde. Der Auftragseingang blickt voraus. Ein schwacher Auftragseingang bei starkem Gewinn kann bedeuten, dass das beste Quartal schon hinter dem Unternehmen liegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur auf den Gewinn schaut, sieht die Vergangenheit eines Unternehmens. Der Auftragseingang zeigt eher, wie die nächsten Quartale aussehen könnten.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-bewertung-zweifel',
+    title: 'Anthropic: Zweifel an Zwei-Billionen-Bewertung wachsen',
+    teaser:
+      'Anthropics Börsengang sollte bis zu zwei Billionen Dollar wert sein. Nach dem Tech-Ausverkauf gilt selbst 1,5 Billionen manchen Investoren als zu hoch.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anthropic', 'Börsengang', 'KI-Aktien'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "CNBC, 6.11.2026, 21:07 Uhr: „Investors brace for lower Anthropic valuation, calling $1.5 trillion a 'stretch'\"",
+        url: 'https://www.cnbc.com/2026/11/06/investors-brace-for-anthropic-valuation-1point5-trillion-a-stretch.html',
+      },
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 13:27 Uhr: „IPO: Vom Zwei-Billionen-Traum zum Preisnachlass: Das Dilemma hinter Anthropics Börsengang"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/boersengang-zweifel-an-bewertung-ipo-von-anthropic-koennte-sich-verzoegern/100267771.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 6.11.2026: „Tumult bei Tech-Aktien: Bringt der Tech-Abverkauf den Anthropic-Börsengang in Gefahr?"',
+        url: 'https://www.wiwo.de/finanzen/boerse/anthropic-boersengang-in-gefahr-was-der-tech-abverkauf-bedeutet/100267738.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Anthropics Börsengang galt lange als einer der größten des Jahres. Im Oktober war laut Handelsblatt noch von bis zu zwei Billionen Dollar Bewertung die Rede, nachdem das Start-up im Mai privat noch mit 965 Milliarden Dollar bewertet worden war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Jetzt gilt schon 1,5 Billionen als hoch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach dem Ausverkauf bei Technologieaktien ist die Stimmung gekippt. Einige Investoren halten laut CNBC inzwischen nur noch 1 bis 1,25 Billionen Dollar für realistisch. Ein Investor nannte 1,5 Billionen Dollar gegenüber CNBC „zu ambitioniert".',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Gründe für die Zurückhaltung',
+      },
+      {
+        type: 'paragraph',
+        text: 'CNBC nennt den Kurseinbruch bei Technologiewerten, Sorgen über die hohen Ausgaben von KI-Unternehmen und die Furcht vor einem langsameren Ausbau von Rechenzentren nach dem Wahlsieg der Demokraten. Auch die WirtschaftsWoche berichtet, der Tech-Abverkauf bringe den Börsengang in Gefahr.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Bewertung vor einem Börsengang ist das Ergebnis einer Verhandlung, keine feste Zahl. Sie hängt von der Stimmung am Markt am Tag der Preisfestsetzung ab, nicht nur vom Unternehmen selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-ki-ausverkauf-drei-billionen-dollar',
+    title: 'Wall Street verliert an einem Tag drei Billionen Dollar',
+    teaser:
+      'Nach dem Sieg der Demokraten bei den Midterms bricht die Wall Street ein: Der Nasdaq 100 verliert 6,33 Prozent, die Angst vor KI-Regulierung wächst.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wall Street', 'KI-Aktien', 'Volatilität', 'Nasdaq'],
+    relatedTopics: ['boerse', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'dax'],
+    sources: [
+      {
+        label:
+          "Handelsblatt, 5.11.2026, 23:40 Uhr: „Wall Street: 'KI-Blutbad' an Börse – rund drei Billionen Dollar Börsenwert an einem Tag vernichtet\"",
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/wall-street-ki-blutbad-an-us-boersen-sp-500-bricht-um-vier-prozent-ein/100267625.html',
+      },
+      {
+        label: 'CNBC, 6.11.2026, 00:39 Uhr: „Magnificent 7 loses $1 trillion"',
+        url: 'https://www.cnbc.com/2026/11/05/stock-market-selloff-ai-fears.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 5.11.2026, 20:19 Uhr: „Börse: Techaktien stürzen ab – das steckt dahinter"',
+        url: 'https://www.wiwo.de/finanzen/boerse/nasdaq-bricht-ein-warum-halbleiter-und-ki-aktien-abstuerzen/100267704.html',
+      },
+      {
+        label: 'CNBC, 5.11.2026, 22:32 Uhr: „The October jobs report is out Friday"',
+        url: 'https://www.cnbc.com/2026/11/05/october-jobs-report-preview.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Nasdaq 100 brach in der Nacht zum Freitag um 6,33 Prozent ein, der Dow Jones gab 3,41 Prozent ab (Stand 06.11.2026, 01:11 Uhr, wallstreet-online). Nach Angaben von Handelsblatt fiel der marktbreite S&P 500 um vier Prozent. Allein die sieben größten US-Technologiewerte verloren nach Berechnungen von CNBC an einem Tag zusammen rund eine Billion Dollar an Börsenwert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Demokraten wollen den Ausbau bremsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach dem Wahlsieg der Demokraten bei den Midterms fordern führende Abgeordnete laut CNBC ein nationales Moratorium für neue Rechenzentren. Investoren befürchten strengere Regeln für den KI-Ausbau der großen Technologiekonzerne.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Angstmesser schlägt aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Volatilitätsindex VIX bewegte sich laut CNBC vom Tagestief bis zum Tageshoch um mehr als elf Punkte – der größte Tagesausschlag seit dem 9. April. Auch Tesla und SpaceX verloren zusammen rund 420 Milliarden Dollar an Börsenwert, berichtet CNBC.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Dow glimpflicher davonkam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones verlor mit 3,41 Prozent deutlich weniger als der technologieschwere Nasdaq 100 mit 6,33 Prozent. Der Grund liegt in der Zusammensetzung: Im Dow wiegen Industrie- und Konsumwerte schwerer, im Nasdaq 100 dominieren wenige große, KI-nahe Technologiewerte. Ein Index mit konzentrierten Gewichten schwankt stärker als ein breit gestreuter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitag veröffentlicht das US-Arbeitsministerium den Oktober-Bericht zum Arbeitsmarkt, wie CNBC meldet – um 8:30 Uhr Ortszeit, 14:30 Uhr MEZ. Nach dem Kursrutsch dürfte jede Abweichung von den Erwartungen die Schwankungen verstärken.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssturz, der aus politischer Unsicherheit entsteht, lässt sich nicht aus Bilanzen ablesen. Wer regulatorische Risiken in KI-nahen Branchen verfolgen will, kommt nicht an Ankündigungen aus der Politik vorbei – unabhängig davon, wie die nächsten Quartalszahlen ausfallen.',
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-england-leitzins-vier-prozent',
+    title: 'Bank of England hebt Leitzins erstmals seit drei Jahren an',
+    teaser:
+      'Die Bank of England erhöht ihren Leitzins erstmals seit drei Jahren auf 4,0 Prozent – ein Energiepreisschock treibt Großbritanniens Inflation.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-06T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of England', 'Leitzins', 'Großbritannien', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-gbp'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 5.11.2026, 14:27 Uhr: „Bank of England: Britische Notenbank hebt Zinsen erstmals seit drei Jahren an – auf 4,0 Prozent"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/bank-of-england-britische-notenbank-hebt-zinsen-erstmals-seit-drei-jahren-an/100266567.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Bank of England hat ihren Leitzins erstmals seit drei Jahren erhöht. Der neue Satz liegt bei 4,0 Prozent, berichtet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Energiepreisschock treibt die Inflation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Großbritanniens Inflation ist zuletzt auf 3,5 Prozent gestiegen. Handelsblatt macht dafür einen Energiepreisschock verantwortlich, der das Land besonders hart trifft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Notenbank bereitet weitere Schritte vor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dem Bericht zufolge stimmt die Bank of England die Märkte zugleich auf weitere Zinserhöhungen ein. Welche konkreten Schritte und Termine das betrifft, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zinserhöhung mitten in einem Preisschock',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank, die die Zinsen anhebt, während hohe Energiepreise ohnehin auf Haushalte und Unternehmen drücken, verschärft diesen Druck zusätzlich. Sie nimmt dafür in Kauf, dass sich die Konjunktur weiter abkühlt, um die Inflation nicht außer Kontrolle geraten zu lassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für den Euro bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt der Leitzins in Großbritannien schneller als im Euroraum, wird das Pfund für Anleger, die auf Zinsunterschiede achten, tendenziell attraktiver – ein Effekt, der unabhängig vom Konjunkturausblick wirkt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer britische Anleihen oder Pfund-Anlagen hält, sieht sich mit einer Notenbank konfrontiert, die Inflationsbekämpfung über kurzfristiges Wachstum stellt. Ob das die Wirtschaft stärker abbremst als gedacht, zeigt sich erst in den kommenden Quartalszahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'ruestungsbranche-rheinmetall-hensoldt-knds',
+    title: 'Rüstungsboom trennt sich: Rheinmetall kappt, Hensoldt hebt an',
+    teaser:
+      'Rheinmetall senkt die Prognose, Hensoldt hebt sie an, und der Bund übernimmt den Panzerbauer KNDS vollständig – ein Tag, zwei Rüstungs-Geschichten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Rheinmetall', 'Hensoldt', 'KNDS', 'Verteidigung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 5.11.2026, 15:20 Uhr: „BörsenTag: Der Rüstungsboom allein reicht nicht mehr"',
+        url: 'https://www.wiwo.de/finanzen/boerse/rheinmetall-aktie-warum-der-ruestungsboom-an-der-boerse-kippt/100267604.html',
+      },
+      {
+        label:
+          'tagesschau.de, 5.11.2026, 15:11 Uhr: „Bund und Eigentümerfamilien einigen sich auf Kaufpreis bei KNDS"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/knds-bundesregierung-100.html',
+      },
+      {
+        label:
+          'onvista, 5.11.2026, 16:50 Uhr: „Dax nach Rekord im Minus: KI-Sorgen und Rheinmetall belasten"',
+        url: 'https://www.onvista.de/news/2026/11-05-dax-nach-rekord-im-minus-ki-sorgen-und-rheinmetall-belasten-41121301-19-26573123',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Rüstungsboom an der Börse zeigt am Donnerstag zwei Gesichter. Rheinmetall senkt seine Prognose, Hensoldt hebt sie an – trotz derselben Branche und desselben politischen Rückenwinds, schreibt die WirtschaftsWoche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Volle Auftragsbücher reichen nicht mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der WirtschaftsWoche zählen an der Börse inzwischen nicht mehr nur Bestellungen, sondern auch, wie zuverlässig ein Unternehmen seine eigenen Prognosen erfüllt. Rheinmetall belastete am Donnerstag zusätzlich den Dax, der nach einem Rekordhoch ins Minus drehte, berichtet onvista.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Bund kauft sich bei KNDS ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag einigten sich Bund und die Eigentümerfamilien auf einen Kaufpreis für den Panzerbauer KNDS. Die Bundesregierung übernimmt damit alle Anteile der Familien, berichtet die Tagesschau. Der Bund sichert sich so Einfluss auf das, was die Tagesschau „Schlüsseltechnologien" nennt – und gibt dafür offenbar weniger Geld aus als ursprünglich geplant.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Firmen in der gleichen Branche gegenläufig laufen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Prognose ist ein Versprechen für die Zukunft, eine Order im Buch nur ein Versprechen für heute. Verzögert sich die Umsetzung oder steigen die Kosten, kann ein Unternehmen seine Prognose senken, obwohl der Auftragsbestand wächst – während ein Wettbewerber mit schlankeren Projekten genau in diesem Umfeld seine Zahlen anhebt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Boom in einer Branche bedeutet nicht, dass alle Unternehmen darin gleich profitieren. Wer in Einzeltitel statt in den gesamten Sektor investiert, trägt das Risiko, dass ausgerechnet die eigene Aktie die Ausnahme ist.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-wettbewerb-spareinlagen',
+    title: 'Wettbewerb um Spareinlagen setzt Commerzbank zu',
+    teaser:
+      'Die Commerzbank verfehlt die Markterwartungen leicht: Der Wettbewerb um Spareinlagen drückt die Zinsmarge, die Aktie gerät unter Druck.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'Bankenbranche', 'Zinsmarge'],
+    relatedTopics: ['tagesgeld', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 5.11.2026, 14:44 Uhr: „Geldinstitut: Harter Wettbewerb um Spareinlagen setzt Commerzbank zu – Aktie unter Druck"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/commerzbank-harter-wettbewerb-um-einlagen-setzt-institut-zu/100266237.html',
+      },
+      {
+        label:
+          "wallstreet-online, 5.11.2026: „ANALYSE-FLASH: RBC senkt Ziel für Commerzbank auf 39 Euro – 'Sector Perform'\" (dpa-AFX)",
+        url: 'https://www.wallstreet-online.de/nachricht/21649197-analyse-flash-rbc-ziel-commerzbank-39-euro-sector-perform',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Commerzbank hat die Markterwartungen leicht verfehlt. Das Geldhaus rechnet künftig mit weniger Zinseinnahmen, berichtet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher der Druck kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Wettbewerb um Spareinlagen müssen Banken Kunden höhere Zinsen bieten, um ihr Geld zu halten – das schmälert die Marge zwischen dem, was eine Bank für Einlagen zahlt, und dem, was sie mit diesem Geld verdient. Laut Handelsblatt sind zudem die Sorgen groß, dass Mitarbeiter kündigen und sich Kunden anders orientieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Analysten senken das Kursziel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ratingagentur RBC senkte ihr Kursziel für die Commerzbank-Aktie auf 39 Euro und stufte sie auf „Sector Perform" herab, meldet wallstreet-online unter Berufung auf dpa-AFX.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zinsspanne ist kein Naturgesetz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie viel eine Bank verdient, hängt nicht allein davon ab, wie hoch die Zinsen insgesamt sind, sondern von der Spanne zwischen Einlagen- und Kreditzinsen. Steigt der Wettbewerb um Einlagen, kann diese Spanne schrumpfen, selbst wenn das Kreditgeschäft unverändert bleibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Ergebnisse einer Bank beurteilt, kommt an der Zinsspanne nicht vorbei – sie sagt oft mehr über die Qualität des Geschäfts aus als die Gewinnzahl allein.',
+      },
+    ],
+  },
+  {
+    slug: 'vonovia-krise-prognose-finanzchef',
+    title: 'Vonovia kappt Prognose und verliert den Finanzchef',
+    teaser:
+      'Vonovia senkt seine Prognose und verliert den Finanzchef – Deutschlands größter Vermieter leidet weiter unter hohen Zinsen, schreibt die WirtschaftsWoche.',
+    category: 'Märkte',
+    publishedAt: '2026-11-06T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Vonovia', 'Immobilien', 'Zinsen'],
+    relatedTopics: ['immobilien', 'schulden-und-kredit', 'risiko-und-rendite'],
+    relatedSymbols: ['vonovia'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 4.11.2026, 13:19 Uhr: „Immobilienkonzern: Sechs Punkte, die die Krise bei Vonovia erklären"',
+        url: 'https://www.wiwo.de/finanzen/immobilien/krise-bei-vonovia-sechs-gruende-und-was-jetzt-aktionaeren-droht/100267169.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschlands größter Vermieter kappt seine Prognose. Vonovia leidet weiter unter den hohen Zinsen, schreibt die WirtschaftsWoche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Finanzchef geht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der WirtschaftsWoche verliert Vonovia zudem bald seinen Finanzchef. Weitere Einzelheiten zum Zeitpunkt oder zur Nachfolge nennt der Bericht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum hohe Zinsen einen Vermieter besonders treffen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Wohnungskonzern finanziert seinen Bestand zu großen Teilen mit Krediten und Anleihen. Steigen die Zinsen, werden auslaufende Finanzierungen teurer, während die Mieten nur langsam nachziehen – ein Vermieter trägt dieses Risiko stärker als ein Unternehmen mit wenig Fremdkapital.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognosesenkung sagt nicht automatisch, wie sich eine Aktie entwickelt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob ein Kurs nach einer gesenkten Prognose fällt oder steigt, hängt davon ab, was der Markt vorher bereits erwartet hatte. Die WirtschaftsWoche benennt sechs Gründe für die Krise bei Vonovia – wie die Aktie selbst darauf reagierte, nennt die Kurzfassung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Vermieter mit hohem Fremdkapitalanteil zeigt beispielhaft, wie stark Zinsentscheidungen – ob in London, Frankfurt oder Washington – auch auf Branchen abseits der Finanzmärkte durchschlagen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-kongresswahl-demokraten-boersen-plus',
+    title: 'US-Kongresswahl: Demokraten siegen, Börsen legen kräftig zu',
+    teaser:
+      'Die Demokraten übernehmen beide Kammern des US-Kongresses. Der Dow Jones schließt drei Prozent höher, doch KI-nahe Aktien fallen aus der Reihe.',
+    category: 'Märkte',
+    publishedAt: '2026-11-05T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['us-wahl', 'dow-jones', 'dax', 'ki-aktien'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones', 'dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 20:27 Uhr: „US-Börsen: Dow Jones schließt drei Prozent höher"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-dow-jones-schliesst-drei-prozent-hoeher/100267318.html',
+      },
+      {
+        label:
+          'CNBC, 04.11.2026, 23:44 Uhr: „Democrats flip dozens of GOP seats. Republicans haven\'t flipped a single one"',
+        url: 'https://www.cnbc.com/2026/11/04/democrats-2026-midterm-election-results.html',
+      },
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 21:41 Uhr: „US-Börsen: CoreWeave fällt, Amazon gewinnt – Wie die Midterms den KI-Sektor spalten"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/us-boeren-coreweave-faellt-amazon-gewinnt-midterms-spalten-ki-sektor/100267383.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 04.11.2026, 17:08 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax nähert sich nach US-Zwischenwahlen Rekord"',
+        url: 'https://www.onvista.de/news/2026/11-04-roundup-aktien-frankfurt-schluss-dax-naehert-sich-nach-us-zwischenwahlen-rekord-0-10-26572536',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Demokratische Partei hat bei den US-Zwischenwahlen die Kontrolle über beide Kammern des Kongresses übernommen. Nach ersten Auszählungen gewannen die Demokraten sieben Senatssitze, fast 30 Sitze im Repräsentantenhaus und fünf Gouverneursposten hinzu – einer der deutlichsten Umschwünge bei einer Zwischenwahl seit Jahrzehnten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dow Jones drei Prozent höher, Dax nahe am Rekord',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kam das Ergebnis gut an. Der Dow Jones schloss drei Prozent höher bei 53.356 Punkten, der S&P 500 legte 1,6 Prozent auf 7.689 Punkte zu, der Nasdaq stieg um 1,4 Prozent auf 25.737 Punkte. Der Dax zog um 2,98 Prozent auf 26.614 Punkte an und rückte damit nahe an sein Rekordhoch heran. Der Vermögensverwalter Thomas Altmann von QC Markets sagte, dem Präsidenten seien damit "politische Handschellen" angelegt worden – Anleger müssten künftig weniger mit sprunghaften Entscheidungen rechnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hyperscaler gewinnen, Rechenzentrumswerte fallen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht alle Aktien profitierten gleich. Amazon und Microsoft legten jeweils um mehr als sechs Prozent zu, Alphabet gewann gut drei Prozent zurück. Die Aktie des Rechenzentrumsbetreibers CoreWeave fiel dagegen. Der Tech-Investor Dan Ives von Yorkville sagte, das lasse sich "nicht beschönigen" – er erwarte durch die demokratische Mehrheit im Kongress erhebliche Hürden für neue Gesetze der kommenden zwei Jahre. In mehreren US-Bundesstaaten stimmten Wähler am selben Tag über den Bau neuer Rechenzentren ab und lehnten die Vorhaben in fast allen Fällen ab. Der Ölpreis fiel unterdessen unter 90 Dollar je Barrel, nachdem US-Vizepräsident JD Vance die Verluste der Republikaner teilweise auf die amerikanische Iran-Politik zurückgeführt hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesamtindex, der um drei Prozent steigt, kann eine gegenläufige Bewegung innerhalb des Marktes verdecken. Hier zogen breit aufgestellte Technologiekonzerne an, während ein einzelnes, stark auf Rechenzentren spezialisiertes Unternehmen fiel – wer nur auf den Index schaut, übersieht, dass ein Wahlergebnis einzelne Branchen sehr unterschiedlich treffen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'eurozone-inflation-vier-prozent-oktober',
+    title: 'Eurozone: Inflation klettert im Oktober auf 4,0 Prozent',
+    teaser:
+      'Die Teuerung im Euroraum ist im Oktober auf 4,0 Prozent gestiegen, den höchsten Stand seit September 2023. Energie bleibt der stärkste Treiber.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-05T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'eurozone', 'ezb', 'energiepreise'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 12:12 Uhr: „Inflation im Euroraum steigt auf 4,0 Prozent"',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/inflation-eurozone-oktober-102.html',
+      },
+      {
+        label: 'Eurostat, 04.11.2026: „Annual inflation up to 4.0% in the euro area"',
+        url: 'https://ec.europa.eu/eurostat/product?code=2-04112026-ap',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Inflation im Euroraum ist im Oktober auf 4,0 Prozent gestiegen. Das teilte die europäische Statistikbehörde Eurostat in ihrer Schnellschätzung mit. Es ist der höchste Stand seit September 2023, nach 3,8 Prozent im September.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Energie treibt die Rate stärker an als im Vormonat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Energie war mit einem Anstieg von 20,8 Prozent gegenüber dem Vorjahr erneut die stärkste Einzelkomponente unter den Hauptgruppen, nach 18,9 Prozent im September. Vor Dienstleistungen, Nahrungsmitteln und Industriegütern bleibt Energie damit der mit Abstand größte Treiber der Teuerung im Euroraum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rückenwind für die Dezember-Debatte der EZB',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst am Dienstag hatte Bundesbank-Präsident Joachim Nagel eine Zinserhöhung der EZB im Dezember für wahrscheinlich gehalten – mit Blick auf die Teuerung im Euroraum. Der nun gemeldete Wert liegt noch über der Rate, auf die sich diese Einschätzung damals bezog. Der EZB-Rat entscheidet turnusgemäß am 17. Dezember über den Leitzins.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Anstieg der Gesamtrate, der überwiegend von einer einzelnen Komponente wie Energie getragen wird, hat andere Folgen für die Geldpolitik als eine breit verteilte Teuerung in vielen Bereichen zugleich. Die Notenbank muss einschätzen, ob ein Preisschub von außen oder eine grundsätzlich zu hohe Nachfrage im Inland dahintersteckt.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-spitze-niederlande-klaas-knot',
+    title: 'EZB-Spitze: Niederlande nominieren Klaas Knot',
+    teaser:
+      'Die Niederlande haben den früheren Notenbankchef Klaas Knot offiziell als Kandidaten für die EZB-Präsidentschaft nominiert – als Nachfolger von Lagarde.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-05T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'knot', 'lagarde-nachfolge'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 15:30 Uhr: „Neuer EZB-Chef: Niederlande nominieren Ex-Zentralbanker Knot"',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/knot-nominierung-ezb-100.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche / dpa, 04.11.2026, 12:20 Uhr: „Notenbank: Niederlande nominieren Ex-Zentralbanker Knot als EZB-Chef"',
+        url: 'https://www.wiwo.de/unternehmen/notenbank-niederlande-nominieren-ex-zentralbanker-knot-als-ezb-chef/100267274.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Niederlande haben den früheren Zentralbankchef Klaas Knot offiziell als Kandidaten für die Präsidentschaft der Europäischen Zentralbank nominiert. Das teilte der niederländische Finanzminister Eelco Heinen dem Parlament in Den Haag mit. Knot, 59 Jahre alt, war von 2011 bis 2025 Präsident der niederländischen Zentralbank.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lagarde geht im Februar, der Zeitplan ist eng',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Posten wird frei, weil EZB-Chefin Christine Lagarde im Februar vorzeitig zurücktritt. Die Länder der Eurozone müssen ihre Kandidaten bis zu diesem Freitag offiziell benennen, in der kommenden Woche soll über die Nachfolge beraten werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei weitere Namen im Rennen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben Knot gilt der Spanier Pablo Hernández de Cos als aussichtsreicher Kandidat. Auch Bundesbank-Präsident Joachim Nagel hat Interesse an dem Posten angemeldet, seine Chancen gelten jedoch als gering.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer an der Spitze der EZB steht, prägt die geldpolitische Ausrichtung für Jahre. Eine Personalentscheidung dieser Art wirkt deshalb oft länger nach als ein einzelner Zinsschritt – sie entscheidet mit darüber, wie die Notenbank künftig zwischen Inflationsbekämpfung und Wirtschaftswachstum abwägt.',
+      },
+    ],
+  },
+  {
+    slug: 'bmw-gewinn-china-krise-prognose',
+    title: 'BMW: Gewinn bricht wegen China-Krise weiter ein',
+    teaser:
+      'BMW meldet im dritten Quartal 15 Prozent weniger Gewinn. Die Verkäufe in China brachen um ein Viertel ein, die Jahresprognose wird erneut gesenkt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-05T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['bmw', 'autoindustrie', 'quartalszahlen', 'china'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['bmw'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 04.11.2026, 09:21 Uhr: „BMW erwirtschaftet noch weniger Gewinn"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/bmw-gewinnwarnung-100.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 04.11.2026, 15:53 Uhr: „BMW: Die schwache Prognose spricht für Vorsicht"',
+        url: 'https://www.onvista.de/news/2026/11-04-bmw-die-schwache-prognose-spricht-fuer-vorsicht-40338625-19-26572453',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'BMW hat im dritten Quartal einen Nettogewinn von rund 1,5 Milliarden Euro erzielt, 15 Prozent weniger als vor einem Jahr. Der Umsatz sank um 6 Prozent auf 30,5 Milliarden Euro. Die operative Marge im Autogeschäft fiel von 5,2 auf 3,4 Prozent – schwächer als im Vorjahr, aber besser, als Analysten gefürchtet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'China-Absatz bricht um ein Viertel ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Auslieferungen sanken insgesamt um 6,3 Prozent. Allein in China gingen die Verkäufe um 25 Prozent zurück, während Europa und die USA zulegten. Hinzu kommen teure Abfindungen und das vorgezogene Ende älterer Modelle, die das Ergebnis zusätzlich belasteten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose für das Gesamtjahr erneut gesenkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'BMW kappte deshalb seine Jahresprognose. Die Automobil-Ebit-Marge wird nun bei -0,5 bis 0,5 Prozent erwartet, zuvor bei 1 bis 3 Prozent. Die Auslieferungen sollen um 5 bis 10 Prozent sinken statt der zuvor erwarteten 1 bis 5 Prozent, der Nettogewinn soll um mindestens 15 Prozent fallen. Der freie Cashflow im Autogeschäft bleibt mit 2,5 Milliarden Euro unverändert geplant.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Umsatzrückgang von sechs Prozent erklärt nicht, warum das operative Ergebnis um rund dreißig Prozent einbricht. Das zeigt, wie stark hohe Fixkosten in der Autoproduktion die Marge belasten, wenn der Absatz schon in einem einzelnen großen Markt deutlich zurückgeht.',
+      },
+    ],
+  },
+  {
+    slug: 'immobilienfonds-dws-grundbesitz-europa',
+    title: 'Immobilienfonds-Krise: DWS begrenzt Rückgaben auf zehn Prozent',
+    teaser:
+      'Der offene Immobilienfonds Grundbesitz Europa der DWS zahlt fällige Rückgaben nur noch zu zehn Prozent aus. Grund sind hohe Abflüsse und sinkende Werte.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-05T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['immobilienfonds', 'dws', 'vonovia', 'zinsen'],
+    relatedTopics: ['immobilien', 'fonds'],
+    relatedSymbols: ['vonovia'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 04.11.2026, 15:49 Uhr: „Immobilien: Milliardenrisiko? Die Krise der Immobilienfonds spitzt sich zu"',
+        url: 'https://www.handelsblatt.com/finanzen/immobilien/immobilien-milliardenrisiko-die-krise-der-immobilienfonds-spitzt-sich-zu/100265249.html',
+      },
+      {
+        label:
+          'cash-online.de, 30.10.2026, 12:15 Uhr: „Offener Immobilienfonds der DWS: Anleger erhalten nur zehn Prozent ihrer Rückgaben"',
+        url: 'https://www.cash-online.de/a/offener-immobilienfonds-der-dws-anleger-erhalten-nur-zehn-prozent-ihrer-rueckgaben-729112/',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 04.11.2026, 12:19 Uhr: „Immobilienkonzern: Sechs Punkte, die die Krise bei Vonovia erklären"',
+        url: 'https://www.wiwo.de/finanzen/immobilien/krise-bei-vonovia-sechs-gruende-und-was-jetzt-aktionaeren-droht/100267169.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Fondsgesellschaft DWS hat ihren offenen Immobilienfonds Grundbesitz Europa eingeschränkt. Seit dem 28. Oktober zahlt sie fällige Rückgabeaufträge nur noch zu zehn Prozent aus, der Rest des Auftrags verfällt. Angekündigt hatte DWS die Maßnahme bereits am 26. Oktober.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '7,3 Prozent Abwertung, hohe Mittelabflüsse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im September hatte der Fonds seinen Wert bereits um 7,3 Prozent nach unten korrigiert. In den ersten acht Monaten des Jahres zogen Anleger netto mehr als 640 Millionen Euro aus dem Fonds ab – Geld, das lange als sicher angelegt galt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'An der Börse mit deutlichem Abschlag gehandelt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer seine Anteile nicht über die Fondsgesellschaft, sondern an der Börse verkauft, muss einen hohen Abschlag hinnehmen: Ende Oktober notierten die Anteile rund 47,5 bis 50 Prozent unter dem von DWS ausgewiesenen Rücknahmewert. Die Beschränkung kann bis zu zwölf Monate gelten. Auch bei anderen Anbietern wächst der Druck: Deutschlands größter Vermieter Vonovia hat seine Jahresprognose gesenkt und verliert in Kürze seinen Finanzvorstand.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der von der Fondsgesellschaft errechnete Rücknahmewert und der Preis, den der Markt an der Börse tatsächlich zahlt, können weit auseinanderliegen. Ein Fonds kann auf dem Papier noch werthaltig erscheinen, während der Preis am Zweitmarkt schon eine deutlich pessimistischere Einschätzung vorwegnimmt.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-nagel-ezb-zinserhoehung-dezember',
+    title:
+      'Bundesbank-Präsident Nagel hält EZB-Zinserhöhung im Dezember für wahrscheinlich',
+    metaTitle: 'Nagel: EZB-Zinserhöhung im Dezember wahrscheinlich',
+    teaser:
+      'Bundesbankpräsident Joachim Nagel hält eine Zinserhöhung der EZB im Dezember für wahrscheinlich – die Inflation im Euroraum bleibt hoch.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-04T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'zinsen', 'inflation', 'geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 03.11.2026, 19:23 Uhr: „Geldpolitik: Bundesbankpräsident Nagel: EZB-Zinserhöhung im Dezember wahrscheinlich"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/geldpolitik-nagel-zinserhoehung-im-dezember-wahrscheinlich/100267104.html',
+      },
+      {
+        label:
+          'trading-treff.de, 08.10.2026, 13:27 Uhr: „EZB steuert wegen hoher Teuerung auf Zinserhöhung im Dezember zu"',
+        url: 'https://trading-treff.de/wirtschaft/ezb-steuert-wegen-hoher-teuerung-auf-zinserhoehung-im-dezember-zu',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bundesbankpräsident Joachim Nagel hat sich am Dienstagabend in Berlin zur Zinspolitik der Europäischen Zentralbank geäußert. Eine Zinserhöhung im Dezember sei nach seiner Einschätzung sehr wahrscheinlich nötig, sagte er laut einem Bericht des Handelsblatts. Ohne eine deutliche Verbesserung des Inflationsausblicks führe kaum ein Weg an einem solchen Schritt vorbei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '3,8 Prozent Inflation, 2,5 Prozent Einlagensatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Verbraucherpreise im Euroraum lagen im September 3,8 Prozent über dem Vorjahresniveau – der höchste Stand seit drei Jahren. Der Einlagensatz der EZB liegt seit der Sitzung in der vergangenen Woche unverändert bei 2,5 Prozent. In diesem Jahr hat die Notenbank den Satz bereits zweimal angehoben, zuletzt im September.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Termin im Dezember, eine Mehrheit der Ökonomen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der EZB-Rat entscheidet turnusgemäß am 17. Dezember erneut über den Leitzins, dann mit aktualisierten Projektionen bis 2028. Nach einer Umfrage unter Volkswirten, über die bereits im Oktober berichtet wurde, rechneten fast 90 Prozent der Befragten für den Dezember mit einer Anhebung um 25 Basispunkte. Ein knappes Drittel hielt zu diesem Zeitpunkt sogar einen Einlagensatz von 3,0 Prozent für möglich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Aussage wie „eine Erhöhung ist wahrscheinlich nötig“ ist keine Ankündigung, sondern eine Einschätzung eines von mehreren Ratsmitgliedern. Der EZB-Rat entscheidet gemeinsam, und die Dezember-Projektionen zur Inflation können das Bild bis zur Sitzung noch verändern – wer einen Zinsschritt einpreist, sollte das als Wahrscheinlichkeit lesen, nicht als feststehendes Ergebnis.',
+      },
+    ],
+  },
+  {
+    slug: 'schaeffler-stellenabbau-vier-werke',
+    title: 'Schaeffler streicht 3.460 Stellen – vier Werke vor dem Aus',
+    teaser:
+      'Der Autozulieferer Schaeffler schließt vier deutsche Werke und streicht europaweit 3.460 Stellen. Grund sind die Autokrise und hohe Kosten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['schaeffler', 'autoindustrie', 'stellenabbau', 'zulieferer'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 03.11.2026, 14:38 Uhr: „Krise der Autoindustrie: Schaeffler streicht Tausende Jobs und schließt Werke"',
+        url: 'https://www.handelsblatt.com/politik/deutschland/krise-der-autoindustrie-schaeffler-streicht-tausende-jobs-und-schliesst-werke/100266863.html',
+      },
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 10:02 Uhr: „Kahlschlag bei Schaeffler: Stellenabbau und Standortschließungen"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/schaeffler-154.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Automobil- und Industriezulieferer Schaeffler streicht nach eigenen Angaben 3.460 Stellen in Europa, davon 2.660 in Deutschland. Fünf europäische Standorte sollen ganz aufgegeben werden, vier davon in Deutschland: Dortmund, Berlin, Morbach in Rheinland-Pfalz und Schwalbach in Hessen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an den einzelnen Standorten passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Berlin sind rund 270 Beschäftigte betroffen, dort sollen die Aktivitäten eingestellt werden. Der Standort Schwalbach wird aufgegeben, ein Großteil der dort rund 190 Beschäftigten soll nach Frankfurt wechseln. Rund die Hälfte des gesamten Stellenabbaus trifft die Produktion, etwa 30 Prozent Forschung und Entwicklung, der Rest weitere Funktionsbereiche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '17,5 Milliarden Euro Umsatz, elf Millionen Euro Gewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt der Vorstand die Krise der europäischen Automobilindustrie und hohe Kosten. Sinkende Verbrennerabsätze und der Preiskampf chinesischer Hersteller belasten das Geschäft zusätzlich. Der Umsatz ging in den ersten neun Monaten des Jahres leicht auf 17,5 Milliarden Euro zurück, unter dem Strich blieb ein Nettogewinn von nur elf Millionen Euro. Der Konzernbetriebsrat und die IG Metall kritisierten die Pläne scharf und bemängelten ein fehlendes Zukunftskonzept für den Standort Deutschland.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 17,5 Milliarden Euro Umsatz und elf Millionen Euro Gewinn zeigen, wie wenig ein hoher Umsatz über die tatsächliche Ertragskraft eines Unternehmens aussagt. Zwischen Umsatz und Gewinn liegen Kosten für Material, Personal und Zinsen – bleibt davon fast nichts übrig, reicht schon ein kleiner zusätzlicher Belastungsfaktor, um das Ergebnis ins Minus zu drücken.',
+      },
+    ],
+  },
+  {
+    slug: 'eu-genehmigt-jdcom-mediamarktsaturn',
+    title: 'EU genehmigt Übernahme von MediaMarkt und Saturn durch JD.com',
+    teaser:
+      'Die EU-Kommission erlaubt dem chinesischen Konzern JD.com die Übernahme von MediaMarkt und Saturn – mit Auflagen für zehn Jahre.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['mediamarkt', 'jdcom', 'uebernahme', 'eu-kommission'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'ZDFheute, 03.11.2026, 13:08 Uhr: „Mediamarkt-Saturn: Brüssel genehmigt chinesische Übernahme"',
+        url: 'https://www.zdfheute.de/wirtschaft/mediamarkt-saturn-china-eu-uebernahme-100.html',
+      },
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 14:25 Uhr: „EU genehmigt MediaMarktSaturn-Übernahme durch JD.com"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/eu-mediamarkt-saturn-jd-genehmigung-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die EU-Kommission hat die Übernahme der Ceconomy AG, der Muttergesellschaft von MediaMarkt und Saturn, durch den chinesischen Onlinehändler JD.com genehmigt. Die Freigabe ist an Auflagen gebunden, die zehn Jahre gelten sollen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sorge vor chinesischen Staatssubventionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kommission sah das Risiko, dass JD.com von chinesischen Subventionen wie Steuervorteilen und Staatskrediten profitiert und damit Teile seiner Logistik und IT finanziert. MediaMarkt und Saturn könnten davon profitieren und so einen unfairen Vorteil gegenüber europäischen Konkurrenten erhalten. JD.com muss seine Logistikdienste, Lager und Technologien deshalb anderen Marktteilnehmern zu denselben Bedingungen anbieten wie der eigenen Tochter, und jede Finanzierung zwischen beiden Unternehmen muss zu marktüblichen Konditionen erfolgen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '59,8 Prozent der Anteile, mehr als 85 Prozent der Stimmen',
+      },
+      {
+        type: 'paragraph',
+        text: 'JD.com hält nach der Transaktion 59,8 Prozent der Aktien und Stimmrechte an Ceconomy. Die Gründerfamilie Kellerhals behält 25,4 Prozent, hat sich aber verpflichtet, mit JD.com zu stimmen – damit kontrolliert der chinesische Konzern faktisch mehr als 85 Prozent der Stimmrechte. Ceconomy betreibt mehr als 1.000 MediaMarkt- und Saturn-Filialen in elf europäischen Ländern, rund 400 davon in Deutschland. Geschäftsmodell und Führung sollen zunächst bestehen bleiben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 59,8 Prozent der Anteile und mehr als 85 Prozent der Stimmrechte sind zwei verschiedene Zahlen. Eine Stimmbindung mit einem weiteren Großaktionär kann die tatsächliche Kontrolle über ein Unternehmen deutlich über den eigenen Kapitalanteil hinaus vergrößern – wer nur auf die Beteiligungsquote schaut, unterschätzt leicht, wer am Ende wirklich entscheidet.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-evonik-fusion-groesste-chemiebranche',
+    title: 'BASF und Evonik: Größte Fusion der Chemiebranche weiter offen',
+    teaser:
+      'Fusionierten BASF und Evonik, entstünde ein Konzern mit rund 74 Milliarden Euro Umsatz. Doch Evonik hält das Angebot weiter für zu niedrig.',
+    category: 'Märkte',
+    publishedAt: '2026-11-04T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['basf', 'evonik', 'chemie', 'fusion'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['basf'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 03.11.2026, 15:59 Uhr: „Evonik wehrt sich gegen Chemieriese BASF"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/evonik-basf-fusion-100.html',
+      },
+      {
+        label:
+          'Börse Online / dpa-AFX, 28.10.2026: „ROUNDUP 3: BASF drückt bei Evonik-Kauf aufs Gas – höheres Ergebnisziel für 2026"',
+        url: 'https://www.boerse-online.de/dpa-afx/roundup-3-basf-drueckt-bei-evonik-kauf-aufs-gas-hoeheres-ergebnisziel-fuer-2026-561520.html',
+      },
+      {
+        label:
+          'Industriemagazin, 28.10.2026: „BASF greift nach Evonik: Der größte Deal der Konzerngeschichte soll die Chemiekrise beantworten"',
+        url: 'https://industriemagazin.at/chemie/basf-evonik-uebernahme-kamieth-chemieindustrie/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'BASF wirbt weiter um den Chemiekonzern Evonik. Es wäre die größte Fusion in der deutschen Chemiebranche: Zusammen kämen beide Konzerne auf einen Jahresumsatz von rund 74 Milliarden Euro. Doch noch sträubt sich Evonik gegen eine Einigung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Angebot, das Evonik für zu niedrig hält',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ende September hatte BASF ein Übernahmeangebot öffentlich gemacht. Zuletzt bot der Konzern nach Informationen von dpa-AFX rund 11 Milliarden Euro beziehungsweise etwa 24 Euro je Evonik-Aktie, nachdem ein früheres Angebot von 22,15 Euro je Aktie abgelehnt worden war. Die RAG-Stiftung, mit rund 43 Prozent größte Evonik-Aktionärin, hat bei einer Entscheidung besonderes Gewicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Größe allein kein Ziel ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'BASF-Chef Markus Kamieth nannte einen Zusammenschluss zuletzt einen logischen Schritt, sagte aber: „Wir werden keinen überhöhten Preis zahlen.“ Ein größerer Konzern solle Anlagen besser auslasten, Kosten senken und im Wettbewerb mit asiatischen Produzenten mehr Gewicht haben. Die IG BCE äußerte bereits kritische Fragen zu den Plänen, und die Landesregierung von Nordrhein-Westfalen sprach sich gegen eine Übernahme aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein zurückgewiesenes Angebot zeigt, dass der Preis für ein Unternehmen keine feste Zahl ist, sondern Verhandlungssache zwischen Vorstand und Großaktionären. Selbst eine Fusion, die betriebswirtschaftlich sinnvoll erscheint, kann an Belegschaft, Landespolitik und Kartellrecht noch scheitern – Größe allein ist kein Freibrief für eine Genehmigung.',
+      },
+    ],
+  },
+  {
+    slug: 'amd-data-center-geschaeft-quartalszahlen',
+    title: 'AMD: Data-Center-Geschäft treibt Gewinn und Aktie',
+    teaser:
+      'AMD hat die Erwartungen im dritten Quartal übertroffen. Der Umsatz im Data-Center-Geschäft verdoppelte sich fast, die Aktie legte deutlich zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-04T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['amd', 'halbleiter', 'ki', 'quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['amd'],
+    sources: [
+      {
+        label:
+          'CNBC, 03.11.2026, 23:04 Uhr: „AMD stock jumps 8% on earnings as data center revenue nearly doubles"',
+        url: 'https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html',
+      },
+      {
+        label:
+          'onvista / dpa-AFX, 03.11.2026, 21:39 Uhr: „KI-Boom heizt AMD-Wachstum weiter an - Aktie legt nachbörslich kräftig zu"',
+        url: 'https://www.onvista.de/news/2026/11-03-ki-boom-heizt-amd-wachstum-weiter-an-aktie-legt-nachboerslich-kraeftig-zu-0-10-26572031',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'AMD hat am Dienstag nach Börsenschluss Zahlen für das dritte Quartal vorgelegt, die die Erwartungen der Wall Street übertrafen. Der Umsatz stieg um 45 Prozent auf 13,4 Milliarden Dollar, der bereinigte Gewinn je Aktie lag bei 2,09 Dollar nach zuvor erwarteten 1,95 Dollar. Die Aktie legte nachbörslich rund 8 Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Data Center macht inzwischen zwei Drittel des Umsatzes aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatz im Geschäft mit Rechenzentren hat sich binnen eines Jahres fast verdoppelt. Er macht inzwischen 64 Prozent des Konzernumsatzes aus, vor einem Jahr waren es 47 Prozent. Den genauen Dollarbetrag des Data-Center-Umsatzes nennt die Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'PC- und Gaming-Geschäft schrumpft deutlich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Gegensatz dazu sank der Umsatz mit PC- und Gaming-Chips um 8 Prozent auf 3,7 Milliarden Dollar, der reine Gaming-Umsatz brach um 40 Prozent ein. Für das laufende vierte Quartal erwartet AMD einen Umsatz von rund 17 Milliarden Dollar, etwa zwei Drittel mehr als im Vorjahresquartal, bei einer Bruttomarge von rund 55 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Konzernumsatz, der um 45 Prozent wächst, kann zwei sehr unterschiedliche Geschäfte überdecken. Hier wächst das Rechenzentrumsgeschäft kräftig, während das Geschäft mit Spielekonsolen-Chips schrumpft – wer nur auf die Gesamtzahl schaut, übersieht, dass ein Unternehmen gleichzeitig einen Boom und einen Rückgang erleben kann.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-usa-iran-diplomatie',
+    title: 'Ölpreis bricht ein – USA und Iran signalisieren Diplomatie',
+    teaser:
+      'Brent und WTI fielen am Montag so stark wie seit Monaten nicht. Grund sind Signale aus Washington und Teheran, den Konflikt diplomatisch zu lösen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['öl', 'brent', 'iran', 'risikoprämie'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 20:19 Uhr: „Crude oil prices sell off more than 7% on Iran peace talk hopes ahead of U.S. midterms"',
+        url: 'https://www.cnbc.com/2026/11/02/oil-prices-fall-as-iran-us-pursue-diplomacy.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 02.11.2026, 08:22 Uhr: „Ölpreis aktuell: Ölpreise starten mit Verlusten in die neue Handelswoche"',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-oelpreise-starten-mit-verlusten-in-die-neue-handelswoche/100207502.html',
+      },
+      {
+        label:
+          'Handelsblatt, 02.11.2026, 17:14 Uhr: „Dax aktuell: Dax schließt im Plus – Öl- und Gaspreise geben nach"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-im-plus-oel-und-gaspreise-fallen/100266531.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist am Montag so stark gefallen wie seit Monaten nicht. Die Nordsee-Sorte Brent verlor 7,6 Prozent und schloss bei 104,77 Dollar je Barrel, die US-Sorte WTI gab 7,4 Prozent nach auf 96,46 Dollar – der größte Tagesverlust seit dem 27. Juli.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Acht Monate Konflikt, ein Signal zur Diplomatie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit Ende Februar liefern sich die USA und Israel einerseits und der Iran andererseits einen Konflikt, der die Energiemärkte seither immer wieder belastet hat. Am Montag äußerten sich beide Seiten versöhnlicher: Präsident Trump sagte vor Reportern, der Iran wolle „einen Deal, und das könnte passieren". Außenminister Marco Rubio erklärte, Trump bevorzuge eine diplomatische statt einer militärischen Lösung, habe aber noch keine Entscheidung über weitere Angriffe getroffen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Irans Präsident Masoud Pezeshkian erklärte laut der staatlichen Nachrichtenagentur IRNA, Teheran suche eine Lösung über Dialog. Außenminister Abbas Araghchi nannte eine Einigung möglich, wenn Washington „guten Willen zeigt" und Sanktionen aufhebe, die US-Militärpräsenz in der Region verringere und eine Blockade aufhebe. Zugleich rief der geistliche Führer Chamenei die Streitkräfte am Samstag dazu auf, auf jede Bedrohung „sofort und uneingeschränkt" zu reagieren – die Lage bleibt angespannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Signal reicht, um den Preis so stark zu bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Teil der Erklärung liegt in der Preisbildung selbst. Der Ölmarkt hatte im Oktober mehr als zehn Prozent zugelegt, weil Händler eine militärische Eskalation nach den US-Zwischenwahlen einpreisten – eine sogenannte Risikoprämie, die nichts mit dem tatsächlichen Angebot zu tun hat. Ryan McKay, Rohstoffstratege bei TD Securities, sagte, Berichte über Diplomatie wirkten deshalb so stark auf den Preis, weil ein großer Teil der jüngsten Gewinne genau diese Prämie gewesen sei. Solange der Konflikt aber nicht tatsächlich beendet sei und Angriffe auf Tanker vorkämen, erwarte er keinen vollständigen Abbau der Prämie allein durch Schlagzeilen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der fallende Ölpreis strahlte am Montag auch auf die europäischen Börsen aus: Der Dax schloss nach Angaben des Handelsblatts im Plus und landete zum Monatsanfang knapp unter der Marke von 26.000 Punkten, unterstützt von den gesunkenen Öl- und Gaspreisen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer einen Rohstoffpreis als Signal liest, sollte zwischen einem realen Angebotsschock und einer eingepreisten Erwartung unterscheiden. Beide bewegen den Preis, aber nur Ersteres verändert dauerhaft, wie viel Öl am Markt ist – Zweiteres kann sich schon mit einer einzigen Pressekonferenz wieder auflösen.',
+      },
+    ],
+  },
+  {
+    slug: 'us-zwischenwahlen-wall-street-schwankt',
+    title: 'Amerika wählt: Wall Street schwankt vor den Zwischenwahlen',
+    teaser:
+      'Am Dienstag entscheiden die US-Zwischenwahlen über Kongress und Senat. An den Terminmärkten steigen die Chancen der Demokraten auf die Senatsmehrheit.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['usa', 'zwischenwahlen', 'wall-street', 'volatilität'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    relatedSymbols: ['sp500', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 20:48 Uhr: „Prediction market traders now see nearly 75% chance of Democrats winning the Senate"',
+        url: 'https://www.cnbc.com/2026/11/02/prediction-market-traders-now-see-nearly-75percent-chance-of-democrats-winning-the-senate.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 02.11.2026, 12:56 Uhr: „US-Midterms: Wie Anleger von den US-Wahlen profitieren können"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/midterms-2026-wie-anleger-von-den-us-zwischenwahlen-profitieren-koennen/100266139.html',
+      },
+      {
+        label:
+          'CNBC, 02.11.2026, 23:13 Uhr: „Stock market after midterm elections: What S&P 500 history shows"',
+        url: 'https://www.cnbc.com/2026/11/02/stock-market-after-midterm-elections-sp-500-history.html',
+      },
+      {
+        label:
+          "CNBC, 02.11.2026, 15:30 Uhr: „Wall Street's Fear Index is doing something strange. Here's what it means for stocks\"",
+        url: 'https://www.cnbc.com/2026/11/02/wall-streets-fear-index-is-doing-something-strange-heres-what-it-means-for-stocks.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag wählen die Amerikanerinnen und Amerikaner ein neues Repräsentantenhaus und etwa ein Drittel des Senats neu. An der Wall Street schloss der Dow Jones am Montag 0,43 Prozent höher, der Nasdaq 100 gab 1,38 Prozent ab – ein uneinheitlicher Handelstag kurz vor der Abstimmung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Terminmärkte verschieben sich zugunsten der Demokraten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der Wettplattform Kalshi stieg die eingepreiste Wahrscheinlichkeit für eine demokratische Mehrheit im Senat am Montag auf 74 Prozent – der höchste Stand, seit der Markt 2024 eröffnet wurde. Hintergrund war unter anderem eine Umfrage der New York Times mit der Siena University vom Sonntag, die den Demokraten in mehreren umkämpften Bundesstaaten einen Vorsprung zeigte. Auch einzelne Senatsrennen verschoben sich binnen 24 Stunden deutlich: In Texas stiegen die Chancen für die demokratische Seite von 68,4 auf 74 Prozent, in Iowa von 42 auf 50 Prozent, in Kansas von 52 auf 63 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein auffällig ruhiger Angstindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach der schwächsten Börsenwoche seit Juni fiel am vergangenen Freitag auch auf, wie ruhig der Angstindex VIX blieb: Trotz eines Tagesverlusts von fast zwei Prozent im S&P 500 stieg der VIX nur um 2,2 Punkte und schloss bei 19,4. Optionshändler erklärten das unter anderem damit, dass viele Vermögensverwalter ihre Aktienpositionen laut Daten von Morgan Stanley bereits direkt verkauft hatten, statt sich über Optionen abzusichern – die Gesamtposition langfristig orientierter Fonds lag demnach acht Prozent unter ihrem jüngsten Höchststand, der größte Rückgang seit mindestens zehn Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Statistik sagt – und was sie nicht sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Auswertung von CNBC zeigt, dass der S&P 500 im Jahr nach einer Zwischenwahl seit 1982 im Schnitt um 13,7 Prozent zulegte, in 91 Prozent der Fälle positiv. Besonders gut schnitt der Index historisch bei einer geteilten Regierung ab. Jim Reid, Makro-Stratege der Deutschen Bank, warnte aber: Die Saisonalität sei kein Schicksal, Sorgen um Iran, Künstliche Intelligenz und Frankreich verschwänden durch die Wahl nicht einfach. Nach der Zwischenwahl 2018 etwa fiel der S&P 500 im Folgejahr zunächst, weil die Fed damals viermal die Zinsen anhob – ein Beleg dafür, dass andere Faktoren oft stärker wirken als der Wahltermin selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine historische Durchschnittsrendite nach einem Ereignis ist keine Garantie für das nächste Mal. Wer eine Statistik wie „Aktien steigen fast immer nach Zwischenwahlen" liest, sollte nachsehen, ob im jeweiligen Jahr nicht etwas anderes – eine Zinswende, eine Gewinnsaison – den größeren Ausschlag gegeben hat.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-warsh-weniger-zinsentscheide',
+    title: 'Fed-Chef Warsh kündigt ab 2027 weniger Zinsentscheide an',
+    teaser:
+      'Die Fed tagt weiter achtmal im Jahr, stimmt künftig aber seltener über den Leitzins ab. Verbraucher könnten dadurch länger auf günstigere Kredite warten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-03T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['fed', 'leitzins', 'notenbank', 'kredite'],
+    relatedTopics: ['notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 19:21 Uhr: „Fed will vote on rates less often. What that could mean for borrowers"',
+        url: 'https://www.cnbc.com/2026/11/02/fed-rate-votes-consumer-borrowing-costs.html',
+      },
+      {
+        label:
+          'Goldreporter, 29.10.2026: „US-Notenbank hält Leitzins stabil – zwei Gegenstimmen"',
+        url: 'https://www.goldreporter.de/fed-leitzins-unveraendert-warsh-oktober-2026/hot-links/262679/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank Fed hat ihren Leitzins am 28. Oktober bei 3,75 bis 4 Prozent belassen, zwei Mitglieder des Offenmarktausschusses stimmten dagegen. Auf der anschließenden Pressekonferenz kündigte Fed-Chef Kevin Warsh eine Änderung an, die weit über diese eine Sitzung hinausreicht: Ab 2027 wird die Notenbank seltener über den Zins abstimmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Acht Sitzungen bleiben, aber nicht alle entscheiden über Zinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fed tagt weiterhin achtmal im Jahr. Aber eines dieser Treffen wird 2027 ausschließlich der geldpolitischen Strategie gewidmet, ohne Abstimmung über den Leitzins und ohne Erklärung danach. 2028 soll es zwei solcher Strategiesitzungen geben – dann entscheiden nur noch sechs der acht Treffen über den Zins, Ausnahmen bilden Notfallsitzungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Leitzins und Verbraucherzins sind zwei verschiedene Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Verbraucher ist die Änderung deshalb relevant, weil der Leitzins nicht automatisch die Kreditkarten-, Hypotheken- oder Autokreditzinsen bewegt. Viele Kreditkartenanbieter koppeln ihre Zinsen an den Leitzins, passen sie aber laut der Analyseplattform LendingTree zuletzt trotz unveränderter Fed-Politik nach oben an, um sich gegen Zahlungsausfälle abzusichern. Jordan Ricciardi, Vermögensstrategin bei UBS, sagte, weniger Sitzungstermine könnten bedeuten, dass die Fed langsamer auf veränderte Wirtschaftsdaten reagiert – mit Folgen für Immobilienkäufer, die auf eine Refinanzierung warten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ökonom Mark Hamrick merkte zudem an, Warsh halte sich mit Hinweisen auf künftige Zinsschritte bereits jetzt zurücker als seine Vorgänger – weniger Pressekonferenzen bedeuteten deshalb auch weniger Gelegenheiten, die Begründung der Notenbank direkt zu hören. Einen Vorteil nannte er auch: Solange der Leitzins hoch bleibt, werfen gute Tagesgeld- und Festgeldangebote weiterhin bis zu vier Prozent Zinsen ab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein unveränderter Leitzins ist kein Versprechen auf unveränderte Kreditkonditionen. Wer einen Kredit plant oder Erspartes anlegt, sollte Angebote vergleichen, statt allein auf die nächste Fed-Sitzung zu warten – die kommt jetzt seltener als gedacht.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-rekordquartal-china-schwach',
+    title: 'Apple meldet Rekordumsatz mit iPhones – China bleibt schwach',
+    teaser:
+      'Apple hat Umsatz und Gewinn im vierten Geschäftsquartal übertroffen. Weil die Erwartungen schon hoch waren und China enttäuschte, gab die Aktie trotzdem nach.',
+    category: 'Märkte',
+    publishedAt: '2026-11-03T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['apple', 'iphone', 'quartalszahlen', 'bewertung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'onvista, 02.11.2026, 21:43 Uhr: „Apple schlägt Gewinnerwartungen - Kurs dennoch schwächer"',
+        url: 'https://www.onvista.de/news/2026/11-02-apple-schlaegt-gewinnerwartungen-kurs-dennoch-schwaecher-41121301-19-26571396',
+      },
+      {
+        label:
+          'wallstreet-online, 02.11.2026: „Trotz Lieferengpässen: Apple liefert ab: Starke iPhone-Verkäufe sorgen für Rekordquartal"',
+        url: 'https://www.wallstreet-online.de/nachricht/21625203-trotz-lieferengpaessen-apple-liefert-ab-starke-iphone-verkaeufe-sorgen-rekordquartal',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple hat am Montagabend – erstmals unter dem neuen Chef John Ternus – die Erwartungen übertroffen. Der Umsatz stieg im vierten Geschäftsquartal auf 114,5 Milliarden Dollar, der Gewinn je Aktie lag bei 2,10 Dollar. Analysten hatten mit 113,4 Milliarden Dollar Umsatz und 1,99 Dollar Gewinn je Aktie gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Starke iPhones, schwaches China',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatz mit dem iPhone fiel mit 57,6 Milliarden Dollar ebenfalls höher aus als erwartet. In China setzte Apple dagegen nur 17,54 Milliarden Dollar um – die Wall Street hatte dort mit knapp 18,8 Milliarden Dollar gerechnet. Die Aktie gab nachbörslich von einem hohen Niveau aus 1,1 Prozent auf 334,98 Dollar nach, nachdem sie erst Ende Oktober bei 351,73 Dollar ihren bisherigen Höchststand erreicht hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Gewinn über der Prognose trotzdem nicht reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als die übrigen „Magnificent Seven" ist Apple nur marginal in das Thema Künstliche Intelligenz investiert – während Alphabet und Amazon zuletzt für ihre hohen KI-Investitionen abgestraft wurden, galt Apple als verlässlicher Umsatz- und Gewinnbringer und war mit einem Plus von 24,5 Prozent seit Jahresbeginn der bisher stärkste Wert der Gruppe. Entsprechend gering war die Toleranz für eine Enttäuschung bei den Zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinzu kommt die Bewertung: Mit einem Kurs-Gewinn-Verhältnis von 36 auf Basis der erwarteten Gewinne der nächsten zwölf Monate ist Apple nach Daten von Bloomberg fast doppelt so teuer wie der marktbreite S&P 500 – und damit so hoch bewertet wie zuletzt 2008. Ben Carew, Co-Investmentchef bei Tandem Investment Advisors, sagte, Apple sei derzeit teurer als 99 Prozent aller historischen Vergleichswerte; bleibe das Wachstum hinter den Erwartungen zurück, drohe eine Neubewertung dieser hohen Kennzahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gewinn über der Prognose sagt wenig darüber aus, wie eine Aktie reagiert, wenn die Prognose selbst schon hoch war. Bei einer teuren Bewertung genügt oft eine einzelne enttäuschende Kennzahl – hier die Umsätze in China –, um den Kurs trotz guter Gesamtzahlen zu belasten.',
+      },
+    ],
+  },
+  {
+    slug: 'palantir-firmenkunden-ueberholen-staat',
+    title: 'Palantir: Firmenkunden überholen erstmals den Staat',
+    teaser:
+      'Palantir knackte im dritten Quartal erstmals zwei Milliarden Dollar Umsatz. Firmenkunden wuchsen so schnell, dass sie die Regierungseinnahmen überholten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-03T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['palantir', 'ki', 'quartalszahlen', 'wachstum'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['palantir'],
+    sources: [
+      {
+        label:
+          'CNBC, 02.11.2026, 22:53 Uhr: „Palantir reports booming U.S. commercial revenue growth, topping government for first time"',
+        url: 'https://www.cnbc.com/2026/11/02/palantir-pltr-earnings-q3-2026.html',
+      },
+      {
+        label:
+          'wallstreet-online, 02.11.2026: „Palantir, AMD & Co: Rekordgewinne, null Steuern – diese US-Konzerne kassieren Milliarden"',
+        url: 'https://www.wallstreet-online.de/nachricht/21623253-palantir-amd-co-rekordgewinne-null-steuern-us-konzerne-kassieren-milliarden',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Palantir hat am Montag nach Börsenschluss Zahlen vorgelegt, die die Erwartungen der Wall Street übertrafen. Der Umsatz lag erstmals über 2 Milliarden Dollar, fast doppelt so viel wie vor einem Jahr. Der Gewinn stieg auf 1,13 Milliarden Dollar oder 44 Cent je Aktie, nach rund 476 Millionen Dollar oder 18 Cent im Vorjahresquartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Firmenkunden wachsen schneller als der Staat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders auffällig: Der Umsatz mit US-Firmenkunden sprang um 148 Prozent auf 984 Millionen Dollar und übertraf damit erstmals die Einnahmen aus US-Regierungsaufträgen von 953 Millionen Dollar, die ihrerseits um 96 Prozent zulegten. Firmenkunden in den USA setzen nach Unternehmensangaben inzwischen mehr als fünfmal so viel bei Palantir um wie noch vor zwei Jahren. Konzernchef Alex Karp sagte dem Sender CNBC, er glaube nicht, dass es in der Geschichte der Software- und KI-Branche je vergleichbar konstante Ergebnisse gegeben habe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das kleinere Geschäft das größere überholt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Palantir war lange vor allem für Aufträge von Regierungen und Militär bekannt. Dass das Firmenkundengeschäft das Regierungsgeschäft nun übertrifft, liegt auch an unterschiedlichen Ausgangsgrößen: Eine Wachstumsrate von 148 Prozent auf einer kleineren Basis reicht aus, um eine Wachstumsrate von 96 Prozent auf einer größeren Basis zu überholen – das Regierungsgeschäft schrumpft dabei nicht, es wächst nur langsamer als das jüngere Firmenkundengeschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Palantir erhöhte zugleich die Prognose für das US-Firmenkundengeschäft im Gesamtjahr auf „mehr als 3,56 Milliarden Dollar“, nach zuvor 3,42 Milliarden Dollar. Für das vierte Quartal erwartet der Konzern rund 2,65 Milliarden Dollar Umsatz, für das Gesamtjahr 2026 rund 8,53 Milliarden Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine hohe Wachstumsrate sagt für sich genommen wenig aus, solange die Ausgangsgröße fehlt. 148 Prozent Wachstum auf rund 400 Millionen Dollar sind ein anderer Vorgang als 148 Prozent Wachstum auf 4 Milliarden – wer Wachstumsraten zwischen zwei Sparten vergleicht, sollte deshalb immer auch die absoluten Zahlen danebenlegen.',
+      },
+    ],
+  },
+  {
     slug: 'midterms-maerkte-positionieren-sich',
     title: 'Vor den Midterms: Anleger in Asien sichern sich ab',
     teaser:

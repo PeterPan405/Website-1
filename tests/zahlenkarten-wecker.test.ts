@@ -107,6 +107,51 @@ pruefe(
   leseZahlenkarteText('2026-10-16\nFreigabe: -\nText').freigabe === null
 )
 
+/* Ausnahme vor 15 Uhr (04.11.2026): „Freigabe: … ab HH:MM". */
+{
+  const ab = leseZahlenkarteText('2026-11-04\nFreigabe: 2026-11-04 ab 10:30\nText')
+  pruefe('„ab 10:30" wird gelesen', ab.freigabe === '2026-11-04' && ab.abMinute === 630)
+  pruefe(
+    'ohne „ab" gilt 15 Uhr',
+    leseZahlenkarteText('2026-11-04\nFreigabe: 2026-11-04\nText').abMinute === 15 * 60
+  )
+  const lage = {
+    tag: '2026-11-04',
+    datum: '2026-11-04',
+    freigabe: '2026-11-04',
+    angestossenAm: '',
+  }
+  pruefe(
+    'mit ab 10:30 stößt er um 10:31 an',
+    sollZahlenkarteAnstossen({ ...lage, minute: 631, abMinute: 630 }).anstossen
+  )
+  pruefe(
+    'mit ab 10:30 nicht um 10:29',
+    !sollZahlenkarteAnstossen({ ...lage, minute: 629, abMinute: 630 }).anstossen
+  )
+  pruefe(
+    'ohne ab nicht um 10:31',
+    !sollZahlenkarteAnstossen({ ...lage, minute: 631 }).anstossen
+  )
+}
+
+/* Zwei Seiten (05.11.2026): „seiten 2" in Zeile 2. */
+{
+  const z = leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05 seiten 2\nText')
+  pruefe(
+    '„seiten 2" wird gelesen',
+    z.freigabe === '2026-11-05' && z.seiten === 2 && z.abMinute === 15 * 60
+  )
+  const y = leseZahlenkarteText(
+    '2026-11-05\nFreigabe: 2026-11-05 ab 10:30 seiten 2\nText'
+  )
+  pruefe('„ab" und „seiten" zusammen', y.abMinute === 630 && y.seiten === 2)
+  pruefe(
+    'ohne Angabe eine Seite',
+    leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05\nText').seiten === 1
+  )
+}
+
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
 )

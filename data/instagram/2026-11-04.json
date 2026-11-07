@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Fünf Themen heute: eine mögliche EZB-Zinserhöhung im Dezember, Stellenabbau bei Schaeffler, die EU-Freigabe für MediaMarkt und JD.com, BASFs Werben um Evonik und starke AMD-Zahlen.",
+  "kacheln": [
+    {
+      "titel": "EZB: Zins im Dezember",
+      "text": "Bundesbankpräsident Nagel hält eine EZB-Zinserhöhung im Dezember für wahrscheinlich. Die Inflation im Euroraum lag im September bei 3,8 Prozent."
+    },
+    {
+      "titel": "Schaeffler: 3.460 Jobs weg",
+      "text": "Der Autozulieferer Schaeffler streicht 3.460 Stellen in Europa, davon 2.660 in Deutschland. Vier Werke sollen schließen."
+    },
+    {
+      "titel": "MediaMarkt: China-Deal",
+      "text": "Die EU erlaubt die Übernahme von MediaMarkt und Saturn durch den chinesischen Konzern JD.com, allerdings nur mit Auflagen für zehn Jahre."
+    },
+    {
+      "titel": "BASF wirbt um Evonik",
+      "text": "BASF bietet weiterhin für den Chemiekonzern Evonik, zuletzt rund 11 Milliarden Euro. Evonik hält das Angebot für zu niedrig."
+    },
+    {
+      "titel": "AMD +8 % nach Zahlen",
+      "text": "AMD hat die Erwartungen im dritten Quartal übertroffen, der Umsatz stieg um 45 Prozent. Die Aktie legte nachbörslich kräftig zu."
+    }
+  ],
+  "schlagworte": ["ezb", "zinsen", "autoindustrie", "börse", "aktien"]
+}

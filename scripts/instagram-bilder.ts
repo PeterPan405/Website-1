@@ -65,7 +65,32 @@ const verwendet = verwendeteTitel(register)
   ersten bleiben verbraucht. Mit NUR=4,6 nur diese Stellen; die übrigen
   bleiben, wie sie sind (21.10.2026: vier passten, eins nicht).
 */
-const nur = (process.env.NUR ?? '').split(',').map(Number).filter(Boolean)
+/*
+  Von Hand Gewähltes bleibt (07.11.2026). Die Reparatur sucht die Stellen,
+  die eine Bildprüfung abgelehnt hat – geprüft wurde aber die Website, und
+  die trug die Auswahl von Hand noch nicht: Der Bau lief erst danach. So
+  ersetzte die Reparatur am 07.11. zweimal das Arbeitsministerium und das
+  Logo von Daimler Truck wieder durch Einkaufswagen und Stiftungslogo.
+  Eine Stelle, die ein Mensch gewählt hat, ersetzt nur ein Mensch.
+*/
+const vonHand = (b: Tagesbild) =>
+  b.suche.startsWith('von Hand') || b.suche.startsWith('Logo auf ')
+const nur = (process.env.NUR ?? '')
+  .split(',')
+  .map(Number)
+  .filter(Boolean)
+  .filter((stelle) => {
+    const b = (register[DATUM] ?? []).find((x) => x.stelle === stelle)
+    if (b && vonHand(b)) {
+      console.log(`Stelle ${stelle}: von Hand gewählt (${b.titel}) – bleibt.`)
+      return false
+    }
+    return true
+  })
+if (process.env.NUR && !nur.length) {
+  console.log('Alle genannten Stellen sind von Hand gewählt – nichts zu suchen.')
+  process.exit(0)
+}
 const heute: Tagesbild[] = nur.length
   ? (register[DATUM] ?? []).filter((b) => !nur.includes(b.stelle))
   : []

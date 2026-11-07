@@ -269,6 +269,7 @@ liest diese Liste vorher.
 | 30.10. | harter Übergang Weiß/Foto auf dem Deckblatt                                                 | `VERLAUF_WEISS`, 100 px als S-Kurve                                       |
 | 01.11. | Nationalversammlung hinter Glas, gespiegelt                                                 | Sichtprüfung: unscharf, Glas, Spiegelung = passt nicht                    |
 | 01.11. | Quellenangabe fehlte (drei Logos ohne Nennung, keine Quellen der Meldungen)                 | `bildnachweis()` nennt jedes Bild, `quellenzeile()` die Quellen           |
+| 03.11. | Deckblatt: leerer, dunkler Handelssaal – „nicht ästhetisch und nicht schön"                 | Sichtprüfung: Deckblatt muss hell und ein Blickfang sein; keine Säle      |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
