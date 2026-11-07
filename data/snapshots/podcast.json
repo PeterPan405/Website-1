@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-06T11:30:25.356Z",
+  "abgerufenAm": "2026-11-07T01:05:51.450Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "dax-faellt-weiter-us-jobmarkt-waechst-kraeftig-und-ezb-nachfolge-spanien-nominie",
+      "titel": "Dax fällt weiter, US-Jobmarkt wächst kräftig und EZB-Nachfolge: Spanien nominiert Hernández de Cos",
+      "beschreibung": "Der Dax fällt vom Rekord, Asiens Chipbörsen stürzen stärker ab, US-Jobdaten überraschen, und die EZB bekommt einen zweiten Kandidaten für die Lagarde-Nachfolge. Der Dax hat sein Rekordhoch vom Donnerstag nicht gehalten. Er schloss am Freitag bei 25.820 Punkten, ein Minus von 1,9 Prozent, meldet Handelsblatt.\n\nWir sprechen über EZB-Nachfolge: Spanien nominiert Hernández, Daimler Truck: Gewinn springt, Aufträge und Anthropic: Zweifel. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:32) Dax fällt weiter\n(1:10) US-Jobmarkt wächst kräftig\n(1:40) EZB-Nachfolge: Spanien nominiert Hernández\n(2:19) Daimler Truck: Gewinn springt, Aufträge\n(2:53) Anthropic: Zweifel\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-07",
+      "dauerSekunden": 231,
+      "url": "https://iminvests.de/podcast-audio/2026-11-07.mp3",
+      "youtubeId": "pA_hnox3auk"
+    },
     {
       "slug": "wall-street-verliert-an-einem-tag-drei-billionen-dollar-und-bank-of-england-erho",
       "titel": "Wall Street verliert an einem Tag drei Billionen Dollar und Bank of England erhöht Leitzins auf 4,0 Prozent",
