@@ -1033,6 +1033,73 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 07.11.2026: Krieg im Supermarkt (Weltbank, Pink Sheet, Januar gegen Oktober 2026). */
+{
+  const karte = karteVom('2026-11-07')
+  pruefe('Supermarkt: Karte für den 07.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
+    pruefe(
+      'Supermarkt: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Supermarkt: drei Heldenzahlen – Welt, Euroraum, Deutschland',
+      karte.helden.map((h) => `${h.name} ${h.wert}`).join(' | ') ===
+        'Welt +5,9 % | Euroraum +1,6 % | Deutschland +0,4 %'
+    )
+    /* FAO Food Price Index, nominal: 10/2026 133,92 gegen 10/2025 126,42. */
+    pruefe(
+      'Supermarkt: FAO +5,9 %',
+      Math.round((133.917 / 126.423 - 1) * 1000) / 10 === 5.9
+    )
+    pruefe(
+      'Supermarkt: jede Heldenzahl steht in der Beschreibung',
+      karte.helden.every((h) => karte.text.includes(`${h.name}: ${h.wert}`))
+    )
+    pruefe(
+      'Supermarkt: jede Säule hat ihr Bildchen',
+      karte.saeulen.every((z) => z.symbol)
+    )
+    pruefe(
+      'Supermarkt: ein fehlendes Bildchen wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        saeulen: karte.saeulen.map((z, i) =>
+          i ? z : { ...z, symbol: 'gibt-es-nicht.svg' }
+        ),
+      }).some((f) => f.includes('gibt-es-nicht.svg'))
+    )
+    pruefe(
+      'Supermarkt: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-06')!)
+    )
+    const paare: [number, number][] = [
+      [0.32, 0.43],
+      [249.9, 317],
+      [408, 489],
+      [4.97, 5.75],
+      [1.75, 1.84],
+      [8.02, 7.4],
+      [7.97, 6.83],
+      [1.11, 0.75],
+    ]
+    paare.forEach(([vor, nach], i) => {
+      const prozent = (nach / vor - 1) * 100
+      pruefe(
+        `Supermarkt: ${karte.saeulen[i].text} ${Math.round(prozent)} %`,
+        Math.abs(karte.saeulen[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Supermarkt: ${karte.saeulen[i].text} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
+      )
+    })
+  }
+}
+
 /* 06.11.2026: Gold nach Kriegen und Krisen (Weltbank, Pink Sheet, Gold). */
 {
   const karte = karteVom('2026-11-06')

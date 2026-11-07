@@ -29,6 +29,101 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 07.11.2026, „Krieg im Supermarkt“ – vom Betreiber gewählt
+      aus drei Vorschlägen, nachdem er Gold (Balken, Kurve) als „langweilig
+      … das weiß schon jeder“ verworfen hatte. Form: Säulen (am 06.11.
+      Balken).
+
+      Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
+      CMO-Historical-Data-Monthly.xlsx, „Updated on November 03, 2026",
+      abgerufen am 06.11.2026 über quellen-holen.yml (blatt 2).
+      Weltmarktpreise, Monatsmittel, nominal, Januar 2026 (vor dem Krieg um
+      den Iran, Beginn Ende Februar) gegen Oktober 2026:
+        Zucker (Sugar, world)    0,32 → 0,43 $/kg   +34,4 %
+        Weizen (Wheat, US HRW)  249,9 → 317,0 $/t   +26,9 %
+        Reis (Rice, Thai 5%)    408   → 489   $/t   +19,9 %
+        Kakao (Cocoa)            4,97 → 5,75 $/kg   +15,7 %
+        Hähnchen (Chicken)       1,75 → 1,84 $/kg    +5,1 %
+        Kaffee (Coffee, Arabica) 8,02 → 7,40 $/kg    −7,7 %
+        Rind (Beef)              7,97 → 6,83 $/kg   −14,3 %
+        Orangen (Orange)         1,11 → 0,75 $/kg   −32,4 %
+      Die Weltbank gibt Zucker auf zwei Nachkommastellen an; die Prozente
+      sind aus diesen Werten gerechnet.
+
+      Heldenzahl auf Wunsch des Betreibers („die durchschnittliche Teuerung
+      im Supermarkt"): Destatis, Pressemitteilung Nr. 382 vom 30.10.2026
+      (PD26_382_611), Tabelle „Jährliche Veränderung": Nahrungsmittel
+      Oktober 2026 +0,4 % (vorläufig; Juli 0,4, August 0,1, September 0,4).
+      Gesamt +2,8 %, Energie +12,2 %. Abgerufen am 07.11.2026 über
+      quellen-holen.yml. Kein Mittel aus den Säulen – das wäre eine
+      selbst gewählte Auswahl.
+
+      Drei Heldenzahlen auf Wunsch des Betreibers („weltweite Teuerung und
+      Euro und Teuerung in Deutschland"), je Oktober 2026 zum Vorjahresmonat:
+        Welt        FAO Food Price Index, ffpi-data-2026-11.xlsx (Stand
+                    06.11.2026): 10/2026 133,92 gegen 10/2025 126,42 → +5,9 %
+        Euroraum    Eurostat, Flash estimate October 2026 (euro indicators
+                    2-04112026-ap): food, alcohol & tobacco 1,6 %
+        Deutschland Destatis PD26_382_611: Nahrungsmittel +0,4 % (vorläufig)
+      Produktfotos statt Emoji (Betreiber: „sehen aus wie Kindersymbole"):
+      Wikimedia Commons, Nachweise in der Beschreibung.
+    */
+    art: 'saeulen',
+    datum: '2026-11-07',
+    titel: [
+      { text: 'Essen an der Börse:' },
+      { text: 'Nicht alles steigt.', gruen: true },
+    ],
+    erklaerung:
+      'Oben: Teuerung bei Lebensmitteln im Oktober. Unten: Weltmarktpreise von Agrarrohstoffen, Oktober gegen Januar 2026.',
+    stichzeile: 'Lebensmittel · Oktober zum Vorjahr',
+    helden: [
+      { name: 'Welt', wert: '+5,9 %', pille: { wert: 'FAO', name: 'Index' } },
+      {
+        name: 'Euroraum',
+        wert: '+1,6 %',
+        pille: { wert: 'Eurostat', name: 'Schätzung' },
+      },
+      {
+        name: 'Deutschland',
+        wert: '+0,4 %',
+        pille: { wert: 'Destatis', name: 'vorläufig' },
+      },
+    ],
+    saeulen: [
+      { text: 'Zucker', wert: 34.38, symbol: 'zucker.jpg' },
+      { text: 'Weizen', wert: 26.85, symbol: 'weizen.jpg' },
+      { text: 'Reis', wert: 19.85, symbol: 'reis.jpg' },
+      { text: 'Kakao', wert: 15.69, symbol: 'kakao.jpg' },
+      { text: 'Hähnchen', wert: 5.14, symbol: 'haehnchen.jpg' },
+      { text: 'Kaffee', wert: -7.73, symbol: 'kaffee.jpg' },
+      { text: 'Rind', wert: -14.3, symbol: 'rind.jpg' },
+      { text: 'Orangen', wert: -32.43, symbol: 'orangen.jpg' },
+    ],
+    einheit: '%',
+    nachkomma: 0,
+    fusszeile:
+      'Stand: 10/2026 | Quellen: FAO, Eurostat, Destatis, Weltbank (Pink Sheet) | Fotos: Wikimedia Commons',
+    text:
+      'Krieg um den Iran – wird Essen teurer? Teuerung bei Lebensmitteln im Oktober, gegenüber Oktober 2025:\n' +
+      'Welt: +5,9 % (FAO-Lebensmittelpreisindex)\n' +
+      'Euroraum: +1,6 % (inkl. Alkohol und Tabak, Schnellschätzung Eurostat)\n' +
+      'Deutschland: +0,4 % (vorläufig, Statistisches Bundesamt)\n\n' +
+      'Wusstest du: Viele Lebensmittel sind Börsenware. Zucker, Weizen, Reis, Kakao, Kaffee und Rinder werden an Rohstoffbörsen gehandelt, etwa in Chicago, New York und London – als Terminkontrakte.\n\n' +
+      'Die Weltmarktpreise im Bild (Weltbank, Oktober gegen Januar 2026, vor dem Krieg):\n' +
+      'Zucker +34 % · Weizen +27 % · Reis +20 % · Kakao +16 % · Hähnchen +5 % · Kaffee −8 % · Rind −14 % · Orangen −32 %\n\n' +
+      'Schon gewusst?\n' +
+      '– Kakao kostete im Januar 2025 noch 10,75 $ je Kilo – heute nur noch gut die Hälfte.\n' +
+      '– Die Inflation insgesamt lag im Oktober im Euroraum bei 4,0 %, in Deutschland bei 2,8 %.\n\n' +
+      'Warum?\n' +
+      'Die Zahlen nennen keine Gründe, und wir raten nicht. Sie zeigen nur: Der Weltmarkt ist nicht der Supermarkt.\n\n' +
+      'Quellen: FAO Food Price Index (6.11.2026); Eurostat, Schnellschätzung Oktober 2026; Statistisches Bundesamt, PM Nr. 382 (30.10.2026); Weltbank, Pink Sheet (3.11.2026), Monatsmittel in US-Dollar; eigene Rechnung\n' +
+      'Fotos (Wikimedia Commons): Dietmar Rabich, CC BY-SA 4.0 (Zucker); Bluemoose, CC BY-SA 3.0 (Weizen); Rocky Masum, CC BY-SA 4.0 (Reis); Roger Culos, CC BY-SA 3.0 (Kakao); Baoothersks, CC BY-SA 4.0 (Hähnchen); MarkSweep, gemeinfrei (Kaffee); Jellaluna, CC BY 2.0 (Rind); Evan-Amos, CC BY-SA 3.0 (Orangen)',
+    schlagworte: ['lebensmittel', 'inflation', 'iran', 'rohstoffe', 'supermarkt'],
+    freigabe: '2026-11-07',
+  },
+  {
+    /*
       Zahlenkarte 06.11.2026. Keine Wahl des Betreibers für heute; der erste
       offene Vorschlag (Bank of England) stand schon in der Tagesausgabe vom
       06.11. – der Betreiber verwarf am 02.11. Themen, die „doch alles schon

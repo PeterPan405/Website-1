@@ -358,8 +358,14 @@ export interface Kurvenkarte extends StilGemeinsam {
 export interface Saeulenkarte extends StilGemeinsam {
   art: 'saeulen'
   helden: Held[]
-  /** `bild`: ein rundes Porträt über der Beschriftung, Datei in `lib/instagram/fotos/`. */
-  saeulen: { text: string; wert: number; bild?: string }[]
+  /**
+   * `bild`: ein rundes Porträt über der Beschriftung, Datei in `lib/instagram/fotos/`.
+   * `symbol`: ein kleines rundes Produktfoto unter der Beschriftung, Datei in
+   * `lib/instagram/symbole/` (07.11.2026, Betreiber: „unten drunter so ganz
+   * kleine Bildchen machen von den Produkten"; Emoji verworfen: „sehen aus
+   * wie Kindersymbole und nicht wie das mögliche Produkt").
+   */
+  saeulen: { text: string; wert: number; bild?: string; symbol?: string }[]
   /** Hinter den Werten: „%". */
   einheit: string
   /** Nachkommastellen der Werte über den Säulen – ohne Angabe eine. */
@@ -885,13 +891,18 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
       f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
     f.push(...stilBefunde(k))
   } else if (k.art === 'saeulen') {
-    if (k.helden.length < 1 || k.helden.length > 2)
-      f.push(`${k.helden.length} Heldenzahlen – eine oder zwei.`)
+    if (k.helden.length < 1 || k.helden.length > 3)
+      f.push(`${k.helden.length} Heldenzahlen – eine bis drei.`)
     if (k.saeulen.length < 3 || k.saeulen.length > 12)
       f.push(`${k.saeulen.length} Säulen – drei bis zwölf.`)
     for (const z of k.saeulen)
       if (z.bild !== undefined && !existsSync(join(FOTO_ORDNER, z.bild)))
         f.push(`Foto „${z.bild}" fehlt in lib/instagram/fotos/.`)
+    for (const z of k.saeulen)
+      if (z.symbol !== undefined && !existsSync(join(SYMBOL_ORDNER, z.symbol)))
+        f.push(`Symbol „${z.symbol}" fehlt in lib/instagram/symbole/.`)
+    if (k.saeulen.some((z) => z.symbol) && k.saeulen.some((z) => z.bild))
+      f.push('Symbole und Porträts zugleich – eins von beiden.')
     f.push(...stilBefunde(k))
   } else if (k.art === 'personen') {
     if (k.personen.length < 2 || k.personen.length > 4)
@@ -2314,6 +2325,7 @@ function tortenGrafik(k: Tortenkarte) {
 
 /** Wo die Fotos der Steckbriefe liegen. */
 const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
+const SYMBOL_ORDNER = join(process.cwd(), 'lib/instagram/symbole')
 
 /*
   Steckbrief mit Foto: das Foto links, groß und hochkant, rechts das Logo
@@ -3210,6 +3222,12 @@ function stilBild(
     zur großen gehört, steht unter ihr statt in einer eigenen Reihe am Fuß
     (Betreiber, 30.10.2026: „noch nicht perfekt").
   */
+  /*
+    Drei Helden (07.11.2026, „weltweite Teuerung und Euro und Teuerung in
+    Deutschland"): drei gleich breite Spalten, die Zahl etwas kleiner.
+  */
+  const drei = helden.length === 3
+  const spalte = (ZK_BREITE - 2 * rand) / 3
   const spalten = helden.map((held, n) => {
     const pille = held.pille
     const farbe = stilFarbe(pille?.richtung)
@@ -3219,7 +3237,7 @@ function stilBild(
         style: {
           position: 'absolute',
           top: 482,
-          left: n ? mitte + 40 : rand,
+          left: drei ? rand + n * spalte + (n ? 30 : 0) : n ? mitte + 40 : rand,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -3231,7 +3249,7 @@ function stilBild(
         'div',
         {
           style: {
-            fontSize: 96,
+            fontSize: drei ? 76 : 96,
             fontWeight: 800,
             letterSpacing: -3,
             lineHeight: 1.05,
@@ -3340,6 +3358,20 @@ function stilBild(
       color: STIL.navy,
     }),
     ...spalten,
+    ...(drei
+      ? [1, 2].map((n) =>
+          h('div', {
+            style: {
+              position: 'absolute',
+              top: 486,
+              left: rand + n * spalte,
+              width: 1.5,
+              height: 196,
+              backgroundColor: STIL.rand,
+            },
+          })
+        )
+      : []),
     ...(helden.length === 2
       ? [
           h('div', {
@@ -3503,7 +3535,18 @@ function saeulenGrafik(k: Saeulenkarte) {
   /* Mit Porträts wird die Grafik um ihre Reihe kürzer; die Jahreszahlen bleiben, wo sie sind. */
   const mitBild = k.saeulen.some((z) => z.bild)
   const bild = 78
-  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O - (mitBild ? bild + 18 : 0)
+  /*
+    Mit Symbolen rückt die Beschriftung über die Bildchen; die Grafik wird
+    um ihre Reihe kürzer, beginnt dafür aber höher (Betreiber 07.11.2026:
+    „die Tabelle etwas hoch machen") – Platz, den eine einzelne Heldenzahl
+    ohnehin frei lässt.
+  */
+  const mitSymbol = k.saeulen.some((z) => z.symbol)
+  const symbol = 74
+  const anheben = mitSymbol ? 40 : 0
+  const unterkante = STIL_GRAFIK_U - (mitSymbol ? 58 : 0)
+  const oberkante = STIL_GRAFIK_O - anheben
+  const hoehe = unterkante - STIL_GRAFIK_O + anheben - (mitBild ? bild + 18 : 0)
   const werte = k.saeulen.map((z) => z.wert)
   const schritt = achsenschritt(Math.max(...werte.map(Math.abs)), 4)
   const oben = Math.ceil(Math.max(0, ...werte) / schritt) * schritt
@@ -3545,12 +3588,12 @@ function saeulenGrafik(k: Saeulenkarte) {
       src: svgAdresse(svg),
       width: breite,
       height: hoehe + kopf,
-      style: { position: 'absolute', left: links, top: STIL_GRAFIK_O - kopf },
+      style: { position: 'absolute', left: links, top: oberkante - kopf },
     }),
-    ...stilAchse(striche, (v) => y(v) - kopf, rechts, k.einheit),
+    ...stilAchse(striche, (v) => y(v) - kopf - anheben, rechts, k.einheit),
     ...k.saeulen.flatMap((z, i) => [
       stilBlock(zahl(z.wert), {
-        top: STIL_GRAFIK_O - kopf + (z.wert >= 0 ? y(z.wert) - 30 : y(z.wert) + 6),
+        top: oberkante - kopf + (z.wert >= 0 ? y(z.wert) - 30 : y(z.wert) + 6),
         left: links + i * fach,
         width: fach,
         justifyContent: 'center',
@@ -3575,13 +3618,30 @@ function saeulenGrafik(k: Saeulenkarte) {
           ]
         : []),
       stilBlock(z.text, {
-        top: STIL_GRAFIK_U + 16,
+        top: unterkante + 16,
         left: links + i * fach,
         width: fach,
         justifyContent: 'center',
         fontSize: 17,
         color: STIL.hellgrau,
       }),
+      ...(z.symbol
+        ? [
+            h('img', {
+              src: `data:image/${z.symbol.endsWith('.svg') ? 'svg+xml' : 'jpeg'};base64,${readFileSync(join(SYMBOL_ORDNER, z.symbol)).toString('base64')}`,
+              width: symbol,
+              height: symbol,
+              style: {
+                position: 'absolute',
+                top: unterkante + 42,
+                left: links + i * fach + (fach - symbol) / 2,
+                ...(z.symbol.endsWith('.svg')
+                  ? {}
+                  : { borderRadius: symbol, border: `2px solid ${STIL.rand}` }),
+              },
+            }),
+          ]
+        : []),
     ]),
   ]
 }
