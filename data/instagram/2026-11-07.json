@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Der Dax fällt vom Rekord, US-Jobdaten überraschen, die EZB bekommt einen zweiten Kandidaten, Daimler Truck verdient mehr, und Anthropics Börsengang wackelt.",
+  "kacheln": [
+    {
+      "titel": "Dax fällt weiter",
+      "text": "Der Dax gab nach seinem Rekordhoch vom Donnerstag erneut nach und schloss bei 25.820 Punkten. Asiens Chipbörsen wie der Kospi brachen noch stärker ein."
+    },
+    {
+      "titel": "US-Jobs: 165.000 neu",
+      "text": "Die USA schufen im Oktober 165.000 neue Stellen, weit mehr als erwartet. Die Zahl der Langzeitarbeitslosen stieg aber auf den höchsten Stand seit 2021."
+    },
+    {
+      "titel": "Lagarde-Nachfolge",
+      "text": "Nach den Niederlanden nominierte auch Spanien einen Kandidaten für die EZB-Spitze. Die Finanzminister sichten beide Bewerbungen am Montag."
+    },
+    {
+      "titel": "Daimler Truck: +73 %",
+      "text": "Daimler Truck steigerte sein Ebit im dritten Quartal um 73 Prozent. Der Auftragseingang blieb aber hinter den Erwartungen der Analysten zurück."
+    },
+    {
+      "titel": "Anthropic: IPO wackelt",
+      "text": "Anthropics Börsengang sollte bis zu zwei Billionen Dollar wert sein. Nach dem Tech-Ausverkauf halten Investoren selbst 1,5 Billionen für zu hoch."
+    }
+  ],
+  "schlagworte": ["dax", "ezb", "arbeitsmarkt", "börse", "aktien"]
+}
