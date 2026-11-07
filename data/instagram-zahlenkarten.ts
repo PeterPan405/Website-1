@@ -41,7 +41,17 @@ export const zahlenkarten: Zahlenkarte[] = [
         Alibaba 2014 25,0 · SoftBank Corp. 2018 23,5 · Agricultural Bank of
         China 2010 22,1 · ICBC 2006 21,9 · AIA 2010 20,5 · Visa 2008 19,7 ·
         General Motors 2010 18,15 · Facebook 2012 16,01
-      Gezeigt: sechs davon – sonst stehen die Etiketten übereinander.
+      Gezeigt: alle elf (Betreiber 07.11.: „noch ein paar weitere
+      Börsengänge rein … gar keine [Kacheln], die leer sind").
+      Die Lücke zwischen Aramco und SpaceX füllen fremde Größen, grau:
+      BIP 2023 laut Weltbank (data/snapshots/laender.json, bipUsd):
+        Island 31,0 · Estland 40,7 · Lettland 43,6 · Tunesien 48,5 ·
+        Jordanien 50,8 · Slowenien 68,2 · Litauen 77,8 · Kroatien 82,7 ·
+        Luxemburg 85,8 (Mrd. $)
+      und Anthropics Nettoverlust im 1. Halbjahr 2026: rund 80,7 Mrd. $
+      (Tagesschau nach dem Börsenprospekt, Karte vom 29.10.2026).
+      Die Achse beginnt bei 15 Mrd. $ (linear) – ab null stünden elf
+      Börsengänge auf einer halben Kachel.
       SK Hynix: Zweitnotiz (American depositary receipts) an der Nasdaq am
       10.07.2026, 26,5 Mrd. $ (Wikipedia „SK Hynix").
       SpaceX: Ausgabepreis 135 $ am 11.06.2026, Bewertung 1,77 Bio. $
@@ -58,9 +68,10 @@ export const zahlenkarten: Zahlenkarte[] = [
     datum: '2026-11-08',
     titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
     erklaerung: 'Erlös beim Börsengang · Mrd. US-Dollar · nominal',
-    kacheln: 7,
-    bis: 90,
-    schritt: 10,
+    kacheln: 8,
+    start: 15,
+    bis: 91,
+    schritt: 5,
     einheit: 'Mrd. $',
     punkte: [
       {
@@ -70,7 +81,12 @@ export const zahlenkarten: Zahlenkarte[] = [
         zusatz: '2012',
         logo: 'facebook.png',
       },
+      { name: 'General Motors', wert: 18.15, anzeige: '18,2', zusatz: '2010' },
       { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
+      { name: 'AIA', wert: 20.5, anzeige: '20,5', zusatz: '2010' },
+      { name: 'ICBC', wert: 21.9, anzeige: '21,9', zusatz: '2006' },
+      { name: 'Agricultural Bank of China', wert: 22.1, anzeige: '22,1', zusatz: '2010' },
+      { name: 'SoftBank Corp.', wert: 23.5, anzeige: '23,5', zusatz: '2018' },
       { name: 'Alibaba', wert: 25, anzeige: '25,0', zusatz: '2014', logo: 'alibaba.png' },
       {
         name: 'SK Hynix',
@@ -87,6 +103,69 @@ export const zahlenkarten: Zahlenkarte[] = [
         logo: 'aramco.png',
       },
       {
+        name: 'BIP Island',
+        wert: 31.0,
+        anzeige: '31,0',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Estland',
+        wert: 40.7,
+        anzeige: '40,7',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Lettland',
+        wert: 43.6,
+        anzeige: '43,6',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Tunesien',
+        wert: 48.5,
+        anzeige: '48,5',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Jordanien',
+        wert: 50.8,
+        anzeige: '50,8',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Slowenien',
+        wert: 68.2,
+        anzeige: '68,2',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Litauen',
+        wert: 77.8,
+        anzeige: '77,8',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
+        name: 'Verlust Anthropic',
+        wert: 80.7,
+        anzeige: '80,7',
+        zusatz: '1. Halbjahr 2026',
+        vergleich: true,
+      },
+      {
+        name: 'BIP Kroatien',
+        wert: 82.7,
+        anzeige: '82,7',
+        zusatz: '2023',
+        vergleich: true,
+      },
+      {
         name: 'SpaceX',
         wert: 85.7,
         anzeige: '85,7',
@@ -94,33 +173,46 @@ export const zahlenkarten: Zahlenkarte[] = [
         logo: 'spacex.png',
         hervor: true,
       },
+      {
+        name: 'BIP Luxemburg',
+        wert: 85.8,
+        anzeige: '85,8',
+        zusatz: '2023',
+        vergleich: true,
+      },
     ],
     saetze: [
       {
         kachel: 2,
-        text: 'Alibaba 2014: 25 Mrd. $ – fünf Jahre lang der größte Börsengang der Welt.',
+        text: 'Acht Börsengänge zwischen 16 und 25 Mrd. $ – von Facebook bis Alibaba.',
       },
       {
         kachel: 3,
         text: 'Saudi Aramco 2019: 29,4 Mrd. $ – der Rekord hielt sechseinhalb Jahre.',
       },
-      { kachel: 4, text: 'Danach kommt lange nichts.' },
       {
-        kachel: 5,
-        text: 'Bei 50 Mrd. $: Vor 2026 kam kein Börsengang auch nur in die Nähe.',
+        kachel: 4,
+        text: 'Grau: zum Vergleich die Wirtschaftsleistung ganzer Länder in einem Jahr.',
       },
-      { kachel: 6, text: 'Immer noch nichts.' },
+      { kachel: 5, text: 'Kein Börsengang vor 2026 kam auch nur in diese Nähe.' },
+      { kachel: 6, text: 'Ganz Slowenien erwirtschaftet in einem Jahr 68 Mrd. $.' },
+      { kachel: 7, text: 'Anthropic verlor im ersten Halbjahr 2026 rund 80,7 Mrd. $.' },
       {
-        kachel: 7,
-        text: 'SpaceX: fast dreimal so viel wie Aramco. Bewertung zum Ausgabepreis: 1,77 Billionen $.',
+        kachel: 8,
+        text: 'SpaceX sammelte so viel ein, wie Luxemburg in einem Jahr erwirtschaftet.',
       },
     ],
     fusszeile:
-      'Stand: 07.11.2026 | Quelle: Wikipedia (Largest IPOs by amount raised) | Logos: Wikimedia Commons, gemeinfrei',
+      'Stand: 07.11.2026 | Quellen: Wikipedia (Largest IPOs), Weltbank (BIP 2023), Tagesschau | Logos: Commons, gemeinfrei',
     text:
       'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld:\n\n' +
       'Facebook (2012): 16,0 Mrd. $\n' +
+      'General Motors (2010): 18,2 Mrd. $\n' +
       'Visa (2008): 19,7 Mrd. $\n' +
+      'AIA (2010): 20,5 Mrd. $\n' +
+      'ICBC (2006): 21,9 Mrd. $\n' +
+      'Agricultural Bank of China (2010): 22,1 Mrd. $\n' +
+      'SoftBank Corp. (2018): 23,5 Mrd. $\n' +
       'Alibaba (2014): 25,0 Mrd. $\n' +
       'SK Hynix (2026, Zweitnotiz an der Nasdaq): 26,5 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
@@ -128,11 +220,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Schon gewusst?\n' +
       '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
       '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n' +
-      '– Zwei der drei größten Börsengänge fielen ins Jahr 2026.\n\n' +
+      '– Zwei der drei größten Börsengänge fielen ins Jahr 2026.\n' +
+      '– SpaceX sammelte so viel ein, wie Luxemburg in einem Jahr erwirtschaftet (BIP 2023: 85,8 Mrd. $).\n\n' +
       'Und Anthropic?\n' +
-      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren inzwischen schon 1,5 Billionen für gewagt. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
+      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren inzwischen schon 1,5 Billionen für gewagt. Im ersten Halbjahr 2026 verlor Anthropic laut Tagesschau rund 80,7 Mrd. $. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
       'Gerechnet: Erlös beim Börsengang in US-Dollar, nominal, nicht inflationsbereinigt.\n' +
-      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised) und „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
+      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised) und „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026; Tagesschau, 26.10.2026; Weltbank (BIP 2023)\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],
   },
