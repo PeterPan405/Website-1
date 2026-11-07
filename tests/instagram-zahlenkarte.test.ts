@@ -1033,39 +1033,43 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 07.11.2026: Gold und Silber, je 100 $ ab Januar 2025 (Weltbank, Pink Sheet). */
+/* 07.11.2026: Krieg im Supermarkt (Weltbank, Pink Sheet, Januar gegen Oktober 2026). */
 {
   const karte = karteVom('2026-11-07')
-  pruefe('Edelmetalle: Karte für den 07.11. sind Kurven', karte?.art === 'kurven')
-  if (karte?.art === 'kurven') {
+  pruefe('Supermarkt: Karte für den 07.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
     pruefe(
-      'Edelmetalle: keine Beanstandung',
+      'Supermarkt: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
-      'Edelmetalle: Form anders als am Vortag',
+      'Supermarkt: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-06')!)
     )
-    const [silber, gold] = karte.linien
-    pruefe(
-      'Edelmetalle: Silber-Rekord 303 $',
-      Math.round(Math.max(...silber.punkte)) === 303
-    )
-    pruefe('Edelmetalle: Gold-Rekord 185 $', Math.round(Math.max(...gold.punkte)) === 185)
-    pruefe(
-      'Edelmetalle: Silber endet bei 188 $',
-      Math.round(silber.punkte.at(-1)!) === 188
-    )
-    pruefe('Edelmetalle: Gold endet bei 151 $', Math.round(gold.punkte.at(-1)!) === 151)
-    pruefe(
-      'Edelmetalle: Silber −38 % seit Rekord',
-      Math.round((57 / 92.1 - 1) * 100) === -38
-    )
-    pruefe(
-      'Edelmetalle: Gold −18 % seit Rekord',
-      Math.round((4105 / 5020 - 1) * 100) === -18
-    )
+    const paare: [number, number][] = [
+      [0.32, 0.43],
+      [249.9, 317],
+      [408, 489],
+      [4.97, 5.75],
+      [1.75, 1.84],
+      [8.02, 7.4],
+      [7.97, 6.83],
+      [1.11, 0.75],
+    ]
+    paare.forEach(([vor, nach], i) => {
+      const prozent = (nach / vor - 1) * 100
+      pruefe(
+        `Supermarkt: ${karte.saeulen[i].text} ${Math.round(prozent)} %`,
+        Math.abs(karte.saeulen[i].wert - prozent) < 0.05
+      )
+      pruefe(
+        `Supermarkt: ${karte.saeulen[i].text} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${prozent > 0 ? '+' : '−'}${Math.abs(Math.round(prozent))} %`
+        )
+      )
+    })
   }
 }
 

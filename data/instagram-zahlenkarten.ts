@@ -29,79 +29,76 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 07.11.2026. Der Betreiber fand die Gold-Balken vom 06.11.
-      „irgendwie langweilig dargestellt“ – dieselbe Quelle, zugespitzt als
-      Kurve: Gold und Silber seit Januar 2025, je 100 $ angelegt.
+      Zahlenkarte 07.11.2026, „Krieg im Supermarkt“ – vom Betreiber gewählt
+      aus drei Vorschlägen, nachdem er Gold (Balken, Kurve) als „langweilig
+      … das weiß schon jeder“ verworfen hatte. Form: Säulen (am 06.11.
+      Balken).
 
       Quelle: Weltbank, Commodity Price Data („Pink Sheet"),
       CMO-Historical-Data-Monthly.xlsx, „Updated on November 03, 2026",
-      abgerufen am 06.11.2026 über quellen-holen.yml (blatt 2). Reihen
-      „Gold" ($ je Feinunze) und „Silver" ($ je Feinunze), Monatsmittel,
-      nominal. Gerechnet: Monatswert / Januar 2025 × 100.
-        Gold   01/2025 2.710 · Höchst 02/2026 5.020 · 10/2026 4.105
-        Silber 01/2025 30,40 · Höchst 01/2026 92,10 · 10/2026 57,00
-      Beide Höchststände sind die höchsten Monatswerte der Reihen seit 1960.
+      abgerufen am 06.11.2026 über quellen-holen.yml (blatt 2).
+      Weltmarktpreise, Monatsmittel, nominal, Januar 2026 (vor dem Krieg um
+      den Iran, Beginn Ende Februar) gegen Oktober 2026:
+        Zucker (Sugar, world)    0,32 → 0,43 $/kg   +34,4 %
+        Weizen (Wheat, US HRW)  249,9 → 317,0 $/t   +26,9 %
+        Reis (Rice, Thai 5%)    408   → 489   $/t   +19,9 %
+        Kakao (Cocoa)            4,97 → 5,75 $/kg   +15,7 %
+        Hähnchen (Chicken)       1,75 → 1,84 $/kg    +5,1 %
+        Kaffee (Coffee, Arabica) 8,02 → 7,40 $/kg    −7,7 %
+        Rind (Beef)              7,97 → 6,83 $/kg   −14,3 %
+        Orangen (Orange)         1,11 → 0,75 $/kg   −32,4 %
+      Die Weltbank gibt Zucker auf zwei Nachkommastellen an; die Prozente
+      sind aus diesen Werten gerechnet.
     */
-    art: 'kurven',
+    art: 'saeulen',
     datum: '2026-11-07',
-    titel: [{ text: 'Gold und Silber:' }, { text: 'Rausch und Absturz.', gruen: true }],
-    stichzeile: 'Je 100 $ ab Januar 2025',
+    titel: [
+      { text: 'Krieg im Supermarkt:' },
+      { text: 'Nicht alles steigt.', gruen: true },
+    ],
     erklaerung:
-      'So viel wurde aus je 100 $, im Januar 2025 in Gold oder Silber angelegt – Monatspreise bis Oktober 2026.',
-    linien: [
-      {
-        name: 'Silber',
-        ende: '188 $',
-        richtung: 'faellt',
-        punkte: [
-          100.0, 105.9, 109.2, 105.9, 107.9, 118.4, 124.0, 125.7, 140.8, 162.5, 165.8,
-          204.9, 303.0, 269.4, 256.3, 249.7, 256.6, 219.4, 193.4, 215.1, 212.5, 187.5,
-        ],
-      },
-      {
-        name: 'Gold',
-        ende: '151 $',
-        ton: 'grau',
-        punkte: [
-          100.0, 106.8, 110.1, 118.7, 122.1, 123.7, 123.2, 124.3, 135.4, 149.7, 150.8,
-          159.0, 175.4, 185.2, 179.2, 174.2, 169.3, 156.0, 150.3, 162.8, 159.4, 151.48,
-        ],
-      },
+      'Weltmarktpreise für Lebensmittel, Oktober gegen Januar 2026 – vor dem Krieg um den Iran.',
+    stichzeile: 'Weltmarkt · seit Januar 2026',
+    helden: [
+      { name: 'Zucker', wert: '+34 %', pille: { wert: '0,43 $', name: 'je Kilo' } },
+      { name: 'Orangen', wert: '−32 %', pille: { wert: '0,75 $', name: 'je Kilo' } },
     ],
-    achse: [
-      { bei: 0, text: '01/2025' },
-      { bei: 12, text: '01/2026' },
-      { bei: 21, text: '10/2026' },
+    saeulen: [
+      { text: 'Zucker', wert: 34.38 },
+      { text: 'Weizen', wert: 26.85 },
+      { text: 'Reis', wert: 19.85 },
+      { text: 'Kakao', wert: 15.69 },
+      { text: 'Hähnchen', wert: 5.14 },
+      { text: 'Kaffee', wert: -7.73 },
+      { text: 'Rind', wert: -14.3 },
+      { text: 'Orangen', wert: -32.43 },
     ],
-    einheit: '$',
-    namenAnKurve: true,
-    kennzahlen: [
-      { name: 'Silber seit Rekord', wert: '−38 %', richtung: 'faellt' },
-      { name: 'Gold seit Rekord', wert: '−18 %', richtung: 'faellt' },
-    ],
+    einheit: '%',
+    nachkomma: 0,
     fusszeile:
       'Stand: 10/2026 | Quelle: Weltbank (Pink Sheet), Monatsmittel; eigene Rechnung',
     text:
-      'Gold und Silber hatten ein Jahr wie selten: erst Rekorde, dann der Absturz. Gemessen mit Monatspreisen der Weltbank, je 100 $ im Januar 2025 angelegt.\n\n' +
-      'Silber ($ je Unze):\n' +
-      'Januar 2025: 30,40\n' +
-      'Januar 2026: 92,10 – Rekord, aus 100 $ wurden 303 $\n' +
-      'Oktober 2026: 57,00 – noch 188 $, −38 % seit dem Rekord\n\n' +
-      'Gold ($ je Unze):\n' +
-      'Januar 2025: 2.710\n' +
-      'Februar 2026: 5.020 – Rekord, aus 100 $ wurden 185 $\n' +
-      'Oktober 2026: 4.105 – noch 151 $, −18 % seit dem Rekord\n\n' +
+      'Krieg um den Iran, Öl teurer – und im Supermarkt? Wir haben die Weltmarktpreise der Weltbank verglichen: Oktober gegen Januar 2026, den Monat vor dem Krieg.\n\n' +
+      'Die Säulen im Bild:\n' +
+      'Zucker: 0,32 → 0,43 $ je Kilo, +34 %\n' +
+      'Weizen: 249,90 → 317,00 $ je Tonne, +27 %\n' +
+      'Reis: 408 → 489 $ je Tonne, +20 %\n' +
+      'Kakao: 4,97 → 5,75 $ je Kilo, +16 %\n' +
+      'Hähnchen: 1,75 → 1,84 $ je Kilo, +5 %\n' +
+      'Kaffee: 8,02 → 7,40 $ je Kilo, −8 %\n' +
+      'Rind: 7,97 → 6,83 $ je Kilo, −14 %\n' +
+      'Orangen: 1,11 → 0,75 $ je Kilo, −32 %\n\n' +
       'Schon gewusst?\n' +
-      '– Beide Rekorde sind die höchsten Monatswerte seit Beginn der Reihen 1960.\n' +
-      '– Silber verdreifachte sich in einem Jahr, Gold legte 85 % zu.\n' +
-      '– Der Gold-Rekord fiel in den Februar 2026, den Monat, in dem der Krieg um den Iran begann. Danach fiel der Preis acht Monate fast durchgehend.\n\n' +
-      'Warum der Absturz?\n' +
-      'Die Preisreihe nennt keinen Grund. Ein Hinweis aus unseren News: Am 30. Oktober fiel Gold laut Goldreporter unter 4.000 $ – mitgerissen vom Ausverkauf bei Technologieaktien, Silber verlor dabei besonders deutlich.\n\n' +
+      '– Erdgas in Europa kostete im Oktober 142 % mehr als im Januar, in den USA 61 % weniger.\n' +
+      '– Sojaöl legte 34 % zu, Rindfleisch wurde 14 % billiger.\n' +
+      '– Kakao kostete im Januar 2025 noch 10,75 $ je Kilo – heute nur noch gut die Hälfte.\n\n' +
+      'Warum?\n' +
+      'Die Preisreihe nennt keine Gründe, und wir raten nicht. Sie zeigt nur: Nicht jedes Lebensmittel folgt dem Ölpreis.\n\n' +
       'Und jetzt?\n' +
-      'Trotz des Absturzes liegen beide klar über Januar 2025. Wie es weitergeht, sagen die Daten nicht.\n\n' +
-      'Gerechnet: Monatsdurchschnitt, nicht inflationsbereinigt, ohne Kosten.\n' +
-      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; Goldreporter; eigene Rechnung',
-    schlagworte: ['gold', 'silber', 'rohstoffe', 'edelmetalle', 'krise'],
+      'Das sind Weltmarktpreise für Rohware, nicht die Preise im Laden. Wie viel davon an der Kasse ankommt, sagen die Daten nicht.\n\n' +
+      'Gerechnet: Monatsdurchschnitt in US-Dollar, nicht inflationsbereinigt. Zucker: Weltmarkt; Weizen: US Hard Red Winter; Reis: Thai 5 %; Kaffee: Arabica.\n' +
+      'Quelle: Weltbank, Commodity Price Data („Pink Sheet"), Stand 3. November 2026; eigene Rechnung',
+    schlagworte: ['lebensmittel', 'inflation', 'iran', 'rohstoffe', 'supermarkt'],
   },
   {
     /*
