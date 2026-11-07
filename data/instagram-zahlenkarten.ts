@@ -51,7 +51,9 @@ export const zahlenkarten: Zahlenkarte[] = [
 
       Betreiber zum Entwurf: keine leeren Kacheln, „keine BIPs … sondern
       nur Börsengänge", Abstände dürfen ungleich dem Maßstab sein →
-      `gleichmaessig`, „nicht maßstäblich" steht in der Unterzeile.
+      `gleichmaessig`, „nicht maßstäblich" steht in der Beschreibung –
+      auf der Titelkachel nicht (Betreiber: „bitte noch weglassen auf der
+      ersten Seite").
       Zuletzt: „weniger Slides, aber es müssen immer 2 auf einer Seite
       sein" – vier Kacheln, General Motors raus.
       Dann: „nimm mal die Unbekannten weg … begrenze dich auf die 7" –
@@ -68,7 +70,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'zahlenstrahl',
     datum: '2026-11-08',
     titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
-    erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar · nicht maßstäblich',
+    erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar',
     kacheln: 4,
     bis: 90,
     schritt: 10,
