@@ -162,7 +162,7 @@ export const boerse: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: '„Der DAX steht bei 18.000“ klingt wie eine Preisangabe und ist keine. Ein Index ist eine **Rechenvorschrift**: Man wählt eine Gruppe von Unternehmen aus, gewichtet sie nach einer Regel und rechnet daraus eine einzige Zahl. Der Startwert ist willkürlich festgelegt worden – für den DAX 1.000 Punkte am 31. Dezember 1987. Wichtig ist nie der Stand, sondern die Veränderung.',
+          text: '„Der DAX steht bei 18.000“ klingt wie eine Preisangabe und ist keine. Ein Index ist eine **Rechenvorschrift**: Man wählt eine Gruppe von Unternehmen aus, gewichtet sie nach einer Regel und rechnet daraus eine einzige Zahl. Der Startwert ist willkürlich festgelegt worden – für den DAX 1.000 Punkte zum Jahresende 1987. Wichtig ist nie der Stand, sondern die Veränderung.',
         },
         {
           type: 'list',
