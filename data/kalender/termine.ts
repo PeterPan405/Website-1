@@ -306,6 +306,48 @@ export const termine: Termin[] = [
     symbole: ['dax', 'eur-usd'],
     quelle: DESTATIS_QUELLE,
   },
+  /*
+    Nachgetragen am 07.11.2026: Das ifo nennt seine Termine für 2027 auf der
+    verlinkten Seite (gelesen am 07.11., „Upcoming Release Dates“, jeweils
+    10:30 CET). Destatis und BLS reichten an dem Tag nicht weiter als oben;
+    das BLS antwortete von hier mit 403.
+  */
+  {
+    datum: '2027-01-25',
+    titel: 'ifo-Geschäftsklimaindex für Januar',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Der erste Stimmungswert des neuen Jahres. Er zeigt, wie die Unternehmen nach dem Jahreswechsel auf die kommenden sechs Monate blicken – eine Einschätzung, keine gemessene Produktion.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2027-02-22',
+    titel: 'ifo-Geschäftsklimaindex für Februar',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Der Index setzt sich aus zwei Teilen zusammen: der Lage heute und den Erwartungen. Laufen beide auseinander, sagt das mehr als der Gesamtwert.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2027-03-22',
+    titel: 'ifo-Geschäftsklimaindex für März',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Mit dem März schließt das erste Quartal. Drei Werte in Folge in dieselbe Richtung sind ein Signal, ein einzelner Ausschlag ist es nicht.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
 
   // ------------------------------------------------------------ Notenbanken
   {
