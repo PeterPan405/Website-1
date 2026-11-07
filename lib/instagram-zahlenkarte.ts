@@ -501,6 +501,11 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
     hervor?: boolean
     /** Eine fremde Größe zum Vergleich (BIP eines Landes) – grau, hohler Punkt. */
     vergleich?: boolean
+    /**
+     * Noch offen, etwa ein geplanter Börsengang (Anthropic, 07.11.2026):
+     * grau, hohler Punkt, `wert` zählt nicht – nur mit `gleichmaessig`.
+     */
+    offen?: boolean
   }[]
   /** Der Satz unten auf einer Kachel (ab Kachel 2), der den Vergleich zuspitzt. */
   saetze: { kachel: number; text: string }[]
@@ -4496,7 +4501,7 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
         `Punkt „${k.punkte[i].name}" ist kleiner als der davor – aufsteigend ordnen.`
       )
   for (const p of k.punkte) {
-    if (p.wert < (k.start ?? 0) || p.wert > k.bis)
+    if (!p.offen && (p.wert < (k.start ?? 0) || p.wert > k.bis))
       f.push(`Punkt „${p.name}" liegt außerhalb der Achse.`)
     if (p.logo !== undefined && !existsSync(join(LOGO_ORDNER, p.logo)))
       f.push(`Logo „${p.logo}" fehlt in lib/instagram/logos/.`)
@@ -4510,12 +4515,12 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
     f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
   /* Keine leere Kachel (08.11.2026, Betreiber: „gar keine, die leer sind"). */
   const belegt = new Set(
-    k.punkte.map((p) => Math.floor(zahlenstrahlX(k, p.wert) / ZK_BREITE) + 1)
+    k.punkte.map((p, i) => Math.floor(zahlenstrahlX(k, p.wert, i) / ZK_BREITE) + 1)
   )
   for (let nr = 2; nr <= k.kacheln; nr++)
     if (!belegt.has(nr)) f.push(`Kachel ${nr} hat keinen Punkt – keine leere Kachel.`)
-  for (const p of k.punkte) {
-    const rand = zahlenstrahlX(k, p.wert) % ZK_BREITE
+  for (const [i, p] of k.punkte.entries()) {
+    const rand = zahlenstrahlX(k, p.wert, i) % ZK_BREITE
     if (rand < 24 || rand > ZK_BREITE - 24)
       f.push(
         `Punkt „${p.name}" liegt auf der Kante zweier Kacheln – \`bis\` verschieben.`
@@ -4531,13 +4536,12 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
  * Wo ein Wert auf der Panoramafläche liegt – linear. Kachel 1 trägt den
  * Titel; die Werte beginnen auf Kachel 2, die Achse läuft schon herein.
  */
-function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number): number {
+function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number, stelle = -1): number {
   const breite = k.kacheln * ZK_BREITE
   if (k.gleichmaessig) {
     /* Die Stelle in der Reihe, nicht der Wert: gleiche Abstände ab Kachel 2. */
-    const i = k.punkte.findIndex((p) => p.wert === wert)
     const schritt = (breite - ZK_BREITE) / k.punkte.length
-    return ZK_BREITE + (Math.max(i, 0) + 0.5) * schritt
+    return ZK_BREITE + (Math.max(stelle, 0) + 0.5) * schritt
   }
   const start = ZK_BREITE + 60
   const ab = k.start ?? 0
@@ -4561,7 +4565,7 @@ function zahlenstrahlMass(k: Zahlenstrahlkarte): number {
 function zahlenstrahlPlan(k: Zahlenstrahlkarte) {
   const ende: number[] = [-Infinity, -Infinity, -Infinity, -Infinity]
   return k.punkte.map((p) => {
-    const x = zahlenstrahlX(k, p.wert)
+    const x = zahlenstrahlX(k, p.wert, k.punkte.indexOf(p))
     const ex = zahlenstrahlEtikettX(x, ZS_ETIKETT * zahlenstrahlMass(k))
     /* Gleiche Abstände: abwechselnd über und unter der Linie, groß. */
     const reihe = k.gleichmaessig
@@ -4622,7 +4626,8 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
     const oben = reihe === 0 || reihe === 2
     const fern = reihe >= 2
     const abstand = ZS_NAH + (fern ? ZS_HOCH + 20 : 0)
-    const farbe = p.vergleich ? STIL.grau : p.hervor ? STIL.navy : STIL.tinte
+    const grau = p.vergleich || p.offen
+    const farbe = grau ? STIL.grau : p.hervor ? STIL.navy : STIL.tinte
     /* Verbindung vom Punkt zum Etikett, dann der Punkt selbst. */
     elemente.push(
       h('div', {
@@ -4643,8 +4648,8 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
           width: 24,
           height: 24,
           borderRadius: 24,
-          backgroundColor: p.vergleich ? '#ffffff' : farbe,
-          border: p.vergleich ? `4px solid ${STIL.grau}` : '4px solid #ffffff',
+          backgroundColor: grau ? '#ffffff' : farbe,
+          border: grau ? `4px solid ${STIL.grau}` : '4px solid #ffffff',
         },
       })
     )
@@ -4719,7 +4724,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
               style: {
                 fontSize: 22 * g,
                 fontWeight: 600,
-                color: p.vergleich ? STIL.grau : STIL.tinte,
+                color: grau ? STIL.grau : STIL.tinte,
                 textAlign: 'center',
               },
             },

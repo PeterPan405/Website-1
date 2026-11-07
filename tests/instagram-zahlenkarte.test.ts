@@ -1048,34 +1048,30 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
-    pruefe('Börsengänge: sieben Kacheln', zahlenkarteSeiten(karte) === 7)
+    pruefe('Börsengänge: sechs Kacheln', zahlenkarteSeiten(karte) === 6)
     pruefe(
       'Börsengänge: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-07')!)
     )
     /* Wikipedia, „Largest IPOs by amount raised" und „Arm Holdings", Mrd. $. */
     const erwartet: [string, number][] = [
-      ['Facebook', 16.01],
-      ['General Motors', 18.15],
       ['Visa', 19.7],
-      ['AIA', 20.5],
-      ['ICBC', 21.9],
-      ['Agricultural Bank of China', 22.1],
-      ['SoftBank Corp.', 23.5],
+      ['General Motors', 18.15],
+      ['Facebook', 16.01],
       ['Alibaba', 25],
-      ['SK Hynix', 26.5],
       ['Saudi Aramco', 29.4],
       ['SpaceX', 85.7],
-      ['Arm', 4.87],
     ]
     pruefe(
       'Börsengänge: nur Börsengänge, keine Vergleichsgrößen (Betreiber: „keine BIPs")',
-      karte.punkte.every((x) => !x.vergleich) && karte.punkte.length === 12
+      karte.punkte.every((x) => !x.vergleich) &&
+        karte.punkte.length === 7 &&
+        karte.punkte.at(-1)?.offen === true
     )
     pruefe(
       'Börsengänge: nach Jahr geordnet (Betreiber: „nicht nach Volumen … nach Zeit")',
-      karte.punkte.map((x) => x.zusatz.match(/\d{4}/)![0]).join(',') ===
-        '2006,2008,2010,2010,2010,2012,2014,2018,2019,2023,2026,2026'
+      karte.punkte.map((x) => x.name).join(',') ===
+        'Visa,General Motors,Facebook,Alibaba,Saudi Aramco,SpaceX,Anthropic'
     )
     for (const [name, wert] of erwartet) {
       const p = karte.punkte.find((x) => x.name === name)
@@ -1112,7 +1108,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       pruefeZahlenkarte({ ...karte, kacheln: 4 }).some((f) => f.includes('fünf bis acht'))
     )
     const logo = readFileSync('public/logo.svg', 'utf8')
-    for (const nr of [1, 7]) {
+    for (const nr of [1, 6]) {
       const png = await zahlenkarteSeitePng(karte, logo, nr)
       pruefe(
         `Börsengänge: Kachel ${nr} ist ein PNG`,
