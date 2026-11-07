@@ -483,7 +483,9 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
   /**
    * Gleiche Abstände statt Maßstab (07.11.2026, Betreiber: „es reicht ja,
    * wenn der Zeitstrahl nicht richtig ist, also von den Abständen her, das
-   * ist egal"). Dann gibt es keine Striche – die Zahl steht am Punkt.
+   * ist egal"; „nicht nach Volumen … sondern schon nach Zeit"). Die Punkte
+   * stehen in der Reihenfolge der Liste, ohne Striche – die Zahl steht am
+   * Punkt.
    */
   gleichmaessig?: boolean
   schritt: number
@@ -4487,7 +4489,8 @@ function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
   const f: string[] = []
   if (k.kacheln < 5 || k.kacheln > 8) f.push(`${k.kacheln} Kacheln – fünf bis acht.`)
   if (k.punkte.length < 3) f.push(`${k.punkte.length} Punkte – mindestens drei.`)
-  for (let i = 1; i < k.punkte.length; i++)
+  /* Mit gleichen Abständen gilt die Reihenfolge der Liste – etwa nach Jahr (07.11.2026). */
+  for (let i = 1; i < k.punkte.length && !k.gleichmaessig; i++)
     if (k.punkte[i].wert < k.punkte[i - 1].wert)
       f.push(
         `Punkt „${k.punkte[i].name}" ist kleiner als der davor – aufsteigend ordnen.`

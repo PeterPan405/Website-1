@@ -52,6 +52,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       Betreiber zum Entwurf: keine leeren Kacheln, „keine BIPs … sondern
       nur Börsengänge", Abstände dürfen ungleich dem Maßstab sein →
       `gleichmaessig`, „nicht maßstäblich" steht in der Unterzeile.
+      Danach: „nicht nach Volumen, sondern schon nach Zeit" – geordnet nach
+      Jahr; die drei aus 2010 ohne Monatsangabe der Quelle, in Listenfolge.
       Weggelassen: Rivian 2021 – Wikipedia nennt 153 Mio. Aktien zu 78 $
       und „net proceeds" von 13,5 Mrd. $, zwei Zahlen ohne Abgleich.
       Für Porsche, Uber, Telekom nennt Wikipedia keinen Erlös.
@@ -60,21 +62,17 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'zahlenstrahl',
     datum: '2026-11-08',
     titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
-    erklaerung: 'Erlös · Mrd. US-Dollar · nicht maßstäblich',
+    erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar · nicht maßstäblich',
     kacheln: 7,
     bis: 90,
     schritt: 10,
     gleichmaessig: true,
     einheit: 'Mrd. $',
     punkte: [
-      { name: 'Arm', wert: 4.87, anzeige: '4,9', zusatz: '2023', logo: 'arm.png' },
-      {
-        name: 'Facebook',
-        wert: 16.01,
-        anzeige: '16,0',
-        zusatz: '2012',
-        logo: 'facebook.png',
-      },
+      { name: 'ICBC', wert: 21.9, anzeige: '21,9', zusatz: '2006', logo: 'icbc.png' },
+      { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
+      { name: 'Agricultural Bank of China', wert: 22.1, anzeige: '22,1', zusatz: '2010' },
+      { name: 'AIA', wert: 20.5, anzeige: '20,5', zusatz: '2010', logo: 'aia.png' },
       {
         name: 'General Motors',
         wert: 18.15,
@@ -82,24 +80,20 @@ export const zahlenkarten: Zahlenkarte[] = [
         zusatz: '2010',
         logo: 'gm.png',
       },
-      { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
-      { name: 'AIA', wert: 20.5, anzeige: '20,5', zusatz: '2010', logo: 'aia.png' },
-      { name: 'ICBC', wert: 21.9, anzeige: '21,9', zusatz: '2006', logo: 'icbc.png' },
-      { name: 'Agricultural Bank of China', wert: 22.1, anzeige: '22,1', zusatz: '2010' },
+      {
+        name: 'Facebook',
+        wert: 16.01,
+        anzeige: '16,0',
+        zusatz: '2012',
+        logo: 'facebook.png',
+      },
+      { name: 'Alibaba', wert: 25, anzeige: '25,0', zusatz: '2014', logo: 'alibaba.png' },
       {
         name: 'SoftBank Corp.',
         wert: 23.5,
         anzeige: '23,5',
         zusatz: '2018',
         logo: 'softbank.png',
-      },
-      { name: 'Alibaba', wert: 25, anzeige: '25,0', zusatz: '2014', logo: 'alibaba.png' },
-      {
-        name: 'SK Hynix',
-        wert: 26.5,
-        anzeige: '26,5',
-        zusatz: 'Juli 2026, Nasdaq',
-        logo: 'skhynix.png',
       },
       {
         name: 'Saudi Aramco',
@@ -108,6 +102,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         zusatz: '2019',
         logo: 'aramco.png',
       },
+      { name: 'Arm', wert: 4.87, anzeige: '4,9', zusatz: '2023', logo: 'arm.png' },
       {
         name: 'SpaceX',
         wert: 85.7,
@@ -116,53 +111,57 @@ export const zahlenkarten: Zahlenkarte[] = [
         logo: 'spacex.png',
         hervor: true,
       },
+      {
+        name: 'SK Hynix',
+        wert: 26.5,
+        anzeige: '26,5',
+        zusatz: 'Juli 2026, Nasdaq',
+        logo: 'skhynix.png',
+      },
     ],
     saetze: [
-      { kachel: 2, text: 'Facebook brachte 2012 mehr als dreimal so viel wie Arm 2023.' },
-      {
-        kachel: 3,
-        text: 'General Motors und Visa: zwei US-Konzerne, je knapp 20 Mrd. $.',
-      },
+      { kachel: 2, text: 'ICBC 2006: 21,9 Mrd. $ – Visa folgte 2008 mit 19,7 Mrd. $.' },
+      { kachel: 3, text: 'Das Jahr 2010 allein brachte drei Börsengänge dieser Liste.' },
       {
         kachel: 4,
-        text: 'AIA und ICBC: zwei Börsengänge aus Asien, beide über 20 Mrd. $.',
+        text: 'Facebook 2012: einer der größten Börsengänge der Tech-Geschichte.',
       },
       {
         kachel: 5,
-        text: 'Agricultural Bank of China 2010 – damals ein Rekord laut Bloomberg.',
-      },
-      {
-        kachel: 6,
         text: 'Alibaba 2014: 25 Mrd. $ – fünf Jahre lang der größte Börsengang der Welt.',
       },
       {
+        kachel: 6,
+        text: 'Saudi Aramco 2019: 29,4 Mrd. $ – der Rekord hielt sechseinhalb Jahre.',
+      },
+      {
         kachel: 7,
-        text: 'SpaceX: fast dreimal so viel wie der alte Rekordhalter Aramco.',
+        text: '2026: SpaceX bricht den Rekord – fast dreimal so viel wie Aramco.',
       },
     ],
     fusszeile:
       'Stand: 07.11.2026 | Quelle: Wikipedia (Largest IPOs by amount raised) | Logos: Wikimedia Commons, gemeinfrei',
     text:
-      'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld:\n\n' +
-      'Arm (2023): 4,9 Mrd. $\n' +
-      'Facebook (2012): 16,0 Mrd. $\n' +
-      'General Motors (2010): 18,2 Mrd. $\n' +
-      'Visa (2008): 19,7 Mrd. $\n' +
-      'AIA (2010): 20,5 Mrd. $\n' +
+      'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
       'ICBC (2006): 21,9 Mrd. $\n' +
+      'Visa (2008): 19,7 Mrd. $\n' +
       'Agricultural Bank of China (2010): 22,1 Mrd. $\n' +
-      'SoftBank Corp. (2018): 23,5 Mrd. $\n' +
+      'AIA (2010): 20,5 Mrd. $\n' +
+      'General Motors (2010): 18,2 Mrd. $\n' +
+      'Facebook (2012): 16,0 Mrd. $\n' +
       'Alibaba (2014): 25,0 Mrd. $\n' +
-      'SK Hynix (2026, Zweitnotiz an der Nasdaq): 26,5 Mrd. $\n' +
+      'SoftBank Corp. (2018): 23,5 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
-      'SpaceX (Juni 2026): 85,7 Mrd. $\n\n' +
+      'Arm (2023): 4,9 Mrd. $\n' +
+      'SpaceX (Juni 2026): 85,7 Mrd. $ – Rekord\n' +
+      'SK Hynix (Juli 2026, Zweitnotiz an der Nasdaq): 26,5 Mrd. $\n\n' +
       'Schon gewusst?\n' +
       '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
       '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n' +
       '– Zwei der drei größten Börsengänge fielen ins Jahr 2026.\n\n' +
       'Und Anthropic?\n' +
       'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren schon 1,5 Billionen für gewagt. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
-      'Die Abstände im Bild sind nicht maßstäblich. Erlös in US-Dollar, nominal.\n' +
+      'Im Bild nach Jahr geordnet, die Abstände sind nicht maßstäblich. Erlös in US-Dollar, nominal.\n' +
       'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „Arm Holdings", „SK Hynix", „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],

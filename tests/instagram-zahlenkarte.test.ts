@@ -1072,6 +1072,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Börsengänge: nur Börsengänge, keine Vergleichsgrößen (Betreiber: „keine BIPs")',
       karte.punkte.every((x) => !x.vergleich) && karte.punkte.length === 12
     )
+    pruefe(
+      'Börsengänge: nach Jahr geordnet (Betreiber: „nicht nach Volumen … nach Zeit")',
+      karte.punkte.map((x) => x.zusatz.match(/\d{4}/)![0]).join(',') ===
+        '2006,2008,2010,2010,2010,2012,2014,2018,2019,2023,2026,2026'
+    )
     for (const [name, wert] of erwartet) {
       const p = karte.punkte.find((x) => x.name === name)
       pruefe(`Börsengänge: ${name} ${wert}`, p?.wert === wert)
@@ -1097,8 +1102,8 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       Math.round((85.7 / 29.4) * 10) / 10 === 2.9
     )
     pruefe(
-      'Börsengänge: ein absteigender Punkt wird beanstandet',
-      pruefeZahlenkarte({ ...karte, punkte: [...karte.punkte].reverse() }).some((f) =>
+      'Börsengänge: maßstäblich muss aufsteigend sein',
+      pruefeZahlenkarte({ ...karte, gleichmaessig: false, start: 0 }).some((f) =>
         f.includes('aufsteigend')
       )
     )
