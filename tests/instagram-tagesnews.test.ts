@@ -403,7 +403,9 @@ const agent = readFileSync('.github/workflows/nachrichten-agent.yml', 'utf8')
   `prompt: |`, eingerückt wie YAML ihn liest.
 */
 {
-  const zeilen = agent.split('\n')
+  // \r?\n: Unter Windows checkt Git mit CRLF aus – jedes \r zählte sonst
+  // als Byte mit (21.099 statt rund 20.800), GitHub sieht LF.
+  const zeilen = agent.split(/\r?\n/)
   const start = zeilen.findIndex((z) => /^ {10}prompt: \|\s*$/.test(z))
   const block: string[] = []
   for (const z of zeilen.slice(start + 1)) {
