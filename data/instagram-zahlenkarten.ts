@@ -73,8 +73,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'saeulen',
     datum: '2026-11-07',
     titel: [{ text: 'Lebensmittel' }, { text: 'an der Börse.', gruen: true }],
-    erklaerung:
-      'Oben: Teuerung bei Lebensmitteln im Oktober. Unten: Weltmarktpreise von Agrarrohstoffen, Oktober gegen Januar 2026.',
+    erklaerung: 'Agrarrohstoffe · Weltmarktpreis Januar → Oktober 2026',
     stichzeile: 'Lebensmittel · Oktober zum Vorjahr',
     helden: [
       { name: 'Welt', wert: '+5,9 %', pille: { wert: 'FAO', name: 'Index' } },

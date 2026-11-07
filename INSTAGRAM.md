@@ -273,6 +273,7 @@ liest diese Liste vorher.
 | 07.11. | Zahlenkarte: Gold als Balken und Kurve „langweilig … das weiß schon jeder"                  | Überraschendes vorschlagen, nicht Bekanntes                               |
 | 07.11. | Zahlenkarte: Emoji unter den Säulen „sehen aus wie Kindersymbole"                           | echte Produktfotos (`symbol` der Säulenkarte), mit Nachweis               |
 | 07.11. | Titel „Essen an der Börse" „klingt nicht gut"                                               | Sprache wie im Wirtschaftsteil: „Lebensmittel", nicht „Essen"             |
+| 07.11. | Unterzeile „Oben: … Unten: …" – „macht keinen Sinn", zu lang                                | Unterzeile in Stichpunkten, keine Sätze, eine Zeile; keine Umgangssprache |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
