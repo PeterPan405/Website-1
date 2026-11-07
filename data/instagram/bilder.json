@@ -829,12 +829,21 @@
     },
     {
       "stelle": 5,
-      "datei": "2026-11-07-5-ed34e374.jpg",
-      "titel": "File:Logo-Daimler-und-Benz-Stiftung.svg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Logo-Daimler-und-Benz-Stiftung.svg",
+      "datei": "2026-11-07-5-8bcd2bcb.jpg",
+      "titel": "File:Daimler Truck Logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Daimler_Truck_Logo.svg",
       "lizenz": "Public domain",
-      "urheber": "Unknown authorUnknown author",
-      "suche": "Logo „Daimler\""
+      "urheber": "Daimler Truck Holding AG",
+      "suche": "Logo auf #FFFFFF"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-07-6-bf25c8c6.jpg",
+      "titel": "File:Anthropic logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Anthropic",
+      "suche": "Logo auf #FFFFFF"
     }
   ]
 }
