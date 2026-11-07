@@ -522,7 +522,30 @@ jobs:
                            --jq .content 2>/dev/null | base64 -d 2>/dev/null || true)
               laeuft=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/instagram-beitrag.yml/runs?per_page=5" \
                          --jq '[.workflow_runs[] | select(.status != "completed")] | length' 2>/dev/null || echo 1)
-              if [ -n "$gepostet" ] && ! printf '%s\n' "$gepostet" | grep -qx "$tntag" && [ "$laeuft" = "0" ]; then
+              # Gemessen 03.–07.11.2026: Ein an der Bildprüfung gescheiterter
+              # Lauf wurde nie grün, ohne dass dazwischen Tagesbilder neu
+              # eingetragen wurden; am 06.11. liefen 27 Wiederholungen ohne
+              # Bildänderung, jede mit Sichtprüfung. Deshalb: Scheiterte der
+              # letzte Lauf an den Bildern und hat sich `bilder.json` seitdem
+              # nicht geändert, wird nicht neu angestoßen. Jeder andere Grund
+              # (Website weg wie am 30.10., API-Fehler) stößt weiter an.
+              warten=""
+              letzter=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/instagram-beitrag.yml/runs?per_page=1&status=completed" \
+                          --jq '.workflow_runs[0] | "\(.id) \(.conclusion) \(.created_at)"' 2>/dev/null || true)
+              read -r lid lergebnis lbeginn <<< "$letzter"
+              if [ "$lergebnis" = "failure" ] && [ -n "$lid" ] && [ -n "$lbeginn" ]; then
+                lschritte=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$lid/jobs" \
+                              --jq '[.jobs[].steps[] | select(.conclusion == "failure") | .name] | join(",")' 2>/dev/null || true)
+                if printf '%s' "$lschritte" | grep -qE 'Bildprüfung|Abgelehnte Bilder'; then
+                  neuebilder=$(gh api "repos/$GITHUB_REPOSITORY/commits?sha=main&path=data/instagram/bilder.json&since=$lbeginn&per_page=1" \
+                                 --jq 'length' 2>/dev/null || echo 1)
+                  [ "$neuebilder" = "0" ] && warten=ja
+                fi
+              fi
+              if [ -n "$warten" ] && [ -n "$gepostet" ] && ! printf '%s\n' "$gepostet" | grep -qx "$tntag"; then
+                echo "::notice::Runde $runde: Tagesnews vom $tntag warten auf andere Bilder – Lauf $lid scheiterte an der Bildprüfung, bilder.json seitdem unverändert (instagram-bilder-auswahl.yml)."
+              fi
+              if [ -z "$warten" ] && [ -n "$gepostet" ] && ! printf '%s\n' "$gepostet" | grep -qx "$tntag" && [ "$laeuft" = "0" ]; then
                 if gh workflow run instagram-beitrag.yml --repo "$GITHUB_REPOSITORY" --ref main \
                      -f veroeffentlichen=true; then
                   tnanstoesse=$((tnanstoesse + 1))
