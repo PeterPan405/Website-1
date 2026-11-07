@@ -1,0 +1,4184 @@
+# Quellenlage 2026-11-07 06:15 UTC
+
+Gelesen von einem GitHub-Läufer. Je Abschnitt stehen Adresse,
+Statuscode und der Zeitstempel der Antwort. Was hier steht, ist
+Arbeitsmaterial – zusammenfassen, nie spiegeln.
+
+==============================================================================
+QUELLE: https://www.finanzen.net/nachrichten/
+==============================================================================
+STATUS: 403 – nicht abrufbar
+
+==============================================================================
+QUELLE: https://www.onvista.de/news/
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:15:50 GMT
+------------------------------------------------------------------------------
+Aktuelle Börsen- & Finanznachrichten aus aller Welt • onvista Zum Hauptinhalt springen 
+
+Aktuell my onvista Premium 
+
+News & Analysen 
+ News 
+
+Aktuelle Börsen-News & Investment-Analysen
+
+onvista Premium-Artikel
+
+Plus 
+ Fünf Metriken im Check 
+ Nach Kurssturz: Wie günstig Alphabet jetzt wirklich ist ⟨https://www.onvista.de/news/2026/11-05-nach-kurssturz-wie-guenstig-alphabet-jetzt-wirklich-ist-41122522-19-26572482⟩ 05.11.2026 · 10:56 Uhr · onvista 
+
+ onvista-Analyse zum Mega-Börsengang 
+ Zeichnen oder nicht? Unser Votum zur Anthropic-Aktie ⟨https://www.onvista.de/news/2026/11-04-warum-anthropic-ein-besserer-ipo-als-spacex-wird-41122522-19-26571824⟩ 04.11.2026 · 14:00 Uhr · onvista 
+
+ Bis zu sieben Prozent Rendite 
+ So kommst du an die Hyperscaler-Anleihen ran ⟨https://www.onvista.de/news/2026/11-04-so-kommst-du-an-die-hyperscaler-anleihen-ran-41121763-19-26571300⟩ 04.11.2026 · 11:00 Uhr · onvista 
+
+ KI und Staatsausgaben lassen Renditen steigen 
+ Aktien, Gold und Co.: So treffen hohe Zinsen dein Depot ⟨https://www.onvista.de/news/2026/11-03-ki-ausgaben-treffen-us-defizit-anleihenrenditen-steigen-41122786-19-26571706⟩ 03.11.2026 · 11:02 Uhr · onvista 
+
+weitere Premium-Analysen & Ideen 
+
+Aktuelle News
+
+Online statt Laden? Lebensmittel-Lieferdienste rüsten auf ⟨https://www.onvista.de/news/2026/11-07-online-statt-laden-lebensmittel-lieferdienste-ruesten-auf-0-10-26573680⟩ heute · 04:00 Uhr · dpa-AFX 
+
+Vogelgrippe breitet sich aus – FLI erhöht Risikostufen ⟨https://www.onvista.de/news/2026/11-07-vogelgrippe-breitet-sich-aus-fli-erhoeht-risikostufen-0-10-26573648⟩ heute · 03:00 Uhr · dpa-AFX 
+
+ROUNDUP/Aktien New York Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf ⟨https://www.onvista.de/news/2026/11-06-roundup-aktien-new-york-schluss-tech-sektor-erholt-sich-etwas-nach-ausverkauf-0-10-26573622⟩ gestern · 21:30 Uhr · dpa-AFX 
+
+Aktien New York Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf ⟨https://www.onvista.de/news/2026/11-06-aktien-new-york-schluss-tech-sektor-erholt-sich-etwas-nach-ausverkauf-0-10-26573620⟩ gestern · 21:22 Uhr · dpa-AFX 
+
+weitere Agentur-Meldungen ⟨https://www.onvista.de/news/feed/agentur-meldungen⟩ 
+
+Aktien-Analysen
+
+Quartalszahlen und Ausblick der Cloudflare-Aktie 
+ Cloudflare: Starkes Wachstum rechtfertigt neue Käufe ⟨https://www.onvista.de/news/2026/11-06-cloudflare-starkes-wachstum-rechtfertigt-neue-kaeufe-40338625-19-26573527⟩ gestern · 16:18 Uhr · onvista 
+
+Umsatzwachstum und Werbung stärken Unity 
+ Unity: Die Aktie steigt nach Gewinnwende fast 15 Prozent ⟨https://www.onvista.de/news/2026/11-06-unity-die-aktie-steigt-nach-gewinnwende-fast-15-prozent-40338625-19-26573516⟩ gestern · 15:32 Uhr · onvista 
+
+Quartalszahlen und Auftragseingang im Fokus 
+ Daimler Truck: Das Gewinnplus verlangt Vorsicht ⟨https://www.onvista.de/news/2026/11-06-daimler-truck-das-gewinnplus-verlangt-vorsicht-40338625-19-26573515⟩ gestern · 15:32 Uhr · onvista 
+
+Lufthansa-Aktie nach höheren Kurszielen 
+ Lufthansa: Bis 9,20 Euro bleibt Kurspotenzial ⟨https://www.onvista.de/news/2026/11-06-lufthansa-bis-9-20-euro-bleibt-kurspotenzial-40338625-19-26573513⟩ gestern · 15:19 Uhr · onvista 
+
+Rechenzentren treiben die Transceiver-Nachfrage 
+ Applied Opto: Lieferprobleme gefährden das Wachstum ⟨https://www.onvista.de/news/2026/11-06-applied-opto-lieferprobleme-gefaehrden-das-wachstum-40338625-19-26573526⟩ gestern · 15:18 Uhr · onvista 
+
+First Solar – Bullen proben ein Comeback gestern · 15:00 Uhr · Société Générale 
+
+S&P 500 – Abverkauf visiert 200-Tage-Linie an gestern · 14:56 Uhr · Société Générale 
+
+Energydrink-Aktie nach den Geschäftszahlen 
+ Celsius: Die Aktie fällt trotz kräftigen Wachstums ⟨https://www.onvista.de/news/2026/11-06-celsius-die-aktie-faellt-trotz-kraeftigen-wachstums-40338625-19-26573517⟩ gestern · 14:53 Uhr · onvista 
+
+Starke Quartalszahlen und hohe Bewertung 
+ Airbnb: Die hohe Bewertung begrenzt das Kurspotenzial ⟨https://www.onvista.de/news/2026/11-06-airbnb-die-hohe-bewertung-begrenzt-das-kurspotenzial-40338625-19-26573522⟩ gestern · 14:51 Uhr · onvista 
+
+Seltene Erden 
+ MP Materials bietet eine langfristige Einstiegschance ⟨https://www.onvista.de/news/2026/11-06-mp-materials-bietet-eine-langfristige-einstiegschance-40338625-19-26573523⟩ gestern · 14:51 Uhr · onvista 
+
+Index-Analysen
+
+Saisonale DAX-Verschnaufpause noch nicht vorbei heute · 06:00 Uhr · Société Générale 
+
+
+dailyUS: S&P 500 - Schwarzer Tag vollendet Doppeltop ⟨https://app.newstool.de/t/c7GQtpyyiHNAckdFo3QA3n/?as=AifxM9uG6EZS2cSa8CT2ef⟩ gestern · 14:20 Uhr · BNP Paribas S.A. 
+
+
+Aktien New York: Tech-Sektor erholt sich nach Ausverkauf ⟨https://www.onvista.de/news/2026/11-06-aktien-new-york-tech-sektor-erholt-sich-nach-ausverkauf-0-10-26573607⟩ gestern · 19:05 Uhr · dpa-AFX 
+
+Aktien Wien Schluss: Kursverluste ⟨https://www.onvista.de/news/2026/11-06-aktien-wien-schluss-kursverluste-0-10-26573596⟩ gestern · 17:28 Uhr · dpa-AFX 
+
+ROUNDUP/Aktien Europa Schluss: Verluste etwas eingedämmt mit erholten US-Börsen ⟨https://www.onvista.de/news/2026/11-06-roundup-aktien-europa-schluss-verluste-etwas-eingedaemmt-mit-erholten-us-boersen-0-10-26573592⟩ gestern · 17:25 Uhr · dpa-AFX 
+
+ROUNDUP/Aktien Frankfurt Schluss: Dax fällt wegen KI-Panik vom Rekord zurück ⟨https://www.onvista.de/news/2026/11-06-roundup-aktien-frankfurt-schluss-dax-faellt-wegen-ki-panik-vom-rekord-zurueck-0-10-26573585⟩ gestern · 17:03 Uhr · dpa-AFX 
+
+Aktien Europa Schluss: Verluste etwas eingedämmt mit erholten US-Börsen ⟨https://www.onvista.de/news/2026/11-06-aktien-europa-schluss-verluste-etwas-eingedaemmt-mit-erholten-us-boersen-0-10-26573580⟩ gestern · 16:56 Uhr · dpa-AFX 
+
+Dax Tagesrückblick 06.11.2026 
+ Dax knickt nach Tech-Abverkauf ein - Rheinmetall sinkt weiter ⟨https://www.onvista.de/news/2026/11-06-dax-knickt-nach-tech-abverkauf-ein-rheinmetall-sinkt-weiter-41121301-19-26573555⟩ gestern · 16:55 Uhr · onvista 
+
+Aktien Frankfurt Schluss: Dax fällt wegen KI-Panik weit vom Rekord zurück ⟨https://www.onvista.de/news/2026/11-06-aktien-frankfurt-schluss-dax-faellt-wegen-ki-panik-weit-vom-rekord-zurueck-0-10-26573583⟩ gestern · 16:48 Uhr · dpa-AFX 
+
+Rohstoff- & Rohstoffaktien-Analysen
+
+Rohstoffausblick: Wende nach den US-Zwischenwahlen? gestern · 12:30 Uhr · Société Générale 
+
+Physischer Ölmarkt entspannt sich zusehends gestern · 12:10 Uhr · Société Générale 
+
+dailyOEL: Ausdehnung der Erholung ⟨https://app.newstool.de/t/F9nRzpsxqFy7DAEuhhr33j/?as=kQc46QdJutSSPBZHor8Huc⟩ gestern · 07:30 Uhr · BNP Paribas S.A. 
+
+Dax Chartanalyse 05.11.2026 
+ Neues Dax-Allzeithoch: Welche Kurse nun möglich sind ⟨https://www.onvista.de/news/2026/11-05-neues-dax-allzeithoch-welche-kurse-nun-moeglich-sind-41123281-19-26572848⟩ 05.11.2026 · 09:55 Uhr · onvista 
+
+dailyOEL: Hohe Abwärtsdynamik ⟨https://app.newstool.de/t/gD8zvWdy4wSoXaCJx9NaMq/?as=KeYFmPvFpjHJn5tH5e8S3B⟩ 05.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+Big Seasonal Trend im wichtigstem Industriemetall 
+ Trading-Chance Kupfer: Das starke halbe Jahr beginnt ⟨https://www.onvista.de/news/2026/11-04-trading-chance-kupfer-das-starke-halbe-jahr-beginnt-41121103-44-26572407⟩ 04.11.2026 · 13:07 Uhr · Trading-Chance-Redaktion 
+
+Dax Chartanalyse 04.11.2026 
+ Dax vor Ausbruch: US-Midterms liefern neuen Antrieb ⟨https://www.onvista.de/news/2026/11-04-dax-vor-ausbruch-us-midterms-liefern-neuen-antrieb-41123281-19-26572284⟩ 04.11.2026 · 10:00 Uhr · onvista 
+
+dailyOEL: Niedriges Kursniveau behauptet ⟨https://app.newstool.de/t/CcAizDpJgt3DT6Aarz4bde/?as=FSwxRCnBzvQzA2Gg8oQEGW⟩ 04.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+Dax Chartanalyse 03.11.2026 
+ Dax gibt Gewinne ab – Diese Unterstützungszone entscheidet ⟨https://www.onvista.de/news/2026/11-03-dax-gibt-gewinne-ab-diese-unterstuetzungszone-entscheidet-41123281-19-26571678⟩ 03.11.2026 · 10:04 Uhr · onvista 
+
+dailyOEL: Aufwärtstrend dynamisch gebrochen ⟨https://app.newstool.de/t/Ey2twpxEor5gGySQqbfXTx/?as=ZovGUs3EELFYqbud8f6Dqr⟩ 03.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+Edelmetall-Analysen
+
+
+Goldpreis steigt nach US-Zwischenwahlen deutlich gestern · 12:25 Uhr · Société Générale 
+
+dailyEDEL: Gold - Weichen für Wende gestellt ⟨https://app.newstool.de/t/itJ3ZLg7b4rqmdvCKcsw2E/?as=7hayG34oQaUK8koerYJ9WL⟩ gestern · 07:30 Uhr · BNP Paribas S.A. 
+
+dailyEDEL: Palladium - Konter wird ausgebaut ⟨https://app.newstool.de/t/cgYUQZwgv5Hc4UiVBr2jMS/?as=iX8NH3ZRRyqT2KeWjAir4v⟩ 05.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+dailyEDEL: Gold - Sprung über das Zwischentief ⟨https://app.newstool.de/t/nn8QoYQLvdgkMwXvKmuy5B/?as=XDfYRH5crQY2inFUvxRGXy⟩ 04.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+Thema der Woche: Goldpreis weiter unter Druck 03.11.2026 · 12:30 Uhr · Société Générale 
+
+Silberpreis fällt auf 12-Monatstief 03.11.2026 · 12:05 Uhr · Société Générale 
+
+
+dailyEDEL: Silber - Fortsetzung der Abwärtsbewegung ⟨https://app.newstool.de/t/cCeBKZB69VJsckiqEx4KLu/?as=hNMXg7ABwNv7ZHKqZ9YMUX⟩ 03.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+dailyEDEL: Gold - Abverkauf erreicht zentralen Support ⟨https://app.newstool.de/t/WRTwv5tmJu66zjZAbv7tKt/?as=FVbyWqDrYe2WimxWFw8igZ⟩ 02.11.2026 · 07:30 Uhr · BNP Paribas S.A. 
+
+Forex-Analysen
+
+Vorerst wohl kein stärkerer Euro gestern · 16:00 Uhr · Société Générale 
+
+USD: Wie spannend werden die heutigen Arbeitsmarktzahlen? gestern · 11:30 Uhr · Société Générale 
+
+dailyFX: EUR/USD - Bären leicht im Vorteil ⟨https://app.newstool.de/t/29mRiYwxJZQRBwXShCXysk/?as=Ej8YQH2y6HwFGMXce3A65Z⟩ gestern · 07:30 Uhr · BNP Paribas S.A. 
+
+GBP: Falkenhafte Entscheidung, aber Februar ist noch weit gestern · 11:25 Uhr · Société Générale 
+
+NOK: Überraschungen für die NOK kommen weniger von der Geldpolitik gestern · 11:20 Uhr · Société Générale 
+
+Saisonale Schwächephase 
+ Trading-Chance EUR/CAD: CAD vor Abwertung ⟨https://www.onvista.de/news/2026/11-05-trading-chance-eur-cad-cad-vor-abwertung-41121103-44-26573188⟩ 05.11.2026 · 22:26 Uhr · Trading-Chance-Redaktion 
+
+EUR/USD: Mögliche Aus- und Nachwirkungen des Wahlausgang 05.11.2026 · 11:30 Uhr · Société Générale 
+
+GBP: Spät starten und das Feld von hinten aufräumen? 05.11.2026 · 11:25 Uhr · Société Générale 
+
+NOK: Norges Bank wird heute still-, die Tür aber offen halten 05.11.2026 · 11:20 Uhr · Société Générale 
+
+SEK: Riksbank erhöht wie erwartet, Februar jetzt im Fokus 05.11.2026 · 11:15 Uhr · Société Générale 
+
+Krypto-Analysen
+
+Limit erreicht und direkt Ziel erreicht! 
+ Trading-Chance Ripple: Ziel erreicht! Und jetzt? ⟨https://www.onvista.de/news/2026/11-06-trading-chance-ripple-ziel-erreicht-und-jetzt-41121103-44-26573312⟩ gestern · 07:29 Uhr · Trading-Chance-Redaktion 
+
+Eines der besten technischen Setups! 
+ Trading-Chance Ripple: Shorteinstieg an dieser Marke ⟨https://www.onvista.de/news/2026/11-04-trading-chance-ripple-shorteinstieg-an-dieser-marke-41121103-44-26572310⟩ 04.11.2026 · 10:32 Uhr · Trading-Chance-Redaktion 
+
+Gas: LNG-Tankerdurchfahrten bleiben weiterhin deutlich unter Vorkriegsniveau 30.10.2026 · 12:20 Uhr · Société Générale 
+
+Bitcoin bei 80.000 $: Ist der 4-Jahres-Zyklus vorbei? ⟨https://www.onvista.de/news/2026/10-29-bitcoin-bei-80-000-ist-der-4-jahres-zyklus-vorbei-0-42-26570506⟩ 29.10.2026 · 20:04 Uhr · Börse Stuttgart 
+
+Krypto-Chance für die nächsten Wochen 
+ Trading-Chance Solana: DANN soll eine Rallye starten… ⟨https://www.onvista.de/news/2026/10-26-trading-chance-solana-dann-soll-eine-rallye-starten-41121103-44-26568521⟩ 26.10.2026 · 16:58 Uhr · Trading-Chance-Redaktion 
+
+Bitcoins Ursprungsidee: Ad absurdum geführt? 💡| Börse Stuttgart ⟨https://www.onvista.de/news/2026/10-26-bitcoins-ursprungsidee-ad-absurdum-gefuehrt-boerse-stuttgart-0-42-26568348⟩ 26.10.2026 · 11:04 Uhr · Börse Stuttgart 
+
+Krypto-Steuer, Datenlecks und BaFin-Drama: Was Bitcoin-Anleger jetzt wissen müssen! ⟨https://www.onvista.de/news/2026/10-23-krypto-steuer-datenlecks-und-bafin-drama-was-bitcoin-anleger-jetzt-wissen-muessen-0-42-26567821⟩ 23.10.2026 · 17:36 Uhr · Börse Stuttgart 
+
+Prognose bis tief ins Jahr 2027 
+ Trading-Chance Ripple: Startet JETZT die nächste Welle? ⟨https://www.onvista.de/news/2026/10-22-trading-chance-ripple-startet-jetzt-die-naechste-welle-41121103-44-26567083⟩ 22.10.2026 · 06:25 Uhr · Trading-Chance-Redaktion 
+
+Druck durch steigende Zinsen 
+ Immobilienwerte im Vergleich: Realty Income, Equinix und Co. ⟨https://www.onvista.de/news/2026/10-20-reits-im-vergleich-realty-income-equinix-und-co-41122786-19-26565921⟩ 20.10.2026 · 12:00 Uhr · onvista 
+
+CoT-Daten weisen uns den Weg 
+ Trading-Chance Bitcoin: Strategisches Swing-Signal, wenn… ⟨https://www.onvista.de/news/2026/10-19-trading-chance-bitcoin-strategisches-swing-signal-wenn-41121103-44-26565481⟩ 19.10.2026 · 06:58 Uhr · Trading-Chance-Redaktion 
+
+Kommentare
+
+Kolumne von Alexander Mayer 
+ Nach Binance-Hack: Die Unterstützungen bei Bitcoin halten ⟨https://www.onvista.de/news/2026/11-02-nach-binance-hack-die-unterstuetzungen-bei-bitcoin-halten-124-49-26571215⟩ 02.11.2026 · 13:30 Uhr · decentralist.de 
+
+Kolumne von Ali Masarwah 
+ Schützt dieser ETF vor einem KI-Crash? ⟨https://www.onvista.de/news/2026/11-01-schuetzt-dieser-etf-vor-dem-ki-crash-41123215-46-26570682⟩ 01.11.2026 · 08:13 Uhr · onvista-Partners 
+
+Kolumne von Heiko Böhmer 
+ Das Altersvorsorge-Depot wird den ETF-Boom weiter antreiben ⟨https://www.onvista.de/news/2026/11-01-das-altersvorsorge-depot-wird-den-etf-boom-weiter-antreiben-41121334-47-26570842⟩ 01.11.2026 · 07:58 Uhr · Heiko Böhmer 
+
+ Kolumne von Stefan Riße 
+ Was die Frankreich-Proteste mit Inflation zu tun haben ⟨https://www.onvista.de/news/2026/10-31-was-die-frankreich-proteste-mit-inflation-zu-tun-haben-41095284-24-26570678⟩ 31.10.2026 · 07:30 Uhr · Acatis 
+
+ Das AVD wird Deutschlands ETF-Boom noch weiter befeuern ⟨https://www.onvista.de/news/2026/10-31-das-avd-wird-deutschlands-etf-boom-noch-weiter-befeuern-41121334-47-26570373⟩ 31.10.2026 · 07:00 Uhr · Heiko Böhmer 
+
+ Tesla und SpaceX: Was der Deal für die Machtfrage bedeutet ⟨https://www.onvista.de/news/2026/10-25-tesla-und-spacex-was-der-deal-fuer-die-machtfrage-bedeutet-41095284-24-26567680⟩ 25.10.2026 · 08:00 Uhr · Acatis 
+
+ Anleger finden abseits des KI-Hypes ruhigere Chancen ⟨https://www.onvista.de/news/2026/10-24-anleger-finden-abseits-des-ki-hypes-ruhigere-chancen-41121334-47-26567282⟩ 24.10.2026 · 12:30 Uhr · Heiko Böhmer 
+
+HSBC Trading TV
+ W​e​r​b​u​n​g von 
+
+Tech-Boom ausgebremst: So können Anleger trotzdem profitieren - ntv Zertifikate 06.11.2026 ⟨https://www.onvista.de/news/2026/11-06-tech-boom-ausgebremst-so-koennen-anleger-trotzdem-profitieren-ntv-zertifikate-06-11-2026-0-12-26573556⟩ gestern · 15:52 Uhr · HSBC 
+
+Achtung, rote Zone! - Sind Privatanleger zu offensiv? - ntv Zertifikate 23.10.2026 ⟨https://www.onvista.de/news/2026/11-04-achtung-rote-zone-sind-privatanleger-zu-offensiv-ntv-zertifikate-23-10-2026-0-12-26572391⟩ 04.11.2026 · 12:32 Uhr · HSBC 
+
+Midterms – Startschuss für steigende US-Börse? - ntv Zertifikate 30.10.2026 ⟨https://www.onvista.de/news/2026/11-04-midterms-startschuss-fuer-steigende-us-boerse-ntv-zertifikate-30-10-2026-0-12-26572392⟩ 04.11.2026 · 12:30 Uhr · HSBC 
+
+Gold im Chart-Check: Es steht einiges auf dem Spiel! - Daily Trading TV vom 03.11.2026 ⟨https://www.onvista.de/news/2026/11-03-gold-im-chart-check-es-steht-einiges-auf-dem-spiel-daily-trading-tv-vom-03-11-2026-0-12-26571855⟩ 03.11.2026 · 14:21 Uhr · HSBC 
+
+onvista Videos
+
+Märkte heute 
+ Daimler Truck: Gewinnplus! Cloudflare top, Applied Opto enttäuscht ⟨https://www.onvista.de/news/2026/11-06-daimler-truck-gewinnplus-applied-opto-enttaeuscht-40338625-19-26573436⟩ gestern · 11:58 Uhr · onvista 
+
+Märkte heute 05.11.2026 
+ Rheinmetall senkt Prognose – App Lovin glänzt ⟨https://www.onvista.de/news/2026/11-05-rheinmetall-senkt-prognose-app-lovin-glaenzt-40338625-19-26572916⟩ 05.11.2026 · 11:52 Uhr · onvista 
+
+Social Media
+
+Newsletter 
+
+App
+
+Top Märkte
+ DAX 
+ MDAX 
+ TecDAX 
+ Dow Jones 
+ NASDAQ 100 
+ Nikkei 
+ Dollar 
+ Euro 
+ Bitcoin 
+ Schweizer Franken 
+ Goldpreis 
+ Ölpreis WTI 
+ Top-Werte 
+ Top/Flop Aktien 
+ Die besten ETFs 
+ Top-Kryptos 
+ Derivate-Finder 
+ Optionsscheinrechner 
+
+onvista Media GmbH
+ Über uns 
+ Hilfe 
+ Kontakt 
+ Karriere 
+ Sitemap 
+
+Werbehinweise Die Billigung des Basisprospekts durch die Bundesanstalt für Finanzdienstleistungsaufsicht ist nicht als ihre Befürwortung der angebotenen Wertpapiere zu verstehen. Wir empfehlen Interessenten und potenziellen Anlegern den Basisprospekt und die Endgültigen Bedingungen zu lesen, bevor sie eine Anlageentscheidung treffen, um sich möglichst umfassend zu informieren, insbesondere über die potenziellen Risiken und Chancen des Wertpapiers. Sie sind im Begriff, ein Produkt zu erwerben, das nicht einfach ist und schwer zu verstehen sein kann.
+ “*” Was das Sternchen bedeutet Das Sternchen (*) hinter einem Link bedeutet, dass die onvista media GmbH mit dem verlinkten Partner kooperiert. Selten allein durch einen Klick, aber spätestens nach einem Kauf oder Abschluss, erhalten wir vom Partner eine Vergütung. Um unsere Services weiterhin kostenlos für dich anbieten zu können, haben wir uns für diese Art der Vergütung entschieden. Im Allgemeinen wird diese Methode als „Affiliate-Modell“ bezeichnet. Sie ist im Internet in sehr vielen Bereichen verbreitet und erschließt sich dem Nutzer nicht immer. Wir haben uns daher für eine transparente Kennzeichnung entschieden.
+ © 1998 – 2026 onvista ist eine Marke der onvista media GmbH. Redaktionelle Inhalte werden nach journalistischen Standards erstellt. Echtzeitkurse und automatisierte Daten stammen von lizenzierten Drittanbietern; für deren Aktualität und Vollständigkeit übernimmt onvista keine Gewähr. Data powered and supplied by FactSet . Fondsdaten bereitgestellt von Mountain-View Data GmbH 
+
+Impressum 
+ Datenschutz 
+ Erklärung zur Barrierefreiheit 
+ Nutzungsbedingungen/Disclaimer 
+ AGB 
+ *Werbung 
+ Privacy Center 
+ Nutzungsbedingungen Börsenforum 
+ Grounding Page
+
+==============================================================================
+QUELLE: https://www.wallstreet-online.de/nachrichten
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:15:52 GMT
+------------------------------------------------------------------------------
+Finanznachrichten - Börse & Wirtschaft aktuell 
+
+🎁 Mitmachen und mit etwas Glück eines von 5 iPhone Duo gewinnen!  → Bei SMARTBROKER+ stehen dir dafür 3 Wege offen. 
+   🎁 iPhone Duo gewinnen!  → Bei SMARTBROKER+ 
+
+DAX 25.683,87 % " data-push="2;ls;quotes;18279@1170@0;tpr" > -1,96 % ⟨https://www.wallstreet-online.de/indizes/dax⟩ Gold 4.065,99 % " data-push="2;ls;quotes;1699649@19@86;tpr" > 0,00 % ⟨https://www.wallstreet-online.de/rohstoffe/goldpreis⟩ Öl (Brent) 97,75 % " data-push="2;ls;quotes;1699572@22@86;tpr" > -1,47 % ⟨https://www.wallstreet-online.de/rohstoffe/oelpreis-brent⟩ States 30 51.326,07 % " data-push="2;ls;quotes;121760@1170@0;tpr" > -0,45 % ⟨https://www.wallstreet-online.de/indizes/states-30⟩ US Tech 100 26.985,69 % " data-push="2;ls;quotes;172905@1170@0;tpr" > +1,29 % ⟨https://www.wallstreet-online.de/indizes/nasdaq100⟩ EUR/USD 1,11400 % " data-push="2;ls;quotes;100742@19@86;tpr" > 0,00 % ⟨https://www.wallstreet-online.de/devisen/euro-us-dollar-eur-usd-kurs⟩ 
+
+Jetzt Depot eröffnen 
+
+Gold Rohstoff 273.844 
+ Öl (Brent) Rohstoff 234.218 
+ DAX Index 176.832 
+ Elevate Service Group Aktie 123.918 
+ Almonty Industries Aktie 114.366 
+ Rheinmetall Aktie 101.375 
+ Silber Rohstoff 98.682 
+ US Tech 100 Index 82.655 
+ NVIDIA Aktie 70.901 
+ Deep Sea Minerals Aktie 68.137 
+ Tages-Trading-Chancen am Freitag den 06.11.2026 Diskussion 06.11.26 
+ Diese unbekannte Börse schlägt fast die ganze Welt Nachricht 06.11.26 
+ Wird Kupfer knapp? 2026 – geringste Förderung seit 15 Jahren! Nachricht 05.11.26 
+ Tech-Crash wie zu Corona: "Goldene Kaufgelegenheit" Nachricht 06.11.26 
+ Diese Aktie steigt: Washington sichert 12 Mrd. USD per Gesetz – jetzt werden Metalle gebraucht! Nachricht 06.11.26 
+ Top 15 der gesamten Suchanfragen der letzten 7 Tage
+
+Login 
+
+Push-Kurse 
+
+iPhone Duo gewinnen!
+
+Aktien 
+ Community 
+ Nachrichten 
+ Indizes 
+ Fonds 
+ ETFs 
+ Anleihen 
+ Derivate 
+ Rohstoffe 
+ Krypto 
+ Devisen 
+ Festzins 
+ Broker-Magazin ✨ 
+ Unsere Services 
+
+ Aktien News 
+ Meistgesuchte Aktien 
+ Aktien Top & Flop 
+ Top 50 Aktien Deutschland 
+ Top 50 Aktien China 
+ Top 50 Aktien USA 
+ Chartanalysen 
+ Top Volumen 
+ Top Aktien Performance 
+ Börsengänge & IPOs 
+ Insidertrades 
+ Analysten-Ratings 
+ Aktienfinder 
+ Signalfinder 
+ Chartsignale 
+
+Trends 
+ Superinvestoren 
+ wO Trends 
+ Aktien Branchenübersicht 
+ Öl- und Gas Aktien 
+ Nvidia Aktie 
+ Halbleiter Aktien 
+ Tesla Aktie 
+ Amazon Aktie 
+ DroneShield Aktie 
+ Rheinmetall Aktie 
+ BYD Aktie 
+ Microsoft Aktie 
+ Almonty Industries Aktie 
+ Wikifolio 
+
+Dividenden 
+ Dividendentermine & News 
+ Beste Aktien Dividenden 
+
+Termine
+
+Unternehmenstermine 
+ Wirtschaftskalender 
+ EQS Unternehmensportal 
+ Börsenfeiertage 
+ Börsenticker 
+ Webinarkalender 
+
+ Foren 
+ Community-Statistik 
+ Letzte Antworten 
+ Meistdiskutiert 
+ Meistbesuchte Foren 
+ Neue Diskussionen 
+ Community Umfragen 
+ Postingfilter 
+ DAX-Tippspiel 
+
+Erste Schritte
+
+Boardregeln 
+ Registrierung 
+ FAQ 
+
+ wO TV & Videos 
+ Aktien Nachrichten 
+ Anleihen Nachrichten 
+ CFD Nachrichten 
+ Devisen Nachrichten 
+ ETF Nachrichten 
+ Fonds Nachrichten 
+ Kryptowährungen Nachrichten 
+ Rohstoffe Nachrichten 
+ Optionsscheine Nachrichten 
+ Nachrichten Suche 
+ Autoren 
+ Unternehmensnachrichten 
+
+Indizes Nachrichten 
+ DAX Nachrichten 
+ TecDAX Nachrichten 
+ MDAX Nachrichten 
+ US 30 Nachrichten 
+ US Tech 100 Nachrichten 
+ Eurozone 50 Nachrichten 
+
+Rubriken
+
+Redaktion wO 
+ Ad-hocs 
+ Analysen 
+ Kommentare 
+ Marktberichte 
+ Politik 
+ Pressemitteilungen 
+ Unternehmen 
+ Weitere Nachrichten 
+
+Redaktion
+
+Podcast 
+
+ Heatmaps Indizes 
+ DAX 
+ MDAX 
+ SDAX 
+ TecDAX 
+ US 30 
+ US 500 
+ USTech 100 
+ Eurozone 50 
+ Switzerland 20 
+ AT 20 
+ JP 225 
+ Emerging Markets 
+ Zinssätze 
+ Leitzins 
+
+Top & Flop Listen 
+ US Tech 100 
+ CH 20 
+
+ Meistgesuchte Fonds 
+ Top Performer Fonds 
+ Aktienfonds 
+ Rentenfonds 
+ Immobilienfonds 
+ Geldmarktfonds 
+ Rohstofffonds 
+ Fondsvergleich 
+ Fonds Suche 
+
+Fonds News 
+
+ETF 
+ ETF Suche 
+ ETF News 
+ MSCI World ETF 
+ Aktien ETFs 
+ Anleihen ETFs 
+ Rohstoff ETFs 
+ Geldmarkt ETFs 
+ Top & Flop ETFs 
+
+ETF Specials
+
+ETF Sparplan 
+ Sparplanrechner 
+ ETF-Vergleich 
+
+ Anleihen Suche 
+ Neuemissionen 
+ Anleihen Emittenten 
+ Anleihen Wissen 
+ Top & Flop Anleihen 
+
+Zertifikate 
+ Zertifikat Suche 
+ Top & Flop Zertifikate 
+ Aktienanleihen 
+ Discount-Zertifikate 
+ Express-Zertifikate 
+ Bonus-Zertifikate 
+ Sprint-Zertifikate 
+ Zertifikate News 
+ Outperformance-Zertifikate 
+
+Hebelprodukte
+
+Knockouts Suche 
+ Top & Flop Knockouts 
+ Knock-Out Zertifikate 
+ Optionsschein Suche 
+ Top & Flop Optionsscheine 
+ Optionsscheine 
+ Faktor Zertifikate 
+ Derivate News 
+ CFDs 
+
+ Rohstoffaktien 
+ Goldpreis 
+ Silberpreis 
+ Ölpreis (Brent) 
+ Platin 
+ Palladium 
+ Kupfer 
+ Benzin 
+ Heizöl 
+ Diesel 
+ Erdgas 
+
+Kryptowährungen 
+ Bitcoin Kurs 
+ Ethereum Kurs 
+ Binance Coin Kurs 
+ Cardano Kurs 
+ Dogecoin Kurs 
+ Ripple Kurs 
+ Bitcoin Cash Kurs 
+ Litecoin Kurs 
+ Polkadot Kurs 
+ Solana Kurs 
+ Kryptowährungsrechner 
+
+Wichtige Devisenpaare 
+ Euro-Dollar Kurs 
+ Euro-Franken Kurs 
+ Euro-Pfund Kurs 
+ Türkische Lira Kurs 
+ Euro-Zloty Kurs 
+ Euro-Russische Rubel Kurs 
+ Euro-Baht Kurs 
+ Euro-Tschechische Krone Kurs 
+
+Währungsrechner 
+
+Alternative festverzinsliche Anlageprodukte 
+ Festzinsplattformenvergleich 
+
+Broker-Magazin 
+
+Tools
+
+Derivate Cockpit 
+ Profit Maximizer 
+ Broker-Vergleich 
+ Smartbroker+ Sparpläne 
+ Robo-Advisor Vergleich 
+ Widgets 
+ Dividendenrechner 
+ Smart Portfolio Guide 
+
+wO SMS Service 
+
+Börsenlexikon 
+
+wO Börsen App 
+
+Börsendienste 
+
+Newsletter 
+
+
+Ratgeber 
+
+Startseite Nachrichten 
+
+
+Kurse verdreifacht Diese unbekannte Börse schlägt fast die ganze Welt ⟨https://www.wallstreet-online.de/nachricht/21654765-kurse-verdreifacht-unbekannte-boerse-schlaegt-welt⟩ 
+
+Dan Ives bleibt optimistisch Tech-Crash wie zu Corona: "Goldene Kaufgelegenheit" ⟨https://www.wallstreet-online.de/nachricht/21654345-dan-ives-bleibt-optimistisch-tech-crash-corona-goldene-kaufgelegenheit⟩ 
+
+Trumps Öl-Würgegriff 54 Tanker stecken fest – Iran droht bis Ende November finanziell auszubluten! ⟨https://www.wallstreet-online.de/nachricht/21652935-trumps-oel-wuergegriff-54-tanker-stecken-fest-iran-droht-november-finanziell-auszubluten⟩ 
+
+Top & Flop Kursausreißer im States 500: Top- und Flop-Aktien am 06.11.2026 ⟨https://www.wallstreet-online.de/nachricht/21655467-top-flop-kursausreisser-states-500-top-flop-aktien-06-11-2026⟩ 
+
+Börsenwunder 
+
+Tech-Crash 
+
+Iran 
+
+Top & Flop 
+
+Aktuelle Nachrichten
+
+Saisonale DAX-Verschnaufpause noch nicht vorbei 
+ 07:00 Uhr · SG Zertifikate · DAX Anzeige 
+
+Aktien KW 45 Blaue Welle schockt KI. Kurz. Jetzt der Weg frei? News. Rheinmetall. RENK. Mutares. ABO Energy. AMG Critical Materials. Evotec. KONTRON. UMT. Deutz. Nordex. Schäffler. WAYDEAR. Elring-Klinger. Hensoldt. SGL Carbon. Krones. aap Implantate. STE ⟨https://www.wallstreet-online.de/nachricht/21656292-aktien-kw-45-blaue-welle-schockt-ki-kurz-frei-news-rheinmetall-renk-mutares-abo-energy-amg-critical-materials-evotec-kontron-umt-deutz-nordex-schaeffler-waydear-elring-klinger-hensoldt-sgl-carbon-krones-aap-implantate-ste⟩ 
+ 07:00 Uhr · Nebenwerte Magazin 
+
+Anleger suchen den Boden: Almonty Industries verliert 9,0 Prozent: Anleger suchen jetzt den Boden ⟨https://www.wallstreet-online.de/nachricht/21656289-anleger-boden-almonty-industries-verliert-9-0-prozent-anleger-boden⟩ 
+ 07:00 Uhr · Markt Bote · Almonty Industries 
+
+Der Absturz geht weiter: CDU nur noch knapp vor der Linken ⟨https://www.wallstreet-online.de/nachricht/21656259-absturz-weiter-cdu-knapp-linken⟩ 
+ 06:38 Uhr · Tichys Einblick 
+
+3 Fragen an Bernecker 
+ 06:30 Uhr · Bernecker · tk accelis Group Anzeige 
+
+mehr aktuelle Nachrichten » ⟨https://www.wallstreet-online.de/nachrichten/neueste-nachrichten⟩ 
+
+Meistgelesene Nachrichten, Kommentare und Meinungen
+
+Meinungen & Analysen
+
+Daniel Saurenz 
+
+Coca Cola, LVMH, Starbucks – dem K.I-Beben trotzen ⟨https://www.wallstreet-online.de/nachricht/21654087-coca-cola-lvmh-starbucks-k-i-beben-trotzen⟩ 
+
+Ingmar Königshofen 
+
+Gewinnmitnahmen wahrscheinlich ⟨https://www.wallstreet-online.de/nachricht/21651219-beiersdorf-gewinnmitnahmen-wahrscheinlich⟩ 
+
+Dr. Hamed Esnaashari 
+
+CHIP-AKTIEN & NASDAQ: DER CRASH IST DA! DAS SIND KAUFKURSE!? ⟨https://www.wallstreet-online.de/nachricht/21648450-chip-aktien-nasdaq-crash-da-kaufkurse⟩ 
+
+
+Bitcoin-Rallye nach den Midterms: WAS JETZT?! ⟨https://www.wallstreet-online.de/nachricht/21645099-bitcoin-rallye-midterms-jetzt⟩ 
+
+Gefragte Nachrichten
+ Heute 
+ 48 Stunden 
+ 7 Tage 
+
+Washington sichert 12 Mrd. USD per Gesetz – jetzt werden Metalle gebraucht! ⟨https://www.wallstreet-online.de/nachricht/21651000-aktie-steigt-washington-sichert-12-mrd-usd-gesetz-metalle-gebraucht⟩ 
+
+EQS-News: Segway Powersports stärkt Partnerschaften mit europäischen Händlern auf der EICMA 2026 ⟨https://www.wallstreet-online.de/nachricht/21655995-eqs-news-segway-powersports-staerkt-partnerschaften-europaeischen-haendlern-eicma-2026⟩ 
+ 03:20 Uhr · EQS Group AG · 128 Leser 
+
+Kaplan Fox Alerts Investors: Lead Plaintiff Deadline for AST SpaceMobile, Inc. (ASTS) is November 13, 2026 ⟨https://www.wallstreet-online.de/nachricht/21655824-kaplan-fox-alerts-investors-lead-plaintiff-deadline-for-ast-spacemobile-inc-asts-is-november-13-2026⟩ 
+ 00:55 Uhr · newsfile · AST SpaceMobile Registered (A) ⟨https://www.wallstreet-online.de/aktien/us00217d1000-new-providence-acquisition-registered-a-aktie⟩ · 124 Leser 
+
+CORRECTION: Vertical Data Closes $4.24 Million Private Placement of Common Stock ⟨https://www.wallstreet-online.de/nachricht/21655962-correction-vertical-data-closes-4-24-million-private-placement-of-common-stock⟩ 
+ 03:00 Uhr · Accesswire · Vertical Data · 124 Leser 
+
+APP Group Works with Consortium to Take Early Steps Toward Landscape-Scale Conservation in Sumatra Through PROTECT30 ⟨https://www.wallstreet-online.de/nachricht/21655761-app-group-works-with-consortium-to-take-early-steps-toward-landscape-scale-conservation-sumatra-through-protect30⟩ 
+ 00:03 Uhr · PR Newswire (engl.) · 124 Leser 
+
+Kaplan Fox Alerts Yiren Digital Ltd. (YRD) Investors Who Suffered Losses to a Securities Class Action - Deadline is December 28, 2026 ⟨https://www.wallstreet-online.de/nachricht/21655794-kaplan-fox-alerts-yiren-digital-ltd-yrd-investors-who-suffered-losses-to-a-securities-class-action-deadline-is-december-28-2026⟩ 
+ 00:30 Uhr · newsfile · Yirendai · 124 Leser 
+
+Panik an der Wall Street: Tech-Crash ist da: Qualcomm, SKHynix, Sandisk und Nvidia brechen ein ⟨https://www.wallstreet-online.de/nachricht/21647865-panik-wall-street-tech-crash-da-qualcomm-skhynix-sandisk-nvidia-brechen⟩ 
+ 05.11.26 · wallstreetONLINE Redaktion · Amazon · 71156 Leser 
+
+3 Verdoppler gefällig: 250 % Kurspotenzial bei Wasserstoff: Goldman Sachs Favoriten für Europa ⟨https://www.wallstreet-online.de/nachricht/21643710-3-verdoppler-gefaellig-250-kurspotenzial-wasserstoff-goldman-sachs-favoriten-europa⟩ 
+ 05.11.26 · wallstreetONLINE Redaktion · Carlsberg (B) · 50748 Leser 
+
+Öl-Hammer aus Kasachstan: Ölmarkt unter Druck? Kasachstan plant massive Förderoffensive ⟨https://www.wallstreet-online.de/nachricht/21646122-oel-hammer-kasachstan-oelmarkt-druck-kasachstan-plant-massive-foerderoffensive⟩ 
+ 05.11.26 · wallstreetONLINE Redaktion · Chevron Corporation · 48448 Leser 
+
+Gold: Anleger verunsichert: Goldpreis-Prognose: Bullenfalle oder Startschuss für die nächste Gold-Rallye? ⟨https://www.wallstreet-online.de/nachricht/21648369-gold-anleger-verunsichert-goldpreis-prognose-bullenfalle-startschuss-gold-rallye⟩ 
+ 05.11.26 · wallstreetONLINE Redaktion · Agnico Eagle Mines · 30036 Leser 
+
+Milliarden-Börsenskandal: Wenn Milliardäre und Broker den Hals nicht voll genug kriegen können ⟨https://www.wallstreet-online.de/nachricht/21646950-milliarden-boersenskandal-milliardaere-broker-hals-voll-kriegen⟩ (1)  
+ 05.11.26 · wallstreetONLINE Redaktion · EUR/IDR · 20328 Leser 
+
+Anleger flüchten aus Gold: Goldpreis-Prognose: Panik greift um sich – Wie schlimm wird es jetzt für Gold? ⟨https://www.wallstreet-online.de/nachricht/21614274-anleger-fluechten-gold-goldpreis-prognose-panik-greift-schlimm-gold⟩ (6)  
+ 31.10.26 · wallstreetONLINE Redaktion · DAX · 136128 Leser 
+
+Die Kriegsprämie bröckelt: Ölpreis im freien Fall! Ex-Goldman-Stratege warnt vor dem nächsten Absturz ⟨https://www.wallstreet-online.de/nachricht/21638175-kriegspraemie-broeckelt-oelpreis-freien-fall-ex-goldman-stratege-warnt-naechsten-absturz⟩ 
+ 04.11.26 · wallstreetONLINE Redaktion · Öl (Brent) · 128724 Leser 
+
+Ausstieg aus Öl und Gas: Ein Ölproduzent zeigt Deutschland den Weg aus der Energie-Falle ⟨https://www.wallstreet-online.de/nachricht/21638370-ausstieg-oel-gas-oelproduzent-zeigt-deutschland-energie-falle⟩ 
+ 04.11.26 · wallstreetONLINE Redaktion · Petroleo Brasileiro - Petrobras ⟨https://www.wallstreet-online.de/aktien/petroleo-brasileiro-petrobras-aktie⟩ · 128424 Leser 
+
+
+So reagieren die Märkte: Warum die US-Midterms für Aktionäre ein Glückstermin sind ⟨https://www.wallstreet-online.de/nachricht/21631995-maerkte-us-midterms-aktionaere-glueckstermin⟩ 
+ 03.11.26 · wallstreetONLINE Redaktion · EUR/USD · 57040 Leser 
+
+Unsere Redaktion empfiehlt
+
+1 
+
+Ölpreis im freien Fall! Ex-Goldman-Stratege warnt vor dem nächsten Absturz ⟨https://www.wallstreet-online.de/nachricht/21638175-oelpreis-freien-fall-ex-goldman-stratege-warnt-naechsten-absturz⟩ 
+
+Gina Moesing
+
+2 
+
+Ein Ölproduzent zeigt Deutschland den Weg aus der Energie-Falle ⟨https://www.wallstreet-online.de/nachricht/21638370-oelproduzent-zeigt-deutschland-energie-falle⟩ 
+
+Ingo Kolf
+
+3 
+
+Tech-Crash ist da: Qualcomm, SKHynix, Sandisk und Nvidia brechen ein ⟨https://www.wallstreet-online.de/nachricht/21647865-tech-crash-da-qualcomm-skhynix-sandisk-nvidia-brechen⟩ 
+
+Julian Schick
+
+4 
+
+Warum die US-Midterms für Aktionäre ein Glückstermin sind ⟨https://www.wallstreet-online.de/nachricht/21631995-us-midterms-aktionaere-glueckstermin⟩ 
+
+
+5 
+
+250 % Kurspotenzial bei Wasserstoff: Goldman Sachs Favoriten für Europa ⟨https://www.wallstreet-online.de/nachricht/21643710-250-kurspotenzial-wasserstoff-goldman-sachs-favoriten-europa⟩ 
+
+Markus Weingran
+
+6 
+
+Ölmarkt unter Druck? Kasachstan plant massive Förderoffensive ⟨https://www.wallstreet-online.de/nachricht/21646122-oelmarkt-druck-kasachstan-plant-massive-foerderoffensive⟩ 
+
+Paul Späthling
+
+mehr von der Redaktion » 
+
+NEU: Podcast
+
+Wichtige Termine
+
+09.11. Consumer Price Index (MoM) 
+
+Akt. - | Progn. - | Vorherig 0,2% 
+
+09.11. Verbraucherpreisindex (Jahr) 
+
+Akt. - | Progn. 0,8% | Vorherig 0,9% 
+
+09.11. Erzeugerpreisindex (Jahr) 
+
+Akt. - | Progn. 5,4% | Vorherig 5,000% 
+
+09.11. Trade Balance s.a. 
+
+Akt. - | Progn. 19,4 Mrd.€ | Vorherig 19,5 Mrd.€ 
+
+09.11. Treffen der Eurogruppe 
+
+Akt. - | Progn. - | Vorherig - 
+
+09.11. Sentix Investor Confidence 
+
+Akt. - | Progn. - | Vorherig 2,7 
+
+zum Wirtschaftskalender » 
+
+Nachrichten: Aktien & Indizes
+
+Kurse verdreifacht  
+
+Diese unbekannte Börse schlägt fast die ganze Welt ⟨https://www.wallstreet-online.de/nachricht/21654765-kurse-verdreifacht-unbekannte-boerse-schlaegt-welt⟩ 
+
+Während Anleger auf die Wall Street schauen, erlebt eine gänzlich unbekannte Börse eine spektakuläre Rallye. Bankaktien verdreifachen sich, die Wirtschaft boomt, ungeachtet aller globalen Krisen. 
+
+Wertpapier: EUR / XOF , USD/XOF , XOF/EUR , Kakao , Baumwolle , Ecobank Transnational Unternehmensanleihe 10,125 % bis 10/29 ⟨https://www.wallstreet-online.de/anleihen/a3l4k9-ecobank-transnational-unternehmensanleihe-10-125-bis-15-10-2029⟩ , US Tech 100 
+
+Dan Ives bleibt optimistisch  
+
+Tech-Crash wie zu Corona: "Goldene Kaufgelegenheit" ⟨https://www.wallstreet-online.de/nachricht/21654345-dan-ives-bleibt-optimistisch-tech-crash-corona-goldene-kaufgelegenheit⟩ 
+
+Fixed-Income-Experte erklärt  
+
+Was von 5 % US-Rendite für Euro-Anleger wirklich übrig bleibt ⟨https://www.wallstreet-online.de/video/21653775-fixed-income-experte-erklaert-5-us-rendite-euro-anleger-bleibt⟩ 
+
+Nach dem 3-Billionen-Massaker  
+
+Trump verspottet die Wahlsieger – und gibt ihnen die Schuld an euren Verlusten! ⟨https://www.wallstreet-online.de/nachricht/21652845-3-billionen-massaker-trump-verspottet-wahlsieger-schuld-verlusten⟩ 
+
+Protest gegen Rechenzentren  
+
+Wahlschlappe für die Techbranche zwingt OpenAI zum Umdenken ⟨https://www.wallstreet-online.de/nachricht/21654558-protest-rechenzentren-wahlschlappe-techbranche-zwingt-openai-umdenken⟩ 
+
+
+
+mehr Aktien & Indizes Nachrichten » ⟨https://www.wallstreet-online.de/nachrichten/alle-top-nachrichten⟩ 
+
+Marktüberblick
+
+HDAX % " data-push="2;ls;quotes;18288@1@27;tpr" > -1,83 % 06.11.26 13.624,77 PKT ⟨https://www.wallstreet-online.de/indizes/hdax⟩ BUND Future % " data-push="2;ls;quotes;352163@1067@27;tpr" > -0,12 % 06.11.26 123,07 EUR ⟨https://www.wallstreet-online.de/futures/de0009652644-bund-future⟩ DAX % " data-push="2;ls;quotes;18279@1067@27;tpr" > -1,74 % 06.11.26 25.679,00 PKT ⟨https://www.wallstreet-online.de/indizes/dax⟩ MDAX % " data-push="2;ls;quotes;18449@1@27;tpr" > -0,81 % 06.11.26 30.642,23 PKT ⟨https://www.wallstreet-online.de/indizes/mdax⟩ TecDAX % " data-push="2;ls;quotes;18518@1@27;tpr" > -0,85 % 06.11.26 4.005,07 PKT ⟨https://www.wallstreet-online.de/indizes/tecdax⟩ SDAX % " data-push="2;ls;quotes;18515@1@27;tpr" > -1,01 % 06.11.26 17.843,71 PKT ⟨https://www.wallstreet-online.de/indizes/sdax⟩ 
+
+mehr Indizes » 
+
+Neueste Videos
+
+Fixed-Income-Experte erklärt Was von 5 % US-Rendite für Euro-Anleger wirklich übrig bleibt ⟨https://www.wallstreet-online.de/video/21653775-fixed-income-experte-erklaert-5-us-rendite-euro-anleger-bleibt⟩ 
+ gestern 18:00
+
+Die Fed sitzt in der Falle Geht der Tech-Branche das Geld aus? Was dann mit Gold passiert ⟨https://www.wallstreet-online.de/video/21646155-fed-sitzt-falle-tech-branche-geld-aus-gold-passiert⟩ 
+ 05.11.26, 16:57
+
+
+Midterm-Gewinner ARM: Zu wenig | Telekom: Unspektakulär stark | Hochtief: Eine Sorge bleibt ⟨https://www.wallstreet-online.de/video/21646119-midterm-gewinner-arm-telekom-unspektakulaer-stark-hochtief-sorge-bleibt⟩ 
+ 05.11.26, 15:00
+
+Trading Desk Apple short, Amazon long! So handeln Trading-Experten nach den Earnings ⟨https://www.wallstreet-online.de/video/21636912-trading-desk-apple-short-amazon-long-handeln-trading-experten-earnings⟩ 
+ 04.11.26, 12:59
+
+
+Trumps Öl-Würgegriff  
+
+54 Tanker stecken fest – Iran droht bis Ende November finanziell auszubluten! ⟨https://www.wallstreet-online.de/nachricht/21652935-trumps-oel-wuergegriff-54-tanker-stecken-fest-iran-droht-november-finanziell-auszubluten⟩ 
+
+Mindestens 54 Tanker sind blockiert, die Öleinnahmen brechen ein. Trotzdem stellt Teheran neue Forderungen. Ein Energieexperte warnt, wie schnell der Konflikt erneut eskalieren könnte. 
+
+Wertpapier: Öl (Brent) 
+
+Lager aufgebraucht  
+
+China drosselt Dieselausfuhren drastisch ⟨https://www.wallstreet-online.de/nachricht/21654078-lager-aufgebraucht-china-drosselt-dieselausfuhren-drastisch⟩ 
+
+19-Dollar-Achterbahnfahrt  
+
+Ölpreis-Crash trotz Tankerangriffen – Iran stellt Trump harte Bedingungen! ⟨https://www.wallstreet-online.de/nachricht/21651678-19-dollar-achterbahnfahrt-oelpreis-crash-trotz-tankerangriffen-iran-stellt-trump-harte-bedingungen⟩ 
+
+Miesester Tech-Tag seit Corona  
+
+Notbremse in Seoul, Beben an der Nasdaq: Ist das erst der Anfang? ⟨https://www.wallstreet-online.de/nachricht/21651093-miesester-tech-tag-corona-notbremse-seoul-beben-nasdaq-anfang⟩ 
+
+Gold: Anleger verunsichert  
+
+Goldpreis-Prognose: Bullenfalle oder Startschuss für die nächste Gold-Rallye? ⟨https://www.wallstreet-online.de/nachricht/21648369-gold-anleger-verunsichert-goldpreis-prognose-bullenfalle-startschuss-gold-rallye⟩ 
+
+Rohstoffnachrichten
+
+Marktgeflüster: KI-Abverkauf: Das war doch nur eine Korrektur - oder? ⟨https://www.wallstreet-online.de/nachricht/21655269-marktgefluester-ki-abverkauf-korrektur-oder⟩ 
+ 06.11.26 · Markus Fugmann · DAX Anzeige 
+
+Trumps Öl-Würgegriff: 54 Tanker stecken fest – Iran droht bis Ende November finanziell auszubluten! ⟨https://www.wallstreet-online.de/nachricht/21652935-trumps-oel-wuergegriff-54-tanker-stecken-fest-iran-droht-november-finanziell-auszubluten⟩ 
+ 06.11.26 · wallstreetONLIN
+
+[… gekürzt: 15103 weitere Zeichen.]
+
+==============================================================================
+QUELLE: https://www.boerse-frankfurt.de/nachrichten
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:15:55 GMT
+------------------------------------------------------------------------------
+Live Börsen-News auf einen Blick | Deutsche Börse 
+
+LIVE
+
+Name / WKN / ISIN / Kürzel 
+
+Newsletter Kontakt English 
+
+Xetra Realtime Watchlist Portfolio Login 
+
+Home 
+ Aktien 
+ Anleihen 
+ ETF/ETP 
+ Fonds 
+ Rohstoffe 
+ Zertifikate 
+ Nachhaltig 
+ News 
+ Wissen 
+ Einstieg 
+
+Nachrichten 
+ Bekanntmachungen 
+ Marktstimmung 
+
+Bitte warten...
+
+◄ ► Überblick Marktberichte Marktkompass Unternehmensnachrichten Kolumnen Ad-hoc-News Aktien Anleihen ETPs Fonds Zertifikate Rohstoffe Devisen 
+
+Uhrzeit Titel 
+
+1 
+ Anzahl Suchergebnisse 25 50 100 
+
+Live-Blick auf die DAX-Tafel
+ ► Live-Blick auf die DAX-Tafel 
+
+Newsletter
+
+Zur Newsletter Anmeldung 
+
+Willkommen an der Deutschen Börse! Um dir das bestmögliche Online-Erlebnis zu ermöglichen, setzen wir auf unserer Webseite Cookies ein. Mit dem Klicken auf "Akzeptieren" erklärst du dich damit einverstanden, dass wir Cookies oder verwandte Technologien verwenden dürfen. Über den Button "Einstellungen" kannst du der Verwendung der genannten Dienste im Einzelnen zustimmen oder widersprechen. Detaillierte Informationen und wie du der Verwendung von Cookies und verwandten Technologien auf dieser Website jederzeit widersprechen kannst, findest du in unseren Datenschutzhinweisen . 
+ Einstellungen Ablehnen Akzeptieren 
+
+Deutsche Börse 
+
+Kontakt Impressum 
+
+Disclaimer Datenschutz 
+
+Markenrechte 
+
+Cookie-Einstellungen 
+
+Drucken 
+
+Charts von 
+
+live.deutsche-boerse.com
+
+ RSS-Feed 
+ Podcasts 
+
+ Börse besuchen 
+ Über die Börsen 
+ Wertpapiere 
+ Handeln 
+ Börsenlexikon 
+ Publikationen 
+ Events und Webinare 
+
+Services
+ Watchlist 
+ Portfolio 
+ Xetra Realtime für Aktien 
+ Xetra Realtime für ETFs 
+ Karriere @Börse 
+
+Weitere Websites der Gruppe Deutsche Börse
+ Karriere 
+ Presse 
+ Deutsche Börse (Listing und Trading) 
+ Deutsche Börse Group 
+ Eurex 
+ Xetra-Gold 
+
+Kontaktieren Sie uns:
+ ► Alle Kontaktadressen für Ihr Anliegen
+
+==============================================================================
+QUELLE: https://www.goldreporter.de/
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:15:56 GMT
+------------------------------------------------------------------------------
+Goldreporter: Goldpreis aktuell, Gold-News und Analysen 
+
+Goldpreis aktuell 
+
+Shop 
+
+CoT 
+
+Gold kaufen 
+
+Gold verkaufen 
+
+Gold lagern 
+
+Meinungen 
+
+Händlerportraits 
+
+Wissen 
+
+Goldreserven 
+
+Goldmarkt international 
+
+Geldpolitik & Zinsen 
+
+Eurokrise 2010–2012 
+
+Suche 
+
+Anmelden
+
+Herzlich willkommen! Melden Sie sich an
+
+Ihr Benutzername 
+
+Ihr Passwort 
+
+Haben Sie Ihr Passwort vergessen? Hilfe bekommen 
+
+Passwort-Wiederherstellung
+
+Passwort zurücksetzen
+
+Ihre E-Mail-Adresse 
+
+Ein Passwort wird Ihnen per Email zugeschickt.
+
+Samstag,07.November 2026
+
+Anmelden / Beitreten 
+
+Facebook 
+ X 
+
+Anzeige 
+
+Startseite
+
+News
+
+Goldmünzen
+
+Händler
+
+Investment-Tipps
+
+Charttechnik
+
+
+Newsletter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Top-News
+
+US-Arbeitsmarkt überrascht mit 165.000 neuen Stellen ⟨https://www.goldreporter.de/us-arbeitsmarkt-ueberrascht-mit-165-000-neuen-stellen/konjunktur/262896/⟩ 
+
+Edelmetall-Handel: Gold und Silber teurer, Aufgelder sinken ⟨https://www.goldreporter.de/edelmetall-handel-gold-silber-aufgelder-06-11-2026/handel/262890/⟩ 
+
+Goldman Sachs senkt Gold-Prognose ⟨https://www.goldreporter.de/gold-prognose-goldman-sachs-4800-dollar/banken/262875/⟩ 
+
+Goldpreis heute: Gold schwächer nach Börsengewitter und vor US-Jobdaten ⟨https://www.goldreporter.de/goldpreis-heute-4051-us-dollar-us-arbeitsmarkt/marktbericht-gold/262844/⟩ 
+
+Meldungen & Analysen 
+
+Analyse 
+
+6. November 2026 0 
+
+Gold und Silber haben die turbulente Handelswoche mit Kursgewinnen beendet. Münzen und Barren kosten mehr als vor einer Woche, aber die Aufgelder sind gesunken.
+
+Banken 
+
+6. November 2026 1 
+
+Ausblick Gold 
+
+6. November 2026 2 
+
+ETF 
+ Größter Gold-ETF meldet weitere Abflüsse – Silber-ETF legt kräftig zu ⟨https://www.goldreporter.de/gold-etf-gld-abfluesse-silber-etf-zufluesse-04-11-2026/etf/262839/⟩ 
+
+5. November 2026 6 
+
+ Goldpreis-Prognose: Citi sieht kurzfristig 4.500 Dollar ⟨https://www.goldreporter.de/goldpreis-prognose-citi-4500-dollar/banken/262835/⟩ 
+
+5. November 2026 2 
+
+Ticker Tape von TradingView
+
+
+Kurznachrichten 
+
+
+
+
+
+
+
+Goldpreis heute: Erholung hält an, Kurs steigt über 4.100 USD ⟨https://www.goldreporter.de/goldpreis-05-11-2026/marktbericht-gold/262816/⟩ 
+
+5. November 2026 0 
+
+Goldpreis heute: Zurück über 4.000 Dollar nach US-Wahl ⟨https://www.goldreporter.de/goldpreis-04-11-2026/marktbericht-gold/262790/⟩ 
+
+4. November 2026 9 
+
+US-Wahl: Demokraten gewinnen Kongress – Trump unter Druck ⟨https://www.goldreporter.de/us-wahl-demokraten-kongress-trump-gold/usa/262799/⟩ 
+
+4. November 2026 5 
+
+Goldpreis heute: Kurse unter Druck vor US-Midterm-Wahlen ⟨https://www.goldreporter.de/goldpreis-03-11-2026/marktbericht-gold/262762/⟩ 
+
+3. November 2026 0 
+
+Goldpreis heute: Erholung nach Kursrutsch und vor Midterm-Wahlen ⟨https://www.goldreporter.de/goldpreis-2-11-2026/marktbericht-gold/262730/⟩ 
+
+2. November 2026 0 
+
+
+Hintergrund 
+
+Wenn der Bondmarkt kippt: Die nächste Goldpreis-Rally ist unvermeidlich ⟨https://www.goldreporter.de/renditen-schulden-notenbanken-goldpreis/analyse/262260/⟩ 
+
+7. Oktober 2026 
+
+Steigende Anleiherenditen treffen auf hohe Staatsschulden, schwaches Wachstum und politische Risiken. Müssen die Notenbanken erneut eingreifen – und was bedeutet das für Gold?
+
+Fed gegen Inflation: Was bringen Zinserhöhungen beim Ölpreisschock? ⟨https://www.goldreporter.de/slug-zinserhoehungen-oelpreisschock-inflation-fed-volcker/hintergrund/261906/⟩ 
+
+25. September 2026 
+
+Hohe Energiepreise treiben die Inflation. Doch was können Zinserhöhungen dagegen ausrichten? Ein Blick auf Zweitrundeneffekte und die Volcker-Ära.
+
+Trump attackiert Fed nach Zinserhöhung – Warsh in Gefahr? ⟨https://www.goldreporter.de/trump-fed-warsh-entlassung/fed/261897/⟩ 
+
+17. September 2026 
+
+Nach der jüngsten Zinserhöhung wächst der Konflikt zwischen Donald Trump und der US-Notenbank. Der Präsident fordert deutlich niedrigere Zinsen. Könnte er den Fed-Chef Kevin Warsh wieder aus dem Amt entfernen? 
+
+Was 40 Billionen Dollar Schulden für Gold bedeuten ⟨https://www.goldreporter.de/us-schulden-40-billionen-goldpreis/hintergrund/261840/⟩ 
+
+16. September 2026 
+
+Die US-Staatsverschuldung hat die Marke von 40 Billionen Dollar überschritten. Gleichzeitig explodieren die Zinskosten. Was bedeutet das für den Goldpreis?
+
+Kevin Warsh steckt im Zins-Dilemma – was heißt das für Gold? ⟨https://www.goldreporter.de/kevin-warsh-zins-dilemma-goldpreis-fed-goldreserven/geldpolitik/261614/⟩ 
+
+7. September 2026 
+
+Kevin Warsh setzt auf Inflationsbekämpfung. Doch hohe US-Schulden und die gewaltige Fed-Bilanz begrenzen seinen Spielraum – mit Folgen für den Goldpreis. Eine Analyse von Goldreporter.
+
+Aus dem Handel 
+
+
+6. November 2026 
+
+
+Edelmetall-Handel: Goldpreis sinkt, Aufgelder steigen erneut ⟨https://www.goldreporter.de/edelmetall-handel-aufgelder-silber-30-10-2026/handel/262703/⟩ 
+
+30. Oktober 2026 
+
+Edelmetall-Handel: Goldpreis-Rückgang sorgt für höhere Aufschläge ⟨https://www.goldreporter.de/edelmetall-handel-aufgelder-steigen-nach-goldpreis-rueckgang/handel/262595/⟩ 
+
+23. Oktober 2026 
+
+Gold Connected 2026: Goldene Zwanziger und neue Perspektiven ⟨https://www.goldreporter.de/gold-connected-2026-wien-gold-co/handel/262542/⟩ 
+
+22. Oktober 2026 
+
+Gold kaufen: Aufgeld für Krügerrand deutlich gesunken ⟨https://www.goldreporter.de/gold-kaufen-kruegerrand-aufgeld-gefallen-oktober-2026/handel/262438/⟩ 
+
+16. Oktober 2026 
+
+Marktberichte 
+
+
+
+Gold gibt am Freitagmorgen nach, nachdem es sich beim US-Börseneinbruch am Vortag behauptet hatte. Nun rücken die US-Jobdaten für Oktober in den Fokus.
+
+Goldreserven im November: Polen und China kaufen am meisten ⟨https://www.goldreporter.de/goldreserven-november-2026-polen-china/goldreserven/262828/⟩ 
+
+5. November 2026 
+
+
+
+
+4. November 2026 
+
+Goldmarkt: Goldpreis fällt in China stärker als im Westen ⟨https://www.goldreporter.de/goldpreis-china-spread-minus-16-dollar-02-11-2026/marktbericht-gold/262780/⟩ 
+
+3. November 2026 
+
+Marktdaten von TradingView 
+
+XAUUSD Kurse von TradingView
+
+Track all markets on TradingView 
+
+bei Google bevorzugen 
+
+Goldreporter-Newsletter 
+
+Analysen 1–3× pro Woche. 
+ Jederzeit abbestellbar. 
+ Plus: Gratis-Report! 
+
+E-Mail-Adresse 
+
+Kostenlos anmelden 
+
+Letzte Beiträge 
+
+Konjunktur 
+
+
+
+
+
+
+
+
+1,412 Fans Gefällt mir 
+
+135 Follower Folgen 
+
+1,448 Follower Folgen 
+
+
+Letzte Kommentare 
+
+Themac zu Goldpreis heute: Gold schwächer nach Börsengewitter und vor US-Jobdaten 
+
+vh zu Charttechnik Gold: 4.000 USD zurückerobert, warten auf die Trendumkehr 
+
+maruti zu Größter Gold-ETF meldet weitere Abflüsse – Silber-ETF legt kräftig zu 
+
+Otschi zu Charttechnik Gold: 4.000 USD zurückerobert, warten auf die Trendumkehr 
+
+maruti zu Goldpreis heute: Gold schwächer nach Börsengewitter und vor US-Jobdaten 
+
+INTERVIEWS 
+
+Zollfreilager-Regeln verschärft: Edelmetall-Anleger weichen ins Ausland aus ⟨https://www.goldreporter.de/zollfreilager-regeln-verschaerft-edelmetall-anleger-weichen-ins-ausland-aus/news/258051/⟩ 
+
+24. April 2026 
+
+Iridium, Gallium & Co: Strategische Metalle als Anlage für Privatanleger ⟨https://www.goldreporter.de/strategische-metalle-anlage-privatanleger/interview/257345/⟩ 
+
+9. April 2026 
+
+Silbermarkt zwischen Boom und Engpass: „Niemand will Risiken eingehen“ ⟨https://www.goldreporter.de/silber-markt-engpass-recycling/interview/256898/⟩ 
+
+16. März 2026 
+
+Reisebank-Interview: Warum Gold zur zweiten Säule wurde – und wie Anleger... ⟨https://www.goldreporter.de/reisebank-gold-anonym-kaufen/interview/251938/⟩ 
+
+26. September 2025 
+
+Digitaler Fingerabdruck für Gold: „Mehr Vertrauen und Transparenz“ ⟨https://www.goldreporter.de/digitaler-fingerabdruck-fuer-gold-mehr-vertrauen-und-transparenz/interview/113864/⟩ 
+
+22. August 2023 
+
+ZIEMANN Valor: Achtung bei ausländischem Bargeld! ⟨https://www.goldreporter.de/interview-ziemann-valor-achtung-bei-auslaendischem-bargeld/news/113169/⟩ 
+
+26. Juni 2023 
+
+
+
+Ratgeber „Gold vergraben, aber richtig“: Umfangreich überarbeitete Neuauflage ⟨https://www.goldreporter.de/gold-vergraben-buch-neuauflage/news/259847/⟩ 
+
+7. Juli 2026 
+
+Wie lässt sich ein Goldschatz selbst vor professionellen Sondengängern verbergen? Die vollständig überarbeitete Neuauflage des Goldreporter-Ratgeber liefert Antworten – mit neuen Praxistipps, Sicherheitsupdates und zahlreichen zusätzlichen Inhalten.
+
+Frankreich bringt neue Goldmünze für Anleger ⟨https://www.goldreporter.de/frankreich-bringt-neue-marianne-goldmuenze-fuer-anleger/goldmunzen/258835/⟩ 
+
+26. Mai 2026 
+
+Frankreich bringt mit der Marianne erstmals seit über 100 Jahren wieder reine Anlage-Goldmünzen an den Markt. Auch eine digitale Variante ist geplant.
+
+Euro-Goldmünzen 2026: Bestellfrist gestartet – lohnt sich der Kauf? ⟨https://www.goldreporter.de/euro-goldmuenzen-2026-termine-daten/goldmunzen/257050/⟩ 
+
+24. März 2026 
+
+Die Münze Deutschland hat die Bestellphase für die deutschen Euro-Goldmünzen des Jahrgangs 2026 eröffnet. Erstmals wird eine neue Münzsignatur verwendet. Wie attraktiv sind die Stücke für Anleger und Sammler?
+
+Warum 1-Unzen-Goldmünzen so beliebt sind – diese Vorteile schätzen Anleger ⟨https://www.goldreporter.de/goldmuenzen-1-unze-anleger-vorteile/goldmunzen/256731/⟩ 
+
+11. März 2026 
+
+1-Unzen-Goldmünzen gelten im Edelmetallhandel als Standardprodukt. Viele Anleger bevorzugen diese Stückelung wegen des vergleichsweise geringen Aufgelds, der hohen Liquidität und der weltweiten Handelbarkeit.
+
+Gold oder Silber als Geldanlage: Das sind die größten Unterschiede ⟨https://www.goldreporter.de/gold-oder-silber-geldanlage-unterschiede/investment-tipps/250560/⟩ 
+
+29. August 2025 
+
+Gold oder Silber als Geldanlage? Aufgeld, Steuer und Lagerung unterscheiden sich deutlich – das sollten Anleger vor dem Kauf wissen.
+
+Marktdaten 
+
+
+
+Goldmarkt im dritten Quartal: Zentralbanken kaufen kräftig, Privatanleger zögern ⟨https://www.goldreporter.de/goldmarkt-q3-2026-goldnachfrage-zentralbanken/news/262769/⟩ 
+
+
+Größter Gold-ETF: Mehr als 2 Milliarden Dollar abgezogen ⟨https://www.goldreporter.de/gold-etf-gld-abfluesse-28-10-2026/etf/262682/⟩ 
+
+29. Oktober 2026 
+
+Perth Mint: Neue Lunar-Münzen beleben das Geschäft ⟨https://www.goldreporter.de/perth-mint-lunar-muenzen-gold-silber-september-2026/goldmunzen/262589/⟩ 
+
+
+Goldimporte der Türkei eingebrochen – auch Silber zuletzt schwach ⟨https://www.goldreporter.de/tuerkei-goldimporte-silberimporte-september-2026/marktdaten/262584/⟩ 
+
+
+Schweizer Goldhandel boomt: Große Goldtransfers mit London, Dubai und Italien ⟨https://www.goldreporter.de/schweizer-goldhandel-goldexporte-september-2026/goldmarkt/262504/⟩ 
+
+21. Oktober 2026 
+
+Südafrika: Goldproduktion bleibt schwach – Umsätze halbieren sich fast ⟨https://www.goldreporter.de/suedafrika-goldproduktion-goldumsatz-august-2026/marktdaten/262431/⟩ 
+
+
+Größter Gold-ETF: 861 Millionen Dollar fließen ab ⟨https://www.goldreporter.de/gold-etf-gld-861-millionen-dollar-abfluss/etf/262421/⟩ 
+
+15. Oktober 2026 
+
+Größter Gold-ETF meldet deutliche Kapitalzuflüsse ⟨https://www.goldreporter.de/gold-etf-gld-bestaende-zufluesse-oktober-2026/etf/262323/⟩ 
+
+8. Oktober 2026 
+
+Goldreporter ist ein unabhängiger Gold-Informationsdienst. Auf Goldreporter.de erhalten Sie Nachrichten und Tipps zum Thema Gold und Silber als Geldanlage sowie Beiträge zu allen Aspekten der persönlichen Vermögenssicherung.
+
+Schreiben Sie uns: redaktion (at) goldreporter.de 
+
+
+© Copyright - eQuity Media. eK.
+
+Datenschutz 
+
+Impressum 
+
+Forenregeln 
+
+
+Archiv 
+
+Sie müssen den Inhalt von reCAPTCHA laden, um das Formular abzuschicken. Bitte beachten Sie, dass dabei Daten mit Drittanbietern ausgetauscht werden.
+ Mehr Informationen 
+ Inhalt entsperren Erforderlichen Service akzeptieren und Inhalte entsperren 
+
+Sie sehen gerade einen Platzhalterinhalt von Turnstile . Um auf den eigentlichen Inhalt zuzugreifen, klicken Sie auf die Schaltfläche unten. Bitte beachten Sie, dass dabei Daten an Drittanbieter weitergegeben werden.
+
+==============================================================================
+QUELLE: https://www.bundesbank.de/de/presse/pressenotizen
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:15:41 GMT
+------------------------------------------------------------------------------
+Pressemitteilungen | Deutsche Bundesbank
+
+Hauptnavigation 
+
+Suche 
+
+Inhaltsbereich 
+
+Service Navigation
+
+Kontakt
+
+Glossar
+
+Gebärdensprache
+
+Leichte Sprache
+
+EN
+
+
+
+Bankleitzahlen 
+
+Anmelden
+
+Logo
+
+
+Navigation anzeigen
+
+Suche anzeigen
+
+en 
+
+Suchen 
+
+Bundesbank 
+
+© smallredgirl / Fotolia
+
+Green Finance
+
+Der Klimawandel stellt auch den Finanzsektor vor große Herausforderungen. Die Bundesbank unterstützt den Wandel hin zu einer kohlenstoffarmen Wirtschaft.
+
+
+Finance Flash
+
+Themen rund um die Aufgaben der Bundesbank leicht verständlich erklärt. 
+
+
+zurück
+
+Navigation ausblenden
+
+Übersicht
+
+Organisation 
+
+
+
+Vorstand 
+
+
+
+Prof. Dr. Joachim Nagel 
+
+Dr. Sabine Mauderer 
+
+Lutz Lienenkämper 
+
+Michael Theurer 
+
+Prof. Dr. Fritzi Köhler-Geib 
+
+Dr. Philipp Nimmermann 
+
+COO und Bereiche 
+
+Compliance und rechtliche Regelungen 
+
+AGB und Regelungen 
+
+
+
+Mitteilungen 
+
+Rundschreiben 
+
+Leitbild und Strategie 
+
+Die Bundesbank in Zahlen 
+
+Anfahrt 
+
+Hauptverwaltungen und Filialen 
+
+
+
+Baden-Württemberg 
+
+
+
+Filialen 
+
+Präsidentin 
+
+Beirat 
+
+Außenwirtschaft 
+
+
+Finanzaufsicht 
+
+Bonitätsanalyse 
+
+Bayern 
+
+
+
+
+Präsident 
+
+
+
+
+
+Berlin und Brandenburg 
+
+
+
+Filiale 
+
+
+
+
+
+
+Veröffentlichungen 
+
+Bremen, Niedersachsen und Sachsen-Anhalt 
+
+
+
+
+
+
+
+
+
+Daten, Analysen und Veröffentlichungen 
+
+Hamburg, Mecklenburg-Vorpommern und Schleswig-Holstein 
+
+
+
+
+
+
+
+
+
+Hessen 
+
+
+
+
+
+
+
+
+
+Nordrhein-Westfalen 
+
+
+
+
+
+
+
+
+
+
+Rheinland-Pfalz und Saarland 
+
+
+
+
+
+
+
+
+
+Sachsen und Thüringen 
+
+
+
+
+
+
+
+
+
+
+Forschung und Forschungsdaten 
+
+
+
+Forschungszentrum 
+
+
+
+Forschungsbeirat und Forschungsprofessoren 
+
+Forschungsgebiete und Programm 
+
+Personen 
+
+Research Brief 
+
+Diskussionspapiere 
+
+Referierte Publikationen 
+
+Seminare 
+
+Invited Speakers Series 
+
+Forschungsdaten- und Servicezentrum 
+
+
+
+Ihr Forschungsprojekt im FDSZ 
+
+Forschungsdaten 
+
+Über das FDSZ 
+
+INEXDA 
+
+Publikationen 
+
+Konferenzen 
+
+Forschungsaufenthalt und Praktikum 
+
+Studie zur wirtschaftlichen Lage privater Haushalte (PHF) 
+
+
+
+Konzept 
+
+Ergebnisse 
+
+Informationen für Haushalte 
+
+Fragen und Antworten 
+
+Datenschutz 
+
+infas 
+
+Informationen für Forschende 
+
+Studie zu Erwartungen von Privatpersonen (BOP‑HH) 
+
+Unternehmensstudie (BOP-F) 
+
+
+Bibliothek und Archiv 
+
+
+
+Bibliothek 
+
+Historisches Archiv 
+
+Europavillon 
+
+Kunst 
+
+
+
+Ausstellungen 
+
+Malerei und Papierarbeiten 
+
+Skulpturen und Installationen 
+
+Architektur und Kunst 
+
+Numismatik 
+
+
+
+Sammlung 
+
+Glanzstücke 
+
+Bildarchiv 
+
+
+
+Numismatische Fachbibliothek 
+
+
+Geldmuseum 
+
+
+
+Besucherinformationen 
+
+
+Vortragsveranstaltungen 
+
+Führungen 
+
+Workshops für Kinder und Jugendliche 
+
+Museumsrallyes 
+
+Geschichte 
+
+Internationaler Zentralbankdialog 
+
+
+
+Über uns 
+
+Internationale Zentralbankkurse 
+
+
+
+Anmeldeverfahren 
+
+Vergangene Kurse 
+
+Bilaterale Zusammenarbeit 
+
+EU-finanzierte Projekte 
+
+Häufig gestellte Fragen 
+
+Repräsentanzen 
+
+Newsletter 
+
+
+Aufgaben 
+
+© Europäische Zentralbank
+
+Digitaler Euro
+
+Informationen zum Projekt „Digitaler Euro“
+
+
+
+
+
+Geldpolitik 
+
+
+
+Geldpolitische Entscheidungen 
+
+Volkswirtschaftliche Analysen 
+
+Geldpolitischer Handlungsrahmen 
+
+Geldpolitische Tenderoperationen 
+
+
+
+Ausstehende Tenderoperationen 
+
+Tenderkalender und -system 
+
+Test Operational Readiness 
+
+Haupt- und längerfristige Refinanzierungsgeschäfte sowie Feinsteuerungsoperationen 
+
+Fremdwährungsgeschäfte 
+
+Historische Tenderoperationen 
+
+Notenbankfähige Sicherheiten 
+
+
+
+Zulassungskriterien 
+
+Aufgaben der Bundesbank 
+
+Sicherheiteneinreichung 
+
+Geschäftspartnerinformationen 
+
+Downloads 
+
+
+Geldpolitische Wertpapierankäufe 
+
+
+
+Asset Purchase Programme (APP) 
+
+Pandemic Emergency Purchase Programme (PEPP) 
+
+Wertpapierleihe im APP und PEPP (Securities Lending) 
+
+Transmission Protection Instrument (TPI) 
+
+Outright Monetary Transactions (OMT) 
+
+Abgeschlossene Programme 
+
+Mindestreserven 
+
+
+
+Rechtliche Grundlagen 
+
+Zinssätze und Reservesätze 
+
+Überschussreserven 
+
+Ständige Fazilitäten 
+
+
+Finanz- und Währungssystem 
+
+
+
+Finanzstabilität 
+
+
+
+Rolle der Bundesbank 
+
+Begriffe und Definitionen 
+
+Makroprudenzielle Überwachung (AFS) 
+
+Wohnimmobilienfinanzierungen privater Haushalte 
+
+Risiko- und Stabilitätsanalyse 
+
+Makroprudenzielle Instrumente 
+
+Forum für Finanzstabilität 
+
+Internationale Zusammenarbeit 
+
+
+
+ESRB und FSC 
+
+EU-Gremien 
+
+FSB 
+
+BIZ 
+
+CGFS 
+
+IMF 
+
+MDBs 
+
+G20 
+
+G7 
+
+Finanzstabilitätsbericht 
+
+
+
+
+Zielsetzung 
+
+
+
+
+Bundesbank und Bafin 
+
+Einheitlicher Aufsichtsmechanismus 
+
+Operative Aufgaben 
+
+
+
+Kapital- und Liquiditätsausstattung 
+
+Bankgeschäftliche Prüfungen 
+
+EBA 
+
+Baseler Ausschuss für Bankenaufsicht 
+
+Rechtsgrundlagen 
+
+
+
+EU-Gesetzgebung 
+
+Nationale Regelungen 
+
+Baseler Rahmenwerk 
+
+Einzelaspekte 
+
+
+
+Aufsichtsschwerpunkte 
+
+Diversity Benchmarking 
+
+Eignungsprüfung, Erlaubnisverfahren, Inhaberkontrolle 
+
+Eigenmittelanforderungen 
+
+
+
+Eigenmittel 
+
+Kreditrisiko 
+
+Operationelles Risiko 
+
+Marktrisiko 
+
+CVA-Risiko 
+
+Einlagensicherung 
+
+FinTech 
+
+Kredit­dienstleistungs­institute 
+
+Groß- und Millionenkredite 
+
+Liquidität 
+
+
+
+Aufsichtliche Meldungen der Institute zur LCR 
+
+Aufsichtliche Meldungen der Institute in Bezug auf die NSFR 
+
+Zusätzliche Parameter für die Liquiditätsüberwachung 
+
+Behandlung der Zentralbankreserven in der LCR 
+
+Liquiditäts­verordnung 
+
+Leverage Ratio 
+
+Makroprudenzielle Maßnahmen 
+
+MiCAR – Markets in Crypto-Assets Regulation 
+
+Offenlegung 
+
+Risikomanagement 
+
+
+
+BAIT / DORA 
+
+Cloud-Auslagerungen 
+
+ICAAP / ILAAP 
+
+MaRisk 
+
+Maschinelle Lernverfahren 
+
+Institutsvergütung 
+
+Zinsänderungsrisiken 
+
+Sanierung und Abwicklung 
+
+SREP – Supervisory Review and Evaluation Process 
+
+Sustainable Finance 
+
+Wertpapier- und Finanzdienstleistungsinstitute 
+
+Zahlungsinstitute und E-Geld-Institute 
+
+Fachgremien 
+
+Analysen und Perspektiven 
+
+Dokumentation 
+
+Bargeld 
+
+
+
+Bargeldstrategie des Eurosystems 
+
+Euro-Banknoten 
+
+
+
+Forschung und Entwicklung 
+
+Hauptmerkmale 
+
+5 Euro 
+
+10 Euro 
+
+20 Euro 
+
+50 Euro 
+
+100 Euro 
+
+200 Euro 
+
+500 Euro 
+
+Euro-Münzen 
+
+
+
+Reguläre Umlaufmünzen 
+
+2-Euro-Gedenkmünzen 
+
+Sammlermünzen 
+
+Ausländische Banknoten und Münzen, Edelmetalle 
+
+DM-Banknoten und -Münzen 
+
+Beschädigtes Geld 
+
+Falschgeld 
+
+
+
+Falschgelderkennung 
+
+Schulungen 
+
+Leitfaden Münzen 
+
+Prüfgeräte 
+
+Abbildungsvorschriften 
+
+Dienstleistungsangebot 
+
+
+
+Für Bargeldgeschäftspartner 
+
+Für Andere (Jedermann) 
+
+Für Zentralbanken 
+
+CashEDI 
+
+
+
+Allgemeine Informationen 
+
+
+
+Datenaustausch 
+
+Leistungsumfang WebEDI/Filetransfer 
+
+ExtraNet 
+
+Downloads und Videoanleitungen 
+
+Zugang CashEDI 
+
+Testzentrum CashEDI 
+
+Bargeldrecycling 
+
+
+
+Rechtliche Rahmenbedingungen 
+
+Vor-Ort-Kontrollen 
+
+Münzrollenfertiger 
+
+Bargeldbearbeitungssysteme 
+
+Meldung statistischer Daten 
+
+
+
+Filetransfer 
+
+WebCRCMV 
+
+Vordrucke Banknotenrecycling 
+
+Vordrucke Münzrecycling 
+
+Ökologische Nachhaltigkeit 
+
+Veranstaltungen 
+
+Unbarer Zahlungsverkehr 
+
+
+
+
+
+
+Auf einen Blick 
+
+Stand der Dinge 
+
+FAQ – Digitaler Euro 
+
+TARGET 
+
+
+
+Die TARGET-Services 
+
+Gemeinsame Komponenten der TARGET-Services 
+
+Rechtlicher Rahmen 
+
+Gremienarbeit 
+
+Zugangsgeschützter Bereich 
+
+T2 
+
+TARGET2-Securities 
+
+TIPS 
+
+ECMS 
+
+Sonstige Sicherheitenstellungen 
+
+PSD2 
+
+EMZ 
+
+
+
+SEPA-Clearer 
+
+
+
+Teilnahme 
+
+Entgelte und Betriebszeiten 
+
+SCL-Directory 
+
+Nationale Scheckabwicklung 
+
+
+
+
+
+Hausbankverfahren 
+
+
+
+HBV-Individual 
+
+HBV-SEPA 
+
+HBV-Echtzeit 
+
+HBV-IMPay 
+
+Betriebszeiten 
+
+Kommunikation 
+
+Korrespondenzbankgeschäft 
+
+Überwachung 
+
+
+
+Business Continuity 
+
+TIBER-DE 
+
+Trigger Solution 
+
+Serviceangebot 
+
+
+
+
+Prüfzifferberechnung 
+
+IBAN-Regeln 
+
+Kundentestzentrum 
+
+SEPA 
+
+
+
+Vordrucke 
+
+
+
+
+Analyse 
+
+
+amplus 
+
+Themen 
+
+Statistiken 
+
+Neues Statistik-Portal für Zeitreihen
+
+Das neue Statistik-Portal präsentiert Zeitreihen, Echtzeitdaten und weitere statistische Daten in einem modernen, übersichtlichen Layout.  
+
+
+
+
+
+
+
+
+Zahlungsbilanz 
+
+Auslandsvermögen und -verschuldung 
+
+Dienstleistungshandel 
+
+Direktinvestitionen 
+
+
+
+Transaktionswerte 
+
+Bestandsangaben 
+
+Auslandsunternehmenseinheiten (FATS) 
+
+Banken und andere finanzielle Unternehmen 
+
+
+
+Banken 
+
+
+
+Bilanzpositionen 
+
+Ertragslagedaten 
+
+Auslandspositionen der Banken 
+
+Geldmengenaggregate 
+
+OTC-Derivatestatistik 
+
+Triennial Central Bank Survey 
+
+Investmentgesellschaften 
+
+Pensionseinrichtungen 
+
+Verbriefungszweckgesellschaften 
+
+Versicherungen 
+
+Zahlungsverkehr 
+
+Geld- und Kapitalmärkte 
+
+
+
+Euro-Geldmarkt 
+
+Wertpapierbestände 
+
+Wertpapieremissionen 
+
+Zinssätze und Renditen 
+
+
+
+Notenbankzinssätze 
+
+Geldmarktsätze 
+
+Umlaufsrenditen 
+
+Kurse, Renditen der Bundeswertpapiere 
+
+Zinsstruktur am Rentenmarkt 
+
+Abzinsungszinssätze 
+
+Einlagen- und Kreditzinssätze 
+
+Euro Short-Term Rate (€STR) 
+
+Realzinssätze auf Bankeinlagen 
+
+Erwartete Realzinssätze 
+
+Gesamtwirtschaftliche Rechenwerke 
+
+
+
+Volkswirtschaftliche Gesamtrechnungen 
+
+Finanzierungsrechnung 
+
+Vermögensbilanzen 
+
+Indikatorensätze 
+
+
+
+Indikatorensystem Wohnimmobilienmarkt 
+
+Indikatorensystem Gewerbeimmobilienmarkt 
+
+Financial Soundness Indicators 
+
+SDDS Plus 
+
+Lange Zeitreihen 
+
+Konjunktur und Preise 
+
+
+
+Produktion 
+
+Auftragseingang und -bestand 
+
+Umsätze 
+
+Beschäftigung und Arbeitsmarkt 
+
+Tarifverdienste und Arbeitskosten 
+
+Harmonisierter Verbraucherpreisindex 
+
+Nationale Erzeuger- und Verbraucherpreise 
+
+Außenhandelspreise 
+
+Gewerbeimmobilienpreisindex 
+
+Wohnimmobilien- und Bauleistungspreise 
+
+Wöchentlicher Aktivitätsindex 
+
+Nachhaltigkeit 
+
+Öffentliche Finanzen 
+
+
+
+Maastricht‑Defizit und ‑Schuldenstand 
+
+Haushaltsentwicklung in Deutschland (VGR) 
+
+Haushaltsentwicklung in Deutschland (Finanzstatistik) 
+
+Unternehmen und private Haushalte 
+
+Wechselkurse 
+
+
+
+Devisenkurse, Euro-Referenzkurse, sonstige Wechselkurse 
+
+Effektive Wechselkurse 
+
+Zeitreihen und Echtzeitdaten 
+
+Service 
+
+© Maria Lungwitz
+
+Bankleitzahlen-Suche
+
+Suchen Sie im aktuell gültigen Verzeichnis der Bankleitzahlen.
+
+
+
+
+
+Bankdienstleistungen für Zentralbanken 
+
+Banken und Unternehmen 
+
+
+
+Bund Bietungs-System (BBS) 
+
+
+
+Aktuelle Auktionen 
+
+Betriebs- und Supportzeiten 
+
+
+Geschäftsbedingungen 
+
+Testumgebung 
+
+Collateralmanagement Access Portal (CAP) 
+
+
+
+
+
+CERT-Bundesbank 
+
+ESM/EFSF Bietungs-System (EBS) 
+
+
+
+
+
+
+
+Gläubiger­versam­mlungen 
+
+Grenzüberschreitende Nutzung von Kreditforderungen (ECMS) 
+
+
+
+Kundeninformationen 
+
+
+
+Häufig gestellte Fragen (FAQ) 
+
+Mobilisation and Administration of Credit Claims (MACCs) 
+
+
+
+
+
+
+
+OffenMarkt Tender Operations-System (OMTOS) 
+
+
+
+Allgemeine Informationen zu OMTOS 
+
+Ansprechpartner 
+
+
+
+Geschäfts­bedingungen 
+
+Neukundeninformation 
+
+Public Key Infrastructure (PKI) 
+
+
+
+Certificate Policy (CP) und Certification Practice Statement (CPS) 
+
+Erläuterungen zur E-Mail-Sicherheit 
+
+Beschaffungen 
+
+Bundeswertpapiere 
+
+
+
+Einmalemissionen 
+
+Emissionsbedingungen 
+
+Emissionskalender des Bundes 
+
+Tenderverfahren 
+
+Kurse und Renditen 
+
+Stripping 
+
+NExt 
+
+
+Finanzsanktionen 
+
+
+
+Sanktionsregimes 
+
+Formulare 
+
+Immobilienmanagement 
+
+
+
+Objekte 
+
+Mediathek 
+
+Meldewesen 
+
+
+
+
+
+
+Änderungen im Meldewesen 
+
+Einreichungsfrist 
+
+Elektronische Einreichung 
+
+
+
+Meldenummer 
+
+
+AMS 
+
+XML- und CSV-Dateien 
+
+Erläuterungen zum Meldewesen 
+
+
+Schlüsselverzeichnisse 
+
+
+
+
+Europäisches Meldewesen 
+
+Nationales Meldewesen 
+
+PRISMA: Aufsichtliche Meldestrecke 
+
+Formate (XBRL und XML) 
+
+Finanzaufsicht Formular-Center 
+
+Bankenstatistik 
+
+
+
+Kundensystematik 
+
+Formate XML 
+
+ExtraNet / NExt 
+
+
+Neufassung der EZB-Verordnungen 
+
+Bankenstatistik Formular-Center 
+
+Bankenstatistik Rundschreiben 
+
+
+
+
+Formate (XML) 
+
+Sonstige rechtliche Grundlagen 
+
+Mitarbeiter/-innen der Bundesbank 
+
+
+Schlichtungsstelle 
+
+Schule und Bildung 
+
+
+
+Unterrichtsmaterialien 
+
+
+
+Sekundarstufe II 
+
+Sekundarstufe I 
+
+Primarstufe 
+
+Grafiken für den Unterricht 
+
+Erklärfilme 
+
+Interaktive Angebote 
+
+Vorträge und Lehrkräftefortbildung 
+
+Termine 
+
+Presse 
+
+© Frank Rumpenhorst
+
+
+Im Pressebereich finden Sie Pressemitteilungen, Reden, Gastbeiträge und Interviews von Mitgliedern des Vorstands der Deutschen Bundesbank sowie weiteres Pressematerial. Für Journalistinnen und Journalisten steht ein zugangsgeschützter Pressebereich zur Verfügung.
+
+
+
+
+
+Pressemitteilungen 
+
+
+
+
+Europäische Zentralbank 
+
+EFSF/ESM 
+
+Reden 
+
+Interviews 
+
+Gastbeiträge 
+
+Stellungnahmen 
+
+Pressematerial 
+
+
+
+
+Footage 
+
+
+60 Jahre 
+
+Pressetermine 
+
+Pressekontakt 
+
+Vorstandskalender 
+
+
+© Nils Thies
+
+Schülerbuch „Geld und Geldpolitik“
+
+Das Schülerbuch für die Sekundarstufe II informiert über grundlegende Zusammenhänge und aktuelle Entwicklungen rund um Geld, Währung und Zentralbank.
+
+
+
+
+
+Berichte und Studien 
+
+
+Forschung 
+
+
+
+Karriere 
+
+
+
+
+Jobportal 
+
+Arbeitgeber Bundesbank 
+
+
+
+Jobstorys 
+
+Vielfalt, Gleichstellung & Inklusion 
+
+Bundesweite Standorte 
+
+Fachrichtungen 
+
+
+
+Informationstechnologie 
+
+
+
+Payment Systems IT 
+
+Journey to Cloud 
+
+
+
+Wir wollen in die Cloud 
+
+Der Weg dorthin 
+
+Wirtschaft und Bankwesen 
+
+Data Science 
+
+Geldbearbeitung 
+
+Technischer Gebäudebetrieb 
+
+Einstiegsoptionen 
+
+
+
+Direkteinstieg 
+
+Traineeprogramme 
+
+
+
+Traineeprogramm (Bachelor) 
+
+Traineeprogramm IT (Bachelor) 
+
+Traineeprogramm (Master) 
+
+Duale Studiengänge 
+
+
+
+Zentralbankwesen (BWL) / HS Bundesbank 
+
+Betriebswirtschaft / HS Mainz 
+
+Business Management / OTH Regensburg 
+
+BWL (Bank) / DHBW Stuttgart 
+
+BWL (Digital Business Management) / DHBW Karlsruhe 
+
+Angewandte Informatik / HS Mainz 
+
+Angewandte Informatik / DHBW Mosbach 
+
+Wirtschaftsinformatik / DHBW Stuttgart 
+
+Ausbildungsgänge 
+
+
+
+Kaufleute für Büromanagement 
+
+Mittlerer Bankdienst (Zentrale) 
+
+Mittlerer Bankdienst (Geldbearbeitung) 
+
+Köchin/Koch 
+
+Anlagenmechaniker*in für Sanitär-, Heizungs- und Klimatechnik 
+
+Elektroniker*in für Geräte und Systeme 
+
+Praktika und Werkstudierende 
+
+
+
+Schulpraktika 
+
+Hochschulpraktika 
+
+Werkstudentische Tätigkeit 
+
+Fragen zur Bewerbung 
+
+
+
+
+
+
+Startseite 
+
+
+
+
+Seite drucken 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Suche nach Pressemitteilungen der Deutschen Bundesbank
+
+Allgemeine Suche 
+
+
+Filter einblenden Filter ausblenden 
+
+Thema 
+
+alle 
+ Bürgerangebote 
+ Dienstleistungen 
+ Konjunktur und Wirtschaft 
+ Währungsreserven 
+
+Herausgeber 
+
+ Deutsche Bundesbank
+
+Deutsche Bundesbank und andere Institutionen
+
+Deutsche Bundesbank und BaFin
+
+Deutsche Bundesbank und BMF
+
+Zeitraum 
+
+von 
+
+bis 
+
+Zurücksetzen 
+ Filtern 
+
+1690 Beiträge 
+
+Sortieren nach 
+
+Aktualität ⬆ 
+ Aktualität ⬇ 
+ Titel ⬇ 
+ Titel ⬆ 
+ Relevanz 
+
+Neue Geschäftsverteilung im Vorstand der Deutschen Bundesbank
+
+03.11.2026 
+
+Pressemitteilung
+
+
+Der Vorstand der Deutschen Bundesbank hat mit sofortiger Wirkung eine Anpassung der Geschäftsverteilung beschlossen. 
+
+Neue Geschäftsverteilung im Vorstand der Deutschen Bundesbank ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/neue-geschaeftsverteilung-im-vorstand-der-deutschen-bundesbank-1013792⟩ 
+
+Oktober-Ergebnisse der Umfrage zum Kreditgeschäft (Bank Lending Survey) in Deutschland
+ Kreditrichtlinien für Unternehmenskredite weiter gestrafft 
+
+27.10.2026 
+
+
+
+Die deutschen Banken haben im dritten Quartal 2026 ihre Kreditrichtlinien im Unternehmenskreditgeschäft gestrafft. Die Richtlinien für private Wohnungsbaukredite lockerten die Banken dagegen. Keinen Anpassungsbedarf sahen die Banken bei den Richtlinien für Konsumenten- und sonstige Kredite an private Haushalte. 
+
+Oktober-Ergebnisse der Umfrage zum Kreditgeschäft (Bank Lending Survey) in Deutschland ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/oktober-ergebnisse-der-umfrage-zum-kreditgeschaeft-bank-lending-survey-in-deutschland-1012864⟩ 
+
+ESM wickelt als erster europäischer supranationaler Emittent DLT-basierte Anleiheemission zusammen mit Bundesbank und Clearstream auf Pontes-Plattform des Eurosystems ab
+
+26.10.2026 
+
+
+
+Der Europäische Stabilitätsmechanismus ( ESM ), die Deutsche Bundesbank und Clearstream führen die erste digitale Anleiheemission und Zahlung einer Benchmark-Anleihe durch einen europäischen supranationalen Emittenten aus, die über Pontes abgewickelt wird. Bei Pontes handelt es sich um eine Plattform des Eurosystems, über die Großbetragsfinanztransaktionen mithilfe der Distributed-Ledger -Technologie ( DLT ) direkt in Zentralbankgeld abgewickelt werden können. Damit wechselt die europäische digitale Finanzmarktinfrastruktur von Pilotprojekten in den Live-Betrieb. 
+
+ESM wickelt als erster europäischer supranationaler Emittent DLT-basierte Anleiheemission zusammen mit Bundesbank und Clearstream auf Pontes-Plattform des Eurosystems ab ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/esm-wickelt-als-erster-europaeischer-supranationaler-emittent-dlt-basierte-anleiheemission-zusammen-mit-bundesbank-und-clearstream-auf-pontes-plattform-des-eurosystems-ab-1012996⟩ 
+
+Geldvermögensbildung und Außenfinanzierung in Deutschland im zweiten Quartal 2026
+ Sektorale Ergebnisse der gesamtwirtschaftlichen Finanzierungsrechnung 
+
+20.10.2026 
+
+
+
+Nach den Unsicherheiten im ersten Quartal 2026 erholten sich die Finanzmärkte im zweiten Quartal deutlich. D as Geldvermögen der privaten Haushalte stieg dadurch spürbar: Es betrug zum Quartalsende 9.831 Milliarden Euro,  335 Milliarden mehr als im Vorquartal. Dies war vor allem auf außerordentlich hohe positive Bewertungseffekte in Höhe von 258 Milliarden Euro zurückzuführen. 
+
+Geldvermögensbildung und Außenfinanzierung in Deutschland im zweiten Quartal 2026 ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/geldvermoegensbildung-und-aussenfinanzierung-in-deutschland-im-zweiten-quartal-2026-1012260⟩ 
+
+Nettoabsatz von Schuldverschreibungen im August 2026 gegenüber Vormonat gesunken
+
+13.10.2026 
+
+
+
+Die Bruttoemissionen am deutschen Rentenmarkt lagen im August 2026 mit 121,1 Mrd € unter dem Wert des Vormonats (144,3 Mrd €).
+
+Nettoabsatz von Schuldverschreibungen im August 2026 gegenüber Vormonat gesunken ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/nettoabsatz-von-schuldverschreibungen-im-august-2026-gegenueber-vormonat-gesunken-1011650⟩ 
+
+Die deutsche Zahlungsbilanz im August 2026
+
+
+
+
+Die deutsche Leistungsbilanz verzeichnete im August 2026 einen Überschuss von 10,3 Mrd €. Das Ergebnis lag um 11,5 Mrd € unter dem Niveau des Vormonats. Dahinter stand vor allem der niedrigere Aktivsaldo im Warenhandel. 
+
+Die deutsche Zahlungsbilanz im August 2026 ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/die-deutsche-zahlungsbilanz-im-august-2026-1011652⟩ 
+
+Kampagne gegen Betrug im Zahlungsverkehr
+
+08.10.2026 
+
+
+
+Unter der Schirmherrschaft der Bundesbank und des Bundesministeriums der Finanzen startet eine Kampagne gegen Phishing und Zahlungsbetrug. Ab dem 10. Oktober informieren Unternehmen aus Finanzwirtschaft, Telekommunikation, Handel sowie öffentliche Institutionen rund einen Monat lang über typische Betrugsmaschen. Die Kampagne bietet praktische Tipps, Videos und weiterführende Informationen, um Verbraucherinnen und Verbraucher zu sensibilisieren, verdächtige Inhalte zu erkennen und richtig zu reagieren.
+
+Kampagne gegen Betrug im Zahlungsverkehr ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/kampagne-gegen-betrug-im-zahlungsverkehr--1011144⟩ 
+
+Bundesbank präsentiert Kinderbuch zum Thema Bezahlen auf Frankfurter Buchmesse
+
+07.10.2026 
+
+
+
+Die Deutsche Bundesbank präsentiert auf der Frankfurter Buchmesse vom 7. bis 11. Oktober ihr neues Kinderbuch zum Thema Bezahlen. Am Messestand der Bundesbank können sich Familien und andere Besucherinnen und Besucher über das Buch „Geli Geldgespenst – Einkauf in der Krümelstube“ und das gesamte Bildungsangebot der Notenbank informieren.  
+
+Bundesbank präsentiert Kinderbuch zum Thema Bezahlen auf Frankfurter Buchmesse ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-praesentiert-kinderbuch-zum-thema-bezahlen-auf-frankfurter-buchmesse-1010698⟩ 
+
+Das deutsche Auslandsvermögen Ende 2025
+
+30.09.2026 
+
+
+
+Das deutsche Netto-Auslandsvermögen belief sich Ende 2025 auf 3 661 Mrd €. Das entsprach rund 81 % des nominalen Bruttoinlandsprodukts Deutschlands. Insgesamt stiegen sowohl die Aktiva als auch die Passiva gegenüber dem Ausland 2025 weiter an. 
+
+Das deutsche Auslandsvermögen Ende 2025 ⟨https://www.bundesbank.de/de/presse/pressemitteilungen/das-deutsche-auslandsvermoegen-ende-2025--1009822⟩ 
+
+LSI-Stresstest 2026: Banken und Sparkassen mit robustem Kapitalpolster
+
+24.09.2026 
+
+
+
+Trotz wirtschaftlicher Herausforderungen, geopolitischer Unsicherheiten und Belast
+
+[… gekürzt: 709 weitere Zeichen.]
+
+==============================================================================
+QUELLE: https://www.destatis.de/DE/Presse/Pressemitteilungen/_inhalt.html
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:00 GMT
+------------------------------------------------------------------------------
+[Gerüst ohne Inhalt – vermutlich per JavaScript nachgeladen.]
+
+==============================================================================
+QUELLE: https://www.ecb.europa.eu/press/html/index.en.html
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:02 GMT
+------------------------------------------------------------------------------
+Publications by date 
+
+Skip to: 
+ Skip to navigation 
+ Skip to content 
+ Skip to footer 
+
+EN 
+
+Български Čeština Dansk Deutsch Eλληνικά English Español Eesti keel Suomi Français Gaeilge Hrvatski Magyar Italiano Lietuvių Latviešu Malti Nederlands Polski Português Română Slovenčina Slovenščina Svenska 
+
+Menu
+
+Monetary policy & markets 
+
+Our monetary policy strategy, the tools we use and the impact they have
+
+Overview of monetary policy and markets 
+
+Quick links
+
+What is monetary policy? 
+
+Strategy review 
+
+Asset purchase programmes 
+
+Latest monetary policy press conference
+
+29 October 2026
+
+Introduction Benefits of price stability 
+ Scope of monetary policy 
+ Transmission mechanism 
+
+Decisions, statements & accounts 
+ Monetary policy strategy Strategy review 
+ Medium-term orientation 
+ Two per cent inflation target 
+
+Economic, monetary and financial analysis Economic analysis 
+ Monetary and financial analysis 
+
+Monetary policy operations Open market operations TLTROs 
+
+Asset purchase programmes Securities lending 
+
+Pandemic emergency purchase programme 
+ Standing facilities 
+ Minimum reserves Two-tier system 
+
+Euro central bank liquidity lines Swap lines 
+ EUREP 
+ Chronology of Eurosystem liquidity lines 
+
+Emergency liquidity assistance (ELA) 
+ Liquidity analysis 
+ Collateral Eligibility criteria and assessment Marketable assets 
+ Non-marketable assets 
+
+List of eligible marketable assets User guide 
+
+Collateral management Eligible SSSs 
+ Eligible links 
+ Eligible triparty agents 
+
+Risk mitigation ECAF 
+ Risk control 
+ Haircut categories 
+ Valuation 
+
+Loan-level requirements 
+ Contacts 
+
+Structure of the euro area economy Economic policy 
+ Fiscal policies 
+ External trade 
+ Effective exchange rates 
+ Financial structure 
+ Financial markets 
+ Financial intermediaries 
+ Economic diversity 
+ Labour market 
+
+Market contact groups Bond market (BMCG) 
+ Money market (MMCG) 
+ Debt Issuance Market Contact Group (DIMCG) 
+ ECB Operations managers group (ECB OMG) 
+ Foreign exchange (FXCG) 
+ Institutional Investor Dialogue (IID) 
+ Monetary Analysis Contact Group (MACG) 
+
+Payments & financial stability 
+
+Insights into our work on financial stability and payments and market infrastructures
+
+Overview of payments and financial stability 
+
+
+Digital euro 
+
+Payments news & events 
+
+Market contact groups 
+
+TARGET professional use documents and links 
+
+Latest Financial Stability Review
+
+5 June 2025
+
+Payments 
+ TARGET Services Shared features 
+ T2 Facts and figures 
+ Governance 
+
+T2S Governance 
+ Facts and figures 
+ Pricing 
+
+TIPS Cross-border payments 
+ Onboarding 
+
+ECMS Governance 
+
+Pontes Governance 
+
+TARGET professional use documents & links Shared features documents & links 
+ T2 documents & links 
+ T2S documents & links 
+ TIPS documents & links 
+ ECMS documents & links 
+ Pontes documents & links 
+
+Tokenisation and DLT Appia 
+ Exploratory work 
+
+Retail payments Retail payments strategy 
+ ECB as a catalyst 
+ SEPA 
+ Instant payments 
+
+Collateral management harmonisation SCoRE 
+ Implementation 
+ FAQ 
+ AMI-SeCo 
+
+Cyber resilience Financial market infrastructures 
+ TIBER-EU 
+ Euro Cyber Resilience Board 
+
+Oversight Payment systems 
+ TARGET2-Securities 
+ Electronic payments 
+ Securities settlement systems and central counterparties 
+ Critical service providers 
+ Correspondent and custodian banks 
+ SecuRe Pay forum 
+
+Reserve management services Key aspects 
+ Range of services 
+
+Cash professionals Cash handling Authentication devices 
+ Recirculation of banknotes 
+
+Common detector interface specifications 
+ Banknote manufacturer accreditation 
+
+Financial stability 
+ Introduction to financial stability 
+ Macroprudential Measures 
+ Financial stability contact groups 
+
+Statistics 
+
+Access to all ECB statistics and background information
+
+Overview of ECB statistics 
+
+
+Key figures 
+
+ECB Data Portal 
+
+Statistical releases 
+
+THE ECB BLOG - Improved data: how climate change impacts banks
+
+18 April 2024
+
+--> 
+
+PRESS RELEASE - ECB launches pilot project for research access to confidential statistical data
+
+13 March 2025
+
+Frequently accessed 
+ Euro exchange rates 
+ Key ECB interest rates 
+ Euro short-term rate (€STR) Interest rate benchmarks Working group on euro risk-free rates 
+
+Inflation 
+ Euro area yield curves 
+ All statistics & background 
+ All key statistics 
+ All data services 
+ Data reporting & standards Governance and quality framework 
+ Co-operation and standards 
+ Banks’ data reporting DPM Alliance 
+ IReF 
+ JBRC 
+ BIRD 
+
+AnaCredit AnaCredit Q&A 
+
+Public consultations 
+ Banking industry dialogue on ESCB statistics and integrated reporting 
+ SDMX – statistical data exchange model 
+ INEXDA - granular data network 
+
+The euro 
+
+All you need to know about our common currency
+
+Overview of the euro 
+
+
+Cash professionals 
+
+Banknote and coins
+ statistics 
+
+Euro exchange
+ rates 
+
+Redesign process of our future banknotes
+
+1 January 2026
+
+Digital euro What it is Digital euro and privacy 
+
+How it works 
+ Why we need it 
+ Innovation platform 
+ Pilot 
+ Timeline and progress 
+ In-depth information Governance and stakeholder engagement 
+ Technical documents and research 
+ Scheme rulebook 
+
+Frequently asked questions 
+
+Cash 
+ The Eurosystem cash strategy The role of cash 
+ Issuance and circulation 
+ Access to and acceptance of cash 
+
+Banknotes Future banknotes 
+ Current banknotes Denominations 
+ Design elements 
+ Security features 
+
+Anti-counterfeiting 
+ Banknote production and stocks 
+ Damaged and inked-stained banknotes 
+ Environment, health and safety Product environmental footprint 
+
+Research and development 
+ Images and reproduction rules 
+ Information and training materials 
+
+Coins €2 
+ €1 
+ 50 cent 
+ 20 cent 
+ 10 cent 
+ 5 cent 
+ 2 cent 
+ 1 cent 
+ Common sides 
+ €2 commemorative coins 
+ Collector coins 
+
+Joining the euro area Bulgaria (2026) 
+ Croatia (2023) 
+ Lithuania (2015) 
+ Latvia (2014) 
+ Estonia (2011) 
+ Slovakia (2009) 
+ Cyprus (2008) 
+ Malta (2008) 
+ Slovenia (2007) 
+ Initial changeover (2002) 
+
+Exchanging national cash Austria 
+ Belgium 
+ Bulgaria 
+ Croatia 
+ Cyprus 
+ Estonia 
+ Finland 
+ France 
+ Germany 
+ Greece 
+ Ireland 
+ Latvia 
+ Italy 
+ Lithuania 
+ Luxembourg 
+ Malta 
+ The Netherlands 
+ Portugal 
+ Slovakia 
+ Slovenia 
+ Spain 
+
+Visually impaired people 
+
+Research 
+
+In-depth studies and expert analyses covering diverse topics and fields
+
+Overview of ECB research 
+
+
+Conferences & seminars 
+
+Opportunities for researchers 
+
+Research Bulletin
+
+Economic research Research agenda Monetary policy, strategy and implementation 
+ Fiscal policy and governance within EMU 
+ International macro and finance 
+ Real sector and microeconomic analysis 
+ Forecasting and business cycle analysis 
+ Macro-finance, systemic risk and macroprudential policy 
+ Financial institutions, microprudential policy, financial markets and payments 
+
+Opportunities for researchers Wim Duisenberg Fellowship 
+ Regular Research Visitors 
+ Lamfalussy Fellowship 
+ Summer Research Graduate Programme 
+ Student Research Traineeship Programme 
+
+Legal Research Legal conferences and seminars 
+ Legal Research Programme 
+
+Research papers Papers by authors 
+
+ECB researchers 
+ Research networks 
+
+News & publications 
+ News & Publications
+
+Browse all news & publications 
+
+News 
+ Press releases 
+ Speeches 
+ Interviews 
+ The ECB Blog 
+ Podcasts & webcasts 
+ Press hub 
+
+Publications 
+ Governing Council decisions Monetary policy decisions 
+ Other decisions 
+
+Monetary policy accounts 
+ Economic Bulletin Articles 
+ Focus 
+ Monthly Bulletin 
+
+Macroeconomic projections 
+ Annual reports & financial statements Annual Report Annual Accounts 
+ Eurosystem balance sheet 
+
+Weekly financial statements Disaggregated data 
+
+Financial stability publications Financial Stability Review Special features & boxes 
+
+Macroprudential Bulletin 
+
+Research publications Research Bulletin 
+ Working papers 
+ Discussion papers 
+ Occasional papers 
+ Legal working papers 
+ Statistics papers 
+
+Other publications Letters to MEPs 
+ Convergence Report 
+ International Role of the Euro 
+
+Events & calendars 
+ Monetary policy press conference Monetary policy statements 
+ Monetary policy statements at a glance 
+
+Conferences & seminars Forum on Central Banking Young Economist Prize 
+ Past editions 
+
+Civil society engagement 
+
+Calendars Weekly schedule 
+ Meetings of the Governing Council and the General Council 
+ Statistical calendars Money, banking and financial markets 
+ Euro area economic and financial developments by institutional sector 
+ External transactions and positions 
+ Prices, output, demand and labour 
+ Government finance 
+ Supervisory and prudential statistics 
+
+Eurosystem's tender operations 
+ Reserve maintenance period 
+
+ECB banking supervision 
+
+About us 
+
+
+All about us 
+ Our leadership Executive Board 
+ Governing Council 
+ General Council 
+ Supervisory Board 
+
+Our organisation ECB, ESCB and the Eurosystem ECB mission 
+ Eurosystem mission 
+ Strategic intents 
+ Organisational principles 
+
+Our tasks and responsibilities Monetary policy 
+ Financial stability and macroprudential policy Our tasks 
+ Strategy 
+ Institutional framework 
+
+Banknotes 
+ Payments & securities 
+ European relations European cooperation 
+ EMU economic governance 
+
+International affairs International relations and analysis 
+ International central bank cooperation 
+
+Foreign reserves and own funds 
+ Foreign exchange operations 
+
+Organisation chart of the ECB 
+ Capital subscription 
+ Corporate governance 
+ Eurosystem financial literacy network 
+
+Our values Independence 
+ Transparency 
+ Integrity Ethics Network of Multilateral Organizations (ENMO) 
+
+Accountability 
+
+Our history, arts and culture Our history 25 years of the ECB 
+ Economic and Monetary Union 
+ EU enlargement 
+ European Union 
+
+Archives Committee of Governors 
+ European Monetary Cooperation Fund 
+ Delors Committee 
+ European Monetary Institute 
+ European Central Bank 
+
+Arts and culture 
+
+Our legal framework EUR-Lex - Frequently asked questions 
+
+Climate change and the ECB Our climate and nature plan 
+ Climate-related financial disclosures 
+ Managing climate-related risks 
+ Supporting the green transition 
+ Fostering wider action 
+ Our approach 
+ Environmental protection 
+ Climate Insurance Protection Gap 
+
+Sanctions imposed by the ECB 
+ Procurement Tenders 
+ Archive 
+ Electronic tendering system 
+
+Access to documents Public Register of Documents 
+
+Contacts Address 
+ ECB public holidays 
+
+ECB & You 
+
+
+All about ECB & You 
+ Explainers Key things to know about the ECB 
+ ECB and beyond 
+ Our currency, the euro 
+ Making payments 
+ Monetary policy 
+ Unconventional monetary policy instruments 
+ Banking supervision 
+ Climate change and the ECB 
+
+Test your knowledge 
+ Youth initiatives Girls' IT Bootcamp 
+
+Financial literacy in Europe The gender gap in financial literacy 
+
+Everyone needs stability 
+ ECB & You broadcasts 
+ ECB in Frankfurt 
+ Ask us 
+ Visit us Main building 
+
+Careers 
+
+
+All about careers 
+ Vacancies 
+ Who we are About the ECB 
+ Meet our people 
+ Life in Frankfurt 
+ Values at work 
+
+Why we value diversity Women@ECB 
+ Diversity networks 
+
+What we offer Benefits & rewards 
+ Contract types Fixed-term 
+ Short-term 
+ ESCB/IO 
+ Other 
+
+Traineeship 
+ Graduate programme 
+ ECB Scholarship for Women 
+ ECB Scholarship for Ukrainian graduates 
+
+How you can join us How to apply 
+ How we hire 
+ You have been selected, what next? Fixed-term employee 
+ Short-term employee 
+ Trainee 
+ Cost-free secondee 
+
+FAQs 
+
+Search 
+
+
+ANYTIME 
+
+PAST MONTH 
+
+PAST YEAR 
+
+Search Options
+
+Image Preview
+
+Sort by 
+
+
+Suggestions 
+
+Search Results
+
+Home 
+ Media 
+ Explainers 
+ Research & Publications 
+ Monetary Policy 
+ The €uro 
+ Payments & Markets 
+
+
+
+Relevance 
+
+Date 
+
+All news & publications
+
+All pages in this section
+
+Are you happy with this page?
+
+Yes 
+ No 
+
+What made you unhappy?
+
+Page not working 
+ Information not useful 
+ Design not attractive 
+ Something else 
+
+Thank you for letting us know!
+
+Useful links
+
+
+Work with us 
+
+
+Press photos 
+
+
+Where to find us 
+
+Using our site
+
+Disclaimer & Copyright 
+
+Privacy statement 
+
+Language policy 
+
+ Technical updates 
+
+Responsible disclosure 
+
+Corporate Policies
+
+Data Protection 
+
+Privacy statement for the website 
+
+Cookies policy 
+
+Accessibility statement 
+
+
+Contact
+
+
+Address 
+
+Public holidays 
+
+
+Site directory 
+
+Copyright 2026, European Central Bank
+
+Follow us
+
+
+Back to top -->
+
+Our website uses cookies
+
+We use functional cookies to store user preferences; analytics cookies to improve website performance; third-party cookies set by third-party services integrated into the website. You have the choice to accept or reject them. For more information or to review your preference on the cookies and server logs we use, we invite you to:
+
+Read our privacy statement ⟨https://www.ecb.europa.eu/services/data-protection/privacy-statements/html/ecb.privacy_statement_website.en.html⟩ Learn more about how we use cookies ⟨https://www.ecb.europa.eu/services/data-protection/privacy-statements/html/ecb.privacy_statement_cookiepolicy.en.html⟩ 
+
+I understand and I accept the use of 
+ cookies 
+ I do not accept the use of 
+
+Thank you!
+
+
+We have updated our privacy policy
+
+We are always working to improve this website for our users. To do this, we use the anonymous data provided 
+ by cookies. 
+ See what has changed in our privacy policy ⟨https://www.ecb.europa.eu/home/data-protection/privacy-statements/website/html/index.en.html⟩ 
+
+
+Your cookie preference has expired
+
+ Learn more about how we use cookies ⟨https://www.ecb.europa.eu/home/data-protection/privacy-statements/website/html/index.en.html⟩ 
+
+
+This feature requires cookies.
+
+Modify
+
+==============================================================================
+QUELLE: https://www.tagesschau.de/wirtschaft/index~rss2.xml
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:03 GMT
+------------------------------------------------------------------------------
+Wirtschaft und Börsen-Nachrichten 
+ https://www.tagesschau.de/wirtschaft 
+ Die aktuellen Beiträge der Seite https://www.tagesschau.de/wirtschaft 
+ de 
+ ARD-aktuell / tagesschau.de 
+ Sat, 07 Nov 2026 03:54:24 +0100 
+ http://blogs.law.harvard.edu/tech/rss 
+ 90 
+ tagesschau.de 
+ 2026-11-06T13:24:36Z 
+
+Sanierung der Bahnstrecke Berlin-Hannover: Massive Probleme für Pendler 
+ https://www.tagesschau.de/wirtschaft/verbraucher/bahn-berlin-hannover-bauarbeiten-pendler-100.html 
+ Dass die Generalsanierung der Bahnstrecke Berlin-Hannover massive Verspätungen bedeutet, war klar. Doch nun zeigt sich: Die Pünktlichkeit auf der Ausweichstrecke ist selbst für Bahnverhältnisse unterdurchschnittlich. Von Andre Kartschall. 
+ 3950f631-6fd9-45c9-8254-915c795465fe 
+ 2026-11-07T02:54:24Z 
+ Dass die Generalsanierung der Bahnstrecke Berlin-Hannover massive Verspätungen bedeutet, war klar. Doch nun zeigt sich: Die Pünktlichkeit auf der Ausweichstrecke ist selbst für Bahnverhältnisse unterdurchschnittlich. Von Andre Kartschall. [ mehr ]
+
+Weltweiter KI-Ausverkauf: DAX rutscht nach Rekordhoch ab 
+ https://www.tagesschau.de/wirtschaft/finanzen/marktberichte/marktbericht-dax-dow-ki-nasdaq-wall-street-100.html 
+ Sorgen um KI- und Halbleiterwerte lösen weltweit Verkäufe aus - und setzen auch den deutschen Aktienmarkt unter Druck. Die US-Börsen konnten sich inzwischen wieder berappeln. 
+ Fri, 06 Nov 2026 18:30:36 +0100 
+ 798ad5a9-4de9-4a79-a5dc-cd97ce726bd5 
+ 2026-11-06T17:30:36Z 
+ Sorgen um KI- und Halbleiterwerte lösen weltweit Verkäufe aus - und setzen auch den deutschen Aktienmarkt unter Druck. Die US-Börsen konnten sich inzwischen wieder berappeln.[ mehr ]
+
+Welche Folgen die US-Midterms für die deutsche Wirtschaft haben 
+ https://www.tagesschau.de/wirtschaft/midterms-wirtschaft-handelspolitik-100.html 
+ Der Machtwechsel im US-Kongress könnte Unternehmen mehr Planbarkeit bringen. Zugleich befürchten Ökonomen, dass sich der Zollstreit fortsetzt. Worauf kann sich die deutsche Wirtschaft einstellen? Von Sebastian Schreiber. 
+ Fri, 06 Nov 2026 12:17:25 +0100 
+ f58e4ee0-72c1-49ba-b371-b9fc877333b1 
+ 2026-11-06T11:17:25Z 
+ Der Machtwechsel im US-Kongress könnte Unternehmen mehr Planbarkeit bringen. Zugleich befürchten Ökonomen, dass sich der Zollstreit fortsetzt. Worauf kann sich die deutsche Wirtschaft einstellen? Von Sebastian Schreiber. [ mehr ]
+
+Chipaktien an den internationalen Börsen im freien Fall 
+ https://www.tagesschau.de/wirtschaft/boerse/tech-einbruch-ki-100.html 
+ Ein weltweiter Abverkauf von Chip- und Techaktien schickt wichtige Aktienindizes auf Talfahrt. In Seoul wurde der Handel zeitweise ausgesetzt. In den USA war es der schlimmste Einbruch seit 2020. Von Constantin Röse. 
+ Fri, 06 Nov 2026 10:21:42 +0100 
+ 1b230012-c123-4cf6-8ddc-f041d3078d22 
+ 2026-11-06T09:21:42Z 
+ Ein weltweiter Abverkauf von Chip- und Techaktien schickt wichtige Aktienindizes auf Talfahrt. In Seoul wurde der Handel zeitweise ausgesetzt. In den USA war es der schlimmste Einbruch seit 2020. Von Constantin Röse. [ mehr ]
+
+Wie sich der Wahlsieg der Demokraten auf Big Tech auswirkt 
+ https://www.tagesschau.de/wirtschaft/digitales/midterms-bigtech-reaktionen-100.html 
+ Die Demokraten haben bei den Midterms in den USA Mehrheiten in beiden Kammern des Kongresses gewonnen. Für die Tech-Industrie könnte das in einigen Bereichen höhere Hürden bedeuten. Von Antje Sieb. 
+ Thu, 05 Nov 2026 15:04:42 +0100 
+ 07a2d7a0-349a-4d40-830d-54732a1748de 
+ 2026-11-05T14:04:42Z 
+ Die Demokraten haben bei den Midterms in den USA Mehrheiten in beiden Kammern des Kongresses gewonnen. Für die Tech-Industrie könnte das in einigen Bereichen höhere Hürden bedeuten. Von Antje Sieb. [ mehr ]
+
+Ressourcenverbrauch vieler Rechenzentren nicht öffentlich einsehbar 
+ https://www.tagesschau.de/investigativ/swr/rechenzentren-transparenz-wasserverbrauch-stromverbrauch-100.html 
+ Rechenzentren verbrauchen enorme Mengen Strom und Wasser. Betreiber sind gesetzlich verpflichtet, ihren Verbrauch zu veröffentlichen. Doch Anfragen des SWR an mehr als 30 Unternehmen zeigen: Viele nehmen es mit der Transparenz nicht so ernst. 
+ Fri, 06 Nov 2026 06:04:19 +0100 
+ c4f7ea4a-829a-454c-b70e-c96b364990f8 
+ 2026-11-06T05:04:19Z 
+ Rechenzentren verbrauchen enorme Mengen Strom und Wasser. Betreiber sind gesetzlich verpflichtet, ihren Verbrauch zu veröffentlichen. Doch Anfragen des SWR an mehr als 30 Unternehmen zeigen: Viele nehmen es mit der Transparenz nicht so ernst.[ mehr ]
+
+Tesla will Cybertruck-Produktion in Texas einstellen 
+ https://www.tagesschau.de/wirtschaft/unternehmen/tesla-produktion-cybertruck-100.html 
+ Der Cybertruck sollte Teslas Antwort auf die beliebten US-Pickups sein. Doch das Elektroauto blieb hinter den Erwartungen zurück. Nun will Elon Musk die Produktion in Texas beenden und Platz für ein anderes Produkt schaffen. 
+ Fri, 06 Nov 2026 14:09:10 +0100 
+ 321abec2-a3b8-40a3-9f01-7cc87a577d81 
+ 2026-11-06T13:09:10Z 
+ Der Cybertruck sollte Teslas Antwort auf die beliebten US-Pickups sein. Doch das Elektroauto blieb hinter den Erwartungen zurück. Nun will Elon Musk die Produktion in Texas beenden und Platz für ein anderes Produkt schaffen.[ mehr ]
+
+Millionen Euro verschwunden: Vucic-nahe Bank in Serbien geschlossen 
+ https://www.tagesschau.de/wirtschaft/weltwirtschaft/nationalbank-serbien-diebstahl-400-millionen-100.html 
+ Die serbische Alta Bank ist geschlossen, ihr Besitzer verhaftet. Der mutmaßliche Vertraute des früheren Präsidenten Vucic soll knapp 400 Millionen Euro gestohlen haben. Auch staatliche Gelder könnten betroffen sein. Von Silke Hahne. 
+ Fri, 06 Nov 2026 12:58:26 +0100 
+ 0653e246-0bb4-4304-87a6-e203357acba0 
+ 2026-11-06T11:58:26Z 
+ Die serbische Alta Bank ist geschlossen, ihr Besitzer verhaftet. Der mutmaßliche Vertraute des früheren Präsidenten Vucic soll knapp 400 Millionen Euro gestohlen haben. Auch staatliche Gelder könnten betroffen sein. Von Silke Hahne. [ mehr ]
+
+Industrieproduktion wächst überraschend - Autobranche legt zu 
+ https://www.tagesschau.de/wirtschaft/konjunktur/industrieproduktion-wachstum-deutschland-100.html 
+ Deutsche Industriebetriebe haben im September überraschend mehr produziert als im Vormonat. Vor allem die Autobranche sorgte für das Plus. Doch die Risikofaktoren für die wirtschaftliche Erholung bleiben. 
+ Fri, 06 Nov 2026 11:42:54 +0100 
+ dba79b7f-f015-4e24-8e9e-009e8d79b76b 
+ 2026-11-06T10:42:54Z 
+ Deutsche Industriebetriebe haben im September überraschend mehr produziert als im Vormonat. Vor allem die Autobranche sorgte für das Plus. Doch die Risikofaktoren für die wirtschaftliche Erholung bleiben.[ mehr ]
+
+Daimler Truck meldet deutlichen Gewinnsprung wegen USA-Geschäft 
+ https://www.tagesschau.de/wirtschaft/unternehmen/daimlertruck-100.html 
+ Der Nutzfahrzeughersteller Daimler Truck hat wieder auf die Erfolgsspur zurückgefunden. Dank eines anspringenden US-Geschäfts verbucht das Unternehmen einen Milliardengewinn und kann sich etwas erholen. 
+ Fri, 06 Nov 2026 10:13:00 +0100 
+ 2145168a-de51-46e2-aa83-a8200c1944b7 
+ 2026-11-06T09:13:00Z 
+ Der Nutzfahrzeughersteller Daimler Truck hat wieder auf die Erfolgsspur zurückgefunden. Dank eines anspringenden US-Geschäfts verbucht das Unternehmen einen Milliardengewinn und kann sich etwas erholen.[ mehr ]
+
+Paraguay: Die Bankenkrise wird zur Staatskrise 
+ https://www.tagesschau.de/ausland/amerika/paraguay-pena-ruecktritt-ueno-bank-100.html 
+ In Paraguay zieht die Krise um die Ueno Bank immer weitere Kreise: Weil Präsident Peña die Risiken zu lange ignorierte, leitete das Parlament ein Amtsenthebungsverfahren ein. Auch die Staatsanwaltschaft ermittelt. Von Anne Herrberg. 
+ Fri, 06 Nov 2026 10:29:54 +0100 
+ a0970a62-1648-41e3-8394-4dc2a39dee41 
+ 2026-11-06T09:29:54Z 
+ In Paraguay zieht die Krise um die Ueno Bank immer weitere Kreise: Weil Präsident Peña die Risiken zu lange ignorierte, leitete das Parlament ein Amtsenthebungsverfahren ein. Auch die Staatsanwaltschaft ermittelt. Von Anne Herrberg. [ mehr ]
+
+Supermärkte: Warum Kühlregale leicht zu hacken sind
+
+[… gekürzt: 7753 weitere Zeichen.]
+
+==============================================================================
+QUELLE: https://www.handelsblatt.com/contentexport/feed/finanzen
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:03 GMT
+------------------------------------------------------------------------------
+Handelsblatt Schlagzeilen 
+ Finanzen 
+ https://www.handelsblatt.com 
+ Handelsblatt GmbH 
+ Sat, 07 Nov 2026 06:10:16 GMT 
+
+ de 
+ 10 
+
+EZB: Spanien nominiert Pablo Hernandez de Cos für Lagarde-Nachfolge 
+ Nach den Niederlanden reicht nun auch Spanien einen Kandidaten für das oberste Amt der EZB ein. Die Euro-Finanzminister wollen die Nominierungen am Montag sichten. 
+ https://www.handelsblatt.com/finanzen/geldpolitik/ezb-spanien-nominiertpablo-hernandez-de-cos-fuer-lagarde-nachfolge/100267919.html 
+ Geldpolitik 
+ Fri, 06 Nov 2026 20:00:05 GMT 
+
+ imago/Agencia EFE 
+ NONE 
+ Reuters 
+
+US-Aktien: Kaufen oder verkaufen? So bewerten Experten die Marktturbulenzen 
+ Nach den heftigen Kursverlusten der US-Börsen sind Anleger am Freitag wieder am Aktienmarkt eingestiegen. Aber ist das eine gute Idee? Die Antwort hängt von zwei Entwicklungen ab. 
+ https://www.handelsblatt.com/finanzen/maerkte/us-aktien-kaufen-oder-verkaufen-so-bewerten-experten-die-marktturbulenzen/100267829.html 
+ Märkte 
+ Fri, 06 Nov 2026 18:40:55 GMT 
+
+ UPI/laif 
+ H_PLUS 
+ Astrid Dörner, Andreas Neuhaus 
+
+Dax aktuell: Dax schließt im Minus und fällt weit von Rekord zurück – Rüstungsaktie verliert 
+ Am Donnerstag hatte der Dax noch ein neues Rekordhoch erreicht, doch von der positiven Stimmung ist kaum etwas übrig. Nach dem deutlichen Kursrutsch an der Wall Street ging es auch beim Dax bergab. 
+ https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-sackt-trotz-stabiler-chip-werte-fast-600-punkte-ab/100267806.html 
+ Marktberichte 
+ Fri, 06 Nov 2026 17:18:57 GMT 
+
+ AFP 
+ Bastian Prockner 
+
+US-Börsen: Anleger greifen nach Ausverkauf bei Tech zu – US-Börsen im Plus 
+ Am Donnerstag hatte der Nasdaq über sechs Prozent verloren. Am Freitag rückt die Unsicherheit in den Hintergrund. Die niedrigen Einstiegspreise locken Investoren an. 
+ https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-erholung-bei-tech-werten-stuetzt-us-boersen-dow-jones-schliesst-tiefer/100267929.html 
+ Fri, 06 Nov 2026 16:17:33 GMT 
+
+ dpa 
+ Lara Dehari 
+
+Investmentbanking: Steile Karriere: Tibor Kossa steigt bei Goldman Sachs zum Partner auf 
+ Der Fusions- und Übernahmespezialist ist der einzige Deutsche, der es 2026 in den elitären Kreis schafft. Unter seiner Führung setzte sich die US-Bank an die Spitze des deutschen Marktes. 
+ https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/investmentbanking-tibor-kossa-steigt-bei-goldman-sachs-zum-partner-auf/100267912.html 
+ Banken 
+ Fri, 06 Nov 2026 15:51:55 GMT 
+
+ Goldman Sachs 
+ Jakob Blume 
+
+IPO: Vom Zwei-Billionen-Traum zum Preisnachlass: Das Dilemma hinter Anthropics Börsengang 
+ Eine Bewertung von zwei Billionen Dollar ist beim KI-Start-up schon lange vom Tisch. Doch auch mit 1,5 Billionen Dollar wäre die Bewertung hoch, kritisieren Experten. 
+ https://www.handelsblatt.com/finanzen/maerkte/boersengang-zweifel-an-bewertung-ipo-von-anthropic-koennte-sich-verzoegern/100267771.html 
+ Fri, 06 Nov 2026 13:27:22 GMT 
+
+ REUTERS 
+ Astrid Dörner, Antonia Mannweiler, Andreas Neuhaus 
+
+Immobilien: „Visionäre Klarheit und bemerkenswerte politische Umsetzungskraft“ 
+ Stephan Schütz plant für das Architekturbüro GMP weltweit Großprojekte. Im Interview erzählt er, was wir von Umbauten für den Neubau lernen können und welches Zukunftsprojekt ihn begeistert. 
+ https://www.handelsblatt.com/finanzen/immobilien/immobilien-visionaere-klarheit-und-bemerkenswerte-politische-umsetzungskraft/100258334.html 
+ Immobilien 
+ Fri, 06 Nov 2026 12:46:33 GMT 
+
+ Benedikt Kraft 
+ Julia Rieder 
+
+Immobilien: Warum Büro-Vermieter plötzlich gerne für Modernisierungen mitzahlen 
+ Leere Schreibtische verändern den Markt: Statt auszuziehen, modernisieren Firmen Büros und beteiligen Vermieter an den Kosten. Experten zeigen, dass der Zeitpunkt zum Verhandeln günstig ist. 
+ https://www.handelsblatt.com/finanzen/immobilien/immobilien-warum-buero-vermieter-ploetzlich-gerne-fuer-modernisierungen-mitzahlen/100266151.html 
+ Fri, 06 Nov 2026 11:07:41 GMT 
+
+
+Banken: Unicredit-Chef streicht Anspruch auf Homeoffice – Sonderregelung in Deutschland 
+ Die Mitarbeiter der Großbank in Italien müssen bald wieder zurück ins Büro. Das stößt auf Kritik. Bei der Tochter Hypovereinsbank gelten die neuen Vorgaben nur für eine bestimmte Gruppe. 
+ https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-unicredit-chef-streicht-anspruch-auf-homeoffice/100267856.html 
+ Fri, 06 Nov 2026 09:22:50 GMT 
+
+ imago images/Independent Photo Agency 
+ Andreas Kröner 
+
+Märkte Insight: Alphabet, Alstom und jetzt auch Rheinmetall – was hinter den Kurseinbrüchen steckt 
+ Hinter den zweistelligen Kursstürzen vermuten viele Anleger hohe Bewertungen. Doch das stimmt nicht. Die Gründe liegen woanders, meint Ulf Sommer. 
+ https://www.handelsblatt.com/finanzen/anlagestrategie/kolumnen/aktien-alphabet-alstom-rheinmetall-was-hinter-den-kursstuerzen-steckt/100266666.html 
+ Kolumnen 
+ Fri, 06 Nov 2026 07:26:02 GMT 
+
+ IMAGO, Frank Beer 
+ Ulf Sommer 
+
+Nikkei, Kospi und Topix: Abverkauf bei Chipaktien erfasst Japan und Südkorea 
+ Japans Nikkei verliert zeitweise fast sieben Prozent, Südkoreas Kospi mehr als acht Prozent. US-Präsident Donald Trump gibt den Demokraten die Schuld am Kursrutsch. 
+ https://www.handelsblatt.com/finanzen/asiens-boersen-setzen-abschwung-von-chipaktien-in-den-usa-fort/100267767.html 
+ Fri, 06 Nov 2026 06:13:40 GMT 
+
+ Martin Kölling 
+
+Börse am 6. November: Sieben Punkte, die für Anleger heute wichtig sind 
+ Nach dem Auf und Ab am Donnerstag ist die Stimmung am deutschen Aktienmarkt angespannt. Anleger warten gespannt auf den US-Arbeitsmarktbericht und weitere Konjunkturdaten. 
+ https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-und-boerse-aktuell-sieben-punkte-die-fuer-anleger-heute-wichtig-sind/100002161.html 
+ Fri, 06 Nov 2026 05:19:35 GMT 
+
+ Handelsblatt 
+ Stefan Reccius, Anna Lena Stahl 
+
+Versicherung: Nürnberger will verstärkt über Kooperationen zulegen 
+ Nach der Sanierung setzt Vorstandschef Harald Rosenberger unter dem Mutterkonzern VIG auf längere Planungshorizonte und richtet das Geschäft neu aus. Worauf der neue Eigentümer Wert legt. 
+ https://www.handelsblatt.com/finanzen/banken-versicherungen/versicherer/versicherung-nuernberger-will-verstaerkt-ueber-kooperationen-zulegen/100263685.html 
+ Versicherer 
+ Fri, 06 Nov 2026 03:01:18 GMT 
+
+ NÜRNBERGER Versicherung 
+ Susanne Schier 
+
+Aktie im Blick: Der Apple-Konzern hat ein Luxusproblem, die Aktie ebenso 
+ Die Quartalszahlen überzeugen und die Renditen sind phänomenal. Doch es gibt nicht genügend Chips. Gehen bald womöglich auch die Aktien aus? 
+ https://www.handelsblatt.com/finanzen/anlagestrategie/kolumnen/aktie-im-blick-der-apple-konzern-hat-ein-luxusproblem-die-aktie-ebenso/100267063.html 
+ Fri, 06 Nov 2026 03:00:00 GMT 
+
+ Marc-Steffen Unger, Getty Images [M] 
+
+Wall Street: „KI-Blutbad“ an den Märkten: Rund drei Billionen Dollar Börsenwert an einem Tag vernichtet 
+ Zwei Tage nach der US-Wahl bricht die Wall Street ein. Die Sorge vor einer schärferen KI-Regulierung löst einen Ausverkauf aus. Doch ein anderer Faktor verstärkt den Kursrutsch. 
+ https://www.handelsblatt.com/finanzen/maerkte/marktberichte/wall-street-ki-blutbad-an-us-boersen-sp-500-bricht-um-vier-prozent-ein/100267625.html 
+ Thu, 05 Nov 2026 22:40:26 GMT 
+
+ Lara Dehari, Astrid Dörner, Antonia Mannweiler, Andreas Neuhaus 
+
+US-Investmentbank: Goldman Sachs nennt bei Partner-Beförderungen keine Diversitätsdaten mehr 
+ Die US-Investmentbank verzichtet auf die Aufschlüsselung demografischer Daten, nennt die Vielfalt ihrer Belegschaft aber weiterhin entscheidend. Das stößt auf Kritik. 
+ https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/us-investmentbank-goldman-sachs-nennt-bei-partner-befoerderungen-keine-diversitaetsdaten-mehr/100267736.html 
+ Thu, 05 Nov 2026 21:33:20 GMT 
+
+
+Musterdepot – Dynamik: Amazon und Alphabet werden derzeit falsch bewertet 
+ Obwohl die Hyperscaler ihre Gewinne steigern, schwächeln deren Aktien. Da
+
+[… gekürzt: 1753 weitere Zeichen.]
+
+==============================================================================
+QUELLE: https://www.wiwo.de/contentexport/feed/rss/finanzen
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:04 GMT
+------------------------------------------------------------------------------
+WirtschaftsWoche Online Schlagzeilen 
+ Das Online-Portal des führenden Wirtschaftsmagazins in Deutschland. Das Entscheidende zu Unternehmen, Finanzen, Erfolg und Technik. 
+ https://www.wiwo.de/ 
+ Handelsblatt GmbH 
+ Sat, 07 Nov 2026 06:06:39 GMT 
+
+ de 
+ 10 
+
+S&P 500, Nasdaq, Dow Jones: Der historische Absturz an den US-Börsen in Charts 
+ Infolge der US-Zwischenwahlen verloren amerikanische Aktien 6,25 Billionen Dollar an Wert – so viel wie nie zuvor. Und dennoch gab es schwärzere Tage an der Börse. 
+ https://www.wiwo.de/finanzen/boerse/sp-500-nasdaq-dow-jones-der-historische-absturz-an-den-us-boersen-in-charts/100267907.html 
+ Börse 
+ Fri, 06 Nov 2026 18:35:00 GMT 
+
+ WirtschaftsWoche 
+ NONE 
+ Sebastian Schug 
+
+Geldanlage: MSCI World im Depot? Diese Risiken sollten Anleger jetzt prüfen 
+ Der Einbruch bei Technologieaktien erschütterte die Börsen. Auch viele ETF-Anleger sind betroffen. Es zeigt sich eindrucksvoll die große Schwachstelle vieler Indizes. 
+ https://www.wiwo.de/finanzen/boerse/msci-world-co.-diese-risiken-sollten-anleger-jetzt-nach-dem-ki-crash-kennen/100267830.html 
+ Fri, 06 Nov 2026 15:00:00 GMT 
+
+ REUTERS 
+ WIWO_PLUS 
+ Philipp Frohn 
+
+Börsenkurse: KI-Rücksetzer belastet Dax – Kurs unter 26.000 Punkten 
+ Die US-Wahl verspricht stärkere Regulierung für die KI-Branche, das sorgt an der Börse für Verluste. Aus den USA kommen erste Entspannungssignale. 
+ https://www.wiwo.de/finanzen/boerse/boersenkurse-ki-ruecksetzer-belastet-dax-kurs-unter-26.000-punkten/100267819.html 
+
+ Bloomberg, Sebastian Schug, Reuters, Robert Laubach 
+
+Tumult bei Tech-Aktien: Bringt der Tech-Abverkauf den Anthropic-Börsengang in Gefahr? 
+ Das Umfeld für den Mega-Börsengang von Anthropic wird schlechter. Was für eine Absage spricht – und welche Folgen das für die Börsen hätte. 
+ https://www.wiwo.de/finanzen/boerse/anthropic-boersengang-in-gefahr-was-der-tech-abverkauf-bedeutet/100267738.html 
+
+ Julia Groth 
+
+PKV und GKV: Wie kann ich mich als Studentin günstig krankenversichern? 
+ Eine junge Leserin war bisher über ihren Vater in der Krankenversorgung der Bundesbahnbeamten versichert. Mit 25 geht das nun nicht mehr. Welche Alternative hat sie? 
+ https://www.wiwo.de/finanzen/vorsorge/pkv-und-gkv-wie-kann-ich-mich-als-studentin-guenstig-krankenversichern/100265813.html 
+ Vorsorge 
+ Fri, 06 Nov 2026 14:30:00 GMT 
+
+ Getty Images 
+ Stefan Albers 
+
+Riedls Dax-Radar: Warum der KI-Crash an den Börsen zu neuen Einstiegschancen führen kann 
+ Die Hightech-Turbulenzen treffen den gesamten Aktienmarkt. Wie tief der Absturz noch gehen kann und wann die wichtigste KI-Aktie im Dax wieder dreht. 
+ https://www.wiwo.de/finanzen/boerse/ki-crash-am-aktienmarkt-wo-jetzt-neue-einstiegschancen-liegen/100267867.html 
+ Fri, 06 Nov 2026 13:31:28 GMT 
+
+ Getty Images, Marcel Reyle 
+ Anton Riedl 
+
+Kursrutsch an den Börsen: So verfallen Sie in turbulenten Börsenzeiten nicht in Panik 
+ Börsenturbulenzen treiben Anleger oft zu überstürzten Entscheidungen. Drei Tipps, um in wilden Zeiten Ruhe zu bewahren. 
+ https://www.wiwo.de/finanzen/geldanlage/ki-turbulenzen-an-der-boerse-so-vermeiden-sie-panik-im-depot/100267862.html 
+ Geldanlage 
+ Fri, 06 Nov 2026 11:45:46 GMT 
+
+ Julia Leonhardt 
+
+Aktienmarkt: „Der nächste Börsencrash wird brutal“ 
+ Vermögensexperte David A. Pieper hat den Zustand der Märkte untersucht – mit erschreckenden Ergebnissen. Er erklärt, wie Anleger sich auf den nächsten Crash vorbereiten können. 
+ https://www.wiwo.de/finanzen/boerse/crash-am-aktienmarkt-der-naechste-boersencrash-wird-brutal/100261615.html 
+ Fri, 06 Nov 2026 10:30:00 GMT 
+
+
+Anwaltsranking: Wird die Steuer einfacher und fairer? Top-Steuerrechtler bezweifeln es 
+ Vor Gerichten gibt es weniger Steuerklagen. Doch die Top-Experten aus unserem Anwaltsranking warnen vor verfrühter Freude: Hinter dem Trend steckten andere Gründe als erhofft. 
+ https://www.wiwo.de/finanzen/steuern-recht/anwaltsranking-wird-die-steuer-einfacher-top-steuerrechtler-zweifeln/100265545.html 
+ Steuern & Recht 
+ Fri, 06 Nov 2026 06:43:16 GMT 
+
+ Ulf K./Sepia 
+ Daniel Schönwitz 
+
+Ausverkauf bei Techaktien: Die Gründe für den Kursrutsch bei KI 
+ Techaktien brechen massiv ein: Der Nasdaq 100 verliert über sechs Prozent. Welche Entwicklungen den Anlegern Sorgen machen. 
+ https://www.wiwo.de/finanzen/boerse/nvidia-aktie-und-co.-stuerzen-ab-warum-nasdaq-und-ki-werte-einbrechen/100267704.html 
+ Fri, 06 Nov 2026 06:41:00 GMT 
+
+ Bloomberg 
+
+Börsen: Südkoreas Börse bricht wegen Sorgen um KI und Ölpreise ein 
+ Der Ausverkauf von Tech-Aktien in den USA belastet auch die Börsen in Asien. Besonders betroffen ist der südkoreanische Aktienmarkt. In Seoul muss der Handel kurzzeitig ausgesetzt werden. 
+ https://www.wiwo.de/finanzen/boerse/boersen-suedkoreas-boerse-bricht-wegen-sorgen-um-ki-und-oelpreise-ein/100267798.html 
+ Fri, 06 Nov 2026 06:29:25 GMT 
+
+ Lee Jin-man/AP/dpa 
+ dpa 
+
+Altersvorsorge: Kann ich mit einer Teilrente das Altersvorsorgedepot nutzen? 
+ Unser Leser würde gerne die staatliche Förderung des neuen Altersvorsorgedepots erhalten. Geht das, wenn er seine Altersrente später nicht voll beantragt? 
+ https://www.wiwo.de/finanzen/vorsorge/private-altersvorsorge-kann-ich-mit-einer-teilrente-das-altersvorsorgedepot-nutzen/100260030.html 
+ Fri, 06 Nov 2026 06:15:00 GMT 
+
+ Andreas Irion 
+
+Wohnungskauf: So mindern Wohnungskäufer ihre Steuerlast 
+ Beim Kauf einer vermieteten Wohnung lassen sich Steuervorteile nutzen. Die wichtigsten Steuerstrategien im Überblick. 
+ https://www.wiwo.de/finanzen/immobilien/wohnungskauf-als-kapitalanlage-steuern-legal-senken/100267241.html 
+ Immobilien 
+ Fri, 06 Nov 2026 04:59:53 GMT 
+
+ Martin Gerth 
+
+Immobilienmarkt: Neubauwohnungen lohnen sich für Vermieter nicht – oder doch? 
+ Die Baukosten sind explodiert, neu gebaute Immobilien rechnen sich als Geldanlage immer seltener. So holen Kaufwillige mehr Rendite heraus. 
+ https://www.wiwo.de/finanzen/immobilien/neubau-als-kapitalanlage-so-rechnet-sich-die-vermietung/100265537.html 
+ Fri, 06 Nov 2026 04:58:01 GMT 
+
+ IMAGO/Markus Matzel 
+ Martin Gerth, Saskia Littmann 
+
+Altersvorsorgedepot: Vier Fallbeispiele zeigen, wer vom Altersvorsorgedepot profitiert 
+ Das Altersvorsorgedepot ist ein Meilenstein für ein auskömmliches Leben im Ruhestand. Die richtigen Anbieter und Produkte für Ihren Vermögensaufbau. 
+ https://www.wiwo.de/finanzen/vorsorge/altersvorsorgedepot-fuer-wen-sich-die-neue-zusatzrente-lohnt/100267511.html 
+ Thu, 05 Nov 2026 19:02:00 GMT 
+
+ Francesco Ciccolella 
+ Niklas Hoyer, Heike Schwerdtfeger 
+
+US-Börsen: Stimmungsumbruch an der Wall Street stoppt Rally nach US-Wahl 
+ Nach den Wahlen in den USA kommt es zu einem Kursrutsch an der Technologiebörse Nasdaq. Vor allem Papiere aus der Chipbranche sind betroffen. 
+ https://www.wiwo.de/finanzen/boerse/wall-street-stoppt-rally-nasdaq-und-dax-drehen-ins-minus/100267679.html 
+ Thu, 05 Nov 2026 18:06:00 GMT 
+
+ AP Photo/Seth Wenig 
+ Reuters, dpa-AFX 
+
+Immobilienmarkt: Preise steigen kaum noch – steht der Wohnungsmarkt vor der Trendwende? 
+ Der Markt für Wohnimmobilien tritt im dritten Quartal fast auf der Stelle, wie mehrere Indizes zeigen. Eigentümer halten hochwertige Objekte zurück. 
+ https://www.wiwo.de/finanzen/immobilien/immobilienpreise-warum-die-trendwende-am-wohnungsmarkt-truegt/100267522.html 
+ Thu, 05 Nov 2026 17:02:51 GMT 
+
+ picture alliance / Zoonar 
+
+BörsenTag: Der Rüstungsboom allein reicht nicht mehr 
+ Rheinmetall enttäuscht mit einer Prognosesenkung, Hensoldt überrascht mit einer Anhebung. Aber an der Börse zählen längst nicht mehr nur volle Auftragsbücher. 
+ https://www.wiwo.de/finanzen/boerse/rheinmetall-aktie-warum-der-ruestungsboom-an-der-boerse-kippt/100267604.html 
+ Thu, 05 Nov 2026 14:20:21 GMT 
+
+ IMAGO/ 
+ Susanne Bickel 
+
+Globale Lieferketten: Inflation entkoppelt sich vom Ölpreis 
+ Nach den US-Wahlen sinken die Ölpreise – die hohe Inflation bleibt. Verantwortlich dafür ist eine Weltwirtschaft, die sich grundlegend verändert. 
+ https://www.wiwo.de/finanzen/boerse/oelpreis-faellt-inflation-bleibt-warum-frachtra
+
+[… gekürzt: 457 weitere Zeichen.]
+
+==============================================================================
+QUELLE: https://www.faz.net/rss/aktuell/finanzen/
+==============================================================================
+STATUS: 302 – nicht abrufbar
+
+==============================================================================
+QUELLE: https://www.cnbc.com/id/100003114/device/rss/rss.html
+==============================================================================
+STATUS: 200
+DATUM:  Sat, 07 Nov 2026 06:16:04 GMT
+------------------------------------------------------------------------------
+en-us 
+ 60 
+ US Top News and Analysis 
+
+100003114 
+ franchise 
+ section 
+ https://www.cnbc.com/us-top-news-and-analysis/ 
+
+Fri, 06 Nov 2026 22:54 GMT 
+ CNBC is the world leader in business news and real-time financial market coverage. Find fast, actionable information. 
+
+https://www.cnbc.com/2026/11/06/long-term-unemployment-october-jobs-report.html 
+ 108532857 
+ cnbcnewsstory 
+ false 
+ A disturbing employment trend is hiding beneath the latest strong job numbers 
+ The average jobless worker's bout of unemployment surpassed 27 weeks in October, the highest outside of the pandemic period in a decade. 
+ Fri, 06 Nov 2026 20:11:17 GMT 
+
+https://www.cnbc.com/2026/11/06/investors-brace-for-anthropic-valuation-1point5-trillion-a-stretch.html 
+ 108533953 
+ Investors brace for lower Anthropic valuation, calling $1.5 trillion a 'stretch' 
+ Anthropic could list below a $1.5 trillion valuation, trailing previous expectations, as the AI trade sours on Wall Street. 
+ Fri, 06 Nov 2026 21:07:07 GMT 
+
+https://www.cnbc.com/2026/11/06/trump-stephen-miller-wiles-chief-of-staff.html 
+ 108534080 
+ Trump says Stephen Miller to replace Susie Wiles as White House chief of staff 
+ Trump revealed the shake-up three days after Democrats' landslide victory in the midterm elections, winning majority control of the House and Senate. 
+ Fri, 06 Nov 2026 22:22:53 GMT 
+
+https://www.cnbc.com/2026/11/06/mississippi-senate-ty-pinkins-colom-hyde-smith.html 
+ 108533217 
+ Mississippi Senate: Longshot Ty Pinkins says he aimed to spoil Hyde-Smith, boost Colom vote 
+ Ty Pinkins said he avoided campaigning in heavily Black areas of Mississippi to avoid harming chances for Democrat Scott Colom, who, like him, is Black. 
+ Fri, 06 Nov 2026 19:44:33 GMT 
+
+https://www.cnbc.com/2026/11/06/openai-bugging-alfozan-saudi.html 
+ 108534215 
+ OpenAI bugging suspect Alfozan pleads not guilty 
+ Saudi national Abdulrahman Alfozan is charged with planting a recording device in a conference room at artificial intelligence giant OpenAI. 
+ Fri, 06 Nov 2026 21:15:47 GMT 
+
+https://www.cnbc.com/2026/11/06/chris-murphy-stroke-hospital-senate.html 
+ 108534553 
+ Sen. Chris Murphy released from hospital after stroke, will miss votes for 'several weeks' as he rehabs 
+ The Connecticut Democrat Murphy has been discussed as a possible candidate for the White House in 2028. 
+ Fri, 06 Nov 2026 21:40:09 GMT 
+
+https://www.cnbc.com/2026/11/06/open-ai-data-centers-election.html 
+ 108533384 
+ OpenAI will keep investing in AI data centers despite election results, CFO tells CNBC 
+ Voters across the country on Tuesday voiced their support for candidates who have pledged to place restrictions on data center development. 
+ Fri, 06 Nov 2026 22:25:58 GMT 
+
+https://www.cnbc.com/2026/11/06/tech-executives-ai-data-center-selloff-midterms.html 
+ 108528039 
+ OpenAI, Arm and Qualcomm executives react to post-midterm AI sell-off 
+ Executives of major tech companies are largely projecting optimism about continued growth in the artificial intelligence sector despite a post-midterm sell-off. 
+ Fri, 06 Nov 2026 18:35:08 GMT 
+
+https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html 
+ 108530429 
+ Microsoft plans to use fewer neoclouds as AI buildout shows signs of strain 
+ Microsoft is winding down the number of neoclouds it counts as partners, picking key suppliers and focusing on its own data centers. 
+ Fri, 06 Nov 2026 18:40:58 GMT 
+
+https://www.cnbc.com/2026/11/06/data-centers-ai-elections-hassett.html 
+ 108532859 
+ Data center double-down: Hassett says blue wave won't stop AI build-out 
+ Data centers are a crucial part of President Donald Trump's push to win the global artificial intelligence race, which he continues despite the midterm results. 
+ Fri, 06 Nov 2026 18:54:22 GMT 
+
+https://www.cnbc.com/2026/11/06/robert-garcia-trump-congress-oversight-investigations.html 
+ 108534158 
+ Top House Oversight Democrat warns Trump family to 'lawyer up' 
+ With Democrats set to take control of the House in January, Rep. Robert Garcia is promising sweeping probes into Trump, his family and his administration. 
+ Fri, 06 Nov 2026 19:42:36 GMT 
+
+https://www.cnbc.com/2026/11/06/ai-crush-is-powering-one-stock-to-sky-high-valuations.html 
+ 108532960 
+ AI crush is powering one stock to sky-high valuations 
+ Despite sky-high valuations, Mike Khouw argues Costco shares could present a compelling buy. 
+ Fri, 06 Nov 2026 18:15:44 GMT 
+
+https://www.cnbc.com/2026/11/06/coreweave-bond-yield-tops-16percent-as-ai-credit-stress-rises.html 
+ 108532849 
+ The AI ‘credit card’ is getting costlier as CoreWeave bond yield tops 16% 
+ Coreweave's steep yields reflect stress in the AI debt markets as investors worry about a data center slowdown. What comes next. 
+ Fri, 06 Nov 2026 17:09:53 GMT 
+
+https://www.cnbc.com/investingclub/2026/11/06/watch-jim-cramer-live.html 
+ 108526426 
+ Watch the Annual Meeting: Cramer on the fate of the AI buildout and stocks to buy now 
+ At the Investing Club's 4th annual meeting, Cramer also reveals his outlook for 2027 and answers questions from the live audience and members at home. 
+ Fri, 06 Nov 2026 19:36:12 GMT 
+
+https://www.cnbc.com/2026/11/06/tesla-cybertruck-texas-musk.html 
+ 108532137 
+ Tesla to wind down Cybertruck production in Texas next year to ramp Cybercab, Musk says 
+ The Cybertruck and its polarizing design gained a niche following, but it did not achieve mass-market sales and Tesla has issued several voluntary recalls. 
+ Fri, 06 Nov 2026 15:06:11 GMT 
+
+https://www.cnbc.com/2026/11/06/oil-prices-interest-rates-midterms.html 
+ 108524487 
+ Democratic sweep gives markets a reason to rethink path of interest rates 
+ Rate hikes could be curbed by an Iran war resolution, slower U.S. growth and fresh fiscal policy — but none are set in stone. 
+ Fri, 06 Nov 2026 12:30:40 GMT 
+
+https://www.cnbc.com/investingclub/2026/11/06/heres-a-rapid-fire-update-on-our-31-stocks-including-2-to-buy-now.html 
+ 108533834 
+ Here's a rapid-fire update on all 31 of our stocks, including 2 to buy now 
+ We closed out a wild market week on Friday at the Investing Club's fourth Annual Meeting at the New York Stock Exchange. 
+ Fri, 06 Nov 2026 20:36:03 GMT 
+
+https://www.cnbc.com/2026/11/06/wall-streets-fear-gauge-may-be-flashing-a-buy-sign.html 
+ 108532624 
+ Wall Street's fear gauge may be flashing a buy sign 
+ History shows that similar spikes in the VIX have been good entry points for stocks 
+ Fri, 06 Nov 2026 16:29:01 GMT 
+
+https://www.cnbc.com/2026/11/05/nasdaq-drops-into-correction-territory-heres-what-typically-happens-next.html 
+ 108527419 
+ Nasdaq drops into correction territory — here’s what typically happens next 
+ Nasdaq’s slide into correction territory puts its history of recoveries in focus. Here's what history shows. 
+ Fri, 06 Nov 2026 20:42:28 GMT 
+
+https://www.cnbc.com/make-it/2026/11/06/binance-hack-fake-job-interview-scams.html 
+ 108519342 
+ Fake job interview scams like the one that hit Binance are getting more sophisticated. Here are the new signs to watch for 
+ Binance lost more than $6 billion in a hack partly caused by fake job interviews. Here's what job seekers can learn from it, and tips to avoid job search scams. 
+ Fri, 06 Nov 2026 19:09:56 GMT 
+
+https://www.cnbc.com/2026/11/06/market-sell-off-hits-hard-advisors-say-stay-the-course-with-an-eye-on-buying-.html 
+ 108529772 
+ Market sell-off hits hard: Advisors say 'stay the course with an eye on buying' 
+ As retail investors pulled money out of individual stocks, more than three-quarters of advisors in a CNBC flash poll said investors should check their allocation against their goals or stay invested. 
+ Fri, 06 Nov 2026 13:56:39 GMT 
+
+https://www.cnbc.com/2026/11/06/moderna-mrna-earnings-q3-2026.html 
+ 108528289 
+ Moderna raises 2026 outlook as CEO says newer vaccines are gaining traction 
+ The biotech company now expects 2026 revenue growth of 15% to 25%, up from its previous guidance of up to 10%.  
+ Fri, 06 Nov 2026 12:43:28 GMT 
+
+https:/
+
+[… gekürzt: 2761 weitere Zeichen.]
+
+==============================================================================
+ERGEBNIS: 10 von 13 Adressen mit Inhalt.
