@@ -4492,7 +4492,15 @@ type Reihe = 0 | 1 | 2 | 3
 
 function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
   const f: string[] = []
-  if (k.kacheln < 5 || k.kacheln > 8) f.push(`${k.kacheln} Kacheln – fünf bis acht.`)
+  /* Mit gleichen Abständen genügen vier Kacheln (07.11.2026, „weniger Slides"). */
+  const mindestens = k.gleichmaessig ? 4 : 5
+  if (k.kacheln < mindestens || k.kacheln > 8)
+    f.push(`${k.kacheln} Kacheln – ${mindestens === 4 ? 'vier' : 'fünf'} bis acht.`)
+  /* „Es müssen immer 2 auf einer Seite sein" (07.11.2026). */
+  if (k.gleichmaessig && k.punkte.length !== 2 * (k.kacheln - 1))
+    f.push(
+      `${k.punkte.length} Punkte auf ${k.kacheln - 1} Kacheln – je Kachel genau zwei, also ${2 * (k.kacheln - 1)}.`
+    )
   if (k.punkte.length < 3) f.push(`${k.punkte.length} Punkte – mindestens drei.`)
   /* Mit gleichen Abständen gilt die Reihenfolge der Liste – etwa nach Jahr (07.11.2026). */
   for (let i = 1; i < k.punkte.length && !k.gleichmaessig; i++)
