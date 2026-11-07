@@ -71,11 +71,11 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'saeulen',
     datum: '2026-11-07',
     titel: [
-      { text: 'Krieg im Supermarkt:' },
+      { text: 'Essen an der Börse:' },
       { text: 'Nicht alles steigt.', gruen: true },
     ],
     erklaerung:
-      'Oben: Teuerung bei Lebensmitteln im Oktober. Unten: Weltmarktpreise, Oktober gegen Januar 2026.',
+      'Oben: Teuerung bei Lebensmitteln im Oktober. Unten: Weltmarktpreise von Agrarrohstoffen, Oktober gegen Januar 2026.',
     stichzeile: 'Lebensmittel · Oktober zum Vorjahr',
     helden: [
       { name: 'Welt', wert: '+5,9 %', pille: { wert: 'FAO', name: 'Index' } },
@@ -109,7 +109,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Welt: +5,9 % (FAO-Lebensmittelpreisindex)\n' +
       'Euroraum: +1,6 % (inkl. Alkohol und Tabak, Schnellschätzung Eurostat)\n' +
       'Deutschland: +0,4 % (vorläufig, Statistisches Bundesamt)\n\n' +
-      'Auf dem Weltmarkt (Weltbank, Oktober gegen Januar 2026, vor dem Krieg):\n' +
+      'Wusstest du: Viele Lebensmittel sind Börsenware. Zucker, Weizen, Reis, Kakao, Kaffee und Rinder werden an Rohstoffbörsen gehandelt, etwa in Chicago, New York und London – als Terminkontrakte.\n\n' +
+      'Die Weltmarktpreise im Bild (Weltbank, Oktober gegen Januar 2026, vor dem Krieg):\n' +
       'Zucker +34 % · Weizen +27 % · Reis +20 % · Kakao +16 % · Hähnchen +5 % · Kaffee −8 % · Rind −14 % · Orangen −32 %\n\n' +
       'Schon gewusst?\n' +
       '– Kakao kostete im Januar 2025 noch 10,75 $ je Kilo – heute nur noch gut die Hälfte.\n' +
