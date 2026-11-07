@@ -77,7 +77,8 @@ const momentaufnahme = JSON.parse(
 /** Kürzel, Symbol und Kurswährung aus dem Katalog. */
 const katalog = new Map<string, { symbol: string; waehrung: string }>()
 for (const datei of ['data/markets.ts', 'data/markets-aktien.ts']) {
-  const text = readFileSync(join(wurzel, datei), 'utf8')
+  // CRLF unter Windows (core.autocrlf): Zeilenenden vereinheitlichen, das Muster erwartet LF.
+  const text = readFileSync(join(wurzel, datei), 'utf8').replace(/\r\n/g, '\n')
   for (const treffer of text.matchAll(
     /^\s*symbol: '([^']+)',\n\s*ticker: '([^']+)',\n\s*name: (?:'[^']*'|"[^"]*"),\n\s*kind: '([^']+)',\n\s*unit: '([^']+)',/gm
   )) {

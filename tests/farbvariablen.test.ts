@@ -29,8 +29,10 @@
 
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const WURZEL = new URL('..', import.meta.url).pathname
+// Windows: .pathname liefert "/C:/…"; fileURLToPath gibt einen echten Pfad.
+const WURZEL = fileURLToPath(new URL('..', import.meta.url))
 const STILDATEI = join(WURZEL, 'app/globals.css')
 const DURCHSUCHT = ['components', 'app', 'lib']
 

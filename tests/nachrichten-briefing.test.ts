@@ -51,7 +51,11 @@ for (const u of nicht) pruefe(`kein direkter Link: ${u}`, keinDirekterLink(u) !=
   tiefe Übersichtsseite käme als „direkter Link" durch. Zwei Listen mit
   demselben Zweck gehen auseinander; diese Prüfung vergleicht sie.
 */
-const sammler = readFileSync('.github/workflows/quellen-sammeln.yml', 'utf8')
+// CRLF unter Windows (core.autocrlf): Zeilenenden vereinheitlichen, sonst greift der Zeilenumbruch im Muster nicht.
+const sammler = readFileSync('.github/workflows/quellen-sammeln.yml', 'utf8').replace(
+  /\r\n/g,
+  '\n'
+)
 const abgerufen = ['ADRESSEN', 'FEEDS'].flatMap((name) => {
   const block =
     sammler.match(new RegExp(`${name}: >-\\n((?:\\s+https\\S+\\n)+)`))?.[1] ?? ''

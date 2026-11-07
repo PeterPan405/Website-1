@@ -66,7 +66,8 @@ pruefeDass(
 
 /* ------------------------------------------- Die Überschriften des Vortags */
 
-const news = readFileSync('data/news.ts', 'utf8')
+// CRLF unter Windows (core.autocrlf): Zeilenenden vereinheitlichen, die Lesefunktion trennt an LF.
+const news = readFileSync('data/news.ts', 'utf8').replace(/\r\n/g, '\n')
 const GESTERN_13_10 = [
   'Drei Notenbanker sprechen am Dienstag, deutsche Inflation im Fokus',
   'Öl steigt auf 106 Dollar, Gold und Silber geben nach',

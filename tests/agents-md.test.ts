@@ -64,8 +64,9 @@ function pruefen(was: string, bedingung: boolean, hinweis: string): void {
   }
 }
 
-const regeln = readFileSync(REGELN, 'utf8')
-const gruende = readFileSync(GRUENDE, 'utf8')
+// CRLF unter Windows (core.autocrlf): CR nicht mitzählen, wie auf dem Linux-Läufer.
+const regeln = readFileSync(REGELN, 'utf8').replace(/\r\n/g, '\n')
+const gruende = readFileSync(GRUENDE, 'utf8').replace(/\r\n/g, '\n')
 
 console.log(
   `${REGELN}: ${regeln.length} Zeichen (~${Math.round(regeln.length / 4)} Token, ` +

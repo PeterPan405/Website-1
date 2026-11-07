@@ -48,8 +48,9 @@ function pruefen(was: string, bedingung: boolean, hinweis = ''): void {
 }
 
 const ORDNER = 'wissen'
-const entscheidungen = readFileSync('ENTSCHEIDUNGEN.md', 'utf8')
-const agents = readFileSync('AGENTS.md', 'utf8')
+// CRLF unter Windows (core.autocrlf): Quellen auf LF bringen, die Notizen werden mit LF erzeugt.
+const entscheidungen = readFileSync('ENTSCHEIDUNGEN.md', 'utf8').replace(/\r\n/g, '\n')
+const agents = readFileSync('AGENTS.md', 'utf8').replace(/\r\n/g, '\n')
 const abschnitte = zerlegeEntscheidungen(entscheidungen)
 const soll = alleNotizen(entscheidungen, agents)
 
@@ -253,7 +254,9 @@ pruefen(
 if (existsSync(ORDNER)) {
   const ist = new Map<string, string>()
   for (const name of readdirSync(ORDNER)) {
-    if (name.endsWith('.md')) ist.set(name, readFileSync(join(ORDNER, name), 'utf8'))
+    // CRLF unter Windows (core.autocrlf): eingecheckte Notiz auf LF bringen, bevor verglichen wird.
+    if (name.endsWith('.md'))
+      ist.set(name, readFileSync(join(ORDNER, name), 'utf8').replace(/\r\n/g, '\n'))
   }
 
   const fehlen = [...soll.keys()].filter((n) => !ist.has(n))
