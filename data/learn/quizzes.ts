@@ -51,7 +51,7 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
     },
     {
       question:
-        'Ein Unternehmen schüttet 2 Euro Dividende je Aktie aus. Was passiert am Ausschüttungstag typischerweise mit dem Kurs?',
+        'Ein Unternehmen schüttet 2 Euro Dividende je Aktie aus. Was passiert am Ex-Tag, dem ersten Handelstag ohne Dividendenanspruch, typischerweise mit dem Kurs?',
       options: [
         'Er verdoppelt sich, weil die Ausschüttung Nachfrage erzeugt',
         'Er steigt um etwa diesen Betrag',
@@ -257,7 +257,7 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 3,
       explanation:
-        'Korrekt ist 1,06 / 1,025 − 1 = 3,41 Prozent. Die verbreitete Differenz-Faustformel liefert 3,5 Prozent. Der Unterschied wirkt winzig, macht über 30 Jahre aber rund 8 Prozent Endvermögen aus – weil auch dieser Fehler exponentiell wächst.',
+        'Korrekt ist 1,06 / 1,025 − 1 = 3,41 Prozent. Die verbreitete Differenz-Faustformel liefert 3,5 Prozent. Der Unterschied wirkt winzig, macht über 30 Jahre aber rund 2,5 Prozent Endvermögen aus – weil auch dieser Fehler exponentiell wächst.',
     },
     {
       question:
@@ -3183,7 +3183,7 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 0,
       explanation:
-        'Die Prämie ist real – sie ist die Vergütung für ein übernommenes Versicherungsrisiko. Über Monate sieht die Strategie aus wie ein sicherer Zins, und genau das verleitet dazu, die Position zu vergrößern. Am 5. Februar 2018 verdreifachte sich der Volatilitätsindex an einem Tag; darauf ausgerichtete Produkte verloren über Nacht fast alles.',
+        'Die Prämie ist real – sie ist die Vergütung für ein übernommenes Versicherungsrisiko. Über Monate sieht die Strategie aus wie ein sicherer Zins, und genau das verleitet dazu, die Position zu vergrößern. Am 5. Februar 2018 mehr als verdoppelte sich der Volatilitätsindex an einem Tag; darauf ausgerichtete Produkte verloren über Nacht fast alles.',
     },
     {
       question: 'Was ist das Pin-Risiko am Verfallstag?',
@@ -4752,7 +4752,8 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         '1987 verlor der Markt an einem Tag rund ein Fünftel ohne folgende Rezession. Verlieren dagegen Banken Eigenkapital, vergeben sie weniger Kredite – Unternehmen investieren nicht, stellen nicht ein, gehen im Zweifel unter, obwohl mit ihrem Geschäft nichts war. Das ist der Übertragungsweg mit der größten Wucht.',
     },
     {
-      question: 'Aus den schnellen Erholungen von 2008 und 2020 lässt sich was ableiten?',
+      question:
+        'Aus den – gemessen an 1929 – schnellen Erholungen von 2008 und 2020 lässt sich was ableiten?',
       options: [
         'Dass künftige Krisen ebenso schnell überwunden werden',
         'Dass Notenbanken jede Krise auffangen können',
