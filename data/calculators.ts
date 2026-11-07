@@ -255,7 +255,7 @@ export const calculators: CalculatorDefinition[] = [
     metaTitle: 'Kostenrechner: TER-Vergleich über 30 Jahre',
     metaDescription:
       'Vergleiche zwei Kostenquoten bei gleicher Rendite: Der Rechner zeigt, welchen Anteil am Endvermögen die laufende Gebühr über die Jahre auffrisst.',
-    lead: 'Eine Kostenquote von 1,5 Prozent klingt nach 1,5 Prozent weniger Ertrag. Über dreißig Jahre ist es rund ein Fünftel des Endvermögens. Der Rechner stellt zwei Gebühren bei sonst gleichen Annahmen gegenüber.',
+    lead: 'Eine Kostenquote von 1,5 Prozent klingt nach 1,5 Prozent weniger Ertrag. Über dreißig Jahre ist es ein Viertel bis ein Drittel des Endvermögens. Der Rechner stellt zwei Gebühren bei sonst gleichen Annahmen gegenüber.',
     summary: 'Was zwei Kostenquoten bei gleicher Rendite auseinanderbringt.',
     featureList: [
       'Endvermögen bei zwei Kostenquoten',
@@ -364,7 +364,7 @@ export const calculators: CalculatorDefinition[] = [
         type: 'formula',
         expression: 'Kapitalertragsteuer = Ertrag / (4 + Kirchensteuersatz)',
         description:
-          'Ohne Kirchensteuer ergibt das 25 Prozent und eine Gesamtbelastung von 26,375 Prozent. Mit 9 Prozent Kirchensteuer sind es 24,45 Prozent und insgesamt 27,99 – nicht 28,375, wie die naheliegende Addition ergäbe.',
+          'Ohne Kirchensteuer ergibt das 25 Prozent und eine Gesamtbelastung von 26,375 Prozent. Mit 9 Prozent Kirchensteuer sind es 24,45 Prozent und insgesamt rund 27,995 – nicht 28,625, wie die naheliegende Addition ergäbe.',
       },
       { type: 'heading', level: 2, text: 'Die Vorabpauschale' },
       {

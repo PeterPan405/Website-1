@@ -177,11 +177,11 @@ export function Footer() {
             </p>
             {/*
               Kennzeichnung nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
-              anwendbar seit dem 2. August 2026. Streng genommen greift die
-              Ausnahme für redaktionell geprüfte Inhalte mit benanntem
-              Verantwortlichen – der Hinweis steht trotzdem hier, weil er wahr
-              ist und die Ausnahme nicht erst vor einer Behörde begründet werden
-              soll. Ausführlich im Impressum unter „Einsatz künstlicher
+              anwendbar seit dem 2. August 2026. Die Ausnahme in Satz 2
+              (Mensch prüft, redaktionelle Verantwortung) lässt sich für
+              Tagesausgabe und Folge nicht in Anspruch nehmen – es prüft kein
+              Mensch vor der Veröffentlichung. Der Hinweis ist also Pflicht,
+              nicht Kür. Ausführlich im Impressum unter „Einsatz künstlicher
               Intelligenz“.
             */}
             <p className="text-fg-muted mt-2 text-sm leading-relaxed">

@@ -177,7 +177,7 @@ export const boerse: LearnTopic = {
           variant: 'warning',
           title: 'Kursindex oder Performanceindex – der Unterschied ist groß',
           items: [
-            'Ein **Kursindex** zählt nur die Kurse. Am Tag der Dividendenzahlung fällt er, weil die Aktien um die Ausschüttung fallen – das Geld ist ja aus dem Unternehmen heraus.',
+            'Ein **Kursindex** zählt nur die Kurse. Am Ex-Tag, wenn die Dividende abgetrennt wird, fällt er, weil die Aktien um die Ausschüttung fallen – das Geld ist ja aus dem Unternehmen heraus.',
             'Ein **Performanceindex** rechnet die Dividenden so, als würden sie sofort wieder angelegt. Er steigt deshalb schneller.',
             'Der DAX wird üblicherweise als Performanceindex genannt, die meisten internationalen Indizes als Kursindex. Wer beide vergleicht, vergleicht ungleiche Dinge – über Jahrzehnte macht das mehrere hundert Prozent aus.',
             'Beim Vergleich eines Fonds mit „seinem Index" ist das die erste Frage: Welche Variante steht daneben?',

@@ -210,9 +210,9 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Website verwendet die Schriftart Inter (SIL Open Font License). Sie
-              werden nicht zur Laufzeit von einem externen Anbieter geladen, sondern
-              bereits bei der Erstellung der Website heruntergeladen und vom eigenen
-              Server ausgeliefert. Beim Besuch entsteht dadurch{' '}
+              wird nicht zur Laufzeit von einem externen Anbieter geladen, sondern bereits
+              bei der Erstellung der Website heruntergeladen und vom eigenen Server
+              ausgeliefert. Beim Besuch entsteht dadurch{' '}
               <strong className="text-fg font-semibold">
                 keine Verbindung zu Google
               </strong>{' '}

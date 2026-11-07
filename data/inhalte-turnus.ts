@@ -112,8 +112,12 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       steht – „nicht gefunden" hiess hier „falsch gesucht".
 
       Nichts zu ändern, zum zweiten Mal.
+
+      06.11.2026 – lokal, alle Werte erneut am Gesetzestext bzw. BMF-Schreiben
+      vom 13.01.2026 (Basiszins 3,20 %) gelesen: keine Mängel. Kirchensteuer
+      8/9 % ist nur über die Kirchenbeschlüsse belegbar, nicht amtlich gelesen.
     */
-    zuletztGeprueft: '2026-09-26',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['lib/kapitalertragsteuer.ts', 'data/stichtagswerte.ts'],
     quelle: 'https://dejure.org/ (über quellen-holen.yml), BMF für den Basiszins',
   },
@@ -151,8 +155,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       der Portalangabe überein – das ist eine Gegenprobe auf zwei Wegen und
       kein neues Dokument. Ihr `stand` bleibt deshalb das Datum des Dokuments;
       nur die sechs Portalangaben tragen den neuen Tag der Durchsicht.
+
+      06.11.2026: lokal per Invoke-WebRequest bei justETF, alle acht wieder
+      wie oben – keine Änderung. Die sechs Portalangaben tragen 2026-11-06.
     */
-    zuletztGeprueft: '2026-09-26',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/etf-kosten.ts'],
     quelle: 'Factsheets der Anbieter, ISIN steht je Eintrag',
   },
@@ -178,7 +185,15 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // Abrufe 0 bis 4 Tage alt, keine abweichende Zahl im Fließtext, alle
     // acht ETF-Kosten hinterlegt. Ob die hinterlegten Kosten noch den
     // Factsheets entsprechen, sagt das nicht – das ist `etf-kosten`.
-    zuletztGeprueft: '2026-09-20',
+    //
+    // 06.11.2026: `npm run frische`, alles innerhalb der Grenzen:
+    //     Leitzins der EZB              2 von 10 Tagen
+    //     Inflation Euroraum           36 von 75 Tagen (DE 5)
+    //     Aktienkurse, Kursverläufe,
+    //     Marktbreite                   0 Tage
+    // Abrufe 0 bis 6 Tage alt (fundamentaldaten.json 6). Den Fließtext
+    // selbst habe ich diesmal nicht nach Zahlen durchsucht.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/snapshots/', 'data/stichtagswerte.ts'],
   },
 
@@ -190,7 +205,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Performance- gegen Kursindex, Gewichtungsmethoden, Aktienrückkauf gegen ' +
       'Dividende, FFO, Book-to-Bill, KUV.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 06.11.2026: Ex-Tag statt Zahltag (Glossar, Börse), Rückkauf-Steuer
+    // als Aufschub, „fast alle“/„immer“ entschärft, Preisgewichtung (Dow,
+    // Nikkei) erwähnt. FFO und Book-to-Bill kommen in Glossar/Lerntexten
+    // nicht vor – nur in Nachrichten; nichts zu prüfen.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/glossar.ts', 'data/learn/', 'data/akademie/'],
   },
   {
@@ -199,7 +218,13 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Crash-Daten, Renditeangaben, Indexstände, Jahreszahlen in Lerntexten ' +
       'und Akademie. Jede Zahl gegen eine Quelle, und die Quelle notieren.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 06.11.2026: crashes.ts gegen S&P-500-Tageskurse nachgerechnet (Quelle
+    // dort im Kommentar) – 1987 und Finanzkrise korrigiert; 19 weitere Zahlen
+    // in learn/akademie ohne Mangel. Nicht belegt (plausibel, ohne URL):
+    // BIS 7,5 Bio. $/Tag 2022, Gold-Hoch 1980, Hongkong-Bindung 1983,
+    // Nixon 15.08.1971; DAX-Basis 30. oder 31.12.1987 – Quellen uneins.
+    // Quiz-Dateien nicht durchgesehen.
+    zuletztGeprueft: '2026-11-06',
     dateien: ['data/crashes.ts', 'data/learn/', 'data/akademie/'],
     quelle: 'je Zahl verschieden – im Text hinterlegen',
   },
@@ -208,8 +233,11 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     auftrag:
       'Je Rechner ein Beispiel von Hand nachrechnen und die Formel im Code ' +
       'gegen die auf der Seite angegebene Methodik halten.',
+    // 06.11.2026: drei Rechner nachgerechnet. Mangel: Deckel der
+    // Vorabpauschale ohne Ausschüttungen (§ 18 Abs. 1 S. 3 InvStG) – behoben;
+    // dazu falsche Prozentzahlen in der Prosa (28,375 → 28,625; Fünftel → Viertel).
     taktTage: 28,
-    zuletztGeprueft: '2026-09-06',
+    zuletztGeprueft: '2026-11-06',
     dateien: ['lib/kapitalertragsteuer.ts', 'lib/kosten.ts', 'lib/kredit.ts'],
   },
   {
@@ -235,7 +263,16 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // Nicht geprüft, weil von hier aus nicht erreichbar: ob die Angaben zu
     // Anbieter und Hoster noch stimmen und ob sich an § 5 DDG oder der
     // DSGVO-Auslegung etwas geändert hat. Das braucht einen Blick von aussen.
-    zuletztGeprueft: '2026-09-20',
+    //
+    // 06.11.2026, lokal: § 5 DDG (gesetze-im-internet.de) und Art. 50 KI-VO
+    // (EUR-Lex, Ursprungsfassung) gelesen; Impressum vollständig, kein „TMG“
+    // mehr, keine Fremdeinbindung ohne Erwähnung in der Datenschutzerklärung,
+    // alle 95 Folgen im Feed mit KI- und Anlageberatungs-Satz. Behoben: Stand
+    // der Datenschutzerklärung (2. August → 27. Oktober, Schriftabsatz war
+    // geändert) und ein Footer-Kommentar, der dem Impressum widersprach.
+    // Offen: Hoster-Angaben von aussen, Wortlaut § 18 Abs. 2 MStV, ob der
+    // Footer-Hinweis allein Art. 50 Abs. 4 genügt (Auslegung).
+    zuletztGeprueft: '2026-11-06',
     dateien: [
       'app/impressum/page.tsx',
       'app/datenschutz/page.tsx',

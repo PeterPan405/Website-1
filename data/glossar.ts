@@ -176,7 +176,7 @@ export const glossar: Glossareintrag[] = [
     slug: 'dividende',
     begriff: 'Dividende',
     kurz: 'Der Teil des Gewinns, den eine Aktiengesellschaft an ihre Aktionäre auszahlt.',
-    lang: 'Am Tag der Auszahlung fällt der Kurs um ungefähr denselben Betrag – das Geld verlässt ja das Unternehmen. Eine Dividende ist deshalb kein zusätzlicher Ertrag obendrauf, sondern eine Umschichtung vom Depotwert aufs Konto.',
+    lang: 'Am Ex-Tag – dem ersten Handelstag ohne Dividendenanspruch – fällt der Kurs um ungefähr denselben Betrag – das Geld verlässt ja das Unternehmen. Eine Dividende ist deshalb kein zusätzlicher Ertrag obendrauf, sondern eine Umschichtung vom Depotwert aufs Konto.',
     formen: ['Dividenden', 'Dividendenrendite'],
     siehe: ['aktie', 'ausschuettung', 'ex-tag'],
     thema: 'aktie',

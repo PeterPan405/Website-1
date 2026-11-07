@@ -24,7 +24,7 @@
  *
  * Ohne Kirchensteuer ergibt das die bekannten 25 Prozent, mit 9 Prozent
  * dagegen 24,45. Die Gesamtbelastung liegt damit bei 26,375 Prozent ohne und
- * 27,99 Prozent mit Kirchensteuer – nicht bei 25 und nicht bei 34.
+ * 27,995 Prozent mit Kirchensteuer – nicht bei 25 und nicht bei 34.
  *
  * ## Wo dieses Modul aufhört
  *
@@ -126,7 +126,7 @@ export function berechneSteuer(annahmen: Steuerannahmen): Steuerergebnis {
     Die Kirchensteuer mindert ihre eigene Bemessungsgrundlage.
 
     Deshalb `/ (4 + k)` und nicht `× 0,25`. Wer stattdessen 25 Prozent nimmt und
-    die Kirchensteuer obendrauf schlägt, kommt auf 28,375 statt 27,99 Prozent –
+    die Kirchensteuer obendrauf schlägt, kommt auf 28,625 statt 27,995 Prozent –
     ein Fehler, der klein aussieht und in jeder Zeile wiederkehrt.
   */
   const kapitalertragsteuer = bemessungsgrundlage / (4 + k)
@@ -187,18 +187,27 @@ export interface Vorabergebnis {
  *
  * 1. Der Basisertrag ist **70 Prozent** des Basiszinses auf den Wert zu
  *    Jahresbeginn – nicht der volle Zins.
- * 2. Er ist **auf den Wertzuwachs des Jahres begrenzt**. Ist der Fonds gefallen,
- *    gibt es keine Vorabpauschale.
+ * 2. Er ist **auf den Wertzuwachs des Jahres samt Ausschüttungen begrenzt**.
+ *    Ist der Fonds auch mit ihnen gerechnet gefallen, gibt es keine
+ *    Vorabpauschale.
  * 3. Ausschüttungen werden **abgezogen**. Wer genug ausgeschüttet bekommen hat,
  *    zahlt keine.
  *
- * ## Offen seit dem 6. September 2026: zählt die Ausschüttung in den Deckel?
+ * ## Entschieden am 6. November 2026: die Ausschüttung zählt in den Deckel
+ *
+ * **Lesart B gilt.** § 18 Abs. 1 Satz 3 InvStG, gelesen am 06.11.2026 auf
+ * https://www.gesetze-im-internet.de/invstg_2018/__18.html: „Der Basisertrag
+ * ist auf den Mehrbetrag begrenzt, der sich zwischen dem ersten und dem
+ * letzten im Kalenderjahr festgesetzten Rücknahmepreis zuzüglich der
+ * Ausschüttungen innerhalb des Kalenderjahres ergibt." Bis dahin rechnete der
+ * Code nach A und wies bei ausschüttenden Fonds zu wenig aus. Der Rest dieses
+ * Abschnitts ist der Stand vom 6. September und bleibt als Begründung stehen.
  *
  * Aufgefallen bei der Turnus-Durchsicht `rechner`, beim Nachrechnen von Hand.
  * Regel 2 und Regel 3 greifen ineinander, und es gibt zwei Lesarten:
  *
- *     A (so rechnet der Code)   Deckel = Wertende − Wertbeginn
- *     B                         Deckel = Wertende − Wertbeginn + Ausschüttungen
+ *     A (bis 06.11.2026)        Deckel = Wertende − Wertbeginn
+ *     B (Gesetz, so rechnet er) Deckel = Wertende − Wertbeginn + Ausschüttungen
  *
  * Für einen **thesaurierenden** Fonds sind beide gleich – ohne Ausschüttung
  * gibt es keinen Unterschied, und das ist der Fall, für den dieser Rechner
@@ -231,7 +240,8 @@ export function berechneVorabpauschale(annahmen: Vorabannahmen): Vorabergebnis {
   const basiszins = Math.max(annahmen.basiszins, 0)
 
   const basisertrag = wertBeginn * basiszins * 0.7
-  const wertzuwachs = Math.max(wertEnde - wertBeginn, 0)
+  // Lesart B, § 18 Abs. 1 Satz 3 InvStG: Wertzuwachs ZUZÜGLICH Ausschüttungen.
+  const wertzuwachs = Math.max(wertEnde - wertBeginn + ausschuettung, 0)
   const begrenzterBasisertrag = Math.min(basisertrag, wertzuwachs)
   const vorabpauschale = Math.max(begrenzterBasisertrag - ausschuettung, 0)
 

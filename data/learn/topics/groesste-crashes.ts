@@ -106,7 +106,7 @@ export const groessteCrashes: LearnTopic = {
             [
               '2008, Finanzkrise',
               'Immobilienkredite, Verbriefungen und ein Bankensystem am Rand',
-              'Rund 50 Prozent Rückgang, Erholung in einigen Jahren – begleitet von beispiellosen Notenbankeingriffen',
+              'Fast 57 Prozent Rückgang vom Hoch im Oktober 2007, Erholung in gut fünf Jahren – begleitet von beispiellosen Notenbankeingriffen',
             ],
             [
               '2020, Pandemie',

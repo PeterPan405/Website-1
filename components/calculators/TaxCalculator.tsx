@@ -542,7 +542,7 @@ export function TaxCalculator() {
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt>Wertzuwachs des Jahres (Obergrenze)</dt>
+                  <dt>Wertzuwachs samt Ausschüttungen (Obergrenze)</dt>
                   <dd className="text-fg-muted tabular-nums">
                     {formatCurrency(vorab.wertzuwachs, 2)}
                   </dd>
