@@ -3622,8 +3622,10 @@ function saeulenGrafik(k: Saeulenkarte) {
         left: links + i * fach,
         width: fach,
         justifyContent: 'center',
-        fontSize: 17,
-        color: STIL.hellgrau,
+        /* Dunkel und halbfett (07.11.2026, Betreiber: „nicht so in einem Grauton … dass man's richtig lesen kann"). */
+        fontSize: 18,
+        fontWeight: 600,
+        color: STIL.tinte,
       }),
       ...(z.symbol
         ? [
