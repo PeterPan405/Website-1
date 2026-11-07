@@ -209,7 +209,7 @@ jobs:
       #      vollautomatisch erscheinen."
       #
       # Daraus folgt: **Die Daily News sind freigegeben, jeden Tag, ohne
-      # Zutun.** Ob es heute einen gibt, sagt /instagram/stand.txt – „tagesnews"
+      # Zutun.** Ob es sie heute gibt, sagt /instagram/stand.txt – „tagesnews"
       # (seit dem 17.10.2026 täglich, davor montags bis freitags) nur mit einem Plan, der die Prüfung in
       # lib/instagram-plan.ts bestanden hat. Alles andere – ein Erklärbeitrag,
       # eine Zahlenkarte, sobald es dafür einen Erzeuger gibt – braucht weiter

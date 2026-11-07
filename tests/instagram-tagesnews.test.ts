@@ -3,7 +3,7 @@
  *
  * ## Woran gemessen wird
  *
- * An den Daily News vom 9. Oktober 2026, wie er im Kanal steht (Abzug über die
+ * An den Daily News vom 9. Oktober 2026, wie sie im Kanal stehen (Abzug über die
  * Graph-Schnittstelle am 11.10.2026): fünf Kacheln, die Beschriftung
  * zeichengenau. Der Betreiber wollte „keine neuen Experimente" – also muss
  * der Generator aus denselben Bausteinen denselben Beitrag ergeben.
