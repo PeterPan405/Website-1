@@ -52,6 +52,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       Betreiber zum Entwurf: keine leeren Kacheln, „keine BIPs … sondern
       nur Börsengänge", Abstände dürfen ungleich dem Maßstab sein →
       `gleichmaessig`, „nicht maßstäblich" steht in der Unterzeile.
+      Zuletzt: „weniger Slides, aber es müssen immer 2 auf einer Seite
+      sein" – vier Kacheln, General Motors raus.
       Dann: „nimm mal die Unbekannten weg … begrenze dich auf die 7" –
       nur bekannte Namen, Anthropic als geplanter Börsengang am Ende
       (`offen`, ohne Erlös). Raus: ICBC, AIA, Agricultural Bank of China,
@@ -67,20 +69,13 @@ export const zahlenkarten: Zahlenkarte[] = [
     datum: '2026-11-08',
     titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
     erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar · nicht maßstäblich',
-    kacheln: 6,
+    kacheln: 4,
     bis: 90,
     schritt: 10,
     gleichmaessig: true,
     einheit: 'Mrd. $',
     punkte: [
       { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
-      {
-        name: 'General Motors',
-        wert: 18.15,
-        anzeige: '18,2',
-        zusatz: '2010',
-        logo: 'gm.png',
-      },
       {
         name: 'Facebook',
         wert: 16.01,
@@ -114,22 +109,14 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
     ],
     saetze: [
+      { kachel: 2, text: 'Visa 2008 und Facebook 2012: zusammen 35,7 Mrd. $.' },
       {
-        kachel: 2,
-        text: 'Visa 2008: 19,7 Mrd. $ – bis heute unter den zehn größten der Welt.',
+        kachel: 3,
+        text: 'Alibaba 2014, Aramco 2019: zweimal der größte Börsengang der Welt.',
       },
-      { kachel: 3, text: 'General Motors 2010, Facebook 2012: beide unter 20 Mrd. $.' },
       {
         kachel: 4,
-        text: 'Alibaba 2014: 25 Mrd. $ – fünf Jahre lang der größte Börsengang der Welt.',
-      },
-      {
-        kachel: 5,
-        text: 'SpaceX 2026: 85,7 Mrd. $ – fast dreimal so viel wie der Rekord von Aramco.',
-      },
-      {
-        kachel: 6,
-        text: 'Als Nächstes will Anthropic an die Börse. Wie viel Geld es einsammeln will, ist offen.',
+        text: 'SpaceX: fast dreimal so viel wie Aramco. Als Nächstes: Anthropic.',
       },
     ],
     fusszeile:
@@ -137,7 +124,6 @@ export const zahlenkarten: Zahlenkarte[] = [
     text:
       'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
       'Visa (2008): 19,7 Mrd. $\n' +
-      'General Motors (2010): 18,2 Mrd. $\n' +
       'Facebook (2012): 16,0 Mrd. $\n' +
       'Alibaba (2014): 25,0 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
