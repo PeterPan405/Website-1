@@ -76,9 +76,11 @@ const bildAdresse = `${BASIS}/instagram/zahlenkarte.jpg?d=${HEUTE}&t=${Date.now(
 /* Zwei Seiten (05.11.2026, Lagarde und ihre möglichen Nachfolger) gehen als Karussell. */
 const bildAdressen = [
   bildAdresse,
-  ...(seiten === 2
-    ? [`${BASIS}/instagram/zahlenkarte-2.jpg?d=${HEUTE}&t=${Date.now()}`]
-    : []),
+  /* Ab 07.11.2026 bis zu acht Kacheln (Zahlenstrahl, Sorte D). */
+  ...Array.from(
+    { length: Math.max(0, seiten - 1) },
+    (_, i) => `${BASIS}/instagram/zahlenkarte-${i + 2}.jpg?d=${HEUTE}&t=${Date.now()}`
+  ),
 ]
 for (const adresse of bildAdressen) {
   const bild = await fetch(adresse, { method: 'HEAD', cache: 'no-store' })

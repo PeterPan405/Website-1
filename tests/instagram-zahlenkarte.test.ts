@@ -15,6 +15,8 @@ import {
   pruefeZahlenkarte,
   signetOhneMitte,
   zahlenkartePng,
+  zahlenkarteSeitePng,
+  zahlenkarteSeiten,
   ZK_BREITE,
   ZK_HOEHE,
   type Rangkarte,
@@ -1030,6 +1032,67 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
     )
+  }
+}
+
+/* 08.11.2026: Zahlenstrahl – die größten Börsengänge (Wikipedia, Largest IPOs by amount raised). */
+{
+  const karte = karteVom('2026-11-08')
+  pruefe(
+    'Börsengänge: Karte für den 08.11. ist ein Zahlenstrahl',
+    karte?.art === 'zahlenstrahl'
+  )
+  if (karte?.art === 'zahlenstrahl') {
+    pruefe(
+      'Börsengänge: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Börsengänge: sieben Kacheln', zahlenkarteSeiten(karte) === 7)
+    pruefe(
+      'Börsengänge: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-07')!)
+    )
+    const erwartet: [string, number][] = [
+      ['Facebook', 16.01],
+      ['Visa', 19.7],
+      ['Alibaba', 25],
+      ['SK Hynix', 26.5],
+      ['Saudi Aramco', 29.4],
+      ['SpaceX', 85.7],
+    ]
+    erwartet.forEach(([name, wert], i) => {
+      const p = karte.punkte[i]
+      pruefe(`Börsengänge: ${name} ${wert} Mrd. $`, p.name === name && p.wert === wert)
+      pruefe(
+        `Börsengänge: ${name} steht so in der Beschreibung`,
+        karte.text.includes(
+          `${wert.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Mrd. $`
+        )
+      )
+    })
+    pruefe(
+      'Börsengänge: SpaceX fast dreimal Aramco',
+      Math.round((85.7 / 29.4) * 10) / 10 === 2.9
+    )
+    pruefe(
+      'Börsengänge: ein absteigender Punkt wird beanstandet',
+      pruefeZahlenkarte({ ...karte, punkte: [...karte.punkte].reverse() }).some((f) =>
+        f.includes('aufsteigend')
+      )
+    )
+    pruefe(
+      'Börsengänge: vier Kacheln werden beanstandet',
+      pruefeZahlenkarte({ ...karte, kacheln: 4 }).some((f) => f.includes('fünf bis acht'))
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 7]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(
+        `Börsengänge: Kachel ${nr} ist ein PNG`,
+        png.subarray(1, 4).toString() === 'PNG'
+      )
+    }
   }
 }
 
