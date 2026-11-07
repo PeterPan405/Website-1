@@ -138,6 +138,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],
+    freigabe: '2026-11-08',
   },
   {
     /*
