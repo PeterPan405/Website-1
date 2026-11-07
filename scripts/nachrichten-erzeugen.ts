@@ -1172,7 +1172,7 @@ async function main() {
     das der Leser auf der Website nie sieht. Deshalb: Fehler werden laut
     gesagt – der Agent sieht sie in seiner Probe und bessert nach –, aber
     `process.exit(1)` gibt es hier nicht. Ohne gültigen Plan erscheint an
-    diesem Tag eben kein Tagesbeitrag, und `instagram-beitrag.yml` sagt warum.
+    diesem Tag eben keine Daily News, und `instagram-beitrag.yml` sagt warum.
   */
   const igFehler = pruefeInstagramPlan(ergebnis.instagram, heute)
   /* Kein Thema der letzten drei Tage (Betreiber, 26.10.2026) – `themaWiederholt()`. */
@@ -1197,7 +1197,7 @@ async function main() {
   const igMelden = () => {
     if (!igTag) {
       console.log(
-        `Instagram: ${heute} ist kein Werktag – an diesem Tag gibt es keinen Tagesbeitrag.`
+        `Instagram: ${heute} ist kein Werktag – an diesem Tag gibt es keine Daily News.`
       )
     } else if (igFehler.length === 0) {
       console.log('Instagram-Plan: in Ordnung.')

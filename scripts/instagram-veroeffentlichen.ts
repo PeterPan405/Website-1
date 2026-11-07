@@ -252,7 +252,7 @@ if (standTag !== STICHTAG) {
   )
 }
 if (standArt !== 'tagesnews') {
-  haltAn(`Für den ${STICHTAG} gibt es keinen Tagesbeitrag. ${standGrund.join(' ')}`)
+  haltAn(`Für den ${STICHTAG} gibt es keine Daily News. ${standGrund.join(' ')}`)
 }
 if (!beschriftung) {
   haltAn(
@@ -277,7 +277,7 @@ if (
     `Der ${STICHTAG} steht in ${HALT}: Die Kacheln warten auf das OK des Betreibers.`
   )
 }
-melde(`Die Website zeigt den ${STICHTAG}, Tagesbeitrag liegt bereit.`)
+melde(`Die Website zeigt den ${STICHTAG}, Daily News liegen bereit.`)
 
 /*
   Erst jetzt wird gezählt: An Tagen ohne Beitrag liegt nur das Deckblatt da,

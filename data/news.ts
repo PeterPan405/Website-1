@@ -101,6 +101,295 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-faellt-asiens-chipboersen-brechen-ein',
+    title: 'Dax fällt weiter, Asiens Chipbörsen brechen ein',
+    teaser:
+      'Nach dem Rekordhoch vom Donnerstag gibt der Dax erneut nach. Japans Nikkei und Südkoreas Kospi stürzen ab, während sich die Wall Street am Freitag stabilisiert.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dax', 'Nikkei', 'Kospi', 'Wall Street', 'Chipaktien'],
+    relatedTopics: ['boerse', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nikkei-225', 'kospi', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 18:18 Uhr: „Dax aktuell: Dax schließt im Minus und fällt weit von Rekord zurück – Rüstungsaktie verliert"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-sackt-trotz-stabiler-chip-werte-fast-600-punkte-ab/100267806.html',
+      },
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 07:13 Uhr: „Nikkei, Kospi und Topix: Abverkauf bei Chipaktien erfasst Japan und Südkorea"',
+        url: 'https://www.handelsblatt.com/finanzen/asiens-boersen-setzen-abschwung-von-chipaktien-in-den-usa-fort/100267767.html',
+      },
+      {
+        label:
+          'onvista, 6.11.2026, 21:30 Uhr (dpa-AFX): „ROUNDUP/Aktien New York Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf"',
+        url: 'https://www.onvista.de/news/2026/11-06-roundup-aktien-new-york-schluss-tech-sektor-erholt-sich-etwas-nach-ausverkauf-0-10-26573622',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat sein Rekordhoch vom Donnerstag nicht gehalten. Am Freitag schloss der deutsche Leitindex bei 25.820 Punkten. Das war ein Minus von 1,9 Prozent, meldet Handelsblatt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Asiens Chipbörsen trifft es härter',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Asien fiel der Ausverkauf deutlich schärfer aus. Japans Nikkei verlor zeitweise 6,7 Prozent und schloss knapp sechs Prozent im Minus, berichtet Handelsblatt. Der breiter gefasste Topix gab 5,9 Prozent ab. Südkoreas Kospi fiel zu Handelsbeginn zeitweise mehr als acht Prozent und schloss sechs Prozent niedriger.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Wall Street dreht ins Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kehrte dagegen etwas Ruhe ein. Der Dow Jones schloss 0,46 Prozent niedriger bei 51.286 Punkten, meldet die Nachrichtenagentur dpa-AFX. Der S&P 500 gewann 0,31 Prozent. Der technologieschwere Nasdaq 100 stieg um 1,35 Prozent auf 26.990 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Seoul und Tokio heftiger schwanken als New York',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Erklärung liegt in der Zusammensetzung der Indizes. Halbleiterwerte wiegen am Kospi und am Nikkei besonders schwer. Ein Ausverkauf bei Chipaktien trifft solche Indizes deshalb stärker als breiter gestreute amerikanische Indizes wie den Dow Jones.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index mit wenigen schwergewichtigen Branchen schwankt stärker als ein breit gestreuter. Wer das weiß, liest einen Tagesverlust nicht als Urteil über eine ganze Volkswirtschaft, sondern über die Gewichtung eines Indexes.',
+      },
+    ],
+  },
+  {
+    slug: 'us-arbeitsmarkt-oktober-langzeitarbeitslosigkeit',
+    title: 'US-Jobmarkt wächst kräftig, Langzeitarbeitslosigkeit steigt',
+    metaTitle: 'US-Jobmarkt wächst, Langzeitarbeitslosigkeit steigt',
+    teaser:
+      'Die US-Wirtschaft schafft im Oktober 165.000 neue Stellen, mehr als doppelt so viele wie erwartet. Die Langzeitarbeitslosigkeit steigt auf ein Mehrjahreshoch.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['US-Arbeitsmarkt', 'Jobbericht', 'Beschäftigung'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'CNBC, 6.11.2026, 20:11 Uhr: „A disturbing employment trend is hiding beneath the latest strong job numbers"',
+        url: 'https://www.cnbc.com/2026/11/06/long-term-unemployment-october-jobs-report.html',
+      },
+      {
+        label:
+          'Goldreporter, 6.11.2026: „US-Arbeitsmarkt überrascht mit 165.000 neuen Stellen"',
+        url: 'https://www.goldreporter.de/us-arbeitsmarkt-ueberrascht-mit-165-000-neuen-stellen/konjunktur/262896/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der amerikanische Arbeitsmarkt hat im Oktober 165.000 neue Stellen außerhalb der Landwirtschaft geschaffen. Volkswirte hatten nur mit 65.000 gerechnet, meldet Goldreporter. Die Arbeitslosenquote sank von 4,2 auf 4,1 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweites Signal zeigt in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter der starken Schlagzeile liegt ein anderer Trend. Wer im Oktober arbeitslos war, suchte im Schnitt 27,1 Wochen nach einem neuen Job, berichtet CNBC. Das ist die längste Dauer außerhalb der Pandemie seit zehn Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Langzeitarbeitslose als seit 2021',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rund zwei Millionen Menschen waren mindestens 27 Wochen ohne Arbeit. Das entspricht 27,6 Prozent aller Arbeitslosen in den USA, dem höchsten Anteil seit Ende 2021, so CNBC. Auch die weiter gefasste U-6-Quote, die Unterbeschäftigte mitzählt, stieg von 7,6 auf 7,9 Prozent, meldet Goldreporter.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Arbeitslosenquote ist ein Durchschnittswert. Sie zeigt nicht, wie lange einzelne Menschen ohne Arbeit bleiben. Wer nur auf die Quote schaut, kann eine wachsende Gruppe von Langzeitarbeitslosen leicht übersehen.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-nachfolge-spanien-nominiert-hernandez-de-cos',
+    title: 'EZB-Nachfolge: Spanien nominiert Hernández de Cos',
+    teaser:
+      'Nach den Niederlanden schickt auch Spanien einen Kandidaten ins Rennen um die EZB-Spitze: BIZ-Chef Pablo Hernández de Cos tritt gegen Klaas Knot an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-07T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Lagarde-Nachfolge', 'Geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 21:00 Uhr (Reuters): „EZB: Spanien nominiert Pablo Hernandez de Cos für Lagarde-Nachfolge"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-spanien-nominiertpablo-hernandez-de-cos-fuer-lagarde-nachfolge/100267919.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Rennen um die EZB-Spitze gibt es jetzt zwei Namen. Spanien hat Pablo Hernández de Cos nominiert, den Chef der Bank für Internationalen Zahlungsausgleich, berichtet Handelsblatt unter Berufung auf Reuters.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Niederlande waren zuerst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am Mittwoch hatten die Niederlande den früheren Notenbankchef Klaas Knot offiziell vorgeschlagen. Laut Eurogruppen-Präsident Kyriakos Pierrakakis gingen bis Freitagnachmittag nur diese beiden Bewerbungen ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Finanzminister entscheiden am Montag mit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Euro-Finanzminister wollen die beiden Kandidaturen am Montag, dem 9. November, sichten, berichtet Handelsblatt. Danach geben die Eurostaaten eine Empfehlung ab. Am Ende ernennen die Staats- und Regierungschefs der EU das neue EZB-Direktorium.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein vorzeitiger Wechsel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Christine Lagarde verlässt die EZB laut Handelsblatt bereits am 7. Februar 2027. Das ist fast neun Monate vor dem regulären Ende ihrer Amtszeit.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die EZB führt, entscheidet mit über Zinsen, die Kredite, Anleihen und Sparzinsen in der ganzen Eurozone beeinflussen. Die Kandidatenauswahl ist deshalb mehr als eine Personalie.',
+      },
+    ],
+  },
+  {
+    slug: 'daimler-truck-gewinn-steigt-auftraege-schwach',
+    title: 'Daimler Truck: Gewinn springt, Aufträge schwächeln',
+    teaser:
+      'Daimler Truck verdient im dritten Quartal 73 Prozent mehr, getragen vom US-Geschäft. Der Auftragseingang bleibt dagegen hinter den Erwartungen zurück.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Daimler Truck', 'Quartalszahlen', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista, 6.11.2026, 15:32 Uhr: „Daimler Truck: Das Gewinnplus verlangt Vorsicht"',
+        url: 'https://www.onvista.de/news/2026/11-06-daimler-truck-das-gewinnplus-verlangt-vorsicht-40338625-19-26573515',
+      },
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 10:13 Uhr: „Daimler Truck meldet deutlichen Gewinnsprung wegen USA-Geschäft"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/daimlertruck-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Daimler Truck hat im dritten Quartal deutlich mehr verdient. Der Umsatz im Industriegeschäft stieg um 20 Prozent auf 11,6 Milliarden Euro, das Ebit um 73 Prozent auf rund 1,1 Milliarden Euro, meldet onvista.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Bestellungen passen nicht zum Gewinn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Auftragseingang sieht es anders aus. Der Nutzfahrzeughersteller verbuchte 71.170 bestellte Fahrzeuge, weniger als von Analysten erwartet. Die Tagesschau bestätigt den Gewinnsprung und führt ihn auf das anspringende US-Geschäft zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kennzahlen, zwei Zeithorizonte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Gewinn blickt zurück. Er zeigt, was im abgelaufenen Quartal bereits verkauft und ausgeliefert wurde. Der Auftragseingang blickt voraus. Ein schwacher Auftragseingang bei starkem Gewinn kann bedeuten, dass das beste Quartal schon hinter dem Unternehmen liegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur auf den Gewinn schaut, sieht die Vergangenheit eines Unternehmens. Der Auftragseingang zeigt eher, wie die nächsten Quartale aussehen könnten.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-bewertung-zweifel',
+    title: 'Anthropic: Zweifel an Zwei-Billionen-Bewertung wachsen',
+    teaser:
+      'Anthropics Börsengang sollte bis zu zwei Billionen Dollar wert sein. Nach dem Tech-Ausverkauf gilt selbst 1,5 Billionen manchen Investoren als zu hoch.',
+    category: 'Märkte',
+    publishedAt: '2026-11-07T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anthropic', 'Börsengang', 'KI-Aktien'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "CNBC, 6.11.2026, 21:07 Uhr: „Investors brace for lower Anthropic valuation, calling $1.5 trillion a 'stretch'\"",
+        url: 'https://www.cnbc.com/2026/11/06/investors-brace-for-anthropic-valuation-1point5-trillion-a-stretch.html',
+      },
+      {
+        label:
+          'Handelsblatt, 6.11.2026, 13:27 Uhr: „IPO: Vom Zwei-Billionen-Traum zum Preisnachlass: Das Dilemma hinter Anthropics Börsengang"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/boersengang-zweifel-an-bewertung-ipo-von-anthropic-koennte-sich-verzoegern/100267771.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 6.11.2026: „Tumult bei Tech-Aktien: Bringt der Tech-Abverkauf den Anthropic-Börsengang in Gefahr?"',
+        url: 'https://www.wiwo.de/finanzen/boerse/anthropic-boersengang-in-gefahr-was-der-tech-abverkauf-bedeutet/100267738.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Anthropics Börsengang galt lange als einer der größten des Jahres. Im Oktober war laut Handelsblatt noch von bis zu zwei Billionen Dollar Bewertung die Rede, nachdem das Start-up im Mai privat noch mit 965 Milliarden Dollar bewertet worden war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Jetzt gilt schon 1,5 Billionen als hoch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach dem Ausverkauf bei Technologieaktien ist die Stimmung gekippt. Einige Investoren halten laut CNBC inzwischen nur noch 1 bis 1,25 Billionen Dollar für realistisch. Ein Investor nannte 1,5 Billionen Dollar gegenüber CNBC „zu ambitioniert".',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Gründe für die Zurückhaltung',
+      },
+      {
+        type: 'paragraph',
+        text: 'CNBC nennt den Kurseinbruch bei Technologiewerten, Sorgen über die hohen Ausgaben von KI-Unternehmen und die Furcht vor einem langsameren Ausbau von Rechenzentren nach dem Wahlsieg der Demokraten. Auch die WirtschaftsWoche berichtet, der Tech-Abverkauf bringe den Börsengang in Gefahr.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Bewertung vor einem Börsengang ist das Ergebnis einer Verhandlung, keine feste Zahl. Sie hängt von der Stimmung am Markt am Tag der Preisfestsetzung ab, nicht nur vom Unternehmen selbst.',
+      },
+    ],
+  },
+  {
     slug: 'wall-street-ki-ausverkauf-drei-billionen-dollar',
     title: 'Wall Street verliert an einem Tag drei Billionen Dollar',
     teaser:

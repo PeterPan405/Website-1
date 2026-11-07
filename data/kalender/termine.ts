@@ -306,6 +306,42 @@ export const termine: Termin[] = [
     symbole: ['dax', 'eur-usd'],
     quelle: DESTATIS_QUELLE,
   },
+  {
+    datum: '2027-01-25',
+    titel: 'ifo-Geschäftsklimaindex für Januar',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Die erste Stimmungszahl des neuen Jahres. Ein Stimmungsindex misst keine Produktion – er kommt dafür Wochen früher als jede amtliche Zahl und irrt sich entsprechend öfter.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2027-02-22',
+    titel: 'ifo-Geschäftsklimaindex für Februar',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Lage und Erwartungen werden getrennt erhoben und lohnen den getrennten Blick: Steigt der Gesamtindex nur, weil die Erwartungen anziehen, hat sich an der tatsächlichen Geschäftslage noch nichts geändert.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2027-03-22',
+    titel: 'ifo-Geschäftsklimaindex für März',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:30 Uhr',
+    bedeutung:
+      'Der letzte Stimmungswert vor Ende des ersten Quartals. Ein Stimmungsindex misst keine Produktion – er kommt dafür Wochen früher als jede amtliche Zahl und irrt sich entsprechend öfter.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
 
   // ------------------------------------------------------------ Notenbanken
   {

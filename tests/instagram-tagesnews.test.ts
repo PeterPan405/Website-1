@@ -3,7 +3,7 @@
  *
  * ## Woran gemessen wird
  *
- * Am Tagesbeitrag vom 9. Oktober 2026, wie er im Kanal steht (Abzug über die
+ * An den Daily News vom 9. Oktober 2026, wie sie im Kanal stehen (Abzug über die
  * Graph-Schnittstelle am 11.10.2026): fünf Kacheln, die Beschriftung
  * zeichengenau. Der Betreiber wollte „keine neuen Experimente" – also muss
  * der Generator aus denselben Bausteinen denselben Beitrag ergeben.
@@ -55,7 +55,7 @@ function pruefen(was: string, bedingung: boolean, hinweis = ''): void {
   }
 }
 
-/** Der Tagesbeitrag vom 9. Oktober 2026, abgeschrieben von den Kacheln. */
+/** Die Daily News vom 9. Oktober 2026, abgeschrieben von den Kacheln. */
 const NEUNTER: InstagramPlan = {
   zusammenfassung:
     'KI-Aktien unter Druck, Brasiliens Börse auf Rekordhoch und steigende Ölpreise. Gleichzeitig sorgen Frankreichs Haushaltsprobleme und die Entwicklungen rund um die EZB für Aufmerksamkeit.',
@@ -187,11 +187,11 @@ pruefen(
 
 const json = JSON.stringify(NEUNTER)
 pruefen(
-  'Werktag mit gültigem Plan → Tagesbeitrag',
+  'Werktag mit gültigem Plan → Daily News',
   tagesstand('2026-10-09', json).status === 'tagesnews'
 )
 pruefen(
-  'Wochenende mit Plan → Tagesbeitrag (seit 17.10.2026)',
+  'Wochenende mit Plan → Daily News (seit 17.10.2026)',
   tagesstand('2026-10-17', json).status === 'tagesnews'
 )
 pruefen(
@@ -403,7 +403,9 @@ const agent = readFileSync('.github/workflows/nachrichten-agent.yml', 'utf8')
   `prompt: |`, eingerückt wie YAML ihn liest.
 */
 {
-  const zeilen = agent.split('\n')
+  // \r?\n: Unter Windows checkt Git mit CRLF aus – jedes \r zählte sonst
+  // als Byte mit (21.099 statt rund 20.800), GitHub sieht LF.
+  const zeilen = agent.split(/\r?\n/)
   const start = zeilen.findIndex((z) => /^ {10}prompt: \|\s*$/.test(z))
   const block: string[] = []
   for (const z of zeilen.slice(start + 1)) {
