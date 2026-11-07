@@ -78,7 +78,8 @@ pruefen(
   grüner Lauf ohne diese Prüfung sähe aus wie ein bestandener.
 */
 const { spawnSync } = await import('node:child_process')
-const { fileURLToPath } = await import('node:url')
+// Windows: ein Pfad mit Laufwerksbuchstaben ist keine Modul-URL; pathToFileURL macht eine daraus.
+const { fileURLToPath, pathToFileURL } = await import('node:url')
 const { dirname, join } = await import('node:path')
 
 const hier = dirname(fileURLToPath(import.meta.url))
@@ -94,7 +95,7 @@ for (const schlecht of [
       '--experimental-strip-types',
       '--disable-warning=MODULE_TYPELESS_PACKAGE_JSON',
       '-e',
-      `import('${join(hier, '..', 'scripts', 'nachrichten-erzeugen.ts').replace(/\\/g, '/')}')` +
+      `import('${pathToFileURL(join(hier, '..', 'scripts', 'nachrichten-erzeugen.ts')).href}')` +
         '.then((m) => { m.basisadresse(); console.log("DURCHGELASSEN") })',
     ],
     { env: { ...process.env, ANTHROPIC_BASE_URL: schlecht }, encoding: 'utf8' }
