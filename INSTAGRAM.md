@@ -308,16 +308,17 @@ andere Open Sans, feine Linien. Dazu fest:
 5. **Freigabe wie jeder Tagesbeitrag** – Vorschlag, Entwurf aller Kacheln,
    erst nach „passt“ hinaus (siehe C, Schritte 1–6).
 
-**Technisch noch offen** (Stand 07.11.2026): Die Zahlenkarte kann heute zwei
-Seiten (`zweiteSeite`, `/instagram/zahlenkarte-2.jpg`), der Veröffentlicher
-schon N Bilder als Karussell. Für D braucht es in
-`lib/instagram-zahlenkarte.ts` eine Art `zahlenstrahl`, die aus einer Liste
-`{ name, wert, anzeige, zusatz, bild }` alle Kacheln aus **einer**
-Panoramafläche (N × 1080 px breit) schneidet, und die Auslieferung
-`/instagram/zahlenkarte-2.jpg` … `-N.jpg`. Logos liegen unter
-`lib/instagram/logos/` (bisher: amazon, google, microsoft u. a. – Apple,
-Nvidia, Meta, Tesla, Broadcom fehlen und brauchen eine freie Quelle wie bei
-den Tagesbildern).
+**Technisch umgesetzt** (07.11.2026, Cloud-Chat): Kartenart `zahlenstrahl`
+in `lib/instagram-zahlenkarte.ts`. Felder: `punkte`
+(`{ name, wert, anzeige, zusatz, logo, hervor }`), `saetze` (je Kachel ab 2),
+`kacheln`, `bis`, `schritt` und `einheit`. Aus einer Panoramafläche von
+`kacheln` × 1080 px werden die Kacheln geschnitten. Ein Etikett bleibt immer
+ganz auf der Kachel seines Punkts. `zahlenkarteSeiten()` und
+`zahlenkarteSeitePng()` liefern die Kacheln aus, über
+`/instagram/zahlenkarte-2.jpg` … `-8.jpg`. `zahlenkarte.txt` meldet
+„seiten N“, und der Veröffentlicher setzt daraus das Karussell. Logos liegen
+in `lib/instagram/logos/` und kommen über `bilder-holen.yml` von Commons.
+Gemeinfrei sind Facebook, Visa, Alibaba, SK Hynix, Saudi Aramco und SpaceX.
 
 **Erster Entwurf, für den 08.11.2026** – „Die Billionen-Liga“, Börsenwerte
 aus unserem Bestand (Kurse 06.11.2026 Schluss, Aktienzahl aus den

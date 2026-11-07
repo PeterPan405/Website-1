@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
-import { zahlenkartePng } from '@/lib/instagram-zahlenkarte'
+import { zahlenkarteSeitePng } from '@/lib/instagram-zahlenkarte'
 
 /**
  * Die zweite Seite der Zahlenkarte, wenn sie eine hat (`zweiteSeite`) –
@@ -17,7 +17,7 @@ export async function GET() {
   if (!karte) return new Response('Keine Zahlenkarte.', { status: 404 })
   const logo = readFileSync(join(process.cwd(), 'public/logo.svg'), 'utf8')
   const { default: sharp } = await import('sharp')
-  const jpeg = await sharp(await zahlenkartePng(karte.zweiteSeite ?? karte, logo))
+  const jpeg = await sharp(await zahlenkarteSeitePng(karte, logo, 2))
     .jpeg({ quality: 92 })
     .toBuffer()
   return new Response(new Uint8Array(jpeg), {

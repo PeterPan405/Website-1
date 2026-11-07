@@ -465,7 +465,38 @@ export interface Personenkarte extends StilGemeinsam {
   personen: { name: string; zeile: string; stand: string; bild?: string }[]
 }
 
+/**
+ * Der Zahlenstrahl (Sorte D in `INSTAGRAM.md`, eingeführt 07.11.2026): ein
+ * Karussell aus 5 bis 8 Kacheln, durch die eine waagrechte Achse läuft. Wer
+ * wischt, wandert zu größeren Werten. Gezeichnet wird eine Panoramafläche
+ * von `kacheln` × 1080 px; jede Kachel ist ihr Ausschnitt. Der Maßstab ist
+ * linear und beginnt bei null – sonst lügt die Strecke.
+ */
+export interface Zahlenstrahlkarte extends KarteGemeinsam {
+  art: 'zahlenstrahl'
+  /** Unterzeile auf der Titelkachel – Stichpunkte, keine Sätze. */
+  erklaerung: string
+  kacheln: number
+  /** Ende der Achse und Abstand der Striche, in der Einheit der Werte. */
+  bis: number
+  schritt: number
+  /** An den Strichen: „Mrd. $". */
+  einheit: string
+  /** Aufsteigend. `logo` in `lib/instagram/logos/`. */
+  punkte: {
+    name: string
+    wert: number
+    anzeige: string
+    zusatz: string
+    logo?: string
+    hervor?: boolean
+  }[]
+  /** Der Satz unten auf einer Kachel (ab Kachel 2), der den Vergleich zuspitzt. */
+  saetze: { kachel: number; text: string }[]
+}
+
 export type Zahlenkarte =
+  | Zahlenstrahlkarte
   | Personenkarte
   | Kammerkarte
   | Vielfachkarte
@@ -853,7 +884,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
-  if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
+  if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
+  else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
       f.push(`${k.stuecke.length} Stücke – die Torte trägt zwei bis fünf.`)
@@ -1208,6 +1240,7 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
+  if (k.art === 'zahlenstrahl') return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   if (
     k.art === 'kurven' ||
@@ -2537,7 +2570,9 @@ export function form(
   | 'hausbalken'
   | 'vielfach'
   | 'kammern'
-  | 'personen' {
+  | 'personen'
+  | 'zahlenstrahl' {
+  if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -4415,4 +4450,312 @@ function duellGrafik(k: Duellkarte) {
       )
     ),
   ]
+}
+
+/* ------------------------------------------------------------------------ */
+/* Zahlenstrahl (Sorte D, 07.11.2026)                                        */
+/* ------------------------------------------------------------------------ */
+
+const ZS_ACHSE = 780
+const ZS_LINKS = 80
+const ZS_RECHTS = 160
+const ZS_LOGO_B = 240
+const ZS_LOGO_H = 104
+const ZS_ETIKETT = 300
+
+function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
+  const f: string[] = []
+  if (k.kacheln < 5 || k.kacheln > 8) f.push(`${k.kacheln} Kacheln – fünf bis acht.`)
+  if (k.punkte.length < 3) f.push(`${k.punkte.length} Punkte – mindestens drei.`)
+  for (let i = 1; i < k.punkte.length; i++)
+    if (k.punkte[i].wert < k.punkte[i - 1].wert)
+      f.push(
+        `Punkt „${k.punkte[i].name}" ist kleiner als der davor – aufsteigend ordnen.`
+      )
+  for (const p of k.punkte) {
+    if (p.wert < 0 || p.wert > k.bis)
+      f.push(`Punkt „${p.name}" liegt außerhalb der Achse.`)
+    if (p.logo !== undefined && !existsSync(join(LOGO_ORDNER, p.logo)))
+      f.push(`Logo „${p.logo}" fehlt in lib/instagram/logos/.`)
+  }
+  for (const z of k.saetze)
+    if (z.kachel < 2 || z.kachel > k.kacheln)
+      f.push(`Satz für Kachel ${z.kachel} – es gibt nur 2 bis ${k.kacheln}.`)
+  if (k.erklaerung.length > 60)
+    f.push(`Unterzeile hat ${k.erklaerung.length} Zeichen – höchstens 60, Stichpunkte.`)
+  if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
+    f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
+  return f
+}
+
+/** Wo ein Wert auf der Panoramafläche liegt – linear ab null. */
+function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number): number {
+  const breite = k.kacheln * ZK_BREITE
+  return ZS_LINKS + (wert / k.bis) * (breite - ZS_LINKS - ZS_RECHTS)
+}
+
+/**
+ * Wo das Etikett eines Punkts steht: über ihm, aber ganz auf der Kachel,
+ * auf der er liegt – ein Etikett, das über die Kante ragt, zerfiele beim
+ * Wischen in zwei Hälften.
+ */
+function zahlenstrahlEtikett(x: number): number {
+  const kachel = Math.floor(x / ZK_BREITE)
+  const links = kachel * ZK_BREITE + 40
+  const rechts = (kachel + 1) * ZK_BREITE - 40 - ZS_ETIKETT
+  return Math.min(Math.max(x - ZS_ETIKETT / 2, links), rechts)
+}
+
+function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
+  const versatz = (nr - 1) * ZK_BREITE
+  const breite = k.kacheln * ZK_BREITE
+  const ende = breite - ZS_RECHTS / 2
+  const striche = Array.from(
+    { length: Math.floor(k.bis / k.schritt) + 1 },
+    (_, i) => i * k.schritt
+  )
+  const zahl = (v: number) => v.toLocaleString('de-DE')
+
+  /* Die Achse und ihre Striche als ein SVG über die ganze Fläche. */
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="80" viewBox="0 0 ${breite} 80">` +
+    `<line x1="${ZS_LINKS}" x2="${ende}" y1="20" y2="20" stroke="${STIL.tinte}" stroke-width="4"/>` +
+    `<path d="M ${ende - 18} 8 L ${ende} 20 L ${ende - 18} 32" fill="none" stroke="${STIL.tinte}" stroke-width="4"/>` +
+    striche
+      .map((v) => {
+        const x = zahlenstrahlX(k, v)
+        return `<line x1="${x}" x2="${x}" y1="12" y2="28" stroke="${STIL.hellgrau}" stroke-width="2"/>`
+      })
+      .join('') +
+    '</svg>'
+
+  const elemente: ReturnType<typeof h>[] = [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite,
+      height: 80,
+      style: { position: 'absolute', left: -versatz, top: ZS_ACHSE - 20 },
+    }),
+    ...striche.map((v) =>
+      stilBlock(`${zahl(v)} ${k.einheit}`, {
+        top: ZS_ACHSE + 18,
+        left: zahlenstrahlX(k, v) - 80 - versatz,
+        width: 160,
+        justifyContent: 'center',
+        fontSize: 18,
+        color: STIL.hellgrau,
+      })
+    ),
+  ]
+
+  k.punkte.forEach((p, i) => {
+    const x = zahlenstrahlX(k, p.wert)
+    const oben = i % 2 === 0
+    const ex = zahlenstrahlEtikett(x)
+    const farbe = p.hervor ? STIL.navy : STIL.tinte
+    /* Punkt und Verbindung zum Etikett. */
+    elemente.push(
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: x - 2 - versatz,
+          top: oben ? ZS_ACHSE - 92 : ZS_ACHSE + 46,
+          width: 4,
+          height: 46,
+          backgroundColor: STIL.rand,
+        },
+      }),
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: x - 13 - versatz,
+          top: ZS_ACHSE - 13,
+          width: 26,
+          height: 26,
+          borderRadius: 26,
+          backgroundColor: farbe,
+          border: '4px solid #ffffff',
+        },
+      })
+    )
+    const block = h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          left: ex - versatz,
+          top: oben ? ZS_ACHSE - 92 - 300 : ZS_ACHSE + 92,
+          width: ZS_ETIKETT,
+          height: 300,
+          display: 'flex',
+          flexDirection: oben ? 'column-reverse' : 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          fontFamily: 'Montserrat',
+        },
+      },
+      ...(p.logo
+        ? [
+            h(
+              'div',
+              {
+                style: {
+                  width: ZS_LOGO_B,
+                  height: ZS_LOGO_H,
+                  borderRadius: 20,
+                  border: `2px solid ${STIL.rand}`,
+                  backgroundColor: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '6px 0',
+                },
+              },
+              h('img', {
+                src: logoAdresse(p.logo),
+                width: ZS_LOGO_B - 48,
+                height: ZS_LOGO_H - 36,
+                style: { objectFit: 'contain' },
+              })
+            ),
+          ]
+        : []),
+      h(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '6px 0',
+          },
+        },
+        h(
+          'div',
+          { style: { fontSize: 46, fontWeight: 800, letterSpacing: -1, color: farbe } },
+          p.anzeige
+        ),
+        h(
+          'div',
+          { style: { fontSize: 22, fontWeight: 600, color: STIL.tinte, marginTop: 2 } },
+          p.name
+        ),
+        h('div', { style: { fontSize: 20, color: STIL.grau, marginTop: 2 } }, p.zusatz)
+      )
+    )
+    elemente.push(block)
+  })
+
+  const satz = k.saetze.find((z) => z.kachel === nr)
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+        overflow: 'hidden',
+      },
+    },
+    ...(nr === 1
+      ? [
+          stilKopf(logo),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 150,
+                left: STIL_RAND,
+                right: STIL_RAND,
+                display: 'flex',
+                flexDirection: 'column',
+                fontFamily: 'Montserrat',
+                fontWeight: 800,
+                fontSize: 84,
+                lineHeight: 1.1,
+                letterSpacing: -2,
+              },
+            },
+            ...k.titel.map((t) =>
+              h(
+                'div',
+                { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+                t.text
+              )
+            )
+          ),
+          stilBlock(k.erklaerung, {
+            top: 360,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            fontSize: 30,
+            color: STIL.grau,
+          }),
+          stilBlock('Wischen  →', {
+            top: ZK_HOEHE - 79,
+            right: STIL_RAND,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : [
+          stilBlock(`${nr} / ${k.kacheln}`, {
+            top: 48,
+            right: STIL_RAND,
+            fontSize: 22,
+            fontWeight: 700,
+            color: STIL.hellgrau,
+          }),
+        ]),
+    ...elemente,
+    ...(satz
+      ? [
+          stilBlock(satz.text, {
+            top: 1176,
+            left: STIL_RAND,
+            width: ZK_BREITE - 2 * STIL_RAND,
+            fontSize: 30,
+            fontWeight: 600,
+            lineHeight: 1.3,
+            color: STIL.tinte,
+          }),
+        ]
+      : []),
+    stilBlock(k.fusszeile, {
+      top: ZK_HOEHE - 52,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 15,
+      color: STIL.hellgrau,
+    })
+  )
+}
+
+/** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
+export function zahlenkarteSeiten(k: Zahlenkarte): number {
+  if (k.art === 'zahlenstrahl') return k.kacheln
+  return 'zweiteSeite' in k && k.zweiteSeite ? 2 : 1
+}
+
+/** Seite `nr` (ab 1) der Karte als PNG. */
+export async function zahlenkarteSeitePng(
+  k: Zahlenkarte,
+  logoSvg: string,
+  nr: number
+): Promise<Buffer> {
+  if (k.art === 'zahlenstrahl') {
+    const logo = svgAdresse(signetOhneMitte(logoSvg))
+    const antwort = new ImageResponse(
+      zahlenstrahlKachel(k, logo, Math.min(Math.max(nr, 1), k.kacheln)),
+      { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
+    )
+    return Buffer.from(await antwort.arrayBuffer())
+  }
+  if (nr === 2 && 'zweiteSeite' in k && k.zweiteSeite)
+    return zahlenkartePng(k.zweiteSeite, logoSvg)
+  return zahlenkartePng(k, logoSvg)
 }

@@ -1,5 +1,5 @@
 import { aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
-import { beschriftungZahlenkarte } from '@/lib/instagram-zahlenkarte'
+import { beschriftungZahlenkarte, zahlenkarteSeiten } from '@/lib/instagram-zahlenkarte'
 
 /**
  * Datum und Beschriftung der Zahlenkarte, aus demselben Bau wie das Bild.
@@ -15,7 +15,7 @@ export const dynamic = 'force-static'
 export function GET() {
   const karte = aktuelleZahlenkarte()
   const rumpf = karte
-    ? `${karte.datum}\nFreigabe: ${karte.freigabe ?? '-'}${karte.freigabe && karte.ab ? ` ab ${karte.ab}` : ''}${karte.freigabe && karte.zweiteSeite ? ' seiten 2' : ''}\n${beschriftungZahlenkarte(karte)}\n`
+    ? `${karte.datum}\nFreigabe: ${karte.freigabe ?? '-'}${karte.freigabe && karte.ab ? ` ab ${karte.ab}` : ''}${karte.freigabe && zahlenkarteSeiten(karte) > 1 ? ` seiten ${zahlenkarteSeiten(karte)}` : ''}\n${beschriftungZahlenkarte(karte)}\n`
     : '-\nFreigabe: -\n'
   return new Response(rumpf, {
     headers: {
