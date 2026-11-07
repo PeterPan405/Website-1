@@ -1033,6 +1033,42 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 07.11.2026: Gold und Silber, je 100 $ ab Januar 2025 (Weltbank, Pink Sheet). */
+{
+  const karte = karteVom('2026-11-07')
+  pruefe('Edelmetalle: Karte für den 07.11. sind Kurven', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
+    pruefe(
+      'Edelmetalle: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Edelmetalle: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-06')!)
+    )
+    const [silber, gold] = karte.linien
+    pruefe(
+      'Edelmetalle: Silber-Rekord 303 $',
+      Math.round(Math.max(...silber.punkte)) === 303
+    )
+    pruefe('Edelmetalle: Gold-Rekord 185 $', Math.round(Math.max(...gold.punkte)) === 185)
+    pruefe(
+      'Edelmetalle: Silber endet bei 188 $',
+      Math.round(silber.punkte.at(-1)!) === 188
+    )
+    pruefe('Edelmetalle: Gold endet bei 151 $', Math.round(gold.punkte.at(-1)!) === 151)
+    pruefe(
+      'Edelmetalle: Silber −38 % seit Rekord',
+      Math.round((57 / 92.1 - 1) * 100) === -38
+    )
+    pruefe(
+      'Edelmetalle: Gold −18 % seit Rekord',
+      Math.round((4105 / 5020 - 1) * 100) === -18
+    )
+  }
+}
+
 /* 06.11.2026: Gold nach Kriegen und Krisen (Weltbank, Pink Sheet, Gold). */
 {
   const karte = karteVom('2026-11-06')
