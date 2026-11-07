@@ -38,7 +38,7 @@ Bis dahin gab es an Samstagen und Sonntagen nie Daily News. **Seit dem
 17.10.2026 erscheinen sie täglich** – Anordnung des Betreibers. Ein Wochenende
 ohne „Top-News" ist seither ein Ausfall.
 
-## Drei Sorten
+## Vier Sorten
 
 ### A — „Top-News des Tages"
 
@@ -247,6 +247,88 @@ im Kanal. Umgekehrt hält der Tagesnews-Veröffentlicher an, sobald heute
 irgendetwas im Kanal steht: Ein Rückfalllauf der Tagesnews **nach** 17 Uhr
 schickt deshalb nichts mehr. Bewusst so gelassen – die Tagesnews gehen
 nachts hinaus, ein Nachzügler am Abend wäre keine Tagesnachricht mehr.
+
+### D — Zahlenstrahl (Karussell zum Wischen)
+
+**Neu seit 07.11.2026, Anordnung des Betreibers.** Er schickte ein
+Bildschirmvideo eines Karussells von @traderepublic_de („Unternehmenswerte im
+Vergleich“, 11 Kacheln, gespeichert am 07.11.) und schrieb: „das könnten wir
+auch … mit so einem Zeitstrahl oder mehrere Seiten Swipe … mehrere Slides 2
+oder würden auch gehen. Dieser Zeitstrahl mit mehreren, das ist auch sehr
+interessant und interaktiv cool gestaltet“ – und ausdrücklich: das gehört
+**ins Regelwerk für den Content**. Damit gilt für den Tagesbeitrag nicht mehr
+nur „immer eine Seite“ (16.10.): Die Zahlenkarte bleibt eine Seite, der
+**Zahlenstrahl ist ein Karussell**.
+
+**Was das Vorbild ausmacht** (abgelesen an Kachel 4/11 und 11/11):
+
+- **Eine waagrechte Achse läuft durch alle Kacheln.** Wer wischt, wandert
+  auf ihr nach rechts – zu immer größeren Werten. Die Linie endet nie am
+  Kachelrand, sie geht in die nächste über; der Punkt eines Werts kann auf
+  der einen Kachel liegen und sein Etikett auf der nächsten anfangen.
+- **Jeder Wert ist ein Punkt auf der Linie mit einem Bild daran** –
+  Firmenlogo im weißen Rundkästchen, bei Personen ein Foto, bei Ländern ein
+  Stadtbild –, **abwechselnd über und unter der Linie**, dazu die Zahl
+  („880 Mrd. €“, „4,4 Bio. €“) und klein, was es ist („Vermögen von Elon
+  Musk“, „BIP Niederlande 2025“).
+- **Unten links ein Satz, der den Vergleich zuspitzt** – ein Kontrast, den
+  man nicht erwartet: „Adidas, VW, Siemens, SAP und Coca-Cola kommen
+  zusammen auf rund 873 Mrd. €. Walmart allein ist mehr wert.“ –
+  „NVIDIA liegt 130 Mrd. € vor Apple … VW passt 125-mal in NVIDIA.“
+- **Fremde Größen dazwischen** machen die Zahlen greifbar: ein
+  Privatvermögen, das BIP eines Landes. Ohne sie wären es nur Firmen.
+- Weißer Grund, viel Luft, Zähler oben rechts („4/11“), Wiederholung der
+  Reihenfolge klein → groß.
+
+**Bei uns** gilt der Hausstil (`INSTAGRAM-STIL.md`): weißer Grund, Logo oben
+mittig auf der ersten Kachel, Überschrift in Anton (schwarz und Navy), alles
+andere Open Sans, feine Linien. Dazu fest:
+
+1. **5 bis 8 Kacheln**, erste Kachel = Titel („Die Billionen-Liga“) mit der
+   Achse, die schon hereinläuft; letzte Kachel = der größte Wert und die
+   Folgerung, keine Aufforderung zu folgen.
+2. **Maßstab linear und durchgehend** – sonst lügt die Strecke. Liegen
+   Werte zu dicht, rücken die Bilder auseinander (über/unter), nie der
+   Punkt.
+3. **Jede Zahl aus unserem Bestand oder einer genannten Quelle, mit Stand.**
+   Börsenwerte: Kurs × Aktienzahl wie auf der Website
+   (`getFundamentalkennzahlen()`), umgerechnet mit dem EZB-Kurs aus
+   `kurse-aktuell.json`. Fußzeile auf jeder Kachel: „Stand: TT.MM.JJJJ |
+   Quellen: …“. Ein Satz unten sagt nur, was die Zahlen hergeben.
+4. **Kein Thema des Vorbilds nachbauen.** Eigene Vergleiche, eigene Sätze –
+   wir übernehmen die Form, nicht den Inhalt.
+5. **Freigabe wie jeder Tagesbeitrag** – Vorschlag, Entwurf aller Kacheln,
+   erst nach „passt“ hinaus (siehe C, Schritte 1–6).
+
+**Technisch noch offen** (Stand 07.11.2026): Die Zahlenkarte kann heute zwei
+Seiten (`zweiteSeite`, `/instagram/zahlenkarte-2.jpg`), der Veröffentlicher
+schon N Bilder als Karussell. Für D braucht es in
+`lib/instagram-zahlenkarte.ts` eine Art `zahlenstrahl`, die aus einer Liste
+`{ name, wert, anzeige, zusatz, bild }` alle Kacheln aus **einer**
+Panoramafläche (N × 1080 px breit) schneidet, und die Auslieferung
+`/instagram/zahlenkarte-2.jpg` … `-N.jpg`. Logos liegen unter
+`lib/instagram/logos/` (bisher: amazon, google, microsoft u. a. – Apple,
+Nvidia, Meta, Tesla, Broadcom fehlen und brauchen eine freie Quelle wie bei
+den Tagesbildern).
+
+**Erster Entwurf, für den 08.11.2026** – „Die Billionen-Liga“, Börsenwerte
+aus unserem Bestand (Kurse 06.11.2026 Schluss, Aktienzahl aus den
+SEC-Meldungen, 1 € = 1,1165 US-$, EZB 06.11.):
+
+    Broadcom     1,40 Bio. $  ≈ 1,26 Bio. €
+    Tesla        1,42 Bio. $  ≈ 1,27 Bio. €
+    Meta         1,55 Bio. $  ≈ 1,39 Bio. €
+    Amazon       2,80 Bio. $  ≈ 2,51 Bio. €
+    Alphabet     3,50 Bio. $  ≈ 3,14 Bio. €
+    Microsoft    3,94 Bio. $  ≈ 3,53 Bio. €
+    Nvidia       4,50 Bio. $  ≈ 4,03 Bio. €
+    Apple        5,00 Bio. $  ≈ 4,48 Bio. €
+
+Vor dem Entwurf **mit dem Kurs vom Tag neu rechnen**: Das Vorbild nannte drei
+Tage zuvor Nvidia 4,4 und Apple 4,3 Bio. €, bei uns liegt Apple vorn – das
+ist entweder Kursbewegung oder eine veraltete Aktienzahl; vor dem Posten
+klären. Ein deutscher Bezugspunkt (BIP Deutschland 2025, Destatis) kommt nur
+mit abgerufener Quelle hinein.
 
 ## Was der Betreiber beanstandet hat – und was es seitdem abfängt
 
