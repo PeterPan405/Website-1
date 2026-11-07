@@ -829,12 +829,21 @@
     },
     {
       "stelle": 5,
-      "datei": "2026-11-07-5-d8a0968c.jpg",
-      "titel": "File:Daimler-Benz Logo alt.svg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Daimler-Benz_Logo_alt.svg",
+      "datei": "2026-11-07-5-ed34e374.jpg",
+      "titel": "File:Logo-Daimler-und-Benz-Stiftung.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Logo-Daimler-und-Benz-Stiftung.svg",
       "lizenz": "Public domain",
       "urheber": "Unknown authorUnknown author",
       "suche": "Logo „Daimler\""
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-07-6-bf25c8c6.jpg",
+      "titel": "File:Anthropic logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Anthropic",
+      "suche": "Logo „Anthropic\""
     }
   ]
 }
