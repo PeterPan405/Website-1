@@ -120,6 +120,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Quellen: FAO Food Price Index (6.11.2026); Eurostat, Schnellschätzung Oktober 2026; Statistisches Bundesamt, PM Nr. 382 (30.10.2026); Weltbank, Pink Sheet (3.11.2026), Monatsmittel in US-Dollar; eigene Rechnung\n' +
       'Fotos (Wikimedia Commons): Dietmar Rabich, CC BY-SA 4.0 (Zucker); Bluemoose, CC BY-SA 3.0 (Weizen); Rocky Masum, CC BY-SA 4.0 (Reis); Roger Culos, CC BY-SA 3.0 (Kakao); Baoothersks, CC BY-SA 4.0 (Hähnchen); MarkSweep, gemeinfrei (Kaffee); Jellaluna, CC BY 2.0 (Rind); Evan-Amos, CC BY-SA 3.0 (Orangen)',
     schlagworte: ['lebensmittel', 'inflation', 'iran', 'rohstoffe', 'supermarkt'],
+    freigabe: '2026-11-07',
   },
   {
     /*
