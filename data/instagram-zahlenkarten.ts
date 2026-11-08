@@ -104,8 +104,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         name: 'Anthropic',
         wert: 0,
-        anzeige: '?',
-        zusatz: 'Börsengang geplant',
+        anzeige: '1,5–2 Bio.',
+        zusatz: 'erwartete Bewertung in $',
         logo: 'anthropic.png',
         offen: true,
       },
@@ -118,11 +118,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
       {
         kachel: 4,
-        text: 'SpaceX: fast dreimal so viel wie Aramco. Als Nächstes: Anthropic.',
+        text: 'Anthropic: erwartet 1,5 bis 2 Bio. $ Bewertung. SpaceX kam auf 1,77 Bio. $.',
       },
     ],
     fusszeile:
-      'Stand: 07.11.2026 | Quelle: Wikipedia (Largest IPOs by amount raised) | Logos: Wikimedia Commons, gemeinfrei',
+      'Stand: 07.11.2026 | Quellen: Wikipedia, Handelsblatt, CNBC | Logos: Wikimedia Commons, gemeinfrei',
     text:
       'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
       'Visa (2008): 19,7 Mrd. $\n' +
@@ -130,7 +130,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Alibaba (2014): 25,0 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
       'SpaceX (Juni 2026): 85,7 Mrd. $ – Rekord\n' +
-      'Anthropic: Börsengang geplant\n\n' +
+      'Anthropic: erwartete Bewertung 1,5 bis 2 Billionen $\n\n' +
       'Schon gewusst?\n' +
       '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
       '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n\n' +
