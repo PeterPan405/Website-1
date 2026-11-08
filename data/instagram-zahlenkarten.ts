@@ -104,8 +104,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         name: 'Anthropic',
         wert: 0,
-        anzeige: '1,5–2 Bio.',
-        zusatz: 'erwartete Bewertung in $',
+        anzeige: 'bis 100',
+        zusatz: 'erwartet · Termin offen',
         logo: 'anthropic.png',
         offen: true,
       },
@@ -118,11 +118,11 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
       {
         kachel: 4,
-        text: 'Anthropic: erwartet 1,5 bis 2 Bio. $ Bewertung. SpaceX kam auf 1,77 Bio. $.',
+        text: 'Anthropic könnte bis zu 100 Mrd. $ einsammeln – neuer Rekord.',
       },
     ],
     fusszeile:
-      'Stand: 07.11.2026 | Quellen: Wikipedia, Handelsblatt, CNBC | Logos: Wikimedia Commons, gemeinfrei',
+      'Stand: 07.11.2026 | Quellen: Wikipedia, CNN, Motley Fool | Logos: Wikimedia Commons, gemeinfrei',
     text:
       'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
       'Visa (2008): 19,7 Mrd. $\n' +
@@ -130,14 +130,14 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Alibaba (2014): 25,0 Mrd. $\n' +
       'Saudi Aramco (2019): 29,4 Mrd. $\n' +
       'SpaceX (Juni 2026): 85,7 Mrd. $ – Rekord\n' +
-      'Anthropic: erwartete Bewertung 1,5 bis 2 Billionen $\n\n' +
+      'Anthropic (geplant): bis zu 100 Mrd. $ erwartet\n\n' +
       'Schon gewusst?\n' +
       '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
       '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n\n' +
       'Und Anthropic?\n' +
-      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Für den Börsengang war von bis zu 2 Billionen $ die Rede – laut CNBC halten Investoren schon 1,5 Billionen für gewagt. Wie viel Geld der Börsengang einbringen soll, steht in unseren Quellen nicht.\n\n' +
+      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Laut Wall Street Journal (zitiert von CNN) könnte der Börsengang bis zu 100 Mrd. $ einbringen, bei einer Bewertung um 2 Billionen $ – mehr als SpaceX. Laut CNBC halten Investoren schon 1,5 Billionen für gewagt. Bestätigt hat Anthropic weder Betrag noch Termin.\n\n' +
       'Im Bild nach Jahr geordnet, die Abstände sind nicht maßstäblich. Erlös in US-Dollar, nominal.\n' +
-      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026\n' +
+      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026; CNN, 5.10.2026; Motley Fool, 3.10.2026\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],
     freigabe: '2026-11-08',
