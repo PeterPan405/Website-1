@@ -101,6 +101,308 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'nvidia-huang-spionagevorwurf-untersuchung',
+    title: 'Nvidia-Vorstand prüft Spionagevorwurf gegen Jensen Huang',
+    teaser:
+      'Nvidia-Chef Jensen Huang räumt eine Affäre ein. Der Verwaltungsrat prüft nun, ob die Frau für einen ausländischen Geheimdienst spioniert haben könnte.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Jensen Huang', 'Spionage', 'Technologiekonzerne'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          "CNBC, 8.11.2026, 23:53 Uhr: „Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy“",
+        url: 'https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html',
+      },
+      {
+        label:
+          'onvista, News-Ticker (dpa-AFX) vom 8.11.2026, 20:27 Uhr: „Nvidia prüft Berichte zu ausländischer Spionage gegen Chef“',
+        url: 'https://www.onvista.de/news/2026/11-08-nvidia-prueft-berichte-zu-auslaendischer-spionage-gegen-chef-0-10-26573925',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia-Chef Jensen Huang hat gegenüber der eigenen Belegschaft eingeräumt, eine außereheliche Beziehung gehabt zu haben. Das Unternehmen hat nach Angaben von CNBC eine interne Untersuchung eingeleitet, weil es Vorwürfe gibt, die betreffende Frau könnte für einen ausländischen Geheimdienst spioniert haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch eine Nachrichtenagentur berichtet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Huang teilte die Nachricht demnach per E-Mail an die Mitarbeiter von Nvidia mit. Der Verwaltungsrat des Unternehmens prüft seither, ob über die Beziehung vertrauliche Informationen abgeflossen sein könnten. Auch die Nachrichtenagentur dpa-AFX griff den Vorgang auf und berichtete am Sonntagabend, Nvidia prüfe Berichte zu ausländischer Spionage gegen den eigenen Chef.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelner Name den ganzen Markt bewegen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia stellt die gefragtesten Chips für den Aufbau von KI-Rechenzentren her und zählt zu den größten Unternehmen der Welt nach Börsenwert. Entsprechend genau verfolgen Investoren alles, was den Konzern und seine Führung betrifft – gerade in einer Phase, in der ohnehin Sorgen um die Bewertung von KI-Aktien die Kurse drücken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offene Fragen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder zum Ausgang der internen Untersuchung noch zu einem möglichen Zeitplan lagen am Sonntagabend weitere Angaben vor. Auch der Name der betroffenen Frau wurde in den bislang verfügbaren Berichten nicht genannt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich ein Spionagevorwurf gegen eine einzelne Person erhärtet, ist offen. Für Anleger zählt vor allem, ob die Führung eines so gewichtigen Unternehmens handlungsfähig bleibt – ein Risiko, das sich in keiner Bilanz zeigt, bis es zu spät ist.',
+      },
+    ],
+  },
+  {
+    slug: 'huthi-angriff-riad-trump-iran-gespraeche',
+    title: 'Huthi greifen Riad an, USA halten neue Angriffe im Iran für unwahrscheinlich',
+    metaTitle: 'Huthi greifen Riad an, neue Iran-Angriffe unwahrscheinlich',
+    teaser:
+      'Huthi-Rebellen griffen laut dpa-AFX einen Wolkenkratzer in Riad an. Trump hält neue US-Angriffe auf Iran für unwahrscheinlich, falls Gespräche vorankommen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Huthi', 'Saudi-Arabien', 'Iran', 'Ölmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker (dpa-AFX) vom 8.11.2026, 19:28 Uhr: „WDH/ROUNDUP 2: Huthi greifen Wolkenkratzer im Zentrum von Riad an“',
+        url: 'https://www.onvista.de/news/2026/11-08-wdh-roundup-2-huthi-greifen-wolkenkratzer-im-zentrum-von-riad-an-0-10-26573924',
+      },
+      {
+        label:
+          "CNBC, 8.11.2026, 22:53 Uhr: „Trump says renewed Iran strikes 'highly unlikely' if talks progress but warns he could still strike“",
+        url: 'https://www.cnbc.com/2026/11/08/trump-iran-strikes-unlikely-talks-hormuz.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Huthi-Rebellen aus dem Jemen haben nach Angaben der Nachrichtenagentur dpa-AFX einen Wolkenkratzer im Zentrum der saudi-arabischen Hauptstadt Riad angegriffen. Die Meldung liegt bislang nur von dieser einen Quelle vor; Angaben zu Schäden oder Verletzten gab es zunächst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump äußert sich zu neuen Angriffen auf Iran',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig davon sagte US-Präsident Donald Trump laut CNBC, neue amerikanische Angriffe auf Iran seien unwahrscheinlich, falls die Gespräche über das iranische Atomprogramm und die Straße von Hormus Fortschritte machten. Zugleich warnte er, er könne weiterhin zuschlagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Straße von Hormus bleibt ein Risiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus läuft ein erheblicher Teil des weltweiten Öltransports. Jede neue Spannung in der Region – ob durch Angriffe auf Saudi-Arabien oder durch die Gespräche zwischen den USA und Iran – wird deshalb an den Rohstoffmärkten verfolgt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung ohne zweite Quelle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Angriff auf den Wolkenkratzer in Riad lag zum Redaktionsschluss nur die Meldung von dpa-AFX vor; eine zweite, unabhängige Bestätigung stand noch aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Einzelne Vorfälle in der Region lassen sich nur schwer gegeneinander gewichten. Für den Ölpreis zählt weniger ein einzelner Angriff als die Frage, ob sich die Lage insgesamt weiter zuspitzt oder entspannt.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-stellt-cybertruck-produktion-ein',
+    title: 'Tesla stellt Cybertruck-Produktion in Texas ein',
+    teaser:
+      'Tesla will die Produktion des Cybertruck in Texas beenden. Elon Musk will die Kapazität für ein anderes Produkt nutzen – die Nachfrage blieb schwach.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Cybertruck', 'Elon Musk', 'Elektroautos'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 14:09 Uhr: „Tesla will Cybertruck-Produktion in Texas einstellen“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/tesla-produktion-cybertruck-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Tesla will die Produktion des Cybertruck am Werk in Texas einstellen. Das Elektro-Pickup sollte Teslas Antwort auf beliebte US-Pickups sein, blieb aber nach Angaben der Tagesschau deutlich hinter den Erwartungen zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Platz für ein anderes Produkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konzernchef Elon Musk will die freiwerdende Kapazität in der Fabrik für ein anderes Produkt nutzen. Wann genau die Produktion endet und was an die Stelle des Cybertruck tritt, ließ er bislang offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nur eine Quelle bislang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ankündigung ist bislang nur durch die Tagesschau belegt. Weitere Einzelheiten – etwa zu Mitarbeiterzahlen am Standort oder zu Kosten der Umstellung – lagen zum Redaktionsschluss nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Modell, das die hohen Erwartungen nicht einlöste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Cybertruck war bei seiner Vorstellung als Massenprodukt für den nordamerikanischen Pickup-Markt angekündigt worden, einem der umsatzstärksten Fahrzeugsegmente der USA. Dass Tesla die Fertigung nun schon wenige Jahre nach dem Produktionsstart zurückfährt, zeigt, wie weit die tatsächliche Nachfrage hinter dieser Ankündigung zurückblieb.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein eingestelltes Modell bindet Kapital, das in Werkzeuge und Fertigungslinien bereits investiert wurde. Wie viel davon sich noch amortisiert, hängt davon ab, wie schnell und wie profitabel sich die Fabrik auf ein neues Produkt umstellen lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'demokraten-wollen-trumps-zoelle-beenden',
+    title: 'Demokraten wollen Trumps Zölle beenden, Ökonomen erwarten weiter Streit',
+    metaTitle: 'Demokraten wollen Trumps Zölle beenden',
+    teaser:
+      'Die Demokraten wollen im neuen US-Kongress Trumps Zölle beenden. Deutsche Ökonomen rechnen trotz des Machtwechsels nicht mit einem schnellen Ende des Streits.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zölle', 'USA', 'Demokraten', 'Handelspolitik'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['sp500', 'dax'],
+    sources: [
+      {
+        label:
+          "CNBC, 8.11.2026, 16:36 Uhr: „How Democrats will try to end Trump's tariffs“",
+        url: 'https://www.cnbc.com/2026/11/08/trump-tariffs-democrats-congress-canada.html',
+      },
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 12:17 Uhr: „Welche Folgen die US-Midterms für die deutsche Wirtschaft haben“',
+        url: 'https://www.tagesschau.de/wirtschaft/midterms-wirtschaft-handelspolitik-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der voraussichtlich künftige Mehrheitsführer im US-Repräsentantenhaus, Hakeem Jeffries, hat die Zölle von Präsident Donald Trump als eine der obersten Prioritäten der Demokraten im neuen Kongress bezeichnet. Das berichtet CNBC. Wie die Partei dabei konkret vorgehen will, blieb zunächst offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutsche Ökonomen bleiben zurückhaltend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Tagesschau zitiert Ökonomen, die dem Machtwechsel im US-Kongress zwar mehr Planbarkeit für Unternehmen zutrauen, aber kein schnelles Ende des Zollstreits erwarten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Zölle mehr als zwei Länder betreffen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zölle verteuern Importe und wirken wie eine Steuer auf Handelsketten, die oft über mehrere Länder laufen. Ein Bauteil, das in einem Land gefertigt, in einem zweiten verarbeitet und in einem dritten verkauft wird, kann an mehreren Stellen betroffen sein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offener Zeitplan',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein konkretes Gesetzesvorhaben oder einen Zeitplan nannte Jeffries nach Angaben von CNBC bislang nicht. Auch Trump selbst hat sich zu den Ankündigungen der Demokraten noch nicht öffentlich geäußert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ankündigungen aus dem Wahlkampf oder kurz danach sind noch keine Gesetze. Viele der bestehenden Zölle hat Trump über die Exekutive verhängt – ob und wie der Kongress sie rückgängig machen kann, ist eine offene rechtliche und politische Frage.',
+      },
+    ],
+  },
+  {
+    slug: 'frankfurter-leben-problemkredite-private-credit',
+    title: 'Lebensversicherer Frankfurter Leben kämpft mit Problemkrediten',
+    teaser:
+      'Der Lebensversicherer Frankfurter Leben hat laut Handelsblatt Hunderte Millionen Euro in private Kredite investiert. Ein Dutzend steckt in Schwierigkeiten.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-09T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Lebensversicherung', 'Private Credit', 'Frankfurter Leben', 'Kapitalanlage'],
+    relatedTopics: ['rente', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 8.11.2026, 12:52 Uhr: „Versicherungen: Frankfurter Leben kämpft mit Problemfällen im Private-Credit-Portfolio“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/versicherer/versicherung-fehlgriffe-bei-privatmarkt-anlagen-belasten-frankfurter-leben/100263978.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Lebensversicherer Frankfurter Leben hat nach einem Bericht des Handelsblatts Hunderte Millionen Euro an den privaten Kreditmärkten verliehen. Rund ein Dutzend dieser Investments stecke derzeit in finanziellen Schwierigkeiten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was private Kreditmärkte sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Private Credit leihen Investoren wie Versicherer oder Fonds Unternehmen direkt Geld, ohne dass eine Bank dazwischensteht. Der Markt ist in den vergangenen Jahren stark gewachsen, weil Banken bei manchen Krediten vorsichtiger wurden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Unternehmen sieht keine Gefahr für Kunden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankfurter Leben erklärte laut Handelsblatt, Verluste für die Versicherten seien nicht zu befürchten. Zu den betroffenen Investments machte das Unternehmen keine näheren Angaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung, noch ohne zweite Quelle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Über die konkreten Problemfälle bei Frankfurter Leben berichtete bislang nur das Handelsblatt. Eine unabhängige Bestätigung durch eine zweite Redaktion liegt noch nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei einer Lebensversicherung steckt das Geld der Kunden oft jahrzehntelang in der Kapitalanlage des Versicherers. Ob sich einzelne Problemkredite in der Bilanz niederschlagen, zeigt sich deshalb oft erst mit großer Verzögerung – lange nachdem die erste Meldung darüber erschienen ist.',
+      },
+    ],
+  },
+  {
     slug: 'raketen-treffen-insel-qeschm-im-golf',
     title: 'Iran meldet Raketen auf Qeschm, Trump nennt „kleine Schläge“',
     metaTitle: 'Iran meldet Raketentreffer, Trump: „kleine Schläge“',
