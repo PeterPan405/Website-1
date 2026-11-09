@@ -13,6 +13,7 @@ import {
   form,
   LOGOFARBEN,
   pruefeZahlenkarte,
+  raetselProzent,
   signetOhneMitte,
   zahlenkartePng,
   zahlenkarteSeitePng,
@@ -1032,6 +1033,67 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
     )
+  }
+}
+
+/* 09.11.2026: Börsenrätsel – drei Kurven ohne Namen, Yahoo Finance, Stand 05.11.2026. */
+{
+  const karte = karteVom('2026-11-09')
+  pruefe('Rätsel: Karte für den 09.11. ist ein Rätsel', karte?.art === 'raetsel')
+  if (karte?.art === 'raetsel') {
+    pruefe(
+      'Rätsel: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Rätsel: zwei Kacheln je Rätsel', zahlenkarteSeiten(karte) === 6)
+    pruefe(
+      'Rätsel: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-08')!)
+    )
+    /* Aus data/snapshots/markets.json gerechnet, ganze Prozent. */
+    const erwartet: [string, number][] = [
+      ['Commerzbank', 469],
+      ['Nike', -77],
+      ['Rolls-Royce', 774],
+    ]
+    for (const [name, prozent] of erwartet) {
+      const q = karte.fragen.find((x) => x.name === name)
+      pruefe(
+        `Rätsel: ${name} ${prozent} %`,
+        q !== undefined && Math.round(raetselProzent(q.punkte)) === prozent
+      )
+      pruefe(
+        `Rätsel: ${name} steht mit derselben Zahl in der Beschreibung`,
+        karte.text.includes(`${name}: ${prozent < 0 ? '−' : '+'}${Math.abs(prozent)} %`)
+      )
+    }
+    const rr = karte.fragen.find((x) => x.name === 'Rolls-Royce')!
+    pruefe(
+      'Rätsel: Rolls-Royce vom Tief das 18-Fache',
+      Math.round(rr.punkte.at(-1)! / Math.min(...rr.punkte)) === 18
+    )
+    pruefe(
+      'Rätsel: ein Tipp, der die Lösung nennt, wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        fragen: [
+          { ...karte.fragen[0], tipp: 'Die Commerzbank.' },
+          ...karte.fragen.slice(1),
+        ],
+      }).some((f) => f.includes('verrät'))
+    )
+    pruefe(
+      'Rätsel: ein einzelnes Rätsel wird beanstandet',
+      pruefeZahlenkarte({ ...karte, fragen: karte.fragen.slice(0, 1) }).some((f) =>
+        f.includes('zwei bis vier')
+      )
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 2, 6]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(`Rätsel: Kachel ${nr} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
+    }
   }
 }
 
