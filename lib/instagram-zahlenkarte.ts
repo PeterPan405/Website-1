@@ -520,8 +520,6 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
  */
 export interface Raetselkarte extends KarteGemeinsam {
   art: 'raetsel'
-  /** Unterzeile auf der ersten Kachel – Stichpunkte, keine Sätze. */
-  erklaerung: string
   fragen: {
     /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
     frage?: string
@@ -529,6 +527,8 @@ export interface Raetselkarte extends KarteGemeinsam {
     tipp: string
     /** Kurse, alt nach neu, in der Währung der Quelle. */
     punkte: readonly number[]
+    /** Hinter dem Kurs in der Pille: „€“, „$“, „Pence“. */
+    einheit: string
     /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
     achse: { bei: number; text: string }[]
     /** Der Name, der aufgelöst wird. */
@@ -4903,9 +4903,6 @@ export async function zahlenkarteSeitePng(
 
 /* ---------------------------------------------------------------- Rätsel */
 
-const RS_GRAFIK_O = 720
-const RS_GRAFIK_U = 1110
-
 /** Veränderung vom ersten zum letzten Punkt in Prozent. */
 export function raetselProzent(punkte: readonly number[]): number {
   return (punkte[punkte.length - 1] / punkte[0] - 1) * 100
@@ -4921,8 +4918,6 @@ function pruefeRaetsel(k: Raetselkarte): string[] {
   const f: string[] = []
   if (k.fragen.length < 2 || k.fragen.length > 4)
     f.push(`${k.fragen.length} Rätsel – zwei bis vier.`)
-  if (k.erklaerung.length > 60)
-    f.push(`Unterzeile hat ${k.erklaerung.length} Zeichen – höchstens 60.`)
   for (const t of k.titel)
     if (t.text.length > 22) f.push(`Titelzeile „${t.text}“ – höchstens 22 Zeichen.`)
   for (const [i, q] of k.fragen.entries()) {
@@ -4957,7 +4952,7 @@ function raetselGrafik(q: Raetselkarte['fragen'][number]) {
   const rechts = ZK_BREITE - STIL_RAND - 90
   const luft = 10
   const breite = rechts - links
-  const hoehe = RS_GRAFIK_U - RS_GRAFIK_O
+  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
   const werte = q.punkte.map((v) => (v / q.punkte[0] - 1) * 100)
   const hoch = Math.max(0, ...werte)
   const tief = Math.min(0, ...werte)
@@ -4979,30 +4974,30 @@ function raetselGrafik(q: Raetselkarte['fragen'][number]) {
   const pfad = werte
     .map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`)
     .join(' ')
+  /* Hausstil: feine Linie ohne Fläche, Hilfslinien durchgezogen, Nulllinie dunkler, hohler Endpunkt. */
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
     striche
       .map(
         (v) =>
-          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#9aa3b0'}" stroke-width="${v ? 1.5 : 2.5}"/>`
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
       )
       .join('') +
-    `<path d="${pfad} L${x(werte.length - 1)} ${y(0)} L0 ${y(0)} Z" fill="${farbe}" opacity="0.08"/>` +
-    `<path d="${pfad}" fill="none" stroke="${farbe}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>` +
-    `<circle cx="${x(werte.length - 1)}" cy="${y(werte[werte.length - 1])}" r="8" fill="#ffffff" stroke="${farbe}" stroke-width="4"/>` +
+    `<path d="${pfad}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<circle cx="${x(werte.length - 1)}" cy="${y(werte[werte.length - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>` +
     '</svg>'
   return [
     h('img', {
       src: svgAdresse(svg),
       width: breite + 2 * luft,
       height: hoehe + 2 * luft,
-      style: { position: 'absolute', left: links - luft, top: RS_GRAFIK_O - luft },
+      style: { position: 'absolute', left: links - luft, top: STIL_GRAFIK_O - luft },
     }),
     ...striche.map((v) =>
       stilBlock(
         `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE')} %`,
         {
-          top: RS_GRAFIK_O + y(v) - 11,
+          top: STIL_GRAFIK_O + y(v) - 11,
           left: rechts + 18,
           fontSize: 17,
           color: STIL.hellgrau,
@@ -5011,7 +5006,7 @@ function raetselGrafik(q: Raetselkarte['fragen'][number]) {
     ),
     ...q.achse.map((a, i) =>
       stilBlock(a.text, {
-        top: RS_GRAFIK_U + 16,
+        top: STIL_GRAFIK_U + 16,
         left:
           i === 0
             ? links
@@ -5028,164 +5023,94 @@ function raetselGrafik(q: Raetselkarte['fragen'][number]) {
   ]
 }
 
+/** „6,81 €“, „1.239,6 Pence“ – deutsch, mit Einheit. */
+function raetselKurs(wert: number, einheit: string): string {
+  return `${wert.toLocaleString('de-DE', { maximumFractionDigits: 2 })} ${einheit}`
+}
+
+/**
+ * Eine Kachel des Rätsels im Hausstil (`INSTAGRAM-STIL.md`), gezeichnet von
+ * `stilBild()` wie jede andere Hausstil-Karte: Logo oben mittig auf jeder
+ * Kachel, Titel in zwei Zeilen, Unterzeile, Stichzeile, eine Heldenzahl mit
+ * Pille, die Kurve ohne Fläche. Kein Kasten.
+ *
+ * Betreiber, 09.11.2026, zur ersten Fassung (Logo im umrandeten Kasten,
+ * Fläche unter der Kurve, ab Kachel 2 ohne Logo): „sieht sehr nach KI aus,
+ * nicht hochwertig“.
+ *
+ * Rätselkachel: „Rätsel n von N“ / Frage, darunter der Tipp. Auflösung:
+ * „Auflösung“ / Name, darunter der Satz, und das Firmenlogo frei rechts
+ * neben der Heldenzahl – an der Stelle, die auf der Rätselkachel leer ist.
+ */
 function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
   const n = Math.ceil(nr / 2)
   const q = k.fragen[n - 1]
   const aufloesung = nr % 2 === 0
   const seiten = 2 * k.fragen.length
-  const prozent = raetselProzentText(q.punkte)
-  const farbe = stilFarbe(raetselProzent(q.punkte) >= 0 ? 'steigt' : 'faellt')
-
-  const kopf =
-    nr === 1
-      ? [
-          stilKopf(logo),
-          h(
-            'div',
-            {
+  const richtung = raetselProzent(q.punkte) >= 0 ? 'steigt' : 'faellt'
+  const titel = aufloesung
+    ? [{ text: 'Auflösung:' }, { text: q.name, gruen: true }]
+    : nr === 1
+      ? k.titel
+      : [
+          { text: `Rätsel ${n} von ${k.fragen.length}` },
+          { text: q.frage ?? '', gruen: true },
+        ]
+  const rahmen = {
+    titel,
+    erklaerung: aufloesung ? q.satz : `Tipp: ${q.tipp}`,
+    stichzeile: `Kurs · ${q.achse[0].text} bis ${q.achse[q.achse.length - 1].text}`,
+    fusszeile: k.fusszeile,
+  } as unknown as Kurvenkarte
+  const held: Held = {
+    name: 'In fünf Jahren',
+    wert: raetselProzentText(q.punkte),
+    richtung,
+    pille: {
+      wert: `${raetselKurs(q.punkte[0], q.einheit)} → ${raetselKurs(q.punkte[q.punkte.length - 1], q.einheit)}`,
+      name: 'Schlusskurs',
+    },
+  }
+  return stilBild(
+    rahmen,
+    logo,
+    [held],
+    [
+      ...raetselGrafik(q),
+      ...(aufloesung
+        ? [
+            h('img', {
+              src: logoAdresse(q.logo),
+              width: 340,
+              height: 150,
               style: {
                 position: 'absolute',
-                top: 150,
-                left: STIL_RAND,
+                top: 500,
                 right: STIL_RAND,
-                display: 'flex',
-                flexDirection: 'column',
-                fontFamily: 'Montserrat',
-                fontWeight: 800,
-                fontSize: 88,
-                lineHeight: 1.08,
-                letterSpacing: -2,
+                objectFit: 'contain',
+                objectPosition: 'right center',
               },
-            },
-            ...k.titel.map((t) =>
-              h(
-                'div',
-                { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
-                t.text
-              )
-            )
-          ),
-          stilBlock(k.erklaerung, {
-            top: 352,
-            left: STIL_RAND,
-            right: STIL_RAND,
-            fontSize: 28,
-            color: STIL.grau,
-          }),
-        ]
-      : [
-          stilBlock(`${nr} / ${seiten}`, {
-            top: 48,
-            right: STIL_RAND,
-            fontSize: 22,
-            fontWeight: 700,
-            color: STIL.hellgrau,
-          }),
-          ...(aufloesung
-            ? [
-                stilBlock('AUFLÖSUNG', {
-                  top: 150,
-                  left: STIL_RAND,
-                  ...GESPERRT,
-                  color: STIL.navy,
-                }),
-                h(
-                  'div',
-                  {
-                    style: {
-                      position: 'absolute',
-                      top: 196,
-                      left: STIL_RAND,
-                      width: ZK_BREITE - 2 * STIL_RAND,
-                      height: 220,
-                      borderRadius: 24,
-                      border: `2px solid ${STIL.rand}`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    },
-                  },
-                  h('img', {
-                    src: logoAdresse(q.logo),
-                    width: 560,
-                    height: 150,
-                    style: { objectFit: 'contain' },
-                  })
-                ),
-              ]
-            : [
-                stilBlock(q.frage ?? '', {
-                  top: 150,
-                  left: STIL_RAND,
-                  right: STIL_RAND,
-                  fontSize: 88,
-                  fontWeight: 800,
-                  letterSpacing: -2,
-                  color: STIL.tinte,
-                }),
-              ]),
-        ]
-
-  return h(
-    'div',
-    {
-      style: {
-        width: ZK_BREITE,
-        height: ZK_HOEHE,
-        display: 'flex',
-        position: 'relative',
-        backgroundColor: '#ffffff',
-        overflow: 'hidden',
-      },
-    },
-    ...kopf,
-    stilBlock(aufloesung ? q.name.toUpperCase() : `RÄTSEL ${n} VON ${k.fragen.length}`, {
-      top: 462,
-      left: STIL_RAND,
-      ...GESPERRT,
-      color: aufloesung ? STIL.tinte : STIL.hellgrau,
-    }),
-    stilBlock(prozent, {
-      top: 490,
-      left: STIL_RAND,
-      fontSize: 132,
-      fontWeight: 800,
-      letterSpacing: -4,
-      color: farbe,
-    }),
-    stilBlock('Kurs in fünf Jahren', {
-      top: 652,
-      left: STIL_RAND,
-      fontSize: 26,
-      color: STIL.grau,
-    }),
-    ...raetselGrafik(q),
-    stilBlock(aufloesung ? q.satz : `Tipp: ${q.tipp}`, {
-      top: 1166,
-      left: STIL_RAND,
-      width: ZK_BREITE - 2 * STIL_RAND,
-      fontSize: 30,
-      fontWeight: 600,
-      lineHeight: 1.3,
-      color: STIL.tinte,
-    }),
-    ...(nr < seiten
-      ? [
-          stilBlock(aufloesung ? 'Nächstes Rätsel  →' : 'Auflösung  →', {
-            top: 1236,
-            right: STIL_RAND,
-            fontSize: 20,
-            fontWeight: 700,
-            color: STIL.grau,
-          }),
-        ]
-      : []),
-    stilBlock(k.fusszeile, {
-      top: ZK_HOEHE - 52,
-      left: STIL_RAND,
-      right: STIL_RAND,
-      fontSize: 15,
-      color: STIL.hellgrau,
-    })
+            }),
+          ]
+        : []),
+      stilBlock(`${nr} / ${seiten}`, {
+        top: 56,
+        right: STIL_RAND,
+        fontSize: 20,
+        fontWeight: 700,
+        color: STIL.hellgrau,
+      }),
+      ...(nr < seiten
+        ? [
+            stilBlock(aufloesung ? 'Nächstes Rätsel  →' : 'Auflösung  →', {
+              top: ZK_HOEHE - 79,
+              right: STIL_RAND,
+              fontSize: 20,
+              fontWeight: 700,
+              color: STIL.grau,
+            }),
+          ]
+        : []),
+    ]
   )
 }
