@@ -133,11 +133,11 @@ umgestellt, jede mit einem Probebild für den Betreiber.
 
 Am 09.11.2026 liefen drei Fassungen derselben Karte durch:
 
-| Fassung                                                    | Urteil                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------- |
-| Erste: große Zahl, Kurve, Tipp; Logo im Kasten             | „das ursprüngliche … das wär besser“ – gilt          |
-| Im Rahmen von `stilBild()` (Logo mittig, Pille, Stichzeile) | „sieht sehr nach KI aus, nicht hochwertig“          |
-| Drei neue Stilrichtungen (Newsreader, IBM Plex, Space Grotesk) | „sieht alles schrecklich aus“                   |
+| Fassung                                                        | Urteil                                      |
+| -------------------------------------------------------------- | ------------------------------------------- |
+| Erste: große Zahl, Kurve, Tipp; Logo im Kasten                 | „das ursprüngliche … das wär besser“ – gilt |
+| Im Rahmen von `stilBild()` (Logo mittig, Pille, Stichzeile)    | „sieht sehr nach KI aus, nicht hochwertig“  |
+| Drei neue Stilrichtungen (Newsreader, IBM Plex, Space Grotesk) | „sieht alles schrecklich aus“               |
 
 Daraus die Form: Die **Rätselkachel** zeigt Frage, große Prozentzahl, Kurve
 und Tipp. Die **Auflösung** zeigt **nur das Logo und die Erläuterung**, ohne
