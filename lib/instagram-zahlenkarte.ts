@@ -4506,6 +4506,9 @@ function duellGrafik(k: Duellkarte) {
 /* Zahlenstrahl (Sorte D, 07.11.2026)                                        */
 /* ------------------------------------------------------------------------ */
 
+/** Der Kontoname, klein auf jeder Karussellkachel ohne Logo. */
+export const ABSENDER = '@im_invests'
+
 const ZS_ACHSE = 640
 const ZS_RECHTS = 150
 const ZS_LOGO_B = 210
@@ -4618,7 +4621,7 @@ function zahlenstrahlPlan(k: Zahlenstrahlkarte) {
   })
 }
 
-function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
+export function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
   const versatz = (nr - 1) * ZK_BREITE
   const breite = k.kacheln * ZK_BREITE
   const ende = breite - ZS_RECHTS / 2
@@ -4835,6 +4838,16 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
           }),
         ]
       : [
+          /* Ab Kachel 2 steht kein Logo – der Absender reist mit jedem
+             Bildschirmfoto mit (INSTAGRAM.md, Karussell-Regel 5). Höchste
+             Etikettenreihe beginnt bei y ≈ 116, hier ist Platz. */
+          stilBlock(ABSENDER, {
+            top: 48,
+            left: STIL_RAND,
+            fontSize: 22,
+            fontWeight: 700,
+            color: STIL.hellgrau,
+          }),
           stilBlock(`${nr} / ${k.kacheln}`, {
             top: 48,
             right: STIL_RAND,
