@@ -128,3 +128,18 @@ Die älteren Kartenarten tragen noch die Anton-Vorlage:
 
 Ihr Logo steht schon oben mittig. Sie werden nach und nach auf diesen Stil
 umgestellt, jede mit einem Probebild für den Betreiber.
+
+## Das Börsenrätsel (`raetsel`) – eigene Form, vom Betreiber so gewählt
+
+Am 09.11.2026 liefen drei Fassungen derselben Karte durch:
+
+| Fassung                                                    | Urteil                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------- |
+| Erste: große Zahl, Kurve, Tipp; Logo im Kasten             | „das ursprüngliche … das wär besser“ – gilt          |
+| Im Rahmen von `stilBild()` (Logo mittig, Pille, Stichzeile) | „sieht sehr nach KI aus, nicht hochwertig“          |
+| Drei neue Stilrichtungen (Newsreader, IBM Plex, Space Grotesk) | „sieht alles schrecklich aus“                   |
+
+Daraus die Form: Die **Rätselkachel** zeigt Frage, große Prozentzahl, Kurve
+und Tipp. Die **Auflösung** zeigt **nur das Logo und die Erläuterung**, ohne
+Zahl und ohne Kurve (Betreiber: „nicht mehr die große Zahl …, sondern nur
+noch das Logo und Erläuterung“). Rätsel und Auflösung wechseln sich ab.
