@@ -911,5 +911,53 @@
       "urheber": "Cie tsy-yin",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-11-09": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-09-1-27a7f3b8.jpg",
+      "titel": "File:Elizabeth Warren speaking outside of the Treasury Building.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Elizabeth_Warren_speaking_outside_of_the_Treasury_Building.jpg",
+      "lizenz": "CC BY 4.0",
+      "urheber": "SWinxy",
+      "suche": "speech deepcat:\"Elon Musk\""
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-09-2-b72a47cf.jpg",
+      "titel": "File:Nvidia Wordmark Logo (Old).svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Nvidia_Wordmark_Logo_(Old).svg",
+      "lizenz": "Public domain",
+      "urheber": "Nvidia Corporation",
+      "suche": "Logo „Nvidia\""
+    },
+    {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: tesla",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "tesla"
+    },
+    {
+      "stelle": 5,
+      "datei": "2026-11-09-5-79386045.jpg",
+      "titel": "File:2021-11-19 Damaged container ship, MV ZIM KINGSTON - IMO 9389693.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:2021-11-19_Damaged_container_ship,_MV_ZIM_KINGSTON_-_IMO_9389693.jpg",
+      "lizenz": "CC BY 4.0",
+      "urheber": "Gordon Leggett",
+      "suche": "container ship"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-09-6-ebf7d05a.jpg",
+      "titel": "File:Frankfurter Allgemeine Logo 2019.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Frankfurter_Allgemeine_Logo_2019.svg",
+      "lizenz": "Public domain",
+      "urheber": "Frankfurter Allgemeine Zeitung GmbH",
+      "suche": "Logo „Frankfurter\""
+    }
   ]
 }
