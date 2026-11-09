@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-11-08T02:46:15.301Z",
+  "fetchedAt": "2026-11-09T03:01:54.494Z",
   "instruments": {
     "eur-usd": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-11-06",
       "points": [
-        {"d":"2021-11-08","c":1.1579},
+        {"d":"2021-11-09","c":1.1577},
         {"d":"2021-11-15","c":1.1444},
         {"d":"2021-11-22","c":1.1278},
         {"d":"2021-11-29","c":1.1276},
@@ -496,7 +496,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-11-06",
       "points": [
-        {"d":"2021-11-08","c":7.4048},
+        {"d":"2021-11-09","c":7.3989},
         {"d":"2021-11-15","c":7.3034},
         {"d":"2021-11-22","c":7.1975},
         {"d":"2021-11-29","c":7.2002},
@@ -986,7 +986,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-11-06",
       "points": [
-        {"d":"2021-11-08","c":1.0591},
+        {"d":"2021-11-09","c":1.0592},
         {"d":"2021-11-15","c":1.0533},
         {"d":"2021-11-22","c":1.0454},
         {"d":"2021-11-29","c":1.044},
@@ -1476,7 +1476,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-11-06",
       "points": [
-        {"d":"2021-11-08","c":0.8548},
+        {"d":"2021-11-09","c":0.8538},
         {"d":"2021-11-15","c":0.8517},
         {"d":"2021-11-22","c":0.8392},
         {"d":"2021-11-29","c":0.8458},
@@ -1966,7 +1966,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-11-06",
       "points": [
-        {"d":"2021-11-08","c":131.29},
+        {"d":"2021-11-09","c":130.9},
         {"d":"2021-11-15","c":130.32},
         {"d":"2021-11-22","c":128.69},
         {"d":"2021-11-29","c":128.21},
