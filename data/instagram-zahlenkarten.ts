@@ -147,6 +147,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Quelle: Yahoo Finance, Stand 5.11.2026\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['börsenrätsel', 'aktien', 'commerzbank', 'nike', 'rollsroyce'],
+    freigabe: '2026-11-09',
   },
   {
     /*
