@@ -456,8 +456,9 @@ mehrseitige Zahlenkarte):
 4. **Seitenzähler** („3/5“) auf jeder Kachel ab der zweiten, klein, oben
    rechts. Wer das Ende sieht, wischt eher bis dorthin. Beim Vorbild von
    Trade Republic stand er auch so.
-5. **@im_invests klein auf jeder Kachel**, unten. Bildschirmfotos werden
-   ohne Absender weitergeschickt.
+5. **@im_invests klein auf jeder Kachel ohne Logo.** Beim Zahlenstrahl
+   steht er oben links, gegenüber dem Zähler. Bildschirmfotos werden ohne
+   Absender weitergeschickt.
 6. **Kein Text in den äußeren 120 px** des Deckblatts. Das Profilraster
    beschneidet anders als der Beitrag, und der Schnitt hat sich schon
    geändert.
@@ -486,10 +487,16 @@ mehrseitige Zahlenkarte):
   ausdrücklich weniger Kacheln („immer 2 auf einer Seite“). Seine Ansage
   gilt.
 
-**Stand der Umsetzung:** Bis 09.11. sind das nur Regeln. Seitenzähler,
-Absender und 32-px-Grenze sind in den Kachelgeneratoren noch nicht
-eingebaut (`lib/instagram-zahlenkarte.ts`, `lib/instagram-bild.ts`). Sie
-kommen beim nächsten Umbau hinein, mit einer Prüfung, die sie misst.
+**Stand der Umsetzung** (nachgesehen am 09.11.):
+
+- **Seitenzähler:** Zahlenstrahl und Rätsel hatten ihn schon („2 / 4“).
+- **Absender:** seit 09.11. auf den Zahlenstrahl-Kacheln ab Kachel 2 (`ABSENDER` in
+  `lib/instagram-zahlenkarte.ts`, geprüft in
+  `tests/instagram-zahlenkarte.test.ts`). Rätselkacheln tragen auf jeder Seite das
+  Logo.
+- **Offen:** „Top-News des Tages“ (A, `lib/instagram-bild.ts`) hat weder Zähler noch
+  Absender. Die Kacheln gehen ohne Freigabe hinaus, daher kommt beides erst nach
+  einem Musterbild, das der Betreiber gesehen hat.
 
 ## Gestaltungsrichtlinien
 

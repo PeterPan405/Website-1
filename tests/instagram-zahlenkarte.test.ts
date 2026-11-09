@@ -8,6 +8,7 @@ import { readFileSync } from 'node:fs'
 import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
 import {
+  ABSENDER,
   akzentfarbe,
   beschriftungZahlenkarte,
   form,
@@ -18,6 +19,7 @@ import {
   zahlenkartePng,
   zahlenkarteSeitePng,
   zahlenkarteSeiten,
+  zahlenstrahlKachel,
   ZK_BREITE,
   ZK_HOEHE,
   type Rangkarte,
@@ -1153,6 +1155,24 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
         start: 0,
         punkte: karte.punkte.filter((x) => x.wert < 40),
       }).some((f) => f.includes('keine leere Kachel'))
+    )
+    /* Karussell-Regel 5 (INSTAGRAM.md, 09.11.): Absender ab Kachel 2, wo kein Logo steht. */
+    const texte = (k: unknown): string[] => {
+      if (typeof k === 'string') return [k]
+      if (!k || typeof k !== 'object') return []
+      const kinder = (k as { props?: { children?: unknown } }).props?.children
+      return Array.isArray(kinder) ? kinder.flatMap(texte) : texte(kinder)
+    }
+    for (let nr = 2; nr <= karte.kacheln; nr++) {
+      const t = texte(zahlenstrahlKachel(karte, '', nr))
+      pruefe(
+        `Börsengänge: Kachel ${nr} trägt ${ABSENDER} und den Zähler`,
+        t.includes(ABSENDER) && t.includes(`${nr} / ${karte.kacheln}`)
+      )
+    }
+    pruefe(
+      'Börsengänge: das Deckblatt trägt keinen Absender (dort steht das Logo)',
+      !texte(zahlenstrahlKachel(karte, '', 1)).includes(ABSENDER)
     )
     pruefe(
       'Börsengänge: SpaceX fast dreimal Aramco',
