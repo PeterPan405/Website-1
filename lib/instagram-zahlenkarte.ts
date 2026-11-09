@@ -511,7 +511,37 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
   saetze: { kachel: number; text: string }[]
 }
 
+/**
+ * Das Börsenrätsel (09.11.2026, Betreiber: „such mal noch andere Ideen außer
+ * diesen Zahlenstrahl“ – gewählt: „Thema eins klingt cool“). Ein Karussell,
+ * je Rätsel zwei Kacheln: erst die Kurve ohne Namen, mit einem Tipp; wer
+ * wischt, sieht die Auflösung mit Logo – dieselbe Kurve an derselben Stelle.
+ * Die Prozentzahl wird aus den Punkten gerechnet, nicht eingetragen.
+ */
+export interface Raetselkarte extends KarteGemeinsam {
+  art: 'raetsel'
+  /** Unterzeile auf der ersten Kachel – Stichpunkte, keine Sätze. */
+  erklaerung: string
+  fragen: {
+    /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
+    frage?: string
+    /** Der Tipp unten auf der Rätselkachel – ohne den Namen. */
+    tipp: string
+    /** Kurse, alt nach neu, in der Währung der Quelle. */
+    punkte: readonly number[]
+    /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
+    achse: { bei: number; text: string }[]
+    /** Der Name, der aufgelöst wird. */
+    name: string
+    /** Datei in `lib/instagram/logos/`. */
+    logo: string
+    /** Der Satz unten auf der Auflösung. */
+    satz: string
+  }[]
+}
+
 export type Zahlenkarte =
+  | Raetselkarte
   | Zahlenstrahlkarte
   | Personenkarte
   | Kammerkarte
@@ -901,6 +931,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
+  else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
   else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
@@ -1256,7 +1287,8 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
-  if (k.art === 'zahlenstrahl') return zahlenkarteSeitePng(k, logoSvg, 1)
+  if (k.art === 'zahlenstrahl' || k.art === 'raetsel')
+    return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   if (
     k.art === 'kurven' ||
@@ -2587,8 +2619,10 @@ export function form(
   | 'vielfach'
   | 'kammern'
   | 'personen'
-  | 'zahlenstrahl' {
+  | 'zahlenstrahl'
+  | 'raetsel' {
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
+  if (k.art === 'raetsel') return 'raetsel'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -4836,6 +4870,7 @@ function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
 /** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
 export function zahlenkarteSeiten(k: Zahlenkarte): number {
   if (k.art === 'zahlenstrahl') return k.kacheln
+  if (k.art === 'raetsel') return 2 * k.fragen.length
   return 'zweiteSeite' in k && k.zweiteSeite ? 2 : 1
 }
 
@@ -4845,6 +4880,14 @@ export async function zahlenkarteSeitePng(
   logoSvg: string,
   nr: number
 ): Promise<Buffer> {
+  if (k.art === 'raetsel') {
+    const logo = svgAdresse(signetOhneMitte(logoSvg))
+    const antwort = new ImageResponse(
+      raetselKachel(k, logo, Math.min(Math.max(nr, 1), 2 * k.fragen.length)),
+      { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
+    )
+    return Buffer.from(await antwort.arrayBuffer())
+  }
   if (k.art === 'zahlenstrahl') {
     const logo = svgAdresse(signetOhneMitte(logoSvg))
     const antwort = new ImageResponse(
@@ -4856,4 +4899,293 @@ export async function zahlenkarteSeitePng(
   if (nr === 2 && 'zweiteSeite' in k && k.zweiteSeite)
     return zahlenkartePng(k.zweiteSeite, logoSvg)
   return zahlenkartePng(k, logoSvg)
+}
+
+/* ---------------------------------------------------------------- Rätsel */
+
+const RS_GRAFIK_O = 720
+const RS_GRAFIK_U = 1110
+
+/** Veränderung vom ersten zum letzten Punkt in Prozent. */
+export function raetselProzent(punkte: readonly number[]): number {
+  return (punkte[punkte.length - 1] / punkte[0] - 1) * 100
+}
+
+/** „+469 %“ – ganze Prozent, echtes Minus. */
+function raetselProzentText(punkte: readonly number[]): string {
+  const p = Math.round(raetselProzent(punkte))
+  return `${p < 0 ? '−' : '+'}${Math.abs(p).toLocaleString('de-DE')} %`
+}
+
+function pruefeRaetsel(k: Raetselkarte): string[] {
+  const f: string[] = []
+  if (k.fragen.length < 2 || k.fragen.length > 4)
+    f.push(`${k.fragen.length} Rätsel – zwei bis vier.`)
+  if (k.erklaerung.length > 60)
+    f.push(`Unterzeile hat ${k.erklaerung.length} Zeichen – höchstens 60.`)
+  for (const t of k.titel)
+    if (t.text.length > 22) f.push(`Titelzeile „${t.text}“ – höchstens 22 Zeichen.`)
+  for (const [i, q] of k.fragen.entries()) {
+    const nr = i + 1
+    if (q.punkte.length < 20)
+      f.push(`Rätsel ${nr}: ${q.punkte.length} Punkte – mindestens 20.`)
+    if (q.punkte.some((v) => !(v > 0)))
+      f.push(`Rätsel ${nr}: Kurse müssen über null liegen.`)
+    if (!existsSync(join(LOGO_ORDNER, q.logo)))
+      f.push(`Rätsel ${nr}: Logo „${q.logo}“ fehlt in lib/instagram/logos/.`)
+    if (q.tipp.length > 80)
+      f.push(`Rätsel ${nr}: Tipp hat ${q.tipp.length} Zeichen – höchstens 80.`)
+    if (q.satz.length > 80)
+      f.push(`Rätsel ${nr}: Satz hat ${q.satz.length} Zeichen – höchstens 80.`)
+    if ((q.frage ?? '').length > 22)
+      f.push(`Rätsel ${nr}: Frage „${q.frage}“ – höchstens 22 Zeichen.`)
+    if (i > 0 && !q.frage) f.push(`Rätsel ${nr}: braucht eine Frage als Überschrift.`)
+    /* Ein Rätsel, dessen Tipp die Lösung nennt, ist keins. */
+    const wort = q.name.split(/[\s-]+/)[0].toLowerCase()
+    if (`${q.tipp} ${q.frage ?? ''}`.toLowerCase().includes(wort))
+      f.push(`Rätsel ${nr}: Tipp oder Frage verrät „${q.name}“.`)
+    for (const a of q.achse)
+      if (a.bei < 0 || a.bei >= q.punkte.length)
+        f.push(`Rätsel ${nr}: Achse „${a.text}“ liegt außerhalb der Kurve.`)
+  }
+  return f
+}
+
+/** Die Kurve in Prozent seit dem ersten Punkt, mit Nulllinie und Achse rechts. */
+function raetselGrafik(q: Raetselkarte['fragen'][number]) {
+  const links = STIL_RAND
+  const rechts = ZK_BREITE - STIL_RAND - 90
+  const luft = 10
+  const breite = rechts - links
+  const hoehe = RS_GRAFIK_U - RS_GRAFIK_O
+  const werte = q.punkte.map((v) => (v / q.punkte[0] - 1) * 100)
+  const hoch = Math.max(0, ...werte)
+  const tief = Math.min(0, ...werte)
+  const schritt = achsenschritt(hoch - tief, 5)
+  const oben = Math.ceil(hoch / schritt) * schritt
+  /*
+    Unten reicht die Fläche bis zum tiefsten Punkt, nicht bis zum nächsten
+    Strich: Ein Knick auf −11 % hätte sonst bei Schritten von 200 % ein
+    Drittel der Grafik leer gelassen.
+  */
+  const unten = tief < -schritt / 2 ? Math.floor(tief / schritt) * schritt : tief
+  const x = (i: number) => (i / (werte.length - 1)) * breite
+  const y = (v: number) => hoehe - ((v - unten) / (oben - unten)) * hoehe
+  const striche = Array.from(
+    { length: Math.floor((oben - unten) / schritt + 1e-9) + 1 },
+    (_, i) => oben - i * schritt
+  ).filter((v) => v >= unten - 1e-9)
+  const farbe = stilFarbe(werte[werte.length - 1] >= 0 ? 'steigt' : 'faellt')
+  const pfad = werte
+    .map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`)
+    .join(' ')
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#9aa3b0'}" stroke-width="${v ? 1.5 : 2.5}"/>`
+      )
+      .join('') +
+    `<path d="${pfad} L${x(werte.length - 1)} ${y(0)} L0 ${y(0)} Z" fill="${farbe}" opacity="0.08"/>` +
+    `<path d="${pfad}" fill="none" stroke="${farbe}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<circle cx="${x(werte.length - 1)}" cy="${y(werte[werte.length - 1])}" r="8" fill="#ffffff" stroke="${farbe}" stroke-width="4"/>` +
+    '</svg>'
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 2 * luft,
+      height: hoehe + 2 * luft,
+      style: { position: 'absolute', left: links - luft, top: RS_GRAFIK_O - luft },
+    }),
+    ...striche.map((v) =>
+      stilBlock(
+        `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE')} %`,
+        {
+          top: RS_GRAFIK_O + y(v) - 11,
+          left: rechts + 18,
+          fontSize: 17,
+          color: STIL.hellgrau,
+        }
+      )
+    ),
+    ...q.achse.map((a, i) =>
+      stilBlock(a.text, {
+        top: RS_GRAFIK_U + 16,
+        left:
+          i === 0
+            ? links
+            : i === q.achse.length - 1
+              ? links + x(a.bei) - 120
+              : links + x(a.bei) - 60,
+        width: 120,
+        justifyContent:
+          i === 0 ? 'flex-start' : i === q.achse.length - 1 ? 'flex-end' : 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+  ]
+}
+
+function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
+  const n = Math.ceil(nr / 2)
+  const q = k.fragen[n - 1]
+  const aufloesung = nr % 2 === 0
+  const seiten = 2 * k.fragen.length
+  const prozent = raetselProzentText(q.punkte)
+  const farbe = stilFarbe(raetselProzent(q.punkte) >= 0 ? 'steigt' : 'faellt')
+
+  const kopf =
+    nr === 1
+      ? [
+          stilKopf(logo),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 150,
+                left: STIL_RAND,
+                right: STIL_RAND,
+                display: 'flex',
+                flexDirection: 'column',
+                fontFamily: 'Montserrat',
+                fontWeight: 800,
+                fontSize: 88,
+                lineHeight: 1.08,
+                letterSpacing: -2,
+              },
+            },
+            ...k.titel.map((t) =>
+              h(
+                'div',
+                { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+                t.text
+              )
+            )
+          ),
+          stilBlock(k.erklaerung, {
+            top: 352,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            fontSize: 28,
+            color: STIL.grau,
+          }),
+        ]
+      : [
+          stilBlock(`${nr} / ${seiten}`, {
+            top: 48,
+            right: STIL_RAND,
+            fontSize: 22,
+            fontWeight: 700,
+            color: STIL.hellgrau,
+          }),
+          ...(aufloesung
+            ? [
+                stilBlock('AUFLÖSUNG', {
+                  top: 150,
+                  left: STIL_RAND,
+                  ...GESPERRT,
+                  color: STIL.navy,
+                }),
+                h(
+                  'div',
+                  {
+                    style: {
+                      position: 'absolute',
+                      top: 196,
+                      left: STIL_RAND,
+                      width: ZK_BREITE - 2 * STIL_RAND,
+                      height: 220,
+                      borderRadius: 24,
+                      border: `2px solid ${STIL.rand}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    },
+                  },
+                  h('img', {
+                    src: logoAdresse(q.logo),
+                    width: 560,
+                    height: 150,
+                    style: { objectFit: 'contain' },
+                  })
+                ),
+              ]
+            : [
+                stilBlock(q.frage ?? '', {
+                  top: 150,
+                  left: STIL_RAND,
+                  right: STIL_RAND,
+                  fontSize: 88,
+                  fontWeight: 800,
+                  letterSpacing: -2,
+                  color: STIL.tinte,
+                }),
+              ]),
+        ]
+
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+        overflow: 'hidden',
+      },
+    },
+    ...kopf,
+    stilBlock(aufloesung ? q.name.toUpperCase() : `RÄTSEL ${n} VON ${k.fragen.length}`, {
+      top: 462,
+      left: STIL_RAND,
+      ...GESPERRT,
+      color: aufloesung ? STIL.tinte : STIL.hellgrau,
+    }),
+    stilBlock(prozent, {
+      top: 490,
+      left: STIL_RAND,
+      fontSize: 132,
+      fontWeight: 800,
+      letterSpacing: -4,
+      color: farbe,
+    }),
+    stilBlock('Kurs in fünf Jahren', {
+      top: 652,
+      left: STIL_RAND,
+      fontSize: 26,
+      color: STIL.grau,
+    }),
+    ...raetselGrafik(q),
+    stilBlock(aufloesung ? q.satz : `Tipp: ${q.tipp}`, {
+      top: 1166,
+      left: STIL_RAND,
+      width: ZK_BREITE - 2 * STIL_RAND,
+      fontSize: 30,
+      fontWeight: 600,
+      lineHeight: 1.3,
+      color: STIL.tinte,
+    }),
+    ...(nr < seiten
+      ? [
+          stilBlock(aufloesung ? 'Nächstes Rätsel  →' : 'Auflösung  →', {
+            top: 1236,
+            right: STIL_RAND,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : []),
+    stilBlock(k.fusszeile, {
+      top: ZK_HOEHE - 52,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 15,
+      color: STIL.hellgrau,
+    })
+  )
 }
