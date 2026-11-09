@@ -119,6 +119,7 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
       : (tagesbild(stand.datum, stelle) ?? (bild.motiv ? motivJpeg(bild.motiv) : null))
     const png = await meldungskachel(kachel.titel, kachel.text, {
       foto,
+      zaehler: { nr: stelle, von: hoechstens },
       kurs:
         verlauf ?? (bild.kurs ? await kachelKurs(bild.kurs, kachel, stand.datum) : null),
     })

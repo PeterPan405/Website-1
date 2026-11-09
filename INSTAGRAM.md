@@ -494,9 +494,13 @@ mehrseitige Zahlenkarte):
   `lib/instagram-zahlenkarte.ts`, geprüft in
   `tests/instagram-zahlenkarte.test.ts`). Rätselkacheln tragen auf jeder Seite das
   Logo.
-- **Offen:** „Top-News des Tages“ (A, `lib/instagram-bild.ts`) hat weder Zähler noch
-  Absender. Die Kacheln gehen ohne Freigabe hinaus, daher kommt beides erst nach
-  einem Musterbild, das der Betreiber gesehen hat.
+- **Top-News des Tages (A):** seit 09.11. auf jeder Meldungskachel (ab Kachel 2):
+  links `@im_invests`, rechts „3 / 6“, grau in 22 px. Sie stehen im Streifen zwischen
+  Überschrift und Bildzone (`ZAEHLER_OBEN` = 326 in `lib/instagram-bild.ts`). Die
+  längste erlaubte Überschrift (28 Zeichen, zwei Zeilen) endet bei y 288.
+  `tests/instagram-tagesnews.test.ts` prüft, dass der Streifen ohne Zähler leer ist
+  und mit Zähler beschriftet. Der Betreiber hat es ohne vorheriges Musterbild so
+  angeordnet („alles … puschen“, 09.11.). Das Deckblatt bleibt ohne Zähler.
 
 ## Gestaltungsrichtlinien
 
