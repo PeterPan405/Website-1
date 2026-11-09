@@ -50,6 +50,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     art: 'raetsel',
     datum: '2026-11-09',
     titel: [{ text: 'Welche Aktie' }, { text: 'ist das?', gruen: true }],
+    erklaerung: 'Drei Kurven · drei Tipps · wischen zur Auflösung',
     fragen: [
       {
         tipp: 'Eine Bank aus Frankfurt, im Dax.',
@@ -74,9 +75,8 @@ export const zahlenkarten: Zahlenkarte[] = [
           { bei: 131, text: 'Nov. 2026' },
         ],
         name: 'Commerzbank',
-        einheit: '€',
         logo: 'commerzbank.png',
-        satz: 'Fast so stark wie Nvidia im selben Zeitraum: +490 %.',
+        satz: 'Die Commerzbank stieg in fünf Jahren von 6,81 € auf 38,73 €. Fast so stark wie Nvidia im selben Zeitraum (+490 %).',
       },
       {
         frage: 'Und diese?',
@@ -103,9 +103,8 @@ export const zahlenkarten: Zahlenkarte[] = [
           { bei: 131, text: 'Nov. 2026' },
         ],
         name: 'Nike',
-        einheit: '$',
         logo: 'nike.png',
-        satz: 'Von 172 $ auf 40 $ – mehr als drei Viertel weg.',
+        satz: 'Nike fiel in fünf Jahren von 171,85 $ auf 39,56 $. Der Kurs hat mehr als drei Viertel verloren.',
       },
       {
         frage: 'Und die letzte?',
@@ -131,13 +130,12 @@ export const zahlenkarten: Zahlenkarte[] = [
           { bei: 131, text: 'Nov. 2026' },
         ],
         name: 'Rolls-Royce',
-        einheit: 'Pence',
         logo: 'rollsroyce.png',
-        satz: 'Vom Tief im Oktober 2022 aus: das 18-Fache.',
+        satz: 'Rolls-Royce verlor bis Oktober 2022 rund die Hälfte. Vom Tief aus hat sich der Kurs verachtzehnfacht.',
       },
     ],
     fusszeile:
-      'Stand: 05.11.2026 | Quelle: Yahoo Finance, ohne Dividenden | Logos: Commons',
+      'Stand: 05.11.2026 | Quelle: Yahoo Finance, ohne Dividenden | Logos: Wikimedia Commons, gemeinfrei',
     text:
       'Drei Aktien, drei Kurven – erkennst du sie? Erst raten, dann wischen.\n\n' +
       'Die Auflösung, Kurs vom 8.11.2021 bis 5.11.2026:\n' +
