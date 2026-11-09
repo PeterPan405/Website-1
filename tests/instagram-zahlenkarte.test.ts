@@ -79,8 +79,12 @@ pruefe(
   new Set(zahlenkarten.map((k) => k.datum)).size === zahlenkarten.length
 )
 
-/* Die Prüfung muss beanstanden, was das Muster verfehlt. */
-const gut = aktuelleZahlenkarte()!
+/*
+  Die Prüfung muss beanstanden, was das Muster verfehlt. Vorlage ist die
+  jüngste Karte, die eine Pointe braucht – das Rätsel trägt seinen Titel in
+  einer Farbe (Betreiber, 09.11.2026).
+*/
+const gut = zahlenkarten.find((k) => k.art !== 'raetsel') ?? aktuelleZahlenkarte()!
 const kaputt: Zahlenkarte = {
   ...gut,
   titel: [{ text: 'Ohne Pointe' }],
@@ -1084,6 +1088,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
           ...karte.fragen.slice(1),
         ],
       }).some((f) => f.includes('verrät'))
+    )
+    pruefe(
+      'Rätsel: Titel in einer Farbe, ohne Pointe – keine Beanstandung (Betreiber: „in einer Farbe“)',
+      karte.titel.every((t) => !t.gruen && !t.richtung) &&
+        !pruefeZahlenkarte(karte).some((f) => f.includes('Pointe'))
     )
     pruefe(
       'Rätsel: ein einzelnes Rätsel wird beanstandet',
