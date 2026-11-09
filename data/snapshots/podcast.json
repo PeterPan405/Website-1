@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-08T10:46:00.611Z",
+  "abgerufenAm": "2026-11-09T01:00:04.594Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "nvidia-vorstand-prueft-spionagevorwurf-gegen-jensen-huang-und-huthi-greifen-riad",
+      "titel": "Nvidia-Vorstand prüft Spionagevorwurf gegen Jensen Huang und Huthi greifen Riad",
+      "beschreibung": "Nvidia prüft einen Spionagevorwurf gegen Chef Jensen Huang, Huthi greifen Riad an, und Tesla stellt die Cybertruck-Produktion in Texas ein. Nvidia-Chef Jensen Huang hat seinen Mitarbeitern per E-Mail mitgeteilt, er habe eine außereheliche Beziehung gehabt. Das berichtet CNBC unter Berufung auf die Nachricht an die Belegschaft.\n\nWir sprechen über Tesla stellt Cybertruck-Produktion in Texas und Demokraten wollen Trumps Zölle beenden. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:37) Nvidia-Vorstand prüft Spionagevorwurf gegen\n(1:14) Huthi greifen Riad\n(1:51) Tesla stellt Cybertruck-Produktion in Texas\n(2:23) Demokraten wollen Trumps Zölle beenden\n(2:59) Lebensversicherer Frankfurter Leben kämpft\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-09",
+      "dauerSekunden": 222,
+      "url": "https://iminvests.de/podcast-audio/2026-11-09.mp3",
+      "youtubeId": "hEVbDU5EoqE"
+    },
     {
       "slug": "iran-meldet-raketentreffer-und-deutsche-industrie-waechst-ueberraschend",
       "titel": "Iran meldet Raketentreffer und Deutsche Industrie wächst überraschend",
