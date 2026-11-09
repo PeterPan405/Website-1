@@ -436,6 +436,61 @@ Steht an allen Beiträgen. Über die Schnittstelle setzt es `is_ai_generated`
 am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 (Metas Referenz zu `/{ig-user-id}/media`, nachgelesen am 11.10.2026).
 
+## Karussell-Regeln aus `ig-carousel` (geprüft am 09.11.2026)
+
+Der Betreiber schickte am 09.11. ein Reel („Claude just killed Instagram!“).
+Es wirbt für `github.com/Jakeschincariol/instagram-agent-skill`: 13 Skills,
+MIT, 5.617 Sterne. **Das Repo plant und veröffentlicht nichts.** Das tut bei
+uns `instagram-beitrag.yml` längst. Brauchbar ist aber die Anleitung für
+Karussells. Übernommen in eigener Fassung, für jedes Karussell (A, D und jede
+mehrseitige Zahlenkarte):
+
+1. **Deckblatt: höchstens sechs Wörter Überschrift.** Sie muss auch im
+   Profilraster als Vorschaubild lesbar sein. Das Deckblatt entscheidet, ob
+   gewischt wird.
+2. **Kachel 2 muss allein stehen.** Instagram zeigt ein Karussell erneut ab
+   einer späteren Kachel, wenn jemand beim ersten Mal nicht reagiert hat.
+   Kachel 2 ist also ein zweites Deckblatt und keine Überleitung.
+3. **Eine Aussage je Kachel.** Überschrift 3 bis 7 Wörter, darunter höchstens
+   25 Wörter. Was mehr braucht, wird zwei Kacheln.
+4. **Seitenzähler** („3/5“) auf jeder Kachel ab der zweiten, klein, oben
+   rechts. Wer das Ende sieht, wischt eher bis dorthin. Beim Vorbild von
+   Trade Republic stand er auch so.
+5. **@im_invests klein auf jeder Kachel**, unten. Bildschirmfotos werden
+   ohne Absender weitergeschickt.
+6. **Kein Text in den äußeren 120 px** des Deckblatts. Das Profilraster
+   beschneidet anders als der Beitrag, und der Schnitt hat sich schon
+   geändert.
+7. **Die Aussage einer Kachel nie unter 32 px** (auf 1080 px gerechnet).
+   Gelesen wird auf einem Telefon in etwa einem Drittel der Größe. Die
+   Vorlage verlangt das für jede Schrift. Bei uns gilt es nur für Überschrift
+   und Kernsatz, denn Fußzeile, Quellen und Achsenbeschriftung stehen in den
+   Generatoren bewusst bei 15 bis 24 px. Nachgezählt am 09.11.: 59
+   Schriftangaben in diesem Bereich, alle in Beiträgen, die schon draußen
+   sind. Diese Stellen werden nicht ohne Rückfrage vergrößert.
+8. **Alternativtext zum Deckblatt.** Erst einbauen, wenn Metas Referenz für
+   `/{ig-user-id}/media` das Feld `alt_text` nennt; nachlesen, nicht raten.
+
+**Bewusst nicht übernommen:**
+
+- **„Recap“-Kachel** zum Abfotografieren. Bei Sorte D ist die letzte Kachel
+  schon die Folgerung. Bei A wäre sie eine Wiederholung, und „Nichts
+  doppelt“ gilt.
+- **Aufruf am Ende** („kommentiere ein Stichwort“, „folge“). Das widerspricht
+  D, Regel 1, und der Wortwahl für Finanzinhalte: keine Aufforderung, kein
+  Handlungsdruck.
+- **„Humanizer“**, der Gedankenstriche und typografische Anführungszeichen
+  ersetzt. Im Deutschen ist der Gedankenstrich Rechtschreibung, kein Merkmal
+  von KI-Text.
+- **6 bis 10 Kacheln als Untergrenze.** Der Betreiber wollte am 07.11.
+  ausdrücklich weniger Kacheln („immer 2 auf einer Seite“). Seine Ansage
+  gilt.
+
+**Stand der Umsetzung:** Bis 09.11. sind das nur Regeln. Seitenzähler,
+Absender und 32-px-Grenze sind in den Kachelgeneratoren noch nicht
+eingebaut (`lib/instagram-zahlenkarte.ts`, `lib/instagram-bild.ts`). Sie
+kommen beim nächsten Umbau hinein, mit einer Prüfung, die sie misst.
+
 ## Gestaltungsrichtlinien
 
 Vom Betreiber, 16.10.2026, für alle IM-Invest-Beiträge:
