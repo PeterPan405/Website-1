@@ -520,8 +520,6 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
  */
 export interface Raetselkarte extends KarteGemeinsam {
   art: 'raetsel'
-  /** Unterzeile auf der ersten Kachel – Stichpunkte, keine Sätze. */
-  erklaerung: string
   fragen: {
     /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
     frage?: string
@@ -915,7 +913,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     f.push(
       `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
     )
-  if (!k.titel.some((t) => t.gruen || t.richtung))
+  if (k.art !== 'raetsel' && !k.titel.some((t) => t.gruen || t.richtung))
     f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
   /*
     Meta nimmt höchstens 2.200 Zeichen. Am 30.10.2026 waren es mit
@@ -5046,7 +5044,9 @@ function raetselGrafik(q: Raetselkarte['fragen'][number]) {
  * Betreiber, 09.11.2026: Eine Fassung im Rahmen von stilBild() und drei
  * neue Stilrichtungen hat er verworfen („sieht alles schrecklich aus“). Er
  * will die erste Fassung, nur die Auflösung anders: „nicht mehr die große
- * Zahl …, sondern nur noch das Logo und Erläuterung“.
+ * Zahl …, sondern nur noch das Logo und Erläuterung“. Danach: Titel in
+ * einer Farbe, kein Zähler oben rechts, kein „Rätsel 2 von 3“ und keine
+ * Unterzeile „Drei Kurven · drei Tipps“ – „diese Beschriftungen weg“.
  */
 function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
   const n = Math.ceil(nr / 2)
@@ -5056,13 +5056,6 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
   const prozent = raetselProzentText(q.punkte)
   const farbe = stilFarbe(raetselProzent(q.punkte) >= 0 ? 'steigt' : 'faellt')
 
-  const zaehler = stilBlock(`${nr} / ${seiten}`, {
-    top: 48,
-    right: STIL_RAND,
-    fontSize: 22,
-    fontWeight: 700,
-    color: STIL.hellgrau,
-  })
   const weiter =
     nr < seiten
       ? [
@@ -5100,7 +5093,6 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
 
   if (aufloesung)
     return flaeche(
-      zaehler,
       stilBlock('AUFLÖSUNG', {
         top: 150,
         left: STIL_RAND,
@@ -5173,24 +5165,13 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
                 letterSpacing: -2,
               },
             },
+            /* In einer Farbe (Betreiber, 09.11.2026: „welche Aktie ist das in einer Farbe“). */
             ...k.titel.map((t) =>
-              h(
-                'div',
-                { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
-                t.text
-              )
+              h('div', { style: { display: 'flex', color: STIL.tinte } }, t.text)
             )
           ),
-          stilBlock(k.erklaerung, {
-            top: 352,
-            left: STIL_RAND,
-            right: STIL_RAND,
-            fontSize: 28,
-            color: STIL.grau,
-          }),
         ]
       : [
-          zaehler,
           stilBlock(q.frage ?? '', {
             top: 150,
             left: STIL_RAND,
@@ -5204,12 +5185,6 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
 
   return flaeche(
     ...kopf,
-    stilBlock(`RÄTSEL ${n} VON ${k.fragen.length}`, {
-      top: 462,
-      left: STIL_RAND,
-      ...GESPERRT,
-      color: STIL.hellgrau,
-    }),
     stilBlock(prozent, {
       top: 490,
       left: STIL_RAND,

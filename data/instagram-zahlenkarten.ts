@@ -49,8 +49,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'raetsel',
     datum: '2026-11-09',
-    titel: [{ text: 'Welche Aktie' }, { text: 'ist das?', gruen: true }],
-    erklaerung: 'Drei Kurven · drei Tipps · wischen zur Auflösung',
+    titel: [{ text: 'Welche Aktie' }, { text: 'ist das?' }],
     fragen: [
       {
         tipp: 'Eine Bank aus Frankfurt, im Dax.',
