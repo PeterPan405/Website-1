@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-08T12:04:58.424Z",
+  "abgerufenAm": "2026-11-09T14:09:05.588Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -41,9 +41,9 @@
       "tageAbgefragt": 50,
       "tageMitZeilen": 34,
       "letzterTag": "2026-12-30",
-      "zeilen": 1806,
+      "zeilen": 1815,
       "imKatalog": 61,
-      "mitLage": 36,
+      "mitLage": 40,
       "beigetragen": 61
     }
   },
@@ -1691,24 +1691,24 @@
     "BRK-B": {
       "name": "BERKSHIRE HATHAWAY INC",
       "bisher": [
+        "2026-11-09",
         "2026-08-11",
         "2026-05-07",
         "2026-03-02",
         "2025-11-03",
         "2025-08-04",
         "2025-05-06",
-        "2025-02-24",
-        "2024-11-04"
+        "2025-02-24"
       ],
       "bisherZeiten": {
+        "2026-11-09": "06:10",
         "2026-08-11": "15:52",
         "2026-05-07": "16:33",
         "2026-03-02": "17:27",
         "2025-11-03": "13:48",
         "2025-08-04": "15:55",
         "2025-05-06": "17:11",
-        "2025-02-24": "16:15",
-        "2024-11-04": "06:03"
+        "2025-02-24": "16:15"
       },
       "vorhersagen": [
         {
@@ -1728,6 +1728,11 @@
           "basis": "2026-08-11",
           "streuungTage": 8,
           "newYorkerZeit": "15:52"
+        },
+        {
+          "erwartet": "2027-11-08",
+          "basis": "2026-11-09",
+          "streuungTage": 7
         }
       ]
     },
@@ -3113,7 +3118,9 @@
           "erwartet": "2026-12-01",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-04",
@@ -3159,10 +3166,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-12-09",
+          "erwartet": "2026-12-08",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-24",
@@ -7412,24 +7421,24 @@
     "CEG": {
       "name": "Constellation Energy Corp",
       "bisher": [
+        "2026-11-09",
         "2026-08-06",
         "2026-05-11",
         "2026-02-24",
         "2025-11-07",
         "2025-08-07",
         "2025-05-06",
-        "2025-02-18",
-        "2024-11-04"
+        "2025-02-18"
       ],
       "bisherZeiten": {
+        "2026-11-09": "06:53",
         "2026-08-06": "06:52",
         "2026-05-11": "06:59",
         "2026-02-24": "06:56",
         "2025-11-07": "07:00",
         "2025-08-07": "06:58",
         "2025-05-06": "06:50",
-        "2025-02-18": "06:59",
-        "2024-11-04": "06:54"
+        "2025-02-18": "06:59"
       },
       "vorhersagen": [
         {
@@ -7457,6 +7466,12 @@
           "basis": "2026-08-06",
           "streuungTage": 0,
           "newYorkerZeit": "06:52"
+        },
+        {
+          "erwartet": "2027-11-08",
+          "basis": "2026-11-09",
+          "streuungTage": 3,
+          "newYorkerZeit": "06:53"
         }
       ]
     },
@@ -8591,7 +8606,9 @@
           "erwartet": "2026-12-03",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-03-04",
@@ -17387,10 +17404,12 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-24",
+          "erwartet": "2026-11-19",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         }
       ]
     },
@@ -17896,7 +17915,7 @@
     "ORSTED.CO": "2026-11-06",
     "P911.DE": "2026-11-07",
     "PAH3.DE": "2026-11-08",
-    "PETR4.SA": "2026-08-18",
+    "PETR4.SA": "2026-11-09",
     "PGHN.SW": "2026-08-19",
     "PHIA.AS": "2026-08-19",
     "PKN.WA": "2026-08-19",
@@ -18024,7 +18043,7 @@
     "TRI.TO": "2026-08-19",
     "TRN.MI": "2026-08-19",
     "TRP.TO": "2026-08-19",
-    "TSCO.L": "2026-08-18",
+    "TSCO.L": "2026-11-09",
     "TSM": "2026-08-18",
     "TTE.PA": "2026-08-18",
     "U11.SI": "2026-08-18",
