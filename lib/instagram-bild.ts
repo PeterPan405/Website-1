@@ -115,6 +115,10 @@ export interface KachelKurs {
   weiß, mit dem Wasserzeichen.
 */
 export const BILDZONE = { oben: 365, unten: 960, links: 35, breite: 1010 }
+/** Oberkante des Streifens mit Zähler und Absender. */
+export const ZAEHLER_OBEN = 326
+/** Der Kontoname auf jeder Kachel (Karussell-Regel 5). */
+export const ABSENDER = '@im_invests'
 const KURSHOEHE = 340
 const LUECKE = 20
 
@@ -335,7 +339,12 @@ function kursKasten(kurs: KachelKurs, hoehe: number) {
 export async function meldungskachel(
   titel: string,
   text: string,
-  bild: { foto?: Buffer | null; kurs?: KachelKurs | null } = {}
+  bild: {
+    foto?: Buffer | null
+    kurs?: KachelKurs | null
+    /** Seitenzähler und Absender (Karussell-Regeln 4 und 5, INSTAGRAM.md). */
+    zaehler?: { nr: number; von: number } | null
+  } = {}
 ): Promise<Buffer> {
   /*
     Zahl und Einheit bleiben zusammen: „UK-Inflation auf 3,5 %" brach am
@@ -425,6 +434,37 @@ export async function meldungskachel(
         },
         titel.trim()
       ),
+      /*
+        Zähler und Absender im Streifen zwischen Überschrift (höchstens zwei
+        Zeilen, endet bei y ≈ 316) und Bildzone (ab 365) – dort steht sonst
+        nichts, auch nicht auf der Grundplatte.
+      */
+      ...(bild.zaehler
+        ? [
+            h(
+              'div',
+              {
+                style: {
+                  position: 'absolute',
+                  top: ZAEHLER_OBEN,
+                  left: BILDZONE.links,
+                  width: BILDZONE.breite,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontFamily: 'Open Sans',
+                  fontSize: 22,
+                  color: '#8a8a8a',
+                },
+              },
+              h('div', { style: { display: 'flex' } }, ABSENDER),
+              h(
+                'div',
+                { style: { display: 'flex' } },
+                `${bild.zaehler.nr} / ${bild.zaehler.von}`
+              )
+            ),
+          ]
+        : []),
       h(
         'div',
         {

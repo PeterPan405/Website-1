@@ -25,11 +25,13 @@ import { readFileSync } from 'node:fs'
 import sharp from 'sharp'
 
 import {
+  BILDZONE,
   deckblaetter,
   deckblatt,
   NEUTRALE_DECKBLAETTER,
   meldungskachel,
   NICHT_ALS_DECKBLATT,
+  ZAEHLER_OBEN,
 } from '@/lib/instagram-bild'
 import {
   ANWEISUNG_INSTAGRAM,
@@ -278,6 +280,39 @@ pruefen(
 pruefen(
   `Text an der Höchstgrenze bleibt bei höchstens fünf Zeilen – ${lang.unten.length}`,
   lang.unten.length <= 5
+)
+
+/*
+  Zähler und Absender (Karussell-Regeln 4 und 5, 09.11.2026): im Streifen
+  zwischen Überschrift und Bildzone. Die längste Überschrift muss darüber
+  enden, und ohne Zähler bleibt der Streifen leer – sonst misst das nichts.
+*/
+async function tinteImStreifen(png: Buffer): Promise<number> {
+  const { data, info } = await sharp(png)
+    .greyscale()
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  let n = 0
+  for (let y = ZAEHLER_OBEN - 6; y < BILDZONE.oben; y++)
+    for (let x = 0; x < info.width; x++) if (data[y * info.width + x] < 200) n++
+  return n
+}
+const zweizeilig = [
+  'Palantir: Bewertung im Fokus'.slice(0, TITEL_MAX),
+  schwer.slice(0, TEXT_MAX),
+]
+const mitZaehler = await meldungskachel(zweizeilig[0], zweizeilig[1], {
+  zaehler: { nr: 3, von: 6 },
+})
+const ohneZaehler = await meldungskachel(zweizeilig[0], zweizeilig[1])
+pruefen(
+  `Längste Überschrift endet über dem Zähler (y ${lang.oben.at(-1)?.[1]} < ${ZAEHLER_OBEN - 6})`,
+  (lang.oben.at(-1)?.[1] ?? 999) < ZAEHLER_OBEN - 6
+)
+pruefen('Ohne Zähler ist der Streifen leer', (await tinteImStreifen(ohneZaehler)) === 0)
+pruefen(
+  'Mit Zähler steht im Streifen Schrift (Absender und „3 / 6“)',
+  (await tinteImStreifen(mitZaehler)) > 200
 )
 
 // ------------------------------------------------------------ Deckblätter
