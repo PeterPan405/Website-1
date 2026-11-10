@@ -150,7 +150,7 @@ export function ueberblick(anzahl: number): string {
  */
 export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags.
 
-- \`kacheln\`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Kein Thema aus den Kacheln der letzten drei Tage** (\`data/instagram/\`), außer bei starker Veränderung – die Prüfung weist es zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
+- \`kacheln\`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Ein Thema aus den Kacheln der letzten drei Tage** (\`data/instagram/\`) nur bei starker Veränderung und nur als letzte Kachel – die Prüfung weist es sonst zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
 - **So/Mo** auch Politik und Termine der Woche (nur aus Quellen).
   - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
   - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
@@ -304,6 +304,26 @@ const KEIN_THEMA = new Set([
   'werk',
   'chef',
   'co',
+  /*
+    Fehlgriffe der Dauerthemen-Prüfung, gemessen am 10.11.2026 über die
+    Überschriften vom 01.10. bis 10.11.: „Dax rutscht unter 25.000, 200-Tage-
+    Linie hält“, „EZB-Tag“, „Dow … unter Druck“, „zwei EZB-Reden“, „Wall
+    Street“ als Ort jeder US-Börsenmeldung, „Angriff“ in Kiew wie am Golf.
+  */
+  'tag',
+  'tage',
+  'linie',
+  'druck',
+  'rede',
+  'reden',
+  'angriff',
+  'angriffe',
+  'wall',
+  'street',
+  'erwartungen',
+  'marke',
+  'stellen',
+  'ökonomen',
 ])
 
 /** Die Themenwörter einer Überschrift: Namen von Ländern, Firmen, Rohstoffen. */
@@ -331,13 +351,21 @@ export function themaWiederholt(
 ): string[] {
   const meldungen: string[] = []
   for (const [i, k] of kacheln.entries()) {
+    /*
+      Die letzte Kachel darf ein Thema der letzten Tage tragen (Betreiber,
+      10.11.2026, zu EZB-Nachfolge und Öl: „Das kann man schon drin lassen,
+      aber vielleicht dann immer auf die letzte Seite packen. Und wenn es
+      dann nichts wirklich Neues gibt, dann muss man das ja auch nicht
+      täglich mit reinnehmen.“). Ob es neu ist, entscheidet der Agent.
+    */
+    if (i === kacheln.length - 1 && kacheln.length > 1) continue
     const jetzt = themenwoerter(k.titel)
     for (const tag of frueher)
       for (const alt of tag.kacheln) {
         const gleich = [...themenwoerter(alt.titel)].filter((w) => jetzt.has(w))
         if (gleich.length)
           meldungen.push(
-            `Kachel ${i + 1} „${k.titel}" wiederholt „${alt.titel}" vom ${tag.datum} (${gleich.join(', ')}) – kein Thema der letzten drei Tage.`
+            `Kachel ${i + 1} „${k.titel}" wiederholt „${alt.titel}" vom ${tag.datum} (${gleich.join(', ')}) – ein Thema der letzten drei Tage nur mit Neuem und nur auf der letzten Kachel.`
           )
       }
   }

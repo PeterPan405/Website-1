@@ -475,13 +475,26 @@ if (failed > 0) {
     { datum: '2026-10-24', kacheln: [{ titel: 'Frankreich: Aa3 bestätigt' }] },
     { datum: '2026-10-25', kacheln: [{ titel: 'Audi: US-Werk in Georgia' }] },
   ]
+  const neu = { titel: 'Bau-Rekord in Deutschland' }
   pruefen(
-    'Frankreich zum dritten Mal: gemeldet',
-    themaWiederholt([{ titel: 'Frankreich: Rendite-Rekord' }], frueher).length === 1
+    'Frankreich zum dritten Mal, vorn: gemeldet',
+    themaWiederholt([{ titel: 'Frankreich: Rendite-Rekord' }, neu], frueher).length === 1
   )
   pruefen(
-    'Audi und Georgia am Folgetag: gemeldet',
-    themaWiederholt([{ titel: 'Audi: 4 Mrd. für Georgia' }], frueher).length === 1
+    'Audi und Georgia am Folgetag, vorn: gemeldet',
+    themaWiederholt([{ titel: 'Audi: 4 Mrd. für Georgia' }, neu], frueher).length === 1
+  )
+  /* Betreiber, 10.11.2026: „dann immer auf die letzte Seite packen“. */
+  pruefen(
+    'dasselbe Thema auf der letzten Kachel: erlaubt',
+    themaWiederholt([neu, { titel: 'Frankreich: Rendite-Rekord' }], frueher).length === 0
+  )
+  pruefen(
+    'zwei alte Themen: das vordere wird gemeldet, auch wenn das hintere als letzte Kachel darf',
+    themaWiederholt(
+      [{ titel: 'Audi: 4 Mrd. für Georgia' }, { titel: 'Frankreich: Rendite-Rekord' }],
+      frueher
+    ).length === 1
   )
   pruefen(
     'ein neues Thema geht durch, auch mit „Rekord" und „Prognose"',

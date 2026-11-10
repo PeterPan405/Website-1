@@ -36,6 +36,7 @@ import { pathToFileURL } from 'node:url'
 
 import { positionierungen } from '../lib/editions-validate.ts'
 import {
+  dauerthemen,
   quellenstreit,
   ueberschriftenLetzteTage,
   wiederholungen,
@@ -50,6 +51,7 @@ import {
   istErscheinungstag,
   pruefeInstagramPlan,
   themaWiederholt,
+  themenwoerter,
 } from '../lib/instagram-plan.ts'
 
 // ---------------------------------------------------------------- Regelwerk
@@ -527,6 +529,7 @@ Die Startseite zeigt die Artikel von heute und gestern nebeneinander, und vergli
 ${vortag.length ? vortag.map((t) => `- ${t}`).join('\n') : '(keine gefunden)'}
 
 - **Ein Thema dieser sieben Tage kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Zu ähnliche Überschriften werden zurückgewiesen.
+- **Dauerthemen** (ein Name, der an zwei dieser Tage dastand, etwa EZB-Nachfolge oder Öl): höchstens eins, nur mit wirklich Neuem, und dann **auf dem letzten Platz**. Sonst ein anderes Thema.
 - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber bewegen sich jeden Tag; ein Rohstoffartikel braucht einen Anlass außerhalb des Kurses.
 - **Ein Kursartikel: erst der Preis, dann das Warum** – aus einer Quelle unten. Steht dort kein Grund, gibt es keinen Kursartikel, auch keinen, der sagt, dass keiner genannt wird.
 - **Kein „X meldet" im Text.** Wer etwas gesagt oder beschlossen hat, wird genannt. Ein Preis oder eine Tatsache steht ohne „laut …" und „das meldet …" – woher sie stammt, sagt die Quellenangabe.
@@ -728,7 +731,8 @@ export function pruefe(
   themen: Set<string>,
   symbole: Set<string>,
   vorhandeneSlugs: Set<string>,
-  vortag: string[] = []
+  vortag: string[] = [],
+  woche: { tag: string; titel: string }[] = []
 ): string[] {
   const fehler: string[] = []
   const f = (satz: string) => fehler.push(satz)
@@ -754,6 +758,29 @@ export function pruefe(
         `Ereignis gehört das Thema heute nicht hinein – ein Preis allein ist keins.`
     )
   }
+  /*
+    Dauerthemen (Betreiber, 10.11.2026): höchstens eins je Ausgabe, und das
+    auf dem letzten Platz – „dann immer auf die letzte Seite packen“. Ob es
+    etwas Neues bringt, sagt die Anweisung; die Prüfung sieht nur den Namen.
+  */
+  const dauer = dauerthemen(
+    ergebnis.artikel.map((a) => a.title),
+    woche,
+    themenwoerter
+  )
+  const letzte = ergebnis.artikel.length - 1
+  if (dauer.length > 1)
+    f(
+      `${dauer.length} Dauerthemen: ${dauer.map((d) => `„${d.titel}" (${d.namen.join(', ')})`).join('; ')}. ` +
+        `Jeder dieser Namen stand schon an mindestens zwei der letzten sieben Tage in einer Überschrift. ` +
+        `Höchstens eins je Ausgabe, nur mit wirklich Neuem, und dann auf dem letzten Platz – sonst ein anderes Thema.`
+    )
+  else if (dauer.length === 1 && dauer[0].stelle !== letzte)
+    f(
+      `„${dauer[0].titel}" ist ein Dauerthema (${dauer[0].namen.join(', ')} stand schon an mindestens ` +
+        `zwei der letzten sieben Tage in einer Überschrift) – es gehört auf den letzten Platz, ` +
+        `und nur, wenn es wirklich Neues bringt.`
+    )
   const streit = (wo: string, text: string | undefined) => {
     const treffer = text ? quellenstreit(text) : null
     if (treffer)
@@ -1092,15 +1119,13 @@ async function main() {
     `Stichtag ${heute} · ${themen.size} Lernthemen · ${symbole.size} Symbole · ${vorhandeneSlugs.size} vorhandene Artikel`
   )
 
-  const vortag = ueberschriftenLetzteTage(
-    readFileSync('data/news.ts', 'utf8'),
-    heute
-  ).map((u) => u.titel)
+  const woche = ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), heute)
+  const vortag = woche.map((u) => u.titel)
   const ergebnis = await frageModell(
     anweisung(heute, [...themen], [...symbole], quellen, vortag)
   )
 
-  const fehler = pruefe(ergebnis, themen, symbole, vorhandeneSlugs, vortag)
+  const fehler = pruefe(ergebnis, themen, symbole, vorhandeneSlugs, vortag, woche)
   if (fehler.length > 0) {
     console.error(`::error::Die Ausgabe hält ${fehler.length} Regeln nicht ein:`)
     for (const satz of fehler) console.error(`  – ${satz}`)

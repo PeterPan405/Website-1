@@ -90,7 +90,8 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
   Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren". **Nichts
   doppelt:** Thema der letzten sieben Tage nur mit neuem Ereignis, ein Preis
-  ist keins; Karussell: `schonHeute()`.
+  ist keins; Karussell: `schonHeute()`. **Dauerthema** (Name an 2 der 7
+  Tage): höchstens eins, ganz hinten – auch auf Instagram.
   **Kein Quellenstreit:** je Preis eine Zahl, „Kursleiste" nur in
   Quellenangaben (`lib/nachrichten-wiederholung.ts`).
 - **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in
@@ -98,14 +99,11 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
   `index.ts` – Import **und** Array. Mindestens eine Top-Meldung, drei
   insgesamt, `intro` 110–160 Zeichen.
-- **Die Termine des Tages gehören hinein** – Konjunkturdaten, Notenbanken,
-  Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
-  Nur was dort steht. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
+- **Die Termine des Tages gehören hinein** – Konjunktur, Notenbanken,
+  Quartalszahlen der Großen, mit Uhrzeit aus den Quellen. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
   `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
-- **Umfang:** **genau fünf** Nachrichten zu mehreren Themen, nach Relevanz,
-  jede mit Meldung
-  und **direktem Link** (Briefing 14.10.). Alle `summary` über 110 Wörter.
-  `nachrichten-erzeugen.ts` weist es zurück.
+- **Umfang:** **genau fünf** Nachrichten, nach Relevanz, je mit Meldung und
+  **direktem Link**. Alle `summary` über 110 Wörter, sonst zurückgewiesen.
 - **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
   hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst
   das ausdrücklich.
@@ -137,7 +135,7 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 
 → `ENTSCHEIDUNGEN.md`: „heißt der jüngste Erscheinungstag", „Der Agent
 schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt",
-„Hat die Ausgabe etwas kaputt gemacht", „Nichts doppelt"
+„Hat die Ausgabe etwas kaputt gemacht", „Nichts doppelt", „Dauerthemen"
 
 ## Instagram
 

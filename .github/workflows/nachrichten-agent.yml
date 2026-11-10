@@ -568,9 +568,8 @@ jobs:
 
             - **Ein Thema der letzten sieben Tage kommt nur mit einem neuen
               Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas
-              ändert. Der Diesel-Deal mit den zugesagten Mengen am Tag nach
-              der Ankündigung ist eine Entwicklung; „Gold nähert sich 4.200
-              Dollar" zwei Tage hintereinander ist keine.
+              ändert. **Dauerthemen** (EZB-Nachfolge, Öl): höchstens eins, nur
+              mit Neuem, und dann auf dem letzten Platz.
             - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber
               bewegen sich jeden Tag. Ein Rohstoffartikel braucht einen
               Anlass außerhalb des Kurses; ohne ihn gehört die Bewegung in
@@ -714,7 +713,7 @@ jobs:
 
             Aus dem Feld `instagram` entsteht „Top-News des Tages" bei @im_invests: ein Deckblatt und fünf Kacheln, jeden Tag – auch samstags und sonntags.
 
-            - `kacheln`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Kein Thema aus den Kacheln der letzten drei Tage** (`data/instagram/`), außer bei starker Veränderung – die Prüfung weist es zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
+            - `kacheln`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Ein Thema aus den Kacheln der letzten drei Tage** (`data/instagram/`) nur bei starker Veränderung und nur als letzte Kachel – die Prüfung weist es sonst zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
             - **So/Mo** auch Politik und Termine der Woche (nur aus Quellen).
               - `titel`: höchstens 28 Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
               - `text`: 100 bis 190 Zeichen, **höchstens 2 kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."

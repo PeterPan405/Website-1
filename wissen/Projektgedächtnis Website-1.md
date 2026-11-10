@@ -15,11 +15,12 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**37 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**38 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-11-10** – [[Dauerthemen]]
 - **2026-10-27** – [[Die Designsprache von IM Capital]]
 - **2026-10-21** – [[Jeden Tag neue Bilder]]
     - [[Jeden Tag neue Bilder#Nachtrag: Gemeinfrei reicht nicht – 21. Oktober 2026|Nachtrag: Gemeinfrei reicht nicht – 21. Oktober 2026]]

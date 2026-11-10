@@ -19,8 +19,11 @@
  */
 
 import { readFileSync } from 'node:fs'
+import { themenwoerter as namen } from '@/lib/instagram-plan'
 import {
   aehnlichkeit,
+  dauerthemen,
+  DAUERTHEMA_AB_TAGEN,
   quellenstreit,
   themenwoerter,
   ueberschriftenLetzteTage,
@@ -291,6 +294,102 @@ pruefeDass(
   'ohne Vortag gibt es keine Wiederholung',
   !riegel(entwurf, []).some((s) => s.includes(WDH))
 )
+
+/*
+  Dauerthemen (Betreiber, 10.11.2026): „es kam jetzt schon öfters dran mit
+  EZB-Spitze … Oder Öl. … dann immer auf die letzte Seite packen.“ Prüfstein
+  ist die Ausgabe vom 10.11.2026, gegen die sieben Tage davor aus dem
+  Bestand: Die EZB-Nachfolge stand am 05. und 07.11. schon da.
+*/
+{
+  const bestand = readFileSync('data/news.ts', 'utf8')
+  const woche = ueberschriftenLetzteTage(bestand, '2026-11-10')
+  const ausgabe = [
+    'US-Verbraucherpreise für Oktober: Das erwarten Ökonomen',
+    'Dax klettert über 26.000 Punkte, Unicredit nennt Zeitplan für Commerzbank',
+    'Nvidia-Aktie fällt: Sorge um Nachfolge für Jensen Huang',
+    'Boeing streicht fünf Prozent der Stellen bei Verkehrsflugzeugen',
+    'EZB-Nachfolge: Finanzminister drängen auf schnelle Entscheidung',
+  ]
+  const funde = dauerthemen(ausgabe, woche, namen)
+  pruefeDass(
+    'Dauerthema: die EZB-Nachfolge vom 10.11. wird erkannt – und nur sie',
+    funde.length === 1 && funde[0].stelle === 4 && funde[0].namen.includes('ezb'),
+    JSON.stringify(funde)
+  )
+  pruefeDass(
+    'Dauerthema: an zwei Tagen davor, nicht an einem',
+    DAUERTHEMA_AB_TAGEN === 2 &&
+      dauerthemen(
+        ['Binance zahlt aus'],
+        [{ tag: '2026-11-01', titel: 'Binance startet Auszahlungen' }],
+        namen
+      ).length === 0 &&
+      dauerthemen(
+        ['Binance zahlt aus'],
+        [
+          { tag: '2026-11-01', titel: 'Binance startet Auszahlungen' },
+          { tag: '2026-11-02', titel: 'Binance: FBI nennt Nordkorea' },
+        ],
+        namen
+      ).length === 1
+  )
+  pruefeDass(
+    'Dauerthema: „Tage", „Linie", „Wall Street" sind keine Namen',
+    dauerthemen(
+      ['Dax hält die 200-Tage-Linie, Wall Street schließt im Plus'],
+      [
+        {
+          tag: '2026-10-01',
+          titel: 'Gold unter der 50-Tage-Linie, Wall Street schwächer',
+        },
+        { tag: '2026-10-02', titel: 'Silber an der 200-Tage-Linie, Wall Street fest' },
+      ],
+      namen
+    ).every((d) => !d.namen.some((n) => ['tage', 'linie', 'wall', 'street'].includes(n)))
+  )
+  /* Der Riegel: vorn wird beanstandet, hinten nicht. */
+  const mitArtikeln = (titel: string[]) => ({
+    ...entwurf,
+    artikel: titel.map((t, i) => ({
+      ...entwurf.artikel[i % entwurf.artikel.length],
+      title: t,
+    })),
+  })
+  const DAUER = 'Dauerthema'
+  const vorn = pruefe(
+    mitArtikeln([ausgabe[4], ...ausgabe.slice(0, 4)]),
+    new Set(),
+    new Set(),
+    new Set(),
+    [],
+    woche
+  )
+  const hinten = pruefe(mitArtikeln(ausgabe), new Set(), new Set(), new Set(), [], woche)
+  pruefeDass(
+    'Riegel: das Dauerthema vorn wird zurückgewiesen',
+    vorn.some((s) => s.includes(DAUER) && s.includes('letzten Platz'))
+  )
+  pruefeDass(
+    'Riegel: dasselbe Dauerthema auf dem letzten Platz geht durch',
+    !hinten.some((s) => s.includes(DAUER))
+  )
+  pruefeDass(
+    'Riegel: zwei Dauerthemen werden zurückgewiesen',
+    pruefe(
+      mitArtikeln([
+        ...ausgabe.slice(0, 3),
+        'EZB-Nachfolge: Knot gilt als Favorit',
+        ausgabe[4],
+      ]),
+      new Set(),
+      new Set(),
+      new Set(),
+      [],
+      woche
+    ).some((s) => s.includes('2 Dauerthemen'))
+  )
+}
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
