@@ -123,6 +123,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gerechnet: Veränderung von Schlusskurs zu Schlusskurs, Mittelwert; Tage 30.12.1987 bis 9.11.2026, Monate bis Oktober 2026.\n' +
       'Quellen: Yahoo Finance (^GDAXI), Stand 9.11.2026; eigene Rechnung',
     schlagworte: ['dax', 'börse', 'aktien', 'mythos', 'statistik'],
+    freigabe: '2026-11-10',
   },
   {
     /*
