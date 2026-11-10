@@ -538,7 +538,31 @@ export interface Raetselkarte extends KarteGemeinsam {
   }[]
 }
 
+/**
+ * Mythos oder Fakt (10.11.2026): je Behauptung zwei Kacheln – erst die
+ * Behauptung, dann das Urteil mit Säulen aus den Kursdaten.
+ */
+export interface Mythoskarte extends KarteGemeinsam {
+  art: 'mythos'
+  fragen: {
+    /** Überschrift ab der zweiten Behauptung: „Und das?“. */
+    frage?: string
+    /** Ohne Anführungszeichen: „Montags fällt der Markt.“ */
+    behauptung: string
+    /** true: stimmt (grün), false: Mythos (rot). */
+    fakt: boolean
+    /** Was die Säulen messen: „DAX · Ø je Wochentag · 1988–2026“. */
+    stichzeile: string
+    saeulen: { name: string; wert: number; hervor?: boolean }[]
+    einheit: string
+    /** Nachkommastellen der Werte an den Säulen. */
+    stellen: number
+    satz: string
+  }[]
+}
+
 export type Zahlenkarte =
+  | Mythoskarte
   | Raetselkarte
   | Zahlenstrahlkarte
   | Personenkarte
@@ -913,7 +937,11 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     f.push(
       `freigabe „${k.freigabe}" – freigegeben wird die Karte für ihren Tag (${k.datum}).`
     )
-  if (k.art !== 'raetsel' && !k.titel.some((t) => t.gruen || t.richtung))
+  if (
+    k.art !== 'raetsel' &&
+    k.art !== 'mythos' &&
+    !k.titel.some((t) => t.gruen || t.richtung)
+  )
     f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
   /*
     Meta nimmt höchstens 2.200 Zeichen. Am 30.10.2026 waren es mit
@@ -930,6 +958,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
   if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
   else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
+  else if (k.art === 'mythos') f.push(...pruefeMythos(k))
   else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
@@ -1285,7 +1314,7 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
-  if (k.art === 'zahlenstrahl' || k.art === 'raetsel')
+  if (k.art === 'zahlenstrahl' || k.art === 'raetsel' || k.art === 'mythos')
     return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   if (
@@ -2618,9 +2647,11 @@ export function form(
   | 'kammern'
   | 'personen'
   | 'zahlenstrahl'
-  | 'raetsel' {
+  | 'raetsel'
+  | 'mythos' {
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'raetsel') return 'raetsel'
+  if (k.art === 'mythos') return 'mythos'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -4881,7 +4912,7 @@ export function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: numbe
 /** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
 export function zahlenkarteSeiten(k: Zahlenkarte): number {
   if (k.art === 'zahlenstrahl') return k.kacheln
-  if (k.art === 'raetsel') return 2 * k.fragen.length
+  if (k.art === 'raetsel' || k.art === 'mythos') return 2 * k.fragen.length
   return 'zweiteSeite' in k && k.zweiteSeite ? 2 : 1
 }
 
@@ -4891,10 +4922,11 @@ export async function zahlenkarteSeitePng(
   logoSvg: string,
   nr: number
 ): Promise<Buffer> {
-  if (k.art === 'raetsel') {
+  if (k.art === 'raetsel' || k.art === 'mythos') {
     const logo = svgAdresse(signetOhneMitte(logoSvg))
+    const seite = Math.min(Math.max(nr, 1), 2 * k.fragen.length)
     const antwort = new ImageResponse(
-      raetselKachel(k, logo, Math.min(Math.max(nr, 1), 2 * k.fragen.length)),
+      k.art === 'raetsel' ? raetselKachel(k, logo, seite) : mythosKachel(k, logo, seite),
       { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
     )
     return Buffer.from(await antwort.arrayBuffer())
@@ -5208,6 +5240,269 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
       fontWeight: 600,
       lineHeight: 1.3,
       color: STIL.tinte,
+    }),
+    ...weiter,
+    fuss
+  )
+}
+
+/* ---------------------------------------------------------------- Mythos */
+
+/** Eine Zahl mit Vorzeichen und Einheit: „+0,070 %“, „−2,08 %“. */
+function mythosZahl(v: number, stellen: number, einheit: string): string {
+  const t = Math.abs(v).toLocaleString('de-DE', {
+    minimumFractionDigits: stellen,
+    maximumFractionDigits: stellen,
+  })
+  /* Was auf null gerundet wird, trägt kein Vorzeichen: „0,0 %“, nicht „−0,0 %“. */
+  const null_ = Number(Math.abs(v).toFixed(stellen)) === 0
+  return `${null_ ? '' : v > 0 ? '+' : '−'}${t} ${einheit}`
+}
+
+function pruefeMythos(k: Mythoskarte): string[] {
+  const f: string[] = []
+  if (k.fragen.length < 2 || k.fragen.length > 4)
+    f.push(`${k.fragen.length} Mythen – zwei bis vier.`)
+  for (const t of k.titel)
+    if (t.text.length > 22) f.push(`Titelzeile „${t.text}“ – höchstens 22 Zeichen.`)
+  for (const [i, q] of k.fragen.entries()) {
+    const nr = i + 1
+    if (q.behauptung.length > 60)
+      f.push(
+        `Mythos ${nr}: Behauptung hat ${q.behauptung.length} Zeichen – höchstens 60.`
+      )
+    if (q.satz.length > 140)
+      f.push(`Mythos ${nr}: Satz hat ${q.satz.length} Zeichen – höchstens 140.`)
+    if (q.stichzeile.length > 60)
+      f.push(
+        `Mythos ${nr}: Stichzeile hat ${q.stichzeile.length} Zeichen – höchstens 60.`
+      )
+    if (i > 0 && !q.frage) f.push(`Mythos ${nr}: braucht eine Frage als Überschrift.`)
+    if (q.saeulen.length < 2 || q.saeulen.length > 12)
+      f.push(`Mythos ${nr}: ${q.saeulen.length} Säulen – zwei bis zwölf.`)
+    if (q.saeulen.filter((s) => s.hervor).length !== 1)
+      f.push(`Mythos ${nr}: genau eine Säule hervorheben.`)
+  }
+  return f
+}
+
+/** Die Säulen der Auflösung: Nulllinie, Wert über (oder unter) jeder Säule, Name darunter. */
+function mythosGrafik(q: Mythoskarte['fragen'][number], farbe: string) {
+  const oben = 600
+  const unten = 1010
+  const links = STIL_RAND
+  const breite = ZK_BREITE - 2 * STIL_RAND
+  const werte = q.saeulen.map((s) => s.wert)
+  const hoch = Math.max(0, ...werte)
+  const tief = Math.min(0, ...werte)
+  const spanne = hoch - tief || 1
+  const y = (v: number) => oben + ((hoch - v) / spanne) * (unten - oben)
+  const null_ = y(0)
+  const n = q.saeulen.length
+  const fach = breite / n
+  const saeule = Math.min(120, fach * 0.62)
+  const klein = n > 6
+  const teile: ReturnType<typeof h>[] = [
+    h('div', {
+      style: {
+        position: 'absolute',
+        left: links,
+        top: null_ - 1,
+        width: breite,
+        height: 2,
+        backgroundColor: '#9aa3b0',
+      },
+    }),
+  ]
+  for (const [i, s] of q.saeulen.entries()) {
+    const mitte = links + fach * (i + 0.5)
+    const y0 = Math.min(y(s.wert), null_)
+    const hoehe = Math.max(Math.abs(y(s.wert) - null_), 3)
+    const ton = s.hervor ? farbe : '#c9cfd8'
+    teile.push(
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: mitte - saeule / 2,
+          top: y0,
+          width: saeule,
+          height: hoehe,
+          backgroundColor: ton,
+          borderRadius: 4,
+        },
+      }),
+      stilBlock(mythosZahl(s.wert, q.stellen, q.einheit), {
+        top: s.wert >= 0 ? y0 - (klein ? 30 : 40) : y0 + hoehe + 8,
+        left: mitte - fach / 2,
+        width: fach,
+        justifyContent: 'center',
+        fontSize: klein ? 19 : 26,
+        fontWeight: 800,
+        color: s.hervor ? farbe : STIL.grau,
+      }),
+      stilBlock(s.name, {
+        top: unten + 46,
+        left: mitte - fach / 2,
+        width: fach,
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontSize: klein ? 19 : 24,
+        fontWeight: s.hervor ? 800 : 500,
+        color: s.hervor ? STIL.tinte : STIL.grau,
+      })
+    )
+  }
+  return teile
+}
+
+/**
+ * Mythos oder Fakt (10.11.2026, Betreiber wählte aus fünf Vorschlägen
+ * „4“). Gebaut wie das Börsenrätsel, das er am 09.11. so wollte: je Mythos
+ * zwei Kacheln. Erst die Behauptung groß, dann wischen; auf der Auflösung
+ * das Urteil – „Mythos.“ in Rot, „Fakt.“ in Grün –, die Säulen aus den
+ * Kursdaten und ein Satz. Titel in einer Farbe, ohne Zähler und
+ * Hilfszeilen, wie beim Rätsel.
+ */
+function mythosKachel(k: Mythoskarte, logo: string, nr: number) {
+  const n = Math.ceil(nr / 2)
+  const q = k.fragen[n - 1]
+  const aufloesung = nr % 2 === 0
+  const seiten = 2 * k.fragen.length
+  const farbe = q.fakt ? STIL.gruen : STIL.rot
+  const weiter =
+    nr < seiten
+      ? [
+          stilBlock(aufloesung ? 'Nächster Mythos  →' : 'Auflösung  →', {
+            top: 1236,
+            right: STIL_RAND,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : []
+  const fuss = stilBlock(k.fusszeile, {
+    top: ZK_HOEHE - 52,
+    left: STIL_RAND,
+    right: STIL_RAND,
+    fontSize: 15,
+    color: STIL.hellgrau,
+  })
+  const flaeche = (...inhalt: ReturnType<typeof h>[]) =>
+    h(
+      'div',
+      {
+        style: {
+          width: ZK_BREITE,
+          height: ZK_HOEHE,
+          display: 'flex',
+          position: 'relative',
+          backgroundColor: '#ffffff',
+          overflow: 'hidden',
+        },
+      },
+      ...inhalt
+    )
+
+  if (aufloesung)
+    return flaeche(
+      stilBlock('AUFLÖSUNG', {
+        top: 150,
+        left: STIL_RAND,
+        ...GESPERRT,
+        color: STIL.navy,
+      }),
+      stilBlock(q.fakt ? 'Fakt.' : 'Mythos.', {
+        top: 180,
+        left: STIL_RAND,
+        fontSize: 132,
+        fontWeight: 800,
+        letterSpacing: -4,
+        color: farbe,
+      }),
+      stilBlock(`„${q.behauptung}“`, {
+        top: 350,
+        left: STIL_RAND,
+        right: STIL_RAND,
+        fontSize: 32,
+        fontWeight: 600,
+        color: STIL.grau,
+      }),
+      stilBlock(q.stichzeile.toUpperCase(), {
+        top: 462,
+        left: STIL_RAND,
+        ...GESPERRT,
+        color: STIL.hellgrau,
+      }),
+      /* Die Säule in Navy: Rot und Grün tragen nur eine Richtung (INSTAGRAM-STIL.md), das Urteil steht oben. */
+      ...mythosGrafik(q, STIL.navy),
+      stilBlock(q.satz, {
+        top: 1150,
+        left: STIL_RAND,
+        width: ZK_BREITE - 2 * STIL_RAND,
+        fontSize: 30,
+        fontWeight: 600,
+        lineHeight: 1.3,
+        color: STIL.tinte,
+      }),
+      ...weiter,
+      fuss
+    )
+
+  return flaeche(
+    ...(nr === 1
+      ? [
+          stilKopf(logo),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 150,
+                left: STIL_RAND,
+                right: STIL_RAND,
+                display: 'flex',
+                flexDirection: 'column',
+                fontFamily: 'Montserrat',
+                fontWeight: 800,
+                fontSize: 88,
+                lineHeight: 1.08,
+                letterSpacing: -2,
+              },
+            },
+            ...k.titel.map((t) =>
+              h('div', { style: { display: 'flex', color: STIL.tinte } }, t.text)
+            )
+          ),
+        ]
+      : [
+          stilBlock(q.frage ?? '', {
+            top: 150,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            fontSize: 88,
+            fontWeight: 800,
+            letterSpacing: -2,
+            color: STIL.tinte,
+          }),
+        ]),
+    stilBlock(`„${q.behauptung}“`, {
+      top: 520,
+      left: STIL_RAND,
+      width: ZK_BREITE - 2 * STIL_RAND,
+      fontSize: 84,
+      fontWeight: 800,
+      lineHeight: 1.12,
+      letterSpacing: -2,
+      color: STIL.navy,
+    }),
+    stilBlock('Mythos oder Fakt? Erst tippen, dann wischen.', {
+      top: 1080,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 30,
+      fontWeight: 600,
+      color: STIL.grau,
     }),
     ...weiter,
     fuss

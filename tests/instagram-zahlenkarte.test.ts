@@ -84,7 +84,9 @@ pruefe(
   jüngste Karte, die eine Pointe braucht – das Rätsel trägt seinen Titel in
   einer Farbe (Betreiber, 09.11.2026).
 */
-const gut = zahlenkarten.find((k) => k.art !== 'raetsel') ?? aktuelleZahlenkarte()!
+const gut =
+  zahlenkarten.find((k) => k.art !== 'raetsel' && k.art !== 'mythos') ??
+  aktuelleZahlenkarte()!
 const kaputt: Zahlenkarte = {
   ...gut,
   titel: [{ text: 'Ohne Pointe' }],
@@ -1042,49 +1044,68 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 10.11.2026: Gefallene Lieblinge – Abstand zum Hoch seit Nov. 2021 (Yahoo Finance, markets.json). */
+/* 10.11.2026: Mythos oder Fakt – DAX seit 1987 (Yahoo Finance ^GDAXI, Tages- und Monatskurse). */
 {
   const karte = karteVom('2026-11-10')
-  pruefe('Lieblinge: Karte für den 10.11. sind Balken', karte?.art === 'balken')
-  if (karte?.art === 'balken') {
+  pruefe('Mythos: Karte für den 10.11. ist Mythos oder Fakt', karte?.art === 'mythos')
+  if (karte?.art === 'mythos') {
     pruefe(
-      'Lieblinge: keine Beanstandung',
+      'Mythos: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
+    pruefe('Mythos: zwei Kacheln je Behauptung', zahlenkarteSeiten(karte) === 6)
     pruefe(
-      'Lieblinge: Form anders als am Vortag',
+      'Mythos: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-09')!)
     )
-    /* Hoch und letzter Schlusskurs aus markets.json, Stand 10.11.2026. */
-    const kurse: [string, number, number][] = [
-      ['HelloFresh', 94.5, 2.99],
-      ['Puma', 113.8, 26.82],
-      ['PayPal', 212.54, 60.05],
-      ['Novo Nordisk', 145.42, 41.38],
-      ['Delivery Hero', 125, 37],
-      ['Estée Lauder', 370.29, 113.16],
-      ['Zalando', 81.92, 27.72],
-      ['Porsche', 120.35, 47.06],
-    ]
-    for (const [name, hoch, jetzt] of kurse) {
-      const b = karte.balken.find((x) => x.marke === name)
-      const prozent = Math.round((jetzt / hoch - 1) * 10000) / 100
-      pruefe(`Lieblinge: ${name} ${prozent} %`, b?.wert === prozent)
-      pruefe(
-        `Lieblinge: ${name} mit gerundeter Zahl im Text`,
-        karte.text.includes(`${name}: `) &&
-          karte.text.includes(`−${Math.abs(Math.round(prozent))} %`)
-      )
+    const [montag, freitag, september] = karte.fragen
+    pruefe(
+      'Mythos: Montag ist der beste Wochentag (sonst wäre es kein Mythos)',
+      montag.saeulen.every((s) => s.wert <= montag.saeulen[0].wert) && !montag.fakt
+    )
+    pruefe(
+      'Mythos: Freitag, der 13., über dem Schnitt aller Tage',
+      freitag.saeulen[0].wert > freitag.saeulen[1].wert && !freitag.fakt
+    )
+    pruefe(
+      'Mythos: fast viermal so stark (0,166 / 0,043)',
+      Math.round(freitag.saeulen[0].wert / freitag.saeulen[1].wert) === 4
+    )
+    const sep = september.saeulen.find((s) => s.name === 'Sep')!
+    pruefe(
+      'Mythos: September ist der schwächste Monat – Fakt',
+      september.fakt &&
+        september.saeulen.every((s) => s.wert >= sep.wert) &&
+        sep.hervor === true
+    )
+    pruefe('Mythos: zwölf Monate', september.saeulen.length === 12)
+    pruefe(
+      'Mythos: Zahlen im Text wie in den Säulen',
+      karte.text.includes('Montag +0,070 %') &&
+        karte.text.includes('0,166 %') &&
+        karte.text.includes('0,043 %') &&
+        karte.text.includes('−2,1 %')
+    )
+    pruefe(
+      'Mythos: Titel in einer Farbe',
+      karte.titel.every((t) => !t.gruen && !t.richtung)
+    )
+    pruefe(
+      'Mythos: zwei Hervorhebungen werden beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        fragen: [
+          { ...montag, saeulen: montag.saeulen.map((s) => ({ ...s, hervor: true })) },
+          ...karte.fragen.slice(1),
+        ],
+      }).some((f) => f.includes('genau eine Säule'))
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 2, 6]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(`Mythos: Kachel ${nr} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
     }
-    pruefe(
-      'Lieblinge: absteigend nach Abstand',
-      karte.balken.every((b, i) => i === 0 || b.wert >= karte.balken[i - 1].wert)
-    )
-    pruefe(
-      'Lieblinge: 1.000 € im Hoch sind heute rund 32 €',
-      Math.round((1000 * 2.99) / 94.5) === 32
-    )
   }
 }
 
