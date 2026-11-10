@@ -5412,16 +5412,17 @@ function mythosKachel(k: Mythoskarte, logo: string, nr: number) {
         ...GESPERRT,
         color: STIL.navy,
       }),
+      /* 88 wie die Überschriften – 132 war „ein bisschen arg groß“ (Betreiber, 10.11.2026). */
       stilBlock(q.fakt ? 'Fakt.' : 'Mythos.', {
         top: 180,
         left: STIL_RAND,
-        fontSize: 132,
+        fontSize: 88,
         fontWeight: 800,
-        letterSpacing: -4,
+        letterSpacing: -2,
         color: farbe,
       }),
       stilBlock(`„${q.behauptung}“`, {
-        top: 350,
+        top: 300,
         left: STIL_RAND,
         right: STIL_RAND,
         fontSize: 32,
