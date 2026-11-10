@@ -77,32 +77,33 @@ export default async function KalenderPage() {
         }
       />
 
-      <div className="fk-container py-12 sm:py-16">
+      <div className="fk-container py-10 sm:py-14">
         {/*
           Der Verweis aufs Abo steht oben und nicht unten: Wer einen Kalender
           liest, will die Termine meistens dorthin haben, wo seine übrigen
           stehen – und nicht erst nach tausend Zeilen davon erfahren.
         */}
-        <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-          Diese Termine im eigenen Kalender:{' '}
+        {/*
+          Der Verweis aufs Abo steht oben: Wer einen Kalender liest, will die
+          Termine meistens dorthin haben, wo seine übrigen stehen. Eine Zeile
+          genügt (10.11.2026, „sehr unübersichtlich“) – was in der Datei
+          steckt, steht unten unter „Woher die Termine kommen“.
+        */}
+        <p className="text-fg-muted text-sm">
+          Im eigenen Kalender:{' '}
           <a
             href="/kalender/termine.ics"
-            className="text-calendar font-medium underline underline-offset-2"
+            className="text-fg font-medium underline underline-offset-2"
           >
-            termine.ics abonnieren
-          </a>{' '}
-          – die Datei wird bei jedem Bau der Website neu erzeugt, neue Termine kommen also
-          von selbst dazu. Alles Abgeleitete trägt im Titel ein „(erwartet)“. Die
-          geschätzten Dividendentermine sind nicht enthalten – wer sie will, abonniert sie
-          als eigenen Kalender:{' '}
+            Termine abonnieren
+          </a>
+          {' · '}
           <a
             href="/kalender/dividenden.ics"
-            className="text-calendar font-medium underline underline-offset-2"
+            className="text-fg font-medium underline underline-offset-2"
           >
-            dividenden.ics
+            Dividenden getrennt abonnieren
           </a>
-          . Getrennt, damit achthundert Ex-Tage nicht zwischen den Zinsentscheiden stehen,
-          wenn man nur diese wollte.
         </p>
 
         {/*
@@ -111,7 +112,7 @@ export default async function KalenderPage() {
           ohne Grenze würden die Zeilen auf breiten Schirmen zu lang zum Lesen –
           eine Stufe breiter füllt die Seite, ohne die Zeile zu überdehnen.
         */}
-        <div className="max-w-4xl">
+        <div className="mt-8 max-w-4xl">
           <KalenderAnsicht
             gruppen={gruppen}
             artMeta={terminArtMeta}
@@ -123,51 +124,65 @@ export default async function KalenderPage() {
           />
 
           {/* ---------------------------------------------------- Einordnung */}
-          <section aria-labelledby="hinweis" className="mt-16">
-            <h2 id="hinweis" className="text-fg text-xl font-bold">
-              Was hier feststeht – und was erwartet wird
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Das meiste in diesem Kalender steht im Voraus fest und ist veröffentlicht.
-              Notenbanken geben ihre Sitzungstermine ein Jahr vorher bekannt, Börsen ihre
-              Feiertage, Verfallstage folgen einer festen Regel – dem dritten Freitag der
-              Quartalsmonate –, und Wahltermine stehen im Gesetz.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Die Wirtschaftsdaten der laufenden Woche – Inflation, Arbeitsmarkt,
-              Einkaufsmanager, Reden der Notenbankspitzen – kommen aus dem Kalender von
-              ForexFactory, mit Uhrzeit in deutscher Zeit, Prognose und Vorwert.
-              Aufgenommen ist, was dort als wichtig eingestuft ist, aus den USA, dem
-              Euroraum, Großbritannien, Japan, der Schweiz und China. Weiter als bis zum
-              kommenden Samstag reicht diese Quelle nicht.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Wann ein einzelnes Unternehmen seine Quartalszahlen vorlegt, kündigt es
-              dagegen selbst an, meist wenige Wochen vorher. Ein Jahr im Voraus ist dieser
-              Tag nirgends zu bekommen. Was es gibt, ist das Muster: Unternehmen melden
-              Quartal für Quartal ungefähr am selben Tag des Jahres.{' '}
-              {quartalstermine.termine > 0 && (
-                <>
-                  Aus diesem Muster sind hier{' '}
-                  <strong className="text-fg">
-                    {quartalstermine.termine} Meldetermine
-                  </strong>{' '}
-                  für {quartalstermine.unternehmen} Unternehmen hochgerechnet – aus den
-                  Pflichtmeldungen der vergangenen Jahre bei der US-Börsenaufsicht SEC
-                  (Formular 8-K, Punkt 2.02).
-                </>
-              )}
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Abgedeckt sind damit {quartalstermine.unternehmen} der{' '}
-              {quartalstermine.aktienGesamt} hier geführten Aktien. Der Grund für den
-              Unterschied liegt an der Quelle: Die Pflichtmeldung mit der Punktnummer gibt
-              es nur in den USA. Wer an einer europäischen oder asiatischen Börse notiert,
-              reicht dort nichts ein – und wer als ausländisches Unternehmen in den USA
-              gelistet ist, meldet über ein Formular ohne Punktnummern, aus dem sich eine
-              Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt.
-            </p>
-            {/*
+          {/*
+            Zugeklappt (10.11.2026): Sieben Absätze Herkunft standen offen
+            unter der Liste und machten die Seite länger, ohne dass ein Termin
+            leichter zu finden war. Wer wissen will, woher ein Termin kommt,
+            klappt auf; jeder Eintrag verweist ohnehin auf seine Quelle.
+          */}
+          <details className="border-border mt-16 border-t pt-6">
+            <summary className="text-fg cursor-pointer text-xl font-bold">
+              Woher die Termine kommen – und was feststeht
+            </summary>
+            <section aria-label="Woher die Termine kommen" className="mt-2">
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Die Kalenderdatei wird bei jedem Bau der Website neu erzeugt; neue Termine
+                kommen also von selbst dazu. Alles Abgeleitete trägt dort im Titel ein
+                „(erwartet)“. Die geschätzten Dividendentermine stehen in einer eigenen
+                Datei, damit achthundert Ex-Tage nicht zwischen den Zinsentscheiden
+                stehen, wenn man nur diese wollte.
+              </p>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Das meiste in diesem Kalender steht im Voraus fest und ist veröffentlicht.
+                Notenbanken geben ihre Sitzungstermine ein Jahr vorher bekannt, Börsen
+                ihre Feiertage, Verfallstage folgen einer festen Regel – dem dritten
+                Freitag der Quartalsmonate –, und Wahltermine stehen im Gesetz.
+              </p>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Die Wirtschaftsdaten der laufenden Woche – Inflation, Arbeitsmarkt,
+                Einkaufsmanager, Reden der Notenbankspitzen – kommen aus dem Kalender von
+                ForexFactory, mit Uhrzeit in deutscher Zeit, Prognose und Vorwert.
+                Aufgenommen ist, was dort als wichtig eingestuft ist, aus den USA, dem
+                Euroraum, Großbritannien, Japan, der Schweiz und China. Weiter als bis zum
+                kommenden Samstag reicht diese Quelle nicht.
+              </p>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Wann ein einzelnes Unternehmen seine Quartalszahlen vorlegt, kündigt es
+                dagegen selbst an, meist wenige Wochen vorher. Ein Jahr im Voraus ist
+                dieser Tag nirgends zu bekommen. Was es gibt, ist das Muster: Unternehmen
+                melden Quartal für Quartal ungefähr am selben Tag des Jahres.{' '}
+                {quartalstermine.termine > 0 && (
+                  <>
+                    Aus diesem Muster sind hier{' '}
+                    <strong className="text-fg">
+                      {quartalstermine.termine} Meldetermine
+                    </strong>{' '}
+                    für {quartalstermine.unternehmen} Unternehmen hochgerechnet – aus den
+                    Pflichtmeldungen der vergangenen Jahre bei der US-Börsenaufsicht SEC
+                    (Formular 8-K, Punkt 2.02).
+                  </>
+                )}
+              </p>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Abgedeckt sind damit {quartalstermine.unternehmen} der{' '}
+                {quartalstermine.aktienGesamt} hier geführten Aktien. Der Grund für den
+                Unterschied liegt an der Quelle: Die Pflichtmeldung mit der Punktnummer
+                gibt es nur in den USA. Wer an einer europäischen oder asiatischen Börse
+                notiert, reicht dort nichts ein – und wer als ausländisches Unternehmen in
+                den USA gelistet ist, meldet über ein Formular ohne Punktnummern, aus dem
+                sich eine Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt.
+              </p>
+              {/*
               Hier stand bis zum 20. August 2026 zuerst ein Versprechen („eine zweite
               Quelle kommt hinzu, sobald sie bereitsteht"), dann dessen Widerruf
               („gesucht und nicht gefunden"). Beides war zu bequem: Das erste kündigte
@@ -176,83 +191,88 @@ export default async function KalenderPage() {
               tatsächlich noch eine Quelle gefunden. Hier steht jetzt der gemessene
               Stand, samt dem, was er nicht abdeckt.
             */}
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Für einen Teil der Titel gibt es die Termine trotzdem – und zwar nicht
-              hochgerechnet, sondern{' '}
-              <strong className="text-fg">
-                so, wie das Unternehmen sie angekündigt hat
-              </strong>
-              . Sie sind hier als „angekündigt“ gekennzeichnet, ohne den Zusatz „erwartet,
-              nicht bestätigt“: Erwartet sind sie nicht, sie stehen fest. Zwei Quellen
-              liefern sie. Ein Sammelkalender angekündigter Meldetermine führt, was in New
-              York notiert – einschließlich der Hinterlegungsscheine ausländischer
-              Unternehmen, Alibaba etwa steht darin. Und die{' '}
-              <strong className="text-fg">Tokioter Börse</strong> veröffentlicht die
-              geplanten Meldetermine aller dort gelisteten Unternehmen selbst; von dort
-              kommen die Termine der japanischen Titel. Zwei Dinge gehören dazugesagt:
-              Tokio nennt zum Tag keine Uhrzeit, und deshalb steht bei diesen Titeln auch
-              keine. Und die Liste erscheint je Berichtssaison – zwischen zwei Saisons
-              steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben
-              ist, statt einer Schätzung.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst
-              veröffentlicht, bleibt offen – vor allem die europäischen Werte.
-              Einundzwanzig Quellen sind bisher geprüft, zuletzt die Börsen selbst, und
-              die Gründe sind verschieden: Die Zürcher und die Londoner Börse antworten
-              offen und vollständig, führen den Meldetermin aber schlicht nicht. Euronext
-              und die Börse Frankfurt geben ihre Daten nur an die eigene Oberfläche heraus
-              – verschlüsselt die eine, hinter einer im Browser errechneten Kennung die
-              andere. Beides nachzubauen hieße, eine bewusst gesetzte Sperre zu umgehen,
-              und das wird hier nicht gemacht. Die Datenhändler wiederum verlangen einen
-              kostenpflichtigen Zugang. Die Suche geht weiter. Wo kein Termin vorliegt,
-              steht auf der Seite der Aktie, warum – eine plausibel aussehende Schätzung
-              wäre dort schlechter als eine Lücke.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Diese Termine sind mit{' '}
-              <strong className="text-fg">„erwartet, nicht bestätigt“</strong> und mit „um
-              den …“ gekennzeichnet, und sie stehen nur ein halbes Jahr weit im Voraus.
-              Ein Kalender, der geratene Daten wie Fakten ausweist, wäre schlimmer als
-              einer mit Lücken: Wer danach plant, verpasst den echten Termin. Ein
-              gekennzeichneter Erwartungswert dagegen ist nützlich – er sagt, in welcher
-              Woche man hinsehen sollte.
-            </p>
-            {quartalstermineStand && (
-              <p className="text-fg-subtle mt-4 text-sm">
-                Hochgerechnet am{' '}
-                {new Date(quartalstermineStand).toLocaleDateString('de-DE', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                  timeZone: 'UTC',
-                })}
-                . {quartalstermineQuelle.abgrenzung}{' '}
-                <a
-                  href={quartalstermineQuelle.url}
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                  className="underline underline-offset-2"
-                >
-                  {quartalstermineQuelle.label}
-                </a>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Für einen Teil der Titel gibt es die Termine trotzdem – und zwar nicht
+                hochgerechnet, sondern{' '}
+                <strong className="text-fg">
+                  so, wie das Unternehmen sie angekündigt hat
+                </strong>
+                . Sie sind hier als „angekündigt“ gekennzeichnet, ohne den Zusatz
+                „erwartet, nicht bestätigt“: Erwartet sind sie nicht, sie stehen fest.
+                Zwei Quellen liefern sie. Ein Sammelkalender angekündigter Meldetermine
+                führt, was in New York notiert – einschließlich der Hinterlegungsscheine
+                ausländischer Unternehmen, Alibaba etwa steht darin. Und die{' '}
+                <strong className="text-fg">Tokioter Börse</strong> veröffentlicht die
+                geplanten Meldetermine aller dort gelisteten Unternehmen selbst; von dort
+                kommen die Termine der japanischen Titel. Zwei Dinge gehören dazugesagt:
+                Tokio nennt zum Tag keine Uhrzeit, und deshalb steht bei diesen Titeln
+                auch keine. Und die Liste erscheint je Berichtssaison – zwischen zwei
+                Saisons steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt
+                gegeben ist, statt einer Schätzung.
               </p>
-            )}
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst
+                veröffentlicht, bleibt offen – vor allem die europäischen Werte.
+                Einundzwanzig Quellen sind bisher geprüft, zuletzt die Börsen selbst, und
+                die Gründe sind verschieden: Die Zürcher und die Londoner Börse antworten
+                offen und vollständig, führen den Meldetermin aber schlicht nicht.
+                Euronext und die Börse Frankfurt geben ihre Daten nur an die eigene
+                Oberfläche heraus – verschlüsselt die eine, hinter einer im Browser
+                errechneten Kennung die andere. Beides nachzubauen hieße, eine bewusst
+                gesetzte Sperre zu umgehen, und das wird hier nicht gemacht. Die
+                Datenhändler wiederum verlangen einen kostenpflichtigen Zugang. Die Suche
+                geht weiter. Wo kein Termin vorliegt, steht auf der Seite der Aktie, warum
+                – eine plausibel aussehende Schätzung wäre dort schlechter als eine Lücke.
+              </p>
+              <p className="text-fg-muted mt-4 leading-relaxed">
+                Diese Termine sind mit{' '}
+                <strong className="text-fg">„erwartet, nicht bestätigt“</strong> und mit
+                „um den …“ gekennzeichnet, und sie stehen nur ein halbes Jahr weit im
+                Voraus. Ein Kalender, der geratene Daten wie Fakten ausweist, wäre
+                schlimmer als einer mit Lücken: Wer danach plant, verpasst den echten
+                Termin. Ein gekennzeichneter Erwartungswert dagegen ist nützlich – er
+                sagt, in welcher Woche man hinsehen sollte.
+              </p>
+              {quartalstermineStand && (
+                <p className="text-fg-subtle mt-4 text-sm">
+                  Hochgerechnet am{' '}
+                  {new Date(quartalstermineStand).toLocaleDateString('de-DE', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    timeZone: 'UTC',
+                  })}
+                  . {quartalstermineQuelle.abgrenzung}{' '}
+                  <a
+                    href={quartalstermineQuelle.url}
+                    rel="noopener noreferrer nofollow"
+                    target="_blank"
+                    className="underline underline-offset-2"
+                  >
+                    {quartalstermineQuelle.label}
+                  </a>
+                </p>
+              )}
 
-            <Callout variant="tip" title="Was Termine mit Kursen machen" className="mt-6">
-              <p>
-                Ein bekannter Termin bewegt für sich genommen nichts. Was am Mittwoch
-                erwartet wird, steckt schon im Kurs vom Dienstag – bewegt wird erst die
-                Abweichung von dieser Erwartung.
-              </p>
-              <p>
-                Nützlich ist der Kalender deshalb anders herum: Er erklärt hinterher,
-                warum ein Tag unruhig war. Ein Verfallstag oder ein Zinsentscheid ist der
-                häufigste Grund für einen Ausschlag, hinter dem keinerlei Nachricht über
-                ein Unternehmen steckt.
-              </p>
-            </Callout>
-          </section>
+              <Callout
+                variant="tip"
+                title="Was Termine mit Kursen machen"
+                className="mt-6"
+              >
+                <p>
+                  Ein bekannter Termin bewegt für sich genommen nichts. Was am Mittwoch
+                  erwartet wird, steckt schon im Kurs vom Dienstag – bewegt wird erst die
+                  Abweichung von dieser Erwartung.
+                </p>
+                <p>
+                  Nützlich ist der Kalender deshalb anders herum: Er erklärt hinterher,
+                  warum ein Tag unruhig war. Ein Verfallstag oder ein Zinsentscheid ist
+                  der häufigste Grund für einen Ausschlag, hinter dem keinerlei Nachricht
+                  über ein Unternehmen steckt.
+                </p>
+              </Callout>
+            </section>
+          </details>
 
           <div className="mt-16">
             <TopicLinkList
