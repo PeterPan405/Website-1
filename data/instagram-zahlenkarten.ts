@@ -29,6 +29,72 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 10.11.2026, „Gefallene Lieblinge“. Keine Wahl des Betreibers
+      für den Tag; nach dem Ablauf (Routine „Zahlenkarte des Tages“, Schritt 1)
+      der erste offene Vorschlag vom 09.11.
+      Kurse: data/snapshots/markets.json (Yahoo Finance, abgerufen
+      10.11.2026 03:50 UTC), Schlusskurse in Landeswährung, Reihe ab
+      08.11.2021. „Hoch“ = höchster Schlusskurs in der Reihe, nicht das
+      Allzeithoch.
+        HelloFresh    94,50 € (29.11.2021) →  2,99 € (06.11.2026)  −96,8 %
+        Puma         113,80 € (22.11.2021) → 26,82 € (06.11.2026)  −76,4 %
+        PayPal       212,54 $ (15.11.2021) → 60,05 $ (09.11.2026)  −71,7 %
+        Novo Nordisk 145,42 $ (01.07.2024) → 41,38 $ (09.11.2026)  −71,5 %
+          (ADR in New York)
+        Delivery Hero 125,00 € (22.11.2021) → 37,00 € (06.11.2026) −70,4 %
+        Estée Lauder 370,29 $ (03.01.2022) → 113,16 $ (09.11.2026) −69,4 %
+        Zalando       81,92 € (22.11.2021) → 27,72 € (06.11.2026)  −66,2 %
+        Porsche AG   120,35 € (22.05.2023) → 47,06 € (06.11.2026)  −60,9 %
+      Nike (−77 %) fehlt mit Absicht: Sie stand am 09.11. im Börsenrätsel.
+    */
+    art: 'balken',
+    datum: '2026-11-10',
+    titel: [{ text: 'Gefallene' }, { text: 'Lieblinge.', gruen: true }],
+    erklaerung: 'Bekannte Marken: so weit unter dem Hoch seit 2021.',
+    stichzeile: 'Aktien · Abstand zum Hoch seit Nov. 2021',
+    helden: [
+      {
+        name: 'HelloFresh',
+        wert: '−97 %',
+        richtung: 'faellt',
+        pille: { wert: '94,50 € → 2,99 €', name: 'Hoch → heute' },
+      },
+    ],
+    balken: [
+      { marke: 'HelloFresh', text: 'Kochboxen', wert: -96.84, hervor: true },
+      { marke: 'Puma', text: 'Sportartikel', wert: -76.43 },
+      { marke: 'PayPal', text: 'Bezahldienst', wert: -71.75 },
+      { marke: 'Novo Nordisk', text: 'Pharma', wert: -71.54 },
+      { marke: 'Delivery Hero', text: 'Lieferdienst', wert: -70.4 },
+      { marke: 'Estée Lauder', text: 'Kosmetik', wert: -69.44 },
+      { marke: 'Zalando', text: 'Mode online', wert: -66.16 },
+      { marke: 'Porsche', text: 'Sportwagen', wert: -60.9 },
+    ],
+    einheit: '%',
+    fusszeile: 'Stand: 09.11.2026 | Quelle: Yahoo Finance, Schlusskurse; eigene Rechnung',
+    text:
+      'Einst Lieblinge der Anleger – heute weit unter ihrem Hoch. So tief steht die Aktie bekannter Marken unter ihrem höchsten Kurs seit November 2021:\n\n' +
+      'HelloFresh: 94,50 € → 2,99 €, −97 %\n' +
+      'Puma: 113,80 € → 26,82 €, −76 %\n' +
+      'PayPal: 212,54 $ → 60,05 $, −72 %\n' +
+      'Novo Nordisk: 145,42 $ → 41,38 $, −72 % (Hoch im Juli 2024)\n' +
+      'Delivery Hero: 125,00 € → 37,00 €, −70 %\n' +
+      'Estée Lauder: 370,29 $ → 113,16 $, −69 %\n' +
+      'Zalando: 81,92 € → 27,72 €, −66 %\n' +
+      'Porsche: 120,35 € → 47,06 €, −61 % (Hoch im Mai 2023)\n\n' +
+      'Schon gewusst?\n' +
+      '– Wer HelloFresh im Hoch kaufte, hat aus 1.000 € heute rund 32 € gemacht.\n' +
+      '– Nach −97 % braucht die Aktie mehr als das 30-Fache, um wieder aufs Hoch zu kommen.\n\n' +
+      'Warum fielen sie?\n' +
+      'Die Kursreihe nennt keine Gründe, und sie sind je Firma andere. Wir nennen keinen, den wir nicht in einer Quelle gelesen haben.\n\n' +
+      'Und jetzt?\n' +
+      'Ob sie sich erholen, sagen die Kurse nicht. Ein tiefer Kurs allein ist kein Kaufsignal.\n\n' +
+      'Gerechnet: Schlusskurs am 6. bzw. 9.11.2026 gegen den höchsten Schlusskurs seit 8.11.2021, in Landeswährung, ohne Dividenden.\n' +
+      'Quellen: Yahoo Finance, Stand 9.11.2026; eigene Rechnung',
+    schlagworte: ['aktien', 'hellofresh', 'puma', 'paypal', 'börse'],
+  },
+  {
+    /*
       Zahlenkarte 09.11.2026, „Welche Aktie ist das?“ – Börsenrätsel, die
       erste Karte der Art `raetsel`. Der Betreiber zu den Vorschlägen
       (Mauerfall-Depot, DAX 1989/heute, Gewinn pro Sekunde, Wem gehört der

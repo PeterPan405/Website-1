@@ -1042,6 +1042,52 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 10.11.2026: Gefallene Lieblinge – Abstand zum Hoch seit Nov. 2021 (Yahoo Finance, markets.json). */
+{
+  const karte = karteVom('2026-11-10')
+  pruefe('Lieblinge: Karte für den 10.11. sind Balken', karte?.art === 'balken')
+  if (karte?.art === 'balken') {
+    pruefe(
+      'Lieblinge: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Lieblinge: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-09')!)
+    )
+    /* Hoch und letzter Schlusskurs aus markets.json, Stand 10.11.2026. */
+    const kurse: [string, number, number][] = [
+      ['HelloFresh', 94.5, 2.99],
+      ['Puma', 113.8, 26.82],
+      ['PayPal', 212.54, 60.05],
+      ['Novo Nordisk', 145.42, 41.38],
+      ['Delivery Hero', 125, 37],
+      ['Estée Lauder', 370.29, 113.16],
+      ['Zalando', 81.92, 27.72],
+      ['Porsche', 120.35, 47.06],
+    ]
+    for (const [name, hoch, jetzt] of kurse) {
+      const b = karte.balken.find((x) => x.marke === name)
+      const prozent = Math.round((jetzt / hoch - 1) * 10000) / 100
+      pruefe(`Lieblinge: ${name} ${prozent} %`, b?.wert === prozent)
+      pruefe(
+        `Lieblinge: ${name} mit gerundeter Zahl im Text`,
+        karte.text.includes(`${name}: `) &&
+          karte.text.includes(`−${Math.abs(Math.round(prozent))} %`)
+      )
+    }
+    pruefe(
+      'Lieblinge: absteigend nach Abstand',
+      karte.balken.every((b, i) => i === 0 || b.wert >= karte.balken[i - 1].wert)
+    )
+    pruefe(
+      'Lieblinge: 1.000 € im Hoch sind heute rund 32 €',
+      Math.round((1000 * 2.99) / 94.5) === 32
+    )
+  }
+}
+
 /* 09.11.2026: Börsenrätsel – drei Kurven ohne Namen, Yahoo Finance, Stand 05.11.2026. */
 {
   const karte = karteVom('2026-11-09')
