@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "US-Inflationsdaten, ein Goldpreis über 4.100 Dollar, ein fallender Ölpreis, Boeings Stellenabbau und die EZB-Nachfolge – die Themen des Tages.",
+  "kacheln": [
+    {
+      "titel": "US-Inflation im Fokus",
+      "text": "Die USA veröffentlichen am Dienstag die Verbraucherpreise für Oktober. Ökonomen erwarten 0,3 Prozent Anstieg, bei der Kernrate 0,2 Prozent."
+    },
+    {
+      "titel": "Gold über 4.100 Dollar",
+      "text": "Der Goldpreis kletterte zum Wochenstart über 4.100 Dollar. Sinkende Anleiherenditen und ein schwächerer Ölpreis stützten den Kurs."
+    },
+    {
+      "titel": "Öl: Hoffnung auf Frieden",
+      "text": "Der Ölpreis ist deutlich gefallen. Anleger hoffen auf ein Ende des Kriegs zwischen den USA und dem Iran, ein Abkommen gibt es aber noch nicht."
+    },
+    {
+      "titel": "Boeing streicht Stellen",
+      "text": "Boeing baut fünf Prozent der Stellen im Zivilflugzeugbau ab. Grund ist die langsamer als geplant hochlaufende Produktion der 737 Max."
+    },
+    {
+      "titel": "EZB sucht neue Spitze",
+      "text": "Die Finanzminister der Eurozone berieten über die Nachfolge von EZB-Chefin Lagarde. Spanien und die Niederlande werben für ihre Kandidaten."
+    }
+  ],
+  "schlagworte": ["gold", "ölpreis", "inflation", "börse", "aktien"]
+}

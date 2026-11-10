@@ -101,6 +101,332 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-verbraucherpreise-oktober-2026',
+    title: 'US-Verbraucherpreise für Oktober: Das erwarten Ökonomen',
+    teaser:
+      'Die USA veröffentlichen am Dienstag die Verbraucherpreise für Oktober. Ökonomen erwarten einen moderaten Anstieg bei Kern- und Gesamtrate.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-10T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Inflation', 'USA', 'Verbraucherpreise', 'Notenbank'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          "CNBC, 9.11.2026, 21:03 Uhr: „A key report for where inflation stood in October comes out Tuesday. Here's what to expect“",
+        url: 'https://www.cnbc.com/2026/11/09/october-cpi-report-2026-inflation.html',
+      },
+      {
+        label:
+          'CNBC, 9.11.2026, 22:23 Uhr: „3 unexpected reasons the October jobs report was so strong“',
+        url: 'https://www.cnbc.com/2026/11/09/october-jobs-report-hiring-by-sector.html',
+      },
+      {
+        label:
+          'Goldreporter, 6.11.2026: „US-Arbeitsmarkt überrascht mit 165.000 neuen Stellen“',
+        url: 'https://www.goldreporter.de/us-arbeitsmarkt-ueberrascht-mit-165-000-neuen-stellen/konjunktur/262896/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An diesem Dienstag veröffentlicht das US-Arbeitsministerium die Verbraucherpreise für Oktober. Nach den turbulenten Börsenwochen der vergangenen Tage wird die Zahl besonders genau gelesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das erwarten Ökonomen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC rechnen Ökonomen mit einem Anstieg der Gesamtrate um 0,3 Prozent gegenüber dem Vormonat. Für die Kernrate, die Energie und Lebensmittel ausklammert, liegt die Erwartung bei 0,2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kernrate statt Gesamtrate',
+      },
+      {
+        type: 'paragraph',
+        text: 'Energie- und Lebensmittelpreise schwanken stark und sagen wenig über den langfristigen Preistrend aus. Die Kernrate gilt deshalb unter Notenbankern als der verlässlichere Maßstab für den tatsächlichen Preisdruck in der Wirtschaft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Arbeitsmarkt, der überrascht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Blick auf die Inflation fällt in eine Phase mit überraschend starken Signalen vom Arbeitsmarkt. Nach Angaben von Goldreporter kamen im Oktober 165.000 neue Stellen hinzu, deutlich mehr als Ökonomen erwartet hatten. CNBC bestätigte, dass der Bericht die Prognosen der Volkswirte übertroffen hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was die Zahl heute bedeutet:** Fällt die Inflation höher aus als erwartet, dürfte das die Diskussion über das Tempo künftiger Leitzinsentscheidungen der US-Notenbank neu anheizen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-ueber-26000-unicredit-commerzbank-zeitplan',
+    title: 'Dax klettert über 26.000 Punkte, Unicredit nennt Zeitplan für Commerzbank',
+    metaTitle: 'Dax über 26.000 Punkte, Commerzbank-Zeitplan steht',
+    teaser:
+      'Fallende Ölpreise trieben den Dax am Montag über 26.000 Punkte. Unicredit legte zugleich einen Zeitplan für die Commerzbank-Übernahme vor.',
+    category: 'Märkte',
+    publishedAt: '2026-11-10T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Ölpreis', 'Unicredit', 'Commerzbank'],
+    relatedTopics: ['aktie', 'rohstoffe'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 9.11.2026, 17:21 Uhr: „Dax aktuell: Dax klettert wieder über 26.000-Punkte-Marke und schließt deutlich im Plus – Chipaktie legt zu“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-klettert-wieder-ueber-26.000-punkte-marke-und-schliesst-im-plus/100268348.html',
+      },
+      {
+        label:
+          'tagesschau.de, 9.11.2026, 18:18 Uhr: „Marktbericht: DAX erholt sich kräftig“',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/marktberichte/marktbericht-dax-dow-geldanlage-170.html',
+      },
+      {
+        label:
+          'tagesschau.de, 9.11.2026, 13:52 Uhr: „Commerzbank-Übernahme soll Anfang 2027 durch sein“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/commerzbank-uebernahme-unicredit-100.html',
+      },
+      {
+        label:
+          'tagesschau.de, 9.11.2026, 9:52 Uhr: „Hoffen auf Ende des Iran-Krieges: Ölpreise deutlich gesunken“',
+        url: 'https://www.tagesschau.de/wirtschaft/weltwirtschaft/oelpreise-gesunken-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der deutsche Leitindex ist stark in die neue Woche gestartet. Nach den Verlusten der vergangenen Tage schloss der Dax am Montag deutlich im Plus und kletterte über die Marke von 26.000 Punkten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ölpreis als Helfer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen wichtigen Anteil an der Erholung hatte laut Tagesschau der Ölpreis. Er gab deutlich nach, weil Anleger auf ein Ende des seit Monaten schwelenden Konflikts zwischen den USA und dem Iran hoffen – unterzeichnet ist noch kein Abkommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unicredit nennt einen Termin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel brachte die italienische Bank Unicredit Bewegung in die Übernahme der Commerzbank. Laut Tagesschau könnte das Institut noch in diesem Monat die letzten behördlichen Genehmigungen erhalten; die Übernahme selbst soll demnach Anfang 2027 abgeschlossen sein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Übernahmen auf einmal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von Handelsblatt laufe zudem die Fusion von Commerzbank und HypoVereinsbank schneller als zunächst geplant. Unicredit besitzt die HypoVereinsbank bereits; beide deutschen Institute sollen künftig unter einem Dach zusammengeführt werden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Lehrwinkel:** Ein fallender Ölpreis wirkt wie eine Entlastung für die gesamte Industrie, weil Energie- und Transportkosten sinken – deshalb reagieren Aktienindizes oft positiver darauf als auf die Nachricht einer einzelnen Übernahme.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-aktie-faellt-nachfolge-huang',
+    title: 'Nvidia-Aktie fällt: Sorge um Nachfolge für Jensen Huang',
+    teaser:
+      'Die Affäre um Nvidia-Chef Jensen Huang belastet die Aktie. Anlegern fehlt laut CNBC ein klarer Nachfolgeplan für den Gründer.',
+    category: 'Märkte',
+    publishedAt: '2026-11-10T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Jensen Huang', 'Technologiekonzerne', 'Aktie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 9.11.2026, 17:59 Uhr: „Huang-Affäre: ‚Jensen ist unersetzbar‘: Nvidia-Aktie fällt wegen Spionage-Skandal“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/huang-affaere-jensen-ist-unersetzbar-nvidia-aktie-faellt-wegen-skandal/100268280.html',
+      },
+      {
+        label:
+          "CNBC, 9.11.2026, 22:56 Uhr: „Jensen Huang affair puts Nvidia's future at risk, with no clear successor to the renowned CEO“",
+        url: 'https://www.cnbc.com/2026/11/09/jensen-huang-affair-nvidia-succession.html',
+      },
+      {
+        label:
+          "CNBC, 9.11.2026, 20:29 Uhr: „Nvidia's CEO turmoil gives newly empowered Democrats fresh ammunition in pursuit of oversight“",
+        url: 'https://www.cnbc.com/2026/11/09/nvidia-jensen-huang-affair-congress-scrutiny.html',
+      },
+      {
+        label:
+          'Handelsblatt, 9.11.2026, 7:28 Uhr: „Nikkei, Kospi, Taiex: Nvidia-Spionageskandal belastet die asiatischen Chipwerte“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/zweifel-an-zukunft-von-nvidia-chef-huang-bremsen-suedkoreas-boerse/100268306.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Affäre um Nvidia-Chef Jensen Huang zieht weitere Kreise. Am Montag belastete sie die Aktie des Chipkonzerns, nachdem bereits der asiatische Chipsektor am Morgen unter dem Thema gelitten hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Gründer ohne Nachfolgeplan',
+      },
+      {
+        type: 'paragraph',
+        text: 'Jensen Huang hat Nvidia 1993 mitgegründet und über Jahrzehnte zum wertvollsten Chiphersteller der Welt aufgebaut. CNBC berichtete, es gebe keinen klar erkennbaren Nachfolger – ein Umstand, der Investoren angesichts der Vorwürfe gegen Huang zusätzlich beunruhigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Kongress schaut hin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC nutzen die nach den Zwischenwahlen gestärkten Demokraten im US-Kongress die Affäre, um stärkere Kontrolle über den Chipkonzern einzufordern. Nvidias Nähe zur US-Regierung gerät damit zusätzlich in den Blick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Folgen für die ganze Branche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Handelsblatt sorgt die Unsicherheit um Nvidias Führungsspitze auch bei Zulieferern in Asien für Nervosität. In Südkorea gerieten die Aktien von Samsung und SK Hynix unter Druck, weil beide Konzerne stark von Nvidias Geschäft abhängen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was Anleger beachten sollten:** Ein einzelner Konzern kann über Zulieferketten ganze Branchenindizes bewegen – ein Grund, warum Investoren Führungsfragen bei Schlüsselunternehmen so genau verfolgen.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-stellenabbau-verkehrsflugzeuge',
+    title: 'Boeing streicht fünf Prozent der Stellen bei Verkehrsflugzeugen',
+    teaser:
+      'Boeing baut Stellen im Zivilflugzeugbau ab, weil die Produktion der 737 Max langsamer hochläuft als geplant.',
+    category: 'Märkte',
+    publishedAt: '2026-11-10T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Boeing', 'Luftfahrt', 'Stellenabbau', 'USA'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['boeing'],
+    sources: [
+      {
+        label:
+          'CNBC, 9.11.2026, 19:35 Uhr: „Boeing to cut 5% of commercial airplane workers as production increase takes longer than expected“',
+        url: 'https://www.cnbc.com/2026/11/09/boeing-layoffs-commercial-airplane.html',
+      },
+      {
+        label:
+          'wallstreet-online, 9.11.2026, dpa-AFX: „Boeing streicht 5 Prozent der Stellen in der Verkehrsflugzeugsparte“',
+        url: 'https://www.wallstreet-online.de/nachricht/21666096-boeing-streicht-5-prozent-stellen-verkehrsflugzeugsparte',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Boeing baut Arbeitsplätze ab. Der US-Flugzeughersteller streicht fünf Prozent der Stellen in seiner Sparte für Verkehrsflugzeuge, wie CNBC und die Nachrichtenagentur dpa-AFX übereinstimmend berichteten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die 737 Max läuft langsamer hoch als geplant',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt CNBC die Produktion des Verkaufsschlagers 737 Max: Sie soll weiterhin außerhalb von Seattle gefertigt werden, doch das Hochfahren der Fertigungsraten dauert länger, als Boeing es sich vorgenommen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kapazität ohne volle Auslastung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Werk, das nicht mit voller Kapazität läuft, trägt dennoch die vollen Fixkosten für Gebäude, Maschinen und einen Teil der Belegschaft. Je länger ein Hochlauf dauert, desto später rechnet sich die bereits investierte Fertigungskapazität.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu den finanziellen Auswirkungen des Stellenabbaus auf das laufende Geschäftsjahr äußerten sich weder Boeing noch die beiden Agenturen in den vorliegenden Berichten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Einordnung:** Ein verzögerter Produktionshochlauf bindet Kapital, ohne dass ihm in gleichem Tempo Umsatz gegenübersteht – ein Muster, das Anleger bei Industriekonzernen regelmäßig beobachten.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-nachfolge-zeitplan-eng',
+    title: 'EZB-Nachfolge: Finanzminister drängen auf schnelle Entscheidung',
+    teaser:
+      'Die Eurozone sucht eine Nachfolge für EZB-Chefin Lagarde. Spanien und die Niederlande werben weiter für ihre Kandidaten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-10T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['EZB', 'Geldpolitik', 'Lagarde-Nachfolge', 'Europa'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 9.11.2026, 14:24 Uhr: „Geldpolitik: ‚Der Zeitplan ist eng‘: Finanzminister beraten über Lagardes Nachfolge an der EZB-Spitze“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-enger-zeitplan-finanzminister-beraten-ueber-neue-spitze/100268439.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer führt die Europäische Zentralbank nach Christine Lagarde? Die Finanzminister der Eurozone kamen laut Handelsblatt zusammen, um genau darüber zu beraten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Länder, zwei Kandidaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Spanien wirbt für seinen Kandidaten, die Niederlande für ihren eigenen. Beide Länder versuchen laut Handelsblatt, ihren jeweiligen Vorschlag für die EZB-Präsidentschaft durchzusetzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein enger Zeitplan',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von Handelsblatt dürfte eine Entscheidung über die EZB-Präsidentschaft schon bald fallen. Im Anschluss stehen demnach weitere Personalentscheidungen innerhalb der Notenbank an. Diese Einzelheiten zum Zeitplan liegen bislang nur von dieser einen Redaktion vor; eine zweite, unabhängige Bestätigung steht noch aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Besetzung zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die EZB-Präsidentschaft lenkt die Geldpolitik für neunzehn Euro-Länder und damit die Zinsen, die Sparer, Kreditnehmer und Unternehmen in der gesamten Währungsunion zu zahlen oder zu bekommen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Einordnung:** Personalentscheidungen an der Spitze einer Notenbank wirken oft über Jahre nach, weil sie die Grundhaltung zu Zinsentscheidungen für eine ganze Amtszeit mitbestimmen.',
+      },
+    ],
+  },
+  {
     slug: 'nvidia-huang-spionagevorwurf-untersuchung',
     title: 'Nvidia-Vorstand prüft Spionagevorwurf gegen Jensen Huang',
     teaser:
