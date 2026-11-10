@@ -336,7 +336,30 @@ SEC-Meldungen, 1 € = 1,1165 US-$, EZB 06.11.):
 Vor dem Entwurf **mit dem Kurs vom Tag neu rechnen**: Das Vorbild nannte drei
 Tage zuvor Nvidia 4,4 und Apple 4,3 Bio. €, bei uns liegt Apple vorn – das
 ist entweder Kursbewegung oder eine veraltete Aktienzahl; vor dem Posten
-klären. Ein deutscher Bezugspunkt (BIP Deutschland 2025, Destatis) kommt nur
+klären.
+
+**Gegenprobe am 10.11.2026 – geklärt: Apple liegt vorn.** Neu gerechnet aus
+unserem Bestand (`getFundamentalkennzahlen()`, Kurse 10.11. ~16:23 UTC,
+1 € = 1,1214 US-$, EZB 10.11.) und gegen die Nasdaq geprüft
+(`api.nasdaq.com`, Kurs und Börsenwert 10.11., 13:32 Uhr New York):
+
+    Tesla        1,49 Bio. $  ≈ 1,33 Bio. €
+    Broadcom     1,57 Bio. $  ≈ 1,40 Bio. €
+    Meta         1,63 Bio. $  ≈ 1,46 Bio. €
+    Amazon       2,91 Bio. $  ≈ 2,60 Bio. €
+    Alphabet     3,54 Bio. $  ≈ 3,15 Bio. €
+    Microsoft    4,03 Bio. $  ≈ 3,60 Bio. €
+    Nvidia       4,07 Bio. $  ≈ 3,63 Bio. €
+    Apple        5,05 Bio. $  ≈ 4,50 Bio. €
+
+Apple: 347,28 $ × 14,53 Mrd. Aktien (Nasdaq: 5,06 Bio. $); Nvidia:
+168,73 $ × 24,10 Mrd. (Nasdaq: 4,06 Bio. $). Die Aktienzahlen stimmen also,
+und der Abstand von rund einer Billion ist keine Tagesschwankung – die
+Vorbild-Reihenfolge war ein älterer Stand. **Neu seit dem 06.11.:** Tesla
+und Broadcom haben getauscht, und Microsoft und Nvidia liegen nur noch
+0,03 Bio. € auseinander – dort greift Regel 2 (Bilder auseinander, nie der
+Punkt). Vor dem Posten trotzdem mit dem Kurs des Tages neu rechnen. Ein
+deutscher Bezugspunkt (BIP Deutschland 2025, Destatis) kommt nur
 mit abgerufener Quelle hinein.
 
 ## Was der Betreiber beanstandet hat – und was es seitdem abfängt
