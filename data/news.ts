@@ -101,6 +101,620 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'nvidia-huang-spionagevorwurf-untersuchung',
+    title: 'Nvidia-Vorstand prüft Spionagevorwurf gegen Jensen Huang',
+    teaser:
+      'Nvidia-Chef Jensen Huang räumt eine Affäre ein. Der Verwaltungsrat prüft nun, ob die Frau für einen ausländischen Geheimdienst spioniert haben könnte.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Jensen Huang', 'Spionage', 'Technologiekonzerne'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          "CNBC, 8.11.2026, 23:53 Uhr: „Nvidia investigates CEO Jensen Huang's relationship with alleged Chinese spy“",
+        url: 'https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html',
+      },
+      {
+        label:
+          'onvista, News-Ticker (dpa-AFX) vom 8.11.2026, 20:27 Uhr: „Nvidia prüft Berichte zu ausländischer Spionage gegen Chef“',
+        url: 'https://www.onvista.de/news/2026/11-08-nvidia-prueft-berichte-zu-auslaendischer-spionage-gegen-chef-0-10-26573925',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia-Chef Jensen Huang hat gegenüber der eigenen Belegschaft eingeräumt, eine außereheliche Beziehung gehabt zu haben. Das Unternehmen hat nach Angaben von CNBC eine interne Untersuchung eingeleitet, weil es Vorwürfe gibt, die betreffende Frau könnte für einen ausländischen Geheimdienst spioniert haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch eine Nachrichtenagentur berichtet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Huang teilte die Nachricht demnach per E-Mail an die Mitarbeiter von Nvidia mit. Der Verwaltungsrat des Unternehmens prüft seither, ob über die Beziehung vertrauliche Informationen abgeflossen sein könnten. Auch die Nachrichtenagentur dpa-AFX griff den Vorgang auf und berichtete am Sonntagabend, Nvidia prüfe Berichte zu ausländischer Spionage gegen den eigenen Chef.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelner Name den ganzen Markt bewegen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia stellt die gefragtesten Chips für den Aufbau von KI-Rechenzentren her und zählt zu den größten Unternehmen der Welt nach Börsenwert. Entsprechend genau verfolgen Investoren alles, was den Konzern und seine Führung betrifft – gerade in einer Phase, in der ohnehin Sorgen um die Bewertung von KI-Aktien die Kurse drücken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offene Fragen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder zum Ausgang der internen Untersuchung noch zu einem möglichen Zeitplan lagen am Sonntagabend weitere Angaben vor. Auch der Name der betroffenen Frau wurde in den bislang verfügbaren Berichten nicht genannt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich ein Spionagevorwurf gegen eine einzelne Person erhärtet, ist offen. Für Anleger zählt vor allem, ob die Führung eines so gewichtigen Unternehmens handlungsfähig bleibt – ein Risiko, das sich in keiner Bilanz zeigt, bis es zu spät ist.',
+      },
+    ],
+  },
+  {
+    slug: 'huthi-angriff-riad-trump-iran-gespraeche',
+    title: 'Huthi greifen Riad an, USA halten neue Angriffe im Iran für unwahrscheinlich',
+    metaTitle: 'Huthi greifen Riad an, neue Iran-Angriffe unwahrscheinlich',
+    teaser:
+      'Huthi-Rebellen griffen laut dpa-AFX einen Wolkenkratzer in Riad an. Trump hält neue US-Angriffe auf Iran für unwahrscheinlich, falls Gespräche vorankommen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Huthi', 'Saudi-Arabien', 'Iran', 'Ölmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker (dpa-AFX) vom 8.11.2026, 19:28 Uhr: „WDH/ROUNDUP 2: Huthi greifen Wolkenkratzer im Zentrum von Riad an“',
+        url: 'https://www.onvista.de/news/2026/11-08-wdh-roundup-2-huthi-greifen-wolkenkratzer-im-zentrum-von-riad-an-0-10-26573924',
+      },
+      {
+        label:
+          "CNBC, 8.11.2026, 22:53 Uhr: „Trump says renewed Iran strikes 'highly unlikely' if talks progress but warns he could still strike“",
+        url: 'https://www.cnbc.com/2026/11/08/trump-iran-strikes-unlikely-talks-hormuz.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Huthi-Rebellen aus dem Jemen haben nach Angaben der Nachrichtenagentur dpa-AFX einen Wolkenkratzer im Zentrum der saudi-arabischen Hauptstadt Riad angegriffen. Die Meldung liegt bislang nur von dieser einen Quelle vor; Angaben zu Schäden oder Verletzten gab es zunächst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump äußert sich zu neuen Angriffen auf Iran',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig davon sagte US-Präsident Donald Trump laut CNBC, neue amerikanische Angriffe auf Iran seien unwahrscheinlich, falls die Gespräche über das iranische Atomprogramm und die Straße von Hormus Fortschritte machten. Zugleich warnte er, er könne weiterhin zuschlagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Straße von Hormus bleibt ein Risiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus läuft ein erheblicher Teil des weltweiten Öltransports. Jede neue Spannung in der Region – ob durch Angriffe auf Saudi-Arabien oder durch die Gespräche zwischen den USA und Iran – wird deshalb an den Rohstoffmärkten verfolgt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung ohne zweite Quelle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Angriff auf den Wolkenkratzer in Riad lag zum Redaktionsschluss nur die Meldung von dpa-AFX vor; eine zweite, unabhängige Bestätigung stand noch aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Einzelne Vorfälle in der Region lassen sich nur schwer gegeneinander gewichten. Für den Ölpreis zählt weniger ein einzelner Angriff als die Frage, ob sich die Lage insgesamt weiter zuspitzt oder entspannt.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-stellt-cybertruck-produktion-ein',
+    title: 'Tesla stellt Cybertruck-Produktion in Texas ein',
+    teaser:
+      'Tesla will die Produktion des Cybertruck in Texas beenden. Elon Musk will die Kapazität für ein anderes Produkt nutzen – die Nachfrage blieb schwach.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Cybertruck', 'Elon Musk', 'Elektroautos'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 14:09 Uhr: „Tesla will Cybertruck-Produktion in Texas einstellen“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/tesla-produktion-cybertruck-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Tesla will die Produktion des Cybertruck am Werk in Texas einstellen. Das Elektro-Pickup sollte Teslas Antwort auf beliebte US-Pickups sein, blieb aber nach Angaben der Tagesschau deutlich hinter den Erwartungen zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Platz für ein anderes Produkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konzernchef Elon Musk will die freiwerdende Kapazität in der Fabrik für ein anderes Produkt nutzen. Wann genau die Produktion endet und was an die Stelle des Cybertruck tritt, ließ er bislang offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nur eine Quelle bislang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ankündigung ist bislang nur durch die Tagesschau belegt. Weitere Einzelheiten – etwa zu Mitarbeiterzahlen am Standort oder zu Kosten der Umstellung – lagen zum Redaktionsschluss nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Modell, das die hohen Erwartungen nicht einlöste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Cybertruck war bei seiner Vorstellung als Massenprodukt für den nordamerikanischen Pickup-Markt angekündigt worden, einem der umsatzstärksten Fahrzeugsegmente der USA. Dass Tesla die Fertigung nun schon wenige Jahre nach dem Produktionsstart zurückfährt, zeigt, wie weit die tatsächliche Nachfrage hinter dieser Ankündigung zurückblieb.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein eingestelltes Modell bindet Kapital, das in Werkzeuge und Fertigungslinien bereits investiert wurde. Wie viel davon sich noch amortisiert, hängt davon ab, wie schnell und wie profitabel sich die Fabrik auf ein neues Produkt umstellen lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'demokraten-wollen-trumps-zoelle-beenden',
+    title: 'Demokraten wollen Trumps Zölle beenden, Ökonomen erwarten weiter Streit',
+    metaTitle: 'Demokraten wollen Trumps Zölle beenden',
+    teaser:
+      'Die Demokraten wollen im neuen US-Kongress Trumps Zölle beenden. Deutsche Ökonomen rechnen trotz des Machtwechsels nicht mit einem schnellen Ende des Streits.',
+    category: 'Märkte',
+    publishedAt: '2026-11-09T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zölle', 'USA', 'Demokraten', 'Handelspolitik'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['sp500', 'dax'],
+    sources: [
+      {
+        label:
+          "CNBC, 8.11.2026, 16:36 Uhr: „How Democrats will try to end Trump's tariffs“",
+        url: 'https://www.cnbc.com/2026/11/08/trump-tariffs-democrats-congress-canada.html',
+      },
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 12:17 Uhr: „Welche Folgen die US-Midterms für die deutsche Wirtschaft haben“',
+        url: 'https://www.tagesschau.de/wirtschaft/midterms-wirtschaft-handelspolitik-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der voraussichtlich künftige Mehrheitsführer im US-Repräsentantenhaus, Hakeem Jeffries, hat die Zölle von Präsident Donald Trump als eine der obersten Prioritäten der Demokraten im neuen Kongress bezeichnet. Das berichtet CNBC. Wie die Partei dabei konkret vorgehen will, blieb zunächst offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutsche Ökonomen bleiben zurückhaltend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Tagesschau zitiert Ökonomen, die dem Machtwechsel im US-Kongress zwar mehr Planbarkeit für Unternehmen zutrauen, aber kein schnelles Ende des Zollstreits erwarten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Zölle mehr als zwei Länder betreffen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zölle verteuern Importe und wirken wie eine Steuer auf Handelsketten, die oft über mehrere Länder laufen. Ein Bauteil, das in einem Land gefertigt, in einem zweiten verarbeitet und in einem dritten verkauft wird, kann an mehreren Stellen betroffen sein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offener Zeitplan',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein konkretes Gesetzesvorhaben oder einen Zeitplan nannte Jeffries nach Angaben von CNBC bislang nicht. Auch Trump selbst hat sich zu den Ankündigungen der Demokraten noch nicht öffentlich geäußert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ankündigungen aus dem Wahlkampf oder kurz danach sind noch keine Gesetze. Viele der bestehenden Zölle hat Trump über die Exekutive verhängt – ob und wie der Kongress sie rückgängig machen kann, ist eine offene rechtliche und politische Frage.',
+      },
+    ],
+  },
+  {
+    slug: 'frankfurter-leben-problemkredite-private-credit',
+    title: 'Lebensversicherer Frankfurter Leben kämpft mit Problemkrediten',
+    teaser:
+      'Der Lebensversicherer Frankfurter Leben hat laut Handelsblatt Hunderte Millionen Euro in private Kredite investiert. Ein Dutzend steckt in Schwierigkeiten.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-09T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Lebensversicherung', 'Private Credit', 'Frankfurter Leben', 'Kapitalanlage'],
+    relatedTopics: ['rente', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 8.11.2026, 12:52 Uhr: „Versicherungen: Frankfurter Leben kämpft mit Problemfällen im Private-Credit-Portfolio“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/versicherer/versicherung-fehlgriffe-bei-privatmarkt-anlagen-belasten-frankfurter-leben/100263978.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Lebensversicherer Frankfurter Leben hat nach einem Bericht des Handelsblatts Hunderte Millionen Euro an den privaten Kreditmärkten verliehen. Rund ein Dutzend dieser Investments stecke derzeit in finanziellen Schwierigkeiten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was private Kreditmärkte sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Private Credit leihen Investoren wie Versicherer oder Fonds Unternehmen direkt Geld, ohne dass eine Bank dazwischensteht. Der Markt ist in den vergangenen Jahren stark gewachsen, weil Banken bei manchen Krediten vorsichtiger wurden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Unternehmen sieht keine Gefahr für Kunden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankfurter Leben erklärte laut Handelsblatt, Verluste für die Versicherten seien nicht zu befürchten. Zu den betroffenen Investments machte das Unternehmen keine näheren Angaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung, noch ohne zweite Quelle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Über die konkreten Problemfälle bei Frankfurter Leben berichtete bislang nur das Handelsblatt. Eine unabhängige Bestätigung durch eine zweite Redaktion liegt noch nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei einer Lebensversicherung steckt das Geld der Kunden oft jahrzehntelang in der Kapitalanlage des Versicherers. Ob sich einzelne Problemkredite in der Bilanz niederschlagen, zeigt sich deshalb oft erst mit großer Verzögerung – lange nachdem die erste Meldung darüber erschienen ist.',
+      },
+    ],
+  },
+  {
+    slug: 'raketen-treffen-insel-qeschm-im-golf',
+    title: 'Iran meldet Raketen auf Qeschm, Trump nennt „kleine Schläge“',
+    metaTitle: 'Iran meldet Raketentreffer, Trump: „kleine Schläge“',
+    teaser:
+      'Nach Raketentreffern auf der iranischen Insel Qeschm spricht Trump von „kleinen Schlägen“ gegen Iran. Die Straße von Hormus bleibt ein Risiko für den Ölmarkt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-08T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Straße von Hormus', 'Ölmarkt', 'Geopolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          "CNBC, 7.11.2026, 08:37 Uhr: „Trump says U.S. carried out 'minor strikes' on Iran as missiles hit Qeshm Island“",
+        url: 'https://www.cnbc.com/2026/11/07/trump-us-minor-strikes-iran-qeshm-island.html',
+      },
+      {
+        label:
+          'CNBC, 7.11.2026, 23:17 Uhr: „Risk of Iran war escalation remains high despite Democratic sweep in U.S. midterm elections“',
+        url: 'https://www.cnbc.com/2026/11/07/iran-war-midterm-election-oil-price-trump.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Auf der iranischen Insel Qeschm in der Straße von Hormus sind nach Angaben der iranischen Nachrichtenagentur Tasnim am Freitag zwei Raketen eingeschlagen. Offizielle Angaben zu Schäden gab es laut CNBC zunächst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump spricht von „kleinen Schlägen“',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump sagte am selben Tag, die USA hätten „kleine Schläge“ gegen Iran ausgeführt, die aber „etwas ausschalten“. Ein Gerät zur Flugabwehr sei „in etwa 15, vielleicht fünf Minuten“ ausgeschaltet worden, sagte er. Ob er damit die Treffer auf Qeschm meinte, ließ er offen: „Ich will darüber nicht sprechen.“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump sagte außerdem, bislang sei „niemand verletzt, niemand getötet“ worden. Er bezifferte Irans Inflation auf „300 Prozent“ und behauptete, die iranische Marine existiere nicht mehr. Diese Zahlen stammen allein von Trump; eine Quelle dafür nannte er nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Iran verlangt mehr als Worte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der stellvertretende Sekretär des iranischen Nationalen Sicherheitsrats, Ali Bagheri Kani, sagte dem Staatssender IRIB, Iran brauche „praktische Maßnahmen“ der Amerikaner. Ein Abkommen allein auf Papier reiche nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Straße von Hormus ist einer der wichtigsten Wege für Öltransporte weltweit. Jede neue Eskalation dort gilt als Risikofaktor für den Ölpreis, unabhängig davon, wie sich die einzelnen Vorfälle am Ende einordnen lassen.',
+      },
+    ],
+  },
+  {
+    slug: 'industrieproduktion-ueberrascht-im-september',
+    title: 'Deutsche Industrie überrascht im September, Autobranche zieht an',
+    metaTitle: 'Industrieproduktion überrascht im September',
+    teaser:
+      'Deutschlands Industrie hat im September mehr produziert als erwartet, vor allem die Autobranche. Eine Korrektur der August-Zahlen relativiert den Erfolg.',
+    category: 'Märkte',
+    publishedAt: '2026-11-08T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: [
+      'Industrieproduktion',
+      'Konjunktur',
+      'Statistisches Bundesamt',
+      'Autoindustrie',
+    ],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 6.11.2026, 11:42 Uhr: „Industrieproduktion wächst überraschend - Autobranche legt zu“',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/industrieproduktion-wachstum-deutschland-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutsche Industriebetriebe haben im September mehr produziert als im Vormonat – und mehr, als Ökonomen erwartet hatten. Das Statistische Bundesamt meldete ein Plus von 0,7 Prozent gegenüber August. Volkswirte waren im Schnitt von einem Rückgang um 0,1 Prozent ausgegangen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Autobranche dreht nach einer schwachen Sommerpause',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders kräftig legte die Autoindustrie zu: Die Produktion stieg im Monatsvergleich um 17,1 Prozent. Das Statistische Bundesamt erklärte den Sprung als Gegenbewegung – in den beiden Monaten davor hatten Werksferien und Produktionsumstellungen die Produktion gedrückt. Auch die Pharmaindustrie wuchs, um acht Prozent. Bauproduktion und Maschinenbau gingen dagegen zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Korrektur relativiert das Bild',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Amt revidierte zugleich den August-Wert deutlich nach unten: Ursprünglich gemeldet waren zwei Prozent Plus, nach neuen Berechnungen sind es nur noch ein Prozent. Grund seien ergänzte Unternehmensdaten aus dem Baugewerbe. Chefvolkswirt Thomas Gitzel von der VP Bank sagte, deshalb müsse der positive Produktionszuwachs im September etwas relativiert werden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Über den September hinaus fällt die Bilanz schwächer aus. Im gesamten dritten Quartal lag die Produktion im Produzierenden Gewerbe um 0,4 Prozent unter dem Niveau des zweiten Quartals.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Einschätzungen, ein Datensatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'IMK-Direktor Sebastian Dullien sieht in dem Anstieg ein Zeichen für eine intakte Erholung der deutschen Industrie. KfW-Chefvolkswirt Dirk Schumacher sieht ebenfalls Hinweise auf eine mögliche Verbesserung, nennt aber weiterhin eine lange Liste an Risikofaktoren – als Beispiel die Nervosität der Finanzmärkte wegen des weiteren Ausbaus der KI-Infrastruktur.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Montag stehen laut Wirtschaftskalender weitere Konjunkturdaten an, darunter der deutsche Außenhandelssaldo für September und der Sentix-Index zur Investorenstimmung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Monatszahl lässt sich leicht in die eine oder andere Richtung lesen. Ob sich die Erholung festigt oder der nächste Monat die Korrektur fortsetzt, zeigt sich erst im Rückblick auf mehrere Monate.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-rueckkaeufe-verdoppeln-sich',
+    title: 'Berkshire Hathaway verdoppelt Rückkäufe, der Gewinn sinkt',
+    teaser:
+      'Berkshire Hathaway hat im dritten Quartal 9,6 Milliarden Dollar in eigene Aktien gesteckt, doppelt so viel wie im Vorquartal. Der Gewinn brach dagegen ein.',
+    category: 'Märkte',
+    publishedAt: '2026-11-08T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Berkshire Hathaway', 'Aktienrückkauf', 'Quartalszahlen', 'Warren Buffett'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['berkshire', 'sp500'],
+    sources: [
+      {
+        label:
+          'CNBC, 7.11.2026, 16:23 Uhr: „Berkshire Hathaway more than doubles buybacks in third quarter as earnings decline“',
+        url: 'https://www.cnbc.com/2026/11/07/berkshire-hathaway-q3-2026-earnings-buybacks.html',
+      },
+      {
+        label:
+          'Handelsblatt, 7.11.2026, 16:57 Uhr (Reuters): „Quartalszahlen: Berkshire meldet Gewinnrückgang, doch die Aktie profitiert“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/quartalszahlen-berkshire-meldet-gewinnrueckgang-doch-die-aktie-profitiert/100268115.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway hat im dritten Quartal eigene Aktien für 9,6 Milliarden Dollar zurückgekauft. Das ist mehr als doppelt so viel wie die 4,5 Milliarden Dollar im Quartal davor, meldet CNBC. Insgesamt steckte der Konzern in diesem Jahr bislang rund 14,4 Milliarden Dollar in eigene Papiere.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Gewinne, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das operative Ergebnis – das Geschäft ohne Kursschwankungen im Wertpapierdepot – sank um 5,8 Prozent auf 12,705 Milliarden Dollar. Der Nettogewinn einschließlich Investments fiel deutlich stärker, um 28 Prozent auf 22,112 Milliarden Dollar. Grund waren eingebrochene Kursgewinne im Beteiligungsportfolio, die laut CNBC um fast die Hälfte zurückgingen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warren Buffett hat selbst wiederholt dazu geraten, den Nettogewinn nicht als Maßstab für das operative Geschäft zu nehmen. Er schwankt mit den Kurswerten der Beteiligungen, die Berkshire hält, aber nicht verkauft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher das Geld für die Rückkäufe kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Barmittelbestand des Konzerns stieg um drei Prozent auf 377,435 Milliarden Dollar. Das Versicherungsgeschäft lief dagegen schwächer: Das Zeichnungsergebnis sank um 43 Prozent, die Kapitalerträge aus dem Versicherungsgeschäft um 14 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Aktie gegen den Markttrend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Berkshire-Aktie legte im vergangenen Monat um mehr als zwölf Prozent zu, während der marktbreite S&P 500 im selben Zeitraum rund 5,5 Prozent verlor. Seit Jahresbeginn steht die Aktie mit 13 Prozent im Plus, der Index mit 7,8 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Konzern mit hohen Barreserven kauft eigene Aktien zurück, wenn er für das Geld keine bessere Verwendung sieht oder die eigene Aktie für günstig hält. Ob das zutrifft, lässt sich erst im Rückblick beurteilen.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-ordnet-ki-partner-neu',
+    title: 'Microsoft ordnet seine KI-Cloud-Partner neu',
+    teaser:
+      'Microsoft will sich auf weniger externe Rechenzentrums-Partner stützen und mehr eigene Kapazität aufbauen. Ein Vertrag mit Nscale ist bereits beendet.',
+    category: 'Märkte',
+    publishedAt: '2026-11-08T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Microsoft', 'Cloud', 'Künstliche Intelligenz', 'Rechenzentren'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['microsoft'],
+    sources: [
+      {
+        label:
+          'CNBC, 6.11.2026, 19:40 Uhr: „Microsoft plans to use fewer neoclouds as AI buildout shows signs of strain“',
+        url: 'https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Microsoft will sich künftig auf weniger externe Anbieter von Rechenzentrumskapazität verlassen und mehr eigene Rechenzentren bauen. Das berichtet CNBC unter Berufung auf mit der Sache vertraute Personen. Eine endgültige Entscheidung, welche Partner wegfallen, stehe noch aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Vertrag in Großbritannien ist bereits beendet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Microsoft hat eine Vereinbarung mit dem Anbieter Nscale für ein Rechenzentrum in Großbritannien bereits aufgelöst. Microsofts Großbritannien-Chef Darren Hardman nannte laut CNBC Probleme beim Zugang zu Elektrizität am Standort als Grund.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die eigenen Ausgaben steigen trotzdem weiter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig gibt Microsoft selbst mehr Geld für Infrastruktur aus: Im jüngsten Quartal lagen die Investitionsausgaben und das Finanzierungsleasing bei 45,2 Milliarden Dollar. Das Unternehmen kündigte an, das Tempo in der zweiten Hälfte des Geschäftsjahres noch zu erhöhen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Finanzchefin Amy Hood sagte im Oktober, einige Verträge für Grafikprozessor-Kapazität in der Cloud seien auf die erste Hälfte des Jahres 2027 verschoben worden. Das bremse das Wachstum der Cloud-Sparte Azure.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Partner spüren es an der Börse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktien der spezialisierten Anbieter CoreWeave, Nebius und IREN haben im vergangenen Monat jeweils rund die Hälfte ihres Wertes verloren. Eine Ausnahme ist IREN: Der Umsatz mit KI-Geschäft verdoppelte sich dort gegenüber dem Vorquartal auf 200 Millionen Dollar, die Aktie legte am Freitag um 16 Prozent zu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Microsoft-Sprecher sagte laut CNBC, die Strategie beruhe auf „Flexibilität und Wahlmöglichkeiten“. Man überprüfe die Investitionen regelmäßig anhand der Kundennachfrage.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Konzern, der insgesamt mehr investiert, aber einzelne Partner aussortiert, sendet zwei Signale gleichzeitig – mehr Kapazität insgesamt, aber eine andere Verteilung darüber, wer sie bereitstellt.',
+      },
+    ],
+  },
+  {
+    slug: 'china-drosselt-diesel-exporte',
+    title: 'China drosselt seine Diesel-Exporte drastisch',
+    teaser:
+      'Niedrige Lagerbestände zwingen China dazu, im November deutlich weniger Diesel zu exportieren als im Sommer. Das verschärft die Lage auf dem Weltmarkt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-08T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Diesel', 'China', 'Rohstoffe', 'Ölmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Redaktion, 6.11.2026, 18:29 Uhr (Reuters-Berechnungen): „Lager aufgebraucht: China drosselt Dieselausfuhren drastisch“',
+        url: 'https://www.wallstreet-online.de/nachricht/21654078-lager-aufgebraucht-china-drosselt-dieselausfuhren-drastisch',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinas Diesel-Exporte brechen im November deutlich ein. Nach Berechnungen von Reuters könnten die Ausfuhren unter 800.000 Tonnen fallen, meldet wallstreet-online. Der Rohstoffanalyst Energy Aspects rechnet sogar mit nur 580.000 Tonnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Von 1,8 Millionen auf weniger als die Hälfte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im September hatte China noch 1,8 Millionen Tonnen Diesel exportiert. Bislang haben chinesische Raffinerien für den November erst rund 500.000 Tonnen verkauft, nicht alle Geschäfte für die zweite Monatshälfte sind demnach abgeschlossen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Grund liegt im eigenen Markt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grund für die Drosselung ist die eigene Versorgungslage. Chinas Diesel-Lagerbestände waren Ende Oktober auf den niedrigsten Stand seit Jahren gesunken, berichtet wallstreet-online.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Asiatische Käufer müssen deshalb verstärkt auf Diesel aus Indien, Südkorea und dem Nahen Osten zurückgreifen. Das dürfte auch für europäische Käufer weniger Ladungen übrig lassen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelnes Land, das seine Exporte drosselt, verändert zunächst die Verteilung auf dem Weltmarkt, nicht automatisch die Gesamtmenge. Wie stark das den Dieselpreis in Europa am Ende bewegt, hängt davon ab, wie schnell andere Anbieter die Lücke füllen.',
+      },
+    ],
+  },
+  {
     slug: 'dax-faellt-asiens-chipboersen-brechen-ein',
     title: 'Dax fällt weiter, Asiens Chipbörsen brechen ein',
     teaser:

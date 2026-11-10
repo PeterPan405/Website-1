@@ -260,8 +260,13 @@ interessant und interaktiv cool gestaltet“ – und ausdrücklich: das gehört
 nur „immer eine Seite“ (16.10.): Die Zahlenkarte bleibt eine Seite, der
 **Zahlenstrahl ist ein Karussell**.
 
-**Was das Vorbild ausmacht** (abgelesen an Kachel 4/11 und 11/11):
+**Was das Vorbild ausmacht** (abgelesen an 4 von 11 Kacheln – Titel, 4, 9
+und 11; die übrigen liefen im 8-Sekunden-Video zu schnell durch):
 
+- **Titelkachel:** oben links groß „Vergleich“, darunter eine Zeile
+  „Deutsche Konzerne und Big Tech im Maßstab.“ – darunter nur die Achse mit
+  drei leeren Punkten, die nach rechts aus dem Bild läuft. Kein Foto, kein
+  Logo des Absenders auf der Kachel.
 - **Eine waagrechte Achse läuft durch alle Kacheln.** Wer wischt, wandert
   auf ihr nach rechts – zu immer größeren Werten. Die Linie endet nie am
   Kachelrand, sie geht in die nächste über; der Punkt eines Werts kann auf
@@ -271,10 +276,13 @@ nur „immer eine Seite“ (16.10.): Die Zahlenkarte bleibt eine Seite, der
   Stadtbild –, **abwechselnd über und unter der Linie**, dazu die Zahl
   („880 Mrd. €“, „4,4 Bio. €“) und klein, was es ist („Vermögen von Elon
   Musk“, „BIP Niederlande 2025“).
-- **Unten links ein Satz, der den Vergleich zuspitzt** – ein Kontrast, den
-  man nicht erwartet: „Adidas, VW, Siemens, SAP und Coca-Cola kommen
-  zusammen auf rund 873 Mrd. €. Walmart allein ist mehr wert.“ –
-  „NVIDIA liegt 130 Mrd. € vor Apple … VW passt 125-mal in NVIDIA.“
+- **Unten ein Satz, der den Vergleich zuspitzt** – mal links, mal rechts
+  unten, je nachdem, wo Platz ist – ein Kontrast, den man nicht erwartet:
+  „Adidas, VW, Siemens, SAP und Coca-Cola kommen zusammen auf rund 873 Mrd.
+  €. Walmart allein ist mehr wert.“ – „NVIDIA liegt 130 Mrd. € vor Apple …
+  VW passt 125-mal in NVIDIA.“ Oder eine Einordnung mit Rang: „Microsoft,
+  bekannt für Windows und Office, ist mit 3,4 Bio. € das drittwertvollste
+  Unternehmen der Welt.“ (Kachel 9).
 - **Fremde Größen dazwischen** machen die Zahlen greifbar: ein
   Privatvermögen, das BIP eines Landes. Ohne sie wären es nur Firmen.
 - Weißer Grund, viel Luft, Zähler oben rechts („4/11“), Wiederholung der
@@ -300,16 +308,17 @@ andere Open Sans, feine Linien. Dazu fest:
 5. **Freigabe wie jeder Tagesbeitrag** – Vorschlag, Entwurf aller Kacheln,
    erst nach „passt“ hinaus (siehe C, Schritte 1–6).
 
-**Technisch noch offen** (Stand 07.11.2026): Die Zahlenkarte kann heute zwei
-Seiten (`zweiteSeite`, `/instagram/zahlenkarte-2.jpg`), der Veröffentlicher
-schon N Bilder als Karussell. Für D braucht es in
-`lib/instagram-zahlenkarte.ts` eine Art `zahlenstrahl`, die aus einer Liste
-`{ name, wert, anzeige, zusatz, bild }` alle Kacheln aus **einer**
-Panoramafläche (N × 1080 px breit) schneidet, und die Auslieferung
-`/instagram/zahlenkarte-2.jpg` … `-N.jpg`. Logos liegen unter
-`lib/instagram/logos/` (bisher: amazon, google, microsoft u. a. – Apple,
-Nvidia, Meta, Tesla, Broadcom fehlen und brauchen eine freie Quelle wie bei
-den Tagesbildern).
+**Technisch umgesetzt** (07.11.2026, Cloud-Chat): Kartenart `zahlenstrahl`
+in `lib/instagram-zahlenkarte.ts`. Felder: `punkte`
+(`{ name, wert, anzeige, zusatz, logo, hervor }`), `saetze` (je Kachel ab 2),
+`kacheln`, `bis`, `schritt` und `einheit`. Aus einer Panoramafläche von
+`kacheln` × 1080 px werden die Kacheln geschnitten. Ein Etikett bleibt immer
+ganz auf der Kachel seines Punkts. `zahlenkarteSeiten()` und
+`zahlenkarteSeitePng()` liefern die Kacheln aus, über
+`/instagram/zahlenkarte-2.jpg` … `-8.jpg`. `zahlenkarte.txt` meldet
+„seiten N“, und der Veröffentlicher setzt daraus das Karussell. Logos liegen
+in `lib/instagram/logos/` und kommen über `bilder-holen.yml` von Commons.
+Gemeinfrei sind Facebook, Visa, Alibaba, SK Hynix, Saudi Aramco und SpaceX.
 
 **Erster Entwurf, für den 08.11.2026** – „Die Billionen-Liga“, Börsenwerte
 aus unserem Bestand (Kurse 06.11.2026 Schluss, Aktienzahl aus den
@@ -337,25 +346,26 @@ wiederholt haben: **das Bild passt nicht, ein Bild kommt doppelt, ein Thema
 kommt doppelt.** Wer an der Bebilderung oder der Auswahl etwas ändert,
 liest diese Liste vorher.
 
-| Tag    | Beanstandet                                                                                 | Was es seitdem abfängt                                                    |
-| ------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| 18.10. | Skylines, Bilder ohne Bezug zum Thema                                                       | keine Skylines; Deckblatt zum Thema                                       |
-| 20.10. | Kacheln ohne Bild                                                                           | jede Kachel ein Bild (`RUECKFALL`)                                        |
-| 21.10. | dieselben Bilder wie Tage zuvor                                                             | täglich neue Bilder, Register `bilder.json`                               |
-| 22.10. | Wasserbüffel für UK-Inflation, Laborgerät für Qiagen; EQT/Qiagen „kennt kein Schwein"       | Notenbankchef am Pult (`NOTENBANKCHEFS`); nur, was die Masse packt        |
-| 24.10. | „räudige" Amex-Karte statt Tower; kein Bild für Munich Re                                   | Bild vom Betreiber; sonst Kursverlauf (`kurs` im Register)                |
-| 26.10. | dreimal dasselbe Börsenfoto, Gebärdensprache für Alphabet, olympische Ringe zum zweiten Mal | kein Motiv doppelt im Beitrag; Kurs vor Markensuche; `ABGELEHNT`          |
-| 26.10. | Frankreich an vielen Tagen; nicht nach Relevanz sortiert                                    | `themaWiederholt()` über drei Tage; Rangfolge nach Relevanz               |
-| 26.10. | gelöschter Beitrag kam von selbst zurück                                                    | Gedächtnis `instagram-gepostet`; neu nur mit `nochmal`                    |
-| 26.10. | Ifo-Kachel zeigte das Audi-Werk                                                             | `dateiname()`, `doppelteBilder()` – und **die Prüfung vor dem Hochladen** |
-| 30.10. | harter Übergang Weiß/Foto auf dem Deckblatt                                                 | `VERLAUF_WEISS`, 100 px als S-Kurve                                       |
-| 01.11. | Nationalversammlung hinter Glas, gespiegelt                                                 | Sichtprüfung: unscharf, Glas, Spiegelung = passt nicht                    |
-| 01.11. | Quellenangabe fehlte (drei Logos ohne Nennung, keine Quellen der Meldungen)                 | `bildnachweis()` nennt jedes Bild, `quellenzeile()` die Quellen           |
-| 03.11. | Deckblatt: leerer, dunkler Handelssaal – „nicht ästhetisch und nicht schön"                 | Sichtprüfung: Deckblatt muss hell und ein Blickfang sein; keine Säle      |
-| 07.11. | Zahlenkarte: Gold als Balken und Kurve „langweilig … das weiß schon jeder"                  | Überraschendes vorschlagen, nicht Bekanntes                               |
-| 07.11. | Zahlenkarte: Emoji unter den Säulen „sehen aus wie Kindersymbole"                           | echte Produktfotos (`symbol` der Säulenkarte), mit Nachweis               |
-| 07.11. | Titel „Essen an der Börse" „klingt nicht gut"                                               | Sprache wie im Wirtschaftsteil: „Lebensmittel", nicht „Essen"             |
-| 07.11. | Unterzeile „Oben: … Unten: …" – „macht keinen Sinn", zu lang                                | Unterzeile in Stichpunkten, keine Sätze, eine Zeile; keine Umgangssprache |
+| Tag    | Beanstandet                                                                                 | Was es seitdem abfängt                                                             |
+| ------ | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 18.10. | Skylines, Bilder ohne Bezug zum Thema                                                       | keine Skylines; Deckblatt zum Thema                                                |
+| 20.10. | Kacheln ohne Bild                                                                           | jede Kachel ein Bild (`RUECKFALL`)                                                 |
+| 21.10. | dieselben Bilder wie Tage zuvor                                                             | täglich neue Bilder, Register `bilder.json`                                        |
+| 22.10. | Wasserbüffel für UK-Inflation, Laborgerät für Qiagen; EQT/Qiagen „kennt kein Schwein"       | Notenbankchef am Pult (`NOTENBANKCHEFS`); nur, was die Masse packt                 |
+| 24.10. | „räudige" Amex-Karte statt Tower; kein Bild für Munich Re                                   | Bild vom Betreiber; sonst Kursverlauf (`kurs` im Register)                         |
+| 26.10. | dreimal dasselbe Börsenfoto, Gebärdensprache für Alphabet, olympische Ringe zum zweiten Mal | kein Motiv doppelt im Beitrag; Kurs vor Markensuche; `ABGELEHNT`                   |
+| 26.10. | Frankreich an vielen Tagen; nicht nach Relevanz sortiert                                    | `themaWiederholt()` über drei Tage; Rangfolge nach Relevanz                        |
+| 26.10. | gelöschter Beitrag kam von selbst zurück                                                    | Gedächtnis `instagram-gepostet`; neu nur mit `nochmal`                             |
+| 26.10. | Ifo-Kachel zeigte das Audi-Werk                                                             | `dateiname()`, `doppelteBilder()` – und **die Prüfung vor dem Hochladen**          |
+| 30.10. | harter Übergang Weiß/Foto auf dem Deckblatt                                                 | `VERLAUF_WEISS`, 100 px als S-Kurve                                                |
+| 01.11. | Nationalversammlung hinter Glas, gespiegelt                                                 | Sichtprüfung: unscharf, Glas, Spiegelung = passt nicht                             |
+| 01.11. | Quellenangabe fehlte (drei Logos ohne Nennung, keine Quellen der Meldungen)                 | `bildnachweis()` nennt jedes Bild, `quellenzeile()` die Quellen                    |
+| 03.11. | Deckblatt: leerer, dunkler Handelssaal – „nicht ästhetisch und nicht schön"                 | Sichtprüfung: Deckblatt muss hell und ein Blickfang sein; keine Säle               |
+| 07.11. | Zahlenkarte: Gold als Balken und Kurve „langweilig … das weiß schon jeder"                  | Überraschendes vorschlagen, nicht Bekanntes                                        |
+| 07.11. | Zahlenkarte: Emoji unter den Säulen „sehen aus wie Kindersymbole"                           | echte Produktfotos (`symbol` der Säulenkarte), mit Nachweis                        |
+| 07.11. | Titel „Essen an der Börse" „klingt nicht gut"                                               | Sprache wie im Wirtschaftsteil: „Lebensmittel", nicht „Essen"                      |
+| 07.11. | Unterzeile „Oben: … Unten: …" – „macht keinen Sinn", zu lang                                | Unterzeile in Stichpunkten, keine Sätze, eine Zeile; keine Umgangssprache          |
+| 07.11. | „nicht maßstäblich" auf der Titelkachel des Zahlenstrahls – weglassen                       | Unterzeile nur Stichpunkte zum Inhalt, wie am 07.11.; Methodik in die Beschreibung |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
@@ -425,6 +435,61 @@ Rest aus großen deutschen Finanz-Hashtags (`börse`, `aktien`, `finanzen`,
 Steht an allen Beiträgen. Über die Schnittstelle setzt es `is_ai_generated`
 am Beitrag – beim Karussell am Sammelbehälter, nicht an den einzelnen Kacheln
 (Metas Referenz zu `/{ig-user-id}/media`, nachgelesen am 11.10.2026).
+
+## Karussell-Regeln aus `ig-carousel` (geprüft am 09.11.2026)
+
+Der Betreiber schickte am 09.11. ein Reel („Claude just killed Instagram!“).
+Es wirbt für `github.com/Jakeschincariol/instagram-agent-skill`: 13 Skills,
+MIT, 5.617 Sterne. **Das Repo plant und veröffentlicht nichts.** Das tut bei
+uns `instagram-beitrag.yml` längst. Brauchbar ist aber die Anleitung für
+Karussells. Übernommen in eigener Fassung, für jedes Karussell (A, D und jede
+mehrseitige Zahlenkarte):
+
+1. **Deckblatt: höchstens sechs Wörter Überschrift.** Sie muss auch im
+   Profilraster als Vorschaubild lesbar sein. Das Deckblatt entscheidet, ob
+   gewischt wird.
+2. **Kachel 2 muss allein stehen.** Instagram zeigt ein Karussell erneut ab
+   einer späteren Kachel, wenn jemand beim ersten Mal nicht reagiert hat.
+   Kachel 2 ist also ein zweites Deckblatt und keine Überleitung.
+3. **Eine Aussage je Kachel.** Überschrift 3 bis 7 Wörter, darunter höchstens
+   25 Wörter. Was mehr braucht, wird zwei Kacheln.
+4. **Seitenzähler** („3/5“) auf jeder Kachel ab der zweiten, klein, oben
+   rechts. Wer das Ende sieht, wischt eher bis dorthin. Beim Vorbild von
+   Trade Republic stand er auch so.
+5. **@im_invests klein auf jeder Kachel**, unten. Bildschirmfotos werden
+   ohne Absender weitergeschickt.
+6. **Kein Text in den äußeren 120 px** des Deckblatts. Das Profilraster
+   beschneidet anders als der Beitrag, und der Schnitt hat sich schon
+   geändert.
+7. **Die Aussage einer Kachel nie unter 32 px** (auf 1080 px gerechnet).
+   Gelesen wird auf einem Telefon in etwa einem Drittel der Größe. Die
+   Vorlage verlangt das für jede Schrift. Bei uns gilt es nur für Überschrift
+   und Kernsatz, denn Fußzeile, Quellen und Achsenbeschriftung stehen in den
+   Generatoren bewusst bei 15 bis 24 px. Nachgezählt am 09.11.: 59
+   Schriftangaben in diesem Bereich, alle in Beiträgen, die schon draußen
+   sind. Diese Stellen werden nicht ohne Rückfrage vergrößert.
+8. **Alternativtext zum Deckblatt.** Erst einbauen, wenn Metas Referenz für
+   `/{ig-user-id}/media` das Feld `alt_text` nennt; nachlesen, nicht raten.
+
+**Bewusst nicht übernommen:**
+
+- **„Recap“-Kachel** zum Abfotografieren. Bei Sorte D ist die letzte Kachel
+  schon die Folgerung. Bei A wäre sie eine Wiederholung, und „Nichts
+  doppelt“ gilt.
+- **Aufruf am Ende** („kommentiere ein Stichwort“, „folge“). Das widerspricht
+  D, Regel 1, und der Wortwahl für Finanzinhalte: keine Aufforderung, kein
+  Handlungsdruck.
+- **„Humanizer“**, der Gedankenstriche und typografische Anführungszeichen
+  ersetzt. Im Deutschen ist der Gedankenstrich Rechtschreibung, kein Merkmal
+  von KI-Text.
+- **6 bis 10 Kacheln als Untergrenze.** Der Betreiber wollte am 07.11.
+  ausdrücklich weniger Kacheln („immer 2 auf einer Seite“). Seine Ansage
+  gilt.
+
+**Stand der Umsetzung:** Bis 09.11. sind das nur Regeln. Seitenzähler,
+Absender und 32-px-Grenze sind in den Kachelgeneratoren noch nicht
+eingebaut (`lib/instagram-zahlenkarte.ts`, `lib/instagram-bild.ts`). Sie
+kommen beim nächsten Umbau hinein, mit einer Prüfung, die sie misst.
 
 ## Gestaltungsrichtlinien
 

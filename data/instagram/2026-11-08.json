@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Iran, deutsche Industriezahlen, Berkshires Rückkäufe, Microsofts KI-Partner und Chinas Diesel-Exporte – die fünf wichtigsten Themen des Tages.",
+  "kacheln": [
+    {
+      "titel": "Qeschm: „kleine Schläge“",
+      "text": "Nach Raketentreffern auf der Insel Qeschm sprach Trump von „kleinen Schlägen“ gegen Iran. Die Straße von Hormus bleibt ein Risiko für den Ölpreis."
+    },
+    {
+      "titel": "Industrie: Plus 0,7 %",
+      "text": "Deutschlands Industrie produzierte im September überraschend mehr. Der Vormonatswert wurde zugleich nach unten korrigiert."
+    },
+    {
+      "titel": "Berkshire: 9,6 Mrd. Rückkauf",
+      "text": "Berkshire Hathaway kaufte eigene Aktien für 9,6 Milliarden Dollar zurück, doppelt so viel wie im Vorquartal. Der Gewinn sank trotzdem."
+    },
+    {
+      "titel": "Microsoft baut KI-Partner um",
+      "text": "Microsoft baut mehr eigene Rechenzentren und verlässt sich auf weniger externe Partner. Ein Vertrag mit Nscale in Großbritannien ist bereits beendet."
+    },
+    {
+      "titel": "China: Diesel-Exporte sinken",
+      "text": "Chinas Diesel-Exporte könnten im November unter 800.000 Tonnen fallen, nach 1,8 Millionen im September. Grund sind niedrige Lagerbestände."
+    }
+  ],
+  "schlagworte": ["iran", "ölpreis", "börse", "aktien", "wirtschaft"]
+}

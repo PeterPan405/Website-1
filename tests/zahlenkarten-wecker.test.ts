@@ -147,6 +147,10 @@ pruefe(
   )
   pruefe('„ab" und „seiten" zusammen', y.abMinute === 630 && y.seiten === 2)
   pruefe(
+    '„seiten 7" (Zahlenstrahl, 08.11.2026) wird gelesen',
+    leseZahlenkarteText('2026-11-08\nFreigabe: 2026-11-08 seiten 7\nText').seiten === 7
+  )
+  pruefe(
     'ohne Angabe eine Seite',
     leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05\nText').seiten === 1
   )

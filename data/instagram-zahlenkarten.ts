@@ -29,6 +29,244 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 09.11.2026, „Welche Aktie ist das?“ – Börsenrätsel, die
+      erste Karte der Art `raetsel`. Der Betreiber zu den Vorschlägen
+      (Mauerfall-Depot, DAX 1989/heute, Gewinn pro Sekunde, Wem gehört der
+      DAX, teuerste Aktie): „Das hatten wir alles um den Dreh schon mal so“;
+      aus vier neuen gewählt: „Thema eins klingt cool“.
+      Kurse: data/snapshots/markets.json (Yahoo Finance, Stand 05.11.2026),
+      Schlusskurse in Landeswährung (Commerzbank €, Nike $, Rolls-Royce
+      Pence), ohne Dividenden; im Zwei-Wochen-Raster ab 08.11.2021 – der
+      letzte Kurs vor jedem Stichtag –, dazu der vom 05.11.2026.
+        Commerzbank 6,81 € → 38,73 € (+469 %)
+        Nike 171,85 $ → 39,56 $ (−77 %)
+        Rolls-Royce 141,76 p → 1.239,6 p (+774 %), Tief 68,89 p am 10.10.2022
+          → vom Tief das 18-Fache (1.239,6 / 68,89 = 18,0)
+        Nvidia zum Vergleich 30,80 $ → 181,60 $ (+490 %)
+      Logos: Wikimedia Commons, gemeinfrei (bilder-holen.yml):
+      File:Commerzbank-Logo.svg, File:Logo NIKE.svg,
+      File:Rolls royce holdings logo.svg.
+    */
+    art: 'raetsel',
+    datum: '2026-11-09',
+    titel: [{ text: 'Welche Aktie' }, { text: 'ist das?', gruen: true }],
+    fragen: [
+      {
+        tipp: 'Eine Bank aus Frankfurt, im Dax.',
+        punkte: [
+          6.81, 6.65, 6.51, 6.38, 6.99, 7.43, 7.59, 8.57, 7.53, 6.64, 7.26, 7.01, 6.34,
+          6.05, 7.71, 8.48, 8.21, 6.18, 6.18, 6.72, 7.13, 6.38, 7.79, 7.75, 7.39, 8.2,
+          8.33, 8.12, 7.82, 8.22, 8.9, 9.48, 10.21, 10.13, 11.15, 9.96, 9.21, 9.67, 10.64,
+          9.91, 10.02, 9.5, 10.23, 10.22, 11.14, 10.88, 10.15, 10.19, 9.48, 9.63, 10.23,
+          10.22, 10.39, 11.27, 11.38, 10.48, 10.78, 11.44, 10.57, 10.58, 10.74, 11.22,
+          12.59, 13.44, 13.51, 13.85, 15.6, 15.39, 13.9, 14.6, 14.42, 14.88, 12.42, 13.06,
+          12.9, 14.78, 16.79, 16.31, 16.42, 16.3, 14.59, 15.42, 15.73, 16.72, 18.1, 18.74,
+          20.09, 23.26, 23.29, 20.58, 21.95, 24.28, 25.61, 26.58, 28.65, 26.78, 28.91,
+          29.87, 35.81, 36.18, 33.6, 31.69, 31.7, 30.3, 32.09, 32.69, 34.23, 35.18, 35.56,
+          35.4, 34.87, 35.45, 34.41, 30.36, 31.58, 31.48, 36.48, 34.02, 35.94, 36.98,
+          36.21, 37.06, 38.85, 37.45, 39.1, 39.55, 42.75, 41.85, 39.4, 37.09, 37.99,
+          38.73,
+        ],
+        achse: [
+          { bei: 0, text: 'Nov. 2021' },
+          { bei: 30, text: '2023' },
+          { bei: 83, text: '2025' },
+          { bei: 131, text: 'Nov. 2026' },
+        ],
+        name: 'Commerzbank',
+        einheit: '€',
+        logo: 'commerzbank.png',
+        satz: 'Fast so stark wie Nvidia im selben Zeitraum: +490 %.',
+      },
+      {
+        frage: 'Und diese?',
+        tipp: 'Eine Weltmarke, die fast jeder im Schuhschrank hat.',
+        punkte: [
+          171.85, 174.24, 168.91, 156.98, 164.67, 150.44, 148.07, 141.59, 136.55, 117.57,
+          134.81, 124.98, 127.94, 111.21, 108.63, 120.23, 110.44, 110.5, 103.94, 114.3,
+          116.32, 107.88, 112.38, 96.06, 86.69, 88.01, 93.44, 103.83, 109.62, 103.05,
+          117.56, 124.85, 126.37, 125.15, 118.53, 116.86, 117.81, 121.91, 127.09, 126.88,
+          110.18, 105.2, 106.83, 109.11, 108.71, 110.39, 107.64, 99.63, 96.79, 90.6,
+          96.88, 102.81, 107.25, 106.32, 115.15, 121.14, 108.02, 103.62, 103.88, 107.18,
+          104.54, 101.08, 93.75, 90, 94.19, 93.36, 91.77, 94.4, 95, 76.83, 71.31, 73.55,
+          74.64, 84.28, 79.49, 86.2, 80.83, 81.48, 77.19, 74.89, 79.09, 77.2, 74.65,
+          72.08, 75.58, 70.94, 80.28, 76.4, 67.39, 55.61, 56.12, 57.35, 62.08, 61.57,
+          61.9, 71.04, 72.25, 79.24, 74.02, 79.17, 74.15, 71.28, 71.17, 67.62, 62.65,
+          62.9, 65.39, 67.78, 61.21, 65.64, 64.99, 62.41, 63.09, 56.53, 52.71, 44.03,
+          46.48, 43.09, 42.57, 45.93, 45.2, 41.48, 43.76, 42.14, 42.11, 40.75, 38.4, 36.1,
+          33.96, 37.21, 39.12, 39.56,
+        ],
+        achse: [
+          { bei: 0, text: 'Nov. 2021' },
+          { bei: 30, text: '2023' },
+          { bei: 83, text: '2025' },
+          { bei: 131, text: 'Nov. 2026' },
+        ],
+        name: 'Nike',
+        einheit: '$',
+        logo: 'nike.png',
+        satz: 'Von 172 $ auf 40 $ – mehr als drei Viertel weg.',
+      },
+      {
+        frage: 'Und die letzte?',
+        tipp: 'Britischer Konzern, baut Triebwerke für Flugzeuge.',
+        punkte: [
+          141.76, 135.82, 129.7, 110.48, 121.88, 125.9, 114.5, 117.7, 103.5, 93.78, 98.38,
+          95, 86.83, 78.5, 83.14, 92.92, 91.5, 86.54, 92.19, 89.04, 85.75, 80.4, 80.67,
+          72.67, 68.89, 73.5, 86.35, 84.81, 90.59, 88.84, 92.64, 107.16, 109.12, 109.46,
+          145, 145, 144.34, 149.65, 153.6, 150.5, 157.3, 147.3, 153.8, 153.6, 146.15,
+          184.85, 209, 201.9, 223.6, 219.8, 205.2, 203.5, 224.1, 245.5, 285.4, 292.4,
+          298.8, 300, 304, 309.1, 361.2, 383.2, 421.1, 429.1, 406.3, 414.8, 436.8, 460.9,
+          461.6, 452.8, 449.5, 439.8, 486.7, 500, 475.6, 530.2, 526.6, 567, 549.6, 539.2,
+          573, 583.8, 570.4, 567.4, 589.8, 613.4, 606.2, 732.8, 790, 635.8, 709.6, 754.4,
+          819.2, 868.8, 885.4, 967.6, 998.4, 981.4, 1082, 1082, 1092.5, 1149, 1154.5,
+          1127, 1165, 1094.5, 1037, 1114, 1137, 1287, 1235.5, 1275, 1333, 1238.5, 1183,
+          1188.5, 1262.4, 1199.2, 1157.6, 1272.8, 1358.4, 1415.2, 1415.4, 1413.6, 1540,
+          1500.2, 1490.8, 1504.8, 1478, 1331.6, 1276.2, 1239.6,
+        ],
+        achse: [
+          { bei: 0, text: 'Nov. 2021' },
+          { bei: 30, text: '2023' },
+          { bei: 83, text: '2025' },
+          { bei: 131, text: 'Nov. 2026' },
+        ],
+        name: 'Rolls-Royce',
+        einheit: 'Pence',
+        logo: 'rollsroyce.png',
+        satz: 'Vom Tief im Oktober 2022 aus: das 18-Fache.',
+      },
+    ],
+    fusszeile:
+      'Stand: 05.11.2026 | Quelle: Yahoo Finance, ohne Dividenden | Logos: Commons',
+    text:
+      'Drei Aktien, drei Kurven – erkennst du sie? Erst raten, dann wischen.\n\n' +
+      'Die Auflösung, Kurs vom 8.11.2021 bis 5.11.2026:\n' +
+      'Commerzbank: +469 % – fast so viel wie Nvidia (+490 %)\n' +
+      'Nike: −77 %\n' +
+      'Rolls-Royce: +774 %, vom Tief im Oktober 2022 aus das 18-Fache\n\n' +
+      'Wie viele hattest du richtig? Schreib es in die Kommentare.\n\n' +
+      'Schlusskurse in Landeswährung, ohne Dividenden.\n' +
+      'Quelle: Yahoo Finance, Stand 5.11.2026\n' +
+      'Logos: Wikimedia Commons, gemeinfrei',
+    schlagworte: ['börsenrätsel', 'aktien', 'commerzbank', 'nike', 'rollsroyce'],
+  },
+  {
+    /*
+      Zahlenkarte 08.11.2026 – erster Zahlenstrahl (Sorte D, INSTAGRAM.md).
+      Thema vom Betreiber am 07.11. gewählt („Thema 2 … wegen Anthropic"):
+      die größten Börsengänge aller Zeiten.
+
+      Gemessen wird der Erlös, also das beim Börsengang eingesammelte Geld,
+      in Mrd. US-Dollar, nominal. Quelle: Wikipedia, „Initial public
+      offering", Tabelle „Largest IPOs by amount raised", abgerufen am
+      07.11.2026 über quellen-holen.yml:
+        SpaceX 2026 85,7 · Saudi Aramco 2019 29,4 · SK Hynix 2026 26,5 ·
+        Alibaba 2014 25,0 · SoftBank Corp. 2018 23,5 · Agricultural Bank of
+        China 2010 22,1 · ICBC 2006 21,9 · AIA 2010 20,5 · Visa 2008 19,7 ·
+        General Motors 2010 18,15 · Facebook 2012 16,01
+      Dazu Arm, 14.09.2023, 4,87 Mrd. $ (Wikipedia „Arm Holdings").
+      SK Hynix: Zweitnotiz (American depositary receipts) an der Nasdaq am
+      10.07.2026 (Wikipedia „SK Hynix"). SpaceX: Ausgabepreis 135 $ am
+      11.06.2026, Bewertung 1,77 Bio. $ (Wikipedia „SpaceX").
+      Anthropic: privat 965 Mrd. $ (Handelsblatt, 06.11.2026), 1,5 Bio. $
+      „a stretch" (CNBC, 06.11.2026); Verlust 1. Hj. 2026 rund 80,7 Mrd. $
+      (Tagesschau, 26.10.2026).
+
+      Betreiber zum Entwurf: keine leeren Kacheln, „keine BIPs … sondern
+      nur Börsengänge", Abstände dürfen ungleich dem Maßstab sein →
+      `gleichmaessig`, „nicht maßstäblich" steht in der Beschreibung –
+      auf der Titelkachel nicht (Betreiber: „bitte noch weglassen auf der
+      ersten Seite").
+      Zuletzt: „weniger Slides, aber es müssen immer 2 auf einer Seite
+      sein" – vier Kacheln, General Motors raus.
+      Dann: „nimm mal die Unbekannten weg … begrenze dich auf die 7" –
+      nur bekannte Namen, Anthropic als geplanter Börsengang am Ende
+      (`offen`, ohne Erlös). Raus: ICBC, AIA, Agricultural Bank of China,
+      SoftBank Corp., SK Hynix, Arm.
+      Danach: „nicht nach Volumen, sondern schon nach Zeit" – geordnet nach
+      Jahr; die drei aus 2010 ohne Monatsangabe der Quelle, in Listenfolge.
+      Weggelassen: Rivian 2021 – Wikipedia nennt 153 Mio. Aktien zu 78 $
+      und „net proceeds" von 13,5 Mrd. $, zwei Zahlen ohne Abgleich.
+      Für Porsche, Uber, Telekom nennt Wikipedia keinen Erlös.
+      Logos: Wikimedia Commons, gemeinfrei (bilder-holen.yml).
+    */
+    art: 'zahlenstrahl',
+    datum: '2026-11-08',
+    titel: [{ text: 'Die größten' }, { text: 'Börsengänge.', gruen: true }],
+    erklaerung: 'Nach Jahr · Erlös in Mrd. US-Dollar',
+    kacheln: 4,
+    bis: 90,
+    schritt: 10,
+    gleichmaessig: true,
+    einheit: 'Mrd. $',
+    punkte: [
+      { name: 'Visa', wert: 19.7, anzeige: '19,7', zusatz: '2008', logo: 'visa.png' },
+      {
+        name: 'Facebook',
+        wert: 16.01,
+        anzeige: '16,0',
+        zusatz: '2012',
+        logo: 'facebook.png',
+      },
+      { name: 'Alibaba', wert: 25, anzeige: '25,0', zusatz: '2014', logo: 'alibaba.png' },
+      {
+        name: 'Saudi Aramco',
+        wert: 29.4,
+        anzeige: '29,4',
+        zusatz: '2019',
+        logo: 'aramco.png',
+      },
+      {
+        name: 'SpaceX',
+        wert: 85.7,
+        anzeige: '85,7',
+        zusatz: 'Juni 2026 · Rekord',
+        logo: 'spacex.png',
+        hervor: true,
+      },
+      {
+        name: 'Anthropic',
+        wert: 0,
+        anzeige: 'bis 100',
+        zusatz: 'erwartet · Termin offen',
+        logo: 'anthropic.png',
+        offen: true,
+      },
+    ],
+    saetze: [
+      { kachel: 2, text: 'Visa 2008 und Facebook 2012: zusammen 35,7 Mrd. $.' },
+      {
+        kachel: 3,
+        text: 'Alibaba 2014, Aramco 2019: zweimal der größte Börsengang der Welt.',
+      },
+      {
+        kachel: 4,
+        text: 'Anthropic könnte bis zu 100 Mrd. $ einsammeln – neuer Rekord.',
+      },
+    ],
+    fusszeile:
+      'Stand: 07.11.2026 | Quellen: Wikipedia, CNN, Motley Fool | Logos: Wikimedia Commons, gemeinfrei',
+    text:
+      'Anthropic will an die Börse – und könnte in die Rekordliste. Die größten Börsengänge aller Zeiten, gemessen am eingesammelten Geld – nach Jahr:\n\n' +
+      'Visa (2008): 19,7 Mrd. $\n' +
+      'Facebook (2012): 16,0 Mrd. $\n' +
+      'Alibaba (2014): 25,0 Mrd. $\n' +
+      'Saudi Aramco (2019): 29,4 Mrd. $\n' +
+      'SpaceX (Juni 2026): 85,7 Mrd. $ – Rekord\n' +
+      'Anthropic (geplant): bis zu 100 Mrd. $ erwartet\n\n' +
+      'Schon gewusst?\n' +
+      '– SpaceX sammelte fast dreimal so viel ein wie Aramco, der Rekordhalter davor.\n' +
+      '– Beim Ausgabepreis von 135 $ war SpaceX 1,77 Billionen $ wert – die höchste Bewertung, die ein Börsengang je hatte.\n\n' +
+      'Und Anthropic?\n' +
+      'Privat wurde Anthropic im Mai mit 965 Mrd. $ bewertet (Handelsblatt). Laut Wall Street Journal (zitiert von CNN) könnte der Börsengang bis zu 100 Mrd. $ einbringen, bei einer Bewertung um 2 Billionen $ – mehr als SpaceX. Laut CNBC halten Investoren schon 1,5 Billionen für gewagt. Bestätigt hat Anthropic weder Betrag noch Termin.\n\n' +
+      'Im Bild nach Jahr geordnet, die Abstände sind nicht maßstäblich. Erlös in US-Dollar, nominal.\n' +
+      'Quellen: Wikipedia, „Initial public offering" (Largest IPOs by amount raised), „SpaceX", abgerufen 7.11.2026; Handelsblatt und CNBC, 6.11.2026; CNN, 5.10.2026; Motley Fool, 3.10.2026\n' +
+      'Logos: Wikimedia Commons, gemeinfrei',
+    schlagworte: ['börsengang', 'ipo', 'spacex', 'anthropic', 'aktien'],
+    freigabe: '2026-11-08',
+  },
+  {
+    /*
       Zahlenkarte 07.11.2026, „Krieg im Supermarkt“ (Titel nach dem ersten
       Posten geändert: „Essen an der Börse“ → „Lebensmittel an der Börse“,
       Betreiber: „klingt nicht gut“; der erste Beitrag wurde gelöscht) – vom Betreiber gewählt

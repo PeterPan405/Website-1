@@ -13,8 +13,11 @@ import {
   form,
   LOGOFARBEN,
   pruefeZahlenkarte,
+  raetselProzent,
   signetOhneMitte,
   zahlenkartePng,
+  zahlenkarteSeitePng,
+  zahlenkarteSeiten,
   ZK_BREITE,
   ZK_HOEHE,
   type Rangkarte,
@@ -1030,6 +1033,155 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
     )
+  }
+}
+
+/* 09.11.2026: Börsenrätsel – drei Kurven ohne Namen, Yahoo Finance, Stand 05.11.2026. */
+{
+  const karte = karteVom('2026-11-09')
+  pruefe('Rätsel: Karte für den 09.11. ist ein Rätsel', karte?.art === 'raetsel')
+  if (karte?.art === 'raetsel') {
+    pruefe(
+      'Rätsel: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Rätsel: zwei Kacheln je Rätsel', zahlenkarteSeiten(karte) === 6)
+    pruefe(
+      'Rätsel: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-08')!)
+    )
+    /* Aus data/snapshots/markets.json gerechnet, ganze Prozent. */
+    const erwartet: [string, number][] = [
+      ['Commerzbank', 469],
+      ['Nike', -77],
+      ['Rolls-Royce', 774],
+    ]
+    for (const [name, prozent] of erwartet) {
+      const q = karte.fragen.find((x) => x.name === name)
+      pruefe(
+        `Rätsel: ${name} ${prozent} %`,
+        q !== undefined && Math.round(raetselProzent(q.punkte)) === prozent
+      )
+      pruefe(
+        `Rätsel: ${name} steht mit derselben Zahl in der Beschreibung`,
+        karte.text.includes(`${name}: ${prozent < 0 ? '−' : '+'}${Math.abs(prozent)} %`)
+      )
+    }
+    const rr = karte.fragen.find((x) => x.name === 'Rolls-Royce')!
+    pruefe(
+      'Rätsel: Rolls-Royce vom Tief das 18-Fache',
+      Math.round(rr.punkte.at(-1)! / Math.min(...rr.punkte)) === 18
+    )
+    pruefe(
+      'Rätsel: ein Tipp, der die Lösung nennt, wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        fragen: [
+          { ...karte.fragen[0], tipp: 'Die Commerzbank.' },
+          ...karte.fragen.slice(1),
+        ],
+      }).some((f) => f.includes('verrät'))
+    )
+    pruefe(
+      'Rätsel: ein einzelnes Rätsel wird beanstandet',
+      pruefeZahlenkarte({ ...karte, fragen: karte.fragen.slice(0, 1) }).some((f) =>
+        f.includes('zwei bis vier')
+      )
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 2, 6]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(`Rätsel: Kachel ${nr} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
+    }
+  }
+}
+
+/* 08.11.2026: Zahlenstrahl – die größten Börsengänge (Wikipedia, Largest IPOs by amount raised). */
+{
+  const karte = karteVom('2026-11-08')
+  pruefe(
+    'Börsengänge: Karte für den 08.11. ist ein Zahlenstrahl',
+    karte?.art === 'zahlenstrahl'
+  )
+  if (karte?.art === 'zahlenstrahl') {
+    pruefe(
+      'Börsengänge: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Börsengänge: vier Kacheln, je zwei Punkte', zahlenkarteSeiten(karte) === 4)
+    pruefe(
+      'Börsengänge: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-07')!)
+    )
+    /* Wikipedia, „Largest IPOs by amount raised" und „Arm Holdings", Mrd. $. */
+    const erwartet: [string, number][] = [
+      ['Visa', 19.7],
+      ['Facebook', 16.01],
+      ['Alibaba', 25],
+      ['Saudi Aramco', 29.4],
+      ['SpaceX', 85.7],
+    ]
+    pruefe(
+      'Börsengänge: nur Börsengänge, keine Vergleichsgrößen (Betreiber: „keine BIPs")',
+      karte.punkte.every((x) => !x.vergleich) &&
+        karte.punkte.length === 6 &&
+        karte.punkte.at(-1)?.offen === true
+    )
+    pruefe(
+      'Börsengänge: nach Jahr geordnet (Betreiber: „nicht nach Volumen … nach Zeit")',
+      karte.punkte.map((x) => x.name).join(',') ===
+        'Visa,Facebook,Alibaba,Saudi Aramco,SpaceX,Anthropic'
+    )
+    for (const [name, wert] of erwartet) {
+      const p = karte.punkte.find((x) => x.name === name)
+      pruefe(`Börsengänge: ${name} ${wert}`, p?.wert === wert)
+      pruefe(
+        `Börsengänge: ${name} steht so in der Beschreibung oder ist eine Vergleichsgröße`,
+        p?.vergleich === true ||
+          karte.text.includes(
+            `${wert.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Mrd. $`
+          )
+      )
+    }
+    pruefe(
+      'Börsengänge: eine leere Kachel wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        gleichmaessig: false,
+        start: 0,
+        punkte: karte.punkte.filter((x) => x.wert < 40),
+      }).some((f) => f.includes('keine leere Kachel'))
+    )
+    pruefe(
+      'Börsengänge: SpaceX fast dreimal Aramco',
+      Math.round((85.7 / 29.4) * 10) / 10 === 2.9
+    )
+    pruefe(
+      'Börsengänge: maßstäblich muss aufsteigend sein',
+      pruefeZahlenkarte({ ...karte, gleichmaessig: false, start: 0 }).some((f) =>
+        f.includes('aufsteigend')
+      )
+    )
+    pruefe(
+      'Börsengänge: ein Punkt zu viel wird beanstandet (immer zwei je Kachel)',
+      pruefeZahlenkarte({ ...karte, punkte: [...karte.punkte, karte.punkte[0]] }).some(
+        (f) => f.includes('je Kachel genau zwei')
+      )
+    )
+    pruefe(
+      'Börsengänge: drei Kacheln werden beanstandet',
+      pruefeZahlenkarte({ ...karte, kacheln: 3 }).some((f) => f.includes('vier bis acht'))
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 4]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(
+        `Börsengänge: Kachel ${nr} ist ein PNG`,
+        png.subarray(1, 4).toString() === 'PNG'
+      )
+    }
   }
 }
 

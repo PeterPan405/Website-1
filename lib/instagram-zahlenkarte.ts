@@ -465,7 +465,84 @@ export interface Personenkarte extends StilGemeinsam {
   personen: { name: string; zeile: string; stand: string; bild?: string }[]
 }
 
+/**
+ * Der Zahlenstrahl (Sorte D in `INSTAGRAM.md`, eingeführt 07.11.2026): ein
+ * Karussell aus 5 bis 8 Kacheln, durch die eine waagrechte Achse läuft. Wer
+ * wischt, wandert zu größeren Werten. Gezeichnet wird eine Panoramafläche
+ * von `kacheln` × 1080 px; jede Kachel ist ihr Ausschnitt. Der Maßstab ist
+ * linear und beginnt bei null – sonst lügt die Strecke.
+ */
+export interface Zahlenstrahlkarte extends KarteGemeinsam {
+  art: 'zahlenstrahl'
+  /** Unterzeile auf der Titelkachel – Stichpunkte, keine Sätze. */
+  erklaerung: string
+  kacheln: number
+  /** Anfang und Ende der Achse, Abstand der Striche – in der Einheit der Werte. */
+  start?: number
+  bis: number
+  /**
+   * Gleiche Abstände statt Maßstab (07.11.2026, Betreiber: „es reicht ja,
+   * wenn der Zeitstrahl nicht richtig ist, also von den Abständen her, das
+   * ist egal"; „nicht nach Volumen … sondern schon nach Zeit"). Die Punkte
+   * stehen in der Reihenfolge der Liste, ohne Striche – die Zahl steht am
+   * Punkt.
+   */
+  gleichmaessig?: boolean
+  schritt: number
+  /** An den Strichen: „Mrd. $". */
+  einheit: string
+  /** Aufsteigend. `logo` in `lib/instagram/logos/`. */
+  punkte: {
+    name: string
+    wert: number
+    anzeige: string
+    zusatz: string
+    logo?: string
+    hervor?: boolean
+    /** Eine fremde Größe zum Vergleich (BIP eines Landes) – grau, hohler Punkt. */
+    vergleich?: boolean
+    /**
+     * Noch offen, etwa ein geplanter Börsengang (Anthropic, 07.11.2026):
+     * grau, hohler Punkt, `wert` zählt nicht – nur mit `gleichmaessig`.
+     */
+    offen?: boolean
+  }[]
+  /** Der Satz unten auf einer Kachel (ab Kachel 2), der den Vergleich zuspitzt. */
+  saetze: { kachel: number; text: string }[]
+}
+
+/**
+ * Das Börsenrätsel (09.11.2026, Betreiber: „such mal noch andere Ideen außer
+ * diesen Zahlenstrahl“ – gewählt: „Thema eins klingt cool“). Ein Karussell,
+ * je Rätsel zwei Kacheln: erst die Kurve ohne Namen, mit einem Tipp; wer
+ * wischt, sieht die Auflösung mit Logo – dieselbe Kurve an derselben Stelle.
+ * Die Prozentzahl wird aus den Punkten gerechnet, nicht eingetragen.
+ */
+export interface Raetselkarte extends KarteGemeinsam {
+  art: 'raetsel'
+  fragen: {
+    /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
+    frage?: string
+    /** Der Tipp unten auf der Rätselkachel – ohne den Namen. */
+    tipp: string
+    /** Kurse, alt nach neu, in der Währung der Quelle. */
+    punkte: readonly number[]
+    /** Hinter dem Kurs in der Pille: „€“, „$“, „Pence“. */
+    einheit: string
+    /** Beschriftung der x-Achse: Stelle in `punkte` und Text. */
+    achse: { bei: number; text: string }[]
+    /** Der Name, der aufgelöst wird. */
+    name: string
+    /** Datei in `lib/instagram/logos/`. */
+    logo: string
+    /** Der Satz unten auf der Auflösung. */
+    satz: string
+  }[]
+}
+
 export type Zahlenkarte =
+  | Raetselkarte
+  | Zahlenstrahlkarte
   | Personenkarte
   | Kammerkarte
   | Vielfachkarte
@@ -853,7 +930,9 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
-  if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
+  if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
+  else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
+  else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
       f.push(`${k.stuecke.length} Stücke – die Torte trägt zwei bis fünf.`)
@@ -1208,6 +1287,8 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
+  if (k.art === 'zahlenstrahl' || k.art === 'raetsel')
+    return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   if (
     k.art === 'kurven' ||
@@ -2537,7 +2618,11 @@ export function form(
   | 'hausbalken'
   | 'vielfach'
   | 'kammern'
-  | 'personen' {
+  | 'personen'
+  | 'zahlenstrahl'
+  | 'raetsel' {
+  if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
+  if (k.art === 'raetsel') return 'raetsel'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -4415,4 +4500,617 @@ function duellGrafik(k: Duellkarte) {
       )
     ),
   ]
+}
+
+/* ------------------------------------------------------------------------ */
+/* Zahlenstrahl (Sorte D, 07.11.2026)                                        */
+/* ------------------------------------------------------------------------ */
+
+const ZS_ACHSE = 640
+const ZS_RECHTS = 150
+const ZS_LOGO_B = 210
+const ZS_LOGO_H = 86
+const ZS_ETIKETT = 250
+/** Höhe eines Etiketts: Logo, Zahl, Name, Zusatz. */
+const ZS_HOCH = 224
+/** Abstand der nahen Reihe zur Achse; die ferne liegt eine Etiketthöhe weiter. */
+const ZS_NAH = 56
+
+/*
+  Vier Reihen für Etiketten (08.11.2026, Betreiber: „noch ein paar weitere
+  Börsengänge rein"): nah über, nah unter, fern über, fern unter der Achse.
+  Elf Börsengänge zwischen 16 und 29 Mrd. $ fänden in zwei Reihen keinen
+  Platz.
+*/
+type Reihe = 0 | 1 | 2 | 3
+
+function pruefeZahlenstrahl(k: Zahlenstrahlkarte): string[] {
+  const f: string[] = []
+  /* Mit gleichen Abständen genügen vier Kacheln (07.11.2026, „weniger Slides"). */
+  const mindestens = k.gleichmaessig ? 4 : 5
+  if (k.kacheln < mindestens || k.kacheln > 8)
+    f.push(`${k.kacheln} Kacheln – ${mindestens === 4 ? 'vier' : 'fünf'} bis acht.`)
+  /* „Es müssen immer 2 auf einer Seite sein" (07.11.2026). */
+  if (k.gleichmaessig && k.punkte.length !== 2 * (k.kacheln - 1))
+    f.push(
+      `${k.punkte.length} Punkte auf ${k.kacheln - 1} Kacheln – je Kachel genau zwei, also ${2 * (k.kacheln - 1)}.`
+    )
+  if (k.punkte.length < 3) f.push(`${k.punkte.length} Punkte – mindestens drei.`)
+  /* Mit gleichen Abständen gilt die Reihenfolge der Liste – etwa nach Jahr (07.11.2026). */
+  for (let i = 1; i < k.punkte.length && !k.gleichmaessig; i++)
+    if (k.punkte[i].wert < k.punkte[i - 1].wert)
+      f.push(
+        `Punkt „${k.punkte[i].name}" ist kleiner als der davor – aufsteigend ordnen.`
+      )
+  for (const p of k.punkte) {
+    if (!p.offen && (p.wert < (k.start ?? 0) || p.wert > k.bis))
+      f.push(`Punkt „${p.name}" liegt außerhalb der Achse.`)
+    if (p.logo !== undefined && !existsSync(join(LOGO_ORDNER, p.logo)))
+      f.push(`Logo „${p.logo}" fehlt in lib/instagram/logos/.`)
+  }
+  for (const z of k.saetze)
+    if (z.kachel < 2 || z.kachel > k.kacheln)
+      f.push(`Satz für Kachel ${z.kachel} – es gibt nur 2 bis ${k.kacheln}.`)
+  if (k.erklaerung.length > 60)
+    f.push(`Unterzeile hat ${k.erklaerung.length} Zeichen – höchstens 60, Stichpunkte.`)
+  if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
+    f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
+  /* Keine leere Kachel (08.11.2026, Betreiber: „gar keine, die leer sind"). */
+  const belegt = new Set(
+    k.punkte.map((p, i) => Math.floor(zahlenstrahlX(k, p.wert, i) / ZK_BREITE) + 1)
+  )
+  for (let nr = 2; nr <= k.kacheln; nr++)
+    if (!belegt.has(nr)) f.push(`Kachel ${nr} hat keinen Punkt – keine leere Kachel.`)
+  for (const [i, p] of k.punkte.entries()) {
+    const rand = zahlenstrahlX(k, p.wert, i) % ZK_BREITE
+    if (rand < 24 || rand > ZK_BREITE - 24)
+      f.push(
+        `Punkt „${p.name}" liegt auf der Kante zweier Kacheln – \`bis\` verschieben.`
+      )
+  }
+  const plan = zahlenstrahlPlan(k)
+  if (plan.some((e) => e.reihe === undefined))
+    f.push('Zu viele Punkte zu dicht – nicht jedes Etikett findet Platz.')
+  return f
+}
+
+/**
+ * Wo ein Wert auf der Panoramafläche liegt – linear. Kachel 1 trägt den
+ * Titel; die Werte beginnen auf Kachel 2, die Achse läuft schon herein.
+ */
+function zahlenstrahlX(k: Zahlenstrahlkarte, wert: number, stelle = -1): number {
+  const breite = k.kacheln * ZK_BREITE
+  if (k.gleichmaessig) {
+    /* Die Stelle in der Reihe, nicht der Wert: gleiche Abstände ab Kachel 2. */
+    const schritt = (breite - ZK_BREITE) / k.punkte.length
+    return ZK_BREITE + (Math.max(stelle, 0) + 0.5) * schritt
+  }
+  const start = ZK_BREITE + 60
+  const ab = k.start ?? 0
+  return start + ((wert - ab) / (k.bis - ab)) * (breite - start - ZS_RECHTS)
+}
+
+/** Etikett: ganz auf der Kachel seines Punkts, nie über die Kante. */
+function zahlenstrahlEtikettX(x: number, breite = ZS_ETIKETT): number {
+  const kachel = Math.floor(x / ZK_BREITE)
+  const links = kachel * ZK_BREITE + 30
+  const rechts = (kachel + 1) * ZK_BREITE - 30 - breite
+  return Math.min(Math.max(x - breite / 2, links), rechts)
+}
+
+/** Größer, wenn gleiche Abstände Platz lassen. */
+function zahlenstrahlMass(k: Zahlenstrahlkarte): number {
+  return k.gleichmaessig ? 1.35 : 1
+}
+
+/** Je Punkt Lage und Reihe – die erste freie, nahe vor fern. */
+function zahlenstrahlPlan(k: Zahlenstrahlkarte) {
+  const ende: number[] = [-Infinity, -Infinity, -Infinity, -Infinity]
+  return k.punkte.map((p) => {
+    const x = zahlenstrahlX(k, p.wert, k.punkte.indexOf(p))
+    const ex = zahlenstrahlEtikettX(x, ZS_ETIKETT * zahlenstrahlMass(k))
+    /* Gleiche Abstände: abwechselnd über und unter der Linie, groß. */
+    const reihe = k.gleichmaessig
+      ? ((k.punkte.indexOf(p) % 2) as Reihe)
+      : ([0, 1, 2, 3] as Reihe[]).find((r) => ex >= ende[r] + 16)
+    if (reihe !== undefined) ende[reihe] = ex + ZS_ETIKETT
+    return { p, x, ex, reihe }
+  })
+}
+
+function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: number) {
+  const versatz = (nr - 1) * ZK_BREITE
+  const breite = k.kacheln * ZK_BREITE
+  const ende = breite - ZS_RECHTS / 2
+  const ab = k.start ?? 0
+  const striche = k.gleichmaessig
+    ? []
+    : Array.from(
+        { length: Math.floor((k.bis - ab) / k.schritt) + 1 },
+        (_, i) => ab + i * k.schritt
+      )
+  const zahl = (v: number) => v.toLocaleString('de-DE')
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="80" viewBox="0 0 ${breite} 80">` +
+    `<line x1="${STIL_RAND}" x2="${ende}" y1="20" y2="20" stroke="${STIL.tinte}" stroke-width="4"/>` +
+    `<path d="M ${ende - 18} 8 L ${ende} 20 L ${ende - 18} 32" fill="none" stroke="${STIL.tinte}" stroke-width="4"/>` +
+    striche
+      .map((v) => {
+        const x = zahlenstrahlX(k, v)
+        return `<line x1="${x}" x2="${x}" y1="12" y2="28" stroke="${STIL.hellgrau}" stroke-width="2"/>`
+      })
+      .join('') +
+    '</svg>'
+
+  const elemente: ReturnType<typeof h>[] = [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite,
+      height: 80,
+      style: { position: 'absolute', left: -versatz, top: ZS_ACHSE - 20 },
+    }),
+    ...striche.map((v) =>
+      stilBlock(`${zahl(v)} ${k.einheit}`, {
+        top: ZS_ACHSE + 14,
+        left: zahlenstrahlX(k, v) - 80 - versatz,
+        width: 160,
+        justifyContent: 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+  ]
+
+  const g = zahlenstrahlMass(k)
+  for (const { p, x, ex, reihe } of zahlenstrahlPlan(k)) {
+    if (reihe === undefined) continue
+    const oben = reihe === 0 || reihe === 2
+    const fern = reihe >= 2
+    const abstand = ZS_NAH + (fern ? ZS_HOCH + 20 : 0)
+    const grau = p.vergleich || p.offen
+    const farbe = grau ? STIL.grau : p.hervor ? STIL.navy : STIL.tinte
+    /* Verbindung vom Punkt zum Etikett, dann der Punkt selbst. */
+    elemente.push(
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: x - 1.5 - versatz,
+          top: oben ? ZS_ACHSE - abstand : ZS_ACHSE,
+          width: 3,
+          height: abstand,
+          backgroundColor: STIL.rand,
+        },
+      }),
+      h('div', {
+        style: {
+          position: 'absolute',
+          left: x - 12 - versatz,
+          top: ZS_ACHSE - 12,
+          width: 24,
+          height: 24,
+          borderRadius: 24,
+          backgroundColor: grau ? '#ffffff' : farbe,
+          border: grau ? `4px solid ${STIL.grau}` : '4px solid #ffffff',
+        },
+      })
+    )
+    elemente.push(
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            left: ex - versatz,
+            top: oben ? ZS_ACHSE - abstand - ZS_HOCH * g : ZS_ACHSE + abstand,
+            width: ZS_ETIKETT * g,
+            height: ZS_HOCH * g,
+            display: 'flex',
+            flexDirection: oben ? 'column-reverse' : 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            fontFamily: 'Montserrat',
+          },
+        },
+        ...(p.logo
+          ? [
+              h(
+                'div',
+                {
+                  style: {
+                    width: ZS_LOGO_B * g,
+                    height: ZS_LOGO_H * g,
+                    borderRadius: 18,
+                    border: `2px solid ${STIL.rand}`,
+                    backgroundColor: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '4px 0',
+                  },
+                },
+                h('img', {
+                  src: logoAdresse(p.logo),
+                  width: (ZS_LOGO_B - 40) * g,
+                  height: (ZS_LOGO_H - 28) * g,
+                  style: { objectFit: 'contain' },
+                })
+              ),
+            ]
+          : []),
+        h(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              margin: '4px 0',
+            },
+          },
+          h(
+            'div',
+            {
+              style: {
+                fontSize: (p.vergleich ? 40 : 48) * g,
+                fontWeight: 800,
+                letterSpacing: -1,
+                color: farbe,
+              },
+            },
+            p.anzeige
+          ),
+          h(
+            'div',
+            {
+              style: {
+                fontSize: 22 * g,
+                fontWeight: 600,
+                color: grau ? STIL.grau : STIL.tinte,
+                textAlign: 'center',
+              },
+            },
+            p.name
+          ),
+          h('div', { style: { fontSize: 19 * g, color: STIL.grau } }, p.zusatz)
+        )
+      )
+    )
+  }
+
+  const satz = k.saetze.find((z) => z.kachel === nr)
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+        overflow: 'hidden',
+      },
+    },
+    ...(nr === 1
+      ? [
+          stilKopf(logo),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 170,
+                left: STIL_RAND,
+                right: STIL_RAND,
+                display: 'flex',
+                flexDirection: 'column',
+                fontFamily: 'Montserrat',
+                fontWeight: 800,
+                fontSize: 96,
+                lineHeight: 1.08,
+                letterSpacing: -2,
+              },
+            },
+            ...k.titel.map((t) =>
+              h(
+                'div',
+                { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+                t.text
+              )
+            )
+          ),
+          stilBlock(k.erklaerung, {
+            top: 400,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            fontSize: 30,
+            color: STIL.grau,
+          }),
+          stilBlock('Wischen  →', {
+            top: ZK_HOEHE - 79,
+            right: STIL_RAND,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : [
+          stilBlock(`${nr} / ${k.kacheln}`, {
+            top: 48,
+            right: STIL_RAND,
+            fontSize: 22,
+            fontWeight: 700,
+            color: STIL.hellgrau,
+          }),
+        ]),
+    ...elemente,
+    ...(satz
+      ? [
+          stilBlock(satz.text, {
+            top: 1176,
+            left: STIL_RAND,
+            width: ZK_BREITE - 2 * STIL_RAND,
+            fontSize: 30,
+            fontWeight: 600,
+            lineHeight: 1.3,
+            color: STIL.tinte,
+          }),
+        ]
+      : []),
+    stilBlock(k.fusszeile, {
+      top: ZK_HOEHE - 52,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 15,
+      color: STIL.hellgrau,
+    })
+  )
+}
+
+/** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
+export function zahlenkarteSeiten(k: Zahlenkarte): number {
+  if (k.art === 'zahlenstrahl') return k.kacheln
+  if (k.art === 'raetsel') return 2 * k.fragen.length
+  return 'zweiteSeite' in k && k.zweiteSeite ? 2 : 1
+}
+
+/** Seite `nr` (ab 1) der Karte als PNG. */
+export async function zahlenkarteSeitePng(
+  k: Zahlenkarte,
+  logoSvg: string,
+  nr: number
+): Promise<Buffer> {
+  if (k.art === 'raetsel') {
+    const logo = svgAdresse(signetOhneMitte(logoSvg))
+    const antwort = new ImageResponse(
+      raetselKachel(k, logo, Math.min(Math.max(nr, 1), 2 * k.fragen.length)),
+      { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
+    )
+    return Buffer.from(await antwort.arrayBuffer())
+  }
+  if (k.art === 'zahlenstrahl') {
+    const logo = svgAdresse(signetOhneMitte(logoSvg))
+    const antwort = new ImageResponse(
+      zahlenstrahlKachel(k, logo, Math.min(Math.max(nr, 1), k.kacheln)),
+      { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
+    )
+    return Buffer.from(await antwort.arrayBuffer())
+  }
+  if (nr === 2 && 'zweiteSeite' in k && k.zweiteSeite)
+    return zahlenkartePng(k.zweiteSeite, logoSvg)
+  return zahlenkartePng(k, logoSvg)
+}
+
+/* ---------------------------------------------------------------- Rätsel */
+
+/** Veränderung vom ersten zum letzten Punkt in Prozent. */
+export function raetselProzent(punkte: readonly number[]): number {
+  return (punkte[punkte.length - 1] / punkte[0] - 1) * 100
+}
+
+/** „+469 %“ – ganze Prozent, echtes Minus. */
+function raetselProzentText(punkte: readonly number[]): string {
+  const p = Math.round(raetselProzent(punkte))
+  return `${p < 0 ? '−' : '+'}${Math.abs(p).toLocaleString('de-DE')} %`
+}
+
+function pruefeRaetsel(k: Raetselkarte): string[] {
+  const f: string[] = []
+  if (k.fragen.length < 2 || k.fragen.length > 4)
+    f.push(`${k.fragen.length} Rätsel – zwei bis vier.`)
+  for (const t of k.titel)
+    if (t.text.length > 22) f.push(`Titelzeile „${t.text}“ – höchstens 22 Zeichen.`)
+  for (const [i, q] of k.fragen.entries()) {
+    const nr = i + 1
+    if (q.punkte.length < 20)
+      f.push(`Rätsel ${nr}: ${q.punkte.length} Punkte – mindestens 20.`)
+    if (q.punkte.some((v) => !(v > 0)))
+      f.push(`Rätsel ${nr}: Kurse müssen über null liegen.`)
+    if (!existsSync(join(LOGO_ORDNER, q.logo)))
+      f.push(`Rätsel ${nr}: Logo „${q.logo}“ fehlt in lib/instagram/logos/.`)
+    if (q.tipp.length > 80)
+      f.push(`Rätsel ${nr}: Tipp hat ${q.tipp.length} Zeichen – höchstens 80.`)
+    if (q.satz.length > 80)
+      f.push(`Rätsel ${nr}: Satz hat ${q.satz.length} Zeichen – höchstens 80.`)
+    if ((q.frage ?? '').length > 22)
+      f.push(`Rätsel ${nr}: Frage „${q.frage}“ – höchstens 22 Zeichen.`)
+    if (i > 0 && !q.frage) f.push(`Rätsel ${nr}: braucht eine Frage als Überschrift.`)
+    /* Ein Rätsel, dessen Tipp die Lösung nennt, ist keins. */
+    const wort = q.name.split(/[\s-]+/)[0].toLowerCase()
+    if (`${q.tipp} ${q.frage ?? ''}`.toLowerCase().includes(wort))
+      f.push(`Rätsel ${nr}: Tipp oder Frage verrät „${q.name}“.`)
+    for (const a of q.achse)
+      if (a.bei < 0 || a.bei >= q.punkte.length)
+        f.push(`Rätsel ${nr}: Achse „${a.text}“ liegt außerhalb der Kurve.`)
+  }
+  return f
+}
+
+/** Die Kurve in Prozent seit dem ersten Punkt, mit Nulllinie und Achse rechts. */
+function raetselGrafik(q: Raetselkarte['fragen'][number]) {
+  const links = STIL_RAND
+  const rechts = ZK_BREITE - STIL_RAND - 90
+  const luft = 10
+  const breite = rechts - links
+  const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
+  const werte = q.punkte.map((v) => (v / q.punkte[0] - 1) * 100)
+  const hoch = Math.max(0, ...werte)
+  const tief = Math.min(0, ...werte)
+  const schritt = achsenschritt(hoch - tief, 5)
+  const oben = Math.ceil(hoch / schritt) * schritt
+  /*
+    Unten reicht die Fläche bis zum tiefsten Punkt, nicht bis zum nächsten
+    Strich: Ein Knick auf −11 % hätte sonst bei Schritten von 200 % ein
+    Drittel der Grafik leer gelassen.
+  */
+  const unten = tief < -schritt / 2 ? Math.floor(tief / schritt) * schritt : tief
+  const x = (i: number) => (i / (werte.length - 1)) * breite
+  const y = (v: number) => hoehe - ((v - unten) / (oben - unten)) * hoehe
+  const striche = Array.from(
+    { length: Math.floor((oben - unten) / schritt + 1e-9) + 1 },
+    (_, i) => oben - i * schritt
+  ).filter((v) => v >= unten - 1e-9)
+  const farbe = stilFarbe(werte[werte.length - 1] >= 0 ? 'steigt' : 'faellt')
+  const pfad = werte
+    .map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`)
+    .join(' ')
+  /* Hausstil: feine Linie ohne Fläche, Hilfslinien durchgezogen, Nulllinie dunkler, hohler Endpunkt. */
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    `<path d="${pfad}" fill="none" stroke="${farbe}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<circle cx="${x(werte.length - 1)}" cy="${y(werte[werte.length - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>` +
+    '</svg>'
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 2 * luft,
+      height: hoehe + 2 * luft,
+      style: { position: 'absolute', left: links - luft, top: STIL_GRAFIK_O - luft },
+    }),
+    ...striche.map((v) =>
+      stilBlock(
+        `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE')} %`,
+        {
+          top: STIL_GRAFIK_O + y(v) - 11,
+          left: rechts + 18,
+          fontSize: 17,
+          color: STIL.hellgrau,
+        }
+      )
+    ),
+    ...q.achse.map((a, i) =>
+      stilBlock(a.text, {
+        top: STIL_GRAFIK_U + 16,
+        left:
+          i === 0
+            ? links
+            : i === q.achse.length - 1
+              ? links + x(a.bei) - 120
+              : links + x(a.bei) - 60,
+        width: 120,
+        justifyContent:
+          i === 0 ? 'flex-start' : i === q.achse.length - 1 ? 'flex-end' : 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+  ]
+}
+
+/** „6,81 €“, „1.239,6 Pence“ – deutsch, mit Einheit. */
+function raetselKurs(wert: number, einheit: string): string {
+  return `${wert.toLocaleString('de-DE', { maximumFractionDigits: 2 })} ${einheit}`
+}
+
+/**
+ * Eine Kachel des Rätsels im Hausstil (`INSTAGRAM-STIL.md`), gezeichnet von
+ * `stilBild()` wie jede andere Hausstil-Karte: Logo oben mittig auf jeder
+ * Kachel, Titel in zwei Zeilen, Unterzeile, Stichzeile, eine Heldenzahl mit
+ * Pille, die Kurve ohne Fläche. Kein Kasten.
+ *
+ * Betreiber, 09.11.2026, zur ersten Fassung (Logo im umrandeten Kasten,
+ * Fläche unter der Kurve, ab Kachel 2 ohne Logo): „sieht sehr nach KI aus,
+ * nicht hochwertig“.
+ *
+ * Rätselkachel: „Rätsel n von N“ / Frage, darunter der Tipp. Auflösung:
+ * „Auflösung“ / Name, darunter der Satz, und das Firmenlogo frei rechts
+ * neben der Heldenzahl – an der Stelle, die auf der Rätselkachel leer ist.
+ */
+function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
+  const n = Math.ceil(nr / 2)
+  const q = k.fragen[n - 1]
+  const aufloesung = nr % 2 === 0
+  const seiten = 2 * k.fragen.length
+  const richtung = raetselProzent(q.punkte) >= 0 ? 'steigt' : 'faellt'
+  const titel = aufloesung
+    ? [{ text: 'Auflösung:' }, { text: q.name, gruen: true }]
+    : nr === 1
+      ? k.titel
+      : [
+          { text: `Rätsel ${n} von ${k.fragen.length}` },
+          { text: q.frage ?? '', gruen: true },
+        ]
+  const rahmen = {
+    titel,
+    erklaerung: aufloesung ? q.satz : `Tipp: ${q.tipp}`,
+    stichzeile: `Kurs · ${q.achse[0].text} bis ${q.achse[q.achse.length - 1].text}`,
+    fusszeile: k.fusszeile,
+  } as unknown as Kurvenkarte
+  const held: Held = {
+    name: 'In fünf Jahren',
+    wert: raetselProzentText(q.punkte),
+    richtung,
+    pille: {
+      wert: `${raetselKurs(q.punkte[0], q.einheit)} → ${raetselKurs(q.punkte[q.punkte.length - 1], q.einheit)}`,
+      name: 'Schlusskurs',
+    },
+  }
+  return stilBild(
+    rahmen,
+    logo,
+    [held],
+    [
+      ...raetselGrafik(q),
+      ...(aufloesung
+        ? [
+            h('img', {
+              src: logoAdresse(q.logo),
+              width: 340,
+              height: 150,
+              style: {
+                position: 'absolute',
+                top: 500,
+                right: STIL_RAND,
+                objectFit: 'contain',
+                objectPosition: 'right center',
+              },
+            }),
+          ]
+        : []),
+      stilBlock(`${nr} / ${seiten}`, {
+        top: 56,
+        right: STIL_RAND,
+        fontSize: 20,
+        fontWeight: 700,
+        color: STIL.hellgrau,
+      }),
+      ...(nr < seiten
+        ? [
+            stilBlock(aufloesung ? 'Nächstes Rätsel  →' : 'Auflösung  →', {
+              top: ZK_HOEHE - 79,
+              right: STIL_RAND,
+              fontSize: 20,
+              fontWeight: 700,
+              color: STIL.grau,
+            }),
+          ]
+        : []),
+    ]
+  )
 }
