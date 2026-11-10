@@ -179,6 +179,68 @@ export function quellenstreit(text: string): string | null {
 export const WIEDERHOLUNG_TAGE = 7
 
 /**
+ * Ab wie vielen der letzten sieben Erscheinungstage ein Name ein
+ * Dauerthema ist.
+ *
+ * Betreiber, 10.11.2026: „bei den Nachrichten lasse ich die Sachen nicht
+ * immer doppeln … es kam jetzt schon öfters dran mit EZB-Spitze, wer da wen
+ * vorschlägt … Oder Öl. Hin und her. Das kann man schon drin lassen, aber
+ * vielleicht dann immer auf die letzte Seite packen. Und wenn es dann
+ * nichts wirklich Neues gibt, dann muss man das ja auch nicht täglich mit
+ * reinnehmen.“
+ *
+ * `wiederholungen()` sah das nicht: „EZB-Nachfolge: Finanzminister drängen
+ * auf schnelle Entscheidung“ gegen „EZB-Nachfolge: Spanien nominiert
+ * Hernández de Cos“ liegt bei 0,18, unter der Grenze von einem Drittel –
+ * und gleich hoch wie viele verschiedene Themen. Ein Dauerthema erkennt man
+ * nicht an der Überschrift, sondern am Namen, der immer wiederkommt.
+ *
+ * **Gemessen am Bestand 01.10.–10.11.2026** (Namen wie in
+ * `themenwoerter()` aus `lib/instagram-plan.ts`, nach den dort ergänzten
+ * Nicht-Themen): Mit „an mindestens zwei der sieben Tage davor“ trifft es
+ * EZB (30.10., 04.11., 05.11., 07.11., 10.11.), Fed (29.10., 31.10.,
+ * 03.11.), Frankreich (22.10., 25.10.), Binance (02.11.), Iran, China – und
+ * Anfang Oktober Öl, Gold und Silber fast täglich. Mit einem Tag wären es
+ * zwei bis vier Meldungen am Tag gewesen, darunter Microsoft vor und nach
+ * seinen Zahlen; das sind zwei Ereignisse.
+ */
+export const DAUERTHEMA_AB_TAGEN = 2
+
+export interface Dauerthema {
+  /** Stelle in der Ausgabe, ab 0. */
+  stelle: number
+  titel: string
+  /** Die Namen, die schon an `DAUERTHEMA_AB_TAGEN` Tagen dastanden. */
+  namen: string[]
+}
+
+/**
+ * Welche neuen Überschriften ein Dauerthema tragen: einen Namen, der in den
+ * letzten sieben Erscheinungstagen schon an mindestens
+ * `DAUERTHEMA_AB_TAGEN` Tagen in einer Überschrift stand.
+ */
+export function dauerthemen(
+  neu: string[],
+  frueher: { tag: string; titel: string }[],
+  woerter: (titel: string) => Set<string>
+): Dauerthema[] {
+  const tageJeName = new Map<string, Set<string>>()
+  for (const f of frueher)
+    for (const w of woerter(f.titel)) {
+      if (!tageJeName.has(w)) tageJeName.set(w, new Set())
+      tageJeName.get(w)!.add(f.tag)
+    }
+  const funde: Dauerthema[] = []
+  for (const [stelle, titel] of neu.entries()) {
+    const namen = [...woerter(titel)].filter(
+      (w) => (tageJeName.get(w)?.size ?? 0) >= DAUERTHEMA_AB_TAGEN
+    )
+    if (namen.length) funde.push({ stelle, titel, namen })
+  }
+  return funde
+}
+
+/**
  * Die Überschriften der letzten `tage` Erscheinungstage vor `stichtag`,
  * jüngster zuerst, mit ihrem Tag – für den Riegel und für die Anweisung.
  */
