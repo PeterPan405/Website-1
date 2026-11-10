@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-09T12:08:22.609Z",
+  "abgerufenAm": "2026-11-10T01:34:11.527Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "us-verbraucherpreise-fuer-oktober-im-fokus-dax-ueber-26-000-punkten-und-nvidia-a",
+      "titel": "US-Verbraucherpreise für Oktober im Fokus, Dax über 26.000 Punkten und Nvidia-Aktie fällt",
+      "beschreibung": "US-Verbraucherpreise, ein Dax über 26.000 Punkten, Nvidias Nachfolgefrage, Boeings Stellenabbau und die EZB-Nachfolge – der Überblick zum Dienstag. Am Dienstag veröffentlicht das US-Arbeitsministerium die Verbraucherpreise für Oktober.\n\nWir sprechen über Nvidia-Aktie fällt, Boeing streicht fünf Prozent der Stellen und EZB-Nachfolge: Finanzminister drängen. Kompakt in rund drei Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:35) US-Verbraucherpreise für Oktober im Fokus\n(1:15) Dax über 26.000 Punkten\n(1:54) Nvidia-Aktie fällt\n(2:30) Boeing streicht fünf Prozent der Stellen und mehr\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-10",
+      "dauerSekunden": 168,
+      "url": "https://iminvests.de/podcast-audio/2026-11-10.mp3",
+      "youtubeId": "Y40MoPxu0ng"
+    },
     {
       "slug": "nvidia-vorstand-prueft-spionagevorwurf-gegen-jensen-huang-und-huthi-greifen-riad",
       "titel": "Nvidia-Vorstand prüft Spionagevorwurf gegen Jensen Huang und Huthi greifen Riad",
