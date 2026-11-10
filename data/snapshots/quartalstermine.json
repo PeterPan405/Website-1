@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-09T14:09:05.588Z",
+  "abgerufenAm": "2026-11-10T13:41:13.790Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,15 +11,15 @@
       "von": "2026-10-05",
       "bis": "2026-12-18",
       "zeilen": 3177,
-      "kommendGesamt": 2159,
+      "kommendGesamt": 1985,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 67,
-      "kommend": 23,
-      "abgeleitet": 44,
+      "kommend": 22,
+      "abgeleitet": 45,
       "abstandJeStelle": {
         "1": 43,
         "2": 41,
@@ -40,11 +40,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 34,
-      "letzterTag": "2026-12-30",
-      "zeilen": 1815,
-      "imKatalog": 61,
-      "mitLage": 40,
-      "beigetragen": 61
+      "letzterTag": "2027-01-04",
+      "zeilen": 1635,
+      "imKatalog": 55,
+      "mitLage": 35,
+      "beigetragen": 55
     }
   },
   "unternehmen": {
@@ -405,10 +405,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-12-10",
+          "erwartet": "2026-12-09",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-03",
@@ -6132,24 +6134,24 @@
     "TDG": {
       "name": "TransDigm Group INC",
       "bisher": [
+        "2026-11-10",
         "2026-08-04",
         "2026-05-05",
         "2026-04-14",
         "2026-02-03",
         "2025-11-12",
         "2025-08-05",
-        "2025-05-06",
-        "2025-02-04"
+        "2025-05-06"
       ],
       "bisherZeiten": {
+        "2026-11-10": "06:32",
         "2026-08-04": "07:17",
         "2026-05-05": "07:17",
         "2026-04-14": "08:22",
         "2026-02-03": "07:19",
         "2025-11-12": "07:18",
         "2025-08-05": "07:18",
-        "2025-05-06": "07:18",
-        "2025-02-04": "07:19"
+        "2025-05-06": "07:18"
       },
       "vorhersagen": [
         {
@@ -6159,12 +6161,6 @@
           "herkunft": "nasdaq",
           "angekuendigt": true,
           "lage": "vorboerse"
-        },
-        {
-          "erwartet": "2027-02-02",
-          "basis": "2026-02-03",
-          "streuungTage": 0,
-          "newYorkerZeit": "07:19"
         },
         {
           "erwartet": "2027-05-04",
@@ -6177,6 +6173,12 @@
           "basis": "2026-08-04",
           "streuungTage": 0,
           "newYorkerZeit": "07:17"
+        },
+        {
+          "erwartet": "2027-11-09",
+          "basis": "2026-11-10",
+          "streuungTage": 1,
+          "newYorkerZeit": "06:32"
         }
       ]
     },
@@ -7441,14 +7443,6 @@
         "2025-02-18": "06:59"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-09",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-02-23",
           "basis": "2026-02-24",
@@ -12084,40 +12078,26 @@
     "OXY": {
       "name": "OCCIDENTAL PETROLEUM CORP /DE/",
       "bisher": [
+        "2026-11-09",
         "2026-10-13",
         "2026-08-05",
         "2026-07-10",
         "2026-05-05",
         "2026-04-10",
         "2026-02-18",
-        "2026-01-20",
-        "2025-11-10"
+        "2026-01-20"
       ],
       "bisherZeiten": {
+        "2026-11-09": "16:13",
         "2026-10-13": "07:01",
         "2026-08-05": "16:16",
         "2026-07-10": "16:15",
         "2026-05-05": "16:16",
         "2026-04-10": "07:15",
         "2026-02-18": "16:15",
-        "2026-01-20": "07:00",
-        "2025-11-10": "16:15"
+        "2026-01-20": "07:00"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-09",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
-        {
-          "erwartet": "2027-05-04",
-          "basis": "2026-05-05",
-          "streuungTage": 1,
-          "newYorkerZeit": "16:16"
-        },
         {
           "erwartet": "2027-08-04",
           "basis": "2026-08-05",
@@ -12125,10 +12105,10 @@
           "newYorkerZeit": "16:16"
         },
         {
-          "erwartet": "2027-10-12",
-          "basis": "2026-10-13",
-          "streuungTage": 4,
-          "newYorkerZeit": "07:01"
+          "erwartet": "2027-11-08",
+          "basis": "2026-11-09",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:13"
         }
       ]
     },
@@ -13685,34 +13665,26 @@
     "TTWO": {
       "name": "TAKE TWO INTERACTIVE SOFTWARE INC",
       "bisher": [
+        "2026-11-09",
         "2026-08-07",
         "2026-05-21",
         "2026-02-03",
         "2025-11-06",
         "2025-08-07",
         "2025-05-15",
-        "2025-02-06",
-        "2024-11-06"
+        "2025-02-06"
       ],
       "bisherZeiten": {
+        "2026-11-09": "16:10",
         "2026-08-07": "07:37",
         "2026-05-21": "16:08",
         "2026-02-03": "16:14",
         "2025-11-06": "16:13",
         "2025-08-07": "16:24",
         "2025-05-15": "16:09",
-        "2025-02-06": "16:11",
-        "2024-11-06": "16:15"
+        "2025-02-06": "16:11"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-09",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
@@ -13729,6 +13701,12 @@
           "erwartet": "2027-08-06",
           "basis": "2026-08-07",
           "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-11-08",
+          "basis": "2026-11-09",
+          "streuungTage": 4,
+          "newYorkerZeit": "16:10"
         }
       ]
     },
@@ -16164,10 +16142,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-09",
+          "erwartet": "2027-02-11",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-11",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-09",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -18045,7 +18040,7 @@
     "TRP.TO": "2026-08-19",
     "TSCO.L": "2026-11-09",
     "TSM": "2026-08-18",
-    "TTE.PA": "2026-08-18",
+    "TTE.PA": "2026-11-10",
     "U11.SI": "2026-08-18",
     "U96.SI": "2026-08-18",
     "UBI.PA": "2026-08-18",
