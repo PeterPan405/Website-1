@@ -143,3 +143,8 @@ Daraus die Form: Die **Rätselkachel** zeigt Frage, große Prozentzahl, Kurve
 und Tipp. Die **Auflösung** zeigt **nur das Logo und die Erläuterung**, ohne
 Zahl und ohne Kurve (Betreiber: „nicht mehr die große Zahl …, sondern nur
 noch das Logo und Erläuterung“). Rätsel und Auflösung wechseln sich ab.
+
+**Mythos oder Fakt (`mythos`, ab 10.11.2026)** folgt derselben Form: erst die
+Behauptung groß in Navy, dann die Auflösung mit „Mythos.“ (Rot) oder „Fakt.“
+(Grün) und Säulen aus den Kursdaten. Die hervorgehobene Säule ist Navy, nicht
+Rot oder Grün – die Farbe trägt sonst eine Richtung, die die Säule nicht hat.
