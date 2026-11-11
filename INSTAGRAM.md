@@ -389,6 +389,7 @@ liest diese Liste vorher.
 | 07.11. | Titel „Essen an der Börse" „klingt nicht gut"                                               | Sprache wie im Wirtschaftsteil: „Lebensmittel", nicht „Essen"                      |
 | 07.11. | Unterzeile „Oben: … Unten: …" – „macht keinen Sinn", zu lang                                | Unterzeile in Stichpunkten, keine Sätze, eine Zeile; keine Umgangssprache          |
 | 07.11. | „nicht maßstäblich" auf der Titelkachel des Zahlenstrahls – weglassen                       | Unterzeile nur Stichpunkte zum Inhalt, wie am 07.11.; Methodik in die Beschreibung |
+| 11.11. | drei Ratekarusselle in Folge (Rätsel, Mythos, Entweder-oder) – „mal so mal so"              | Formate wechseln: Einzelbild und Karussell, zum Raten und zum Lesen im Wechsel     |
 
 **Die Prüfung vor dem Hochladen** (seit 26.10.2026, `instagram-beitrag.yml`,
 `lib/instagram-bildpruefung.ts`): Ein Modell sieht jede Kachel an (passt
