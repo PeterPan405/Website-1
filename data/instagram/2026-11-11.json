@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "US-Inflation treibt die Fed-Zinssorgen an, Anthropic nennt den Preis für seinen Mega-Börsengang, Infineon meldet ein Rekordquartal, der Dax hält sich knapp im Plus und Nvidia verliert eine Billion Dollar.",
+  "kacheln": [
+    {
+      "titel": "Fed: Zinsschritt im Dezember",
+      "text": "Die US-Inflation stieg im Oktober stärker als erwartet. An den Märkten gilt ein weiterer Fed-Zinsschritt im Dezember jetzt als sicher."
+    },
+    {
+      "titel": "Anthropic: IPO ab 70 Dollar",
+      "text": "Anthropic hat die Preisspanne für seinen Börsengang festgelegt: 70 bis 78 Dollar je Aktie. Der Handel soll am 19. November starten."
+    },
+    {
+      "titel": "Infineon: Rekordquartal",
+      "text": "Chipkonzern Infineon meldet für das vierte Quartal einen Umsatz von 4,7 Milliarden Euro. Für 2027 wird ein Wachstum von über 20 Prozent erwartet."
+    },
+    {
+      "titel": "Dax nahe Rekordhoch",
+      "text": "Der Dax gab einen Teil seiner Gewinne wieder ab und schloss am Dienstag bei 26.556 Punkten knapp im Plus, nahe seinem Rekordhoch."
+    },
+    {
+      "titel": "Nvidia: 1 Billion verloren",
+      "text": "Nvidia hat binnen einer Woche rund eine Billion Dollar an Börsenwert verloren. Grund ist die Affäre von Chef Jensen Huang mit einer mutmaßlichen Spionin."
+    }
+  ],
+  "schlagworte": ["inflation", "zinsen", "nvidia", "börse", "aktien"]
+}

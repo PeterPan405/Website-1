@@ -101,6 +101,334 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-inflation-oktober-fed-dezember',
+    title: 'US-Inflation überrascht: Fed-Zinsschritt im Dezember gilt jetzt als sicher',
+    metaTitle: 'US-Inflation überrascht Anleger und Notenbank',
+    teaser:
+      'US-Verbraucherpreise legten im Oktober stärker zu als erwartet. An den Anleihemärkten gilt ein weiterer Fed-Zinsschritt im Dezember als beschlossen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-11T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Fed', 'USA', 'Anleihen'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 10.11.2026, 20:30 Uhr: „Wall Street: Überraschend hohe Inflation treibt wichtige US-Anleiherendite über Zwei-Jahres-Hoch“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/usa-hohe-inflation-treibt-wichtige-anleiherendite-ueber-zwei-jahres-hoch/100268295.html',
+      },
+      {
+        label:
+          'CNBC, News-Ticker vom 10.11.2026, 22:06 Uhr: „10-year Treasury yield races back to 5% as inflation data, Waller comments drive rate hike expectations“',
+        url: 'https://www.cnbc.com/2026/11/10/us-bonds-treasurys-yields.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, News-Ticker vom 10.11.2026, 14:59 Uhr: „Bitcoin-Kurs aktuell: US-Inflation im Oktober stärker als erwartet“',
+        url: 'https://www.wiwo.de/finanzen/boerse/bitcoin-kurs-aktuell-us-inflation-im-oktober-staerker-als-erwartet-btc-gibt-nach/27382428.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hatte auf eine Verschnaufpause bei der Inflation gehofft. Die Zahlen vom Dienstag zeigen das Gegenteil.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Verbraucherpreise im Detail',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Verbraucherpreise in den USA stiegen im Oktober um 0,4 Prozent zum Vormonat. Ökonomen hatten im Schnitt nur mit einem Anstieg von 0,3 Prozent gerechnet. Die Rendite zehnjähriger US-Staatsanleihen kletterte im Anschluss auf ein neues Zweijahreshoch und näherte sich der Marke von 5 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Waller bringt größeren Zinsschritt ins Spiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine weitere Zinserhöhung der Fed im Dezember gilt an den Märkten inzwischen als nahezu beschlossen. Fed-Gouverneur Christopher Waller brachte sogar einen größeren Zinsschritt ins Spiel, als Investoren bislang eingepreist hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Warum Anleiherenditen Aktien unter Druck setzen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigende Anleiherenditen bedeuten für Anleger eine höhere **Abzinsung** künftiger Unternehmensgewinne: Ein Dollar, der erst in einigen Jahren verdient wird, ist heute weniger wert, wenn sichere Anleihen gleichzeitig mehr Zinsen abwerfen. Das erklärt, warum Aktienmärkte auf überraschend hohe Inflationsdaten fast immer mit Kursverlusten reagieren – unabhängig davon, wie gut es den Unternehmen selbst geht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je näher der Dezember-Zinsentscheid rückt, desto genauer dürften Anleger jede weitere Konjunkturzahl auf Hinweise für das Tempo der Fed abklopfen.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-preisspanne',
+    title: 'Anthropic nennt Preisspanne für Börsengang: 70 bis 78 Dollar je Aktie',
+    metaTitle: 'Anthropic: Preisspanne für den Börsengang steht',
+    teaser:
+      'Anthropic hat die Preisspanne für seinen Börsengang genannt. Die Aktien sollen ab 19. November gehandelt werden, bei einer Bewertung über einer Billion Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-11-11T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anthropic', 'IPO', 'Künstliche Intelligenz', 'Börsengang'],
+    relatedTopics: ['aktie', 'boerse', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 10.11.2026, 16:37 Uhr: „Anthropic peilt Börsen-Bewertung von über einer Billion Dollar an“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/anthropic-boerse-kuenstliche-intelligenz-100.html',
+      },
+      {
+        label:
+          'CNBC, News-Ticker vom 10.11.2026, 16:42 Uhr: „Anthropic sets IPO price range of $70 to $78, looks to start trading Nov. 19“',
+        url: 'https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html',
+      },
+      {
+        label:
+          "CNBC, News-Ticker vom 10.11.2026, 20:51 Uhr: „Traders bet on a pop for Anthropic's historic IPO“",
+        url: 'https://www.cnbc.com/2026/11/10/traders-bet-on-a-pop-for-anthropics-historic-ipo.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Monatelang war nur von Gerüchten die Rede. Jetzt stehen die Eckdaten für einen der größten Börsengänge des Jahres fest.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Eckdaten des Börsengangs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anthropic, das Unternehmen hinter dem KI-Modell Claude, hat eine Preisspanne von 70 bis 78 Dollar je Aktie genannt. Der Handel an der Börse soll am 19. November beginnen. Bei diesem Preis würde Anthropic mit über einer Billion Dollar bewertet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zweifel an der Rentabilität bleiben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der aktualisierte Börsenprospekt liefert erstmals Antworten auf Fragen, auf die Anleger lange gewartet haben. Zugleich wachsen in der Branche weiter Zweifel an der Rentabilität von KI-Unternehmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Was ein IPO-Pop verrät',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Terminmarkt setzen Händler bereits auf einen deutlichen Kurssprung am ersten Handelstag, einen sogenannten **IPO-Pop**. Ein hoher Pop gilt Börsenprofis nicht nur als gutes Zeichen: Er bedeutet auch, dass die begleitenden Banken das Unternehmen beim Festlegen des Ausgabepreises günstiger bewertet haben, als der Markt bereit ist zu zahlen – Geld, das sonst dem Unternehmen selbst zugeflossen wäre.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wie hoch die Nachfrage tatsächlich ist, zeigt sich erst am ersten Handelstag – nicht schon an der jetzt genannten Preisspanne.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-unter-90-dollar-erstmals-seit-august',
+    title: 'Ölpreis fällt erstmals seit August unter 90 Dollar',
+    teaser:
+      'Der Brent-Ölpreis ist am Dienstag erstmals seit August unter die Marke von 90 Dollar gefallen. Anleger setzen auf eine Entspannung im Nahen Osten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-11T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Rohstoffe', 'Brent', 'Geopolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 10.11.2026, 11:04 Uhr: „Energie: Ölpreis sinkt erstmals seit August wieder unter 90 Dollar“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/energie-oelpreis-sinkt-erstmals-seit-august-wieder-unter-90-dollar/100268734.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, News-Ticker vom 10.11.2026, 09:10 Uhr: „Ölpreis aktuell: Iran-Krieg laut Donald Trump ‚effektiv vorüber‘“',
+        url: 'https://www.wiwo.de/finanzen/oelpreis-aktuell-iran-krieg-laut-donald-trump-effektiv-vorueber/100207502.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An den Rohstoffmärkten ist am Dienstag eine psychologisch wichtige Marke gefallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Preis für ein Barrel der Nordseesorte Brent fiel am Dienstag erstmals seit August unter 90 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Warum',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump erklärte, der Krieg um Iran sei „effektiv vorüber“. Die von Iran verhängte Seeblockade erfolge inzwischen auf Wunsch der Anrainerstaaten selbst. Nach den US-Zwischenwahlen setzen Anleger zusätzlich auf Verhandlungen statt auf eine weitere Eskalation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Warum Öl schneller reagiert als die Inflation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ölpreise reagieren fast augenblicklich auf neue geopolitische Informationen, weil sie an Terminbörsen in Echtzeit gehandelt werden. Bis ein niedrigerer Ölpreis tatsächlich in niedrigeren Inflationsraten sichtbar wird, dauert es dagegen Wochen: Tankstellen, Fluggesellschaften und Chemieunternehmen reichen ihre günstigeren Einkaufspreise erst mit Verzögerung weiter.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Entspannung anhält, hängt davon ab, ob den Worten auch Taten folgen – an der Börse zählt vorerst schon die Erwartung.',
+      },
+    ],
+  },
+  {
+    slug: 'infineon-rekordquartal-ki-boom',
+    title: 'Infineon schließt Geschäftsjahr mit Rekordquartal ab',
+    teaser:
+      'Der Chipkonzern Infineon hat im vierten Quartal einen Rekordumsatz erzielt. Für 2027 wird ein Wachstum von mehr als 20 Prozent erwartet.',
+    category: 'Märkte',
+    publishedAt: '2026-11-11T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Infineon', 'Halbleiter', 'Künstliche Intelligenz', 'DAX'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['infineon', 'dax'],
+    sources: [
+      {
+        label:
+          'ad-hoc-news.de, Unternehmensmeldung (DGAP) vom 10.11.2026, 07:30 Uhr: „Infineon schließt GJ 2026 mit Rekordquartal ab“',
+        url: 'https://www.ad-hoc-news.de/boerse/news/corporate-news/infineon-schliesst-gj-2026-mit-rekordquartal-ab-und-erwartet-fuer-gj-2027-starkes-umsatzwachstum/70484279',
+      },
+      {
+        label:
+          'Tagesschau, 10.11.2026, 14:33 Uhr: „KI-Boom: Deutscher Chipkonzern Infineon will weiter zweistellig wachsen“',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/marktbericht-infineon-ki-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während die Chipbranche weltweit über die Kosten des KI-Booms streitet, meldet ein deutscher Zulieferer ausgerechnet jetzt sein bestes Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen des vierten Quartals',
+      },
+      {
+        type: 'paragraph',
+        text: 'Infineon erzielte im vierten Quartal des Geschäftsjahres 2026 einen Umsatz von 4,706 Milliarden Euro, 13 Prozent mehr als im Vorquartal. Das Segmentergebnis stieg auf 1,119 Milliarden Euro, die Marge auf 23,8 Prozent. Im Gesamtjahr wuchs der Umsatz um 12 Prozent auf 16,353 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ausblick für 2027',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das Geschäftsjahr 2027 rechnet Infineon mit einem Umsatzwachstum von mehr als 20 Prozent auf rund 20 Milliarden Euro und einer um fünf Prozentpunkte höheren Profitabilität. Der Vorstand will außerdem die Dividende je Aktie um 3 Cent auf 38 Cent anheben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Guidance gegen Ist-Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die **Guidance**, also die Prognose eines Unternehmens für die Zukunft, bewegt Aktienkurse oft stärker als die bereits erzielten Ist-Zahlen. Ein Grund dafür: Börsenkurse spiegeln abgezinste künftige Gewinne wider, nicht die Vergangenheit. Übertrifft eine Prognose die Erwartungen der Analysten deutlich, wie bei Infineons Wachstumsziel für 2027, kann das stärker wirken als ein bereits bekanntes Rekordquartal.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Infineon die hochgesteckte Zielmarke erreicht, entscheidet sich erst im Verlauf des neuen Geschäftsjahres – an den bereits bekannten Zahlen des alten lässt sich das nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-boersenwert-huang-affaere',
+    title: 'Nvidia verliert binnen einer Woche fast eine Billion Dollar an Börsenwert',
+    metaTitle: 'Nvidia verliert fast eine Billion Dollar an Börsenwert',
+    teaser:
+      'Nvidias Chef Jensen Huang räumte eine Affäre mit einer mutmaßlichen Spionin ein. Binnen einer Woche verlor der Konzern fast eine Billion Dollar an Börsenwert.',
+    category: 'Märkte',
+    publishedAt: '2026-11-11T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Jensen Huang', 'Chipindustrie', 'Börse'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 10.11.2026, 20:41 Uhr: „Huang-Affäre: Nvidia verliert binnen einer Woche rund eine Billion Dollar an Börsenwert“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/nvidia-aktie-chipkonzern-verliert-in-einer-woche-knapp-eine-billion-dollar-boersenwert/100268874.html',
+      },
+      {
+        label:
+          "CNBC, News-Ticker vom 10.11.2026, 23:08 Uhr: „Nvidia sells off for second day in fallout from Jensen Huang's affair with alleged spy“",
+        url: 'https://www.cnbc.com/2026/11/10/nvidia-nvda-jensen-huang-affair-chinese-spy.html',
+      },
+      {
+        label:
+          "CNBC, News-Ticker vom 11.11.2026, 00:11 Uhr: „Nvidia's Huang tries to project 'business as usual' in return to office after affair revelation“",
+        url: 'https://www.cnbc.com/2026/11/10/nvidia-jensen-huang-affair-office.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine private Angelegenheit des eigenen Vorstandsvorsitzenden hat einen der wertvollsten Konzerne der Welt diese Woche einen Betrag gekostet, der ganze andere Unternehmen insgesamt wert sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Woche in Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nvidia-Aktie verlor am Dienstag den zweiten Tag in Folge deutlich an Wert. Binnen einer Woche summierte sich der Rückgang des Börsenwerts auf rund eine Billion Dollar. Jensen Huang kehrte am Dienstag ins Büro zurück, Mitarbeiter beschrieben die Stimmung dort als „traurig“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Hintergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Huang hatte zuvor eine Affäre mit einer mutmaßlichen chinesischen Spionin eingeräumt. Der Nvidia-Vorstand prüft seither einen Spionagevorwurf gegen ihn. Von den Kursverlusten dürfte auch ein US-Shortseller profitiert haben, der schon vor Monaten vor einem Problem bei Nvidia gewarnt hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Marktwert gegen Fundamentaldaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidias Umsatz und Gewinn haben sich durch die Affäre bislang nicht verändert – trotzdem ist der Börsenwert binnen einer Woche um rund eine Billion Dollar gefallen. Das zeigt, wie stark Aktienkurse auch von Faktoren abhängen, die mit dem operativen Geschäft nichts zu tun haben: dem Vertrauen in die Führung und, bei Nvidia besonders heikel, dem politischen Risiko rund um Chipexporte nach China.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich der Kurs erholt, dürfte weniger von den nächsten Quartalszahlen abhängen als davon, ob Huang als Vorstandsvorsitzender im Amt bleibt.',
+      },
+    ],
+  },
+  {
     slug: 'us-verbraucherpreise-oktober-2026',
     title: 'US-Verbraucherpreise für Oktober: Das erwarten Ökonomen',
     teaser:
