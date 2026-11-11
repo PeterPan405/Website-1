@@ -561,7 +561,26 @@ export interface Mythoskarte extends KarteGemeinsam {
   }[]
 }
 
+/**
+ * Entweder-oder (11.11.2026): je Duell zwei Kacheln – erst zwei Namen, dann
+ * der Sieger mit beiden Kurven. Die Prozentzahlen werden gerechnet.
+ */
+export interface Entwederkarte extends KarteGemeinsam {
+  art: 'entweder'
+  fragen: {
+    /** Überschrift ab dem zweiten Duell: „Und hier?“. */
+    frage?: string
+    a: { name: string; punkte: readonly number[] }
+    b: { name: string; punkte: readonly number[] }
+    /** Unter den Namen und über der Kurve: „Kurs seit November 2021“. */
+    unterzeile: string
+    achse: { bei: number; text: string }[]
+    satz: string
+  }[]
+}
+
 export type Zahlenkarte =
+  | Entwederkarte
   | Mythoskarte
   | Raetselkarte
   | Zahlenstrahlkarte
@@ -940,6 +959,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (
     k.art !== 'raetsel' &&
     k.art !== 'mythos' &&
+    k.art !== 'entweder' &&
     !k.titel.some((t) => t.gruen || t.richtung)
   )
     f.push('Die Überschrift braucht eine Pointe in der Akzentfarbe (`gruen`).')
@@ -959,6 +979,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
   else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
   else if (k.art === 'mythos') f.push(...pruefeMythos(k))
+  else if (k.art === 'entweder') f.push(...pruefeEntweder(k))
   else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
@@ -1314,7 +1335,12 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
-  if (k.art === 'zahlenstrahl' || k.art === 'raetsel' || k.art === 'mythos')
+  if (
+    k.art === 'zahlenstrahl' ||
+    k.art === 'raetsel' ||
+    k.art === 'mythos' ||
+    k.art === 'entweder'
+  )
     return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
   if (
@@ -2648,10 +2674,12 @@ export function form(
   | 'personen'
   | 'zahlenstrahl'
   | 'raetsel'
-  | 'mythos' {
+  | 'mythos'
+  | 'entweder' {
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'raetsel') return 'raetsel'
   if (k.art === 'mythos') return 'mythos'
+  if (k.art === 'entweder') return 'entweder'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -4912,7 +4940,8 @@ export function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: numbe
 /** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
 export function zahlenkarteSeiten(k: Zahlenkarte): number {
   if (k.art === 'zahlenstrahl') return k.kacheln
-  if (k.art === 'raetsel' || k.art === 'mythos') return 2 * k.fragen.length
+  if (k.art === 'raetsel' || k.art === 'mythos' || k.art === 'entweder')
+    return 2 * k.fragen.length
   return 'zweiteSeite' in k && k.zweiteSeite ? 2 : 1
 }
 
@@ -4922,11 +4951,15 @@ export async function zahlenkarteSeitePng(
   logoSvg: string,
   nr: number
 ): Promise<Buffer> {
-  if (k.art === 'raetsel' || k.art === 'mythos') {
+  if (k.art === 'raetsel' || k.art === 'mythos' || k.art === 'entweder') {
     const logo = svgAdresse(signetOhneMitte(logoSvg))
     const seite = Math.min(Math.max(nr, 1), 2 * k.fragen.length)
     const antwort = new ImageResponse(
-      k.art === 'raetsel' ? raetselKachel(k, logo, seite) : mythosKachel(k, logo, seite),
+      k.art === 'raetsel'
+        ? raetselKachel(k, logo, seite)
+        : k.art === 'mythos'
+          ? mythosKachel(k, logo, seite)
+          : entwederKachel(k, logo, seite),
       { width: ZK_BREITE, height: ZK_HOEHE, fonts: schriften() }
     )
     return Buffer.from(await antwort.arrayBuffer())
@@ -5504,6 +5537,352 @@ function mythosKachel(k: Mythoskarte, logo: string, nr: number) {
       fontSize: 30,
       fontWeight: 600,
       color: STIL.grau,
+    }),
+    ...weiter,
+    fuss
+  )
+}
+
+/* ------------------------------------------------------------ Entweder-oder */
+
+function entwederProzent(punkte: readonly number[]): number {
+  return (punkte[punkte.length - 1] / punkte[0] - 1) * 100
+}
+
+function entwederText(punkte: readonly number[]): string {
+  const p = Math.round(entwederProzent(punkte))
+  return `${p < 0 ? '−' : '+'}${Math.abs(p).toLocaleString('de-DE')} %`
+}
+
+function pruefeEntweder(k: Entwederkarte): string[] {
+  const f: string[] = []
+  if (k.fragen.length < 2 || k.fragen.length > 4)
+    f.push(`${k.fragen.length} Duelle – zwei bis vier.`)
+  for (const t of k.titel)
+    if (t.text.length > 22) f.push(`Titelzeile „${t.text}“ – höchstens 22 Zeichen.`)
+  for (const [i, q] of k.fragen.entries()) {
+    const nr = i + 1
+    for (const s of [q.a, q.b]) {
+      if (s.name.length > 12) f.push(`Duell ${nr}: „${s.name}“ – höchstens 12 Zeichen.`)
+      if (s.punkte.length < 20)
+        f.push(`Duell ${nr}: ${s.name} hat ${s.punkte.length} Punkte – mindestens 20.`)
+      if (s.punkte.some((v) => !(v > 0)))
+        f.push(`Duell ${nr}: ${s.name} – Kurse müssen über null liegen.`)
+    }
+    if (q.a.punkte.length !== q.b.punkte.length)
+      f.push(`Duell ${nr}: beide Seiten brauchen gleich viele Punkte.`)
+    if (q.satz.length > 140)
+      f.push(`Duell ${nr}: Satz hat ${q.satz.length} Zeichen – höchstens 140.`)
+    if (q.unterzeile.length > 70)
+      f.push(`Duell ${nr}: Unterzeile hat ${q.unterzeile.length} Zeichen – höchstens 70.`)
+    if (i > 0 && !q.frage) f.push(`Duell ${nr}: braucht eine Frage als Überschrift.`)
+    if (
+      Math.round(entwederProzent(q.a.punkte)) === Math.round(entwederProzent(q.b.punkte))
+    )
+      f.push(`Duell ${nr}: unentschieden – ein Duell braucht einen Sieger.`)
+    for (const a of q.achse)
+      if (a.bei < 0 || a.bei >= q.a.punkte.length)
+        f.push(`Duell ${nr}: Achse „${a.text}“ liegt außerhalb der Kurve.`)
+  }
+  return f
+}
+
+/** Beide Kurven in Prozent seit dem ersten Punkt; der Sieger in Navy, der andere grau. */
+function entwederGrafik(q: Entwederkarte['fragen'][number]) {
+  const oben0 = 560
+  const unten0 = 1080
+  const links = STIL_RAND
+  const rechts = ZK_BREITE - STIL_RAND - 90
+  const luft = 10
+  const breite = rechts - links
+  const hoehe = unten0 - oben0
+  const prozent = (p: readonly number[]) => p.map((v) => (v / p[0] - 1) * 100)
+  const a = prozent(q.a.punkte)
+  const b = prozent(q.b.punkte)
+  const alle = [...a, ...b]
+  const hoch = Math.max(0, ...alle)
+  const tief = Math.min(0, ...alle)
+  const schritt = achsenschritt(hoch - tief, 5)
+  const oben = Math.ceil(hoch / schritt) * schritt
+  const unten = tief < -schritt / 2 ? Math.floor(tief / schritt) * schritt : tief
+  const x = (i: number) => (i / (a.length - 1)) * breite
+  const y = (v: number) => hoehe - ((v - unten) / (oben - unten)) * hoehe
+  const striche = Array.from(
+    { length: Math.floor((oben - unten) / schritt + 1e-9) + 1 },
+    (_, i) => oben - i * schritt
+  ).filter((v) => v >= unten - 1e-9)
+  const aGewinnt = a[a.length - 1] > b[b.length - 1]
+  const pfad = (w: number[]) =>
+    w.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
+  const linie = (w: number[], sieger: boolean) => {
+    const farbe = sieger ? STIL.navy : '#a7aeb9'
+    return (
+      `<path d="${pfad(w)}" fill="none" stroke="${farbe}" stroke-width="${sieger ? 4 : 3}" stroke-linejoin="round" stroke-linecap="round"/>` +
+      `<circle cx="${x(w.length - 1)}" cy="${y(w[w.length - 1])}" r="7" fill="#ffffff" stroke="${farbe}" stroke-width="3.5"/>`
+    )
+  }
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+      )
+      .join('') +
+    /* Der Verlierer zuerst, damit der Sieger obenauf liegt. */
+    (aGewinnt ? linie(b, false) + linie(a, true) : linie(a, false) + linie(b, true)) +
+    '</svg>'
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 2 * luft,
+      height: hoehe + 2 * luft,
+      style: { position: 'absolute', left: links - luft, top: oben0 - luft },
+    }),
+    ...striche.map((v) =>
+      stilBlock(
+        `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE')} %`,
+        {
+          top: oben0 + y(v) - 11,
+          left: rechts + 18,
+          fontSize: 17,
+          color: STIL.hellgrau,
+        }
+      )
+    ),
+    ...q.achse.map((ach, i) =>
+      stilBlock(ach.text, {
+        top: unten0 + 16,
+        left:
+          i === 0
+            ? links
+            : i === q.achse.length - 1
+              ? links + x(ach.bei) - 120
+              : links + x(ach.bei) - 60,
+        width: 120,
+        justifyContent:
+          i === 0 ? 'flex-start' : i === q.achse.length - 1 ? 'flex-end' : 'center',
+        fontSize: 17,
+        color: STIL.hellgrau,
+      })
+    ),
+  ]
+}
+
+/**
+ * Entweder-oder (11.11.2026): je Duell zwei Kacheln wie beim Rätsel. Erst
+ * die Frage – zwei Namen, „oder“ dazwischen –, dann die Auflösung: der
+ * Sieger, beide Ergebnisse groß, beide Kurven (Sieger Navy, der andere
+ * grau) und ein Satz. Titel in einer Farbe, ohne Zähler und Hilfszeilen.
+ */
+function entwederKachel(k: Entwederkarte, logo: string, nr: number) {
+  const n = Math.ceil(nr / 2)
+  const q = k.fragen[n - 1]
+  const aufloesung = nr % 2 === 0
+  const seiten = 2 * k.fragen.length
+  const weiter =
+    nr < seiten
+      ? [
+          stilBlock(aufloesung ? 'Nächstes Duell  →' : 'Auflösung  →', {
+            top: 1236,
+            right: STIL_RAND,
+            fontSize: 20,
+            fontWeight: 700,
+            color: STIL.grau,
+          }),
+        ]
+      : []
+  const fuss = stilBlock(k.fusszeile, {
+    top: ZK_HOEHE - 52,
+    left: STIL_RAND,
+    right: STIL_RAND,
+    fontSize: 15,
+    color: STIL.hellgrau,
+  })
+  const flaeche = (...inhalt: ReturnType<typeof h>[]) =>
+    h(
+      'div',
+      {
+        style: {
+          width: ZK_BREITE,
+          height: ZK_HOEHE,
+          display: 'flex',
+          position: 'relative',
+          backgroundColor: '#ffffff',
+          overflow: 'hidden',
+        },
+      },
+      ...inhalt
+    )
+
+  if (aufloesung) {
+    const aGewinnt = entwederProzent(q.a.punkte) > entwederProzent(q.b.punkte)
+    const sieger = aGewinnt ? q.a : q.b
+    const seiten2 = [q.a, q.b]
+    return flaeche(
+      stilBlock('AUFLÖSUNG', {
+        top: 150,
+        left: STIL_RAND,
+        ...GESPERRT,
+        color: STIL.navy,
+      }),
+      stilBlock(`${sieger.name} gewinnt.`, {
+        top: 180,
+        left: STIL_RAND,
+        right: STIL_RAND,
+        fontSize: 88,
+        fontWeight: 800,
+        letterSpacing: -2,
+        color: STIL.tinte,
+      }),
+      ...seiten2.map((s, i) => {
+        const gewinnt = s === sieger
+        return h(
+          'div',
+          {
+            style: {
+              position: 'absolute',
+              top: 330,
+              left: i === 0 ? STIL_RAND : ZK_BREITE / 2 + 20,
+              display: 'flex',
+              flexDirection: 'column',
+              fontFamily: 'Montserrat',
+            },
+          },
+          h(
+            'div',
+            {
+              style: {
+                fontSize: 26,
+                fontWeight: 600,
+                color: gewinnt ? STIL.tinte : STIL.grau,
+              },
+            },
+            s.name
+          ),
+          h(
+            'div',
+            {
+              style: {
+                fontSize: 84,
+                fontWeight: 800,
+                letterSpacing: -3,
+                color: gewinnt ? STIL.navy : '#a7aeb9',
+              },
+            },
+            entwederText(s.punkte)
+          )
+        )
+      }),
+      stilBlock(q.unterzeile.toUpperCase(), {
+        top: 508,
+        left: STIL_RAND,
+        ...GESPERRT,
+        color: STIL.hellgrau,
+      }),
+      ...entwederGrafik(q),
+      stilBlock(q.satz, {
+        top: 1150,
+        left: STIL_RAND,
+        width: ZK_BREITE - 2 * STIL_RAND,
+        fontSize: 30,
+        fontWeight: 600,
+        lineHeight: 1.3,
+        color: STIL.tinte,
+      }),
+      ...weiter,
+      fuss
+    )
+  }
+
+  return flaeche(
+    ...(nr === 1
+      ? [
+          stilKopf(logo),
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 150,
+                left: STIL_RAND,
+                right: STIL_RAND,
+                display: 'flex',
+                flexDirection: 'column',
+                fontFamily: 'Montserrat',
+                fontWeight: 800,
+                fontSize: 88,
+                lineHeight: 1.08,
+                letterSpacing: -2,
+              },
+            },
+            ...k.titel.map((t) =>
+              h('div', { style: { display: 'flex', color: STIL.tinte } }, t.text)
+            )
+          ),
+        ]
+      : [
+          stilBlock(q.frage ?? '', {
+            top: 150,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            fontSize: 88,
+            fontWeight: 800,
+            letterSpacing: -2,
+            color: STIL.tinte,
+          }),
+        ]),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 470,
+          left: STIL_RAND,
+          right: STIL_RAND,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          fontFamily: 'Montserrat',
+        },
+      },
+      h(
+        'div',
+        {
+          style: { fontSize: 104, fontWeight: 800, letterSpacing: -3, color: STIL.navy },
+        },
+        q.a.name
+      ),
+      h(
+        'div',
+        { style: { fontSize: 40, fontWeight: 600, color: STIL.grau, margin: '18px 0' } },
+        'oder'
+      ),
+      h(
+        'div',
+        {
+          style: { fontSize: 104, fontWeight: 800, letterSpacing: -3, color: STIL.navy },
+        },
+        q.b.name
+      )
+    ),
+    stilBlock(q.unterzeile, {
+      top: 1000,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      justifyContent: 'center',
+      textAlign: 'center',
+      fontSize: 30,
+      fontWeight: 600,
+      color: STIL.grau,
+    }),
+    stilBlock('Erst tippen, dann wischen.', {
+      top: 1060,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      justifyContent: 'center',
+      fontSize: 26,
+      color: STIL.hellgrau,
     }),
     ...weiter,
     fuss

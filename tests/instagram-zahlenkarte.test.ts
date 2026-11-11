@@ -85,8 +85,9 @@ pruefe(
   einer Farbe (Betreiber, 09.11.2026).
 */
 const gut =
-  zahlenkarten.find((k) => k.art !== 'raetsel' && k.art !== 'mythos') ??
-  aktuelleZahlenkarte()!
+  zahlenkarten.find(
+    (k) => k.art !== 'raetsel' && k.art !== 'mythos' && k.art !== 'entweder'
+  ) ?? aktuelleZahlenkarte()!
 const kaputt: Zahlenkarte = {
   ...gut,
   titel: [{ text: 'Ohne Pointe' }],
@@ -1041,6 +1042,69 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
     )
+  }
+}
+
+/* 11.11.2026: Entweder-oder – drei Duelle seit November 2021 (Yahoo Finance, markets.json). */
+{
+  const karte = karteVom('2026-11-11')
+  pruefe('Entweder: Karte für den 11.11. ist Entweder-oder', karte?.art === 'entweder')
+  if (karte?.art === 'entweder') {
+    pruefe(
+      'Entweder: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe('Entweder: zwei Kacheln je Duell', zahlenkarteSeiten(karte) === 6)
+    pruefe(
+      'Entweder: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-10')!)
+    )
+    const prozent = (p: readonly number[]) =>
+      Math.round((p[p.length - 1] / p[0] - 1) * 100)
+    const erwartet: [string, number, string, number][] = [
+      ['Gold', 119, 'Bitcoin', 17],
+      ['Tesla', 1, 'DAX', 61],
+      ['Apple', 132, 'Microsoft', 60],
+    ]
+    for (const [i, [a, pa, b, pb]] of erwartet.entries()) {
+      const q = karte.fragen[i]
+      pruefe(
+        `Entweder: ${a} ${pa} %, ${b} ${pb} %`,
+        q.a.name === a &&
+          q.b.name === b &&
+          prozent(q.a.punkte) === pa &&
+          prozent(q.b.punkte) === pb
+      )
+      pruefe(
+        `Entweder: ${a} und ${b} mit denselben Zahlen im Text`,
+        karte.text.includes(`${a}: +${pa} %`) && karte.text.includes(`${b}: +${pb} %`)
+      )
+    }
+    const gold = karte.fragen[0]
+    pruefe(
+      'Entweder: 1.000 $ in Gold rund 2.190 $, in Bitcoin rund 1.170 $',
+      Math.round((1000 * gold.a.punkte.at(-1)!) / gold.a.punkte[0] / 10) * 10 === 2190 &&
+        Math.round((1000 * gold.b.punkte.at(-1)!) / gold.b.punkte[0] / 10) * 10 === 1170
+    )
+    pruefe(
+      'Entweder: ein Unentschieden wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        fragen: [
+          { ...gold, b: { ...gold.b, punkte: gold.a.punkte } },
+          ...karte.fragen.slice(1),
+        ],
+      }).some((f) => f.includes('unentschieden'))
+    )
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 2, 6]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(
+        `Entweder: Kachel ${nr} ist ein PNG`,
+        png.subarray(1, 4).toString() === 'PNG'
+      )
+    }
   }
 }
 
