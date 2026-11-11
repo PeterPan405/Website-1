@@ -216,6 +216,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gerechnet: Schlusskurse vom 11.11.2021 und 6.11.2026, in US-Dollar bzw. Punkten, ohne Dividenden; Gold je Feinunze.\n' +
       'Quellen: Yahoo Finance, Stand 6.11.2026; eigene Rechnung',
     schlagworte: ['entwederoder', 'aktien', 'gold', 'bitcoin', 'börse'],
+    freigabe: '2026-11-11',
   },
   {
     /*
