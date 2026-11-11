@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-10T13:41:13.790Z",
+  "abgerufenAm": "2026-11-11T12:53:28.293Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,16 +10,16 @@
       "stand": "2026-11-05",
       "von": "2026-10-05",
       "bis": "2026-12-18",
-      "zeilen": 3177,
-      "kommendGesamt": 1985,
+      "zeilen": 3179,
+      "kommendGesamt": 1736,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 67,
-      "kommend": 22,
-      "abgeleitet": 45,
+      "kommend": 13,
+      "abgeleitet": 54,
       "abstandJeStelle": {
         "1": 43,
         "2": 41,
@@ -40,11 +40,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 34,
-      "letzterTag": "2027-01-04",
-      "zeilen": 1635,
-      "imKatalog": 55,
-      "mitLage": 35,
-      "beigetragen": 55
+      "letzterTag": "2027-01-05",
+      "zeilen": 1419,
+      "imKatalog": 52,
+      "mitLage": 34,
+      "beigetragen": 52
     }
   },
   "unternehmen": {
@@ -6154,14 +6154,6 @@
         "2025-05-06": "07:18"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-10",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-05-04",
           "basis": "2026-05-05",
@@ -13223,7 +13215,9 @@
           "erwartet": "2026-11-24",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-02-25",
@@ -15412,10 +15406,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16043,10 +16054,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16116,10 +16144,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16262,10 +16307,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16378,10 +16440,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16391,10 +16470,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-11",
           "basis": "2026-12-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-11",
+          "basis": "2027-03-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 6,
           "herkunft": "jpx"
         }
       ]
@@ -16490,10 +16586,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16503,10 +16616,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -16606,10 +16736,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-10",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-10",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -17376,7 +17523,9 @@
           "erwartet": "2026-11-17",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         }
       ]
     },
@@ -18041,7 +18190,7 @@
     "TSCO.L": "2026-11-09",
     "TSM": "2026-08-18",
     "TTE.PA": "2026-11-10",
-    "U11.SI": "2026-08-18",
+    "U11.SI": "2026-11-11",
     "U96.SI": "2026-08-18",
     "UBI.PA": "2026-08-18",
     "UBSG.SW": "2026-08-18",
