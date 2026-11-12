@@ -101,6 +101,349 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'wirtschaftsweise-heben-wachstumsprognose-an',
+    title: 'Wirtschaftsweise heben Wachstumsprognose deutlich an',
+    teaser:
+      'Der Sachverständigenrat erwartet 2026 ein Wachstum von 1,3 Prozent, warnt aber vor einer Finanzierungslücke von historischem Ausmaß im Bundeshaushalt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Konjunktur', 'Bundeshaushalt', 'Wachstum', 'Steuern'],
+    relatedTopics: ['schulden-und-kredit'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 11.11.2026, 14:30 Uhr: „Wirtschaftsweise korrigieren Wachstumsprognose deutlich nach oben“',
+        url: 'https://www.tagesschau.de/wirtschaft/konjunktur/wirtschaftsweise-jahresgutachten-2026-100.html',
+      },
+      {
+        label:
+          'Sachverständigenrat Wirtschaft, Pressemitteilung vom 11.11.2026: „Bundeshaushalt: Handlungsbedarf von historischem Ausmaß“',
+        url: 'https://www.sachverstaendigenrat-wirtschaft.de/jahresgutachten-2026-pressemitteilung/kapitel-2.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Frühjahr hatte der Sachverständigenrat seine Prognose noch gesenkt. Jetzt kommt die Trendwende.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen des Jahresgutachtens',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die sogenannten Wirtschaftsweisen erwarten für die deutsche Wirtschaft 2026 ein Wachstum von 1,3 Prozent – das sind 0,8 Prozentpunkte mehr als im Frühjahrsgutachten. Für 2027 rechnet das Gremium mit einem Plus von 1,0 Prozent. Getragen wird das Wachstum vor allem von überraschend starken Exporten und höheren Staatsausgaben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Inflation soll dieses Jahr bei 2,8 Prozent liegen, etwas niedriger als im Frühjahr geschätzt. Für 2027 erwarten die Expertinnen und Experten dagegen einen Anstieg auf 3,3 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '„Handlungsbedarf von historischem Ausmaß“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz der guten Konjunkturnachrichten warnt der Rat vor den Staatsfinanzen. Die absehbaren Ausgaben im Bundeshaushalt und in den Sozialversicherungen überstiegen die absehbaren Einnahmen mittelfristig deutlich, heißt es im Gutachten. Vorsitzende Monika Schnitzer nennt eine Begrenzung des Ausgabenanstiegs „unausweichlich“.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Gegenmaßnahmen schlägt der Rat unter anderem die vollständige Umsetzung der Rentenreform-Vorschläge vor, einschließlich der Abschaffung der abschlagsfreien „Rente mit 63“ für besonders langjährig Versicherte. Auch bei der Verteidigung sehen die Ökonominnen und Ökonomen Handlungsbedarf: Weil die Aufrüstung überwiegend auf Pump finanziert wird, soll die Kreditfinanzierung ab 2031 schrittweise zurückgehen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Abgabe für die Verteidigung?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Selbst mit allen Maßnahmen bliebe laut Gutachten eine Finanzierungslücke von mindestens 2,4 Prozent des Bruttoinlandsprodukts. Deshalb bringt der Rat eine „Ergänzungsabgabe Verteidigung“ ins Spiel: Je nach Höhe – 2,5, 5,0 oder bis zu 7,5 Prozentpunkte – könnte sie 2027 bis zu 30,7 Milliarden Euro einbringen. Alternativ nennt das Gutachten eine Erhöhung der Einkommensteuer für alle oder eine Anhebung des Spitzensteuersatzes.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Warum Wachstum keine Haushaltslücke schließt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein höheres Bruttoinlandsprodukt bedeutet nicht automatisch höhere Staatseinnahmen im gleichen Tempo, wenn die **Ausgaben** – etwa für Zinsen, Verteidigung und Renten – strukturell schneller wachsen als die Wirtschaft selbst. Genau das zeigt das Jahresgutachten: Die konjunkturelle Erholung lindert die Finanzierungslücke, schließt sie aber nicht, weil ihre Ursache nicht im Konjunkturzyklus liegt, sondern in dauerhaft steigenden Verpflichtungen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Bundesregierung muss nun entscheiden, welche der vorgeschlagenen Maßnahmen sie aufgreift – und ob dafür Steuererhöhungen nötig werden, die laut Sachverständigenrat erst als letztes Mittel kommen sollten.',
+      },
+    ],
+  },
+  {
+    slug: 'allianz-rekordgewinn-erhoehte-prognose',
+    title: 'Allianz hebt Gewinnprognose nach Rekordergebnis an',
+    teaser:
+      'Allianz verdiente in den ersten neun Monaten einen Rekordgewinn von 14,1 Milliarden Euro und erhöht deshalb die Prognose für das Gesamtjahr.',
+    category: 'Märkte',
+    publishedAt: '2026-11-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Allianz', 'Versicherer', 'Quartalszahlen', 'Dividende'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['allianz'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 11.11.2026, 19:58 Uhr: „Versicherer: Allianz erhöht Gewinnprognose – Rekordgewinn nach neun Monaten“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/versicherung-allianz-erhoeht-gewinnprognose-rekordgewinn-nach-neun-monaten/100266550.html',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 11.11.2026, 19:45 Uhr: „Allianz blickt nach Rekordergebnis zuversichtlicher auf Gesamtjahr“',
+        url: 'https://www.wallstreet-online.de/nachricht/21678057-allianz-blickt-rekordergebnis-zuversichtlicher-gesamtjahr',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Sommer war Finanzvorständin Claire-Marie Coste-Lepoutre noch zurückhaltend. Nach den Neun-Monats-Zahlen ist sie es nicht mehr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekordergebnis in neun Monaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der operative Gewinn der Allianz stieg in den ersten neun Monaten des Jahres auf einen Rekordwert von 14,1 Milliarden Euro, nach 13,1 Milliarden Euro im Vorjahreszeitraum. Analysten hatten im Schnitt nur mit rund 13,7 Milliarden Euro gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Prognose steigt – vorsichtig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Allianz erwartet für das Gesamtjahr nun ein operatives Ergebnis von bis zu 18,6 Milliarden Euro. Bislang hatte der Konzern eine Spanne von 16,4 bis 18,4 Milliarden Euro in Aussicht gestellt – das untere Ende blieb damit unverändert, nur die Obergrenze stieg um 200 Millionen Euro.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Sommer hatte Coste-Lepoutre eine Anhebung der Prognose angesichts der Marktschwankungen noch für verfrüht gehalten. Die vollständigen Zahlen für die ersten drei Quartale will die Allianz an diesem Donnerstag vorlegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Warum Prognosen in Spannen kommen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Versicherer wie die Allianz geben ihre Jahresprognose bewusst als **Spanne** an, nicht als einzelne Zahl: Naturkatastrophen, Kapitalmarktschwankungen und Großschäden lassen sich Monate im Voraus nicht exakt vorhersagen. Steigt nur die Obergrenze, signalisiert das Management Zuversicht, ohne sich für den Rest des Jahres bereits festzulegen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Allianz ihr eigenes Ziel am oberen Rand der Spanne erreicht, zeigt sich endgültig erst mit den Zahlen zum Gesamtjahr im Februar.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-energy-rekordjahr-ki-rechenzentren',
+    title: 'Siemens Energy verdoppelt Gewinn im Rekordjahr',
+    teaser:
+      'Der Boom bei Windkraft und Rechenzentren bescherte Siemens Energy ein Rekordjahr. Der Konzern hebt Dividende und Aktienrückkäufe deutlich an.',
+    category: 'Märkte',
+    publishedAt: '2026-11-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens Energy', 'Quartalszahlen', 'Energiewende', 'Dividende'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['siemens-energy'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 11.11.2026, 09:23 Uhr: „Boom bei Windkraft und Rechenzentren beschert Siemens Energy Rekordjahr“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/siemens-bilanz-energie-strom-ki-100.html',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 11.11.2026, 09:36 Uhr: „Siemens Energy hebt ab: Rekord zum Greifen nah – diese Zahlen treiben den Dax an“',
+        url: 'https://www.wallstreet-online.de/nachricht/21674658-siemens-energy-hebt-ab-rekord-greifen-nah-zahlen-treiben-dax',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Vor drei Jahren schrieb die Windturbinentochter Gamesa noch hohe Verluste. Im abgelaufenen Geschäftsjahr hat sich das Bild komplett gedreht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen des Geschäftsjahres 2025/2026',
+      },
+      {
+        type: 'paragraph',
+        text: 'Siemens Energy steigerte sein operatives Ergebnis vor Sondereffekten auf 5,49 Milliarden Euro – mehr als eine Verdoppelung. Die Erlöse kletterten um 15,5 Prozent auf 44,2 Milliarden Euro. Auch die Windturbinentochter Gamesa schaffte nach Jahren hoher Verluste die Rückkehr in die Gewinnzone.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Höhere Dividende, mehr Rückkäufe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Vorstand hebt die Dividende von 70 Cent auf 2,30 Euro pro Aktie an. Bis 2030 sollen zudem Aktienrückkäufe von bis zu 9 Milliarden Euro hinzukommen. Für die kommenden Jahre peilt der Konzern ein Wachstum von durchschnittlich 12 bis 14 Prozent sowie eine bereinigte Ergebnismarge von 20 bis 22 Prozent an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vorstandschef Christian Bruch führt den Boom auf die hohe Nachfrage nach Anlagen zur Stromerzeugung zurück, angetrieben von Künstlicher Intelligenz, E-Mobilität und Digitalisierung. Die Aktie legte im Handel am Mittwoch rund 6,8 Prozent zu und führte damit den Dax an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Zwei Signale für Zuversicht zugleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine höhere Dividende zahlt sofort an Anleger aus, ein **Aktienrückkauf** wirkt anders: Das Unternehmen kauft eigene Aktien vom Markt und zieht sie ein, wodurch sich der Gewinn auf weniger verbleibende Aktien verteilt. Hebt ein Vorstand beides gleichzeitig an, signalisiert er, dass er sowohl für die laufenden Gewinne als auch für die langfristige Kapitalausstattung zuversichtlich ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die neuen Mittelfristziele bis 2030 setzen den Maßstab, an dem sich der Konzern in den kommenden Jahren messen lassen muss – nicht mehr nur die Rekordzahlen von heute.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-ki-euphorie-coreweave-anthropic',
+    title: 'KI-Euphorie treibt die Wall Street kräftig an',
+    teaser:
+      'CoreWeaves starke Zahlen und ein Bericht über eine höhere Anthropic-Bewertung ließen Dow, S&P 500 und Nasdaq am Mittwoch kräftig zulegen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'Nasdaq', 'CoreWeave', 'Anthropic'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 11.11.2026, 18:56 Uhr: „Wall Street: KI-Euphorie ist zurück – Tech-Aktien schließen deutlich im Plus“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-ki-euphorie-ist-zurueck-tech-aktien-schliessen-deutlich-im-plus/100269138.html',
+      },
+      {
+        label:
+          'CNBC, News-Ticker vom 11.11.2026, 22:11 Uhr: „CoreWeave soars more than 24% for best day since April 2025 after strong Q3 report“',
+        url: 'https://www.cnbc.com/2026/11/11/coreweave-crwv-outlook-earnings-ai.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag hatten hohe US-Inflationsdaten die Kurse noch gedrückt. Einen Tag später kannten die Indizes nur eine Richtung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Schlusskurse vom Mittwoch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones schloss ein halbes Prozent im Plus bei 52.486 Punkten. Der S&P 500 gewann 1,3 Prozent auf 7.619 Punkte, der Nasdaq Composite legte um 1,6 Prozent auf 25.466 Punkte zu. Der Nasdaq 100 kletterte um fast 2,3 Prozent auf 28.374 Zähler.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'CoreWeave und Anthropic als Treiber',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rechenzentrumsbetreiber CoreWeave legte nach überraschend starken Quartalszahlen rund 25 Prozent zu und beruhigte damit Sorgen wegen seiner hohen Verschuldung. Auch andere KI-Zulieferer gewannen deutlich, Micron etwa elf Prozent, Sandisk 14 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu kam ein Bericht der britischen Zeitung „Financial Times“, den das Handelsblatt wiedergibt: Die Banken hinter dem Anthropic-Börsengang sollen demnach anstreben, die Bewertung des KI-Unternehmens auf rund 1,5 Billionen Dollar zu erhöhen – mehr als die 1,4 Billionen Dollar, die im Börsenprospekt vom Dienstag standen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Was eine „vollständig verwässerte“ Bewertung zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Unternehmensbewertung beim Börsengang lässt sich auf zwei Arten rechnen: nur anhand der frei handelbaren Aktien – oder **vollständig verwässert**, also inklusive aller Mitarbeiteroptionen und an Haltefristen gebundenen Aktienpakete. Die zweite Zahl fällt fast immer höher aus, weil sie mehr künftige Ansprüche einrechnet, auch wenn davon an der Börse zunächst nichts gehandelt wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die breite Erholung bei Technologiewerten verdeckt, wie unterschiedlich einzelne KI-Aktien zuletzt liefen – während CoreWeave sprang, geriet ausgerechnet der Platzhirsch Nvidia zur selben Zeit wegen einer Führungskrise unter Druck.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-vorstand-beraet-abberufung-huang',
+    title: 'Nvidia-Vorstand berät über Huangs Zukunft',
+    teaser:
+      'Einem Bericht zufolge könnte Nvidias Vorstand Firmenchef Jensen Huang abberufen. Die Aktie fiel nachbörslich auf ihr tiefstes Niveau seit Mitte 2025.',
+    category: 'Märkte',
+    publishedAt: '2026-11-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Jensen Huang', 'Halbleiter', 'Börsenwert'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 12.11.2026, 00:37 Uhr: „AKTIE IM FOKUS: Nvidia sackt nach Bericht über Chefablösung nachbörslich ab“',
+        url: 'https://www.onvista.de/news/2026/11-11-aktie-im-fokus-nvidia-sackt-nach-bericht-ueber-chefabloesung-nachboerslich-ab-0-10-26575298',
+      },
+      {
+        label:
+          'CNBC, News-Ticker vom 12.11.2026, 00:28 Uhr: „Nvidia prepares to oust Jensen Huang, WSJ reports — stock sinks“',
+        url: 'https://www.cnbc.com/2026/11/11/nvidia-jensen-huang-affair-employee.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Erst vor einem Monat stand die Nvidia-Aktie auf Rekordniveau. In der Nacht zu Donnerstag ging es um bis zu neun Prozent nach unten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Bericht über die Zukunft des Firmengründers',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einem Bericht des „Wall Street Journal“ zufolge, den sowohl onvista unter Berufung auf die Nachrichtenagentur dpa-AFX als auch CNBC wiedergeben, will Nvidias Verwaltungsgremium bereits an diesem Donnerstag zusammenkommen, um über die Zukunft von Firmenmitgründer Jensen Huang zu beraten. Dabei könnte Huang abberufen werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs fällt seit der Affäre',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit am vergangenen Wochenende eine Affäre Huangs mit einer Frau bekannt wurde, die US-Geheimdienste für eine mutmaßliche chinesische Spionin halten, ist die Nvidia-Aktie bereits deutlich gefallen. Am Mittwoch gab sie um sieben Prozent nach, in der Nacht zu Donnerstag sackte sie zusätzlich um bis zu neun Prozent auf 158 Dollar ab – das niedrigste Niveau seit Mitte 2025.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit dem Rekordhoch von gut 240 Dollar Anfang Oktober hat die Aktie damit fast 30 Prozent verloren. Der Börsenwert des Unternehmens fiel im selben Zeitraum von knapp sechs Billionen auf rund 4,2 Billionen Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Wenn Vertrauen in die Führung den Kurs bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidias Geschäft mit KI-Chips wächst nach allen bisherigen Zahlen weiter kräftig – der Kurssturz hat also keine Geschäftsursache, sondern ein **Führungsrisiko**: Anleger bepreisen damit die Unsicherheit darüber, wer das Unternehmen künftig leitet und ob sich die China-Politik des Konzerns ändert. Das unterscheidet den Fall von anderen KI-Werten wie CoreWeave, die zuletzt gerade wegen guter Geschäftszahlen zulegten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Entscheidung des Verwaltungsgremiums an diesem Donnerstag dürfte zeigen, ob Nvidia seine Führungskrise selbst beilegt – oder ob dem Halbleiterkonzern eine längere Phase der Unsicherheit bevorsteht.',
+      },
+    ],
+  },
+  {
     slug: 'us-inflation-oktober-fed-dezember',
     title: 'US-Inflation überrascht: Fed-Zinsschritt im Dezember gilt jetzt als sicher',
     metaTitle: 'US-Inflation überrascht Anleger und Notenbank',
