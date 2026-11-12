@@ -1064,5 +1064,44 @@
       "urheber": "Nvidia",
       "suche": "Logo „Nvidia\""
     }
+  ],
+  "2026-11-12": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-12-1-0206db19.jpg",
+      "titel": "File:Facade of New York Stock Exchange.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Facade_of_New_York_Stock_Exchange.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Donatingpictures",
+      "suche": "New York Stock Exchange facade"
+    },
+    {
+      "stelle": 3,
+      "datei": "",
+      "titel": "Kurs: allianz",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "allianz"
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-11-12-4-7110cac5.jpg",
+      "titel": "File:Siemens Sign Spaceship Earth Epcot Center (2541180283).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Siemens_Sign_Spaceship_Earth_Epcot_Center_(2541180283).jpg",
+      "lizenz": "CC BY-SA 2.0",
+      "urheber": "Michael Gray from Wantagh NY, USA",
+      "suche": "Siemens logo"
+    },
+    {
+      "stelle": 5,
+      "datei": "2026-11-12-5-c6fd6c32.jpg",
+      "titel": "File:Tank (Great Wall Motor brand) logo, global market.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Tank_(Great_Wall_Motor_brand)_logo,_global_market.svg",
+      "lizenz": "Public domain",
+      "urheber": "Great Wall Motor",
+      "suche": "Logo „Wall\""
+    }
   ]
 }
