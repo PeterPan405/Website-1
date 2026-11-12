@@ -347,6 +347,17 @@ export interface Kurvenkarte extends StilGemeinsam {
   kennzahlen: { name: string; wert: string; richtung?: 'steigt' | 'faellt' }[]
   /** Den Namen jeder Linie über ihren Höchststand schreiben – nötig, wenn die Farben keine Richtung tragen. */
   namenAnKurve?: boolean
+  /**
+   * Punkte auf der ersten Linie, an diesen Stellen in `punkte` (12.11.2026,
+   * DAX-Rekordtage: „Chart mit den Punkten von neuen Hochs dieses Jahr").
+   * Was ein Punkt bedeutet, sagt die Erklärung.
+   */
+  marken?: number[]
+  /**
+   * Unteres Ende der y-Achse – ohne Angabe null. Ein Index um 25.000 Punkte
+   * läge sonst als flacher Strich oben im Bild.
+   */
+  unten?: number
 }
 
 /**
@@ -1006,8 +1017,12 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
         `Mit Erklärung höchstens 38 Zeichen Überschrift (zwei Zeilen) – sind ${zeichen}.`
       )
   } else if (k.art === 'kurven') {
-    if (k.linien.length !== 2) f.push('Die Kurvenkarte hat genau zwei Linien.')
-    else if (k.linien[0].punkte.length !== k.linien[1].punkte.length)
+    if (k.linien.length < 1 || k.linien.length > 2)
+      f.push('Die Kurvenkarte hat eine oder zwei Linien.')
+    else if (
+      k.linien.length === 2 &&
+      k.linien[0].punkte.length !== k.linien[1].punkte.length
+    )
       f.push('Beide Linien brauchen gleich viele Punkte.')
     if (k.linien.some((l) => l.punkte.length < 2))
       f.push('Eine Linie braucht zwei Punkte.')
@@ -1016,6 +1031,11 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
         f.push(`Achse „${a.text}": Stelle ${a.bei} liegt außerhalb der Linie.`)
     if (k.kennzahlen.length !== k.linien.length)
       f.push(`${k.kennzahlen.length} Kennzahlen – je Linie genau eine.`)
+    for (const m of k.marken ?? [])
+      if (!Number.isInteger(m) || m < 0 || m >= (k.linien[0]?.punkte.length ?? 0))
+        f.push(`Marke an Stelle ${m} liegt außerhalb der Linie.`)
+    if (k.unten !== undefined && k.linien.some((l) => l.punkte.some((v) => v < k.unten!)))
+      f.push(`Ein Wert liegt unter dem unteren Achsenende ${k.unten}.`)
     f.push(...stilBefunde(k))
   } else if (k.art === 'saeulen') {
     if (k.helden.length < 1 || k.helden.length > 3)
@@ -3583,20 +3603,30 @@ function kurvenGrafik(k: Kurvenkarte) {
   const hoehe = STIL_GRAFIK_U - STIL_GRAFIK_O
   const anzahl = k.linien[0].punkte.length
   const alle = k.linien.flatMap((l) => l.punkte)
-  const schritt = achsenschritt(Math.max(...alle), 5)
-  const oben = Math.ceil(Math.max(...alle) / schritt) * schritt
+  const unten = k.unten ?? 0
+  const schritt = achsenschritt(Math.max(...alle) - unten, 5)
+  const oben = unten + Math.ceil((Math.max(...alle) - unten) / schritt) * schritt
   const x = (i: number) => (i / (anzahl - 1)) * breite
-  const y = (v: number) => hoehe - (v / oben) * hoehe
+  const y = (v: number) => hoehe - ((v - unten) / (oben - unten)) * hoehe
   const pfad = (p: readonly number[]) =>
     p.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')
-  const striche = Array.from({ length: oben / schritt + 1 }, (_, i) => i * schritt)
+  const striche = Array.from(
+    { length: Math.round((oben - unten) / schritt) + 1 },
+    (_, i) => unten + i * schritt
+  )
+  const marken = (k.marken ?? [])
+    .map(
+      (i) =>
+        `<circle cx="${x(i).toFixed(1)}" cy="${y(k.linien[0].punkte[i]).toFixed(1)}" r="6.5" fill="${STIL.navy}" stroke="#ffffff" stroke-width="2"/>`
+    )
+    .join('')
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
     striche
       .map(
         (v) =>
-          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? STIL.rand : '#c9cfd8'}" stroke-width="${v ? 1.5 : 2}"/>`
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v !== unten ? STIL.rand : '#c9cfd8'}" stroke-width="${v !== unten ? 1.5 : 2}"/>`
       )
       .join('') +
     k.linien
@@ -3608,6 +3638,7 @@ function kurvenGrafik(k: Kurvenkarte) {
         )
       })
       .join('') +
+    marken +
     '</svg>'
 
   return [
