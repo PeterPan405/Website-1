@@ -1096,12 +1096,13 @@
     },
     {
       "stelle": 5,
-      "datei": "2026-11-12-5-2186b710.jpg",
-      "titel": "File:Tank (Great Wall Motor brand) logo, Chinese and Russian market.svg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Tank_(Great_Wall_Motor_brand)_logo,_Chinese_and_Russian_market.svg",
-      "lizenz": "Public domain",
-      "urheber": "Great Wall Motor",
-      "suche": "Logo „Wall\""
+      "datei": "",
+      "titel": "Kurs: nasdaq-100",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "von Hand: Kursverlauf",
+      "kurs": "nasdaq-100"
     }
   ]
 }
