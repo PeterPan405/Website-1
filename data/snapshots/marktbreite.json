@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-12T02:33:36.501Z",
+  "abgerufenAm": "2026-11-12T03:23:33.436Z",
   "reihe": [
     { "d": "2025-06-25", "steigend": 664, "fallend": 350, "unveraendert": 5, "schnitt": 0.91, "breite": 65.5 },
     { "d": "2025-06-26", "steigend": 673, "fallend": 333, "unveraendert": 13, "schnitt": 0.56, "breite": 66.9 },
@@ -363,7 +363,7 @@
     { "d": "2026-11-06", "steigend": 381, "fallend": 630, "unveraendert": 16, "schnitt": -1.56, "breite": 62.3 },
     { "d": "2026-11-09", "steigend": 569, "fallend": 442, "unveraendert": 16, "schnitt": 0.59, "breite": 56.3 },
     { "d": "2026-11-10", "steigend": 702, "fallend": 309, "unveraendert": 16, "schnitt": 1.17, "breite": 69.4 },
-    { "d": "2026-11-11", "steigend": 636, "fallend": 375, "unveraendert": 16, "schnitt": 0.6, "breite": 62.9 },
+    { "d": "2026-11-11", "steigend": 551, "fallend": 460, "unveraendert": 16, "schnitt": 0.08, "breite": 54.5 },
     { "d": "2026-11-12", "steigend": 642, "fallend": 365, "unveraendert": 20, "schnitt": 0.64, "breite": 63.8 }
   ]
 }
