@@ -127,6 +127,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Gerechnet: Schlusskurse ab 1987; ein Rekordtag ist ein Schluss über allen früheren Schlusskursen. Tageshochs zählen nicht mit.\n' +
       'Quellen: Yahoo Finance (^GDAXI), Stand 11.11.2026; wallstreet-online, 11.11.2026; eigene Rechnung',
     schlagworte: ['dax', 'rekord', 'börse', 'aktien', 'deutschland'],
+    freigabe: '2026-11-12',
   },
   {
     /*
