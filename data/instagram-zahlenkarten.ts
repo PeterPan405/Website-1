@@ -29,6 +29,99 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 12.11.2026, „DAX-Rekordtage je Jahr“. Der Betreiber hat für
+      heute kein Thema gewählt; nach dem Ablauf gilt der erste offene Vorschlag
+      vom 11.11. (Einzelbild, Säulen – nach drei Ratekarussellen bewusst ein
+      Einzelbild). In den News vom 12.11. steht der DAX-Rekord nicht.
+      Form: Säulen (am 11.11. Entweder-oder).
+
+      Kurse: Yahoo Finance, ^GDAXI, Tagesschlusskurse.
+        - 30.12.1987 bis 10.11.2026: abgerufen am 10.11.2026 über
+          quellen-holen.yml (period1=567849600)
+        - 01.08. bis 12.11.2026: abgerufen am 12.11.2026, 12:25 UTC
+      Gezählt wird jeder Handelstag, an dem der Schlusskurs über allen
+      früheren Schlusskursen seit 1987 lag (Rekordschluss, nicht Tageshoch):
+        2015 27 · 2016 0 · 2017 25 · 2018 1 · 2019 0 · 2020 6
+        2021 39 · 2022 1 · 2023 9 · 2024 45 · 2025 34 · 2026 18
+      Mehr als 2024 gab es nur 1996 (55) und 1997 (54); 1998 waren es 43.
+      2026 bis zum 11.11. Die 18 sind die 17 bis zum 28.08. (Rekordschluss
+      26.569,99) plus der 11.11. (Schluss 26.662,77). Der 10.11. schloss bei
+      26.347,45, kein Rekord. Der 12.11. ist nicht gezählt, der Handelstag
+      lief beim Abruf noch.
+      Gründe für den 11.11. laut wallstreet-online, News-Ticker vom
+      11.11.2026, 09:40 Uhr („Rekord zum Greifen nah: Diese Zahlen treiben den
+      DAX an“): Erholung der Technologiewerte, CoreWeave und starke
+      Chipmärkte in Asien, Berichtssaison (Siemens Energy, E.ON, RWE,
+      Brenntag). Risiko laut derselben Quelle: die überraschend hohe
+      US-Inflation, ~85 % eingepreist für eine Zinserhöhung der Fed im
+      Dezember. Der Ticker nennt als Rekordhoch 26.692 Punkte aus der Vorwoche
+      – das ist ein Tageshoch, kein Schlusskurs.
+    */
+    art: 'saeulen',
+    datum: '2026-11-12',
+    titel: [{ text: 'DAX-Rekordtage:' }, { text: 'Schon 18 dieses Jahr.', gruen: true }],
+    erklaerung:
+      'Handelstage, an denen der DAX so hoch schloss wie nie zuvor – je Jahr. 2026: bis zum 11. November.',
+    stichzeile: 'Rekordschlusskurse des DAX · je Jahr',
+    helden: [
+      {
+        name: '2026 bis 11.11.',
+        wert: '18',
+        richtung: 'steigt',
+        pille: { wert: '26.663', name: 'Punkte am 11.11.', richtung: 'steigt' },
+      },
+      {
+        name: '2024: meiste seit 1997',
+        wert: '45',
+        pille: { wert: '0', name: '2016 und 2019' },
+      },
+    ],
+    saeulen: [
+      { text: '2015', wert: 27 },
+      { text: '2016', wert: 0 },
+      { text: '2017', wert: 25 },
+      { text: '2018', wert: 1 },
+      { text: '2019', wert: 0 },
+      { text: '2020', wert: 6 },
+      { text: '2021', wert: 39 },
+      { text: '2022', wert: 1 },
+      { text: '2023', wert: 9 },
+      { text: '2024', wert: 45 },
+      { text: '2025', wert: 34 },
+      { text: '2026', wert: 18 },
+    ],
+    einheit: 'Tage',
+    nachkomma: 0,
+    ohneVorzeichen: true,
+    fusszeile:
+      'Stand: 11.11.2026 | Quelle: Yahoo Finance (Schlusskurse ^GDAXI seit 1987); eigene Rechnung',
+    text:
+      'Rekord am Mittwoch: Der DAX schloss am 11. November bei 26.662,77 Punkten – so hoch wie nie zuvor. 📈\n\n' +
+      'Es war der 18. Rekordschluss in diesem Jahr. Der vorige stammte vom 28. August (26.569,99 Punkte).\n\n' +
+      'So oft schloss der DAX auf Rekordhoch, Jahr für Jahr:\n' +
+      '2015: 27 Tage\n' +
+      '2016: 0\n' +
+      '2017: 25\n' +
+      '2018: 1\n' +
+      '2019: 0\n' +
+      '2020: 6\n' +
+      '2021: 39\n' +
+      '2022: 1\n' +
+      '2023: 9\n' +
+      '2024: 45 – so viele wie seit 1997 nicht mehr (1996: 55, 1997: 54)\n' +
+      '2025: 34\n' +
+      '2026: 18 (bis 11. November)\n\n' +
+      'Auffällig: Auf ein Jahr mit vielen Rekorden folgten oft Jahre fast ohne. Nach 2015 kam der nächste Rekordschluss erst 2017, nach 2018 erst 2020 wieder.\n\n' +
+      'Warum ging es am 11. November nach oben?\n' +
+      'Laut wallstreet-online kam Rückenwind von einer Erholung der Technologiewerte, guten Zahlen des US-Rechenzentrumsbetreibers CoreWeave und starken Chipmärkten in Asien. Dazu legten Siemens Energy, E.ON, RWE und Brenntag ihre Zahlen vor.\n\n' +
+      'Und jetzt?\n' +
+      'Als Risiko nennt dieselbe Quelle die überraschend hohe US-Inflation: Eine Zinserhöhung der Fed im Dezember gilt am Markt inzwischen als wahrscheinlich. Ein Rekord sagt nichts über den nächsten Tag.\n\n' +
+      'Gerechnet: Schlusskurse ab 1987; ein Rekordtag ist ein Schluss über allen früheren Schlusskursen. Tageshochs zählen nicht mit.\n' +
+      'Quellen: Yahoo Finance (^GDAXI), Stand 11.11.2026; wallstreet-online, 11.11.2026; eigene Rechnung',
+    schlagworte: ['dax', 'rekord', 'börse', 'aktien', 'deutschland'],
+  },
+  {
+    /*
       Zahlenkarte 11.11.2026, „Was lief besser?“ – Entweder-oder, erste Karte
       der Art `entweder`. Der Betreiber bat zweimal um „Content für heute“
       ohne Wahl; nach dem Ablauf der erste offene Vorschlag (zugleich die

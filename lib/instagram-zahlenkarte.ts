@@ -370,6 +370,11 @@ export interface Saeulenkarte extends StilGemeinsam {
   einheit: string
   /** Nachkommastellen der Werte über den Säulen – ohne Angabe eine. */
   nachkomma?: number
+  /**
+   * Anzahlen statt Veränderungen: kein „+" vor den Werten (12.11.2026, DAX-
+   * Rekordtage je Jahr – „+27" Tage las sich wie ein Zuwachs).
+   */
+  ohneVorzeichen?: boolean
 }
 
 /**
@@ -3702,10 +3707,13 @@ function saeulenGrafik(k: Saeulenkarte) {
   const saeule = Math.min(64, fach * 0.62)
   /* Über den Säulen nur „%" hinter der Zahl; ein Wort wie „Sitze" steht an der Achse. */
   const zahl = (v: number) =>
-    `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE', {
-      minimumFractionDigits: k.nachkomma ?? 1,
-      maximumFractionDigits: k.nachkomma ?? 1,
-    })}${k.einheit === '%' ? ' %' : ''}`
+    `${v > 0 && !k.ohneVorzeichen ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toLocaleString(
+      'de-DE',
+      {
+        minimumFractionDigits: k.nachkomma ?? 1,
+        maximumFractionDigits: k.nachkomma ?? 1,
+      }
+    )}${k.einheit === '%' ? ' %' : ''}`
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${hoehe + kopf}" viewBox="0 0 ${breite} ${hoehe + kopf}">` +
