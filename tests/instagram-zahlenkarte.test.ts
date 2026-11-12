@@ -1045,11 +1045,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 12.11.2026: DAX-Rekordtage je Jahr (Yahoo Finance, Schlusskurse ^GDAXI seit 1987). */
+/* 12.11.2026: DAX-Rekordtage 2026 – Kurve mit einem Punkt je Rekordschluss (Yahoo Finance, ^GDAXI). */
 {
   const karte = karteVom('2026-11-12')
-  pruefe('Rekordtage: Karte für den 12.11. sind Säulen', karte?.art === 'saeulen')
-  if (karte?.art === 'saeulen') {
+  pruefe('Rekordtage: Karte für den 12.11. ist eine Kurve', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
     pruefe(
       'Rekordtage: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
@@ -1059,27 +1059,51 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Rekordtage: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-11')!)
     )
-    const erwartet = [27, 0, 25, 1, 0, 6, 39, 1, 9, 45, 34, 18]
+    const p = karte.linien[0].punkte
+    /* Jeder Punkt liegt über allem davor – und über dem Rekord aus 2025 (24.611,25). */
+    const rekorde: number[] = []
+    let hoch = 24611.25
+    p.forEach((v, i) => {
+      if (v > hoch) {
+        hoch = v
+        rekorde.push(i)
+      }
+    })
     pruefe(
-      'Rekordtage: zwölf Jahre 2015–2026 mit den gezählten Tagen',
-      karte.saeulen.map((z) => z.text).join() ===
-        Array.from({ length: 12 }, (_, i) => String(2015 + i)).join() &&
-        karte.saeulen.map((z) => z.wert).join() === erwartet.join()
+      'Rekordtage: die Punkte sind genau die Rekordschlüsse der Reihe',
+      rekorde.join() === (karte.marken ?? []).join(),
+      `${rekorde.join()} gegen ${(karte.marken ?? []).join()}`
     )
     pruefe(
-      'Rekordtage: Heldenzahlen gleich den Säulen',
-      karte.helden[0].wert === '18' &&
-        karte.helden[1].wert === '45' &&
-        Math.max(...karte.saeulen.map((z) => z.wert)) === 45
+      'Rekordtage: 18 Punkte, wie in Titel und Kennzahl',
+      rekorde.length === 18 && karte.kennzahlen[0].wert === '18'
     )
-    for (const [jahr, n] of erwartet.entries())
-      pruefe(
-        `Rekordtage: ${2015 + jahr} steht mit ${n} im Text`,
-        karte.text.includes(`${2015 + jahr}: ${n}`)
-      )
+    pruefe(
+      'Rekordtage: letzter Punkt 26.662,77 am 11.11.',
+      p.at(-1) === 26662.77 && rekorde.at(-1) === p.length - 1
+    )
+    pruefe(
+      'Rekordtage: +8,7 % seit 02.01. wie im Text',
+      Math.round((p.at(-1)! / p[0] - 1) * 1000) / 10 === 8.7 &&
+        karte.text.includes('8,7 %')
+    )
+    pruefe(
+      'Rekordtage: Tief 22.300,75 wie im Text',
+      Math.min(...p) === 22300.75 && karte.text.includes('22.300,75')
+    )
     const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
     pruefe('Rekordtage: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
   }
+}
+{
+  const k = karteVom('2026-11-12')
+  if (k?.art === 'kurven')
+    pruefe(
+      'Kurve: eine Marke außerhalb der Linie wird beanstandet',
+      pruefeZahlenkarte({ ...k, marken: [k.linien[0].punkte.length] }).some((f) =>
+        f.includes('außerhalb')
+      )
+    )
 }
 
 /* 11.11.2026: Entweder-oder – drei Duelle seit November 2021 (Yahoo Finance, markets.json). */

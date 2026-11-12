@@ -29,89 +29,97 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 12.11.2026, „DAX-Rekordtage je Jahr“. Der Betreiber hat für
+      Zahlenkarte 12.11.2026, „DAX-Rekordtage 2026“. Der Betreiber hat für
       heute kein Thema gewählt; nach dem Ablauf gilt der erste offene Vorschlag
-      vom 11.11. (Einzelbild, Säulen – nach drei Ratekarussellen bewusst ein
-      Einzelbild). In den News vom 12.11. steht der DAX-Rekord nicht.
-      Form: Säulen (am 11.11. Entweder-oder).
+      vom 11.11. Der erste Entwurf (Säulen je Jahr 2015–2026) kam zurück:
+      „darstellung doof ki like bitte andere darstellung mit chart und den
+      punkten von neuen hochs dieses jahr“. Jetzt: der DAX 2026 als Kurve,
+      jeder Rekordschluss ein Punkt. In den News vom 12.11. steht der
+      DAX-Rekord nicht. Form: Kurve (am 11.11. Entweder-oder).
 
       Kurse: Yahoo Finance, ^GDAXI, Tagesschlusskurse.
-        - 30.12.1987 bis 10.11.2026: abgerufen am 10.11.2026 über
-          quellen-holen.yml (period1=567849600)
-        - 01.08. bis 12.11.2026: abgerufen am 12.11.2026, 12:25 UTC
-      Gezählt wird jeder Handelstag, an dem der Schlusskurs über allen
-      früheren Schlusskursen seit 1987 lag (Rekordschluss, nicht Tageshoch):
-        2015 27 · 2016 0 · 2017 25 · 2018 1 · 2019 0 · 2020 6
-        2021 39 · 2022 1 · 2023 9 · 2024 45 · 2025 34 · 2026 18
-      Mehr als 2024 gab es nur 1996 (55) und 1997 (54); 1998 waren es 43.
-      2026 bis zum 11.11. Die 18 sind die 17 bis zum 28.08. (Rekordschluss
-      26.569,99) plus der 11.11. (Schluss 26.662,77). Der 10.11. schloss bei
-      26.347,45, kein Rekord. Der 12.11. ist nicht gezählt, der Handelstag
-      lief beim Abruf noch.
-      Gründe für den 11.11. laut wallstreet-online, News-Ticker vom
-      11.11.2026, 09:40 Uhr („Rekord zum Greifen nah: Diese Zahlen treiben den
-      DAX an“): Erholung der Technologiewerte, CoreWeave und starke
-      Chipmärkte in Asien, Berichtssaison (Siemens Energy, E.ON, RWE,
-      Brenntag). Risiko laut derselben Quelle: die überraschend hohe
-      US-Inflation, ~85 % eingepreist für eine Zinserhöhung der Fed im
-      Dezember. Der Ticker nennt als Rekordhoch 26.692 Punkte aus der Vorwoche
-      – das ist ein Tageshoch, kein Schlusskurs.
+        - bis 10.11.2026: Abruf am 10.11.2026 über quellen-holen.yml (ab 1987)
+        - 01.08. bis 12.11.2026: Abruf am 12.11.2026, 12:25 UTC, gleiche Werte
+          an den überlappenden Tagen bis 09.11.
+      Die Kurve hat 221 Handelstage, 02.01. bis 11.11.2026.
+      Rekordschluss heißt: Schluss über allen früheren Schlusskursen seit
+      1987. Der Rekord aus 2025 lag bei 24.611,25. 2026 sind es 18 Tage:
+        Januar 7 (05.–09.01., 12.–13.01.) · Juli 3 (02., 03., 06.07.)
+        August 7 (03., 04., 07., 10., 11., 14., 28.08.) · November 1 (11.11.)
+      Jahresanfang 24.539,34 (02.01.), Tief 22.300,75 (27.03.), Schluss
+      11.11. 26.662,77, +8,7 % seit dem 02.01.
+      Zum Vergleich, gleich gezählt: 2024 45 Tage, 2025 34.
+      Der 12.11. ist nicht gezählt, der Handelstag lief beim Abruf noch.
+      Warum / Und jetzt: wallstreet-online, News-Ticker 11.11.2026, 09:40
+      Uhr („Rekord zum Greifen nah: Diese Zahlen treiben den DAX an“), über
+      quellen-holen.yml gelesen. Der Ticker nennt als Rekordhoch 26.692
+      Punkte aus der Vorwoche – ein Tageshoch, kein Schlusskurs.
     */
-    art: 'saeulen',
+    art: 'kurven',
     datum: '2026-11-12',
-    titel: [{ text: 'DAX-Rekordtage:' }, { text: 'Schon 18 dieses Jahr.', gruen: true }],
+    titel: [{ text: 'DAX auf Rekord:' }, { text: 'Das 18. Mal 2026.', gruen: true }],
     erklaerung:
-      'Handelstage, an denen der DAX so hoch schloss wie nie zuvor – je Jahr. 2026: bis zum 11. November.',
-    stichzeile: 'Rekordschlusskurse des DAX · je Jahr',
-    helden: [
+      'Schlusskurse 2026. Jeder Punkt ist ein Tag, an dem der DAX so hoch schloss wie nie zuvor.',
+    stichzeile: 'DAX · Schlusskurse 2026',
+    linien: [
       {
-        name: '2026 bis 11.11.',
-        wert: '18',
-        richtung: 'steigt',
-        pille: { wert: '26.663', name: 'Punkte am 11.11.', richtung: 'steigt' },
-      },
-      {
-        name: '2024: meiste seit 1997',
-        wert: '45',
-        pille: { wert: '0', name: '2016 und 2019' },
+        name: 'DAX am 11.11.',
+        ende: '26.663',
+        punkte: [
+          24539.34, 24868.69, 24892.2, 25122.26, 25127.46, 25261.64, 25405.34, 25420.66,
+          25286.24, 25352.39, 25297.13, 24959.06, 24703.12, 24560.98, 24856.47, 24900.71,
+          24933.08, 24894.44, 24822.79, 24309.46, 24538.81, 24797.52, 24780.79, 24603.04,
+          24491.06, 24721.46, 25014.87, 24987.85, 24856.15, 24852.69, 24914.88, 24800.91,
+          24998.4, 25278.21, 25043.57, 25260.69, 24991.97, 24986.25, 25175.94, 25289.02,
+          25284.26, 24638, 23790.65, 24205.36, 23815.75, 23591.03, 23409.37, 23968.63,
+          23640.03, 23589.65, 23447.29, 23564.01, 23730.92, 23502.25, 22839.56, 22380.19,
+          22653.86, 22636.91, 22957.08, 22612.97, 22300.75, 22562.88, 22680.04, 23298.89,
+          23168.08, 22921.59, 24080.63, 23806.99, 23803.95, 23742.44, 24044.22, 24066.7,
+          24154.47, 24702.24, 24417.8, 24270.87, 24194.9, 24155.45, 24128.98, 24083.53,
+          24018.26, 23954.56, 24292.38, 23991.27, 24401.7, 24918.69, 24663.61, 24338.63,
+          24350.28, 23954.93, 24136.81, 24456.26, 23950.57, 24307.92, 24400.65, 24737.24,
+          24606.77, 24888.56, 25389.1, 25184.89, 25177.8, 25092.25, 25104.7, 25003.04,
+          25124.17, 24795.94, 24944.95, 24759.05, 24616.22, 24433.06, 24195.31, 24209.71,
+          24635.3, 24894.01, 24910.41, 24934.67, 25026.8, 24985.82, 25139.69, 24893.58,
+          24740.36, 24994.83, 24671.22, 24626.89, 24995.81, 25040.28, 25580.88, 25779.31,
+          25817.89, 25465.25, 24897.45, 25118.27, 25067.09, 25114.25, 25147.03, 24999.53,
+          24915.49, 24830.98, 24846.69, 25011.35, 25155.41, 24763.12, 25099, 25361.03,
+          25464.01, 25460.48, 25612.03, 25629.24, 26001.31, 26202.35, 26126.3, 26140.13,
+          26319.45, 26323.88, 26391.42, 26331.07, 26299.74, 26440.31, 26338.61, 26128.36,
+          26091.33, 25983.04, 26136.56, 26106.6, 26266.14, 26285.96, 26367.24, 26569.99,
+          26258.11, 25970.11, 25839.33, 26003.32, 26046.4, 26006.53, 26007.63, 25576.45,
+          25361.15, 25568.56, 25440.81, 25402.28, 25537.75, 25716.71, 25304.06, 25575.01,
+          25578.85, 25410.63, 25266.53, 25408.64, 25374.42, 25399.21, 25199.19, 24939.35,
+          25231.2, 25254.21, 25449.19, 25104.36, 24806.97, 25087.27, 25277.68, 25259.9,
+          25298.61, 25382.62, 25622.61, 25319.77, 25304.42, 25645.04, 25371.75, 25181.65,
+          25410.84, 25590.77, 25704.02, 26039.68, 25818.21, 25981.09, 25864.62, 26437.67,
+          26325.01, 25820.36, 26267.19, 26347.45, 26662.77,
+        ],
       },
     ],
-    saeulen: [
-      { text: '2015', wert: 27 },
-      { text: '2016', wert: 0 },
-      { text: '2017', wert: 25 },
-      { text: '2018', wert: 1 },
-      { text: '2019', wert: 0 },
-      { text: '2020', wert: 6 },
-      { text: '2021', wert: 39 },
-      { text: '2022', wert: 1 },
-      { text: '2023', wert: 9 },
-      { text: '2024', wert: 45 },
-      { text: '2025', wert: 34 },
-      { text: '2026', wert: 18 },
+    marken: [1, 2, 3, 4, 5, 6, 7, 126, 127, 128, 148, 149, 152, 153, 154, 157, 167, 220],
+    unten: 22000,
+    achse: [
+      { bei: 0, text: 'Jan.' },
+      { bei: 41, text: 'März' },
+      { bei: 83, text: 'Mai' },
+      { bei: 125, text: 'Juli' },
+      { bei: 169, text: 'Sept.' },
+      { bei: 220, text: '11.11.' },
     ],
-    einheit: 'Tage',
-    nachkomma: 0,
-    ohneVorzeichen: true,
+    einheit: '',
+    kennzahlen: [{ name: 'Rekordtage 2026', wert: '18', richtung: 'steigt' }],
     fusszeile:
       'Stand: 11.11.2026 | Quelle: Yahoo Finance (Schlusskurse ^GDAXI seit 1987); eigene Rechnung',
     text:
       'Rekord am Mittwoch: Der DAX schloss am 11. November bei 26.662,77 Punkten – so hoch wie nie zuvor. 📈\n\n' +
-      'Es war der 18. Rekordschluss in diesem Jahr. Der vorige stammte vom 28. August (26.569,99 Punkte).\n\n' +
-      'So oft schloss der DAX auf Rekordhoch, Jahr für Jahr:\n' +
-      '2015: 27 Tage\n' +
-      '2016: 0\n' +
-      '2017: 25\n' +
-      '2018: 1\n' +
-      '2019: 0\n' +
-      '2020: 6\n' +
-      '2021: 39\n' +
-      '2022: 1\n' +
-      '2023: 9\n' +
-      '2024: 45 – so viele wie seit 1997 nicht mehr (1996: 55, 1997: 54)\n' +
-      '2025: 34\n' +
-      '2026: 18 (bis 11. November)\n\n' +
-      'Auffällig: Auf ein Jahr mit vielen Rekorden folgten oft Jahre fast ohne. Nach 2015 kam der nächste Rekordschluss erst 2017, nach 2018 erst 2020 wieder.\n\n' +
+      'Es war der 18. Rekordschluss in diesem Jahr. Jeder Punkt im Bild ist einer davon:\n' +
+      'Januar: 7 Rekordtage\n' +
+      'Juli: 3\n' +
+      'August: 7\n' +
+      'November: 1 (der 11.11.)\n\n' +
+      'Dazwischen lagen lange Pausen. Von Mitte Januar bis Anfang Juli gab es keinen einzigen Rekord – am 27. März stand der DAX bei 22.300,75 Punkten. Nach dem 28. August dauerte es zweieinhalb Monate bis zum nächsten.\n\n' +
+      'Seit dem ersten Handelstag des Jahres (24.539,34 Punkte) liegt der DAX 8,7 % im Plus. Zum Vergleich: 2024 schloss er an 45 Tagen auf Rekordhoch, 2025 an 34.\n\n' +
       'Warum ging es am 11. November nach oben?\n' +
       'Laut wallstreet-online kam Rückenwind von einer Erholung der Technologiewerte, guten Zahlen des US-Rechenzentrumsbetreibers CoreWeave und starken Chipmärkten in Asien. Dazu legten Siemens Energy, E.ON, RWE und Brenntag ihre Zahlen vor.\n\n' +
       'Und jetzt?\n' +
