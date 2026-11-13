@@ -6028,7 +6028,7 @@ function chartGrafik(k: Chartkarte) {
   ) => {
     const px = links + x(bei)
     const py = oben0 + y(p[bei])
-    const breiteSchild = 220
+    const breiteSchild = 300
     const pos =
       lage === 'links'
         ? { top: py - 30, left: px - breiteSchild - 22, alignItems: 'flex-end' }
@@ -6054,7 +6054,17 @@ function chartGrafik(k: Chartkarte) {
         { style: { fontSize: 28, fontWeight: 800, color: farbe, letterSpacing: -0.5 } },
         gross
       ),
-      h('div', { style: { fontSize: 19, color: STIL.grau, marginTop: 2 } }, klein)
+      /* Am letzten Punkt trägt die zweite Zeile die Pointe („−61,5 % vom Hoch“) – in seiner Farbe. */
+      h(
+        'div',
+        {
+          style:
+            lage === 'links'
+              ? { fontSize: 23, fontWeight: 700, color: farbe, marginTop: 2 }
+              : { fontSize: 19, color: STIL.grau, marginTop: 2 },
+        },
+        klein
+      )
     )
   }
 

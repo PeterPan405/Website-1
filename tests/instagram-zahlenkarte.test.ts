@@ -1084,7 +1084,9 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     )
     pruefe(
       'Rheinmetall: letzter Punkt 765,50 €',
-      p.at(-1) === 765.5 && karte.ende.zahl === '765,50 €'
+      p.at(-1) === 765.5 &&
+        karte.ende.zahl === '765,50 €' &&
+        karte.ende.anlass === '−61,5 % vom Hoch'
     )
     pruefe(
       'Rheinmetall: Form anders als am Vortag',

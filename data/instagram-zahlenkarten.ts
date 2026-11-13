@@ -102,7 +102,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       { bei: 0, zahl: '83 €', anlass: 'Ende 2021', lage: 'rechts' },
       { bei: 195, zahl: '1.988,50 €', anlass: 'Hoch, 29.09.2025' },
     ],
-    ende: { zahl: '765,50 €', anlass: 'am 13.11.' },
+    ende: { zahl: '765,50 €', anlass: '−61,5 % vom Hoch' },
     richtung: 'faellt',
     fusszeile:
       'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse RHM.DE, Xetra); eigene Rechnung',
