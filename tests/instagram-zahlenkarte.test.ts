@@ -1045,29 +1045,51 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 13.11.2026: Rheinmetall seit Ende 2021 – Kurslinie, Punkte an Jahresschlüssen und Hoch (Yahoo Finance, RHM.DE). */
+/* 13.11.2026: Rheinmetall seit Ende 2021 – Chartkarte, Zahlen an den Punkten (Yahoo Finance, RHM.DE). */
 {
   const karte = karteVom('2026-11-13')
-  pruefe('Rheinmetall: Karte für den 13.11. ist eine Kurve', karte?.art === 'kurven')
-  if (karte?.art === 'kurven') {
+  pruefe('Rheinmetall: Karte für den 13.11. ist ein Chart', karte?.art === 'chart')
+  if (karte?.art === 'chart') {
     pruefe(
       'Rheinmetall: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
-    const p = karte.linien[0].punkte
-    const m = (karte.marken ?? []).map((i) => p[i])
-    /* Jahresschlüsse 2021–2025 und das Hoch – genau die gezeichneten Punkte. */
+    const p = karte.punkte
+    const m = karte.marken.map((x) => p[x.bei])
     pruefe(
-      'Rheinmetall: Punkte = Jahresschlüsse und Hoch',
-      m.join() === [83.06, 186.05, 287, 614.6, 1988.5, 1561].join(),
+      'Rheinmetall: Punkte = Schluss Ende 2021 und Hoch',
+      m.join() === [83.06, 1988.5].join(),
       m.join()
+    )
+    /* Die Jahresschlüsse liegen an den Grenzen der Abschnitte – daraus die Prozente an der Achse. */
+    const grenzen = [0, 52, 104, 156, 208, p.length - 1].map((i) => p[i])
+    pruefe(
+      'Rheinmetall: Jahresschlüsse in der Linie',
+      grenzen.join() === [83.06, 186.05, 287, 614.6, 1561, 765.5].join(),
+      grenzen.join()
+    )
+    const prozente = grenzen
+      .slice(1)
+      .map((s, i) => Math.round((s / grenzen[i] - 1) * 100))
+      .map((v) => `${v > 0 ? '+' : '−'}${Math.abs(v)} %`)
+    pruefe(
+      'Rheinmetall: Jahresprozente an der Achse aus der Linie gerechnet',
+      karte.achse.map((x) => x.zusatz).join() === prozente.join(),
+      prozente.join()
     )
     pruefe(
       'Rheinmetall: Hoch 1.988,50 € ist das Maximum der Linie',
       Math.max(...p) === 1988.5
     )
-    pruefe('Rheinmetall: letzter Punkt 765,50 €', p.at(-1) === 765.5)
+    pruefe(
+      'Rheinmetall: letzter Punkt 765,50 €',
+      p.at(-1) === 765.5 && karte.ende.zahl === '765,50 €'
+    )
+    pruefe(
+      'Rheinmetall: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-12')!)
+    )
     const schluss = [83.06, 186.05, 287.0, 614.6, 1561.0, 765.5]
     const jahre = schluss.slice(1).map((s, i) => Math.round((s / schluss[i] - 1) * 100))
     for (const [i, j] of ['2022', '2023', '2024', '2025', '2026'].entries())
