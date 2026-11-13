@@ -29,6 +29,84 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 13.11.2026, „Rheinmetall je Jahr“. Der Betreiber hat für
+      heute kein Thema gewählt. Nach dem Ablauf gilt der erste offene
+      Vorschlag vom 12.11.: die Rheinmetall-Achterbahn. Er ist nicht in den
+      News vom 13.11. Die Kurve war schon am 12.11. dran (DAX), daher heute
+      Säulen: Kursentwicklung je Kalenderjahr.
+      Die Karte entstand erst abends; das Wochenlimit hatte die Arbeit am
+      Mittag gestoppt.
+
+      Kurse: Yahoo Finance, RHM.DE (Xetra), Tagesschlusskurse 01.12.2021
+      bis 13.11.2026, abgerufen am 13.11.2026 um 20:45 UTC über
+      quellen-holen.yml. Schluss je Jahr (letzter Handelstag):
+        30.12.2021  83,06 €
+        30.12.2022 186,05 € → 2022 +124,0 %
+        29.12.2023 287,00 € → 2023  +54,3 %
+        30.12.2024 614,60 € → 2024 +114,1 %
+        30.12.2025 1.561,00 € → 2025 +154,0 %
+        13.11.2026 765,50 € → 2026 −51,0 % (bis 13.11.)
+      Höchster Schlusskurs 1.988,50 € am 29.09.2025; 765,50 € sind −61,5 %
+      davon. 12.11.2021 laut Kursbestand 88,02 €: 765,50 € sind das 8,7-Fache.
+      Wochenkerzen taugen nicht für Jahresschlüsse: Yahoo beginnt die Woche
+      am Sonntag, die letzte Dezemberwoche reicht dann in den Januar.
+
+      Warum: WirtschaftsWoche, „Rheinmetall-Aktie: Warum der Rüstungsboom an
+      der Börse kippt“ (06.11.2026) – lesbar nur Anreißer und Bildunterschrift
+      (Bezahlschranke): Prognosesenkung, ein großer Auftrag für den Radpanzer
+      Boxer verzögert sich, „an der Börse zählen längst nicht mehr nur volle
+      Auftragsbücher“. Mehr steht dort für uns nicht; einen Grund für den
+      ganzen Rückgang seit September 2025 nennt die Karte deshalb nicht.
+    */
+    art: 'saeulen',
+    datum: '2026-11-13',
+    titel: [{ text: 'Rheinmetall 2026:' }, { text: 'Minus 51 Prozent.', gruen: true }],
+    erklaerung:
+      'Kursentwicklung je Kalenderjahr, Schlusskurse an der Xetra. 2026: bis zum 13. November.',
+    stichzeile: 'Rheinmetall · Kurs je Jahr',
+    helden: [
+      {
+        name: 'Schluss am 13.11.',
+        wert: '765,50 €',
+        richtung: 'faellt',
+        pille: {
+          wert: '−61,5 %',
+          name: 'seit dem Hoch von 1.988,50 €',
+          richtung: 'faellt',
+        },
+      },
+    ],
+    saeulen: [
+      { text: '2022', wert: 124.0 },
+      { text: '2023', wert: 54.3 },
+      { text: '2024', wert: 114.1 },
+      { text: '2025', wert: 154.0 },
+      { text: '2026', wert: -51.0 },
+    ],
+    einheit: '%',
+    nachkomma: 0,
+    fusszeile:
+      'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse RHM.DE, Xetra); eigene Rechnung',
+    text:
+      'Vier Jahre ging es fast nur nach oben, jetzt geht es steil bergab: Die Rheinmetall-Aktie hat 2026 bisher 51 % verloren.\n\n' +
+      'Am Freitag, dem 13. November, schloss sie bei 765,50 €. Ihr Hoch lag am 29. September 2025 bei 1.988,50 € – seitdem sind es −61,5 %.\n\n' +
+      'Die Säulen im Bild, Jahr für Jahr (Schlusskurse an der Xetra):\n' +
+      '2022: +124 %\n' +
+      '2023: +54 %\n' +
+      '2024: +114 %\n' +
+      '2025: +154 %\n' +
+      '2026: −51 % (bis 13. November)\n\n' +
+      'Zum Vergleich: Im November 2021 kostete die Aktie 88,02 €. Auch nach dem Absturz ist sie heute noch das 8,7-Fache wert.\n\n' +
+      'Warum?\n' +
+      'Laut WirtschaftsWoche hat Rheinmetall Anfang November seine Prognose gesenkt, und ein großer Auftrag für den Radpanzer Boxer verzögert sich. An der Börse zählten längst nicht mehr nur volle Auftragsbücher, schreibt das Blatt. Einen Grund für den ganzen Rückgang seit September 2025 nennt die Quelle nicht.\n\n' +
+      'Und jetzt?\n' +
+      'Wie es weitergeht, sagen diese Zahlen nicht. Sie zeigen nur, wie schnell sich ein Börsenliebling drehen kann.\n\n' +
+      'Gerechnet: Schlusskurs am letzten Handelstag des Jahres gegen den des Vorjahres.\n' +
+      'Quellen: Yahoo Finance (RHM.DE), Stand 13.11.2026; WirtschaftsWoche, 6.11.2026; eigene Rechnung',
+    schlagworte: ['rheinmetall', 'rüstung', 'aktien', 'börse', 'dax'],
+  },
+  {
+    /*
       Zahlenkarte 12.11.2026, „DAX-Rekordtage 2026“. Der Betreiber hat für
       heute kein Thema gewählt; nach dem Ablauf gilt der erste offene Vorschlag
       vom 11.11. Der erste Entwurf (Säulen je Jahr 2015–2026) kam zurück:

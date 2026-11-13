@@ -1045,6 +1045,51 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 13.11.2026: Rheinmetall je Kalenderjahr (Yahoo Finance, RHM.DE, Tagesschlüsse). */
+{
+  const karte = karteVom('2026-11-13')
+  pruefe('Rheinmetall: Karte für den 13.11. sind Säulen', karte?.art === 'saeulen')
+  if (karte?.art === 'saeulen') {
+    pruefe(
+      'Rheinmetall: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Rheinmetall: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-12')!)
+    )
+    /* Jahresschlüsse 2021–2026 (13.11.), daraus jede Säule nachgerechnet. */
+    const schluss = [83.06, 186.05, 287.0, 614.6, 1561.0, 765.5]
+    const jahre = schluss
+      .slice(1)
+      .map((s, i) => Math.round((s / schluss[i] - 1) * 1000) / 10)
+    pruefe(
+      'Rheinmetall: Säulen gleich den nachgerechneten Jahren',
+      karte.saeulen.map((z) => z.wert).join() === jahre.join(),
+      `${jahre.join()} gegen ${karte.saeulen.map((z) => z.wert).join()}`
+    )
+    pruefe(
+      'Rheinmetall: −61,5 % vom Hoch 1.988,50 €',
+      Math.round((765.5 / 1988.5 - 1) * 1000) / 10 === -61.5
+    )
+    pruefe(
+      'Rheinmetall: 8,7-Fache seit 88,02 €',
+      Math.round((765.5 / 88.02) * 10) / 10 === 8.7 && karte.text.includes('8,7-Fache')
+    )
+    for (const [j, w] of [
+      ['2022', '+124 %'],
+      ['2023', '+54 %'],
+      ['2024', '+114 %'],
+      ['2025', '+154 %'],
+      ['2026', '−51 %'],
+    ])
+      pruefe(`Rheinmetall: ${j} mit ${w} im Text`, karte.text.includes(`${j}: ${w}`))
+    const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
+    pruefe('Rheinmetall: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+  }
+}
+
 /* 12.11.2026: DAX-Rekordtage 2026 – Kurve mit einem Punkt je Rekordschluss (Yahoo Finance, ^GDAXI). */
 {
   const karte = karteVom('2026-11-12')
