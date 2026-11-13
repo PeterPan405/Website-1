@@ -746,6 +746,33 @@ jobs:
             übernimmt der Schritt nach dir. Deine einzige Ausgabe ist die Datei
             `entwurf.json`.
 
+      # **Die Git-Anmeldung nach dem Agenten wiederherstellen** (13.11.2026).
+      #
+      # Seit dem 13.11.2026 lässt `claude-code-action@v1` am Ende die
+      # Remote-Adresse als `https://x-access-token@github.com/…` zurück – der
+      # Benutzer steht noch da, das Token ist weg. Jeder `git push` danach
+      # scheitert mit
+      #
+      #   fatal: could not read Password for 'https://x-access-token@github.com'
+      #
+      # Am 13.11. lag deshalb fünfmal ein fertiger, geprüfter Nachrichtenentwurf
+      # vor (02:16 bis 04:53 Uhr) – und nie auf dem Zweig. Ohne Entwurf keine
+      # Ausgabe, ohne Ausgabe kein Bau, keine Folge, kein Instagram-Beitrag.
+      # Am 12.11. ging derselbe Push noch durch.
+      #
+      # Der Schritt setzt die Adresse mit dem `GITHUB_TOKEN` des Laufs neu und
+      # nimmt einen übrig gebliebenen Kopf der Anmeldung weg. Er läuft immer –
+      # auch nach einem gescheiterten Agenten, damit die Kontingent-Meldung
+      # und andere spätere Pushes ihren Weg finden.
+      - name: Git-Anmeldung wiederherstellen
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git ls-remote --exit-code origin HEAD > /dev/null && echo "Git-Anmeldung steht."
+
       # Ein Fehlschlag der Action ist von außen eine Zahl ohne Begründung:
       # `is_error: true`, `num_turns: 1`, `total_cost_usd: 0`. Am 6. August
       # standen drei Läufe so da, und die Ursache – ein `401 Invalid API key` –
