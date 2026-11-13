@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Bundesbank warnt vor Finanzrisiken, Mercedes stoppt Investitionen, ein Microsoft-Ausfall legt Outlook lahm, die IG Metall droht mit Streiks – und Nvidia-Chef Jensen Huang tritt zurück.",
+  "kacheln": [
+    {
+      "titel": "Bundesbank warnt",
+      "text": "Die Bundesbank warnt vor erhöhten Risiken für die Finanzstabilität. Fast 40 Prozent neuer Immobilienkredite hatten zuletzt kaum noch finanziellen Spielraum."
+    },
+    {
+      "titel": "Mercedes: Investitionsstopp",
+      "text": "Mercedes-Benz stoppt alle weiteren Investitionen an seinen deutschen Standorten. Gespräche über niedrigere Arbeitskosten blieben monatelang ohne Ergebnis."
+    },
+    {
+      "titel": "Microsoft-Ausfall",
+      "text": "Ein weltweiter Ausfall legte am Donnerstag Outlook, Teams und andere Microsoft-365-Dienste lahm. Als Ursache nannte Microsoft überlastete Server."
+    },
+    {
+      "titel": "IG Metall: Streiks drohen",
+      "text": "Die IG Metall hat erstmals seit acht Jahren ganztägige Warnstreiks beschlossen. Die Gewerkschaft wirft den Arbeitgebern eine Blockadehaltung vor."
+    },
+    {
+      "titel": "Nvidia: Chefwechsel",
+      "text": "Nvidia-Chef Jensen Huang ist zurückgetreten. Die Aktie verlor am Donnerstag zeitweise bis zu 14 Prozent und schloss gut 4 Prozent niedriger."
+    }
+  ],
+  "schlagworte": ["nvidia", "mercedes", "börse", "aktien", "wirtschaft"]
+}

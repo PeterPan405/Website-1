@@ -101,6 +101,371 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'bundesbank-warnt-finanzstabilitaetsbericht-2026',
+    title: 'Bundesbank sieht wachsende Risiken für die Finanzstabilität',
+    teaser:
+      'Der Finanzstabilitätsbericht 2026 warnt vor hohen Marktbewertungen, riskanten Immobilienkrediten und neuen Gefahren durch Künstliche Intelligenz.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Bundesbank', 'Finanzstabilität', 'Immobilienkredite', 'EZB'],
+    relatedTopics: ['immobilien', 'schulden-und-kredit'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung vom 12.11.2026: „Bundesbank: Risiken für die Finanzstabilität bleiben erhöht“',
+        url: 'https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712',
+      },
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 12.11.2026, 14:46 Uhr: „Finanzstabilität: Bundesbank sieht im Kern drei Risiken für deutsche Banken“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/finanzstabilitaet-bundesbank-sieht-im-kern-drei-risiken-fuer-deutsche-banken/100265362.html',
+      },
+      {
+        label:
+          'Tagesschau, 12.11.2026, 18:31 Uhr: „Bundesbank warnt vor erhöhten Risiken für das deutsche Finanzsystem“',
+        url: 'https://www.tagesschau.de/wirtschaft/finanzen/risiken-finanzsystem-bundesbank-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Einmal im Jahr zieht die Bundesbank Bilanz über die Risiken im Finanzsystem. Der neue Bericht fällt vorsichtig aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Gefahrenherde auf einmal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Finanzstabilitätsbericht 2026 nennt die Bundesbank hohe Marktbewertungen, steigende Kreditrisiken, hohe Staatsschulden bei schwachem Wachstum sowie Künstliche Intelligenz und Cyberangriffe als Risikofelder. Vorstandsmitglied Michael Theurer sagte dazu: „Die Zeiten sind und bleiben herausfordernd“ und weiter: „Das Rückschlagpotenzial ist erheblich.“ Zu den Staatsschulden wählte er deutliche Worte: „Die Mischung aus hohen, weiter steigenden Staatsschulden und geringem Wirtschaftswachstum bleibt toxisch.“',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Lücke beim Immobilienkredit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkret wurde die Bundesbank bei privaten Immobilienkrediten. Fast 40 Prozent der im zweiten Quartal 2026 vergebenen Darlehen erreichten mehr als 90 Prozent des sogenannten Beleihungswerts. Bei rund 11 Prozent der Kredite lag die Darlehenssumme sogar über diesem Wert. Theurer sagte, die neuen Zahlen hätten die Bundesbank überrascht, weil das Risiko am Wohnimmobilienmarkt zuletzt eigentlich gesunken war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Was der Beleihungswert verrät',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Beleihungswert ist nicht der Kaufpreis einer Immobilie, sondern ein von der Bank bewusst vorsichtig angesetzter Wert, auf dessen Basis sie die Kredithöhe bemisst. Ein Darlehen von mehr als 90 Prozent dieses Wertes lässt kaum Puffer: Fallen Immobilienpreise oder steigen Zinsen bei einer Anschlussfinanzierung, bleibt wenig Spielraum, ohne dass Kreditnehmer oder Bank in Schwierigkeiten geraten. Genau deshalb beobachten Aufsichtsbehörden diese Quote so genau – sie zeigt das Risiko, bevor es zu tatsächlichen Ausfällen kommt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Bericht fällt an einem Tag mit dichtem Notenbank-Kalender: Um 7:15 Uhr sprach EZB-Ratsmitglied Olaf Sleijpen, um 7:50 Uhr EZB-Direktoriumsmitglied Frank Elderson und um 8:10 Uhr Isabel Schnabel. Um 8:45 Uhr und um 9 Uhr stehen zwei Verbraucherpreis-Veröffentlichungen nach EU-Norm an, um 11 Uhr folgt die Beschäftigungsänderung für das dritte Quartal in der Eurozone.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Bericht beschreibt ein System, das die Bundesbank selbst als robust, aber zunehmend angespannt einstuft – die Kennzahl zum Beleihungswert ist ein Frühindikator, kein Alarmsignal für sich allein.',
+      },
+    ],
+  },
+  {
+    slug: 'mercedes-stoppt-investitionen-deutschland',
+    title: 'Mercedes-Benz stoppt alle Investitionen an deutschen Standorten',
+    teaser:
+      'Mercedes-Benz friert alle weiteren Investitionen in Deutschland ein. Gespräche über niedrigere Arbeitskosten blieben monatelang ohne Ergebnis.',
+    category: 'Märkte',
+    publishedAt: '2026-11-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Mercedes-Benz', 'Automobilindustrie', 'Standortpolitik', 'IG Metall'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['mercedes-benz'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 12.11.2026, 18:09 Uhr: „Mercedes: Autohersteller stoppt alle Investitionen in Deutschland“',
+        url: 'https://www.handelsblatt.com/unternehmen/industrie/mercedes-autohersteller-stoppt-alle-investitionen-in-deutschland/100269485.html',
+      },
+      {
+        label:
+          'ZDFheute, 12.11.2026, 22:10 Uhr: „Mercedes-Benz stoppt alle neuen Investitionen in Deutschland“',
+        url: 'https://www.zdfheute.de/wirtschaft/unternehmen/mercedes-sparmassnahmen-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bei Mercedes-Benz ist der Geduldsfaden gerissen. Der Vorstand zieht die Reißleine bei den deutschen Werken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Beschluss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Produktionsvorstand Michael Schiebe teilte den Beschäftigten in einem Interview im Firmen-Intranet mit: „Wir haben im Vorstand gemeinsam entschieden, alle weiteren Investitionen in die deutschen Standorte zu stoppen.“ Vorausgegangen waren monatelange Gespräche mit der Arbeitnehmerseite über niedrigere Kosten, die laut Unternehmen ohne Annäherung blieben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie es dazu kam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Personalvorständin Britta Seeger sagte: „Trotz intensiver Gespräche zeichnet sich derzeit leider noch kein Lösungskorridor ab.“ Das Unternehmen müsse nun „konkret und detailliert prüfen“, welche Standorte es sich noch leisten könne. Werksschließungen wolle man „um jeden Preis vermeiden“ – komme es aber zu keiner Einigung, werde Mercedes „sehr harte Schritte“ gehen, so Seeger.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Welche Werke betroffen sein könnten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schiebe hatte zuvor bereits gewarnt, dass ohne Kostensenkungen ein Montagewerk und ein Antriebswerk in Deutschland schließen müssten, ohne die Standorte zu nennen. Mercedes montiert in Deutschland Fahrzeuge in Sindelfingen, Rastatt und Bremen; Antriebe entstehen unter anderem in Stuttgart-Untertürkheim, Berlin und Kamenz. Die IG Metall lehnt Vorschläge ab, wonach Beschäftigte ohne Lohnausgleich länger arbeiten sollen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Investitionsstopp ist noch keine Schließung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Investitionsstopp bedeutet zunächst nur, dass kein neues Kapital mehr in bestehende Standorte fließt – Maschinen altern, ohne ersetzt zu werden, neue Modelle werden woanders gebaut. Das ist etwas anderes als eine Werksschließung, die Entlassungen und Abfindungen nach sich zieht. Börsen und Belegschaften lesen einen Investitionsstopp trotzdem häufig als Vorstufe, weil Unternehmen selten ohne Grund zuerst die billigere, reversible Maßnahme wählen, bevor sie zur teureren, endgültigen greifen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob es bei der Drohung bleibt oder tatsächliche Werksschließungen folgen, entscheidet sich in den nächsten Verhandlungsrunden zwischen Vorstand, Betriebsrat und IG Metall.',
+      },
+    ],
+  },
+  {
+    slug: 'cisco-hebt-ki-umsatzprognose-an',
+    title: 'Cisco übertrifft Erwartungen und hebt KI-Umsatzprognose an',
+    teaser:
+      'Cisco übertraf im ersten Geschäftsquartal die Erwartungen und verdoppelt seine KI-Umsatzprognose für Hyperscaler auf 9 Milliarden Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-11-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Cisco', 'KI-Infrastruktur', 'Quartalszahlen', 'Guidance'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['cisco'],
+    sources: [
+      {
+        label:
+          'CNBC, News-Ticker vom 12.11.2026, 21:20 Uhr: „Cisco beats on earnings, says AI infrastructure revenue will double this fiscal year“',
+        url: 'https://www.cnbc.com/2026/11/12/cisco-csco-q1-2027-earnings.html',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 12.11.2026 (dpa-AFX): „Cisco schwimmt weiter auf der KI-Welle – Jahresumsatzprognose angehoben“',
+        url: 'https://www.wallstreet-online.de/nachricht/21685773-cisco-schwimmt-ki-welle-jahresumsatzprognose-angehoben',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Tag, an dem der Dax zeitweise erstmals über 27.000 Punkte stieg, lieferte ausgerechnet ein Netzwerkausrüster die überraschendste Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen des ersten Quartals',
+      },
+      {
+        type: 'paragraph',
+        text: 'Cisco steigerte den Umsatz im ersten Geschäftsquartal um 24 Prozent auf 18,5 Milliarden Dollar, nach 14,88 Milliarden Dollar im Vorjahr und mehr als die von Analysten erwarteten 18,1 Milliarden Dollar. Der bereinigte Gewinn je Aktie lag bei 1,40 Dollar, erwartet waren 1,33 Dollar. Der Nettogewinn nach US-GAAP stieg auf 4,6 Milliarden Dollar oder 1,14 Dollar je Aktie, von 2,9 Milliarden Dollar oder 0,72 Dollar je Aktie im Vorjahresquartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ausblick für das laufende Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das laufende zweite Geschäftsquartal stellt Cisco einen Umsatz von 18,0 bis 18,2 Milliarden Dollar in Aussicht, über der Analystenschätzung von 17,88 Milliarden Dollar. Beim bereinigten Gewinn je Aktie nennt der Konzern eine Spanne von 1,34 bis 1,36 Dollar, ebenfalls über der Schätzung von 1,23 Dollar. Vorstandschef Chuck Robbins sagte, Organisationen setzten auf Ciscos etablierte Technologie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'KI-Infrastruktur: Umsatz soll sich verdoppeln',
+      },
+      {
+        type: 'paragraph',
+        text: 'Cisco hob seine Erwartung für den KI-Infrastrukturumsatz mit Großkunden aus der Cloud-Branche auf 9 Milliarden Dollar im laufenden Geschäftsjahr an – mehr als doppelt so viel wie im Geschäftsjahr 2026. Der Konzern versucht damit, nach einem späten Einstieg Anschluss an den KI-Boom zu finden. Die Aktie legte im nachbörslichen Handel zu und stand zum Donnerstagsschluss bereits rund 35 Prozent im Plus seit Jahresbeginn, verglichen mit etwa 9 Prozent beim Nasdaq im selben Zeitraum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Guidance gegen Ist-Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ist-Zahlen eines Quartals beschreiben, was bereits geschehen ist – Analysten haben ihre Schätzungen dafür schon vorher gebildet, ein Teil der Überraschung ist also eng begrenzt. Die Guidance für das kommende Quartal ist dagegen eine neue Information über die Zukunft, und genau deshalb bewegt sie Kurse oft stärker als die bereits bekannten Zahlen. Cisco hat an diesem Donnerstag beides geliefert: einen Ist-Wert über der Erwartung und eine Prognose, die ebenfalls darüberliegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die angehobene KI-Prognose eingehalten wird, zeigt sich erst in den kommenden Quartalen – auch spät gestartete Anbieter müssen ihre Versprechen erst noch erfüllen.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-ausfall-outlook-teams-365',
+    title: 'Weltweiter Ausfall legt Microsofts Outlook und Teams lahm',
+    teaser:
+      'Ein großflächiger Ausfall bei Microsoft legte Outlook, Teams und weitere 365-Dienste lahm. Ursache waren offenbar überlastete Server.',
+    category: 'Märkte',
+    publishedAt: '2026-11-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Microsoft', 'Cloud', 'IT-Ausfall', 'Outlook'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['microsoft'],
+    sources: [
+      {
+        label:
+          'CNBC, News-Ticker vom 12.11.2026, 22:24 Uhr: „Widespread Microsoft outage takes down Outlook and other 365 services“',
+        url: 'https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html',
+      },
+      {
+        label:
+          'Tagesschau, 13.11.2026, 04:22 Uhr: „Auch Outlook betroffen: Microsoft-Dienste weltweit mit Störungen“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/microsoft-outlook-ausfall-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstagnachmittag ging bei Microsoft weltweit vorübergehend nichts mehr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ausfiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Betroffen waren nach Angaben von Microsoft vor allem Outlook, Teams und weitere Microsoft-365-Dienste, beginnend kurz vor 13 Uhr. Der Marktbeobachter Downdetector zählte zeitweise rund 130.000 Meldungen allein zu Problemen mit Outlook, Nutzer aus mehreren Regionen waren betroffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Ursache laut Microsoft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Microsoft sprach zunächst von „erhöhter Last in mehreren Regionen“. Später teilte das Unternehmen mit, eine Reihe von Servern sei unerwartet ausgefallen, was die verbleibende Infrastruktur überlastet habe; manche Server hätten automatisierte Gesundheitschecks nicht bestanden. Gegen 16 Uhr erklärte Microsoft, eine alternative Prüfmethode habe einen Teil der Server zurückgebracht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'AWS und Google: eigene Meldungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Amazon Web Services erklärte, die eigenen Dienste liefen normal, und sprach von einer „unabhängigen Störung an anderer Stelle im Internet“, die zu irrtümlichen Meldungen geführt habe. Auch Nutzer von Google-Diensten meldeten bei Downdetector Probleme.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Konzentrationsrisiko in der Cloud',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn Millionen Unternehmen weltweit für E-Mail, Kalender und Zusammenarbeit auf dieselbe Handvoll großer Cloud-Anbieter setzen, reicht ein technischer Fehler an einer einzigen Stelle, um Dienste bei völlig unterschiedlichen, voneinander unabhängigen Firmen gleichzeitig auszubremsen. Das ist kein Finanzrisiko im engeren Sinn, folgt aber derselben Logik wie die Risiken durch Künstliche Intelligenz und Cyberangriffe, vor denen die Bundesbank am selben Tag gewarnt hat: Je mehr Infrastruktur an wenigen Stellen gebündelt ist, desto größer die Wirkung eines einzelnen Ausfalls.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wie lange der Ausfall insgesamt dauerte und ob weitere Dienste betroffen waren, war zum Zeitpunkt der Berichterstattung noch nicht vollständig geklärt.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-chef-huang-tritt-zurueck',
+    title: 'Nvidia-Chef tritt nach Sicherheitsbedenken zurück',
+    teaser:
+      'Nvidia-Chef Jensen Huang ist zurückgetreten, nachdem eine Beziehung zu einer mutmaßlichen Spionin bekannt wurde. Die Aktie fiel deutlich.',
+    category: 'Märkte',
+    publishedAt: '2026-11-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Nvidia', 'Jensen Huang', 'Führungswechsel', 'Chipindustrie'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 12.11.2026, 18:20 Uhr: „Nvidia-Chef Huang tritt nach Spionageaffäre zurück“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/nvidia-huang-ruecktritt-100.html',
+      },
+      {
+        label:
+          'CNBC, News-Ticker vom 12.11.2026, 21:17 Uhr: „Nvidia stock closes down over 4% after CEO Jensen Huang announces resignation“',
+        url: 'https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html',
+      },
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 12.11.2026, 17:23 Uhr: „KI-Aktien: ‚Ein dunkles Kapitel für Nvidia‘ – Analysten bewerten Aktie neu“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/geldanlage-dunkles-kapitel-fuer-nvidia-analysten-bewerten-aktie-neu/100269354.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Für Jensen Huang, Mitgründer und langjährigen Chef von Nvidia, ist an der Spitze des weltgrößten Chipkonzerns Schluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Rücktritt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Huang trat am Donnerstag mit sofortiger Wirkung sowohl als Vorstandsvorsitzender als auch als Mitglied des Verwaltungsrats zurück. Finanzvorständin Colette Kress übernimmt die Geschäftsführung übergangsweise, bis ein Nachfolger gefunden ist. Harvey Jones, früherer Chef des Softwareunternehmens Synopsys, wird erster Vorsitzender des Nvidia-Verwaltungsrats – ein Amt, das es bei Nvidia bislang nicht gab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Hintergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Tagesschau geht der Rücktritt auf eine Beziehung Huangs zu einer Frau zurück, die US-Behörden verdächtigen, für China zu spionieren. CNBC berichtet unter Berufung auf die Financial Times, die Frau sei Managerin beim Cloud-Unternehmen Megaspeed und mit dem chinesischen Nvidia-Konkurrenten Huawei verbunden; sie könnte Anteile an chinesischen Firmen gehalten haben, die von Huawei profitierten, während sie zugleich geschäftlich mit Nvidia zu tun hatte. US-Abgeordnete hatten Huangs Rücktritt zuvor öffentlich gefordert; er sagte laut Berichten zu, vor dem Kongress auszusagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reaktion der Börse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nvidia-Aktie fiel am Donnerstag im Handelsverlauf zeitweise um bis zu 14 Prozent und notierte damit kurzzeitig unter einer Marktkapitalisierung von 4 Billionen Dollar. Zum Handelsschluss grenzte sie die Verluste auf 4,34 Prozent ein und schloss knapp über dieser Marke.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Wenn Vertrauen den Kurs bewegt, nicht die Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder Umsatz noch Auftragsbestand von Nvidia haben sich durch den Rücktritt verändert – bewegt hat sich allein das Vertrauen in die Führung. Solche Kursreaktionen betreffen nicht nur Einzelaktionäre: Weil Nvidia im Nasdaq 100 und in vielen MSCI-World-ETFs hoch gewichtet ist, spüren auch Sparpläne in breit gestreuten Indexfonds einen Teil der Bewegung, ohne dass sich an deren eigentlicher Streuung etwas geändert hätte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Nvidia oder darauf aufbauende ETFs im Depot hat, sieht dieser Tage, wie stark ein einzelner Namensbeitrag das Gesamtbild eines Index prägen kann.',
+      },
+    ],
+  },
+  {
     slug: 'wirtschaftsweise-heben-wachstumsprognose-an',
     title: 'Wirtschaftsweise heben Wachstumsprognose deutlich an',
     teaser:
