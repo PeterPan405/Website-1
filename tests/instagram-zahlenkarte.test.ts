@@ -1045,46 +1045,44 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 13.11.2026: Rheinmetall je Kalenderjahr (Yahoo Finance, RHM.DE, Tagesschlüsse). */
+/* 13.11.2026: Rheinmetall seit Ende 2021 – Kurslinie, Punkte an Jahresschlüssen und Hoch (Yahoo Finance, RHM.DE). */
 {
   const karte = karteVom('2026-11-13')
-  pruefe('Rheinmetall: Karte für den 13.11. sind Säulen', karte?.art === 'saeulen')
-  if (karte?.art === 'saeulen') {
+  pruefe('Rheinmetall: Karte für den 13.11. ist eine Kurve', karte?.art === 'kurven')
+  if (karte?.art === 'kurven') {
     pruefe(
       'Rheinmetall: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
+    const p = karte.linien[0].punkte
+    const m = (karte.marken ?? []).map((i) => p[i])
+    /* Jahresschlüsse 2021–2025 und das Hoch – genau die gezeichneten Punkte. */
     pruefe(
-      'Rheinmetall: Form anders als am Vortag',
-      form(karte) !== form(karteVom('2026-11-12')!)
+      'Rheinmetall: Punkte = Jahresschlüsse und Hoch',
+      m.join() === [83.06, 186.05, 287, 614.6, 1988.5, 1561].join(),
+      m.join()
     )
-    /* Jahresschlüsse 2021–2026 (13.11.), daraus jede Säule nachgerechnet. */
+    pruefe(
+      'Rheinmetall: Hoch 1.988,50 € ist das Maximum der Linie',
+      Math.max(...p) === 1988.5
+    )
+    pruefe('Rheinmetall: letzter Punkt 765,50 €', p.at(-1) === 765.5)
     const schluss = [83.06, 186.05, 287.0, 614.6, 1561.0, 765.5]
-    const jahre = schluss
-      .slice(1)
-      .map((s, i) => Math.round((s / schluss[i] - 1) * 1000) / 10)
+    const jahre = schluss.slice(1).map((s, i) => Math.round((s / schluss[i] - 1) * 100))
+    for (const [i, j] of ['2022', '2023', '2024', '2025', '2026'].entries())
+      pruefe(
+        `Rheinmetall: ${j} mit ${jahre[i]} % im Text`,
+        karte.text.includes(`${j}: ${jahre[i] > 0 ? '+' : '−'}${Math.abs(jahre[i])} %`)
+      )
     pruefe(
-      'Rheinmetall: Säulen gleich den nachgerechneten Jahren',
-      karte.saeulen.map((z) => z.wert).join() === jahre.join(),
-      `${jahre.join()} gegen ${karte.saeulen.map((z) => z.wert).join()}`
-    )
-    pruefe(
-      'Rheinmetall: −61,5 % vom Hoch 1.988,50 €',
+      'Rheinmetall: −61,5 % vom Hoch',
       Math.round((765.5 / 1988.5 - 1) * 1000) / 10 === -61.5
     )
     pruefe(
       'Rheinmetall: 8,7-Fache seit 88,02 €',
       Math.round((765.5 / 88.02) * 10) / 10 === 8.7 && karte.text.includes('8,7-Fache')
     )
-    for (const [j, w] of [
-      ['2022', '+124 %'],
-      ['2023', '+54 %'],
-      ['2024', '+114 %'],
-      ['2025', '+154 %'],
-      ['2026', '−51 %'],
-    ])
-      pruefe(`Rheinmetall: ${j} mit ${w} im Text`, karte.text.includes(`${j}: ${w}`))
     const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
     pruefe('Rheinmetall: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
   }
