@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-12T13:56:43.648Z",
+  "abgerufenAm": "2026-11-13T13:19:05.552Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,16 +10,16 @@
       "stand": "2026-11-05",
       "von": "2026-10-05",
       "bis": "2026-12-18",
-      "zeilen": 3182,
-      "kommendGesamt": 1467,
+      "zeilen": 3183,
+      "kommendGesamt": 1043,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 67,
-      "kommend": 9,
-      "abgeleitet": 58,
+      "kommend": 7,
+      "abgeleitet": 60,
       "abstandJeStelle": {
         "1": 43,
         "2": 41,
@@ -39,12 +39,12 @@
     },
     "nasdaq": {
       "tageAbgefragt": 50,
-      "tageMitZeilen": 36,
+      "tageMitZeilen": 35,
       "letzterTag": "2027-01-06",
-      "zeilen": 1298,
-      "imKatalog": 52,
-      "mitLage": 34,
-      "beigetragen": 52
+      "zeilen": 903,
+      "imKatalog": 50,
+      "mitLage": 33,
+      "beigetragen": 50
     }
   },
   "unternehmen": {
@@ -780,34 +780,26 @@
     "CSCO": {
       "name": "CISCO SYSTEMS, INC.",
       "bisher": [
+        "2026-11-12",
         "2026-08-12",
         "2026-05-13",
         "2026-02-11",
         "2025-11-12",
         "2025-08-13",
         "2025-05-14",
-        "2025-02-12",
-        "2024-11-13"
+        "2025-02-12"
       ],
       "bisherZeiten": {
+        "2026-11-12": "16:06",
         "2026-08-12": "16:07",
         "2026-05-13": "16:06",
         "2026-02-11": "16:07",
         "2025-11-12": "16:15",
         "2025-08-13": "16:11",
         "2025-05-14": "16:17",
-        "2025-02-12": "16:19",
-        "2024-11-13": "16:14"
+        "2025-02-12": "16:19"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-12",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-10",
           "basis": "2026-02-11",
@@ -825,6 +817,12 @@
           "basis": "2026-08-12",
           "streuungTage": 0,
           "newYorkerZeit": "16:07"
+        },
+        {
+          "erwartet": "2027-11-11",
+          "basis": "2026-11-12",
+          "streuungTage": 1,
+          "newYorkerZeit": "16:06"
         }
       ]
     },
@@ -2851,34 +2849,26 @@
     "AMAT": {
       "name": "APPLIED MATERIALS INC /DE",
       "bisher": [
+        "2026-11-12",
         "2026-08-13",
         "2026-05-14",
         "2026-02-12",
         "2025-11-13",
         "2025-08-14",
         "2025-05-15",
-        "2025-02-13",
-        "2024-11-14"
+        "2025-02-13"
       ],
       "bisherZeiten": {
+        "2026-11-12": "16:02",
         "2026-08-13": "16:03",
         "2026-05-14": "16:03",
         "2026-02-12": "16:03",
         "2025-11-13": "16:03",
         "2025-08-14": "16:05",
         "2025-05-15": "16:03",
-        "2025-02-13": "16:05",
-        "2024-11-14": "16:04"
+        "2025-02-13": "16:05"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-12",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-11",
           "basis": "2026-02-12",
@@ -2896,6 +2886,12 @@
           "basis": "2026-08-13",
           "streuungTage": 0,
           "newYorkerZeit": "16:03"
+        },
+        {
+          "erwartet": "2027-11-11",
+          "basis": "2026-11-12",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:02"
         }
       ]
     },
@@ -8849,7 +8845,9 @@
           "erwartet": "2026-12-08",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-03-02",
@@ -15466,10 +15464,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-12",
+          "erwartet": "2027-02-12",
           "basis": "2026-12-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-10",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-12",
+          "basis": "2027-09-30",
+          "streuungTage": 6,
           "herkunft": "jpx"
         }
       ]
@@ -16041,10 +16056,27 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-12",
+          "erwartet": "2027-02-12",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
           "basis": "2027-03-31",
-          "streuungTage": 0,
-          "angekuendigt": true,
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-13",
+          "basis": "2027-06-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-11-12",
+          "basis": "2027-09-30",
+          "streuungTage": 7,
           "herkunft": "jpx"
         }
       ]
@@ -18260,7 +18292,7 @@
     "TTE.PA": "2026-11-10",
     "U11.SI": "2026-11-11",
     "U96.SI": "2026-11-12",
-    "UBI.PA": "2026-08-18",
+    "UBI.PA": "2026-11-13",
     "UBSG.SW": "2026-08-18",
     "UCG.MI": "2026-08-18",
     "UHR.SW": "2026-08-18",
