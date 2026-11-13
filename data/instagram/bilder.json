@@ -1123,5 +1123,53 @@
       "urheber": "Coolcaesar",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-11-13": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-13-1-87027782.jpg",
+      "titel": "File:Deutsche-bundesbank-ffm012.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Deutsche-bundesbank-ffm012.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Dontworry",
+      "suche": "Deutsche Bundesbank Frankfurt"
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-13-2-7e618b5d.jpg",
+      "titel": "File:Frankfurt, Europaturm und Deutsche Bundesbank.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Frankfurt,_Europaturm_und_Deutsche_Bundesbank.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Dr. Thomas Liptak",
+      "suche": "Deutsche Bundesbank Frankfurt"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-13-3-542eb126.jpg",
+      "titel": "File:Mercedes-Benz Logo 2010.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_Logo_2010.svg",
+      "lizenz": "Public domain",
+      "urheber": "Mercedes-Benz",
+      "suche": "Logo „Mercedes\""
+    },
+    {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: microsoft",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "microsoft"
+    },
+    {
+      "stelle": 5,
+      "datei": "2026-11-13-5-61cef120.jpg",
+      "titel": "File:Witten - IG Metall Warnstreik 2012 49 ies.JPG",
+      "seite": "https://commons.wikimedia.org/wiki/File:Witten_-_IG_Metall_Warnstreik_2012_49_ies.JPG",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Frank Vincentz",
+      "suche": "IG Metall Warnstreik"
+    }
   ]
 }
