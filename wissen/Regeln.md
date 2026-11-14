@@ -166,7 +166,8 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
   bei Zins der Notenbankchef (`NOTENBANKCHEFS`, Kategorie statt Name);
   sonst erst zeigen (`halt.txt`).
 - **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
-  `akzentfarbe()`); keine Rangnummern bei einer Auswahl.
+  `akzentfarbe()`); keine Rangnummern bei einer Auswahl. **Keine große
+  fette Zahl als Blickfang**, keine Pillen – „sieht nach KI aus".
 - **Meta merkt sich Bilder an der Adresse** – daher `?v=`.
 - **Agenten-Prompt ≤ 21.000 Bytes** (nicht Zeichen) – sonst „No jobs
   were run".

@@ -3482,10 +3482,14 @@ function stilBild(
       h(
         'div',
         {
+          /*
+            Ruhiger als früher (96/76 px, 800): „diese großen Zahlen in fett
+            gedruckt … macht es sehr nach KI aussehend“ (Betreiber, 14.11.2026).
+          */
           style: {
-            fontSize: drei ? 76 : 96,
-            fontWeight: 800,
-            letterSpacing: -3,
+            fontSize: drei ? 48 : 56,
+            fontWeight: 600,
+            letterSpacing: -1,
             lineHeight: 1.05,
             color: stilFarbe(held.richtung),
             marginTop: 6,
@@ -3501,15 +3505,13 @@ function stilBild(
                 style: {
                   display: 'flex',
                   alignItems: 'center',
-                  marginTop: 14,
-                  padding: '9px 18px',
-                  borderRadius: 999,
-                  backgroundColor: pille.richtung ? hell(farbe) : '#f1f2f4',
+                  marginTop: 10,
                 },
               },
+              /* Ohne Pillenfläche – Teil desselben „KI-haften“ Musters (14.11.2026). */
               h(
                 'div',
-                { style: { fontSize: 24, fontWeight: 800, color: farbe } },
+                { style: { fontSize: 24, fontWeight: 600, color: farbe } },
                 pille.wert
               ),
               h(
@@ -4647,7 +4649,7 @@ function duellGrafik(k: Duellkarte) {
       ),
       h(
         'div',
-        { style: { fontFamily: 'Anton', fontSize: 92, color: akzent, lineHeight: 1 } },
+        { style: { fontFamily: 'Anton', fontSize: 60, color: akzent, lineHeight: 1 } },
         differenz.toLocaleString('de-DE', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
@@ -5082,7 +5084,7 @@ export async function zahlenkarteSeitePng(
 
 /* ---------------------------------------------------------------- Rätsel */
 
-const RS_GRAFIK_O = 720
+const RS_GRAFIK_O = 530
 const RS_GRAFIK_U = 1110
 
 /** Veränderung vom ersten zum letzten Punkt in Prozent. */
@@ -5354,20 +5356,28 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
 
   return flaeche(
     ...kopf,
-    stilBlock(prozent, {
-      top: 490,
-      left: STIL_RAND,
-      fontSize: 132,
-      fontWeight: 800,
-      letterSpacing: -4,
-      color: farbe,
-    }),
-    stilBlock(k.zeitraum ?? 'Kurs in fünf Jahren', {
-      top: 652,
-      left: STIL_RAND,
-      fontSize: 26,
-      color: STIL.grau,
-    }),
+    /*
+      Keine große fette Zahl mehr (14.11.2026, Betreiber: „es sind doch immer
+      diese großen Zahlen in fett gedruckt – genau das macht es sehr nach KI
+      aussehend“). Die Zahl steht in einer ruhigen Zeile neben dem Zeitraum;
+      die Kurve bekommt den frei gewordenen Platz.
+    */
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 430,
+          left: STIL_RAND,
+          display: 'flex',
+          alignItems: 'baseline',
+          fontFamily: 'Montserrat',
+          fontSize: 32,
+        },
+      },
+      h('div', { style: { color: STIL.grau } }, k.zeitraum ?? 'Kurs in fünf Jahren'),
+      h('div', { style: { color: farbe, fontWeight: 600, marginLeft: 16 } }, prozent)
+    ),
     ...raetselGrafik(q),
     stilBlock(`Tipp: ${q.tipp}`, {
       top: 1166,
