@@ -491,11 +491,11 @@ if (!TOKEN || !KONTO) {
   entfernt, dass die Umrechnung nichts verschiebt.
 */
 const bestand = await fetch(
-  `${API}/${KONTO}/media?fields=timestamp,permalink&limit=10` +
+  `${API}/${KONTO}/media?fields=timestamp,permalink,caption&limit=10` +
     `&access_token=${encodeURIComponent(TOKEN)}`
 )
 const bestandDaten = (await bestand.json()) as {
-  data?: { timestamp?: string; permalink?: string }[]
+  data?: { timestamp?: string; permalink?: string; caption?: string }[]
   error?: { message?: string; code?: number }
 }
 
@@ -511,8 +511,19 @@ if (bestandDaten.error) {
   process.exit(1)
 }
 
+/*
+  Nur ein Daily-News-Beitrag zählt – erkannt an der ersten Zeile seiner
+  Beschriftung. Am 14.11.2026 ging die Zahlenkarte vom 13.11. um 05:26 hinaus
+  (Betreiber: „Rheinmetall ist ja für gestern“), und dieser Riegel hielt sie
+  für die Daily News: „Für den 2026-11-14 steht schon ein Beitrag im Kanal“ –
+  die Tagesnews gingen nicht hinaus. Die Zahlenkarte beginnt nie mit dem Kopf
+  der Daily News.
+*/
+const kopfZeile = beschriftung.split('\n')[0].trim()
 const schonHeute = (bestandDaten.data ?? []).find(
-  (m) => (m.timestamp ?? '').slice(0, 10) === STICHTAG
+  (m) =>
+    (m.timestamp ?? '').slice(0, 10) === STICHTAG &&
+    (m.caption ?? '').trim().split('\n')[0].trim() === kopfZeile
 )
 if (schonHeute) {
   haltAn(
