@@ -1200,6 +1200,26 @@
       "lizenz": "Public domain",
       "urheber": "SpaceX",
       "suche": "Logo „SpaceX\""
+    },
+    {
+      "stelle": 5,
+      "datei": "",
+      "titel": "Kurs: bitcoin",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "von Hand: Kursverlauf",
+      "kurs": "bitcoin"
+    },
+    {
+      "stelle": 6,
+      "datei": "",
+      "titel": "Kurs: nvidia",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "von Hand: Kursverlauf",
+      "kurs": "nvidia"
     }
   ]
 }
