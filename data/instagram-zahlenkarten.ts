@@ -38,6 +38,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       KI-haft“ – deshalb doch die ruhige Kurslinie wie am 12.11. (die er
       abgenommen hatte), gegen die Regel „Form nicht wie am Vortag“.
       Linie: jeder fünfte Handelstag, dazu Jahresschlüsse, Hoch und 13.11.
+      Am 14.11. um 02:30: „mit Unternehmenslogo … dann lad den Scheiß einfach
+      hoch“ – Logo statt erster Titelzeile, Linie in der Hausfarbe (#0080C5,
+      aus dem Logo), und die Karte auf den 14.11. gesetzt und freigegeben:
+      Der Ablauf schickt nur die Karte des Tages, der 13.11. war vorbei.
+      Logo: Wikimedia Commons, File:Rheinmetall Logo 2021.svg, gemeinfrei
+      (Rheinmetall AG), geholt über bilder-holen.yml.
       Die Karte entstand erst abends; das Wochenlimit hatte die Arbeit am
       Mittag gestoppt.
 
@@ -63,7 +69,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       ganzen Rückgang seit September 2025 nennt die Karte deshalb nicht.
     */
     art: 'chart',
-    datum: '2026-11-13',
+    datum: '2026-11-14',
     titel: [{ text: 'Rheinmetall:' }, { text: 'Vom Höhenflug zurück.', gruen: true }],
     unterzeile: 'Schlusskurs der Aktie an der Xetra seit Ende 2021, in Euro.',
     punkte: [
@@ -104,6 +110,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     ],
     ende: { zahl: '765,50 €', anlass: '−61,5 % vom Hoch' },
     richtung: 'faellt',
+    logo: 'rheinmetall.png',
+    farbe: '#0080C5',
     fusszeile:
       'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse RHM.DE, Xetra); eigene Rechnung',
     text:
@@ -121,8 +129,10 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Und jetzt?\n' +
       'Wie es weitergeht, sagen diese Zahlen nicht. Sie zeigen nur, wie schnell sich ein Börsenliebling drehen kann.\n\n' +
       'Gerechnet: Schlusskurs am letzten Handelstag des Jahres gegen den des Vorjahres.\n' +
-      'Quellen: Yahoo Finance (RHM.DE), Stand 13.11.2026; WirtschaftsWoche, 6.11.2026; eigene Rechnung',
+      'Quellen: Yahoo Finance (RHM.DE), Stand 13.11.2026; WirtschaftsWoche, 6.11.2026; eigene Rechnung\n' +
+      'Logo: Rheinmetall AG, gemeinfrei, über Wikimedia Commons',
     schlagworte: ['rheinmetall', 'rüstung', 'aktien', 'börse', 'dax'],
+    freigabe: '2026-11-14',
   },
   {
     /*

@@ -619,6 +619,14 @@ export interface Chartkarte extends KarteGemeinsam {
   ende: { zahl: string; anlass: string }
   /** Farbe des letzten Punktes. */
   richtung?: 'steigt' | 'faellt'
+  /**
+   * Firmenlogo in `lib/instagram/logos/` (nur gemeinfrei): steht statt der
+   * ersten Titelzeile – das Logo trägt den Namen (14.11.2026, Betreiber:
+   * „mit Unternehmenslogo … so sieht es einfach nur langweilig aus“).
+   */
+  logo?: string
+  /** Farbe der Linie, etwa die Hausfarbe der Firma; ohne Angabe Tinte. */
+  farbe?: string
 }
 
 export type Zahlenkarte =
@@ -2616,6 +2624,12 @@ const LOGO_LISTE_UNTEN = 1235
 const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
 
 /** Ein Logo als Adresse für `img` – PNG aus `LOGO_ORDNER`. */
+/** Breite durch Höhe eines PNG-Logos – aus dem Kopf der Datei (IHDR), ohne Bildbibliothek. */
+function logoVerhaeltnis(datei: string): number {
+  const b = readFileSync(join(LOGO_ORDNER, datei))
+  return b.readUInt32BE(16) / b.readUInt32BE(20)
+}
+
 function logoAdresse(datei: string): string {
   return `data:image/png;base64,${readFileSync(join(LOGO_ORDNER, datei)).toString('base64')}`
 }
@@ -6007,8 +6021,8 @@ function chartGrafik(k: Chartkarte) {
           `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v === unten ? '#c9cfd8' : '#eceff3'}" stroke-width="${v === unten ? 2 : 1.5}"/>`
       )
       .join('') +
-    `<path d="${flaeche}" fill="#f2f4f7"/>` +
-    `<path d="${linie}" fill="none" stroke="${STIL.tinte}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<path d="${flaeche}" fill="${k.farbe ?? STIL.tinte}" fill-opacity="${k.farbe ? 0.08 : 0.05}"/>` +
+    `<path d="${linie}" fill="none" stroke="${k.farbe ?? STIL.tinte}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>` +
     k.marken
       .map(
         (m) =>
@@ -6180,16 +6194,23 @@ function chartBild(k: Chartkarte, logo: string) {
           letterSpacing: -2,
         },
       },
-      ...k.titel.map((t) =>
-        h(
-          'div',
-          { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
-          t.text
-        )
+      ...k.titel.map((t, i) =>
+        i === 0 && k.logo
+          ? h('img', {
+              src: logoAdresse(k.logo),
+              height: 80,
+              width: Math.round(80 * logoVerhaeltnis(k.logo)),
+              style: { marginBottom: 18 },
+            })
+          : h(
+              'div',
+              { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+              t.text
+            )
       )
     ),
     stilBlock(k.unterzeile, {
-      top: 318,
+      top: k.logo ? 326 : 318,
       left: STIL_RAND,
       right: STIL_RAND,
       fontSize: 26,
@@ -6209,6 +6230,8 @@ function chartBild(k: Chartkarte, logo: string) {
 
 function pruefeChart(k: Chartkarte): string[] {
   const f: string[] = []
+  if (k.logo !== undefined && !existsSync(join(LOGO_ORDNER, k.logo)))
+    f.push(`Logo „${k.logo}" fehlt in lib/instagram/logos/.`)
   if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
     f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
   if (k.unterzeile.length > 110)

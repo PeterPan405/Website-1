@@ -1045,10 +1045,10 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 13.11.2026: Rheinmetall seit Ende 2021 – Chartkarte, Zahlen an den Punkten (Yahoo Finance, RHM.DE). */
+/* 14.11.2026 (gebaut am 13.11.): Rheinmetall seit Ende 2021 – Chartkarte, Zahlen an den Punkten (Yahoo Finance, RHM.DE). */
 {
-  const karte = karteVom('2026-11-13')
-  pruefe('Rheinmetall: Karte für den 13.11. ist ein Chart', karte?.art === 'chart')
+  const karte = karteVom('2026-11-14')
+  pruefe('Rheinmetall: Karte für den 14.11. ist ein Chart', karte?.art === 'chart')
   if (karte?.art === 'chart') {
     pruefe(
       'Rheinmetall: keine Beanstandung',
@@ -1087,6 +1087,12 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       p.at(-1) === 765.5 &&
         karte.ende.zahl === '765,50 €' &&
         karte.ende.anlass === '−61,5 % vom Hoch'
+    )
+    pruefe(
+      'Rheinmetall: freigegeben für den 14.11., mit gemeinfreiem Logo',
+      karte.freigabe === '2026-11-14' &&
+        karte.logo === 'rheinmetall.png' &&
+        karte.text.includes('Logo: Rheinmetall AG, gemeinfrei')
     )
     pruefe(
       'Rheinmetall: Form anders als am Vortag',
