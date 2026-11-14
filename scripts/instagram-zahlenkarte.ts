@@ -20,7 +20,11 @@
  *      um 17 Uhr längst drin.
  */
 import { nachgang } from '../lib/instagram-nachgang.ts'
-import { berlinJetzt, leseZahlenkarteText } from '../lib/zahlenkarten-wecker.ts'
+import {
+  berlinJetzt,
+  leseZahlenkarteText,
+  newsHeuteGepostet,
+} from '../lib/zahlenkarten-wecker.ts'
 
 const API = 'https://graph.facebook.com/v21.0'
 const TOKEN = process.env.IG_ACCESS_TOKEN?.trim() ?? ''
@@ -52,6 +56,13 @@ const { datum, freigabe, abMinute, seiten, beschriftung } = leseZahlenkarteText(
 if (minute < abMinute)
   halt(
     `Es ist ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')} Uhr – die Zahlenkarte geht frühestens um ${String(Math.floor(abMinute / 60)).padStart(2, '0')}:${String(abMinute % 60).padStart(2, '0')} Uhr hinaus.`
+  )
+
+// Riegel 0b – die Zahlenkarte folgt immer auf die Daily News (Betreiber, 14.11.2026).
+// `ZK_GEPOSTET` ist `gepostet.txt` von `instagram-gepostet`, gelesen im Workflow.
+if (!newsHeuteGepostet(process.env.ZK_GEPOSTET ?? '', HEUTE))
+  halt(
+    `Die Daily News vom ${HEUTE} stehen noch nicht im Kanal – die Zahlenkarte folgt auf sie, nie davor.`
   )
 
 // Riegel 1
