@@ -29,6 +29,137 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 14.11.2026, „Welches Metall ist das?“ – Rätsel. Der
+      Betreiber hat aus den drei Vorschlägen vom 14.11. (Rätsel Metalle,
+      Balken Edelmetalle, Zeitstrahl Jahreshochs) nicht gewählt; nach dem
+      Ablauf der erste, zugleich die Empfehlung. Nicht in den News vom 14.11.
+      (dort Bitcoin, Nvidia, US-Erzeugerpreise, FAA, SpaceX). Form: Rätsel
+      (am 13.11. Chart).
+
+      Kurse: data/snapshots/markets.json (Yahoo Finance, Terminkontrakte,
+      $ je Feinunze), Schlusskurse 02.01. bis 13.11.2026; im Bild jeder
+      zweite Handelstag, Hoch und 13.11. immer dabei.
+        Silber 70,56 $ (02.01.) · Hoch 115,08 $ am 2026-01-26 · 13.11. 48,65 $ → -57,7 % vom Hoch
+        Platin 2.125,7 $ (02.01.) · Hoch 2.852,4 $ am 2026-01-26 · 13.11. 1.492,2 $ → -47,7 % vom Hoch
+        Gold 4.329,6 $ (02.01.) · Hoch 5.318,4 $ am 2026-01-29 · 13.11. 3.887,6 $ → -26,9 % vom Hoch
+      Fotos (Wikimedia Commons, über bilder-holen.yml):
+        Silber: File:Heraeus 10 oz 9999 fine silver bar (52202724589).jpg, Chi Ho Chan, CC BY 2.0;
+          linker Barren freigestellt, auf hellgrauem Grund wie Platin und Gold
+          (Betreiber: „komisch, da die anderen beide weiß im Hintergrund sind“)
+        Platin: File:Platinum-nugget.jpg, Alchemist-hp, Free Art License
+        Gold: File:Gold Ingots on white background.jpg, Szaaman, gemeinfrei
+    */
+    art: 'raetsel',
+    datum: '2026-11-14',
+    freigabe: '2026-11-14',
+    titel: [{ text: 'Welches Metall' }, { text: 'ist das?' }],
+    zeitraum: 'Kurs seit Jahresbeginn',
+    fragen: [
+      {
+        tipp: 'Ein Edelmetall, das auch in Solarzellen und Elektronik steckt.',
+        punkte: [
+          70.56, 80.53, 74.72, 84.61, 90.87, 88.09, 92.21, 100.93, 115.08, 105.52, 114.04,
+          76.78, 84.17, 76.74, 80.22, 75.55, 73.45, 77.57, 86.52, 90.94, 92.68, 82.92,
+          81.69, 84.03, 85.07, 80.91, 79.53, 70.9, 69.05, 72.36, 69.54, 74.69, 72.74,
+          71.83, 76.28, 75.52, 79.49, 81.74, 76.41, 75.46, 75, 71.57, 75.95, 73.11, 79.7,
+          85.49, 88.89, 77.16, 74.83, 76.41, 76.31, 75.64, 75.01, 73.48, 68.94, 65.09,
+          63.88, 70.07, 70.7, 65.53, 58.05, 59.22, 59.48, 60.64, 60.93, 60.38, 57.63,
+          57.11, 56.04, 58.83, 57.8, 58.47, 57.86, 57.59, 60.06, 61.44, 65.11, 65.56,
+          64.99, 63.94, 68.03, 68.54, 67.99, 67, 64.62, 66.97, 66.3, 64.28, 63.51, 64.29,
+          66.56, 65.93, 63.46, 61.22, 60.1, 59.98, 61.17, 59.06, 60.14, 55.55, 56.99,
+          57.71, 54.76, 54.11, 53.46, 49.1, 49.59, 52.23, 52.56, 51.88, 48.65,
+        ],
+        achse: [
+          { bei: 0, text: 'Jan.' },
+          { bei: 32, text: 'April' },
+          { bei: 63, text: 'Juli' },
+          { bei: 95, text: 'Okt.' },
+          { bei: 110, text: '13.11.' },
+        ],
+        name: 'Silber',
+        logo: 'silberbarren.png',
+        foto: true,
+        satz: 'Silber stieg bis zum 26. Januar auf 115,08 $ je Unze. Am 13. November waren es 48,65 $ – minus 57,7 %.',
+      },
+      {
+        frage: 'Und dieses?',
+        tipp: 'Ein Edelmetall, das in vielen Autokatalysatoren steckt.',
+        punkte: [
+          2125.7, 2434, 2251.7, 2359.6, 2367.1, 2303.8, 2480.4, 2722.1, 2852.4, 2513.2,
+          2597.4, 2093.5, 2162.7, 2093.3, 2091.6, 2014, 2012.5, 2062.3, 2146.4, 2325.6,
+          2365.6, 2074.8, 2130, 2169.6, 2205, 2036.6, 2131.8, 1939.2, 1860.3, 1925.2,
+          1870.6, 1950, 1963.8, 1929.1, 2096.6, 2061.8, 2112.9, 2124.5, 2024.3, 2022.6,
+          1981.1, 1885.3, 1996.6, 1960.7, 2048.1, 2115.5, 2187.1, 1981.3, 1933.8, 1955.1,
+          1942.2, 1921.6, 1922.4, 1868.7, 1792, 1708.6, 1662.6, 1770, 1790.7, 1670.3,
+          1580.6, 1630.9, 1550.2, 1616.6, 1651.2, 1618.8, 1602.2, 1631.5, 1605.8, 1626.1,
+          1599.1, 1620.6, 1590.1, 1650.3, 1747.3, 1729, 1744.5, 1761.1, 1750, 1726.4,
+          1831, 1880.1, 1835.7, 1847.6, 1761.5, 1828.4, 1848.2, 1797.1, 1775.9, 1783.2,
+          1803.5, 1822.6, 1749.1, 1721.2, 1702.3, 1683.2, 1692.7, 1625.7, 1679.4, 1601.3,
+          1623.3, 1646.6, 1567.5, 1536.7, 1547.9, 1438, 1432.4, 1524.4, 1561.2, 1539,
+          1492.2,
+        ],
+        achse: [
+          { bei: 0, text: 'Jan.' },
+          { bei: 32, text: 'April' },
+          { bei: 63, text: 'Juli' },
+          { bei: 95, text: 'Okt.' },
+          { bei: 110, text: '13.11.' },
+        ],
+        name: 'Platin',
+        logo: 'platin-nugget.png',
+        foto: true,
+        satz: 'Platin kostete am 26. Januar 2.852,4 $ je Unze, am 13. November 1.492,2 $. Das sind 47,7 % weniger.',
+      },
+      {
+        frage: 'Und das letzte?',
+        tipp: 'Das Metall, das Notenbanken in ihren Tresoren lagern.',
+        punkte: [
+          4329.6, 4496.1, 4460.7, 4614.7, 4635.7, 4595.4, 4837.5, 4979.7, 5082.6, 5318.4,
+          4652.6, 4950.8, 4979.8, 5031, 4948.4, 4905.9, 4997.4, 5225.6, 5226.2, 5247.9,
+          5123.7, 5078.7, 5103.7, 5179.1, 5061.7, 5008.2, 4605.7, 4407.3, 4552.3, 4492.5,
+          4647.6, 4679.7, 4684.7, 4818, 4767.4, 4823.6, 4879.6, 4719.6, 4724, 4693.7,
+          4561.5, 4644.5, 4568.5, 4710.9, 4728.7, 4706.7, 4561.9, 4511.2, 4542.5, 4502.3,
+          4499.3, 4506.3, 4466.9, 4365.3, 4286.4, 4114, 4351.6, 4381.4, 4202.7, 4008.8,
+          4096.3, 4038.5, 4125.7, 4157.4, 4140.8, 4005.7, 4051.8, 4018.8, 4076.4, 4050.2,
+          4077, 4036.3, 4107, 4152.6, 4299.6, 4419.7, 4467.5, 4437.3, 4420.6, 4571.4,
+          4697.8, 4653.3, 4529.9, 4396.4, 4539.9, 4439, 4407.3, 4351.9, 4387.5, 4424.9,
+          4376.4, 4298, 4168.4, 4186.7, 4162.3, 4187.1, 4157, 4190.6, 4107.9, 4181.1,
+          4142.6, 4060.4, 4038.4, 4051.6, 3898.9, 3940.4, 4113.5, 4114.5, 4000.5, 3887.6,
+        ],
+        achse: [
+          { bei: 0, text: 'Jan.' },
+          { bei: 31, text: 'April' },
+          { bei: 62, text: 'Juli' },
+          { bei: 94, text: 'Okt.' },
+          { bei: 109, text: '13.11.' },
+        ],
+        name: 'Gold',
+        logo: 'goldbarren.png',
+        foto: true,
+        satz: 'Gold erreichte am 29. Januar 5.318,4 $ je Unze. Seitdem ging es um 26,9 % auf 3.887,6 $ zurück – am wenigsten von den dreien.',
+      },
+    ],
+    fusszeile:
+      'Stand: 13.11.2026 | Quelle: Yahoo Finance (Terminkontrakte, $ je Feinunze); eigene Rechnung',
+    text:
+      'Drei Kurven, drei Metalle – erkennst du sie? Erst tippen, dann wischen.\n\n' +
+      'Alle drei hatten ihr Jahreshoch im Januar 2026. Seitdem ging es abwärts:\n' +
+      'Silber: 115,08 $ → 48,65 $ (−57,7 %)\n' +
+      'Platin: 2.852,4 $ → 1.492,2 $ (−47,7 %)\n' +
+      'Gold: 5.318,4 $ → 3.887,6 $ (−26,9 %)\n' +
+      'Je Feinunze, Hoch am 26.01. (Silber, Platin) bzw. 29.01. (Gold), Schluss am 13.11.\n\n' +
+      'Seit Jahresbeginn liegen Silber und Platin rund 30 % im Minus, Gold rund 10 %.\n\n' +
+      'Warum fielen sie so stark?\n' +
+      'Die Kurse zeigen nur, dass es so war, nicht warum. Einen Grund nennen wir nicht, ohne ihn in einer Quelle gelesen zu haben.\n\n' +
+      'Und jetzt?\n' +
+      'Ein Absturz vom Hoch sagt nichts darüber, wie es weitergeht.\n\n' +
+      'Wie viele hattest du richtig? Schreib es in die Kommentare.\n\n' +
+      'Quellen: Yahoo Finance (Terminkontrakte), Stand 13.11.2026; eigene Rechnung\n' +
+      'Fotos (Wikimedia Commons): Chi Ho Chan, CC BY 2.0, freigestellt (Silber); Alchemist-hp, Free Art License (Platin); Szaaman, gemeinfrei (Gold)',
+    schlagworte: ['börsenrätsel', 'silber', 'gold', 'platin', 'rohstoffe'],
+  },
+  {
+    /*
       Zahlenkarte 13.11.2026, „Rheinmetall je Jahr“. Der Betreiber hat für
       heute kein Thema gewählt. Nach dem Ablauf gilt der erste offene
       Vorschlag vom 12.11.: die Rheinmetall-Achterbahn. Er ist nicht in den

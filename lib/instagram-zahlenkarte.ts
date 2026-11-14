@@ -531,6 +531,12 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
  */
 export interface Raetselkarte extends KarteGemeinsam {
   art: 'raetsel'
+  /**
+   * Die Zeile unter der großen Zahl der Rätselkachel – ohne Angabe „Kurs in
+   * fünf Jahren“ (die erste Rätselkarte, 09.11.2026). Am 14.11. lief die
+   * Kurve ab Jahresbeginn, und die feste Zeile hätte etwas Falsches gesagt.
+   */
+  zeitraum?: string
   fragen: {
     /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
     frage?: string
@@ -544,6 +550,12 @@ export interface Raetselkarte extends KarteGemeinsam {
     name: string
     /** Datei in `lib/instagram/logos/`. */
     logo: string
+    /**
+     * true: `logo` ist ein Foto und füllt die Fläche der Auflösung (600 hoch,
+     * randlos), statt klein im Rahmen zu stehen (14.11.2026, Betreiber zum
+     * Silberbarren: „viel zu klein das bild“).
+     */
+    foto?: boolean
     /** Die Erläuterung auf der Auflösung – zwei, drei kurze Sätze. */
     satz: string
   }[]
@@ -5263,9 +5275,10 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
             top: 196,
             left: STIL_RAND,
             width: ZK_BREITE - 2 * STIL_RAND,
-            height: 420,
+            height: q.foto ? 600 : 420,
             borderRadius: 24,
-            border: `2px solid ${STIL.rand}`,
+            border: q.foto ? 'none' : `2px solid ${STIL.rand}`,
+            overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -5273,13 +5286,13 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
         },
         h('img', {
           src: logoAdresse(q.logo),
-          width: 640,
-          height: 280,
-          style: { objectFit: 'contain' },
+          width: q.foto ? ZK_BREITE - 2 * STIL_RAND : 640,
+          height: q.foto ? 600 : 280,
+          style: { objectFit: q.foto ? 'cover' : 'contain' },
         })
       ),
       stilBlock(q.name, {
-        top: 680,
+        top: q.foto ? 840 : 680,
         left: STIL_RAND,
         right: STIL_RAND,
         fontSize: 72,
@@ -5288,7 +5301,7 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
         color: STIL.tinte,
       }),
       stilBlock(q.satz, {
-        top: 790,
+        top: q.foto ? 946 : 790,
         left: STIL_RAND,
         width: ZK_BREITE - 2 * STIL_RAND,
         fontSize: 38,
@@ -5349,7 +5362,7 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
       letterSpacing: -4,
       color: farbe,
     }),
-    stilBlock('Kurs in fünf Jahren', {
+    stilBlock(k.zeitraum ?? 'Kurs in fünf Jahren', {
       top: 652,
       left: STIL_RAND,
       fontSize: 26,
