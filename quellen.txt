@@ -1,0 +1,20 @@
+
+==============================================================================
+QUELLE: https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=Rheinmetall%20logo%20filetype:svg&srnamespace=6&format=json
+==============================================================================
+STATUS: 200
+TYP:    application/json; charset=utf-8
+DATUM:  Sat, 14 Nov 2026 01:33:00 GMT
+STAND:  —
+------------------------------------------------------------------------------
+{"batchcomplete":"","query":{"searchinfo":{"totalhits":7},"search":[{"ns":6,"title":"File:Rheinmetall Logo 2021.svg","pageid":116437987,"size":333,"wordcount":1,"snippet":"Description Rheinmetall Logo 2021.svg Deutsch: Aktuelles Logo der Rheinmetall AG. Date 2021 Source https:// rheinmetall .com Author Rheinmetall AG SVG\u00a0development","timestamp":"2025-11-14T09:55:34Z"},{"ns":6,"title":"File:Rheinmetall logo 2016.svg","pageid":52614814,"size":468,"wordcount":5,"snippet":"English used by: Rheinmetall AG","timestamp":"2025-06-24T15:31:58Z"},{"ns":6,"title":"File:Rheinmetall AG Logo.svg","pageid":34764313,"size":1328,"wordcount":72,"snippet":"marken-/namensrechtlicher Schutz. |Andere Versionen= |Anmerkungen=Bei rechtlichen Unklarheiten English used by: Rheinmetall AG determination method or standard: SHA-1","timestamp":"2026-05-03T08:26:17Z"},{"ns":6,"title":"File:Rheinmetall Automotive Logo.svg","pageid":53746197,"size":639,"wordcount":11,"snippet":"English used by: Rheinmetall Automotive determination method or standard: SHA-1","timestamp":"2026-07-12T16:50:45Z"},{"ns":6,"title":"File:KSPG logo.svg","pageid":34756356,"size":1638,"wordcount":108,"snippet":"http://presse-center.kspg.de/uploads/pics/KSPG_ Logo _new.png 2012-11-24 18:31:41 Marsupilami (11865 Bytes) {{Information |Beschreibung = Logo von [[KSPG]] |Quelle = * Vektordaten:","timestamp":"2025-11-14T08:26:53Z"},{"ns":6,"title":"File:Maschinenbau Kiel (logo).svg","pageid":135743712,"size":1014,"wordcount":19,"snippet":"Maschinenbau Kiel \u00a0 Native name Maschinenbau Kiel GmbH\u00a0 Parent institution Rheinmetall AG\u00a0 Location Kiel\u00a0, Germany Established 1948\u00a0 Authority file : Q534384","timestamp":"2025-11-15T22:47:15Z"},{"ns":6,"title":"File:Rheinmetall.svg","pageid":29958812,"size":1077,"wordcount":61,"snippet":"| block) | {{ logo fur |Article= Rheinmetall |Use=Infobox |Source=[http://www. rheinmetall .de/pdfdoc/gb_2009/RhAG_GB_2009_e.pdf Rheinmetall Annual Report","timestamp":"2025-02-06T02:12:47Z"}]}}
+
+==============================================================================
+QUELLE: https://commons.wikimedia.org/w/api.php?action=query&titles=File:Rheinmetall%20Logo%202010.svg|File:Rheinmetall_Logo.svg|File:Rheinmetall%20logo.svg&prop=imageinfo&iiprop=url|extmetadata&format=json
+==============================================================================
+STATUS: 200
+TYP:    application/json; charset=utf-8
+DATUM:  Sat, 14 Nov 2026 01:33:00 GMT
+STAND:  —
+------------------------------------------------------------------------------
+{"batchcomplete":"","query":{"normalized":[{"from":"File:Rheinmetall_Logo.svg","to":"File:Rheinmetall Logo.svg"}],"pages":{"-1":{"ns":6,"title":"File:Rheinmetall Logo 2010.svg","missing":"","imagerepository":""},"-2":{"ns":6,"title":"File:Rheinmetall Logo.svg","missing":"","imagerepository":""},"-3":{"ns":6,"title":"File:Rheinmetall logo.svg","missing":"","imagerepository":""}}}}
