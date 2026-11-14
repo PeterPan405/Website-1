@@ -75,6 +75,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         ],
         name: 'Silber',
         logo: 'silberbarren.png',
+        foto: true,
         satz: 'Silber stieg bis zum 26. Januar auf 115,08 $ je Unze. Am 13. November waren es 48,65 $ – minus 57,7 %.',
       },
       {
@@ -103,6 +104,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         ],
         name: 'Platin',
         logo: 'platin-nugget.png',
+        foto: true,
         satz: 'Platin kostete am 26. Januar 2.852,4 $ je Unze, am 13. November 1.492,2 $. Das sind 47,7 % weniger.',
       },
       {
@@ -130,6 +132,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         ],
         name: 'Gold',
         logo: 'goldbarren.png',
+        foto: true,
         satz: 'Gold erreichte am 29. Januar 5.318,4 $ je Unze. Seitdem ging es um 26,9 % auf 3.887,6 $ zurück – am wenigsten von den dreien.',
       },
     ],
