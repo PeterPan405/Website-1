@@ -29,6 +29,113 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 13.11.2026, „Rheinmetall je Jahr“. Der Betreiber hat für
+      heute kein Thema gewählt. Nach dem Ablauf gilt der erste offene
+      Vorschlag vom 12.11.: die Rheinmetall-Achterbahn. Er ist nicht in den
+      News vom 13.11. Die Kurve war schon am 12.11. dran (DAX), daher heute
+      Säulen: Kursentwicklung je Kalenderjahr.
+      Den Säulen-Entwurf fand der Betreiber „vibe-gecodet, billig,
+      KI-haft“ – deshalb doch die ruhige Kurslinie wie am 12.11. (die er
+      abgenommen hatte), gegen die Regel „Form nicht wie am Vortag“.
+      Linie: jeder fünfte Handelstag, dazu Jahresschlüsse, Hoch und 13.11.
+      Am 14.11. um 02:30: „mit Unternehmenslogo … dann lad den Scheiß einfach
+      hoch“ – Logo statt erster Titelzeile, Linie in der Hausfarbe (#0080C5,
+      aus dem Logo), und die Karte auf den 14.11. gesetzt und freigegeben:
+      Der Ablauf schickt nur die Karte des Tages, der 13.11. war vorbei.
+      Logo: Wikimedia Commons, File:Rheinmetall Logo 2021.svg, gemeinfrei
+      (Rheinmetall AG), geholt über bilder-holen.yml.
+      Die Karte entstand erst abends; das Wochenlimit hatte die Arbeit am
+      Mittag gestoppt.
+
+      Kurse: Yahoo Finance, RHM.DE (Xetra), Tagesschlusskurse 01.12.2021
+      bis 13.11.2026, abgerufen am 13.11.2026 um 20:45 UTC über
+      quellen-holen.yml. Schluss je Jahr (letzter Handelstag):
+        30.12.2021  83,06 €
+        30.12.2022 186,05 € → 2022 +124,0 %
+        29.12.2023 287,00 € → 2023  +54,3 %
+        30.12.2024 614,60 € → 2024 +114,1 %
+        30.12.2025 1.561,00 € → 2025 +154,0 %
+        13.11.2026 765,50 € → 2026 −51,0 % (bis 13.11.)
+      Höchster Schlusskurs 1.988,50 € am 29.09.2025; 765,50 € sind −61,5 %
+      davon. 12.11.2021 laut Kursbestand 88,02 €: 765,50 € sind das 8,7-Fache.
+      Wochenkerzen taugen nicht für Jahresschlüsse: Yahoo beginnt die Woche
+      am Sonntag, die letzte Dezemberwoche reicht dann in den Januar.
+
+      Warum: WirtschaftsWoche, „Rheinmetall-Aktie: Warum der Rüstungsboom an
+      der Börse kippt“ (06.11.2026) – lesbar nur Anreißer und Bildunterschrift
+      (Bezahlschranke): Prognosesenkung, ein großer Auftrag für den Radpanzer
+      Boxer verzögert sich, „an der Börse zählen längst nicht mehr nur volle
+      Auftragsbücher“. Mehr steht dort für uns nicht; einen Grund für den
+      ganzen Rückgang seit September 2025 nennt die Karte deshalb nicht.
+    */
+    art: 'chart',
+    datum: '2026-11-14',
+    titel: [{ text: 'Rheinmetall:' }, { text: 'Vom Höhenflug zurück.', gruen: true }],
+    unterzeile: 'Schlusskurs der Aktie an der Xetra seit Ende 2021, in Euro.',
+    punkte: [
+      83.06, 87.28, 92, 93.44, 93.04, 90.52, 96.94, 96.44, 107.05, 148.7, 155.15, 169.5,
+      202, 192.85, 194.25, 215, 215.2, 222.4, 181.9, 190.65, 192.4, 188.3, 212.1, 206.7,
+      224, 222.2, 188.25, 190.95, 192.6, 178, 193.35, 164.9, 176.25, 164.9, 160.5, 156.4,
+      152.45, 150.4, 159.5, 154.3, 147.7, 152.95, 165.25, 165.5, 157.25, 180.1, 199.35,
+      193.45, 194.6, 196.8, 180.6, 193.25, 186.05, 199, 208.2, 220.9, 220.9, 219.4, 225.6,
+      240.7, 246.7, 246.2, 258, 244.7, 255.9, 272.4, 258.2, 267.2, 270.7, 265.5, 265,
+      267.1, 263.2, 247.6, 236.4, 249.1, 260.1, 245.2, 251.9, 249.3, 253.4, 255.1, 257.4,
+      270.1, 264.8, 249, 248.8, 247.6, 251.8, 265, 248.8, 239.5, 250.5, 269.6, 258.9,
+      270.1, 272.4, 282.5, 278.8, 274, 283.4, 283.9, 283.3, 286.9, 287, 305.1, 308.2,
+      334.2, 327.8, 328.5, 332.1, 377.2, 401.7, 424, 436.5, 443.6, 491.8, 521, 560.6,
+      551.8, 509.8, 525, 528.8, 521.6, 527, 523.6, 517, 517.4, 490.8, 495, 481.8, 500.8,
+      513.4, 493.8, 498.5, 489.8, 547.6, 534.6, 535.6, 520, 511, 483.2, 486.7, 511, 502.4,
+      483, 494.1, 488.7, 480.3, 574, 604.8, 617.8, 634.8, 605.4, 612.8, 617.8, 614.6, 617,
+      655, 705.4, 732.2, 758.2, 731.4, 928.8, 952.8, 1122, 1154, 1445.5, 1319.5, 1354,
+      1315.5, 1494, 1382.5, 1576, 1694, 1723, 1783.5, 1885, 1788, 1795.5, 1757.5, 1751,
+      1755, 1840, 1835.5, 1734, 1707.5, 1620.5, 1621, 1622.5, 1689.5, 1744.5, 1896.5,
+      1928, 1960.5, 1988.5, 1962.5, 1882, 1661.5, 1764, 1701.5, 1749, 1727, 1519.5,
+      1480.5, 1529.5, 1616, 1559.5, 1561, 1602, 1900, 1902, 1830, 1781.5, 1604.5, 1609,
+      1740, 1663.5, 1592.5, 1592.5, 1503, 1379.5, 1531, 1486.6, 1431, 1343.2, 1441.6,
+      1121.6, 1233.6, 1232.8, 1200.4, 1197.2, 1170.2, 949, 1050.6, 1058.8, 976.1, 1007.8,
+      1153.4, 1200.6, 1168.2, 1178.8, 1138.8, 1090.4, 1012.4, 1013, 1025, 956.4, 926.2,
+      983.3, 1020, 1012, 1003.4, 794.1, 765.5,
+    ],
+    einheit: '€',
+    achse: [
+      { bei: 26, text: '2022', zusatz: '+124 %', richtung: 'steigt' },
+      { bei: 78, text: '2023', zusatz: '+54 %', richtung: 'steigt' },
+      { bei: 130, text: '2024', zusatz: '+114 %', richtung: 'steigt' },
+      { bei: 182, text: '2025', zusatz: '+154 %', richtung: 'steigt' },
+      { bei: 231, text: '2026', zusatz: '−51 %', richtung: 'faellt' },
+    ],
+    marken: [
+      { bei: 0, zahl: '83 €', anlass: 'Ende 2021', lage: 'rechts' },
+      { bei: 195, zahl: '1.988,50 €', anlass: 'Hoch, 29.09.2025' },
+    ],
+    ende: { zahl: '765,50 €', anlass: '−61,5 % vom Hoch' },
+    richtung: 'faellt',
+    logo: 'rheinmetall.png',
+    farbe: '#0080C5',
+    fusszeile:
+      'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse RHM.DE, Xetra); eigene Rechnung',
+    text:
+      'Vier Jahre ging es fast nur nach oben, jetzt geht es steil bergab: Die Rheinmetall-Aktie hat 2026 bisher 51 % verloren.\n\n' +
+      'Am Freitag, dem 13. November, schloss sie bei 765,50 €. Ihr Hoch lag am 29. September 2025 bei 1.988,50 € – seitdem sind es −61,5 %.\n\n' +
+      'Jahr für Jahr (Schlusskurse an der Xetra, die Punkte im Bild):\n' +
+      '2022: +124 %\n' +
+      '2023: +54 %\n' +
+      '2024: +114 %\n' +
+      '2025: +154 %\n' +
+      '2026: −51 % (bis 13. November)\n\n' +
+      'Zum Vergleich: Im November 2021 kostete die Aktie 88,02 €. Auch nach dem Absturz ist sie heute noch das 8,7-Fache wert.\n\n' +
+      'Warum?\n' +
+      'Laut WirtschaftsWoche hat Rheinmetall Anfang November seine Prognose gesenkt, und ein großer Auftrag für den Radpanzer Boxer verzögert sich. An der Börse zählten längst nicht mehr nur volle Auftragsbücher, schreibt das Blatt. Einen Grund für den ganzen Rückgang seit September 2025 nennt die Quelle nicht.\n\n' +
+      'Und jetzt?\n' +
+      'Wie es weitergeht, sagen diese Zahlen nicht. Sie zeigen nur, wie schnell sich ein Börsenliebling drehen kann.\n\n' +
+      'Gerechnet: Schlusskurs am letzten Handelstag des Jahres gegen den des Vorjahres.\n' +
+      'Quellen: Yahoo Finance (RHM.DE), Stand 13.11.2026; WirtschaftsWoche, 6.11.2026; eigene Rechnung\n' +
+      'Logo: Rheinmetall AG, gemeinfrei, über Wikimedia Commons',
+    schlagworte: ['rheinmetall', 'rüstung', 'aktien', 'börse', 'dax'],
+    freigabe: '2026-11-14',
+  },
+  {
+    /*
       Zahlenkarte 12.11.2026, „DAX-Rekordtage 2026“. Der Betreiber hat für
       heute kein Thema gewählt; nach dem Ablauf gilt der erste offene Vorschlag
       vom 11.11. Der erste Entwurf (Säulen je Jahr 2015–2026) kam zurück:

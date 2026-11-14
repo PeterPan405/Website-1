@@ -1045,6 +1045,79 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 14.11.2026 (gebaut am 13.11.): Rheinmetall seit Ende 2021 – Chartkarte, Zahlen an den Punkten (Yahoo Finance, RHM.DE). */
+{
+  const karte = karteVom('2026-11-14')
+  pruefe('Rheinmetall: Karte für den 14.11. ist ein Chart', karte?.art === 'chart')
+  if (karte?.art === 'chart') {
+    pruefe(
+      'Rheinmetall: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    const p = karte.punkte
+    const m = karte.marken.map((x) => p[x.bei])
+    pruefe(
+      'Rheinmetall: Punkte = Schluss Ende 2021 und Hoch',
+      m.join() === [83.06, 1988.5].join(),
+      m.join()
+    )
+    /* Die Jahresschlüsse liegen an den Grenzen der Abschnitte – daraus die Prozente an der Achse. */
+    const grenzen = [0, 52, 104, 156, 208, p.length - 1].map((i) => p[i])
+    pruefe(
+      'Rheinmetall: Jahresschlüsse in der Linie',
+      grenzen.join() === [83.06, 186.05, 287, 614.6, 1561, 765.5].join(),
+      grenzen.join()
+    )
+    const prozente = grenzen
+      .slice(1)
+      .map((s, i) => Math.round((s / grenzen[i] - 1) * 100))
+      .map((v) => `${v > 0 ? '+' : '−'}${Math.abs(v)} %`)
+    pruefe(
+      'Rheinmetall: Jahresprozente an der Achse aus der Linie gerechnet',
+      karte.achse.map((x) => x.zusatz).join() === prozente.join(),
+      prozente.join()
+    )
+    pruefe(
+      'Rheinmetall: Hoch 1.988,50 € ist das Maximum der Linie',
+      Math.max(...p) === 1988.5
+    )
+    pruefe(
+      'Rheinmetall: letzter Punkt 765,50 €',
+      p.at(-1) === 765.5 &&
+        karte.ende.zahl === '765,50 €' &&
+        karte.ende.anlass === '−61,5 % vom Hoch'
+    )
+    pruefe(
+      'Rheinmetall: freigegeben für den 14.11., mit gemeinfreiem Logo',
+      karte.freigabe === '2026-11-14' &&
+        karte.logo === 'rheinmetall.png' &&
+        karte.text.includes('Logo: Rheinmetall AG, gemeinfrei')
+    )
+    pruefe(
+      'Rheinmetall: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-12')!)
+    )
+    const schluss = [83.06, 186.05, 287.0, 614.6, 1561.0, 765.5]
+    const jahre = schluss.slice(1).map((s, i) => Math.round((s / schluss[i] - 1) * 100))
+    for (const [i, j] of ['2022', '2023', '2024', '2025', '2026'].entries())
+      pruefe(
+        `Rheinmetall: ${j} mit ${jahre[i]} % im Text`,
+        karte.text.includes(`${j}: ${jahre[i] > 0 ? '+' : '−'}${Math.abs(jahre[i])} %`)
+      )
+    pruefe(
+      'Rheinmetall: −61,5 % vom Hoch',
+      Math.round((765.5 / 1988.5 - 1) * 1000) / 10 === -61.5
+    )
+    pruefe(
+      'Rheinmetall: 8,7-Fache seit 88,02 €',
+      Math.round((765.5 / 88.02) * 10) / 10 === 8.7 && karte.text.includes('8,7-Fache')
+    )
+    const png = await zahlenkartePng(karte, readFileSync('public/logo.svg', 'utf8'))
+    pruefe('Rheinmetall: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+  }
+}
+
 /* 12.11.2026: DAX-Rekordtage 2026 – Kurve mit einem Punkt je Rekordschluss (Yahoo Finance, ^GDAXI). */
 {
   const karte = karteVom('2026-11-12')

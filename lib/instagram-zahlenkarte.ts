@@ -590,7 +590,47 @@ export interface Entwederkarte extends KarteGemeinsam {
   }[]
 }
 
+/**
+ * Chart (13.11.2026): der Kursverlauf füllt die Karte, die Zahlen stehen als
+ * Beschriftung an den Punkten – kein Raster mit Heldenzahl und Pille.
+ */
+export interface Chartkarte extends KarteGemeinsam {
+  art: 'chart'
+  /** Eine Zeile unter dem Titel: was die Linie zeigt. */
+  unterzeile: string
+  punkte: readonly number[]
+  /** Unteres Ende der y-Achse – ohne Angabe null. */
+  unten?: number
+  einheit: string
+  /**
+   * Unter der Linie: je Abschnitt (etwa ein Jahr) der Name, darunter fett
+   * seine Zahl – mitten unter dem Abschnitt, nicht an einem Punkt der Linie,
+   * wo sie die Kurve kreuzen würde.
+   */
+  achse: { bei: number; text: string; zusatz?: string; richtung?: 'steigt' | 'faellt' }[]
+  /** Beschriftete Punkte: die Zahl groß, der Anlass klein darunter. */
+  marken: {
+    bei: number
+    zahl: string
+    anlass: string
+    lage?: 'oben' | 'unten' | 'links' | 'rechts'
+  }[]
+  /** Der letzte Punkt, links daneben beschriftet. */
+  ende: { zahl: string; anlass: string }
+  /** Farbe des letzten Punktes. */
+  richtung?: 'steigt' | 'faellt'
+  /**
+   * Firmenlogo in `lib/instagram/logos/` (nur gemeinfrei): steht statt der
+   * ersten Titelzeile – das Logo trägt den Namen (14.11.2026, Betreiber:
+   * „mit Unternehmenslogo … so sieht es einfach nur langweilig aus“).
+   */
+  logo?: string
+  /** Farbe der Linie, etwa die Hausfarbe der Firma; ohne Angabe Tinte. */
+  farbe?: string
+}
+
 export type Zahlenkarte =
+  | Chartkarte
   | Entwederkarte
   | Mythoskarte
   | Raetselkarte
@@ -991,6 +1031,7 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
   else if (k.art === 'mythos') f.push(...pruefeMythos(k))
   else if (k.art === 'entweder') f.push(...pruefeEntweder(k))
+  else if (k.art === 'chart') f.push(...pruefeChart(k))
   else if (k.art === 'rangliste') f.push(...pruefeRangliste(k))
   else if (k.art === 'torte') {
     if (k.stuecke.length < 2 || k.stuecke.length > 5)
@@ -1363,6 +1404,14 @@ export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<B
   )
     return zahlenkarteSeitePng(k, logoSvg, 1)
   const logo = svgAdresse(signetOhneMitte(logoSvg))
+  if (k.art === 'chart') {
+    const antwort = new ImageResponse(chartBild(k, logo), {
+      width: ZK_BREITE,
+      height: ZK_HOEHE,
+      fonts: schriften(),
+    })
+    return Buffer.from(await antwort.arrayBuffer())
+  }
   if (
     k.art === 'kurven' ||
     k.art === 'saeulen' ||
@@ -2575,6 +2624,12 @@ const LOGO_LISTE_UNTEN = 1235
 const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
 
 /** Ein Logo als Adresse für `img` – PNG aus `LOGO_ORDNER`. */
+/** Breite durch Höhe eines PNG-Logos – aus dem Kopf der Datei (IHDR), ohne Bildbibliothek. */
+function logoVerhaeltnis(datei: string): number {
+  const b = readFileSync(join(LOGO_ORDNER, datei))
+  return b.readUInt32BE(16) / b.readUInt32BE(20)
+}
+
 function logoAdresse(datei: string): string {
   return `data:image/png;base64,${readFileSync(join(LOGO_ORDNER, datei)).toString('base64')}`
 }
@@ -2695,11 +2750,13 @@ export function form(
   | 'zahlenstrahl'
   | 'raetsel'
   | 'mythos'
-  | 'entweder' {
+  | 'entweder'
+  | 'chart' {
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'raetsel') return 'raetsel'
   if (k.art === 'mythos') return 'mythos'
   if (k.art === 'entweder') return 'entweder'
+  if (k.art === 'chart') return 'chart'
   if (k.art === 'personen') return 'personen'
   if (k.art === 'kammern') return 'kammern'
   if (k.art === 'balken') return 'hausbalken'
@@ -3345,6 +3402,9 @@ type Anlass = keyof typeof SYMBOLE
 const STIL_RAND = 60
 const STIL_GRAFIK_O = 736
 const STIL_GRAFIK_U = 1200
+/** Die Chartkarte: Fläche der Linie. */
+const CHART_OBEN = 470
+const CHART_UNTEN = 1170
 
 function stilBlock(inhalt: string, stil: Record<string, string | number>) {
   return h(
@@ -5918,4 +5978,274 @@ function entwederKachel(k: Entwederkarte, logo: string, nr: number) {
     ...weiter,
     fuss
   )
+}
+
+/* ------------------------------------------------------------------ Chart */
+
+/**
+ * Chart (13.11.2026, Rheinmetall): der Kursverlauf als ganze Karte. Kein
+ * Raster mit Heldenzahl und Pille darüber – der Betreiber zu zwei Entwürfen
+ * im alten Raster: „Weit gecodet, billig, KI-haft“ und „Immer diese große
+ * Zahl ganz oben. Immer das Gleiche.“ Die Zahlen stehen hier am Ort, an dem
+ * sie passiert sind: als kleine Beschriftung an den Punkten der Linie.
+ */
+function chartGrafik(k: Chartkarte) {
+  const links = STIL_RAND
+  const rechts = ZK_BREITE - STIL_RAND
+  const oben0 = CHART_OBEN
+  const unten0 = CHART_UNTEN
+  const breite = rechts - links
+  const hoehe = unten0 - oben0
+  const p = k.punkte
+  const unten = k.unten ?? 0
+  const schritt = achsenschritt(Math.max(...p) - unten, 4)
+  const oben = unten + Math.ceil((Math.max(...p) - unten) / schritt) * schritt
+  const x = (i: number) => (i / (p.length - 1)) * breite
+  const y = (v: number) => hoehe - ((v - unten) / (oben - unten)) * hoehe
+  const luft = 14
+  const linie = p
+    .map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`)
+    .join(' ')
+  const flaeche = `${linie} L${x(p.length - 1).toFixed(1)} ${hoehe} L0 ${hoehe} Z`
+  const striche = Array.from(
+    { length: Math.round((oben - unten) / schritt) + 1 },
+    (_, i) => unten + i * schritt
+  )
+  const ende = p.length - 1
+  const endFarbe = stilFarbe(k.richtung)
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${breite + 2 * luft}" height="${hoehe + 2 * luft}" viewBox="${-luft} ${-luft} ${breite + 2 * luft} ${hoehe + 2 * luft}">` +
+    striche
+      .map(
+        (v) =>
+          `<line x1="0" x2="${breite}" y1="${y(v)}" y2="${y(v)}" stroke="${v === unten ? '#c9cfd8' : '#eceff3'}" stroke-width="${v === unten ? 2 : 1.5}"/>`
+      )
+      .join('') +
+    `<path d="${flaeche}" fill="${k.farbe ?? STIL.tinte}" fill-opacity="${k.farbe ? 0.08 : 0.05}"/>` +
+    `<path d="${linie}" fill="none" stroke="${k.farbe ?? STIL.tinte}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>` +
+    k.marken
+      .map(
+        (m) =>
+          `<circle cx="${x(m.bei).toFixed(1)}" cy="${y(p[m.bei]).toFixed(1)}" r="7" fill="#ffffff" stroke="${STIL.tinte}" stroke-width="3.5"/>`
+      )
+      .join('') +
+    `<circle cx="${x(ende).toFixed(1)}" cy="${y(p[ende]).toFixed(1)}" r="10" fill="${endFarbe}"/>` +
+    '</svg>'
+
+  /* Beschriftung an einem Punkt: oben die Zahl, darunter klein der Anlass. */
+  const schild = (
+    bei: number,
+    gross: string,
+    klein: string,
+    lage: 'oben' | 'unten' | 'links' | 'rechts',
+    farbe: string
+  ) => {
+    const px = links + x(bei)
+    const py = oben0 + y(p[bei])
+    const breiteSchild = 300
+    const pos =
+      lage === 'links'
+        ? { top: py - 30, left: px - breiteSchild - 22, alignItems: 'flex-end' }
+        : lage === 'rechts'
+          ? { top: py - 122, left: px - 10, alignItems: 'flex-start' }
+          : lage === 'oben'
+            ? { top: py - 88, left: px - breiteSchild / 2, alignItems: 'center' }
+            : { top: py + 18, left: px - breiteSchild / 2, alignItems: 'center' }
+    return h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          width: breiteSchild,
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Montserrat',
+          ...pos,
+        },
+      },
+      h(
+        'div',
+        { style: { fontSize: 28, fontWeight: 800, color: farbe, letterSpacing: -0.5 } },
+        gross
+      ),
+      /* Am letzten Punkt trägt die zweite Zeile die Pointe („−61,5 % vom Hoch“) – in seiner Farbe. */
+      h(
+        'div',
+        {
+          style:
+            lage === 'links'
+              ? { fontSize: 23, fontWeight: 700, color: farbe, marginTop: 2 }
+              : { fontSize: 19, color: STIL.grau, marginTop: 2 },
+        },
+        klein
+      )
+    )
+  }
+
+  return [
+    h('img', {
+      src: svgAdresse(svg),
+      width: breite + 2 * luft,
+      height: hoehe + 2 * luft,
+      style: { position: 'absolute', left: links - luft, top: oben0 - luft },
+    }),
+    ...striche
+      .filter((v) => v !== unten)
+      .map((v) =>
+        stilBlock(`${v.toLocaleString('de-DE')} ${k.einheit}`, {
+          top: oben0 + y(v) - 26,
+          left: links,
+          fontSize: 17,
+          color: STIL.hellgrau,
+        })
+      ),
+    ...k.achse.map((a) =>
+      h(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            top: unten0 + 14,
+            left: links + x(a.bei) - 70,
+            width: 140,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            fontFamily: 'Montserrat',
+          },
+        },
+        h('div', { style: { fontSize: 19, color: STIL.hellgrau } }, a.text),
+        ...(a.zusatz
+          ? [
+              h(
+                'div',
+                {
+                  style: {
+                    fontSize: 26,
+                    fontWeight: 800,
+                    marginTop: 2,
+                    color: stilFarbe(a.richtung),
+                  },
+                },
+                a.zusatz
+              ),
+            ]
+          : [])
+      )
+    ),
+    ...k.marken.map((m) => schild(m.bei, m.zahl, m.anlass, m.lage ?? 'oben', STIL.tinte)),
+    schild(ende, k.ende.zahl, k.ende.anlass, 'links', endFarbe),
+  ]
+}
+
+function chartBild(k: Chartkarte, logo: string) {
+  return h(
+    'div',
+    {
+      style: {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        display: 'flex',
+        position: 'relative',
+        backgroundColor: '#ffffff',
+      },
+    },
+    /* Absender klein links oben – nicht mittig über allem wie im Raster. */
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 52,
+          left: STIL_RAND,
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
+      h('img', { src: logo, width: 34, height: 34 }),
+      h(
+        'div',
+        {
+          style: {
+            fontFamily: 'Montserrat',
+            fontWeight: 700,
+            fontSize: 21,
+            color: STIL.tinte,
+            marginLeft: 10,
+          },
+        },
+        'IM Invests'
+      )
+    ),
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: 130,
+          left: STIL_RAND,
+          right: STIL_RAND,
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Montserrat',
+          fontWeight: 800,
+          fontSize: 78,
+          lineHeight: 1.06,
+          letterSpacing: -2,
+        },
+      },
+      ...k.titel.map((t, i) =>
+        i === 0 && k.logo
+          ? h('img', {
+              src: logoAdresse(k.logo),
+              height: 80,
+              width: Math.round(80 * logoVerhaeltnis(k.logo)),
+              style: { marginBottom: 18 },
+            })
+          : h(
+              'div',
+              { style: { display: 'flex', color: t.gruen ? STIL.navy : STIL.tinte } },
+              t.text
+            )
+      )
+    ),
+    stilBlock(k.unterzeile, {
+      top: k.logo ? 326 : 318,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 26,
+      lineHeight: 1.4,
+      color: STIL.grau,
+    }),
+    ...chartGrafik(k),
+    stilBlock(k.fusszeile, {
+      top: ZK_HOEHE - 58,
+      left: STIL_RAND,
+      right: STIL_RAND,
+      fontSize: 16,
+      color: STIL.hellgrau,
+    })
+  )
+}
+
+function pruefeChart(k: Chartkarte): string[] {
+  const f: string[] = []
+  if (k.logo !== undefined && !existsSync(join(LOGO_ORDNER, k.logo)))
+    f.push(`Logo „${k.logo}" fehlt in lib/instagram/logos/.`)
+  if (k.titel.length > 2 || k.titel.some((t) => t.text.length > 22))
+    f.push('Der Titel hat höchstens zwei Stücke zu je 22 Zeichen – eine Zeile je Stück.')
+  if (k.unterzeile.length > 110)
+    f.push(`Unterzeile hat ${k.unterzeile.length} Zeichen – höchstens 110.`)
+  if (k.punkte.length < 20) f.push(`${k.punkte.length} Punkte – mindestens 20.`)
+  if (k.marken.length > 7)
+    f.push(`${k.marken.length} beschriftete Punkte – höchstens sieben.`)
+  for (const m of k.marken)
+    if (!Number.isInteger(m.bei) || m.bei < 0 || m.bei >= k.punkte.length)
+      f.push(`Marke „${m.zahl}" an Stelle ${m.bei} liegt außerhalb der Linie.`)
+  for (const a of k.achse)
+    if (a.bei < 0 || a.bei >= k.punkte.length)
+      f.push(`Achse „${a.text}" liegt außerhalb der Linie.`)
+  if (k.unten !== undefined && k.punkte.some((v) => v < k.unten!))
+    f.push(`Ein Wert liegt unter dem unteren Achsenende ${k.unten}.`)
+  return f
 }
