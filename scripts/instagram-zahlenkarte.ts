@@ -60,9 +60,26 @@ if (minute < abMinute)
 
 // Riegel 0b – die Zahlenkarte folgt immer auf die Daily News (Betreiber, 14.11.2026).
 // `ZK_GEPOSTET` ist `gepostet.txt` von `instagram-gepostet`, gelesen im Workflow.
-if (!newsHeuteGepostet(process.env.ZK_GEPOSTET ?? '', HEUTE))
+//
+// Ausnahme nur von Hand (`folgt_auf`): Die Karte von gestern, freigegeben nach
+// Mitternacht, schließt die Daily News von GESTERN ab und geht vor denen von
+// heute hinaus (Betreiber, 14.11.2026: „Rheinmetall ist ja für gestern“).
+// Dann zählt gestern – und die News von heute dürfen noch NICHT draußen sein.
+const FOLGT_AUF = (process.env.ZK_FOLGT_AUF ?? '').trim()
+if (FOLGT_AUF && !/^\d{4}-\d{2}-\d{2}$/.test(FOLGT_AUF))
+  halt(`folgt_auf „${FOLGT_AUF}“ ist kein JJJJ-MM-TT.`)
+const newsTag = FOLGT_AUF || HEUTE
+if (!newsHeuteGepostet(process.env.ZK_GEPOSTET ?? '', newsTag))
   halt(
-    `Die Daily News vom ${HEUTE} stehen noch nicht im Kanal – die Zahlenkarte folgt auf sie, nie davor.`
+    `Die Daily News vom ${newsTag} stehen noch nicht im Kanal – die Zahlenkarte folgt auf sie, nie davor.`
+  )
+if (
+  FOLGT_AUF &&
+  FOLGT_AUF !== HEUTE &&
+  newsHeuteGepostet(process.env.ZK_GEPOSTET ?? '', HEUTE)
+)
+  halt(
+    `Die Daily News von heute (${HEUTE}) sind schon draußen – die Karte für den ${FOLGT_AUF} käme jetzt nach ihnen.`
   )
 
 // Riegel 1

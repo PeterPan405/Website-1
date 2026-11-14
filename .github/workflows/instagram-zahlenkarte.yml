@@ -26,6 +26,12 @@ name: Instagram-Zahlenkarte
 
 on:
   workflow_dispatch:
+    inputs:
+      folgt_auf:
+        description: 'Nur von Hand: Die Karte schließt die Daily News dieses Tages ab (JJJJ-MM-TT), etwa die Karte von gestern nach Mitternacht. Leer = heute.'
+        required: false
+        default: ''
+        type: string
   schedule:
     - cron: '7 13 * * *'
     - cron: '7 14 * * *'
@@ -67,6 +73,7 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           NEXT_PUBLIC_SITE_URL: https://iminvests.de
+          ZK_FOLGT_AUF: ${{ inputs.folgt_auf }}
         run: node --experimental-strip-types scripts/instagram-zahlenkarte.ts
 
       # Dieselbe Karte auf X (Betreiber, 17.10.2026) – erst, wenn X scharf
