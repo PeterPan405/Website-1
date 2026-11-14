@@ -146,7 +146,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
 - **Kein Thema zweimal** – nicht im Beitrag, nicht in 3 Tagen
-  (`themaWiederholt()`; Frankreich 22.–26.10.). So/Mo 3–5 Kacheln.
+  (`themaWiederholt()`). So/Mo 3–5 Kacheln.
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
@@ -154,9 +154,9 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
   **Bildsprache wie Trade Republic/HKCM:** Marke, Logo, Ort erkennbar,
   bei Zins der Notenbankchef (`NOTENBANKCHEFS`, Kategorie statt Name);
   sonst erst zeigen (`halt.txt`).
-- **Zahlenkarte: Form und Farbe nie wie am Vortag** (`form()`,
-  `akzentfarbe()`); keine Rangnummern bei einer Auswahl. **Keine große
-  fette Zahl als Blickfang**, keine Pillen – „sieht nach KI aus".
+- **Zahlenkarte: Form, Farbe nie wie am Vortag** (`form()`,
+  `akzentfarbe()`); keine Rangnummern bei Auswahl; **keine große fette
+  Zahl**, keine Pillen.
 - **Meta merkt sich Bilder an der Adresse** – daher `?v=`.
 - **Agenten-Prompt ≤ 21.000 Bytes** (nicht Zeichen) – sonst „No jobs
   were run".
