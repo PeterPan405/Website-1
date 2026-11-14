@@ -11,6 +11,7 @@
 import { GET } from '@/app/instagram/zahlenkarte.txt/route'
 import { aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
 import {
+  newsHeuteGepostet,
   AB_MINUTE,
   berlinJetzt,
   leseZahlenkarteText,
@@ -54,6 +55,7 @@ const gut: Zahlenkartenlage = {
   datum: '2026-10-16',
   freigabe: '2026-10-16',
   angestossenAm: '',
+  newsGepostet: true,
 }
 pruefe(
   '15:00, freigegeben, Karte von heute → anstoßen',
@@ -73,6 +75,7 @@ for (const [was, lage] of [
     { ...gut, datum: '2026-10-15', freigabe: '2026-10-15' },
   ],
   ['heute schon angestoßen', { ...gut, angestossenAm: '2026-10-16' }],
+  ['Daily News von heute noch nicht im Kanal', { ...gut, newsGepostet: false }],
 ] as [string, Zahlenkartenlage][])
   pruefe(
     `nicht anstoßen: ${was}`,
@@ -120,6 +123,7 @@ pruefe(
     datum: '2026-11-04',
     freigabe: '2026-11-04',
     angestossenAm: '',
+    newsGepostet: true,
   }
   pruefe(
     'mit ab 10:30 stößt er um 10:31 an',
@@ -155,6 +159,18 @@ pruefe(
     leseZahlenkarteText('2026-11-05\nFreigabe: 2026-11-05\nText').seiten === 1
   )
 }
+
+/* Die Zahlenkarte folgt auf die Daily News (14.11.2026): genaue Zeile, keine Teilzeichenkette. */
+pruefe(
+  'News von heute in gepostet.txt',
+  newsHeuteGepostet('2026-11-13\n2026-11-14\n', '2026-11-14')
+)
+pruefe(
+  'nur gestern gepostet → nein',
+  !newsHeuteGepostet('2026-11-12\n2026-11-13\n', '2026-11-14')
+)
+pruefe('leer → nein', !newsHeuteGepostet('', '2026-11-14'))
+pruefe('Teilzeichenkette zählt nicht', !newsHeuteGepostet('x2026-11-14', '2026-11-14'))
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`

@@ -14,6 +14,7 @@
 import {
   berlinJetzt,
   leseZahlenkarteText,
+  newsHeuteGepostet,
   sollZahlenkarteAnstossen,
 } from '../lib/zahlenkarten-wecker.ts'
 
@@ -42,6 +43,8 @@ const e = sollZahlenkarteAnstossen({
   freigabe,
   abMinute,
   angestossenAm: (process.env.ZK_ANGESTOSSEN_AM ?? '').trim(),
+  /* Der Dauerlauf liest `gepostet.txt` und reicht ihn hier herein; fehlt er, geht nichts hinaus. */
+  newsGepostet: newsHeuteGepostet(process.env.ZK_GEPOSTET ?? '', tag),
 })
 console.log(`ANSTOSS=${e.anstossen ? 1 : 0}`)
 console.log(`GRUND=${text ? e.grund : 'zahlenkarte.txt nicht lesbar'}`)

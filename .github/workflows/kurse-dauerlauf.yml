@@ -487,7 +487,10 @@ jobs:
             # `|| true` aus demselben Grund wie beim Wecker oben: Ein
             # Fehler hier darf die Kurse nicht anhalten.
             if [ $((runde % 5)) -eq 0 ]; then
-              zkspruch=$(ZK_ANGESTOSSEN_AM="$zkangestossen" \
+              # Die Karte folgt auf die Daily News (Betreiber, 14.11.2026): `gepostet.txt` von jetzt.
+              zkgepostet=$(gh api "repos/$GITHUB_REPOSITORY/contents/gepostet.txt?ref=instagram-gepostet" \
+                             --jq .content 2>/dev/null | base64 -d 2>/dev/null || true)
+              zkspruch=$(ZK_ANGESTOSSEN_AM="$zkangestossen" ZK_GEPOSTET="$zkgepostet" \
                          node --experimental-strip-types \
                               scripts/zahlenkarte-wecken.ts 2>/dev/null || true)
               if [ "$(printf '%s\n' "$zkspruch" | sed -n 's/^ANSTOSS=//p')" = "1" ]; then

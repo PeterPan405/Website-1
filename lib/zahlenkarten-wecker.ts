@@ -88,6 +88,18 @@ export interface Zahlenkartenlage {
   abMinute?: number
   /** Der Tag, an dem dieser Dauerlauf schon angestoßen hat – oder leer. */
   angestossenAm: string
+  /**
+   * Stehen die Daily News von heute schon im Kanal (`gepostet.txt` auf
+   * `instagram-gepostet`)? Die Zahlenkarte folgt immer auf sie – Betreiber,
+   * 14.11.2026: „die Struktur muss ja sauber bleiben, das ist immer ein
+   * Beitrag, der auf einen Daily-News-Post folgt“.
+   */
+  newsGepostet: boolean
+}
+
+/** Steht der Tag in `gepostet.txt`? Zeile für Zeile, genau – nie als Teilzeichenkette. */
+export function newsHeuteGepostet(gepostet: string, tag: string): boolean {
+  return gepostet.split('\n').some((z) => z.trim() === tag)
 }
 
 /** Soll der Dauerlauf den Veröffentlicher jetzt anstoßen? */
@@ -110,5 +122,11 @@ export function sollZahlenkarteAnstossen(l: Zahlenkartenlage): {
     return { anstossen: false, grund: 'die Karte von heute ist nicht freigegeben' }
   if (l.angestossenAm === l.tag)
     return { anstossen: false, grund: 'heute schon angestoßen' }
+  if (!l.newsGepostet)
+    return {
+      anstossen: false,
+      grund:
+        'die Daily News von heute stehen noch nicht im Kanal – die Zahlenkarte folgt auf sie',
+    }
   return { anstossen: true, grund: 'Karte von heute, freigegeben, 15 Uhr vorbei' }
 }

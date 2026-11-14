@@ -1091,6 +1091,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     pruefe(
       'Rheinmetall: freigegeben für den 14.11., mit gemeinfreiem Logo',
       karte.freigabe === '2026-11-14' &&
+        karte.ab === '05:00' &&
         karte.logo === 'rheinmetall.png' &&
         karte.text.includes('Logo: Rheinmetall AG, gemeinfrei')
     )

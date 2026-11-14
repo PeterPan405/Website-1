@@ -48,6 +48,20 @@ jobs:
         with:
           node-version: 22
 
+      # Die Zahlenkarte folgt immer auf die Daily News (Betreiber, 14.11.2026).
+      # Gefragt wird der Zweig von jetzt, nicht der Checkout.
+      - name: Sind die Daily News von heute draußen?
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo 'ZK_GEPOSTET<<ENDE_GEPOSTET'
+            gh api "repos/${{ github.repository }}/contents/gepostet.txt?ref=instagram-gepostet" \
+              --jq .content 2>/dev/null | base64 -d 2>/dev/null || true
+            echo
+            echo 'ENDE_GEPOSTET'
+          } >> "$GITHUB_ENV"
+
       - name: Zahlenkarte veröffentlichen
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}

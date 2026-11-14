@@ -133,6 +133,8 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Logo: Rheinmetall AG, gemeinfrei, über Wikimedia Commons',
     schlagworte: ['rheinmetall', 'rüstung', 'aktien', 'börse', 'dax'],
     freigabe: '2026-11-14',
+    /* Betreiber 14.11., 03:00: gleich nach den Daily News hinaus – der Riegel „News zuerst“ hält die Reihenfolge. */
+    ab: '05:00',
   },
   {
     /*
