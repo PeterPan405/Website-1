@@ -531,6 +531,12 @@ export interface Zahlenstrahlkarte extends KarteGemeinsam {
  */
 export interface Raetselkarte extends KarteGemeinsam {
   art: 'raetsel'
+  /**
+   * Die Zeile unter der großen Zahl der Rätselkachel – ohne Angabe „Kurs in
+   * fünf Jahren“ (die erste Rätselkarte, 09.11.2026). Am 14.11. lief die
+   * Kurve ab Jahresbeginn, und die feste Zeile hätte etwas Falsches gesagt.
+   */
+  zeitraum?: string
   fragen: {
     /** Überschrift der Rätselkachel ab dem zweiten Rätsel: „Und diese?“. */
     frage?: string
@@ -5349,7 +5355,7 @@ function raetselKachel(k: Raetselkarte, logo: string, nr: number) {
       letterSpacing: -4,
       color: farbe,
     }),
-    stilBlock('Kurs in fünf Jahren', {
+    stilBlock(k.zeitraum ?? 'Kurs in fünf Jahren', {
       top: 652,
       left: STIL_RAND,
       fontSize: 26,

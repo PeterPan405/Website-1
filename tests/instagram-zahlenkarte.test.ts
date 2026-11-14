@@ -1045,6 +1045,50 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 14.11.2026: Rätsel „Welches Metall ist das?“ (Yahoo Finance, markets.json, 2026). */
+{
+  const karte = karteVom('2026-11-14')
+  pruefe('Metalle: Karte für den 14.11. ist ein Rätsel', karte?.art === 'raetsel')
+  if (karte?.art === 'raetsel') {
+    pruefe(
+      'Metalle: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Metalle: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-13')!)
+    )
+    const erwartet: [string, number, number][] = [
+      ['Silber', 115.08, 48.65],
+      ['Platin', 2852.4, 1492.2],
+      ['Gold', 5318.4, 3887.6],
+    ]
+    for (const [i, [name, hoch, ende]] of erwartet.entries()) {
+      const q = karte.fragen[i]
+      const vomHoch = Math.round((ende / hoch - 1) * 1000) / 10
+      const zahl = (v: number) =>
+        Math.abs(v).toLocaleString('de-DE', {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1,
+        })
+      pruefe(
+        `Metalle: ${name} – Hoch ${hoch}, Ende ${ende}, ${vomHoch} % in Kurve, Satz und Text`,
+        q.name === name &&
+          Math.max(...q.punkte) === hoch &&
+          q.punkte.at(-1) === ende &&
+          q.satz.includes(zahl(vomHoch)) &&
+          karte.text.includes(`(${vomHoch < 0 ? '−' : ''}${zahl(vomHoch)} %)`)
+      )
+    }
+    const logo = readFileSync('public/logo.svg', 'utf8')
+    for (const nr of [1, 2, 6]) {
+      const png = await zahlenkarteSeitePng(karte, logo, nr)
+      pruefe(`Metalle: Kachel ${nr} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
+    }
+  }
+}
+
 /* 14.11.2026 (gebaut am 13.11.): Rheinmetall seit Ende 2021 – Chartkarte, Zahlen an den Punkten (Yahoo Finance, RHM.DE). */
 {
   const karte = karteVom('2026-11-13')
