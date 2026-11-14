@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "US-Erzeugerpreise befeuern die Zinsdebatte, ein Ground Stop legt US-Flughäfen lahm, SpaceX testet seine Starship-Rakete, Bitcoin fällt unter 70.000 Dollar – und Nvidia verliert weiter an der Börse.",
+  "kacheln": [
+    {
+      "titel": "US-Erzeugerpreise: 6,5 %",
+      "text": "Die US-Erzeugerpreise stiegen im Oktober um 0,3 Prozent, die Jahresrate kletterte auf 6,5 Prozent. Das ist der höchste Stand seit fast vier Jahren."
+    },
+    {
+      "titel": "US-Flughäfen: Stopp",
+      "text": "Die FAA stoppte am Freitag für vier Stunden alle Starts in den USA. Mehr als 10.000 Flüge gerieten in Verzug, rund 600 wurden umgeleitet."
+    },
+    {
+      "titel": "SpaceX: Starship-Test",
+      "text": "SpaceX hat seine Riesenrakete Starship zu einem weiteren Testflug gestartet. Erstmals sollte dabei versucht werden, Booster und Oberstufe gleichzeitig am Startplatz in Texas aufzufangen."
+    },
+    {
+      "titel": "Bitcoin unter 70.000 Dollar",
+      "text": "Der Bitcoin-Kurs fiel auf ein Drei-Monats-Tief unter 70.000 Dollar. Grund sind laut Handelsblatt Sorgen vor weiteren Zinserhöhungen in den USA."
+    },
+    {
+      "titel": "Nvidia: -1,7 Bio. Dollar",
+      "text": "Nvidia verzeichnete die längste wöchentliche Verlustserie seit 2012, der Börsenwert sank um 1,7 Billionen Dollar. Grund ist weiter die Affäre um Ex-Chef Jensen Huang."
+    }
+  ],
+  "schlagworte": ["inflation", "fed", "bitcoin", "börse", "aktien"]
+}

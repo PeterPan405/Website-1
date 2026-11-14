@@ -101,6 +101,328 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-erzeugerpreise-jahresrate-vierjahreshoch',
+    title: 'US-Erzeugerpreise steigen auf höchste Jahresrate seit vier Jahren',
+    teaser:
+      'Die US-Erzeugerpreise legten im Oktober weniger zu als erwartet – und doch kletterte die Jahresrate auf ein Vierjahreshoch. Die Fed sieht Handlungsbedarf.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'fed', 'usa', 'geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['sp500', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'CNBC, News-Ticker vom 13.11.2026, 16:44 Uhr: „Wholesale prices rose 0.3% in October, putting annual rate at 6.5%, the highest in nearly four years“',
+        url: 'https://www.cnbc.com/2026/11/13/ppi-inflation-report-october-2026.html',
+      },
+      {
+        label:
+          'Handelsblatt, News-Ticker vom 13.11.2026, 20:11 Uhr: „Wall Street: Wall Street schließt uneinheitlich – Erzeugerpreise steigen weiter“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-wall-street-schliesst-uneinheitlich-erzeugerpreise-steigen-weiter/100269764.html',
+      },
+      {
+        label:
+          "CNBC, News-Ticker vom 13.11.2026, 15:22 Uhr: „Chicago Fed's Goolsbee says central bank 'has definitely got work to do' on inflation“",
+        url: 'https://www.cnbc.com/2026/11/13/chicago-feds-goolsbee-says-central-bank-has-definitely-got-work-to-do-on-inflation.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Erzeugerpreise in den USA sind im Oktober weniger gestiegen, als Ökonomen erwartet hatten. Trotzdem markiert die Jahresrate einen Vierjahreshöchststand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Monatswert unter, Jahresrate über der Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Erzeugerpreisindex legte im Oktober um 0,3 Prozent gegenüber dem Vormonat zu. Ökonomen hatten mit einem Anstieg von 0,4 Prozent gerechnet. Im Jahresvergleich kletterte die Rate dagegen auf 6,5 Prozent – das ist laut CNBC der höchste Stand seit fast vier Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Notenbank sieht weiter Handlungsbedarf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Chicagoer Fed-Präsident Austan Goolsbee sagte, die US-Notenbank habe bei der Inflation „definitiv noch Arbeit vor sich“. Er äußerte sich besorgt über die jüngsten Preisdaten und sagte, die Notenbank müsse wahrscheinlich reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street rückte die Geldpolitik damit wieder stärker in den Blick. Die Aufregung um den Rücktritt von Nvidia-Chef Jensen Huang hatte sich laut Handelsblatt vorerst gelegt; die Erzeugerpreise verfestigten stattdessen die Zinserwartungen der Anleger.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erzeugerpreise gelten als Frühindikator für die Verbraucherpreise: Was Unternehmen beim Einkauf mehr zahlen, geben sie häufig – mit Verzögerung – an ihre Kunden weiter. Dass der Monatswert unter der Erwartung blieb, die Jahresrate aber ein Mehrjahreshoch markierte, zeigt vor allem, wie stark die Vergleichsbasis vor einem Jahr war. Ob daraus ein nachhaltiger Trend wird, zeigen erst die kommenden Monatswerte.',
+      },
+    ],
+  },
+  {
+    slug: 'faa-landesweiter-ground-stop',
+    title: 'USA stoppen landesweit alle Flugstarts für vier Stunden',
+    teaser:
+      'Eine Telekommunikationsstörung bei der US-Flugsicherung legte am Freitag zehntausende Starts lahm. Die Folgen reichen bis ins Wochenende.',
+    category: 'Märkte',
+    publishedAt: '2026-11-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['usa', 'flugverkehr', 'infrastruktur'],
+    relatedTopics: [],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, News-Ticker vom 14.11.2026, 02:21 Uhr: „FAA lifts ground stop after four hours, but flight cancellations will stretch into the weekend“',
+        url: 'https://www.cnbc.com/2026/11/13/faa-ground-stop.html',
+      },
+      {
+        label:
+          'onvista (dpa-AFX), News-Ticker vom 13.11.2026, 21:48 Uhr: „ROUNDUP: Landesweiter Stopp von Starts an US-Flughäfen“',
+        url: 'https://www.onvista.de/news/2026/11-13-roundup-landesweiter-stopp-von-starts-an-us-flughaefen-0-10-26576275',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Luftfahrtbehörde FAA hat am Freitag für mehrere Stunden sämtliche Starts in den gesamten Vereinigten Staaten gestoppt. Grund war eine Störung in der Telekommunikation mehrerer Flugsicherungszentren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Stunden Stillstand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die FAA verhängte den sogenannten Ground Stop am Freitagnachmittag Ortszeit und hob ihn nach gut vier Stunden wieder auf. Die Ursache der Störung war zunächst unklar; das US-Heimatschutzministerium erklärte laut CNBC, es gebe keine Hinweise auf eine Bedrohung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben des Flugdatendienstes Cirium waren rund 11.000 für die Zeit danach geplante Starts betroffen. Mehr als 10.000 Flüge gerieten insgesamt in Verzug, etwa 600 wurden umgeleitet, 104 davon zu anderen Flughäfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Fluggesellschaft traf es besonders hart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fluggesellschaft JetBlue strich alle verbleibenden Flüge des Tages mit Ausnahme ihrer Europarouten. Auch für Samstag kündigte sie zahlreiche weitere Streichungen an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein technischer Ausfall von wenigen Stunden kann sich tagelang auswirken, weil Flugzeuge und Besatzungen danach erst wieder an den richtigen Orten im Streckennetz stehen müssen. Wie groß der wirtschaftliche Schaden am Ende ausfällt, hängt davon ab, wie schnell die Airlines ihre Flugpläne wieder in Takt bringen.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-entschuldigt-sich-nach-ausfall',
+    title: 'Microsoft entschuldigt sich für Dienste-Ausfall',
+    teaser:
+      'Nach dem Ausfall von Outlook, Teams und weiteren 365-Diensten hat sich Microsoft entschuldigt. Am Freitagabend meldete der Konzern deutliche Verbesserung.',
+    category: 'Märkte',
+    publishedAt: '2026-11-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['microsoft', 'cloud', 'it-ausfall'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['microsoft'],
+    sources: [
+      {
+        label:
+          'CNBC, News-Ticker vom 13.11.2026, 19:18 Uhr: „Microsoft apologizes for massive outage that took down Outlook and other 365 services“',
+        url: 'https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html',
+      },
+      {
+        label:
+          "Tagesschau, 13.11.2026, 21:21 Uhr: „IT-Störungen: Microsoft sieht 'deutliche Verbesserung' der Lage“",
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/microsoft-outlook-stoerung-100.html',
+      },
+      {
+        label:
+          "Tagesschau, 13.11.2026, 13:28 Uhr: „Microsoft-Ausfälle: 'Für viele Unternehmen digitaler Hirntod'“",
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/sicherheitsexperte-abhaengigkeit-microsoft-outlook-teams-risiken-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Microsoft hat sich für den Ausfall entschuldigt, der am Donnerstag und Freitag Dienste wie Outlook, Teams und weitere 365-Anwendungen weltweit lahmlegte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Entwarnung am Freitagabend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitagabend erklärte Microsoft, die Lage habe sich vor allem in Nordamerika und Europa deutlich verbessert. Teilweise spricht der Konzern laut Tagesschau von „umfassenden Verbesserungen“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Abhängigkeit von wenigen Anbietern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der IT-Sicherheitsexperte Dennis-Kenji Kipker sagte der Tagesschau, der Ausfall zeige, wie abhängig viele Unternehmen von wenigen Cloud-Anbietern seien. Er forderte mehr „digitale Souveränität“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Entschuldigung ist noch keine Entschädigung. Ob und in welcher Höhe betroffene Kunden Ausgleich erhalten, regeln in der Regel Verträge mit festgelegten Verfügbarkeits- und Entschädigungsklauseln – nicht die Pressemitteilung danach.',
+      },
+    ],
+  },
+  {
+    slug: 'altersvorsorgedepot-loest-riester-ab',
+    title: 'Neues Altersvorsorgedepot soll ab 2027 die Riester-Rente ablösen',
+    teaser:
+      'Ab 2027 soll das Altersvorsorgedepot die Riester-Rente ersetzen und weiter staatlich gefördert werden. Ökonom Werding spricht von einem Riesenschritt.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['altersvorsorge', 'rente', 'riester'],
+    relatedTopics: ['rente'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 13.11.2026, 04:00 Uhr: „Rente: Mit der Aktie ins Alter: Die zwölf wichtigsten Antworten zum Vorsorgedepot“',
+        url: 'https://www.handelsblatt.com/finanzen/vorsorge/altersvorsorge-sparen/rente-die-zwoelf-wichtigsten-antworten-zum-altersvorsorgedepot/100265976.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 13.11.2026, 07:16 Uhr: „Altersvorsorgedepot: Was Sie mit dem alten Riestervertrag machen sollten“',
+        url: 'https://www.wiwo.de/finanzen/vorsorge/altersvorsorgedepot-was-sie-mit-dem-alten-riestervertrag-machen-sollten/100268653.html',
+      },
+      {
+        label:
+          "Handelsblatt-Interview: „Wirtschaftsweiser Werding: 'Wir haben einen Riesenschritt in die richtige Richtung gemacht'“",
+        url: 'https://www.handelsblatt.com/finanzen/vorsorge/altersvorsorge-sparen/altersvorsorgedepot-riesenschritt-in-die-richtige-richtung-gemacht/100265684.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Riester-Rente soll ab 2027 einen Nachfolger bekommen: das Altersvorsorgedepot. Es löst die bisherige Förderrente ab und bleibt dabei staatlich gefördert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Depot statt einer Garantie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als die Riester-Rente setzt das Altersvorsorgedepot nach Angaben des Handelsblatts stärker auf Geldanlage über Aktien. Viele Fachleute reagieren dem Bericht zufolge mit Zustimmung, auch wenn die neue Förderrente nicht in allen Punkten überzeugt. Welche Punkte das konkret sind, führt der Bericht nicht näher aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '„Ein Riesenschritt in die richtige Richtung“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ökonom Martin Werding, einer der Ideengeber des Altersvorsorgedepots, nannte die Reform im Gespräch mit dem Handelsblatt einen „Riesenschritt in die richtige Richtung“. Zugleich wies er darauf hin, dass Sparer an einigen Stellen aufpassen müssten – welche das sind, geht aus der verfügbaren Zusammenfassung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer bereits einen Riester-Vertrag besitzt, muss sich laut WirtschaftsWoche mit der Frage auseinandersetzen, was mit dem alten Vertrag nach der Einführung des Altersvorsorgedepots geschehen soll.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Garantie wie bei der Riester-Rente nimmt Schwankungen auch die Chance auf höhere Rendite. Ein Depot mit Aktien verspricht im Schnitt mehr Ertrag über lange Zeiträume, kann zwischenzeitlich aber auch deutlich im Minus liegen. Welche Variante passt, hängt vom Anlagehorizont und der eigenen Risikobereitschaft ab.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-sechsfach-ueberzeichnet',
+    title: 'Anthropic-Börsengang laut Bericht schon sechsfach überzeichnet',
+    teaser:
+      'Der möglicherweise größte Börsengang der Geschichte stößt auf große Nachfrage: Anthropics IPO ist einem Bericht zufolge bereits sechsfach überzeichnet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['anthropic', 'ipo', 'ki', 'boersengang'],
+    relatedTopics: ['boerse', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 13.11.2026, 08:12 Uhr: „KI: Anthropic-Börsengang offenbar schon sechsfach überzeichnet“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/ki-anthropic-boersengang-offenbar-schon-sechsfach-ueberzeichnet/100269621.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 13.11.2026, 10:05 Uhr: „Anthropic-Aktie: IPO wohl sechsfach überzeichnet – die wichtigsten Antworten zu Anthropics Börsengang“',
+        url: 'https://www.wiwo.de/finanzen/boerse/anthropic-ipo-die-wichtigsten-antworten-zur-aktie-des-ki-entwicklers/100268848.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 13.11.2026, 09:10 Uhr: „Anthropic-IPO: Anthropic-Mitarbeiter dürfen schon am ersten Börsentag Kasse machen“',
+        url: 'https://www.wiwo.de/finanzen/boerse/anthropic-ipo-warum-fruehe-aktienverkaeufe-den-start-bremsen/100269202.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Börsengang des KI-Entwicklers Anthropic ist einem Bericht zufolge bereits sechsfach überzeichnet. Es könnte der größte Börsengang der Geschichte werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hohe Nachfrage vor dem Start',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anthropic hatte zuvor eine Preisspanne von 70 bis 78 Dollar je Aktie genannt. Die Nachfrage von Investoren übersteigt die angebotene Stückzahl dem Bericht zufolge nun um das Sechsfache.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mitarbeiter dürfen sofort verkaufen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als bei vielen Börsengängen üblich, dürfen Anthropic-Mitarbeiter bereits am ersten Handelstag eigene Aktien verkaufen. Sonst gelten nach einem Börsengang meist Haltefristen von mehreren Monaten, in denen Insider ihre Anteile nicht verkaufen dürfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine hohe Überzeichnung zeigt, dass viele Investoren zum genannten Preis kaufen wollen – sie sagt aber nichts darüber aus, wie sich der Kurs nach dem ersten Handelstag entwickelt. Dürfen Mitarbeiter sofort verkaufen, kann das zusätzlichen Verkaufsdruck erzeugen, den feste Haltefristen bei anderen Börsengängen verhindern sollen.',
+      },
+    ],
+  },
+  {
     slug: 'bundesbank-warnt-finanzstabilitaetsbericht-2026',
     title: 'Bundesbank sieht wachsende Risiken für die Finanzstabilität',
     teaser:
