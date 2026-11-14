@@ -43,7 +43,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         Platin 2.125,7 $ (02.01.) · Hoch 2.852,4 $ am 2026-01-26 · 13.11. 1.492,2 $ → -47,7 % vom Hoch
         Gold 4.329,6 $ (02.01.) · Hoch 5.318,4 $ am 2026-01-29 · 13.11. 3.887,6 $ → -26,9 % vom Hoch
       Fotos (Wikimedia Commons, über bilder-holen.yml):
-        Silber: File:Scottsdale Mint 100 Troy Ounce Silver Bar.jpg, Sunfl0wer812, CC BY-SA 4.0
+        Silber: File:Heraeus 10 oz 9999 fine silver bar (52202724589).jpg, Chi Ho Chan, CC BY 2.0
         Platin: File:Platinum-nugget.jpg, Alchemist-hp, Free Art License
         Gold: File:Gold Ingots on white background.jpg, Szaaman, gemeinfrei
     */
@@ -152,7 +152,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Ein Absturz vom Hoch sagt nichts darüber, wie es weitergeht.\n\n' +
       'Wie viele hattest du richtig? Schreib es in die Kommentare.\n\n' +
       'Quellen: Yahoo Finance (Terminkontrakte), Stand 13.11.2026; eigene Rechnung\n' +
-      'Fotos (Wikimedia Commons): Sunfl0wer812, CC BY-SA 4.0 (Silber); Alchemist-hp, Free Art License (Platin); Szaaman, gemeinfrei (Gold)',
+      'Fotos (Wikimedia Commons): Chi Ho Chan, CC BY 2.0 (Silber); Alchemist-hp, Free Art License (Platin); Szaaman, gemeinfrei (Gold)',
     schlagworte: ['börsenrätsel', 'silber', 'gold', 'platin', 'rohstoffe'],
   },
   {
