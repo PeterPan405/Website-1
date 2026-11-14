@@ -42,6 +42,9 @@ export const zahlenkarten: Zahlenkarte[] = [
       hoch“ – Logo statt erster Titelzeile, Linie in der Hausfarbe (#0080C5,
       aus dem Logo), und die Karte auf den 14.11. gesetzt und freigegeben:
       Der Ablauf schickt nur die Karte des Tages, der 13.11. war vorbei.
+      Hinausgegangen am 14.11. um 05:26 von Hand (folgt_auf 2026-11-13) –
+      nach den Daily News vom 13., vor denen vom 14. Danach wieder auf den
+      13.11. gesetzt, damit der 14.11. frei ist für seine eigene Karte.
       Logo: Wikimedia Commons, File:Rheinmetall Logo 2021.svg, gemeinfrei
       (Rheinmetall AG), geholt über bilder-holen.yml.
       Die Karte entstand erst abends; das Wochenlimit hatte die Arbeit am
@@ -69,7 +72,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       ganzen Rückgang seit September 2025 nennt die Karte deshalb nicht.
     */
     art: 'chart',
-    datum: '2026-11-14',
+    datum: '2026-11-13',
     titel: [{ text: 'Rheinmetall:' }, { text: 'Vom Höhenflug zurück.', gruen: true }],
     unterzeile: 'Schlusskurs der Aktie an der Xetra seit Ende 2021, in Euro.',
     punkte: [
@@ -132,9 +135,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       'Quellen: Yahoo Finance (RHM.DE), Stand 13.11.2026; WirtschaftsWoche, 6.11.2026; eigene Rechnung\n' +
       'Logo: Rheinmetall AG, gemeinfrei, über Wikimedia Commons',
     schlagworte: ['rheinmetall', 'rüstung', 'aktien', 'börse', 'dax'],
-    freigabe: '2026-11-14',
-    /* Betreiber 14.11., 03:00: gleich nach den Daily News hinaus – der Riegel „News zuerst“ hält die Reihenfolge. */
-    ab: '05:00',
+    freigabe: '2026-11-13',
   },
   {
     /*
