@@ -57,6 +57,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'zahlenstrahl',
     datum: '2026-11-15',
+    freigabe: '2026-11-15',
     titel: [{ text: 'Chips und KI 2026:' }, { text: 'Die Gründe.', gruen: true }],
     erklaerung: 'Kurs seit Jahresbeginn · in Prozent',
     kacheln: 4,
