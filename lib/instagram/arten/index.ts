@@ -10,6 +10,7 @@
  * Kartenarten“).
  */
 import { ampel, type Ampelkarte } from './ampel.ts'
+import { damalsheute, type Damalsheutekarte } from './damalsheute.ts'
 import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
 import { kalender, type Kalenderkarte } from './kalender.ts'
 import { kerzen, type Kerzenkarte } from './kerzen.ts'
@@ -22,10 +23,13 @@ import { punktraster, type Punktrasterkarte } from './punktraster.ts'
 import type { Art } from './rahmen.ts'
 import { rangwechsel, type Rangwechselkarte } from './rangwechsel.ts'
 import { schaetzfrage, type Schaetzfragekarte } from './schaetzfrage.ts'
+import { stammbaum, type Stammbaumkarte } from './stammbaum.ts'
+import { stapel, type Stapelkarte } from './stapel.ts'
 import { streuung, type Streuungkarte } from './streuung.ts'
 import { tacho, type Tachokarte } from './tacho.ts'
 import { wasserfall, type Wasserfallkarte } from './wasserfall.ts'
 import { weltuhr, type Weltuhrkarte } from './weltuhr.ts'
+import { zeitkapsel, type Zeitkapselkarte } from './zeitkapsel.ts'
 
 export type NeueKarte =
   | Kurszettelkarte
@@ -44,6 +48,10 @@ export type NeueKarte =
   | Laenderkartenkarte
   | Weltuhrkarte
   | Schaetzfragekarte
+  | Damalsheutekarte
+  | Stapelkarte
+  | Stammbaumkarte
+  | Zeitkapselkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -64,6 +72,10 @@ export const NEUE_ARTEN: {
   laenderkarte,
   weltuhr,
   schaetzfrage,
+  damalsheute,
+  stapel,
+  stammbaum,
+  zeitkapsel,
 }
 
 export function istNeueKarte(k: { art?: string }): k is NeueKarte {

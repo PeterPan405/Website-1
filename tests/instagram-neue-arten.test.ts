@@ -9,6 +9,9 @@ import { readFileSync } from 'node:fs'
 
 import { musterkarten } from '@/data/instagram-muster'
 import { NEUE_ARTEN } from '@/lib/instagram/arten/index'
+import { veraenderung } from '@/lib/instagram/arten/damalsheute'
+import { muenzen } from '@/lib/instagram/arten/stapel'
+import { wertAm } from '@/lib/instagram/arten/zeitkapsel'
 import { ampelFarbe } from '@/lib/instagram/arten/ampel'
 import { zaehleTage } from '@/lib/instagram/arten/kalender'
 import { wochenkerzen } from '@/lib/instagram/arten/kerzen'
@@ -538,6 +541,115 @@ function muster<A extends Zahlenkarte['art']>(art: A) {
     )
   )
   pruefe('Schätzfrage: zwei Seiten je Frage', zahlenkarteSeiten(k) === 4)
+}
+
+/* Damals und heute: Schlusskurse am 15.11.2021 und 13.11.2026. */
+{
+  const k = muster('damalsheute')
+  const sym: Record<string, string> = {
+    DAX: 'dax',
+    Gold: 'gold',
+    'S&P 500': 'sp500',
+    Apple: 'apple',
+    Nvidia: 'nvidia',
+  }
+  for (const z of k.zeilen) {
+    const am = (d: string) => roh[sym[z.name]].points.find((p) => p.d === d)?.c
+    pruefe(
+      `Damals/heute: ${z.name} ${z.werte.join(' → ')}`,
+      am('2021-11-15') === z.werte[0] && am('2026-11-13') === z.werte[1]
+    )
+  }
+  const nv = k.zeilen.find((z) => z.name === 'Nvidia')!
+  pruefe('Damals/heute: „Nvidia mehr als 5-mal“ stimmt', nv.werte[1] / nv.werte[0] > 5)
+  pruefe(
+    'Damals/heute: Nvidia hat den größten Anstieg',
+    k.zeilen.every((z) => veraenderung(z) <= veraenderung(nv))
+  )
+  pruefe(
+    'Damals/heute: Wert null wird beanstandet',
+    pruefeZahlenkarte({
+      ...k,
+      zeilen: [
+        { ...k.zeilen[0], werte: [0, 1] as [number, number] },
+        ...k.zeilen.slice(1),
+      ],
+    }).some((t) => t.includes('positiv'))
+  )
+}
+
+/* Münzstapel: Umsatz (SEC) und Münzzahl. */
+{
+  const k = muster('stapel')
+  const fd = JSON.parse(readFileSync('data/snapshots/fundamentaldaten.json', 'utf8'))
+    .unternehmen as Record<string, { umsatz: number }>
+  const tick: Record<string, string> = {
+    Amazon: 'AMZN',
+    Walmart: 'WMT',
+    Apple: 'AAPL',
+    Alphabet: 'GOOGL',
+    Microsoft: 'MSFT',
+  }
+  for (const s of k.stapel)
+    pruefe(
+      `Stapel: ${s.name} ${s.wert} Mrd. $`,
+      runde(fd[tick[s.name]].umsatz / 1e9, 3) === s.wert
+    )
+  pruefe(
+    'Stapel: Münzen 14, 14, 8, 7, 6',
+    k.stapel.map((s) => muenzen(k, s.wert)).join() === '14,14,8,7,6'
+  )
+  pruefe(
+    'Stapel: „Amazon knapp vorn“ stimmt',
+    k.stapel[0].wert > k.stapel[1].wert && k.stapel[0].wert / k.stapel[1].wert < 1.05
+  )
+  pruefe(
+    'Stapel: zu kleine Einheit wird beanstandet',
+    pruefeZahlenkarte({ ...k, einheit: 1 }).some((t) => t.includes('höchstens 30'))
+  )
+}
+
+/* Stammbaum: Klassen nach Börsenwert aus der Marktkarte. */
+{
+  const k = muster('stammbaum')
+  const markt = muster('marktkarte')
+  const klasse = (w: number) => (w > 3 ? 0 : w >= 1 ? 1 : 2)
+  for (const f of markt.felder)
+    pruefe(
+      `Stammbaum: ${f.name} in „${k.aeste[klasse(f.gewicht)].name}“`,
+      k.aeste[klasse(f.gewicht)].blaetter.some((b) => b.name === f.name)
+    )
+  pruefe(
+    'Stammbaum: zwölf Blätter, „Vier über 3 Billionen“',
+    k.aeste.flatMap((a) => a.blaetter).length === 12 && k.aeste[0].blaetter.length === 4
+  )
+  pruefe(
+    'Stammbaum: leerer Ast wird beanstandet',
+    pruefeZahlenkarte({ ...k, aeste: [...k.aeste, { name: 'leer', blaetter: [] }] }).some(
+      (t) => t.includes('keine Blätter')
+    )
+  )
+}
+
+/* Zeitkapsel: Bitcoin, Reihe aus markets.json. */
+{
+  const k = muster('zeitkapsel')
+  const btc = new Map(roh.bitcoin.points.map((p) => [p.d, p.c]))
+  pruefe(
+    'Zeitkapsel: jeder Punkt der Reihe steht so in markets.json',
+    k.reihe.every(([d, v]) => btc.get(d) === v)
+  )
+  pruefe(
+    'Zeitkapsel: Stichtag 14.11.2022 bei 16.618 $',
+    wertAm(k, '2022-11-14') === 16618
+  )
+  pruefe(
+    'Zeitkapsel: fehlender Stichtag wird beanstandet',
+    pruefeZahlenkarte({ ...k, stichtage: [...k.stichtage, '2030-01-01'] }).some((t) =>
+      t.includes('nicht in der Reihe')
+    )
+  )
+  pruefe('Zeitkapsel: eine Seite je Stichtag', zahlenkarteSeiten(k) === 6)
 }
 
 console.log(
