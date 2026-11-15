@@ -1234,11 +1234,11 @@
   "2026-11-15": [
     {
       "stelle": 1,
-      "datei": "2026-11-15-1-c0c570fb.jpg",
-      "titel": "File:Gold bullion 1.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Gold_bullion_1.jpg",
-      "lizenz": "Public domain",
-      "urheber": "Szaaman",
+      "datei": "2026-11-15-1-86a3ef8d.jpg",
+      "titel": "File:Bitcoin on Laptop Keyboard.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Bitcoin_on_Laptop_Keyboard.jpg",
+      "lizenz": "CC BY 2.0",
+      "urheber": "Satheesh Sankaran",
       "suche": "von Hand gewählt"
     },
     {
@@ -1260,6 +1260,16 @@
       "suche": "von Hand gewählt"
     },
     {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: berkshire",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "von Hand: Kursverlauf",
+      "kurs": "berkshire"
+    },
+    {
       "stelle": 5,
       "datei": "2026-11-15-5-14d883d4.jpg",
       "titel": "File:Mastercard 2019 logo.svg",
@@ -1276,16 +1286,6 @@
       "lizenz": "Public domain",
       "urheber": "Bitboy",
       "suche": "Logo auf #F5F5F5"
-    },
-    {
-      "stelle": 4,
-      "datei": "",
-      "titel": "Kurs: berkshire",
-      "seite": "",
-      "lizenz": "Kursgrafik",
-      "urheber": "",
-      "suche": "von Hand: Kursverlauf",
-      "kurs": "berkshire"
     }
   ]
 }
