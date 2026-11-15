@@ -1261,13 +1261,30 @@
     },
     {
       "stelle": 4,
-      "datei": "",
-      "titel": "Kurs: berkshire",
-      "seite": "",
-      "lizenz": "Kursgrafik",
-      "urheber": "",
-      "suche": "von Hand: Kursverlauf",
-      "kurs": "berkshire"
+      "datei": "2026-11-15-4-dd88c0aa.jpg",
+      "titel": "File:Berkshire-Hathaway-Logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Berkshire-Hathaway-Logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Berkshire Hathaway",
+      "suche": "Logo auf #F1ECE2"
+    },
+    {
+      "stelle": 5,
+      "datei": "2026-11-15-5-14d883d4.jpg",
+      "titel": "File:Mastercard 2019 logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Mastercard_2019_logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Mastercard Incorporated",
+      "suche": "Logo auf #E8EDF5"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-15-6-b714c04d.jpg",
+      "titel": "File:Bitcoin logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Bitcoin_logo.svg",
+      "lizenz": "Public domain",
+      "urheber": "Bitboy",
+      "suche": "Logo auf #F5F5F5"
     }
   ]
 }
