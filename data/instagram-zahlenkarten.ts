@@ -29,32 +29,39 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 15.11.2026, „Chip-Aktien 2026“. Zwei Entwürfe verworfen:
-      Ferrari gegen Stellantis („langweilig“) und der AMD-Chart (Betreiber:
-      „wieder was mit mehreren Seiten, gestern war schon eine“ – am 14.11.
-      ging die einseitige Rheinmetall-Karte hinaus). Jetzt ein Karussell zum
-      Lesen, kein Ratespiel wie das Metall-Rätsel vom 14.11. Nicht in den
-      News vom 15.11. Form: Zahlenstrahl.
+      Zahlenkarte 15.11.2026, „Chip-Aktien 2026 – und warum“. Drei Entwürfe
+      verworfen:
+        - Ferrari gegen Stellantis („langweilig“)
+        - AMD-Chart („wieder was mit mehreren Seiten“)
+        - Chip-Zahlenstrahl ohne Begründung („vlt was informatives“)
+      Gewählt: „Chips mit Erklärung“. Je Kachel ein Unternehmen und der Grund,
+      aus unseren eigenen Tagesausgaben (deren Quellen gelesen sind). Intel
+      und Arm sind gestrichen, für sie gibt es keine gelesene Quelle; dafür
+      Infineon (11.11.: DGAP, Tagesschau 10.11.) und Dell (03.09.:
+      finanzen.net 02.09.). Infineon 37,73 € → 52,11 € (+38,1 %, bis 12.11.,
+      Schluss 30.12.2025), Dell 125,88 $ → 371,17 $ (+194,9 %, bis 12.11.).
+      Form: Zahlenstrahl (14.11.: Rätsel).
 
-      Kurse: data/snapshots/markets.json (Yahoo Finance), Schlusskurs
-      Jahresende 2025 gegen den letzten Kurs im Bestand, je Landeswährung:
-        Nvidia     186,50 $ → 162,85 $ (13.11.)  −12,7 %
-        Intel       36,90 $ →  59,66 $ (13.11.)  +61,7 %
-        Arm        109,31 $ → 199,78 $ (12.11.)  +82,8 %
-        SK Hynix  651.000 ₩ → 1.216.000 ₩ (13.11., Seoul, Schluss 30.12.2025) +86,8 %
-        AMD        214,16 $ → 534,06 $ (13.11.)  +149,4 %
-        Micron     285,41 $ → 778,31 $ (13.11.)  +172,7 %
-      Logos: Wikimedia Commons, gemeinfrei (Nvidia, Intel, Micron neu über
-      bilder-holen.yml; Arm, SK Hynix seit dem 08.11. im Bestand, AMD seit
-      heute).
+      Kurse: data/snapshots/markets.json (Yahoo Finance), Jahresschluss 2025
+      gegen den letzten Kurs im Bestand (13.11.2026), je Landeswährung:
+        Nvidia    186,50 $ → 162,85 $        −12,7 %
+        SK Hynix  651.000 ₩ → 1.216.000 ₩    +86,8 % (Seoul, Schluss 30.12.2025)
+        AMD       214,16 $ → 534,06 $        +149,4 %
+        Micron    285,41 $ → 778,31 $        +172,7 %
+      Gründe (Tagesausgaben):
+        Nvidia   – 11.11. (Handelsblatt 10.11., CNBC 10.11.), 13.11. (Tagesschau 12.11., CNBC 12.11.)
+        SK Hynix – 19.10. (CNBC 18.10.: Südkoreas Finanzminister Lee Hyoung-Il)
+        AMD      – 04.11. (CNBC 03.11., onvista/dpa-AFX 03.11.)
+        Micron   – 01.10. (finanznachrichten.de 30.09.)
+      Logos: Wikimedia Commons, gemeinfrei.
     */
     art: 'zahlenstrahl',
     datum: '2026-11-15',
-    titel: [{ text: 'Chip-Aktien 2026:' }, { text: 'Nvidia ganz hinten.', gruen: true }],
+    titel: [{ text: 'Chips und KI 2026:' }, { text: 'Die Gründe.', gruen: true }],
     erklaerung: 'Kurs seit Jahresbeginn · in Prozent',
     kacheln: 4,
     start: -20,
-    bis: 180,
+    bis: 200,
     schritt: 20,
     gleichmaessig: true,
     einheit: '%',
@@ -63,68 +70,80 @@ export const zahlenkarten: Zahlenkarte[] = [
         name: 'Nvidia',
         wert: -12.7,
         anzeige: '−12,7 %',
-        zusatz: '186 $ → 163 $',
+        zusatz: 'Chef nach Affäre zurückgetreten',
         logo: 'nvidia.png',
       },
       {
-        name: 'Intel',
-        wert: 61.7,
-        anzeige: '+61,7 %',
-        zusatz: '37 $ → 60 $',
-        logo: 'intel.png',
-      },
-      {
-        name: 'Arm',
-        wert: 82.8,
-        anzeige: '+82,8 %',
-        zusatz: '109 $ → 200 $',
-        logo: 'arm.png',
+        name: 'Infineon',
+        wert: 38.1,
+        anzeige: '+38,1 %',
+        zusatz: 'Rekordquartal gemeldet',
+        logo: 'infineon.png',
       },
       {
         name: 'SK Hynix',
         wert: 86.8,
         anzeige: '+86,8 %',
-        zusatz: 'Seoul, in Won',
+        zusatz: 'Chip-Boom bis 2027 erwartet',
         logo: 'skhynix.png',
       },
       {
         name: 'AMD',
         wert: 149.4,
         anzeige: '+149,4 %',
-        zusatz: '214 $ → 534 $',
+        zusatz: 'Rechenzentren fast verdoppelt',
         logo: 'amd.png',
       },
       {
         name: 'Micron',
         wert: 172.7,
         anzeige: '+172,7 %',
-        zusatz: '285 $ → 778 $',
+        zusatz: 'Prognose über den Erwartungen',
         logo: 'micron.png',
+      },
+      {
+        name: 'Dell',
+        wert: 194.9,
+        anzeige: '+194,9 %',
+        zusatz: 'KI-Server: Rekordumsatz',
+        logo: 'dell.png',
         hervor: true,
       },
     ],
     saetze: [
-      { kachel: 2, text: 'Nvidia liegt 2026 im Minus – Intel dagegen +61,7 %.' },
-      { kachel: 3, text: 'Arm und SK Hynix: jeweils über 80 % im Plus.' },
-      { kachel: 4, text: 'AMD und Micron haben ihren Kurs mehr als verdoppelt.' },
+      {
+        kachel: 2,
+        text: 'Nvidia fällt mit der Affäre seines Chefs, Infineon meldet ein Rekordquartal.',
+      },
+      {
+        kachel: 3,
+        text: 'Speicherchips sind knapp, Rechenzentren boomen: SK Hynix und AMD legen zu.',
+      },
+      {
+        kachel: 4,
+        text: 'Micron und Dell: mehr Umsatz als erwartet – fast das Dreifache seit Januar.',
+      },
     ],
     fusszeile:
-      'Stand: 12./13.11.2026 | Quelle: Yahoo Finance; eigene Rechnung | Logos: Wikimedia Commons, gemeinfrei',
+      'Stand: 12./13.11.2026 | Quellen: Yahoo Finance, CNBC, Handelsblatt, Tagesschau, finanzen.net u. a. | Logos: Wikimedia Commons',
     text:
-      'Nvidia gilt als der Chip-Wert schlechthin – doch 2026 liegt die Aktie im Minus. Andere Chip-Aktien haben sich mehr als verdoppelt.\n\n' +
-      'Die Werte im Bild, seit Jahresbeginn (Schlusskurse, Yahoo Finance):\n' +
-      'Nvidia: 186,50 $ → 162,85 $, −12,7 %\n' +
-      'Intel: 36,90 $ → 59,66 $, +61,7 %\n' +
-      'Arm: 109,31 $ → 199,78 $, +82,8 % (bis 12.11.)\n' +
-      'SK Hynix: 651.000 ₩ → 1.216.000 ₩, +86,8 % (Börse Seoul)\n' +
-      'AMD: 214,16 $ → 534,06 $, +149,4 %\n' +
-      'Micron: 285,41 $ → 778,31 $, +172,7 %\n\n' +
-      'Warum so unterschiedlich?\n' +
-      'Die Kurse zeigen nur, dass es so war, nicht warum. Einen Grund nennen wir nicht, ohne ihn in einer Quelle gelesen zu haben.\n\n' +
+      'Nvidia gilt als der Chip-Wert schlechthin – doch 2026 liegt die Aktie im Minus. Andere haben sich fast verdreifacht. Warum?\n\n' +
+      'Nvidia: −12,7 %\n' +
+      'Nach Chef Jensen Huangs Affäre mit einer mutmaßlichen Spionin verlor Nvidia in einer Woche rund eine Billion $ Börsenwert (Handelsblatt). Am 12.11. trat Huang zurück (Tagesschau).\n\n' +
+      'Infineon: +38,1 %\n' +
+      'Rekordquartal mit 4,7 Mrd. € Umsatz, für 2027 erwartet der Konzern über 20 % Wachstum (Tagesschau).\n\n' +
+      'SK Hynix: +86,8 %\n' +
+      'Die Nachfrage nach Chips übersteigt das Angebot, der Boom hält laut Südkoreas Finanzminister bis mindestens 2027 (CNBC).\n\n' +
+      'AMD: +149,4 %\n' +
+      'Im dritten Quartal 45 % mehr Umsatz, das Rechenzentrumsgeschäft hat sich fast verdoppelt (CNBC).\n\n' +
+      'Micron: +172,7 %\n' +
+      'Bis zu 63 Mrd. $ Quartalsumsatz erwartet, Analysten rechneten mit 56,8 Mrd. $ (finanznachrichten.de).\n\n' +
+      'Dell: +194,9 %\n' +
+      'Rekordumsatz und höhere Prognose dank KI-Servern (finanzen.net).\n\n' +
       'Und jetzt?\n' +
-      'Wer vorne liegt, kann auch wieder fallen – AMD etwa notiert rund 18 % unter seinem Hoch vom Oktober. Wie es weitergeht, sagen diese Zahlen nicht.\n\n' +
-      'Welche Chip-Aktie hast du im Depot? Schreib es in die Kommentare.\n\n' +
-      'Quellen: Yahoo Finance, Stand 12./13.11.2026; eigene Rechnung\n' +
+      'Wie es weitergeht, sagen diese Zahlen nicht. Im Oktober sorgten Zinsangst und Konkurrenz aus China für starke Schwankungen (CNBC).\n\n' +
+      'Kurse seit Jahresbeginn bis 12./13.11.2026, je Landeswährung.\n' +
+      'Quellen: Yahoo Finance; Handelsblatt, CNBC 10.11.; Tagesschau 10./12.11.; CNBC 18.10., 03.11.; finanznachrichten.de 30.09.; finanzen.net 02.09.2026; eigene Rechnung\n' +
       'Logos: Wikimedia Commons, gemeinfrei',
     schlagworte: ['chips', 'halbleiter', 'nvidia', 'amd', 'aktien'],
   },

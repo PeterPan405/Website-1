@@ -1067,8 +1067,8 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     ).instruments
     const symbol: Record<string, string> = {
       Nvidia: 'nvidia',
-      Intel: 'intel',
-      Arm: 'arm',
+      Infineon: 'infineon',
+      Dell: 'dell',
       'SK Hynix': 'sk-hynix',
       AMD: 'amd',
       Micron: 'micron',
