@@ -9,7 +9,9 @@ import { readFileSync } from 'node:fs'
 
 import { musterkarten } from '@/data/instagram-muster'
 import { NEUE_ARTEN } from '@/lib/instagram/arten/index'
+import { ampelFarbe } from '@/lib/instagram/arten/ampel'
 import { zaehleTage } from '@/lib/instagram/arten/kalender'
+import { wasserfallEnde } from '@/lib/instagram/arten/wasserfall'
 import {
   form,
   pruefeZahlenkarte,
@@ -143,6 +145,116 @@ function muster<A extends Zahlenkarte['art']>(art: A) {
   pruefe(
     'Tacho: Wert über dem Hoch wird beanstandet',
     pruefeZahlenkarte(kaputt).some((f) => f.includes('außerhalb'))
+  )
+}
+
+/* Wasserfall: DAX-Monatsschluss gegen Vormonat, ab Schluss 2025; das Ende ist der letzte Kurs. */
+{
+  const k = muster('wasserfall')
+  const p = roh.dax.points
+  const basis = p.filter((x) => x.d < '2026-01-01').at(-1)!
+  pruefe('Wasserfall: Start ist der Schluss 2025', k.start.wert === basis.c)
+  const monate = new Map<string, number>()
+  for (const x of p) if (x.d >= '2026-01') monate.set(x.d.slice(0, 7), x.c)
+  let vor = basis.c
+  const schritte = [...monate.values()].map((c) => {
+    const d = runde(c - vor, 2)
+    vor = c
+    return d
+  })
+  pruefe(
+    'Wasserfall: jeder Monatsschritt wie im Bestand',
+    JSON.stringify(schritte) === JSON.stringify(k.schritte.map((s) => s.wert))
+  )
+  pruefe(
+    'Wasserfall: Ende = letzter Kurs',
+    Math.abs(wasserfallEnde(k) - p.at(-1)!.c) < 0.05
+  )
+  const kaputt = { ...k, boden: 30000 }
+  pruefe(
+    'Wasserfall: Boden über dem Start wird beanstandet',
+    pruefeZahlenkarte(kaputt).some((f) => f.includes('Boden'))
+  )
+}
+
+/* Geldfluss: Apple, Umsatz und Nettogewinn aus den SEC-Daten. */
+{
+  const k = muster('geldfluss')
+  const f = JSON.parse(readFileSync('data/snapshots/fundamentaldaten.json', 'utf8'))
+    .unternehmen.AAPL as { umsatz: number; gewinn: number }
+  pruefe(
+    'Geldfluss: Umsatz und Gewinn wie bei der SEC',
+    k.quelle.wert === f.umsatz && k.ziele[0].wert === f.gewinn
+  )
+  pruefe(
+    'Geldfluss: „gut ein Viertel“',
+    f.gewinn / f.umsatz > 0.25 && f.gewinn / f.umsatz < 0.3
+  )
+  const kaputt = { ...k, ziele: [k.ziele[0], { ...k.ziele[1], wert: 1 }] }
+  pruefe(
+    'Geldfluss: Teile, die das Ganze verfehlen, werden beanstandet',
+    pruefeZahlenkarte(kaputt).some((t) => t.includes('das Ganze'))
+  )
+}
+
+/* Kreise: Börsenwert = letzter Kurs × Aktienzahl, in Billionen $. */
+{
+  const k = muster('kreise')
+  const fd = JSON.parse(readFileSync('data/snapshots/fundamentaldaten.json', 'utf8'))
+    .unternehmen as Record<string, { aktien: number }>
+  const zu: Record<string, [string, string]> = {
+    Apple: ['apple', 'AAPL'],
+    Nvidia: ['nvidia', 'NVDA'],
+    Microsoft: ['microsoft', 'MSFT'],
+    Alphabet: ['alphabet', 'GOOGL'],
+    Amazon: ['amazon', 'AMZN'],
+    Meta: ['meta', 'META'],
+  }
+  for (const kr of k.kreise) {
+    const [sym, tick] = zu[kr.name]
+    const wert = runde((roh[sym].points.at(-1)!.c * fd[tick].aktien) / 1e12, 3)
+    pruefe(`Kreise: ${kr.name} ${wert} Bio. $`, wert === kr.wert)
+  }
+  const kaputt = { ...k, kreise: [...k.kreise].reverse() }
+  pruefe(
+    'Kreise: aufsteigende Reihenfolge wird beanstandet',
+    pruefeZahlenkarte(kaputt).some((t) => t.includes('absteigend'))
+  )
+}
+
+/* Ampel: Schuldenquoten 2025 (IWF), Farbe aus der Regel. */
+{
+  const k = muster('ampel')
+  const laender = JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
+  const code: Record<string, string> = {
+    Niederlande: 'NLD',
+    Polen: 'POL',
+    Deutschland: 'DEU',
+    Österreich: 'AUT',
+    Spanien: 'ESP',
+    Frankreich: 'FRA',
+    Italien: 'ITA',
+    Griechenland: 'GRC',
+  }
+  for (const z of k.zeilen)
+    pruefe(
+      `Ampel: ${z.name} ${z.wert} %`,
+      laender[code[z.name]].schuldenquote.wert === z.wert &&
+        laender[code[z.name]].schuldenquote.jahr === 2025
+    )
+  const rot = k.zeilen.filter((z) => ampelFarbe(k, z.wert) === 'rot').length
+  pruefe(
+    'Ampel: „Vier über 90 %“',
+    rot === 4 && k.titel.some((t) => t.text.startsWith('Vier'))
+  )
+  pruefe(
+    'Ampel: 60 % ist noch grün, 60,1 % gelb',
+    ampelFarbe(k, 60) === 'gruen' && ampelFarbe(k, 60.1) === 'gelb'
+  )
+  const kaputt = { ...k, regel: { gruenBis: 90, gelbBis: 60 } }
+  pruefe(
+    'Ampel: verdrehte Regel wird beanstandet',
+    pruefeZahlenkarte(kaputt).some((t) => t.includes('verdreht'))
   )
 }
 

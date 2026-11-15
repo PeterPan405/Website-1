@@ -3438,7 +3438,12 @@ export function stilBlock(inhalt: string, stil: Record<string, string | number>)
   )
 }
 
-export const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.hellgrau }
+export const GESPERRT = {
+  fontSize: 17,
+  fontWeight: 700,
+  letterSpacing: 3,
+  color: STIL.hellgrau,
+}
 
 /**
  * Der Rahmen jeder Karte im Hausstil: Kopf, Titel mit Symbol, Unterzeile,
@@ -5070,11 +5075,14 @@ export async function zahlenkarteSeitePng(
   if (istNeueKarte(k)) {
     const art = neueArt(k)
     const seite = Math.min(Math.max(nr, 1), art.seiten(k))
-    const antwort = new ImageResponse(art.seite(k, svgAdresse(signetOhneMitte(logoSvg)), seite), {
-      width: ZK_BREITE,
-      height: ZK_HOEHE,
-      fonts: schriften(),
-    })
+    const antwort = new ImageResponse(
+      art.seite(k, svgAdresse(signetOhneMitte(logoSvg)), seite),
+      {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        fonts: schriften(),
+      }
+    )
     return Buffer.from(await antwort.arrayBuffer())
   }
   if (k.art === 'raetsel' || k.art === 'mythos' || k.art === 'entweder') {

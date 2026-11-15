@@ -9,13 +9,25 @@
  * über eine Woche möglichst viele verschiedene (`INSTAGRAM.md`, „Die
  * Kartenarten“).
  */
+import { ampel, type Ampelkarte } from './ampel.ts'
+import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
 import { kalender, type Kalenderkarte } from './kalender.ts'
+import { kreise, type Kreiskarte } from './kreise.ts'
 import { kurszettel, type Kurszettelkarte } from './kurszettel.ts'
 import { punktraster, type Punktrasterkarte } from './punktraster.ts'
 import type { Art } from './rahmen.ts'
 import { tacho, type Tachokarte } from './tacho.ts'
+import { wasserfall, type Wasserfallkarte } from './wasserfall.ts'
 
-export type NeueKarte = Kurszettelkarte | Punktrasterkarte | Kalenderkarte | Tachokarte
+export type NeueKarte =
+  | Kurszettelkarte
+  | Punktrasterkarte
+  | Kalenderkarte
+  | Tachokarte
+  | Wasserfallkarte
+  | Geldflusskarte
+  | Kreiskarte
+  | Ampelkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -24,6 +36,10 @@ export const NEUE_ARTEN: {
   punktraster,
   kalender,
   tacho,
+  wasserfall,
+  geldfluss,
+  kreise,
+  ampel,
 }
 
 export function istNeueKarte(k: { art?: string }): k is NeueKarte {

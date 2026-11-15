@@ -333,4 +333,95 @@ export const musterkarten: Zahlenkarte[] = [
     text: 'Muster.\n\nQuellen: Yahoo Finance',
     schlagworte: ['gold', 'rohstoffe', 'börse', 'edelmetalle', 'investieren'],
   },
+  {
+    /* Wasserfall: DAX, Monatsschluss gegen Vormonatsschluss in Punkten, ab Schluss 30.12.2025 (markets.json). */
+    art: 'wasserfall',
+    datum: '2026-11-15',
+    titel: [{ text: 'Der DAX 2026' }, { text: 'Monat für Monat.', gruen: true }],
+    unterzeile: 'Veränderung je Monat in Punkten. Achse ab 20.000 Punkten.',
+    start: { name: 'Ende 2025', wert: 24490.41 },
+    schritte: [
+      { name: 'Jan.', wert: 48.4 },
+      { name: 'Feb.', wert: 745.45 },
+      { name: 'März', wert: -2604.22 },
+      { name: 'April', wert: 1612.34 },
+      { name: 'Mai', wert: 812.32 },
+      { name: 'Juni', wert: -108.89 },
+      { name: 'Juli', wert: 633.43 },
+      { name: 'Aug.', wert: 628.87 },
+      { name: 'Sept.', wert: -1058.92 },
+      { name: 'Okt.', wert: 619.02 },
+      { name: 'Nov.', wert: 931.74 },
+    ],
+    ende: '13.11.',
+    boden: 20000,
+    fusszeile: 'Stand: 13.11.2026 | Quelle: Yahoo Finance (^GDAXI); eigene Rechnung',
+    text: 'Muster.\n\nQuellen: Yahoo Finance',
+    schlagworte: ['dax', 'börse', 'aktien', 'monate', 'investieren'],
+  },
+  {
+    /* Geldfluss: Apple, letztes gemeldetes Geschäftsjahr, data/snapshots/fundamentaldaten.json (SEC). */
+    art: 'geldfluss',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Apple: Vom Umsatz' },
+      { text: 'bleibt gut ein Viertel.', gruen: true },
+    ],
+    unterzeile: 'Umsatz und Nettogewinn im letzten gemeldeten Geschäftsjahr.',
+    quelle: { name: 'Umsatz', wert: 416161000000, anzeige: '416,2 Mrd. $' },
+    ziele: [
+      { name: 'Nettogewinn', wert: 112010000000, anzeige: '112,0 Mrd. $' },
+      {
+        name: 'Kosten, Steuern und Übriges',
+        wert: 304151000000,
+        anzeige: '304,2 Mrd. $',
+      },
+    ],
+    fusszeile:
+      'Stand: letztes Geschäftsjahr | Quelle: US-Börsenaufsicht SEC (XBRL); eigene Rechnung',
+    text: 'Muster.\n\nQuellen: SEC',
+    schlagworte: ['apple', 'gewinn', 'umsatz', 'aktien', 'bilanz'],
+  },
+  {
+    /* Kreise: Börsenwert = letzter Kurs (markets.json) × Aktienzahl (fundamentaldaten.json), in Billionen $. */
+    art: 'kreise',
+    datum: '2026-11-15',
+    titel: [{ text: 'Die Billionen-Riesen:' }, { text: 'Apple vorn.', gruen: true }],
+    unterzeile: 'Börsenwert in Billionen Dollar – die Fläche zeigt die Größe.',
+    kreise: [
+      { name: 'Apple', wert: 5.177, anzeige: '5,18 Bio. $' },
+      { name: 'Nvidia', wert: 3.925, anzeige: '3,93 Bio. $', logo: 'nvidia.png' },
+      { name: 'Microsoft', wert: 3.89, anzeige: '3,89 Bio. $', logo: 'microsoft.png' },
+      { name: 'Alphabet', wert: 3.636, anzeige: '3,64 Bio. $', logo: 'google.png' },
+      { name: 'Amazon', wert: 2.883, anzeige: '2,88 Bio. $', logo: 'amazon.png' },
+      { name: 'Meta', wert: 1.586, anzeige: '1,59 Bio. $' },
+    ],
+    fusszeile:
+      'Stand: 12./13.11.2026 | Quellen: Yahoo Finance, SEC; Kurs × Aktienzahl, eigene Rechnung',
+    text: 'Muster.\n\nQuellen: Yahoo Finance, SEC',
+    schlagworte: ['apple', 'nvidia', 'börsenwert', 'aktien', 'tech'],
+  },
+  {
+    /* Ampel: Staatsschulden in % des BIP 2025, data/snapshots/laender.json; Regel: Maastricht-Grenze 60 %, gelb bis 90 %. */
+    art: 'ampel',
+    datum: '2026-11-15',
+    titel: [{ text: 'Schulden in Europa:' }, { text: 'Vier über 90 %.', gruen: true }],
+    unterzeile:
+      'Schulden in % der Wirtschaftsleistung. Grün bis 60 % (Grenze von Maastricht), gelb bis 90 %.',
+    regel: { gruenBis: 60, gelbBis: 90 },
+    zeilen: [
+      { name: 'Niederlande', wert: 44.7, anzeige: '44,7 %' },
+      { name: 'Polen', wert: 59.7, anzeige: '59,7 %' },
+      { name: 'Deutschland', wert: 62.7, anzeige: '62,7 %' },
+      { name: 'Österreich', wert: 81.4, anzeige: '81,4 %' },
+      { name: 'Spanien', wert: 100.5, anzeige: '100,5 %' },
+      { name: 'Frankreich', wert: 115.5, anzeige: '115,5 %' },
+      { name: 'Italien', wert: 137.1, anzeige: '137,1 %' },
+      { name: 'Griechenland', wert: 146.6, anzeige: '146,6 %' },
+    ],
+    fusszeile:
+      'Stand: 2025 | Quelle: IWF (WEO), Bruttoschuld des Gesamtstaats – nicht die Maastricht-Abgrenzung',
+    text: 'Muster.\n\nQuellen: IWF',
+    schlagworte: ['staatsschulden', 'europa', 'wirtschaft', 'politik', 'maastricht'],
+  },
 ]
