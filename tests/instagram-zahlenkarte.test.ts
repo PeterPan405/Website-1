@@ -1045,59 +1045,52 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 15.11.2026: Chart AMD (markets.json, Nasdaq). */
+/* 15.11.2026: Zahlenstrahl Chip-Aktien (markets.json). */
 {
   const karte = karteVom('2026-11-15')
-  pruefe('AMD: Karte für den 15.11. ist ein Chart', karte?.art === 'chart')
-  if (karte?.art === 'chart') {
+  pruefe(
+    'Chips: Karte für den 15.11. ist ein Zahlenstrahl',
+    karte?.art === 'zahlenstrahl'
+  )
+  if (karte?.art === 'zahlenstrahl') {
     pruefe(
-      'AMD: keine Beanstandung',
+      'Chips: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
       pruefeZahlenkarte(karte).join(' | ')
     )
     pruefe(
-      'AMD: Form anders als am Vortag',
+      'Chips: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-14')!)
     )
     const roh = JSON.parse(
       readFileSync('data/snapshots/markets.json', 'utf8')
     ).instruments
-    const p: { d: string; c: number }[] = roh.amd.points
-    const basis = p.filter((x) => x.d < '2026-01-01').at(-1)!.c
-    const jahr = p.filter((x) => x.d >= '2026-01-01' && x.d <= '2026-11-13')
-    const ende = jahr.at(-1)!.c
-    const hoch = Math.max(...jahr.map((x) => x.c))
-    const tief = Math.min(...jahr.map((x) => x.c))
-    pruefe(
-      'AMD: Kurve = Jahresschluss 2025 + jeder Handelstag',
-      karte.punkte.length === jahr.length + 1 &&
-        karte.punkte[0] === basis &&
-        karte.punkte.at(-1) === ende
-    )
-    pruefe(
-      'AMD: Hoch 649,42, Tief 190,95, Ende 534,06',
-      hoch === 649.42 && tief === 190.95 && ende === 534.06
-    )
-    pruefe(
-      'AMD: +149 % seit Jahresbeginn',
-      Math.round((ende / basis - 1) * 100) === 149 && karte.text.includes('+149 %')
-    )
-    pruefe(
-      'AMD: −17,8 % vom Hoch',
-      Math.round((ende / hoch - 1) * 1000) / 10 === -17.8 &&
-        karte.text.includes('−17,8 %')
-    )
-    pruefe(
-      'AMD: Hoch +203 %, Tief −11 %',
-      Math.round((hoch / basis - 1) * 100) === 203 &&
-        Math.round((tief / basis - 1) * 100) === -11
-    )
-    const png = await zahlenkarteSeitePng(
-      karte,
-      readFileSync('public/logo.svg', 'utf8'),
-      1
-    )
-    pruefe('AMD: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+    const symbol: Record<string, string> = {
+      Nvidia: 'nvidia',
+      Intel: 'intel',
+      Arm: 'arm',
+      'SK Hynix': 'sk-hynix',
+      AMD: 'amd',
+      Micron: 'micron',
+    }
+    for (const pt of karte.punkte) {
+      const p: { d: string; c: number }[] = roh[symbol[pt.name]].points
+      const basis = p.filter((x) => x.d < '2026-01-01').at(-1)!.c
+      const ende = p.filter((x) => x.d >= '2026-01-01').at(-1)!.c
+      const v = Math.round((ende / basis - 1) * 1000) / 10
+      pruefe(
+        `Chips: ${pt.name} ${pt.anzeige} nachgerechnet und im Text`,
+        pt.wert === v && karte.text.includes(pt.anzeige.replace(' %', ' %'))
+      )
+    }
+    for (let nr = 1; nr <= karte.kacheln; nr++) {
+      const png = await zahlenkarteSeitePng(
+        karte,
+        readFileSync('public/logo.svg', 'utf8'),
+        nr
+      )
+      pruefe(`Chips: Kachel ${nr} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')
+    }
   }
 }
 

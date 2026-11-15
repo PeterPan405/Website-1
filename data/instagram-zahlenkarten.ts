@@ -29,80 +29,104 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 15.11.2026, „AMD: mehr als verdoppelt“. Der Betreiber
-      verwarf den ersten Entwurf („Ferrari gegen Stellantis ist langweilig“).
-      Neu ist der zweite Vorschlag aus dem Chat: die Chip-Gewinner 2026,
-      zugespitzt auf AMD. Das Thema steht nicht in den News vom 15.11.
-      Form: Chart mit Logo (am 14.11. Rätsel).
+      Zahlenkarte 15.11.2026, „Chip-Aktien 2026“. Zwei Entwürfe verworfen:
+      Ferrari gegen Stellantis („langweilig“) und der AMD-Chart (Betreiber:
+      „wieder was mit mehreren Seiten, gestern war schon eine“ – am 14.11.
+      ging die einseitige Rheinmetall-Karte hinaus). Jetzt ein Karussell zum
+      Lesen, kein Ratespiel wie das Metall-Rätsel vom 14.11. Nicht in den
+      News vom 15.11. Form: Zahlenstrahl.
 
-      Kurse: data/snapshots/markets.json (Yahoo Finance, AMD, Nasdaq, USD):
-        31.12.2025 214,16 $ → 13.11.2026 534,06 $ = +149,4 %
-        Tief 2026: 190,95 $ am 03.03. · Hoch: 649,42 $ am 06.10.
-        13.11. gegen Hoch: −17,8 %
-      Im Bild jeder Handelstag, erster Punkt der Jahresschluss 2025.
-      Logo: File:AMD Logo.svg (Advanced Micro Devices, gemeinfrei), über
-      bilder-holen.yml.
+      Kurse: data/snapshots/markets.json (Yahoo Finance), Schlusskurs
+      Jahresende 2025 gegen den letzten Kurs im Bestand, je Landeswährung:
+        Nvidia     186,50 $ → 162,85 $ (13.11.)  −12,7 %
+        Intel       36,90 $ →  59,66 $ (13.11.)  +61,7 %
+        Arm        109,31 $ → 199,78 $ (12.11.)  +82,8 %
+        SK Hynix  651.000 ₩ → 1.216.000 ₩ (13.11., Seoul, Schluss 30.12.2025) +86,8 %
+        AMD        214,16 $ → 534,06 $ (13.11.)  +149,4 %
+        Micron     285,41 $ → 778,31 $ (13.11.)  +172,7 %
+      Logos: Wikimedia Commons, gemeinfrei (Nvidia, Intel, Micron neu über
+      bilder-holen.yml; Arm, SK Hynix seit dem 08.11. im Bestand, AMD seit
+      heute).
     */
-    art: 'chart',
+    art: 'zahlenstrahl',
     datum: '2026-11-15',
-    titel: [{ text: 'AMD:' }, { text: 'Mehr als verdoppelt.', gruen: true }],
-    unterzeile: 'Schlusskurs der Aktie an der Nasdaq seit Jahresbeginn, in Dollar.',
+    titel: [{ text: 'Chip-Aktien 2026:' }, { text: 'Nvidia ganz hinten.', gruen: true }],
+    erklaerung: 'Kurs seit Jahresbeginn · in Prozent',
+    kacheln: 4,
+    start: -20,
+    bis: 180,
+    schritt: 20,
+    gleichmaessig: true,
+    einheit: '%',
     punkte: [
-      214.16, 223.47, 221.08, 214.35, 210.02, 204.68, 203.17, 207.69, 220.97, 223.6,
-      227.92, 231.83, 231.92, 249.8, 253.73, 259.68, 251.31, 252.03, 252.74, 252.18,
-      236.73, 246.27, 242.11, 200.19, 192.5, 208.44, 216, 213.57, 213.58, 205.94, 207.32,
-      203.08, 200.12, 203.37, 200.15, 196.6, 213.84, 210.86, 203.68, 200.21, 198.62,
-      190.95, 202.07, 199.45, 192.43, 202.68, 203.23, 204.83, 197.74, 193.39, 196.58,
-      196.31, 199.46, 205.27, 201.33, 202.68, 205.37, 220.27, 203.77, 201.99, 196.04,
-      203.43, 210.21, 217.5, 220.18, 221.53, 231.82, 236.64, 245.04, 246.83, 255.07,
-      258.12, 278.26, 278.39, 274.95, 284.49, 303.46, 305.33, 347.81, 334.63, 323.21,
-      337.11, 354.49, 360.54, 341.54, 355.26, 421.39, 408.46, 455.19, 458.79, 448.29,
-      445.5, 449.7, 424.1, 420.99, 414.05, 447.58, 449.59, 467.51, 503.89, 495.54, 518.09,
-      516.1, 510.13, 521.54, 542.52, 523.2, 466.38, 490.33, 475.51, 452.4, 488.45, 511.57,
-      547.26, 507.29, 512.48, 537.37, 551.63, 519.85, 519.74, 532.57, 521.58, 539.49,
-      580.91, 540.88, 517.82, 552.05, 516.11, 517.41, 546.72, 557.89, 534.39, 548.13,
-      529.14, 500.94, 495.76, 503.57, 544.43, 552.33, 539.69, 521.95, 494.95, 454.62,
-      429.56, 485.39, 476.15, 484.64, 518.58, 482.05, 489.28, 483.36, 469.56, 474.32,
-      482.93, 483.01, 514.39, 506, 484.39, 466.42, 469.46, 473.25, 456.75, 479.18, 480.93,
-      476.67, 465.58, 470.72, 459.61, 457.06, 456.16, 477.57, 505.74, 521.1, 503.6,
-      516.13, 493.41, 504.2, 512.5, 545.09, 559.82, 615.52, 623.77, 614.61, 629.26,
-      630.63, 607.87, 607.57, 611.76, 615.73, 633.91, 631.75, 649.42, 645.86, 620.68,
-      608.1, 594.24, 605.53, 570.82, 562.23, 528.75, 538.05, 534.74, 552.72, 507.93,
-      516.79, 531.28, 560.26, 578.44, 566.42, 504.8, 466.84, 483.9, 488.78, 404.4, 449.04,
-      508.58, 515.21, 552.9, 585.3, 534.06,
+      {
+        name: 'Nvidia',
+        wert: -12.7,
+        anzeige: '−12,7 %',
+        zusatz: '186 $ → 163 $',
+        logo: 'nvidia.png',
+      },
+      {
+        name: 'Intel',
+        wert: 61.7,
+        anzeige: '+61,7 %',
+        zusatz: '37 $ → 60 $',
+        logo: 'intel.png',
+      },
+      {
+        name: 'Arm',
+        wert: 82.8,
+        anzeige: '+82,8 %',
+        zusatz: '109 $ → 200 $',
+        logo: 'arm.png',
+      },
+      {
+        name: 'SK Hynix',
+        wert: 86.8,
+        anzeige: '+86,8 %',
+        zusatz: 'Seoul, in Won',
+        logo: 'skhynix.png',
+      },
+      {
+        name: 'AMD',
+        wert: 149.4,
+        anzeige: '+149,4 %',
+        zusatz: '214 $ → 534 $',
+        logo: 'amd.png',
+      },
+      {
+        name: 'Micron',
+        wert: 172.7,
+        anzeige: '+172,7 %',
+        zusatz: '285 $ → 778 $',
+        logo: 'micron.png',
+        hervor: true,
+      },
     ],
-    einheit: '$',
-    achse: [
-      { bei: 1, text: 'Jan.' },
-      { bei: 62, text: 'April' },
-      { bei: 124, text: 'Juli' },
-      { bei: 188, text: 'Okt.' },
+    saetze: [
+      { kachel: 2, text: 'Nvidia liegt 2026 im Minus – Intel dagegen +61,7 %.' },
+      { kachel: 3, text: 'Arm und SK Hynix: jeweils über 80 % im Plus.' },
+      { kachel: 4, text: 'AMD und Micron haben ihren Kurs mehr als verdoppelt.' },
     ],
-    marken: [
-      { bei: 41, zahl: '191 $', anlass: 'Tief, 3. März', lage: 'unten' },
-      { bei: 191, zahl: '649 $', anlass: 'Hoch, 6. Oktober' },
-    ],
-    ende: { zahl: '534,06 $', anlass: '+149 % seit Jahresbeginn', lage: 'untenlinks' },
-    richtung: 'steigt',
-    logo: 'amd.png',
     fusszeile:
-      'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse AMD, Nasdaq); eigene Rechnung',
+      'Stand: 12./13.11.2026 | Quelle: Yahoo Finance; eigene Rechnung | Logos: Wikimedia Commons, gemeinfrei',
     text:
-      'Aus 214 Dollar wurden 534: Die Aktie des Chipherstellers AMD hat sich 2026 mehr als verdoppelt – +149 % seit Jahresbeginn.\n\n' +
-      'Die Punkte im Bild (Schlusskurse an der Nasdaq):\n' +
-      'Ende 2025: 214,16 $\n' +
-      'Tief am 3. März: 190,95 $ (−11 % seit Jahresbeginn)\n' +
-      'Hoch am 6. Oktober: 649,42 $ (+203 %)\n' +
-      '13. November: 534,06 $ (+149 %, −17,8 % vom Hoch)\n\n' +
-      'Wer im März beim Tief eingestiegen wäre, hätte bis zum Hoch mehr als das Dreifache gesehen.\n\n' +
-      'Warum?\n' +
+      'Nvidia gilt als der Chip-Wert schlechthin – doch 2026 liegt die Aktie im Minus. Andere Chip-Aktien haben sich mehr als verdoppelt.\n\n' +
+      'Die Werte im Bild, seit Jahresbeginn (Schlusskurse, Yahoo Finance):\n' +
+      'Nvidia: 186,50 $ → 162,85 $, −12,7 %\n' +
+      'Intel: 36,90 $ → 59,66 $, +61,7 %\n' +
+      'Arm: 109,31 $ → 199,78 $, +82,8 % (bis 12.11.)\n' +
+      'SK Hynix: 651.000 ₩ → 1.216.000 ₩, +86,8 % (Börse Seoul)\n' +
+      'AMD: 214,16 $ → 534,06 $, +149,4 %\n' +
+      'Micron: 285,41 $ → 778,31 $, +172,7 %\n\n' +
+      'Warum so unterschiedlich?\n' +
       'Die Kurse zeigen nur, dass es so war, nicht warum. Einen Grund nennen wir nicht, ohne ihn in einer Quelle gelesen zu haben.\n\n' +
       'Und jetzt?\n' +
-      'Seit dem Hoch im Oktober ging es fast ein Fünftel zurück. Wie es weitergeht, sagen diese Zahlen nicht.\n\n' +
-      'Hättest du AMD im Depot gehabt? Schreib es in die Kommentare.\n\n' +
-      'Quellen: Yahoo Finance (AMD), Stand 13.11.2026; eigene Rechnung\n' +
-      'Logo: Advanced Micro Devices, gemeinfrei, über Wikimedia Commons',
-    schlagworte: ['amd', 'chips', 'halbleiter', 'aktien', 'börse'],
+      'Wer vorne liegt, kann auch wieder fallen – AMD etwa notiert rund 18 % unter seinem Hoch vom Oktober. Wie es weitergeht, sagen diese Zahlen nicht.\n\n' +
+      'Welche Chip-Aktie hast du im Depot? Schreib es in die Kommentare.\n\n' +
+      'Quellen: Yahoo Finance, Stand 12./13.11.2026; eigene Rechnung\n' +
+      'Logos: Wikimedia Commons, gemeinfrei',
+    schlagworte: ['chips', 'halbleiter', 'nvidia', 'amd', 'aktien'],
   },
   {
     /*
