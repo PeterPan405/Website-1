@@ -29,44 +29,80 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 15.11.2026, „Ferrari gegen Stellantis“. Für heute hat der
-      Betreiber kein Thema gewählt; die offenen Vorschläge vom 14.11. (Balken
-      Edelmetalle, Zeitstrahl Jahreshochs) wären nach dem Metall-Rätsel ein
-      Thema zweimal. Neu aus dem Kursbestand: der größte Abstand zweier
-      bekannter Autobauer seit Jahresbeginn. Nicht in den News vom 15.11.
-      (dort Bitcoin, Trump/Xi/Putin, KI-Zahlungen, Goldman-Goldziel,
-      Berkshire). Form: Verlauf (am 14.11. Rätsel).
+      Zahlenkarte 15.11.2026, „AMD: mehr als verdoppelt“. Der Betreiber
+      verwarf den ersten Entwurf („Ferrari gegen Stellantis ist langweilig“).
+      Neu ist der zweite Vorschlag aus dem Chat: die Chip-Gewinner 2026,
+      zugespitzt auf AMD. Das Thema steht nicht in den News vom 15.11.
+      Form: Chart mit Logo (am 14.11. Rätsel).
 
-      Kurse: data/snapshots/markets.json (Yahoo Finance, NYSE, USD):
-        Stellantis (STLA) 31.12.2025 10,89 $ → 12.11.2026 3,86 $ = −64,6 %
-        Ferrari (RACE)    31.12.2025 369,56 $ → 12.11.2026 405,49 $ = +9,7 %
-      Bis 12.11., den letzten Tag mit beiden Schlusskursen im Bestand.
+      Kurse: data/snapshots/markets.json (Yahoo Finance, AMD, Nasdaq, USD):
+        31.12.2025 214,16 $ → 13.11.2026 534,06 $ = +149,4 %
+        Tief 2026: 190,95 $ am 03.03. · Hoch: 649,42 $ am 06.10.
+        13.11. gegen Hoch: −17,8 %
+      Im Bild jeder Handelstag, erster Punkt der Jahresschluss 2025.
+      Logo: File:AMD Logo.svg (Advanced Micro Devices, gemeinfrei), über
+      bilder-holen.yml.
     */
-    art: 'verlauf',
+    art: 'chart',
     datum: '2026-11-15',
-    titel: [{ text: 'Zwei Autobauer,' }, { text: 'zwei Welten.', gruen: true }],
-    unterzeile: 'Wertentwicklung der Aktie seit Jahresbeginn, in Prozent:',
-    bis: '2026-11-12',
-    reihen: [
-      { name: 'Ferrari', symbol: 'ferrari', akzent: true, endwert: '+9,7 %' },
-      { name: 'Stellantis', symbol: 'stellantis', endwert: '−64,6 %' },
+    titel: [{ text: 'AMD:' }, { text: 'Mehr als verdoppelt.', gruen: true }],
+    unterzeile: 'Schlusskurs der Aktie an der Nasdaq seit Jahresbeginn, in Dollar.',
+    punkte: [
+      214.16, 223.47, 221.08, 214.35, 210.02, 204.68, 203.17, 207.69, 220.97, 223.6,
+      227.92, 231.83, 231.92, 249.8, 253.73, 259.68, 251.31, 252.03, 252.74, 252.18,
+      236.73, 246.27, 242.11, 200.19, 192.5, 208.44, 216, 213.57, 213.58, 205.94, 207.32,
+      203.08, 200.12, 203.37, 200.15, 196.6, 213.84, 210.86, 203.68, 200.21, 198.62,
+      190.95, 202.07, 199.45, 192.43, 202.68, 203.23, 204.83, 197.74, 193.39, 196.58,
+      196.31, 199.46, 205.27, 201.33, 202.68, 205.37, 220.27, 203.77, 201.99, 196.04,
+      203.43, 210.21, 217.5, 220.18, 221.53, 231.82, 236.64, 245.04, 246.83, 255.07,
+      258.12, 278.26, 278.39, 274.95, 284.49, 303.46, 305.33, 347.81, 334.63, 323.21,
+      337.11, 354.49, 360.54, 341.54, 355.26, 421.39, 408.46, 455.19, 458.79, 448.29,
+      445.5, 449.7, 424.1, 420.99, 414.05, 447.58, 449.59, 467.51, 503.89, 495.54, 518.09,
+      516.1, 510.13, 521.54, 542.52, 523.2, 466.38, 490.33, 475.51, 452.4, 488.45, 511.57,
+      547.26, 507.29, 512.48, 537.37, 551.63, 519.85, 519.74, 532.57, 521.58, 539.49,
+      580.91, 540.88, 517.82, 552.05, 516.11, 517.41, 546.72, 557.89, 534.39, 548.13,
+      529.14, 500.94, 495.76, 503.57, 544.43, 552.33, 539.69, 521.95, 494.95, 454.62,
+      429.56, 485.39, 476.15, 484.64, 518.58, 482.05, 489.28, 483.36, 469.56, 474.32,
+      482.93, 483.01, 514.39, 506, 484.39, 466.42, 469.46, 473.25, 456.75, 479.18, 480.93,
+      476.67, 465.58, 470.72, 459.61, 457.06, 456.16, 477.57, 505.74, 521.1, 503.6,
+      516.13, 493.41, 504.2, 512.5, 545.09, 559.82, 615.52, 623.77, 614.61, 629.26,
+      630.63, 607.87, 607.57, 611.76, 615.73, 633.91, 631.75, 649.42, 645.86, 620.68,
+      608.1, 594.24, 605.53, 570.82, 562.23, 528.75, 538.05, 534.74, 552.72, 507.93,
+      516.79, 531.28, 560.26, 578.44, 566.42, 504.8, 466.84, 483.9, 488.78, 404.4, 449.04,
+      508.58, 515.21, 552.9, 585.3, 534.06,
     ],
+    einheit: '$',
+    achse: [
+      { bei: 1, text: 'Jan.' },
+      { bei: 62, text: 'April' },
+      { bei: 124, text: 'Juli' },
+      { bei: 188, text: 'Okt.' },
+    ],
+    marken: [
+      { bei: 41, zahl: '191 $', anlass: 'Tief, 3. März', lage: 'unten' },
+      { bei: 191, zahl: '649 $', anlass: 'Hoch, 6. Oktober' },
+    ],
+    ende: { zahl: '534,06 $', anlass: '+149 % seit Jahresbeginn', lage: 'untenlinks' },
+    richtung: 'steigt',
+    logo: 'amd.png',
     fusszeile:
-      'Stand: Schlusskurse 12.11.2026 | Quelle: Yahoo Finance (NYSE, USD); eigene Rechnung',
+      'Stand: 13.11.2026 | Quelle: Yahoo Finance (Schlusskurse AMD, Nasdaq); eigene Rechnung',
     text:
-      'Zwei Autobauer, zwei Welten: Die Ferrari-Aktie liegt seit Jahresbeginn 9,7 % im Plus, die von Stellantis 64,6 % im Minus.\n\n' +
-      'Die Linien im Bild (Schlusskurse an der NYSE, in Dollar):\n' +
-      'Ferrari: 369,56 $ (31.12.2025) → 405,49 $ (12.11.2026), +9,7 %\n' +
-      'Stellantis: 10,89 $ (31.12.2025) → 3,86 $ (12.11.2026), −64,6 %\n\n' +
-      'Ferrari erreichte sein Jahreshoch am 21. August mit 436,54 $. Stellantis stand am höchsten gleich am 2. Januar, bei 11,42 $ – danach ging es fast nur abwärts.\n\n' +
-      'Stellantis baut Autos unter mehreren europäischen und amerikanischen Marken, Ferrari Sportwagen in bewusst kleiner Stückzahl.\n\n' +
-      'Warum liegen sie so weit auseinander?\n' +
+      'Aus 214 Dollar wurden 534: Die Aktie des Chipherstellers AMD hat sich 2026 mehr als verdoppelt – +149 % seit Jahresbeginn.\n\n' +
+      'Die Punkte im Bild (Schlusskurse an der Nasdaq):\n' +
+      'Ende 2025: 214,16 $\n' +
+      'Tief am 3. März: 190,95 $ (−11 % seit Jahresbeginn)\n' +
+      'Hoch am 6. Oktober: 649,42 $ (+203 %)\n' +
+      '13. November: 534,06 $ (+149 %, −17,8 % vom Hoch)\n\n' +
+      'Wer im März beim Tief eingestiegen wäre, hätte bis zum Hoch mehr als das Dreifache gesehen.\n\n' +
+      'Warum?\n' +
       'Die Kurse zeigen nur, dass es so war, nicht warum. Einen Grund nennen wir nicht, ohne ihn in einer Quelle gelesen zu haben.\n\n' +
       'Und jetzt?\n' +
-      'Wie es weitergeht, sagen diese Zahlen nicht. Ein Absturz ist kein Kaufsignal, ein Plus keine Garantie.\n\n' +
-      'Welche Autoaktie hättest du 2026 gewählt? Schreib es in die Kommentare.\n\n' +
-      'Quellen: Yahoo Finance (RACE, STLA, NYSE), Stand 12.11.2026; eigene Rechnung',
-    schlagworte: ['ferrari', 'stellantis', 'autoaktien', 'börse', 'aktien'],
+      'Seit dem Hoch im Oktober ging es fast ein Fünftel zurück. Wie es weitergeht, sagen diese Zahlen nicht.\n\n' +
+      'Hättest du AMD im Depot gehabt? Schreib es in die Kommentare.\n\n' +
+      'Quellen: Yahoo Finance (AMD), Stand 13.11.2026; eigene Rechnung\n' +
+      'Logo: Advanced Micro Devices, gemeinfrei, über Wikimedia Commons',
+    schlagworte: ['amd', 'chips', 'halbleiter', 'aktien', 'börse'],
   },
   {
     /*

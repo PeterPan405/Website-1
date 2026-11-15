@@ -627,8 +627,12 @@ export interface Chartkarte extends KarteGemeinsam {
     anlass: string
     lage?: 'oben' | 'unten' | 'links' | 'rechts'
   }[]
-  /** Der letzte Punkt, links daneben beschriftet. */
-  ende: { zahl: string; anlass: string }
+  /**
+   * Der letzte Punkt, links daneben beschriftet. `lage: 'untenlinks'` setzt
+   * die Beschriftung rechtsbündig unter den Punkt – wenn die Linie links
+   * davor auf derselben Höhe verläuft und sie sonst kreuzt (AMD, 15.11.2026).
+   */
+  ende: { zahl: string; anlass: string; lage?: 'links' | 'untenlinks' }
   /** Farbe des letzten Punktes. */
   richtung?: 'steigt' | 'faellt'
   /**
@@ -6060,8 +6064,9 @@ function chartGrafik(k: Chartkarte) {
     bei: number,
     gross: string,
     klein: string,
-    lage: 'oben' | 'unten' | 'links' | 'rechts',
-    farbe: string
+    lage: 'oben' | 'unten' | 'links' | 'rechts' | 'untenlinks',
+    farbe: string,
+    pointe = false
   ) => {
     const px = links + x(bei)
     const py = oben0 + y(p[bei])
@@ -6069,11 +6074,18 @@ function chartGrafik(k: Chartkarte) {
     const pos =
       lage === 'links'
         ? { top: py - 30, left: px - breiteSchild - 22, alignItems: 'flex-end' }
-        : lage === 'rechts'
-          ? { top: py - 122, left: px - 10, alignItems: 'flex-start' }
-          : lage === 'oben'
-            ? { top: py - 88, left: px - breiteSchild / 2, alignItems: 'center' }
-            : { top: py + 18, left: px - breiteSchild / 2, alignItems: 'center' }
+        : lage === 'untenlinks'
+          ? {
+              /* unter dem tiefsten Punkt des letzten Fünftels – sonst kreuzt die Linie */
+              top: oben0 + Math.max(...p.slice(-Math.ceil(p.length / 5)).map(y)) + 24,
+              left: px - breiteSchild + 12,
+              alignItems: 'flex-end',
+            }
+          : lage === 'rechts'
+            ? { top: py - 122, left: px - 10, alignItems: 'flex-start' }
+            : lage === 'oben'
+              ? { top: py - 88, left: px - breiteSchild / 2, alignItems: 'center' }
+              : { top: py + 18, left: px - breiteSchild / 2, alignItems: 'center' }
     return h(
       'div',
       {
@@ -6095,10 +6107,15 @@ function chartGrafik(k: Chartkarte) {
       h(
         'div',
         {
-          style:
-            lage === 'links'
-              ? { fontSize: 23, fontWeight: 700, color: farbe, marginTop: 2 }
-              : { fontSize: 19, color: STIL.grau, marginTop: 2 },
+          style: pointe
+            ? {
+                fontSize: 23,
+                fontWeight: 700,
+                color: farbe,
+                marginTop: 2,
+                textAlign: 'right',
+              }
+            : { fontSize: 19, color: STIL.grau, marginTop: 2 },
         },
         klein
       )
@@ -6157,7 +6174,7 @@ function chartGrafik(k: Chartkarte) {
       )
     ),
     ...k.marken.map((m) => schild(m.bei, m.zahl, m.anlass, m.lage ?? 'oben', STIL.tinte)),
-    schild(ende, k.ende.zahl, k.ende.anlass, 'links', endFarbe),
+    schild(ende, k.ende.zahl, k.ende.anlass, k.ende.lage ?? 'links', endFarbe, true),
   ]
 }
 
