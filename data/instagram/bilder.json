@@ -1243,12 +1243,12 @@
     },
     {
       "stelle": 2,
-      "datei": "2026-11-15-2-a2bbf90f.jpg",
-      "titel": "File:Goldman Sachs 2022 Black.svg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Goldman_Sachs_2022_Black.svg",
+      "datei": "2026-11-15-6-b714c04d.jpg",
+      "titel": "File:Bitcoin logo.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Bitcoin_logo.svg",
       "lizenz": "Public domain",
-      "urheber": "https://www.goldmansachs.com/worldwide/australia-new-zealand/",
-      "suche": "Logo auf #E8EDF5"
+      "urheber": "Bitboy",
+      "suche": "Logo auf #F5F5F5"
     },
     {
       "stelle": 3,
@@ -1261,16 +1261,6 @@
     },
     {
       "stelle": 4,
-      "datei": "",
-      "titel": "Kurs: berkshire",
-      "seite": "",
-      "lizenz": "Kursgrafik",
-      "urheber": "",
-      "suche": "von Hand: Kursverlauf",
-      "kurs": "berkshire"
-    },
-    {
-      "stelle": 5,
       "datei": "2026-11-15-5-14d883d4.jpg",
       "titel": "File:Mastercard 2019 logo.svg",
       "seite": "https://commons.wikimedia.org/wiki/File:Mastercard_2019_logo.svg",
@@ -1279,13 +1269,13 @@
       "suche": "Logo auf #E8EDF5"
     },
     {
-      "stelle": 6,
-      "datei": "2026-11-15-6-b714c04d.jpg",
-      "titel": "File:Bitcoin logo.svg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Bitcoin_logo.svg",
+      "stelle": 5,
+      "datei": "2026-11-15-2-a2bbf90f.jpg",
+      "titel": "File:Goldman Sachs 2022 Black.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Goldman_Sachs_2022_Black.svg",
       "lizenz": "Public domain",
-      "urheber": "Bitboy",
-      "suche": "Logo auf #F5F5F5"
+      "urheber": "https://www.goldmansachs.com/worldwide/australia-new-zealand/",
+      "suche": "Logo auf #E8EDF5"
     }
   ]
 }
