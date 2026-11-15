@@ -1045,6 +1045,43 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 15.11.2026: Verlauf Ferrari gegen Stellantis (markets.json, NYSE). */
+{
+  const karte = karteVom('2026-11-15')
+  pruefe('Autobauer: Karte für den 15.11. ist ein Verlauf', karte?.art === 'verlauf')
+  if (karte?.art === 'verlauf') {
+    pruefe(
+      'Autobauer: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Autobauer: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-14')!)
+    )
+    const roh = JSON.parse(
+      readFileSync('data/snapshots/markets.json', 'utf8')
+    ).instruments
+    for (const r of karte.reihen) {
+      const p: { d: string; c: number }[] = roh[r.symbol].points
+      const basis = p.filter((x) => x.d < '2026-01-01').at(-1)!.c
+      const ende = p.filter((x) => x.d <= karte.bis).at(-1)!.c
+      const v = Math.round((ende / basis - 1) * 1000) / 10
+      const zahl = `${v < 0 ? '−' : '+'}${Math.abs(v).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+      pruefe(
+        `Autobauer: ${r.name} ${zahl} am Linienende und im Text`,
+        r.endwert === zahl && karte.text.includes(zahl)
+      )
+    }
+    const png = await zahlenkarteSeitePng(
+      karte,
+      readFileSync('public/logo.svg', 'utf8'),
+      1
+    )
+    pruefe('Autobauer: Bild ist ein PNG', png.subarray(1, 4).toString() === 'PNG')
+  }
+}
+
 /* 14.11.2026: Rätsel „Welches Metall ist das?“ (Yahoo Finance, markets.json, 2026). */
 {
   const karte = karteVom('2026-11-14')

@@ -29,6 +29,47 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 15.11.2026, „Ferrari gegen Stellantis“. Für heute hat der
+      Betreiber kein Thema gewählt; die offenen Vorschläge vom 14.11. (Balken
+      Edelmetalle, Zeitstrahl Jahreshochs) wären nach dem Metall-Rätsel ein
+      Thema zweimal. Neu aus dem Kursbestand: der größte Abstand zweier
+      bekannter Autobauer seit Jahresbeginn. Nicht in den News vom 15.11.
+      (dort Bitcoin, Trump/Xi/Putin, KI-Zahlungen, Goldman-Goldziel,
+      Berkshire). Form: Verlauf (am 14.11. Rätsel).
+
+      Kurse: data/snapshots/markets.json (Yahoo Finance, NYSE, USD):
+        Stellantis (STLA) 31.12.2025 10,89 $ → 12.11.2026 3,86 $ = −64,6 %
+        Ferrari (RACE)    31.12.2025 369,56 $ → 12.11.2026 405,49 $ = +9,7 %
+      Bis 12.11., den letzten Tag mit beiden Schlusskursen im Bestand.
+    */
+    art: 'verlauf',
+    datum: '2026-11-15',
+    titel: [{ text: 'Zwei Autobauer,' }, { text: 'zwei Welten.', gruen: true }],
+    unterzeile: 'Wertentwicklung der Aktie seit Jahresbeginn, in Prozent:',
+    bis: '2026-11-12',
+    reihen: [
+      { name: 'Ferrari', symbol: 'ferrari', akzent: true, endwert: '+9,7 %' },
+      { name: 'Stellantis', symbol: 'stellantis', endwert: '−64,6 %' },
+    ],
+    fusszeile:
+      'Stand: Schlusskurse 12.11.2026 | Quelle: Yahoo Finance (NYSE, USD); eigene Rechnung',
+    text:
+      'Zwei Autobauer, zwei Welten: Die Ferrari-Aktie liegt seit Jahresbeginn 9,7 % im Plus, die von Stellantis 64,6 % im Minus.\n\n' +
+      'Die Linien im Bild (Schlusskurse an der NYSE, in Dollar):\n' +
+      'Ferrari: 369,56 $ (31.12.2025) → 405,49 $ (12.11.2026), +9,7 %\n' +
+      'Stellantis: 10,89 $ (31.12.2025) → 3,86 $ (12.11.2026), −64,6 %\n\n' +
+      'Ferrari erreichte sein Jahreshoch am 21. August mit 436,54 $. Stellantis stand am höchsten gleich am 2. Januar, bei 11,42 $ – danach ging es fast nur abwärts.\n\n' +
+      'Stellantis baut Autos unter mehreren europäischen und amerikanischen Marken, Ferrari Sportwagen in bewusst kleiner Stückzahl.\n\n' +
+      'Warum liegen sie so weit auseinander?\n' +
+      'Die Kurse zeigen nur, dass es so war, nicht warum. Einen Grund nennen wir nicht, ohne ihn in einer Quelle gelesen zu haben.\n\n' +
+      'Und jetzt?\n' +
+      'Wie es weitergeht, sagen diese Zahlen nicht. Ein Absturz ist kein Kaufsignal, ein Plus keine Garantie.\n\n' +
+      'Welche Autoaktie hättest du 2026 gewählt? Schreib es in die Kommentare.\n\n' +
+      'Quellen: Yahoo Finance (RACE, STLA, NYSE), Stand 12.11.2026; eigene Rechnung',
+    schlagworte: ['ferrari', 'stellantis', 'autoaktien', 'börse', 'aktien'],
+  },
+  {
+    /*
       Zahlenkarte 14.11.2026, „Welches Metall ist das?“ – Rätsel. Der
       Betreiber hat aus den drei Vorschlägen vom 14.11. (Rätsel Metalle,
       Balken Edelmetalle, Zeitstrahl Jahreshochs) nicht gewählt; nach dem
