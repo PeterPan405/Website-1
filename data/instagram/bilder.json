@@ -1260,15 +1260,6 @@
       "suche": "von Hand gewählt"
     },
     {
-      "stelle": 4,
-      "datei": "2026-11-15-4-4fd4a2ad.jpg",
-      "titel": "File:Warren Buffett with Fisher College of Business Student.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Warren_Buffett_with_Fisher_College_of_Business_Student.jpg",
-      "lizenz": "CC BY 2.0",
-      "urheber": "Aaron Friedman",
-      "suche": "von Hand gewählt"
-    },
-    {
       "stelle": 5,
       "datei": "2026-11-15-5-14d883d4.jpg",
       "titel": "File:Mastercard 2019 logo.svg",
@@ -1285,6 +1276,16 @@
       "lizenz": "Public domain",
       "urheber": "Bitboy",
       "suche": "Logo auf #F5F5F5"
+    },
+    {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: berkshire",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "von Hand: Kursverlauf",
+      "kurs": "berkshire"
     }
   ]
 }
