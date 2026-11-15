@@ -11,6 +11,8 @@ import { musterkarten } from '@/data/instagram-muster'
 import { NEUE_ARTEN } from '@/lib/instagram/arten/index'
 import { ampelFarbe } from '@/lib/instagram/arten/ampel'
 import { zaehleTage } from '@/lib/instagram/arten/kalender'
+import { wochenkerzen } from '@/lib/instagram/arten/kerzen'
+import { plaetze } from '@/lib/instagram/arten/rangwechsel'
 import { wasserfallEnde } from '@/lib/instagram/arten/wasserfall'
 import {
   form,
@@ -255,6 +257,118 @@ function muster<A extends Zahlenkarte['art']>(art: A) {
   pruefe(
     'Ampel: verdrehte Regel wird beanstandet',
     pruefeZahlenkarte(kaputt).some((t) => t.includes('verdreht'))
+  )
+}
+
+/* Rangwechsel, Streuung, Netz: aus Kursen (markets.json) und SEC-Daten (fundamentaldaten.json). */
+{
+  const fd = JSON.parse(readFileSync('data/snapshots/fundamentaldaten.json', 'utf8'))
+    .unternehmen as Record<
+    string,
+    {
+      umsatz: number
+      gewinn: number
+      cashflow: number
+      eigenkapital: number
+      aktien: number
+    }
+  >
+  const zu: Record<string, [string, string]> = {
+    Apple: ['apple', 'AAPL'],
+    Nvidia: ['nvidia', 'NVDA'],
+    Microsoft: ['microsoft', 'MSFT'],
+    Alphabet: ['alphabet', 'GOOGL'],
+    Amazon: ['amazon', 'AMZN'],
+    Meta: ['meta', 'META'],
+  }
+  const rw = muster('rangwechsel')
+  for (const r of rw.reihen) {
+    const [sym, tick] = zu[r.name]
+    const werte = Array.from({ length: 11 }, (_, m) => {
+      const mon = `2026-${String(m + 1).padStart(2, '0')}`
+      const c = roh[sym].points.filter((x) => x.d.startsWith(mon)).at(-1)!.c
+      return runde((c * fd[tick].aktien) / 1e12, 3)
+    })
+    pruefe(
+      `Rangwechsel: ${r.name} je Monat wie gerechnet`,
+      JSON.stringify(werte) === JSON.stringify(r.werte)
+    )
+  }
+  const pl = plaetze(rw)
+  pruefe('Rangwechsel: Nvidia im November auf Platz 2', pl[0].at(-1) === 2)
+  const gleich = {
+    ...rw,
+    reihen: rw.reihen.map((r) => ({ ...r, werte: r.werte.map(() => 1) })),
+  }
+  pruefe(
+    'Rangwechsel: Gleichstand wird beanstandet',
+    pruefeZahlenkarte(gleich).some((t) => t.includes('Gleichstand'))
+  )
+
+  const st = muster('streuung')
+  for (const pt of st.punkte) {
+    const [sym, tick] = zu[pt.name]
+    const p = roh[sym].points
+    const kgv = runde((p.at(-1)!.c * fd[tick].aktien) / fd[tick].gewinn, 1)
+    const ytd = runde(
+      (p.at(-1)!.c / p.filter((x) => x.d < '2026-01-01').at(-1)!.c - 1) * 100,
+      1
+    )
+    pruefe(`Streuung: ${pt.name} KGV ${kgv}, ${ytd} %`, kgv === pt.x && ytd === pt.y)
+  }
+  pruefe(
+    'Streuung: Apple hat das höchste KGV',
+    st.punkte.every((p) => p.x <= st.punkte.find((q) => q.name === 'Apple')!.x)
+  )
+  pruefe(
+    'Streuung: falscher Hervorgehobener wird beanstandet',
+    pruefeZahlenkarte({ ...st, hervor: 'Tesla' }).some((t) => t.includes('Tesla'))
+  )
+
+  const nz = muster('netz')
+  const a = fd.AAPL
+  const m = fd.MSFT
+  const soll: [number, number][] = [
+    [runde(a.umsatz / 1e9, 3), runde(m.umsatz / 1e9, 3)],
+    [runde(a.gewinn / 1e9, 3), runde(m.gewinn / 1e9, 3)],
+    [runde((a.gewinn / a.umsatz) * 100, 1), runde((m.gewinn / m.umsatz) * 100, 1)],
+    [runde(a.cashflow / 1e9, 1), runde(m.cashflow / 1e9, 1)],
+    [
+      runde((a.gewinn / a.eigenkapital) * 100, 1),
+      runde((m.gewinn / m.eigenkapital) * 100, 1),
+    ],
+  ]
+  soll.forEach((w, i) =>
+    pruefe(
+      `Netz: ${nz.achsen[i].name} ${w.join(' / ')}`,
+      JSON.stringify(w) === JSON.stringify(nz.achsen[i].werte)
+    )
+  )
+  pruefe(
+    'Netz: vier Achsen werden beanstandet',
+    pruefeZahlenkarte({ ...nz, achsen: nz.achsen.slice(0, 4) }).some((t) =>
+      t.includes('fünf oder sechs')
+    )
+  )
+}
+
+/* Kerzen: Wochenkerzen aus den Tagesschlusskursen von Nvidia. */
+{
+  const k = muster('kerzen')
+  const wochen = wochenkerzen(roh.nvidia.points.filter((x) => x.d >= '2026-07-27'))
+  pruefe(
+    `Kerzen: ${wochen.length} Wochen wie gerechnet`,
+    JSON.stringify(wochen.map(({ auf, zu, hoch, tief }) => ({ auf, zu, hoch, tief }))) ===
+      JSON.stringify(k.kerzen.map(({ auf, zu, hoch, tief }) => ({ auf, zu, hoch, tief })))
+  )
+  pruefe(
+    'Kerzen: die markierte Woche ist die vom 9.11.',
+    k.kerzen[k.marke!.bei].name === '9.11.'
+  )
+  const kaputt = { ...k, kerzen: [{ ...k.kerzen[0], hoch: 1 }, ...k.kerzen.slice(1)] }
+  pruefe(
+    'Kerzen: Docht unter dem Körper wird beanstandet',
+    pruefeZahlenkarte(kaputt).some((t) => t.includes('Docht'))
   )
 }
 

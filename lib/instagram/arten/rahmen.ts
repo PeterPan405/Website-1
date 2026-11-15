@@ -127,7 +127,8 @@ export function rahmen(
                 flexDirection: 'column',
                 fontFamily: 'Montserrat',
                 fontWeight: 800,
-                fontSize: 74,
+                /* Lange Titelzeilen kleiner, sonst bricht eine dritte Zeile in die Unterzeile. */
+                fontSize: Math.max(...k.titel.map((t) => t.text.length)) > 20 ? 62 : 74,
                 lineHeight: 1.08,
                 letterSpacing: -2,
               },

@@ -424,4 +424,159 @@ export const musterkarten: Zahlenkarte[] = [
     text: 'Muster.\n\nQuellen: IWF',
     schlagworte: ['staatsschulden', 'europa', 'wirtschaft', 'politik', 'maastricht'],
   },
+  {
+    /* Rangwechsel: Börsenwert am letzten Handelstag jedes Monats = Kurs (markets.json) × heutige Aktienzahl (fundamentaldaten.json), Billionen $. */
+    art: 'rangwechsel',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Am meisten wert?' },
+      { text: 'Nvidia nur noch Zweiter.', gruen: true },
+    ],
+    unterzeile:
+      'Rang nach Börsenwert am Monatsende – mit der heutigen Aktienzahl gerechnet.',
+    zeitpunkte: [
+      'Jan.',
+      'Feb.',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'Aug.',
+      'Sept.',
+      'Okt.',
+      'Nov.',
+    ],
+    reihen: [
+      {
+        name: 'Nvidia',
+        werte: [
+          4.606, 4.27, 4.203, 4.81, 5.088, 4.822, 4.838, 5.321, 5.504, 4.932, 3.925,
+        ],
+      },
+      {
+        name: 'Apple',
+        werte: [
+          3.771, 3.839, 3.688, 3.943, 4.535, 4.205, 4.489, 4.605, 4.84, 5.008, 5.177,
+        ],
+      },
+      {
+        name: 'Microsoft',
+        werte: [
+          3.195, 2.917, 2.749, 3.028, 3.344, 2.77, 3.451, 3.767, 3.809, 3.876, 3.89,
+        ],
+      },
+      {
+        name: 'Alphabet',
+        werte: [
+          4.155, 3.833, 3.535, 4.731, 4.676, 4.394, 4.378, 4.172, 4.23, 3.44, 3.636,
+        ],
+      },
+      {
+        name: 'Amazon',
+        werte: [
+          2.588, 2.271, 2.252, 2.866, 2.926, 2.577, 2.937, 2.809, 2.694, 2.599, 2.883,
+        ],
+      },
+      {
+        name: 'Meta',
+        werte: [
+          1.822, 1.648, 1.455, 1.556, 1.608, 1.432, 1.416, 1.455, 1.844, 1.564, 1.586,
+        ],
+      },
+    ],
+    fusszeile:
+      'Stand: 13.11.2026 | Quellen: Yahoo Finance, SEC; Kurs × Aktienzahl, eigene Rechnung',
+    text: 'Muster.\n\nQuellen: Yahoo Finance, SEC',
+    schlagworte: ['nvidia', 'apple', 'börsenwert', 'aktien', 'tech'],
+  },
+  {
+    /* Kerzen: Nvidia, Wochenkerzen aus Tagesschlusskursen ab 27.07.2026 (markets.json). */
+    art: 'kerzen',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Nvidia Woche für Woche:' },
+      { text: 'Zwei Wochen Absturz.', gruen: true },
+    ],
+    unterzeile: 'Je Woche eine Kerze: grün, wenn sie höher schloss, rot, wenn tiefer.',
+    einheit: '$',
+    kerzen: [
+      { name: '27.7.', auf: 196.51, zu: 200.75, hoch: 200.75, tief: 190.01 },
+      { name: '3.8.', auf: 206.64, zu: 223.96, hoch: 223.96, tief: 206.64 },
+      { name: '10.8.', auf: 217.55, zu: 225.16, hoch: 225.3, tief: 217.5 },
+      { name: '17.8.', auf: 225.01, zu: 214.72, hoch: 225.01, tief: 214.72 },
+      { name: '24.8.', auf: 208.48, zu: 217.55, hoch: 227.98, tief: 208.48 },
+      { name: '31.8.', auf: 220.78, zu: 230.36, hoch: 230.36, tief: 217.44 },
+      { name: '7.9.', auf: 225.73, zu: 218.29, hoch: 225.73, tief: 218.29 },
+      { name: '14.9.', auf: 210.96, zu: 222.27, hoch: 222.27, tief: 210.96 },
+      { name: '21.9.', auf: 227.38, zu: 225.07, hoch: 228.87, tief: 224.58 },
+      { name: '28.9.', auf: 228.86, zu: 233.95, hoch: 233.95, tief: 227.21 },
+      { name: '5.10.', auf: 238.9, zu: 229.28, hoch: 239.24, tief: 229.28 },
+      { name: '12.10.', auf: 226.32, zu: 214.13, hoch: 228.52, tief: 214.13 },
+      { name: '19.10.', auf: 217.09, zu: 210.96, hoch: 221.97, tief: 210.96 },
+      { name: '26.10.', auf: 216, zu: 204.64, hoch: 217.94, tief: 204.64 },
+      { name: '2.11.', auf: 202.06, zu: 186.64, hoch: 206.69, tief: 181.6 },
+      { name: '9.11.', auf: 178.67, zu: 162.85, hoch: 178.67, tief: 162.85 },
+    ],
+    marke: { bei: 15, text: 'Rücktritt von Huang' },
+    fusszeile:
+      'Stand: 13.11.2026 | Quelle: Yahoo Finance; Kerzen aus Tagesschlusskursen, eigene Rechnung',
+    text: 'Muster.\n\nQuellen: Yahoo Finance',
+    schlagworte: ['nvidia', 'chart', 'aktien', 'börse', 'chips'],
+  },
+  {
+    /* Streuung: KGV = Börsenwert (Kurs × Aktien) ÷ Nettogewinn des letzten Geschäftsjahres; y = Kurs seit Jahresbeginn. */
+    art: 'streuung',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Teuer oder günstig?' },
+      { text: 'Apple am teuersten.', gruen: true },
+    ],
+    unterzeile: 'Kurs-Gewinn-Verhältnis gegen die Kursentwicklung seit Jahresbeginn.',
+    x: { name: 'Kurs-Gewinn-Verhältnis', einheit: '' },
+    y: { name: 'Kurs seit Jahresbeginn', einheit: ' %' },
+    punkte: [
+      { name: 'Apple', x: 46.2, y: 31 },
+      { name: 'Microsoft', x: 38.2, y: 8.3 },
+      { name: 'Amazon', x: 37.1, y: 15.5 },
+      { name: 'Nvidia', x: 32.7, y: -12.7 },
+      { name: 'Alphabet', x: 27.5, y: -5.5 },
+    ],
+    hervor: 'Apple',
+    fusszeile: 'Stand: 13.11.2026 | Quellen: Yahoo Finance, SEC; eigene Rechnung',
+    text: 'Muster.\n\nQuellen: Yahoo Finance, SEC',
+    schlagworte: ['kgv', 'bewertung', 'aktien', 'apple', 'tech'],
+  },
+  {
+    /* Netz: Apple gegen Microsoft, letztes Geschäftsjahr (SEC, fundamentaldaten.json) und Kurs 2026 (markets.json). */
+    art: 'netz',
+    datum: '2026-11-15',
+    titel: [{ text: 'Apple gegen Microsoft:' }, { text: 'Wer hat mehr?', gruen: true }],
+    unterzeile: 'Jede Achse auf den größeren der beiden Werte gestreckt.',
+    namen: ['Apple', 'Microsoft'],
+    achsen: [
+      {
+        name: 'Umsatz',
+        werte: [416.161, 281.724],
+        anzeige: ['416 Mrd. $', '282 Mrd. $'],
+      },
+      {
+        name: 'Nettogewinn',
+        werte: [112.01, 101.832],
+        anzeige: ['112 Mrd. $', '102 Mrd. $'],
+      },
+      { name: 'Gewinnmarge', werte: [26.9, 36.1], anzeige: ['26,9 %', '36,1 %'] },
+      {
+        name: 'Operativer Cashflow',
+        werte: [111.5, 136.2],
+        anzeige: ['112 Mrd. $', '136 Mrd. $'],
+      },
+      { name: 'Eigenkapitalrendite', werte: [99.9, 21.6], anzeige: ['99,9 %', '21,6 %'] },
+      { name: 'Kurs 2026', werte: [31, 8.3], anzeige: ['+31,0 %', '+8,3 %'] },
+    ],
+    fusszeile:
+      'Stand: letztes Geschäftsjahr, Kurse 13.11.2026 | Quellen: SEC, Yahoo Finance; eigene Rechnung',
+    text: 'Muster.\n\nQuellen: SEC, Yahoo Finance',
+    schlagworte: ['apple', 'microsoft', 'bilanz', 'aktien', 'vergleich'],
+  },
 ]
