@@ -15,13 +15,17 @@ import { kalender, type Kalenderkarte } from './kalender.ts'
 import { kerzen, type Kerzenkarte } from './kerzen.ts'
 import { kreise, type Kreiskarte } from './kreise.ts'
 import { kurszettel, type Kurszettelkarte } from './kurszettel.ts'
+import { laenderkarte, type Laenderkartenkarte } from './laenderkarte.ts'
+import { marktkarte, type Marktkartenkarte } from './marktkarte.ts'
 import { netz, type Netzkarte } from './netz.ts'
 import { punktraster, type Punktrasterkarte } from './punktraster.ts'
 import type { Art } from './rahmen.ts'
 import { rangwechsel, type Rangwechselkarte } from './rangwechsel.ts'
+import { schaetzfrage, type Schaetzfragekarte } from './schaetzfrage.ts'
 import { streuung, type Streuungkarte } from './streuung.ts'
 import { tacho, type Tachokarte } from './tacho.ts'
 import { wasserfall, type Wasserfallkarte } from './wasserfall.ts'
+import { weltuhr, type Weltuhrkarte } from './weltuhr.ts'
 
 export type NeueKarte =
   | Kurszettelkarte
@@ -36,6 +40,10 @@ export type NeueKarte =
   | Kerzenkarte
   | Streuungkarte
   | Netzkarte
+  | Marktkartenkarte
+  | Laenderkartenkarte
+  | Weltuhrkarte
+  | Schaetzfragekarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -52,6 +60,10 @@ export const NEUE_ARTEN: {
   kerzen,
   streuung,
   netz,
+  marktkarte,
+  laenderkarte,
+  weltuhr,
+  schaetzfrage,
 }
 
 export function istNeueKarte(k: { art?: string }): k is NeueKarte {

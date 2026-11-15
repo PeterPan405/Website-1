@@ -12,7 +12,10 @@ import { NEUE_ARTEN } from '@/lib/instagram/arten/index'
 import { ampelFarbe } from '@/lib/instagram/arten/ampel'
 import { zaehleTage } from '@/lib/instagram/arten/kalender'
 import { wochenkerzen } from '@/lib/instagram/arten/kerzen'
+import { aufteilen } from '@/lib/instagram/arten/marktkarte'
 import { plaetze } from '@/lib/instagram/arten/rangwechsel'
+import { minuten } from '@/lib/instagram/arten/weltuhr'
+import { PLAETZE } from '@/lib/handelszeiten'
 import { wasserfallEnde } from '@/lib/instagram/arten/wasserfall'
 import {
   form,
@@ -370,6 +373,171 @@ function muster<A extends Zahlenkarte['art']>(art: A) {
     'Kerzen: Docht unter dem Körper wird beanstandet',
     pruefeZahlenkarte(kaputt).some((t) => t.includes('Docht'))
   )
+}
+
+/* Marktkarte: Börsenwert und Veränderung 6.11. → 13.11.2026, Flächen proportional. */
+{
+  const k = muster('marktkarte')
+  const fd = JSON.parse(readFileSync('data/snapshots/fundamentaldaten.json', 'utf8'))
+    .unternehmen as Record<string, { aktien: number }>
+  const zu: Record<string, [string, string]> = {
+    Apple: ['apple', 'AAPL'],
+    Nvidia: ['nvidia', 'NVDA'],
+    Microsoft: ['microsoft', 'MSFT'],
+    Alphabet: ['alphabet', 'GOOGL'],
+    Amazon: ['amazon', 'AMZN'],
+    Broadcom: ['broadcom', 'AVGO'],
+    Tesla: ['tesla', 'TSLA'],
+    'Eli Lilly': ['eli-lilly', 'LLY'],
+    Walmart: ['walmart', 'WMT'],
+    JPMorgan: ['jpmorgan', 'JPM'],
+    Mastercard: ['mastercard', 'MA'],
+    Oracle: ['oracle', 'ORCL'],
+  }
+  const kurs = (sym: string, tag: string) =>
+    roh[sym].points.filter((p) => p.d <= tag).at(-1)!
+  for (const f of k.felder) {
+    const [sym, tick] = zu[f.name]
+    const jetzt = kurs(sym, '2026-11-13')
+    const vorher = kurs(sym, '2026-11-06')
+    pruefe(
+      `Marktkarte: ${f.name} Kurse vom 13.11. und 6.11.`,
+      jetzt.d === '2026-11-13' && vorher.d === '2026-11-06'
+    )
+    pruefe(
+      `Marktkarte: ${f.name} ${f.gewicht} Bio. $`,
+      runde((jetzt.c * fd[tick].aktien) / 1e12, 3) === f.gewicht
+    )
+    pruefe(
+      `Marktkarte: ${f.name} ${f.aenderung} %`,
+      runde((jetzt.c / vorher.c - 1) * 100, 1) === f.aenderung
+    )
+  }
+  const r = { x: 0, y: 0, b: 900, h: 700 }
+  const teile = aufteilen(
+    k.felder.map((f) => f.gewicht),
+    r
+  )
+  const summe = k.felder.reduce((s, f) => s + f.gewicht, 0)
+  pruefe(
+    'Marktkarte: jede Fläche entspricht ihrem Anteil',
+    teile.every(
+      (t, i) => Math.abs((t.b * t.h) / (r.b * r.h) - k.felder[i].gewicht / summe) < 1e-9
+    )
+  )
+  pruefe(
+    'Marktkarte: alle Kacheln liegen in der Fläche',
+    teile.every(
+      (t) =>
+        t.x >= -1e-9 && t.y >= -1e-9 && t.x + t.b <= 900 + 1e-6 && t.y + t.h <= 700 + 1e-6
+    )
+  )
+  const kaputt = { ...k, felder: [...k.felder].reverse() }
+  pruefe(
+    'Marktkarte: aufsteigende Reihenfolge wird beanstandet',
+    pruefeZahlenkarte(kaputt).some((t) => t.includes('absteigend'))
+  )
+}
+
+/* Länderkarte: Arbeitslosenquote 2025 je Land, wie in laender.json. */
+{
+  const k = muster('laenderkarte')
+  const laender = JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
+  for (const [iso, v] of Object.entries(k.werte))
+    pruefe(
+      `Länderkarte: ${iso} ${v} %`,
+      laender[iso].arbeitslosenquote.wert === v &&
+        laender[iso].arbeitslosenquote.jahr === 2025
+    )
+  const hoechstes = Object.entries(k.werte).sort((a, b) => b[1] - a[1])[0][0]
+  pruefe('Länderkarte: „Spanien vorn“ stimmt', hoechstes === 'ESP')
+  pruefe(
+    'Länderkarte: unbekanntes Land wird beanstandet',
+    pruefeZahlenkarte({ ...k, werte: { ...k.werte, XYZ: 1 } }).some((t) =>
+      t.includes('Raster')
+    )
+  )
+}
+
+/* Weltuhr: Handelszeiten aus lib/handelszeiten.ts, umgerechnet für den 16.11.2026. */
+{
+  const k = muster('weltuhr')
+  const platz = {
+    Xetra: PLAETZE.xetra,
+    'New York': PLAETZE.newYork,
+    Tokio: PLAETZE.tokio,
+    Hongkong: PLAETZE.hongkong,
+  }
+  const berlin = (zone: string, minuten: number) => {
+    /* Ortszeit am 16.11.2026 → Berliner Wanduhr, über die Versätze beider Zonen. */
+    const versatz = (z: string) => {
+      const teile = new Intl.DateTimeFormat('en-US', {
+        timeZone: z,
+        timeZoneName: 'longOffset',
+      }).formatToParts(new Date('2026-11-16T12:00:00Z'))
+      const m = teile
+        .find((t) => t.type === 'timeZoneName')!
+        .value.match(/GMT([+-]\d\d):(\d\d)/)
+      return m ? Number(m[1]) * 60 + Math.sign(Number(m[1])) * Number(m[2]) : 0
+    }
+    const v =
+      (((minuten - versatz(zone) + versatz('Europe/Berlin')) % 1440) + 1440) % 1440
+    return `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`
+  }
+  for (const b of k.boersen) {
+    const p = platz[b.name as keyof typeof platz]
+    pruefe(
+      `Weltuhr: ${b.name} ${b.von}–${b.bis}`,
+      berlin(p.zone, p.von) === b.von && berlin(p.zone, p.bis) === b.bis,
+      `${berlin(p.zone, p.von)}–${berlin(p.zone, p.bis)}`
+    )
+  }
+  const frueheste = [...k.boersen].sort((a, b) => minuten(a.von) - minuten(b.von))[0].name
+  pruefe('Weltuhr: „Tokio zuerst“ stimmt', frueheste === 'Tokio')
+  pruefe(
+    'Weltuhr: kaputte Uhrzeit wird beanstandet',
+    pruefeZahlenkarte({
+      ...k,
+      boersen: [{ ...k.boersen[0], von: '9 Uhr' }, ...k.boersen.slice(1)],
+    }).some((t) => t.includes('HH:MM'))
+  )
+}
+
+/* Schätzfrage: Einwohner 2023 und Arbeitslosenquote 2025 aus laender.json. */
+{
+  const k = muster('schaetzfrage')
+  const laender = JSON.parse(readFileSync('data/snapshots/laender.json', 'utf8')).laender
+  pruefe(
+    'Schätzfrage: Indien 1.438,07 Mio. Einwohner',
+    runde(laender.IND.einwohner / 1e6, 2) === k.fragen[0].antwort
+  )
+  pruefe(
+    'Schätzfrage: Indien vor China',
+    laender.IND.einwohner > laender.CHN.einwohner &&
+      runde(laender.CHN.einwohner / 1e9, 2) === 1.41
+  )
+  pruefe(
+    'Schätzfrage: Spanien 10,4 %, Deutschland 3,7 %',
+    laender.ESP.arbeitslosenquote.wert === k.fragen[1].antwort &&
+      laender.DEU.arbeitslosenquote.wert === 3.7
+  )
+  const eu =
+    'AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE'.split(
+      ' '
+    )
+  pruefe(
+    'Schätzfrage: „die höchste der EU“ stimmt (alle 27)',
+    eu.every(
+      (i) => laender[i].arbeitslosenquote.wert <= laender.ESP.arbeitslosenquote.wert
+    )
+  )
+  pruefe(
+    'Schätzfrage: Antwort außerhalb der Skala wird beanstandet',
+    pruefeZahlenkarte({ ...k, fragen: [{ ...k.fragen[0], antwort: 5000 }] }).some((t) =>
+      t.includes('außerhalb')
+    )
+  )
+  pruefe('Schätzfrage: zwei Seiten je Frage', zahlenkarteSeiten(k) === 4)
 }
 
 console.log(
