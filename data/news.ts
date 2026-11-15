@@ -101,6 +101,331 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'goldman-sachs-senkt-goldpreisziel',
+    title: 'Goldman Sachs senkt Goldpreisziel – und erwartet eine strengere Fed',
+    metaTitle: 'Goldman Sachs senkt Goldpreisziel erneut',
+    teaser:
+      'Goldman Sachs hat seine Goldpreisziele für 2026 und 2027 gesenkt. Grund ist eine strengere US-Notenbank mit einer weiteren Zinserhöhung im Dezember.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-15T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['gold', 'goldman-sachs', 'fed', 'zinsen'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Kitco News, 13. November 2026, 18:09 Uhr: „Goldman Sachs cuts year-end gold price target to $4,150/oz, 2027 target to $4,800/oz"',
+        url: 'https://www.kitco.com/news/article/2026-11-13/goldman-sachs-cuts-year-end-gold-price-target-4150oz-2027-target-4800oz',
+      },
+      {
+        label:
+          'goldreporter.de, 14. November 2026: „Goldman Sachs senkt Goldpreis-Ziel erneut"',
+        url: 'https://www.goldreporter.de/goldman-sachs-senkt-goldpreis-ziel-erneut/banken/263102/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldman Sachs traut dem Gold wieder weniger zu. Die US-Investmentbank senkte ihr Kursziel für Ende 2026 um 500 Dollar auf 4.150 Dollar je Feinunze und das Ziel für Ende 2027 von 5.400 auf 4.800 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Begründung nennt die Bank den strengeren Kurs der US-Notenbank, die im Dezember aller Voraussicht nach die Zinsen erneut anhebt. Höhere Zinsen machen unverzinstes Gold für Anleger unattraktiver, weil Anleihen und Tagesgeld wieder mehr abwerfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Vergleich mit 2022',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldman zieht einen Vergleich zum Jahr 2022: Damals boten Käufe der Notenbanken eine stabile Basis, während steigende Zinsen die Positionierung der Anleger belasteten und nur moderate Kursgewinne zuließen. Die Bank erwartet nun ein ähnliches Muster.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Markt zeigte sich von der Zurückhaltung zuletzt wenig. Der Goldpreis schloss am Freitag bei 3.883 Dollar je Feinunze – nur acht Dollar über seinem Jahrestief vom 30. Oktober.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Notenbanken als Stütze, zwei Szenarien für 2027',
+      },
+      {
+        type: 'paragraph',
+        text: 'Langfristig bleibt Goldman optimistisch: Die Bank rechnet 2026 und 2027 mit durchschnittlich 60 Tonnen Notenbank-Käufen pro Monat, deutlich mehr als die 17 Tonnen vor 2022, und sieht darin die Grundlage für ein Kursplus von rund 15 Prozent bis Ende 2027.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Ende 2027 nennt Goldman zwei Randszenarien: Bei weiteren Zinserhöhungen oder verzögerten Senkungen sieht die Bank den Goldpreis nur bei rund 4.660 Dollar. Wachsen dagegen die Sorgen um die Staatsfinanzen, hält sie einen Preis über 4.800 Dollar für möglich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursziel ist keine Vorhersage mit Garantie, sondern die gebündelte Zinserwartung einer Bank zu einem bestimmten Zeitpunkt. Ändert sich diese Erwartung, ändert sich das Ziel – nicht notwendigerweise der Goldpreis selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-reist-zu-dreiertreffen-mit-xi-und-putin',
+    title: 'Trump reist zum APEC-Gipfel – und zu einem Dreiertreffen mit Xi und Putin',
+    metaTitle: 'Trump, Xi und Putin: Dreiertreffen in Shenzhen geplant',
+    teaser:
+      'Trump reist am 18. und 19. November zum APEC-Gipfel nach Shenzhen. Dort soll das erste Dreiertreffen mit Xi und Putin stattfinden.',
+    category: 'Märkte',
+    publishedAt: '2026-11-15T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['trump', 'handel', 'china', 'geopolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'CNBC, 13. November 2026: „Trump doesn\'t plan to raise Nvidia, spy issue during China trip: U.S. officials"',
+        url: 'https://www.cnbc.com/2026/11/13/trump-nvidia-huang-china.html',
+      },
+      {
+        label:
+          'wallstreet-online, dpa-AFX ROUNDUP vom 14.11.2026: „Trump trifft Xi und Putin in China"',
+        url: 'https://www.wallstreet-online.de/nachricht/21693273-roundup-trump-trifft-xi-putin-china',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Donald Trump bricht am 18. November zu seiner nächsten Auslandsreise auf. Ziel ist der APEC-Gipfel in Shenzhen, der an diesem Mittwoch und Donnerstag tagt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Rande des Treffens soll es nach Angaben des Weißen Hauses zu einem Dreiertreffen mit dem chinesischen Präsidenten Xi Jinping und dem russischen Präsidenten Wladimir Putin kommen. Es wäre das erste Treffen dieser Art überhaupt – bislang gab es zwischen den drei Staatschefs nur Gespräche zu zweien.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Handel steht bei Xi im Vordergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Gespräch mit Xi soll es nach Angaben eines US-Beamten vor allem um die Umsetzung des bestehenden Handelsabkommens zwischen den USA und China gehen. Elon Musk begleitet Trump auf der Reise; ein Beamter begründete das mit Musks Geschäftsinteressen im Verhältnis beider Länder.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump und Putin treffen sich damit zum ersten Mal persönlich seit ihrem Gipfel in Alaska. Kurz vor dem Treffen hatten Delegationen aus Russland und der Ukraine unter US-Vermittlung in Abu Dhabi erstmals seit mehr als acht Monaten wieder verhandelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Atomwaffen ohne konkretes Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump will dem Bericht zufolge auch über eine mögliche Reduzierung der weltweiten Atomwaffenbestände sprechen. Der New-START-Vertrag zwischen den USA und Russland ist in diesem Jahr ausgelaufen. Ein US-Beamter dämpfte die Erwartungen an das Gespräch jedoch und sprach von einem Einstieg in das Thema, nicht von einem konkreten Ergebnis.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu den Vorwürfen rund um den zurückgetretenen Nvidia-Chef Jensen Huang äußerte sich ein US-Beamter zurückhaltend: Das Thema werde man beim Treffen aller Wahrscheinlichkeit nach nicht ansprechen. Auch US-Exportkontrollen für Chiptechnologie stünden nicht zur Verhandlung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Drei Staatschefs an einem Tisch sind diplomatisch ungewöhnlich, wirtschaftlich aber vage – konkrete Handelsvereinbarungen kündigt keine der Quellen an. Was am Ende zählt, ist, ob aus der Ankündigung eines Treffens tatsächlich Beschlüsse werden.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-faellt-auf-dreimonatstief',
+    title: 'Bitcoin fällt auf Dreimonatstief – Zinssorgen und Unsicherheit belasten',
+    metaTitle: 'Bitcoin fällt auf Dreimonatstief',
+    teaser:
+      'Bitcoin ist in der Nacht auf Freitag zeitweise auf 67.757 Dollar gefallen, ein Dreimonatstief. Zinssorgen belasten die Kryptowährung weiter.',
+    category: 'Märkte',
+    publishedAt: '2026-11-15T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['bitcoin', 'krypto', 'zinsen'],
+    relatedTopics: ['bitcoin-krypto', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 13. November 2026: „Bitcoin-Kurs aktuell: Bitcoin fällt auf Drei-Monats-Tief zurück"',
+        url: 'https://www.wiwo.de/finanzen/boerse/bitcoin-kurs-aktuell-bitcoin-faellt-auf-drei-monats-tief-zurueck/27382428.html',
+      },
+      {
+        label:
+          'Handelsblatt, 13. November 2026: „Kryptowährung: Bitcoin rutscht unter 70.000 Dollar – Inflationssorgen belasten"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/kryptowaehrung-bitcoin-rutscht-unter-70.000-dollar-inflationssorgen-belasten/100269634.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin ist in der Nacht auf Freitag auf den tiefsten Stand seit drei Monaten gefallen. Im Tagesverlauf rutschte der Kurs zeitweise um mehr als fünf Prozent auf 67.757 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bis zum Nachmittag erholte sich die Kryptowährung nur leicht und notierte am Freitagnachmittag bei rund 69.000 Dollar – weiterhin unter der psychologisch wichtigen Marke von 70.000 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zinssorgen statt Inflationsschock',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Belastung gelten Spekulationen auf weiter steigende Zinsen in den USA. Anleger reagieren seit den US-Inflationsdaten vom 9. November, die mit 0,4 statt der erwarteten 0,3 Prozent stärker ausfielen, zunehmend risikoscheu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Zinserhöhung der US-Notenbank im Dezember gilt inzwischen als nahezu sicher. Hinzu kommt die Verunsicherung durch den Führungswechsel an der Spitze eines großen Chipherstellers in dieser Woche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Risikoanlage statt digitales Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kursverlauf zeigt, wie eng Bitcoin inzwischen an die Zinserwartung gekoppelt ist. Steigen die erwarteten Leitzinsen, verliert eine Anlage ohne laufende Zinszahlung – ob Gold oder Bitcoin – tendenziell an Attraktivität gegenüber Anleihen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Andere Kryptowährungen werden in den Berichten nicht einzeln genannt; die Rede ist allgemein vom Kryptomarkt, der sich in den vergangenen Monaten wiederholt im Gleichschritt mit Bitcoin bewegt hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursrückgang allein ist keine Nachricht – der Grund dahinter ist es. Hier ist es dieselbe Zinserwartung, die auch den Goldpreis drückt: ein Beispiel dafür, wie unterschiedliche Anlageklassen auf denselben Auslöser reagieren können.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-hathaway-auf-rekordhoch',
+    title:
+      'Berkshire Hathaway auf Rekordhoch – Anleger suchen Sicherheit vor der KI-Euphorie',
+    metaTitle: 'Berkshire Hathaway erreicht neues Rekordhoch',
+    teaser:
+      'Berkshire Hathaway hat vier Rekordschlüsse in Folge erzielt und seit Anfang Oktober rund 19 Prozent zugelegt – während der S&P 500 im Minus liegt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-15T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['berkshire', 'aktienmarkt', 'sp500'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['berkshire', 'sp500'],
+    sources: [
+      {
+        label:
+          'CNBC, 14. November 2026: „Berkshire breaks out to record high with fourth-quarter rally reaching 19%"',
+        url: 'https://www.cnbc.com/2026/11/14/berkshire-breaks-out-to-record-high-with-fourth-quarter-rally-reaching-19percent.html',
+      },
+      {
+        label: 'Yahoo Finance, Kursseite BRK-B, Schlusskurs vom 13. November 2026',
+        url: 'https://finance.yahoo.com/quote/BRK-B/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway hat die bislang turbulente Börsenwoche mit einer ruhigen Erfolgsserie beendet. Beide Aktienklassen schlossen am Freitag zum vierten Mal in Folge auf einem Rekordhoch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von CNBC stand die A-Aktie bei rund 889.794 Dollar, die B-Aktie bei etwa 592,94 Dollar. Seit Beginn des vierten Quartals am 1. Oktober hat die A-Aktie elfmal, die B-Aktie zehnmal auf Rekordniveau geschlossen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '19 Prozent gegen minus 1,2 Prozent',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit ihrem Tief zu Beginn des Quartals haben beide Aktienklassen rund 19,1 Prozent zugelegt. Der S&P 500 liegt im selben Zeitraum rund 1,2 Prozent im Minus – ein Abstand von gut 20 Prozentpunkten zwischen Einzelwert und Gesamtmarkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt der Bericht vor allem die Rolle als vermeintlich sicherer Hafen: Anleger, die wegen hoher Bewertungen und hoher Investitionen bei KI-Werten verunsichert sind, weichen in Berkshire-Aktien aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Nachfolgefrage ist abgehakt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie hat damit auch die Kursverluste wieder aufgeholt, die nach der Ankündigung des Nachfolgers für Warren Buffett an der Konzernspitze entstanden waren. Im dritten Quartal 2026 kaufte Berkshire außerdem eigene Aktien im Volumen von 9,6 Milliarden Dollar zurück, ohne dass der Bericht dies als Grund für die aktuelle Rally nennt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob Berkshire oder der marktbreite Index die bessere Wahl ist, hängt vom Zeitraum ab: Über viele Jahre lag der S&P 500 häufig vorn, in einzelnen Quartalen wie diesem dreht sich das Bild.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Einzelaktie, die sich gegen den breiten Markt bewegt, ist kein Widerspruch, sondern Normalfall – genau deshalb mischen viele Anleger ihr Depot über mehrere Werte und Branchen, statt auf eine einzelne Gegenbewegung zu setzen.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-agenten-kaempfen-um-den-zahlungsverkehr',
+    title: 'KI-Agenten greifen nach der Kreditkarte – Banken ringen um die Kontrolle',
+    metaTitle: 'KI-Agenten kämpfen um den Zahlungsverkehr',
+    teaser:
+      'Erste KI-Agenten bezahlen bereits selbstständig mit Kreditkarten. Eine Großbank bremst, andere Banken, Visa und Mastercard wittern ein Geschäft.',
+    category: 'Märkte',
+    publishedAt: '2026-11-15T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ki', 'zahlungsverkehr', 'banken', 'visa'],
+    relatedTopics: ['kosten-und-gebuehren'],
+    relatedSymbols: ['jpmorgan', 'visa', 'mastercard'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, 14.11.2026: „KI-Bots übernehmen Kreditkarten: Banken zittern vor der Zahlungs-Revolution"',
+        url: 'https://www.wallstreet-online.de/nachricht/21689457-ki-bots-greifen-banken-an-ki-bots-uebernehmen-kreditkarten-banken-zittern-zahlungs-revolution',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kaufen, ohne selbst zu suchen oder zu bezahlen: KI-Assistenten wie Metas Muse können bereits eigenständig Produkte auswählen und den Einkauf mit einer Kreditkarte abschließen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um die Kontrolle über diesen neuen Zahlungsweg ringen Banken, Kartennetzwerke und Technologiekonzerne gleichzeitig. Verbraucher müssten künftig womöglich weder selbst suchen noch den Kauf selbst abschließen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Großbank bremst, andere öffnen sich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einem Bericht des Wall Street Journal zufolge, bislang nicht an anderer Stelle bestätigt, blockiert JPMorgan KI-Agenten, wenn Kunden ihre Kreditkartendaten direkt an sie weitergeben, und begegnet auch alternativen Zahlungstechnologien von Wettbewerbern zurückhaltend. Bank of America, Capital One und Citigroup sollen ihre Karten dagegen bereits für autorisierte Käufe durch KI-Agenten zulassen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Visa und Mastercard entwickeln eigene Technik für automatisierte Zahlungen: Visa mit „Intelligent Commerce", Mastercard mit „Agent Pay" und „Agent Connect". Beide Systeme arbeiten mit sogenannten Agenten-Token, die echte Kartennummern verschleiern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Stripe setzt auf seine digitale Geldbörse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Stripe will sich über die digitale Geldbörse Link eine Schlüsselposition sichern, die nach eigenen Angaben mehr als 300 Millionen Nutzer hat. Bei bestimmten Transaktionen nutzt Stripe virtuelle Einmalkarten, die teils mit höheren Gebühren wie Geschäftskarten behandelt werden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die US-Bankenaufsicht OCC veröffentlichte Anfang November einen Prüfrahmen für den Einsatz fortgeschrittener KI-Systeme im Zahlungsverkehr – ein erstes Signal, dass auch Aufsichtsbehörden das Thema als regulierungsbedürftig einstufen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Jede Gebühr, die heute zwischen Händler, Bank und Kartennetzwerk aufgeteilt wird, braucht im KI-Zeitalter einen neuen Verteilschlüssel. Wer die Technik hinter dem Klick kontrolliert, entscheidet mit, wer von jedem Agenten-Einkauf künftig etwas abbekommt.',
+      },
+    ],
+  },
+  {
     slug: 'us-erzeugerpreise-jahresrate-vierjahreshoch',
     title: 'US-Erzeugerpreise steigen auf höchste Jahresrate seit vier Jahren',
     teaser:
