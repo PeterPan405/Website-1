@@ -33,6 +33,7 @@ import { ImageResponse } from 'next/og.js'
 import { createElement as h } from 'react'
 
 import { RECHTSHINWEIS } from './instagram-plan.ts'
+import { istNeueKarte, neueArt, type NeueKarte } from './instagram/arten/index.ts'
 
 export const ZK_BREITE = 1080
 export const ZK_HOEHE = 1350
@@ -53,7 +54,7 @@ export interface Seite {
   land?: string
 }
 
-interface KarteGemeinsam {
+export interface KarteGemeinsam {
   /** Erscheinungstag, JJJJ-MM-TT. */
   datum: string
   /**
@@ -646,6 +647,7 @@ export interface Chartkarte extends KarteGemeinsam {
 }
 
 export type Zahlenkarte =
+  | NeueKarte
   | Chartkarte
   | Entwederkarte
   | Mythoskarte
@@ -1043,7 +1045,8 @@ export function pruefeZahlenkarte(k: Zahlenkarte): string[] {
   const zeichen = k.titel.map((t) => t.text).join(' ').length
   if (zeichen > 48)
     f.push(`Überschrift hat ${zeichen} Zeichen – mehr als drei Zeilen Anton.`)
-  if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
+  if (istNeueKarte(k)) f.push(...neueArt(k).pruefe(k))
+  else if (k.art === 'zahlenstrahl') f.push(...pruefeZahlenstrahl(k))
   else if (k.art === 'raetsel') f.push(...pruefeRaetsel(k))
   else if (k.art === 'mythos') f.push(...pruefeMythos(k))
   else if (k.art === 'entweder') f.push(...pruefeEntweder(k))
@@ -1296,7 +1299,7 @@ export function beschriftungZahlenkarte(k: Zahlenkarte): string {
   return `${k.text.trim()}\n\n${RECHTSHINWEIS} ${k.schlagworte.map((w) => `#${w}`).join(' ')}`
 }
 
-const svgAdresse = (svg: string) =>
+export const svgAdresse = (svg: string) =>
   `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
 
 const flagge = (fl: Flagge, groesse: number, rand: number) =>
@@ -1412,6 +1415,7 @@ export function signetOhneMitte(svg: string): string {
 
 /** Setzt die Karte; zurück kommt PNG – das JPEG macht der Aufrufer. */
 export async function zahlenkartePng(k: Zahlenkarte, logoSvg: string): Promise<Buffer> {
+  if (istNeueKarte(k)) return zahlenkarteSeitePng(k, logoSvg, 1)
   if (
     k.art === 'zahlenstrahl' ||
     k.art === 'raetsel' ||
@@ -2637,16 +2641,16 @@ function steckbriefMitFoto(k: Steckbriefkarte, foto: string) {
 const LOGO_LISTE_UNTEN = 1235
 
 /** Wo die Firmenlogos der Kacheln liegen. */
-const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
+export const LOGO_ORDNER = join(process.cwd(), 'lib/instagram/logos')
 
 /** Ein Logo als Adresse für `img` – PNG aus `LOGO_ORDNER`. */
 /** Breite durch Höhe eines PNG-Logos – aus dem Kopf der Datei (IHDR), ohne Bildbibliothek. */
-function logoVerhaeltnis(datei: string): number {
+export function logoVerhaeltnis(datei: string): number {
   const b = readFileSync(join(LOGO_ORDNER, datei))
   return b.readUInt32BE(16) / b.readUInt32BE(20)
 }
 
-function logoAdresse(datei: string): string {
+export function logoAdresse(datei: string): string {
   return `data:image/png;base64,${readFileSync(join(LOGO_ORDNER, datei)).toString('base64')}`
 }
 
@@ -2767,7 +2771,9 @@ export function form(
   | 'raetsel'
   | 'mythos'
   | 'entweder'
-  | 'chart' {
+  | 'chart'
+  | NeueKarte['art'] {
+  if (istNeueKarte(k)) return k.art
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'raetsel') return 'raetsel'
   if (k.art === 'mythos') return 'mythos'
@@ -3329,7 +3335,7 @@ async function verlaufGrafik(k: Verlaufkarte) {
 /* ------------------------------------------------------------ Kurvenkarte */
 
 /** Der Hausstil, Werte aus `INSTAGRAM-STIL.md` – dort ändern, hier nachziehen. */
-const STIL = {
+export const STIL = {
   tinte: '#0b1220',
   navy: '#17296F',
   grau: '#5b6472',
@@ -3339,7 +3345,7 @@ const STIL = {
   rot: '#8B2225',
 }
 
-function stilFarbe(richtung?: 'steigt' | 'faellt') {
+export function stilFarbe(richtung?: 'steigt' | 'faellt') {
   return richtung === 'steigt'
     ? STIL.gruen
     : richtung === 'faellt'
@@ -3348,7 +3354,7 @@ function stilFarbe(richtung?: 'steigt' | 'faellt') {
 }
 
 /** Ein runder Schritt für die y-Achse: 1, 2 oder 5 mal einer Zehnerpotenz. */
-function achsenschritt(hoechst: number, linien: number) {
+export function achsenschritt(hoechst: number, linien: number) {
   const roh = hoechst / linien
   const zehner = 10 ** Math.floor(Math.log10(roh))
   return [1, 2, 5, 10].map((m) => m * zehner).find((m) => m >= roh)!
@@ -3415,14 +3421,14 @@ const SYMBOLE = {
 type Anlass = keyof typeof SYMBOLE
 
 /* Das Raster des Hausstils – siehe `INSTAGRAM-STIL.md`, „Aufbau einer Karte". */
-const STIL_RAND = 60
+export const STIL_RAND = 60
 const STIL_GRAFIK_O = 736
 const STIL_GRAFIK_U = 1200
 /** Die Chartkarte: Fläche der Linie. */
 const CHART_OBEN = 470
 const CHART_UNTEN = 1170
 
-function stilBlock(inhalt: string, stil: Record<string, string | number>) {
+export function stilBlock(inhalt: string, stil: Record<string, string | number>) {
   return h(
     'div',
     {
@@ -3432,7 +3438,12 @@ function stilBlock(inhalt: string, stil: Record<string, string | number>) {
   )
 }
 
-const GESPERRT = { fontSize: 17, fontWeight: 700, letterSpacing: 3, color: STIL.hellgrau }
+export const GESPERRT = {
+  fontSize: 17,
+  fontWeight: 700,
+  letterSpacing: 3,
+  color: STIL.hellgrau,
+}
 
 /**
  * Der Rahmen jeder Karte im Hausstil: Kopf, Titel mit Symbol, Unterzeile,
@@ -5048,6 +5059,7 @@ export function zahlenstrahlKachel(k: Zahlenstrahlkarte, logo: string, nr: numbe
 
 /** Wie viele Bilder die Karte hat – ein Karussell mehr als eins. */
 export function zahlenkarteSeiten(k: Zahlenkarte): number {
+  if (istNeueKarte(k)) return neueArt(k).seiten(k)
   if (k.art === 'zahlenstrahl') return k.kacheln
   if (k.art === 'raetsel' || k.art === 'mythos' || k.art === 'entweder')
     return 2 * k.fragen.length
@@ -5060,6 +5072,19 @@ export async function zahlenkarteSeitePng(
   logoSvg: string,
   nr: number
 ): Promise<Buffer> {
+  if (istNeueKarte(k)) {
+    const art = neueArt(k)
+    const seite = Math.min(Math.max(nr, 1), art.seiten(k))
+    const antwort = new ImageResponse(
+      art.seite(k, svgAdresse(signetOhneMitte(logoSvg)), seite),
+      {
+        width: ZK_BREITE,
+        height: ZK_HOEHE,
+        fonts: schriften(),
+      }
+    )
+    return Buffer.from(await antwort.arrayBuffer())
+  }
   if (k.art === 'raetsel' || k.art === 'mythos' || k.art === 'entweder') {
     const logo = svgAdresse(signetOhneMitte(logoSvg))
     const seite = Math.min(Math.max(nr, 1), 2 * k.fragen.length)

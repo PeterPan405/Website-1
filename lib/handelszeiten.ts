@@ -81,7 +81,7 @@ const XETRA: Handelsplatz = {
  * und der Unterschied ist genau der Punkt, den der Artikel zum
  * nachbörslichen Handel erklärt.
  */
-const PLAETZE = {
+export const PLAETZE = {
   newYork: NEW_YORK,
   xetra: XETRA,
   london: {
