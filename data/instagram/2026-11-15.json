@@ -1,26 +1,22 @@
 {
-  "zusammenfassung": "Heute geht es um ein gesenktes Goldpreisziel, einen geplanten Dreiergipfel von Trump, Xi und Putin, einen Bitcoin-Rutsch, Berkshires Rekordserie und KI-Agenten beim Bezahlen.",
+  "zusammenfassung": "Heute geht es um einen Bitcoin-Rutsch, einen geplanten Dreiergipfel von Trump, Xi und Putin, KI-Agenten beim Bezahlen und ein gesenktes Goldpreisziel.",
   "kacheln": [
     {
-      "titel": "Gold-Ziel: 4.800 $",
-      "text": "Goldman Sachs senkte sein Goldpreisziel für Ende 2027 auf 4.800 Dollar je Feinunze. Grund ist eine strengere US-Notenbank mit einer weiteren Zinserhöhung im Dezember."
+      "titel": "Bitcoin: Dreimonatstief",
+      "text": "Bitcoin fiel in der Nacht auf Freitag zeitweise auf 67.757 Dollar, den tiefsten Stand seit drei Monaten. Zinssorgen in den USA belasten die Kryptowährung weiter."
     },
     {
       "titel": "Trump, Xi und Putin",
       "text": "Trump reist am 18. und 19. November zum APEC-Gipfel nach Shenzhen. Dort soll das erste Dreiertreffen mit Xi Jinping und Wladimir Putin stattfinden."
     },
     {
-      "titel": "Berkshire: Rekordhoch",
-      "text": "Berkshire Hathaway schloss zum vierten Mal in Folge auf Rekordniveau und legte seit Anfang Oktober rund 19 Prozent zu."
-    },
-    {
       "titel": "KI-Bots kapern Karten",
       "text": "KI-Assistenten bezahlen bereits selbstständig mit Kreditkarten. Eine große US-Bank bremst, Visa, Mastercard und Stripe arbeiten an eigenen Systemen dafür."
     },
     {
-      "titel": "Bitcoin: Dreimonatstief",
-      "text": "Bitcoin fiel in der Nacht auf Freitag zeitweise auf 67.757 Dollar, den tiefsten Stand seit drei Monaten. Zinssorgen in den USA belasten die Kryptowährung weiter."
+      "titel": "Gold-Ziel: 4.800 $",
+      "text": "Goldman Sachs senkte sein Goldpreisziel für Ende 2027 auf 4.800 Dollar je Feinunze. Grund ist eine strengere US-Notenbank mit einer weiteren Zinserhöhung im Dezember."
     }
   ],
-  "schlagworte": ["gold", "bitcoin", "fed", "börse", "aktien"]
+  "schlagworte": ["bitcoin", "krypto", "trump", "börse", "aktien"]
 }
