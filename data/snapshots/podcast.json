@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-14T10:56:09.430Z",
+  "abgerufenAm": "2026-11-15T01:05:10.554Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "goldman-sachs-senkt-goldpreisziele-fuer-2026-und-2027-und-trump-reist-zu-erstem",
+      "titel": "Goldman Sachs senkt Goldpreisziele für 2026 und 2027 und Trump reist zu erstem Dreiertreffen mit Xi und Putin",
+      "beschreibung": "Gold verliert sein Kursziel, Bitcoin ein Drittel Vertrauen, Trump einen Flug nach China – und Berkshire bricht Rekorde gegen den Trend. Goldman Sachs hat seine Goldpreisziele gesenkt: für Ende 2026 um 500 auf 4.150 Dollar je Feinunze, für Ende 2027 von 5.400 auf 4.800 Dollar.\n\nWir sprechen über Bitcoin fällt auf Dreimonatstief, Berkshire Hathaway erreicht viertes und KI-Agenten drängen in den Zahlungsverkehr. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:30) Goldman Sachs senkt Goldpreisziele für 2026\n(1:00) Trump reist zu erstem Dreiertreffen mit Xi\n(1:45) Bitcoin fällt auf Dreimonatstief\n(2:15) Berkshire Hathaway erreicht viertes\n(2:47) KI-Agenten drängen in den Zahlungsverkehr\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-15",
+      "dauerSekunden": 230,
+      "url": "https://iminvests.de/podcast-audio/2026-11-15.mp3",
+      "youtubeId": "pd0lo67BFXY"
+    },
     {
       "slug": "us-erzeugerpreise-steigen-auf-hoechste-jahresrate-seit-vier-und-usa-stoppen-land",
       "titel": "US-Erzeugerpreise steigen auf höchste Jahresrate seit vier und USA stoppen landesweit alle Flugstarts für vier Stunden",
