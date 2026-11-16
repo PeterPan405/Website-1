@@ -478,12 +478,22 @@ export const prozentGenau = (von: number, nach: number) => {
 
 function seiteKurse(k: Zykluskarte): Element[] {
   const l = k.kurse ?? []
-  const oben = OBEN_FOLGE + 200
-  const abstand = Math.min(260, (UNTEN - 130 - oben) / Math.max(l.length, 1))
-  const spalten = [STIL_RAND, STIL_RAND + 330, STIL_RAND + 640]
-  const breite = 300
-  const aus: Element[] = []
-  const preis = (text: string, unter: string, x: number, y: number, farbe: string) =>
+  const oben = OBEN_FOLGE + 170
+  const spalteName = STIL_RAND
+  const spalteBulle = STIL_RAND + 190
+  const spalteBaer = STIL_RAND + 190 + 400
+  const breite = 380
+  const zeile = Math.min(230, (UNTEN - 140 - oben - 60) / Math.max(l.length, 1))
+  const kopf = (text: string, x: number, farbe: string) =>
+    klein(text, { top: oben, left: x, fontSize: 24, fontWeight: 800, color: farbe })
+  const zelle = (
+    x: number,
+    y: number,
+    kurse: string,
+    pz: string,
+    farbe: string,
+    blass = false
+  ) =>
     h(
       'div',
       {
@@ -494,55 +504,70 @@ function seiteKurse(k: Zykluskarte): Element[] {
           width: breite,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           fontFamily: 'Montserrat',
+          opacity: blass ? 0.6 : 1,
         },
       },
-      h('div', { style: { fontSize: 18, color: STIL.grau } }, unter),
+      h('div', { style: { fontSize: 22, color: STIL.grau } }, kurse),
       h(
         'div',
-        { style: { fontSize: 28, fontWeight: 700, color: farbe, marginTop: 2 } },
-        text
+        { style: { fontSize: 36, fontWeight: 700, color: farbe, marginTop: 6 } },
+        pz
       )
     )
+  const aus: Element[] = [
+    kopf('Bullenmarkt', spalteBulle, STIL.gruen),
+    kopf('Bärenmarkt', spalteBaer, STIL.rot),
+    h('div', {
+      style: {
+        position: 'absolute',
+        top: oben + 44,
+        left: STIL_RAND,
+        right: STIL_RAND,
+        height: 2,
+        backgroundColor: STIL.rand,
+      },
+    }),
+  ]
   l.forEach((z, i) => {
-    const y = oben + i * abstand
+    const y = oben + 70 + i * zeile
     aus.push(
       klein(z.name, {
-        top: y - 44,
-        left: STIL_RAND,
-        fontSize: 24,
+        top: y + 22,
+        left: spalteName,
+        fontSize: 26,
         fontWeight: 800,
         color: i === l.length - 1 ? STIL.navy : STIL.tinte,
       }),
-      preis(`${zahl(z.boden)} ${k.einheit}`, 'Boden', spalten[0] - 70, y, STIL.tinte),
-      preis(`${zahl(z.hoch)} ${k.einheit}`, 'Hoch', spalten[1] - 20, y, STIL.tinte),
-      preis(
-        `${zahl(z.ende)} ${k.einheit}`,
-        z.laufend ? 'Tief bisher' : 'Boden',
-        spalten[2] + 30,
+      zelle(
+        spalteBulle,
         y,
-        STIL.tinte
+        `${zahl(z.boden)} → ${zahl(z.hoch)} ${k.einheit}`,
+        prozentGenau(z.boden, z.hoch),
+        STIL.gruen
       ),
-      klein(`→ ${prozentGenau(z.boden, z.hoch)}`, {
-        top: y + 90,
-        left: spalten[0] + 90,
-        width: 300,
-        justifyContent: 'center',
-        fontSize: 26,
-        fontWeight: 800,
-        color: STIL.gruen,
-      }),
-      klein(`→ ${prozentGenau(z.hoch, z.ende)}${z.laufend ? ' bisher' : ''}`, {
-        top: y + 90,
-        left: spalten[1] + 140,
-        width: 320,
-        justifyContent: 'center',
-        fontSize: 26,
-        fontWeight: 800,
-        color: STIL.rot,
-      })
+      zelle(
+        spalteBaer,
+        y,
+        `${zahl(z.hoch)} → ${zahl(z.ende)} ${k.einheit}${z.laufend ? ' (Tief bisher)' : ''}`,
+        `${prozentGenau(z.hoch, z.ende)}${z.laufend ? ' bisher' : ''}`,
+        STIL.rot,
+        z.laufend
+      )
     )
+    if (i < l.length - 1)
+      aus.push(
+        h('div', {
+          style: {
+            position: 'absolute',
+            top: y + zeile - 34,
+            left: STIL_RAND,
+            right: STIL_RAND,
+            height: 1,
+            backgroundColor: STIL.rand,
+          },
+        })
+      )
   })
   return aus
 }
