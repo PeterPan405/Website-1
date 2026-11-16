@@ -50,6 +50,8 @@ export interface Zykluskarte extends NeuGemeinsam {
     vorbei: { wer: string; text: string }[]
     lebt: { wer: string; text: string }[]
   }
+  /** Welche Seiten, in welcher Reihenfolge; ohne Angabe alle fünf. */
+  seitenwahl?: Zyklusseite[]
 }
 
 const TAG = 86400000
@@ -473,7 +475,7 @@ function seiteStimmen(k: Zykluskarte): Element[] {
         {
           style: {
             position: 'absolute',
-            top: OBEN_FOLGE + 200 + i * 190,
+            top: OBEN_FOLGE + 230 + i * (liste.length <= 2 ? 330 : 190),
             left: links,
             width: (ZK_BREITE - 2 * STIL_RAND - 40) / 2,
             display: 'flex',
@@ -485,12 +487,25 @@ function seiteStimmen(k: Zykluskarte): Element[] {
         },
         h(
           'div',
-          { style: { fontSize: 21, lineHeight: 1.35, color: STIL.tinte } },
+          {
+            style: {
+              fontSize: liste.length <= 2 ? 30 : 21,
+              lineHeight: 1.35,
+              color: STIL.tinte,
+            },
+          },
           s.text
         ),
         h(
           'div',
-          { style: { fontSize: 18, marginTop: 8, color: STIL.grau, fontWeight: 700 } },
+          {
+            style: {
+              fontSize: liste.length <= 2 ? 21 : 18,
+              marginTop: 10,
+              color: STIL.grau,
+              fontWeight: 700,
+            },
+          },
           s.wer
         )
       )
@@ -502,46 +517,40 @@ function seiteStimmen(k: Zykluskarte): Element[] {
   ]
 }
 
+export type Zyklusseite = 'verlauf' | 'takt' | 'phasen' | 'vergleich' | 'stimmen'
+const ALLE: Zyklusseite[] = ['verlauf', 'takt', 'phasen', 'vergleich', 'stimmen']
+const auswahl = (k: Zykluskarte) => k.seitenwahl ?? ALLE
+
 export const zyklus: Art<Zykluskarte> = {
-  seiten: () => 5,
+  seiten: (k) => auswahl(k).length,
   seite(k, logo, nr) {
     const kz = kennzahlen(k)
     const jetzt = kz[kz.length - 1]
     const frueher = kz.slice(0, -1)
-    if (nr === 1)
-      return rahmen(k, logo, {
-        seite: 1,
-        seiten: 5,
-        satz: k.satz,
-        inhalt: seiteVerlauf(k),
-      })
-    if (nr === 2)
-      return rahmen(k, logo, {
-        seite: 2,
-        seiten: 5,
+    const seiten = auswahl(k).length
+    const welche = auswahl(k)[nr - 1]
+    const r = (o: { kopf?: string; satz?: string; inhalt: Element[] }) =>
+      rahmen(k, logo, { seite: nr, seiten, ...o })
+    if (welche === 'verlauf') return r({ satz: k.satz, inhalt: seiteVerlauf(k) })
+    if (welche === 'takt')
+      return r({
         kopf: `Der Takt: Hoch nach ${frueher.map((z) => z.bisHoch).join(', ')} – und ${jetzt.bisHoch} Tagen`,
         satz: `Gleiche Uhr, andere Wucht: diesmal nur ×${zahl(jetzt.faktor, 1)} bis zum Hoch.`,
         inhalt: seiteUebereinander(k),
       })
-    if (nr === 3)
-      return rahmen(k, logo, {
-        seite: 3,
-        seiten: 5,
+    if (welche === 'phasen')
+      return r({
         kopf: 'Die Phasen: Aufbau, Bulle, Bär',
         satz: `Der Bärenmarkt dauerte ${frueher.map((z) => z.bisBoden).join(' und ')} Tage. Diesmal sind es bisher ${jetzt.bisBoden}.`,
         inhalt: seitePhasen(k),
       })
-    if (nr === 4)
-      return rahmen(k, logo, {
-        seite: 4,
-        seiten: 5,
+    if (welche === 'vergleich')
+      return r({
         kopf: 'Pünktlich, aber schwächer',
         satz: `Tiefster Kurs seit dem Hoch: ${zahl(jetzt.tief[1])} ${k.einheit} am ${datum(jetzt.tief[0])}.`,
         inhalt: seiteVergleich(k),
       })
-    return rahmen(k, logo, {
-      seite: 5,
-      seiten: 5,
+    return r({
       kopf: 'Lebt der Zyklus noch?',
       satz: 'Beide Lager haben Argumente – die Zahlen zeigen beides.',
       inhalt: seiteStimmen(k),

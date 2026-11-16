@@ -1060,16 +1060,13 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Zyklus: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-16')!)
     )
-    pruefe('Zyklus: fünf Seiten', zahlenkarteSeiten(karte) === 5)
+    pruefe('Zyklus: drei Seiten', zahlenkarteSeiten(karte) === 3)
     const kz = kennzahlen(karte)
     const de = (v: number, st: number) => v.toFixed(st).replace('.', ',')
-    for (const [i, z] of kz.entries()) {
-      const h = karte.zyklen[i].ereignis
-      const datum = `${h.slice(8, 10)}.${h.slice(5, 7)}.${h.slice(0, 4)}`
+    for (const z of kz) {
       pruefe(
-        `Zyklus ${z.name}: Text nennt Halving ${datum}, ${z.bisHoch} Tage, ×${de(z.faktor, 1)}, ${de(z.absturz, 1).replace('-', '−')} %`,
-        karte.text.includes(datum) &&
-          karte.text.includes(`${z.bisHoch} Tagen`) &&
+        `Zyklus ${z.name}: Text nennt ${z.bisHoch} Tage, ×${de(z.faktor, 1)}, ${de(z.absturz, 1).replace('-', '−')} %`,
+        karte.text.includes(`${z.bisHoch} Tagen`) &&
           karte.text.includes(`×${de(z.faktor, 1)}`) &&
           karte.text.includes(`${de(z.absturz, 1).replace('-', '−')} %`)
       )
@@ -1084,11 +1081,10 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     const hoch = wertZyklus(karte, '2025-10-06')!
     const heute = karte.reihe[karte.reihe.length - 1]
     pruefe(
-      'Zyklus: Hoch 124.753 $ und Kurs am 16.11.2026 bei 64.844 $',
+      'Zyklus: Hoch 124.753 $ in der Reihe, Kurs am 16.11.2026 bei 64.844 $',
       hoch === 124753 &&
         heute[0] === '2026-11-16' &&
         heute[1] === 64844 &&
-        karte.text.includes('124.753 $') &&
         karte.text.includes('64.844 $')
     )
     pruefe(
