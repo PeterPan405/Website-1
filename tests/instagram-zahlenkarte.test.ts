@@ -30,7 +30,8 @@ import {
   verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
-import { kennzahlen, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
+import { kennzahlen, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
+import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 
 let failed = 0
 /*
@@ -1061,6 +1062,38 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       form(karte) !== form(karteVom('2026-11-16')!)
     )
     pruefe('Zyklus: drei Seiten', zahlenkarteSeiten(karte) === 3)
+    {
+      const w = BITCOIN_WENDEPUNKTE
+      const soll = [
+        [w.boden2011, w.hoch2013, w.boden2015],
+        [w.boden2015, w.hoch2017, w.boden2018],
+        [w.boden2018, w.hoch2021, w.boden2022],
+        [w.boden2022, w.hoch2025, w.heute],
+      ] as const
+      for (const [i, [b, h, e]] of soll.entries()) {
+        const z = karte.laengen![i]
+        pruefe(
+          `Zyklus Längen ${z.name}: ${z.bulle} / ${z.baer} Tage`,
+          z.bulle === tage(b[0], h[0]) && z.baer === tage(h[0], e[0])
+        )
+      }
+      pruefe(
+        'Zyklus Längen: Tief nach 267 Tagen (Blockchain.com), im Text',
+        tage(w.hoch2025[0], w.tief2026[0]) === 267 &&
+          karte.text.includes('nach 267 Tagen')
+      )
+      const seit2015 = karte.laengen!.slice(1, 3)
+      pruefe(
+        'Zyklus Längen: Satz „1.050 bis 1.067 … 364 bis 378“ stimmt',
+        Math.min(...karte.laengen!.slice(1).map((z) => z.bulle)) === 1050 &&
+          Math.max(...karte.laengen!.slice(1).map((z) => z.bulle)) === 1067 &&
+          Math.min(...seit2015.map((z) => z.baer)) === 364 &&
+          Math.max(...seit2015.map((z) => z.baer)) === 378 &&
+          karte.text.includes('1.050 bis 1.067 Tage') &&
+          karte.text.includes('364 bis 378 Tage') &&
+          karte.text.includes(`${karte.laengen![3].baer} Tage vergangen`)
+      )
+    }
     const kz = kennzahlen(karte)
     const de = (v: number, st: number) => v.toFixed(st).replace('.', ',')
     for (const z of kz) {

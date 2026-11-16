@@ -50,6 +50,15 @@ export interface Zykluskarte extends NeuGemeinsam {
     vorbei: { wer: string; text: string }[]
     lebt: { wer: string; text: string }[]
   }
+  /**
+   * Für die Seite „laengen“: Bullen- und Bärenmarkt je Zyklus in Tagen,
+   * Boden bis Hoch und Hoch bis Boden. Eingetragen statt gerechnet, weil die
+   * frühen Zyklen vor der Reihe liegen; der Test rechnet sie nach.
+   */
+  laengen?: { name: string; bulle: number; baer: number; laufend?: boolean }[]
+  /** Kopf und Satz der Seite „laengen“. */
+  laengenKopf?: string
+  laengenSatz?: string
   /** Welche Seiten, in welcher Reihenfolge; ohne Angabe alle fünf. */
   seitenwahl?: Zyklusseite[]
 }
@@ -372,6 +381,82 @@ function seitePhasen(k: Zykluskarte): Element[] {
   return [bild(svg, oben + abstand * zeilen.length), ...aus]
 }
 
+function seiteLaengen(k: Zykluskarte): Element[] {
+  const l = k.laengen ?? []
+  const oben = OBEN_FOLGE + 190
+  const links = STIL_RAND + 150
+  const rechts = ZK_BREITE - STIL_RAND
+  const max = Math.max(...l.map((z) => z.bulle + z.baer))
+  const s = (rechts - links) / max
+  const hoehe = 96
+  const abstand = Math.min(200, (UNTEN - 120 - oben) / Math.max(l.length, 1))
+  const aus: Element[] = []
+  const teil = (
+    x: number,
+    y: number,
+    b: number,
+    farbe: string,
+    oben1: string,
+    unten1: string,
+    blass = false
+  ) =>
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: y,
+          left: x,
+          width: b - 6,
+          height: hoehe,
+          borderRadius: 10,
+          backgroundColor: farbe,
+          opacity: blass ? 0.55 : 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'Montserrat',
+          color: '#ffffff',
+        },
+      },
+      h('div', { style: { fontSize: 30, fontWeight: 800 } }, oben1),
+      h('div', { style: { fontSize: 18 } }, unten1)
+    )
+  l.forEach((z, i) => {
+    const y = oben + i * abstand
+    aus.push(
+      klein(z.name, {
+        top: y + hoehe / 2 - 18,
+        left: STIL_RAND,
+        fontSize: 26,
+        fontWeight: 800,
+        color: i === l.length - 1 ? STIL.navy : STIL.tinte,
+      }),
+      teil(links, y, z.bulle * s, STIL.gruen, `${zahl(z.bulle)} Tage`, 'Bullenmarkt'),
+      teil(
+        links + z.bulle * s,
+        y,
+        z.baer * s,
+        STIL.rot,
+        `${zahl(z.baer)} Tage`,
+        z.laufend ? 'Bärenmarkt, bisher' : 'Bärenmarkt',
+        z.laufend
+      )
+    )
+    if (!z.laufend)
+      aus.push(
+        klein(`Ganzer Zyklus: ${zahl(z.bulle + z.baer)} Tage`, {
+          top: y + hoehe + 10,
+          left: links,
+          fontSize: 18,
+          color: STIL.grau,
+        })
+      )
+  })
+  return aus
+}
+
 const datum = (d: string) => `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)}`
 
 function seiteVergleich(k: Zykluskarte): Element[] {
@@ -517,7 +602,8 @@ function seiteStimmen(k: Zykluskarte): Element[] {
   ]
 }
 
-export type Zyklusseite = 'verlauf' | 'takt' | 'phasen' | 'vergleich' | 'stimmen'
+export type Zyklusseite =
+  'verlauf' | 'takt' | 'phasen' | 'vergleich' | 'stimmen' | 'laengen'
 const ALLE: Zyklusseite[] = ['verlauf', 'takt', 'phasen', 'vergleich', 'stimmen']
 const auswahl = (k: Zykluskarte) => k.seitenwahl ?? ALLE
 
@@ -544,6 +630,8 @@ export const zyklus: Art<Zykluskarte> = {
         satz: `Der Bärenmarkt dauerte ${frueher.map((z) => z.bisBoden).join(' und ')} Tage. Diesmal sind es bisher ${jetzt.bisBoden}.`,
         inhalt: seitePhasen(k),
       })
+    if (welche === 'laengen')
+      return r({ kopf: k.laengenKopf, satz: k.laengenSatz, inhalt: seiteLaengen(k) })
     if (welche === 'vergleich')
       return r({
         kopf: 'Pünktlich, aber schwächer',
@@ -571,6 +659,10 @@ export const zyklus: Art<Zykluskarte> = {
         f.push(`Stimme von ${s.wer}: ${s.text.length} Zeichen – höchstens 120.`)
     if (k.stimmen.vorbei.length > 3 || k.stimmen.lebt.length > 3)
       f.push('Höchstens drei Stimmen je Seite.')
+    if (auswahl(k).includes('laengen') && !(k.laengen && k.laengen.length >= 2))
+      f.push('Seite „laengen“ ohne mindestens zwei Zyklen.')
+    if (k.laengen?.slice(0, -1).some((z) => z.laufend))
+      f.push('Nur der letzte Zyklus darf bei den Längen noch laufen.')
     return f
   },
 }

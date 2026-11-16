@@ -47,7 +47,15 @@ export const zahlenkarten: Zahlenkarte[] = [
     datum: '2026-11-17',
     titel: [{ text: 'Der Bitcoin-Zyklus:' }, { text: 'Lebt er noch?', gruen: true }],
     unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
-    seitenwahl: ['verlauf', 'vergleich', 'stimmen'],
+    seitenwahl: ['verlauf', 'vergleich', 'laengen'],
+    laengen: [
+      { name: '2011–15', bulle: 744, baer: 406 },
+      { name: '2015–18', bulle: 1067, baer: 364 },
+      { name: '2018–22', bulle: 1059, baer: 378 },
+      { name: 'seit 2022', bulle: 1050, baer: 405, laufend: true },
+    ],
+    laengenKopf: 'Boden bis Hoch, Hoch bis Boden',
+    laengenSatz: 'Seit 2015: 1.050 bis 1.067 Tage hoch, 364 bis 378 Tage runter.',
     reihe: BITCOIN_WOCHEN,
     einheit: '$',
     ereignis: 'Halving',
@@ -97,16 +105,17 @@ export const zahlenkarten: Zahlenkarte[] = [
       ],
     },
     fusszeile:
-      'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
+      'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Blockchain.com, Bitcoin Wiki, Cointelegraph, crypto.news',
     text:
       'Alle vier Jahre halbiert sich die Belohnung der Miner – das Halving. Danach folgten bisher Bullenmarkt, Hoch, Bärenmarkt und Boden. Gilt der Takt noch?\n\n' +
       'Hoch nach dem Halving:\n' +
       '2016er Zyklus: nach 525 Tagen ×29,9, danach −83,4 %\n' +
       '2020er Zyklus: nach 546 Tagen ×7,9, danach −76,6 %\n' +
       '2024er Zyklus: nach 534 Tagen ×1,9, seither bis zu −53,1 %\n\n' +
+      'Vom Boden bis zum Hoch dauerte es seit 2015 jedes Mal 1.050 bis 1.067 Tage, vom Hoch bis zum Boden 364 bis 378 Tage (Blockchain.com). Diesmal sind seit dem Hoch 405 Tage vergangen, der tiefste Kurs kam nach 267 Tagen.\n\n' +
       'Der Takt hielt, die Wucht nicht. Laut crypto.news bewegen ETFs oft über 500 Mio. $ am Tag, Miner schürfen täglich nur rund 450 BTC. Michael Saylor nennt den Zyklus deshalb „tot“, der Analyst Rekt Capital hält ihn für intakt.\n\n' +
       'Am 16.11.2026 stand Bitcoin bei 64.844 $. Das nächste Halving folgt 2028.\n\n' +
-      'Quellen: Yahoo Finance (BTC-USD); Bitcoin Wiki; Cointelegraph; TFTC; crypto.news; eigene Rechnung',
+      'Quellen: Yahoo Finance (BTC-USD); Blockchain.com (Market Price USD); Bitcoin Wiki; Cointelegraph; TFTC; crypto.news; eigene Rechnung',
     schlagworte: ['bitcoin', 'krypto', 'halving', 'zyklus', 'bärenmarkt'],
   },
   {

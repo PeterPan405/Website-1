@@ -655,3 +655,25 @@ export const BITCOIN_WOCHEN: readonly (readonly [string, number])[] = [
   ['2026-11-11', 73964],
   ['2026-11-16', 64844],
 ]
+
+/**
+ * Wendepunkte der Bitcoin-Zyklen seit 2011: Tage und Tagesdurchschnitts-
+ * kurse in Dollar aus der Reihe „Market Price (USD)“ von Blockchain.com
+ * (api.blockchain.info/charts/market-price, timespan=all, sampled=false),
+ * abgerufen am 16.11.2026 über quellen-holen.yml. Je Phase der höchste bzw.
+ * tiefste Tageswert. Blockchain.com reicht bis 2010 zurück – Yahoo Finance
+ * erst bis 2014 –, datiert aber um einen Tag später als Yahoo; die Abstände
+ * in Tagen sind in beiden Reihen gleich.
+ */
+export const BITCOIN_WENDEPUNKTE = {
+  boden2011: ['2011-11-22', 2.3],
+  hoch2013: ['2013-12-05', 1136.9],
+  boden2015: ['2015-01-15', 172],
+  hoch2017: ['2017-12-17', 19279.9],
+  boden2018: ['2018-12-16', 3231.91],
+  hoch2021: ['2021-11-09', 67562.17],
+  boden2022: ['2022-11-22', 15759.61],
+  hoch2025: ['2025-10-07', 124776.68],
+  tief2026: ['2026-07-01', 58534.28],
+  heute: ['2026-11-16', 65300.42],
+} as const
