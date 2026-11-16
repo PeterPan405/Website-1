@@ -49,7 +49,6 @@ export const zahlenkarten: Zahlenkarte[] = [
     unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
     seitenwahl: ['verlauf', 'vergleich', 'laengen'],
     laengen: [
-      { name: '2011–15', bulle: 744, baer: 406 },
       { name: '2015–18', bulle: 1067, baer: 364 },
       { name: '2018–22', bulle: 1059, baer: 378 },
       { name: 'seit 2022', bulle: 1050, baer: 405, laufend: true },

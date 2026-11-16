@@ -1065,7 +1065,6 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     {
       const w = BITCOIN_WENDEPUNKTE
       const soll = [
-        [w.boden2011, w.hoch2013, w.boden2015],
         [w.boden2015, w.hoch2017, w.boden2018],
         [w.boden2018, w.hoch2021, w.boden2022],
         [w.boden2022, w.hoch2025, w.heute],
@@ -1082,16 +1081,16 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
         tage(w.hoch2025[0], w.tief2026[0]) === 267 &&
           karte.text.includes('nach 267 Tagen')
       )
-      const seit2015 = karte.laengen!.slice(1, 3)
+      const seit2015 = karte.laengen!.slice(0, 2)
       pruefe(
         'Zyklus Längen: Satz „1.050 bis 1.067 … 364 bis 378“ stimmt',
-        Math.min(...karte.laengen!.slice(1).map((z) => z.bulle)) === 1050 &&
-          Math.max(...karte.laengen!.slice(1).map((z) => z.bulle)) === 1067 &&
+        Math.min(...karte.laengen!.map((z) => z.bulle)) === 1050 &&
+          Math.max(...karte.laengen!.map((z) => z.bulle)) === 1067 &&
           Math.min(...seit2015.map((z) => z.baer)) === 364 &&
           Math.max(...seit2015.map((z) => z.baer)) === 378 &&
           karte.text.includes('1.050 bis 1.067 Tage') &&
           karte.text.includes('364 bis 378 Tage') &&
-          karte.text.includes(`${karte.laengen![3].baer} Tage vergangen`)
+          karte.text.includes(`${karte.laengen![2].baer} Tage vergangen`)
       )
     }
     const kz = kennzahlen(karte)
