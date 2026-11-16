@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-15T12:55:05.904Z",
+  "abgerufenAm": "2026-11-16T13:53:25.247Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,10 +10,9 @@
       "stand": "2026-11-05",
       "von": "2026-10-05",
       "bis": "2026-12-18",
-      "zeilen": 3183,
-      "kommendGesamt": 278,
+      "zeilen": 3177,
+      "kommendGesamt": 272,
       "spalten": [
-        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
@@ -39,11 +38,11 @@
     },
     "nasdaq": {
       "tageAbgefragt": 50,
-      "tageMitZeilen": 34,
-      "letzterTag": "2027-01-06",
-      "zeilen": 717,
+      "tageMitZeilen": 35,
+      "letzterTag": "2027-01-08",
+      "zeilen": 759,
       "imKatalog": 50,
-      "mitLage": 33,
+      "mitLage": 37,
       "beigetragen": 50
     }
   },
@@ -755,7 +754,9 @@
           "erwartet": "2026-12-09",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-11",
@@ -1865,7 +1866,9 @@
           "erwartet": "2026-12-10",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-04",
@@ -14327,24 +14330,24 @@
     "TSN": {
       "name": "TYSON FOODS, INC.",
       "bisher": [
+        "2026-11-16",
         "2026-08-03",
         "2026-05-04",
         "2026-02-02",
         "2025-11-10",
         "2025-08-04",
         "2025-05-05",
-        "2025-02-03",
-        "2024-11-12"
+        "2025-02-03"
       ],
       "bisherZeiten": {
+        "2026-11-16": "07:41",
         "2026-08-03": "07:37",
         "2026-05-04": "07:31",
         "2026-02-02": "07:03",
         "2025-11-10": "07:32",
         "2025-08-04": "07:33",
         "2025-05-05": "07:31",
-        "2025-02-03": "07:31",
-        "2024-11-12": "07:32"
+        "2025-02-03": "07:31"
       },
       "vorhersagen": [
         {
@@ -14372,6 +14375,12 @@
           "basis": "2026-08-03",
           "streuungTage": 0,
           "newYorkerZeit": "07:37"
+        },
+        {
+          "erwartet": "2027-11-15",
+          "basis": "2026-11-16",
+          "streuungTage": 7,
+          "newYorkerZeit": "07:41"
         }
       ]
     },
@@ -14647,7 +14656,9 @@
           "erwartet": "2026-12-17",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-04-13",
@@ -15074,7 +15085,9 @@
           "erwartet": "2026-12-17",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-03-18",
@@ -18397,7 +18410,7 @@
     "UBI.PA": "2026-11-13",
     "UBSG.SW": "2026-11-14",
     "UCG.MI": "2026-11-15",
-    "UHR.SW": "2026-08-18",
+    "UHR.SW": "2026-11-16",
     "ULTRACEMCO.NS": "2026-08-18",
     "ULVR.L": "2026-08-18",
     "UMC": "2026-08-18",
