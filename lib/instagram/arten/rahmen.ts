@@ -79,40 +79,48 @@ export function rahmen(
         overflow: 'hidden',
       },
     },
+    /* Signet und Wortmarke oben mittig, wie bei allen Karten im Hausstil
+       (Betreiber 16.11.2026: „Logo war sonst immer oben in der Mitte“). */
     h(
       'div',
       {
         style: {
           position: 'absolute',
-          top: 52,
-          left: STIL_RAND,
-          right: STIL_RAND,
+          top: 48,
+          left: 0,
+          width: ZK_BREITE,
           display: 'flex',
+          justifyContent: 'center',
           alignItems: 'center',
-          justifyContent: 'space-between',
           fontFamily: 'Montserrat',
         },
       },
+      h('img', { src: logo, width: 44, height: 44 }),
       h(
         'div',
-        { style: { display: 'flex', alignItems: 'center' } },
-        h('img', { src: logo, width: 34, height: 34 }),
-        h(
-          'div',
-          {
-            style: { fontWeight: 700, fontSize: 21, color: STIL.tinte, marginLeft: 10 },
-          },
-          'IM Invests'
-        )
-      ),
-      o.seiten > 1
-        ? h(
-            'div',
-            { style: { fontSize: 19, color: STIL.hellgrau } },
-            `${o.seite} / ${o.seiten}`
-          )
-        : h('div', {})
+        { style: { fontWeight: 700, fontSize: 26, color: STIL.tinte, marginLeft: 12 } },
+        'IM Invests'
+      )
     ),
+    ...(o.seiten > 1
+      ? [
+          h(
+            'div',
+            {
+              style: {
+                position: 'absolute',
+                top: 58,
+                right: STIL_RAND,
+                display: 'flex',
+                fontFamily: 'Montserrat',
+                fontSize: 19,
+                color: STIL.hellgrau,
+              },
+            },
+            `${o.seite} / ${o.seiten}`
+          ),
+        ]
+      : []),
     ...(erste
       ? [
           h(
