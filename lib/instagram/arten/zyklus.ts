@@ -59,6 +59,13 @@ export interface Zykluskarte extends NeuGemeinsam {
   /** Kopf und Satz der Seite „laengen“. */
   laengenKopf?: string
   laengenSatz?: string
+  /**
+   * Für die Seite „kurse“: Kurs am Boden, am Hoch und am Ende (Boden danach
+   * oder tiefster Kurs seither) je Zyklus. Die Prozente rechnet die Karte.
+   */
+  kurse?: { name: string; boden: number; hoch: number; ende: number; laufend?: boolean }[]
+  kurseKopf?: string
+  kurseSatz?: string
   /** Welche Seiten, in welcher Reihenfolge; ohne Angabe alle fünf. */
   seitenwahl?: Zyklusseite[]
 }
@@ -459,6 +466,87 @@ function seiteLaengen(k: Zykluskarte): Element[] {
 
 const datum = (d: string) => `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)}`
 
+/** Veränderung in Prozent, eine Nachkommastelle, mit Tausenderpunkt. */
+export const prozentGenau = (von: number, nach: number) => {
+  const v = (nach / von - 1) * 100
+  const s = Math.abs(v).toLocaleString('de-DE', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })
+  return `${v >= 0 ? '+' : '−'}${s} %`
+}
+
+function seiteKurse(k: Zykluskarte): Element[] {
+  const l = k.kurse ?? []
+  const oben = OBEN_FOLGE + 200
+  const abstand = Math.min(260, (UNTEN - 130 - oben) / Math.max(l.length, 1))
+  const spalten = [STIL_RAND, STIL_RAND + 330, STIL_RAND + 640]
+  const breite = 300
+  const aus: Element[] = []
+  const preis = (text: string, unter: string, x: number, y: number, farbe: string) =>
+    h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: y,
+          left: x,
+          width: breite,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          fontFamily: 'Montserrat',
+        },
+      },
+      h('div', { style: { fontSize: 18, color: STIL.grau } }, unter),
+      h(
+        'div',
+        { style: { fontSize: 28, fontWeight: 700, color: farbe, marginTop: 2 } },
+        text
+      )
+    )
+  l.forEach((z, i) => {
+    const y = oben + i * abstand
+    aus.push(
+      klein(z.name, {
+        top: y - 44,
+        left: STIL_RAND,
+        fontSize: 24,
+        fontWeight: 800,
+        color: i === l.length - 1 ? STIL.navy : STIL.tinte,
+      }),
+      preis(`${zahl(z.boden)} ${k.einheit}`, 'Boden', spalten[0] - 70, y, STIL.tinte),
+      preis(`${zahl(z.hoch)} ${k.einheit}`, 'Hoch', spalten[1] - 20, y, STIL.tinte),
+      preis(
+        `${zahl(z.ende)} ${k.einheit}`,
+        z.laufend ? 'Tief bisher' : 'Boden',
+        spalten[2] + 30,
+        y,
+        STIL.tinte
+      ),
+      klein(`→ ${prozentGenau(z.boden, z.hoch)}`, {
+        top: y + 90,
+        left: spalten[0] + 90,
+        width: 300,
+        justifyContent: 'center',
+        fontSize: 26,
+        fontWeight: 800,
+        color: STIL.gruen,
+      }),
+      klein(`→ ${prozentGenau(z.hoch, z.ende)}${z.laufend ? ' bisher' : ''}`, {
+        top: y + 90,
+        left: spalten[1] + 140,
+        width: 320,
+        justifyContent: 'center',
+        fontSize: 26,
+        fontWeight: 800,
+        color: STIL.rot,
+      })
+    )
+  })
+  return aus
+}
+
 function seiteVergleich(k: Zykluskarte): Element[] {
   const kz = kennzahlen(k)
   const block = (
@@ -603,7 +691,7 @@ function seiteStimmen(k: Zykluskarte): Element[] {
 }
 
 export type Zyklusseite =
-  'verlauf' | 'takt' | 'phasen' | 'vergleich' | 'stimmen' | 'laengen'
+  'verlauf' | 'takt' | 'phasen' | 'vergleich' | 'stimmen' | 'laengen' | 'kurse'
 const ALLE: Zyklusseite[] = ['verlauf', 'takt', 'phasen', 'vergleich', 'stimmen']
 const auswahl = (k: Zykluskarte) => k.seitenwahl ?? ALLE
 
@@ -632,6 +720,8 @@ export const zyklus: Art<Zykluskarte> = {
       })
     if (welche === 'laengen')
       return r({ kopf: k.laengenKopf, satz: k.laengenSatz, inhalt: seiteLaengen(k) })
+    if (welche === 'kurse')
+      return r({ kopf: k.kurseKopf, satz: k.kurseSatz, inhalt: seiteKurse(k) })
     if (welche === 'vergleich')
       return r({
         kopf: 'Pünktlich, aber schwächer',
@@ -663,6 +753,11 @@ export const zyklus: Art<Zykluskarte> = {
       f.push('Seite „laengen“ ohne mindestens zwei Zyklen.')
     if (k.laengen?.slice(0, -1).some((z) => z.laufend))
       f.push('Nur der letzte Zyklus darf bei den Längen noch laufen.')
+    if (auswahl(k).includes('kurse') && !(k.kurse && k.kurse.length >= 2))
+      f.push('Seite „kurse“ ohne mindestens zwei Zyklen.')
+    for (const z of k.kurse ?? [])
+      if (!(z.boden < z.hoch && z.ende < z.hoch))
+        f.push(`${z.name}: Hoch liegt nicht über Boden und Ende.`)
     return f
   },
 }

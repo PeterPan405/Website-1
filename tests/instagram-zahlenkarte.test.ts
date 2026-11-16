@@ -30,7 +30,7 @@ import {
   verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
-import { kennzahlen, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
+import { prozentGenau, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
 import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 
 let failed = 0
@@ -1081,43 +1081,55 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
         tage(w.hoch2025[0], w.tief2026[0]) === 267 &&
           karte.text.includes('nach 267 Tagen')
       )
-      const seit2015 = karte.laengen!.slice(0, 2)
+      const tausend = (v: number) => v.toLocaleString('de-DE')
+      for (const z of karte.laengen!)
+        pruefe(
+          `Zyklus Längen ${z.name}: Text nennt ${tausend(z.bulle)} und ${z.baer} Tage`,
+          karte.text.includes(`${tausend(z.bulle)} Tage`) &&
+            karte.text.includes(`${z.baer} Tage`)
+        )
       pruefe(
         'Zyklus Längen: Satz „1.050 bis 1.067 … 364 bis 378“ stimmt',
         Math.min(...karte.laengen!.map((z) => z.bulle)) === 1050 &&
           Math.max(...karte.laengen!.map((z) => z.bulle)) === 1067 &&
-          Math.min(...seit2015.map((z) => z.baer)) === 364 &&
-          Math.max(...seit2015.map((z) => z.baer)) === 378 &&
-          karte.text.includes('1.050 bis 1.067 Tage') &&
-          karte.text.includes('364 bis 378 Tage') &&
-          karte.text.includes(`${karte.laengen![2].baer} Tage vergangen`)
+          Math.min(...karte.laengen!.slice(0, 2).map((z) => z.baer)) === 364 &&
+          Math.max(...karte.laengen!.slice(0, 2).map((z) => z.baer)) === 378 &&
+          karte.laengenSatz!.includes('1.050 bis 1.067') &&
+          karte.laengenSatz!.includes('364 bis 378')
       )
-    }
-    const kz = kennzahlen(karte)
-    const de = (v: number, st: number) => v.toFixed(st).replace('.', ',')
-    for (const z of kz) {
+      const kurseSoll = [
+        [w.boden2015, w.hoch2017, w.boden2018],
+        [w.boden2018, w.hoch2021, w.boden2022],
+        [w.boden2022, w.hoch2025, w.tief2026],
+      ] as const
+      for (const [i, [b, h, e]] of kurseSoll.entries()) {
+        const z = karte.kurse![i]
+        const auf = prozentGenau(z.boden, z.hoch)
+        const ab = prozentGenau(z.hoch, z.ende)
+        pruefe(
+          `Zyklus Kurse ${z.name}: ${auf}, ${ab} – aus den Wendepunkten und im Text`,
+          z.boden === b[1] &&
+            z.hoch === h[1] &&
+            z.ende === e[1] &&
+            karte.text.includes(auf) &&
+            karte.text.includes(ab.replace(' %', '')) &&
+            karte.text.includes(`${tausend(Math.round(z.hoch))} $`)
+        )
+      }
       pruefe(
-        `Zyklus ${z.name}: Text nennt ${z.bisHoch} Tage, ×${de(z.faktor, 1)}, ${de(z.absturz, 1).replace('-', '−')} %`,
-        karte.text.includes(`${z.bisHoch} Tagen`) &&
-          karte.text.includes(`×${de(z.faktor, 1)}`) &&
-          karte.text.includes(`${de(z.absturz, 1).replace('-', '−')} %`)
+        'Zyklus Kurse: „jeder Anstieg kleiner, jeder Absturz auch“',
+        karte.kurse!.every(
+          (z, i, l) =>
+            i === 0 ||
+            (z.hoch / z.boden < l[i - 1].hoch / l[i - 1].boden &&
+              z.ende / z.hoch > l[i - 1].ende / l[i - 1].hoch)
+        )
       )
     }
-    const stimme = karte.stimmen.lebt.find((s) => s.wer === 'Eigene Rechnung')!.text
     pruefe(
-      'Zyklus: eigene Rechnung in den Stimmen stimmt',
-      stimme.includes(`${kz[2].bisHoch} Tage`) &&
-        stimme.includes(`${kz[0].bisHoch}`) &&
-        stimme.includes(`${kz[1].bisHoch}`)
-    )
-    const hoch = wertZyklus(karte, '2025-10-06')!
-    const heute = karte.reihe[karte.reihe.length - 1]
-    pruefe(
-      'Zyklus: Hoch 124.753 $ in der Reihe, Kurs am 16.11.2026 bei 64.844 $',
-      hoch === 124753 &&
-        heute[0] === '2026-11-16' &&
-        heute[1] === 64844 &&
-        karte.text.includes('64.844 $')
+      'Zyklus: Hoch 124.753 $ in der Yahoo-Reihe, letzter Kurs vom 16.11.2026',
+      wertZyklus(karte, '2025-10-06') === 124753 &&
+        karte.reihe[karte.reihe.length - 1][0] === '2026-11-16'
     )
     pruefe(
       'Zyklus: fehlender Stichtag wird beanstandet',

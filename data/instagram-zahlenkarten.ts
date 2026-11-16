@@ -47,7 +47,20 @@ export const zahlenkarten: Zahlenkarte[] = [
     datum: '2026-11-17',
     titel: [{ text: 'Der Bitcoin-Zyklus:' }, { text: 'Lebt er noch?', gruen: true }],
     unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
-    seitenwahl: ['verlauf', 'vergleich', 'laengen'],
+    seitenwahl: ['verlauf', 'laengen', 'kurse'],
+    kurse: [
+      { name: '2015–18', boden: 172, hoch: 19279.9, ende: 3231.91 },
+      { name: '2018–22', boden: 3231.91, hoch: 67562.17, ende: 15759.61 },
+      {
+        name: 'seit 2022',
+        boden: 15759.61,
+        hoch: 124776.68,
+        ende: 58534.28,
+        laufend: true,
+      },
+    ],
+    kurseKopf: 'Vom Boden zum Hoch – und zurück',
+    kurseSatz: 'Jeder Anstieg kleiner als der davor, jeder Absturz auch.',
     laengen: [
       { name: '2015–18', bulle: 1067, baer: 364 },
       { name: '2018–22', bulle: 1059, baer: 378 },
@@ -103,18 +116,20 @@ export const zahlenkarten: Zahlenkarte[] = [
         },
       ],
     },
-    fusszeile:
-      'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Blockchain.com, Bitcoin Wiki, Cointelegraph, crypto.news',
+    fusszeile: 'Stand: 16.11.2026 | Quellen: Blockchain.com, Yahoo Finance, Bitcoin Wiki',
     text:
       'Alle vier Jahre halbiert sich die Belohnung der Miner – das Halving. Danach folgten bisher Bullenmarkt, Hoch, Bärenmarkt und Boden. Gilt der Takt noch?\n\n' +
-      'Hoch nach dem Halving:\n' +
-      '2016er Zyklus: nach 525 Tagen ×29,9, danach −83,4 %\n' +
-      '2020er Zyklus: nach 546 Tagen ×7,9, danach −76,6 %\n' +
-      '2024er Zyklus: nach 534 Tagen ×1,9, seither bis zu −53,1 %\n\n' +
-      'Vom Boden bis zum Hoch dauerte es seit 2015 jedes Mal 1.050 bis 1.067 Tage, vom Hoch bis zum Boden 364 bis 378 Tage (Blockchain.com). Diesmal sind seit dem Hoch 405 Tage vergangen, der tiefste Kurs kam nach 267 Tagen.\n\n' +
-      'Der Takt hielt, die Wucht nicht. Laut crypto.news bewegen ETFs oft über 500 Mio. $ am Tag, Miner schürfen täglich nur rund 450 BTC. Michael Saylor nennt den Zyklus deshalb „tot“, der Analyst Rekt Capital hält ihn für intakt.\n\n' +
-      'Am 16.11.2026 stand Bitcoin bei 64.844 $. Das nächste Halving folgt 2028.\n\n' +
-      'Quellen: Yahoo Finance (BTC-USD); Blockchain.com (Market Price USD); Bitcoin Wiki; Cointelegraph; TFTC; crypto.news; eigene Rechnung',
+      'Bullenmarkt, Boden bis Hoch:\n' +
+      '2015–2017: 1.067 Tage, 172 $ → 19.280 $ (+11.109,2 %)\n' +
+      '2018–2021: 1.059 Tage, 3.232 $ → 67.562 $ (+1.990,5 %)\n' +
+      '2022–2025: 1.050 Tage, 15.760 $ → 124.777 $ (+691,7 %)\n\n' +
+      'Bärenmarkt, Hoch bis Boden:\n' +
+      '2017–2018: 364 Tage (−83,2 %)\n' +
+      '2021–2022: 378 Tage (−76,7 %)\n' +
+      'seit Oktober 2025: bisher 405 Tage, tiefster Kurs nach 267 Tagen bei 58.534 $ (−53,1 %)\n\n' +
+      'Die Dauer hielt, die Wucht nicht. Laut crypto.news bewegen ETFs oft über 500 Mio. $ am Tag, Miner schürfen täglich nur rund 450 BTC. Michael Saylor nennt den Zyklus deshalb „tot“, der Analyst Rekt Capital hält ihn für intakt. Das nächste Halving folgt 2028.\n\n' +
+      'Tagesdurchschnittskurse von Blockchain.com, Stand 16.11.2026.\n' +
+      'Quellen: Blockchain.com (Market Price USD); Yahoo Finance (BTC-USD); Bitcoin Wiki; Cointelegraph; crypto.news; eigene Rechnung',
     schlagworte: ['bitcoin', 'krypto', 'halving', 'zyklus', 'bärenmarkt'],
   },
   {
