@@ -30,6 +30,7 @@ import {
   verlaufSeitJahresbeginn,
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
+import { kennzahlen, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
 
 let failed = 0
 /*
@@ -1041,6 +1042,68 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     pruefe(
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
+    )
+  }
+}
+
+/* 17.11.2026: Bitcoin-Zyklus (instagram-reihen-bitcoin.ts, Yahoo Finance). */
+{
+  const karte = karteVom('2026-11-17')
+  pruefe('Zyklus: Karte für den 17.11. ist ein Zyklus', karte?.art === 'zyklus')
+  if (karte?.art === 'zyklus') {
+    pruefe(
+      'Zyklus: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Zyklus: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-16')!)
+    )
+    pruefe('Zyklus: fünf Seiten', zahlenkarteSeiten(karte) === 5)
+    const kz = kennzahlen(karte)
+    const de = (v: number, st: number) => v.toFixed(st).replace('.', ',')
+    for (const [i, z] of kz.entries()) {
+      const h = karte.zyklen[i].ereignis
+      const datum = `${h.slice(8, 10)}.${h.slice(5, 7)}.${h.slice(0, 4)}`
+      pruefe(
+        `Zyklus ${z.name}: Text nennt Halving ${datum}, ${z.bisHoch} Tage, ×${de(z.faktor, 1)}, ${de(z.absturz, 1).replace('-', '−')} %`,
+        karte.text.includes(datum) &&
+          karte.text.includes(`${z.bisHoch} Tagen`) &&
+          karte.text.includes(`×${de(z.faktor, 1)}`) &&
+          karte.text.includes(`${de(z.absturz, 1).replace('-', '−')} %`)
+      )
+    }
+    const stimme = karte.stimmen.lebt.find((s) => s.wer === 'Eigene Rechnung')!.text
+    pruefe(
+      'Zyklus: eigene Rechnung in den Stimmen stimmt',
+      stimme.includes(`${kz[2].bisHoch} Tage`) &&
+        stimme.includes(`${kz[0].bisHoch}`) &&
+        stimme.includes(`${kz[1].bisHoch}`)
+    )
+    const hoch = wertZyklus(karte, '2025-10-06')!
+    const heute = karte.reihe[karte.reihe.length - 1]
+    pruefe(
+      'Zyklus: Hoch 124.753 $ und Kurs am 16.11.2026 bei 64.844 $',
+      hoch === 124753 &&
+        heute[0] === '2026-11-16' &&
+        heute[1] === 64844 &&
+        karte.text.includes('124.753 $') &&
+        karte.text.includes('64.844 $')
+    )
+    pruefe(
+      'Zyklus: fehlender Stichtag wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        zyklen: [{ ...karte.zyklen[0], hoch: '2017-12-17' }, ...karte.zyklen.slice(1)],
+      }).some((t) => t.includes('nicht in der Reihe'))
+    )
+    pruefe(
+      'Zyklus: laufender Zyklus in der Mitte wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        zyklen: [{ ...karte.zyklen[0], boden: undefined }, ...karte.zyklen.slice(1)],
+      }).some((t) => t.includes('Nur der letzte'))
     )
   }
 }

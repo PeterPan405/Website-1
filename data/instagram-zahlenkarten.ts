@@ -24,9 +24,102 @@ import {
   ATOM_USA,
   ATOM_WELT,
 } from './instagram-reihen-atomwaffen.ts'
+import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 17.11.2026, „Der Bitcoin-Zyklus: Lebt er noch?“ – Thema vom
+      Betreiber am 16.11.2026 („Mach Bitcoin mit dem 4-Jahres-Zyklus … das
+      kannst du auch auf mehrere Seiten packen“). Neue Art „zyklus“, fünf
+      Seiten. Form anders als am Vortag (16.11.: Länderkarte).
+
+      Kurse: data/instagram-reihen-bitcoin.ts (Yahoo Finance, Tageskurse,
+      jeder siebte Tag plus die Stichtage). Tage, Faktoren und Rückgänge
+      rechnet die Art selbst aus der Reihe; der Test vergleicht sie mit
+      Text und Stimmen. Halving-Daten: Bitcoin Wiki, „Controlled supply“.
+      Stimmen: Cointelegraph (Kendrick, Rekt Capital, Thielen), TFTC
+      (Saylor, Prüfmarke 55.000–60.000 $), crypto.news (ETF-Flüsse, 450 BTC).
+      Alle am 16.11.2026 über quellen-holen.yml gelesen.
+    */
+    art: 'zyklus',
+    datum: '2026-11-17',
+    titel: [{ text: 'Der Bitcoin-Zyklus:' }, { text: 'Lebt er noch?', gruen: true }],
+    unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
+    reihe: BITCOIN_WOCHEN,
+    einheit: '$',
+    ereignis: 'Halving',
+    zyklen: [
+      {
+        name: '2016',
+        bodenVorher: '2015-01-14',
+        ereignis: '2016-07-09',
+        hoch: '2017-12-16',
+        boden: '2018-12-15',
+      },
+      {
+        name: '2020',
+        bodenVorher: '2018-12-15',
+        ereignis: '2020-05-11',
+        hoch: '2021-11-08',
+        boden: '2022-11-21',
+      },
+      {
+        name: '2024',
+        bodenVorher: '2022-11-21',
+        ereignis: '2024-04-20',
+        hoch: '2025-10-06',
+      },
+    ],
+    satz: 'Etwa alle vier Jahre halbiert sich die Belohnung der Miner – das Halving.',
+    stimmen: {
+      vorbei: [
+        {
+          wer: 'Michael Saylor, Strategy (04.04.2026)',
+          text: '„Der Vierjahreszyklus ist tot. Der Preis wird jetzt von Kapitalflüssen bestimmt.“',
+        },
+        {
+          wer: 'Geoffrey Kendrick, Standard Chartered',
+          text: 'Die Zyklus-Theorie sei „nicht mehr gültig“.',
+        },
+        {
+          wer: 'crypto.news',
+          text: 'ETFs bewegen an einem Tag oft über 500 Mio. $ – Miner schürfen täglich rund 450 BTC.',
+        },
+      ],
+      lebt: [
+        {
+          wer: 'Rekt Capital, Analyst (20.12.2025)',
+          text: 'Der Zyklus sei intakt. Wenn er „kaputt“ ist, steige er wohl nur eine Stufe auf.',
+        },
+        {
+          wer: 'Markus Thielen, 10x Research',
+          text: 'Bitcoin ist Ende Oktober 2025 in einen Bärenmarkt eingetreten.',
+        },
+        {
+          wer: 'Eigene Rechnung',
+          text: 'Das Hoch kam 534 Tage nach dem Halving – 2017 nach 525, 2021 nach 546.',
+        },
+      ],
+    },
+    fusszeile:
+      'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
+    text:
+      'Halving, Bullenmarkt, Hoch, Bärenmarkt, Boden – und wieder von vorn. Diesem Vierjahrestakt folgte Bitcoin seit 2015. Gilt er noch?\n\n' +
+      'Die drei Zyklen (Tagesschlusskurse in Dollar):\n' +
+      '2016: Halving am 09.07.2016, Hoch nach 525 Tagen (×29,9), danach −83,4 %\n' +
+      '2020: Halving am 11.05.2020, Hoch nach 546 Tagen (×7,9), danach −76,6 %\n' +
+      '2024: Halving am 20.04.2024, Hoch nach 534 Tagen (×1,9) bei 124.753 $, seither bis zu −53,1 %\n\n' +
+      'Warum gab es den Takt?\n' +
+      'Rund alle vier Jahre halbiert sich die Belohnung der Miner (Bitcoin Wiki). Danach kam laut Cointelegraph bisher ein Anstieg, der etwa 18 Monate später seinen Gipfel fand – und dann ein harter Absturz.\n\n' +
+      'Warum soll er vorbei sein?\n' +
+      'ETFs und Firmen wie Strategy kaufen heute in großem Stil. Laut crypto.news bewegen ETFs oft über 500 Mio. $ am Tag, Miner schürfen täglich rund 450 BTC. Michael Saylor nennt den Zyklus „tot“, Standard Chartered „nicht mehr gültig“.\n\n' +
+      'Und jetzt?\n' +
+      'Der Takt passte auch diesmal: Das Hoch kam wieder rund anderthalb Jahre nach dem Halving. Die Wucht nicht – weniger Anstieg, bisher weniger Absturz. Das Magazin TFTC nennt eine Prüfmarke: Fällt Bitcoin unter 55.000 bis 60.000 $ und ziehen Anleger dauerhaft Geld aus den ETFs ab, wäre Saylors These widerlegt. Am 16.11.2026 stand der Kurs bei 64.844 $. Das nächste Halving folgt 2028.\n\n' +
+      'Quellen: Yahoo Finance (BTC-USD, Tageskurse 2014–2026); Bitcoin Wiki „Controlled supply“; Cointelegraph; TFTC 2026; crypto.news 2026; eigene Rechnung',
+    schlagworte: ['bitcoin', 'krypto', 'halving', 'zyklus', 'bärenmarkt'],
+  },
   {
     /*
       Zahlenkarte 16.11.2026, „Arbeitslosigkeit in Europa“ – erste Karte

@@ -30,6 +30,7 @@ import { tacho, type Tachokarte } from './tacho.ts'
 import { wasserfall, type Wasserfallkarte } from './wasserfall.ts'
 import { weltuhr, type Weltuhrkarte } from './weltuhr.ts'
 import { zeitkapsel, type Zeitkapselkarte } from './zeitkapsel.ts'
+import { zyklus, type Zykluskarte } from './zyklus.ts'
 
 export type NeueKarte =
   | Kurszettelkarte
@@ -52,6 +53,7 @@ export type NeueKarte =
   | Stapelkarte
   | Stammbaumkarte
   | Zeitkapselkarte
+  | Zykluskarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -76,6 +78,7 @@ export const NEUE_ARTEN: {
   stapel,
   stammbaum,
   zeitkapsel,
+  zyklus,
 }
 
 export function istNeueKarte(k: { art?: string }): k is NeueKarte {

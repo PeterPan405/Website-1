@@ -7,6 +7,7 @@
  * Jede Zahl ist im Test aus dem Bestand nachgerechnet
  * (`tests/instagram-neue-arten.test.ts`).
  */
+import { BITCOIN_WOCHEN } from '@/data/instagram-reihen-bitcoin'
 import type { Zahlenkarte } from '@/lib/instagram-zahlenkarte'
 
 export const musterkarten: Zahlenkarte[] = [
@@ -872,5 +873,75 @@ export const musterkarten: Zahlenkarte[] = [
     fusszeile: 'Stand: 12.11.2026 | Quelle: Yahoo Finance (BTC-USD)',
     text: 'Muster.\n\nQuelle: Yahoo Finance',
     schlagworte: ['bitcoin', 'krypto', 'langfristig', 'kurs', 'zeitreise'],
+  },
+  {
+    /*
+      Zyklus: Bitcoin-Halvings (Bitcoin Wiki, Controlled supply), Kurse aus
+      data/instagram-reihen-bitcoin.ts; die Karte vom 17.11.2026 als Muster.
+    */
+    art: 'zyklus',
+    datum: '2026-11-15',
+    titel: [{ text: 'Der Bitcoin-Zyklus:' }, { text: 'Lebt er noch?', gruen: true }],
+    unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
+    reihe: BITCOIN_WOCHEN,
+    einheit: '$',
+    ereignis: 'Halving',
+    zyklen: [
+      {
+        name: '2016',
+        bodenVorher: '2015-01-14',
+        ereignis: '2016-07-09',
+        hoch: '2017-12-16',
+        boden: '2018-12-15',
+      },
+      {
+        name: '2020',
+        bodenVorher: '2018-12-15',
+        ereignis: '2020-05-11',
+        hoch: '2021-11-08',
+        boden: '2022-11-21',
+      },
+      {
+        name: '2024',
+        bodenVorher: '2022-11-21',
+        ereignis: '2024-04-20',
+        hoch: '2025-10-06',
+      },
+    ],
+    satz: 'Etwa alle vier Jahre halbiert sich die Belohnung der Miner – das Halving.',
+    stimmen: {
+      vorbei: [
+        {
+          wer: 'Michael Saylor, Strategy (04.04.2026)',
+          text: '„Der Vierjahreszyklus ist tot. Der Preis wird jetzt von Kapitalflüssen bestimmt.“',
+        },
+        {
+          wer: 'Geoffrey Kendrick, Standard Chartered',
+          text: 'Die Zyklus-Theorie sei „nicht mehr gültig“.',
+        },
+        {
+          wer: 'crypto.news',
+          text: 'ETFs bewegen an einem Tag oft über 500 Mio. $ – Miner schürfen täglich rund 450 BTC.',
+        },
+      ],
+      lebt: [
+        {
+          wer: 'Rekt Capital, Analyst (20.12.2025)',
+          text: 'Der Zyklus sei intakt. Wenn er „kaputt“ ist, steige er wohl nur eine Stufe auf.',
+        },
+        {
+          wer: 'Markus Thielen, 10x Research',
+          text: 'Bitcoin ist Ende Oktober 2025 in einen Bärenmarkt eingetreten.',
+        },
+        {
+          wer: 'Eigene Rechnung',
+          text: 'Das Hoch kam 534 Tage nach dem Halving – 2017 nach 525, 2021 nach 546.',
+        },
+      ],
+    },
+    fusszeile:
+      'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
+    text: 'Muster.\n\nQuellen: Yahoo Finance, Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
+    schlagworte: ['bitcoin', 'krypto', 'halving', 'zyklus', 'bärenmarkt'],
   },
 ]
