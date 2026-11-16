@@ -1045,6 +1045,49 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 16.11.2026: Länderkarte Arbeitslosigkeit (laender.json, Weltbank 2025). */
+{
+  const karte = karteVom('2026-11-16')
+  pruefe(
+    'Arbeitslos: Karte für den 16.11. ist eine Länderkarte',
+    karte?.art === 'laenderkarte'
+  )
+  if (karte?.art === 'laenderkarte') {
+    pruefe(
+      'Arbeitslos: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Arbeitslos: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-15')!)
+    )
+    const laender = JSON.parse(
+      readFileSync('data/snapshots/laender.json', 'utf8')
+    ).laender
+    for (const [iso, v] of Object.entries(karte.werte))
+      pruefe(
+        `Arbeitslos: ${iso} ${v} %`,
+        laender[iso].arbeitslosenquote.wert === v &&
+          laender[iso].arbeitslosenquote.jahr === 2025
+      )
+    const reihe = Object.entries(karte.werte).sort((a, b) => b[1] - a[1])
+    pruefe(
+      'Arbeitslos: „Spanien, Finnland vorn“',
+      reihe[0][0] === 'ESP' && reihe[1][0] === 'FIN'
+    )
+    const zahl = (v: number) =>
+      `${String(v).replace('.', ',')}${Number.isInteger(v) ? ',0' : ''} %`
+    for (const [iso] of [...reihe.slice(0, 6), ...reihe.slice(-6)])
+      pruefe(
+        `Arbeitslos: Text nennt ${iso} mit ${zahl(karte.werte[iso])}`,
+        karte.text.includes(zahl(karte.werte[iso]))
+      )
+    const rangDE = [...reihe].reverse().findIndex(([i]) => i === 'DEU')
+    pruefe('Arbeitslos: Deutschland im unteren Drittel', rangDE < reihe.length / 3)
+  }
+}
+
 /* 15.11.2026: Zahlenstrahl Chip-Aktien (markets.json). */
 {
   const karte = karteVom('2026-11-15')

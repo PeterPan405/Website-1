@@ -29,6 +29,78 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 16.11.2026, „Arbeitslosigkeit in Europa“ – erste Karte
+      einer neuen Art (Länderkarte). Thema selbst gewählt: Für heute lag
+      keine Wahl aus Vorschlägen vor. Nicht in den News des Tages.
+      Form: Länderkarte (15.11.: Zahlenstrahl).
+
+      Zahlen: data/snapshots/laender.json, arbeitslosenquote, Jahr 2025
+      (Weltbank, SL.UEM.TOTL.ZS) – im Test je Land nachgerechnet.
+      Aktueller Stand für den Text: Eurostat, September 2026, über
+      Demócrata/Agencias vom 30.10.2026 (gelesen 16.11.2026).
+    */
+    art: 'laenderkarte',
+    datum: '2026-11-16',
+    freigabe: '2026-11-16',
+    titel: [
+      { text: 'Arbeitslos in Europa:' },
+      { text: 'Spanien, Finnland vorn.', gruen: true },
+    ],
+    unterzeile: 'Arbeitslosenquote 2025 in %. Je dunkler, desto höher.',
+    einheit: '',
+    bis: 10,
+    hervor: 'DEU',
+    werte: {
+      ISL: 3.6,
+      NOR: 4.6,
+      SWE: 8.7,
+      FIN: 9.5,
+      IRL: 4.6,
+      GBR: 4.7,
+      DNK: 5.5,
+      EST: 8.3,
+      NLD: 3.9,
+      DEU: 3.7,
+      POL: 3,
+      LVA: 6.6,
+      BEL: 5.9,
+      LUX: 6.3,
+      CZE: 2.8,
+      SVK: 5.4,
+      LTU: 6.7,
+      FRA: 7.5,
+      CHE: 4.9,
+      AUT: 5.6,
+      HUN: 4.5,
+      ROU: 6,
+      PRT: 6.2,
+      ESP: 10.4,
+      ITA: 6.4,
+      SVN: 3.2,
+      HRV: 5,
+      BGR: 3.5,
+      MLT: 2.9,
+      GRC: 8.5,
+      CYP: 4.9,
+    },
+    fusszeile: 'Stand: 2025 | Quelle: Weltbank (World Development Indicators)',
+    text:
+      'Wo in Europa die meisten Menschen ohne Arbeit sind: Die Karte zeigt die Arbeitslosenquote 2025, jedes Land ein Feld. Je dunkler, desto höher.\n\n' +
+      'Am höchsten:\n' +
+      'Spanien 10,4 % · Finnland 9,5 % · Schweden 8,7 % · Griechenland 8,5 % · Estland 8,3 % · Frankreich 7,5 %\n\n' +
+      'Am niedrigsten:\n' +
+      'Tschechien 2,8 % · Malta 2,9 % · Polen 3,0 % · Slowenien 3,2 % · Bulgarien 3,5 % · Island 3,6 %\n\n' +
+      'Deutschland liegt mit 3,7 % im unteren Drittel.\n\n' +
+      'Warum Spanien?\n' +
+      'Laut OECD ist die Quote stark gesunken – von rund 15 % im Jahr 2021 auf 10,5 % im September 2025 –, bleibt aber die höchste der EU. Die OECD nennt die Arbeitslosenhilfe für über 52-Jährige: Sie wirke faktisch wie ein Vorruhestand. Ältere sind in Spanien besonders selten beschäftigt.\n\n' +
+      'Und jetzt?\n' +
+      'Im September 2026 hat Finnland Spanien überholt: 10,5 % gegen 10,3 %, laut Eurostat. Dahinter Schweden mit 8,7 % und Frankreich mit 8,5 % – der höchste Wert dort seit September 2020. In der Eurozone lag die Quote bei 6,5 %, in der EU bei 6,2 %. Am niedrigsten war sie in Tschechien mit 2,8 %.\n\n' +
+      'Arbeitslosenquote 2025 nach Weltbank; Eurostat-Monatswerte sind nicht ganz gleich abgegrenzt.\n' +
+      'Quellen: Weltbank (World Development Indicators, SL.UEM.TOTL.ZS); OECD Ecoscope 18.12.2025; Eurostat über Demócrata/Agencias 30.10.2026',
+    schlagworte: ['europa', 'arbeitsmarkt', 'konjunktur', 'spanien', 'deutschland'],
+  },
+  {
+    /*
       Zahlenkarte 15.11.2026, „Chip-Aktien 2026 – und warum“. Drei Entwürfe
       verworfen:
         - Ferrari gegen Stellantis („langweilig“)
