@@ -1,12 +1,21 @@
 /**
- * Die Länderkarte (15.11.2026, Vorschlag 4): Europa als Kachelkarte – jedes
- * Land ein gleich großes Feld ungefähr an seinem Ort, gefärbt nach dem Wert,
- * darin Kürzel und Zahl. Eine echte Landkarte bräuchte Umrisse und machte
- * Malta unsichtbar; die Kacheln geben jedem Land denselben Platz.
+ * Die Länderkarte (15.11.2026, Vorschlag 4): Europa als echte Karte mit
+ * Landesumrissen, jedes Land gefärbt nach seinem Wert, die Zahl auf dem
+ * Land. Erster Entwurf war ein Kachelraster – der Betreiber am 16.11.2026:
+ * „was soll das für eine Darstellung sein“. Umrisse aus `world-atlas`
+ * (Natural Earth, 1:50 Mio.), dieselben wie auf /globus.
+ *
+ * Kleine Länder (Malta, Luxemburg, Zypern …) sind auf der Karte kaum zu
+ * sehen; ihre Werte stehen deshalb in der Zeile unter der Karte.
  */
-import { createElement as h } from 'react'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
-import { STIL, STIL_RAND, ZK_BREITE } from '../../instagram-zahlenkarte.ts'
+import { geoConicConformal, geoPath } from 'd3-geo'
+import { createElement as h } from 'react'
+import { feature } from 'topojson-client'
+
+import { STIL, STIL_RAND, ZK_BREITE, svgAdresse } from '../../instagram-zahlenkarte.ts'
 import {
   OBEN_ERSTE,
   UNTEN,
@@ -23,13 +32,15 @@ export interface Laenderkartenkarte extends NeuGemeinsam {
   stellen?: number
   /** ISO-Alpha-3 (DEU, FRA …) → Wert. Nur Länder aus `RASTER`. */
   werte: Record<string, number>
-  /** Wo die Farbe am kräftigsten wird; darunter heller. */
+  /** Wo die Farbe am hellsten ist; ohne Angabe der kleinste Wert. */
+  von?: number
+  /** Wo die Farbe am kräftigsten wird. */
   bis: number
   /** Ein Land hervorheben (Rahmen in Navy), meist Deutschland. */
   hervor?: string
 }
 
-/** Spalte, Zeile je Land – eine Kachelkarte Europas. */
+/** Die Länder, die die Karte kennt, mit Kürzel (Spalte, Zeile aus dem ersten Entwurf). */
 export const RASTER: Record<string, [number, number, string]> = {
   ISL: [0, 0, 'IS'],
   NOR: [4, 0, 'NO'],
@@ -64,62 +75,177 @@ export const RASTER: Record<string, [number, number, string]> = {
   CYP: [6, 6, 'CY'],
 }
 
-function farbe(v: number, bis: number): string {
-  const s = Math.min(Math.max(v, 0) / bis, 1)
-  const a = [234, 237, 245]
+function farbe(s: number): string {
+  const a = [228, 232, 242]
   const b = [23, 41, 111]
-  return `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * s)).join(',')})`
+  return `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * Math.min(Math.max(s, 0), 1))).join(',')})`
+}
+
+/** ISO-Alpha-3 → numerischer Code (wie in world-atlas), aus laender.json. */
+function numerisch(): Record<string, string> {
+  const l = JSON.parse(
+    readFileSync(join(process.cwd(), 'data/snapshots/laender.json'), 'utf8')
+  ).laender as Record<string, { numerisch: string }>
+  return Object.fromEntries(Object.entries(l).map(([iso, x]) => [iso, x.numerisch]))
+}
+
+/** Unter dieser Fläche (px²) steht die Zahl nicht auf dem Land, sondern darunter. */
+export const KLEIN = 700
+
+/** Wo die Zahl steht, wenn der Schwerpunkt auf einer Grenze oder im Meer läge (Länge, Breite). */
+const ANKER: Record<string, [number, number]> = {
+  NOR: [9, 61.3],
+  SWE: [15.2, 62.8],
+  FIN: [26.5, 63.5],
+  GRC: [22, 39.6],
+  ITA: [13.2, 42.6],
+  HRV: [16, 45.6],
+  DNK: [9.2, 56.1],
+  GBR: [-1.6, 52.8],
 }
 
 export const laenderkarte: Art<Laenderkartenkarte> = {
   seiten: () => 1,
   seite(k, logo) {
-    const spalten = 7
-    const luecke = 10
-    const zeilen = 7
-    const oben = OBEN_ERSTE + 10
-    const groesse = Math.floor(
-      Math.min(
-        (ZK_BREITE - 2 * STIL_RAND - luecke * (spalten - 1)) / spalten,
-        (UNTEN - 10 - oben - luecke * (zeilen - 1)) / zeilen
+    const welt = JSON.parse(
+      readFileSync(
+        join(process.cwd(), 'node_modules/world-atlas/countries-50m.json'),
+        'utf8'
       )
     )
-    const links = (ZK_BREITE - spalten * groesse - (spalten - 1) * luecke) / 2
-    const inhalt = Object.entries(RASTER).map(([iso, [sp, ze, kurz]]) => {
-      const v = k.werte[iso]
-      const da = v !== undefined
-      const s = da ? Math.min(Math.max(v, 0) / k.bis, 1) : 0
-      return h(
-        'div',
-        {
-          style: {
-            position: 'absolute',
-            left: links + sp * (groesse + luecke),
-            top: oben + ze * (groesse + luecke),
-            width: groesse,
-            height: groesse,
-            borderRadius: 12,
-            backgroundColor: da ? farbe(v, k.bis) : '#f6f7f9',
-            border: k.hervor === iso ? `5px solid ${STIL.tinte}` : 'none',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'Montserrat',
-            color: s > 0.5 ? '#ffffff' : STIL.tinte,
-          },
-        },
-        h('div', { style: { fontSize: 22, fontWeight: 800 } }, kurz),
+    const alle = (
+      feature(welt, welt.objects.countries) as unknown as {
+        features: { id: string; geometry: unknown }[]
+      }
+    ).features
+    const nummer = numerisch()
+    const zuIso = Object.fromEntries(Object.entries(nummer).map(([i, n]) => [n, i]))
+    const oben = OBEN_ERSTE - 60
+    const unten = UNTEN - 60
+    const breite = ZK_BREITE
+    const proj = geoConicConformal().parallels([35, 65]).rotate([-12, 0]).center([0, 52])
+    /* Ausschnitt: Island bis Zypern, Nordkap bis Kreta. */
+    const rahmenGeo = {
+      type: 'Feature',
+      geometry: {
+        type: 'MultiPoint',
+        coordinates: [
+          [-24, 63],
+          [34, 71],
+          [-10, 35.5],
+          [34, 34.2],
+        ],
+      },
+    }
+    proj.fitExtent(
+      [
+        [STIL_RAND - 20, oben],
+        [breite - STIL_RAND + 20, unten],
+      ],
+      rahmenGeo as never
+    )
+    const pfad = geoPath(proj)
+    const werte = Object.values(k.werte)
+    const von = k.von ?? Math.min(...werte)
+    let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${breite}" height="${unten + 10}"><defs><clipPath id="c"><rect x="0" y="${oben}" width="${breite}" height="${unten - oben}"/></clipPath></defs><g clip-path="url(#c)">`
+    const beschriftung: ReturnType<typeof h>[] = []
+    const klein: string[] = []
+    let hervor = ''
+    for (const f of alle) {
+      const iso = zuIso[f.id]
+      const d = pfad(f as never)
+      if (!d) continue
+      const v = iso ? k.werte[iso] : undefined
+      const fuellung = v === undefined ? '#f1f2f5' : farbe((v - von) / (k.bis - von))
+      svg += `<path d="${d}" fill="${fuellung}" stroke="#ffffff" stroke-width="1.2"/>`
+      if (iso && iso === k.hervor) hervor = d
+      if (v === undefined) continue
+      const flaeche = pfad.area(f as never)
+      const name = RASTER[iso]?.[2] ?? iso
+      if (flaeche < KLEIN) {
+        klein.push(`${name} ${zahl(v, k.stellen ?? 1)}${k.einheit}`)
+        continue
+      }
+      /* Frankreich, Norwegen: Überseegebiete und Inseln verschieben den Schwerpunkt – der größte Teil zählt. */
+      const [cx, cy] = ANKER[iso]
+        ? (proj(ANKER[iso]) as [number, number])
+        : pfad.centroid(groessterTeil(f) as never)
+      const s = (v - von) / (k.bis - von)
+      beschriftung.push(
         h(
           'div',
           {
-            style: { fontSize: 20, marginTop: 2, color: da ? undefined : STIL.hellgrau },
+            style: {
+              position: 'absolute',
+              top: cy - 13,
+              left: cx - 40,
+              width: 80,
+              display: 'flex',
+              justifyContent: 'center',
+              fontFamily: 'Montserrat',
+              fontSize: flaeche < 2500 ? 13 : flaeche < 9000 ? 15 : 19,
+              fontWeight: 700,
+              color: s > 0.45 ? '#ffffff' : STIL.tinte,
+            },
           },
-          da ? `${zahl(v, k.stellen ?? 1)}${k.einheit}` : '–'
+          zahl(v, k.stellen ?? 1)
         )
       )
+    }
+    if (hervor)
+      svg += `<path d="${hervor}" fill="none" stroke="${STIL.tinte}" stroke-width="3.5"/>`
+    svg += '</g></svg>'
+    /* Farbleiste mit Anfang und Ende. */
+    const leiste = h(
+      'div',
+      {
+        style: {
+          position: 'absolute',
+          top: unten + 22,
+          left: STIL_RAND,
+          display: 'flex',
+          alignItems: 'center',
+          fontFamily: 'Montserrat',
+          fontSize: 18,
+          color: STIL.grau,
+        },
+      },
+      h(
+        'div',
+        { style: { marginRight: 10 } },
+        `${zahl(von, k.stellen ?? 1)}${k.einheit}`
+      ),
+      h('div', {
+        style: {
+          width: 200,
+          height: 14,
+          borderRadius: 7,
+          backgroundImage: `linear-gradient(90deg, ${farbe(0)}, ${farbe(1)})`,
+        },
+      }),
+      h(
+        'div',
+        { style: { marginLeft: 10 } },
+        `${zahl(k.bis, k.stellen ?? 1)}${k.einheit}`
+      ),
+      ...(klein.length
+        ? [h('div', { style: { marginLeft: 28, fontSize: 17 } }, klein.join(' · '))]
+        : [])
+    )
+    return rahmen(k, logo, {
+      seite: 1,
+      seiten: 1,
+      inhalt: [
+        h('img', {
+          src: svgAdresse(svg),
+          width: breite,
+          height: unten + 10,
+          style: { position: 'absolute', top: 0, left: 0 },
+        }),
+        ...beschriftung,
+        leiste,
+      ],
     })
-    return rahmen(k, logo, { seite: 1, seiten: 1, inhalt })
   },
   pruefe(k) {
     const f = pruefeGemeinsam(k)
@@ -131,4 +257,19 @@ export const laenderkarte: Art<Laenderkartenkarte> = {
       f.push(`Hervorgehoben ist „${k.hervor}“, aber ohne Wert.`)
     return f
   },
+}
+
+/** Der größte Teil eines Landes (ohne Inseln und Überseegebiete) – für die Lage der Zahl. */
+function groessterTeil(f: { geometry: unknown }) {
+  const g = f.geometry as { type: string; coordinates: number[][][][] }
+  if (g.type !== 'MultiPolygon') return f
+  const flaeche = (ring: number[][]) =>
+    Math.abs(
+      ring.reduce((s, [x, y], i) => {
+        const [x2, y2] = ring[(i + 1) % ring.length]
+        return s + x * y2 - x2 * y
+      }, 0)
+    )
+  const teil = g.coordinates.reduce((a, b) => (flaeche(b[0]) > flaeche(a[0]) ? b : a))
+  return { type: 'Feature', geometry: { type: 'Polygon', coordinates: teil } }
 }
