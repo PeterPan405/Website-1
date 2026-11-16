@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Japans Wirtschaft schrumpft überraschend, E-Auto-Bauer rechnen ohne neue US-Förderung, KI erobert die Depots, Amerikas Rentenkasse streitet über die Beitragsgrenze – und Bessent fordert einen Nvidia-Umbruch.",
+  "kacheln": [
+    {
+      "titel": "Japan: BIP schrumpft",
+      "text": "Japans Wirtschaft schrumpfte im dritten Quartal um 0,1 Prozent, Ökonomen hatten ein Plus erwartet. Der Nikkei legte nach der Veröffentlichung trotzdem leicht zu."
+    },
+    {
+      "titel": "E-Autos ohne US-Hilfe",
+      "text": "Die Chefs von Rivian, Lucid und Scout rechnen nicht mit neuen US-Kaufprämien für Elektroautos. Ein E-Auto kostet im Schnitt 3.700 Dollar mehr als ein Benziner."
+    },
+    {
+      "titel": "KI steuert das Depot",
+      "text": "Scalable Capital, eToro und Bitpanda lassen Kunden ihr Depot jetzt mit einem KI-Chatbot verbinden. Er kann Positionen prüfen und sogar Order auslösen."
+    },
+    {
+      "titel": "US-Rente: Streit um Grenze",
+      "text": "Nach den Zwischenwahlen wächst in den USA der Streit um die Rentenkasse. Strittig ist, ob Besserverdiener ab 184.500 Dollar künftig mehr einzahlen müssen."
+    },
+    {
+      "titel": "Bessent fordert Nvidia-Chef",
+      "text": "US-Finanzminister Bessent verlangt einen externen Nvidia-Chef und Antworten binnen zehn Tagen zu möglichen Chip-Exporten nach China."
+    }
+  ],
+  "schlagworte": ["nvidia", "elektroautos", "japan", "börse", "aktien"]
+}

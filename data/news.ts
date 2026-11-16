@@ -101,6 +101,304 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'japans-wirtschaft-schrumpft-ueberraschend',
+    title: 'Japans Wirtschaft schrumpft überraschend im dritten Quartal',
+    teaser:
+      'Japans Wirtschaft ist im dritten Quartal unerwartet geschrumpft. Ökonomen hatten Wachstum erwartet, doch teure Energieimporte drückten die Bilanz.',
+    category: 'Märkte',
+    publishedAt: '2026-11-16T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['japan', 'bip', 'konjunktur', 'nikkei'],
+    relatedTopics: ['waehrungen-wechselkurse'],
+    relatedSymbols: ['nikkei-225'],
+    sources: [
+      {
+        label:
+          'CNBC, 16. November 2026, 00:57 Uhr MEZ (18:57 Uhr EST am Vortag): „Japan\'s economy unexpectedly contracts in third-quarter as elevated energy costs bite"',
+        url: 'https://www.cnbc.com/2026/11/16/japan-q3-gdp-energy-oil-prices.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Japans Wirtschaft ist im dritten Quartal 2026 geschrumpft – und das hat kaum jemand erwartet. Aufs Jahr umgerechnet fiel die Wirtschaftsleistung um 0,1 Prozent gegenüber dem Vorquartal. Ökonomen hatten in einer Umfrage im Schnitt ein Wachstum von 0,3 Prozent vorhergesagt, nach einem Plus von 1,4 Prozent im Frühjahrsquartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher der Rückgang kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ausschlaggebend waren ein schwächerer Konsum und schwächere Exporte. Dabei schnitten die Exporte in zwei der drei Monate des Quartals sogar besser ab als erwartet. Den Ausschlag gaben die Importe: Höhere Energieeinfuhren drückten den Außenbeitrag und kosteten das Wachstum laut den Daten rund 0,6 Prozentpunkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Export-Stärke trotzdem nicht reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Bruttoinlandsprodukt misst nur, was im Inland an Wert geschaffen wird. Steigen die Importe schneller als die Exporte, zieht das vom Wachstum ab – selbst wenn die Exportzahlen für sich genommen gut aussehen. Japan importiert einen Großteil seiner Energie, und steigende Preise dafür schlagen sich direkt in dieser Rechnung nieder.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Reaktion an den Märkten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nikkei 225 legte nach der Veröffentlichung der Daten um 0,4 Prozent zu, die Rendite zehnjähriger japanischer Staatsanleihen lag bei 2,885 Prozent. Der Yen gab leicht nach und wurde zuletzt bei rund 159,76 Yen je Dollar gehandelt.',
+      },
+    ],
+  },
+  {
+    slug: 'e-auto-hersteller-usa-foerderung',
+    title: 'E-Auto-Hersteller rechnen nicht mit neuer US-Förderung',
+    teaser:
+      'Die Chefs von Rivian, Lucid und Scout Motors bauen nicht auf neue US-Kaufprämien für Elektroautos – obwohl die Demokraten den Kongress übernehmen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-16T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['elektroautos', 'rivian', 'lucid', 'industriepolitik'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 15. November 2026, 08:00 Uhr EST: „Rivian, Lucid, Scout CEOs aren\'t counting on Democrats to restore EV federal support after midterm wins"',
+        url: 'https://www.cnbc.com/2026/11/15/rivian-lucid-scout-arent-counting-on-dems-to-restore-ev-incentives.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Chefs der Elektroauto-Hersteller Rivian und Lucid sowie des Start-ups Scout Motors rechnen nicht damit, dass eine demokratisch mitkontrollierte Kongresskammer die gestrichene Kaufprämie für Elektroautos zurückbringt. Das sagten sie CNBC nach den Zwischenwahlen, bei denen die Demokraten deutliche Gewinne erzielten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Förderung, die schon einmal wegfiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Trump-Regierung hatte den Zuschuss von bis zu 7.500 Dollar nach September 2025 gestrichen. Die Verkaufszahlen von Elektroautos waren zuvor sprunghaft gestiegen und sind seither von diesem Hoch zurückgekommen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Scout-Chef Scott Keogh sagte, man habe das Unternehmen von Anfang an so aufgebaut, dass es nicht auf eine Gesetzesänderung angewiesen sei. Sollte es dennoch Unterstützung geben, wünsche er sie sich auf der Produktionsseite – das käme über niedrigere Herstellungskosten am Ende auch bei den Kunden an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein E-Auto heute kostet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Daten des Marktforschers Cox Automotive lag der durchschnittliche Preis eines neuen Elektroautos im September bei rund 54.800 Dollar. Ein Fahrzeug mit Verbrennungsmotor kostete im Schnitt etwa 51.100 Dollar – eine Lücke, die zuvor auch der gestrichene Zuschuss ausgeglichen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die politische Lage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rivian-Chef RJ Scaringe sagte, er hoffe auf einen Kompromiss zwischen dem demokratisch mitkontrollierten Kongress und Präsident Donald Trump, baue aber nicht darauf. Lucid-Chef Silvio Napoli formulierte es so: Man plane für das Schlimmste und hoffe auf das Beste.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-agenten-im-wertpapierdepot',
+    title: 'KI-Agenten erobern das Wertpapierdepot',
+    teaser:
+      'Scalable Capital, eToro und Bitpanda öffnen ihre Depots für KI-Chatbots. Anleger können damit Positionen analysieren oder sogar Order auslösen lassen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-16T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ki', 'depot', 'broker', 'geldanlage'],
+    relatedTopics: ['depot-und-broker', 'portfolio-aufbau'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche, 15. November 2026, 17:50 Uhr: „Agentic Investing: KI-Agenten könnten die Geldanlage revolutionieren"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/agentic-investing-wie-ki-agenten-uns-zu-besseren-anlegern-machen-sollen/100269014.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 15. November 2026, 13:43 Uhr: „Agentic Investing: Das KI-Agenten-Depot von eToro im Check"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/etoro-das-ki-agenten-depot-im-check/100269338.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 15. November 2026, 12:42 Uhr: „Agentic Investing: Wie die KI für mich mit Kryptos genug Geld für einen Döner verdienen sollte"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/claude-und-bitpanda-wie-die-ki-fuer-mich-geld-fuer-einen-doener-verdienen-sollte/100269145.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 15. November 2026, 12:41 Uhr: „Agentic Investing: So räumt das KI-Tool von Scalable das Depot auf"',
+        url: 'https://www.wiwo.de/finanzen/geldanlage/chatgpt-so-raeumt-das-ki-tool-von-scalable-das-depot-auf/100269185.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mehrere deutschsprachige Neobroker öffnen ihre Depots für Künstliche Intelligenz. Scalable Capital, eToro und der Kryptobroker Bitpanda bieten inzwischen an, ein Wertpapierdepot mit einem KI-Chatbot zu verbinden, der Positionen analysiert, Order vorschlägt oder sie direkt auslöst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die einzelnen Anbieter zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Scalable Capital lässt sich das Depot über Prompts an ChatGPT steuern, bei Bitpanda übernimmt ein mit Claude verbundener Agent diese Aufgabe. Bei eToro, bekannt für sein Social Trading, können Kunden eigene KI-Agenten-Depots einrichten. Die WirtschaftsWoche hat alle drei Angebote am Sonntag in eigenen Tests ausprobiert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Depots analysieren, Order anstoßen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der Redaktion können die Systeme bereits Depots auswerten, Vorschläge für Strategien machen und Aufträge anstoßen. Wie weit die Automatisierung schon reicht und wo sie an Grenzen stößt, unterschied sich in den Tests je nach Anbieter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die offene Frage: Wer haftet?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Je mehr Entscheidungen ein Chatbot ohne Rückfrage trifft, desto wichtiger wird die Frage, wer für eine Fehlentscheidung aufkommt – der Anleger, der Broker oder der Anbieter der KI. Eine einheitliche Antwort darauf gibt es bislang nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'amerikas-rentenkasse-streit-beitragsgrenze',
+    title: 'Amerikas Rentenkasse: Streit um die Beitragsgrenze',
+    teaser:
+      'Nach dem Sieg der Demokraten bei den Zwischenwahlen wächst der Streit um Amerikas Rentenkasse: Soll die Beitragsgrenze für Besserverdiener steigen?',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-16T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['altersvorsorge', 'sozialabgaben', 'steuern'],
+    relatedTopics: ['rente'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 15. November 2026, 09:30 Uhr EST: „Social Security and the blue wave: What could happen to payroll taxes and senior tax breaks"',
+        url: 'https://www.cnbc.com/2026/11/15/social-security-tax-changes-midterm-election.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Amerikas staatliche Rentenversicherung Social Security steuert auf eine Finanzierungslücke zu – und die Kongressabgeordneten, die bei den Zwischenwahlen am 3. November gewählt wurden, werden mit darüber entscheiden, wie sie geschlossen wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Jahre bis zur Belastungsgrenze',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der Treuhänder des Programms könnte der Rentenfonds ab 2032 erschöpft sein; dann wären noch 78 Prozent der zugesagten Leistungen auszahlbar. Fasst man Renten- und Invaliditätsfonds zusammen, verschiebt sich das Datum auf 2034, bei 83 Prozent der Leistungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Beitragsgrenze erhöhen oder Steuervorteil verlängern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Wahlkampf setzten viele Demokraten und einige Republikaner auf eine höhere oder abgeschaffte Beitragsgrenze: Wer mehr als derzeit 184.500 Dollar im Jahr verdient, zahlt auf den Betrag darüber bislang keine Sozialabgaben. Viele Republikaner warben dagegen für die Verlängerung eines Steuerabzugs von bis zu 6.000 Dollar für Menschen ab 65 Jahren, der sonst 2028 ausläuft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Hebel mit entgegengesetzter Wirkung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die höhere Beitragsgrenze würde zusätzliche Einnahmen in das System spülen. Der Steuerabzug für Senioren wirkt umgekehrt: Er senkt die Einkommensteuer älterer Menschen und mindert damit auch die Steuer auf deren Rentenbezüge – und damit die Einnahmen des Systems.',
+      },
+    ],
+  },
+  {
+    slug: 'bessent-fordert-nvidia-umbruch',
+    title: 'Bessent fordert radikalen Umbruch bei Nvidia',
+    teaser:
+      'US-Finanzminister Scott Bessent verlangt einen externen Nvidia-Chef und binnen zehn Tagen Antworten zu möglichen Chip-Exporten nach China.',
+    category: 'Märkte',
+    publishedAt: '2026-11-16T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['nvidia', 'chippolitik', 'exportkontrollen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über wallstreet-online, 15. November 2026: „US-Finanzminister fordert neuen Nvidia-Chef von außerhalb"',
+        url: 'https://www.wallstreet-online.de/nachricht/21696078-us-finanzminister-nvidia-chef',
+      },
+      {
+        label:
+          "CNBC, 15. November 2026, 18:10 Uhr GMT: „Bessent calls for 'dramatic shakeup' at Nvidia, urges outside CEO\"",
+        url: 'https://www.cnbc.com/2026/11/15/bessent-nvidia-ceo-lutnick-megaspeed.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach dem Rücktritt von Nvidia-Chef Jensen Huang hat US-Finanzminister Scott Bessent einen radikalen Führungswechsel bei dem Chipkonzern verlangt. Der Verwaltungsrat müsse sich außerhalb des Unternehmens nach einem neuen Chef umsehen, sagte Bessent dem Sender Fox News.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zehn Tage für Antworten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bessent verlangte vom Verwaltungsrat und den externen Anwälten des Unternehmens binnen zehn Tagen Antworten zur Einhaltung der US-Exportbeschränkungen. Er warf die Frage auf, ob Nvidia mutmaßlich illegale Chipverkäufe vorangetrieben habe, um Umsatz und Gewinn zu steigern – und ob Warnsignale bei verdächtigen Scheinfirmen ignoriert wurden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Vorwurf gegen Megaspeed',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Zentrum steht die in Singapur ansässige Firma Megaspeed, gegen die wegen des Verdachts ermittelt wird, Nvidia-Chips trotz amerikanischer Beschränkungen nach China weitergeleitet zu haben. Megaspeed teilte US-Medien am Sonntag mit, die frühere Managerin Alice Huang – deren Beziehung zu Jensen Huang den Rücktritt auslöste – habe das Unternehmen bereits im August 2025 verlassen. Die Firma wies die Vorwürfe gegen ihre Geschäftspraktiken zurück und beauftragte externe Anwälte mit einer internen Untersuchung. China bestreitet die Spionagevorwürfe gegen Alice Huang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Streit in der eigenen Regierung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bessent hatte zuvor schon öffentlich kritisiert, dass Handelsminister Howard Lutnick die Firma Megaspeed nicht auf die Exportsperrliste gesetzt habe, obwohl mehrere Bundesbehörden das laut Bessent seit Monaten unterstützt hätten. Neue Gesetze zur Verschärfung der Exportkontrollen hält er nach eigenen Worten nicht für nötig – die bestehenden Regeln müssten nur durchgesetzt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nvidia ohne Chef',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia hatte Finanzchefin Colette Kress zur Interims-Chefin ernannt. Das Unternehmen legt nach Angaben von CNBC rund zwei Tage nach Bessents Äußerungen seine ersten Quartalszahlen seit Huangs Abgang vor.',
+      },
+    ],
+  },
+  {
     slug: 'goldman-sachs-senkt-goldpreisziel',
     title: 'Goldman Sachs senkt Goldpreisziel – und erwartet eine strengere Fed',
     metaTitle: 'Goldman Sachs senkt Goldpreisziel erneut',
