@@ -41,6 +41,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'laenderkarte',
     datum: '2026-11-16',
+    freigabe: '2026-11-16',
     titel: [
       { text: 'Arbeitslos in Europa:' },
       { text: 'Spanien, Finnland vorn.', gruen: true },
