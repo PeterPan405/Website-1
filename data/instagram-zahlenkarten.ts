@@ -30,6 +30,47 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 18.11.2026, „Wohin Silber geht“ – Thema vom Betreiber am
+      17.11.2026 („Mach was zu Silber“). Silber stand zuletzt am 14.11. auf
+      der Karte (Rätsel, Absturz vom Hoch); diesmal die Nachfrage. Form:
+      Punktraster, erstmals im Kanal (17.11.: Zyklus-Karussell).
+
+      Quelle: Silver Institute, World Silver Survey 2026, Pressemitteilung vom
+      15.04.2026 (silverinstitute.org/?p=20226, am 17.11.2026 über
+      quellen-holen.yml gelesen): Gesamtnachfrage 2025 1,13 Mrd. Unzen,
+      Industrie 657,4 Mio., Münzen und Barren 217,7 Mio.; Schmuck, Besteck und
+      Sonstiges als Rest. Auf 100 gerechnet 58 / 19 / 23 – stabil für jede
+      Gesamtzahl, die auf 1,13 Mrd. rundet (Test).
+    */
+    art: 'punktraster',
+    datum: '2026-11-18',
+    titel: [
+      { text: 'Wohin Silber geht:' },
+      { text: 'Meist in die Industrie.', gruen: true },
+    ],
+    unterzeile: 'Silbernachfrage 2025, auf 100 Unzen gerechnet.',
+    teile: [
+      { name: 'Industrie', punkte: 58, zusatz: 'Elektronik, Solar, Autos' },
+      { name: 'Münzen und Barren', punkte: 19 },
+      { name: 'Schmuck, Besteck, Sonstiges', punkte: 23 },
+    ],
+    fusszeile:
+      'Stand: 2025 | Quelle: Silver Institute, World Silver Survey 2026; eigene Rechnung',
+    text:
+      'Silber ist ein Edelmetall – aber vor allem ein Werkstoff. Von 100 Unzen, die 2025 gekauft wurden, gingen 58 in die Industrie.\n\n' +
+      'Die Nachfrage 2025 (1,13 Mrd. Unzen):\n' +
+      'Industrie: 657,4 Mio. Unzen (58 von 100)\n' +
+      'Münzen und Barren: 217,7 Mio. Unzen (19 von 100)\n' +
+      'Schmuck, Besteck und Sonstiges: der Rest (23 von 100)\n\n' +
+      'Warum sank die Industrie-Nachfrage?\n' +
+      'Laut Silver Institute fiel sie um 3 %, nach vier Jahren Wachstum. Rechenzentren für KI, Autos und Stromnetze brauchten mehr Silber, doch Solarhersteller sparten es wegen hoher Preise ein oder ersetzten es. Schmuck ging um 8 % zurück, Besteck um 21 %. Münzen und Barren legten dagegen um 14 % zu.\n\n' +
+      'Und jetzt?\n' +
+      'Für 2026 erwartet das Silver Institute 2 % weniger Gesamtnachfrage, aber 18 % mehr Münzen und Barren. Weil die Minen nicht mehr fördern, dürfte das Defizit auf 46,3 Mio. Unzen wachsen – das sechste Jahr in Folge.\n\n' +
+      'Quellen: Silver Institute, World Silver Survey 2026 (Pressemitteilung vom 15.04.2026); eigene Rechnung',
+    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'industrie', 'solar'],
+  },
+  {
+    /*
       Zahlenkarte 17.11.2026, „Der Bitcoin-Zyklus: Lebt er noch?“ – Thema vom
       Betreiber am 16.11.2026 („Mach Bitcoin mit dem 4-Jahres-Zyklus … das
       kannst du auch auf mehrere Seiten packen“). Neue Art „zyklus“, fünf

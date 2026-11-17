@@ -1047,6 +1047,40 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 18.11.2026: Punktraster Silbernachfrage (Silver Institute, WSS 2026). */
+{
+  const karte = karteVom('2026-11-18')
+  pruefe('Silber: Karte für den 18.11. ist ein Punktraster', karte?.art === 'punktraster')
+  if (karte?.art === 'punktraster') {
+    pruefe(
+      'Silber: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Silber: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-17')!)
+    )
+    /* Gesamt 1,13 Mrd. ist gerundet: Die Punkte müssen für jede Zahl von 1.125 bis 1.135 Mio. gleich bleiben. */
+    const industrie = 657.4
+    const muenzen = 217.7
+    for (const gesamt of [1125, 1130, 1134.9]) {
+      const a = Math.round((industrie / gesamt) * 100)
+      const b = Math.round((muenzen / gesamt) * 100)
+      pruefe(
+        `Silber: bei ${gesamt} Mio. Unzen ${a} / ${b} / ${100 - a - b}`,
+        a === karte.teile[0].punkte &&
+          b === karte.teile[1].punkte &&
+          100 - a - b === karte.teile[2].punkte
+      )
+    }
+    pruefe(
+      'Silber: Text nennt 657,4 und 217,7 Mio. Unzen',
+      karte.text.includes('657,4 Mio.') && karte.text.includes('217,7 Mio.')
+    )
+  }
+}
+
 /* 17.11.2026: Bitcoin-Zyklus (instagram-reihen-bitcoin.ts, Yahoo Finance). */
 {
   const karte = karteVom('2026-11-17')
