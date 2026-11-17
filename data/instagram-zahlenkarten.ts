@@ -147,39 +147,6 @@ export const zahlenkarten: Zahlenkarte[] = [
         schlagworte: [],
       },
       {
-        art: 'kurszettel',
-        datum: '2026-11-18',
-        titel: [{ text: 'Silber im Schnitt' }],
-        unterzeile:
-          'Durchschnittspreis je Unze. Rechts: heute (47,62 $) gegenüber dem Schnitt.',
-        zeilen: [
-          {
-            name: 'Ø seit 2000',
-            zusatz: 'alle Schlusskurse',
-            kurs: '19,71 $',
-            aenderung: 141.6,
-          },
-          {
-            name: 'Ø 10 Jahre',
-            zusatz: 'seit 17.11.2016',
-            kurs: '27,19 $',
-            aenderung: 75.1,
-          },
-          {
-            name: 'Ø 5 Jahre',
-            zusatz: 'seit 17.11.2021',
-            kurs: '35,61 $',
-            aenderung: 33.7,
-          },
-          { name: 'Ø 2026', zusatz: 'seit 1. Januar', kurs: '70,14 $', aenderung: -32.1 },
-        ],
-        satz: 'Gold-Silber-Verhältnis heute 81,0 – im Schnitt seit 2000 lag es bei 69,2.',
-        fusszeile:
-          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F, GC=F), Schlusskurse; eigene Rechnung',
-        text: '',
-        schlagworte: [],
-      },
-      {
         art: 'punktraster',
         datum: '2026-11-18',
         titel: [{ text: 'Wofür man Silber braucht' }],
@@ -210,10 +177,9 @@ export const zahlenkarten: Zahlenkarte[] = [
       '2020: −37,8 % in 23 Tagen\n' +
       'Wie 2011–2015 stünde Silber bei 32,37 $ – Rechenbeispiel, keine Prognose.\n\n' +
       'Bis zum neuen Hoch: 2020 nach 112 Tagen, 2008 nach 1,9 Jahren, 2015 nach 9,8 Jahren, 1980 nach 45,5 Jahren.\n\n' +
-      'Im Schnitt kostete Silber seit 2000 19,71 $, in 5 Jahren 35,61 $, 2026 bisher 70,14 $. Das Gold-Silber-Verhältnis liegt bei 81,0, im Schnitt seit 2000 bei 69,2.\n\n' +
       'Warum der Absturz? Laut ms-aktuell nennt die CME steigende Anleiherenditen und die Erwartung einer US-Zinserhöhung im Dezember.\n\n' +
       'Und jetzt? Metals Focus erwartet laut ms-aktuell 2026 5 % weniger Nachfrage, aber weiter ein Defizit von rund 35 Mio. Unzen. 58 von 100 Unzen gehen in die Industrie (Silver Institute, 2025).\n\n' +
-      'Quellen: Yahoo Finance (SI=F, GC=F); Wikipedia „Silver Thursday“ (SEC 1982); Silver Institute; ms-aktuell.de 15.11.2026; eigene Rechnung',
+      'Quellen: Yahoo Finance (SI=F); Wikipedia „Silver Thursday“ (SEC 1982); Silver Institute; ms-aktuell.de 15.11.2026; eigene Rechnung',
     schlagworte: ['silber', 'edelmetalle', 'rohstoffe', 'crash', 'industrie'],
   },
   {

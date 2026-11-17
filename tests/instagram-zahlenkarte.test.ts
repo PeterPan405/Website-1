@@ -1064,7 +1064,10 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Silber: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-17')!)
     )
-    pruefe('Silber: fünf Seiten', zahlenkarteSeiten(karte) === 5)
+    pruefe(
+      'Silber: vier Seiten, ohne Durchschnitte',
+      zahlenkarteSeiten(karte) === 4 && !karte.teile.some((t) => t.art === 'kurszettel')
+    )
     const reihe = new Map(SILBER_WOCHEN.map(([d, v]) => [d, v]))
     const [l, ab] = karte.teile
     const pr = karte.teile.at(-1)!
