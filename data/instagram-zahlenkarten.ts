@@ -45,6 +45,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'zyklus',
     datum: '2026-11-17',
+    freigabe: '2026-11-17',
     titel: [{ text: 'Der Bitcoin-Zyklus:' }, { text: 'Lebt er noch?', gruen: true }],
     unterzeile: 'Kurs in Dollar seit 2014, logarithmisch. Gestrichelt: die Halvings.',
     seitenwahl: ['verlauf', 'laengen', 'kurse'],

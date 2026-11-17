@@ -202,10 +202,11 @@ export const SUCHE: Record<string, string[]> = {
     Kein Handelssaal mehr (03.11.2026: ein leeres, dunkles Parkett auf dem
     Deckblatt – Betreiber: „schon wieder nicht ästhetisch und nicht
     schön"). Bekannte Fassaden bei Tag sind hell und erkennbar.
+    Kein Bulle und Bär vor der Frankfurter Börse mehr (17.11.2026: Kinder
+    auf der Bärenskulptur, Schnappschuss – „sehr unästhetisch").
   */
   boerse: [
     'New York Stock Exchange facade',
-    'Frankfurt Stock Exchange bull and bear',
     'Wall Street sign',
     'stock exchange building',
   ],
