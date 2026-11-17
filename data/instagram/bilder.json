@@ -1333,5 +1333,26 @@
       "urheber": "The White House",
       "suche": "von Hand gewählt"
     }
+  ],
+  "2026-11-17": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-17-1-e15c7e44.jpg",
+      "titel": "File:Bull an Bear in Frankfurt stock exchange.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Bull_an_Bear_in_Frankfurt_stock_exchange.jpg",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "RudolfSimon",
+      "suche": "Frankfurt Stock Exchange bull and bear"
+    },
+    {
+      "stelle": 2,
+      "datei": "",
+      "titel": "Kurs: unicredit",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "unicredit"
+    }
   ]
 }
