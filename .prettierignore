@@ -74,3 +74,7 @@ data/lese-audio.json
 # Nachgezogen wird der Ordner mit `ANWENDEN=1 npm run wissen`; dass er auf
 # Stand ist, prüft `tests/wissen.test.ts`.
 wissen/
+
+# Tageskurse Silber und Gold für die Prüfung der Silber-Karte vom 18.11.2026,
+# kompakt in einer Zeile – eingerückt wären es über 50.000 Zeilen.
+data/instagram/silber-gold-tage.json

@@ -80,6 +80,15 @@ export const zahlenkarten: Zahlenkarte[] = [
         unterzeile: '',
         einheit: '$',
         zeilen: [
+          {
+            /* Nur der Monat des Hochs ist belegt (Wikipedia „Silver Thursday“, nach SEC 1982). */
+            name: '1980',
+            hoch: ['1980-01-01', 50],
+            hochText: 'über 50',
+            tief: ['1980-03-27', 10.8],
+            mindestens: true,
+            dauerText: 'Jan.–März',
+          },
           { name: '2008', hoch: ['2008-03-05', 20.685], tief: ['2008-10-28', 8.79] },
           {
             name: '2011–2015',
@@ -97,6 +106,76 @@ export const zahlenkarten: Zahlenkarte[] = [
         satz: 'Rechenbeispiel, keine Prognose: Wie 2011–2015 (−71,9 %) stünde Silber bei 32,37 $.',
         fusszeile:
           'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F), Hoch bis Tief; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'erholung',
+        datum: '2026-11-18',
+        titel: [{ text: 'Bis zum neuen Hoch' }],
+        unterzeile: 'Vom Tief bis zum ersten Schlusskurs über dem alten Hoch.',
+        zeilen: [
+          {
+            name: '1980',
+            tief: '1980-03-27',
+            zurueck: '2025-10-13',
+            zusatz: '10,80 $ → über 50 $',
+          },
+          {
+            name: '2008',
+            tief: '2008-10-28',
+            zurueck: '2010-09-16',
+            zusatz: '8,79 $ → über 20,69 $',
+          },
+          {
+            name: '2011–2015',
+            tief: '2015-12-14',
+            zurueck: '2025-10-08',
+            zusatz: '13,67 $ → über 48,58 $',
+          },
+          {
+            name: '2020',
+            tief: '2020-03-18',
+            zurueck: '2020-07-08',
+            zusatz: '11,74 $ → über 18,87 $',
+          },
+        ],
+        satz: '1980: Erst am 13.10.2025 schloss Silber wieder über 50 $.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quellen: Yahoo Finance (SI=F, ab 2000), Wikipedia/SEC (1980)',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'kurszettel',
+        datum: '2026-11-18',
+        titel: [{ text: 'Silber im Schnitt' }],
+        unterzeile:
+          'Durchschnittspreis je Unze. Rechts: heute (47,62 $) gegenüber dem Schnitt.',
+        zeilen: [
+          {
+            name: 'Ø seit 2000',
+            zusatz: 'alle Schlusskurse',
+            kurs: '19,71 $',
+            aenderung: 141.6,
+          },
+          {
+            name: 'Ø 10 Jahre',
+            zusatz: 'seit 17.11.2016',
+            kurs: '27,19 $',
+            aenderung: 75.1,
+          },
+          {
+            name: 'Ø 5 Jahre',
+            zusatz: 'seit 17.11.2021',
+            kurs: '35,61 $',
+            aenderung: 33.7,
+          },
+          { name: 'Ø 2026', zusatz: 'seit 1. Januar', kurs: '70,14 $', aenderung: -32.1 },
+        ],
+        satz: 'Gold-Silber-Verhältnis heute 81,0 – im Schnitt seit 2000 lag es bei 69,2.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F, GC=F), Schlusskurse; eigene Rechnung',
         text: '',
         schlagworte: [],
       },
@@ -122,23 +201,19 @@ export const zahlenkarten: Zahlenkarte[] = [
     ],
     fusszeile: 'Stand: 17.11.2026 | Quellen: Yahoo Finance, Silver Institute',
     text:
-      'Silber ist abgestürzt – und liegt jetzt sogar unter seinem Hoch von 2011. Wo steht es, wie tief ging es früher, und wofür wird es gebraucht?\n\n' +
-      'Wo wir stehen (Silber-Future, Schlusskurse):\n' +
-      'Hoch am 26.01.2026: 115,08 $\n' +
-      'Tief am 16.11.2026: 46,79 $ (−59,3 %)\n' +
-      '17.11.2026: 47,62 $ – unter dem Hoch vom April 2011 (48,58 $)\n\n' +
+      'Silber ist abgestürzt – und liegt jetzt unter seinem Hoch von 2011. Wo steht es, wie tief ging es früher, wie lange dauerte die Erholung?\n\n' +
+      'Hoch 26.01.2026: 115,08 $ · Tief 16.11.: 46,79 $ (−59,3 %) · 17.11.: 47,62 $, unter dem Hoch von 2011 (48,58 $)\n\n' +
       'Frühere Abstürze vom Hoch:\n' +
+      '1980: über 50 $ → 10,80 $ (mind. −78,4 %, Januar bis 27. März)\n' +
       '2008: −57,5 % in 237 Tagen\n' +
       '2011–2015: −71,9 % in 1.690 Tagen\n' +
       '2020: −37,8 % in 23 Tagen\n' +
-      'Fiele Silber wie 2011–2015, stünde es bei 32,37 $ – ein Rechenbeispiel, keine Prognose.\n\n' +
-      'Warum der Absturz?\n' +
-      'Laut ms-aktuell verweist die Börse CME auf steigende Anleiherenditen und die Erwartung einer weiteren US-Zinserhöhung im Dezember. Laut Kettner Edelmetalle stieg die Rendite zehnjähriger US-Anleihen nach Inflation in einer Woche von 2,63 auf 2,91 %.\n\n' +
-      'Wofür Silber gebraucht wird:\n' +
-      '2025 gingen 58 von 100 Unzen in die Industrie, 19 in Münzen und Barren, 23 in Schmuck, Besteck und Sonstiges (Silver Institute).\n\n' +
-      'Und jetzt?\n' +
-      'Metals Focus erwartet für 2026 laut ms-aktuell 5 % weniger Nachfrage, vor allem bei Schmuck und aus der Solarindustrie – aber weiter ein Defizit von rund 35 Mio. Unzen.\n\n' +
-      'Quellen: Yahoo Finance (SI=F); Silver Institute; ms-aktuell.de 15.11.2026; Kettner Edelmetalle 16.11.2026; eigene Rechnung',
+      'Wie 2011–2015 stünde Silber bei 32,37 $ – Rechenbeispiel, keine Prognose.\n\n' +
+      'Bis zum neuen Hoch: 2020 nach 112 Tagen, 2008 nach 1,9 Jahren, 2015 nach 9,8 Jahren, 1980 nach 45,5 Jahren.\n\n' +
+      'Im Schnitt kostete Silber seit 2000 19,71 $, in 5 Jahren 35,61 $, 2026 bisher 70,14 $. Das Gold-Silber-Verhältnis liegt bei 81,0, im Schnitt seit 2000 bei 69,2.\n\n' +
+      'Warum der Absturz? Laut ms-aktuell nennt die CME steigende Anleiherenditen und die Erwartung einer US-Zinserhöhung im Dezember.\n\n' +
+      'Und jetzt? Metals Focus erwartet laut ms-aktuell 2026 5 % weniger Nachfrage, aber weiter ein Defizit von rund 35 Mio. Unzen. 58 von 100 Unzen gehen in die Industrie (Silver Institute, 2025).\n\n' +
+      'Quellen: Yahoo Finance (SI=F, GC=F); Wikipedia „Silver Thursday“ (SEC 1982); Silver Institute; ms-aktuell.de 15.11.2026; eigene Rechnung',
     schlagworte: ['silber', 'edelmetalle', 'rohstoffe', 'crash', 'industrie'],
   },
   {

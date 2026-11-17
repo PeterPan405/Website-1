@@ -1,7 +1,8 @@
 /**
  * Silber in Dollar je Unze (Yahoo Finance, Future SI=F), Schlusskurs an jedem
- * siebten Handelstag seit dem 30.08.2000, dazu die Tage der Hochs und Tiefs
- * (949 Werte). Aus den Tageskursen (v8/finance/chart, interval=1d),
+ * siebten Handelstag seit dem 30.08.2000, dazu die Tage der Hochs und Tiefs und der
+ * ersten Schlüsse über alten Hochs
+ * (952 Werte). Aus den Tageskursen (v8/finance/chart, interval=1d),
  * abgerufen am 17.11.2026 über quellen-holen.yml; letzter Wert 17.11.2026.
  */
 export const SILBER_WOCHEN: readonly (readonly [string, number])[] = [
@@ -367,6 +368,7 @@ export const SILBER_WOCHEN: readonly (readonly [string, number])[] = [
   ['2010-08-25', 19.022],
   ['2010-09-03', 19.915],
   ['2010-09-15', 20.542],
+  ['2010-09-16', 20.745],
   ['2010-09-24', 21.383],
   ['2010-10-05', 22.714],
   ['2010-10-14', 24.417],
@@ -912,6 +914,8 @@ export const SILBER_WOCHEN: readonly (readonly [string, number])[] = [
   ['2025-09-17', 41.722],
   ['2025-09-26', 46.221],
   ['2025-10-07', 47.179],
+  ['2025-10-08', 48.656],
+  ['2025-10-13', 50.13],
   ['2025-10-16', 53.023],
   ['2025-10-27', 46.562],
   ['2025-11-05', 47.863],

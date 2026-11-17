@@ -1056,4 +1056,43 @@ export const musterkarten: Zahlenkarte[] = [
     text: 'Muster.\n\nQuelle: Yahoo Finance',
     schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'kurs', 'muster'],
   },
+  {
+    /* Erholung: aus dem Silber-Dossier vom 18.11.2026 (Yahoo SI=F, Wikipedia/SEC für 1980). */
+    art: 'erholung',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Silber nach dem Tief:' },
+      { text: 'Bis zum neuen Hoch.', gruen: true },
+    ],
+    unterzeile: 'Vom Tief bis zum ersten Schlusskurs über dem alten Hoch.',
+    zeilen: [
+      {
+        name: '1980',
+        tief: '1980-03-27',
+        zurueck: '2025-10-13',
+        zusatz: '10,80 $ → über 50 $',
+      },
+      {
+        name: '2008',
+        tief: '2008-10-28',
+        zurueck: '2010-09-16',
+        zusatz: '8,79 $ → über 20,69 $',
+      },
+      {
+        name: '2011–2015',
+        tief: '2015-12-14',
+        zurueck: '2025-10-08',
+        zusatz: '13,67 $ → über 48,58 $',
+      },
+      {
+        name: '2020',
+        tief: '2020-03-18',
+        zurueck: '2020-07-08',
+        zusatz: '11,74 $ → über 18,87 $',
+      },
+    ],
+    fusszeile: 'Stand: 17.11.2026 | Quellen: Yahoo Finance (SI=F), Wikipedia/SEC (1980)',
+    text: 'Muster.\n\nQuellen: Yahoo Finance, Wikipedia',
+    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'erholung', 'muster'],
+  },
 ]

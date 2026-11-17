@@ -27,6 +27,12 @@ export interface Absturzkarte extends NeuGemeinsam {
     hoch: [string, number]
     tief: [string, number]
     laufend?: boolean
+    /** Ist das Hoch nur als Untergrenze bekannt („über 50 $“), steht „mind.“ vor dem Rückgang. */
+    mindestens?: boolean
+    /** Statt der gerechneten Tage, wenn ein Tag nicht bekannt ist („Jan. bis 27. März“). */
+    dauerText?: string
+    /** Statt des Hochkurses („über 50“). */
+    hochText?: string
   }[]
   /** Satz unten auf der Seite. */
   satz?: string
@@ -46,7 +52,7 @@ export const abstuerze: Art<Absturzkarte> = {
     const oben = OBEN_ERSTE + 30
     const abstand = Math.min(190, (UNTEN - 120 - oben) / k.zeilen.length)
     const links = STIL_RAND
-    const breite = ZK_BREITE - 2 * STIL_RAND - 240
+    const breite = ZK_BREITE - 2 * STIL_RAND - 330
     const max = Math.max(...k.zeilen.map((z) => Math.abs(rueckgang(z))))
     const st = k.stellen ?? 2
     const aus: Element[] = []
@@ -82,7 +88,7 @@ export const abstuerze: Art<Absturzkarte> = {
           h(
             'div',
             { style: { fontSize: 20, color: STIL.grau } },
-            `${zahl(z.hoch[1], st)} → ${zahl(z.tief[1], st)} ${k.einheit}${z.laufend ? ' (Tief bisher)' : ''}`
+            `${z.hochText ?? zahl(z.hoch[1], st)} → ${zahl(z.tief[1], st)} ${k.einheit}${z.laufend ? ' (Tief bisher)' : ''}`
           )
         ),
         h('div', {
@@ -112,12 +118,12 @@ export const abstuerze: Art<Absturzkarte> = {
           h(
             'div',
             { style: { fontSize: 30, fontWeight: 700, color: STIL.rot } },
-            `${pz(r)}${z.laufend ? ' bisher' : ''}`
+            `${z.mindestens ? 'mind. ' : ''}${pz(r)}${z.laufend ? ' bisher' : ''}`
           ),
           h(
             'div',
             { style: { fontSize: 19, color: STIL.grau, marginLeft: 12 } },
-            `${zahl(dauer(z))} Tage`
+            z.dauerText ?? `${zahl(dauer(z))} Tage`
           )
         )
       )
