@@ -25,49 +25,121 @@ import {
   ATOM_WELT,
 } from './instagram-reihen-atomwaffen.ts'
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
+import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 18.11.2026, „Wohin Silber geht“ – Thema vom Betreiber am
-      17.11.2026 („Mach was zu Silber“). Silber stand zuletzt am 14.11. auf
-      der Karte (Rätsel, Absturz vom Hoch); diesmal die Nachfrage. Form:
-      Punktraster, erstmals im Kanal (17.11.: Zyklus-Karussell).
+      Zahlenkarte 18.11.2026, „Silber: Unter dem Hoch von 2011“ – Thema vom
+      Betreiber am 17.11.2026: „zu Silber mal mehrere Seiten … gerade richtig
+      wieder gecrashed … Widerstand vom Top 2011 durchbrochen … wie tief
+      könnte es noch gehen, wo stehen wir, wo war das Top … und die
+      Anwendungsbereiche“. Neue Art „dossier“ (drei Teilkarten: linie,
+      abstuerze, punktraster). Form anders als am Vortag (17.11.: zyklus).
 
-      Quelle: Silver Institute, World Silver Survey 2026, Pressemitteilung vom
-      15.04.2026 (silverinstitute.org/?p=20226, am 17.11.2026 über
-      quellen-holen.yml gelesen): Gesamtnachfrage 2025 1,13 Mrd. Unzen,
-      Industrie 657,4 Mio., Münzen und Barren 217,7 Mio.; Schmuck, Besteck und
-      Sonstiges als Rest. Auf 100 gerechnet 58 / 19 / 23 – stabil für jede
-      Gesamtzahl, die auf 1,13 Mrd. rundet (Test).
+      Kurse: data/instagram-reihen-silber.ts (Yahoo Finance, Silber-Future
+      SI=F, Tageskurse seit 2000, am 17.11.2026 geholt). Hochs und Tiefs je
+      Absturz aus den Tagesschlusskursen; Rückgänge und Tage rechnet die Art.
+      Rechenbeispiel: 115,08 $ × (13,666 / 48,584) = 32,37 $.
+      Gründe: ms-aktuell.de 15.11.2026 (CME, Metals Focus), Kettner Edelmetalle
+      16.11.2026 (Realrendite); Nachfrage 2025: Silver Institute, WSS 2026.
     */
-    art: 'punktraster',
+    art: 'dossier',
     datum: '2026-11-18',
     titel: [
-      { text: 'Wohin Silber geht:' },
-      { text: 'Meist in die Industrie.', gruen: true },
+      { text: 'Silber im Absturz:' },
+      { text: 'Unter dem Hoch von 2011.', gruen: true },
     ],
-    unterzeile: 'Silbernachfrage 2025, auf 100 Unzen gerechnet.',
+    unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
     teile: [
-      { name: 'Industrie', punkte: 58, zusatz: 'Elektronik, Solar, Autos' },
-      { name: 'Münzen und Barren', punkte: 19 },
-      { name: 'Schmuck, Besteck, Sonstiges', punkte: 23 },
+      {
+        art: 'linie',
+        datum: '2026-11-18',
+        titel: [
+          { text: 'Silber im Absturz:' },
+          { text: 'Unter dem Hoch von 2011.', gruen: true },
+        ],
+        unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+        reihe: SILBER_WOCHEN,
+        einheit: '$ je Unze',
+        marken: [{ wert: 48.584, text: 'Hoch 2011: 48,58 $' }],
+        punkte: [
+          { d: '2026-01-26', text: 'Hoch 26.01.: 115,08 $', farbe: 'gruen' },
+          { d: '2026-11-17', text: 'Heute: 47,62 $', farbe: 'rot', unten: true },
+        ],
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Silber-Future SI=F), Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'abstuerze',
+        datum: '2026-11-18',
+        titel: [{ text: 'Wie tief ging es früher?' }],
+        unterzeile: '',
+        einheit: '$',
+        zeilen: [
+          { name: '2008', hoch: ['2008-03-05', 20.685], tief: ['2008-10-28', 8.79] },
+          {
+            name: '2011–2015',
+            hoch: ['2011-04-29', 48.584],
+            tief: ['2015-12-14', 13.666],
+          },
+          { name: '2020', hoch: ['2020-02-24', 18.868], tief: ['2020-03-18', 11.735] },
+          {
+            name: '2026',
+            hoch: ['2026-01-26', 115.08],
+            tief: ['2026-11-16', 46.785],
+            laufend: true,
+          },
+        ],
+        satz: 'Rechenbeispiel, keine Prognose: Wie 2011–2015 (−71,9 %) stünde Silber bei 32,37 $.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F), Hoch bis Tief; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'punktraster',
+        datum: '2026-11-18',
+        titel: [{ text: 'Wofür man Silber braucht' }],
+        unterzeile: 'Silbernachfrage 2025, auf 100 Unzen gerechnet.',
+        teile: [
+          {
+            name: 'Industrie',
+            punkte: 58,
+            zusatz: 'Elektronik, Solar, Autos, Stromnetze',
+          },
+          { name: 'Münzen und Barren', punkte: 19 },
+          { name: 'Schmuck, Besteck, Sonstiges', punkte: 23 },
+        ],
+        fusszeile:
+          'Stand: 2025 | Quelle: Silver Institute, World Silver Survey 2026; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
     ],
-    fusszeile:
-      'Stand: 2025 | Quelle: Silver Institute, World Silver Survey 2026; eigene Rechnung',
+    fusszeile: 'Stand: 17.11.2026 | Quellen: Yahoo Finance, Silver Institute',
     text:
-      'Silber ist ein Edelmetall – aber vor allem ein Werkstoff. Von 100 Unzen, die 2025 gekauft wurden, gingen 58 in die Industrie.\n\n' +
-      'Die Nachfrage 2025 (1,13 Mrd. Unzen):\n' +
-      'Industrie: 657,4 Mio. Unzen (58 von 100)\n' +
-      'Münzen und Barren: 217,7 Mio. Unzen (19 von 100)\n' +
-      'Schmuck, Besteck und Sonstiges: der Rest (23 von 100)\n\n' +
-      'Warum sank die Industrie-Nachfrage?\n' +
-      'Laut Silver Institute fiel sie um 3 %, nach vier Jahren Wachstum. Rechenzentren für KI, Autos und Stromnetze brauchten mehr Silber, doch Solarhersteller sparten es wegen hoher Preise ein oder ersetzten es. Schmuck ging um 8 % zurück, Besteck um 21 %. Münzen und Barren legten dagegen um 14 % zu.\n\n' +
+      'Silber ist abgestürzt – und liegt jetzt sogar unter seinem Hoch von 2011. Wo steht es, wie tief ging es früher, und wofür wird es gebraucht?\n\n' +
+      'Wo wir stehen (Silber-Future, Schlusskurse):\n' +
+      'Hoch am 26.01.2026: 115,08 $\n' +
+      'Tief am 16.11.2026: 46,79 $ (−59,3 %)\n' +
+      '17.11.2026: 47,62 $ – unter dem Hoch vom April 2011 (48,58 $)\n\n' +
+      'Frühere Abstürze vom Hoch:\n' +
+      '2008: −57,5 % in 237 Tagen\n' +
+      '2011–2015: −71,9 % in 1.690 Tagen\n' +
+      '2020: −37,8 % in 23 Tagen\n' +
+      'Fiele Silber wie 2011–2015, stünde es bei 32,37 $ – ein Rechenbeispiel, keine Prognose.\n\n' +
+      'Warum der Absturz?\n' +
+      'Laut ms-aktuell verweist die Börse CME auf steigende Anleiherenditen und die Erwartung einer weiteren US-Zinserhöhung im Dezember. Laut Kettner Edelmetalle stieg die Rendite zehnjähriger US-Anleihen nach Inflation in einer Woche von 2,63 auf 2,91 %.\n\n' +
+      'Wofür Silber gebraucht wird:\n' +
+      '2025 gingen 58 von 100 Unzen in die Industrie, 19 in Münzen und Barren, 23 in Schmuck, Besteck und Sonstiges (Silver Institute).\n\n' +
       'Und jetzt?\n' +
-      'Für 2026 erwartet das Silver Institute 2 % weniger Gesamtnachfrage, aber 18 % mehr Münzen und Barren. Weil die Minen nicht mehr fördern, dürfte das Defizit auf 46,3 Mio. Unzen wachsen – das sechste Jahr in Folge.\n\n' +
-      'Quellen: Silver Institute, World Silver Survey 2026 (Pressemitteilung vom 15.04.2026); eigene Rechnung',
-    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'industrie', 'solar'],
+      'Metals Focus erwartet für 2026 laut ms-aktuell 5 % weniger Nachfrage, vor allem bei Schmuck und aus der Solarindustrie – aber weiter ein Defizit von rund 35 Mio. Unzen.\n\n' +
+      'Quellen: Yahoo Finance (SI=F); Silver Institute; ms-aktuell.de 15.11.2026; Kettner Edelmetalle 16.11.2026; eigene Rechnung',
+    schlagworte: ['silber', 'edelmetalle', 'rohstoffe', 'crash', 'industrie'],
   },
   {
     /*

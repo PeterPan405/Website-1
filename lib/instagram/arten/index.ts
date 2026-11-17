@@ -9,14 +9,17 @@
  * über eine Woche möglichst viele verschiedene (`INSTAGRAM.md`, „Die
  * Kartenarten“).
  */
+import { abstuerze, type Absturzkarte } from './abstuerze.ts'
 import { ampel, type Ampelkarte } from './ampel.ts'
 import { damalsheute, type Damalsheutekarte } from './damalsheute.ts'
+import { DOSSIER_ARTEN, dossier, type Dossierkarte } from './dossier.ts'
 import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
 import { kalender, type Kalenderkarte } from './kalender.ts'
 import { kerzen, type Kerzenkarte } from './kerzen.ts'
 import { kreise, type Kreiskarte } from './kreise.ts'
 import { kurszettel, type Kurszettelkarte } from './kurszettel.ts'
 import { laenderkarte, type Laenderkartenkarte } from './laenderkarte.ts'
+import { linie, type Linienkarte } from './linie.ts'
 import { marktkarte, type Marktkartenkarte } from './marktkarte.ts'
 import { netz, type Netzkarte } from './netz.ts'
 import { punktraster, type Punktrasterkarte } from './punktraster.ts'
@@ -54,6 +57,9 @@ export type NeueKarte =
   | Stammbaumkarte
   | Zeitkapselkarte
   | Zykluskarte
+  | Linienkarte
+  | Absturzkarte
+  | Dossierkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -79,7 +85,12 @@ export const NEUE_ARTEN: {
   stammbaum,
   zeitkapsel,
   zyklus,
+  linie,
+  abstuerze,
+  dossier,
 }
+
+Object.assign(DOSSIER_ARTEN, NEUE_ARTEN)
 
 export function istNeueKarte(k: { art?: string }): k is NeueKarte {
   return k.art !== undefined && k.art in NEUE_ARTEN

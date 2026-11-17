@@ -32,6 +32,8 @@ import {
 } from '@/lib/instagram-zahlenkarte'
 import { prozentGenau, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
 import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
+import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
+import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 
 let failed = 0
 /*
@@ -1047,11 +1049,11 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 18.11.2026: Punktraster Silbernachfrage (Silver Institute, WSS 2026). */
+/* 18.11.2026: Silber-Dossier (Yahoo SI=F, Silver Institute). */
 {
   const karte = karteVom('2026-11-18')
-  pruefe('Silber: Karte für den 18.11. ist ein Punktraster', karte?.art === 'punktraster')
-  if (karte?.art === 'punktraster') {
+  pruefe('Silber: Karte für den 18.11. ist ein Dossier', karte?.art === 'dossier')
+  if (karte?.art === 'dossier') {
     pruefe(
       'Silber: keine Beanstandung',
       pruefeZahlenkarte(karte).length === 0,
@@ -1061,22 +1063,65 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'Silber: Form anders als am Vortag',
       form(karte) !== form(karteVom('2026-11-17')!)
     )
-    /* Gesamt 1,13 Mrd. ist gerundet: Die Punkte müssen für jede Zahl von 1.125 bis 1.135 Mio. gleich bleiben. */
-    const industrie = 657.4
-    const muenzen = 217.7
-    for (const gesamt of [1125, 1130, 1134.9]) {
-      const a = Math.round((industrie / gesamt) * 100)
-      const b = Math.round((muenzen / gesamt) * 100)
+    pruefe('Silber: drei Seiten', zahlenkarteSeiten(karte) === 3)
+    const reihe = new Map(SILBER_WOCHEN.map(([d, v]) => [d, v]))
+    const [l, ab, pr] = karte.teile
+    if (l.art === 'linie') {
       pruefe(
-        `Silber: bei ${gesamt} Mio. Unzen ${a} / ${b} / ${100 - a - b}`,
-        a === karte.teile[0].punkte &&
-          b === karte.teile[1].punkte &&
-          100 - a - b === karte.teile[2].punkte
+        'Silber: Hoch 2011 = 48,584 $ am 29.04.2011, heute 47,62 $ darunter',
+        reihe.get('2011-04-29') === 48.584 &&
+          l.marken![0].wert === 48.584 &&
+          SILBER_WOCHEN.at(-1)![0] === '2026-11-17' &&
+          SILBER_WOCHEN.at(-1)![1] === 47.62 &&
+          47.62 < 48.584 &&
+          karte.text.includes('47,62 $') &&
+          karte.text.includes('48,58 $')
+      )
+      pruefe(
+        'Silber: 115,08 $ ist der höchste Wert der Reihe',
+        Math.max(...SILBER_WOCHEN.map(([, v]) => v)) === 115.08 &&
+          reihe.get('2026-01-26') === 115.08
       )
     }
+    if (ab.art === 'abstuerze') {
+      const de = (v: number) => v.toFixed(1).replace('.', ',').replace('-', '−')
+      for (const z of ab.zeilen) {
+        pruefe(
+          `Silber: Absturz ${z.name} ${de(rueckgang(z))} % in ${dauer(z)} Tagen, aus der Reihe und im Text`,
+          reihe.get(z.hoch[0]) === z.hoch[1] &&
+            reihe.get(z.tief[0]) === z.tief[1] &&
+            karte.text.includes(`${de(rueckgang(z))} %`) &&
+            karte.text.includes(`${dauer(z).toLocaleString('de-DE')} Tagen`) ===
+              !z.laufend
+        )
+      }
+      const z11 = ab.zeilen[1]
+      const beispiel = Math.round(115.08 * (z11.tief[1] / z11.hoch[1]) * 100) / 100
+      pruefe(
+        'Silber: Rechenbeispiel 32,37 $ (wie 2011–2015)',
+        beispiel === 32.37 &&
+          ab.satz!.includes('32,37 $') &&
+          karte.text.includes('32,37 $')
+      )
+    }
+    if (pr.art === 'punktraster') {
+      for (const gesamt of [1125, 1130, 1134.9]) {
+        const a = Math.round((657.4 / gesamt) * 100)
+        const b = Math.round((217.7 / gesamt) * 100)
+        pruefe(
+          `Silber: Nachfrage bei ${gesamt} Mio. Unzen ${a} / ${b} / ${100 - a - b}`,
+          a === pr.teile[0].punkte &&
+            b === pr.teile[1].punkte &&
+            100 - a - b === pr.teile[2].punkte
+        )
+      }
+    }
     pruefe(
-      'Silber: Text nennt 657,4 und 217,7 Mio. Unzen',
-      karte.text.includes('657,4 Mio.') && karte.text.includes('217,7 Mio.')
+      'Silber: Teilkarte mit falschem Tag wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        teile: [{ ...l, punkte: [{ d: '2026-11-18', text: 'x' }] } as typeof l, ab, pr],
+      }).some((x) => x.includes('nicht in der Reihe'))
     )
   }
 }

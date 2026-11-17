@@ -8,6 +8,7 @@
  * (`tests/instagram-neue-arten.test.ts`).
  */
 import { BITCOIN_WOCHEN } from '@/data/instagram-reihen-bitcoin'
+import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 import type { Zahlenkarte } from '@/lib/instagram-zahlenkarte'
 
 export const musterkarten: Zahlenkarte[] = [
@@ -943,5 +944,116 @@ export const musterkarten: Zahlenkarte[] = [
       'Stand: 16.11.2026 | Quellen: Yahoo Finance (BTC-USD), Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
     text: 'Muster.\n\nQuellen: Yahoo Finance, Bitcoin Wiki, Cointelegraph, TFTC, crypto.news',
     schlagworte: ['bitcoin', 'krypto', 'halving', 'zyklus', 'bärenmarkt'],
+  },
+  {
+    /* Muster aus der Zahlenkarte vom 18.11.2026 (Silber-Dossier). */
+    art: 'linie',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Silber im Absturz:' },
+      { text: 'Unter dem Hoch von 2011.', gruen: true },
+    ],
+    unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+    reihe: SILBER_WOCHEN,
+    einheit: '$ je Unze',
+    marken: [{ wert: 48.584, text: 'Hoch 2011: 48,58 $' }],
+    punkte: [
+      { d: '2026-01-26', text: 'Hoch 26.01.: 115,08 $', farbe: 'gruen' },
+      { d: '2026-11-17', text: 'Heute: 47,62 $', farbe: 'rot', unten: true },
+    ],
+    fusszeile:
+      'Stand: 17.11.2026 | Quelle: Yahoo Finance (Silber-Future SI=F), Schlusskurse',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'kurs', 'muster'],
+  },
+  {
+    /* Muster aus der Zahlenkarte vom 18.11.2026 (Silber-Dossier). */
+    art: 'abstuerze',
+    datum: '2026-11-15',
+    titel: [{ text: 'Silber-Abstürze:' }, { text: 'Wie tief ging es?', gruen: true }],
+    unterzeile: '',
+    einheit: '$',
+    zeilen: [
+      { name: '2008', hoch: ['2008-03-05', 20.685], tief: ['2008-10-28', 8.79] },
+      {
+        name: '2011–2015',
+        hoch: ['2011-04-29', 48.584],
+        tief: ['2015-12-14', 13.666],
+      },
+      { name: '2020', hoch: ['2020-02-24', 18.868], tief: ['2020-03-18', 11.735] },
+      {
+        name: '2026',
+        hoch: ['2026-01-26', 115.08],
+        tief: ['2026-11-16', 46.785],
+        laufend: true,
+      },
+    ],
+    satz: 'Rechenbeispiel, keine Prognose: Wie 2011–2015 (−71,9 %) stünde Silber bei 32,37 $.',
+    fusszeile:
+      'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F), Hoch bis Tief; eigene Rechnung',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'kurs', 'muster'],
+  },
+  {
+    /* Dossier: zwei Teilkarten aus dem Silber-Dossier vom 18.11.2026. */
+    art: 'dossier',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Silber im Absturz:' },
+      { text: 'Unter dem Hoch von 2011.', gruen: true },
+    ],
+    unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+    teile: [
+      {
+        art: 'linie',
+        datum: '2026-11-18',
+        titel: [
+          { text: 'Silber im Absturz:' },
+          { text: 'Unter dem Hoch von 2011.', gruen: true },
+        ],
+        unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+        reihe: SILBER_WOCHEN,
+        einheit: '$ je Unze',
+        marken: [{ wert: 48.584, text: 'Hoch 2011: 48,58 $' }],
+        punkte: [
+          { d: '2026-01-26', text: 'Hoch 26.01.: 115,08 $', farbe: 'gruen' },
+          { d: '2026-11-17', text: 'Heute: 47,62 $', farbe: 'rot', unten: true },
+        ],
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Silber-Future SI=F), Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'abstuerze',
+        datum: '2026-11-18',
+        titel: [{ text: 'Wie tief ging es früher?' }],
+        unterzeile: '',
+        einheit: '$',
+        zeilen: [
+          { name: '2008', hoch: ['2008-03-05', 20.685], tief: ['2008-10-28', 8.79] },
+          {
+            name: '2011–2015',
+            hoch: ['2011-04-29', 48.584],
+            tief: ['2015-12-14', 13.666],
+          },
+          { name: '2020', hoch: ['2020-02-24', 18.868], tief: ['2020-03-18', 11.735] },
+          {
+            name: '2026',
+            hoch: ['2026-01-26', 115.08],
+            tief: ['2026-11-16', 46.785],
+            laufend: true,
+          },
+        ],
+        satz: 'Rechenbeispiel, keine Prognose: Wie 2011–2015 (−71,9 %) stünde Silber bei 32,37 $.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F), Hoch bis Tief; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile: 'Stand: 17.11.2026 | Quelle: Yahoo Finance',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['silber', 'rohstoffe', 'edelmetalle', 'kurs', 'muster'],
   },
 ]
