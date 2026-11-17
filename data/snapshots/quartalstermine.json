@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-16T13:53:25.247Z",
+  "abgerufenAm": "2026-11-17T14:46:21.560Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-10-05",
       "bis": "2026-12-18",
       "zeilen": 3177,
-      "kommendGesamt": 272,
+      "kommendGesamt": 223,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 35,
-      "letzterTag": "2027-01-08",
-      "zeilen": 759,
-      "imKatalog": 50,
+      "letzterTag": "2027-01-11",
+      "zeilen": 684,
+      "imKatalog": 49,
       "mitLage": 37,
-      "beigetragen": 50
+      "beigetragen": 49
     }
   },
   "unternehmen": {
@@ -2137,24 +2137,24 @@
     "HD": {
       "name": "HOME DEPOT, INC.",
       "bisher": [
+        "2026-11-17",
         "2026-08-18",
         "2026-05-19",
         "2026-02-24",
         "2025-11-18",
         "2025-08-19",
         "2025-05-20",
-        "2025-02-25",
-        "2024-11-12"
+        "2025-02-25"
       ],
       "bisherZeiten": {
+        "2026-11-17": "06:18",
         "2026-08-18": "06:10",
         "2026-05-19": "06:06",
         "2026-02-24": "06:07",
         "2025-11-18": "06:05",
         "2025-08-19": "06:06",
         "2025-05-20": "06:13",
-        "2025-02-25": "06:49",
-        "2024-11-12": "06:10"
+        "2025-02-25": "06:49"
       },
       "vorhersagen": [
         {
@@ -2182,6 +2182,12 @@
           "basis": "2026-08-18",
           "streuungTage": 0,
           "newYorkerZeit": "06:10"
+        },
+        {
+          "erwartet": "2027-11-16",
+          "basis": "2026-11-17",
+          "streuungTage": 0,
+          "newYorkerZeit": "06:18"
         }
       ]
     },
@@ -7803,24 +7809,24 @@
     "DIS": {
       "name": "Walt Disney Co",
       "bisher": [
+        "2026-11-17",
         "2026-08-05",
         "2026-05-06",
         "2026-02-02",
         "2025-11-13",
         "2025-08-06",
         "2025-05-07",
-        "2025-02-05",
-        "2024-11-14"
+        "2025-02-05"
       ],
       "bisherZeiten": {
+        "2026-11-17": "06:30",
         "2026-08-05": "06:30",
         "2026-05-06": "06:40",
         "2026-02-02": "06:42",
         "2025-11-13": "06:42",
         "2025-08-06": "06:42",
         "2025-05-07": "06:52",
-        "2025-02-05": "06:42",
-        "2024-11-14": "06:43"
+        "2025-02-05": "06:42"
       },
       "vorhersagen": [
         {
@@ -7847,6 +7853,12 @@
           "erwartet": "2027-08-04",
           "basis": "2026-08-05",
           "streuungTage": 0,
+          "newYorkerZeit": "06:30"
+        },
+        {
+          "erwartet": "2027-11-16",
+          "basis": "2026-11-17",
+          "streuungTage": 5,
           "newYorkerZeit": "06:30"
         }
       ]
@@ -13500,10 +13512,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-19",
+          "erwartet": "2026-12-03",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-03",
@@ -14350,14 +14364,6 @@
         "2025-02-03": "07:31"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-16",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-02-01",
           "basis": "2026-02-02",
@@ -18411,7 +18417,7 @@
     "UBSG.SW": "2026-11-14",
     "UCG.MI": "2026-11-15",
     "UHR.SW": "2026-11-16",
-    "ULTRACEMCO.NS": "2026-08-18",
+    "ULTRACEMCO.NS": "2026-11-17",
     "ULVR.L": "2026-08-18",
     "UMC": "2026-08-18",
     "UMI.BR": "2026-08-18",
