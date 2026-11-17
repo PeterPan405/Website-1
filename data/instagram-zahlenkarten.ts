@@ -47,6 +47,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'dossier',
     datum: '2026-11-18',
+    freigabe: '2026-11-18',
     titel: [
       { text: 'Silber im Absturz:' },
       { text: 'Unter dem Hoch von 2011.', gruen: true },
