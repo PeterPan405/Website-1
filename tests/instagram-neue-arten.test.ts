@@ -38,8 +38,20 @@ function pruefe(was: string, bedingung: boolean, hinweis = ''): void {
 }
 
 const logo = readFileSync('public/logo.svg', 'utf8')
-const roh = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8'))
-  .instruments as Record<string, { points: { d: string; c: number }[] }>
+/*
+  Die Musterkarten stehen auf dem Stand vom 13.11.2026. Der Kursbestand wächst
+  jeden Tag; ohne Stichtag rechnete der Test ab dem 17.11. gegen neuere Kurse
+  und schlug fehl, obwohl an den Karten nichts falsch war.
+*/
+const STICHTAG = '2026-11-13'
+const roh = Object.fromEntries(
+  Object.entries(
+    JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8')).instruments as Record<
+      string,
+      { points: { d: string; c: number }[] }
+    >
+  ).map(([k, v]) => [k, { ...v, points: v.points.filter((p) => p.d <= STICHTAG) }])
+)
 const runde = (v: number, stellen: number) =>
   Math.round(v * 10 ** stellen) / 10 ** stellen
 

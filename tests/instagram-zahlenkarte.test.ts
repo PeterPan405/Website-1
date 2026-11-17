@@ -1222,7 +1222,8 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     for (const pt of karte.punkte) {
       const p: { d: string; c: number }[] = roh[symbol[pt.name]].points
       const basis = p.filter((x) => x.d < '2026-01-01').at(-1)!.c
-      const ende = p.filter((x) => x.d >= '2026-01-01').at(-1)!.c
+      /* Stand der Karte: 13.11.2026 – nicht der jüngste Kurs im Bestand. */
+      const ende = p.filter((x) => x.d >= '2026-01-01' && x.d <= '2026-11-13').at(-1)!.c
       const v = Math.round((ende / basis - 1) * 1000) / 10
       pruefe(
         `Chips: ${pt.name} ${pt.anzeige} nachgerechnet und im Text`,
