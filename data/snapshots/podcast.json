@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-16T12:03:25.794Z",
+  "abgerufenAm": "2026-11-17T01:03:03.200Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "unicredit-darf-die-commerzbank-uebernehmen-und-fed-chef-warsh-warnt-vor-ueberzog",
+      "titel": "UniCredit darf die Commerzbank übernehmen und Fed-Chef Warsh warnt vor überzogenen KI-Erwartungen",
+      "beschreibung": "UniCredit darf die Commerzbank übernehmen, eine IT-Panne trifft US-Banken, Buffett verschenkt Milliarden – und Nvidia steht vor der ersten Bilanz ohne Huang. Die EU-Kommission hat der Übernahme der Commerzbank durch die italienische UniCredit zugestimmt. Sie sieht keine wettbewerbsrechtlichen Bedenken. Auch die US-Notenbank Fed hat dem Zusammenschluss zugestimmt.\n\nWir sprechen über Software-Fehler legt Online-Banking bei und Buffett schenkt Familienstiftungen Aktien. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:31) UniCredit darf die Commerzbank übernehmen\n(1:12) Fed-Chef Warsh warnt vor überzogenen\n(1:55) Software-Fehler legt Online-Banking bei\n(2:26) Buffett schenkt Familienstiftungen Aktien\n(3:03) Nvidia fällt vor den Zahlen auf Platz drei\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-17",
+      "dauerSekunden": 205,
+      "url": "https://iminvests.de/podcast-audio/2026-11-17.mp3",
+      "youtubeId": "7WROPnnYJfI"
+    },
     {
       "slug": "japans-wirtschaft-schrumpft-ueberraschend-und-e-auto-hersteller-rechnen-nicht-mi",
       "titel": "Japans Wirtschaft schrumpft überraschend und E-Auto-Hersteller rechnen nicht mit neuer US-Förderung",
