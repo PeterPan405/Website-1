@@ -38,6 +38,8 @@ export interface Kurszettelkarte extends NeuGemeinsam {
     aenderung: number
     logo?: string
   }[]
+  /** Ein Satz unten auf der Seite (16.11.2026, Silber-Dossier). */
+  satz?: string
 }
 
 function zeile(z: Kurszettelkarte['zeilen'][number], oben: number, hoehe: number) {
@@ -110,6 +112,7 @@ export const kurszettel: Art<Kurszettelkarte> = {
     const oben = OBEN_ERSTE + 20
     const hoehe = Math.min(110, Math.floor((UNTEN - oben) / k.zeilen.length))
     return rahmen(k, logo, {
+      satz: k.satz,
       seite: 1,
       seiten: 1,
       inhalt: k.zeilen.map((z, i) => zeile(z, oben + i * hoehe, hoehe)),

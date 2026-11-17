@@ -32,6 +32,9 @@ import {
 } from '@/lib/instagram-zahlenkarte'
 import { prozentGenau, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
 import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
+import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
+import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
+import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 
 let failed = 0
 /*
@@ -1043,6 +1046,158 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     pruefe(
       'Öl: Heldenzahl ist der Iran-Balken',
       karte.helden[0].wert === `+${Math.round(karte.balken[7].wert)} %`
+    )
+  }
+}
+
+/* 18.11.2026: Silber-Dossier (Yahoo SI=F, Silver Institute). */
+{
+  const karte = karteVom('2026-11-18')
+  pruefe('Silber: Karte für den 18.11. ist ein Dossier', karte?.art === 'dossier')
+  if (karte?.art === 'dossier') {
+    pruefe(
+      'Silber: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Silber: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-17')!)
+    )
+    pruefe('Silber: fünf Seiten', zahlenkarteSeiten(karte) === 5)
+    const reihe = new Map(SILBER_WOCHEN.map(([d, v]) => [d, v]))
+    const [l, ab] = karte.teile
+    const pr = karte.teile.at(-1)!
+    if (l.art === 'linie') {
+      pruefe(
+        'Silber: Hoch 2011 = 48,584 $ am 29.04.2011, heute 47,62 $ darunter',
+        reihe.get('2011-04-29') === 48.584 &&
+          l.marken![0].wert === 48.584 &&
+          SILBER_WOCHEN.at(-1)![0] === '2026-11-17' &&
+          SILBER_WOCHEN.at(-1)![1] === 47.62 &&
+          47.62 < 48.584 &&
+          karte.text.includes('47,62 $') &&
+          karte.text.includes('48,58 $')
+      )
+      pruefe(
+        'Silber: 115,08 $ ist der höchste Wert der Reihe',
+        Math.max(...SILBER_WOCHEN.map(([, v]) => v)) === 115.08 &&
+          reihe.get('2026-01-26') === 115.08
+      )
+    }
+    const tage = JSON.parse(
+      readFileSync('data/instagram/silber-gold-tage.json', 'utf8')
+    ) as {
+      silber: [string, number][]
+      gold: [string, number][]
+    }
+    const silberTag = new Map(tage.silber)
+    if (ab.art === 'abstuerze') {
+      const de = (v: number) => v.toFixed(1).replace('.', ',').replace('-', '−')
+      for (const z of ab.zeilen) {
+        if (z.mindestens) {
+          /* 1980: Wikipedia „Silver Thursday“ (nach SEC 1982): über 50 $ im Januar, 10,80 $ am 27.03.1980. */
+          pruefe(
+            `Silber: 1980 mind. ${de(rueckgang(z))} % (über 50 $ → 10,80 $) im Text`,
+            z.hoch[1] === 50 &&
+              z.tief[0] === '1980-03-27' &&
+              z.tief[1] === 10.8 &&
+              karte.text.includes(`mind. ${de(rueckgang(z))} %`)
+          )
+          continue
+        }
+        const zwischen = tage.silber
+          .filter(([d]) => d >= z.hoch[0] && d <= z.tief[0])
+          .map(([, v]) => v)
+        pruefe(
+          `Silber: Absturz ${z.name} ${de(rueckgang(z))} % in ${dauer(z)} Tagen – Hoch und Tief aus den Tageskursen, im Text`,
+          silberTag.get(z.hoch[0]) === z.hoch[1] &&
+            silberTag.get(z.tief[0]) === z.tief[1] &&
+            Math.max(...zwischen) === z.hoch[1] &&
+            Math.min(...zwischen) === z.tief[1] &&
+            karte.text.includes(`${de(rueckgang(z))} %`) &&
+            karte.text.includes(`${dauer(z).toLocaleString('de-DE')} Tagen`) ===
+              !z.laufend
+        )
+      }
+      const z11 = ab.zeilen.find((z) => z.name === '2011–2015')!
+      const beispiel = Math.round(115.08 * (z11.tief[1] / z11.hoch[1]) * 100) / 100
+      pruefe(
+        'Silber: Rechenbeispiel 32,37 $ (wie 2011–2015)',
+        beispiel === 32.37 &&
+          ab.satz!.includes('32,37 $') &&
+          karte.text.includes('32,37 $')
+      )
+    }
+    const er = karte.teile.find((t) => t.art === 'erholung')
+    if (er?.art === 'erholung') {
+      const altesHoch: Record<string, number> = {
+        '1980': 50,
+        '2008': 20.685,
+        '2011–2015': 48.584,
+        '2020': 18.868,
+      }
+      for (const z of er.zeilen) {
+        const schwelle = altesHoch[z.name]
+        const ersterDarueber = tage.silber.find(([d, v]) => d > z.tief && v > schwelle)
+        pruefe(
+          `Silber: ${z.name} zurück über ${schwelle} $ am ${z.zurueck} (${dauerText(tageBis(z))}), im Text`,
+          ersterDarueber?.[0] === z.zurueck &&
+            karte.text.includes(`nach ${dauerText(tageBis(z))}`)
+        )
+      }
+    }
+    const kz = karte.teile.find((t) => t.art === 'kurszettel')
+    if (kz?.art === 'kurszettel') {
+      const heute = tage.silber.at(-1)!
+      const ab: Record<string, string> = {
+        'Ø seit 2000': '2000-01-01',
+        'Ø 10 Jahre': '2016-11-17',
+        'Ø 5 Jahre': '2021-11-17',
+        'Ø 2026': '2026-01-01',
+      }
+      for (const z of kz.zeilen) {
+        const v = tage.silber.filter(([d]) => d >= ab[z.name]).map(([, x]) => x)
+        const schnitt = Math.round((v.reduce((s, x) => s + x, 0) / v.length) * 100) / 100
+        const abstand = Math.round((heute[1] / schnitt - 1) * 1000) / 10
+        pruefe(
+          `Silber: ${z.name} ${schnitt} $, heute ${abstand} %`,
+          z.kurs === `${schnitt.toFixed(2).replace('.', ',')} $` &&
+            z.aenderung === abstand
+        )
+      }
+      const gold = new Map(tage.gold)
+      const paare = tage.silber.filter(([d]) => gold.has(d))
+      const mittel = paare.reduce((s, [d, v]) => s + gold.get(d)! / v, 0) / paare.length
+      const jetzt = gold.get(heute[0])! / heute[1]
+      pruefe(
+        `Silber: Gold-Silber-Verhältnis ${jetzt.toFixed(1)}, Schnitt ${mittel.toFixed(1)}`,
+        kz.satz!.includes(jetzt.toFixed(1).replace('.', ',')) &&
+          kz.satz!.includes(mittel.toFixed(1).replace('.', ',')) &&
+          karte.text.includes(jetzt.toFixed(1).replace('.', ','))
+      )
+    }
+    if (pr.art === 'punktraster') {
+      for (const gesamt of [1125, 1130, 1134.9]) {
+        const a = Math.round((657.4 / gesamt) * 100)
+        const b = Math.round((217.7 / gesamt) * 100)
+        pruefe(
+          `Silber: Nachfrage bei ${gesamt} Mio. Unzen ${a} / ${b} / ${100 - a - b}`,
+          a === pr.teile[0].punkte &&
+            b === pr.teile[1].punkte &&
+            100 - a - b === pr.teile[2].punkte
+        )
+      }
+    }
+    pruefe(
+      'Silber: Teilkarte mit falschem Tag wird beanstandet',
+      pruefeZahlenkarte({
+        ...karte,
+        teile: [
+          { ...l, punkte: [{ d: '2026-11-18', text: 'x' }] } as typeof l,
+          ...karte.teile.slice(1),
+        ],
+      }).some((x) => x.includes('nicht in der Reihe'))
     )
   }
 }

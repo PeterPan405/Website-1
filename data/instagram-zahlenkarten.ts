@@ -25,9 +25,197 @@ import {
   ATOM_WELT,
 } from './instagram-reihen-atomwaffen.ts'
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
+import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 18.11.2026, „Silber: Unter dem Hoch von 2011“ – Thema vom
+      Betreiber am 17.11.2026: „zu Silber mal mehrere Seiten … gerade richtig
+      wieder gecrashed … Widerstand vom Top 2011 durchbrochen … wie tief
+      könnte es noch gehen, wo stehen wir, wo war das Top … und die
+      Anwendungsbereiche“. Neue Art „dossier“ (drei Teilkarten: linie,
+      abstuerze, punktraster). Form anders als am Vortag (17.11.: zyklus).
+
+      Kurse: data/instagram-reihen-silber.ts (Yahoo Finance, Silber-Future
+      SI=F, Tageskurse seit 2000, am 17.11.2026 geholt). Hochs und Tiefs je
+      Absturz aus den Tagesschlusskursen; Rückgänge und Tage rechnet die Art.
+      Rechenbeispiel: 115,08 $ × (13,666 / 48,584) = 32,37 $.
+      Gründe: ms-aktuell.de 15.11.2026 (CME, Metals Focus), Kettner Edelmetalle
+      16.11.2026 (Realrendite); Nachfrage 2025: Silver Institute, WSS 2026.
+    */
+    art: 'dossier',
+    datum: '2026-11-18',
+    titel: [
+      { text: 'Silber im Absturz:' },
+      { text: 'Unter dem Hoch von 2011.', gruen: true },
+    ],
+    unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+    teile: [
+      {
+        art: 'linie',
+        datum: '2026-11-18',
+        titel: [
+          { text: 'Silber im Absturz:' },
+          { text: 'Unter dem Hoch von 2011.', gruen: true },
+        ],
+        unterzeile: 'Silber in Dollar je Unze seit 2000. Gestrichelt: das Hoch von 2011.',
+        reihe: SILBER_WOCHEN,
+        einheit: '$ je Unze',
+        marken: [{ wert: 48.584, text: 'Hoch 2011: 48,58 $' }],
+        punkte: [
+          { d: '2026-01-26', text: 'Hoch 26.01.: 115,08 $', farbe: 'gruen' },
+          { d: '2026-11-17', text: 'Heute: 47,62 $', farbe: 'rot', unten: true },
+        ],
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Silber-Future SI=F), Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'abstuerze',
+        datum: '2026-11-18',
+        titel: [{ text: 'Wie tief ging es früher?' }],
+        unterzeile: '',
+        einheit: '$',
+        zeilen: [
+          {
+            /* Nur der Monat des Hochs ist belegt (Wikipedia „Silver Thursday“, nach SEC 1982). */
+            name: '1980',
+            hoch: ['1980-01-01', 50],
+            hochText: 'über 50',
+            tief: ['1980-03-27', 10.8],
+            mindestens: true,
+            dauerText: 'Jan.–März',
+          },
+          { name: '2008', hoch: ['2008-03-05', 20.685], tief: ['2008-10-28', 8.79] },
+          {
+            name: '2011–2015',
+            hoch: ['2011-04-29', 48.584],
+            tief: ['2015-12-14', 13.666],
+          },
+          { name: '2020', hoch: ['2020-02-24', 18.868], tief: ['2020-03-18', 11.735] },
+          {
+            name: '2026',
+            hoch: ['2026-01-26', 115.08],
+            tief: ['2026-11-16', 46.785],
+            laufend: true,
+          },
+        ],
+        satz: 'Rechenbeispiel, keine Prognose: Wie 2011–2015 (−71,9 %) stünde Silber bei 32,37 $.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F), Hoch bis Tief; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'erholung',
+        datum: '2026-11-18',
+        titel: [{ text: 'Bis zum neuen Hoch' }],
+        unterzeile: 'Vom Tief bis zum ersten Schlusskurs über dem alten Hoch.',
+        zeilen: [
+          {
+            name: '1980',
+            tief: '1980-03-27',
+            zurueck: '2025-10-13',
+            zusatz: '10,80 $ → über 50 $',
+          },
+          {
+            name: '2008',
+            tief: '2008-10-28',
+            zurueck: '2010-09-16',
+            zusatz: '8,79 $ → über 20,69 $',
+          },
+          {
+            name: '2011–2015',
+            tief: '2015-12-14',
+            zurueck: '2025-10-08',
+            zusatz: '13,67 $ → über 48,58 $',
+          },
+          {
+            name: '2020',
+            tief: '2020-03-18',
+            zurueck: '2020-07-08',
+            zusatz: '11,74 $ → über 18,87 $',
+          },
+        ],
+        satz: '1980: Erst am 13.10.2025 schloss Silber wieder über 50 $.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quellen: Yahoo Finance (SI=F, ab 2000), Wikipedia/SEC (1980)',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'kurszettel',
+        datum: '2026-11-18',
+        titel: [{ text: 'Silber im Schnitt' }],
+        unterzeile:
+          'Durchschnittspreis je Unze. Rechts: heute (47,62 $) gegenüber dem Schnitt.',
+        zeilen: [
+          {
+            name: 'Ø seit 2000',
+            zusatz: 'alle Schlusskurse',
+            kurs: '19,71 $',
+            aenderung: 141.6,
+          },
+          {
+            name: 'Ø 10 Jahre',
+            zusatz: 'seit 17.11.2016',
+            kurs: '27,19 $',
+            aenderung: 75.1,
+          },
+          {
+            name: 'Ø 5 Jahre',
+            zusatz: 'seit 17.11.2021',
+            kurs: '35,61 $',
+            aenderung: 33.7,
+          },
+          { name: 'Ø 2026', zusatz: 'seit 1. Januar', kurs: '70,14 $', aenderung: -32.1 },
+        ],
+        satz: 'Gold-Silber-Verhältnis heute 81,0 – im Schnitt seit 2000 lag es bei 69,2.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (SI=F, GC=F), Schlusskurse; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'punktraster',
+        datum: '2026-11-18',
+        titel: [{ text: 'Wofür man Silber braucht' }],
+        unterzeile: 'Silbernachfrage 2025, auf 100 Unzen gerechnet.',
+        teile: [
+          {
+            name: 'Industrie',
+            punkte: 58,
+            zusatz: 'Elektronik, Solar, Autos, Stromnetze',
+          },
+          { name: 'Münzen und Barren', punkte: 19 },
+          { name: 'Schmuck, Besteck, Sonstiges', punkte: 23 },
+        ],
+        fusszeile:
+          'Stand: 2025 | Quelle: Silver Institute, World Silver Survey 2026; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile: 'Stand: 17.11.2026 | Quellen: Yahoo Finance, Silver Institute',
+    text:
+      'Silber ist abgestürzt – und liegt jetzt unter seinem Hoch von 2011. Wo steht es, wie tief ging es früher, wie lange dauerte die Erholung?\n\n' +
+      'Hoch 26.01.2026: 115,08 $ · Tief 16.11.: 46,79 $ (−59,3 %) · 17.11.: 47,62 $, unter dem Hoch von 2011 (48,58 $)\n\n' +
+      'Frühere Abstürze vom Hoch:\n' +
+      '1980: über 50 $ → 10,80 $ (mind. −78,4 %, Januar bis 27. März)\n' +
+      '2008: −57,5 % in 237 Tagen\n' +
+      '2011–2015: −71,9 % in 1.690 Tagen\n' +
+      '2020: −37,8 % in 23 Tagen\n' +
+      'Wie 2011–2015 stünde Silber bei 32,37 $ – Rechenbeispiel, keine Prognose.\n\n' +
+      'Bis zum neuen Hoch: 2020 nach 112 Tagen, 2008 nach 1,9 Jahren, 2015 nach 9,8 Jahren, 1980 nach 45,5 Jahren.\n\n' +
+      'Im Schnitt kostete Silber seit 2000 19,71 $, in 5 Jahren 35,61 $, 2026 bisher 70,14 $. Das Gold-Silber-Verhältnis liegt bei 81,0, im Schnitt seit 2000 bei 69,2.\n\n' +
+      'Warum der Absturz? Laut ms-aktuell nennt die CME steigende Anleiherenditen und die Erwartung einer US-Zinserhöhung im Dezember.\n\n' +
+      'Und jetzt? Metals Focus erwartet laut ms-aktuell 2026 5 % weniger Nachfrage, aber weiter ein Defizit von rund 35 Mio. Unzen. 58 von 100 Unzen gehen in die Industrie (Silver Institute, 2025).\n\n' +
+      'Quellen: Yahoo Finance (SI=F, GC=F); Wikipedia „Silver Thursday“ (SEC 1982); Silver Institute; ms-aktuell.de 15.11.2026; eigene Rechnung',
+    schlagworte: ['silber', 'edelmetalle', 'rohstoffe', 'crash', 'industrie'],
+  },
   {
     /*
       Zahlenkarte 17.11.2026, „Der Bitcoin-Zyklus: Lebt er noch?“ – Thema vom

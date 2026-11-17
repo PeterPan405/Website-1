@@ -66,6 +66,19 @@ export function rahmen(
     satz?: string
   }
 ): Element {
+  /*
+    Im Dossier (mehrere Arten in einem Karussell) setzt das Dossier Seite,
+    Seitenzahl und – ab Seite 2 – die Überschrift aus dem Titel der Teilkarte.
+  */
+  const d = (k as NeuGemeinsam & { _dossier?: { seite: number; seiten: number } })
+    ._dossier
+  if (d)
+    o = {
+      ...o,
+      seite: d.seite,
+      seiten: d.seiten,
+      kopf: o.kopf ?? (d.seite > 1 ? k.titel.map((t) => t.text).join(' ') : undefined),
+    }
   const erste = o.seite === 1
   return h(
     'div',
