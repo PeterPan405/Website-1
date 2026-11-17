@@ -101,6 +101,294 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'eu-fed-billigen-unicredit-commerzbank',
+    title: 'EU und US-Notenbank geben grünes Licht für Commerzbank-Übernahme',
+    teaser:
+      'Die EU-Kommission sieht keine wettbewerbsrechtlichen Bedenken, und auch die US-Notenbank hat zugestimmt: Die Übernahme der Commerzbank rückt näher.',
+    category: 'Märkte',
+    publishedAt: '2026-11-17T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['commerzbank', 'unicredit', 'bankenfusion', 'eu-kommission'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['commerzbank', 'unicredit'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 16. November 2026, 12:50 Uhr: „EU gibt UniCredit grünes Licht für Commerzbank-Übernahme"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/commerzbank-unicredit-eu-genehmigung-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 16. November 2026, 18:22 Uhr: „Banken: EU und Fed erlauben Commerzbank-Übernahme durch Unicredit"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-eu-und-fed-erlauben-commerzbank-uebernahme-durch-unicredit/100270206.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Übernahme der Commerzbank durch die italienische UniCredit ist ihrem Abschluss einen großen Schritt näher gekommen. Die EU-Kommission hat die Fusion freigegeben und sieht nach eigenen Worten „keine wettbewerbsrechtlichen Bedenken". Auch die US-Notenbank Fed hat dem Zusammenschluss zugestimmt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Prüfungen, zwei Fragen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Bankenfusion dieser Größe braucht mehr als eine Unterschrift. Die EU-Kommission fragt, ob der Wettbewerb leidet – ob also am Ende weniger Banken um dieselben Kunden konkurrieren. Die Fed dagegen fragt, ob die fusionierte Bank das Finanzsystem stabil hält, etwa weil UniCredit auch in den USA Geschäfte betreibt. Beide Fragen führen zu unterschiedlichen Prüfverfahren – und beide sind jetzt mit einem Ja beantwortet.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der EU-Kommission ging die Prüfung auch auf die Finanzierung des deutschen Mittelstands ein, für den die Commerzbank als Hausbank vieler Betriebe eine wichtige Rolle spielt. Ob und wie sich diese Finanzierung durch die Übernahme verändert, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Commerzbank-Kunden ändert sich zunächst nichts an Konto oder Filiale. Für den deutschen Bankenmarkt entsteht aber ein Institut, das über Grenzen hinweg mit den großen europäischen Häusern konkurrieren will – ob das dem Mittelstand am Ende hilft oder vor allem der Bilanz von UniCredit, wird sich erst in den kommenden Jahren zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-chef-warsh-ki-koennte-enttaeuschen',
+    title: 'Notenbankchef Warsh: Künstliche Intelligenz könnte enttäuschen',
+    teaser:
+      'Fed-Chef Kevin Warsh nennt Künstliche Intelligenz wichtig für die US-Wirtschaft – und warnt zugleich, die hohen Erwartungen könnten sich nicht erfüllen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-17T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['fed', 'ki', 'geldpolitik', 'notenbank'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          "CNBC, 16. November 2026, 19:46 Uhr MEZ: „Fed Chairman Kevin Warsh stresses importance of AI to economy, but says it could 'disappoint'\"",
+        url: 'https://www.cnbc.com/2026/11/16/fed-ai-task-force-kevin-warsh.html',
+      },
+      {
+        label:
+          'Goldreporter, 16. November 2026: „Goldpreis rutscht auf Jahrestief – negatives Momentum vor Warsh-Rede"',
+        url: 'https://www.goldreporter.de/goldpreis-heute-jahrestief-warsh-rede-16-11-2026/marktbericht-gold/263121/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Fed-Chef Kevin Warsh hat sich am Montagabend ausführlich zur Rolle Künstlicher Intelligenz für die US-Wirtschaft geäußert. Er nannte sie wichtig für das Wachstum – fügte aber hinzu, sie könne die hohen Erwartungen auch enttäuschen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Wette auf künftige Produktivität',
+      },
+      {
+        type: 'paragraph',
+        text: 'Investitionen in Rechenzentren und Chips gehören inzwischen zu den größten Posten in den US-Wachstumszahlen. Bleibt der erhoffte Produktivitätsschub aus, fehlt der Wirtschaft ein Teil des Wachstums, mit dem viele Prognosen bereits rechnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für die Zinspolitik heißt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank muss einschätzen, wie viel vom aktuellen Wachstum dauerhaft ist – nur dann lässt sich eine Zinsentscheidung treffen, die nicht beim nächsten Rückschlag korrigiert werden muss. Warshs Doppelbotschaft, wichtig und zugleich enttäuschungsanfällig, lässt offen, wie die Fed diese Frage derzeit beantwortet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Einbruch bei den KI-Investitionen würde nicht nur Technologiewerte treffen, sondern auch die Wachstumszahlen, auf die sich die Fed bei ihren künftigen Zinsentscheidungen stützt.',
+      },
+    ],
+  },
+  {
+    slug: 'software-fehler-sperrt-bankkunden-aus',
+    title: 'Software-Fehler sperrt US-Bankkunden vom Online-Konto aus',
+    teaser:
+      'Ein Softwarefehler bei JPMorgan Chase hat Kundinnen und Kunden zeitweise den Zugriff auf ihr Online-Banking versperrt.',
+    category: 'Märkte',
+    publishedAt: '2026-11-17T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['jpmorgan', 'online-banking', 'softwarefehler'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['jpmorgan'],
+    sources: [
+      {
+        label:
+          'CNBC, 16. November 2026, 23:14 Uhr MEZ: „JPMorgan Chase says temporary software bug is affecting consumer banking"',
+        url: 'https://www.cnbc.com/2026/11/16/jpmorgan-chase-technical-issue.html',
+      },
+      {
+        label:
+          'Handelsblatt, 17. November 2026, 00:07 Uhr: „IT-Störung: Bankkunden in USA melden Probleme beim Zugriff auf Online-Konten"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/it-stoerung-bankkunden-in-usa-melden-probleme-beim-zugriff-auf-online-konten/100270373.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kundinnen und Kunden der US-Großbank JPMorgan Chase kamen am Montagabend zeitweise nicht an ihr Online-Konto. Die Bank sprach von einem vorübergehenden Software-Fehler im Privatkundengeschäft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der vierte Ausfall binnen zwei Wochen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Es ist nicht die erste technische Panne dieser Art in jüngster Zeit: Erst legte ein Programmfehler bei Microsoft tagelang Dienste wie Outlook und Teams lahm, dann stoppte die US-Luftfahrtbehörde FAA für Stunden alle Flugstarts im Land, zuletzt kämpfte United Airlines mit einem eigenen Systemausfall. Jetzt folgt mit JPMorgan Chase der nächste Bereich des Alltags.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Betriebsrisiko ist kein Kursrisiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für eine Bank ist ein Softwarefehler selten eine Frage der Bilanz – JPMorgan Chase bleibt profitabel, ob der Login funktioniert oder nicht. Es geht um ein anderes Risiko: das Vertrauen der Kundschaft in digitale Bankdienste, die rund um die Uhr erreichbar sein sollen. CNBC berichtete, es gebe keine Hinweise auf Angreifer und keine Anzeichen, dass mehrere Banken gleichzeitig betroffen seien.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je mehr Banken, Fluggesellschaften und Softwarekonzerne auf dieselbe Handvoll digitaler Systeme setzen, desto öfter trifft ein einzelner Fehler gleich mehrere Lebensbereiche auf einmal – unabhängig davon, wie solide das jeweilige Unternehmen wirtschaftlich aufgestellt ist.',
+      },
+    ],
+  },
+  {
+    slug: 'buffett-verschenkt-berkshire-aktien',
+    title: 'Buffett verschenkt Berkshire-Aktien für 5,5 Milliarden Dollar',
+    teaser:
+      'Warren Buffett hat Familienstiftungen Berkshire-Aktien im Wert von 5,5 Milliarden Dollar geschenkt – sein Vermögen soll binnen acht Jahren weitergehen.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-11-17T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['berkshire', 'buffett', 'schenkung', 'vermoegen'],
+    relatedTopics: ['zinseszins'],
+    relatedSymbols: ['berkshire'],
+    sources: [
+      {
+        label:
+          "CNBC, 16. November 2026, 18:39 Uhr MEZ: „Warren Buffett donates $5.5 billion, says kindness 'compounds' in Thanksgiving letter\"",
+        url: 'https://www.cnbc.com/2026/11/16/warren-buffett-donates-5point5-billion-thanksgiving.html',
+      },
+      {
+        label:
+          'Handelsblatt, 16. November 2026, 17:57 Uhr: „Berkshire Hathaway: Buffett schenkt Familienstiftungen Aktien im Wert von 5,5 Milliarden Dollar"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/berkshire-hathaway-buffett-verschenkt-fuer-55-milliarden-dollar-aktien/100270318.html',
+      },
+      {
+        label:
+          'CNBC, 17. November 2026, 00:01 Uhr MEZ: „Berkshire Hathaway raised its stake in Delta in the third quarter. It also trimmed a key bank holding"',
+        url: 'https://www.cnbc.com/2026/11/16/berkshire-hathaway-raised-its-stake-in-delta-air-in-the-third-quarter.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Warren Buffett hat seinen Familienstiftungen Berkshire-Hathaway-Aktien im Wert von 5,5 Milliarden Dollar geschenkt. In seinem jährlichen Thanksgiving-Brief schrieb der heutige Ehrenvorsitzende von Berkshire, Freundlichkeit „compounds" – sie vermehre sich wie Zinseszins.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Aktien statt Bargeld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Aktien verschenkt, die stark im Wert gestiegen sind, zahlt auf den Wertzuwachs beim Verschenken selbst keine Steuer – anders als beim Verkauf. Für einen Investor wie Buffett, dessen Berkshire-Anteile seit Jahrzehnten wachsen, ist das ein eingespielter Weg, Vermögen weiterzugeben, ohne zuerst einen Teil davon an den Fiskus abzutreten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach der Spende hält Buffett laut CNBC weiterhin 182.140 Aktien der Klasse A – nach aktuellem Kurs rund 162 Milliarden Dollar. Die Gates Foundation, an die frühere Spenden gingen, bekam diesmal nichts; das Geld floss an die Stiftungen seiner eigenen Familie. Buffett will sein Vermögen laut Handelsblatt binnen acht Jahren vollständig weiterreichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Blick zurück ins dritte Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag wurde bekannt, wie Berkshire im dritten Quartal sein Portfolio umgebaut hat: Der Anteil an der Fluggesellschaft Delta Air Lines wuchs, die Position in der Bank of America wurde verkleinert. Solche Pflichtmeldungen zeigen immer nur eine Momentaufnahme von vor mehreren Wochen – bis sie veröffentlicht werden, kann sich das tatsächliche Depot längst wieder verändert haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Delta Air Lines oder Bank of America die bessere Entscheidung war, zeigt sich erst im Rückblick. Interessanter als die einzelne Position ist, dass selbst ein Vermögen von 162 Milliarden Dollar irgendwann vollständig weitergegeben werden soll – und wie viel davon schon zu Lebzeiten statt als Erbe fließt.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-rutscht-auf-platz-drei-vor-zahlen',
+    title: 'Nvidia rutscht auf Platz drei – heute muss der Chip-Riese liefern',
+    teaser:
+      'Nvidia ist im Ranking der wertvollsten Konzerne hinter Microsoft zurückgefallen. An diesem Abend legt der Chiphersteller erstmals seit Huangs Abgang Zahlen vor.',
+    category: 'Märkte',
+    publishedAt: '2026-11-17T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['nvidia', 'microsoft', 'halbleiter', 'quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'microsoft'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 16. November 2026, 20:17 Uhr: „Wall Street: S&P 500 schließt fast zwei Prozent im Minus – Microsoft wertvoller als Nvidia"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-nvidia-affaere-und-anthropic-debuet-machen-wall-street-zu-schaffen/100270217.html',
+      },
+      {
+        label:
+          "CNBC, 16. November 2026, 14:42 Uhr MEZ: „Nvidia's Colette Kress confronts key questions in first earnings report since Jensen Huang's exit\"",
+        url: 'https://www.cnbc.com/2026/11/16/nvidia-earnings-jensen-huang-resignation.html',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, 16. November 2026: „Nur noch Platz 3! Nvidia fällt hinter Microsoft zurück: Chip-Riese vor den Zahlen angeschlagen"',
+        url: 'https://www.wallstreet-online.de/nachricht/21702030-platz-3-nvidia-faellt-microsoft-zurueck-chip-riese-zahlen-angeschlagen',
+      },
+      {
+        label:
+          'wallstreet-online/dpa-AFX, 16. November 2026: „Medien: Nvidia hat keine Pläne für Rückkehr Huangs als Chef"',
+        url: 'https://www.wallstreet-online.de/nachricht/21701565-medien-nvidia-plaene-rueckkehr-huangs-chef',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia ist im Ranking der wertvollsten Unternehmen der Welt auf Platz drei zurückgefallen. Der Chip-Konzern verlor am Montag mehr als vier Prozent an Börsenwert, Microsoft zog an Nvidia vorbei. Der marktbreite S&P 500 schloss fast zwei Prozent im Minus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Rangliste, die jede Minute neu entsteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Liste der wertvollsten Konzerne ist keine feste Tabelle, sondern das Ergebnis der jeweils letzten Kursbewegung: Marktkapitalisierung ist Aktienkurs mal Anzahl der Aktien. Fällt der Kurs eines Unternehmens stärker als der eines anderen, tauschen beide ohne eine einzige neue Geschäftsentscheidung die Plätze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die erste Bilanz ohne Huang',
+      },
+      {
+        type: 'paragraph',
+        text: 'An diesem Dienstagabend legt Nvidia Quartalszahlen vor – weniger als eine Woche nach Jensen Huangs plötzlichem Rücktritt als Chef. Interimschefin Colette Kress muss die Zahlen präsentieren. Medienberichten zufolge gibt es derzeit keine Pläne für eine Rückkehr Huangs an die Unternehmensspitze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelner Bericht den ganzen Markt bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia zählt zu den größten Einzelwerten im S&P 500 und im Nasdaq-100. Je größer der Anteil eines Unternehmens an einem Index, desto stärker schlägt sein eigener Kurs auf den gesamten Index durch – ein Grund, warum ein Bericht nach Börsenschluss den breiten Markt schon Stunden vorher bewegen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Colette Kress die Anleger überzeugt, zeigt sich erst im nachbörslichen Handel. Unabhängig vom Ausgang bleibt die Frage, wie abhängig ganze Indizes inzwischen vom Kurs einzelner Technologiewerte geworden sind.',
+      },
+    ],
+  },
+  {
     slug: 'japans-wirtschaft-schrumpft-ueberraschend',
     title: 'Japans Wirtschaft schrumpft überraschend im dritten Quartal',
     teaser:

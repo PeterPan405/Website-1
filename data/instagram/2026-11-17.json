@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "UniCredit darf die Commerzbank übernehmen, die Fed warnt vor KI-Enttäuschungen, eine IT-Panne trifft US-Banken, Buffett verschenkt Milliarden, und Nvidia steht vor der ersten Bilanz ohne Jensen Huang.",
+  "kacheln": [
+    {
+      "titel": "UniCredit kauft Commerzbank",
+      "text": "Die EU-Kommission und die US-Notenbank Fed haben der Übernahme der Commerzbank durch UniCredit zugestimmt. Die Fusion gilt als eine der größten Bankenübernahmen Europas."
+    },
+    {
+      "titel": "Fed warnt vor KI-Risiko",
+      "text": "Fed-Chef Kevin Warsh nannte Künstliche Intelligenz wichtig für die US-Wirtschaft, warnte aber vor übertriebenen Erwartungen. Die Rede fiel in eine Woche voller Sorgen um KI-Werte."
+    },
+    {
+      "titel": "US-Banken: IT-Panne",
+      "text": "Ein Software-Fehler bei JPMorgan Chase versperrte Kundinnen und Kunden zeitweise den Zugriff auf ihr Online-Konto. Es ist bereits der vierte Tech-Ausfall binnen zwei Wochen in den USA."
+    },
+    {
+      "titel": "Buffett verschenkt 5,5 Mrd.",
+      "text": "Warren Buffett hat seinen Familienstiftungen Berkshire-Aktien im Wert von 5,5 Milliarden Dollar geschenkt. Sein übriges Vermögen ist weiterhin rund 162 Milliarden Dollar wert."
+    },
+    {
+      "titel": "Nvidia: Jetzt Platz 3",
+      "text": "Nvidia ist im Ranking der wertvollsten Konzerne hinter Microsoft auf Platz drei zurückgefallen. Heute Abend legt der Chip-Riese erstmals seit Jensen Huangs Rücktritt Zahlen vor."
+    }
+  ],
+  "schlagworte": ["nvidia", "fed", "commerzbank", "börse", "aktien"]
+}
