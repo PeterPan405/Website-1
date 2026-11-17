@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-11-16T22:52:05.781Z",
+  "abgerufen": "2026-11-17T12:24:52.000Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -546,6 +546,7 @@
     {"title":"RBA Gov Bullock Speaks","country":"AUD","date":"2026-11-16T17:50:00-05:00","impact":"High","forecast":"","previous":""},
     {"title":"FOMC Member Barkin Speaks","country":"USD","date":"2026-11-16T18:10:00-05:00","impact":"Low","forecast":"","previous":""},
     {"title":"FOMC Member Goolsbee Speaks","country":"USD","date":"2026-11-16T18:30:00-05:00","impact":"Low","forecast":"","previous":""},
+    {"title":"RBNZ Gov Breman Speaks","country":"NZD","date":"2026-11-16T19:00:00-05:00","impact":"Medium","forecast":"","previous":""},
     {"title":"Monetary Policy Meeting Minutes","country":"AUD","date":"2026-11-16T19:30:00-05:00","impact":"Low","forecast":"","previous":""},
     {"title":"Inflation Expectations q/q","country":"NZD","date":"2026-11-16T21:00:00-05:00","impact":"High","forecast":"","previous":"2.34%"},
     {"title":"Tertiary Industry Activity m/m","country":"JPY","date":"2026-11-16T23:30:00-05:00","impact":"Low","forecast":"0.1%","previous":"-0.1%"},
