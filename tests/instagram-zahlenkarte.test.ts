@@ -1050,6 +1050,120 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 19.11.2026: Der Euro gegen fünf Währungen (Yahoo Finance, eingefroren in tests/daten/). */
+{
+  const karte = karteVom('2026-11-19')
+  pruefe('Euro: Karte für den 19.11. ist ein Kurszettel', karte?.art === 'kurszettel')
+  if (karte?.art === 'kurszettel') {
+    pruefe(
+      'Euro: keine Beanstandung',
+      pruefeZahlenkarte(karte).length === 0,
+      pruefeZahlenkarte(karte).join(' | ')
+    )
+    pruefe(
+      'Euro: Form anders als am Vortag',
+      form(karte) !== form(karteVom('2026-11-18')!)
+    )
+    const roh = JSON.parse(readFileSync('tests/daten/kurse-euro-2026-11-17.json', 'utf8'))
+      .instruments as Record<string, { points: { d: string; c: number }[] }>
+    const symbol: Record<string, string> = {
+      'Chinesischer Yuan': 'eur-cny',
+      'US-Dollar': 'eur-usd',
+      'Japanischer Yen': 'eur-jpy',
+      'Britisches Pfund': 'eur-gbp',
+      'Schweizer Franken': 'eur-chf',
+    }
+    const komma = (v: number, n: number) => v.toFixed(n).replace('.', ',')
+    for (const z of karte.zeilen) {
+      const p = roh[symbol[z.name]].points
+      const ende = p.at(-1)!
+      const start = p.filter((x) => x.d < '2026-01-01').at(-1)!
+      const v = Math.round((ende.c / start.c - 1) * 1000) / 10
+      pruefe(
+        `Euro: ${z.name} ${v} % seit Jahresbeginn`,
+        ende.d === '2026-11-17' && v === z.aenderung
+      )
+      pruefe(
+        `Euro: ${z.name} Kurs ${z.kurs} wie im Bestand`,
+        z.kurs.startsWith(komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4))
+      )
+      pruefe(
+        `Euro: ${z.name} Anfang und Ende stehen im Text`,
+        karte.text.includes(
+          `${komma(start.c, z.name === 'Japanischer Yen' ? 2 : 4)} → ${komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4)}`
+        )
+      )
+      const jahr = p.filter((x) => x.d >= '2026-01-01')
+      const tief = jahr.reduce((a, b) => (b.c < a.c ? b : a))
+      if (z.zusatz.startsWith('Jahrestief')) {
+        pruefe(`Euro: ${z.name} am 17.11. auf dem Jahrestief`, tief.d === ende.d)
+        const vorher = p
+          .slice(0, -1)
+          .filter((x) => x.c <= ende.c)
+          .at(-1)!
+        const monate = [
+          'Januar',
+          'Februar',
+          'März',
+          'April',
+          'Mai',
+          'Juni',
+          'Juli',
+          'August',
+          'September',
+          'Oktober',
+          'November',
+          'Dezember',
+        ]
+        const wann = `${monate[Number(vorher.d.slice(5, 7)) - 1]} ${vorher.d.slice(0, 4)}`
+        pruefe(`Euro: ${z.name} so tief zuletzt ${wann}`, z.zusatz.endsWith(wann))
+      } else {
+        pruefe(
+          `Euro: ${z.name} Tief des Jahres ${tief.c}`,
+          tief.c === 0.9008 &&
+            tief.d.slice(5, 7) === '03' &&
+            z.zusatz.includes('0,9008 im März')
+        )
+      }
+    }
+    const usd = roh['eur-usd'].points.filter((x) => x.d >= '2026-01-01')
+    const hoch = usd.reduce((a, b) => (b.c > a.c ? b : a))
+    pruefe(
+      'Euro: Dollar-Hoch 1,1974 am 28.01. und −8,2 % seitdem',
+      hoch.d === '2026-01-28' &&
+        hoch.c === 1.1974 &&
+        Math.round((usd.at(-1)!.c / hoch.c - 1) * 1000) / 10 === -8.2
+    )
+    pruefe(
+      'Euro: Text unter 2.150 Zeichen samt Rechtshinweis',
+      karte.text.length + RECHTSHINWEIS.length + 2 < 2150
+    )
+    for (const f of [
+      'flagge-china.png',
+      'flagge-usa.png',
+      'flagge-japan.png',
+      'flagge-grossbritannien.png',
+      'flagge-schweiz.png',
+    ])
+      pruefe(
+        `Euro: ${f} liegt bei den Logos`,
+        karte.zeilen.some((z) => z.logo === f)
+      )
+    /* Die Prüfung muss einen falschen Wert finden. */
+    pruefe(
+      'Euro: ein falsches Vorzeichen wird gefunden',
+      (() => {
+        const p = roh['eur-usd'].points
+        const v =
+          Math.round(
+            (p.at(-1)!.c / p.filter((x) => x.d < '2026-01-01').at(-1)!.c - 1) * 1000
+          ) / 10
+        return v !== 6.5
+      })()
+    )
+  }
+}
+
 /* 18.11.2026: Silber-Dossier (Yahoo SI=F, Silver Institute). */
 {
   const karte = karteVom('2026-11-18')

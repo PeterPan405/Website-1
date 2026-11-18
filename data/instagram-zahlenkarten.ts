@@ -31,6 +31,83 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 19.11.2026, „Der Euro 2026: schwächer gegen alle fünf“ –
+      Thema vom Betreiber am 18.11.2026 aus den Vorschlägen gewählt
+      („Nummer 4 Euro wird schwächer“). Art kurszettel, Flaggen statt
+      Logos (selbst gezeichnet, gemeinfreie Motive). Form anders als am
+      Vortag (18.11.: dossier).
+
+      Kurse: data/snapshots/markets.json (eur-usd, eur-cny, eur-jpy,
+      eur-gbp, eur-chf), Schluss 31.12.2025 gegen 17.11.2026. Jahrestiefs
+      und „zuletzt so tief“ aus derselben Reihe. Gründe nur aus unseren
+      Ausgaben mit gelesener Quelle: onvista/dpa-AFX 01.10.2026,
+      wallstreet-online 07.10.2026, wallstreet-online (Bloomberg)
+      30.10.2026, CNBC 17.11.2026.
+    */
+    art: 'kurszettel',
+    datum: '2026-11-19',
+    titel: [
+      { text: 'Der Euro 2026:' },
+      { text: 'Gegen alle fünf schwach.', gruen: true },
+    ],
+    unterzeile: 'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
+    zeilen: [
+      {
+        name: 'Chinesischer Yuan',
+        zusatz: 'Jahrestief · so tief zuletzt Februar 2023',
+        kurs: '7,3254 Yuan',
+        aenderung: -11.0,
+        logo: 'flagge-china.png',
+      },
+      {
+        name: 'US-Dollar',
+        zusatz: 'Jahrestief · so tief zuletzt April 2025',
+        kurs: '1,0989 $',
+        aenderung: -6.5,
+        logo: 'flagge-usa.png',
+      },
+      {
+        name: 'Japanischer Yen',
+        zusatz: 'Jahrestief · so tief zuletzt September 2025',
+        kurs: '175,05 ¥',
+        aenderung: -4.9,
+        logo: 'flagge-japan.png',
+      },
+      {
+        name: 'Britisches Pfund',
+        zusatz: 'Jahrestief · so tief zuletzt März 2025',
+        kurs: '0,8331 £',
+        aenderung: -4.5,
+        logo: 'flagge-grossbritannien.png',
+      },
+      {
+        name: 'Schweizer Franken',
+        zusatz: 'Tief des Jahres: 0,9008 im März',
+        kurs: '0,9233 Fr.',
+        aenderung: -0.9,
+        logo: 'flagge-schweiz.png',
+      },
+    ],
+    satz: 'Gegen Yuan, Dollar, Yen und Pfund steht der Euro so tief wie nie in diesem Jahr.',
+    fusszeile:
+      'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
+    text:
+      'Der Euro verliert 2026 gegen Yuan, Dollar, Yen, Pfund und Franken. Gegen die ersten vier steht er am 17.11. auf dem tiefsten Stand des Jahres.\n\n' +
+      'Was ein Euro kostet – Jahresbeginn → 17.11.2026:\n' +
+      'Yuan: 8,2262 → 7,3254 (−11,0 %), so tief zuletzt im Februar 2023\n' +
+      'Dollar: 1,1750 → 1,0989 (−6,5 %), so tief zuletzt im April 2025\n' +
+      'Yen: 184,09 → 175,05 (−4,9 %)\n' +
+      'Pfund: 0,8726 → 0,8331 (−4,5 %)\n' +
+      'Franken: 0,9314 → 0,9233 (−0,9 %)\n\n' +
+      'Zum Dollar war der Euro am 28. Januar noch 1,1974 wert – seitdem −8,2 %.\n\n' +
+      'Warum? Laut dpa-AFX (onvista, 01.10.) drückten steigende Ölpreise und die Spekulation auf weitere Zinserhöhungen der US-Notenbank. Im Oktober kam Frankreich dazu: dpa-AFX meldete eine Verschärfung am französischen Anleihemarkt (wallstreet-online, 07.10.), und laut Bloomberg hatte der Euro zum Pfund wegen Frankreichs Schuldenkrise den schwächsten Monat seit Juli 2022 (wallstreet-online, 30.10.).\n\n' +
+      'Und jetzt? St.-Louis-Fed-Chef Alberto Musalem hält laut CNBC (17.11.) bis zum Frühjahr 2027 bis zu vier weitere Zinserhöhungen für möglich. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Für Urlaub und Einkauf heißt das: Wer in Dollar, Yuan oder Pfund bezahlt, bekommt für seinen Euro weniger als im Januar.\n\n' +
+      'Quellen: Yahoo Finance (Devisenkurse); onvista/dpa-AFX 01.10.2026; wallstreet-online 07.10. und 30.10.2026 (Bloomberg); CNBC 17.11.2026; eigene Rechnung',
+    schlagworte: ['euro', 'dollar', 'waehrungen', 'devisen', 'frankreich'],
+  },
+  {
+    /*
       Zahlenkarte 18.11.2026, „Silber: Unter dem Hoch von 2011“ – Thema vom
       Betreiber am 17.11.2026: „zu Silber mal mehrere Seiten … gerade richtig
       wieder gecrashed … Widerstand vom Top 2011 durchbrochen … wie tief
