@@ -26,6 +26,7 @@ import {
 } from './instagram-reihen-atomwaffen.ts'
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
+import { EURO_DOLLAR_2026 } from './instagram-reihen-euro.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
@@ -33,7 +34,8 @@ export const zahlenkarten: Zahlenkarte[] = [
     /*
       Zahlenkarte 19.11.2026, „Der Euro 2026: schwächer gegen alle fünf“ –
       Thema vom Betreiber am 18.11.2026 aus den Vorschlägen gewählt
-      („Nummer 4 Euro wird schwächer“). Art kurszettel, Flaggen statt
+      („Nummer 4 Euro wird schwächer“). Dossier aus kurszettel und linie
+      (Betreiber 18.11.: „zweites Bild mit Chart“), Flaggen statt
       Logos (selbst gezeichnet, gemeinfreie Motive). Form anders als am
       Vortag (18.11.: dossier).
 
@@ -44,51 +46,85 @@ export const zahlenkarten: Zahlenkarte[] = [
       wallstreet-online 07.10.2026, wallstreet-online (Bloomberg)
       30.10.2026, CNBC 17.11.2026.
     */
-    art: 'kurszettel',
+    art: 'dossier',
     datum: '2026-11-19',
     titel: [
       { text: 'Der Euro 2026:' },
       { text: 'Gegen alle fünf schwach.', gruen: true },
     ],
     unterzeile: 'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
-    zeilen: [
+    teile: [
       {
-        name: 'Chinesischer Yuan',
-        zusatz: 'Jahrestief · so tief zuletzt Februar 2023',
-        kurs: '7,3254 Yuan',
-        aenderung: -11.0,
-        logo: 'flagge-china.png',
+        art: 'kurszettel',
+        datum: '2026-11-19',
+        titel: [
+          { text: 'Der Euro 2026:' },
+          { text: 'Gegen alle fünf schwach.', gruen: true },
+        ],
+        unterzeile:
+          'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
+        zeilen: [
+          {
+            name: 'Chinesischer Yuan',
+            zusatz: 'Jahrestief · so tief zuletzt Februar 2023',
+            kurs: '7,3254 Yuan',
+            aenderung: -11.0,
+            logo: 'flagge-china.png',
+          },
+          {
+            name: 'US-Dollar',
+            zusatz: 'Jahrestief · so tief zuletzt April 2025',
+            kurs: '1,0989 $',
+            aenderung: -6.5,
+            logo: 'flagge-usa.png',
+          },
+          {
+            name: 'Japanischer Yen',
+            zusatz: 'Jahrestief · so tief zuletzt September 2025',
+            kurs: '175,05 ¥',
+            aenderung: -4.9,
+            logo: 'flagge-japan.png',
+          },
+          {
+            name: 'Britisches Pfund',
+            zusatz: 'Jahrestief · so tief zuletzt März 2025',
+            kurs: '0,8331 £',
+            aenderung: -4.5,
+            logo: 'flagge-grossbritannien.png',
+          },
+          {
+            name: 'Schweizer Franken',
+            zusatz: 'Tief des Jahres: 0,9008 im März',
+            kurs: '0,9233 Fr.',
+            aenderung: -0.9,
+            logo: 'flagge-schweiz.png',
+          },
+        ],
+        satz: 'Gegen Yuan, Dollar, Yen und Pfund steht der Euro so tief wie nie in diesem Jahr.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
+        text: '',
+        schlagworte: [],
       },
       {
-        name: 'US-Dollar',
-        zusatz: 'Jahrestief · so tief zuletzt April 2025',
-        kurs: '1,0989 $',
-        aenderung: -6.5,
-        logo: 'flagge-usa.png',
-      },
-      {
-        name: 'Japanischer Yen',
-        zusatz: 'Jahrestief · so tief zuletzt September 2025',
-        kurs: '175,05 ¥',
-        aenderung: -4.9,
-        logo: 'flagge-japan.png',
-      },
-      {
-        name: 'Britisches Pfund',
-        zusatz: 'Jahrestief · so tief zuletzt März 2025',
-        kurs: '0,8331 £',
-        aenderung: -4.5,
-        logo: 'flagge-grossbritannien.png',
-      },
-      {
-        name: 'Schweizer Franken',
-        zusatz: 'Tief des Jahres: 0,9008 im März',
-        kurs: '0,9233 Fr.',
-        aenderung: -0.9,
-        logo: 'flagge-schweiz.png',
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'Euro in Dollar 2026' }],
+        unterzeile: 'Tagesschlusskurse. Gestrichelt: der Stand zum Jahresbeginn.',
+        reihe: EURO_DOLLAR_2026,
+        einheit: '$ je Euro',
+        stellen: 2,
+        achseAb: 1.08,
+        marken: [{ wert: 1.175, text: 'Jahresbeginn: 1,1750 $', rechts: true }],
+        punkte: [
+          { d: '2026-01-28', text: 'Hoch 28.01.: 1,1974 $', farbe: 'gruen' },
+          { d: '2026-11-17', text: '17.11.: 1,0989 $', farbe: 'rot', unten: true },
+        ],
+        fusszeile: 'Stand: 17.11.2026 | Quelle: Yahoo Finance (EUR/USD), Schlusskurse',
+        text: '',
+        schlagworte: [],
       },
     ],
-    satz: 'Gegen Yuan, Dollar, Yen und Pfund steht der Euro so tief wie nie in diesem Jahr.',
     fusszeile:
       'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
     text:

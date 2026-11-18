@@ -65,7 +65,10 @@ for (const art of Object.keys(NEUE_ARTEN)) {
   if (!k) continue
   const f = pruefeZahlenkarte(k)
   pruefe(`${art}: keine Beanstandung`, f.length === 0, f.join(' | '))
-  pruefe(`${art}: form() nennt die Art`, form(k) === art)
+  pruefe(
+    `${art}: form() nennt die Art (beim Dossier die seiner ersten Seite)`,
+    form(k) === (k.art === 'dossier' ? k.teile[0].art : art)
+  )
   for (let n = 1; n <= zahlenkarteSeiten(k); n++) {
     const png = await zahlenkarteSeitePng(k, logo, n)
     pruefe(`${art}: Seite ${n} ist ein PNG`, png.subarray(1, 4).toString() === 'PNG')

@@ -14,6 +14,7 @@ import {
 } from '../../instagram-zahlenkarte.ts'
 import {
   OBEN_ERSTE,
+  OBEN_FOLGE,
   UNTEN,
   pruefeGemeinsam,
   rahmen,
@@ -28,8 +29,19 @@ export interface Linienkarte extends NeuGemeinsam {
   reihe: readonly (readonly [string, number])[]
   einheit: string
   stellen?: number
+  /**
+   * Wo die Y-Achse beginnt (19.11.2026, Euro in Dollar: zwischen 1,09 und
+   * 1,20 wäre die Kurve ab null eine flache Linie). Ohne Angabe bei null.
+   * Die unterste Zahl steht an der Achse, damit niemand null annimmt.
+   */
+  achseAb?: number
   /** Waagerechte Linien, gestrichelt, mit Text links darüber. */
-  marken?: { wert: number; text: string }[]
+  marken?: {
+    wert: number
+    text: string
+    /** Text rechts statt links – wenn links die Kurve auf der Linie liegt. */
+    rechts?: boolean
+  }[]
   /** Beschriftete Punkte; der Tag muss in der Reihe stehen. */
   punkte?: {
     d: string
@@ -44,22 +56,26 @@ export const wertAm = (k: Linienkarte, d: string) => k.reihe.find(([t]) => t ===
 export const linie: Art<Linienkarte> = {
   seiten: () => 1,
   seite(k, logo) {
-    const oben = OBEN_ERSTE + 40
+    /* Ab Seite 2 im Dossier steht oben nur der kleine Kopf. */
+    const folge = ((k as { _dossier?: { seite: number } })._dossier?.seite ?? 1) > 1
+    const oben = folge ? OBEN_FOLGE + 120 : OBEN_ERSTE + 40
     const unten = UNTEN - 80
     const links = STIL_RAND + 70
     const rechts = ZK_BREITE - STIL_RAND - 10
     const werte = k.reihe.map(([, v]) => v)
-    const s = achsenschritt(Math.max(...werte), 5)
-    const hoch = Math.ceil(Math.max(...werte) / s) * s
+    const s = achsenschritt(Math.max(...werte) - (k.achseAb ?? 0), 5)
+    const tiefst = k.achseAb === undefined ? 0 : Math.floor(k.achseAb / s + 1e-9) * s
+    const hoch = tiefst + Math.ceil((Math.max(...werte) - tiefst) / s - 1e-9) * s
     const t0 = Date.parse(k.reihe[0][0])
     const t1 = Date.parse(k.reihe[k.reihe.length - 1][0])
     const X = (d: string) => links + ((Date.parse(d) - t0) / (t1 - t0)) * (rechts - links)
-    const Y = (v: number) => unten - (v / hoch) * (unten - oben)
+    const Y = (v: number) => unten - ((v - tiefst) / (hoch - tiefst)) * (unten - oben)
     let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${ZK_BREITE}" height="${unten + 4}">`
     const ticks: number[] = []
-    for (let v = 0; v <= hoch + 1e-9; v += s) {
+    for (let i = 0; tiefst + i * s <= hoch + 1e-9; i++) {
+      const v = tiefst + i * s
       ticks.push(v)
-      svg += `<line x1="${links}" x2="${rechts}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v === 0 ? STIL.hellgrau : STIL.rand}" stroke-width="${v === 0 ? 2.5 : 1.5}"/>`
+      svg += `<line x1="${links}" x2="${rechts}" y1="${Y(v)}" y2="${Y(v)}" stroke="${i === 0 ? STIL.hellgrau : STIL.rand}" stroke-width="${i === 0 ? 2.5 : 1.5}"/>`
     }
     for (const m of k.marken ?? [])
       svg += `<line x1="${links}" x2="${rechts}" y1="${Y(m.wert)}" y2="${Y(m.wert)}" stroke="${STIL.rot}" stroke-width="2.5" stroke-dasharray="10 8"/>`
@@ -85,10 +101,33 @@ export const linie: Art<Linienkarte> = {
       )
     const j0 = Number(k.reihe[0][0].slice(0, 4))
     const j1 = Number(k.reihe[k.reihe.length - 1][0].slice(0, 4))
-    const jahre: number[] = []
-    const abstand = Math.max(1, Math.ceil((j1 - j0) / 6))
-    for (let j = Math.ceil((j0 + 1) / abstand) * abstand; j <= j1; j += abstand)
-      jahre.push(j)
+    /* Unter zwei Jahren: Monate statt Jahreszahlen (19.11.2026, Euro 2026). */
+    const achse: [string, string][] = []
+    if (t1 - t0 < 2 * 365 * 864e5) {
+      const kurz = [
+        'Jan.',
+        'Feb.',
+        'März',
+        'Apr.',
+        'Mai',
+        'Juni',
+        'Juli',
+        'Aug.',
+        'Sep.',
+        'Okt.',
+        'Nov.',
+        'Dez.',
+      ]
+      for (let j = j0; j <= j1; j++)
+        for (let m = 0; m < 12; m += 2) {
+          const d = `${j}-${String(m + 1).padStart(2, '0')}-01`
+          if (Date.parse(d) >= t0 && Date.parse(d) <= t1) achse.push([d, kurz[m]])
+        }
+    } else {
+      const abstand = Math.max(1, Math.ceil((j1 - j0) / 6))
+      for (let j = Math.ceil((j0 + 1) / abstand) * abstand; j <= j1; j += abstand)
+        achse.push([`${j}-01-01`, String(j)])
+    }
     return rahmen(k, logo, {
       seite: 1,
       seiten: 1,
@@ -99,11 +138,16 @@ export const linie: Art<Linienkarte> = {
           height: unten + 4,
           style: { position: 'absolute', top: 0, left: 0 },
         }),
-        ...ticks.map((v) => klein(zahl(v), { top: Y(v) - 12, left: STIL_RAND })),
-        ...jahre.map((j) =>
-          klein(String(j), {
+        ...ticks.map((v) =>
+          klein(zahl(v, k.achseAb === undefined ? 0 : (k.stellen ?? 2)), {
+            top: Y(v) - 12,
+            left: STIL_RAND,
+          })
+        ),
+        ...achse.map(([d, text]) =>
+          klein(text, {
             top: unten + 10,
-            left: X(`${j}-01-01`) - 30,
+            left: X(d) - 30,
             width: 60,
             justifyContent: 'center',
           })
@@ -117,7 +161,7 @@ export const linie: Art<Linienkarte> = {
         ...(k.marken ?? []).map((m) =>
           klein(m.text, {
             top: Y(m.wert) - 34,
-            left: links + 8,
+            ...(m.rechts ? { right: ZK_BREITE - rechts + 8 } : { left: links + 8 }),
             fontSize: 20,
             fontWeight: 700,
             color: STIL.rot,
@@ -140,6 +184,8 @@ export const linie: Art<Linienkarte> = {
   pruefe(k) {
     const f = pruefeGemeinsam(k)
     if (k.reihe.length < 10) f.push('Weniger als zehn Werte in der Reihe.')
+    if (k.achseAb !== undefined && k.reihe.some(([, v]) => v < k.achseAb!))
+      f.push(`Ein Wert liegt unter dem Achsenbeginn ${k.achseAb}.`)
     for (const p of k.punkte ?? [])
       if (wertAm(k, p.d) === undefined) f.push(`Punkt ${p.d} steht nicht in der Reihe.`)
     for (let i = 1; i < k.reihe.length; i++)
