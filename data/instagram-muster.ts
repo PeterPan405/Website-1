@@ -739,14 +739,14 @@ export const musterkarten: Zahlenkarte[] = [
       { text: 'Aus 1.000 $ wurden …', gruen: true },
     ],
     unterzeile: 'Angelegt am 17.09.2013, dem Tag von GTA V.',
-    foto: 'miami-nacht.jpg',
+    rund: true,
     fotoLogo: 'gta6.png',
     liste: [
       { name: 'Nvidia', anzeige: '379.975 $', logo: 'nvidia.png' },
       { name: 'Apple', anzeige: '21.673 $', logo: 'apple.png' },
     ],
     fusszeile:
-      'Stand: 18.11.2026 | Quelle: Yahoo Finance | Foto: Don Ramey Logan, CC BY 4.0',
+      'Stand: 18.11.2026 | Quelle: Yahoo Finance | Logo: Rockstar Games, gemeinfrei',
     text: 'Muster.\n\nQuelle: Yahoo Finance',
     schlagworte: ['gta', 'nvidia', 'apple', 'aktien', 'langfristig'],
   },

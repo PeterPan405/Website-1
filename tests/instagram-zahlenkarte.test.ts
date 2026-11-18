@@ -1104,10 +1104,14 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       )
     }
     pruefe(
-      'GTA: erste Seite ist ein Deckblatt mit Foto und GTA-VI-Logo (Betreiber 18.11.)',
+      'GTA: erste Seite – GTA-VI-Logo groß auf Weiß, ohne Foto (vom Betreiber gewählt, 18.11.)',
       ueber.art === 'deckblatt' &&
-        ueber.foto === 'miami-nacht.jpg' &&
+        ueber.foto === undefined &&
         ueber.fotoLogo === 'gta6.png'
+    )
+    pruefe(
+      'GTA: freigegeben für den 19.11. (Betreiber 18.11.: „passt“)',
+      dossier.freigabe === '2026-11-19'
     )
     if (ueber.art === 'deckblatt') {
       for (const e of ueber.liste ?? []) {
@@ -1123,10 +1127,9 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
         )
       }
       pruefe(
-        'GTA: Foto und Logo mit Nachweis',
-        dossier.text.includes('Don Ramey Logan, CC BY 4.0') &&
-          dossier.text.includes('Gta 6 logo') &&
-          ueber.fusszeile.includes('Don Ramey Logan')
+        'GTA: GTA-VI-Logo mit Nachweis',
+        dossier.text.includes('Gta 6 logo') &&
+          ueber.fusszeile.includes('Rockstar Games, gemeinfrei')
       )
     }
     for (const l of linien) {
