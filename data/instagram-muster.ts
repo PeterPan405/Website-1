@@ -731,6 +731,26 @@ export const musterkarten: Zahlenkarte[] = [
     schlagworte: ['dax', 'gold', 'nvidia', 'apple', 'langfristig'],
   },
   {
+    /* Deckblatt: Foto über die ganze Breite, Logo darauf, kurze Liste (GTA, 19.11.2026). */
+    art: 'deckblatt',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Von GTA V zu GTA VI:' },
+      { text: 'Aus 1.000 $ wurden …', gruen: true },
+    ],
+    unterzeile: 'Angelegt am 17.09.2013, dem Tag von GTA V.',
+    foto: 'miami-nacht.jpg',
+    fotoLogo: 'gta6.png',
+    liste: [
+      { name: 'Nvidia', anzeige: '379.975 $', logo: 'nvidia.png' },
+      { name: 'Apple', anzeige: '21.673 $', logo: 'apple.png' },
+    ],
+    fusszeile:
+      'Stand: 18.11.2026 | Quelle: Yahoo Finance | Foto: Don Ramey Logan, CC BY 4.0',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['gta', 'nvidia', 'apple', 'aktien', 'langfristig'],
+  },
+  {
     /* Münzstapel: Umsatz im letzten Geschäftsjahr, SEC (fundamentaldaten.json). */
     art: 'stapel',
     datum: '2026-11-15',

@@ -12,6 +12,7 @@
 import { abstuerze, type Absturzkarte } from './abstuerze.ts'
 import { ampel, type Ampelkarte } from './ampel.ts'
 import { damalsheute, type Damalsheutekarte } from './damalsheute.ts'
+import { deckblatt, type Deckblattkarte } from './deckblatt.ts'
 import { DOSSIER_ARTEN, dossier, type Dossierkarte } from './dossier.ts'
 import { erholung, type Erholungkarte } from './erholung.ts'
 import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
@@ -62,11 +63,13 @@ export type NeueKarte =
   | Absturzkarte
   | Dossierkarte
   | Erholungkarte
+  | Deckblattkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
 } = {
   kurszettel,
+  deckblatt,
   punktraster,
   kalender,
   tacho,

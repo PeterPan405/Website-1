@@ -375,6 +375,7 @@ die Vorlage, wie man sie füllt. Die Musterkarten gehen nie hinaus.
 | -------------- | ---------------------------------------------------------------------- | ------------------------------------ |
 | `kurszettel`   | Wochen- oder Tagesbilanz mehrerer Werte                                | `markets.json`                       |
 | `punktraster`  | Anteile, die zusammen 100 % ergeben                                    | Statistik mit Quelle                 |
+| `deckblatt`    | Erste Seite mit Foto über die ganze Breite, Logo darauf, kurze Liste   | Foto/Logo frei lizenziert, genannt   |
 | `kalender`     | ein Jahr Tag für Tag, Plus- und Minustage                              | `markets.json`                       |
 | `tacho`        | wo ein Wert zwischen Tief und Hoch steht                               | `markets.json`                       |
 | `wasserfall`   | wie sich ein Stand Schritt für Schritt aufbaut                         | `markets.json`, Bilanzen             |
