@@ -1391,5 +1391,35 @@
       "suche": "von Hand: Kursverlauf",
       "kurs": "nvidia"
     }
+  ],
+  "2026-11-18": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-18-1-37ae1f0e.jpg",
+      "titel": "File:Manuel Koch an der Frankfurter Börse im Dezember 2016.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Manuel_Koch_an_der_Frankfurter_B%C3%B6rse_im_Dezember_2016.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Sachsens",
+      "suche": "Frankfurt Stock Exchange"
+    },
+    {
+      "stelle": 2,
+      "datei": "",
+      "titel": "Kurs: deutsche-bank",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "deutsche-bank"
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-11-18-4-9b09b5fd.jpg",
+      "titel": "File:Federal Reserve Police car.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Police_car.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Daniel Schwen",
+      "suche": "Federal Reserve"
+    }
   ]
 }
