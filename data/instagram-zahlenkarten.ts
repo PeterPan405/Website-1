@@ -43,7 +43,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       vom 18.11.2026 („Für morgen aber bitte den Post mit GTA“; ausgelesen
       in der Sitzung „IM Invests Local PC“ nach einem Karussell von
       finanzen.net – Form übernommen, Wortlaut, Spielgrafik und GTA-Logos
-      nicht). Dossier: deckblatt (Miami bei Nacht, GTA-VI-Logo, Liste), dann je Wert
+      nicht). Dossier: deckblatt (GTA-VI-Logo groß auf Weiß, Liste; vom Betreiber aus acht Vorschlägen gewählt, „passt“), dann je Wert
       eine linie. Betreiber 18.11.: erste Seite „sehr langweilig“ ohne GTA-Bilder.
       Kurse: data/instagram-reihen-gta.ts (Yahoo Finance, Bitstamp).
       Logos: Wikimedia Commons, gemeinfrei (siehe Beschriftung).
@@ -51,6 +51,7 @@ export const zahlenkarten: Zahlenkarte[] = [
     */
     art: 'dossier',
     datum: '2026-11-19',
+    freigabe: '2026-11-19',
     titel: [
       { text: 'Von GTA V zu GTA VI:' },
       { text: 'Aus 1.000 $ wurden …', gruen: true },
@@ -65,7 +66,7 @@ export const zahlenkarten: Zahlenkarte[] = [
           { text: 'Aus 1.000 $ wurden …', gruen: true },
         ],
         unterzeile: 'Angelegt am 17.09.2013, dem Tag von GTA V (DAX: 1.000 €).',
-        foto: 'miami-nacht.jpg',
+        rund: true,
         fotoLogo: 'gta6.png',
         liste: [
           { name: 'Bitcoin', anzeige: '493.991 $', logo: 'bitcoin.png' },
@@ -76,7 +77,7 @@ export const zahlenkarten: Zahlenkarte[] = [
           { name: 'DAX', anzeige: '2.994 €', logo: 'dax.png' },
         ],
         fusszeile:
-          'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; ohne Dividenden | Foto: Don Ramey Logan, CC BY 4.0',
+          'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; ohne Dividenden | Logo: Rockstar Games, gemeinfrei',
         text: '',
         schlagworte: [],
       },
@@ -187,7 +188,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
     ],
     fusszeile: 'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; eigene Rechnung',
-    text: 'Heute erscheint GTA VI – 13 Jahre und zwei Monate nach GTA V (17.09.2013). Was ist aus den Kursen von damals geworden?\n\nBitcoin: 126,92 $ → 62.697 $ (×494,0)\nNvidia: 0,40 $ → 150,66 $ (×380,0)\nTesla: 11,08 $ → 383,53 $ (×34,6)\nApple: 16,26 $ → 352,43 $ (×21,7)\nTake-Two: 17,00 $ → 215,43 $ (×12,7)\nDAX: 8.597 Pkt. → 25.736 Pkt. (×3,0)\n\nAus 1.000 $ am Tag von GTA V wurden bis zum 18.11.2026: Bitcoin 493.991 $, Nvidia 379.975 $, Tesla 34.608 $, Apple 21.673 $, Take-Two 12.672 $, DAX 2.994 € (DAX in Euro). Ohne Dividenden, ohne Kosten und Steuern.\n\nNvidia, Tesla und Apple sind splitbereinigt: Die Aktie kostete 2013 mehr, aber eine Aktie von damals entspricht heute mehreren.\n\nTake-Two ist der Herausgeber von GTA. Eine Empfehlung ist das nicht – vergangene Kurse sagen nichts über künftige.\n\nQuellen: Yahoo Finance (Schlusskurse, splitbereinigt); Bitstamp (BTC/USD); Foto: „Miami night skyline“ von Don Ramey Logan, CC BY 4.0, Wikimedia Commons; Logos: Wikimedia Commons, gemeinfrei (Gta 6 logo, Tesla T symbol, Apple logo black, Bitcoin logo, DAX-logo, Take-Two Interactive Logo); eigene Rechnung',
+    text: 'Heute erscheint GTA VI – 13 Jahre und zwei Monate nach GTA V (17.09.2013). Was ist aus den Kursen von damals geworden?\n\nBitcoin: 126,92 $ → 62.697 $ (×494,0)\nNvidia: 0,40 $ → 150,66 $ (×380,0)\nTesla: 11,08 $ → 383,53 $ (×34,6)\nApple: 16,26 $ → 352,43 $ (×21,7)\nTake-Two: 17,00 $ → 215,43 $ (×12,7)\nDAX: 8.597 Pkt. → 25.736 Pkt. (×3,0)\n\nAus 1.000 $ am Tag von GTA V wurden bis zum 18.11.2026: Bitcoin 493.991 $, Nvidia 379.975 $, Tesla 34.608 $, Apple 21.673 $, Take-Two 12.672 $, DAX 2.994 € (DAX in Euro). Ohne Dividenden, ohne Kosten und Steuern.\n\nNvidia, Tesla und Apple sind splitbereinigt: Die Aktie kostete 2013 mehr, aber eine Aktie von damals entspricht heute mehreren.\n\nTake-Two ist der Herausgeber von GTA. Eine Empfehlung ist das nicht – vergangene Kurse sagen nichts über künftige.\n\nQuellen: Yahoo Finance (Schlusskurse, splitbereinigt); Bitstamp (BTC/USD); Logos: Wikimedia Commons, gemeinfrei (Gta 6 logo, Tesla T symbol, Apple logo black, Bitcoin logo, DAX-logo, Take-Two Interactive Logo); eigene Rechnung',
     schlagworte: ['gta', 'nvidia', 'bitcoin', 'aktien', 'langfristig'],
   },
   {
