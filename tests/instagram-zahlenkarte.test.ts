@@ -1073,7 +1073,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     )
     pruefe(
       'GTA: Form anders als am Vortag',
-      form(dossier) === 'kreise' && form(karteVom('2026-11-18')!) === 'linie'
+      form(dossier) === 'deckblatt' && form(karteVom('2026-11-18')!) === 'linie'
     )
     const [ueber, ...linien] = dossier.teile
     const reihen: Record<string, readonly (readonly [string, number])[]> = {
@@ -1103,21 +1103,30 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
         r.every((x, i) => i === 0 || x[0] > r[i - 1][0])
       )
     }
-    if (ueber.art === 'kreise') {
-      for (const k of ueber.kreise) {
-        const r = reihen[k.name]
+    pruefe(
+      'GTA: erste Seite ist ein Deckblatt mit Foto und GTA-VI-Logo (Betreiber 18.11.)',
+      ueber.art === 'deckblatt' &&
+        ueber.foto === 'miami-nacht.jpg' &&
+        ueber.fotoLogo === 'gta6.png'
+    )
+    if (ueber.art === 'deckblatt') {
+      for (const e of ueber.liste ?? []) {
+        const r = reihen[e.name]
+        const wert = Math.round((1000 * r.at(-1)![1]) / r[0][1])
         pruefe(
-          `GTA: aus 1.000 wurden bei ${k.name} ${k.wert}`,
-          k.wert === Math.round((1000 * r.at(-1)![1]) / r[0][1])
+          `GTA: aus 1.000 wurden bei ${e.name} ${wert}`,
+          e.anzeige.replace(/\D/g, '') === String(wert)
         )
         pruefe(
-          `GTA: ${k.name} ${k.anzeige} steht so im Text`,
-          dossier.text.includes(`${k.name} ${k.anzeige}`)
+          `GTA: ${e.name} ${e.anzeige} steht so im Text`,
+          dossier.text.includes(`${e.name} ${e.anzeige}`)
         )
       }
       pruefe(
-        'GTA: Kreise absteigend',
-        ueber.kreise.every((k, i) => i === 0 || k.wert <= ueber.kreise[i - 1].wert)
+        'GTA: Foto und Logo mit Nachweis',
+        dossier.text.includes('Don Ramey Logan, CC BY 4.0') &&
+          dossier.text.includes('Gta 6 logo') &&
+          ueber.fusszeile.includes('Don Ramey Logan')
       )
     }
     for (const l of linien) {
