@@ -101,6 +101,275 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'deutsche-bank-datenleck',
+    title: 'Datenleck bringt die Deutsche Bank erneut unter Druck',
+    teaser:
+      'Mehr als 15 Millionen interne Dokumente zeigen fragwürdige Geschäfte der Deutschen Bank. Die Aktie fiel am Dienstag um bis zu 6,2 Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-11-18T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['deutsche-bank', 'datenleck', 'dax', 'banken'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['deutsche-bank'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 17. November 2026, 10:42 Uhr: „Datenleck: Interne Dokumente belasten die Deutsche Bank"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/deutsche-bank-datenleak-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 17. November 2026, 17:57 Uhr: „Interview: 15 Millionen Dokumente und neun Millionen Mails abgeflossen: Wie konnte das passieren, Herr Sewing?"',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/deutsche-bank-wie-konnte-das-passieren-herr-sewing/100270599.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Datenleck erschüttert die Deutsche Bank. Journalistinnen und Journalisten aus mehr als 50 Medienhäusern haben nach eigenen Angaben über 15 Millionen interne Dokumente und mehr als neun Millionen E-Mails ausgewertet – zugespielt von Whistleblowern über Kontakte in Südafrika und Indien. Beteiligt waren unter anderem der Spiegel, ZDF frontal, die New York Times und die Financial Times.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie die Bank um russische Oligarchen warb',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Dokumente sollen zeigen, wie das größte deutsche Geldhaus interne Warnungen wiederholt überging, um profitable Geschäfte fortzuführen. So plante die Bank laut den Recherchen, ihre Einnahmen aus dem Geschäft mit vermögenden russischen Kunden bis 2023 von 28 auf 50 Millionen Euro zu steigern – und erstellte dafür eine Liste der 200 reichsten Russen, darunter Personen mit engen Verbindungen zum Kreml. Das Vorhaben lief trotz Warnungen der New Yorker Finanzaufsicht und interner Experten für Finanzkriminalität weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Epstein, Trump und die AfD',
+      },
+      {
+        type: 'paragraph',
+        text: 'Darüber hinaus sollen die Unterlagen Geschäfte mit dem verurteilten Sexualstraftäter Jeffrey Epstein sowie Transaktionen mit dem heutigen US-Präsidenten Donald Trump dokumentieren. Auch umstrittene Steuergestaltungsmodelle für vermögende Kunden und die Fortführung von Spendenkonten der AfD trotz interner Widerstände sollen darin auftauchen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Reaktion der Bank – und der Börse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Bank erklärte, sie erwarte keine nennenswerten finanziellen Auswirkungen. Die Sachverhalte lägen größtenteils Jahre oder Jahrzehnte zurück und seien damals geprüft worden. Vorstandschef Christian Sewing betonte, die Bank habe sich grundlegend gewandelt: Von 2019 bis 2025 habe das Institut sieben Milliarden Euro in seine Kontrollen investiert. An der Börse half das zunächst wenig: Die Aktie brach im frühen Handel am Dienstag um bis zu 6,2 Prozent auf 30,88 Euro ein und war damit der größte Verlierer im Dax.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Keine der im Datenleck beschriebenen Zahlen verändert die aktuelle Bilanz der Deutschen Bank. Der Kursverlust zeigt trotzdem, wie stark ein Vertrauensschaden allein wirken kann – unabhängig davon, ob daraus am Ende neue Bußgelder oder Verfahren entstehen.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-verschaerfen-chip-exportregeln',
+    title: 'USA verschärfen Exportregeln für KI-Chips in Asien',
+    teaser:
+      'Neue US-Vorschriften verlangen künftig Exportlizenzen für Hochleistungs-Chips nach Malaysia, Singapur und drei weitere Länder. Asiens Börsen gaben nach.',
+    category: 'Märkte',
+    publishedAt: '2026-11-18T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ki-chips', 'export', 'nvidia', 'asien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia', 'nikkei-225'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 17. November 2026, 08:59 Uhr: „US-Regierung verhängt neue Exportbeschränkungen für KI-Chips"',
+        url: 'https://www.tagesschau.de/wirtschaft/weltwirtschaft/usa-einschraenkungen-export-ki-chips-nvidia-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 17. November 2026, 09:32 Uhr: „Nikkei, Topix, CSI 300: Asiens Börsen geben nach – US-Chip-Sanktionen und Nvidia belasten"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/nikkei-topix-csi-300-asiens-boersen-geben-nach-us-chip-sanktionen-und-nvidia-belasten/100270404.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung verschärft ihre Exportregeln für hochmoderne KI-Chips. Nach einer Anordnung des US-Handelsministeriums brauchen Unternehmen künftig eine Exportlizenz, um Hochleistungs-Chips nach Malaysia, Singapur, Indonesien, Thailand oder Brasilien zu liefern. Zusätzlich müssen Betreiber von Rechenzentren mit amerikanischen KI-Chips ihre Kunden künftig genauer prüfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Lücken, die geschlossen werden sollen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Export leistungsstarker KI-Chips nach China ist schon länger untersagt – unter anderem, weil die Technik auch militärisch nutzbar ist. Allerdings fanden sich Umwege: Chips wurden offiziell für andere Länder gekauft und dann weitergereicht, oder chinesische Kunden mieteten einfach Rechenleistung in Rechenzentren etwa in Malaysia, die mit US-Chips ausgestattet sind. Die neuen Regeln sollen genau solche Umwege erschweren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Asiens Börsen sofort reagierten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Noch am selben Tag gaben die wichtigsten asiatischen Börsen nach. Der japanische Nikkei fiel um 1,1 Prozent auf 58.994 Punkte, der breiter gefasste Topix um 1,4 Prozent. Der Shanghai Composite und der chinesische CSI 300 bewegten sich kaum. Die Ankündigung kommt kurz vor dem geplanten Treffen von US-Präsident Donald Trump mit Chinas Staatschef Xi Jinping während Trumps Asienreise.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Exportregel aus Washington reichte aus, um binnen Stunden Kurse in Tokio und Shanghai zu bewegen. Das zeigt, wie eng die Lieferketten für Halbleiter inzwischen mit politischen Entscheidungen einzelner Regierungen verknüpft sind.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-musalem-vier-zinserhoehungen',
+    title: 'Musalem bringt vier weitere Zinserhöhungen ins Spiel',
+    teaser:
+      'St.-Louis-Fed-Chef Alberto Musalem hält bis zu vier weitere Zinsschritte bis Frühjahr 2027 für nötig. Die US-Anleiherendite stieg auf 5,13 Prozent.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-18T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['fed', 'zinsen', 'musalem', 'inflation'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'CNBC, 17. November 2026, 14:34 Uhr MEZ: „St. Louis Fed\'s Musalem says four more rate hikes may be needed in coming months"',
+        url: 'https://www.cnbc.com/2026/11/17/alberto-musalem-fed-interest-rates.html',
+      },
+      {
+        label:
+          'Goldreporter, 16. November 2026: „Goldpreis testet Jahrestief – US-Rendite steigt auf 5,13 Prozent"',
+        url: 'https://www.goldreporter.de/goldpreis-jahrestief-us-rendite-16-11-2026/news/263131/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Präsident der Federal Reserve Bank of St. Louis, Alberto Musalem, hält weitere Zinserhöhungen für wahrscheinlich. In einer Rede in Argentinien sagte er am Dienstag, bis zum Frühjahr 2027 könnten bis zu vier weitere Zinsschritte nötig sein, um die Inflation zuverlässig auf das Zwei-Prozent-Ziel der Notenbank zu bringen. Das wäre möglich bei den Sitzungen im Dezember, Januar, März und April.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Realzins ist – und warum Musalem ihn nennt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Musalem begründete seine Einschätzung mit dem sogenannten Realzins: dem Leitzins abzüglich der Inflationsrate. Dieser solle bis zum Frühjahr zwischen 2 und 2,5 Prozent liegen, liege aktuell aber rund einen Prozentpunkt darunter. Der Leitzins bewegt sich derzeit in einer Spanne von 3,75 bis 4 Prozent. Nur in einem – nach seinen Worten unwahrscheinlichen – Szenario wären laut Musalem keine weiteren Erhöhungen nötig: wenn fallende Energiepreise oder ein Produktivitätsschub die Inflation von selbst senken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Mann ohne Stimmrecht – aber mit Gewicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Musalem stimmt im aktuellen Zyklus nicht über die Zinsentscheidungen der Fed ab; er wird erst 2028 wieder Stimmrecht im Offenmarktausschuss haben. Seine Einschätzungen fließen aber in die Beratungen und die vierteljährlichen Prognosen der Notenbanker ein. Am Anleihemarkt zeigte sich die Reaktion trotzdem deutlich: Die Rendite zehnjähriger US-Staatsanleihen stieg am selben Tag auf 5,13 Prozent, der Goldpreis war zuvor auf ein Jahrestief von 3.856 Dollar je Feinunze gefallen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob tatsächlich vier weitere Zinsschritte kommen, hängt von den nächsten Inflationsdaten ab. Musalems Rede zeigt aber schon jetzt, wie unterschiedlich die Mitglieder der Fed die Lage einschätzen – und wie stark allein die Aussicht auf höhere Zinsen Gold und Anleihen bewegen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'us-hausbauer-stimmung-14-jahre-tief',
+    title: 'US-Hausbauer so pessimistisch wie seit 14 Jahren nicht',
+    teaser:
+      'Der Stimmungsindex der US-Baubranche fiel im November auf 25 Punkte, den tiefsten Stand seit 2012. Fast jeder zweite Baukonzern senkt bereits die Preise.',
+    category: 'Märkte',
+    publishedAt: '2026-11-18T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['usa', 'immobilien', 'baubranche', 'zinsen'],
+    relatedTopics: ['immobilien'],
+    relatedSymbols: ['dow-jones'],
+    sources: [
+      {
+        label:
+          'CNBC, 17. November 2026, 16:36 Uhr MEZ: „Homebuilder sentiment plunges to 14-year low, leading more builders to drop prices"',
+        url: 'https://www.cnbc.com/2026/11/17/homebuilder-sentiment-plunges-to-14-year-low-leading-more-builders-to-drop-prices.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Amerikas Bauunternehmer blicken so pessimistisch auf ihr Geschäft wie seit 14 Jahren nicht mehr. Der gemeinsame Stimmungsindex der National Association of Home Builders und der Bank Wells Fargo fiel im November auf 25 Punkte – der tiefste Stand seit April 2012. Im Vorjahresmonat hatte der Index noch bei 38 gelegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Preissenkungen auf einem neuen Höchststand',
+      },
+      {
+        type: 'paragraph',
+        text: '46 Prozent der befragten Bauunternehmen gaben an, die Preise für neue Häuser bereits gesenkt zu haben – der höchste Anteil seit Beginn der Erhebung in der Zeit nach der Pandemie. 68 Prozent bieten zusätzliche Kaufanreize wie Zinsvergünstigungen oder Ausstattungspakete an. Als Gründe nennen die Unternehmen höhere Zinsen, gestiegene Kosten für Energie, Material und Arbeitskräfte sowie ein schwächeres Verbrauchervertrauen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Teure Kredite bremsen die Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein 30 Jahre lang fest verzinster Hypothekenkredit kostete zuletzt im Schnitt 7,51 Prozent Zinsen – vor einem Jahr waren es noch 6,38 Prozent. Hinzu kommen nach Angaben der Verbände verschärfte Einwanderungskontrollen, die legale Arbeitskräfte von Baustellen fernhalten, sowie Zölle, die Materialkosten erhöhen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Stimmungsindizes wie dieser gelten als Frühindikator für die eigentlichen Baubeginne und Hausverkäufe, die erst Wochen später veröffentlicht werden. Wie stark sich die gedrückte Stimmung tatsächlich in weniger neuen Häusern niederschlägt, zeigen erst die kommenden amtlichen Zahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-rekordquartal-sec-ermittlung',
+    title: 'Nvidia verdoppelt Umsatz und Gewinn – doch die SEC ermittelt',
+    teaser:
+      'Nvidia hat Umsatz und Gewinn im dritten Quartal erneut verdoppelt und die Erwartungen übertroffen. Zugleich ermittelt die US-Börsenaufsicht SEC.',
+    category: 'Märkte',
+    publishedAt: '2026-11-18T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['nvidia', 'halbleiter', 'sec', 'quartalszahlen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'onvista/dpa-AFX, 17. November 2026, 22:03 Uhr: „ROUNDUP: Nvidia verdoppelt erneut Umsatz und Gewinn"',
+        url: 'https://www.onvista.de/news/2026/11-17-roundup-nvidia-verdoppelt-erneut-umsatz-und-gewinn-0-10-26577551',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.11.2026: „Aktie erholt sich: Wieder ein Rekordquartal! Doch jetzt ermittelt die SEC"',
+        url: 'https://www.wallstreet-online.de/nachricht/21708693-aktie-erholt-sich-rekordquartal-ermittelt-sec',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia hat im dritten Quartal seines Geschäftsjahres Umsatz und Gewinn erneut verdoppelt. Der Umsatz stieg auf 115,8 Milliarden Dollar, der Gewinn auf 65,3 Milliarden Dollar – beide Werte deutlich über den Erwartungen der Analysten, die im Schnitt mit 109 Milliarden Dollar Umsatz gerechnet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognose, die noch höher liegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das laufende Quartal stellt Nvidia einen Umsatz von rund 130 Milliarden Dollar in Aussicht, mit einer Schwankungsbreite von plus oder minus drei Prozent. Auch das liegt über den von Analysten erwarteten 125 Milliarden Dollar und entspräche einem Wachstum von 91 Prozent gegenüber dem Vorjahr. Die Aktie legte im nachbörslichen Handel zunächst bis zu drei Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rekordzahlen, aber die SEC ermittelt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel zu den Zahlen wurde bekannt, dass die US-Börsenaufsicht SEC eine zivilrechtliche Untersuchung gegen Nvidia eingeleitet hat. Geprüft wird, ob öffentliche Aussagen des Konzerns Anlegerinnen und Anleger in die Irre geführt haben. Anlass ist der plötzliche Rücktritt von Firmenchef Jensen Huang, nachdem er außereheliche Affären eingeräumt hatte – eine davon mit einer Frau, die nach Einschätzung US-amerikanischer Sicherheitskreise mit chinesischen Geheimdiensten in Verbindung stehen könnte. US-Finanzminister Scott Bessent verlangt vom Nvidia-Vorstand binnen zehn Tagen Antworten; Huang und Nvidias Chefjustiziar sollen im Dezember drei Ausschüssen des US-Repräsentantenhauses Bericht erstatten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass die Aktie trotz verdoppeltem Umsatz und angehobener Prognose nur moderat zulegte, zeigt, wie viel von einem derart erwarteten Rekordquartal bereits im Kurs steckt. Die laufende SEC-Untersuchung dürfte in den kommenden Wochen zusätzliche Unsicherheit liefern, unabhängig davon, wie die eigentlichen Geschäftszahlen ausfallen.',
+      },
+    ],
+  },
+  {
     slug: 'eu-fed-billigen-unicredit-commerzbank',
     title: 'EU und US-Notenbank geben grünes Licht für Commerzbank-Übernahme',
     teaser:

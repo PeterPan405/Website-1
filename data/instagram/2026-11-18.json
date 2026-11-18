@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Ein Datenleck erschüttert die Deutsche Bank, die USA verschärfen Chip-Exporte nach Asien, die Fed bringt vier Zinsschritte ins Spiel, US-Bauunternehmer sind so pessimistisch wie seit 14 Jahren nicht – und Nvidia verdoppelt Umsatz und Gewinn.",
+  "kacheln": [
+    {
+      "titel": "Deutsche Bank: Datenleck",
+      "text": "Ein Datenleck mit über 15 Millionen Dokumenten belastet die Deutsche Bank. Die Aktie fiel um bis zu 6,2 Prozent, der größte Verlust im Dax."
+    },
+    {
+      "titel": "USA verschärfen Chip-Exporte",
+      "text": "Die USA verlangen künftig Exportlizenzen für KI-Chips nach Malaysia, Singapur und drei weitere Länder. Asiens Börsen gaben daraufhin nach."
+    },
+    {
+      "titel": "Musalem: Vier Zinsschritte",
+      "text": "Fed-Präsident Alberto Musalem hält bis zu vier weitere Zinserhöhungen bis Frühjahr 2027 für möglich. Die US-Anleiherendite stieg auf 5,13 Prozent."
+    },
+    {
+      "titel": "US-Hausbauer: 14-Jahres-Tief",
+      "text": "Die Stimmung unter US-Bauunternehmern fiel auf den tiefsten Stand seit 2012. Fast jeder zweite Baukonzern senkt bereits die Preise für neue Häuser."
+    },
+    {
+      "titel": "Nvidia: Rekord, SEC prüft",
+      "text": "Nvidia verdoppelte Umsatz und Gewinn im dritten Quartal erneut und übertraf die Erwartungen. Gleichzeitig eröffnete die US-Börsenaufsicht SEC eine Untersuchung."
+    }
+  ],
+  "schlagworte": ["fed", "zinsen", "nvidia", "börse", "aktien"]
+}
