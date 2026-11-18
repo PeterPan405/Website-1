@@ -1052,17 +1052,29 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
 
 /* 19.11.2026: Der Euro gegen fünf Währungen (Yahoo Finance, eingefroren in tests/daten/). */
 {
-  const karte = karteVom('2026-11-19')
-  pruefe('Euro: Karte für den 19.11. ist ein Kurszettel', karte?.art === 'kurszettel')
-  if (karte?.art === 'kurszettel') {
+  const dossier = karteVom('2026-11-19')
+  pruefe('Euro: Karte für den 19.11. ist ein Dossier', dossier?.art === 'dossier')
+  const karte = dossier?.art === 'dossier' ? dossier.teile[0] : undefined
+  const chart = dossier?.art === 'dossier' ? dossier.teile[1] : undefined
+  pruefe(
+    'Euro: Seite 1 Kurszettel, Seite 2 Chart (Betreiber 18.11.: „zweites Bild mit Chart“)',
+    karte?.art === 'kurszettel' &&
+      chart?.art === 'linie' &&
+      zahlenkarteSeiten(dossier!) === 2
+  )
+  if (
+    dossier?.art === 'dossier' &&
+    karte?.art === 'kurszettel' &&
+    chart?.art === 'linie'
+  ) {
     pruefe(
       'Euro: keine Beanstandung',
-      pruefeZahlenkarte(karte).length === 0,
-      pruefeZahlenkarte(karte).join(' | ')
+      pruefeZahlenkarte(dossier).length === 0,
+      pruefeZahlenkarte(dossier).join(' | ')
     )
     pruefe(
       'Euro: Form anders als am Vortag',
-      form(karte) !== form(karteVom('2026-11-18')!)
+      form(dossier) === 'kurszettel' && form(karteVom('2026-11-18')!) === 'linie'
     )
     const roh = JSON.parse(readFileSync('tests/daten/kurse-euro-2026-11-17.json', 'utf8'))
       .instruments as Record<string, { points: { d: string; c: number }[] }>
@@ -1089,7 +1101,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       )
       pruefe(
         `Euro: ${z.name} Anfang und Ende stehen im Text`,
-        karte.text.includes(
+        dossier.text.includes(
           `${komma(start.c, z.name === 'Japanischer Yen' ? 2 : 4)} → ${komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4)}`
         )
       )
@@ -1136,7 +1148,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
     )
     pruefe(
       'Euro: Text unter 2.150 Zeichen samt Rechtshinweis',
-      karte.text.length + RECHTSHINWEIS.length + 2 < 2150
+      dossier.text.length + RECHTSHINWEIS.length + 2 < 2150
     )
     for (const f of [
       'flagge-china.png',

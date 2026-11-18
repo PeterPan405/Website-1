@@ -2773,6 +2773,13 @@ export function form(
   | 'entweder'
   | 'chart'
   | NeueKarte['art'] {
+  /*
+    Ein Dossier zählt als die Art seiner ersten Seite – die sieht man im
+    Feed (19.11.2026: Euro als Kurszettel mit Chart dahinter, am Vortag das
+    Silber-Dossier mit einer Linie vorn; „dossier“ gegen „dossier“ hätte
+    zwei Karten gleich genannt, die nichts gemein haben).
+  */
+  if (istNeueKarte(k) && k.art === 'dossier') return k.teile[0].art
   if (istNeueKarte(k)) return k.art
   if (k.art === 'zahlenstrahl') return 'zahlenstrahl'
   if (k.art === 'raetsel') return 'raetsel'
