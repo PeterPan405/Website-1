@@ -3,7 +3,7 @@
  *
  * Ausführen mit `npm test`. Anlass und Form in `lib/instagram-zahlenkarte.ts`.
  */
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 
 import { zahlenkarten, aktuelleZahlenkarte } from '@/data/instagram-zahlenkarten'
 import { RECHTSHINWEIS } from '@/lib/instagram-plan'
@@ -35,6 +35,14 @@ import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
 import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
+import {
+  GTA_APPLE,
+  GTA_BITCOIN,
+  GTA_DAX,
+  GTA_NVIDIA,
+  GTA_TAKE_TWO,
+  GTA_TESLA,
+} from '@/data/instagram-reihen-gta'
 
 let failed = 0
 /*
@@ -1050,127 +1058,105 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
-/* 19.11.2026: Der Euro gegen fünf Währungen (Yahoo Finance, eingefroren in tests/daten/). */
+/* 19.11.2026: Von GTA V zu GTA VI (Yahoo Finance, Bitstamp; data/instagram-reihen-gta.ts). */
 {
   const dossier = karteVom('2026-11-19')
-  pruefe('Euro: Karte für den 19.11. ist ein Dossier', dossier?.art === 'dossier')
-  const karte = dossier?.art === 'dossier' ? dossier.teile[0] : undefined
-  const chart = dossier?.art === 'dossier' ? dossier.teile[1] : undefined
   pruefe(
-    'Euro: Seite 1 Kurszettel, Seite 2 Chart (Betreiber 18.11.: „zweites Bild mit Chart“)',
-    karte?.art === 'kurszettel' &&
-      chart?.art === 'linie' &&
-      zahlenkarteSeiten(dossier!) === 2
+    'GTA: Karte für den 19.11. ist ein Dossier aus sieben Seiten',
+    dossier?.art === 'dossier' && zahlenkarteSeiten(dossier) === 7
   )
-  if (
-    dossier?.art === 'dossier' &&
-    karte?.art === 'kurszettel' &&
-    chart?.art === 'linie'
-  ) {
+  if (dossier?.art === 'dossier') {
     pruefe(
-      'Euro: keine Beanstandung',
+      'GTA: keine Beanstandung',
       pruefeZahlenkarte(dossier).length === 0,
       pruefeZahlenkarte(dossier).join(' | ')
     )
     pruefe(
-      'Euro: Form anders als am Vortag',
-      form(dossier) === 'kurszettel' && form(karteVom('2026-11-18')!) === 'linie'
+      'GTA: Form anders als am Vortag',
+      form(dossier) === 'kreise' && form(karteVom('2026-11-18')!) === 'linie'
     )
-    const roh = JSON.parse(readFileSync('tests/daten/kurse-euro-2026-11-17.json', 'utf8'))
-      .instruments as Record<string, { points: { d: string; c: number }[] }>
-    const symbol: Record<string, string> = {
-      'Chinesischer Yuan': 'eur-cny',
-      'US-Dollar': 'eur-usd',
-      'Japanischer Yen': 'eur-jpy',
-      'Britisches Pfund': 'eur-gbp',
-      'Schweizer Franken': 'eur-chf',
+    const [ueber, ...linien] = dossier.teile
+    const reihen: Record<string, readonly (readonly [string, number])[]> = {
+      Bitcoin: GTA_BITCOIN,
+      Nvidia: GTA_NVIDIA,
+      Tesla: GTA_TESLA,
+      Apple: GTA_APPLE,
+      'Take-Two': GTA_TAKE_TWO,
+      DAX: GTA_DAX,
     }
-    const komma = (v: number, n: number) => v.toFixed(n).replace('.', ',')
-    for (const z of karte.zeilen) {
-      const p = roh[symbol[z.name]].points
-      const ende = p.at(-1)!
-      const start = p.filter((x) => x.d < '2026-01-01').at(-1)!
-      const v = Math.round((ende.c / start.c - 1) * 1000) / 10
+    /* Schlusskurse am 17.09.2013, dem Erscheinungstag von GTA V (Yahoo, Bitstamp). */
+    const start: Record<string, number> = {
+      Bitcoin: 126.92,
+      Nvidia: 0.3965,
+      Tesla: 11.082,
+      Apple: 16.2614,
+      'Take-Two': 17,
+      DAX: 8596.95,
+    }
+    for (const [name, r] of Object.entries(reihen)) {
       pruefe(
-        `Euro: ${z.name} ${v} % seit Jahresbeginn`,
-        ende.d === '2026-11-17' && v === z.aenderung
+        `GTA: ${name} beginnt am 17.09.2013 mit ${start[name]}`,
+        r[0][0] === '2013-09-17' && r[0][1] === start[name]
       )
       pruefe(
-        `Euro: ${z.name} Kurs ${z.kurs} wie im Bestand`,
-        z.kurs.startsWith(komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4))
+        `GTA: ${name} aufsteigend, ein Wert je Tag`,
+        r.every((x, i) => i === 0 || x[0] > r[i - 1][0])
       )
-      pruefe(
-        `Euro: ${z.name} Anfang und Ende stehen im Text`,
-        dossier.text.includes(
-          `${komma(start.c, z.name === 'Japanischer Yen' ? 2 : 4)} → ${komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4)}`
-        )
-      )
-      const jahr = p.filter((x) => x.d >= '2026-01-01')
-      const tief = jahr.reduce((a, b) => (b.c < a.c ? b : a))
-      if (z.zusatz.startsWith('Jahrestief')) {
-        pruefe(`Euro: ${z.name} am 17.11. auf dem Jahrestief`, tief.d === ende.d)
-        const vorher = p
-          .slice(0, -1)
-          .filter((x) => x.c <= ende.c)
-          .at(-1)!
-        const monate = [
-          'Januar',
-          'Februar',
-          'März',
-          'April',
-          'Mai',
-          'Juni',
-          'Juli',
-          'August',
-          'September',
-          'Oktober',
-          'November',
-          'Dezember',
-        ]
-        const wann = `${monate[Number(vorher.d.slice(5, 7)) - 1]} ${vorher.d.slice(0, 4)}`
-        pruefe(`Euro: ${z.name} so tief zuletzt ${wann}`, z.zusatz.endsWith(wann))
-      } else {
+    }
+    if (ueber.art === 'kreise') {
+      for (const k of ueber.kreise) {
+        const r = reihen[k.name]
         pruefe(
-          `Euro: ${z.name} Tief des Jahres ${tief.c}`,
-          tief.c === 0.9008 &&
-            tief.d.slice(5, 7) === '03' &&
-            z.zusatz.includes('0,9008 im März')
+          `GTA: aus 1.000 wurden bei ${k.name} ${k.wert}`,
+          k.wert === Math.round((1000 * r.at(-1)![1]) / r[0][1])
+        )
+        pruefe(
+          `GTA: ${k.name} ${k.anzeige} steht so im Text`,
+          dossier.text.includes(`${k.name} ${k.anzeige}`)
         )
       }
+      pruefe(
+        'GTA: Kreise absteigend',
+        ueber.kreise.every((k, i) => i === 0 || k.wert <= ueber.kreise[i - 1].wert)
+      )
     }
-    const usd = roh['eur-usd'].points.filter((x) => x.d >= '2026-01-01')
-    const hoch = usd.reduce((a, b) => (b.c > a.c ? b : a))
+    for (const l of linien) {
+      if (l.art !== 'linie') continue
+      const name = l.titel[0].text.replace(':', '')
+      const r = reihen[name]
+      pruefe(`GTA: ${name} zeigt seine eigene Reihe`, l.reihe === r)
+      pruefe(
+        `GTA: ${name} Punkte am 17.09.2013 und am letzten Tag`,
+        l.punkte?.[0].d === '2013-09-17' && l.punkte?.[1].d === r.at(-1)![0]
+      )
+      pruefe(
+        `GTA: ${name} Faktor steht im Text`,
+        dossier.text.includes(`${name}: `) &&
+          dossier.text.includes(
+            `(×${(r.at(-1)![1] / r[0][1]).toFixed(1).replace('.', ',')})`
+          )
+      )
+      pruefe(
+        `GTA: ${name} Logo liegt bereit`,
+        !!l.logo && existsSync(`lib/instagram/logos/${l.logo}`)
+      )
+    }
     pruefe(
-      'Euro: Dollar-Hoch 1,1974 am 28.01. und −8,2 % seitdem',
-      hoch.d === '2026-01-28' &&
-        hoch.c === 1.1974 &&
-        Math.round((usd.at(-1)!.c / hoch.c - 1) * 1000) / 10 === -8.2
-    )
-    pruefe(
-      'Euro: Text unter 2.150 Zeichen samt Rechtshinweis',
+      'GTA: Text unter 2.150 Zeichen samt Rechtshinweis',
       dossier.text.length + RECHTSHINWEIS.length + 2 < 2150
     )
-    for (const f of [
-      'flagge-china.png',
-      'flagge-usa.png',
-      'flagge-japan.png',
-      'flagge-grossbritannien.png',
-      'flagge-schweiz.png',
-    ])
-      pruefe(
-        `Euro: ${f} liegt bei den Logos`,
-        karte.zeilen.some((z) => z.logo === f)
-      )
-    /* Die Prüfung muss einen falschen Wert finden. */
     pruefe(
-      'Euro: ein falsches Vorzeichen wird gefunden',
+      'GTA: Logos mit Nachweis in der Beschriftung',
+      dossier.text.includes('Wikimedia Commons, gemeinfrei')
+    )
+    pruefe(
+      'GTA: eine fremde Reihe wird gefunden',
       (() => {
-        const p = roh['eur-usd'].points
-        const v =
-          Math.round(
-            (p.at(-1)!.c / p.filter((x) => x.d < '2026-01-01').at(-1)!.c - 1) * 1000
-          ) / 10
-        return v !== 6.5
+        const r = reihen.Nvidia
+        return (
+          Math.round((1000 * r.at(-1)![1]) / r[0][1]) !==
+          Math.round((1000 * GTA_TESLA.at(-1)![1]) / GTA_TESLA[0][1])
+        )
       })()
     )
   }
