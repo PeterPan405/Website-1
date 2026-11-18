@@ -34,8 +34,14 @@ const FOTO_ORDNER = join(process.cwd(), 'lib/instagram/fotos')
 
 export interface Deckblattkarte extends NeuGemeinsam {
   art: 'deckblatt'
-  /** JPEG in lib/instagram/fotos/, mindestens 1080 breit. */
-  foto: string
+  /** JPEG in lib/instagram/fotos/, mindestens 1080 breit. Ohne Foto steht das Logo groß auf Weiß. */
+  foto?: string
+  /**
+   * Foto mit Rand und runden Ecken statt randlos – ruhiger im Feed, passt zu
+   * den weißen Startseiten (Betreiber 18.11.2026 zur bunten Vollbild-Fassung:
+   * „Das würde zu sehr rausstechen … unästhetisch“).
+   */
+  rund?: boolean
   /** Logo auf dem Foto, oben mittig (PNG mit Transparenz). */
   fotoLogo?: string
   /**
@@ -59,26 +65,40 @@ export const deckblatt: Art<Deckblattkarte> = {
   seiten: () => 1,
   seite(k, logo) {
     if (k.vollbild) return vollbild(k, logo)
-    const fotoOben = OBEN_ERSTE - 70
+    const fotoOben = OBEN_ERSTE - 70 + (k.rund ? 20 : 0)
     const fotoH = 560
-    const bild = `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, k.foto)).toString('base64')}`
-    const inhalt: Element[] = [
-      h('img', {
-        src: bild,
-        width: ZK_BREITE,
-        height: fotoH,
-        style: { position: 'absolute', top: fotoOben, left: 0, objectFit: 'cover' },
-      }),
-    ]
+    const rand = k.rund ? STIL_RAND : 0
+    const inhalt: Element[] = []
+    if (k.foto) {
+      const bild = `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, k.foto)).toString('base64')}`
+      inhalt.push(
+        h('img', {
+          src: bild,
+          width: ZK_BREITE - 2 * rand,
+          height: fotoH,
+          style: {
+            position: 'absolute',
+            top: fotoOben,
+            left: rand,
+            objectFit: 'cover',
+            borderRadius: k.rund ? 28 : 0,
+          },
+        })
+      )
+    }
     if (k.fotoLogo) {
-      const lh = 175
+      const lh = k.foto ? 175 : 380
       const lw = Math.round(lh * logoVerhaeltnis(k.fotoLogo))
       inhalt.push(
         h('img', {
           src: logoAdresse(k.fotoLogo),
           height: lh,
           width: lw,
-          style: { position: 'absolute', top: fotoOben + 14, left: (ZK_BREITE - lw) / 2 },
+          style: {
+            position: 'absolute',
+            top: k.foto ? fotoOben + 24 : fotoOben + (fotoH - lh) / 2,
+            left: (ZK_BREITE - lw) / 2,
+          },
         })
       )
     }
@@ -131,7 +151,7 @@ export const deckblatt: Art<Deckblattkarte> = {
   },
   pruefe(k) {
     const f = pruefeGemeinsam(k)
-    if (!existsSync(join(FOTO_ORDNER, k.foto)))
+    if (k.foto && !existsSync(join(FOTO_ORDNER, k.foto)))
       f.push(`Foto „${k.foto}“ fehlt in lib/instagram/fotos/.`)
     for (const l of [k.fotoLogo, ...(k.liste ?? []).map((e) => e.logo)])
       if (l && !existsSync(join(LOGO_ORDNER, l)))
@@ -147,7 +167,7 @@ const PINK = '#ff4fb5'
 function vollbild(k: Deckblattkarte, logo: string): Element {
   const v = k.vollbild!
   const d = (k as { _dossier?: { seite: number; seiten: number } })._dossier
-  const bild = `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, k.foto)).toString('base64')}`
+  const bild = `data:image/jpeg;base64,${readFileSync(join(FOTO_ORDNER, k.foto!)).toString('base64')}`
   const schatten = `<svg xmlns="http://www.w3.org/2000/svg" width="${ZK_BREITE}" height="${ZK_HOEHE}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0.55"/><stop offset="0.25" stop-color="#000" stop-opacity="0"/><stop offset="0.5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0b0420" stop-opacity="0.92"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`
   const kinder: Element[] = [
     h('img', {
