@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-17T14:46:21.560Z",
+  "abgerufenAm": "2026-11-18T14:23:50.202Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,9 +10,10 @@
       "stand": "2026-11-05",
       "von": "2026-10-05",
       "bis": "2026-12-18",
-      "zeilen": 3177,
-      "kommendGesamt": 223,
+      "zeilen": 3178,
+      "kommendGesamt": 224,
       "spalten": [
+        "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
@@ -38,46 +39,38 @@
     },
     "nasdaq": {
       "tageAbgefragt": 50,
-      "tageMitZeilen": 35,
-      "letzterTag": "2027-01-11",
-      "zeilen": 684,
-      "imKatalog": 49,
-      "mitLage": 37,
-      "beigetragen": 49
+      "tageMitZeilen": 34,
+      "letzterTag": "2027-01-12",
+      "zeilen": 587,
+      "imKatalog": 47,
+      "mitLage": 32,
+      "beigetragen": 47
     }
   },
   "unternehmen": {
     "NVDA": {
       "name": "NVIDIA CORP",
       "bisher": [
+        "2026-11-17",
         "2026-08-26",
         "2026-05-20",
         "2026-02-25",
         "2025-11-19",
         "2025-08-27",
         "2025-05-28",
-        "2025-02-26",
-        "2024-11-20"
+        "2025-02-26"
       ],
       "bisherZeiten": {
+        "2026-11-17": "16:20",
         "2026-08-26": "16:21",
         "2026-05-20": "16:21",
         "2026-02-25": "16:31",
         "2025-11-19": "16:20",
         "2025-08-27": "16:22",
         "2025-05-28": "16:21",
-        "2025-02-26": "16:21",
-        "2024-11-20": "16:21"
+        "2025-02-26": "16:21"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-17",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-24",
           "basis": "2026-02-25",
@@ -95,6 +88,12 @@
           "basis": "2026-08-26",
           "streuungTage": 0,
           "newYorkerZeit": "16:21"
+        },
+        {
+          "erwartet": "2027-11-16",
+          "basis": "2026-11-17",
+          "streuungTage": 1,
+          "newYorkerZeit": "16:20"
         }
       ]
     },
@@ -1569,9 +1568,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-12",
-          "basis": "2026-01-13",
-          "streuungTage": 1,
-          "newYorkerZeit": "06:41"
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-13",
@@ -2157,14 +2156,6 @@
         "2025-02-25": "06:49"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-17",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-02-23",
           "basis": "2026-02-24",
@@ -6340,9 +6331,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-12",
-          "basis": "2026-01-13",
-          "streuungTage": 4,
-          "newYorkerZeit": "06:30"
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-07",
@@ -7733,9 +7724,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-12",
-          "basis": "2026-01-13",
-          "streuungTage": 1,
-          "newYorkerZeit": "06:30"
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-15",
@@ -7829,14 +7820,6 @@
         "2025-02-05": "06:42"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-17",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-02-01",
           "basis": "2026-02-02",
@@ -8632,24 +8615,24 @@
     "TGT": {
       "name": "TARGET CORP",
       "bisher": [
+        "2026-11-18",
         "2026-08-19",
         "2026-05-20",
         "2026-03-03",
         "2026-02-11",
         "2025-11-19",
         "2025-08-20",
-        "2025-05-21",
-        "2025-03-04"
+        "2025-05-21"
       ],
       "bisherZeiten": {
+        "2026-11-18": "06:46",
         "2026-08-19": "07:51",
         "2026-05-20": "07:57",
         "2026-03-03": "07:12",
         "2026-02-11": "06:30",
         "2025-11-19": "07:58",
         "2025-08-20": "06:45",
-        "2025-05-21": "07:02",
-        "2025-03-04": "06:49"
+        "2025-05-21": "07:02"
       },
       "vorhersagen": [
         {
@@ -8677,6 +8660,12 @@
           "basis": "2026-08-19",
           "streuungTage": 0,
           "newYorkerZeit": "07:51"
+        },
+        {
+          "erwartet": "2027-11-17",
+          "basis": "2026-11-18",
+          "streuungTage": 0,
+          "newYorkerZeit": "06:46"
         }
       ]
     },
@@ -8734,24 +8723,24 @@
     "TJX": {
       "name": "TJX COMPANIES INC /DE/",
       "bisher": [
+        "2026-11-18",
         "2026-08-19",
         "2026-05-20",
         "2026-02-25",
         "2025-11-19",
         "2025-08-20",
         "2025-05-21",
-        "2025-02-26",
-        "2024-11-20"
+        "2025-02-26"
       ],
       "bisherZeiten": {
+        "2026-11-18": "09:19",
         "2026-08-19": "09:09",
         "2026-05-20": "09:12",
         "2026-02-25": "09:11",
         "2025-11-19": "09:12",
         "2025-08-20": "09:11",
         "2025-05-21": "09:16",
-        "2025-02-26": "09:10",
-        "2024-11-20": "08:49"
+        "2025-02-26": "09:10"
       },
       "vorhersagen": [
         {
@@ -8779,30 +8768,36 @@
           "basis": "2026-08-19",
           "streuungTage": 0,
           "newYorkerZeit": "09:09"
+        },
+        {
+          "erwartet": "2027-11-17",
+          "basis": "2026-11-18",
+          "streuungTage": 0,
+          "newYorkerZeit": "09:19"
         }
       ]
     },
     "LOW": {
       "name": "LOWES COMPANIES INC",
       "bisher": [
+        "2026-11-18",
         "2026-08-19",
         "2026-05-20",
         "2026-02-25",
         "2025-11-19",
         "2025-08-20",
         "2025-05-21",
-        "2025-02-26",
-        "2024-11-19"
+        "2025-02-26"
       ],
       "bisherZeiten": {
+        "2026-11-18": "08:45",
         "2026-08-19": "08:45",
         "2026-05-20": "08:45",
         "2026-02-25": "08:44",
         "2025-11-19": "08:45",
         "2025-08-20": "06:03",
         "2025-05-21": "08:47",
-        "2025-02-26": "08:45",
-        "2024-11-19": "08:45"
+        "2025-02-26": "08:45"
       },
       "vorhersagen": [
         {
@@ -8828,6 +8823,12 @@
         {
           "erwartet": "2027-08-18",
           "basis": "2026-08-19",
+          "streuungTage": 0,
+          "newYorkerZeit": "08:45"
+        },
+        {
+          "erwartet": "2027-11-17",
+          "basis": "2026-11-18",
           "streuungTage": 0,
           "newYorkerZeit": "08:45"
         }
@@ -18418,7 +18419,7 @@
     "UCG.MI": "2026-11-15",
     "UHR.SW": "2026-11-16",
     "ULTRACEMCO.NS": "2026-11-17",
-    "ULVR.L": "2026-08-18",
+    "ULVR.L": "2026-11-18",
     "UMC": "2026-08-18",
     "UMI.BR": "2026-08-18",
     "UPM.HE": "2026-08-18",
