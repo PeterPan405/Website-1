@@ -3,13 +3,19 @@
  * Zeit, mit waagerechten Marken (etwa einem alten Hoch) und beschrifteten
  * Punkten (Hoch, heute). Achsen mit Jahreszahlen und Werten. Eine Seite.
  */
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+
 import { createElement as h } from 'react'
 
 import {
+  LOGO_ORDNER,
   STIL,
   STIL_RAND,
   ZK_BREITE,
   achsenschritt,
+  logoAdresse,
+  logoVerhaeltnis,
   svgAdresse,
 } from '../../instagram-zahlenkarte.ts'
 import {
@@ -26,6 +32,14 @@ import {
 
 export interface Linienkarte extends NeuGemeinsam {
   art: 'linie'
+  /**
+   * Freier Rand rechts in Pixeln: Ein Punkt am letzten Tag der Reihe bekommt
+   * seinen Text rechts daneben statt über der Kurve (19.11.2026, GTA – die
+   * Texte lagen auf der Linie).
+   */
+  platzRechts?: number
+  /** Logo aus lib/instagram/logos/, oben rechts über der Grafik (19.11.2026, GTA). */
+  logo?: string
   reihe: readonly (readonly [string, number])[]
   einheit: string
   stellen?: number
@@ -61,7 +75,7 @@ export const linie: Art<Linienkarte> = {
     const oben = folge ? OBEN_FOLGE + 120 : OBEN_ERSTE + 40
     const unten = UNTEN - 80
     const links = STIL_RAND + 70
-    const rechts = ZK_BREITE - STIL_RAND - 10
+    const rechts = ZK_BREITE - STIL_RAND - 10 - (k.platzRechts ?? 0)
     const werte = k.reihe.map(([, v]) => v)
     const s = achsenschritt(Math.max(...werte) - (k.achseAb ?? 0), 5)
     const tiefst = k.achseAb === undefined ? 0 : Math.floor(k.achseAb / s + 1e-9) * s
@@ -152,6 +166,21 @@ export const linie: Art<Linienkarte> = {
             justifyContent: 'center',
           })
         ),
+        ...(k.logo
+          ? [
+              h('img', {
+                src: logoAdresse(k.logo),
+                height: 56,
+                width: Math.min(220, Math.round(56 * logoVerhaeltnis(k.logo))),
+                style: {
+                  position: 'absolute',
+                  top: oben - 120,
+                  right: STIL_RAND,
+                  objectFit: 'contain',
+                },
+              }),
+            ]
+          : []),
         klein(k.einheit, {
           top: oben - 44,
           left: STIL_RAND,
@@ -169,6 +198,14 @@ export const linie: Art<Linienkarte> = {
         ),
         ...(k.punkte ?? []).map((p) => {
           const x = X(p.d)
+          if (k.platzRechts && p.d === k.reihe[k.reihe.length - 1][0])
+            return klein(p.text, {
+              top: Y(wertAm(k, p.d)!) - 14,
+              left: x + 18,
+              fontSize: 20,
+              fontWeight: 700,
+              color: farbe[p.farbe ?? 'navy'],
+            })
           const rechtsBuendig = x > ZK_BREITE - 260
           return klein(p.text, {
             top: Y(wertAm(k, p.d)!) + (p.unten ? 18 : -46),
@@ -184,6 +221,8 @@ export const linie: Art<Linienkarte> = {
   pruefe(k) {
     const f = pruefeGemeinsam(k)
     if (k.reihe.length < 10) f.push('Weniger als zehn Werte in der Reihe.')
+    if (k.logo && !existsSync(join(LOGO_ORDNER, k.logo)))
+      f.push(`Logo „${k.logo}“ fehlt in lib/instagram/logos/.`)
     if (k.achseAb !== undefined && k.reihe.some(([, v]) => v < k.achseAb!))
       f.push(`Ein Wert liegt unter dem Achsenbeginn ${k.achseAb}.`)
     for (const p of k.punkte ?? [])

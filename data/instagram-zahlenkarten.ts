@@ -26,121 +26,162 @@ import {
 } from './instagram-reihen-atomwaffen.ts'
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
-import { EURO_DOLLAR_2026 } from './instagram-reihen-euro.ts'
+import {
+  GTA_APPLE,
+  GTA_BITCOIN,
+  GTA_DAX,
+  GTA_NVIDIA,
+  GTA_TAKE_TWO,
+  GTA_TESLA,
+} from './instagram-reihen-gta.ts'
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 19.11.2026, „Der Euro 2026: schwächer gegen alle fünf“ –
-      Thema vom Betreiber am 18.11.2026 aus den Vorschlägen gewählt
-      („Nummer 4 Euro wird schwächer“). Dossier aus kurszettel und linie
-      (Betreiber 18.11.: „zweites Bild mit Chart“), Flaggen statt
-      Logos (selbst gezeichnet, gemeinfreie Motive). Form anders als am
-      Vortag (18.11.: dossier).
-
-      Kurse: data/snapshots/markets.json (eur-usd, eur-cny, eur-jpy,
-      eur-gbp, eur-chf), Schluss 31.12.2025 gegen 17.11.2026. Jahrestiefs
-      und „zuletzt so tief“ aus derselben Reihe. Gründe nur aus unseren
-      Ausgaben mit gelesener Quelle: onvista/dpa-AFX 01.10.2026,
-      wallstreet-online 07.10.2026, wallstreet-online (Bloomberg)
-      30.10.2026, CNBC 17.11.2026.
+      Zahlenkarte 19.11.2026, „Von GTA V zu GTA VI“ – Auftrag des Betreibers
+      vom 18.11.2026 („Für morgen aber bitte den Post mit GTA“; ausgelesen
+      in der Sitzung „IM Invests Local PC“ nach einem Karussell von
+      finanzen.net – Form übernommen, Wortlaut, Spielgrafik und GTA-Logos
+      nicht). Dossier: kreise (Übersicht), dann je Wert eine linie.
+      Kurse: data/instagram-reihen-gta.ts (Yahoo Finance, Bitstamp).
+      Logos: Wikimedia Commons, gemeinfrei (siehe Beschriftung).
+      Erzeugt mit dem Skript der Sitzung; nach neuem Kursstand neu erzeugen.
     */
     art: 'dossier',
     datum: '2026-11-19',
-    titel: [
-      { text: 'Der Euro 2026:' },
-      { text: 'Gegen alle fünf schwach.', gruen: true },
-    ],
-    unterzeile: 'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
+    titel: [{ text: 'Von GTA V zu GTA VI:' }, { text: 'Bitcoin vorn.', gruen: true }],
+    unterzeile:
+      'Aus 1.000 $ am 17.09.2013, dem Tag von GTA V (DAX: 1.000 €). Fläche = Wert.',
     teile: [
       {
-        art: 'kurszettel',
+        art: 'kreise',
         datum: '2026-11-19',
-        titel: [
-          { text: 'Der Euro 2026:' },
-          { text: 'Gegen alle fünf schwach.', gruen: true },
-        ],
+        titel: [{ text: 'Von GTA V zu GTA VI:' }, { text: 'Bitcoin vorn.', gruen: true }],
         unterzeile:
-          'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
-        zeilen: [
-          {
-            name: 'Chinesischer Yuan',
-            zusatz: 'Jahrestief · so tief zuletzt Februar 2023',
-            kurs: '7,3254 Yuan',
-            aenderung: -11.0,
-            logo: 'flagge-china.png',
-          },
-          {
-            name: 'US-Dollar',
-            zusatz: 'Jahrestief · so tief zuletzt April 2025',
-            kurs: '1,0989 $',
-            aenderung: -6.5,
-            logo: 'flagge-usa.png',
-          },
-          {
-            name: 'Japanischer Yen',
-            zusatz: 'Jahrestief · so tief zuletzt September 2025',
-            kurs: '175,05 ¥',
-            aenderung: -4.9,
-            logo: 'flagge-japan.png',
-          },
-          {
-            name: 'Britisches Pfund',
-            zusatz: 'Jahrestief · so tief zuletzt März 2025',
-            kurs: '0,8331 £',
-            aenderung: -4.5,
-            logo: 'flagge-grossbritannien.png',
-          },
-          {
-            name: 'Schweizer Franken',
-            zusatz: 'Tief des Jahres: 0,9008 im März',
-            kurs: '0,9233 Fr.',
-            aenderung: -0.9,
-            logo: 'flagge-schweiz.png',
-          },
+          'Aus 1.000 $ am 17.09.2013, dem Tag von GTA V (DAX: 1.000 €). Fläche = Wert.',
+        kreise: [
+          { name: 'Bitcoin', wert: 493991, anzeige: '493.991 $', logo: 'bitcoin.png' },
+          { name: 'Nvidia', wert: 379975, anzeige: '379.975 $', logo: 'nvidia.png' },
+          { name: 'Tesla', wert: 34608, anzeige: '34.608 $', logo: 'tesla.png' },
+          { name: 'Apple', wert: 21673, anzeige: '21.673 $', logo: 'apple.png' },
+          { name: 'Take-Two', wert: 12672, anzeige: '12.672 $', logo: 'take-two.png' },
+          { name: 'DAX', wert: 2994, anzeige: '2.994 €', logo: 'dax.png' },
         ],
-        satz: 'Gegen Yuan, Dollar, Yen und Pfund steht der Euro so tief wie nie in diesem Jahr.',
         fusszeile:
-          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
+          'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; ohne Dividenden; eigene Rechnung',
         text: '',
         schlagworte: [],
       },
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Euro in Dollar 2026' }],
-        unterzeile: 'Tagesschlusskurse. Gestrichelt: der Stand zum Jahresbeginn.',
-        reihe: EURO_DOLLAR_2026,
-        einheit: '$ je Euro',
-        stellen: 2,
-        achseAb: 1.08,
-        marken: [{ wert: 1.175, text: 'Jahresbeginn: 1,1750 $', rechts: true }],
+        titel: [{ text: 'Bitcoin:' }, { text: '126,92 $ → 62.697 $', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_BITCOIN,
+        einheit: '$',
+        logo: 'bitcoin.png',
+        platzRechts: 90,
         punkte: [
-          { d: '2026-01-28', text: 'Hoch 28.01.: 1,1974 $', farbe: 'gruen' },
-          { d: '2026-11-17', text: '17.11.: 1,0989 $', farbe: 'rot', unten: true },
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
         ],
-        fusszeile: 'Stand: 17.11.2026 | Quelle: Yahoo Finance (EUR/USD), Schlusskurse',
+        fusszeile: 'Stand: 18.11.2026 | Quelle: Bitstamp (BTC/USD); Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'Nvidia:' }, { text: '0,40 $ → 150,66 $', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_NVIDIA,
+        einheit: '$',
+        logo: 'nvidia.png',
+        platzRechts: 90,
+        punkte: [
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
+        ],
+        fusszeile:
+          'Stand: 18.11.2026 | Quelle: Yahoo Finance, splitbereinigt; Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'Tesla:' }, { text: '11,08 $ → 383,53 $', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_TESLA,
+        einheit: '$',
+        logo: 'tesla.png',
+        platzRechts: 90,
+        punkte: [
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
+        ],
+        fusszeile:
+          'Stand: 18.11.2026 | Quelle: Yahoo Finance, splitbereinigt; Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'Apple:' }, { text: '16,26 $ → 352,43 $', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_APPLE,
+        einheit: '$',
+        logo: 'apple.png',
+        platzRechts: 90,
+        punkte: [
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
+        ],
+        fusszeile:
+          'Stand: 18.11.2026 | Quelle: Yahoo Finance, splitbereinigt; Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'Take-Two:' }, { text: '17,00 $ → 215,43 $', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_TAKE_TWO,
+        einheit: '$',
+        logo: 'take-two.png',
+        platzRechts: 90,
+        punkte: [
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
+        ],
+        fusszeile: 'Stand: 18.11.2026 | Quelle: Yahoo Finance; Schlusskurse',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-19',
+        titel: [{ text: 'DAX:' }, { text: '8.597 Pkt. → 25.736 Pkt.', gruen: true }],
+        unterzeile: '',
+        reihe: GTA_DAX,
+        einheit: 'Punkte',
+        logo: 'dax.png',
+        platzRechts: 90,
+        punkte: [
+          { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
+          { d: '2026-11-18', text: 'GTA VI', farbe: 'gruen' },
+        ],
+        fusszeile: 'Stand: 18.11.2026 | Quelle: Yahoo Finance; Schlusskurse',
         text: '',
         schlagworte: [],
       },
     ],
-    fusszeile:
-      'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
-    text:
-      'Der Euro verliert 2026 gegen Yuan, Dollar, Yen, Pfund und Franken. Gegen die ersten vier steht er am 17.11. auf dem tiefsten Stand des Jahres.\n\n' +
-      'Was ein Euro kostet – Jahresbeginn → 17.11.2026:\n' +
-      'Yuan: 8,2262 → 7,3254 (−11,0 %), so tief zuletzt im Februar 2023\n' +
-      'Dollar: 1,1750 → 1,0989 (−6,5 %), so tief zuletzt im April 2025\n' +
-      'Yen: 184,09 → 175,05 (−4,9 %)\n' +
-      'Pfund: 0,8726 → 0,8331 (−4,5 %)\n' +
-      'Franken: 0,9314 → 0,9233 (−0,9 %)\n\n' +
-      'Zum Dollar war der Euro am 28. Januar noch 1,1974 wert – seitdem −8,2 %.\n\n' +
-      'Warum? Laut dpa-AFX (onvista, 01.10.) drückten steigende Ölpreise und die Spekulation auf weitere Zinserhöhungen der US-Notenbank. Im Oktober kam Frankreich dazu: dpa-AFX meldete eine Verschärfung am französischen Anleihemarkt (wallstreet-online, 07.10.), und laut Bloomberg hatte der Euro zum Pfund wegen Frankreichs Schuldenkrise den schwächsten Monat seit Juli 2022 (wallstreet-online, 30.10.).\n\n' +
-      'Und jetzt? St.-Louis-Fed-Chef Alberto Musalem hält laut CNBC (17.11.) bis zum Frühjahr 2027 bis zu vier weitere Zinserhöhungen für möglich. Eine eigene Prognose geben wir nicht.\n\n' +
-      'Für Urlaub und Einkauf heißt das: Wer in Dollar, Yuan oder Pfund bezahlt, bekommt für seinen Euro weniger als im Januar.\n\n' +
-      'Quellen: Yahoo Finance (Devisenkurse); onvista/dpa-AFX 01.10.2026; wallstreet-online 07.10. und 30.10.2026 (Bloomberg); CNBC 17.11.2026; eigene Rechnung',
-    schlagworte: ['euro', 'dollar', 'waehrungen', 'devisen', 'frankreich'],
+    fusszeile: 'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; eigene Rechnung',
+    text: 'Heute erscheint GTA VI – 13 Jahre und zwei Monate nach GTA V (17.09.2013). Was ist aus den Kursen von damals geworden?\n\nBitcoin: 126,92 $ → 62.697 $ (×494,0)\nNvidia: 0,40 $ → 150,66 $ (×380,0)\nTesla: 11,08 $ → 383,53 $ (×34,6)\nApple: 16,26 $ → 352,43 $ (×21,7)\nTake-Two: 17,00 $ → 215,43 $ (×12,7)\nDAX: 8.597 Pkt. → 25.736 Pkt. (×3,0)\n\nAus 1.000 $ am Tag von GTA V wurden bis zum 18.11.2026: Bitcoin 493.991 $, Nvidia 379.975 $, Tesla 34.608 $, Apple 21.673 $, Take-Two 12.672 $, DAX 2.994 € (DAX in Euro). Ohne Dividenden, ohne Kosten und Steuern.\n\nNvidia, Tesla und Apple sind splitbereinigt: Die Aktie kostete 2013 mehr, aber eine Aktie von damals entspricht heute mehreren.\n\nTake-Two ist der Herausgeber von GTA. Eine Empfehlung ist das nicht – vergangene Kurse sagen nichts über künftige.\n\nQuellen: Yahoo Finance (Schlusskurse, splitbereinigt); Bitstamp (BTC/USD); Logos: Wikimedia Commons, gemeinfrei (Tesla T symbol, Apple logo black, Bitcoin logo, DAX-logo, Take-Two Interactive Logo); eigene Rechnung',
+    schlagworte: ['gta', 'nvidia', 'bitcoin', 'aktien', 'langfristig'],
   },
   {
     /*

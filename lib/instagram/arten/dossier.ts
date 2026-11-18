@@ -31,8 +31,13 @@ export const dossier: Art<Dossierkarte> = {
   },
   pruefe(k) {
     const f = pruefeGemeinsam(k)
-    if (k.teile.length < 2 || k.teile.length > 6)
-      f.push(`${k.teile.length} Teile – zwei bis sechs.`)
+    /*
+      Bis sieben (19.11.2026, GTA V gegen GTA VI: Übersicht und sechs Werte,
+      Vorbild mit sieben Kacheln, Auftrag des Betreibers). Instagram nimmt
+      zwanzig; mehr als sieben ist für die Zahlenkarte zu viel Inhalt.
+    */
+    if (k.teile.length < 2 || k.teile.length > 7)
+      f.push(`${k.teile.length} Teile – zwei bis sieben.`)
     for (const [i, t] of k.teile.entries()) {
       const art = DOSSIER_ARTEN[t.art] as unknown as Art<typeof t> | undefined
       if (!art) {

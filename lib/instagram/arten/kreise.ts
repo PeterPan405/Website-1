@@ -31,6 +31,9 @@ export interface Kreiskarte extends NeuGemeinsam {
   kreise: { name: string; wert: number; anzeige: string; logo?: string }[]
 }
 
+/** Mindestbreite je Kreis, damit Name und Betrag darunter nicht ineinanderlaufen. */
+const BESCHRIFTUNG = 180
+
 export const kreise: Art<Kreiskarte> = {
   seiten: () => 1,
   seite(k, logo) {
@@ -53,13 +56,18 @@ export const kreise: Art<Kreiskarte> = {
     const inhalt = k.kreise.flatMap((kr, i) => {
       const r = Math.floor(i / jeReihe)
       const inReihe = k.kreise.slice(r * jeReihe, (r + 1) * jeReihe)
-      const gesamt =
-        inReihe.reduce((t, x) => t + 2 * Math.sqrt(x.wert) * s, 0) +
-        30 * (inReihe.length - 1)
+      /*
+        Jeder Kreis bekommt mindestens die Breite seiner Beschriftung
+        (19.11.2026, GTA: Apple, Take-Two und DAX als kleine Kreise – die
+        Namen liefen ineinander).
+      */
+      const platz = (v: { wert: number }) =>
+        Math.max(2 * Math.sqrt(v.wert) * s, BESCHRIFTUNG)
+      const gesamt = inReihe.reduce((t, v) => t + platz(v), 0) + 30 * (inReihe.length - 1)
       let x = STIL_RAND + (breite - gesamt) / 2
-      for (const v of inReihe.slice(0, i - r * jeReihe))
-        x += 2 * Math.sqrt(v.wert) * s + 30
+      for (const v of inReihe.slice(0, i - r * jeReihe)) x += platz(v) + 30
       const d = 2 * Math.sqrt(kr.wert) * s
+      x += (platz(kr) - d) / 2
       const grundlinie = OBEN_ERSTE + 20 + (r + 1) * (platzH + 90) - 90
       const logoH = Math.min(d * 0.28, 60)
       return [
