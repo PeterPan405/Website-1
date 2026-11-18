@@ -42,14 +42,17 @@ const logo = readFileSync('public/logo.svg', 'utf8')
   Die Musterkarten stehen auf dem Stand vom 13.11.2026. Der Kursbestand wächst
   jeden Tag; ohne Stichtag rechnete der Test ab dem 17.11. gegen neuere Kurse
   und schlug fehl, obwohl an den Karten nichts falsch war.
+
+  Der Stichtag allein reichte nicht: Am 18.11.2026 dünnte der Kursabruf die
+  ältere Geschichte aus (der 15.11.2021 fiel heraus) und trug den 13.11.
+  nach – der Bau wurde rot. Die Kurse, aus denen die Muster gerechnet
+  wurden, liegen deshalb eingefroren in `tests/daten/`.
 */
 const STICHTAG = '2026-11-13'
 const roh = Object.fromEntries(
   Object.entries(
-    JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8')).instruments as Record<
-      string,
-      { points: { d: string; c: number }[] }
-    >
+    JSON.parse(readFileSync('tests/daten/kurse-muster-2026-11-13.json', 'utf8'))
+      .instruments as Record<string, { points: { d: string; c: number }[] }>
   ).map(([k, v]) => [k, { ...v, points: v.points.filter((p) => p.d <= STICHTAG) }])
 )
 const runde = (v: number, stellen: number) =>

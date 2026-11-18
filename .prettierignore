@@ -78,3 +78,5 @@ wissen/
 # Tageskurse Silber und Gold für die Prüfung der Silber-Karte vom 18.11.2026,
 # kompakt in einer Zeile – eingerückt wären es über 50.000 Zeilen.
 data/instagram/silber-gold-tage.json
+# Eingefrorene Kurse für die Musterkarten-Tests (Stand 13.11.2026), kompakt.
+tests/daten/kurse-muster-2026-11-13.json
