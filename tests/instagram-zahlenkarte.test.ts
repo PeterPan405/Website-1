@@ -1367,7 +1367,7 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       form(karte) !== form(karteVom('2026-11-14')!)
     )
     const roh = JSON.parse(
-      readFileSync('data/snapshots/markets.json', 'utf8')
+      readFileSync('tests/daten/kurse-muster-2026-11-13.json', 'utf8')
     ).instruments
     const symbol: Record<string, string> = {
       Nvidia: 'nvidia',
