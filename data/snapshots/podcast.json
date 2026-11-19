@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-18T12:15:52.358Z",
+  "abgerufenAm": "2026-11-19T00:59:00.930Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "anthropic-geht-an-die-nasdaq-fed-gouverneur-waller-und-bund-und-unicredit-versta",
+      "titel": "Anthropic geht an die Nasdaq, Fed-Gouverneur Waller und Bund und Unicredit verständigen sich über Commerzbank",
+      "beschreibung": "Anthropic startet an der Nasdaq, die Fed-Protokolle zeigen Streit um Dezember, und Commerzbank kommt der Übernahme näher. Der KI-Entwickler Anthropic ist am Donnerstag mit einem Ausgabepreis von 83 Dollar je Aktie an die Nasdaq gegangen, unter dem Kürzel ANT. Das Unternehmen sammelte dabei 81,3 Milliarden Dollar ein und verkaufte rund 980 Millionen Aktien – deutlich mehr als die ursprünglich geplanten 825 Millionen.\n\nWir sprechen über Bund und Unicredit verständigen sich, Großbritannien und Target meldet stärkstes Umsatzwachstum seit. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:34) Anthropic geht an die Nasdaq\n(1:08) Fed-Gouverneur Waller\n(1:49) Bund und Unicredit verständigen sich\n(2:21) Großbritannien\n(2:58) Target meldet stärkstes Umsatzwachstum seit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-19",
+      "dauerSekunden": 212,
+      "url": "https://iminvests.de/podcast-audio/2026-11-19.mp3",
+      "youtubeId": "8wEBWY74EwQ"
+    },
     {
       "slug": "datenleck-erschuettert-die-deutsche-bank-und-usa-verschaerfen-exportregeln-fuer",
       "titel": "Datenleck erschüttert die Deutsche Bank und USA verschärfen Exportregeln für KI-Chips",
