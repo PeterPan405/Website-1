@@ -76,12 +76,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Take-Two:' }, { text: '17,00 $ → 215,43 $', gruen: true }],
+        titel: [{ text: 'Take-Two:' }, { text: '17,00 $ → 216,61 $', gruen: true }],
         unterzeile: '',
         reihe: GTA_TAKE_TWO,
         einheit: '$',
         logo: 'take-two.png',
-        satz: '+1.167,2 % seit dem Erscheinen von GTA V.',
+        satz: '+1.174,2 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -94,12 +94,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Bitcoin:' }, { text: '126,92 $ → 62.697 $', gruen: true }],
+        titel: [{ text: 'Bitcoin:' }, { text: '126,92 $ → 62.976 $', gruen: true }],
         unterzeile: '',
         reihe: GTA_BITCOIN,
         einheit: '$',
         logo: 'bitcoin.png',
-        satz: '+49.299,1 % seit dem Erscheinen von GTA V.',
+        satz: '+49.518,8 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -112,12 +112,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Nvidia:' }, { text: '0,40 $ → 150,66 $', gruen: true }],
+        titel: [{ text: 'Nvidia:' }, { text: '0,40 $ → 150,96 $', gruen: true }],
         unterzeile: '',
         reihe: GTA_NVIDIA,
         einheit: '$',
         logo: 'nvidia.png',
-        satz: '+37.897,5 % seit dem Erscheinen von GTA V.',
+        satz: '+37.973,1 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -131,12 +131,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Tesla:' }, { text: '11,08 $ → 383,53 $', gruen: true }],
+        titel: [{ text: 'Tesla:' }, { text: '11,08 $ → 383,72 $', gruen: true }],
         unterzeile: '',
         reihe: GTA_TESLA,
         einheit: '$',
         logo: 'tesla.png',
-        satz: '+3.360,8 % seit dem Erscheinen von GTA V.',
+        satz: '+3.362,6 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -150,12 +150,12 @@ export const zahlenkarten: Zahlenkarte[] = [
       {
         art: 'linie',
         datum: '2026-11-19',
-        titel: [{ text: 'Apple:' }, { text: '16,26 $ → 352,43 $', gruen: true }],
+        titel: [{ text: 'Apple:' }, { text: '16,26 $ → 352,45 $', gruen: true }],
         unterzeile: '',
         reihe: GTA_APPLE,
         einheit: '$',
         logo: 'apple.png',
-        satz: '+2.067,3 % seit dem Erscheinen von GTA V.',
+        satz: '+2.067,4 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -186,7 +186,7 @@ export const zahlenkarten: Zahlenkarte[] = [
       },
     ],
     fusszeile: 'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; eigene Rechnung',
-    text: 'Heute erscheint GTA VI – 13 Jahre und zwei Monate nach GTA V (17.09.2013). Was ist aus den Kursen von damals geworden?\n\nTake-Two: 17,00 $ → 215,43 $ (×12,7)\nBitcoin: 126,92 $ → 62.697 $ (×494,0)\nNvidia: 0,40 $ → 150,66 $ (×380,0)\nTesla: 11,08 $ → 383,53 $ (×34,6)\nApple: 16,26 $ → 352,43 $ (×21,7)\nDAX: 8.597 Pkt. → 25.736 Pkt. (×3,0)\n\nAus 1.000 $ am Tag von GTA V wurden bis zum 18.11.2026: Bitcoin 493.991 $, Nvidia 379.975 $, Tesla 34.608 $, Apple 21.673 $, Take-Two 12.672 $, DAX 2.994 € (DAX in Euro). Ohne Dividenden, ohne Kosten und Steuern.\n\nNvidia, Tesla und Apple sind splitbereinigt: Die Aktie kostete 2013 mehr, aber eine Aktie von damals entspricht heute mehreren.\n\nTake-Two ist der Herausgeber von GTA. Eine Empfehlung ist das nicht – vergangene Kurse sagen nichts über künftige.\n\nQuellen: Yahoo Finance (Schlusskurse, splitbereinigt); Bitstamp (BTC/USD); Logos: Wikimedia Commons, gemeinfrei (Gta 6 logo, Tesla T symbol, Apple logo black, Bitcoin logo, DAX-logo, Take-Two Interactive Logo); eigene Rechnung',
+    text: 'Heute erscheint GTA VI – 13 Jahre und zwei Monate nach GTA V (17.09.2013). Was ist aus den Kursen von damals geworden?\n\nTake-Two: 17,00 $ → 216,61 $ (×12,7)\nBitcoin: 126,92 $ → 62.976 $ (×496,2)\nNvidia: 0,40 $ → 150,96 $ (×380,7)\nTesla: 11,08 $ → 383,72 $ (×34,6)\nApple: 16,26 $ → 352,45 $ (×21,7)\nDAX: 8.597 Pkt. → 25.736 Pkt. (×3,0)\n\nAus 1.000 $ am Tag von GTA V wurden bis zum 18.11.2026: Bitcoin 496.188 $, Nvidia 380.731 $, Tesla 34.626 $, Apple 21.674 $, Take-Two 12.742 $, DAX 2.994 € (DAX in Euro). Ohne Dividenden, ohne Kosten und Steuern.\n\nNvidia, Tesla und Apple sind splitbereinigt: Die Aktie kostete 2013 mehr, aber eine Aktie von damals entspricht heute mehreren.\n\nTake-Two ist der Herausgeber von GTA. Eine Empfehlung ist das nicht – vergangene Kurse sagen nichts über künftige.\n\nQuellen: Yahoo Tech, 19.11.2026 (Erscheinen von GTA VI); Yahoo Finance (Schlusskurse, splitbereinigt); Bitstamp (BTC/USD); Logos: Wikimedia Commons, gemeinfrei (Gta 6 logo, Tesla T symbol, Apple logo black, Bitcoin logo, DAX-logo, Take-Two Interactive Logo); eigene Rechnung',
     schlagworte: ['gta', 'nvidia', 'bitcoin', 'aktien', 'langfristig'],
   },
   {
