@@ -1107,8 +1107,17 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
       'GTA: erste Seite – GTA-VI-Logo groß auf Weiß, ohne Foto (vom Betreiber gewählt, 18.11.)',
       ueber.art === 'deckblatt' &&
         ueber.foto === undefined &&
-        ueber.fotoLogo === 'gta6.png'
+        ueber.fotoLogo === 'gta6.png' &&
+        /* Betreiber 19.11.: „auf der ersten das mit der Entwicklung unten nicht vorwegnehmen“ */
+        !ueber.liste?.length
     )
+    for (const [name, r] of Object.entries(reihen)) {
+      const betrag = `${Math.round((1000 * r.at(-1)![1]) / r[0][1]).toLocaleString('de-DE')} ${name === 'DAX' ? '€' : '$'}`
+      pruefe(
+        `GTA: aus 1.000 wurden bei ${name} ${betrag} – so in der Beschriftung`,
+        dossier.text.includes(`${name} ${betrag}`)
+      )
+    }
     pruefe(
       'GTA: freigegeben für den 19.11. (Betreiber 18.11.: „passt“)',
       dossier.freigabe === '2026-11-19'
@@ -1147,6 +1156,12 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
           dossier.text.includes(
             `(×${(r.at(-1)![1] / r[0][1]).toFixed(1).replace('.', ',')})`
           )
+      )
+      const pct = (r.at(-1)![1] / r[0][1] - 1) * 100
+      pruefe(
+        `GTA: ${name} Entwicklung +${pct.toFixed(1)} % unten auf der Seite`,
+        l.satz ===
+          `+${pct.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} % seit dem Erscheinen von GTA V.`
       )
       pruefe(
         `GTA: ${name} Logo liegt bereit`,

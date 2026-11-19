@@ -38,6 +38,8 @@ export interface Linienkarte extends NeuGemeinsam {
    * Texte lagen auf der Linie).
    */
   platzRechts?: number
+  /** Ein Satz unten auf der Seite (19.11.2026, GTA: die Entwicklung in Prozent). */
+  satz?: string
   /** Logo aus lib/instagram/logos/, oben rechts über der Grafik (19.11.2026, GTA). */
   logo?: string
   reihe: readonly (readonly [string, number])[]
@@ -145,6 +147,7 @@ export const linie: Art<Linienkarte> = {
     return rahmen(k, logo, {
       seite: 1,
       seiten: 1,
+      satz: k.satz,
       inhalt: [
         h('img', {
           src: svgAdresse(svg),
