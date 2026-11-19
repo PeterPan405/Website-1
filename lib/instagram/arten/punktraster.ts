@@ -8,6 +8,7 @@ import { createElement as h } from 'react'
 import { STIL, STIL_RAND, ZK_BREITE } from '../../instagram-zahlenkarte.ts'
 import {
   OBEN_ERSTE,
+  OBEN_FOLGE,
   pruefeGemeinsam,
   rahmen,
   zahl,
@@ -18,7 +19,15 @@ import {
 export interface Punktrasterkarte extends NeuGemeinsam {
   art: 'punktraster'
   /** Ganze Punkte, zusammen 100. Der erste ist die Pointe (Navy). */
-  teile: { name: string; punkte: number; zusatz?: string }[]
+  teile: {
+    name: string
+    punkte: number
+    zusatz?: string
+    /** Rechts statt „n von 100“, wenn der genaue Wert zählt („31,55 %“, 20.11.2026, EXY). */
+    anzeige?: string
+  }[]
+  /** Ein Satz unten auf der Seite. */
+  satz?: string
 }
 
 /** Navy für die Pointe, dann von dunkel nach hell. */
@@ -31,7 +40,9 @@ export const punktraster: Art<Punktrasterkarte> = {
     const luecke = 14
     const breite = 10 * groesse + 9 * luecke
     const links = (ZK_BREITE - breite) / 2
-    const oben = OBEN_ERSTE + 10
+    /* Ab Seite 2 im Dossier steht oben nur der kleine Kopf – das Raster rückt hoch. */
+    const folge = ((k as { _dossier?: { seite: number } })._dossier?.seite ?? 1) > 1
+    const oben = folge ? OBEN_FOLGE + 110 : OBEN_ERSTE + 10
     const farben: string[] = []
     k.teile.forEach((t, i) => {
       for (let n = 0; n < t.punkte; n++) farben.push(FARBEN[i] ?? FARBEN.at(-1)!)
@@ -88,11 +99,16 @@ export const punktraster: Art<Punktrasterkarte> = {
         h(
           'div',
           { style: { fontSize: 26, fontWeight: 700, color: STIL.tinte } },
-          `${zahl(t.punkte)} von 100`
+          t.anzeige ?? `${zahl(t.punkte)} von 100`
         )
       )
     )
-    return rahmen(k, logo, { seite: 1, seiten: 1, inhalt: [...punkte, ...legende] })
+    return rahmen(k, logo, {
+      seite: 1,
+      seiten: 1,
+      satz: k.satz,
+      inhalt: [...punkte, ...legende],
+    })
   },
   pruefe(k) {
     const f = pruefeGemeinsam(k)

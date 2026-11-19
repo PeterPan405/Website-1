@@ -26,6 +26,7 @@ import {
 } from './instagram-reihen-atomwaffen.ts'
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
+import { EXY_2026 } from './instagram-reihen-euro.ts'
 import {
   GTA_APPLE,
   GTA_BITCOIN,
@@ -37,6 +38,148 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 20.11.2026, „Der Euro 2026: gegen alle fünf schwach“ –
+      Thema vom Betreiber am 18.11.2026 aus den Vorschlägen gewählt
+      („Nummer 4 Euro wird schwächer“), auf den 20.11. verschoben („Für
+      morgen aber bitte den Post mit GTA und für übermorgen dann das hier“).
+      Dossier aus drei Seiten (Betreiber 18.11.: „auf Seite 2 den Kurs EXY
+      und auf Seite 3 Erläuterung des EXY, wie der Währungskorb sich
+      zusammensetzt“): kurszettel, linie (EXY), kuchen (Gewichte; erst Punktraster, Betreiber:
+      „nicht mit solchen Punkten … Kuchendiagramm“).
+      Flaggen statt Logos (selbst gezeichnet, gemeinfreie Motive).
+
+      EXY: Formel und Gewichte aus Wikipedia „Euro Currency Index“ (nach
+      ICE Futures U.S.), gelesen am 18.11.2026; daytrading.com „Euro Index“
+      (NYBOT 2006, ICE 2011 eingestellt, weiter bei Brokern berechnet).
+      Gerechnet in data/instagram-reihen-euro.ts.
+
+      Kurse: data/snapshots/markets.json (eur-usd, eur-cny, eur-jpy,
+      eur-gbp, eur-chf), Schluss 31.12.2025 gegen 17.11.2026. Jahrestiefs
+      und „zuletzt so tief“ aus derselben Reihe. Gründe nur aus unseren
+      Ausgaben mit gelesener Quelle: onvista/dpa-AFX 01.10.2026,
+      wallstreet-online 07.10.2026, wallstreet-online (Bloomberg)
+      30.10.2026, CNBC 17.11.2026.
+    */
+    art: 'dossier',
+    datum: '2026-11-20',
+    freigabe: '2026-11-20',
+    titel: [
+      { text: 'Der Euro 2026:' },
+      { text: 'Gegen alle fünf schwach.', gruen: true },
+    ],
+    unterzeile: 'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
+    teile: [
+      {
+        art: 'kurszettel',
+        datum: '2026-11-20',
+        titel: [
+          { text: 'Der Euro 2026:' },
+          { text: 'Gegen alle fünf schwach.', gruen: true },
+        ],
+        unterzeile:
+          'Was ein Euro kostet, Stand 17.11.2026, Veränderung seit Jahresbeginn.',
+        zeilen: [
+          {
+            name: 'Chinesischer Yuan',
+            zusatz: 'Jahrestief · so tief zuletzt Februar 2023',
+            kurs: '7,3254 Yuan',
+            aenderung: -11.0,
+            logo: 'flagge-china.png',
+          },
+          {
+            name: 'US-Dollar',
+            zusatz: 'Jahrestief · so tief zuletzt April 2025',
+            kurs: '1,0989 $',
+            aenderung: -6.5,
+            logo: 'flagge-usa.png',
+          },
+          {
+            name: 'Japanischer Yen',
+            zusatz: 'Jahrestief · so tief zuletzt September 2025',
+            kurs: '175,05 ¥',
+            aenderung: -4.9,
+            logo: 'flagge-japan.png',
+          },
+          {
+            name: 'Britisches Pfund',
+            zusatz: 'Jahrestief · so tief zuletzt März 2025',
+            kurs: '0,8331 £',
+            aenderung: -4.5,
+            logo: 'flagge-grossbritannien.png',
+          },
+          {
+            name: 'Schweizer Franken',
+            zusatz: 'Tief des Jahres: 0,9008 im März',
+            kurs: '0,9233 Fr.',
+            aenderung: -0.9,
+            logo: 'flagge-schweiz.png',
+          },
+        ],
+        satz: 'Gegen Yuan, Dollar, Yen und Pfund steht der Euro so tief wie nie in diesem Jahr.',
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'linie',
+        datum: '2026-11-20',
+        titel: [{ text: 'Der Euro-Index EXY 2026' }],
+        unterzeile:
+          'Der Euro gegen fünf Währungen, je Handelstag. Gestrichelt: der Stand zum Jahresbeginn.',
+        reihe: EXY_2026,
+        einheit: 'Punkte',
+        stellen: 0,
+        achseAb: 105,
+        marken: [{ wert: 111.29, text: 'Jahresbeginn: 111,29', rechts: true }],
+        punkte: [
+          { d: '2026-04-16', text: 'Hoch 16.04.: 111,55', farbe: 'gruen' },
+          { d: '2026-11-17', text: '17.11.: 106,54', farbe: 'rot', unten: true },
+        ],
+        fusszeile:
+          'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); Formel der ICE; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'kuchen',
+        datum: '2026-11-20',
+        titel: [{ text: 'Was ist der EXY?' }],
+        unterzeile:
+          'Ein Wert für den Euro gegen fünf Währungen – so viel zählt jede im Korb.',
+        stuecke: [
+          { name: 'US-Dollar', wert: 31.55, anzeige: '31,55 %' },
+          { name: 'Britisches Pfund', wert: 30.56, anzeige: '30,56 %' },
+          { name: 'Japanischer Yen', wert: 18.91, anzeige: '18,91 %' },
+          { name: 'Schweizer Franken', wert: 11.13, anzeige: '11,13 %' },
+          { name: 'Schwedische Krone', wert: 7.85, anzeige: '7,85 %' },
+        ],
+        satz: 'Seit 2006, von der New Yorker Börse NYBOT. Die ICE stellte ihn 2011 ein – berechnet wird er weiter.',
+        fusszeile:
+          'Stand: 11/2026 | Quelle: Wikipedia „Euro Currency Index“ (nach ICE Futures U.S.); daytrading.com',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile:
+      'Stand: 17.11.2026 | Quelle: Yahoo Finance (Devisenkurse); eigene Rechnung',
+    text:
+      'Der Euro verliert 2026 gegen Yuan, Dollar, Yen, Pfund und Franken – gegen die ersten vier steht er am 17.11. auf dem Jahrestief.\n\n' +
+      'Was ein Euro kostet – Jahresbeginn → 17.11.2026:\n' +
+      'Yuan: 8,2262 → 7,3254 (−11,0 %), so tief zuletzt im Februar 2023\n' +
+      'Dollar: 1,1750 → 1,0989 (−6,5 %), so tief zuletzt im April 2025\n' +
+      'Yen: 184,09 → 175,05 (−4,9 %)\n' +
+      'Pfund: 0,8726 → 0,8331 (−4,5 %)\n' +
+      'Franken: 0,9314 → 0,9233 (−0,9 %)\n\n' +
+      'Der Euro-Index EXY fasst es in einer Zahl: 111,29 → 106,54 (−4,3 %). Nur zur Schwedischen Krone legte der Euro zu (+2,8 %).\n\n' +
+      'Was ist der EXY? Der Euro gegen einen Korb aus Dollar (31,55 %), Pfund (30,56 %), Yen (18,91 %), Franken (11,13 %) und Krone (7,85 %) – eine Zahl dafür, ob der Euro insgesamt stärker oder schwächer wird, wie der DXY für den Dollar. Gestartet 2006 an der New Yorker Börse NYBOT; die ICE stellte ihn 2011 ein (letzter Wert 108,88), Datendienste rechnen ihn weiter.\n\n' +
+      'Warum fällt der Euro? Laut dpa-AFX (onvista, 01.10.) wegen steigender Ölpreise und der Spekulation auf weitere US-Zinserhöhungen; dazu laut Bloomberg Frankreichs Schuldenkrise (wallstreet-online, 30.10.).\n\n' +
+      'Und jetzt? Fed-Mitglied Alberto Musalem hält laut CNBC (17.11.) bis Frühjahr 2027 bis zu vier weitere Zinserhöhungen für möglich. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance; onvista/dpa-AFX; wallstreet-online (Bloomberg); CNBC; Wikipedia „Euro Currency Index“; daytrading.com; eigene Rechnung',
+    schlagworte: ['euro', 'dollar', 'waehrungen', 'devisen', 'frankreich'],
+  },
   {
     /*
       Zahlenkarte 19.11.2026, „Von GTA V zu GTA VI“ – Auftrag des Betreibers

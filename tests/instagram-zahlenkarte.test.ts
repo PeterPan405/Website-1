@@ -1058,6 +1058,201 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
   }
 }
 
+/* 20.11.2026 (vom 19.11. verschoben, dort GTA): Der Euro gegen fünf Währungen (Yahoo Finance, eingefroren in tests/daten/). */
+{
+  const dossier = karteVom('2026-11-20')
+  pruefe('Euro: Karte für den 20.11. ist ein Dossier', dossier?.art === 'dossier')
+  const karte = dossier?.art === 'dossier' ? dossier.teile[0] : undefined
+  const chart = dossier?.art === 'dossier' ? dossier.teile[1] : undefined
+  const korb = dossier?.art === 'dossier' ? dossier.teile[2] : undefined
+  pruefe(
+    'Euro: Seite 1 Kurszettel, Seite 2 EXY, Seite 3 Korb (Betreiber 18.11.)',
+    karte?.art === 'kurszettel' &&
+      chart?.art === 'linie' &&
+      korb?.art === 'kuchen' &&
+      zahlenkarteSeiten(dossier!) === 3
+  )
+  if (
+    dossier?.art === 'dossier' &&
+    karte?.art === 'kurszettel' &&
+    chart?.art === 'linie' &&
+    korb?.art === 'kuchen'
+  ) {
+    pruefe(
+      'Euro: keine Beanstandung',
+      pruefeZahlenkarte(dossier).length === 0,
+      pruefeZahlenkarte(dossier).join(' | ')
+    )
+    pruefe(
+      'Euro: Form anders als am Vortag',
+      form(dossier) === 'kurszettel' && form(karteVom('2026-11-18')!) === 'linie'
+    )
+    const roh = JSON.parse(readFileSync('tests/daten/kurse-euro-2026-11-17.json', 'utf8'))
+      .instruments as Record<string, { points: { d: string; c: number }[] }>
+    const symbol: Record<string, string> = {
+      'Chinesischer Yuan': 'eur-cny',
+      'US-Dollar': 'eur-usd',
+      'Japanischer Yen': 'eur-jpy',
+      'Britisches Pfund': 'eur-gbp',
+      'Schweizer Franken': 'eur-chf',
+    }
+    const komma = (v: number, n: number) => v.toFixed(n).replace('.', ',')
+    for (const z of karte.zeilen) {
+      const p = roh[symbol[z.name]].points
+      const ende = p.at(-1)!
+      const start = p.filter((x) => x.d < '2026-01-01').at(-1)!
+      const v = Math.round((ende.c / start.c - 1) * 1000) / 10
+      pruefe(
+        `Euro: ${z.name} ${v} % seit Jahresbeginn`,
+        ende.d === '2026-11-17' && v === z.aenderung
+      )
+      pruefe(
+        `Euro: ${z.name} Kurs ${z.kurs} wie im Bestand`,
+        z.kurs.startsWith(komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4))
+      )
+      pruefe(
+        `Euro: ${z.name} Anfang und Ende stehen im Text`,
+        dossier.text.includes(
+          `${komma(start.c, z.name === 'Japanischer Yen' ? 2 : 4)} → ${komma(ende.c, z.name === 'Japanischer Yen' ? 2 : 4)}`
+        )
+      )
+      const jahr = p.filter((x) => x.d >= '2026-01-01')
+      const tief = jahr.reduce((a, b) => (b.c < a.c ? b : a))
+      if (z.zusatz.startsWith('Jahrestief')) {
+        pruefe(`Euro: ${z.name} am 17.11. auf dem Jahrestief`, tief.d === ende.d)
+        const vorher = p
+          .slice(0, -1)
+          .filter((x) => x.c <= ende.c)
+          .at(-1)!
+        const monate = [
+          'Januar',
+          'Februar',
+          'März',
+          'April',
+          'Mai',
+          'Juni',
+          'Juli',
+          'August',
+          'September',
+          'Oktober',
+          'November',
+          'Dezember',
+        ]
+        const wann = `${monate[Number(vorher.d.slice(5, 7)) - 1]} ${vorher.d.slice(0, 4)}`
+        pruefe(`Euro: ${z.name} so tief zuletzt ${wann}`, z.zusatz.endsWith(wann))
+      } else {
+        pruefe(
+          `Euro: ${z.name} Tief des Jahres ${tief.c}`,
+          tief.c === 0.9008 &&
+            tief.d.slice(5, 7) === '03' &&
+            z.zusatz.includes('0,9008 im März')
+        )
+      }
+    }
+    /* EXY nach der ICE-Formel, aus den eingefrorenen Kursen nachgerechnet. */
+    const tag = (k: string) => new Map(roh[k].points.map((p) => [p.d, p.c]))
+    const [usd, gbp, jpy, chf, sek] = [
+      'eur-usd',
+      'eur-gbp',
+      'eur-jpy',
+      'eur-chf',
+      'eur-sek',
+    ].map(tag)
+    const exy = (d: string) =>
+      34.38805726 *
+      usd.get(d)! ** 0.3155 *
+      gbp.get(d)! ** 0.3056 *
+      jpy.get(d)! ** 0.1891 *
+      chf.get(d)! ** 0.1113 *
+      sek.get(d)! ** 0.0785
+    const tage = [...usd.keys()].filter(
+      (d) => d >= '2025-12-31' && [gbp, jpy, chf, sek].every((m) => m.has(d))
+    )
+    pruefe(
+      'Euro: EXY-Reihe Tag für Tag nach der ICE-Formel',
+      chart.reihe.length === tage.length &&
+        chart.reihe.every(
+          ([d, v], i) => d === tage[i] && v === Math.round(exy(d) * 100) / 100
+        )
+    )
+    pruefe(
+      'Euro: EXY-Punkte Hoch 16.04. und 17.11., Marke Jahresbeginn 111,29',
+      chart.punkte?.map((p) => p.d).join() === '2026-04-16,2026-11-17' &&
+        chart.marken?.[0].wert === chart.reihe[0][1] &&
+        chart.reihe[0][1] === 111.29 &&
+        Math.max(...chart.reihe.map(([, v]) => v)) === 111.55
+    )
+    pruefe(
+      'Euro: EXY −4,3 % und Krone +2,8 % stehen so im Text',
+      Math.round((chart.reihe.at(-1)![1] / chart.reihe[0][1] - 1) * 1000) / 10 === -4.3 &&
+        Math.round((sek.get('2026-11-17')! / sek.get('2025-12-31')! - 1) * 1000) / 10 ===
+          2.8 &&
+        dossier.text.includes('111,29 → 106,54 (−4,3 %)') &&
+        dossier.text.includes('(+2,8 %)')
+    )
+    pruefe(
+      'Euro: ein Wert unter dem Achsenbeginn wird beanstandet',
+      pruefeZahlenkarte({ ...chart, achseAb: 110 }).some((f) =>
+        f.includes('Achsenbeginn')
+      )
+    )
+    pruefe(
+      'Euro: ein Korb in falscher Reihenfolge wird beanstandet',
+      pruefeZahlenkarte({ ...korb, stuecke: [...korb.stuecke].reverse() }).some((f) =>
+        f.includes('absteigend')
+      )
+    )
+    const gewichte = [31.55, 30.56, 18.91, 11.13, 7.85]
+    pruefe(
+      'Euro: Korb wie in der Formel, zusammen 100 %',
+      korb.stuecke.every(
+        (t, i) =>
+          t.wert === gewichte[i] &&
+          t.anzeige === `${gewichte[i].toFixed(2).replace('.', ',')} %`
+      ) && gewichte.reduce((a, b) => a + b, 0).toFixed(2) === '100.00'
+    )
+    pruefe(
+      'Euro: Prüfstein 28.07.2011 – Formel 108,90 gegen ICE 108,88',
+      Math.abs(
+        34.38805726 *
+          1.4331985712051392 ** 0.3155 *
+          0.8757299780845642 ** 0.3056 *
+          111.44100189208984 ** 0.1891 *
+          1.1485600471496582 ** 0.1113 *
+          9.05620002746582 ** 0.0785 -
+          108.88
+      ) < 0.05
+    )
+    pruefe(
+      'Euro: Text unter 2.150 Zeichen samt Rechtshinweis',
+      dossier.text.length + RECHTSHINWEIS.length + 2 < 2150
+    )
+    for (const f of [
+      'flagge-china.png',
+      'flagge-usa.png',
+      'flagge-japan.png',
+      'flagge-grossbritannien.png',
+      'flagge-schweiz.png',
+    ])
+      pruefe(
+        `Euro: ${f} liegt bei den Logos`,
+        karte.zeilen.some((z) => z.logo === f)
+      )
+    /* Die Prüfung muss einen falschen Wert finden. */
+    pruefe(
+      'Euro: ein falsches Vorzeichen wird gefunden',
+      (() => {
+        const p = roh['eur-usd'].points
+        const v =
+          Math.round(
+            (p.at(-1)!.c / p.filter((x) => x.d < '2026-01-01').at(-1)!.c - 1) * 1000
+          ) / 10
+        return v !== 6.5
+      })()
+    )
+  }
+}
+
 /* 19.11.2026: Von GTA V zu GTA VI (Yahoo Finance, Bitstamp; data/instagram-reihen-gta.ts). */
 {
   const dossier = karteVom('2026-11-19')
