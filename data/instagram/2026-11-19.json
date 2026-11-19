@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Anthropic startet an der Nasdaq, die Fed streitet über Dezember, Commerzbank kommt näher, Großbritanniens Inflation steigt, und Target übertrifft die Erwartungen.",
+  "kacheln": [
+    {
+      "titel": "Anthropic-IPO: 81 Mrd. $",
+      "text": "Anthropic ist mit 83 Dollar pro Aktie an die Nasdaq gegangen und sammelte 81,3 Milliarden Dollar ein – nach eigenen Angaben der größte Börsengang der Geschichte."
+    },
+    {
+      "titel": "Waller fordert 0,5 Punkte",
+      "text": "Fed-Gouverneur Waller hält im Dezember einen Zinsschritt von einem halben Prozentpunkt für nötig. Im Oktober stimmten zwei Mitglieder bereits gegen die Zinspause."
+    },
+    {
+      "titel": "UK-Inflation bei 3,6 %",
+      "text": "Großbritanniens Inflation stieg im Oktober auf 3,6 Prozent. Die Bank of England rechnet 2027 mit einer Teuerung von fast fünf Prozent."
+    },
+    {
+      "titel": "Target: Plus 7 Prozent",
+      "text": "Target steigerte den Umsatz um 7,1 Prozent, das beste Wachstum seit fünf Jahren. Ein Teil des Gewinnsprungs stammt aus Zoll-Rückerstattungen."
+    },
+    {
+      "titel": "Commerzbank-Einigung",
+      "text": "Bund und Unicredit haben laut Finanzminister Klingbeil eine gemeinsame Basis für die Commerzbank-Übernahme gefunden. Frankfurt bleibt Sitz der Bank."
+    }
+  ],
+  "schlagworte": ["anthropic", "fed", "commerzbank", "börse", "aktien"]
+}

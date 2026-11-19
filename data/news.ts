@@ -101,6 +101,276 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'anthropic-ipo-boersenstart-nasdaq',
+    title: 'Anthropic startet mit Rekord-IPO an der Nasdaq',
+    teaser:
+      'Anthropic ist am Donnerstag mit einem Ausgabepreis von 83 Dollar pro Aktie an die Nasdaq gegangen und sammelte dabei 81,3 Milliarden Dollar ein.',
+    category: 'Märkte',
+    publishedAt: '2026-11-19T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['anthropic', 'ipo', 'nasdaq', 'ki', 'boerse'],
+    relatedTopics: ['boerse', 'aktie'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 18. November 2026, 23:44 Uhr MEZ: „Anthropic IPO raises over $81 billion in largest offering on record, topping SpaceX“',
+        url: 'https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html',
+      },
+      {
+        label:
+          'Handelsblatt, 18. November 2026, 22:44 Uhr: „Erstnotiz: Berichte – Anthropic legt Aktienpreis für Mega-IPO bei 83 Dollar fest“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/erstnotiz-berichte-anthropic-legt-aktienpreis-fuer-mega-ipo-bei-83-dollar-fest/100270370.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der KI-Entwickler Anthropic ist an die Börse gegangen. Am Mittwochabend setzte das Unternehmen den Ausgabepreis für seinen Börsengang auf 83 Dollar je Aktie fest, am Donnerstag startet der Handel an der Nasdaq unter dem Kürzel ANT.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '980 Millionen Aktien statt 825 Millionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anthropic und seine Altaktionäre verkauften beim Börsengang rund 980 Millionen Aktien – deutlich mehr als die ursprünglich geplanten 825 Millionen. Zusammen mit dem gegenüber der Preisspanne von 70 bis 78 Dollar angehobenen Ausgabepreis kamen so 81,3 Milliarden Dollar zusammen. CNBC bezeichnet das als den größten Börsengang der Geschichte und zieht den Vergleich zur Erstnotiz von SpaceX, die im Juni zunächst 75 Milliarden Dollar eingesammelt hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Der Ausgabepreis ist nicht der erste Kurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 83 Dollar sind der Preis, zu dem Investmentbanken die Aktien vorab an ausgewählte Käufer zugeteilt haben – festgelegt am Vorabend, nach Gesprächen mit Großanlegern über deren Nachfrage. Welchen Kurs die Aktie am ersten Handelstag tatsächlich erreicht, bestimmt dagegen erst das freie Spiel von Angebot und Nachfrage an der Börse. Ausgabepreis und Eröffnungskurs können deshalb deutlich voneinander abweichen, nach oben wie nach unten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer erst am Donnerstagmorgen über seinen Broker kaufen will, zahlt nicht die 83 Dollar der Erstzuteilung, sondern den Preis, der sich im Handel bildet. Wie groß der Abstand zwischen beiden Zahlen ausfällt, zeigt sich erst nach Handelsbeginn.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-waller-zinsschritt-dezember',
+    title: 'Fed-Gouverneur Waller fordert großen Zinsschritt',
+    teaser:
+      'Fed-Gouverneur Christopher Waller hält im Dezember einen Zinsschritt von einem halben Prozentpunkt für nötig. Das Oktober-Protokoll zeigt zwei Gegenstimmen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-19T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['fed', 'zinsen', 'waller', 'inflation', 'geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          "CNBC, 18. November 2026: „Fed's Waller says central bank may need to 'shock people' with half-point rate hike“",
+        url: 'https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html',
+      },
+      {
+        label:
+          'Handelsblatt, 18. November 2026, 17:46 Uhr: „Geldpolitik: US-Notenbanker Waller dringt auf kräftige Zinserhöhung“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/geldpolitik-us-notenbanker-waller-dringt-auf-kraeftige-zinserhoehung/100271048.html',
+      },
+      {
+        label:
+          'Federal Reserve, veröffentlicht 18. November 2026: „Minutes of the Federal Open Market Committee, October 27-28, 2026“',
+        url: 'https://www.federalreserve.gov/monetarypolicy/fomcminutes20261028.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Fed-Gouverneur Christopher Waller hat sich am Mittwoch im US-Sender CNBC für einen großen Zinsschritt im Dezember ausgesprochen. Eine Anhebung um einen halben Prozentpunkt sei wahrscheinlich nötig, sagte er im Programm Squawk Box.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Gegenstimmen im Oktober',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag veröffentlichte die US-Notenbank das Protokoll ihrer Sitzung vom 27. und 28. Oktober. Das Gremium hatte den Leitzins damals mit zehn zu zwei Stimmen bei 3,75 bis 4 Prozent gehalten. Die Gouverneurin Lisa Cook und die Präsidentin der Fed von Cleveland, Beth Hammack, stimmten dagegen und wollten den Zins direkt um einen Viertelpunkt anheben. Laut Protokoll sahen „fast alle“ Teilnehmer weitere Zinsschritte als angemessen an. Mehrere Teilnehmer bezeichneten den vom KI-Ausbau ausgehenden Preisdruck als „eine wesentliche Quelle von Inflationsrisiko“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Eine eingepreiste Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'An den Terminmärkten gilt ein Zinsschritt von einem Viertelpunkt im Dezember laut CNBC bereits als nahezu sicher – dieser Schritt ist also schon in den heutigen Kursen von Anleihen und Aktien enthalten. Käme es tatsächlich zu Wallers halbem Punkt, träfe das die Märkte stärker, weil dieser Teil der Entscheidung noch nicht eingepreist ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Waller sich durchsetzt, entscheidet sich erst am 9. Dezember. Bis dahin bleibt die Frage offen, ob die Fed Anleger mit einem größeren Schritt überrascht oder beim erwarteten Viertelpunkt bleibt.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-unicredit-einigung-bund',
+    title: 'Bundesregierung und Unicredit nähern sich bei Commerzbank an',
+    teaser:
+      'Die Bundesregierung und Unicredit haben laut Finanzminister Klingbeil eine gemeinsame Basis für die Commerzbank-Übernahme gefunden.',
+    category: 'Märkte',
+    publishedAt: '2026-11-19T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['commerzbank', 'unicredit', 'bankenfusion', 'klingbeil'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['commerzbank', 'unicredit'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 18. November 2026, 23:13 Uhr (Reuters): „Banken: Bundesregierung und Unicredit einigen sich bei Commerzbank-Übernahme“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/banken-bundesregierung-und-unicredit-einigen-sich-bei-commerzbank-uebernahme/100271077.html',
+      },
+      {
+        label:
+          'ZDFheute, 15. Oktober 2026, 20:29 Uhr: „Übernahme von Commerzbank durch Unicredit: EZB gibt grünes Licht“',
+        url: 'https://www.zdfheute.de/wirtschaft/unternehmen/unicredit-commerzbank-ezb-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Streit um die Commerzbank zeichnet sich eine politische Verständigung ab. Finanzminister Lars Klingbeil sagte laut einem Reuters-Bericht, den Handelsblatt wiedergibt, nach einem Gespräch mit Unicredit-Chef Andrea Orcel: „Wir haben eine gemeinsame Basis gefunden.“ Eine zweite Quelle für diese konkrete Einigung lag zum Zeitpunkt dieses Artikels nicht vor, sie gilt deshalb als noch nicht unabhängig bestätigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Frankfurt, Börse, Mittelstand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dem Bericht zufolge hat Unicredit klare Zusagen zum Standort Deutschland gemacht: Die Commerzbank soll eine börsennotierte Aktiengesellschaft mit Sitz in Frankfurt bleiben und ihr Geschäft mit mittelständischen Unternehmen ausbauen. Zu den Rechten der Beschäftigten habe Unicredit ebenfalls Zusagen gemacht. Im Aufsichtsrat schlägt Unicredit zwei unabhängige Mitglieder mit Deutschland- und Commerzbank-Kenntnissen vor; dafür verzichtet der Bund im Gegenzug auf seine Forderung nach zwei eigenen Sitzen. Die EU-Kommission und die US-Notenbank Fed hatten den Zusammenschluss bereits zuvor genehmigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Kontrollmehrheit statt Fusion',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die EZB-Bankenaufsicht hatte Unicredit schon im Oktober erlaubt, die Schwelle von 30 Prozent der Stimmrechte an der Commerzbank zu überschreiten. Ab dieser Marke greift in Deutschland normalerweise die Pflicht zu einem Übernahmeangebot an alle übrigen Aktionäre. Unicredit hält seinen Anteil seither bewusst unter voller Fusion: Es kauft sich Stimmrechte und Einfluss, ohne die Commerzbank als eigenständige, börsennotierte Gesellschaft aufzulösen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Commerzbank-Kunden ändert sich an Konto und Filiale vorerst nichts. Ob die zugesagte Eigenständigkeit den deutschen Mittelstand auf Dauer genauso gut finanziert wie bisher, lässt sich erst beurteilen, wenn Unicredit die Kontrolle tatsächlich übernommen hat.',
+      },
+    ],
+  },
+  {
+    slug: 'grossbritannien-inflation-jahreshoch',
+    title: 'Großbritannien: Inflation steigt auf Jahreshoch',
+    teaser:
+      'Die britische Inflation stieg im Oktober auf 3,6 Prozent, den höchsten Stand seit einem Jahr. Die Bank of England erwartet fast fünf Prozent.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-19T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'grossbritannien', 'bank-of-england', 'zinsen'],
+    relatedTopics: ['inflation', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-gbp'],
+    sources: [
+      {
+        label:
+          'Office for National Statistics, 18. November 2026, 7:00 Uhr: „Consumer price inflation, UK: October 2026“',
+        url: 'https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/october2026',
+      },
+      {
+        label:
+          'Handelsblatt, 18. November 2026, 10:13 Uhr: „Großbritannien: Britische Inflation steigt auf Jahreshoch von 3,6 Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/grossbritannien-britische-inflation-steigt-auf-jahreshoch-von-36-prozent/100270860.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Inflationsrate in Großbritannien ist im Oktober auf 3,6 Prozent gestiegen, nach 3,5 Prozent im September. Das meldete das britische Statistikamt ONS am Mittwochmorgen. Es ist der höchste Stand seit einem Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sprit und Tabaksteuer als Treiber',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut ONS kam der größte Preisauftrieb vom Verkehr: Benzin verteuerte sich um 5,2 Pence je Liter, Diesel um 7,0 Pence, Kraftstoffe insgesamt lagen binnen eines Jahres 33,2 Prozent höher. Auch eine zum 1. Oktober wirksame Tabaksteuererhöhung trieb die Preise. Gegengewicht lieferten fallende Preise bei Restaurants und Hotels sowie eine befristete Senkung der Mehrwertsteuer auf Haushaltsstrom auf null.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Eine Wahrscheinlichkeit bewegt den Kurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bank of England hatte ihren Leitzins Anfang November erstmals seit drei Jahren auf 4,00 Prozent angehoben und rechnet in ihrem Ausblick damit, dass die Inflation im Laufe des kommenden Jahres auf fast fünf Prozent steigt – deutlich über ihrem Ziel von 2 Prozent. Nach den neuen Zahlen sahen Investoren die Wahrscheinlichkeit für einen weiteren Zinsschritt im Dezember bei rund 80 Prozent, zuvor waren es etwa 90 Prozent. Allein diese veränderte Wahrscheinlichkeit kann Anleihekurse und den Kurs des Pfunds bewegen, noch bevor die Notenbank überhaupt entschieden hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Sparer in Großbritannien bedeutet ein höherer Leitzins mehr Zinsen auf Tagesgeld – und für Kreditnehmer teurere Hypotheken. Ob die Bank of England im Dezember tatsächlich erhöht, hängt von weiteren Daten bis zur Sitzung ab.',
+      },
+    ],
+  },
+  {
+    slug: 'target-quartalszahlen-tarifruecksendungen',
+    title: 'Target: Bestes Umsatzwachstum seit fünf Jahren',
+    teaser:
+      'Target meldete das stärkste Umsatzwachstum seit mehr als fünf Jahren. Ein gutes Fünftel des Gewinnsprungs stammt aus Zoll-Rückerstattungen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-19T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['target', 'einzelhandel', 'quartalszahlen', 'usa'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['target'],
+    sources: [
+      {
+        label:
+          'Target Corporation, Pressemitteilung vom 18. November 2026: „Target Corporation Reports Third Quarter Earnings“',
+        url: 'https://corporate.target.com/press/release/2026/11/target-corporation-reports-third-quarter-earnings',
+      },
+      {
+        label:
+          'CNBC, 18. November 2026: „Target shares rise 7% as retailer posts best sales growth in five years, hikes guidance“',
+        url: 'https://www.cnbc.com/2026/11/18/target-tgt-q3-2026-earnings.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der US-Einzelhändler Target hat am Mittwoch Zahlen vorgelegt, die deutlich besser ausfielen als erwartet. Der Umsatz des dritten Quartals stieg um 7,1 Prozent auf 27,1 Milliarden Dollar – das stärkste Wachstum seit mehr als fünf Jahren. Die Aktie legte danach rund 7 Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '301 Millionen Dollar aus Zoll-Rückerstattungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Gewinn je Aktie lag bei 2,65 Dollar, nach 1,51 Dollar im Vorjahresquartal. Nach eigenen Angaben von Target steckten darin 0,50 Dollar aus einer einmaligen, vorsteuerlichen Rückerstattung von Zollzahlungen in Höhe von 301 Millionen Dollar, die mit 1,1 Prozentpunkten auch die Gewinnmarge anhob. Target erhöhte zugleich seine Jahresprognose für Umsatzwachstum und Gewinn je Aktie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lehrwinkel: Sondereffekt im Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Normalerweise trennen Unternehmen einmalige Sondereffekte heraus und weisen neben dem GAAP-Ergebnis ein „bereinigtes“ Ergebnis aus. Bei Target enthalten beide Kennzahlen für dieses Quartal denselben Betrag aus der Zollrückerstattung – sie lässt sich also nicht einfach herausrechnen, sondern nur direkt von der genannten Zahl abziehen, wer das operative Geschäft ohne den Einmaleffekt beurteilen will.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne die Zollrückerstattung wäre der Gewinn je Aktie bei rund 2,15 Dollar gelegen – immer noch deutlich über dem Vorjahreswert, aber nicht mehr der auffällige Sprung, den die Schlagzeile zeigt.',
+      },
+    ],
+  },
+  {
     slug: 'deutsche-bank-datenleck',
     title: 'Datenleck bringt die Deutsche Bank erneut unter Druck',
     teaser:
