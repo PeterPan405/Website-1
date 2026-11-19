@@ -81,7 +81,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_TAKE_TWO,
         einheit: '$',
         logo: 'take-two.png',
-        satz: '+1.174,2 % seit dem Erscheinen von GTA V.',
+        satz: '+1.174,2 % seit GTA V – aus 1.000 $ wurden 12.742 $.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -99,7 +99,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_BITCOIN,
         einheit: '$',
         logo: 'bitcoin.png',
-        satz: '+49.518,8 % seit dem Erscheinen von GTA V.',
+        satz: '+49.518,8 % seit GTA V – aus 1.000 $ wurden 496.188 $.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -117,7 +117,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_NVIDIA,
         einheit: '$',
         logo: 'nvidia.png',
-        satz: '+37.973,1 % seit dem Erscheinen von GTA V.',
+        satz: '+37.973,1 % seit GTA V – aus 1.000 $ wurden 380.731 $.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -136,7 +136,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_TESLA,
         einheit: '$',
         logo: 'tesla.png',
-        satz: '+3.362,6 % seit dem Erscheinen von GTA V.',
+        satz: '+3.362,6 % seit GTA V – aus 1.000 $ wurden 34.626 $.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -155,7 +155,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_APPLE,
         einheit: '$',
         logo: 'apple.png',
-        satz: '+2.067,4 % seit dem Erscheinen von GTA V.',
+        satz: '+2.067,4 % seit GTA V – aus 1.000 $ wurden 21.674 $.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -174,7 +174,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_DAX,
         einheit: 'Punkte',
         logo: 'dax.png',
-        satz: '+199,4 % seit dem Erscheinen von GTA V.',
+        satz: '+199,4 % seit GTA V – aus 1.000 € wurden 2.994 €.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },

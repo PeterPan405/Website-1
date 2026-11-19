@@ -1158,10 +1158,12 @@ pruefe('Vermögen: das Bild ist ein PNG', vermoegenPng.subarray(1, 4).toString()
           )
       )
       const pct = (r.at(-1)![1] / r[0][1] - 1) * 100
+      const w = name === 'DAX' ? '€' : '$'
+      const aus = Math.round((1000 * r.at(-1)![1]) / r[0][1]).toLocaleString('de-DE')
       pruefe(
-        `GTA: ${name} Entwicklung +${pct.toFixed(1)} % unten auf der Seite`,
+        `GTA: ${name} unten +${pct.toFixed(1)} % und 1.000 ${w} → ${aus} ${w}`,
         l.satz ===
-          `+${pct.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} % seit dem Erscheinen von GTA V.`
+          `+${pct.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} % seit GTA V – aus 1.000 ${w} wurden ${aus} ${w}.`
       )
       pruefe(
         `GTA: ${name} Logo liegt bereit`,
