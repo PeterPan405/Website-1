@@ -5,7 +5,8 @@
  * Aktien und DAX: Yahoo Finance, Schlusskurse (splitbereinigt, ohne
  * Dividenden), wöchentlich; Bitcoin: Bitstamp BTC/USD, Schluss alle drei
  * Tage. Erster Punkt ist jeweils der Tagesschluss am 17.09.2013, letzter
- * der Stand am 18.11.2026. Geholt am 18.11.2026 über quellen-holen.yml.
+ * der Schlusskurs am 18.11.2026 (Bitcoin: Bitstamp-Tagesschluss 18.11. UTC).
+ * Geholt am 18. und 19.11.2026 über quellen-holen.yml.
  */
 export const GTA_NVIDIA: readonly (readonly [string, number])[] = [
   ['2013-09-17', 0.3965],
@@ -696,7 +697,7 @@ export const GTA_NVIDIA: readonly (readonly [string, number])[] = [
   ['2026-11-02', 186.64],
   ['2026-11-09', 162.85],
   ['2026-11-16', 155.46],
-  ['2026-11-18', 150.66],
+  ['2026-11-18', 150.96],
 ]
 
 export const GTA_TESLA: readonly (readonly [string, number])[] = [
@@ -1388,7 +1389,7 @@ export const GTA_TESLA: readonly (readonly [string, number])[] = [
   ['2026-11-02', 358.22],
   ['2026-11-09', 390.22],
   ['2026-11-16', 380.11],
-  ['2026-11-18', 383.53],
+  ['2026-11-18', 383.72],
 ]
 
 export const GTA_APPLE: readonly (readonly [string, number])[] = [
@@ -2080,7 +2081,7 @@ export const GTA_APPLE: readonly (readonly [string, number])[] = [
   ['2026-11-02', 342.37],
   ['2026-11-09', 356.27],
   ['2026-11-16', 351.91],
-  ['2026-11-18', 352.43],
+  ['2026-11-18', 352.45],
 ]
 
 export const GTA_TAKE_TWO: readonly (readonly [string, number])[] = [
@@ -2772,7 +2773,7 @@ export const GTA_TAKE_TWO: readonly (readonly [string, number])[] = [
   ['2026-11-02', 214.87],
   ['2026-11-09', 227.82],
   ['2026-11-16', 203.93],
-  ['2026-11-18', 215.425],
+  ['2026-11-18', 216.61],
 ]
 
 export const GTA_DAX: readonly (readonly [string, number])[] = [
@@ -5072,5 +5073,5 @@ export const GTA_BITCOIN: readonly (readonly [string, number])[] = [
   ['2026-11-09', 73915.03],
   ['2026-11-12', 64113.69],
   ['2026-11-15', 64877.24],
-  ['2026-11-18', 62697.28],
+  ['2026-11-18', 62976.18],
 ]
