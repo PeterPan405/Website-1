@@ -19,6 +19,7 @@ import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
 import { kalender, type Kalenderkarte } from './kalender.ts'
 import { kerzen, type Kerzenkarte } from './kerzen.ts'
 import { kreise, type Kreiskarte } from './kreise.ts'
+import { kuchen, type Kuchenkarte } from './kuchen.ts'
 import { kurszettel, type Kurszettelkarte } from './kurszettel.ts'
 import { laenderkarte, type Laenderkartenkarte } from './laenderkarte.ts'
 import { linie, type Linienkarte } from './linie.ts'
@@ -64,11 +65,13 @@ export type NeueKarte =
   | Dossierkarte
   | Erholungkarte
   | Deckblattkarte
+  | Kuchenkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
 } = {
   kurszettel,
+  kuchen,
   deckblatt,
   punktraster,
   kalender,

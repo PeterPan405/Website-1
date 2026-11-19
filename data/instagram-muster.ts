@@ -751,6 +751,27 @@ export const musterkarten: Zahlenkarte[] = [
     schlagworte: ['gta', 'nvidia', 'apple', 'aktien', 'langfristig'],
   },
   {
+    /* Kuchen: der Korb des Euro-Index EXY (Wikipedia „Euro Currency Index“, nach ICE Futures U.S.). */
+    art: 'kuchen',
+    datum: '2026-11-15',
+    titel: [
+      { text: 'Der Euro-Index EXY:' },
+      { text: 'Fünf Währungen im Korb.', gruen: true },
+    ],
+    unterzeile: 'Gewicht jeder Währung in der Formel der ICE.',
+    stuecke: [
+      { name: 'US-Dollar', wert: 31.55, anzeige: '31,55 %' },
+      { name: 'Britisches Pfund', wert: 30.56, anzeige: '30,56 %' },
+      { name: 'Japanischer Yen', wert: 18.91, anzeige: '18,91 %' },
+      { name: 'Schweizer Franken', wert: 11.13, anzeige: '11,13 %' },
+      { name: 'Schwedische Krone', wert: 7.85, anzeige: '7,85 %' },
+    ],
+    fusszeile:
+      'Stand: 11/2026 | Quelle: Wikipedia „Euro Currency Index“ (nach ICE Futures U.S.)',
+    text: 'Muster.\n\nQuelle: Wikipedia',
+    schlagworte: ['euro', 'exy', 'waehrungen', 'devisen', 'index'],
+  },
+  {
     /* Münzstapel: Umsatz im letzten Geschäftsjahr, SEC (fundamentaldaten.json). */
     art: 'stapel',
     datum: '2026-11-15',
