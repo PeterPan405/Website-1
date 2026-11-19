@@ -68,14 +68,6 @@ export const zahlenkarten: Zahlenkarte[] = [
         unterzeile: 'Angelegt am 17.09.2013, dem Tag von GTA V (DAX: 1.000 €).',
         rund: true,
         fotoLogo: 'gta6.png',
-        liste: [
-          { name: 'Bitcoin', anzeige: '493.991 $', logo: 'bitcoin.png' },
-          { name: 'Nvidia', anzeige: '379.975 $', logo: 'nvidia.png' },
-          { name: 'Tesla', anzeige: '34.608 $', logo: 'tesla.png' },
-          { name: 'Apple', anzeige: '21.673 $', logo: 'apple.png' },
-          { name: 'Take-Two', anzeige: '12.672 $', logo: 'take-two.png' },
-          { name: 'DAX', anzeige: '2.994 €', logo: 'dax.png' },
-        ],
         fusszeile:
           'Stand: 18.11.2026 | Quellen: Yahoo Finance, Bitstamp; ohne Dividenden | Logo: Rockstar Games, gemeinfrei',
         text: '',
@@ -89,6 +81,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_BITCOIN,
         einheit: '$',
         logo: 'bitcoin.png',
+        satz: '+49.299,1 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -106,6 +99,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_NVIDIA,
         einheit: '$',
         logo: 'nvidia.png',
+        satz: '+37.897,5 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -124,6 +118,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_TESLA,
         einheit: '$',
         logo: 'tesla.png',
+        satz: '+3.360,8 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -142,6 +137,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_APPLE,
         einheit: '$',
         logo: 'apple.png',
+        satz: '+2.067,3 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -160,6 +156,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_TAKE_TWO,
         einheit: '$',
         logo: 'take-two.png',
+        satz: '+1.167,2 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },
@@ -177,6 +174,7 @@ export const zahlenkarten: Zahlenkarte[] = [
         reihe: GTA_DAX,
         einheit: 'Punkte',
         logo: 'dax.png',
+        satz: '+199,4 % seit dem Erscheinen von GTA V.',
         platzRechts: 90,
         punkte: [
           { d: '2013-09-17', text: 'GTA V', farbe: 'navy', unten: true },

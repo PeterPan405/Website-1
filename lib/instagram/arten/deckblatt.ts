@@ -23,6 +23,7 @@ import {
 } from '../../instagram-zahlenkarte.ts'
 import {
   OBEN_ERSTE,
+  UNTEN,
   pruefeGemeinsam,
   rahmen,
   type Art,
@@ -87,7 +88,9 @@ export const deckblatt: Art<Deckblattkarte> = {
       )
     }
     if (k.fotoLogo) {
-      const lh = k.foto ? 175 : 380
+      /* Ohne Foto und ohne Liste steht das Logo allein – groß und mittig (19.11.2026, GTA). */
+      const allein = !k.foto && !k.liste?.length
+      const lh = k.foto ? 175 : allein ? 560 : 380
       const lw = Math.round(lh * logoVerhaeltnis(k.fotoLogo))
       inhalt.push(
         h('img', {
@@ -96,7 +99,11 @@ export const deckblatt: Art<Deckblattkarte> = {
           width: lw,
           style: {
             position: 'absolute',
-            top: k.foto ? fotoOben + 24 : fotoOben + (fotoH - lh) / 2,
+            top: k.foto
+              ? fotoOben + 24
+              : allein
+                ? (OBEN_ERSTE - 40 + UNTEN) / 2 - lh / 2
+                : fotoOben + (fotoH - lh) / 2,
             left: (ZK_BREITE - lw) / 2,
           },
         })
