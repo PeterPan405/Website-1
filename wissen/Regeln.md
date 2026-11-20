@@ -152,8 +152,8 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 
 - **Die News gehen ohne Freigabe hinaus** – also nur, was die Masse packt
   (Zins, Öl, Gold, DAX, Weltkonzerne; nicht EQT/Qiagen), nichts doppelt.
-  **Tagesbeitrag nie ohne „passt"** – dann **sofort, heute** (ab 15 Uhr,
-  nach den News), nie auf morgen.
+  **Zahlenkarte ab 21.11.2026 vollautomatisch** (Routine setzt
+  `freigabe`); „stopp" gilt.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
 - **Kein Thema zweimal** – nicht im Beitrag, nicht in 3 Tagen
