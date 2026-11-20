@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Fünf Themen heute: Brunnermeiers EZB-Kandidatur, VWs Sparplan und Warnstreiks, BASFs Rückzug von Evonik, Japans Inflationssprung und die Marktreaktion auf den Anthropic-Börsengang.",
+  "kacheln": [
+    {
+      "titel": "EZB: Brunnermeier nominiert",
+      "text": "Die Bundesregierung schlägt den Princeton-Ökonomen Markus Brunnermeier als neuen EZB-Chefvolkswirt vor. Final entscheiden die Euro-Länder gemeinsam."
+    },
+    {
+      "titel": "IG Metall streikt gegen VW",
+      "text": "Volkswagen will zwei Jahre ohne Lohnerhöhung durchsetzen. Die IG Metall lässt deshalb an diesem Freitag ganztägige Warnstreiks rollen."
+    },
+    {
+      "titel": "BASF stoppt Evonik-Deal",
+      "text": "BASF gibt seine Übernahmepläne für Evonik auf, nachdem der Konkurrent zwei unverbindliche Angebote abgelehnt hatte. Die Evonik-Aktie brach daraufhin ein."
+    },
+    {
+      "titel": "Japan: Teuerung auf Hoch",
+      "text": "Japans Kerninflation stieg im Oktober auf den höchsten Stand des Jahres, weil staatliche Energiesubventionen ausliefen – blieb aber unter den Erwartungen."
+    },
+    {
+      "titel": "Anthropic-IPO: Dax im Minus",
+      "text": "Anthropic startete bei 111,50 Dollar und schloss 17 Prozent im Plus. Dow, Nasdaq und Dax rutschten trotzdem ins Minus, zusätzlich belastet durch einen Kursrutsch bei AMD."
+    }
+  ],
+  "schlagworte": ["ezb", "inflation", "börse", "aktien", "wirtschaft"]
+}

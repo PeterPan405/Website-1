@@ -101,6 +101,260 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'brunnermeier-ezb-chefvolkswirt-vorschlag',
+    title: 'Bundesregierung schlägt Brunnermeier als EZB-Chefvolkswirt vor',
+    teaser:
+      'Die Bundesregierung schlägt Ökonom Markus Brunnermeier als neuen EZB-Chefvolkswirt vor – was das Amt für die Zinspolitik der Euro-Zone bedeutet.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-20T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Geldpolitik', 'Brunnermeier'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'FAZ, 19.11.2026, 14:15 Uhr: „Princeton-Ökonom: Dieser Aufsatz machte EZB-Kandidat Markus Brunnermeier berühmt“',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/markus-brunnermeier-der-aufsatz-der-den-ezb-kandidaten-beruehmt-machte-201691457.html',
+      },
+      {
+        label:
+          'FAZ, 17.11.2026, 19:06 Uhr: „Neuer EZB-Chefvolkswirt: Ein pragmatischer Ökonom“',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/markus-brunnermeier-deutschlands-kandidat-fuer-die-ezb-201691095.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Bundesregierung hat vorgeschlagen, den Ökonomen Markus Brunnermeier zum neuen Chefvolkswirt der Europäischen Zentralbank zu machen. Brunnermeier lehrt als Professor in Princeton und hat nach Angaben der FAZ wesentlich zum Verständnis vergangener Finanzkrisen beigetragen. Bislang berichtet nur die FAZ darüber – bis zum Redaktionsschluss dieser Ausgabe lag keine zweite, unabhängige Quelle vor, die Personalie gilt deshalb als unbestätigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Chefvolkswirt macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Chefvolkswirt der EZB leitet die volkswirtschaftliche Analyse der Notenbank. Seine Abteilung erstellt die Wachstums- und Inflationsprognosen, auf die sich der EZB-Rat bei jedem Zinsentscheid stützt. Das Amt ist nicht gewählt und hat selbst keine Stimme im Rat – es prägt die Entscheidung trotzdem, weil es die Zahlen liefert, von denen die Diskussion ausgeht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Posten, den Deutschland nicht allein vergibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut FAZ gilt Brunnermeier als tüchtiger, eher stabilitätsorientierter Ökonom. Ob er den Posten tatsächlich bekommt, hängt aber nicht an Deutschland allein: Die Spitzenposten der EZB werden traditionell als Paket zwischen den großen und kleinen Euro-Ländern verteilt. Wer welchen Stuhl bekommt, entscheidet sich deshalb erst im Zusammenspiel mit den übrigen offenen Personalfragen der Notenbank.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein stabilitätsorientierter Chefvolkswirt würde die Erwartungen an die künftige Zinslinie der EZB verschieben – ohne dass sich daraus eine Kauf- oder Verkaufsentscheidung ableiten lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-nullrunde-ig-metall-warnstreik',
+    title: 'Volkswagen will Nullrunde – IG Metall startet Warnstreiks',
+    teaser:
+      'Volkswagen plant zwei Jahre ohne Lohnerhöhung in der Tarifrunde, die IG Metall reagiert mit ganztägigen Warnstreiks – was beide Seiten fordern.',
+    category: 'Märkte',
+    publishedAt: '2026-11-20T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'IG Metall', 'Tarifrunde'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 19.11.2026, 17:11 Uhr: „Volkswagen will Nullrunden für zwei Jahre“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/vw-nullrunde-100.html',
+      },
+      {
+        label:
+          'onvista/dpa-AFX, 19.11.2026, 22:06 Uhr: „IG Metall startet 24-Stunden-Warnstreiks“',
+        url: 'https://www.onvista.de/news/2026/11-19-ig-metall-startet-24-stunden-warnstreiks-0-10-26578553',
+      },
+      {
+        label:
+          'onvista/dpa-AFX, 19.11.2026, 23:15 Uhr: „IG Metall lässt ganztägige Warnstreiks rollen“',
+        url: 'https://www.onvista.de/news/2026/11-19-ig-metall-laesst-ganztaegige-warnstreiks-rollen-0-10-26578557',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen will in der laufenden Tarifrunde harte Einschnitte durchsetzen: zwei Jahre ohne Lohnerhöhung, weniger Zulagen und Änderungen bei der Arbeitszeit. Das berichtet die Tagesschau.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die IG Metall reagierte scharf. Nach Angaben der Gewerkschaft wirft sie Volkswagen vor, den Beschäftigten mit dem Vorschlag in den Rücken zu fallen. An diesem Freitag lässt sie deshalb ganztägige Warnstreiks rollen, nachdem sie zuvor bereits 24-Stunden-Warnstreiks gestartet hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Nullrunde für die Beschäftigten bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Nullrunde heißt nicht, dass nichts passiert – sie heißt, dass die Löhne nominal gleich bleiben, während die Preise im selben Zeitraum weiter steigen. Real sinkt die Kaufkraft also, auch ohne dass im Lohnzettel eine kleinere Zahl steht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Tarifverhandlungen bei einem Konzern dieser Größe wirken über die Branche hinaus – sie sind ein Signal dafür, wie viel Verhandlungsmacht Beschäftigte in einem schwächeren Konjunkturumfeld noch haben.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-beendet-evonik-uebernahmeplaene',
+    title: 'BASF beendet Übernahmepläne für Evonik',
+    teaser:
+      'BASF gibt seine Übernahmepläne für Evonik auf, nachdem der Konkurrent zwei unverbindliche Angebote abgelehnt hat – die Aktie reagiert mit deutlichen Verlusten.',
+    category: 'Märkte',
+    publishedAt: '2026-11-20T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['BASF', 'Evonik', 'Übernahme'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['basf'],
+    sources: [
+      {
+        label: 'Tagesschau, 19.11.2026, 17:55 Uhr: „BASF bläst Evonik-Übernahme ab“',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/basf-evonik-uebernahme-absage-100.html',
+      },
+      {
+        label:
+          'onvista, 19.11.2026, 16:54 Uhr: „Evonik-Aktienkurs bricht ein – Dax schließt im Minus“',
+        url: 'https://www.onvista.de/news/2026/11-19-evonik-aktienkurs-bricht-ein-dax-schliesst-im-minus-41121301-19-26578474',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'BASF hat seine Pläne aufgegeben, den Konkurrenten Evonik zu übernehmen. Das berichtet die Tagesschau: Der Chemiekonzern zieht sich zurück, nachdem Evonik zuvor zwei unverbindliche Kaufangebote zurückgewiesen hatte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Evonik-Aktie brach am selben Nachmittag deutlich ein, wie onvista berichtete. Der Dax insgesamt schloss an diesem Tag ebenfalls im Minus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unverbindlich heißt: beide Seiten konnten noch zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein unverbindliches Angebot ist eine Absichtserklärung, kein bindender Vertrag. Es zeigt Interesse und nennt meist eine Preisvorstellung – verpflichtet aber keine der beiden Seiten, den Deal am Ende tatsächlich abzuschließen. Dass Evonik zwei solcher Angebote ablehnte, bevor BASF ganz zurückzog, zeigt, wie stark der Preis in solchen Verhandlungen die eigentliche Hürde ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Käufer, der nach zwei abgelehnten Angeboten aufgibt, signalisiert eine Preisdisziplin, die sich nicht jeder Übernahmefantasie am Markt anschließt.',
+      },
+    ],
+  },
+  {
+    slug: 'japan-kerninflation-jahreshoch-oktober',
+    title: 'Japans Kerninflation steigt auf Jahreshoch',
+    teaser:
+      'Japans Kerninflation kletterte im Oktober auf den höchsten Stand des Jahres, weil Energiesubventionen ausliefen – blieb aber unter den Erwartungen der Ökonomen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-20T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Japan', 'Inflation', 'Bank of Japan'],
+    relatedTopics: ['inflation'],
+    relatedSymbols: ['eur-jpy'],
+    sources: [
+      {
+        label:
+          'CNBC, 20.11.2026, 00:59 Uhr: „Japan core inflation soars to highest this year as energy subsidy expiry pushes up consumer prices“',
+        url: 'https://www.cnbc.com/2026/11/20/japan-inflation-cpi-october.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Japans Kerninflation – also die Teuerung ohne Frischware – ist im Oktober auf den höchsten Stand des Jahres gestiegen. Das meldet CNBC. Grund ist das Auslaufen staatlicher Energiesubventionen, die zuvor einen Teil der Preissteigerung gedämpft hatten. Eine zweite, unabhängige Quelle lag bei Redaktionsschluss nicht vor, die Zahl gilt deshalb als unbestätigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der tatsächliche Wert blieb trotzdem unter den 2,3 Prozent, die von Reuters befragte Ökonomen erwartet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine auslaufende Subvention die Inflation springen lässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Energiesubvention drückt den gemessenen Preis, solange sie läuft – und schiebt den Preisanstieg damit in die Zukunft, sobald sie endet. Die Inflationsrate zeigt dann einen Sprung, der nichts mit neuer Nachfrage zu tun hat, sondern allein damit, dass ein künstlich niedriger Preis wieder auf sein eigentliches Niveau zurückkehrt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine Kerninflation, die trotz dieses Basiseffekts unter der Markterwartung bleibt, ist ein schwächeres Signal für die japanische Notenbank, als die Schlagzeile zunächst vermuten lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-boersen-im-minus',
+    title: 'Anthropic schließt im Plus, Wall Street dreht ins Minus',
+    teaser:
+      'Anthropic startete mit dem größten Börsengang der Geschichte, doch Dow, Nasdaq und Dax schlossen im Minus – ein Kursrutsch bei AMD verschärfte die Lage.',
+    category: 'Märkte',
+    publishedAt: '2026-11-20T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anthropic', 'Nvidia', 'AMD', 'Börse'],
+    relatedTopics: ['boerse'],
+    relatedSymbols: ['dax', 'amd', 'nvidia'],
+    sources: [
+      {
+        label:
+          'onvista, 19.11.2026, 17:00 Uhr: „Erster Anthropic-Kurs an der Nasdaq festgestellt“',
+        url: 'https://www.onvista.de/news/2026/11-19-erster-anthropic-kurs-an-der-nasdaq-festgestellt-41121763-19-26578478',
+      },
+      {
+        label:
+          'Handelsblatt, 19.11.2026, 22:20 Uhr: „Rekord-Börsengang: Anthropic-Aktie schließt 17 Prozent im Plus“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/boersengang-anthropic-schliesst-17-prozent-im-plus-kursrueckgang-im-handelsverlauf/100270027.html',
+      },
+      {
+        label:
+          'Handelsblatt, 19.11.2026, 16:53 Uhr: „US-Börsen schließen deutlich im Minus – Anthropic drückt Kurse“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-us-boersen-schliessen-deutlich-im-minus-anthropic-drueckt-kurse/100271288.html',
+      },
+      {
+        label:
+          'CNBC, 20.11.2026, 01:08 Uhr: „AMD dives on short seller report of alleged China exposure“',
+        url: 'https://www.cnbc.com/2026/11/19/amd-falls-on-short-seller-report-of-alleged-china-exposure.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Anthropic eröffnete den Handel an der Nasdaq bei 111,50 Dollar, wie onvista berichtete. Die Aktie legte zeitweise um mehr als 30 Prozent zu und schloss den Tag laut Handelsblatt mit einem Plus von 17 Prozent – der größte Börsengang der Geschichte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Schwung reichte trotzdem nicht für den Gesamtmarkt: Dow, Nasdaq und Dax schlossen nach Angaben von Handelsblatt deutlich im Minus. Zusätzlichen Druck brachte AMD, dessen Aktie laut CNBC nach einem Shortseller-Bericht über angebliche Geschäfte mit einem gelisteten chinesischen Unternehmen um mehr als 7 Prozent fiel. AMD erklärte, sich an US-Recht zu halten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein IPO ist kein Gesamtmarkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kurs eines einzelnen Börsengangs sagt wenig darüber aus, wie Anleger das Risiko einer ganzen Branche gerade einschätzen. Anthropic profitierte von hoher Nachfrage nach einer einzigen, stark gefragten Aktie – während im selben Marktumfeld bei anderen Werten gerade neue Zweifel über Lieferketten und Exportkontrollen aufkamen. Beides passiert gleichzeitig, ohne dass es sich widerspricht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein einzelner Rekord-Börsengang ist kein verlässliches Signal für die Stimmung am Gesamtmarkt – beides kann sich in entgegengesetzte Richtungen bewegen.',
+      },
+    ],
+  },
+  {
     slug: 'anthropic-ipo-boersenstart-nasdaq',
     title: 'Anthropic startet mit Rekord-IPO an der Nasdaq',
     teaser:
