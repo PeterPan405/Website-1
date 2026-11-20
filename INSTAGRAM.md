@@ -17,7 +17,11 @@ diese Datei – mit dem Grund daneben.
 > auch samstags und sonntags („mache aber jetzt täglich News des Tages"). Aber nur in genau
 > der Form unten; ein Plan, der sie verfehlt, ergibt „kein Beitrag".
 >
-> **Alles andere** – Erklärbeitrag, Zahlenkarte – braucht die Freigabe für
+> **Die Zahlenkarte geht seit dem 21.11.2026 ebenfalls vollautomatisch
+> hinaus** – Anordnung vom 20.11.2026 (siehe C, „Vollautomatisch“). Die
+> Freigabe bleibt als Riegel, aber die Routine setzt sie selbst.
+>
+> **Alles andere** – Erklärbeitrag – braucht die Freigabe für
 > genau seinen Tag:
 >
 >     gh variable set INSTAGRAM_FREIGABE --body JJJJ-MM-TT
@@ -211,6 +215,31 @@ Social-Media-Abteilung abgesprochen werden … Du machst mir immer ein paar
 Vorschläge, ich sage dann, was ich haben möchte" – und: „die täglichen
 Beiträge immer so um 16 Uhr mir schicken, dass wir das bis 17 Uhr online
 bekommen".
+
+**Vollautomatisch seit dem 21.11.2026.** Der Betreiber am 20.11.2026: „Ich
+möchte, dass in Zukunft nicht nur die Daily News, sondern auch die Daily
+Beiträge vollautomatisch hochgeladen werden. Du hast ja jetzt schon so ein
+Feeling bekommen, was ich möchte … Dann ab morgen alles vollautomatisch.“
+Die Schritte unten bleiben, nur die Wahl und das „passt“ übernimmt die
+Routine „Zahlenkarte des Tages“ (vormittags):
+
+- **Thema selbst wählen** – zuerst ein vom Betreiber gewähltes, sonst aus den
+  eigenen offenen Vorschlägen, sonst neu (Gedächtnis-Themenliste, Social-
+  Media-Recherche, Nachrichten der Woche); nichts, was dort als gepostet oder
+  verbraucht steht, und nichts aus den News des Tages.
+- **Art selbst wählen** – nie die Form des Vortags, in sieben Tagen möglichst
+  keine zweimal; der Feed bleibt **weiß und ruhig** (kein Vollbild, keine
+  bunte Seite, Deckblatt im Hausstil, 18.11.2026).
+- **Selbst prüfen** – jede Zahl gegen die Quelle, Tests, jede Seite rendern
+  und ansehen; erst dann `freigabe: '<heute>'`, PR, mergen – vor 14:30 Uhr.
+- **Danach melden** – Bild und Beschriftung in den Chat, Push und
+  Kalendereintrag. Ein „stopp“ oder eine Änderung des Betreibers gilt sofort;
+  vor 15 Uhr wird die Freigabe dann zurückgenommen.
+- Ist etwas unsicher (Quelle nicht gelesen, Grafik passt nicht), geht
+  **nichts** hinaus – lieber kein Beitrag als ein falscher – und der
+  Betreiber bekommt Bescheid.
+
+Bis zum 20.11.2026 galt der Ablauf mit Absprache:
 
 1. **Vorschläge** – drei bis fünf Themen, jedes mit Zahl, Quelle und Stand.
    Wichtiges wird vorgezogen, der Rest rückt nach.
