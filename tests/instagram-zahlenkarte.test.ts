@@ -36,6 +36,10 @@ import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
 import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 import {
+  INFLATION_DEUTSCHLAND,
+  INFLATION_EURORAUM,
+} from '@/data/instagram-reihen-inflation'
+import {
   GTA_APPLE,
   GTA_BITCOIN,
   GTA_DAX,
@@ -2488,6 +2492,82 @@ for (let i = 1; i < nachDatum.length; i++)
     `${nachDatum[i].datum}: Form „${form(nachDatum[i])}" nicht wie am Vortag`,
     form(nachDatum[i]) !== form(nachDatum[i - 1])
   )
+
+/* 21.11.2026: Inflation Euroraum gegen Deutschland (HVPI, eingefroren aus zinsen.json). Erste vollautomatische Karte, neue Art `schere`. */
+{
+  const k = karteVom('2026-11-21')
+  pruefe('Inflation: Karte für den 21.11. ist eine Schere', k?.art === 'schere')
+  if (k?.art === 'schere') {
+    pruefe(
+      'Inflation: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Inflation: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-20')!)
+    )
+    const ea = new Map(INFLATION_EURORAUM)
+    const de = new Map(INFLATION_DEUTSCHLAND)
+    pruefe(
+      'Inflation: Oktober 2026 – 4,0 % und 2,9 %',
+      ea.get('2026-10') === 4 && de.get('2026-10') === 2.9
+    )
+    pruefe(
+      'Inflation: Oktober 2022 – Deutschland 11,6 %, Euroraum 10,6 %',
+      de.get('2022-10') === 11.6 && ea.get('2022-10') === 10.6
+    )
+    const abstaende = INFLATION_EURORAUM.map(
+      ([t, v]) => [t, Math.round((v - de.get(t)!) * 10) / 10] as const
+    )
+    const groesster = abstaende.reduce((m, x) => (x[1] > m[1] ? x : m))
+    pruefe(
+      'Inflation: 1,1 Punkte im Oktober 2026 ist der größte Vorsprung des Euroraums in der Reihe („in fünf Jahren nie“)',
+      groesster[0] === '2026-10' &&
+        groesster[1] === 1.1 &&
+        abstaende.filter(([, d]) => d >= 1.1).length === 1
+    )
+    pruefe(
+      'Inflation: 4,0 % ist der höchste Wert seit September 2023 (4,3 %)',
+      ea.get('2023-09') === 4.3 &&
+        INFLATION_EURORAUM.filter(([t, v]) => t > '2023-09' && t < '2026-10' && v >= 4)
+          .length === 0
+    )
+    pruefe(
+      'Inflation: Januar 2026 – 1,7 % und 2,1 %',
+      ea.get('2026-01') === 1.7 && de.get('2026-01') === 2.1
+    )
+    pruefe(
+      'Inflation: fünf Jahre, 60 Monate ab November 2021',
+      INFLATION_EURORAUM.length === 60 && INFLATION_EURORAUM[0][0] === '2021-11'
+    )
+    const z = JSON.parse(readFileSync('data/snapshots/zinsen.json', 'utf8')).reihen
+    pruefe(
+      'Inflation: eingefrorene Reihe stimmt mit zinsen.json überein, soweit dort noch vorhanden',
+      (z.inflation.verlauf as { t: string; wert: number }[]).every(
+        (p) => !ea.has(p.t) || ea.get(p.t) === p.wert
+      )
+    )
+    pruefe(
+      'Inflation: Gegenprobe – eine Reihe mit anderen Tagen wird beanstandet',
+      pruefeZahlenkarte({ ...k, b: { ...k.b, werte: k.b.werte.slice(1) } }).some((t) =>
+        t.includes('verschieden lang')
+      )
+    )
+    for (const zahl of [
+      '4,0 %',
+      '2,9 %',
+      '1,1 Prozentpunkte',
+      '11,6 %',
+      '10,6 %',
+      '20,8 %',
+      '2,65 %',
+      '2,15 %',
+      '17. Dezember',
+    ])
+      pruefe(`Inflation: Beschriftung nennt ${zahl}`, k.text.includes(zahl))
+  }
+}
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
