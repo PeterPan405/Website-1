@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-11-20T12:11:42.149Z",
+  "abgerufenAm": "2026-11-21T01:00:00.492Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "ig-metall-weitet-warnstreiks-aus-und-trump-droht-mit-steuer-auf-rechenzentren-im",
+      "titel": "IG Metall weitet Warnstreiks aus und Trump droht mit Steuer auf Rechenzentren im Ausland",
+      "beschreibung": "IG Metall eskaliert mit Ganztagesstreiks, Trump droht Tech-Konzernen eine Steuer an, Bayer einigt sich vor Gericht – an den Börsen hält der Ausverkauf an. Die IG Metall hat eskaliert. Mehr als 150.000 Beschäftigte legten am Freitag für 24 Stunden die Arbeit nieder. Rund 100 Betriebe waren betroffen, vor allem in Bayern und an den Werften im Norden. Es ist der erste Ganztagesstreik seit acht Jahren.\n\nWir sprechen über US-Richter billigt Bayers, Bericht: CrowdStrike will und Nasdaq verzeichnet schwächste Woche seit. Kompakt in rund vier Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:37) IG Metall weitet Warnstreiks aus\n(1:17) Trump droht mit Steuer auf Rechenzentren\n(1:51) US-Richter billigt Bayers\n(2:21) Bericht: CrowdStrike will\n(2:54) Nasdaq verzeichnet schwächste Woche seit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-11-21",
+      "dauerSekunden": 221,
+      "url": "https://iminvests.de/podcast-audio/2026-11-21.mp3",
+      "youtubeId": "ZxLkV0bFHJA"
+    },
     {
       "slug": "bundesregierung-schlaegt-brunnermeier-als-ezb-chefvolkswirt-und-ig-metall-starte",
       "titel": "Bundesregierung schlägt Brunnermeier als EZB-Chefvolkswirt und IG Metall startet Warnstreiks gegen VW-Sparplan",
