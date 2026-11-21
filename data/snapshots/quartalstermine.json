@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-20T14:14:26.882Z",
+  "abgerufenAm": "2026-11-21T13:39:26.369Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -38,11 +38,11 @@
     },
     "nasdaq": {
       "tageAbgefragt": 50,
-      "tageMitZeilen": 35,
+      "tageMitZeilen": 34,
       "letzterTag": "2027-01-14",
-      "zeilen": 529,
+      "zeilen": 495,
       "imKatalog": 42,
-      "mitLage": 26,
+      "mitLage": 27,
       "beigetragen": 42
     }
   },
@@ -649,10 +649,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-12-09",
+          "erwartet": "2026-12-14",
           "basis": "Nov/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-09",
@@ -18411,7 +18413,7 @@
     "UMC": "2026-08-18",
     "UMI.BR": "2026-11-19",
     "UPM.HE": "2026-11-20",
-    "URW.PA": "2026-08-18",
+    "URW.PA": "2026-11-21",
     "UTDI.DE": "2026-08-18",
     "UU.L": "2026-08-18",
     "VALE3.SA": "2026-08-18",
