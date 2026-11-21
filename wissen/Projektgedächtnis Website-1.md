@@ -15,11 +15,12 @@ tags:
 Was schiefging, was nachgezählt wurde, welcher Weg verworfen wurde und woran
 er scheiterte. Die Regeln, die daraus wurden, stehen in [[Regeln]].
 
-**39 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
+**40 Fälle.** Die Quelle ist `ENTSCHEIDUNGEN.md` im
 Repository – dieser Ordner ist ein Abbild und wird erzeugt, nicht gepflegt.
 
 ## Mit Datum
 
+- **2026-11-21** – [[Ein Name der letzten drei Tage gehört nach hinten]]
 - **2026-11-20** – [[Die Zahlenkarte geht vollautomatisch hinaus]]
 - **2026-11-10** – [[Dauerthemen]]
 - **2026-10-27** – [[Die Designsprache von IM Capital]]

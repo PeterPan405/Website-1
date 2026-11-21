@@ -324,6 +324,21 @@ const KEIN_THEMA = new Set([
   'marke',
   'stellen',
   'ökonomen',
+  /*
+    Fehlgriffe der Wiederholungsprüfung über drei Tage (`themenDerLetztenTage()`),
+    gemessen am 21.11.2026 über Überschriften und Schlagzeilen vom 23.10. bis
+    21.11.: „seit fünf Jahren“, „Jahreshoch“ bei Inflation in Japan wie in
+    Großbritannien, „Ausfall“ bei Microsoft wie bei der Börse, „Agenten“,
+    „Vorstand“, „Bundesregierung“ als Absender verschiedener Themen.
+  */
+  'jahren',
+  'jahreshoch',
+  'jahrestief',
+  'ausfall',
+  'agenten',
+  'vorstand',
+  'bundesregierung',
+  'bund',
 ])
 
 /** Die Themenwörter einer Überschrift: Namen von Ländern, Firmen, Rohstoffen. */

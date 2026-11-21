@@ -38,6 +38,9 @@ import { positionierungen } from '../lib/editions-validate.ts'
 import {
   dauerthemen,
   quellenstreit,
+  NACHGANG_TAGE,
+  schlagzeilenLetzteTage,
+  themenDerLetztenTage,
   ueberschriftenLetzteTage,
   wiederholungen,
 } from '../lib/nachrichten-wiederholung.ts'
@@ -524,11 +527,12 @@ Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst
 
 # Nichts doppelt – und keine Quellen gegeneinander
 
-Die Startseite zeigt die Artikel von heute und gestern nebeneinander, und verglichen wird mit den vergangenen sieben Tagen. Die Überschriften der letzten sieben Erscheinungstage:
+Die Startseite zeigt die Artikel von heute und gestern nebeneinander, und verglichen wird mit den vergangenen sieben Tagen. Die Überschriften und Schlagzeilen der letzten sieben Erscheinungstage:
 
 ${vortag.length ? vortag.map((t) => `- ${t}`).join('\n') : '(keine gefunden)'}
 
 - **Ein Thema dieser sieben Tage kommt nur mit einem neuen Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas ändert. Zu ähnliche Überschriften werden zurückgewiesen.
+- **Ein Name der letzten drei Tage** (Firma, Gewerkschaft, Land, Person – in Überschrift oder Schlagzeile): höchstens eine solche Meldung, nur mit wirklich neuem Ereignis, und dann **auf dem letzten Platz**. Alles andere durch ein neues, interessantes Thema ersetzen. Am 21.11.2026 stand „IG Metall weitet Warnstreiks aus" ganz oben, einen Tag nach „IG Metall startet Warnstreiks" – genau das nicht.
 - **Dauerthemen** (ein Name, der an zwei dieser Tage dastand, etwa EZB-Nachfolge oder Öl): höchstens eins, nur mit wirklich Neuem, und dann **auf dem letzten Platz**. Sonst ein anderes Thema.
 - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber bewegen sich jeden Tag; ein Rohstoffartikel braucht einen Anlass außerhalb des Kurses.
 - **Ein Kursartikel: erst der Preis, dann das Warum** – aus einer Quelle unten. Steht dort kein Grund, gibt es keinen Kursartikel, auch keinen, der sagt, dass keiner genannt wird.
@@ -726,6 +730,16 @@ async function frageModell(prompt: string): Promise<Antwort> {
 
 // ------------------------------------------------------------------ Prüfung
 
+/** Die Tagesausgaben in `data/editions/` als Quelltext, je mit ihrem Tag. */
+export function ausgabenQuelltext(): { tag: string; quelltext: string }[] {
+  return readdirSync('data/editions')
+    .filter((d) => /^\d{4}-\d{2}-\d{2}\.ts$/.test(d))
+    .map((d) => ({
+      tag: d.slice(0, 10),
+      quelltext: readFileSync(`data/editions/${d}`, 'utf8'),
+    }))
+}
+
 export function pruefe(
   ergebnis: Antwort,
   themen: Set<string>,
@@ -769,6 +783,34 @@ export function pruefe(
     themenwoerter
   )
   const letzte = ergebnis.artikel.length - 1
+  /*
+    Ein Name der letzten drei Tage (Betreiber, 21.11.2026, nach IG Metall
+    am 20. und als Top-Meldung am 21.11.): „wenn sich was doppelt … dann
+    nach hinten, wenn es überhaupt relevant ist, sonst einfach etwas anderes
+    interessantes finden." Verglichen wird Artikelüberschrift und
+    Schlagzeile derselben Stelle – die Überschrift „150.000 Beschäftigte
+    legen … nieder" trug keinen Namen, die Schlagzeile schon.
+  */
+  const schlagzeilen = [...ergebnis.top, ...ergebnis.further].map((m) => m.headline)
+  const stellen = ergebnis.artikel.map((a, i) =>
+    schlagzeilen.length === ergebnis.artikel.length ? [a.title, schlagzeilen[i]] : [a.title]
+  )
+  if (schlagzeilen.length !== ergebnis.artikel.length)
+    stellen.push(...schlagzeilen.map((h) => [h]))
+  const nachgang = themenDerLetztenTage(stellen, woche, themenwoerter)
+  const nachgangText = (n: (typeof nachgang)[number]) =>
+    `„${n.titel}" (${n.namen.join(', ')} – „${n.frueher}" vom ${n.tag})`
+  if (nachgang.length > 1)
+    f(
+      `${nachgang.length} Themen der letzten ${NACHGANG_TAGE} Erscheinungstage: ` +
+        `${nachgang.map(nachgangText).join('; ')}. Höchstens eins je Ausgabe, nur mit ` +
+        `wirklich neuem Ereignis und auf dem letzten Platz – die anderen durch neue Themen ersetzen.`
+    )
+  else if (nachgang.length === 1 && nachgang[0].stelle !== letzte)
+    f(
+      `${nachgangText(nachgang[0])} stand in den letzten ${NACHGANG_TAGE} Erscheinungstagen ` +
+        `schon da – es gehört auf den letzten Platz, und nur mit wirklich neuem Ereignis; sonst ein anderes Thema.`
+    )
   if (dauer.length > 1)
     f(
       `${dauer.length} Dauerthemen: ${dauer.map((d) => `„${d.titel}" (${d.namen.join(', ')})`).join('; ')}. ` +
@@ -1119,8 +1161,11 @@ async function main() {
     `Stichtag ${heute} · ${themen.size} Lernthemen · ${symbole.size} Symbole · ${vorhandeneSlugs.size} vorhandene Artikel`
   )
 
-  const woche = ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), heute)
-  const vortag = woche.map((u) => u.titel)
+  const woche = [
+    ...ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), heute),
+    ...schlagzeilenLetzteTage(ausgabenQuelltext(), heute),
+  ]
+  const vortag = [...new Set(woche.map((u) => u.titel))]
   const ergebnis = await frageModell(
     anweisung(heute, [...themen], [...symbole], quellen, vortag)
   )
