@@ -793,7 +793,9 @@ export function pruefe(
   */
   const schlagzeilen = [...ergebnis.top, ...ergebnis.further].map((m) => m.headline)
   const stellen = ergebnis.artikel.map((a, i) =>
-    schlagzeilen.length === ergebnis.artikel.length ? [a.title, schlagzeilen[i]] : [a.title]
+    schlagzeilen.length === ergebnis.artikel.length
+      ? [a.title, schlagzeilen[i]]
+      : [a.title]
   )
   if (schlagzeilen.length !== ergebnis.artikel.length)
     stellen.push(...schlagzeilen.map((h) => [h]))
