@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-14T13:26:42.146Z",
+  "abgerufenAm": "2026-11-21T14:35:17.290Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -76,7 +76,7 @@
     "2454.TW": {
       "waehrung": "TWD",
       "eigenkapital": 474211597000,
-      "aktien": 1604952613
+      "aktien": 1604923907
     },
     "4502.T": {
       "umsatz": 4581551000000,
@@ -457,8 +457,8 @@
       "umsatz": 12037300000,
       "gewinn": -394500000,
       "cashflow": 3256800000,
-      "eigenkapital": 13883800000,
-      "aktien": 222685530
+      "eigenkapital": 14280800000,
+      "aktien": 222693409
     },
     "APTV": {
       "umsatz": 20398000000,
@@ -1047,7 +1047,7 @@
       "umsatz": 56654000000,
       "gewinn": 10180000000,
       "cashflow": 14193000000,
-      "eigenkapital": 50285000000,
+      "eigenkapital": 51607000000,
       "aktien": 3942586873
     },
     "CSX": {
@@ -1183,8 +1183,8 @@
       "umsatz": 34250400000,
       "gewinn": 3585200000,
       "cashflow": 3420900000,
-      "eigenkapital": 23819500000,
-      "aktien": 279701267
+      "eigenkapital": 23109500000,
+      "aktien": 267595589
     },
     "DHR": {
       "umsatz": 24568000000,
@@ -1197,8 +1197,8 @@
       "umsatz": 94425000000,
       "gewinn": 12404000000,
       "cashflow": 18101000000,
-      "eigenkapital": 110032000000,
-      "aktien": 1726686902
+      "eigenkapital": 111600000000,
+      "aktien": 1708029668
     },
     "DKNG": {
       "umsatz": 6054525000,
@@ -1678,7 +1678,7 @@
       "umsatz": 164683000000,
       "gewinn": 14160000000,
       "cashflow": 16325000000,
-      "eigenkapital": 16617000000,
+      "eigenkapital": 18134000000,
       "aktien": 997689626
     },
     "HDFCBANK.NS": {
@@ -1822,7 +1822,7 @@
       "umsatz": 18831000000,
       "gewinn": 3869000000,
       "cashflow": 6207000000,
-      "eigenkapital": 18992000000,
+      "eigenkapital": 18235000000,
       "aktien": 267236000
     },
     "INVE-B.ST": {
@@ -2617,7 +2617,7 @@
       "umsatz": 9221000000,
       "gewinn": 1133900000,
       "cashflow": 3716000000,
-      "eigenkapital": 27492000000,
+      "eigenkapital": 28665000000,
       "aktien": 818000000
     },
     "PAYX": {
@@ -3488,7 +3488,7 @@
       "umsatz": 54441000000,
       "gewinn": 474000000,
       "cashflow": 2155000000,
-      "eigenkapital": 18079000000,
+      "eigenkapital": 17614000000,
       "aktien": 354000000
     },
     "TT": {
