@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Fünf Themen heute: ein eskalierender Tarifstreik bei IG Metall, Trumps Steuer-Drohung gegen Rechenzentren im Ausland, Bayers Gerichtsvergleich, Übernahmegerüchte um Zscaler und ein Ausverkauf an den Technologiebörsen.",
+  "kacheln": [
+    {
+      "titel": "150.000 im Warnstreik",
+      "text": "Mehr als 150.000 Beschäftigte legten für 24 Stunden die Arbeit nieder, rund 100 Betriebe waren betroffen. Es war der erste Ganztagesstreik der IG Metall seit acht Jahren."
+    },
+    {
+      "titel": "Trump: Steuer-Drohung",
+      "text": "Donald Trump drohte US-Firmen mit einer hohen Steuer, falls sie Rechenzentren im Ausland bauen. Die Ankündigung kam einen Tag nach seinem Treffen mit Xi Jinping und Wladimir Putin in China."
+    },
+    {
+      "titel": "Bayer: 7,25 Mrd. Vergleich",
+      "text": "Ein US-Richter genehmigte den 7,25 Milliarden Dollar schweren Glyphosat-Vergleich von Bayer endgültig. Die Aktie legte im nachbörslichen Handel um drei Prozent zu."
+    },
+    {
+      "titel": "Zscaler-Aktie: Plus 18 %",
+      "text": "Die Zscaler-Aktie sprang nachbörslich um 18 Prozent, nachdem ein Bericht CrowdStrike Übernahmegespräche zuschrieb. CrowdStrike selbst verlor mehr als acht Prozent."
+    },
+    {
+      "titel": "Nasdaq: Schwächste Woche",
+      "text": "Der Nasdaq fiel auf Wochensicht so stark wie seit März 2020 nicht mehr, Nvidia-Aktien verloren 14 Prozent. Auch der Dax rutschte unter die Marke von 25.000 Punkten."
+    }
+  ],
+  "schlagworte": ["nasdaq", "dax", "börse", "aktien", "wirtschaft"]
+}
