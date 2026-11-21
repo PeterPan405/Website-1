@@ -89,9 +89,9 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   `CURRENT_NEWS_COUNT` ist nur noch eine Anzeigegrenze.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
   Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren". **Nichts
-  doppelt:** Thema der letzten sieben Tage nur mit neuem Ereignis, ein Preis
-  ist keins; Karussell: `schonHeute()`. **Dauerthema** (Name an 2 der 7
-  Tage): höchstens eins, ganz hinten – auch auf Instagram.
+  doppelt:** Name der letzten 3 Tage (Titel **oder** Schlagzeile) oder
+  Dauerthema (2 der 7): höchstens eins, ganz hinten, nur mit Neuem, sonst
+  ersetzen; ein Preis ist nichts Neues. Karussell: `schonHeute()`.
   **Kein Quellenstreit:** je Preis eine Zahl, „Kursleiste" nur in
   Quellenangaben (`lib/nachrichten-wiederholung.ts`).
 - **Das Archiv ist zugeklappt**, jeder Tag – kein `<details>` in

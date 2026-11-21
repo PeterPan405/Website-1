@@ -551,14 +551,9 @@ jobs:
 
             ## Nichts doppelt
 
-            Das Karussell auf der Startseite zeigt **heute und gestern
-            nebeneinander**, und das Briefing des Betreibers vom 14. Oktober
-            2026 verlangt den Vergleich mit den **vergangenen sieben Tagen**. Was gestern schon eine Meldung war, steht dort
-            sonst zweimal – am 14. Oktober 2026 waren es Öl, Gold und Silber,
-            wie an 75 von 85 Tagespaaren davor. Der Betreiber: „wir brauchen
-            keine news doppelt."
-
-            Lies deshalb zuerst die Überschriften der letzten sieben
+            Das Karussell zeigt **heute und gestern nebeneinander**.
+            Betreiber: „wir brauchen keine news doppelt." Lies zuerst die
+            Überschriften und Schlagzeilen der letzten sieben
             Erscheinungstage – dieselbe Liste, gegen die die Probe prüft:
 
             ```
@@ -566,10 +561,12 @@ jobs:
               --import ./scripts/alias-hook.mjs scripts/ueberschriften-woche.ts
             ```
 
-            - **Ein Thema der letzten sieben Tage kommt nur mit einem neuen
-              Ereignis wieder** – ein Angriff, ein Beschluss, eine Zahl, die etwas
-              ändert. **Dauerthemen** (EZB-Nachfolge, Öl): höchstens eins, nur
-              mit Neuem, und dann auf dem letzten Platz.
+            - **Ein Name der letzten drei Tage** (in Überschrift **oder**
+              Schlagzeile) und **Dauerthemen** (EZB-Nachfolge, Öl):
+              höchstens eins, nur mit neuem Ereignis, **auf dem letzten
+              Platz** – sonst durch ein neues Thema ersetzen. Nicht so:
+              „IG Metall weitet Warnstreiks aus" oben am 21.11., nach
+              „IG Metall startet Warnstreiks" am 20.11.
             - **Ein Preis allein ist kein Ereignis.** Öl, Gold und Silber
               bewegen sich jeden Tag. Ein Rohstoffartikel braucht einen
               Anlass außerhalb des Kurses; ohne ihn gehört die Bewegung in

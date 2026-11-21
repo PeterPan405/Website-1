@@ -11,14 +11,19 @@
  * plant als der Riegel prüft, plant für die Zurückweisung.
  */
 import { readFileSync } from 'node:fs'
+import { ausgabenQuelltext } from './nachrichten-erzeugen.ts'
 import {
+  schlagzeilenLetzteTage,
   ueberschriftenLetzteTage,
   WIEDERHOLUNG_TAGE,
 } from '../lib/nachrichten-wiederholung.ts'
 
 const stichtag = process.env.STICHTAG || new Date().toISOString().slice(0, 10)
-const liste = ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), stichtag)
+const liste = [
+  ...ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), stichtag),
+  ...schlagzeilenLetzteTage(ausgabenQuelltext(), stichtag),
+].sort((x, y) => (x.tag < y.tag ? 1 : x.tag > y.tag ? -1 : 0))
 console.log(
-  `Überschriften der letzten ${WIEDERHOLUNG_TAGE} Erscheinungstage vor ${stichtag}:`
+  `Überschriften und Schlagzeilen der letzten ${WIEDERHOLUNG_TAGE} Erscheinungstage vor ${stichtag}:`
 )
-for (const { tag, titel } of liste) console.log(`${tag}  ${titel}`)
+for (const zeile of new Set(liste.map((u) => `${u.tag}  ${u.titel}`))) console.log(zeile)

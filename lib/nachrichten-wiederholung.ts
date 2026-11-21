@@ -283,3 +283,91 @@ export function ueberschriftenVortag(newsQuelltext: string, stichtag: string): s
   const tage = [...proTag.keys()].sort()
   return tage.length ? proTag.get(tage[tage.length - 1])! : []
 }
+
+/**
+ * Wie viele Erscheinungstage zurück ein Name als „schon dagewesen" gilt.
+ *
+ * Betreiber, 21.11.2026, nach „IG Metall startet Warnstreiks gegen
+ * VW-Sparplan" (20.11.) und „IG Metall weitet Warnstreiks aus" als
+ * Top-Meldung am 21.11.: „die news doppeln sich schon wieder mit denen der
+ * letzten tage … wenn sich was doppelt … dann nach hinten, wenn es
+ * überhaupt relevant ist, sonst einfach etwas anderes interessantes finden."
+ *
+ * Weder `wiederholungen()` (0,25, unter einem Drittel) noch `dauerthemen()`
+ * (nur ein Vortag) sah es – und die Artikelüberschrift „150.000 Beschäftigte
+ * legen für 24 Stunden die Arbeit nieder" trägt gar keinen Namen. Den trug
+ * nur die Schlagzeile im Karussell. Deshalb vergleicht diese Prüfung
+ * Artikelüberschrift **und** Schlagzeile jeder Stelle.
+ *
+ * Drei Tage wie bei Instagram (`themaWiederholt()`). **Gemessen 23.10.–
+ * 21.11.2026** über Überschriften und Schlagzeilen, nach den in
+ * `lib/instagram-plan.ts` ergänzten Nicht-Themen: an etwa jedem vierten Tag
+ * standen zwei oder mehr Wiederholungen in der Ausgabe – Nvidia 16.–18.11.,
+ * Fed 17./19.11., Commerzbank 17./19.11., Anthropic 14./19./20.11.,
+ * IG Metall 20./21.11. Das sind die Tage, an denen der Agent ein Thema
+ * ersetzen muss.
+ */
+export const NACHGANG_TAGE = 3
+
+export interface Nachgang {
+  /** Stelle in der Ausgabe, ab 0. */
+  stelle: number
+  titel: string
+  frueher: string
+  tag: string
+  namen: string[]
+}
+
+/**
+ * Welche Stellen einen Namen tragen, der in den letzten `tage`
+ * Erscheinungstagen schon in einer Überschrift oder Schlagzeile stand.
+ * `neu[i]` sind alle Überschriften der Stelle i (Artikel und Schlagzeile).
+ */
+export function themenDerLetztenTage(
+  neu: string[][],
+  frueher: { tag: string; titel: string }[],
+  woerter: (titel: string) => Set<string>,
+  tage: number = NACHGANG_TAGE
+): Nachgang[] {
+  const fenster = new Set(
+    [...new Set(frueher.map((f) => f.tag))].sort().reverse().slice(0, tage)
+  )
+  const alt = frueher
+    .filter((f) => fenster.has(f.tag))
+    .sort((x, y) => (x.tag < y.tag ? 1 : x.tag > y.tag ? -1 : 0))
+    .map((f) => ({ ...f, w: woerter(f.titel) }))
+  const funde: Nachgang[] = []
+  for (const [stelle, titel] of neu.entries()) {
+    const jetzt = new Set(titel.flatMap((t) => [...woerter(t)]))
+    for (const a of alt) {
+      const namen = [...a.w].filter((w) => jetzt.has(w))
+      if (namen.length) {
+        funde.push({ stelle, titel: titel[0], frueher: a.titel, tag: a.tag, namen })
+        break
+      }
+    }
+  }
+  return funde
+}
+
+/**
+ * Die Schlagzeilen (`headline`) der Tagesausgaben vor `stichtag` – das,
+ * was im Karussell stand. Gleiche Form wie `ueberschriftenLetzteTage()`.
+ */
+export function schlagzeilenLetzteTage(
+  ausgaben: { tag: string; quelltext: string }[],
+  stichtag: string,
+  tage: number = WIEDERHOLUNG_TAGE
+): { tag: string; titel: string }[] {
+  const vorher = ausgaben.filter((a) => a.tag < stichtag)
+  const fenster = new Set(
+    [...new Set(vorher.map((a) => a.tag))].sort().reverse().slice(0, tage)
+  )
+  const alle: { tag: string; titel: string }[] = []
+  for (const a of vorher) {
+    if (!fenster.has(a.tag)) continue
+    for (const m of a.quelltext.matchAll(/headline:\s*(?:\n\s*)?'((?:[^'\\]|\\.)*)'/g))
+      alle.push({ tag: a.tag, titel: m[1].replace(/\\'/g, "'") })
+  }
+  return alle.sort((x, y) => (x.tag < y.tag ? 1 : x.tag > y.tag ? -1 : 0))
+}

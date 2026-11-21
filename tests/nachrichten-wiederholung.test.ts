@@ -24,6 +24,9 @@ import {
   aehnlichkeit,
   dauerthemen,
   DAUERTHEMA_AB_TAGEN,
+  NACHGANG_TAGE,
+  schlagzeilenLetzteTage,
+  themenDerLetztenTage,
   quellenstreit,
   themenwoerter,
   ueberschriftenLetzteTage,
@@ -32,7 +35,7 @@ import {
   wiederholungen,
   WIEDERHOLUNG_AB,
 } from '@/lib/nachrichten-wiederholung.ts'
-import { pruefe } from '@/scripts/nachrichten-erzeugen.ts'
+import { ausgabenQuelltext, pruefe } from '@/scripts/nachrichten-erzeugen.ts'
 
 let failed = 0
 function pruefeDass(was: string, bedingung: boolean, hinweis = ''): void {
@@ -388,6 +391,114 @@ pruefeDass(
       [],
       woche
     ).some((s) => s.includes('2 Dauerthemen'))
+  )
+}
+
+/*
+  Ein Name der letzten drei Tage (Betreiber, 21.11.2026): „die news doppeln
+  sich schon wieder mit denen der letzten tage zb warnstreik … dann nach
+  hinten, wenn es überhaupt relevant ist, sonst einfach etwas anderes".
+  Prüfstein ist die Ausgabe vom 21.11.2026 gegen den Bestand: IG Metall
+  stand am 20.11. schon da – die Artikelüberschrift trug den Namen nicht,
+  nur die Schlagzeile.
+*/
+{
+  const stichtag = '2026-11-21'
+  const frueher = [
+    ...ueberschriftenLetzteTage(readFileSync('data/news.ts', 'utf8'), stichtag),
+    ...schlagzeilenLetzteTage(ausgabenQuelltext(), stichtag),
+  ]
+  const ausgabe21 = [
+    [
+      '150.000 Beschäftigte legen für 24 Stunden die Arbeit nieder',
+      'IG Metall weitet Warnstreiks aus: 150.000 im 24-Stunden-Streik',
+    ],
+    [
+      'Trump droht Tech-Konzernen mit Steuer auf Rechenzentren',
+      'Trump droht mit Steuer auf Rechenzentren im Ausland',
+    ],
+    [
+      'Gericht genehmigt Bayers 7,25-Milliarden-Vergleich',
+      'Gericht genehmigt Bayers Glyphosat-Vergleich',
+    ],
+    [
+      'CrowdStrike soll laut Bericht Zscaler übernehmen wollen',
+      'Bericht: CrowdStrike will Cybersicherheitsfirma Zscaler übernehmen',
+    ],
+    [
+      'Nvidia erlebt längste Verlustserie seit der Finanzkrise 2008',
+      'Nasdaq verzeichnet schwächste Woche seit März 2020',
+    ],
+  ]
+  const funde = themenDerLetztenTage(ausgabe21, frueher, namen)
+  pruefeDass(
+    'Nachgang: IG Metall vom 20.11. wird am 21.11. auf Platz 1 erkannt',
+    NACHGANG_TAGE === 3 &&
+      funde.some((f) => f.stelle === 0 && f.namen.includes('metall')),
+    JSON.stringify(funde)
+  )
+  pruefeDass(
+    'Nachgang: nur die Artikelüberschrift allein hätte es nicht gefunden',
+    themenDerLetztenTage([[ausgabe21[0][0]]], frueher, namen).length === 0
+  )
+  pruefeDass(
+    'Nachgang: Trump, Bayer, CrowdStrike sind keine Wiederholung',
+    !funde.some((f) => [1, 2, 3].includes(f.stelle)),
+    JSON.stringify(funde)
+  )
+  const alt = [
+    { tag: '2026-11-17', titel: 'IG Metall startet Warnstreiks' },
+    { tag: '2026-11-18', titel: 'A' },
+    { tag: '2026-11-19', titel: 'B' },
+    { tag: '2026-11-20', titel: 'C' },
+  ]
+  pruefeDass(
+    'Nachgang: drei Erscheinungstage, nicht vier',
+    themenDerLetztenTage([['IG Metall weitet Warnstreiks aus']], alt, namen).length ===
+      0 &&
+      themenDerLetztenTage([['IG Metall weitet Warnstreiks aus']], alt.slice(0, 3), namen)
+        .length === 1
+  )
+
+  const mit = (stellen: string[][]) => {
+    const meldungen = [...entwurf.top, ...entwurf.further]
+    const n = Math.min(stellen.length, meldungen.length)
+    const artikel = stellen
+      .slice(0, n)
+      .map((s, i) => ({ ...entwurf.artikel[i % entwurf.artikel.length], title: s[0] }))
+    const kopf = stellen.slice(0, n).map((s, i) => ({ ...meldungen[i], headline: s[1] }))
+    return {
+      ...entwurf,
+      artikel,
+      top: kopf.slice(0, entwurf.top.length),
+      further: kopf.slice(entwurf.top.length),
+    }
+  }
+  const NACH = 'Erscheinungstage'
+  const vorn = pruefe(mit(ausgabe21), new Set(), new Set(), new Set(), [], frueher)
+  pruefeDass(
+    'Riegel: IG Metall auf Platz 1 am 21.11. wird zurückgewiesen',
+    vorn.some((s) => s.includes(NACH) && s.includes('metall')),
+    vorn.join('\n     ')
+  )
+  const umgestellt = [
+    ausgabe21[1],
+    ausgabe21[2],
+    ausgabe21[3],
+    ['Fiktiver Ersatz: Lufthansa kauft Airline', 'Lufthansa kauft Airline'],
+    ausgabe21[0],
+  ]
+  const hinten = pruefe(mit(umgestellt), new Set(), new Set(), new Set(), [], frueher)
+  pruefeDass(
+    'Riegel: dieselbe Meldung auf dem letzten Platz, sonst nur Neues, geht durch',
+    !hinten.some((s) => s.includes(NACH) && s.includes('Platz')) &&
+      !hinten.some((s) => /\d Themen der letzten/.test(s)),
+    hinten.join('\n     ')
+  )
+  pruefeDass(
+    'Riegel: zwei Wiederholungen (IG Metall und Nvidia) werden zurückgewiesen',
+    vorn.some((s) => /2 Themen der letzten 3 Erscheinungstage/.test(s)),
+    vorn.join('\n     ')
   )
 }
 
