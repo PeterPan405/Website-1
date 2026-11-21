@@ -28,6 +28,7 @@ import { netz, type Netzkarte } from './netz.ts'
 import { punktraster, type Punktrasterkarte } from './punktraster.ts'
 import type { Art } from './rahmen.ts'
 import { rangwechsel, type Rangwechselkarte } from './rangwechsel.ts'
+import { schere, type Scherenkarte } from './schere.ts'
 import { schaetzfrage, type Schaetzfragekarte } from './schaetzfrage.ts'
 import { stammbaum, type Stammbaumkarte } from './stammbaum.ts'
 import { stapel, type Stapelkarte } from './stapel.ts'
@@ -66,12 +67,14 @@ export type NeueKarte =
   | Erholungkarte
   | Deckblattkarte
   | Kuchenkarte
+  | Scherenkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
 } = {
   kurszettel,
   kuchen,
+  schere,
   deckblatt,
   punktraster,
   kalender,

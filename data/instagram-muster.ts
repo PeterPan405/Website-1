@@ -9,6 +9,10 @@
  */
 import { BITCOIN_WOCHEN } from '@/data/instagram-reihen-bitcoin'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
+import {
+  INFLATION_DEUTSCHLAND,
+  INFLATION_EURORAUM,
+} from '@/data/instagram-reihen-inflation'
 import type { Zahlenkarte } from '@/lib/instagram-zahlenkarte'
 
 export const musterkarten: Zahlenkarte[] = [
@@ -749,6 +753,21 @@ export const musterkarten: Zahlenkarte[] = [
       'Stand: 18.11.2026 | Quelle: Yahoo Finance | Logo: Rockstar Games, gemeinfrei',
     text: 'Muster.\n\nQuelle: Yahoo Finance',
     schlagworte: ['gta', 'nvidia', 'apple', 'aktien', 'langfristig'],
+  },
+  {
+    /* Schere: zwei Reihen, die Fläche dazwischen zeigt, wer vorn liegt (HVPI, Eurostat über die EZB). */
+    art: 'schere',
+    datum: '2026-11-15',
+    titel: [{ text: 'Inflation seit 2024:' }, { text: 'Wer liegt vorn?', gruen: true }],
+    unterzeile: 'Teuerung zum Vorjahresmonat (HVPI), Monatswerte.',
+    a: { name: 'Euroraum', werte: INFLATION_EURORAUM.slice(-34) },
+    b: { name: 'Deutschland', werte: INFLATION_DEUTSCHLAND.slice(-34) },
+    einheit: 'Prozent',
+    endung: ' %',
+    marke: { wert: 2, text: 'EZB-Ziel: 2 %' },
+    fusszeile: 'Stand: 10/2026 | Quelle: Eurostat über die EZB (HVPI)',
+    text: 'Muster.\n\nQuelle: Eurostat über die EZB',
+    schlagworte: ['inflation', 'ezb', 'euroraum', 'deutschland', 'preise'],
   },
   {
     /* Kuchen: der Korb des Euro-Index EXY (Wikipedia „Euro Currency Index“, nach ICE Futures U.S.). */

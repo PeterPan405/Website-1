@@ -28,6 +28,10 @@ import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { EXY_2026 } from './instagram-reihen-euro.ts'
 import {
+  INFLATION_DEUTSCHLAND,
+  INFLATION_EURORAUM,
+} from './instagram-reihen-inflation.ts'
+import {
   GTA_APPLE,
   GTA_BITCOIN,
   GTA_DAX,
@@ -38,6 +42,49 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 21.11.2026, „Inflation 2026: Der Euroraum zieht davon“ –
+      erste vollautomatisch gewählte und gebaute Karte (Routine „Zahlenkarte
+      des Tages“; Thema: offener eigener Vorschlag „Inflation zurück“ vom
+      19.11. aus der Gedächtnis-Themenliste). Neue Art `schere`.
+
+      Zahlen: data/instagram-reihen-inflation.ts (HVPI, Eurostat über die
+      EZB, eingefroren aus data/snapshots/zinsen.json vom 18.11.2026).
+      Oktober 2026: Euroraum 4,0 %, Deutschland 2,9 %, Abstand 1,1 Punkte –
+      der größte zugunsten des Euroraums in den 60 Monaten der Reihe (vorher
+      höchstens 0,5). 4,0 % ist der höchste Wert seit September 2023 (4,3 %).
+      Höchststand Oktober 2022: Euroraum 10,6 %, Deutschland 11,6 %.
+      Leitzins (Hauptrefinanzierung) 2,65 %, vor einem Jahr 2,15 %
+      (zinsen.json, EZB). Energie +20,8 %: Eurostat-Schnellschätzung vom
+      04.11.2026, gelesen über tagesschau.de (unsere Meldung vom 04.11.).
+      Warum Deutschland darunter liegt, nennt keine gelesene Quelle.
+    */
+    art: 'schere',
+    datum: '2026-11-21',
+    freigabe: '2026-11-21',
+    titel: [{ text: 'Inflation 2026:' }, { text: 'Euroraum zieht davon.', gruen: true }],
+    unterzeile: 'Teuerung zum Vorjahresmonat (HVPI), November 2021 bis Oktober 2026.',
+    a: { name: 'Euroraum', werte: INFLATION_EURORAUM },
+    b: { name: 'Deutschland', werte: INFLATION_DEUTSCHLAND },
+    einheit: 'Prozent',
+    endung: ' %',
+    marke: { wert: 2, text: 'EZB-Ziel: 2 %' },
+    punkte: [{ reihe: 'b', d: '2022-10', text: 'Okt. 2022: 11,6 %' }],
+    satz: 'Oktober 2026: Euroraum 4,0 %, Deutschland 2,9 % – so weit vorn lag der Euroraum in fünf Jahren nie.',
+    fusszeile: 'Stand: 10/2026 | Quelle: Eurostat über die EZB (HVPI); eigene Rechnung',
+    text:
+      'Die Inflation ist zurück – im Euroraum stärker als in Deutschland.\n\n' +
+      'Teuerung im Oktober 2026 zum Vorjahresmonat (HVPI):\n' +
+      'Euroraum: 4,0 % – der höchste Wert seit September 2023\n' +
+      'Deutschland: 2,9 %\n' +
+      'Abstand: 1,1 Prozentpunkte – so groß zugunsten des Euroraums war er seit November 2021 nie.\n\n' +
+      'Zum Vergleich: Im Oktober 2022, auf dem Höhepunkt, lag Deutschland mit 11,6 % über dem Euroraum mit 10,6 %. Zu Jahresbeginn 2026 waren es 1,7 % und 2,1 % – unter bzw. knapp über dem Ziel der EZB von 2 %.\n\n' +
+      'Warum steigt sie? Laut Eurostat-Schnellschätzung (tagesschau.de, 04.11.) trieb Energie mit +20,8 % zum Vorjahr die Rate am stärksten. Warum Deutschland darunter liegt, nennt die Quelle nicht.\n\n' +
+      'Und jetzt? Der EZB-Leitzins liegt bei 2,65 % (vor einem Jahr 2,15 %). Der EZB-Rat entscheidet am 17. Dezember. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Eurostat über die EZB (HVPI, Leitzinsen); tagesschau.de; eigene Rechnung',
+    schlagworte: ['inflation', 'ezb', 'euroraum', 'deutschland', 'preise'],
+  },
   {
     /*
       Zahlenkarte 20.11.2026, „Der Euro 2026: gegen alle fünf schwach“ –
