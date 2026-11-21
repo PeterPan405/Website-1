@@ -1562,5 +1562,54 @@
       "urheber": "Sachsens",
       "suche": "Frankfurt Stock Exchange"
     }
+  ],
+  "2026-11-21": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-21-1-799aed68.jpg",
+      "titel": "File:Kamala Harris meeting with Syrian constituents. 01.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Kamala_Harris_meeting_with_Syrian_constituents._01.jpg",
+      "lizenz": "Public domain",
+      "urheber": "The United States Senate - Office of Senator Kamala Harris",
+      "suche": "speech deepcat:\"Donald Trump\""
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-21-2-274332b2.jpg",
+      "titel": "File:Witten - IG Metall Warnstreik 2012 18 ies.JPG",
+      "seite": "https://commons.wikimedia.org/wiki/File:Witten_-_IG_Metall_Warnstreik_2012_18_ies.JPG",
+      "lizenz": "CC BY-SA 3.0",
+      "urheber": "Frank Vincentz",
+      "suche": "IG Metall Warnstreik"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-21-3-9636e49e.jpg",
+      "titel": "File:Trump Shuttle logo, August 1989.svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Trump_Shuttle_logo,_August_1989.svg",
+      "lizenz": "Public domain",
+      "urheber": "Trump Shuttle",
+      "suche": "Logo „Trump\""
+    },
+    {
+      "stelle": 4,
+      "datei": "",
+      "titel": "Kurs: bayer",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "bayer"
+    },
+    {
+      "stelle": 6,
+      "datei": "",
+      "titel": "Kurs: nasdaq-100",
+      "seite": "",
+      "lizenz": "Kursgrafik",
+      "urheber": "",
+      "suche": "kein Markenfoto – Kursverlauf",
+      "kurs": "nasdaq-100"
+    }
   ]
 }
