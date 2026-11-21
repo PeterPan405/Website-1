@@ -1,0 +1,10 @@
+
+==============================================================================
+QUELLE: https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&format=json&srlimit=6&srsearch=Zscaler+logo
+==============================================================================
+STATUS: 200
+TYP:    application/json; charset=utf-8
+DATUM:  Sat, 21 Nov 2026 04:44:19 GMT
+STAND:  —
+------------------------------------------------------------------------------
+{"batchcomplete":"","query":{"searchinfo":{"totalhits":1},"search":[{"ns":6,"title":"File:Zscaler logo.png","pageid":176219541,"size":329,"wordcount":4,"snippet":"English Korean Zscaler \ub85c\uace0","timestamp":"2026-04-14T04:21:33Z"}]}}
