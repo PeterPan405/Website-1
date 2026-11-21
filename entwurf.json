@@ -1,0 +1,397 @@
+{
+  "stichtag": "2026-11-21",
+  "intro": "IG Metall eskaliert mit Ganztagesstreiks, Trump droht Tech-Konzernen eine Steuer an, Bayer einigt sich vor Gericht – an den Börsen hält der Ausverkauf an.",
+  "artikel": [
+    {
+      "slug": "ig-metall-24-stunden-streik-100-betriebe",
+      "title": "150.000 Beschäftigte legen für 24 Stunden die Arbeit nieder",
+      "teaser": "Mehr als 150.000 Beschäftigte haben am Freitag für 24 Stunden die Arbeit niedergelegt – IG Metall setzt damit erstmals seit acht Jahren auf Ganztagesstreiks.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["IG Metall", "Volkswagen", "Tarifrunde", "Streikgeld"],
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": ["volkswagen", "bmw"],
+      "sources": [
+        {
+          "label": "Tagesschau, 20.11.2026, 20:58 Uhr: „Mehr als 100 Betriebe beteiligt: IG Metall setzt weiter auf ganztägige Warnstreiks“",
+          "url": "https://www.tagesschau.de/wirtschaft/arbeitsmarkt/ig-metall-streik-112.html"
+        },
+        {
+          "label": "IG Metall, Pressemitteilung vom 19.11.2026: „Metall/Elektro: IG Metall startet Warnstreik-Druckwelle“",
+          "url": "https://www.igmetall.de/presse/pressemitteilungen/2026/metallelektro-ig-metall-startet-warnstreik-druckwelle"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Die IG Metall hat ihre Tarifauseinandersetzung mit der Metall- und Elektroindustrie am Freitag auf eine neue Stufe gehoben. Nach Angaben der Gewerkschaft legten mehr als 150.000 Beschäftigte in rund 100 Betrieben bundesweit für 24 Stunden die Arbeit nieder – Schwerpunkte waren die Autoindustrie in Bayern mit Werken von BMW und Audi sowie Werften im Norden, die meisten betroffenen Betriebe lagen in Nordrhein-Westfalen."
+        },
+        {
+          "type": "paragraph",
+          "text": "Auslöser ist ein Tarifstreit um rund 3,7 Millionen Beschäftigte der Branche. Die IG Metall fordert fünf Prozent mehr Geld, eine tarifliche Gewinnbeteiligung und Zusagen zu Beschäftigung und Standorten. Die Arbeitgeberverbände bieten dagegen über 26 Monate nur eine streichbare Einmalzahlung und eine Stufenerhöhung von 1,3 Prozent – frühestens ab dem Sommer 2028."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Warum ein Streik plötzlich Geld kostet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Die IG Metall setzt mit den Ganztagesstreiks erstmals seit acht Jahren ein härteres Mittel ein. Der Unterschied zu den bisherigen kurzen Warnstreiks ist nicht nur symbolisch: Für einen 24-Stunden-Streik zahlt die Gewerkschaft ihren Mitgliedern Streikgeld aus der Streikkasse, für eine kurze Arbeitsniederlegung dagegen nicht. Wer zu diesem Mittel greift, zeigt damit auch finanziell, dass es ihr ernst ist."
+        },
+        {
+          "type": "paragraph",
+          "text": "Die IG Metall Küste zog eine positive Zwischenbilanz. Bezirksleiter Daniel Friedrich sagte: „Die ersten Rückmeldungen aus den Betrieben zeigen: Der 24-Stunden-Streik steht. Unsere Mitglieder stehen geschlossen hinter unseren Forderungen.“ Der bayerische Arbeitgeberverband VBM widersprach: Hauptgeschäftsführer Bertram Brossardt warnte vor erheblichen Schäden für die ohnehin angespannte wirtschaftliche Lage der betroffenen Unternehmen."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Die Woche danach ist schon verplant"
+        },
+        {
+          "type": "paragraph",
+          "text": "Die Streikwelle geht in der kommenden Woche weiter. Am Montag will der IG-Metall-Bezirk Mitte die Autobauer Opel und Ford bestreiken, Berlin-Brandenburg kündigte ganztägige Warnstreiks für Dienstag an. In Baden-Württemberg lädt der Arbeitgeberverband Südwestmetall die Gewerkschaft für Mittwoch zu Gesprächen nach Mannheim ein – die IG-Metall-Bezirksleiterin Barbara Resch nannte den Vorstoß allerdings nur ein „Angebötchen“."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Ein Streik, der Geld kostet, ist ein stärkeres Signal als einer, der nichts kostet. Für die betroffenen Unternehmen zeigt die Eskalation, dass sich Tarifkonflikte in einer schwachen Konjunktur nicht automatisch beruhigen – sie können auch lauter werden, wenn beide Seiten glauben, sich eine harte Haltung noch leisten zu können."
+        }
+      ]
+    },
+    {
+      "slug": "trump-steuer-rechenzentren-ausland",
+      "title": "Trump droht Tech-Konzernen mit Steuer auf Rechenzentren",
+      "teaser": "Donald Trump will US-Firmen mit einer saftigen Steuer belegen, wenn sie Rechenzentren im Ausland bauen – einen Tag nach dem Gipfel mit Xi und Putin.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["Trump", "Rechenzentren", "Künstliche Intelligenz", "Steuerpolitik"],
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": ["microsoft", "amazon", "alphabet"],
+      "sources": [
+        {
+          "label": "CNBC, 20.11.2026, 12:45 Uhr Ortszeit Washington: „Trump vows to stop U.S. companies from building data centers abroad, threatens 'tremendous tax'“",
+          "url": "https://www.cnbc.com/2026/11/20/trump-data-centers-ai-companies-tax.html"
+        },
+        {
+          "label": "onvista/dpa-AFX, 20.11.2026, 21:56 Uhr: „ROUNDUP/Trump: Putin hat Wunsch nach diplomatischer Lösung geäußert“",
+          "url": "https://www.onvista.de/news/2026/11-20-roundup-trump-putin-hat-wunsch-nach-diplomatischer-loesung-geaeussert-0-10-26579008"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "US-Präsident Donald Trump hat US-Unternehmen am Freitag im Weißen Haus mit einer „gewaltigen Steuer“ gedroht, falls sie weiterhin Rechenzentren im Ausland bauen. „Wir werden sehr hart für die Rechenzentren kämpfen“, sagte Trump bei einer Pressekonferenz – und erklärte, die neue Politik sei selbst seinen eigenen Mitarbeitern noch nicht angekündigt gewesen."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Warum Rechenzentren überhaupt im Ausland stehen"
+        },
+        {
+          "type": "paragraph",
+          "text": "Alphabet, Amazon, Microsoft, Meta und Oracle betreiben längst eigene Rechenzentren außerhalb der USA. Der Grund ist selten Steuerersparnis, sondern meist Kundennähe und regulatorische Vorgaben – manche Länder verlangen, dass Daten ihrer Bürger im eigenen Land verarbeitet werden. Eine Steuer auf Auslandsbauten würde genau diese Rechnung verändern."
+        },
+        {
+          "type": "paragraph",
+          "text": "Vertreter von Amazon, Google, Microsoft und Oracle reagierten zunächst nicht auf Anfragen zu der angedrohten Steuer."
+        },
+        {
+          "type": "paragraph",
+          "text": "Trumps Vorstoß kommt einen Tag nach seiner Rückkehr aus China, wo er sich bei einem Dreiertreffen mit Chinas Staatschef Xi Jinping und Russlands Präsident Wladimir Putin getroffen hatte. Bei derselben Pressekonferenz sagte Trump, Putin habe ihm gegenüber den Wunsch nach einer diplomatischen Lösung des Kriegs gegen die Ukraine geäußert – zu den jüngsten russischen Angriffen auf die Ukraine äußerte er sich nicht."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Eine Steuer auf ausländische Rechenzentren würde die Investitionsentscheidung großer Technologiekonzerne verändern, noch bevor ein Gesetz überhaupt vorliegt – schon die Ankündigung ist ein Preisschild, das Unternehmen in ihre Planung einrechnen müssen."
+        }
+      ]
+    },
+    {
+      "slug": "bayer-glyphosat-vergleich-genehmigt",
+      "title": "Gericht genehmigt Bayers 7,25-Milliarden-Vergleich",
+      "teaser": "Ein US-Richter hat den milliardenschweren Glyphosat-Sammelvergleich von Bayer endgültig gebilligt – die Aktie legte im nachbörslichen Handel sofort zu.",
+      "category": "Steuern & Recht",
+      "readingMinutes": 4,
+      "tags": ["Bayer", "Glyphosat", "Roundup", "Rechtsstreit"],
+      "relatedTopics": ["aktie", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["bayer"],
+      "sources": [
+        {
+          "label": "onvista/dpa-AFX, 20.11.2026, 22:01 Uhr: „Bayers Glyphosat-Sammelvergleich von Richter genehmigt“",
+          "url": "https://www.onvista.de/news/2026/11-20-bayers-glyphosat-sammelvergleich-von-richter-genehmigt-0-10-26579007"
+        },
+        {
+          "label": "wallstreet-online/dpa-AFX, 20.11.2026: „Bayers Glyphosat-Sammelvergleich von Richter genehmigt“",
+          "url": "https://www.wallstreet-online.de/nachricht/21726927-bayers-glyphosat-sammelvergleich-richter-genehmigt"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Ein US-Bundesrichter hat den milliardenschweren Vergleich von Bayer in den Glyphosat-Sammelklagen endgültig gebilligt. Richter Timothy Boyer aus Missouri nannte die Einigung in seiner Entscheidung „fair, vernünftig und angemessen“."
+        },
+        {
+          "type": "paragraph",
+          "text": "Der im Februar ausgehandelte Vergleich sieht Zahlungen von insgesamt 7,25 Milliarden Dollar über einen Zeitraum von bis zu 21 Jahren vor. Damit sollen laufende und mögliche künftige Klagen abgegolten werden, in denen Kläger ihre Erkrankung am Non-Hodgkin-Lymphom auf den Unkrautvernichter Roundup zurückführen."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Was im nachbörslichen Handel passiert – und was nicht"
+        },
+        {
+          "type": "paragraph",
+          "text": "Die Bayer-Aktie legte nach der Entscheidung auf der Handelsplattform Tradegate im nachbörslichen Geschäft um drei Prozent zu. Nachbörslicher Handel findet außerhalb der regulären Handelszeiten der Frankfurter Börse statt, mit deutlich weniger Umsatz – ein Kurssprung dort zeigt eine erste Markteinschätzung, sagt aber noch nichts darüber, ob sie am nächsten regulären Handelstag Bestand hat."
+        },
+        {
+          "type": "paragraph",
+          "text": "Bayer-Chef Bill Anderson nannte die gerichtliche Genehmigung einen „entscheidenden Meilenstein“ in der Strategie des Konzerns, Glyphosat-Klagen einzudämmen. Im Juni hatte Bayer zudem vor dem Supreme Court einen Grundsatzfall gewonnen: Seither sind Klagen, die sich allein auf fehlende Krebswarnungen auf der Verpackung stützen, praktisch ausgeschlossen."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Ein genehmigter Vergleich wandelt eine unbestimmte Zahl künftiger Gerichtsverfahren in eine feste, planbare Summe um – für ein Unternehmen ist das oft mehr wert als die Hoffnung auf einen einzelnen besseren Prozessausgang."
+        }
+      ]
+    },
+    {
+      "slug": "crowdstrike-zscaler-uebernahmegespraeche",
+      "title": "CrowdStrike soll laut Bericht Zscaler übernehmen wollen",
+      "teaser": "Die Zscaler-Aktie sprang nachbörslich um 18 Prozent, nachdem Bloomberg Übernahmegespräche mit CrowdStrike berichtete – bestätigt ist davon bislang nichts.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["CrowdStrike", "Zscaler", "Übernahme", "Cybersicherheit"],
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "CNBC, 20.11.2026, 16:11 Uhr Ortszeit (22:11 Uhr MEZ): „Zscaler stock jumps 18% on report that CrowdStrike in talks to buy security vendor“",
+          "url": "https://www.cnbc.com/2026/11/20/zscaler-crowdstrike-deal.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Die Aktie des Cybersicherheitsanbieters Zscaler sprang am Freitag im nachbörslichen Handel um 18 Prozent. Grund war ein Bericht von Bloomberg, den CNBC aufgriff: CrowdStrike führe Gespräche über eine Übernahme von Zscaler. Bestätigt ist das bislang nicht – CrowdStrike lehnte eine Stellungnahme ab, Zscaler reagierte zunächst nicht auf eine Anfrage von CNBC."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Wie ein Gerücht zwei Kurse gegensätzlich bewegt"
+        },
+        {
+          "type": "paragraph",
+          "text": "Während die Zscaler-Aktie zulegte, fiel die CrowdStrike-Aktie im nachbörslichen Handel um mehr als acht Prozent. Das ist typisch für Übernahmegerüchte: Die Aktie des möglichen Übernahmeziels steigt in Richtung eines erwarteten Kaufpreisaufschlags, während die Aktie des möglichen Käufers fällt. Anleger rechnen ein, dass ein Zukauf Geld kostet und Risiken mitbringt."
+        },
+        {
+          "type": "paragraph",
+          "text": "CrowdStrike wird an der Börse mit rund 235 Milliarden Dollar bewertet, Zscaler mit etwa 32 Milliarden Dollar. Beide Unternehmen profitierten in den vergangenen Jahren von steigenden Ausgaben für Cybersicherheit im Zuge des KI-Booms – CrowdStrike hat sich seit Jahresbeginn im Wert etwa verdoppelt, während die Zscaler-Aktie vor dem Bericht rund 13 Prozent im Minus lag."
+        },
+        {
+          "type": "paragraph",
+          "text": "Käme ein Zusammenschluss zustande, wäre er einer der größten in der Geschichte der Cybersicherheitsbranche. Google hatte die Firma Wiz im vergangenen Jahr für 32 Milliarden Dollar übernommen, Cisco zahlte 2024 rund 28 Milliarden Dollar für Splunk."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Ein unbestätigter Bericht kann schon Milliarden an Marktkapitalisierung verschieben, bevor überhaupt ein Vertrag existiert – das zeigt, wie viel von einem Aktienkurs auf eingepreisten Erwartungen beruht und wie wenig auf bereits feststehenden Tatsachen."
+        }
+      ]
+    },
+    {
+      "slug": "nasdaq-schlechteste-woche-seit-2020",
+      "title": "Nvidia erlebt längste Verlustserie seit der Finanzkrise 2008",
+      "teaser": "Der Ausverkauf bei Technologiewerten hält an: Nvidia verzeichnet die längste Verlustserie seit 2008, der Nasdaq die schwächste Woche seit März 2020.",
+      "category": "Märkte",
+      "readingMinutes": 5,
+      "tags": ["Nvidia", "Nasdaq", "Dax", "KI-Aktien"],
+      "relatedTopics": ["wie-funktioniert-der-markt", "aktie"],
+      "relatedSymbols": ["nvidia", "nasdaq-100", "dax"],
+      "sources": [
+        {
+          "label": "WirtschaftsWoche, 20.11.2026, 23:15 Uhr: „Dow Jones, Nasdaq: Nasdaq mit stärkstem Wochenverlust seit März 2020“",
+          "url": "https://www.wiwo.de/finanzen/boerse/dow-jones-nasdaq-nasdaq-mit-staerkstem-wochenverlust-seit-maerz-2020/100271639.html"
+        },
+        {
+          "label": "CNBC, 20.11.2026, 14:26 Uhr Ortszeit: „Nvidia stock plunges 14%, wraps up longest weekly losing streak since 2008 financial crisis“",
+          "url": "https://www.cnbc.com/2026/11/20/nvidias-7-week-losing-streak-is-longest-since-2008-financial-crisis.html"
+        },
+        {
+          "label": "Handelsblatt, 20.11.2026, 18:40 Uhr: „Dax aktuell: Dax verliert 660 Punkte und schließt weit unter 26.000 Punkten“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-verliert-660-punkte-und-schliesst-weit-unter-26.000-punkten/100271464.html"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Der Ausverkauf bei Technologiewerten hat sich am Freitag noch einmal beschleunigt. Der Nasdaq Composite fiel um 5,3 Prozent auf 22.617 Punkte – das ist der stärkste Wochenverlust des Index seit März 2020, und der Nasdaq steht damit für das laufende Jahr erstmals wieder im Minus."
+        },
+        {
+          "type": "paragraph",
+          "text": "Der Dow Jones schloss 1,9 Prozent niedriger bei 48.147 Punkten, der S&P 500 brach um 3,7 Prozent auf 6910 Punkte ein. Beide Indizes liegen damit mehr als zehn Prozent unter ihren Rekordhochs und befinden sich in einer sogenannten Korrektur. Für den S&P 500 war es der siebte Verlusttag in Folge – die längste Negativserie seit Februar 2020."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Zwei Indizes, zwei Bauarten"
+        },
+        {
+          "type": "paragraph",
+          "text": "Der Dax fiel am Freitag um 2,6 Prozent auf 24.803 Punkte und damit erstmals seit Anfang Oktober unter die Marke von 25.000 Punkten. Allein am Freitag waren das rund 660 Punkte, in der laufenden Woche seit dem Rekordhoch über 27.000 Punkten am vergangenen Donnerstag hat der Leitindex mehr als 2000 Punkte verloren."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ein Vergleich der Prozentzahlen zwischen Dax und Nasdaq hinkt dabei leicht: Der Dax ist ein Performanceindex, der ausgeschüttete Dividenden rechnerisch wieder anlegt, während der Nasdaq Composite ein reiner Kursindex ist und Dividenden außen vor lässt. Über einen einzelnen Tag macht das kaum einen Unterschied – über Jahre schon."
+        },
+        {
+          "type": "paragraph",
+          "text": "Besonders betroffen war erneut Nvidia: Die Aktie fiel um 14 Prozent und beendete damit die siebte Verlustwoche in Folge – die längste Serie seit der Finanzkrise 2008. Seit dem Hoch hat Nvidia nach eigenen Kursdaten rund 46 Prozent und etwa 2,6 Billionen Dollar an Marktwert verloren und ist von Platz eins auf Platz vier der wertvollsten Unternehmen der Welt zurückgefallen, hinter Apple, Microsoft und Alphabet. Reuters berichtete laut CNBC zudem, die US-Börsenaufsicht SEC prüfe Bilanzierungsfragen bei Nvidia."
+        },
+        {
+          "type": "paragraph",
+          "text": "Auslöser der Woche war auch die Enttäuschung über den Börsengang von Anthropic: Die Aktie des KI-Unternehmens war am zweiten Handelstag um 9,1 Prozent gefallen und näherte sich damit ihrem Ausgabepreis von 83 Dollar. Fed-Gouverneurin Lisa Cook erklärte zusätzlich, das aktuelle Zinsniveau reiche nicht aus, um die Inflation zu bekämpfen – was Hoffnungen auf schnelle Zinssenkungen bremste."
+        },
+        {
+          "type": "paragraph",
+          "text": "Am Montag richtet sich der Blick auf die Einkaufsmanagerindizes (HCOB PMI) für die deutsche Industrie und den Dienstleistungssektor – die ersten Konjunkturdaten der neuen Woche."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Ein Punkteverlust lässt sich nicht einfach zwischen Indizes vergleichen, die unterschiedlich gebaut sind – wer Dax und Nasdaq nebeneinanderstellt, vergleicht nicht nur zwei Märkte, sondern auch zwei verschiedene Rechenmethoden."
+        }
+      ]
+    }
+  ],
+  "top": [
+    {
+      "headline": "IG Metall weitet Warnstreiks aus: 150.000 im 24-Stunden-Streik",
+      "summary": [
+        "Die IG Metall hat eskaliert. Mehr als 150.000 Beschäftigte legten am Freitag für 24 Stunden die Arbeit nieder. Rund 100 Betriebe waren betroffen, vor allem in Bayern und an den Werften im Norden. Es ist der erste Ganztagesstreik seit acht Jahren.",
+        "Die Streikwelle geht weiter. Am Montag bestreikt die Gewerkschaft die Autobauer Opel und Ford, am Dienstag ganztägig Berlin-Brandenburg. Baden-Württemberg verhandelt am Mittwoch in Mannheim neu."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Ein Streik, der den Mitgliedern Geld kostet, ist ein stärkeres Signal als ein kurzer Warnstreik ohne Streikgeld – er zeigt, wie ernst beide Seiten die Eskalation nehmen, bevor ein Tarifabschluss überhaupt absehbar ist.",
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": ["volkswagen", "bmw"],
+      "sources": [
+        {
+          "label": "Tagesschau, 20.11.2026, 20:58 Uhr: „Mehr als 100 Betriebe beteiligt: IG Metall setzt weiter auf ganztägige Warnstreiks“",
+          "url": "https://www.tagesschau.de/wirtschaft/arbeitsmarkt/ig-metall-streik-112.html"
+        },
+        {
+          "label": "IG Metall, Pressemitteilung vom 19.11.2026: „Metall/Elektro: IG Metall startet Warnstreik-Druckwelle“",
+          "url": "https://www.igmetall.de/presse/pressemitteilungen/2026/metallelektro-ig-metall-startet-warnstreik-druckwelle"
+        }
+      ]
+    },
+    {
+      "headline": "Trump droht mit Steuer auf Rechenzentren im Ausland",
+      "summary": [
+        "Donald Trump hat neue Pläne angekündigt. US-Firmen sollen keine Rechenzentren mehr im Ausland bauen dürfen. Wer es trotzdem tut, dem drohte er am Freitag im Weißen Haus eine gewaltige Steuer an.",
+        "Der Vorstoß folgt auf Trumps Reise nach China. Dort traf er sich mit Xi Jinping und Wladimir Putin. Putin äußerte laut Trump den Wunsch nach einer diplomatischen Lösung im Ukraine-Krieg."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Eine Steuer auf Auslandsinvestitionen verändert die Kostenrechnung genau jener Konzerne, die Milliarden in die weltweite KI-Infrastruktur stecken – noch bevor ein Gesetz beschlossen ist.",
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": ["microsoft", "amazon", "alphabet"],
+      "sources": [
+        {
+          "label": "CNBC, 20.11.2026, 12:45 Uhr Ortszeit Washington: „Trump vows to stop U.S. companies from building data centers abroad, threatens 'tremendous tax'“",
+          "url": "https://www.cnbc.com/2026/11/20/trump-data-centers-ai-companies-tax.html"
+        },
+        {
+          "label": "onvista/dpa-AFX, 20.11.2026, 21:56 Uhr: „ROUNDUP/Trump: Putin hat Wunsch nach diplomatischer Lösung geäußert“",
+          "url": "https://www.onvista.de/news/2026/11-20-roundup-trump-putin-hat-wunsch-nach-diplomatischer-loesung-geaeussert-0-10-26579008"
+        }
+      ]
+    },
+    {
+      "headline": "US-Richter billigt Bayers Glyphosat-Vergleich über 7,25 Milliarden Dollar",
+      "summary": [
+        "Ein US-Richter hat den Bayer-Vergleich in den Glyphosat-Klagen endgültig gebilligt. Er nannte die Einigung fair, vernünftig und angemessen. Der Vergleich deckt Zahlungen von 7,25 Milliarden Dollar über bis zu 21 Jahre ab.",
+        "Die Bayer-Aktie reagierte sofort. Im nachbörslichen Handel auf der Plattform Tradegate stieg der Kurs um drei Prozent."
+      ],
+      "category": "Steuern & Recht",
+      "whyItMatters": "Ein gerichtlich besiegelter Vergleich macht aus einem offenen Prozessrisiko eine feste Summe – das ist der Unterschied zwischen einer Rückstellung und einer Wette auf den Ausgang einzelner Klagen.",
+      "relatedTopics": ["aktie", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["bayer"],
+      "sources": [
+        {
+          "label": "onvista/dpa-AFX, 20.11.2026, 22:01 Uhr: „Bayers Glyphosat-Sammelvergleich von Richter genehmigt“",
+          "url": "https://www.onvista.de/news/2026/11-20-bayers-glyphosat-sammelvergleich-von-richter-genehmigt-0-10-26579007"
+        },
+        {
+          "label": "wallstreet-online/dpa-AFX, 20.11.2026: „Bayers Glyphosat-Sammelvergleich von Richter genehmigt“",
+          "url": "https://www.wallstreet-online.de/nachricht/21726927-bayers-glyphosat-sammelvergleich-richter-genehmigt"
+        }
+      ]
+    }
+  ],
+  "further": [
+    {
+      "headline": "Bericht: CrowdStrike will Cybersicherheitsfirma Zscaler übernehmen",
+      "summary": [
+        "Ein Bericht sorgte am Freitag für Bewegung. Bloomberg berichtete, CrowdStrike führe Gespräche über eine Übernahme von Zscaler. Die Zscaler-Aktie sprang im nachbörslichen Handel um 18 Prozent. CrowdStrike fiel um mehr als acht Prozent.",
+        "Offiziell bestätigt ist der mögliche Deal nicht. CrowdStrike lehnte eine Stellungnahme ab. Zscaler reagierte zunächst nicht."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Dass zwei Kurse auf dieselbe Meldung gegensätzlich reagieren, zeigt, wie viel vom Aktienkurs eine eingepreiste Erwartung ist – lange bevor überhaupt ein Vertrag unterschrieben wäre, falls es dazu kommt.",
+      "relatedTopics": ["aktie"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "CNBC, 20.11.2026, 16:11 Uhr Ortszeit (22:11 Uhr MEZ): „Zscaler stock jumps 18% on report that CrowdStrike in talks to buy security vendor“",
+          "url": "https://www.cnbc.com/2026/11/20/zscaler-crowdstrike-deal.html"
+        }
+      ]
+    },
+    {
+      "headline": "Nasdaq verzeichnet schwächste Woche seit März 2020",
+      "summary": [
+        "Der Ausverkauf bei Technologiewerten ging weiter. Der Nasdaq Composite fiel am Freitag um 5,3 Prozent. Das ist der schwächste Wochenverlust des Index seit März 2020.",
+        "Auch der Dax traf es hart. Er fiel um 2,6 Prozent auf 24.803 Punkte und rutschte damit unter die Marke von 25.000 Punkten. Nvidia beendete die siebte Verlustwoche in Folge – die längste seit der Finanzkrise 2008."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Der Dax ist ein Performanceindex und rechnet Dividenden wieder ein, der Nasdaq Composite dagegen ein reiner Kursindex – ihre Prozentzahlen sind deshalb nicht eins zu eins vergleichbar, besonders über längere Zeiträume.",
+      "relatedTopics": ["wie-funktioniert-der-markt", "aktie"],
+      "relatedSymbols": ["nvidia", "nasdaq-100", "dax"],
+      "sources": [
+        {
+          "label": "WirtschaftsWoche, 20.11.2026, 23:15 Uhr: „Dow Jones, Nasdaq: Nasdaq mit stärkstem Wochenverlust seit März 2020“",
+          "url": "https://www.wiwo.de/finanzen/boerse/dow-jones-nasdaq-nasdaq-mit-staerkstem-wochenverlust-seit-maerz-2020/100271639.html"
+        },
+        {
+          "label": "CNBC, 20.11.2026, 14:26 Uhr Ortszeit: „Nvidia stock plunges 14%, wraps up longest weekly losing streak since 2008 financial crisis“",
+          "url": "https://www.cnbc.com/2026/11/20/nvidias-7-week-losing-streak-is-longest-since-2008-financial-crisis.html"
+        },
+        {
+          "label": "Handelsblatt, 20.11.2026, 18:40 Uhr: „Dax aktuell: Dax verliert 660 Punkte und schließt weit unter 26.000 Punkten“",
+          "url": "https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-verliert-660-punkte-und-schliesst-weit-unter-26.000-punkten/100271464.html"
+        }
+      ]
+    }
+  ],
+  "instagram": {
+    "zusammenfassung": "Fünf Themen heute: ein eskalierender Tarifstreik bei IG Metall, Trumps Steuer-Drohung gegen Rechenzentren im Ausland, Bayers Gerichtsvergleich, Übernahmegerüchte um Zscaler und ein Ausverkauf an den Technologiebörsen.",
+    "kacheln": [
+      {
+        "titel": "150.000 im Warnstreik",
+        "text": "Mehr als 150.000 Beschäftigte legten für 24 Stunden die Arbeit nieder, rund 100 Betriebe waren betroffen. Es war der erste Ganztagesstreik der IG Metall seit acht Jahren."
+      },
+      {
+        "titel": "Trump: Steuer-Drohung",
+        "text": "Donald Trump drohte US-Firmen mit einer hohen Steuer, falls sie Rechenzentren im Ausland bauen. Die Ankündigung kam einen Tag nach seinem Treffen mit Xi Jinping und Wladimir Putin in China."
+      },
+      {
+        "titel": "Bayer: 7,25 Mrd. Vergleich",
+        "text": "Ein US-Richter genehmigte den 7,25 Milliarden Dollar schweren Glyphosat-Vergleich von Bayer endgültig. Die Aktie legte im nachbörslichen Handel um drei Prozent zu."
+      },
+      {
+        "titel": "Zscaler-Aktie: Plus 18 %",
+        "text": "Die Zscaler-Aktie sprang nachbörslich um 18 Prozent, nachdem ein Bericht CrowdStrike Übernahmegespräche zuschrieb. CrowdStrike selbst verlor mehr als acht Prozent."
+      },
+      {
+        "titel": "Nasdaq: Schwächste Woche",
+        "text": "Der Nasdaq fiel auf Wochensicht so stark wie seit März 2020 nicht mehr, Nvidia-Aktien verloren 14 Prozent. Auch der Dax rutschte unter die Marke von 25.000 Punkten."
+      }
+    ],
+    "schlagworte": ["nasdaq", "dax", "börse", "aktien", "wirtschaft"]
+  }
+}
