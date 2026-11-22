@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-11-22T11:57:02.774Z",
+  "abgerufen": "2026-11-22T20:18:38.297Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -658,7 +658,7 @@
     {"title":"Flash Manufacturing PMI","country":"GBP","date":"2026-11-23T04:30:00-05:00","impact":"Medium","forecast":"53.0","previous":"52.8"},
     {"title":"Flash Services PMI","country":"GBP","date":"2026-11-23T04:30:00-05:00","impact":"Medium","forecast":"53.0","previous":"53.1"},
     {"title":"MPC Member Pill Speaks","country":"GBP","date":"2026-11-23T08:00:00-05:00","impact":"Low","forecast":"","previous":""},
-    {"title":"Corporate Profits q/q","country":"CAD","date":"2026-11-23T08:30:00-05:00","impact":"Low","forecast":"","previous":""},
+    {"title":"Corporate Profits q/q","country":"CAD","date":"2026-11-23T08:30:00-05:00","impact":"Low","forecast":"","previous":"8.7%"},
     {"title":"Flash Manufacturing PMI","country":"USD","date":"2026-11-23T09:45:00-05:00","impact":"Medium","forecast":"54.5","previous":"56.0"},
     {"title":"Flash Services PMI","country":"USD","date":"2026-11-23T09:45:00-05:00","impact":"Medium","forecast":"55.6","previous":"57.9"},
     {"title":"FOMC Member Williams Speaks","country":"USD","date":"2026-11-23T16:00:00-05:00","impact":"Low","forecast":"","previous":""},
