@@ -44,6 +44,93 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 22.11.2026, „US-Händler 2026: Target hängt alle ab“ –
+      vollautomatisch (Routine „Zahlenkarte des Tages“; Thema: offener
+      eigener Vorschlag „Target +69,7 % 2026 gegen Walmart/Costco/Home Depot“
+      vom 19.11. aus der Gedächtnis-Themenliste; Anlass: Black Friday am
+      27.11.). Art `rangwechsel` (in den sieben Tagen davor nicht benutzt).
+
+      Werte: Kursentwicklung seit Jahresbeginn in Prozent – Schlusskurs am
+      letzten Handelstag jedes Monats (Januar bis Oktober) und am 20.11.2026
+      gegen den Schluss vom 31.12.2025; data/snapshots/markets.json (Yahoo
+      Finance), ohne Dividenden. Die Plätze rechnet plaetze() aus den Werten.
+      Grund für den Sprung im November nur aus gelesener Quelle: Target,
+      Quartalsbericht vom 19.11.2026, und CNBC 18.11.2026 (unsere Meldung vom
+      19.11.): Umsatz +7,1 % auf 27,1 Mrd. $, stärkstes Wachstum seit mehr
+      als fünf Jahren; Gewinn je Aktie 2,65 $ (darin 0,50 $ aus einer
+      Zollrückerstattung von 301 Mio. $). Warum die Aktie schon ab März
+      vorn lag, nennt keine gelesene Quelle.
+    */
+    art: 'rangwechsel',
+    datum: '2026-11-22',
+    freigabe: '2026-11-22',
+    titel: [{ text: 'US-Händler 2026:' }, { text: 'Target hängt alle ab.', gruen: true }],
+    unterzeile: 'Platz nach Kursentwicklung seit Jahresbeginn, jeweils zum Monatsende.',
+    zeitpunkte: [
+      'Jan.',
+      'Feb.',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'Aug.',
+      'Sept.',
+      'Okt.',
+      '20.11.',
+    ],
+    reihen: [
+      {
+        name: 'Target',
+        anzeige: '+69,6 %',
+        werte: [7.9, 16.4, 24.0, 32.7, 30.0, 33.6, 47.8, 64.6, 60.3, 57.9, 69.6],
+      },
+      {
+        name: 'Costco',
+        anzeige: '+27,8 %',
+        werte: [9.0, 17.2, 15.5, 17.6, 10.9, 8.5, 10.4, 9.5, 5.6, 17.4, 27.8],
+      },
+      {
+        name: 'Walmart',
+        anzeige: '+14,8 %',
+        werte: [6.9, 14.8, 11.6, 18.4, 3.9, 1.7, -0.2, -5.9, -6.7, 10.9, 14.8],
+      },
+      {
+        name: 'Amazon',
+        anzeige: '+6,9 %',
+        werte: [3.7, -9.0, -9.8, 14.8, 17.3, 3.3, 17.7, 12.5, 7.9, 4.1, 6.9],
+      },
+      {
+        name: 'Home Depot',
+        anzeige: '−1,5 %',
+        werte: [8.9, 10.6, -4.4, -4.4, -7.8, 2.5, -3.5, -4.7, -17.3, -4.3, -1.5],
+      },
+      {
+        name: 'Lowe’s',
+        anzeige: '−8,4 %',
+        werte: [10.7, 9.7, -2.0, -1.0, -11.1, -8.6, -13.8, -15.1, -23.6, -13.3, -8.4],
+      },
+    ],
+    fusszeile:
+      'Stand: 20.11.2026 | Quelle: Yahoo Finance (Schlusskurse); eigene Rechnung',
+    text:
+      'Black Friday steht vor der Tür – und an der Börse hat 2026 ein Händler alle anderen abgehängt.\n\n' +
+      'Kursentwicklung seit Jahresbeginn (31.12.2025 → 20.11.2026):\n' +
+      'Target: +69,6 %\n' +
+      'Costco: +27,8 %\n' +
+      'Walmart: +14,8 %\n' +
+      'Amazon: +6,9 %\n' +
+      'Home Depot: −1,5 %\n' +
+      'Lowe’s: −8,4 %\n' +
+      '\n' +
+      'Target lag im Januar auf Platz 4 und steht seit März ganz vorn. Lowe’s lag im Januar vorn und ist seit Mai Letzter.\n\n' +
+      'Warum zuletzt? Target meldete am 19.11. laut eigenem Quartalsbericht und CNBC 7,1 % mehr Umsatz (27,1 Mrd. $) – das stärkste Wachstum seit mehr als fünf Jahren. Im Gewinn je Aktie von 2,65 $ stecken 0,50 $ aus einer einmaligen Zollrückerstattung. Warum die Aktie schon seit März vorn liegt, nennt keine Quelle, die wir gelesen haben.\n\n' +
+      'Kurse ohne Dividenden. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (Schlusskurse); Target, Quartalsbericht 19.11.2026; CNBC; eigene Rechnung',
+    schlagworte: ['target', 'walmart', 'costco', 'einzelhandel', 'blackfriday'],
+  },
+  {
+    /*
       Zahlenkarte 21.11.2026, „Inflation 2026: Der Euroraum zieht davon“ –
       erste vollautomatisch gewählte und gebaute Karte (Routine „Zahlenkarte
       des Tages“; Thema: offener eigener Vorschlag „Inflation zurück“ vom
