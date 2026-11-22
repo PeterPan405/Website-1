@@ -1620,5 +1620,34 @@
       "suche": "kein Markenfoto – Kursverlauf",
       "kurs": "nasdaq-100"
     }
+  ],
+  "2026-11-22": [
+    {
+      "stelle": 1,
+      "datei": "2026-11-22-1-a223f445.jpg",
+      "titel": "File:Wall Street Sign February 2023.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Wall_Street_Sign_February_2023.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Kidfly182",
+      "suche": "Wall Street sign"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-22-3-18cf4d9a.jpg",
+      "titel": "File:MSC HARMONY III (container ship, 2006) in Port Koper (SIKOP, 2024).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:MSC_HARMONY_III_(container_ship,_2006)_in_Port_Koper_(SIKOP,_2024).jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Petar Milošević",
+      "suche": "Indonesia container ship"
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-22-6-e3b57b00.jpg",
+      "titel": "File:GBA Innovationsfonds Logo (2026).svg",
+      "seite": "https://commons.wikimedia.org/wiki/File:GBA_Innovationsfonds_Logo_(2026).svg",
+      "lizenz": "Public domain",
+      "urheber": "Gemeinsamer Bundesausschuss (GBA)",
+      "suche": "Logo „Fonds\""
+    }
   ]
 }
