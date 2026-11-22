@@ -11,6 +11,7 @@
  */
 import { abstuerze, type Absturzkarte } from './abstuerze.ts'
 import { ampel, type Ampelkarte } from './ampel.ts'
+import { balkenliste, type Balkenlistenkarte } from './balkenliste.ts'
 import { damalsheute, type Damalsheutekarte } from './damalsheute.ts'
 import { deckblatt, type Deckblattkarte } from './deckblatt.ts'
 import { DOSSIER_ARTEN, dossier, type Dossierkarte } from './dossier.ts'
@@ -68,6 +69,7 @@ export type NeueKarte =
   | Deckblattkarte
   | Kuchenkarte
   | Scherenkarte
+  | Balkenlistenkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -75,6 +77,7 @@ export const NEUE_ARTEN: {
   kurszettel,
   kuchen,
   schere,
+  balkenliste,
   deckblatt,
   punktraster,
   kalender,

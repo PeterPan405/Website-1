@@ -44,90 +44,69 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 22.11.2026, „US-Händler 2026: Target hängt alle ab“ –
-      vollautomatisch (Routine „Zahlenkarte des Tages“; Thema: offener
-      eigener Vorschlag „Target +69,7 % 2026 gegen Walmart/Costco/Home Depot“
-      vom 19.11. aus der Gedächtnis-Themenliste; Anlass: Black Friday am
-      27.11.). Art `rangwechsel` (in den sieben Tagen davor nicht benutzt).
+      Zahlenkarte 22.11.2026, zweiter Versuch: „Autobauer 2026: Fast alle im
+      Minus“. Der erste Beitrag des Tages (Rangwechsel „US-Händler 2026:
+      Target hängt alle ab“, PR #630, gepostet 15:06) wurde vom Betreiber
+      gelöscht: „absolut beschissen, unübersichtlich und uninteressant –
+      erstelle einen anderen Beitrag“. Er steht in der Git-Geschichte.
 
-      Werte: Kursentwicklung seit Jahresbeginn in Prozent – Schlusskurs am
-      letzten Handelstag jedes Monats (Januar bis Oktober) und am 20.11.2026
-      gegen den Schluss vom 31.12.2025; data/snapshots/markets.json (Yahoo
-      Finance), ohne Dividenden. Die Plätze rechnet plaetze() aus den Werten.
-      Grund für den Sprung im November nur aus gelesener Quelle: Target,
-      Quartalsbericht vom 19.11.2026, und CNBC 18.11.2026 (unsere Meldung vom
-      19.11.): Umsatz +7,1 % auf 27,1 Mrd. $, stärkstes Wachstum seit mehr
-      als fünf Jahren; Gewinn je Aktie 2,65 $ (darin 0,50 $ aus einer
-      Zollrückerstattung von 301 Mio. $). Warum die Aktie schon ab März
-      vorn lag, nennt keine gelesene Quelle.
+      Thema: offener eigener Vorschlag „Autobauer 2026“ vom 18.11. aus der
+      Gedächtnis-Themenliste. Neue Art `balkenliste` – eine Rangfolge, die
+      man in zwei Sekunden liest.
+
+      Werte: Schlusskurs am 19.11.2026 gegen den letzten Schluss 2025
+      (Xetra 30.12., sonst 31.12. bzw. Tokio 30.12.), je in Börsenwährung,
+      ohne Dividenden; data/snapshots/markets.json (Yahoo Finance). 19.11.
+      für alle, weil für Xetra der 20.11. im Bestand fehlt.
+      Gründe nur aus gelesenen Quellen (unsere Meldungen):
+      - BMW: tagesschau.de 04.11.2026 – Q3 Gewinn −15 %, China-Absatz −25 %,
+        Prognose gesenkt.
+      - Mercedes-Benz: Handelsblatt 13.11.2026 – stoppt alle weiteren
+        Investitionen an deutschen Standorten.
+      Für die übrigen nennt keine gelesene Quelle einen Grund.
     */
-    art: 'rangwechsel',
+    art: 'balkenliste',
     datum: '2026-11-22',
     freigabe: '2026-11-22',
-    titel: [{ text: 'US-Händler 2026:' }, { text: 'Target hängt alle ab.', gruen: true }],
-    unterzeile: 'Platz nach Kursentwicklung seit Jahresbeginn, jeweils zum Monatsende.',
-    zeitpunkte: [
-      'Jan.',
-      'Feb.',
-      'März',
-      'April',
-      'Mai',
-      'Juni',
-      'Juli',
-      'Aug.',
-      'Sept.',
-      'Okt.',
-      '20.11.',
+    titel: [{ text: 'Autobauer 2026:' }, { text: 'Fast alle im Minus.', gruen: true }],
+    unterzeile: 'Kurs seit Jahresbeginn bis 19.11.2026, ohne Dividenden.',
+    achse: 'Veränderung in Prozent',
+    zeilen: [
+      { name: 'Honda', zusatz: 'Tokio, Yen', wert: 16.5 },
+      { name: 'Ferrari', zusatz: 'New York, $', wert: 9.7 },
+      { name: 'Toyota', zusatz: 'Tokio, Yen', wert: 0.7 },
+      { name: 'General Motors', zusatz: 'New York, $', wert: 0.5 },
+      { name: 'Porsche', zusatz: 'Xetra, €', wert: -5.4 },
+      { name: 'Tesla', zusatz: 'Nasdaq, $', wert: -16.7 },
+      { name: 'BYD', zusatz: 'Hongkong, HK$', wert: -33.5 },
+      { name: 'Mercedes-Benz', zusatz: 'Xetra, €', wert: -36.3, hervor: true },
+      { name: 'Volkswagen', zusatz: 'Xetra, € (Vorzüge)', wert: -37.6, hervor: true },
+      { name: 'BMW', zusatz: 'Xetra, €', wert: -41.7, hervor: true },
+      { name: 'Stellantis', zusatz: 'New York, $', wert: -67.5 },
     ],
-    reihen: [
-      {
-        name: 'Target',
-        anzeige: '+69,6 %',
-        werte: [7.9, 16.4, 24.0, 32.7, 30.0, 33.6, 47.8, 64.6, 60.3, 57.9, 69.6],
-      },
-      {
-        name: 'Costco',
-        anzeige: '+27,8 %',
-        werte: [9.0, 17.2, 15.5, 17.6, 10.9, 8.5, 10.4, 9.5, 5.6, 17.4, 27.8],
-      },
-      {
-        name: 'Walmart',
-        anzeige: '+14,8 %',
-        werte: [6.9, 14.8, 11.6, 18.4, 3.9, 1.7, -0.2, -5.9, -6.7, 10.9, 14.8],
-      },
-      {
-        name: 'Amazon',
-        anzeige: '+6,9 %',
-        werte: [3.7, -9.0, -9.8, 14.8, 17.3, 3.3, 17.7, 12.5, 7.9, 4.1, 6.9],
-      },
-      {
-        name: 'Home Depot',
-        anzeige: '−1,5 %',
-        werte: [8.9, 10.6, -4.4, -4.4, -7.8, 2.5, -3.5, -4.7, -17.3, -4.3, -1.5],
-      },
-      {
-        name: 'Lowe’s',
-        anzeige: '−8,4 %',
-        werte: [10.7, 9.7, -2.0, -1.0, -11.1, -8.6, -13.8, -15.1, -23.6, -13.3, -8.4],
-      },
-    ],
+    satz: 'BMW, VW und Mercedes verlieren 2026 je mehr als ein Drittel.',
     fusszeile:
-      'Stand: 20.11.2026 | Quelle: Yahoo Finance (Schlusskurse); eigene Rechnung',
+      'Stand: 19.11.2026 | Quelle: Yahoo Finance (Schlusskurse); eigene Rechnung',
     text:
-      'Black Friday steht vor der Tür – und an der Börse hat 2026 ein Händler alle anderen abgehängt.\n\n' +
-      'Kursentwicklung seit Jahresbeginn (31.12.2025 → 20.11.2026):\n' +
-      'Target: +69,6 %\n' +
-      'Costco: +27,8 %\n' +
-      'Walmart: +14,8 %\n' +
-      'Amazon: +6,9 %\n' +
-      'Home Depot: −1,5 %\n' +
-      'Lowe’s: −8,4 %\n' +
+      'Für die Autobauer ist 2026 ein schwarzes Börsenjahr – vor allem für die deutschen.\n\n' +
+      'Kurs seit Jahresbeginn (bis 19.11.2026, Börsenwährung):\n' +
+      'Honda: +16,5 %\n' +
+      'Ferrari: +9,7 %\n' +
+      'Toyota: +0,7 %\n' +
+      'General Motors: +0,5 %\n' +
+      'Porsche: −5,4 %\n' +
+      'Tesla: −16,7 %\n' +
+      'BYD: −33,5 %\n' +
+      'Mercedes-Benz: −36,3 %\n' +
+      'Volkswagen: −37,6 %\n' +
+      'BMW: −41,7 %\n' +
+      'Stellantis: −67,5 %\n' +
       '\n' +
-      'Target lag im Januar auf Platz 4 und steht seit März ganz vorn. Lowe’s lag im Januar vorn und ist seit Mai Letzter.\n\n' +
-      'Warum zuletzt? Target meldete am 19.11. laut eigenem Quartalsbericht und CNBC 7,1 % mehr Umsatz (27,1 Mrd. $) – das stärkste Wachstum seit mehr als fünf Jahren. Im Gewinn je Aktie von 2,65 $ stecken 0,50 $ aus einer einmaligen Zollrückerstattung. Warum die Aktie schon seit März vorn liegt, nennt keine Quelle, die wir gelesen haben.\n\n' +
+      'Nur vier von elf liegen im Plus, keiner davon aus Deutschland. BMW, VW und Mercedes-Benz haben je mehr als ein Drittel verloren, Stellantis gut zwei Drittel.\n\n' +
+      'Warum? BMW meldete laut tagesschau.de (04.11.) für das dritte Quartal 15 % weniger Gewinn, in China 25 % weniger Verkäufe, und senkte die Prognose. Mercedes-Benz stoppt laut Handelsblatt (13.11.) alle weiteren Investitionen an deutschen Standorten. Für die übrigen nennt keine Quelle, die wir gelesen haben, einen Grund.\n\n' +
       'Kurse ohne Dividenden. Eine eigene Prognose geben wir nicht.\n\n' +
-      'Quellen: Yahoo Finance (Schlusskurse); Target, Quartalsbericht 19.11.2026; CNBC; eigene Rechnung',
-    schlagworte: ['target', 'walmart', 'costco', 'einzelhandel', 'blackfriday'],
+      'Quellen: Yahoo Finance (Schlusskurse); tagesschau.de; Handelsblatt; eigene Rechnung',
+    schlagworte: ['autobauer', 'bmw', 'volkswagen', 'mercedes', 'aktien'],
   },
   {
     /*
