@@ -31,6 +31,7 @@ import {
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
 import { prozentGenau, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
+import { plaetze } from '@/lib/instagram/arten/rangwechsel'
 import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
 import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
@@ -2566,6 +2567,74 @@ for (let i = 1; i < nachDatum.length; i++)
       '17. Dezember',
     ])
       pruefe(`Inflation: Beschriftung nennt ${zahl}`, k.text.includes(zahl))
+  }
+}
+
+/* 22.11.2026: US-Händler 2026 (markets.json, Yahoo Finance). Vollautomatisch, Art `rangwechsel`. */
+{
+  const k = karteVom('2026-11-22')
+  pruefe('Händler: Karte für den 22.11. ist ein Rangwechsel', k?.art === 'rangwechsel')
+  if (k?.art === 'rangwechsel') {
+    pruefe(
+      'Händler: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Händler: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-21')!)
+    )
+    const m = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8'))
+      .instruments as Record<string, { points: { d: string; c: number }[] }>
+    const symbol: Record<string, string> = {
+      Target: 'target',
+      Costco: 'costco',
+      Walmart: 'walmart',
+      Amazon: 'amazon',
+      'Home Depot': 'home-depot',
+      'Lowe’s': 'lowes',
+    }
+    for (const r of k.reihen) {
+      const p = m[symbol[r.name]].points
+      const basis = p.filter((x) => x.d <= '2025-12-31').at(-1)!.c
+      const monatsende = Array.from({ length: 10 }, (_, i) => {
+        const mo = `2026-${String(i + 1).padStart(2, '0')}`
+        return p.filter((x) => x.d.slice(0, 7) === mo).at(-1)!.c
+      })
+      const bis = p.find((x) => x.d === '2026-11-20')!.c
+      const soll = [...monatsende, bis].map(
+        (c) => Math.round((c / basis - 1) * 1000) / 10
+      )
+      pruefe(
+        `Händler: ${r.name} – jeder Wert aus markets.json nachgerechnet`,
+        soll.every((v, i) => Math.abs(v - r.werte[i]) < 0.051),
+        `${soll} gegen ${r.werte}`
+      )
+    }
+    const pl = plaetze(k)
+    pruefe(
+      'Händler: Target im Januar Platz 4, seit März Platz 1',
+      pl[0][0] === 4 && pl[0].slice(2).every((x) => x === 1)
+    )
+    pruefe(
+      'Händler: Lowe’s im Januar Platz 1, seit Mai Letzter',
+      pl[5][0] === 1 && pl[5].slice(4).every((x) => x === 6)
+    )
+    pruefe(
+      'Händler: Target +69,6 % am 20.11.',
+      k.reihen[0].werte.at(-1) === 69.6 && k.text.includes('Target: +69,6 %')
+    )
+    pruefe(
+      'Händler: Gegenprobe – ein Gleichstand wird beanstandet',
+      pruefeZahlenkarte({
+        ...k,
+        reihen: k.reihen.map((r, i) =>
+          i === 1 ? { ...r, werte: [k.reihen[0].werte[0], ...r.werte.slice(1)] } : r
+        ),
+      }).some((t) => t.includes('Gleichstand'))
+    )
+    for (const z of ['7,1 %', '27,1 Mrd. $', '2,65 $', '0,50 $'])
+      pruefe(`Händler: Beschriftung nennt ${z}`, k.text.includes(z))
   }
 }
 

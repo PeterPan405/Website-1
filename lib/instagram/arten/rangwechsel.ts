@@ -22,7 +22,11 @@ export interface Rangwechselkarte extends NeuGemeinsam {
   /** Beschriftung der Zeitpunkte: „Jan.“ … */
   zeitpunkte: string[]
   /** Je Name ein Wert je Zeitpunkt – der höchste ist Platz 1. Die erste Reihe ist die Pointe. */
-  reihen: { name: string; werte: number[] }[]
+  /**
+   * `anzeige`: der letzte Wert als Text unter dem Namen (22.11.2026, US-Händler:
+   * nur Plätze, ohne die Zahl dahinter, sagt nicht, wie weit vorn).
+   */
+  reihen: { name: string; werte: number[]; anzeige?: string }[]
 }
 
 /** Platz je Reihe und Zeitpunkt, 1 = höchster Wert. */
@@ -62,13 +66,31 @@ export const rangwechsel: Art<Rangwechselkarte> = {
             top: y(p[i].at(-1)!) - 17,
             left: rechts + 26,
             display: 'flex',
+            flexDirection: 'column',
             fontFamily: 'Montserrat',
             fontSize: 26,
             fontWeight: i === 0 ? 800 : 400,
             color: i === 0 ? STIL.navy : STIL.grau,
           },
         },
-        `${p[i].at(-1)}. ${r.name}`
+        h('div', { style: { display: 'flex' } }, `${p[i].at(-1)}. ${r.name}`),
+        ...(r.anzeige
+          ? [
+              h(
+                'div',
+                {
+                  style: {
+                    display: 'flex',
+                    marginTop: 4,
+                    fontSize: 20,
+                    fontWeight: i === 0 ? 700 : 400,
+                    color: i === 0 ? STIL.navy : STIL.hellgrau,
+                  },
+                },
+                r.anzeige
+              ),
+            ]
+          : [])
       )
     )
     const achse = k.zeitpunkte.map((z, t) =>
