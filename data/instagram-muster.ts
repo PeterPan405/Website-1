@@ -770,6 +770,23 @@ export const musterkarten: Zahlenkarte[] = [
     schlagworte: ['inflation', 'ezb', 'euroraum', 'deutschland', 'preise'],
   },
   {
+    /* Balkenliste: Kurs seit Jahresbeginn, Plus rechts, Minus links (markets.json). */
+    art: 'balkenliste',
+    datum: '2026-11-15',
+    titel: [{ text: 'Autobauer 2026:' }, { text: 'Wer liegt vorn?', gruen: true }],
+    unterzeile: 'Kurs seit Jahresbeginn, ohne Dividenden.',
+    achse: 'Veränderung in Prozent',
+    zeilen: [
+      { name: 'Honda', zusatz: 'Tokio, Yen', wert: 16.5 },
+      { name: 'Ferrari', zusatz: 'New York, $', wert: 9.7 },
+      { name: 'Tesla', zusatz: 'Nasdaq, $', wert: -16.7 },
+      { name: 'BMW', zusatz: 'Xetra, €', wert: -41.7, hervor: true },
+    ],
+    fusszeile: 'Stand: 19.11.2026 | Quelle: Yahoo Finance',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['autobauer', 'bmw', 'tesla', 'aktien', 'boerse'],
+  },
+  {
     /* Kuchen: der Korb des Euro-Index EXY (Wikipedia „Euro Currency Index“, nach ICE Futures U.S.). */
     art: 'kuchen',
     datum: '2026-11-15',

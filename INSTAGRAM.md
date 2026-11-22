@@ -407,6 +407,7 @@ die Vorlage, wie man sie füllt. Die Musterkarten gehen nie hinaus.
 | `deckblatt`    | Erste Seite mit Foto über die ganze Breite, Logo darauf, kurze Liste   | Foto/Logo frei lizenziert, genannt   |
 | `kuchen`       | Anteile als Ring mit genauen Werten (Korb eines Index)                 | Statistik, Indexregeln               |
 | `schere`       | Zwei Reihen, Fläche dazwischen: wer vorn liegt, wann es kippt          | `zinsen.json`, `markets.json`        |
+| `balkenliste`  | Rangfolge als Balken ab Null, Plus rechts, Minus links – klar lesbar   | `markets.json`                       |
 | `kalender`     | ein Jahr Tag für Tag, Plus- und Minustage                              | `markets.json`                       |
 | `tacho`        | wo ein Wert zwischen Tief und Hoch steht                               | `markets.json`                       |
 | `wasserfall`   | wie sich ein Stand Schritt für Schritt aufbaut                         | `markets.json`, Bilanzen             |

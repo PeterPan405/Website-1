@@ -31,7 +31,6 @@ import {
   type Zahlenkarte,
 } from '@/lib/instagram-zahlenkarte'
 import { prozentGenau, tage, wert as wertZyklus } from '@/lib/instagram/arten/zyklus'
-import { plaetze } from '@/lib/instagram/arten/rangwechsel'
 import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
 import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
@@ -2570,71 +2569,82 @@ for (let i = 1; i < nachDatum.length; i++)
   }
 }
 
-/* 22.11.2026: US-Händler 2026 (markets.json, Yahoo Finance). Vollautomatisch, Art `rangwechsel`. */
+/* 22.11.2026: Autobauer 2026 (markets.json). Zweiter Beitrag des Tages – der Rangwechsel „US-Händler“ wurde vom Betreiber gelöscht. Neue Art `balkenliste`. */
 {
   const k = karteVom('2026-11-22')
-  pruefe('Händler: Karte für den 22.11. ist ein Rangwechsel', k?.art === 'rangwechsel')
-  if (k?.art === 'rangwechsel') {
+  pruefe('Autobauer: Karte für den 22.11. ist eine Balkenliste', k?.art === 'balkenliste')
+  pruefe(
+    'Autobauer: nur eine Karte am 22.11.',
+    zahlenkarten.filter((z) => z.datum === '2026-11-22').length === 1
+  )
+  if (k?.art === 'balkenliste') {
     pruefe(
-      'Händler: keine Beanstandung',
+      'Autobauer: keine Beanstandung',
       pruefeZahlenkarte(k).length === 0,
       pruefeZahlenkarte(k).join(' | ')
     )
     pruefe(
-      'Händler: Form anders als am Vortag',
+      'Autobauer: Form anders als am Vortag',
       form(k) !== form(karteVom('2026-11-21')!)
     )
     const m = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8'))
       .instruments as Record<string, { points: { d: string; c: number }[] }>
     const symbol: Record<string, string> = {
-      Target: 'target',
-      Costco: 'costco',
-      Walmart: 'walmart',
-      Amazon: 'amazon',
-      'Home Depot': 'home-depot',
-      'Lowe’s': 'lowes',
+      Honda: 'honda',
+      Ferrari: 'ferrari',
+      Toyota: 'toyota',
+      'General Motors': 'general-motors',
+      Porsche: 'porsche-ag',
+      Tesla: 'tesla',
+      BYD: 'byd',
+      'Mercedes-Benz': 'mercedes-benz',
+      Volkswagen: 'volkswagen',
+      BMW: 'bmw',
+      Stellantis: 'stellantis',
     }
-    for (const r of k.reihen) {
-      const p = m[symbol[r.name]].points
+    for (const z of k.zeilen) {
+      const p = m[symbol[z.name]].points
       const basis = p.filter((x) => x.d <= '2025-12-31').at(-1)!.c
-      const monatsende = Array.from({ length: 10 }, (_, i) => {
-        const mo = `2026-${String(i + 1).padStart(2, '0')}`
-        return p.filter((x) => x.d.slice(0, 7) === mo).at(-1)!.c
-      })
-      const bis = p.find((x) => x.d === '2026-11-20')!.c
-      const soll = [...monatsende, bis].map(
-        (c) => Math.round((c / basis - 1) * 1000) / 10
+      const ende = p.filter((x) => x.d <= '2026-11-19').at(-1)!
+      const soll = Math.round((ende.c / basis - 1) * 1000) / 10
+      pruefe(
+        `Autobauer: ${z.name} ${soll} % aus markets.json`,
+        Math.abs(soll - z.wert) < 0.051,
+        `${z.wert}`
       )
       pruefe(
-        `Händler: ${r.name} – jeder Wert aus markets.json nachgerechnet`,
-        soll.every((v, i) => Math.abs(v - r.werte[i]) < 0.051),
-        `${soll} gegen ${r.werte}`
+        `Autobauer: ${z.name} – Schluss vom 19.11. vorhanden`,
+        ende.d === '2026-11-19'
       )
     }
-    const pl = plaetze(k)
     pruefe(
-      'Händler: Target im Januar Platz 4, seit März Platz 1',
-      pl[0][0] === 4 && pl[0].slice(2).every((x) => x === 1)
+      'Autobauer: vier von elf im Plus',
+      k.zeilen.filter((z) => z.wert > 0).length === 4 && k.zeilen.length === 11
     )
     pruefe(
-      'Händler: Lowe’s im Januar Platz 1, seit Mai Letzter',
-      pl[5][0] === 1 && pl[5].slice(4).every((x) => x === 6)
+      'Autobauer: BMW, VW, Mercedes je mehr als ein Drittel verloren',
+      ['BMW', 'Volkswagen', 'Mercedes-Benz'].every(
+        (n) => k.zeilen.find((z) => z.name === n)!.wert < -100 / 3
+      )
     )
     pruefe(
-      'Händler: Target +69,6 % am 20.11.',
-      k.reihen[0].werte.at(-1) === 69.6 && k.text.includes('Target: +69,6 %')
+      'Autobauer: keiner der Deutschen im Plus',
+      k.zeilen.filter((z) => z.zusatz?.startsWith('Xetra')).every((z) => z.wert < 0)
     )
     pruefe(
-      'Händler: Gegenprobe – ein Gleichstand wird beanstandet',
-      pruefeZahlenkarte({
-        ...k,
-        reihen: k.reihen.map((r, i) =>
-          i === 1 ? { ...r, werte: [k.reihen[0].werte[0], ...r.werte.slice(1)] } : r
-        ),
-      }).some((t) => t.includes('Gleichstand'))
+      'Autobauer: Gegenprobe – unsortierte Zeilen werden beanstandet',
+      pruefeZahlenkarte({ ...k, zeilen: [...k.zeilen].reverse() }).some((t) =>
+        t.includes('absteigend')
+      )
     )
-    for (const z of ['7,1 %', '27,1 Mrd. $', '2,65 $', '0,50 $'])
-      pruefe(`Händler: Beschriftung nennt ${z}`, k.text.includes(z))
+    for (const z of [
+      'BMW: −41,7 %',
+      'Stellantis: −67,5 %',
+      'Honda: +16,5 %',
+      '25 %',
+      '15 %',
+    ])
+      pruefe(`Autobauer: Beschriftung nennt ${z}`, k.text.includes(z))
   }
 }
 
