@@ -101,6 +101,312 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'eu-haushaltsstreit-costa-digitalsteuer',
+    title: 'EU-Haushaltsstreit: Costa schlägt Digitalsteuer vor',
+    teaser:
+      'Costa will den EU-Haushaltsstreit mit einer neuen Digitalsteuer lösen. Große Konzerne sollen drei Prozent auf Online-Werbung und Nutzerdaten zahlen.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-11-22T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['EU-Haushalt', 'Digitalsteuer', 'Costa', 'EU-Politik'],
+    relatedTopics: ['schulden-und-kredit', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 21.11.2026, 16:01 Uhr: „Im Streit über EU-Budget legt Costa Kompromiss vor"',
+        url: 'https://www.tagesschau.de/wirtschaft/digitales/digitalsteuer-streit-eu-deutschland-100.html',
+      },
+      {
+        label:
+          'onvista/dpa-AFX, 21.11.2026, 16:35 Uhr: „ROUNDUP 2: Neue EU-Digitalsteuer soll Streit um Haushalt entschärfen"',
+        url: 'https://www.onvista.de/news/2026/11-21-roundup-2-neue-eu-digitalsteuer-soll-streit-um-haushalt-entschaerfen-0-10-26579090',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die EU-Staaten ringen seit Monaten um den nächsten mehrjährigen Haushalt. Jetzt hat Ratspräsident António Costa einen Kompromiss vorgelegt. Eine neue Digitalsteuer soll helfen, den Streit zu lösen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Prozent auf Werbung und Nutzerdaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Große Unternehmen sollen künftig drei Prozent auf Umsätze aus Online-Werbung, Plattformdiensten und der Verwertung von Nutzerdaten zahlen. Erfasst werden Konzerne mit mehr als 50 Millionen Euro Digitalumsatz in der EU und mehr als 750 Millionen Euro weltweitem Jahresumsatz. Costa betonte, der Vorschlag richte sich "in keiner Weise gegen ein bestimmtes Unternehmen oder Land". Zusammen mit einer geplanten Krypto-Abgabe, dem Emissionshandel und weiteren neuen Quellen soll das Paket gut 60 Milliarden Euro pro Jahr einbringen, davon gut fünf Milliarden aus der Digitalsteuer allein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '204 Milliarden Euro weniger als geplant',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Costas Vorschlag soll der EU-Haushalt für die Jahre 2028 bis 2034 rund 1,781 Billionen Euro umfassen – etwa 204 Milliarden Euro weniger, als die EU-Kommission vorgesehen hatte. Das kommt vor allem Nettozahlern wie Deutschland, den Niederlanden, Österreich, Dänemark, Schweden und Finnland entgegen. Bundeskanzler Friedrich Merz hält den Vorschlag trotzdem für zu teuer: "Ein EU-Haushalt, der gleichzeitig über 40 Prozent wächst, passt nicht in diese Zeit." Frankreich dagegen nannte den Plan "sehr enttäuschend" – vor allem wegen der vorgesehenen Kürzungen in der Agrarpolitik.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eigene Einnahmen statt nationaler Beiträge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der größte Teil der EU-Einnahmen kommt bislang direkt von den Mitgliedstaaten, gemessen an ihrer Wirtschaftsleistung. Deutschland trägt davon mit zuletzt mehr als einem Fünftel den größten Anteil. Eine Digitalsteuer würde dagegen direkt in den EU-Haushalt fließen, ohne über nationale Beiträge umgerechnet zu werden – genau das wünscht sich Frankreich seit Jahren, um neue Investitionen zu ermöglichen, ohne die Beiträge der Mitgliedstaaten weiter zu erhöhen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Am kommenden Donnerstag und Freitag berät ein Sondergipfel in Brüssel über den Vorschlag. Eine endgültige Einigung gilt als unwahrscheinlich – wegen der verhärteten Fronten zwischen Nettozahlern und Kohäsionsländern wird frühestens beim regulären Dezember-Gipfel mit einer Lösung gerechnet, rechtzeitig vor dem eigentlich angepeilten Jahresende.',
+      },
+    ],
+  },
+  {
+    slug: 'eu-indonesien-freihandelsabkommen',
+    title: 'EU und Indonesien unterzeichnen Freihandelsabkommen',
+    teaser:
+      'Nach fast zehn Jahren Verhandlung heben die EU und Indonesien Zölle auf fast allen Handel auf. Vor allem Autobauer und der Rohstoffzugang profitieren.',
+    category: 'Märkte',
+    publishedAt: '2026-11-22T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Freihandel', 'EU-Handelspolitik', 'Indonesien', 'Zölle'],
+    relatedTopics: ['aktien-laender-branchen', 'rohstoffe'],
+    relatedSymbols: ['bmw', 'volkswagen', 'mercedes-benz'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 21.11.2026, 21:17 Uhr: „EU und Indonesien unterzeichnen Freihandelsabkommen"',
+        url: 'https://www.tagesschau.de/wirtschaft/weltwirtschaft/eu-indonesien-handelsabkommen-102.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Fast zehn Jahre haben die Verhandlungen gedauert. Jetzt haben die EU und Indonesien ihr Freihandelsabkommen unterzeichnet, zusammen mit einem Investitionsschutzabkommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '98,5 Prozent der Zölle fallen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach vollständiger Umsetzung sollen die Zölle auf bis zu 98,5 Prozent der Warenkategorien zwischen beiden Seiten wegfallen. Die EU-Kommission rechnet damit, dass europäische Exporteure dadurch jährlich rund 600 Millionen Euro an Zöllen sparen. Besonders profitiert die Autobranche: Indonesiens Einfuhrzölle von bis zu 50 Prozent auf europäische Autos sollen binnen fünf Jahren komplett entfallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Agrarexporte und kritische Rohstoffe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Zölle auf die meisten europäischen Agrar- und Lebensmittelexporte nach Indonesien sollen fallen – ein Markt im Wert von rund einer Milliarde Euro jährlich. Im Gegenzug erhofft sich die EU besseren Zugang zu Nickel und Kobalt, die für die Batterieproduktion benötigt werden und bei denen Indonesien zu den weltweit größten Produzenten zählt. Ein Verbot von Exportmonopolen und Regeln gegen diskriminierende Preise sollen die Lieferketten dafür verlässlicher machen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zollabbau ist nicht gleich Lieferzusage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Zollabbau regelt, wie viel beim Grenzübertritt bezahlt wird – nicht, ob ein Rohstoff überhaupt verfügbar ist. Das Verbot von Exportmonopolen und Preisdiskriminierung soll genau diese zweite Lücke schließen, die ein reines Zollabkommen offen ließe. EU-Kommissionspräsidentin Ursula von der Leyen sagte zu dem Abkommen: "In einer Zeit, in der andere ihre Türen schließen, halten wir unsere offen." Der Vorsitzende des Handelsausschusses im Europaparlament, Bernd Lange, verwies auf die Handelspolitik von US-Präsident Donald Trump: "In einer zunehmend fragmentierten Welt ist nicht der Stärkste derjenige, der die höchsten Mauern errichtet, sondern derjenige, der die zuverlässigsten Partner an seiner Seite hat."',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Vor dem endgültigen Inkrafttreten muss noch das Europaparlament zustimmen. Die EU-Kommission hält eine vorläufige Anwendung schon Anfang 2027 für möglich. Für die EU ist Indonesien dabei auch strategisch von Gewicht: Das Land ist mit rund 290 Millionen Einwohnern die größte Volkswirtschaft Südostasiens und das bevölkerungsreichste mehrheitlich muslimische Land der Welt.',
+      },
+    ],
+  },
+  {
+    slug: 'altersvorsorgedepot-staatsfonds-verspaetet',
+    title: 'Altersvorsorgedepot startet – der Staatsfonds fehlt noch',
+    teaser:
+      'Zum 1. Januar startet das neue Altersvorsorgedepot. Private Anbieter stehen bereit, die staatlich organisierte Standardvariante kommt frühestens im Sommer.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-22T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Altersvorsorge', 'Rente', 'ETF-Sparen', 'Riester-Nachfolge'],
+    relatedTopics: ['rente', 'etf', 'kosten-und-gebuehren'],
+    relatedSymbols: ['etf-msci-world'],
+    sources: [
+      {
+        label:
+          'Tagesschau, 21.11.2026, 11:16 Uhr: „Altersvorsorgedepot: Staatlich organisierter Fonds nicht startklar"',
+        url: 'https://www.tagesschau.de/wirtschaft/verbraucher/altersvorsorgedepot-staatlicher-fonds-nicht-startklar-100.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche/dpa, 21.11.2026, 11:33 Uhr: „Altersvorsorge: Staatliches Depot für Zusatzrente noch nicht startklar"',
+        url: 'https://www.wiwo.de/finanzen/vorsorge/altersvorsorge-staatliches-depot-fuer-zusatzrente-noch-nicht-startklar/100271734.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zum 1. Januar startet das neue Altersvorsorgedepot und löst die Riester-Rente ab. Private Anbieter stehen bereit – die staatlich organisierte Variante dagegen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '540 Euro Grundzulage, 300 Euro pro Kind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ab 2027 können Sparer über Indexfonds, Aktienfonds und Anleihen privat fürs Alter vorsorgen. Bei einem Sparbetrag bis 360 Euro im Jahr zahlt der Staat 50 Cent pro eingezahltem Euro dazu, bei 360 bis 1.800 Euro sind es 25 Cent – maximal 540 Euro Grundzulage im Jahr. Ab einem monatlichen Sparbeitrag von 25 Euro kommt für Familien ein Kinderzuschlag von 300 Euro pro Kind und Jahr hinzu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der öffentliche Fonds ist noch nicht startklar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Anbieter wird zum Start aber fehlen: Das öffentlich organisierte Basis-Fondsangebot wird laut einem Sprecher des Bundesfinanzministeriums "voraussichtlich erst nach dem Start" verfügbar sein. In Regierungskreisen rechnet man frühestens im kommenden Sommer damit. Als möglicher Träger werden die Bundesbank, die KfW Bankengruppe oder die Deutsche Rentenversicherung genannt. Grund für die Verzögerung ist die noch ausstehende Verordnung des Finanzministeriums.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Standardprodukte, ein Maßstab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bis es das staatliche Angebot gibt, müssen Sparer auf private Anbieter zurückgreifen, die selbst Standardprodukte mit wählbaren Aktien- oder Anleihefonds anbieten. Die Verbraucherzentralen drängen auf eine schnelle Verordnung. Deren Verbandschefin Ramona Pop sagte, das staatliche Standarddepot lege das Geld breit am Kapitalmarkt an und bleibe auch langfristig günstig: "Private Angebote müssen sich daran messen lassen."',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer zum Jahreswechsel ein Altersvorsorgedepot einrichtet, startet zunächst zwangsläufig bei einem privaten Anbieter. Ob sich ein späterer Wechsel zum öffentlichen Standardprodukt lohnt, lässt sich erst beurteilen, wenn dessen Kosten und Anlagestruktur tatsächlich feststehen.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-14-monatstief-positionsdaten',
+    title: 'Gold fällt auf 14-Monatstief – Spekulanten ziehen sich zurück',
+    metaTitle: 'Gold auf 14-Monatstief: Was die Positionsdaten zeigen',
+    teaser:
+      'Der Goldpreis ist auf 3.537 Dollar gefallen, den tiefsten Stand seit 14 Monaten. Terminmarktdaten zeigen einen deutlichen Rückzug der Spekulanten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-22T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Edelmetalle', 'Positionsdaten', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'anlegerpsychologie'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 21.11.2026: „Goldpreis-Crash und COMEX-Daten: War das der finale Ausverkauf?"',
+        url: 'https://www.goldreporter.de/goldpreis-crash-cot-daten-comex-ausverkauf/news/263243/',
+      },
+      {
+        label:
+          'Handelsblatt, 20.11.2026, 07:50 Uhr: „Edelmetall: Gold ist 18 Prozent günstiger als zu Jahresbeginn – sollten Anleger jetzt einsteigen?"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/gold-ist-die-schwaeche-des-goldpreises-eine-chance-fuer-anleger/100270306.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist auf den tiefsten Stand seit 14 Monaten gefallen. Am Freitag kostete die Feinunze zeitweise nur noch 3.537 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '18 Prozent Verlust seit Jahresbeginn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gegenüber dem Jahresbeginn beträgt das Minus rund 18 Prozent – der stärkste Jahresverlust seit mehr als zehn Jahren. Gegenüber dem Rekordhoch liegt der Preis inzwischen mehr als ein Drittel niedriger. Analysten von Goldman Sachs halten laut einem Bericht eine mittelfristige Erholung weiterhin für möglich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Spekulanten bauen Long-Positionen ab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daten der US-Terminmarktaufsicht zeigen, dass der Anteil spekulativer Positionen am offenen Interesse auf 41 Prozent gefallen ist – ein Achtmonatstief. Die Netto-Position der großen Spekulanten sank binnen einer Woche um 12,6 Prozent auf gut 166.000 Kontrakte. Spekulanten bauten dabei sowohl Long- als auch neue Short-Positionen auf, bei insgesamt leicht steigendem offenem Interesse.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Positionsdaten sind kein Kursziel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein sinkendes offenes Interesse bei fallenden Kursen gilt unter Marktbeobachtern oft als Hinweis auf eine mögliche Bodenbildung, weil Spekulanten ihre Wetten eher auflösen als neue aufzubauen. Bestätigt ist eine Trendwende damit aber nicht – die Daten beschreiben, wie Händler aktuell positioniert sind, nicht, wohin der Kurs als Nächstes läuft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wie es mit dem Goldpreis weitergeht, hängt auch davon ab, ob die erwarteten Zinsschritte der US-Notenbank tatsächlich kommen – ein Thema, das sich an den Terminmarktdaten allein nicht ablesen lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'fondsmanager-kuerzen-tech-aktien-bofa-umfrage',
+    title: 'Fondsmanager kürzen Tech-Aktien im Rekordtempo',
+    teaser:
+      'Die monatliche BofA-Umfrage zeigt den stärksten Rückzug aus Tech-Aktien seit 2006. Die Kasse der Profis ist zugleich so niedrig wie seit Monaten nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-11-22T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fondsmanager', 'Marktstimmung', 'Tech-Aktien', 'BofA-Umfrage'],
+    relatedTopics: ['anlegerpsychologie', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, 21.11.2026, 08:00 Uhr, Kolumne von Heiko Böhmer: „Profis kürzen Tech-Aktien so stark wie seit 2006 nicht mehr"',
+        url: 'https://www.onvista.de/news/2026/11-21-profis-kuerzen-tech-aktien-so-stark-wie-seit-2006-nicht-mehr-41121334-47-26578914',
+      },
+      {
+        label:
+          'Wealth Professional, 21.11.2026: „US fund managers drop tech to a net 12% overweight: BofA"',
+        url: 'https://www.wealthprofessional.ca/investments/equity-markets/us-fund-managers-drop-tech-to-a-net-12-overweight-bofa/394053',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Fondsmanager haben ihre Technologie-Positionen so schnell gekürzt wie seit zwei Jahrzehnten nicht mehr. Das zeigt die monatliche Umfrage von Bank of America unter institutionellen Investoren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Von 37 auf 12 Prozent in einem Monat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Übergewichtung von Technologieaktien sank binnen eines Monats von netto 37 auf 12 Prozent – der stärkste Rückzug seit Juni 2006. Befragt wurden rund 169 Fondsmanager, die zusammen mehr als 461 Milliarden Dollar verwalten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die größte Sorge heißt KI-Blase',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der Liste der größten Risiken steht eine KI-Blase mit 34 Prozent der Nennungen auf Platz eins, ein Kreditereignis bei den großen KI-Konzernen mit 31 Prozent auf Platz zwei. 38 Prozent halten die Anleihen dieser sogenannten Hyperscaler für die wahrscheinlichste Quelle einer künftigen Finanzkrise. 52 Prozent erwarten, dass ein KI-Riese seine Investitionen in den nächsten sechs Monaten kürzt – im Vormonat waren es erst 30 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenig Kasse, wenig Angst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Cash-Quote der befragten Fondsmanager fiel auf 3,6 Prozent. Nach einer eigenen Kennzahl von Bank of America gilt das als Verkaufssignal. BofA-Stratege Michael Hartnett kommentierte, die Umfrage zeige nicht genug Angst, um von einer Kapitulation zu sprechen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Umfrage misst Positionierung, keine Kursrichtung. Eine niedrige Kasse bei gleichzeitig hohem Risikobewusstsein beschreibt vor allem, wie wenig Spielraum die befragten Fondsmanager noch haben, auf weitere Kursverluste zu reagieren – ohne damit zu sagen, ob diese tatsächlich kommen.',
+      },
+    ],
+  },
+  {
     slug: 'ig-metall-24-stunden-streik-100-betriebe',
     title: '150.000 Beschäftigte legen für 24 Stunden die Arbeit nieder',
     teaser:
