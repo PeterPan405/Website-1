@@ -27,6 +27,7 @@ import {
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { EXY_2026 } from './instagram-reihen-euro.ts'
+import { OEL_KI_MARATHON, OEL_KI_NVIDIA } from './instagram-reihen-oel-ki.ts'
 import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
@@ -42,6 +43,66 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 23.11.2026, „Raffinerie gegen Nvidia: Öl schlägt KI“ –
+      vollautomatisch (Routine „Zahlenkarte des Tages“). Thema: offener
+      eigener Vorschlag „Raffinerien als stille Gewinner 2026“ vom 18.11.
+      (Gedächtnis-Themenliste), zugespitzt auf den Gegensatz zum KI-Star.
+      Art `schere` (zwei Linien, „aus 100 $ wurden …“) – nach der
+      Balkenliste vom Vortag eine andere Form, nach dem gelöschten
+      Rangwechsel vom 22.11. bewusst nur zwei Linien. Erst als `verlauf`
+      gebaut: dort große fette Endzahlen im alten Stil und der Name
+      abgeschnitten – verworfen. Reihen: data/instagram-reihen-oel-ki.ts.
+
+      Werte: data/snapshots/markets.json (Yahoo Finance), Schluss 20.11.2026
+      gegen Schluss 31.12.2025, ohne Dividenden: Marathon Petroleum 162,63 →
+      367,19 $ (+125,8 %), Nvidia 186,50 → 125,53 $ (−32,7 %); zum Vergleich
+      im Text Valero +105,3 %, Phillips 66 +85,5 %, Brent +47,7 %,
+      S&P 500 +0,9 %.
+      Gründe nur aus gelesenen Quellen (unsere Meldungen):
+      - Raffinerien: CNBC 30.10.2026 (Meldung 31.10.) – knappe
+        Raffineriekapazität, Angriffe auf Raffinerien in Russland und im
+        Nahen Osten, Importeure weichen auf die US-Golfküste aus; US-Diesel
+        über 70 % teurer als vor einem Jahr. Die Quelle nennt Exxon und
+        Chevron, nicht Marathon – im Text steht es deshalb für die Branche.
+      - Nvidia: Handelsblatt 11.11. (fast eine Billion Dollar Börsenwert in
+        einer Woche verloren), tagesschau.de 13.11. (Jensen Huang tritt
+        zurück), CNBC 20.11. (sieben Verlustwochen in Folge, längste Serie
+        seit 2008).
+    */
+    art: 'schere',
+    datum: '2026-11-23',
+    freigabe: '2026-11-23',
+    titel: [
+      { text: 'Raffinerie gegen Nvidia:' },
+      { text: 'Öl schlägt KI.', gruen: true },
+    ],
+    unterzeile: 'Was aus 100 $ vom Jahresbeginn wurde, je Handelstag bis 20.11.2026.',
+    a: { name: 'Marathon Petroleum', werte: OEL_KI_MARATHON },
+    b: { name: 'Nvidia', werte: OEL_KI_NVIDIA },
+    einheit: 'Dollar',
+    endung: ' $',
+    marke: { wert: 100, text: 'Einsatz: 100 $', bei: '2026-06-01', unten: true },
+    punkte: [{ reihe: 'a', d: '2026-10-14', text: 'Hoch 14.10.: 298,2 $' }],
+    satz: 'Seit Jahresbeginn: Marathon Petroleum +125,8 %, Nvidia −32,7 %.',
+    fusszeile:
+      'Stand: Schlusskurse 20.11.2026 | Quelle: Yahoo Finance | in US-Dollar, ohne Dividenden',
+    text:
+      'Das beste Geschäft 2026 war nicht KI – sondern Diesel. 🛢️\n\n' +
+      'Seit Jahresbeginn (31.12.2025 → 20.11.2026, in US-Dollar):\n' +
+      'Marathon Petroleum: 162,63 $ → 367,19 $ (+125,8 %)\n' +
+      'Valero: +105,3 %\n' +
+      'Phillips 66: +85,5 %\n' +
+      'Ölpreis Brent: +47,7 %\n' +
+      'S&P 500: +0,9 %\n' +
+      'Nvidia: 186,50 $ → 125,53 $ (−32,7 %)\n\n' +
+      'Warum die Raffinerien? Laut CNBC (30.10.) ist die Raffineriekapazität knapp: Angriffe haben Raffinerien in Russland und im Nahen Osten getroffen, Importeure weichen auf die US-Golfküste aus. US-Diesel kostete laut CNBC über 70 % mehr als ein Jahr zuvor.\n\n' +
+      'Und Nvidia? Der Konzern verlor laut Handelsblatt (11.11.) binnen einer Woche fast eine Billion Dollar an Börsenwert, Chef Jensen Huang trat laut tagesschau.de (13.11.) zurück. Laut CNBC (20.11.) fiel die Aktie sieben Wochen in Folge – die längste Serie seit 2008.\n\n' +
+      'Kurse ohne Dividenden. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (Schlusskurse); CNBC; Handelsblatt; tagesschau.de',
+    schlagworte: ['nvidia', 'oel', 'raffinerie', 'aktien', 'ki'],
+  },
   {
     /*
       Zahlenkarte 22.11.2026, zweiter Versuch: „Autobauer 2026: Fast alle im

@@ -48,7 +48,11 @@ export interface Scherenkarte extends NeuGemeinsam {
   /** Text hinter dem letzten Wert, etwa „ %“. */
   endung?: string
   /** Eine waagerechte Marke, gestrichelt, Text links darüber (rechts liegen die Endwerte). */
-  marke?: { wert: number; text: string }
+  /**
+   * `bei`: Tag, an dem der Text beginnt; `unten`: Text unter der Linie
+   * (23.11.2026 – links lagen beide Kurven auf der Linie und über dem Text).
+   */
+  marke?: { wert: number; text: string; bei?: string; unten?: boolean }
   /** Beschriftete Punkte auf Reihe a oder b; der Tag muss in der Reihe stehen. */
   punkte?: { reihe: 'a' | 'b'; d: string; text: string; unten?: boolean }[]
   satz?: string
@@ -147,8 +151,30 @@ export const schere: Art<Scherenkarte> = {
     const endung = k.endung ?? ''
     const j0 = new Date(t0).getUTCFullYear()
     const j1 = new Date(t1).getUTCFullYear()
-    const jahre: number[] = []
-    for (let j = j0 + 1; j <= j1; j++) jahre.push(j)
+    /* Unter zwei Jahren Monate statt Jahreszahlen (23.11.2026: eine Reihe über
+       2026 zeigte unten nur „2026“). */
+    const achse: [string, string][] = []
+    if (t1 - t0 < 2 * 365 * 864e5) {
+      const kurz = [
+        'Jan.',
+        'Feb.',
+        'März',
+        'Apr.',
+        'Mai',
+        'Juni',
+        'Juli',
+        'Aug.',
+        'Sept.',
+        'Okt.',
+        'Nov.',
+        'Dez.',
+      ]
+      for (let j = j0; j <= j1; j++)
+        for (let m = 0; m < 12; m += 2) {
+          const d = `${j}-${String(m + 1).padStart(2, '0')}-01`
+          if (tag(d) >= t0 && tag(d) <= t1) achse.push([d, kurz[m]])
+        }
+    } else for (let j = j0 + 1; j <= j1; j++) achse.push([`${j}-01-01`, String(j)])
     const legende = (name: string, farbe: string, links_: number) => [
       h('div', {
         style: {
@@ -189,10 +215,10 @@ export const schere: Art<Scherenkarte> = {
           color: STIL.grau,
         }),
         ...ticks.map((v) => klein(zahl(v, 0), { top: Y(v) - 12, left: STIL_RAND })),
-        ...jahre.map((j) =>
-          klein(String(j), {
+        ...achse.map(([d, text]) =>
+          klein(text, {
             top: unten + 10,
-            left: X(`${j}-01-01`) - 30,
+            left: X(d) - 30,
             width: 60,
             justifyContent: 'center',
           })
@@ -200,8 +226,8 @@ export const schere: Art<Scherenkarte> = {
         ...(k.marke
           ? [
               klein(k.marke.text, {
-                top: Y(k.marke.wert) - 32,
-                left: links + 8,
+                top: Y(k.marke.wert) + (k.marke.unten ? 10 : -32),
+                left: (k.marke.bei ? X(k.marke.bei) : links) + 8,
                 fontSize: 20,
                 fontWeight: 700,
                 color: STIL.tinte,
