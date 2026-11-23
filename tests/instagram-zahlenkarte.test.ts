@@ -35,7 +35,7 @@ import { BITCOIN_WENDEPUNKTE } from '@/data/instagram-reihen-bitcoin'
 import { dauer, rueckgang } from '@/lib/instagram/arten/abstuerze'
 import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
-import { OEL_KI_MARATHON, OEL_KI_NVIDIA } from '@/data/instagram-reihen-oel-ki'
+import { NVIDIA_COMEBACK } from '@/data/instagram-reihen-nvidia-comeback'
 import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
@@ -2649,68 +2649,60 @@ for (let i = 1; i < nachDatum.length; i++)
   }
 }
 
-/* 23.11.2026: Raffinerie gegen Nvidia (markets.json, eingefroren in data/instagram-reihen-oel-ki.ts). Vollautomatisch, Art `schere`. */
+/* 23.11.2026, zweiter Versuch: Huang ist zurück (Yahoo Finance über quellen-holen, eingefroren). Der Öl/KI-Beitrag wurde vom Betreiber herausgenommen. */
 {
   const k = karteVom('2026-11-23')
-  pruefe('Öl/KI: Karte für den 23.11. ist eine Schere', k?.art === 'schere')
-  if (k?.art === 'schere') {
+  pruefe('Nvidia-Comeback: Karte für den 23.11. ist eine Linie', k?.art === 'linie')
+  pruefe(
+    'Nvidia-Comeback: nur eine Karte am 23.11.',
+    zahlenkarten.filter((z) => z.datum === '2026-11-23').length === 1
+  )
+  if (k?.art === 'linie') {
     pruefe(
-      'Öl/KI: keine Beanstandung',
+      'Nvidia-Comeback: keine Beanstandung',
       pruefeZahlenkarte(k).length === 0,
       pruefeZahlenkarte(k).join(' | ')
     )
-    pruefe('Öl/KI: Form anders als am Vortag', form(k) !== form(karteVom('2026-11-22')!))
-    const m = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8'))
-      .instruments as Record<string, { points: { d: string; c: number }[] }>
-    for (const [symbol, reihe] of [
-      ['marathon-petroleum', OEL_KI_MARATHON],
-      ['nvidia', OEL_KI_NVIDIA],
-    ] as const) {
-      const p = new Map(m[symbol].points.map((x) => [x.d, x.c]))
-      const basis = m[symbol].points.filter((x) => x.d <= '2025-12-31').at(-1)!.c
-      pruefe(
-        `Öl/KI: ${symbol} – jeder Punkt aus markets.json (×100 seit Jahresbeginn)`,
-        reihe
-          .slice(1)
-          .every(
-            ([d, v]) =>
-              !p.has(d) ||
-              Math.abs(Math.round((p.get(d)! / basis) * 1000) / 10 - v) < 0.051
-          )
+    pruefe(
+      'Nvidia-Comeback: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-22')!)
+    )
+    const r = new Map(NVIDIA_COMEBACK)
+    const hoch = NVIDIA_COMEBACK.reduce((x, y) => (y[1] > x[1] ? y : x))
+    pruefe(
+      'Nvidia-Comeback: Hoch 6.10. bei 239,24 $',
+      hoch[0] === '2026-10-06' && hoch[1] === 239.24
+    )
+    pruefe(
+      'Nvidia-Comeback: 18.11. und 20.11. wie in markets.json',
+      r.get('2026-11-18') === 150.96 && r.get('2026-11-20') === 125.53
+    )
+    const m = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8')).instruments
+      .nvidia.points as { d: string; c: number }[]
+    pruefe(
+      'Nvidia-Comeback: 20.11. in markets.json ebenfalls 125,53 $',
+      m.find((x) => x.d === '2026-11-20')?.c === 125.53
+    )
+    pruefe(
+      'Nvidia-Comeback: −47,5 % vom Hoch zum 20.11.',
+      Math.round((125.53 / 239.24 - 1) * 1000) / 10 === -47.5
+    )
+    pruefe(
+      'Nvidia-Comeback: +33,1 % am 23.11.',
+      Math.round((r.get('2026-11-23')! / 125.53 - 1) * 1000) / 10 === 33.1
+    )
+    pruefe(
+      'Nvidia-Comeback: der letzte Wert ist als Stand im Handel gekennzeichnet',
+      k.text.includes('kein Schlusskurs') && k.fusszeile.includes('16:15')
+    )
+    pruefe(
+      'Nvidia-Comeback: Gegenprobe – ein Punkt außerhalb der Reihe wird beanstandet',
+      pruefeZahlenkarte({ ...k, punkte: [{ d: '2026-11-21', text: 'x' }] }).some((t) =>
+        t.includes('nicht in der Reihe')
       )
-    }
-    pruefe(
-      'Öl/KI: Endstand 225,8 $ und 67,3 $',
-      OEL_KI_MARATHON.at(-1)![1] === 225.8 && OEL_KI_NVIDIA.at(-1)![1] === 67.3
     )
-    pruefe(
-      'Öl/KI: beide Reihen enden am 20.11.',
-      OEL_KI_MARATHON.at(-1)![0] === '2026-11-20' &&
-        OEL_KI_NVIDIA.at(-1)![0] === '2026-11-20'
-    )
-    const hoch = OEL_KI_MARATHON.reduce((x, y) => (y[1] > x[1] ? y : x))
-    pruefe(
-      'Öl/KI: Hoch 14.10. bei 298,2 $',
-      hoch[0] === '2026-10-14' && hoch[1] === 298.2
-    )
-    pruefe(
-      'Öl/KI: Gegenprobe – ein Punkt außerhalb der Reihe wird beanstandet',
-      pruefeZahlenkarte({
-        ...k,
-        punkte: [{ reihe: 'a' as const, d: '2026-10-15x', text: 'x' }],
-      }).some((t) => t.includes('nicht in der Reihe'))
-    )
-    for (const z of [
-      '+125,8 %',
-      '−32,7 %',
-      '+105,3 %',
-      '+85,5 %',
-      '+47,7 %',
-      '+0,9 %',
-      '70 %',
-      '2008',
-    ])
-      pruefe(`Öl/KI: Beschriftung nennt ${z}`, k.text.includes(z))
+    for (const z of ['239,24 $', '125,53 $', '167,02 $', '+33,1 %', '−47,5 %', '+8,5 %'])
+      pruefe(`Nvidia-Comeback: Beschriftung nennt ${z}`, k.text.includes(z))
   }
 }
 

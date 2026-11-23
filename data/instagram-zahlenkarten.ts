@@ -27,7 +27,7 @@ import {
 import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { EXY_2026 } from './instagram-reihen-euro.ts'
-import { OEL_KI_MARATHON, OEL_KI_NVIDIA } from './instagram-reihen-oel-ki.ts'
+import { NVIDIA_COMEBACK } from './instagram-reihen-nvidia-comeback.ts'
 import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
@@ -45,63 +45,52 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
-      Zahlenkarte 23.11.2026, „Raffinerie gegen Nvidia: Öl schlägt KI“ –
-      vollautomatisch (Routine „Zahlenkarte des Tages“). Thema: offener
-      eigener Vorschlag „Raffinerien als stille Gewinner 2026“ vom 18.11.
-      (Gedächtnis-Themenliste), zugespitzt auf den Gegensatz zum KI-Star.
-      Art `schere` (zwei Linien, „aus 100 $ wurden …“) – nach der
-      Balkenliste vom Vortag eine andere Form, nach dem gelöschten
-      Rangwechsel vom 22.11. bewusst nur zwei Linien. Erst als `verlauf`
-      gebaut: dort große fette Endzahlen im alten Stil und der Name
-      abgeschnitten – verworfen. Reihen: data/instagram-reihen-oel-ki.ts.
+      Zahlenkarte 23.11.2026, zweiter Versuch: „Huang ist zurück: Nvidia
+      +33,1 %“. Der erste Beitrag des Tages („Raffinerie gegen Nvidia: Öl
+      schlägt KI“, PR #632, gepostet 15:2x) wurde vom Betreiber
+      herausgenommen: „nicht mehr aktuell … [Nvidia] ja 35 % gestiegen oder 25
+      … bitte irgendein anderes Thema, vielleicht über den heutigen Anstieg“.
+      Er steht in der Git-Geschichte (mit data/instagram-reihen-oel-ki.ts).
 
-      Werte: data/snapshots/markets.json (Yahoo Finance), Schluss 20.11.2026
-      gegen Schluss 31.12.2025, ohne Dividenden: Marathon Petroleum 162,63 →
-      367,19 $ (+125,8 %), Nvidia 186,50 → 125,53 $ (−32,7 %); zum Vergleich
-      im Text Valero +105,3 %, Phillips 66 +85,5 %, Brent +47,7 %,
-      S&P 500 +0,9 %.
-      Gründe nur aus gelesenen Quellen (unsere Meldungen):
-      - Raffinerien: CNBC 30.10.2026 (Meldung 31.10.) – knappe
-        Raffineriekapazität, Angriffe auf Raffinerien in Russland und im
-        Nahen Osten, Importeure weichen auf die US-Golfküste aus; US-Diesel
-        über 70 % teurer als vor einem Jahr. Die Quelle nennt Exxon und
-        Chevron, nicht Marathon – im Text steht es deshalb für die Branche.
-      - Nvidia: Handelsblatt 11.11. (fast eine Billion Dollar Börsenwert in
-        einer Woche verloren), tagesschau.de 13.11. (Jensen Huang tritt
-        zurück), CNBC 20.11. (sieben Verlustwochen in Folge, längste Serie
-        seit 2008).
+      Kurse: data/instagram-reihen-nvidia-comeback.ts (Yahoo Finance, über
+      quellen-holen.yml am 23.11.2026). Hoch 06.10.: 239,24 $ (Schluss), Tief
+      20.11.: 125,53 $ (−47,5 % zum Hoch), 23.11. 16:15 Uhr: 167,02 $
+      (+33,1 % zum Freitagsschluss) – ein Stand im Handel, kein Schlusskurs.
+      Gründe aus gelesener Quelle: CNBC 23.11.2026 („Tech stocks rally after
+      Nvidia board approves Jensen Huang's return as CEO“) – Huang wieder
+      Chef; mehr als 40 % Verlust im Monat davor; Nasdaq −10 % in der
+      Vorwoche; Alphabet +6 %, Meta +5 %, Amazon knapp +5 %, Microsoft
+      +4 %, AMD +8,5 %.
     */
-    art: 'schere',
+    art: 'linie',
     datum: '2026-11-23',
     freigabe: '2026-11-23',
-    titel: [
-      { text: 'Raffinerie gegen Nvidia:' },
-      { text: 'Öl schlägt KI.', gruen: true },
+    titel: [{ text: 'Huang ist zurück:' }, { text: 'Nvidia +33,1 %.', gruen: true }],
+    unterzeile: 'Schlusskurse seit August, heute Stand 16:15 Uhr.',
+    reihe: NVIDIA_COMEBACK,
+    einheit: 'US-Dollar',
+    stellen: 0,
+    achseAb: 100,
+    logo: 'nvidia.png',
+    platzRechts: 120,
+    punkte: [
+      { d: '2026-10-06', text: 'Hoch 6.10.: 239,24 $', farbe: 'navy' },
+      { d: '2026-11-20', text: '20.11.: 125,53 $', farbe: 'rot', unten: true },
+      { d: '2026-11-23', text: '167,02 $', farbe: 'gruen' },
     ],
-    unterzeile: 'Was aus 100 $ vom Jahresbeginn wurde, je Handelstag bis 20.11.2026.',
-    a: { name: 'Marathon Petroleum', werte: OEL_KI_MARATHON },
-    b: { name: 'Nvidia', werte: OEL_KI_NVIDIA },
-    einheit: 'Dollar',
-    endung: ' $',
-    marke: { wert: 100, text: 'Einsatz: 100 $', bei: '2026-06-01', unten: true },
-    punkte: [{ reihe: 'a', d: '2026-10-14', text: 'Hoch 14.10.: 298,2 $' }],
-    satz: 'Seit Jahresbeginn: Marathon Petroleum +125,8 %, Nvidia −32,7 %.',
-    fusszeile:
-      'Stand: Schlusskurse 20.11.2026 | Quelle: Yahoo Finance | in US-Dollar, ohne Dividenden',
+    satz: 'Erst −47,5 % in sechs Wochen, dann +33,1 % an einem Vormittag.',
+    fusszeile: 'Stand: 23.11.2026, 16:15 Uhr | Quelle: Yahoo Finance; CNBC',
     text:
-      'Das beste Geschäft 2026 war nicht KI – sondern Diesel. 🛢️\n\n' +
-      'Seit Jahresbeginn (31.12.2025 → 20.11.2026, in US-Dollar):\n' +
-      'Marathon Petroleum: 162,63 $ → 367,19 $ (+125,8 %)\n' +
-      'Valero: +105,3 %\n' +
-      'Phillips 66: +85,5 %\n' +
-      'Ölpreis Brent: +47,7 %\n' +
-      'S&P 500: +0,9 %\n' +
-      'Nvidia: 186,50 $ → 125,53 $ (−32,7 %)\n\n' +
-      'Warum die Raffinerien? Laut CNBC (30.10.) ist die Raffineriekapazität knapp: Angriffe haben Raffinerien in Russland und im Nahen Osten getroffen, Importeure weichen auf die US-Golfküste aus. US-Diesel kostete laut CNBC über 70 % mehr als ein Jahr zuvor.\n\n' +
-      'Und Nvidia? Der Konzern verlor laut Handelsblatt (11.11.) binnen einer Woche fast eine Billion Dollar an Börsenwert, Chef Jensen Huang trat laut tagesschau.de (13.11.) zurück. Laut CNBC (20.11.) fiel die Aktie sieben Wochen in Folge – die längste Serie seit 2008.\n\n' +
-      'Kurse ohne Dividenden. Eine eigene Prognose geben wir nicht.\n\n' +
-      'Quellen: Yahoo Finance (Schlusskurse); CNBC; Handelsblatt; tagesschau.de',
-    schlagworte: ['nvidia', 'oel', 'raffinerie', 'aktien', 'ki'],
+      'Jensen Huang ist zurück – und Nvidia macht an einem Vormittag fast ein Drittel gut. 🚀\n\n' +
+      'Nvidia-Aktie (US-Dollar):\n' +
+      'Hoch am 6.10.: 239,24 $\n' +
+      'Tief am 20.11.: 125,53 $ (−47,5 %)\n' +
+      'Heute, 16:15 Uhr: 167,02 $ (+33,1 % zum Freitag)\n\n' +
+      'Was passiert ist: Laut CNBC hat Nvidia Jensen Huang wieder als Chef eingesetzt. Huang hatte das Unternehmen verlassen müssen, nachdem er eine Affäre mit einer Frau zugegeben hatte, die US-Geheimdienste laut CNBC für eine chinesische Spionin halten. Im Monat davor hatte die Aktie mehr als 40 % verloren.\n\n' +
+      'Die ganze Tech-Branche zieht mit – laut CNBC: Alphabet +6 %, Meta +5 %, Amazon knapp +5 %, Microsoft +4 %, AMD +8,5 %. In der Vorwoche hatte der Nasdaq 10 % verloren.\n\n' +
+      'Der Kurs von 16:15 Uhr ist ein Stand im laufenden Handel, kein Schlusskurs. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (Kurse); CNBC, 23.11.2026; Logo: Wikimedia Commons, gemeinfrei',
+    schlagworte: ['nvidia', 'huang', 'ki', 'aktien', 'nasdaq'],
   },
   {
     /*
