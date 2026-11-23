@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "China, Südkorea und Taiwan stützen ihre Börsen, der Iran-Konflikt eskaliert am Golf, Argentiniens Anleihen stehen unter Druck, GTA VI knackt Rekordumsatz, und die USA warnen vor weiteren Tech-Ausfällen.",
+  "kacheln": [
+    {
+      "titel": "China lockert Kreditregeln",
+      "text": "China, Südkorea und Taiwan lockern Regeln für Aktienkredite, um fallende Kurse zu stoppen. In China braucht ein Kredit künftig nur noch 80 statt 100 Prozent Sicherheit."
+    },
+    {
+      "titel": "Iran: Angriffe am Golf",
+      "text": "Am Wochenende griffen Huthi-Rebellen und laut Iran eigene Kräfte Ziele in Saudi-Arabien und Bahrain an. Teheran erklärte sich weiter offen für Gespräche mit den USA."
+    },
+    {
+      "titel": "Argentinien: Anleihen fallen",
+      "text": "Argentiniens Staatsanleihen verzeichneten am Freitag die größten Verluste unter allen Schwellenländern. Der Risikoaufschlag stieg erstmals seit zwei Jahren über 1000 Basispunkte."
+    },
+    {
+      "titel": "GTA VI: 3,8 Mrd. am 1. Tag",
+      "text": "Rockstar Games meldet rund 3,8 Milliarden Dollar Umsatz am ersten Verkaufstag von GTA VI. Die Reihe hat insgesamt schon mehr als 470 Millionen Exemplare verkauft."
+    },
+    {
+      "titel": "Warnung vor Tech-Ausfällen",
+      "text": "US-Geheimdienstchef Jay Clayton warnte vor weiteren Ausfällen bei Flughäfen, Banken und Software kurz vor den Thanksgiving-Reisetagen. Einen Cyberangriff schließt er aus."
+    }
+  ],
+  "schlagworte": ["börse", "aktien", "china", "wirtschaft", "finanzen"]
+}

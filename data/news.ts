@@ -101,6 +101,307 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'china-suedkorea-taiwan-stuetzen-boersen',
+    title: 'China, Südkorea und Taiwan stützen ihre Börsen',
+    teaser:
+      'Chinas Börsen senken die Mindestdeckung für Aktienkredite auf 80 Prozent, Südkorea und Taiwan planen eigene Maßnahmen gegen den Kursrutsch seit Juni.',
+    category: 'Märkte',
+    publishedAt: '2026-11-23T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['China', 'Aktienkredite', 'Südkorea', 'Taiwan'],
+    relatedTopics: ['risiko-und-rendite', 'aktien-laender-branchen'],
+    relatedSymbols: ['hang-seng', 'kospi', 'taiex'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 22.11.2026, 13:34 Uhr: „Börse: Chinas Börsen lockern Regeln für Wertpapierkredite"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/boerse-inside/china-boersen-anleger-koennen-sich-ab-30-november-mehr-geld-fuer-aktien-leihen/100271866.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, 22.11.2026, 14:01 Uhr: „Aktien: Chinas Börsen lockern Regeln für Wertpapierkredite"',
+        url: 'https://www.wiwo.de/finanzen/boerse/aktien-chinas-boersen-lockern-regeln-fuer-wertpapierkredite/100271869.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Börsen in Shanghai, Shenzhen und Peking greifen durch: Ab dem 30. November sinkt die Mindestdeckung für kreditfinanzierte Aktienkäufe von 100 auf 80 Prozent. Anleger können sich damit mit denselben Sicherheiten mehr Geld leihen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Weniger Sicherheit für mehr Kredit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer auf Kredit Aktien kauft, muss einen Teil des Kaufpreises aus eigenem Vermögen hinterlegen – die Sicherheitsleistung, auch Margin genannt. Sinkt die geforderte Deckung von 100 auf 80 Prozent, reicht dieselbe Sicherheit für ein größeres Aktienpaket. Shanghai und Shenzhen kündigten zugleich niedrigere Handelsgebühren an, Shenzhen zusätzlich ein Market-Maker-System für das Start-up-Segment ChiNext, das Kursschwankungen dämpfen soll.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Markt im Rückzug',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Volumen ausstehender Wertpapierkredite ist seit Ende Juni um mehr als 20 Prozent auf rund 2,2 Billionen Yuan gefallen, umgerechnet knapp 330 Milliarden Dollar. Der Leitindex in Shanghai verlor allein in der Vorwoche fast 3 Prozent und fiel auf ein 16-Monats-Tief. Das STAR-Segment in Shanghai und der ChiNext-Index in Shenzhen haben seit ihren Höchstständen im Juni jeweils mehr als 40 Prozent verloren. Die Börsen selbst begründeten den Schritt damit, die Nachfrage nach Krediten habe sich zuletzt deutlich abgeschwächt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Südkorea und Taiwan ziehen mit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Südkorea und Taiwan kündigten eigene Maßnahmen gegen die Kursverluste an den heimischen Börsen an. Welche Regeln dort konkret geändert werden sollen, geht aus den Berichten bislang nicht hervor. Als Belastungsfaktoren für die Region gelten ein schwächeres Wirtschaftswachstum in China, geopolitische Spannungen und ein weltweiter Ausverkauf bei KI-Werten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine niedrigere Margin-Anforderung senkt für den Einzelnen die Hürde, mit Kredit zu handeln – sie ändert aber nichts daran, dass ein Kredit im fallenden Markt Verluste vergrößert. Ob die Lockerung die Talfahrt tatsächlich bremst, zeigt sich erst, wenn wieder mehr Anleger von der neuen Spielregel Gebrauch machen.',
+      },
+    ],
+  },
+  {
+    slug: 'iran-konflikt-angriffe-saudi-arabien-bahrain',
+    title: 'Iran-Konflikt: Neue Angriffe auf Saudi-Arabien und Bahrain',
+    metaTitle: 'Iran-Konflikt: Angriffe auf Saudi-Arabien und Bahrain',
+    teaser:
+      'Am Wochenende griffen Huthi-Rebellen und laut Iran eigene Kräfte Ziele in Saudi-Arabien und Bahrain an. Teheran bekräftigt Gesprächsbereitschaft mit den USA.',
+    category: 'Märkte',
+    publishedAt: '2026-11-23T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Iran', 'Saudi-Arabien', 'Bahrain', 'Golfkonflikt'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'CNBC, 22.11.2026, 13:25 Uhr: „Saudi Arabia, Bahrain report new attacks as Iran says it remains open to a deal with U.S."',
+        url: 'https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die von Saudi-Arabien geführte Koalition zur Unterstützung der international anerkannten Regierung im Jemen hat am Wochenende eine Drohne nahe der Hauptstadt Riad abgefangen. Am Samstagabend wehrten Luftabwehrsysteme zudem eine ballistische Rakete Richtung der Westregion des Landes ab. Verantwortlich gemacht werden die Huthi-Rebellen aus dem Jemen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bahrain meldet Treffer auf Industrieanlage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bahrains Innenministerium erklärte, ein iranischer Angriff habe eine zivile Industrieanlage getroffen und einen Brand ausgelöst, zwei Menschen seien verletzt worden. Iranische Staatsmedien berichteten, die Revolutionsgarden hätten Raketen und Drohnen auf US-Militäreinrichtungen in Bahrain abgefeuert. Eine weitere iranische Meldung, wonach eine US-Drohne vom Typ MQ-9 abgeschossen worden sei, blieb bislang unbestätigt – das US-Zentralkommando äußerte sich dazu nicht. Diese Angaben stammen bislang nur aus einer Quelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Teheran hält an Gesprächsbereitschaft fest',
+      },
+      {
+        type: 'paragraph',
+        text: 'Irans Außenminister Abbas Araghchi erklärte, sein Land bleibe offen für eine verhandelte Lösung des Konflikts mit den USA. Das im Juni zwischen Präsident Trump und seinem iranischen Amtskollegen Pezeshkian vereinbarte „Islamabad Memorandum of Understanding" sei zwar gescheitert und werde nicht mehr umgesetzt. Die darin von den USA akzeptierten Zusagen und der Grundsatz, dass ihre Umsetzung den Weg zu einer endgültigen Einigung bereiten könne, gälten laut Araghchi aber für beide Seiten weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Straße von Hormus steht im Mittelpunkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Krieg zwischen den USA, Israel und dem Iran läuft seit Ende Februar. Besonders betroffen ist die Straße von Hormus, durch die ein großer Teil der weltweiten Öltransporte läuft: Der Iran schränkt die Schifffahrt dort ein, was in den Verhandlungen ein zentraler Streitpunkt ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Meerenge, durch die ein Großteil der globalen Öltransporte läuft, ist für Märkte eine Risikoprämie, die sich nicht in einer einzelnen Kurszahl zeigt, sondern in der Unsicherheit über künftige Lieferungen. Ob und wie stark sich das in Frachtraten oder Rohstoffpreisen niederschlägt, lässt sich erst an künftigen, bestätigten Daten ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'argentinien-anleihen-unter-druck',
+    title: 'Argentinien: Druck auf Staatsanleihen wächst',
+    teaser:
+      'Argentiniens Anleihen verzeichnen die größten Verluste unter Schwellenländern. Der Risikoaufschlag liegt erstmals seit zwei Jahren über 1000 Basispunkten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-23T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Argentinien', 'Staatsanleihen', 'Milei', 'Schwellenländer'],
+    relatedTopics: ['staatsanleihe', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 22.11.2026, 11:10 Uhr: „Argentinien: Milei unter Zugwang – Druck auf Staatsanleihen wächst"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/anleihen/argentinien-milei-unter-zugwang-druck-auf-staatsanleihen-waechst/100271849.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Argentiniens Staatsanleihen mit Laufzeit 2030 und 2035 verloren am Freitag bis 16:15 Uhr New Yorker Zeit jeweils mehr als 2,5 Cent je Dollar Nennwert. Laut Bloomberg-Indikativkursen waren das an diesem Tag die größten Verluste unter allen Schwellenländeranleihen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Risikoaufschlag von 1000 Basispunkten bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleger verlangen für das Risiko, einem Staat Geld zu leihen, einen Aufschlag auf den Zins sicherer US-Staatsanleihen – den Spread. Laut einem JPMorgan-Index stieg dieser Risikoaufschlag für Argentinien erstmals seit zwei Jahren auf über 1000 Basispunkte, also zehn Prozentpunkte. Oberhalb dieser Marke gelten Anleihen am Markt üblicherweise als ausfallgefährdet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwanzig Prozent seit August verloren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit Anfang August haben Argentiniens Dollaranleihen rund 20 Prozent an Wert verloren. Anleger zweifeln zunehmend an Präsident Javier Milei, der 2027 wiedergewählt werden will – Gründe sind seine sinkende Beliebtheit und ein schwächeres Wirtschaftswachstum. Fernando Losada vom Investmenthaus Oppenheimer sieht die politischen Risiken vor der Wahl als hoch an und erwartet, dass sie es bleiben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein weltweiter Rückzug aus Risiko verstärkt die Lage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Krise um argentinische Anleihen wird zusätzlich durch den weltweiten Rückzug von Anlegern aus riskanten Anlagen verschärft, der seit Wochen auch die Aktienmärkte prägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Risikoaufschlag ist nichts anderes als ein in Zahlen gefasstes Misstrauen des Marktes – er steigt, bevor ein Ausfall feststeht, und kann genauso schnell wieder sinken, falls sich die politische Lage ändert. Er ist damit eher ein Frühindikator als ein Urteil über die Zukunft.',
+      },
+    ],
+  },
+  {
+    slug: 'gta-vi-rekordumsatz-erster-verkaufstag',
+    title: 'GTA VI: Rekordumsatz am ersten Verkaufstag',
+    teaser:
+      'Rockstar Games meldet rund 3,8 Milliarden Dollar Umsatz am ersten Tag von GTA VI. Was die Zahl über Gewinn und Marge aussagt – und was nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-11-23T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['GTA VI', 'Rockstar Games', 'Take-Two', 'Videospiele'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Tagesschau, 21.11.2026, 10:39 Uhr: „GTA VI spielt laut Konzern fast vier Milliarden Dollar am ersten Tag ein"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/milliardengewinn-gta-100.html',
+      },
+      {
+        label:
+          "CNBC, 20.11.2026: „'More than just a game': How GTA VI's blockbuster launch fuels a booming content economy\"",
+        url: 'https://www.cnbc.com/2026/11/20/gta-vi-launch-streaming-content-economy.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rockstar Games meldete für den Verkaufsstart von GTA VI am 19. November einen Rekordumsatz von rund 3,8 Milliarden Dollar an einem einzigen Tag. Das Spiel erschien für Playstation 5 und Xbox Series X/S, nach jahrelanger Wartezeit der Fans.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zahl, die nichts über den Gewinn sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Tagesumsatz zählt verkaufte Exemplare zum Verkaufspreis – er enthält weder die jahrelangen Entwicklungskosten, noch Marketingausgaben oder den Anteil, den Plattformen wie Playstation und Xbox vom Verkaufspreis einbehalten. Take-Two, der Mutterkonzern von Rockstar, hat bislang keine Gewinnzahl für das Spiel veröffentlicht. Erst wiederkehrende Einnahmen aus einem Online-Modus und Ingame-Käufen zeigen, wie viel von der Summe am Ende als Gewinn hängen bleibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr als eine halbe Milliarde verkaufte Exemplare',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die gesamte GTA-Reihe hat nach Konzernangaben weltweit bereits mehr als 470 Millionen Exemplare verkauft. Allein in den ersten 24 Stunden sahen Zuschauer laut dem Analysedienst Streams Charts rund 125,5 Millionen Stunden GTA-VI-Inhalte auf den Plattformen Twitch, YouTube und Kick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Online-Modus und PC-Version ohne Termin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rockstars Ankündigung zum Launch nennt bislang keinen Termin für eine PC-Version oder einen eigenständigen Online-Modus, über den ein Großteil der langfristigen Einnahmen laufen dürfte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein spektakulärer Tagesumsatz ist vor allem eine Marketingzahl – wie profitabel GTA VI für Take-Two wird, entscheidet sich über Jahre, nicht an einem einzigen Verkaufstag.',
+      },
+    ],
+  },
+  {
+    slug: 'geheimdienstchef-warnt-vor-tech-ausfaellen',
+    title: 'US-Geheimdienstchef warnt vor weiteren Tech-Ausfällen',
+    teaser:
+      'Jay Clayton warnt vor neuen Ausfällen bei Flughäfen, Banken und Software kurz vor Thanksgiving. Einen koordinierten Cyberangriff schließen die Behörden aus.',
+    category: 'Märkte',
+    publishedAt: '2026-11-23T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Cybersicherheit', 'FAA', 'Microsoft', 'JPMorgan'],
+    relatedTopics: ['risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['microsoft', 'jpmorgan'],
+    sources: [
+      {
+        label:
+          "CNBC, 22.11.2026, 17:14 Uhr: „Director of National Intelligence Jay Clayton warns Americans of 'bumps in the road' after tech outages\"",
+        url: 'https://www.cnbc.com/2026/11/22/jay-clayton-tech-outages-faa-microsoft-thanksgiving.html',
+      },
+      {
+        label:
+          'Just the News, 17.11.2026: „DNI Jay Clayton, FBI downplay prospect of cyberattacks amid major outages"',
+        url: 'https://justthenews.com/index.php/politics-policy/dni-jay-clayton-fbi-downplay-prospect-cyberattacks-amid-major-outages',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Geheimdienstdirektor Jay Clayton warnte bei CNN, dass Modernisierung und Investitionen in Cybersicherheit weiter zu Ausfällen führen könnten. Er sprach von „bumps in the road" und riet der Bevölkerung, sich auf Systemupgrades und zeitweise Unterbrechungen einzustellen – kurz vor den verkehrsreichen Thanksgiving-Reisetagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Ausfälle ohne erkennbaren Zusammenhang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu den jüngsten Störungen zählen ein mehrstündiger, landesweiter Ground Stop der Flugaufsicht FAA, nachdem ein Router-Upgrade eine Datenflut ausgelöst hatte, eine Outlook-Störung bei Microsoft, die auf ein früheres Netzwerk-Upgrade zurückgeführt wurde, und technische Probleme bei JPMorgan Chase, die Transaktionen verlangsamten. Die FAA sieht keine Hinweise auf einen Cyberangriff.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Schon Mitte November gab es Entwarnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am 17. November hatte Clayton im Fox Business Network gesagt, es gebe keine Anzeichen für einen koordinierten Cyberangriff und keine Hinweise auf staatlich gesteuerte Aktivitäten. Genannt wurden damals zusätzlich Störungen bei Apple und der NSA.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Finanzminister sieht keinen Anlass zur Sorge',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Finanzminister Scott Bessent sagte bei CBS, Amerikaner müssten sich um ihre Finanzinstitute keine Sorgen machen. Patches gegen Risiken durch Künstliche Intelligenz könnten zwar kurzfristig Störungen auslösen, verglich er das aber mit einer Impfung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob eine Störung ein Angriff oder eine Nebenwirkung von Wartung ist, lässt sich von außen kaum unterscheiden – genau das macht Aussagen von Behörden zu Ursachen so schwer nachprüfbar. Für Anleger zählt vor allem, ob solche Ausfälle einzelne Unternehmen oder ganze Systeme treffen, auf die viele andere Dienste aufbauen.',
+      },
+    ],
+  },
+  {
     slug: 'eu-haushaltsstreit-costa-digitalsteuer',
     title: 'EU-Haushaltsstreit: Costa schlägt Digitalsteuer vor',
     teaser:
