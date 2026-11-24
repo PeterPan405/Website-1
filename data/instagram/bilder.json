@@ -1728,21 +1728,30 @@
   "2026-11-24": [
     {
       "stelle": 1,
-      "datei": "2026-11-24-1-a4382a7b.jpg",
-      "titel": "File:Frankfurter Börse Luminale 2008.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Frankfurter_B%C3%B6rse_Luminale_2008.jpg",
-      "lizenz": "CC BY-SA 3.0",
-      "urheber": "Volkes Stimme 19:08, 16. Apr. 2008 (CEST)",
-      "suche": "Frankfurt Stock Exchange"
+      "datei": "2026-11-24-1-0469fed9.jpg",
+      "titel": "File:Frankfurt Börse IHK.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Frankfurt_B%C3%B6rse_IHK.jpg",
+      "lizenz": "CC0",
+      "urheber": "Tilman AB",
+      "suche": "Börse Frankfurt"
     },
     {
       "stelle": 2,
-      "datei": "2026-11-24-2-9e9e546f.jpg",
-      "titel": "File:Deutsche Börse Frankfurt.JPG",
-      "seite": "https://commons.wikimedia.org/wiki/File:Deutsche_B%C3%B6rse_Frankfurt.JPG",
-      "lizenz": "CC BY-SA 3.0",
-      "urheber": "Christoph F. Siekermann",
+      "datei": "2026-11-24-2-b00f2cbc.jpg",
+      "titel": "File:Frankfurt am Main - Frankfurter Börse.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Frankfurt_am_Main_-_Frankfurter_B%C3%B6rse.jpg",
+      "lizenz": "CC BY 2.0",
+      "urheber": "Fred Romero from Paris, France",
       "suche": "Frankfurt Stock Exchange"
+    },
+    {
+      "stelle": 3,
+      "datei": "2026-11-24-3-9b09b5fd.jpg",
+      "titel": "File:Federal Reserve Police car.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Police_car.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Daniel Schwen",
+      "suche": "Federal Reserve"
     },
     {
       "stelle": 5,
