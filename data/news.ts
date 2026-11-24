@@ -101,6 +101,313 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'huang-comeback-dax-wall-street',
+    title: 'Huang zurück an der Konzernspitze – Dax und Wall Street jubeln',
+    teaser:
+      'Nvidia holt den im Spionageskandal zurückgetretenen Jensen Huang als Chef zurück. Dax und Wall Street reagieren mit einer der stärksten Rallys seit Jahren.',
+    category: 'Märkte',
+    publishedAt: '2026-11-24T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Nvidia', 'Jensen Huang', 'Dax', 'Wall Street', 'Aktienrally'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['nvidia', 'nasdaq-100', 'dax'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, 23.11.2026, 16:18 Uhr: „Nvidia setzt Jensen Huang wieder als Chef ein“',
+        url: 'https://www.tagesschau.de/wirtschaft/huang-wieder-nvidia-chef-100.html',
+      },
+      {
+        label:
+          'Handelsblatt, 23.11.2026, 20:43 Uhr: „Wall Street: Nasdaq schließt nach Huang-Rückkehr mehr als sechs Prozent im Plus“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dow-jones-sp-500-nasdaq-nasdaq-schliesst-nach-huang-rueckkehr-mehr-als-sechs-prozent-im-plus/100272031.html',
+      },
+      {
+        label:
+          'CNBC, 23.11.2026, 22:08 Uhr: „Jensen Huang reinstated as Nvidia CEO. Stock skyrockets 31%“',
+        url: 'https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html',
+      },
+      {
+        label:
+          "CNBC, 23.11.2026, 21:22 Uhr: „Congress shreds Nvidia's 'outrageous' decision to bring back Huang“",
+        url: 'https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-congress-trump.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia holt seinen gerade erst zurückgetretenen Chef zurück. Jensen Huang übernimmt wieder die Führung des Chipkonzerns, nur wenige Tage nach seinem Rücktritt wegen eines Spionageskandals. Die Nvidia-Aktie sprang am Montag um 31 Prozent, der Dax schloss mehr als 500 Punkte höher über der Marke von 25.300 Punkten, die Nasdaq legte über sechs Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rücktritt, der keine zwei Wochen hielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Huang war erst vor kurzer Zeit zurückgetreten. Auslöser war laut Tagesschau eine Affäre: Eine Frau aus seinem persönlichen Umfeld soll monatelang Kontakt zu einem Mitarbeiter des chinesischen Geheimdienstes gehabt haben. Parallel prüfen kalifornische Behörden seit dem 20. November, ob Nvidia-Chips oder vertrauliche Informationen auf unerlaubtem Weg nach China gelangt sein könnten – diese Untersuchung läuft laut Tagesschau weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump reklamiert den Erfolg, der Kongress ist uneins',
+      },
+      {
+        type: 'paragraph',
+        text: 'Präsident Trump erklärte laut CNBC, seine Regierung habe Nvidias Verwaltungsrat versichert, dass Huang als Chef kein Sicherheitsrisiko darstelle. Im Kongress wuchs daraufhin Kritik aus beiden Parteien: Abgeordnete stellten laut CNBC offen die Einschätzung des Präsidenten infrage, Huang berge kein Risiko für die nationale Sicherheit. Wie es mit der Untersuchung in Kalifornien weitergeht, ist damit noch nicht entschieden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Rücktritt einen ganzen Index bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass eine einzelne Personalie den Nasdaq um mehr als sechs Prozent bewegt, liegt an der Gewichtung: In Indizes wie dem Nasdaq-100 oder dem marktkapitalisierungsgewichteten S&P 500 zählen große Unternehmen überproportional stark. Nvidia gehörte vor seinem Kursrutsch zu den größten Werten beider Indizes. Jede Bewegung der Aktie schlägt deshalb unmittelbar auf den gesamten Index durch – und über Indexfonds auf Millionen Sparerinnen und Sparer, die nie bewusst in Nvidia investiert haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Personalwechsel kann einen ganzen Index bewegen, wenn das betroffene Unternehmen darin stark gewichtet ist. Das zeigt, wie konzentriert Indizes wie der Nasdaq-100 inzwischen auf wenige Technologiewerte setzen – unabhängig davon, ob sich die politische und rechtliche Lage um Huang am Ende als tragfähig erweist.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-williams-weitere-zinserhoehungen',
+    title: 'Notenbanker Williams hält weitere Zinserhöhungen für wahrscheinlich',
+    metaTitle: 'Williams hält weitere Zinserhöhungen für wahrscheinlich',
+    teaser:
+      'New Yorks Fed-Chef John Williams hält die US-Inflation für weiter zu hoch und erwartet, dass die Notenbank die Zinsen über die Zeit noch anheben muss.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-24T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Zinsen', 'Inflation', 'USA'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          "CNBC, 23.11.2026, 22:02 Uhr: „Fed's John Williams indicates higher interest rates likely 'over time' to address inflation“",
+        url: 'https://www.cnbc.com/2026/11/23/john-williams-fed-inflation-rate-hikes.html',
+      },
+      {
+        label:
+          "stockanalysis.com, 13.11.2026: „Fed's Williams says more rate hikes are likely as inflation stays persistent“",
+        url: 'https://stockanalysis.com/news/fed-williams-more-rate-hikes-likely/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank ist mit der Inflation noch nicht fertig. Das sagte John Williams, Präsident der New Yorker Fed und stellvertretender Vorsitzender des FOMC, am Montag laut CNBC. Die Fed habe bei der Inflation noch Arbeit vor sich, weitere Zinsschritte könnten sich „über die Zeit“ ergeben – einen genauen Zeitpunkt nannte er nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Fed nicht einfach senkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Leitzins der Fed liegt seit der Sitzung am 28. Oktober unverändert bei 3,75 bis 4,00 Prozent, zwei Mitglieder stimmten damals für eine Senkung. Die Verbraucherpreise stiegen im Oktober um 0,4 Prozent, die Kernrate ohne Energie und Nahrungsmittel um 0,3 Prozent – den dritten Monat in Folge. Williams bezeichnete es laut CNBC als „100 Prozent essenziell“, die Inflation zurück auf das Zwei-Prozent-Ziel zu bringen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Prozent frühestens 2027',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Ursachen nannte Williams laut CNBC den Konflikt mit dem Iran, die Nachfrage durch den KI-Ausbau sowie Zölle, deren Druck inzwischen weitgehend abgeklungen sei. Er rechnet damit, dass sich die Inflation 2027 deutlich dem Zwei-Prozent-Ziel annähert und es 2028 erreicht. Zur KI selbst sagte er, es gebe wenig Hinweise darauf, dass sie dauerhaft hohe Inflation auslöse, obwohl sie den Preisdruck kurzfristig erhöhe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Markt rechnet schon mit Dezember',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die nächste Sitzung des Offenmarktausschusses findet am 8. und 9. Dezember statt, der nächste Inflationsbericht erscheint am 10. Dezember. Marktteilnehmer preisen laut Berichten, die sich auf Reuters berufen, für Dezember eine Zinserhöhung um 0,25 Prozentpunkte vollständig ein, für Januar eine weitere. Williams selbst äußerte sich dazu laut CNBC nicht ausdrücklich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Aussage wie die von Williams ist eine Einschätzung, keine Festlegung – entschieden wird erst am 8. und 9. Dezember. Bis dahin bestimmen weitere Daten, etwa der Inflationsbericht vom 10. Dezember, wie viel Gewicht seine Erwartung am Ende wirklich bekommt.',
+      },
+    ],
+  },
+  {
+    slug: 'amerikas-haeusermarkt-friert-ein',
+    title: 'Amerikas Häusermarkt friert nach starkem Zinsschock ein',
+    teaser:
+      'Ein kräftiger Zinsanstieg hat den US-Häusermarkt ausgebremst. Die Verkäufe bestehender Häuser fielen im Oktober auf den niedrigsten Stand seit August 2010.',
+    category: 'Märkte',
+    publishedAt: '2026-11-24T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Immobilien', 'Hypothekenzinsen', 'Konjunktur'],
+    relatedTopics: ['immobilien', 'schulden-und-kredit'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 23.11.2026, 16:22 Uhr: „Stuck: How a frozen housing market is hitting buyers, sellers and the economy“',
+        url: 'https://www.cnbc.com/2026/11/23/housing-market-real-estate-economy.html',
+      },
+      {
+        label:
+          'National Association of Realtors, 12.11.2026: „Existing Home Sales Decreased 5.5 Percent in October“',
+        url: 'https://www.nar.realtor/newsroom/existing-home-sales-decreased-5-5-percent-october-nar-report',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der amerikanische Häusermarkt ist praktisch eingefroren. Die Verkäufe bestehender Häuser fielen im Oktober laut der National Association of Realtors um 5,5 Prozent zum Vormonat und um 8,8 Prozent zum Vorjahr, auf eine Jahresrate von 3,75 Millionen Einheiten – den niedrigsten Stand seit August 2010.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Zinssprung von einem Prozentpunkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser war ein kräftiger Zinsanstieg im September. Laut Mortgage News Daily lag der Zinssatz für die 30-jährige Festzinshypothek im Juli noch bei rund 6,60 Prozent, bis Anfang Oktober stieg er auf 7,61 Prozent. Freddie Mac bezifferte den Satz für Oktober auf durchschnittlich 7,33 Prozent, nach 6,86 Prozent im September. Zillow-Chef Jeremy Wacksman nannte den Anstieg laut CNBC einen der schnellsten Dreimonatsanstiege seit Jahrzehnten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Höchste Zinsen seit der Jahrtausendwende',
+      },
+      {
+        type: 'paragraph',
+        text: 'NAR-Chefvolkswirt Lawrence Yun erklärte, der Kauf eines Hauses sei schwierig, weil die Hypothekenzinsen auf dem höchsten Stand seit dem Jahr 2000 lägen. Laufende Kaufverträge, ein Frühindikator, erreichten im Oktober laut NAR einen Rekordtiefstand im 25 Jahre alten Index der Realtors. Die Zahl aktiver Kaufinteressenten sinkt laut Redfin seit sechs Monaten in Folge.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Bestandsbesitzer sitzen bleiben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Teil der Erklärung liefert der sogenannte Lock-in-Effekt: Wer noch einen alten, niedrigen Hypothekenzins hat, zieht seltener um, weil ein neues Darlehen heute deutlich teurer wäre. Baugenehmigungen für Einfamilienhäuser lagen im Oktober laut Zensusdaten 13 Prozent niedriger als im Vorjahr, das Vertrauen der Bauunternehmen fiel im November auf den tiefsten Stand seit 2012.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Hohe Zinsen bremsen nicht nur Käufer, sie halten auch Verkäufer zurück, die sonst umziehen würden. Yun hält bei sinkenden Zinsen einen erheblichen Nachholbedarf für möglich – eine Einschätzung des Ökonomen, keine Garantie, und abhängig davon, wann und wie stark die Zinsen tatsächlich fallen.',
+      },
+    ],
+  },
+  {
+    slug: 'washington-esg-fonds-altersvorsorge',
+    title: 'Washington will ESG-Fonds aus der Altersvorsorge drängen',
+    teaser:
+      'Das US-Arbeitsministerium schlägt eine Regel vor, die ESG-Fonds in 401(k)-Rentenplänen einschränkt. Entscheidungen sollen nur finanziellen Kriterien folgen.',
+    category: 'Vorsorge',
+    publishedAt: '2026-11-24T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Altersvorsorge', 'ESG', '401k', 'Fonds'],
+    relatedTopics: ['rente', 'portfolio-aufbau'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'CNBC, 23.11.2026, 20:46 Uhr: „Trump administration proposes rule that could curb ESG investing in 401(k)s“',
+        url: 'https://www.cnbc.com/2026/11/23/labor-department-esg-401k-rule.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das amerikanische Arbeitsministerium will Nachhaltigkeitsfonds aus der betrieblichen Altersvorsorge drängen. Am Montag schlug es eine Änderung des Rentengesetzes ERISA vor, die klarstellen soll, wie Plan-Verantwortliche ihre Treuepflicht bei 401(k)-Anlagen anwenden müssen: Entscheidungen sollen ausschließlich dem finanziellen Interesse der Beschäftigten dienen, nicht politischen oder sozialen Zielen. Berichtet hat das bislang nur CNBC, eine zweite Quelle für diese konkrete Ankündigung liegt nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Regeln fallen weg',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Vorschlag streicht den sogenannten Tiebreaker-Test, der bei finanziell gleichwertigen Fonds die Wahl eines ESG-Fonds wegen seines sozialen Nutzens erlaubte. Auch die „Participant Preference“-Regel fällt weg, nach der Beschäftigtenpräferenzen bei der Fondsauswahl berücksichtigt werden durften. Arbeitsminister Keith Sonderling erklärte schriftlich, die Antwort auf die Frage, ob ein Impact- oder ESG-Fonds für die Altersvorsorge geeignet sei, werde künftig „very rarely“ lauten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Biden-Regel wird zurückgedreht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Vorschlag macht Teile einer Regel aus dem Jahr 2022 rückgängig, die Arbeitgebern erlaubt hatte, Klimawandel und andere ESG-Faktoren bei Anlageentscheidungen zu berücksichtigen. Jene Regel hatte wiederum eine strengere Vorgabe aus dem Jahr 2020 gelockert. Es folgt eine öffentliche Kommentierungsfrist von 60 Tagen, bevor die Regel endgültig in Kraft treten kann.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie groß das Feld überhaupt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem Bericht des Plan Sponsor Council of America boten 2025 rund 5 Prozent der 401(k)-Pläne überhaupt einen ESG-Fonds an, im Schnitt waren weniger als 1 Prozent des angelegten Vermögens darin investiert. Eine Analyse von Morgan Stanley vom September 2026 kommt für das erste Halbjahr 2026 auf eine mittlere Rendite von 4,9 Prozent für nachhaltige Fonds, gegenüber 4,0 Prozent für traditionelle Fonds.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Regel träfe ein kleines Segment: Schon heute enthalten die meisten 401(k)-Pläne gar keinen ESG-Fonds. Dass ausgerechnet die Performance-Zahlen der Morgan-Stanley-Analyse gegen eine Einschränkung sprechen, zeigt, dass diese Entscheidung politisch begründet ist und nicht mit der bisherigen Wertentwicklung.',
+      },
+    ],
+  },
+  {
+    slug: 'clariant-gespraeche-ashland-uebernahme',
+    title: 'Clariant bestätigt Gespräche über eine mögliche Ashland-Übernahme',
+    teaser:
+      'Der Schweizer Spezialchemiekonzern Clariant führt Gespräche über eine Übernahme des US-Unternehmens Ashland, Börsenwert rund 3,2 Milliarden Dollar.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-24T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Clariant', 'Ashland', 'Übernahme', 'Chemie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX, 23.11.2026, 22:08 Uhr: „Clariant bestätigt Gespräche über mögliche Ashland-Übernahme“',
+        url: 'https://www.onvista.de/news/2026/11-23-clariant-bestaetigt-gespraeche-ueber-moegliche-ashland-uebernahme-0-10-26579667',
+      },
+      {
+        label:
+          'wallstreet-online, dpa-AFX, 23.11.2026: „Clariant bestätigt Gespräche über mögliche Ashland-Übernahme“',
+        url: 'https://www.wallstreet-online.de/nachricht/21737458-clariant-bestaetigt-gespraeche-ashland-uebernahme',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Schweizer Spezialchemiekonzern Clariant hat am Montagabend bestätigt, Gespräche über eine mögliche Übernahme des US-Unternehmens Ashland zu führen. Partner dabei ist der Finanzinvestor Clayton, Dubilier & Rice. Zuerst berichtet hatte Bloomberg unter Berufung auf mit der Sache vertraute Personen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offen, ob überhaupt etwas daraus wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Clariant selbst erklärte laut dpa-AFX, ob eine Akquisition tatsächlich zustande komme, sei offen. Ashland ist an der Börse rund 3,2 Milliarden Dollar wert. Das Unternehmen stellt Additive und Spezialchemikalien her, die in der Pharmaindustrie, im Bauwesen und in Kosmetikprodukten eingesetzt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom Gerücht zur bestätigten Gesprächslage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einem Übernahmegerücht und einer fest vereinbarten Transaktion liegen üblicherweise mehrere Stufen: zunächst Spekulationen aus Finanzkreisen, dann – wie jetzt bei Clariant – die offizielle Bestätigung laufender Gespräche, erst danach ein mögliches Angebot mit konkretem Preis und schließlich der Abschluss. Welche Stufe Clariant und Ashland als Nächstes erreichen, ist damit noch nicht entschieden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine bestätigte Gesprächslage ist noch kein Angebot und erst recht kein Abschluss. Wie viele frühe Übernahmesondierungen kann auch diese ohne Einigung enden – bis dahin bleibt offen, zu welchem Preis und mit welcher Finanzierung ein Angebot überhaupt kommen könnte.',
+      },
+    ],
+  },
+  {
     slug: 'china-suedkorea-taiwan-stuetzen-boersen',
     title: 'China, Südkorea und Taiwan stützen ihre Börsen',
     teaser:
