@@ -1746,12 +1746,21 @@
     },
     {
       "stelle": 3,
-      "datei": "2026-11-24-3-9b09b5fd.jpg",
-      "titel": "File:Federal Reserve Police car.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Police_car.jpg",
+      "datei": "2026-11-24-3-f62030aa.jpg",
+      "titel": "File:John C. Williams.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:John_C._Williams.jpg",
+      "lizenz": "Public domain",
+      "urheber": "Federal Reserve Bank of New York",
+      "suche": "von Hand gewählt"
+    },
+    {
+      "stelle": 4,
+      "datei": "2026-11-24-4-6fed1419.jpg",
+      "titel": "File:Prieur Street, Broadmoor, New Orleans - New house for sale, Sept 2023.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Prieur_Street,_Broadmoor,_New_Orleans_-_New_house_for_sale,_Sept_2023.jpg",
       "lizenz": "CC BY-SA 4.0",
-      "urheber": "Daniel Schwen",
-      "suche": "Federal Reserve"
+      "urheber": "Infrogmation of New Orleans",
+      "suche": "von Hand gewählt"
     },
     {
       "stelle": 5,
@@ -1761,6 +1770,15 @@
       "lizenz": "Public domain",
       "urheber": "Clariant",
       "suche": "Logo „Clariant\""
+    },
+    {
+      "stelle": 6,
+      "datei": "2026-11-24-6-12b7e3f8.jpg",
+      "titel": "File:US Dept of Labor.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:US_Dept_of_Labor.jpg",
+      "lizenz": "Public domain",
+      "urheber": "Ed Brown",
+      "suche": "von Hand gewählt"
     }
   ]
 }
