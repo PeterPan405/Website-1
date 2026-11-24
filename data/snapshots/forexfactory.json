@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-11-24T00:47:26.647Z",
+  "abgerufen": "2026-11-24T22:59:33.918Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -667,7 +667,7 @@
     {"title":"CBI Realized Sales","country":"GBP","date":"2026-11-24T06:00:00-05:00","impact":"Low","forecast":"-27","previous":"-10"},
     {"title":"MPC Member Greene Speaks","country":"GBP","date":"2026-11-24T07:30:00-05:00","impact":"Low","forecast":"","previous":""},
     {"title":"ADP Weekly Employment Change","country":"USD","date":"2026-11-24T08:15:00-05:00","impact":"Low","forecast":"","previous":"23.8K"},
-    {"title":"CB Leading Index m/m","country":"CNY","date":"2026-11-24T09:00:00-05:00","impact":"Low","forecast":"","previous":"-0.1%"},
+    {"title":"CB Leading Index m/m","country":"CNY","date":"2026-11-24T08:51:00-05:00","impact":"Low","forecast":"","previous":"-0.1%"},
     {"title":"Belgian NBB Business Climate","country":"EUR","date":"2026-11-24T09:00:00-05:00","impact":"Low","forecast":"-9.4","previous":"-9.8"},
     {"title":"HPI m/m","country":"USD","date":"2026-11-24T09:00:00-05:00","impact":"Low","forecast":"0.2%","previous":"0.3%"},
     {"title":"S&P/CS Composite-20 HPI y/y","country":"USD","date":"2026-11-24T09:00:00-05:00","impact":"Low","forecast":"2.7%","previous":"2.7%"},
