@@ -28,6 +28,7 @@ import { BITCOIN_WOCHEN } from './instagram-reihen-bitcoin.ts'
 import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { EXY_2026 } from './instagram-reihen-euro.ts'
 import { NVIDIA_COMEBACK } from './instagram-reihen-nvidia-comeback.ts'
+import { DAX_SCHWAERZESTE } from './instagram-reihen-dax-wochentage.ts'
 import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
@@ -43,6 +44,136 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 24.11.2026, „Schwarzer Montag? Mythos oder Fakt“ –
+      vollautomatisch, Ideenpool Nr. 1 (gedaechtnis/2026-11-23 Instagram
+      Ideenpool.md), Aufhänger-Typ „Mythos/Fakt“ (Anregung: Karussell-Formate
+      Mythos vs. Fakt, kontentino.com/colorkuler.com). Karussell nach drei
+      Einseitern (Mix-Regel des Betreibers vom 23.11.).
+
+      Daten: data/instagram-reihen-dax-wochentage.ts – DAX-Tagesschlüsse
+      30.12.1987 bis 23.11.2026 (Yahoo Finance ^GDAXI über quellen-holen.yml),
+      9.837 Tagesveränderungen. Ergebnis: Montag ist im Schnitt der BESTE Tag
+      (+0,07 %), aber 5 der 10 schwärzesten und 5 der 10 besten Tage waren
+      Montage; unter den 50 schwärzesten 17 Montage. Kein Warum – die Reihe
+      nennt keine Gründe, und gelesene Quellen zu den Einzeltagen liegen nicht
+      vor; deshalb stehen nur Tag und Zahl da.
+    */
+    art: 'dossier',
+    datum: '2026-11-24',
+    freigabe: '2026-11-24',
+    titel: [{ text: 'Schwarzer Montag?' }, { text: 'Mythos oder Fakt.', gruen: true }],
+    unterzeile: '38 Jahre DAX, 9.837 Handelstage nachgerechnet.',
+    teile: [
+      {
+        art: 'deckblatt',
+        datum: '2026-11-24',
+        titel: [
+          { text: 'Schwarzer Montag?' },
+          { text: 'Mythos oder Fakt.', gruen: true },
+        ],
+        unterzeile: '38 Jahre DAX, 9.837 Handelstage nachgerechnet.',
+        fotoLogo: 'dax.png',
+        liste: [
+          { name: 'Ø Montag', anzeige: '+0,071 %' },
+          { name: 'Ø Donnerstag', anzeige: '+0,014 %' },
+          { name: 'Schwärzeste 10', anzeige: '5 Montage' },
+          { name: 'Beste 10', anzeige: '5 Montage' },
+        ],
+        fusszeile:
+          'Stand: 23.11.2026 | Quelle: Yahoo Finance (DAX-Schlusskurse seit 1987); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'kurszettel',
+        datum: '2026-11-24',
+        titel: [
+          { text: 'Die acht schwärzesten' },
+          { text: 'DAX-Tage: fünf Montage', gruen: true },
+        ],
+        unterzeile: 'Veränderung zum Vortag, Schlusskurs in Punkten.',
+        zeilen: DAX_SCHWAERZESTE.slice(0, 8).map((t) => ({
+          name: t.tag.split('-').reverse().join('.'),
+          zusatz: (
+            {
+              Mo: 'Montag',
+              Di: 'Dienstag',
+              Mi: 'Mittwoch',
+              Do: 'Donnerstag',
+              Fr: 'Freitag',
+            } as const
+          )[t.wochentag],
+          kurs: `${t.schluss.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Pkt.`,
+          aenderung: Math.round(t.prozent * 10) / 10,
+        })),
+        fusszeile: 'Stand: 23.11.2026 | Quelle: Yahoo Finance (^GDAXI); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'punktraster',
+        datum: '2026-11-24',
+        titel: [
+          { text: 'Die 50 schwärzesten Tage' },
+          { text: 'nach Wochentag', gruen: true },
+        ],
+        unterzeile: 'Ein Punkt = ein halber Tag. Seit 1988.',
+        teile: [
+          { name: 'Montag', punkte: 34, anzeige: '17 Tage' },
+          { name: 'Donnerstag', punkte: 20, anzeige: '10 Tage' },
+          { name: 'Freitag', punkte: 18, anzeige: '9 Tage' },
+          { name: 'Dienstag', punkte: 16, anzeige: '8 Tage' },
+          { name: 'Mittwoch', punkte: 12, anzeige: '6 Tage' },
+        ],
+        satz: 'Gleich verteilt wären es zehn je Wochentag.',
+        fusszeile: 'Stand: 23.11.2026 | Quelle: Yahoo Finance (^GDAXI); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'balkenliste',
+        datum: '2026-11-24',
+        titel: [{ text: 'Und im Schnitt?' }, { text: 'Montag vorn.', gruen: true }],
+        unterzeile: 'Durchschnittliche Tagesveränderung je Wochentag, 1988 bis 2026.',
+        achse: 'Ø Veränderung zum Vortag',
+        stellen: 3,
+        zeilen: [
+          { name: 'Montag', wert: 0.071, hervor: true },
+          { name: 'Dienstag', wert: 0.067 },
+          { name: 'Mittwoch', wert: 0.038 },
+          { name: 'Freitag', wert: 0.022 },
+          { name: 'Donnerstag', wert: 0.014 },
+        ],
+        satz: 'Montag: im Schnitt der beste Tag – und der wildeste.',
+        fusszeile: 'Stand: 23.11.2026 | Quelle: Yahoo Finance (^GDAXI); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile:
+      'Stand: 23.11.2026 | Quelle: Yahoo Finance (DAX-Schlusskurse seit 1987); eigene Rechnung',
+    text:
+      '„Montags crasht die Börse.“ Stimmt das? Wir haben 38 Jahre DAX nachgerechnet – 9.837 Handelstage. 📅\n\n' +
+      'Im Schnitt je Wochentag (Veränderung zum Vortag):\n' +
+      'Montag: +0,071 %\n' +
+      'Dienstag: +0,067 %\n' +
+      'Mittwoch: +0,038 %\n' +
+      'Freitag: +0,022 %\n' +
+      'Donnerstag: +0,014 %\n\n' +
+      'Aber: Unter den 10 schwärzesten Tagen seit 1988 waren 5 Montage, unter den 50 schwärzesten 17 – gleich verteilt wären es 10. Und auch unter den 10 besten Tagen waren 5 Montage.\n\n' +
+      'Die schwärzesten Tage:\n' +
+      '16.10.1989 (Mo): −13,1 %\n' +
+      '12.03.2020 (Do): −12,2 %\n' +
+      '19.08.1991 (Mo): −9,2 %\n' +
+      '11.09.2001 (Di): −8,5 %\n' +
+      '09.03.2020 (Mo): −7,9 %\n\n' +
+      'Fazit: Mythos – im Schnitt ist der Montag sogar der beste Tag. Fakt ist: Montags schlägt der DAX am heftigsten aus, nach oben wie nach unten.\n\n' +
+      'Vergangene Kurse sagen nichts über künftige. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (DAX-Schlusskurse 30.12.1987–23.11.2026); eigene Rechnung; Logo: Wikimedia Commons, gemeinfrei',
+    schlagworte: ['dax', 'boerse', 'montag', 'statistik', 'mythos'],
+  },
   {
     /*
       Zahlenkarte 23.11.2026, zweiter Versuch: „Huang ist zurück: Nvidia

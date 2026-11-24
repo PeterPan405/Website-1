@@ -37,7 +37,18 @@ export interface Balkenlistenkarte extends NeuGemeinsam {
   zeilen: { name: string; zusatz?: string; wert: number; hervor?: boolean }[]
   /** Beschriftung der Achse, etwa „Veränderung in Prozent“. */
   achse: string
+  /**
+   * Nachkommastellen der Werte und der Achse (24.11.2026: Tagesdurchschnitte
+   * je Wochentag liegen bei 0,01–0,07 % – mit einer Stelle stünde überall 0,1).
+   */
+  stellen?: number
   satz?: string
+}
+
+/** Achsenzahl ohne Gleitkommareste: 0,06 statt 0.060000000000000005. */
+function zahlDe(v: number, stellen?: number): string {
+  const n = stellen ?? (Number.isInteger(v) ? 0 : 1)
+  return v.toLocaleString('de-DE', { minimumFractionDigits: n, maximumFractionDigits: n })
 }
 
 export const balkenliste: Art<Balkenlistenkarte> = {
@@ -136,7 +147,7 @@ export const balkenliste: Art<Balkenlistenkarte> = {
                 ]
               : [])
           ),
-          text(prozent(z.wert), {
+          text(prozent(z.wert, k.stellen ?? 1), {
             top: mitte(i) - 15,
             ...(z.wert >= 0
               ? { left: X(z.wert) + 12 }
@@ -147,14 +158,17 @@ export const balkenliste: Art<Balkenlistenkarte> = {
           }),
         ]),
         ...ticks.map((v) =>
-          text(`${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v)} %`, {
-            top: unten + 10,
-            left: X(v) - 40,
-            width: 80,
-            justifyContent: 'center',
-            fontSize: 18,
-            color: STIL.hellgrau,
-          })
+          text(
+            `${v > 0 ? '+' : v < 0 ? '−' : ''}${zahlDe(Math.abs(v), k.stellen === undefined ? undefined : Math.min(k.stellen, 2))} %`,
+            {
+              top: unten + 10,
+              left: X(v) - 40,
+              width: 80,
+              justifyContent: 'center',
+              fontSize: 18,
+              color: STIL.hellgrau,
+            }
+          )
         ),
         text(k.achse, {
           top: oben - 46,
