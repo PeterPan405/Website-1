@@ -37,6 +37,11 @@ import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 import { NVIDIA_COMEBACK } from '@/data/instagram-reihen-nvidia-comeback'
 import {
+  DAX_BESTE,
+  DAX_SCHWAERZESTE,
+  DAX_WOCHENTAGE,
+} from '@/data/instagram-reihen-dax-wochentage'
+import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
 } from '@/data/instagram-reihen-inflation'
@@ -2703,6 +2708,112 @@ for (let i = 1; i < nachDatum.length; i++)
     )
     for (const z of ['239,24 $', '125,53 $', '167,02 $', '+33,1 %', '−47,5 %', '+8,5 %'])
       pruefe(`Nvidia-Comeback: Beschriftung nennt ${z}`, k.text.includes(z))
+  }
+}
+
+/* 24.11.2026: Schwarzer Montag? Mythos oder Fakt (DAX seit 1988, Yahoo Finance). Karussell, Ideenpool Nr. 1. */
+{
+  const k = karteVom('2026-11-24')
+  pruefe(
+    'Montag: Karte für den 24.11. ist ein Dossier mit vier Seiten',
+    k?.art === 'dossier' && zahlenkarteSeiten(k) === 4
+  )
+  if (k?.art === 'dossier') {
+    pruefe(
+      'Montag: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe('Montag: Form anders als am Vortag', form(k) !== form(karteVom('2026-11-23')!))
+    const zaehle = (liste: readonly { wochentag: string }[], w: string) =>
+      liste.filter((t) => t.wochentag === w).length
+    pruefe(
+      'Montag: 5 der 10 schwärzesten Tage sind Montage',
+      zaehle(DAX_SCHWAERZESTE.slice(0, 10), 'Mo') === 5
+    )
+    pruefe(
+      'Montag: 5 der 8 schwärzesten Tage sind Montage',
+      zaehle(DAX_SCHWAERZESTE.slice(0, 8), 'Mo') === 5
+    )
+    pruefe('Montag: 5 der 10 besten Tage sind Montage', zaehle(DAX_BESTE, 'Mo') === 5)
+    pruefe(
+      'Montag: schwärzeste Liste absteigend sortiert',
+      DAX_SCHWAERZESTE.every(
+        (t, i) => i === 0 || t.prozent >= DAX_SCHWAERZESTE[i - 1].prozent
+      )
+    )
+    pruefe(
+      'Montag: jede Tagesveränderung passt zu Schluss und Vortag',
+      [...DAX_SCHWAERZESTE, ...DAX_BESTE].every(
+        (t) => Math.abs((t.schluss / t.vortag - 1) * 100 - t.prozent) < 0.01
+      )
+    )
+    pruefe(
+      'Montag: Wochentag stimmt mit dem Datum',
+      [...DAX_SCHWAERZESTE, ...DAX_BESTE].every(
+        (t) =>
+          ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'][
+            new Date(`${t.tag}T12:00:00Z`).getUTCDay()
+          ] === t.wochentag
+      )
+    )
+    const raster = k.teile.find((t) => t.art === 'punktraster')
+    pruefe(
+      'Montag: Punktraster = Verteilung der 50 schwärzesten Tage (×2)',
+      raster?.art === 'punktraster' &&
+        raster.teile.every(
+          (t) =>
+            t.punkte ===
+            2 *
+              zaehle(
+                DAX_SCHWAERZESTE,
+                (
+                  {
+                    Montag: 'Mo',
+                    Dienstag: 'Di',
+                    Mittwoch: 'Mi',
+                    Donnerstag: 'Do',
+                    Freitag: 'Fr',
+                  } as Record<string, string>
+                )[t.name]
+              )
+        ) &&
+        raster.teile.reduce((a, t) => a + t.punkte, 0) === 100
+    )
+    const balken = k.teile.find((t) => t.art === 'balkenliste')
+    const name = {
+      Mo: 'Montag',
+      Di: 'Dienstag',
+      Mi: 'Mittwoch',
+      Do: 'Donnerstag',
+      Fr: 'Freitag',
+    } as const
+    pruefe(
+      'Montag: Balken = Ø je Wochentag, drei Stellen',
+      balken?.art === 'balkenliste' &&
+        DAX_WOCHENTAGE.every(
+          (w) =>
+            balken.zeilen.find((z) => z.name === name[w.wochentag])?.wert ===
+            Math.round(w.schnitt * 1000) / 1000
+        )
+    )
+    pruefe(
+      'Montag: Montag hat den höchsten Schnitt',
+      DAX_WOCHENTAGE.every((w) => w.schnitt <= DAX_WOCHENTAGE[0].schnitt)
+    )
+    pruefe('Montag: 9.837 Tage', DAX_WOCHENTAGE.reduce((a, w) => a + w.tage, 0) === 9837)
+    pruefe(
+      'Montag: Gegenprobe – Punktraster mit 99 Punkten wird beanstandet',
+      raster?.art === 'punktraster' &&
+        pruefeZahlenkarte({
+          ...raster,
+          teile: raster.teile.map((t, i) =>
+            i === 0 ? { ...t, punkte: t.punkte - 1 } : t
+          ),
+        }).length > 0
+    )
+    for (const z of ['+0,071 %', '+0,014 %', '−13,1 %', '9.837', '17'])
+      pruefe(`Montag: Beschriftung nennt ${z}`, k.text.includes(z))
   }
 }
 
