@@ -17,6 +17,7 @@ import { deckblatt, type Deckblattkarte } from './deckblatt.ts'
 import { DOSSIER_ARTEN, dossier, type Dossierkarte } from './dossier.ts'
 import { erholung, type Erholungkarte } from './erholung.ts'
 import { geldfluss, type Geldflusskarte } from './geldfluss.ts'
+import { jahreskacheln, type Jahreskachelkarte } from './jahreskacheln.ts'
 import { kalender, type Kalenderkarte } from './kalender.ts'
 import { kerzen, type Kerzenkarte } from './kerzen.ts'
 import { kreise, type Kreiskarte } from './kreise.ts'
@@ -70,6 +71,7 @@ export type NeueKarte =
   | Kuchenkarte
   | Scherenkarte
   | Balkenlistenkarte
+  | Jahreskachelkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -78,6 +80,7 @@ export const NEUE_ARTEN: {
   kuchen,
   schere,
   balkenliste,
+  jahreskacheln,
   deckblatt,
   punktraster,
   kalender,

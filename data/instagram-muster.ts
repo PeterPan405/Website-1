@@ -787,6 +787,24 @@ export const musterkarten: Zahlenkarte[] = [
     schlagworte: ['autobauer', 'bmw', 'tesla', 'aktien', 'boerse'],
   },
   {
+    /* Jahreskacheln: je Jahr ein Feld, grün im Plus, rot im Minus (S&P 500 in der Thanksgiving-Woche). */
+    art: 'jahreskacheln',
+    datum: '2026-11-15',
+    titel: [{ text: 'Thanksgiving-Woche:' }, { text: 'Meist im Plus.', gruen: true }],
+    unterzeile: 'S&P 500 vom Freitag vor Thanksgiving bis Black Friday.',
+    stellen: 2,
+    jahre: [
+      { jahr: 2021, wert: -2.2 },
+      { jahr: 2022, wert: 1.53 },
+      { jahr: 2023, wert: 1.0 },
+      { jahr: 2024, wert: 1.06 },
+      { jahr: 2025, wert: 3.73 },
+    ],
+    fusszeile: 'Stand: 11/2026 | Quelle: Yahoo Finance',
+    text: 'Muster.\n\nQuelle: Yahoo Finance',
+    schlagworte: ['thanksgiving', 'sp500', 'boerse', 'statistik', 'saison'],
+  },
+  {
     /* Kuchen: der Korb des Euro-Index EXY (Wikipedia „Euro Currency Index“, nach ICE Futures U.S.). */
     art: 'kuchen',
     datum: '2026-11-15',

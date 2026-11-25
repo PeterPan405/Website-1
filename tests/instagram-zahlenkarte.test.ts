@@ -42,6 +42,10 @@ import {
   DAX_WOCHENTAGE,
 } from '@/data/instagram-reihen-dax-wochentage'
 import {
+  THANKSGIVING_2026_BISHER,
+  THANKSGIVING_WOCHEN,
+} from '@/data/instagram-reihen-thanksgiving'
+import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
 } from '@/data/instagram-reihen-inflation'
@@ -2814,6 +2818,100 @@ for (let i = 1; i < nachDatum.length; i++)
     )
     for (const z of ['+0,071 %', '+0,014 %', '−13,1 %', '9.837', '17'])
       pruefe(`Montag: Beschriftung nennt ${z}`, k.text.includes(z))
+  }
+}
+
+/* 25.11.2026: Thanksgiving-Woche (S&P 500, Yahoo Finance). Einseiter, neue Art `jahreskacheln`. */
+{
+  const k = karteVom('2026-11-25')
+  pruefe(
+    'Thanksgiving: Karte für den 25.11. sind Jahreskacheln',
+    k?.art === 'jahreskacheln'
+  )
+  if (k?.art === 'jahreskacheln') {
+    pruefe(
+      'Thanksgiving: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Thanksgiving: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-24')!)
+    )
+    pruefe(
+      'Thanksgiving: jede Woche aus Start- und Endschluss nachgerechnet',
+      THANKSGIVING_WOCHEN.every(
+        (w) => Math.abs((w.bfSchluss / w.startSchluss - 1) * 100 - w.woche) < 0.006
+      )
+    )
+    pruefe(
+      'Thanksgiving: Thanksgiving ist jeweils der vierte Donnerstag im November',
+      THANKSGIVING_WOCHEN.every((w) => {
+        const d = new Date(`${w.thanksgiving}T12:00:00Z`)
+        return (
+          d.getUTCDay() === 4 &&
+          d.getUTCMonth() === 10 &&
+          d.getUTCDate() >= 22 &&
+          d.getUTCDate() <= 28
+        )
+      })
+    )
+    pruefe(
+      'Thanksgiving: Black Friday ist der Tag danach, Start der Freitag davor',
+      THANKSGIVING_WOCHEN.every(
+        (w) =>
+          Date.parse(w.blackFriday) - Date.parse(w.thanksgiving) === 864e5 &&
+          Date.parse(w.thanksgiving) - Date.parse(w.start) === 6 * 864e5
+      )
+    )
+    const plus = THANKSGIVING_WOCHEN.filter((w) => w.woche > 0).length
+    const schnitt =
+      THANKSGIVING_WOCHEN.reduce((a, w) => a + w.woche, 0) / THANKSGIVING_WOCHEN.length
+    pruefe(
+      'Thanksgiving: 14 von 20 im Plus, Ø +0,8 %',
+      plus === 14 &&
+        THANKSGIVING_WOCHEN.length === 20 &&
+        Math.round(schnitt * 10) / 10 === 0.8
+    )
+    const bf = THANKSGIVING_WOCHEN.map((w) => w.nurBlackFriday)
+    pruefe(
+      'Thanksgiving: Black Friday 10 von 20 im Plus, Ø −0,04 %',
+      bf.filter((v) => v > 0).length === 10 &&
+        Math.round((bf.reduce((a, v) => a + v, 0) / 20) * 100) / 100 === -0.04
+    )
+    const b = THANKSGIVING_2026_BISHER
+    pruefe(
+      'Thanksgiving: 2026 bisher +4,21 %',
+      Math.round((b.bisSchluss / b.startSchluss - 1) * 10000) / 100 === 4.21 &&
+        k.aktuell?.wert === 4.21
+    )
+    pruefe(
+      'Thanksgiving: stärker als 2026 bisher nur 2008',
+      THANKSGIVING_WOCHEN.filter((w) => w.woche > 4.21)
+        .map((w) => w.jahr)
+        .join() === '2008'
+    )
+    const m = JSON.parse(readFileSync('data/snapshots/markets.json', 'utf8')).instruments
+      .sp500.points as { d: string; c: number }[]
+    pruefe(
+      'Thanksgiving: 20.11. und 24.11. wie in markets.json',
+      m.find((x) => x.d === '2026-11-20')?.c === 6910.39 &&
+        m.find((x) => x.d === '2026-11-24')?.c === 7201.09
+    )
+    pruefe(
+      'Thanksgiving: Gegenprobe – ein Wert, der mit einer Stelle wie 0 aussähe, wird beanstandet',
+      pruefeZahlenkarte({ ...k, stellen: 1 }).some((t) => t.includes('wie 0'))
+    )
+    for (const z of [
+      '4,2 %',
+      '14 von 20',
+      '+0,8 %',
+      '12,0 %',
+      '−4,7 %',
+      '10 von 20',
+      '−0,04 %',
+    ])
+      pruefe(`Thanksgiving: Beschriftung nennt ${z}`, k.text.includes(z))
   }
 }
 
