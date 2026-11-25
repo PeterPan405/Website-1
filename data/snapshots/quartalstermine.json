@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-24T16:04:18.956Z",
+  "abgerufenAm": "2026-11-25T15:52:47.588Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -38,12 +38,12 @@
     },
     "nasdaq": {
       "tageAbgefragt": 50,
-      "tageMitZeilen": 35,
-      "letzterTag": "2027-01-18",
-      "zeilen": 479,
-      "imKatalog": 41,
-      "mitLage": 27,
-      "beigetragen": 41
+      "tageMitZeilen": 33,
+      "letzterTag": "2027-01-19",
+      "zeilen": 468,
+      "imKatalog": 38,
+      "mitLage": 22,
+      "beigetragen": 38
     }
   },
   "unternehmen": {
@@ -944,9 +944,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-19",
-          "basis": "2026-01-20",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:07"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-15",
@@ -2286,34 +2286,26 @@
     "DE": {
       "name": "DEERE & CO",
       "bisher": [
+        "2026-11-25",
         "2026-08-20",
         "2026-05-21",
         "2026-02-19",
         "2025-11-26",
         "2025-08-14",
         "2025-05-15",
-        "2025-02-13",
-        "2024-11-21"
+        "2025-02-13"
       ],
       "bisherZeiten": {
+        "2026-11-25": "06:00",
         "2026-08-20": "06:00",
         "2026-05-21": "06:00",
         "2026-02-19": "06:03",
         "2025-11-26": "06:00",
         "2025-08-14": "06:00",
         "2025-05-15": "06:00",
-        "2025-02-13": "06:00",
-        "2024-11-21": "06:00"
+        "2025-02-13": "06:00"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-25",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2027-02-18",
           "basis": "2026-02-19",
@@ -2330,6 +2322,12 @@
           "erwartet": "2027-08-19",
           "basis": "2026-08-20",
           "streuungTage": 7,
+          "newYorkerZeit": "06:00"
+        },
+        {
+          "erwartet": "2027-11-24",
+          "basis": "2026-11-25",
+          "streuungTage": 0,
           "newYorkerZeit": "06:00"
         }
       ]
@@ -3022,14 +3020,6 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
-        {
           "erwartet": "2027-02-17",
           "basis": "2026-02-18",
           "streuungTage": 0,
@@ -3354,40 +3344,26 @@
     "WDAY": {
       "name": "Workday, Inc.",
       "bisher": [
+        "2026-11-24",
         "2026-09-29",
         "2026-08-27",
         "2026-05-21",
         "2026-02-24",
         "2026-02-04",
         "2025-11-25",
-        "2025-08-21",
-        "2025-05-22"
+        "2025-08-21"
       ],
       "bisherZeiten": {
+        "2026-11-24": "16:01",
         "2026-09-29": "12:01",
         "2026-08-27": "16:01",
         "2026-05-21": "16:02",
         "2026-02-24": "16:02",
         "2026-02-04": "16:04",
         "2025-11-25": "16:03",
-        "2025-08-21": "16:05",
-        "2025-05-22": "16:04"
+        "2025-08-21": "16:05"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
-        {
-          "erwartet": "2027-02-23",
-          "basis": "2026-02-24",
-          "streuungTage": 0,
-          "newYorkerZeit": "16:02"
-        },
         {
           "erwartet": "2027-05-20",
           "basis": "2026-05-21",
@@ -3398,6 +3374,12 @@
           "erwartet": "2027-08-26",
           "basis": "2026-08-27",
           "streuungTage": 7,
+          "newYorkerZeit": "16:01"
+        },
+        {
+          "erwartet": "2027-11-23",
+          "basis": "2026-11-24",
+          "streuungTage": 0,
           "newYorkerZeit": "16:01"
         }
       ]
@@ -4112,10 +4094,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2027-01-19",
-          "basis": "2026-01-20",
-          "streuungTage": 5,
-          "newYorkerZeit": "06:49"
+          "erwartet": "2027-01-15",
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-04-15",
@@ -5244,14 +5228,6 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
-        {
           "erwartet": "2027-02-16",
           "basis": "2026-02-17",
           "streuungTage": 0,
@@ -5780,9 +5756,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-19",
-          "basis": "2026-01-20",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "06:34"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-20",
@@ -6387,8 +6363,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-19",
-          "basis": "2026-01-20",
-          "streuungTage": 0
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-20",
@@ -11990,9 +11967,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-19",
-          "basis": "2026-01-20",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "11:30"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-20",
@@ -13185,34 +13162,26 @@
     "DELL": {
       "name": "Dell Technologies Inc.",
       "bisher": [
+        "2026-11-24",
         "2026-09-01",
         "2026-05-28",
         "2026-02-26",
         "2025-11-25",
         "2025-08-28",
         "2025-05-29",
-        "2025-02-27",
-        "2024-11-26"
+        "2025-02-27"
       ],
       "bisherZeiten": {
+        "2026-11-24": "16:09",
         "2026-09-01": "16:10",
         "2026-05-28": "16:15",
         "2026-02-26": "16:08",
         "2025-11-25": "16:10",
         "2025-08-28": "16:09",
         "2025-05-29": "16:07",
-        "2025-02-27": "16:07",
-        "2024-11-26": "16:12"
+        "2025-02-27": "16:07"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-25",
           "basis": "2026-02-26",
@@ -13230,40 +13199,38 @@
           "basis": "2026-09-01",
           "streuungTage": 5,
           "newYorkerZeit": "16:10"
+        },
+        {
+          "erwartet": "2027-11-23",
+          "basis": "2026-11-24",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:09"
         }
       ]
     },
     "HPQ": {
       "name": "HP INC",
       "bisher": [
+        "2026-11-24",
         "2026-08-26",
         "2026-05-27",
         "2026-02-24",
         "2026-02-03",
         "2025-11-25",
         "2025-08-27",
-        "2025-05-28",
-        "2025-02-27"
+        "2025-05-28"
       ],
       "bisherZeiten": {
+        "2026-11-24": "16:17",
         "2026-08-26": "16:17",
         "2026-05-27": "16:17",
         "2026-02-24": "16:18",
         "2026-02-03": "17:15",
         "2025-11-25": "16:17",
         "2025-08-27": "16:06",
-        "2025-05-28": "16:18",
-        "2025-02-27": "16:18"
+        "2025-05-28": "16:18"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-23",
           "basis": "2026-02-24",
@@ -13279,6 +13246,12 @@
         {
           "erwartet": "2027-08-25",
           "basis": "2026-08-26",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:17"
+        },
+        {
+          "erwartet": "2027-11-23",
+          "basis": "2026-11-24",
           "streuungTage": 0,
           "newYorkerZeit": "16:17"
         }
@@ -13373,34 +13346,26 @@
     "ADSK": {
       "name": "Autodesk, Inc.",
       "bisher": [
+        "2026-11-24",
         "2026-08-27",
         "2026-05-28",
         "2026-02-26",
         "2025-11-25",
         "2025-08-28",
         "2025-05-22",
-        "2025-02-27",
-        "2024-11-26"
+        "2025-02-27"
       ],
       "bisherZeiten": {
+        "2026-11-24": "16:05",
         "2026-08-27": "16:05",
         "2026-05-28": "16:14",
         "2026-02-26": "16:07",
         "2025-11-25": "16:03",
         "2025-08-28": "16:03",
         "2025-05-22": "16:01",
-        "2025-02-27": "16:34",
-        "2024-11-26": "16:05"
+        "2025-02-27": "16:34"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-24",
-          "basis": "Oct/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "nachboerse"
-        },
         {
           "erwartet": "2027-02-25",
           "basis": "2026-02-26",
@@ -13416,6 +13381,12 @@
         {
           "erwartet": "2027-08-26",
           "basis": "2026-08-27",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:05"
+        },
+        {
+          "erwartet": "2027-11-23",
+          "basis": "2026-11-24",
           "streuungTage": 0,
           "newYorkerZeit": "16:05"
         }
@@ -13965,10 +13936,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-12-10",
+          "erwartet": "2026-12-08",
           "basis": "Oct/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-03-16",
@@ -18427,7 +18400,7 @@
     "UTDI.DE": "2026-11-22",
     "UU.L": "2026-11-23",
     "VALE3.SA": "2026-11-24",
-    "VER.VI": "2026-08-18",
+    "VER.VI": "2026-11-25",
     "VIE.PA": "2026-08-18",
     "VK.PA": "2026-08-18",
     "VNA.DE": "2026-08-18",
