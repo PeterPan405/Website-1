@@ -400,36 +400,37 @@ benutzen. Einfach, dass ein bisschen Abwechslung mal reinkommt." Sie liegen in
 gibt es eine **Musterkarte** mit echten Zahlen in `data/instagram-muster.ts` –
 die Vorlage, wie man sie füllt. Die Musterkarten gehen nie hinaus.
 
-| Art            | Passt zu                                                               | Daten aus                            |
-| -------------- | ---------------------------------------------------------------------- | ------------------------------------ |
-| `kurszettel`   | Wochen- oder Tagesbilanz mehrerer Werte                                | `markets.json`                       |
-| `punktraster`  | Anteile, die zusammen 100 % ergeben                                    | Statistik mit Quelle                 |
-| `deckblatt`    | Erste Seite mit Foto über die ganze Breite, Logo darauf, kurze Liste   | Foto/Logo frei lizenziert, genannt   |
-| `kuchen`       | Anteile als Ring mit genauen Werten (Korb eines Index)                 | Statistik, Indexregeln               |
-| `schere`       | Zwei Reihen, Fläche dazwischen: wer vorn liegt, wann es kippt          | `zinsen.json`, `markets.json`        |
-| `balkenliste`  | Rangfolge als Balken ab Null, Plus rechts, Minus links – klar lesbar   | `markets.json`                       |
-| `kalender`     | ein Jahr Tag für Tag, Plus- und Minustage                              | `markets.json`                       |
-| `tacho`        | wo ein Wert zwischen Tief und Hoch steht                               | `markets.json`                       |
-| `wasserfall`   | wie sich ein Stand Schritt für Schritt aufbaut                         | `markets.json`, Bilanzen             |
-| `geldfluss`    | wohin der Umsatz fließt                                                | `fundamentaldaten.json` (SEC)        |
-| `kreise`       | Größenvergleich (Börsenwert)                                           | Kurs × Aktienzahl                    |
-| `ampel`        | Länder oder Werte gegen eine Grenze                                    | `laender.json`, `zinsen.json`        |
-| `rangwechsel`  | wer wann vorn lag                                                      | Kurs × Aktienzahl je Monat           |
-| `kerzen`       | Wochenverlauf mit Hoch und Tief                                        | `markets.json`                       |
-| `streuung`     | zwei Kennzahlen gegeneinander (KGV, Kursplus)                          | SEC, `markets.json`                  |
-| `netz`         | zwei Unternehmen auf sechs Achsen                                      | SEC, `markets.json`                  |
-| `marktkarte`   | Heatmap: Fläche = Börsenwert, Farbe = Veränderung                      | Kurs × Aktienzahl, `markets.json`    |
-| `laenderkarte` | Europa als Kachelkarte, gefärbt nach einer Länderzahl                  | `laender.json`                       |
-| `weltuhr`      | Handelszeiten der Börsen in deutscher Zeit                             | `lib/handelszeiten.ts`               |
-| `schaetzfrage` | Mitmachen: erst schätzen, dann wischen                                 | jede gelesene Zahl                   |
-| `damalsheute`  | Kurse vor Jahren und heute, je Zeile eine Hantel                       | `markets.json`                       |
-| `stapel`       | Münzstapel, eine Münze = feste Summe                                   | `fundamentaldaten.json`              |
-| `stammbaum`    | Konzern und Teile, oder Gruppen aus Zahlen                             | was die Gruppen begründet            |
-| `zeitkapsel`   | Karussell, je Seite ein Jahr – der Verlauf wächst mit                  | `markets.json`                       |
-| `zyklus`       | Karussell: Takt einer Reihe um ein Ereignis (Halving), Phasen, Stimmen | `instagram-reihen-bitcoin.ts`        |
-| `linie`        | lange Kursreihe mit alten Hochs als Linie und markierten Punkten       | Kursreihen (`instagram-reihen-*.ts`) |
-| `abstuerze`    | Abstürze vom Hoch zum Tief, Prozent und Tage je Episode                | Kursreihen                           |
-| `dossier`      | Karussell aus einseitigen Arten – ein Thema von mehreren Seiten        | je Teilkarte                         |
+| Art             | Passt zu                                                               | Daten aus                            |
+| --------------- | ---------------------------------------------------------------------- | ------------------------------------ |
+| `kurszettel`    | Wochen- oder Tagesbilanz mehrerer Werte                                | `markets.json`                       |
+| `punktraster`   | Anteile, die zusammen 100 % ergeben                                    | Statistik mit Quelle                 |
+| `deckblatt`     | Erste Seite mit Foto über die ganze Breite, Logo darauf, kurze Liste   | Foto/Logo frei lizenziert, genannt   |
+| `kuchen`        | Anteile als Ring mit genauen Werten (Korb eines Index)                 | Statistik, Indexregeln               |
+| `schere`        | Zwei Reihen, Fläche dazwischen: wer vorn liegt, wann es kippt          | `zinsen.json`, `markets.json`        |
+| `balkenliste`   | Rangfolge als Balken ab Null, Plus rechts, Minus links – klar lesbar   | `markets.json`                       |
+| `jahreskacheln` | Je Jahr ein Feld: wie lief X immer zur selben Zeit (Saison, Feiertag)  | `markets.json`, Kursreihe            |
+| `kalender`      | ein Jahr Tag für Tag, Plus- und Minustage                              | `markets.json`                       |
+| `tacho`         | wo ein Wert zwischen Tief und Hoch steht                               | `markets.json`                       |
+| `wasserfall`    | wie sich ein Stand Schritt für Schritt aufbaut                         | `markets.json`, Bilanzen             |
+| `geldfluss`     | wohin der Umsatz fließt                                                | `fundamentaldaten.json` (SEC)        |
+| `kreise`        | Größenvergleich (Börsenwert)                                           | Kurs × Aktienzahl                    |
+| `ampel`         | Länder oder Werte gegen eine Grenze                                    | `laender.json`, `zinsen.json`        |
+| `rangwechsel`   | wer wann vorn lag                                                      | Kurs × Aktienzahl je Monat           |
+| `kerzen`        | Wochenverlauf mit Hoch und Tief                                        | `markets.json`                       |
+| `streuung`      | zwei Kennzahlen gegeneinander (KGV, Kursplus)                          | SEC, `markets.json`                  |
+| `netz`          | zwei Unternehmen auf sechs Achsen                                      | SEC, `markets.json`                  |
+| `marktkarte`    | Heatmap: Fläche = Börsenwert, Farbe = Veränderung                      | Kurs × Aktienzahl, `markets.json`    |
+| `laenderkarte`  | Europa als Kachelkarte, gefärbt nach einer Länderzahl                  | `laender.json`                       |
+| `weltuhr`       | Handelszeiten der Börsen in deutscher Zeit                             | `lib/handelszeiten.ts`               |
+| `schaetzfrage`  | Mitmachen: erst schätzen, dann wischen                                 | jede gelesene Zahl                   |
+| `damalsheute`   | Kurse vor Jahren und heute, je Zeile eine Hantel                       | `markets.json`                       |
+| `stapel`        | Münzstapel, eine Münze = feste Summe                                   | `fundamentaldaten.json`              |
+| `stammbaum`     | Konzern und Teile, oder Gruppen aus Zahlen                             | was die Gruppen begründet            |
+| `zeitkapsel`    | Karussell, je Seite ein Jahr – der Verlauf wächst mit                  | `markets.json`                       |
+| `zyklus`        | Karussell: Takt einer Reihe um ein Ereignis (Halving), Phasen, Stimmen | `instagram-reihen-bitcoin.ts`        |
+| `linie`         | lange Kursreihe mit alten Hochs als Linie und markierten Punkten       | Kursreihen (`instagram-reihen-*.ts`) |
+| `abstuerze`     | Abstürze vom Hoch zum Tief, Prozent und Tage je Episode                | Kursreihen                           |
+| `dossier`       | Karussell aus einseitigen Arten – ein Thema von mehreren Seiten        | je Teilkarte                         |
 
 **Wechsel:** nie die Form des Vortags (`form()` gibt bei den neuen Arten den
 Namen der Art zurück), und über eine Woche möglichst keine Art zweimal. Die

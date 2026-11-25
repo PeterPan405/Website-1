@@ -29,6 +29,7 @@ import { SILBER_WOCHEN } from './instagram-reihen-silber.ts'
 import { EXY_2026 } from './instagram-reihen-euro.ts'
 import { NVIDIA_COMEBACK } from './instagram-reihen-nvidia-comeback.ts'
 import { DAX_SCHWAERZESTE } from './instagram-reihen-dax-wochentage.ts'
+import { THANKSGIVING_WOCHEN } from './instagram-reihen-thanksgiving.ts'
 import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
@@ -44,6 +45,47 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 25.11.2026, „Thanksgiving-Woche: 2026 schon +4,2 %“ –
+      vollautomatisch, am Vortag dem Betreiber angekündigt (Vorschlag 1,
+      „Truthahn-Rally?“), nach seiner Kritik vom 24.11. („Montag gestern war
+      sehr grün … Schwarzer Montag, macht irgendwie keinen Sinn“) bewusst mit
+      Brücke zur Woche. Aufhänger-Typ Kalender/Geschichte, Einseiter nach dem
+      Karussell vom 24.11. Neue Art `jahreskacheln`.
+
+      Daten: data/instagram-reihen-thanksgiving.ts – S&P 500 (Yahoo Finance
+      ^GSPC), Schluss am Freitag vor Thanksgiving gegen Schluss am Black
+      Friday, 2006–2025: 14 von 20 Jahren im Plus, Ø +0,80 %; Black Friday
+      allein 10 von 20, Ø −0,04 %. 2026 bisher (20.11. → 24.11.): 6.910,39 →
+      7.201,09 = +4,21 % – stärker als jede volle Thanksgiving-Woche außer
+      2008 (+12,03 %). Kein Warum für einzelne Jahre (keine gelesene Quelle);
+      für 2026 nur der Anlass aus unseren Meldungen (Huang zurück, CNBC 23.11.).
+    */
+    art: 'jahreskacheln',
+    datum: '2026-11-25',
+    freigabe: '2026-11-25',
+    titel: [{ text: 'Thanksgiving-Woche:' }, { text: '2026 schon +4,2 %.', gruen: true }],
+    unterzeile: 'S&P 500 vom Freitag vor Thanksgiving bis Black Friday, je Jahr.',
+    stellen: 2,
+    aktuell: { text: '2026 bisher (Fr. 20.11. – Di. 24.11.)', wert: 4.21 },
+    jahre: THANKSGIVING_WOCHEN.map((w) => ({ jahr: w.jahr, wert: w.woche })),
+    satz: '14 von 20 Jahren im Plus, im Schnitt +0,8 %. Stärker als 2026 bisher war nur 2008.',
+    fusszeile:
+      'Stand: 24.11.2026 | Quelle: Yahoo Finance (S&P 500, Schlusskurse); eigene Rechnung',
+    text:
+      'Diese Woche ist Thanksgiving – und der S&P 500 liegt seit Freitag schon 4,2 % im Plus. 🦃\n\n' +
+      'Wie lief die Thanksgiving-Woche sonst? Vom Freitag davor bis zum Black Friday, 2006–2025:\n' +
+      '14 von 20 Jahren im Plus, im Schnitt +0,8 %.\n' +
+      'Beste Woche: 2008 mit +12,0 %.\n' +
+      'Schlechteste: 2011 mit −4,7 %, 2018 mit −3,8 %.\n\n' +
+      'Und der Black Friday selbst? Ein Münzwurf: 10 von 20 Jahren im Plus, im Schnitt −0,04 %.\n\n' +
+      '2026 bisher: 6.910 Punkte am Freitag (20.11.) → 7.201 Punkte am Dienstag (24.11.). Den Schwung brachte laut CNBC Jensen Huangs Rückkehr an die Nvidia-Spitze am Montag.\n\n' +
+      'Am Donnerstag ruht die Wall Street – Thanksgiving ist Feiertag.\n\n' +
+      'Vergangene Kurse sagen nichts über künftige. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (S&P-500-Schlusskurse 2005–2026); CNBC, 23.11.2026; eigene Rechnung',
+    schlagworte: ['thanksgiving', 'sp500', 'blackfriday', 'boerse', 'wallstreet'],
+  },
   {
     /*
       Zahlenkarte 24.11.2026, „Schwarzer Montag? Mythos oder Fakt“ –
