@@ -101,6 +101,258 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'sanofi-kauft-insmed-fuer-41-milliarden-dollar',
+    title: 'Sanofi kauft den US-Pharmakonzern Insmed für 41 Milliarden Dollar',
+    metaTitle: 'Sanofi kauft Insmed für 41 Milliarden Dollar',
+    teaser:
+      'Sanofi zahlt 175 Dollar je Aktie in bar für Insmed – laut CNBC der größte Pharma-Zukauf seit drei Jahren. Beide Aktien legten zu.',
+    category: 'Geldanlage',
+    publishedAt: '2026-11-25T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Sanofi', 'Insmed', 'Pharma', 'Übernahme', 'Patentschutz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          "CNBC, 24.11.2026, 22:07 Uhr: „Drugmaker Insmed shares rally 14% after Sanofi agrees to buy it in pharma's biggest deal in three years“",
+        url: 'https://www.cnbc.com/2026/11/24/insmed-sanofi-deal-stock-pharma.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Sanofi übernimmt den US-Pharmakonzern Insmed. Das berichtet CNBC unter Berufung auf die Übernahmevereinbarung beider Konzerne: Der französische Konzern zahlt 175 Dollar je Aktie in bar, insgesamt rund 41 Milliarden Dollar. Laut CNBC ist es der größte Zukauf in der Pharmabranche seit drei Jahren. Eine zweite, unabhängige Quelle lag uns dafür bislang nicht vor. Die Übernahme soll in der ersten Hälfte 2027 abgeschlossen werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was Insmed einbringt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Insmed ist auf seltene Lungenkrankheiten spezialisiert und vertreibt bereits die Mittel Brinsupri und Arikayce, dazu kommt eine Pipeline an Wirkstoffkandidaten. Die Analysehäuser Jefferies und Barclays rechnen laut CNBC vor, dass allein Brinsupri und Arikayce bis 2035 zusammen rund acht Milliarden Dollar Umsatz einbringen könnten – eine Schätzung, kein zugesichertes Ergebnis.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Hintergrund: Dupixent verliert seinen Patentschutz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sanofis größter Umsatzträger Dupixent verliert um das Jahr 2031 seinen Patentschutz. Danach drohen Nachahmerpräparate das Geschäft zu schmälern. Jefferies sieht im Insmed-Kauf keine Lösung für Sanofis Forschungspipeline insgesamt, aber einen Zeitgewinn, bis die Konkurrenz durch Generika zuschlägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Insmed-Aktien sprangen um 14,1 Prozent auf 170,15 Dollar – das ist die übliche Übernahmeprämie. Ungewöhnlich ist, dass auch Sanofi selbst in Paris um 10,9 Prozent zulegte: Normalerweise fällt der Kurs des Käufers bei einer so großen Übernahme eher, weil Anleger Schulden und Verwässerung fürchten. Hier überwog offenbar die Erleichterung über eine Antwort auf den drohenden Umsatzeinbruch.',
+      },
+    ],
+  },
+  {
+    slug: 'us-verbrauchervertrauen-springt-nach-zwischenwahlen',
+    title: 'US-Verbrauchervertrauen springt nach den Zwischenwahlen',
+    teaser:
+      'Der Index des Conference Board kletterte im November auf 103,3 Punkte und übertraf die Erwartungen deutlich. Die Inflationssorge bleibt hoch.',
+    category: 'Märkte',
+    publishedAt: '2026-11-25T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'Verbrauchervertrauen', 'Conference Board', 'Inflation', 'Konjunktur'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          "CNBC, 24.11.2026, 19:34 Uhr: „Consumer confidence shoots up after Democrats' midterm victories — though inflation worries persist“",
+        url: 'https://www.cnbc.com/2026/11/24/consumer-confidence-november-election-midterm.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das Verbrauchervertrauen in den USA ist kräftig gestiegen. Laut CNBC kletterte der Index des Conference Board im November auf 103,3 Punkte, 11,4 Punkte mehr als im Oktober. Ökonomen hatten im Schnitt nur 92,2 Punkte erwartet. Eine zweite, unabhängige Quelle für den genauen Indexstand lag uns bislang nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Arbeitsmarkt wirkt wieder freundlicher',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sowohl die Einschätzung der aktuellen Lage als auch der Erwartungen legte deutlich zu. Der Anteil der Befragten, die Jobs für „reichlich vorhanden“ halten, stieg von 26,2 auf 30,8 Prozent. Der Anteil, der sie für „schwer zu finden“ hält, sank um drei Punkte auf 18,4 Prozent. Besonders stark zog die Stimmung bei Demokraten und Unabhängigen an, nachdem die Demokraten bei den Zwischenwahlen deutlich zugelegt hatten. Bei Republikanern gab das Vertrauen leicht nach, blieb aber am höchsten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Inflation bleibt der Wermutstropfen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Inflationserwartung für die kommenden zwölf Monate sank den zweiten Monat in Folge, liegt mit 5,7 Prozent aber weiter hoch. Seit rund fünfeinhalb Jahren liegt die Teuerung über dem Zwei-Prozent-Ziel der Fed. Conference-Board-Ökonom Fergus McCormick sagte, die Befragten äußerten weiter Frust über hohe Preise, berichteten aber auch von Hoffnung für die Gesamtwirtschaft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Besseres Verbrauchervertrauen und hohe Inflationserwartungen schließen sich nicht aus – sie beschreiben zwei verschiedene Dinge. Das eine misst, wie Menschen ihre eigene Lage einschätzen, das andere, was sie beim Einkaufen erwarten. Die US-Notenbank entscheidet in zwei Wochen über den Leitzins und dürfte beide Werte genau lesen, bevor sie über einen weiteren Zinsschritt entscheidet.',
+      },
+    ],
+  },
+  {
+    slug: 'us-gericht-verurteilt-huawei-wegen-betrugs',
+    title: 'US-Jury verurteilt Huawei wegen Betrugs und Geheimnisdiebstahls',
+    metaTitle: 'Huawei wegen Betrugs und Geheimnisdiebstahls verurteilt',
+    teaser:
+      'Ein Bundesgericht in New York hat Huawei nach dreimonatigem Prozess wegen Bankbetrugs, Geldwäsche und Geheimnisdiebstahls schuldig gesprochen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-25T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Huawei', 'USA', 'China', 'Gerichtsurteil', 'Handelskonflikt'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['cisco'],
+    sources: [
+      {
+        label:
+          'CNBC, 25.11.2026, 03:43 Uhr: „U.S. jury convicts Huawei in a criminal trial over fraud and trade secrets“',
+        url: 'https://www.cnbc.com/2026/11/25/huawei-fraud-trade-trial.html',
+      },
+      {
+        label:
+          'onvista, dpa-AFX, 24.11.2026, 22:46 Uhr: „US-Geschworene sprechen Huawei der Geldwäsche schuldig“',
+        url: 'https://www.onvista.de/news/2026/11-24-us-geschworene-sprechen-huawei-der-geldwaesche-schuldig-0-10-26580178',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Bundesgericht in New York hat Huawei schuldig gesprochen. Die Geschworenen sahen nach einem dreimonatigen Prozess Bank- und Überweisungsbetrug, eine Verschwörung zur Geldwäsche, Verstöße gegen US-Sanktionen und den Diebstahl von Geschäftsgeheimnissen als erwiesen an. Vom Vorwurf organisierter Kriminalität sprachen sie den Konzern und drei seiner Tochtergesellschaften frei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Verschleierte Iran-Geschäfte und kopierter Quellcode',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Anklage täuschte Huawei Banken über sein Geschäft mit dem Iran, um weiter Zugang zu Dollar-Clearing-Diensten zu erhalten. Zudem soll der Konzern iranischen Behörden Überwachungskameras geliefert haben, die bei Protesten eingesetzt wurden. Beim Geheimnisdiebstahl ging es unter anderem um kopierten Quellcode eines Routers von Cisco – Ingenieure sollen „Cisco“ rückwärts geschrieben haben, um die Kopie zu verschleiern – sowie um Daten zu einem Testroboter von T-Mobile.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Strafe erst 2027, Huawei kündigt Berufung an',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dem Konzern drohen Geldstrafen, Einziehungen und Schadensersatz. Das Strafmaß wird erst am 14. September 2027 verkündet. US-Justizminister Todd Blanche erklärte, niemand stehe über dem Gesetz. Huawei nannte die verbliebenen Vorwürfe haltlos und kündigte an, die Urteile zu prüfen und rechtlich dagegen vorzugehen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Anders als bei einem börsennotierten Konzern bewegt dieses Urteil keinen Aktienkurs – Huawei ist privat und nicht gelistet. Die Folgen zeigen sich an anderer Stelle: im Zugang zu internationalen Finanzdienstleistungen und im politischen Klima zwischen den USA und China, das schon vor dem Urteil angespannt war.',
+      },
+    ],
+  },
+  {
+    slug: 'dell-uebertrifft-erwartungen-hebt-prognose-an',
+    title: 'Dell übertrifft Erwartungen deutlich und hebt Prognose an',
+    teaser:
+      'Dell hat Umsatz und Gewinn im dritten Quartal dank der Nachfrage nach KI-Servern weit über den Erwartungen abgeliefert und die Jahresprognose erhöht.',
+    category: 'Märkte',
+    publishedAt: '2026-11-25T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dell', 'KI-Server', 'Quartalszahlen', 'Aktienrückkauf', 'Prognose'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia', 'amd', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC, 24.11.2026, 23:07 Uhr: „Dell earnings beat on AI strength, company authorizes $25 billion buyback“',
+        url: 'https://www.cnbc.com/2026/11/24/dell-earnings-report-q3-2027.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Dell hat die Erwartungen der Analysten klar übertroffen. Laut CNBC lag der Gewinn je Aktie im dritten Quartal bei 9,45 Dollar, der Umsatz bei 54,94 Milliarden Dollar. Analysten hatten im Schnitt nur 6,59 Dollar und 49,32 Milliarden Dollar erwartet, der Umsatz verdoppelte sich damit nahezu gegenüber dem Vorjahr. Eine zweite, unabhängige Quelle für die genauen Zahlen lag uns bislang nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'KI-Server tragen das Geschäft, Privatkunden bremsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Server- und Infrastruktursparte ISG setzte 41,97 Milliarden Dollar um, deutlich mehr als die erwarteten 35,27 Milliarden. Allein mit KI-optimierten Servern wuchs der Umsatz um 291 Prozent auf 22 Milliarden Dollar. ISG macht inzwischen 85 Prozent des Konzernumsatzes aus. Die Sparte für Privat- und Firmenkunden-PCs blieb dagegen mit 12,89 Milliarden Dollar hinter den erwarteten 14,33 Milliarden zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose angehoben, Rückkauf über 25 Milliarden Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das vierte Quartal stellte Dell 8,40 Dollar Gewinn je Aktie bei rund 56,3 Milliarden Dollar Umsatz in Aussicht, ebenfalls über den Analystenschätzungen von 7,50 Dollar und 53,61 Milliarden. Die Jahresprognose für den Umsatz mit KI-Servern hob der Konzern auf 78 Milliarden Dollar an. Der Auftragsbestand für KI-Server liegt laut Dell bei 132,3 Milliarden Dollar. Zusätzlich genehmigte der Vorstand Aktienrückkäufe über 25 Milliarden Dollar. Vize-Chairman Jeff Clarke sagte, Dell sei „ein anderes Unternehmen“, dessen Gewinn und Wachstum heute vor allem von der Infrastruktursparte getragen würden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine erneut angehobene Prognose zeigt, dass Dell dem eigenen KI-Geschäft mehr zutraut als noch vor einem Quartal. Ein Aktienrückkauf wie dieser erhöht den Gewinn je Aktie allein dadurch, dass weniger Aktien im Umlauf bleiben – unabhängig davon, ob das operative Geschäft im gleichen Tempo weiterwächst.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-rally-dreht-sich-dax-und-asiens-boersen-fallen',
+    title: 'Nvidia-Rally dreht sich: Dax und Asiens Börsen fallen',
+    teaser:
+      'Die Erleichterungsrally um Nvidia-Chef Huang bröckelt. Der Dax gab einen Teil der Erholung ab, Chipwerte in Asien verloren teils über 13 Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-11-25T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Nvidia', 'Asien', 'Chipaktien', 'KI-Rally'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['nvidia', 'dax', 'nikkei-225', 'kospi', 'tsmc'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 24.11.2026, 18:19 Uhr: „Dax aktuell: Dax schließt im Minus – Chip-Aktie verliert mehr als neun Prozent“',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-im-minus-chip-aktie-verliert-mehr-als-neun-prozent/100272268.html',
+      },
+      {
+        label:
+          'CNBC, 25.11.2026, 02:57 Uhr: „SoftBank drops 14% as Wall Street AI sell-off ripples across Asian tech names“',
+        url: 'https://www.cnbc.com/2026/11/25/tech-stocks-softbank-group-advantest-sk-hynix-samsung.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Erleichterungsrally der vergangenen Tage bröckelt. Der Dax schloss am Dienstag 1,3 Prozent niedriger bei 25.018 Punkten. Am Montag war der Index nach Jensen Huangs überraschender Rückkehr an die Nvidia-Spitze noch um 2,2 Prozent auf 25.337 Punkte gesprungen, angeführt von Chipwerten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Asiens Chipwerte trifft es noch härter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia selbst verlor im US-Handel mehr als sieben Prozent. In Asien fiel die Reaktion heftiger aus: SoftBank Group gab 13,8 Prozent ab, Advantest 12,7 Prozent, Tokyo Electron 11,8 Prozent. Samsung Electronics und SK Hynix verloren jeweils mehr als sieben Prozent, Taiwans TSMC rund 6,7 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Alte Zweifel sind zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut CNBC nennen Marktteilnehmer erneut die hohen Investitionen der KI-Konzerne, Zweifel an deren Rendite und zirkuläre Finanzierungskonstrukte in der Branche als Gründe für die Vorsicht. Dazu kommt die Personalie Huang selbst: Erst sein Rücktritt hatte den Ausverkauf ausgelöst, seine Rückkehr die Rally – beide Bewegungen betrafen dieselben Aktien.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Rückschlag zeigt, wie konzentriert Indizes mit hoher Technologiegewichtung inzwischen auf den KI-Handel reagieren. Gewinne und Verluste bei einzelnen Chipwerten schlagen binnen Stunden auf ganze Börsen in Europa, den USA und Asien durch – in beide Richtungen.',
+      },
+    ],
+  },
+  {
     slug: 'huang-comeback-dax-wall-street',
     title: 'Huang zurück an der Konzernspitze – Dax und Wall Street jubeln',
     teaser:

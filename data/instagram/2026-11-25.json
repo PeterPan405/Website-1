@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Sanofi kauft Insmed für 41 Milliarden Dollar, steigendes US-Verbrauchervertrauen, ein Urteil gegen Huawei, Dells starkes Quartal und eine wackelnde KI-Rally an Dax und Asiens Börsen.",
+  "kacheln": [
+    {
+      "titel": "Sanofi kauft Insmed",
+      "text": "Sanofi zahlt 41 Milliarden Dollar für den US-Pharmakonzern Insmed, 175 Dollar je Aktie in bar. Beide Aktien legten am Tag der Nachricht zu."
+    },
+    {
+      "titel": "US-Vertrauen: 103,3",
+      "text": "Das Verbrauchervertrauen in den USA sprang im November überraschend stark. Die Inflationssorge der Verbraucher bleibt aber hoch."
+    },
+    {
+      "titel": "Huawei: Betrug-Urteil",
+      "text": "Ein US-Gericht hat Huawei wegen Bankbetrugs, Geldwäsche und Diebstahls von Geschäftsgeheimnissen schuldig gesprochen. Die Strafe folgt erst 2027."
+    },
+    {
+      "titel": "Dell hebt Prognose an",
+      "text": "Dell hat Gewinn und Umsatz dank KI-Servern weit übertroffen und die Jahresprognose erneut angehoben. Zusätzlich sind Aktienrückkäufe über 25 Milliarden Dollar geplant."
+    },
+    {
+      "titel": "Dax gibt Rally ab",
+      "text": "Nach der Erleichterungsrally um Nvidia-Chef Huang ist die Stimmung gekippt. Der Dax fiel wieder, Chipwerte in Asien verloren teils über 13 Prozent."
+    }
+  ],
+  "schlagworte": ["inflation", "ki", "zinsen", "börse", "aktien"]
+}
