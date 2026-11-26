@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-11-25T15:52:47.588Z",
+  "abgerufenAm": "2026-11-26T15:32:32.173Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-10-05",
       "bis": "2026-12-18",
       "zeilen": 3181,
-      "kommendGesamt": 223,
+      "kommendGesamt": 222,
       "spalten": [
         "９月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in September 2026年11月5日 現在 As of 2026/11/5 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "１０月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in October 2026年11月19日 現在 As of 2026/11/19 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 33,
-      "letzterTag": "2027-01-19",
-      "zeilen": 468,
-      "imKatalog": 38,
+      "letzterTag": "2027-01-20",
+      "zeilen": 498,
+      "imKatalog": 44,
       "mitLage": 22,
-      "beigetragen": 38
+      "beigetragen": 44
     }
   },
   "unternehmen": {
@@ -1287,9 +1287,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "07:46"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-13",
@@ -3948,9 +3948,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
-          "streuungTage": 1,
-          "newYorkerZeit": "16:16"
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-15",
@@ -7127,9 +7127,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:13"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-21",
@@ -10237,9 +10237,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "06:58"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-15",
@@ -11722,9 +11722,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
-          "streuungTage": 1,
-          "newYorkerZeit": "08:06"
+          "basis": "Dec/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-15",
@@ -12235,9 +12235,9 @@
       "vorhersagen": [
         {
           "erwartet": "2027-01-20",
-          "basis": "2026-01-21",
+          "basis": "Dec/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "06:49"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-04-20",
@@ -18401,7 +18401,7 @@
     "UU.L": "2026-11-23",
     "VALE3.SA": "2026-11-24",
     "VER.VI": "2026-11-25",
-    "VIE.PA": "2026-08-18",
+    "VIE.PA": "2026-11-26",
     "VK.PA": "2026-08-18",
     "VNA.DE": "2026-08-18",
     "VOD.L": "2026-08-18",
