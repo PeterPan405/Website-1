@@ -101,6 +101,279 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'usa-neue-sonderzoelle-handelspartner',
+    title: 'USA kündigen neue Sonderzölle gegen mehrere Handelspartner an',
+    teaser:
+      'Die USA kündigen Sonderzölle gegen 14 Handelspartner an. Auf Waren aus der EU sollen 15 Prozent Aufschlag kommen, auf chinesische Waren 20 Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-11-26T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['zölle', 'handelspolitik', 'usa', 'eu', 'china'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'euro-stoxx-50', 'sp500'],
+    sources: [
+      {
+        label: 'tagesschau.de, 25.11.2026, 16:18 Uhr',
+        url: 'https://www.tagesschau.de/ausland/amerika/usa-zoelle-124.html',
+      },
+      {
+        label: 'CNBC, 25.11.2026, 16:02 UTC',
+        url: 'https://www.cnbc.com/2026/11/25/us-tariffs-trump-section-301.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung bringt eine neue Zoll-Offensive auf den Weg. Das Handelsministerium kündigte am Mittwoch Sonderzölle gegen 14 Handelspartner an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Betroffen sind unter anderem die Europäische Union und China. Auf Einfuhren aus der EU soll künftig ein Zollsatz von 15 Prozent fällig werden, auf chinesische Waren einer von 20 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die rechtliche Grundlage: Section 301',
+      },
+      {
+        type: 'paragraph',
+        text: 'Washington stützt sich auf Section 301 des US-Handelsgesetzes. Das Gesetz erlaubt Zölle gegen Länder, deren Handelspraktiken als unfair, diskriminierend oder belastend für den US-Handel eingestuft werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer den Zoll am Ende zahlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Einfuhrzoll wird zuerst vom importierenden Unternehmen an der Grenze bezahlt, nicht vom Exportland. Ob er danach beim Endkunden landet oder die Marge des Importeurs schmälert, entscheidet der Einzelfall – je nachdem, wie viel Preismacht ein Anbieter hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine endgültige Reaktion der betroffenen Staaten steht noch aus. An den Finanzmärkten sorgten die Pläne am Mittwoch für zusätzliche Unsicherheit, die ohnehin schon von der Debatte um die nächste US-Zinsentscheidung geprägt war.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-beige-book-pce-inflation-usa',
+    title: 'Fed-Bericht zeigt moderates Wachstum, Inflation bleibt hoch',
+    teaser:
+      'Das Beige Book der US-Notenbank meldet leichtes bis moderates Wachstum. Der von der Fed bevorzugte Preisindex PCE zog im Oktober auf 3,8 Prozent an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-26T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['fed', 'inflation', 'pce', 'beige-book', 'zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label: 'Handelsblatt, 25.11.2026, 21:24 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/konjunktur-us-wirtschaft-waechst-laut-notenbank-bericht-leicht-bis-moderat/100272820.html',
+      },
+      {
+        label: 'CNBC, 25.11.2026, 14:18 UTC',
+        url: 'https://www.cnbc.com/2026/11/25/pce-inflation-report-october-2026.html',
+      },
+      {
+        label: 'Handelsblatt, 25.11.2026, 14:41 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/us-konjunktur-inflationsmass-in-den-usa-steigt-weiter/100272700.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank zeichnet ein uneinheitliches Bild der Wirtschaft. Im aktuellen Konjunkturbericht, dem Beige Book, wächst die Wirtschaft nach Einschätzung der regionalen Notenbanken leicht bis moderat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig bleibt die Inflation hartnäckig. Die Notenbanker zeigen sich im Bericht zunehmend besorgt über die Teuerung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Tag zuvor veröffentlichte Daten untermauern diese Sorge. Der Preisindex für die persönlichen Konsumausgaben, kurz PCE, stieg im Oktober im Jahresvergleich auf 3,8 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Fed ausgerechnet auf den PCE schaut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Notenbank verwendet nicht die bekanntere Verbraucherpreisrate CPI als Zielgröße, sondern den PCE-Index. Er bildet ab, wie Haushalte ihr Konsumverhalten verändern, wenn Preise steigen, und gilt deshalb als genauerer Maßstab für die tatsächliche Kaufkraft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was Anleger jetzt erwarten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach den Daten rechnen Investoren eher mit einer weiteren Zinserhöhung als mit einer Senkung. Für Technologiewerte mit hohen erwarteten künftigen Gewinnen wirkt ein höherer Zins wie ein höherer Abschlag auf das, was diese Gewinne heute wert sind.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-mindestreserve-banken',
+    title: 'EZB-Rat streitet über höhere Mindestreserve für Banken',
+    teaser:
+      'Im EZB-Rat wird weiter über eine höhere, unverzinste Mindestreserve für Banken gestritten. Eine Entscheidung könnte am 16. Dezember fallen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-26T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['ezb', 'banken', 'mindestreserve', 'geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['deutsche-bank', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'FAZ, 25.11.2026, 18:03 Uhr',
+        url: 'https://www.faz.net/aktuell/finanzen/finanzmarkt/ezb-diskutiert-hoehere-mindestreserve-fuer-banken-201716008.html',
+      },
+      {
+        label: 'Handelsblatt, 25.11.2026, 11:59 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-streit-ueber-hoehere-mindestreserve-fuer-banken-schwelt-weiter/100271993.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im EZB-Rat wird weiter über eine höhere Mindestreserve für Banken gestritten. Eine Entscheidung könnte frühestens am 16. Dezember fallen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Informationen des Handelsblatts gibt es intern weiterhin Gesprächsbedarf. Europas Banken befürchten, die EZB könnte diesmal tatsächlich ernst machen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Mindestreserve überhaupt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Banken müssen einen festgelegten Anteil ihrer Einlagen bei der Notenbank hinterlegen, statt ihn auszuleihen oder anzulegen. Diese Mindestreserve wird derzeit nicht verzinst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine stille Belastung für die Bankbilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wird die Mindestreserve angehoben, bindet das mehr Geld unverzinst bei der Notenbank. Für die Banken sinkt dadurch der Ertrag, selbst wenn sich am Leitzins nichts ändert – im Ergebnis wirkt die Maßnahme wie eine stille Sonderbelastung für das Bankgeschäft.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-dollar-schwaeche-ki-boom',
+    title: 'Euro fällt wegen des KI-Booms auf Tief seit anderthalb Jahren',
+    metaTitle: 'Euro fällt auf Tief seit anderthalb Jahren',
+    teaser:
+      'Der Euro ist laut tagesschau.de zum Dollar auf den tiefsten Stand seit anderthalb Jahren gefallen. Hintergrund ist der Kapitalstrom in US-Technologiewerte.',
+    category: 'Märkte',
+    publishedAt: '2026-11-26T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['euro', 'dollar', 'devisen', 'wechselkurs'],
+    relatedTopics: ['waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label: 'tagesschau.de, 25.11.2026, 12:47 Uhr',
+        url: 'https://www.tagesschau.de/wirtschaft/verbraucher/euro-dollar-ki-etf-sparer-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Euro ist zum Dollar auf den tiefsten Stand seit anderthalb Jahren gefallen. Das berichtet tagesschau.de; eine zweite Quelle für diese Einordnung liegt uns nicht vor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Hintergrund nennt der Bericht den anhaltenden Kapitalstrom in US-Technologiewerte. Anleger weltweit parken ihr Geld in Dollar-Anlagen, um am KI-Boom der US-Börsen teilzuhaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein schwacher Euro für Sparer ändert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein schwächerer Euro macht Importe aus den USA teurer, etwa Technologieprodukte oder Rohstoffe, die in Dollar abgerechnet werden. Wer in US-Aktien oder nicht währungsgesicherte ETFs investiert, bekommt den fallenden Euro dagegen als zusätzlichen Kursgewinn gutgeschrieben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Gegenläufigkeit, die nicht garantiert ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein starker Dollar und steigende US-Aktienkurse sind in den vergangenen Monaten meist zusammen aufgetreten. Zwingend ist dieser Zusammenhang nicht. Schwächt sich der KI-Boom an der Börse ab, kann der Dollar ebenso schnell wieder Boden verlieren.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-sp-nvidia-herabstufung',
+    title: 'Dax fällt unter 25.000 Punkte, S&P droht Nvidia mit Herabstufung',
+    metaTitle: 'Dax unter 25.000, S&P droht Nvidia mit Herabstufung',
+    teaser:
+      'Der Dax ist auf den tiefsten Stand seit Ende Juni gefallen. Die Ratingagentur S&P sieht bei Nvidia nach den Führungswirren Risikopotenzial für die Bonität.',
+    category: 'Märkte',
+    publishedAt: '2026-11-26T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['dax', 'nvidia', 'rating', 'aktienmarkt'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax', 'nvidia'],
+    sources: [
+      {
+        label: 'Handelsblatt, 25.11.2026, 17:59 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-auf-tiefstem-stand-seit-ende-juni/100272589.html',
+      },
+      {
+        label: 'WirtschaftsWoche, 25.11.2026, 18:25 Uhr',
+        url: 'https://www.wiwo.de/finanzen/boerse/boerse-dax-schliesst-nach-negativen-signalen-aus-den-usa-unter-25.000-punkten/100272595.html',
+      },
+      {
+        label: 'Handelsblatt, 25.11.2026, 20:51 Uhr',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/aktien/ratingagentur-sp-droht-nvidia-nach-fuehrungswirren-mit-herabstufung/100272817.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax ist unter die Marke von 25.000 Punkten gerutscht. Der deutsche Leitindex schloss am Mittwoch auf dem tiefsten Stand seit Ende Juni.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser waren erneut negative Signale von der Wall Street. Dort hatten die Kurse der großen Technologiewerte zuvor erneut nachgegeben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mitten in diesem Umfeld meldete sich die Ratingagentur S&P zu Wort. Sie sieht nach den jüngsten Führungswirren an der Konzernspitze von Nvidia Schwächen in der Unternehmensführung offengelegt und spricht von Risikopotenzial für die Bonität.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Warnung, die nicht den Aktienkurs meint',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Ratingagentur bewertet nicht den Aktienkurs eines Unternehmens, sondern seine Fähigkeit, Schulden zurückzuzahlen. Eine Herabstufung würde für Nvidia in erster Linie bedeuten, dass neue Anleihen teurer würden – nicht automatisch, dass die Aktie fällt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Signale, ein Umfeld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Index und Einzeltitel senden damit zwei unterschiedliche, aber verwandte Signale: Der Dax spiegelt die Stimmung aller Anleger, die S&P-Warnung das Urteil der Kreditanalysten über ein einzelnes Unternehmen. Beides nährt sich aus derselben Unruhe um die Führungsspitze von Nvidia.',
+      },
+    ],
+  },
+  {
     slug: 'sanofi-kauft-insmed-fuer-41-milliarden-dollar',
     title: 'Sanofi kauft den US-Pharmakonzern Insmed für 41 Milliarden Dollar',
     metaTitle: 'Sanofi kauft Insmed für 41 Milliarden Dollar',

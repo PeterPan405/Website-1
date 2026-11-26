@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die Top-Themen heute: neue US-Zölle gegen Handelspartner, ein hartnäckig hoher US-Inflationswert, Streit im EZB-Rat um die Mindestreserve, ein schwacher Euro und der Dax unter 25.000 Punkten.",
+  "kacheln": [
+    {
+      "titel": "Zölle bis 20 Prozent",
+      "text": "Die USA planen neue Sonderzölle gegen 14 Handelspartner. Auf Waren aus der EU sollen 15 Prozent Aufschlag kommen, auf chinesische Waren 20 Prozent."
+    },
+    {
+      "titel": "US-Inflation: 3,8 %",
+      "text": "Der von der US-Notenbank bevorzugte Preisindex PCE stieg im Oktober auf 3,8 Prozent. Anleger rechnen deshalb eher mit einer Zinserhöhung als mit einer Senkung."
+    },
+    {
+      "titel": "EZB streitet um Reserve",
+      "text": "Im EZB-Rat wird weiter über eine höhere Mindestreserve für Banken gestritten. Eine Entscheidung könnte am 16. Dezember fallen."
+    },
+    {
+      "titel": "Euro nahe Tief",
+      "text": "Der Euro ist zum Dollar auf den tiefsten Stand seit anderthalb Jahren gefallen. Hintergrund ist der Kapitalstrom in US-Technologiewerte."
+    },
+    {
+      "titel": "Dax unter 25.000",
+      "text": "Der Dax ist auf den tiefsten Stand seit Ende Juni gefallen. Die Ratingagentur S&P droht Nvidia zudem mit einer Herabstufung."
+    }
+  ],
+  "schlagworte": ["zölle", "inflation", "ezb", "dax", "börse"]
+}
