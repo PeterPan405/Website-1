@@ -12,6 +12,7 @@
 import { abstuerze, type Absturzkarte } from './abstuerze.ts'
 import { ampel, type Ampelkarte } from './ampel.ts'
 import { balkenliste, type Balkenlistenkarte } from './balkenliste.ts'
+import { begriff, type Begriffkarte } from './begriff.ts'
 import { damalsheute, type Damalsheutekarte } from './damalsheute.ts'
 import { deckblatt, type Deckblattkarte } from './deckblatt.ts'
 import { DOSSIER_ARTEN, dossier, type Dossierkarte } from './dossier.ts'
@@ -39,6 +40,7 @@ import { tacho, type Tachokarte } from './tacho.ts'
 import { wasserfall, type Wasserfallkarte } from './wasserfall.ts'
 import { weltuhr, type Weltuhrkarte } from './weltuhr.ts'
 import { zeitkapsel, type Zeitkapselkarte } from './zeitkapsel.ts'
+import { zonen, type Zonenkarte } from './zonen.ts'
 import { zyklus, type Zykluskarte } from './zyklus.ts'
 
 export type NeueKarte =
@@ -72,6 +74,8 @@ export type NeueKarte =
   | Scherenkarte
   | Balkenlistenkarte
   | Jahreskachelkarte
+  | Zonenkarte
+  | Begriffkarte
 
 export const NEUE_ARTEN: {
   [A in NeueKarte['art']]: Art<Extract<NeueKarte, { art: A }>>
@@ -81,6 +85,8 @@ export const NEUE_ARTEN: {
   schere,
   balkenliste,
   jahreskacheln,
+  zonen,
+  begriff,
   deckblatt,
   punktraster,
   kalender,

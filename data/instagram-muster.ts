@@ -13,6 +13,7 @@ import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
 } from '@/data/instagram-reihen-inflation'
+import { SP500_HERBST } from '@/data/instagram-reihen-korrektur'
 import type { Zahlenkarte } from '@/lib/instagram-zahlenkarte'
 
 export const musterkarten: Zahlenkarte[] = [
@@ -803,6 +804,46 @@ export const musterkarten: Zahlenkarte[] = [
     fusszeile: 'Stand: 11/2026 | Quelle: Yahoo Finance',
     text: 'Muster.\n\nQuelle: Yahoo Finance',
     schlagworte: ['thanksgiving', 'sp500', 'boerse', 'statistik', 'saison'],
+  },
+  {
+    /* Zonen: Abstand zum Hoch in Fächern – Korrektur ab 10 %, Bärenmarkt ab 20 % (markets.json, Wikipedia). */
+    art: 'zonen',
+    datum: '2026-11-15',
+    titel: [{ text: 'Korrektur oder' }, { text: 'Bärenmarkt?', gruen: true }],
+    unterzeile: 'Tiefster Schluss seit dem Rekordhoch, in Prozent.',
+    zonen: [
+      { name: 'Rückgang', zusatz: 'unter 10 %', bis: 10 },
+      { name: 'Korrektur', zusatz: '10 bis 20 %', bis: 20 },
+      { name: 'Bärenmarkt', zusatz: 'ab 20 %' },
+    ],
+    bis: 55,
+    achse: '',
+    legende: { punkt: 'tiefster Schluss seit dem Hoch', ring: 'Schluss heute' },
+    zeilen: [
+      { name: 'DAX', wert: 7.7, jetzt: 7.7 },
+      { name: 'S&P 500', wert: 11.6, jetzt: 8.1 },
+      { name: 'Nasdaq-100', wert: 19.8, jetzt: 16.6 },
+      { name: 'Nvidia', wert: 47.5, jetzt: 37.6 },
+    ],
+    fusszeile: 'Stand: 25.11.2026 | Quelle: Yahoo Finance; Grenzen: Wikipedia',
+    text: 'Muster.\n\nQuelle: Yahoo Finance; Wikipedia',
+    schlagworte: ['boerse', 'korrektur', 'baerenmarkt', 'aktien', 'finanzwissen'],
+  },
+  {
+    /* Begriff: ein Wort erklärt, darunter das Beispiel als Kurslinie mit den Grenzen (markets.json). */
+    art: 'begriff',
+    datum: '2026-11-15',
+    titel: [{ text: 'Korrektur:' }, { text: 'ab 10 % unter dem Hoch', gruen: true }],
+    unterzeile: 'Begriffe der Woche.',
+    erklaerung:
+      'Korrektur heißt: mindestens 10 % unter dem letzten Schluss-Hoch. Vorbei ist sie erst mit einem neuen Hoch.',
+    beispiel: 'S&P 500',
+    reihe: SP500_HERBST,
+    einheit: 'Punkte',
+    grenzen: [10, 20],
+    fusszeile: 'Stand: 25.11.2026 | Quelle: Yahoo Finance (S&P 500); Wikipedia',
+    text: 'Muster.\n\nQuelle: Yahoo Finance; Wikipedia',
+    schlagworte: ['boerse', 'korrektur', 'sp500', 'aktien', 'finanzwissen'],
   },
   {
     /* Kuchen: der Korb des Euro-Index EXY (Wikipedia „Euro Currency Index“, nach ICE Futures U.S.). */

@@ -31,6 +31,12 @@ import { NVIDIA_COMEBACK } from './instagram-reihen-nvidia-comeback.ts'
 import { DAX_SCHWAERZESTE } from './instagram-reihen-dax-wochentage.ts'
 import { THANKSGIVING_WOCHEN } from './instagram-reihen-thanksgiving.ts'
 import {
+  ABSTAND_ZUM_HOCH,
+  GOLD_2026,
+  NASDAQ100_HERBST,
+  SP500_HERBST,
+} from './instagram-reihen-korrektur.ts'
+import {
   INFLATION_DEUTSCHLAND,
   INFLATION_EURORAUM,
 } from './instagram-reihen-inflation.ts'
@@ -45,6 +51,139 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 26.11.2026, „Korrektur oder Bärenmarkt?“ – vollautomatisch,
+      Ideenpool Nr. 3 („Begriffe der Woche“, gedaechtnis/2026-11-23 Instagram
+      Ideenpool.md), Aufhänger-Typ „Erklärt“ – in den sieben Tagen davor nicht
+      vergeben. Karussell nach dem Einseiter vom 25.11. (Mix-Regel 23.11.).
+      Zwei neue Arten: `zonen` (Übersicht) und `begriff` (je Wort eine Seite).
+
+      Anlass: Am 25.11. schloss der Dax unter 25.000 Punkten, dem tiefsten
+      Stand seit Ende Juni (Handelsblatt, in den Daily News des 26.11.). Die
+      Wörter „Korrektur“ und „Bärenmarkt“ fallen überall – die Grenzen nennt
+      kaum jemand. Die Karte erzählt nicht die Dax-Meldung nach, sondern
+      ordnet neun bekannte Werte in die Fächer ein; der Dax ist einer davon.
+      Passt zur Marktlage (Lehre 24.11.): Die Woche ist rot, nicht grün.
+
+      Grenzen aus gelesener Quelle (quellen-holen.yml, 26.11.2026 09:23 UTC):
+      Wikipedia „Correction (stock market)“ – „a drop of more than 10%“,
+      gemessen „from a recent closing high to a subsequent closing low“,
+      „Corrections end once stocks attain new highs“; Wikipedia „Market
+      trend“ – Bärenmarkt „a price decline of 20% or more over at least a
+      two-month period“, „A decline of 10% to 20% is classified as a
+      correction“. Investopedia antwortete mit 403. Für unter 10 % nennt
+      keine gelesene Quelle ein eigenes Wort – deshalb heißt das Fach
+      schlicht „Rückgang“, nicht „Rücksetzer“.
+
+      Kurse: data/instagram-reihen-korrektur.ts, eingefroren aus
+      markets.json (Yahoo Finance), Schluss 25.11.2026 (Bitcoin 24.11.). Der
+      Abstand wird im Test aus Hoch und letztem Kurs nachgerechnet.
+    */
+    art: 'dossier',
+    datum: '2026-11-26',
+    freigabe: '2026-11-26',
+    titel: [{ text: 'Korrektur oder' }, { text: 'Bärenmarkt?', gruen: true }],
+    unterzeile: 'Drei Wörter, feste Grenzen – und wo DAX, Gold & Co. gerade stehen.',
+    teile: [
+      {
+        art: 'zonen',
+        datum: '2026-11-26',
+        titel: [{ text: 'Korrektur oder' }, { text: 'Bärenmarkt?', gruen: true }],
+        unterzeile: 'Tiefster Schluss seit dem Rekordhoch, in Prozent.',
+        zonen: [
+          { name: 'Rückgang', zusatz: 'unter 10 %', bis: 10 },
+          { name: 'Korrektur', zusatz: '10 bis 20 %', bis: 20 },
+          { name: 'Bärenmarkt', zusatz: 'ab 20 %' },
+        ],
+        bis: 55,
+        achse: '',
+        legende: { punkt: 'tiefster Schluss seit dem Hoch', ring: 'Schluss 25.11.' },
+        zeilen: [...ABSTAND_ZUM_HOCH]
+          .sort((a, b) => b.tief / b.hoch - a.tief / a.hoch)
+          .map((z) => ({
+            name: z.name,
+            wert: Math.round((1 - z.tief / z.hoch) * 1000) / 10,
+            jetzt: Math.round((1 - z.kurs / z.hoch) * 1000) / 10,
+          })),
+        satz: 'Nur einer ohne Korrektur: der DAX. Vier sind im Bärenmarkt.',
+        fusszeile:
+          'Stand: 25.11.2026 | Quelle: Yahoo Finance (Schlusskurse); Grenzen: Wikipedia; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'begriff',
+        datum: '2026-11-26',
+        titel: [{ text: 'Korrektur:' }, { text: 'ab 10 % unter dem Hoch', gruen: true }],
+        unterzeile: '',
+        erklaerung:
+          'Korrektur heißt: mindestens 10 % unter dem letzten Schluss-Hoch. Vorbei ist sie erst mit einem neuen Hoch.',
+        beispiel: 'S&P 500',
+        reihe: SP500_HERBST,
+        einheit: 'Punkte',
+        grenzen: [10, 20],
+        satz: 'Wieder über −10 % – vorbei ist die Korrektur nicht.',
+        fusszeile: 'Stand: 25.11.2026 | Quelle: Yahoo Finance (S&P 500); Wikipedia',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'begriff',
+        datum: '2026-11-26',
+        titel: [{ text: 'Bärenmarkt:' }, { text: 'ab 20 % unter dem Hoch', gruen: true }],
+        unterzeile: '',
+        erklaerung:
+          'Bärenmarkt heißt: 20 % oder mehr unter dem Hoch, meist über mindestens zwei Monate.',
+        beispiel: 'Nasdaq-100',
+        reihe: NASDAQ100_HERBST,
+        einheit: 'Punkte',
+        grenzen: [10, 20],
+        satz: 'Am 20.11. fehlten dem Nasdaq-100 0,2 Prozentpunkte zur Grenze.',
+        fusszeile: 'Stand: 25.11.2026 | Quelle: Yahoo Finance (Nasdaq-100); Wikipedia',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'begriff',
+        datum: '2026-11-26',
+        titel: [{ text: 'Gold:' }, { text: 'Bärenmarkt seit Januar', gruen: true }],
+        unterzeile: '',
+        erklaerung:
+          'Ein Bärenmarkt endet erst mit einem neuen Hoch. Gold liegt seit dem Rekord am 29. Januar darunter.',
+        beispiel: 'Gold',
+        reihe: GOLD_2026,
+        einheit: '$ je Unze',
+        grenzen: [10, 20],
+        satz: 'Tiefster Schluss am 20.11.: −33,9 %. Am 25.11.: −33,5 %.',
+        fusszeile: 'Stand: 25.11.2026 | Quelle: Yahoo Finance (Gold); Wikipedia',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile:
+      'Stand: 25.11.2026 | Quelle: Yahoo Finance (Schlusskurse); Grenzen: Wikipedia; eigene Rechnung',
+    text:
+      '„Korrektur“, „Bärenmarkt“ – die Wörter fallen gerade überall. Aber ab wann ist was? 🐻\n\n' +
+      'Gemessen wird vom letzten Schluss-Hoch bis zum tiefsten Schluss danach:\n' +
+      'Ab 10 % darunter: Korrektur\n' +
+      'Ab 20 %: Bärenmarkt (meist über mindestens zwei Monate)\n' +
+      'Vorbei ist beides erst mit einem neuen Hoch – nicht schon, wenn der Kurs wieder steigt.\n\n' +
+      'Wo stehen die Bekannten? Tiefster Schluss seit dem Rekordhoch (in Klammern: 25.11.):\n' +
+      'DAX: −7,7 % (−7,7 %) – keine Korrektur\n' +
+      'Euro Stoxx 50: −10,0 % (−10,0 %) – Korrektur\n' +
+      'S&P 500: −11,6 % (−8,1 %) – Korrektur\n' +
+      'Microsoft: −12,8 % (−11,9 %) – Korrektur\n' +
+      'Nasdaq-100: −19,8 % (−16,6 %) – Korrektur, knapp\n' +
+      'Gold: −33,9 % (−33,5 %) – Bärenmarkt\n' +
+      'Tesla: −39,1 % (−22,4 %) – Bärenmarkt\n' +
+      'Nvidia: −47,5 % (−37,6 %) – Bärenmarkt\n' +
+      'Bitcoin: −53,1 % (−52,1 %, 24.11.) – Bärenmarkt\n\n' +
+      'Am 20.11. fehlten dem Nasdaq-100 nur 0,2 Prozentpunkte zum Bärenmarkt.\n\n' +
+      'Die Wörter beschreiben, was war – nicht, was kommt. Eine eigene Prognose geben wir nicht.\n\n' +
+      'Quellen: Yahoo Finance (Schlusskurse bis 25.11.2026, Bitcoin 24.11.); Wikipedia „Correction (stock market)“ und „Market trend“ (abgerufen 26.11.2026); eigene Rechnung',
+    schlagworte: ['boerse', 'baerenmarkt', 'korrektur', 'aktien', 'finanzwissen'],
+  },
   {
     /*
       Zahlenkarte 25.11.2026, „Thanksgiving-Woche: 2026 schon +4,2 %“ –
