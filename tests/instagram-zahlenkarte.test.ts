@@ -37,6 +37,14 @@ import { dauerText, tageBis } from '@/lib/instagram/arten/erholung'
 import { SILBER_WOCHEN } from '@/data/instagram-reihen-silber'
 import { NVIDIA_COMEBACK } from '@/data/instagram-reihen-nvidia-comeback'
 import {
+  ABSTAND_ZUM_HOCH,
+  GOLD_2026,
+  NASDAQ100_HERBST,
+  SP500_HERBST,
+} from '@/data/instagram-reihen-korrektur'
+import { abstandZumHoch } from '@/lib/instagram/arten/begriff'
+import { zoneVon, zonen as zonenArt } from '@/lib/instagram/arten/zonen'
+import {
   DAX_BESTE,
   DAX_SCHWAERZESTE,
   DAX_WOCHENTAGE,
@@ -2912,6 +2920,100 @@ for (let i = 1; i < nachDatum.length; i++)
       '−0,04 %',
     ])
       pruefe(`Thanksgiving: Beschriftung nennt ${z}`, k.text.includes(z))
+  }
+}
+
+/* 26.11.2026: Korrektur oder Bärenmarkt? Karussell, neue Arten `zonen` und `begriff`. */
+{
+  const k = karteVom('2026-11-26')
+  pruefe('Korrektur: Karte für den 26.11. ist ein Dossier', k?.art === 'dossier')
+  if (k?.art === 'dossier') {
+    pruefe(
+      'Korrektur: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Korrektur: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-25')!)
+    )
+    pruefe(
+      'Korrektur: vier Seiten, erst Zonen, dann drei Begriffe',
+      k.teile.length === 4 &&
+        k.teile[0].art === 'zonen' &&
+        k.teile.slice(1).every((t) => t.art === 'begriff')
+    )
+    const z = k.teile[0]
+    if (z.art === 'zonen') {
+      const fach = (name: string) =>
+        zoneVon(z, z.zeilen.find((r) => r.name === name)!.wert)
+      pruefe(
+        'Korrektur: DAX im Rückgang, S&P 500 und Nasdaq-100 in der Korrektur, Gold und Bitcoin im Bärenmarkt',
+        fach('DAX') === 0 &&
+          fach('S&P 500') === 1 &&
+          fach('Nasdaq-100') === 1 &&
+          fach('Gold') === 2 &&
+          fach('Bitcoin') === 2
+      )
+      const anzahl = [0, 1, 2].map(
+        (i) => z.zeilen.filter((r) => zoneVon(z, r.wert) === i).length
+      )
+      pruefe(
+        'Korrektur: Satz „Nur einer ohne Korrektur … Vier sind im Bärenmarkt“ stimmt',
+        anzahl[0] === 1 && anzahl[1] === 4 && anzahl[2] === 4,
+        anzahl.join('/')
+      )
+      pruefe(
+        'Korrektur: Grenze zählt zum tieferen Fach (genau 10 % ist Korrektur)',
+        zoneVon(z, 10) === 1 && zoneVon(z, 9.99) === 0 && zoneVon(z, 20) === 2
+      )
+      /* Gegenprobe: eine Zeile, deren heutiger Stand tiefer liegt als der tiefste, muss beanstandet werden. */
+      pruefe(
+        'Korrektur: Zonen beanstanden „jetzt“ tiefer als das Tief',
+        zonenArt.pruefe({
+          ...z,
+          zeilen: [...z.zeilen.slice(0, -1), { name: 'Falsch', wert: 50, jetzt: 54 }],
+        }).length > 0
+      )
+    }
+    pruefe(
+      'Korrektur: Tief und heutiger Abstand je Wert aus den Kursen nachgerechnet',
+      ABSTAND_ZUM_HOCH.every(
+        (r) => r.tief <= r.kurs && r.tief < r.hoch && r.hochAm < r.tiefAm
+      ) &&
+        Math.round((1 - ABSTAND_ZUM_HOCH[1].tief / ABSTAND_ZUM_HOCH[1].hoch) * 1000) /
+          10 ===
+          11.6
+    )
+    const sp = abstandZumHoch(SP500_HERBST)
+    const nq = abstandZumHoch(NASDAQ100_HERBST)
+    const au = abstandZumHoch(GOLD_2026)
+    pruefe(
+      'Korrektur: S&P 500 Hoch 6.10., Tief 20.11. −11,6 %, 25.11. −8,1 %',
+      sp.hoch[0] === '2026-10-06' &&
+        sp.tief[0] === '2026-11-20' &&
+        sp.tiefProzent.toFixed(1) === '-11.6' &&
+        sp.prozent.toFixed(1) === '-8.1'
+    )
+    pruefe(
+      'Korrektur: Nasdaq-100 am 20.11. −19,8 % – 0,2 Punkte vor der Grenze, nicht darüber',
+      nq.tief[0] === '2026-11-20' &&
+        nq.tiefProzent > -20 &&
+        (20 + nq.tiefProzent).toFixed(1) === '0.2'
+    )
+    pruefe(
+      'Korrektur: Gold Hoch 29.1., Tief 20.11. −33,9 %, 25.11. −33,5 % (Schluss, nicht laufender Kurs)',
+      au.hoch[0] === '2026-01-29' &&
+        au.tief[0] === '2026-11-20' &&
+        au.tiefProzent.toFixed(1) === '-33.9' &&
+        au.prozent.toFixed(1) === '-33.5' &&
+        GOLD_2026.filter(([d]) => d === '2026-11-25').length === 1
+    )
+    pruefe(
+      'Korrektur: Beschriftung nennt die Wikipedia-Quelle und keine Prognose',
+      k.text.includes('Wikipedia') &&
+        k.text.includes('Eine eigene Prognose geben wir nicht.')
+    )
   }
 }
 

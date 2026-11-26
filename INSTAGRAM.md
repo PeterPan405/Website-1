@@ -409,6 +409,8 @@ die Vorlage, wie man sie füllt. Die Musterkarten gehen nie hinaus.
 | `schere`        | Zwei Reihen, Fläche dazwischen: wer vorn liegt, wann es kippt          | `zinsen.json`, `markets.json`        |
 | `balkenliste`   | Rangfolge als Balken ab Null, Plus rechts, Minus links – klar lesbar   | `markets.json`                       |
 | `jahreskacheln` | Je Jahr ein Feld: wie lief X immer zur selben Zeit (Saison, Feiertag)  | `markets.json`, Kursreihe            |
+| `zonen`         | Werte in Fächern mit festen Grenzen (Korrektur ab 10 %, Bärenmarkt)    | `markets.json`, Grenzen aus Quelle   |
+| `begriff`       | Ein Wort erklärt, darunter das Beispiel der Woche als Kurslinie        | `markets.json`, Erklärung aus Quelle |
 | `kalender`      | ein Jahr Tag für Tag, Plus- und Minustage                              | `markets.json`                       |
 | `tacho`         | wo ein Wert zwischen Tief und Hoch steht                               | `markets.json`                       |
 | `wasserfall`    | wie sich ein Stand Schritt für Schritt aufbaut                         | `markets.json`, Bilanzen             |
