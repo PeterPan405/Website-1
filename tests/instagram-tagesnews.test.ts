@@ -45,6 +45,7 @@ import {
   erlaeuterungen,
   istErscheinungstag,
   pruefeInstagramPlan,
+  schlagzeilenStil,
   tagesstand,
 } from '@/lib/instagram-plan'
 
@@ -464,6 +465,48 @@ pruefen(
   'nachrichten-erzeugen.ts setzt die Anweisung ein',
   skript.includes('${ANWEISUNG_INSTAGRAM}')
 )
+
+/*
+  Schlagzeile statt Zahlenkolonne (27.11.2026, Betreiber: „die news wirken
+  noch immer wie wiederholende langweilige zahlen nicht wie spannend
+  nachrichten“). Die Prüfung muss die Kacheln vom 27.11. beanstanden – und
+  Tage ohne das Muster durchlassen.
+*/
+{
+  const lies = (tag: string) =>
+    JSON.parse(readFileSync(`data/instagram/${tag}.json`, 'utf8')).kacheln as {
+      titel: string
+    }[]
+  const am27 = schlagzeilenStil(lies('2026-11-27'))
+  pruefen(
+    'Schlagzeilen: 27.11. („US-BIP: 4,3 % Wachstum“, „Reallöhne: nur noch +1,3 %“) wird beanstandet',
+    am27.length >= 2 && am27.some((b) => b.includes('US-BIP: 4,3 % Wachstum')),
+    am27.join(' | ')
+  )
+  pruefen(
+    'Schlagzeilen: 16.11. (Japan: BIP schrumpft, KI steuert das Depot …) geht durch',
+    schlagzeilenStil(lies('2026-11-16')).length === 0,
+    schlagzeilenStil(lies('2026-11-16')).join(' | ')
+  )
+  pruefen(
+    'Schlagzeilen: „Öl +10 %“ und „Fresenius: Chefwechsel“ bleiben erlaubt',
+    schlagzeilenStil([
+      { titel: 'Öl +10 %' },
+      { titel: 'Fresenius: Chefwechsel' },
+      { titel: 'Trump wittert BIP-Fehler' },
+      { titel: 'Euro nahe Tief' },
+      { titel: '2,3 Mrd. für Siemens' },
+    ]).length === 0
+  )
+  pruefen(
+    'Schlagzeilen: drei Titel mit Zahl sind einer zu viel',
+    schlagzeilenStil([
+      { titel: 'Öl +10 %' },
+      { titel: 'Gold +3 %' },
+      { titel: 'Dax +2 %' },
+    ]).length === 1
+  )
+}
 
 if (failed > 0) {
   console.log(`\n${failed} Prüfung(en) fehlgeschlagen.`)
