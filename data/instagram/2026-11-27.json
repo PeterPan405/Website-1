@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Die US-Wirtschaft wuchs stärker als gemeldet, deutsche Reallöhne legten langsamer zu, Unicredit baut den Commerzbank-Aufsichtsrat um, Chips überholen im Welthandel erstmals Öl, und die EZB bekommt mit Hernández de Cos einen neuen Chef.",
+  "kacheln": [
+    {
+      "titel": "US-BIP: 4,3 % Wachstum",
+      "text": "Das US-Wachstum im dritten Quartal wurde von 3,4 auf 4,3 Prozent nach oben korrigiert. Donald Trump nannte das einen Rekordfehler und forderte eine Untersuchung."
+    },
+    {
+      "titel": "Reallöhne: nur noch +1,3 %",
+      "text": "Die Reallöhne in Deutschland stiegen im dritten Quartal um 1,3 Prozent zum Vorjahr. Das ist der schwächste Zuwachs seit Anfang 2025."
+    },
+    {
+      "titel": "Commerzbank: Umbau geplant",
+      "text": "Unicredit-Chef Andrea Orcel will nach der Übernahme fast den gesamten Aufsichtsrat der Commerzbank austauschen und selbst dessen Vorsitz übernehmen."
+    },
+    {
+      "titel": "Chips überholen Öl",
+      "text": "Der weltweite Handel mit Halbleitern hat laut einer Analyse der Deutschen Bank erstmals den Handel mit Öl und Gas überholt."
+    },
+    {
+      "titel": "EZB bekommt neuen Chef",
+      "text": "Die EU-Staaten einigten sich auf den Spanier Pablo Hernández de Cos als neuen EZB-Präsidenten. Er folgt 2027 auf Christine Lagarde."
+    }
+  ],
+  "schlagworte": ["ezb", "commerzbank", "chips", "börse", "wirtschaft"]
+}

@@ -101,6 +101,270 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-bip-revision-trump-untersuchung',
+    title:
+      'US-Wirtschaft wuchs im dritten Quartal deutlich stärker als zunächst gemeldet',
+    metaTitle: 'US-BIP im 3. Quartal kräftig nach oben korrigiert',
+    teaser:
+      'Das US-Handelsministerium hat das Wachstum im dritten Quartal von 3,4 auf 4,3 Prozent angehoben. Trump spricht von einem Fehler und fordert eine Untersuchung.',
+    category: 'Märkte',
+    publishedAt: '2026-11-27T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['bip', 'usa', 'konjunktur', 'notenbank'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['sp500', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'Bureau of Economic Analysis, Pressemitteilung „GDP (Second Estimate) and Corporate Profits, 3rd Quarter 2026“, 25.11.2026, 8:30 Uhr ET',
+        url: 'https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026',
+      },
+      {
+        label:
+          "CNBC, 26.11.2026, 21:13 Uhr: „Trump demands probe into 'record setting error' after third-quarter GDP data gets massive revision higher“",
+        url: 'https://www.cnbc.com/2026/11/26/trump-gdp-revision-investigation.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das amerikanische Handelsministerium hat seine Wachstumszahl für das dritte Quartal deutlich angehoben. Die zweite von drei geplanten Schätzungen weist für die US-Wirtschaft ein annualisiertes Wachstum von 4,3 Prozent aus. Die erste, vorläufige Schätzung hatte noch 3,4 Prozent ergeben – eine Korrektur um 0,9 Prozentpunkte nach oben. Veröffentlicht wurde die Zahl am Mittwoch, 25. November, um 8:30 Uhr Ortszeit.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Solche Revisionen sind Teil des Verfahrens: Die erste Schätzung beruht auf unvollständigen Erhebungen, die zweite bezieht bereits mehr tatsächliche Daten aus Unternehmen und Behörden ein. Eine dritte, noch genauere Fassung folgt in der Regel rund einen Monat später.',
+      },
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump reagierte scharf. Auf seiner Plattform Truth Social bezeichnete er die Revision als „RECORD SETTING ERROR“ und forderte, der Vorgang solle „sofort untersucht“ werden. Er warf den zuständigen Statistikern vor, vor der jüngsten Wahl bewusst zu niedrige Wachstumszahlen veröffentlicht zu haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Zahlen wirklich zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'CNBC prüfte die Behauptung nach und kam zu einem anderen Ergebnis: Die Abweichung zwischen erster und zweiter Schätzung ist die größte seit dem zweiten Quartal 2020, aber historisch betrachtet kein Rekord. Außergewöhnlich große Revisionen kamen in der Vergangenheit bereits mehrfach vor, meist wenn sich die Lage in der Wirtschaft schnell ändert und frühe Umfragedaten davon noch wenig einfangen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Revision nach oben ist zunächst eine gute Nachricht für die US-Wirtschaft, keine, die einen Fehler beweist. Wer offizielle Konjunkturdaten liest, sollte deshalb immer mitlesen, welche von mehreren geplanten Schätzungen gerade vorliegt – die erste Zahl eines Quartals ist nie die letzte.',
+      },
+    ],
+  },
+  {
+    slug: 'deutschland-realloehne-drittes-quartal-2026',
+    title: 'Reallöhne in Deutschland wachsen langsamer als im Frühjahr',
+    teaser:
+      'Nach Abzug der Inflation blieb im dritten Quartal ein Lohnplus von 1,3 Prozent – der schwächste Zuwachs seit Anfang 2025.',
+    category: 'Märkte',
+    publishedAt: '2026-11-27T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['löhne', 'inflation', 'deutschland', 'arbeitsmarkt'],
+    relatedTopics: ['inflation', 'budget-und-sparquote'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Statistisches Bundesamt, Pressemitteilung Nr. 411, 26.11.2026: „Reallöhne im 3. Quartal 2026 um 1,3 % höher als im Vorjahresquartal“',
+        url: 'https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_411_62321.html',
+      },
+      {
+        label:
+          'tagesschau.de, 26.11.2026, 11:59 Uhr: „Reallöhne sind im Sommer langsamer gewachsen“',
+        url: 'https://www.tagesschau.de/wirtschaft/arbeitsmarkt/loehne-wachstum-inflation-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Beschäftigte in Deutschland hatten im dritten Quartal 2026 real etwas mehr Geld zur Verfügung als ein Jahr zuvor. Das Statistische Bundesamt meldete ein Reallohnplus von 1,3 Prozent gegenüber dem Vorjahresquartal. Die Nominallöhne stiegen im selben Zeitraum um 4,3 Prozent, die Verbraucherpreise um 2,9 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben der tagesschau ist das der schwächste Reallohnzuwachs seit Anfang 2025. Die Kaufkraft der Beschäftigten wächst damit zwar weiter, aber langsamer als in den Quartalen zuvor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ungleich verteilt ist der Zuwachs zudem: Das unterste Einkommensfünftel verzeichnete laut Destatis mit 6,6 Prozent die mit Abstand stärksten Verdienststeigerungen aller Einkommensgruppen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nominal und real sind zwei verschiedene Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: '4,3 Prozent mehr Lohn klingt nach einer kräftigen Erhöhung. Für die Kaufkraft zählt aber nur, was nach Abzug der Inflation übrig bleibt – und das sind in diesem Fall nur 1,3 Prozent. Diese Differenz zwischen nominalem und realem Wert gilt genauso für Zinsen, Renditen und Mieten: Nur die reale Größe sagt etwas darüber aus, ob jemand sich am Ende mehr oder weniger leisten kann.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer sein eigenes Gehalt oder seine Ersparnisse bewertet, sollte immer nach der realen, inflationsbereinigten Zahl fragen statt nach der nominalen – sie allein zeigt, ob sich die eigene Kaufkraft tatsächlich verbessert.',
+      },
+    ],
+  },
+  {
+    slug: 'unicredit-orcel-commerzbank-aufsichtsrat',
+    title: 'Unicredit-Chef Orcel will den Aufsichtsrat der Commerzbank komplett umbauen',
+    metaTitle: 'Orcel will Commerzbank-Aufsichtsrat umbauen',
+    teaser:
+      'Unicredit-Chef Andrea Orcel will neun von zehn Anteilseigner-Vertretern im Commerzbank-Aufsichtsrat ersetzen und selbst dessen Vorsitz übernehmen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-27T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['commerzbank', 'unicredit', 'banken', 'übernahme'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 26.11.2026, 10:38 Uhr: „Unicredit: Orcel will Aufsichtsratschef der Commerzbank werden und Vorstände rasch austauschen“',
+        url: 'https://www.handelsblatt.com/finanzen/banken-versicherungen/unicredit-orcel-will-aufsichtsratschef-der-commerzbank-werden/100272891.html',
+      },
+      {
+        label:
+          'FAZ.NET, 26.11.2026, 8:59 Uhr: „Unicredit-Chef will Aufsichtsrat der Commerzbank führen – anstelle von Jens Weidmann“',
+        url: 'https://www.faz.net/aktuell/finanzen/andrea-orcel-will-aufsichtsratschef-der-commerzbank-werden-anstelle-von-jens-weidmann-accg-201718811.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Unicredit hat nach eigenen Angaben alle nötigen Genehmigungen für die Übernahme der Commerzbank beisammen. Konzernchef Andrea Orcel will die Umgestaltung der Bank nun selbst anführen: Er strebt den Vorsitz im Aufsichtsrat an und würde damit den bisherigen Vorsitzenden Jens Weidmann ablösen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkret will Unicredit neun der zehn Anteilseigner-Vertreter im Aufsichtsrat austauschen. Nur der frühere Standard-Chartered-Manager Michael Gorriz soll bleiben. Zusätzlich hat Orcel den amtierenden Aufsichtsrat aufgefordert, mit mehreren Vorstandsmitgliedern über ein vorzeitiges Ausscheiden zu verhandeln.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Über die personellen Weichen soll eine außerordentliche Hauptversammlung entscheiden, die laut Handelsblatt im Januar oder spätestens Anfang Februar 2027 stattfinden könnte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Aufsichtsrat und Vorstand sind nicht dasselbe Gremium',
+      },
+      {
+        type: 'paragraph',
+        text: 'In einer deutschen Aktiengesellschaft führt der Vorstand das Tagesgeschäft, während der Aufsichtsrat ihn kontrolliert, bestellt und abberuft. Wer – wie Orcel es vorhat – den Aufsichtsratsvorsitz übernimmt, wird damit nicht Commerzbank-Chef, sondern bekommt die Macht, über den Vorstand und seine Zusammensetzung zu entscheiden. Diese Zweiteilung unterscheidet das deutsche Aktienrecht von Ländern mit einem einzigen, gemeinsamen Verwaltungsrat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein neuer Aufsichtsrat entscheidet in der Regel zügig über die Zusammensetzung des Vorstands – wie schnell und wie weit Orcel den Umbau tatsächlich vorantreibt, dürfte sich in den Monaten nach der Hauptversammlung zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'halbleiterexporte-ueberholen-oel-gas',
+    title: 'Weltweiter Chiphandel überholt erstmals den Handel mit Öl und Gas',
+    metaTitle: 'Chiphandel überholt erstmals Öl- und Gashandel',
+    teaser:
+      'Nach einer Analyse der Deutschen Bank ist der globale Handel mit Halbleitern inzwischen größer als der mit Öl und Gas zusammen.',
+    category: 'Märkte',
+    publishedAt: '2026-11-27T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['halbleiter', 'öl', 'welthandel', 'technologie'],
+    relatedTopics: ['rohstoffe', 'aktien-laender-branchen'],
+    relatedSymbols: ['brent', 'wti', 'tsmc'],
+    sources: [
+      {
+        label:
+          "CNBC, 26.11.2026, 17:52 Uhr: „Semiconductor chips are the new oil. Here's why“",
+        url: 'https://www.cnbc.com/2026/11/26/semiconductor-chips-are-the-new-oil-heres-why.html',
+      },
+      {
+        label:
+          'Longbridge, 17.11.2026, 3:57 Uhr: Bericht über die Deutsche-Bank-Analyse zum „Chip-Dollar“',
+        url: 'https://longbridge.com/news/305702667',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der weltweite Handel mit Halbleitern ist größer als der mit Öl und Gas. Das zeigt eine Analyse der Deutschen Bank auf Basis von Außenhandelsdaten des International Trade Centre. Im ersten Quartal 2026 kamen Halbleiterexporte, gerechnet über die vorangegangenen vier Quartale, auf rund 1,61 Billionen Dollar – gegenüber rund 1,53 Billionen Dollar bei Öl und Gas. Es war das erste Mal, dass Chips in dieser Betrachtung vorne lagen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im zweiten Quartal 2026 wuchs der Abstand weiter: Die Halbleiterexporte lagen bei etwa 1,60 Billionen Dollar, Öl und Gas nur noch bei rund 1,47 Billionen Dollar. Die Entwicklung gilt damit nicht als einmaliger Ausschlag, sondern als anhaltender Trend.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Analysten der Deutschen Bank fassen den Wechsel in einem Bild zusammen: Der „Petrodollar“ – also der Welthandel, der um Öl kreist – werde zunehmend vom „Chip-Dollar“ abgelöst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Außenhandelsstatistik ist kein Börsenkurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Zahlen messen den Wert aller Chips und Öl- und Gaslieferungen, die über Grenzen gehandelt werden – nicht Aktienkurse, nicht Unternehmensgewinne und nicht, wie viel Gewinnmarge dabei anfällt. Dass Halbleiter im Welthandel vorne liegen, sagt deshalb nichts darüber aus, ob Chip-Hersteller an der Börse besser abschneiden als Öl- und Gaskonzerne – das hängt von ganz anderen Größen ab, etwa den Produktionskosten und der Nachfrage je Unternehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Verschiebung zeigt, wie stark der Ausbau von Rechenzentren und Künstlicher Intelligenz inzwischen auf die globalen Handelsströme wirkt – unabhängig davon, wie sich einzelne Chip- oder Energiewerte an der Börse entwickeln.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-hernandez-de-cos-neuer-praesident',
+    title: 'Spanier Hernández de Cos wird neuer EZB-Präsident',
+    teaser:
+      'Die EU-Staats- und Regierungschefs haben sich auf Pablo Hernández de Cos als Nachfolger von Christine Lagarde geeinigt. Er tritt das Amt für acht Jahre an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-27T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ezb', 'geldpolitik', 'lagarde', 'eurozone'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['euro-stoxx-50', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 26.11.2026, 15:48 Uhr: „Geldpolitik: Niederlande ziehen zurück – Personalpaket für EZB-Spitze steht“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-pablo-hernandez-de-cos-wird-neuer-chef-der-euro-notenbank/100272970.html',
+      },
+      {
+        label:
+          'tagesschau.de, 26.11.2026, 18:28 Uhr: „Spanier Hernández de Cos soll Nachfolger von EZB-Chefin Lagarde werden“',
+        url: 'https://www.tagesschau.de/wirtschaft/ezb-chef-de-cos-100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die EU-Staats- und Regierungschefs haben sich beim EU-Gipfel in Brüssel auf einen Nachfolger für EZB-Chefin Christine Lagarde geeinigt: den Spanier Pablo Hernández de Cos. Er soll das Amt Anfang 2027 für acht Jahre übernehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'De Cos leitet derzeit die Bank für Internationalen Zahlungsausgleich. Von 2018 bis 2024 war er Gouverneur der spanischen Zentralbank und saß damit bereits im EZB-Rat. Lagarde gibt ihr Amt nach Angaben des Handelsblatts im Februar ab.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mit der Personalie ist zugleich ein größeres Paket verbunden: Der deutsche Ökonom Markus Brunnermeier soll ab Mai neuer EZB-Chefvolkswirt werden und Philip Lane nachfolgen. Ein dritter Posten im EZB-Direktorium geht an Frankreich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Acht Jahre, keine Wiederwahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Amtszeit des EZB-Präsidenten ist in den EU-Verträgen auf acht Jahre festgelegt, eine anschließende Wiederwahl ist nicht vorgesehen. Das unterscheidet den Posten von vielen nationalen Notenbankämtern, die mehrfach verlängert werden können – die feste, einmalige Amtszeit soll die EZB-Spitze von politischen Wahlterminen unabhängig halten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Mit De Cos übernimmt ein erfahrener, als pragmatisch geltender Notenbanker die EZB-Spitze – wie sich seine geldpolitische Linie von der Lagardes unterscheidet, wird sich erst an künftigen Zinsentscheidungen zeigen.',
+      },
+    ],
+  },
+  {
     slug: 'usa-neue-sonderzoelle-handelspartner',
     title: 'USA kündigen neue Sonderzölle gegen mehrere Handelspartner an',
     teaser:
