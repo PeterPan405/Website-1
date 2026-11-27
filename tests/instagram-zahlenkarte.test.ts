@@ -43,6 +43,8 @@ import {
   SP500_HERBST,
 } from '@/data/instagram-reihen-korrektur'
 import { abstandZumHoch } from '@/lib/instagram/arten/begriff'
+import { MARGEN_SEC } from '@/data/instagram-reihen-margen'
+import { dossier as dossierArt } from '@/lib/instagram/arten/dossier'
 import { zoneVon, zonen as zonenArt } from '@/lib/instagram/arten/zonen'
 import {
   DAX_BESTE,
@@ -3013,6 +3015,62 @@ for (let i = 1; i < nachDatum.length; i++)
       'Korrektur: Beschriftung nennt die Wikipedia-Quelle und keine Prognose',
       k.text.includes('Wikipedia') &&
         k.text.includes('Eine eigene Prognose geben wir nicht.')
+    )
+  }
+}
+
+/* 27.11.2026: Black Friday – Gewinn je 100 $ Umsatz (SEC). Karussell: Schätzfrage (2 Seiten) + Kreise. */
+{
+  const k = karteVom('2026-11-27')
+  pruefe('Black Friday: Karte für den 27.11. ist ein Dossier', k?.art === 'dossier')
+  if (k?.art === 'dossier') {
+    pruefe(
+      'Black Friday: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Black Friday: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-26')!)
+    )
+    pruefe(
+      'Black Friday: drei Seiten – Frage, Auflösung, Kreise',
+      zahlenkarteSeiten(k) === 3 &&
+        k.teile[0].art === 'schaetzfrage' &&
+        k.teile[1].art === 'kreise'
+    )
+    const je100 = (n: string) => {
+      const m = MARGEN_SEC.find((x) => x.name === n)!
+      return Math.round((m.gewinn / m.umsatz) * 1000) / 10
+    }
+    const kr = k.teile[1]
+    pruefe(
+      'Black Friday: jeder Kreis aus Umsatz und Gewinn der SEC nachgerechnet',
+      kr.art === 'kreise' &&
+        kr.kreise.length === MARGEN_SEC.length &&
+        kr.kreise.every((c) => c.wert === je100(c.name))
+    )
+    const q = k.teile[0]
+    pruefe(
+      'Black Friday: Antwort der Schätzfrage = Walmart 3,1 $',
+      q.art === 'schaetzfrage' && q.fragen[0].antwort === je100('Walmart')
+    )
+    const wmt = MARGEN_SEC.find((x) => x.name === 'Walmart')!
+    const nvda = MARGEN_SEC.find((x) => x.name === 'Nvidia')!
+    pruefe(
+      'Black Friday: „mit einem Drittel des Umsatzes mehr als das Fünffache“ stimmt',
+      Math.abs(nvda.umsatz / wmt.umsatz - 1 / 3) < 0.04 && nvda.gewinn / wmt.gewinn > 5
+    )
+    /* Gegenprobe: Mehr als sieben Seiten über alle Teile werden beanstandet. */
+    pruefe(
+      'Dossier: drei Schätzfragen (6 Seiten) plus zwei Kreise sind zu viel',
+      q.art === 'schaetzfrage' &&
+        dossierArt
+          .pruefe({
+            ...k,
+            teile: [{ ...q, fragen: [q.fragen[0], q.fragen[0], q.fragen[0]] }, kr, kr],
+          })
+          .some((f) => f.includes('8 Seiten'))
     )
   }
 }
