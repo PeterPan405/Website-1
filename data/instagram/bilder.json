@@ -1879,12 +1879,21 @@
   "2026-11-27": [
     {
       "stelle": 1,
-      "datei": "2026-11-27-1-799aed68.jpg",
-      "titel": "File:Kamala Harris meeting with Syrian constituents. 01.jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Kamala_Harris_meeting_with_Syrian_constituents._01.jpg",
-      "lizenz": "Public domain",
-      "urheber": "The United States Senate - Office of Senator Kamala Harris",
-      "suche": "speech deepcat:\"Donald Trump\""
+      "datei": "2026-11-27-1-6f0cb2a0.jpg",
+      "titel": "File:Blick vom Kaiserdom über Frankfurt zur Skyline.jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Blick_vom_Kaiserdom_%C3%BCber_Frankfurt_zur_Skyline.jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Jörg Braukmann",
+      "suche": "von Hand gewählt"
+    },
+    {
+      "stelle": 2,
+      "datei": "2026-11-27-2-264d2b38.jpg",
+      "titel": "File:Donald Trump & JD Vance portraits (55394507216).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:Donald_Trump_%26_JD_Vance_portraits_(55394507216).jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Gage Skidmore",
+      "suche": "von Hand gewählt"
     },
     {
       "stelle": 4,
@@ -1907,12 +1916,12 @@
     },
     {
       "stelle": 6,
-      "datei": "2026-11-27-6-9cd83e18.jpg",
-      "titel": "File:Darling, Lagarde, Geithner (IMF 2009).jpg",
-      "seite": "https://commons.wikimedia.org/wiki/File:Darling,_Lagarde,_Geithner_(IMF_2009).jpg",
-      "lizenz": "Public domain",
-      "urheber": "IMF Staff Photo/Stephen Jaffe",
-      "suche": "speech deepcat:\"Christine Lagarde\""
+      "datei": "2026-11-27-6-8c423573.jpg",
+      "titel": "File:EZB-Gebäude in Frankfurt (Main).jpg",
+      "seite": "https://commons.wikimedia.org/wiki/File:EZB-Geb%C3%A4ude_in_Frankfurt_(Main).jpg",
+      "lizenz": "CC BY-SA 4.0",
+      "urheber": "Sfintu1",
+      "suche": "von Hand gewählt"
     }
   ]
 }
