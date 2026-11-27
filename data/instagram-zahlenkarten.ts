@@ -53,6 +53,93 @@ import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre
 export const zahlenkarten: Zahlenkarte[] = [
   {
     /*
+      Zahlenkarte 27.11.2026, „Black Friday: Was bleibt hängen?“ –
+      vollautomatisch, Ideenpool Nr. 8 („Von 100 $ Umsatz bleiben … $
+      Gewinn“, gedaechtnis/2026-11-23 Instagram Ideenpool.md), Aufhänger-Typ
+      „Schätzfrage/Quiz“ – in den sieben Tagen davor nicht vergeben.
+      Karussell (drittes in sieben Tagen, Mix-Regel 23.11.). Brücke zum Tag:
+      Black Friday, die Kassen der Händler klingeln.
+
+      Neu: Die Schätzfrage (zwei Seiten, Frage und Auflösung) ist Teil eines
+      Dossiers – dossier.ts zählt seit heute die Seiten der Teile.
+
+      Zahlen: data/snapshots/fundamentaldaten.json, SEC (XBRL-Pflicht-
+      meldungen), abgerufen 21.11.2026 – Umsatz und Nettogewinn des zuletzt
+      gemeldeten Geschäftsjahres. Gewinn je 100 $ = Gewinn / Umsatz × 100,
+      im Test nachgerechnet. Die Geschäftsjahre enden nicht am selben Tag
+      (Walmart und Nvidia Ende Januar, Apple und Microsoft im Herbst bzw.
+      Sommer); das steht in der Beschreibung. Kein Warum – die Daten nennen
+      keine Gründe für die Spannen.
+    */
+    art: 'dossier',
+    datum: '2026-11-27',
+    freigabe: '2026-11-27',
+    titel: [{ text: 'Black Friday:' }, { text: 'Was bleibt hängen?', gruen: true }],
+    unterzeile: 'Von 100 $ Umsatz – wie viel bleibt als Gewinn?',
+    teile: [
+      {
+        art: 'schaetzfrage',
+        datum: '2026-11-27',
+        titel: [{ text: 'Black Friday:' }, { text: 'Was bleibt hängen?', gruen: true }],
+        unterzeile: 'Von 100 $ Umsatz – wie viel bleibt als Gewinn?',
+        fragen: [
+          {
+            frage:
+              'Walmart setzte zuletzt 706 Mrd. $ um. Wie viel Gewinn blieb von 100 $ Umsatz?',
+            von: 0,
+            bis: 50,
+            schritt: 10,
+            einheit: '$',
+            antwort: 3.1,
+            anzeige: '3,1 $',
+            satz: 'Costco: 2,9 $. Nvidia: 55,6 $ – bei einem Drittel des Umsatzes von Walmart.',
+          },
+        ],
+        fusszeile: 'Stand: letztes Geschäftsjahr | Quelle: SEC; eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+      {
+        art: 'kreise',
+        datum: '2026-11-27',
+        titel: [
+          { text: 'Von 100 $ Umsatz' },
+          { text: 'bleiben als Gewinn', gruen: true },
+        ],
+        unterzeile:
+          'Nettogewinn je 100 $ Umsatz, zuletzt gemeldetes Geschäftsjahr. Fläche = Betrag.',
+        kreise: [
+          { name: 'Nvidia', wert: 55.6, anzeige: '55,6 $', logo: 'nvidia.png' },
+          { name: 'Microsoft', wert: 36.1, anzeige: '36,1 $', logo: 'microsoft.png' },
+          { name: 'Apple', wert: 26.9, anzeige: '26,9 $', logo: 'apple.png' },
+          { name: 'Amazon', wert: 10.8, anzeige: '10,8 $', logo: 'amazon.png' },
+          { name: 'Walmart', wert: 3.1, anzeige: '3,1 $' },
+          { name: 'Costco', wert: 2.9, anzeige: '2,9 $' },
+        ],
+        fusszeile:
+          'Stand: letztes Geschäftsjahr | Quelle: SEC (Umsatz, Nettogewinn); eigene Rechnung',
+        text: '',
+        schlagworte: [],
+      },
+    ],
+    fusszeile:
+      'Stand: letztes Geschäftsjahr | Quelle: SEC (Umsatz, Nettogewinn); eigene Rechnung',
+    text:
+      'Heute ist Black Friday – die Kassen klingeln. Aber wie viel bleibt davon hängen? 🛒\n\n' +
+      'Von 100 $ Umsatz blieben zuletzt als Nettogewinn:\n' +
+      'Nvidia: 55,6 $\n' +
+      'Microsoft: 36,1 $\n' +
+      'Apple: 26,9 $\n' +
+      'Amazon: 10,8 $\n' +
+      'Walmart: 3,1 $\n' +
+      'Costco: 2,9 $\n\n' +
+      'Walmart setzte 706 Mrd. $ um, Nvidia 216 Mrd. $. Als Gewinn blieben bei Walmart 21,9 Mrd. $, bei Nvidia 120,1 Mrd. $ – mit einem Drittel des Umsatzes mehr als das Fünffache.\n\n' +
+      'Gerechnet: Nettogewinn geteilt durch Umsatz, jeweils für das zuletzt gemeldete Geschäftsjahr. Die Geschäftsjahre enden nicht am selben Tag.\n\n' +
+      'Quellen: US-Börsenaufsicht SEC (XBRL-Pflichtmeldungen, abgerufen 21.11.2026); eigene Rechnung',
+    schlagworte: ['blackfriday', 'walmart', 'nvidia', 'aktien', 'boerse'],
+  },
+  {
+    /*
       Zahlenkarte 26.11.2026, „Korrektur oder Bärenmarkt?“ – vollautomatisch,
       Ideenpool Nr. 3 („Begriffe der Woche“, gedaechtnis/2026-11-23 Instagram
       Ideenpool.md), Aufhänger-Typ „Erklärt“ – in den sieben Tagen davor nicht
