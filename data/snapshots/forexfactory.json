@@ -1,5 +1,5 @@
 {
-  "abgerufen": "2026-11-26T13:05:45.766Z",
+  "abgerufen": "2026-11-27T13:03:50.424Z",
   "ereignisse": [
     {"title":"Bank Holiday","country":"JPY","date":"2026-10-11T19:00:00-04:00","impact":"Holiday","forecast":"","previous":""},
     {"title":"MPC Member Breeden Speaks","country":"GBP","date":"2026-10-12T05:30:00-04:00","impact":"Low","forecast":"","previous":""},
@@ -716,7 +716,7 @@
     {"title":"French Prelim GDP q/q","country":"EUR","date":"2026-11-27T02:45:00-05:00","impact":"Low","forecast":"-0.1%","previous":"-0.1%"},
     {"title":"Spanish Flash CPI y/y","country":"EUR","date":"2026-11-27T03:00:00-05:00","impact":"Low","forecast":"4.7%","previous":"4.9%"},
     {"title":"German Unemployment Change","country":"EUR","date":"2026-11-27T03:55:00-05:00","impact":"Low","forecast":"5K","previous":"4K"},
-    {"title":"Italian 10-y Bond Auction","country":"EUR","date":"2026-11-27T05:33:00-05:00","impact":"Low","forecast":"","previous":"4.49|1.6"},
+    {"title":"Italian 10-y Bond Auction","country":"EUR","date":"2026-11-27T05:05:00-05:00","impact":"Low","forecast":"","previous":"4.49|1.6"},
     {"title":"German Buba President Nagel Speaks","country":"EUR","date":"2026-11-27T07:40:00-05:00","impact":"Low","forecast":"","previous":""},
     {"title":"Current Account","country":"CAD","date":"2026-11-27T08:30:00-05:00","impact":"Low","forecast":"9.5B","previous":"8.8B"},
     {"title":"Goods Trade Balance","country":"USD","date":"2026-11-27T08:30:00-05:00","impact":"Low","forecast":"-135.9B","previous":"-134.9B"},
