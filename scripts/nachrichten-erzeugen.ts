@@ -53,6 +53,7 @@ import {
   SCHLAGWORTE as IG_SCHLAGWORTE,
   istErscheinungstag,
   pruefeInstagramPlan,
+  schlagzeilenStil,
   themaWiederholt,
   themenwoerter,
 } from '../lib/instagram-plan.ts'
@@ -1265,6 +1266,17 @@ async function main() {
     })
     igFehler.push(...themaWiederholt(ergebnis.instagram.kacheln, frueher))
   }
+  /*
+    Schlagzeile statt Zahlenkolonne (Betreiber 27.11.2026). In der Probe ein
+    Fehler, den der Agent behebt; im Lauf selbst nur eine Warnung – ein
+    „Thema: Zahl“ ist kein Grund, an diesem Tag keine Daily News zu haben.
+  */
+  const igStil =
+    ergebnis.instagram && Array.isArray(ergebnis.instagram.kacheln)
+      ? schlagzeilenStil(ergebnis.instagram.kacheln)
+      : []
+  if (probe) igFehler.push(...igStil)
+  else for (const satz of igStil) console.log(`::warning::Instagram-Titel: ${satz}`)
   const igTag = istErscheinungstag(heute)
   const igMelden = () => {
     if (!igTag) {

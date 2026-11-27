@@ -70,6 +70,16 @@ export function kachelnErlaubt(datum?: string): { min: number; max: number } {
     : { min: KACHELN, max: KACHELN }
 }
 export const TITEL_MAX = 28
+/**
+ * Höchstens so viele Titel mit einer Ziffer (27.11.2026, Betreiber: „die
+ * news wirken noch immer wie wiederholende langweilige zahlen nicht wie
+ * spannend nachrichten“). Die Kacheln davor: „US-BIP: 4,3 % Wachstum“,
+ * „Reallöhne: nur noch +1,3 %“, „US-Vertrauen: 103,3“ – Thema, Doppelpunkt,
+ * Zahl. Siehe `schlagzeilenStil()`.
+ */
+export const TITEL_ZAHL_MAX = 2
+/** Höchstens so viele Titel mit Doppelpunkt – „Fresenius: Chefwechsel“ darf bleiben, nicht fünfmal. */
+export const TITEL_DOPPELPUNKT_MAX = 2
 export const TEXT_MIN = 100
 export const TEXT_MAX = 190
 export const ZUSAMMENFASSUNG_MIN = 60
@@ -152,12 +162,47 @@ export const ANWEISUNG_INSTAGRAM = `Aus dem Feld \`instagram\` entsteht „Top-N
 
 - \`kacheln\`: **genau fünf**, So/Mo 3–5, nach Relevanz – was die breite Masse packt: Zins, Inflation, Öl, Gold, DAX, Bitcoin, Weltkonzerne; nicht EQT/Qiagen. **Ein Thema aus den Kacheln der letzten drei Tage** (\`data/instagram/\`) nur bei starker Veränderung und nur als letzte Kachel – die Prüfung weist es sonst zurück. Fehlt eine, nimm eine aus den Quellen. Krieg und Politik nur über die Marktfolge.
 - **So/Mo** auch Politik und Termine der Woche (nur aus Quellen).
-  - \`titel\`: höchstens ${TITEL_MAX} Zeichen, zwei bis vier Wörter, mit Zahl, wenn es eine gibt. Vorbilder aus dem Kanal: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „2,3 Mrd. für Siemens", „Euro nahe Tief", „EZB".
-  - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – die Nachricht mit Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
+- **Ereignisse vor Statistiken**: Entscheidungen, Übernahmen, Wechsel, Streit, Überraschungen. Eine reine Statistik (BIP, Löhne, Umfrage) höchstens einmal.
+  - \`titel\`: höchstens ${TITEL_MAX} Zeichen, eine **Schlagzeile, keine Statistik**: wer tut was, was ändert sich. Kein „Thema: Zahl", Zahl in höchstens ${TITEL_ZAHL_MAX} Titeln. Vorbilder: „KI-Werte unter Druck", „Öl +10 %", „Fresenius: Chefwechsel", „Euro nahe Tief"; nicht „US-BIP: 4,3 % Wachstum", sondern „Trump wittert BIP-Fehler".
+  - \`text\`: ${TEXT_MIN} bis ${TEXT_MAX} Zeichen, **höchstens ${SAETZE_MAX} kurze Sätze** – erst wer was tut, dann Zahl und Namen, ohne Einordnung, ohne Fachbegriff, den ein Laie nachschlagen müsste, nichts Reißerisches. Vorbild: „Der Nasdaq gab wegen Sorgen um OpenAI und andere KI-Werte nach, während der Dow stabil blieb. TSMC meldete gleichzeitig einen Rekordumsatz."
 - \`zusammenfassung\`: ein bis zwei Sätze, ${ZUSAMMENFASSUNG_MIN} bis ${ZUSAMMENFASSUNG_MAX} Zeichen, die die fünf Themen nennen.
 - \`schlagworte\`: **genau fünf** (mehr nimmt Instagram nicht), kleingeschrieben, ohne \`#\`. Alle **themenbezogen und reichweitenstark** (Betreiber 15.10.2026: „müssen viral sein und themenbezogen“): zwei bis drei zu den Themen des Tages, so wie danach gesucht wird (etwa \`ölpreis\`, \`gold\`, \`ezb\`, \`fed\`, \`dax\`, \`inflation\`), der Rest aus großen deutschen Finanz-Hashtags: \`börse\`, \`aktien\`, \`finanzen\`, \`investieren\`, \`geldanlage\`, \`wirtschaft\`. Keine Füllwörter wie \`news\`, \`top\` oder \`daily\` – danach sucht niemand.
 - Kein Emoji, kein \`#\` im Text. Kopf, Rechtshinweis und KI-Hinweis setzt das Skript selbst.
 - Es gelten dieselben Grundsätze wie für die Ausgabe: nur, was in den Quellen steht, keine Wertung.`
+
+/**
+ * Klingen die Titel nach Nachricht oder nach Zahlenkolonne? (27.11.2026)
+ *
+ * Gemessen wird das Muster, das der Betreiber langweilig fand: „Thema: Zahl“
+ * (ein Doppelpunkt, danach eine Ziffer), mehr als ${TITEL_ZAHL_MAX} Titel
+ * mit Ziffer, mehr als ${TITEL_DOPPELPUNKT_MAX} mit Doppelpunkt. Ob eine
+ * Schlagzeile spannend ist, misst das nicht – aber von den 14 Beiträgen
+ * 14.–27.11.2026 hätte es 12 beanstandet, nur der 16. und der 24.11. nicht.
+ *
+ * Getrennt von `pruefeInstagramPlan()`, weil der Befund die Daily News nicht
+ * kosten darf: In der Probe des Agenten ist er ein Fehler (der Agent bessert
+ * nach), im Lauf selbst eine Warnung.
+ */
+export function schlagzeilenStil(kacheln: { titel: string }[]): string[] {
+  const befund: string[] = []
+  const titel = kacheln.map((k) => String(k?.titel ?? '').trim())
+  for (const [i, t] of titel.entries())
+    if (/:\s.*\d/.test(t))
+      befund.push(
+        `Kachel ${i + 1}: „${t}“ ist „Thema: Zahl“ – eine Schlagzeile sagt, wer was tut („Trump wittert BIP-Fehler“, „Orcel will Commerzbank-Rat führen“).`
+      )
+  const mitZahl = titel.filter((t) => /\d/.test(t)).length
+  if (mitZahl > TITEL_ZAHL_MAX)
+    befund.push(
+      `${mitZahl} Titel mit Zahl, höchstens ${TITEL_ZAHL_MAX} – sonst liest sich der Beitrag wie eine Zahlenkolonne.`
+    )
+  const mitDoppelpunkt = titel.filter((t) => t.includes(':')).length
+  if (mitDoppelpunkt > TITEL_DOPPELPUNKT_MAX)
+    befund.push(
+      `${mitDoppelpunkt} Titel mit Doppelpunkt, höchstens ${TITEL_DOPPELPUNKT_MAX} – „Thema: Stichwort“ fünfmal hintereinander ist keine Schlagzeile.`
+    )
+  return befund
+}
 
 /** Emoji gehören in den Kopf, nicht in die Kacheln oder die Zusammenfassung. */
 const BILDZEICHEN = /\p{Extended_Pictographic}/u

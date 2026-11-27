@@ -140,13 +140,13 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 ## Instagram
 
 - **Die News gehen ohne Freigabe hinaus** – also nur, was die Masse packt
-  (Zins, Öl, Gold, DAX, Weltkonzerne; nicht EQT/Qiagen), nichts doppelt.
-  **Zahlenkarte ab 21.11.2026 vollautomatisch** (Routine setzt
+  (Zins, Öl, Gold, DAX, Weltkonzerne; nicht EQT/Qiagen).
+  **Zahlenkarte vollautomatisch** (Routine setzt
   `freigabe`); „stopp" gilt.
 - **Jeder Titel so, wie die Quelle es sagt** – „höchster Stand seit Mai
   2025" ist kein „Rekordhoch". Kein Warum, das die Quelle nicht nennt.
-- **Kein Thema zweimal** – nicht im Beitrag, nicht in 3 Tagen
-  (`themaWiederholt()`). So/Mo 3–5 Kacheln.
+- **Kein Thema zweimal** (Beitrag, 3 Tage: `themaWiederholt()`); So/Mo 3–5
+  Kacheln. **Schlagzeile statt „Thema: Zahl“** (`schlagzeilenStil()`).
 - **Eine Grafik nur, wenn sie zur Kachel passt** (Tag, Zahl, Richtung:
   `kursFuerKachel()`), immer mit X- und Y-Achse.
 - **Jede Kachel ein Bild, nie ein falsches, nie ein altes:** täglich neu
