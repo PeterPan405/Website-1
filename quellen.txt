@@ -1,0 +1,15 @@
+
+==============================================================================
+QUELLE: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Total_fertility_rate
+==============================================================================
+STATUS: 500 – nicht abrufbar
+
+==============================================================================
+QUELLE: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Fertility_statistics
+==============================================================================
+STATUS: 500 – nicht abrufbar
+
+==============================================================================
+QUELLE: https://www.bib.bund.de/DE/Fakten/Fakt/F13-Zusammengefasste-Geburtenziffer-Deutschland-West-Ost-ab-1945.html
+==============================================================================
+FEHLER: RemoteDisconnected: Remote end closed connection without response
