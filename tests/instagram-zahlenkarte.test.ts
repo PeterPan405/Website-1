@@ -44,6 +44,7 @@ import {
 } from '@/data/instagram-reihen-korrektur'
 import { abstandZumHoch } from '@/lib/instagram/arten/begriff'
 import { MARGEN_SEC } from '@/data/instagram-reihen-margen'
+import { GEBURTENZIFFER_2024 } from '@/data/instagram-reihen-geburten'
 import { dossier as dossierArt } from '@/lib/instagram/arten/dossier'
 import { zoneVon, zonen as zonenArt } from '@/lib/instagram/arten/zonen'
 import {
@@ -3071,6 +3072,71 @@ for (let i = 1; i < nachDatum.length; i++)
             teile: [{ ...q, fragen: [q.fragen[0], q.fragen[0], q.fragen[0]] }, kr, kr],
           })
           .some((f) => f.includes('8 Seiten'))
+    )
+  }
+}
+
+/* 28.11.2026: Kinder pro Frau – EU-weit unter 2 (Weltbank 2024). Einseiter, laenderkarte. */
+{
+  const k = karteVom('2026-11-28')
+  pruefe('Geburten: Karte für den 28.11. ist eine Länderkarte', k?.art === 'laenderkarte')
+  if (k?.art === 'laenderkarte') {
+    pruefe(
+      'Geburten: keine Beanstandung',
+      pruefeZahlenkarte(k).length === 0,
+      pruefeZahlenkarte(k).join(' | ')
+    )
+    pruefe(
+      'Geburten: Form anders als am Vortag',
+      form(k) !== form(karteVom('2026-11-27')!)
+    )
+    const EU27 = [
+      'AUT',
+      'BEL',
+      'BGR',
+      'HRV',
+      'CYP',
+      'CZE',
+      'DNK',
+      'EST',
+      'FIN',
+      'FRA',
+      'DEU',
+      'GRC',
+      'HUN',
+      'IRL',
+      'ITA',
+      'LVA',
+      'LTU',
+      'LUX',
+      'MLT',
+      'NLD',
+      'POL',
+      'PRT',
+      'ROU',
+      'SVK',
+      'SVN',
+      'ESP',
+      'SWE',
+    ]
+    pruefe(
+      'Geburten: alle 27 EU-Länder auf der Karte und alle unter 2',
+      EU27.every((c) => typeof k.werte[c] === 'number' && k.werte[c] < 2)
+    )
+    const eu = EU27.map((c) => [c, GEBURTENZIFFER_2024[c]] as const)
+    const hoechst = eu.reduce((a, b) => (b[1] > a[1] ? b : a))
+    const tiefst = eu.reduce((a, b) => (b[1] < a[1] ? b : a))
+    pruefe(
+      'Geburten: höchster EU-Wert Bulgarien 1,72, niedrigster Malta 1,01, Deutschland 1,36',
+      hoechst[0] === 'BGR' &&
+        hoechst[1] === 1.72 &&
+        tiefst[0] === 'MLT' &&
+        tiefst[1] === 1.01 &&
+        GEBURTENZIFFER_2024.DEU === 1.36
+    )
+    pruefe(
+      'Geburten: die Beschriftung nennt die Ausnahme Monaco',
+      k.text.includes('Monaco bei 2,10')
     )
   }
 }
