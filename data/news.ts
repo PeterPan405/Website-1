@@ -101,6 +101,327 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'tarifabschluss-metall-elektroindustrie-mannheim',
+    title: 'Tarifeinigung in der Metallindustrie: 4,3 Prozent mehr Lohn',
+    teaser:
+      'IG Metall und die Arbeitgeber einigen sich in Baden-Württemberg und Nordrhein-Westfalen auf 4,3 Prozent mehr Lohn in zwei Stufen, verteilt auf 25 Monate.',
+    category: 'Märkte',
+    publishedAt: '2026-11-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['IG Metall', 'Tarifverhandlung', 'Industrie', 'Löhne'],
+    relatedTopics: ['aktie', 'inflation'],
+    relatedSymbols: ['dax', 'mercedes-benz', 'volkswagen'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, Wirtschaft, Meldung vom 26.11.2026, 17:43 Uhr: „Einigung im Tarifstreit der Metall- und Elektroindustrie"',
+        url: 'https://www.tagesschau.de/wirtschaft/tarifabschluss-metall-elektroindustrie-100.html',
+      },
+      {
+        label:
+          'aktiencheck.de Redaktion, Meldung vom 27.11.2026, 11:32 Uhr: „Metall-Tarifabschluss: 4,3 Prozent in zwei Stufen für rund 1,7 Millionen Beschäftigte"',
+        url: 'https://aktiencheck.de/artikel/metall-tarifabschluss-43-prozent-in-zwei-stufen-fuer-rund-17-millionen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach mehr als 24 Stunden Verhandlung im Congress Center Rosengarten in Mannheim haben sich die IG Metall und die Arbeitgeberverbände Südwestmetall und Metall NRW auf einen neuen Tarifvertrag geeinigt. Er gilt zunächst als Pilotabschluss für die Bezirke Baden-Württemberg und Nordrhein-Westfalen und soll auf die übrigen Tarifgebiete übertragen werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Eckpunkte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Entgelte steigen in zwei Schritten um insgesamt 4,3 Prozent: um 2,0 Prozent zum 1. Mai 2027 und um weitere 2,3 Prozent zum 1. April 2028. Bis dahin gibt es keine tabellenwirksame Erhöhung. Dazu kommt im März 2027 eine Einmalzahlung zwischen 150 und 450 Euro, gestaffelt nach der Nettoumsatzrendite des jeweiligen Betriebs – Auszubildende erhalten zusätzlich 70 bis 210 Euro. Die Laufzeit beträgt 25 Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Forderung gegen Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die IG Metall war mit einer Forderung von 5 Prozent für zwölf Monate in die Runde gegangen. Die Arbeitgeber hatten zuletzt eine Einmalzahlung sowie 1,3 Prozent mehr Entgelt ab Juli 2028 bei 26 Monaten Laufzeit angeboten. Umgerechnet auf ein Jahr entspricht der Abschluss rund 2,1 Prozent – mehr als das Arbeitgeberangebot, deutlich weniger als die ursprüngliche Forderung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zugeständnis bei der Arbeitszeit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Gewerkschaft stimmte zeitlich begrenzten Abweichungen von der 35-Stunden-Woche zu. Beschäftigte können danach befristet unbezahlt mehr arbeiten oder auf Entgelt verzichten, um Investitionen zu stützen – begrenzt auf acht Prozent der tariflichen Entgelte. Vorausgegangen waren nach Gewerkschaftsangaben die schärfsten Warnstreiks seit Jahren mit mehr als 950.000 Teilnehmenden. Bei Mercedes-Benz und Volkswagen laufen eigene, bislang ungelöste Verhandlungen über Arbeitskosten und Haustarife weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Steigerung von gut zwei Prozent pro Jahr ist nominal ein Plus. Ob sie auch real etwas bringt, entscheidet sich erst im Vergleich mit der Inflation über die Laufzeit – und die lag zuletzt in der Eurozone bei rund vier Prozent.',
+      },
+    ],
+  },
+  {
+    slug: 'inflation-spanien-frankreich-november-ueberraschung',
+    title: 'Inflation in Frankreich und Spanien sinkt überraschend deutlich',
+    teaser:
+      'Die Teuerung in Frankreich und Spanien ist im November stärker gefallen als erwartet. Für die gesamte Eurozone zeichnet sich noch kein Rückgang ab.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-11-28T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Eurozone', 'EZB', 'Konjunktur'],
+    relatedTopics: ['inflation'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Geldpolitik, Meldung vom 27.11.2026, 12:09 Uhr: „Konjunktur: Inflation in Spanien und Frankreich lässt überraschend nach"',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/konjunktur-inflation-in-spanien-und-frankreich-laesst-ueberraschend-nach/100273264.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In Frankreich und Spanien ist der Preisanstieg im November auf hohem Niveau spürbar zurückgegangen. Beide Länder meldeten damit eine deutlich schwächere Teuerung, als Fachleute vorab erwartet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahlen im Einzelnen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die für den europäischen Vergleich berechnete Teuerungsrate (HVPI) sank in Frankreich auf 3,2 Prozent, nach 3,7 Prozent im Oktober, wie das Statistikamt Insee mitteilte. Von Reuters befragte Fachleute hatten nur einen Rückgang auf 3,6 Prozent erwartet. In Spanien ging die Inflation im November auf 4,1 Prozent zurück, nach 4,9 Prozent im Oktober – erwartet worden waren 4,7 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guidance für die kommende Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Inflationsdaten aus Deutschland stehen am Montag, 30. November, an. Für die HVPI-Rate wird dort ein Anstieg auf 2,9 Prozent erwartet, nach 2,8 Prozent im Oktober. Die Zahlen für die gesamte Eurozone folgen am Dienstag, 1. Dezember; Fachleute rechnen damit, dass die Rate bei 4,0 Prozent verharrt – doppelt so hoch wie das Ziel der Europäischen Zentralbank von 2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das noch nicht das Ende ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Chefökonom Daniel Hartmann von der Bantleon AG sagte laut Handelsblatt, die Weitergabe höherer Gaspreise und das Auslaufen des deutschen Tankrabatts dürften die Inflation im Euroraum zum Jahreswechsel wieder über die Marke von vier Prozent treiben – auch weil die Ölpreise zuletzt wieder gestiegen seien.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei einzelne Landeswerte sagen noch nichts über die Rate für die gesamte Eurozone, an der sich die EZB orientiert. Erst die Summe aller Mitgliedsländer am Dienstag zeigt, ob der Trend in Frankreich und Spanien eine Wende ist oder eine Ausnahme.',
+      },
+    ],
+  },
+  {
+    slug: 'sap-stellenabbau-ki-umbau',
+    title: 'SAP bereitet Insidern zufolge großen Stellenabbau vor',
+    teaser:
+      'SAP soll laut mehreren übereinstimmenden Medienberichten bis zu 15.000 Stellen abbauen. Der Konzern äußert sich nicht zu den Zahlen, bestätigt aber den Umbau.',
+    category: 'Märkte',
+    publishedAt: '2026-11-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['SAP', 'Künstliche Intelligenz', 'Stellenabbau', 'DAX'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sap', 'dax'],
+    sources: [
+      {
+        label:
+          'tagesschau.de, Wirtschaft/Unternehmen, Meldung vom 27.11.2026, 12:09 Uhr: „SAP erwägt offenbar Abbau von Tausenden Stellen"',
+        url: 'https://www.tagesschau.de/wirtschaft/unternehmen/sap-stellenabbau-geplant-100.html',
+      },
+      {
+        label:
+          'CNBC, Meldung vom 27.11.2026, 14:52 Uhr GMT: „German software firm SAP is reportedly cutting at least 10,000 jobs in AI push"',
+        url: 'https://www.cnbc.com/2026/11/27/sap-job-cuts-ai-restructuring.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Softwarekonzern SAP steuert Insidern zufolge auf einen größeren Stellenabbau zu. Mehrere Medien berichten übereinstimmend darüber, die genaue Größenordnung steht aber offenbar noch nicht fest.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwischen 10.000 und 15.000 Stellen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nachrichtenagentur Bloomberg zufolge könnten bis zu 10.000 Jobs wegfallen, ein Insider sprach gegenüber dem Handelsblatt sogar von bis zu 15.000 Stellen. CNBC bestätigte unter Berufung auf eigene Quellen mindestens 10.000 Stellen. Der Plan sei noch nicht final; Beschluss und Ankündigung dürften laut Reuters-Quellen erst Anfang 2027 erfolgen, nach Informationen der WirtschaftsWoche rund um die Jahreszahlen Ende Januar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ankündigung gegen Bestätigung',
+      },
+      {
+        type: 'paragraph',
+        text: 'SAP selbst wollte sich zu den konkreten Zahlen nicht äußern. In einer Stellungnahme hieß es lediglich, Rollen und Funktionen würden sich im Rahmen der laufenden Transformation „naturgemäß weiterentwickeln"; Spekulationen kommentiere der Konzern nicht. Konzernchef Christian Klein und Finanzvorstand Dominik Asam hatten bei Investorenveranstaltungen aber bereits signalisiert, dass die Belegschaft von aktuell mehr als 110.000 Beschäftigten zurückgehen dürfte – die Automatisierung mithilfe Künstlicher Intelligenz spiele dabei eine zentrale Rolle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Beschäftigungssicherung in Deutschland',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Beschäftigte in Deutschland dürfte es vor allem um freiwilligen Stellenabbau gehen: Der Konzern hatte nach Handelsblatt-Informationen erst Anfang Oktober eine Beschäftigungssicherung bis Ende 2028 vereinbart. Anfang 2024 hatte SAP bereits 8.000 Jobs auf den Prüfstand gestellt, wachstumsschwache Bereiche wurden damals aber durch Neueinstellungen in anderen Sparten ausgeglichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwischen einer Ankündigung bei Investorenveranstaltungen und einer offiziell bestätigten Zahl liegt oft ein Zeitraum von Monaten. Erst die für Ende Januar erwartete Jahresbilanz dürfte zeigen, ob die kursierenden Zahlen zutreffen – bis dahin bleibt es eine Erwartung, keine Tatsache.',
+      },
+    ],
+  },
+  {
+    slug: 'china-boersen-rekordsprung-staatsrat',
+    title: 'Chinas Börsen springen nach seltenem Regierungskommentar',
+    teaser:
+      'Nach einer ungewöhnlich deutlichen Erklärung des chinesischen Staatsrats legte der Leitindex CSI 300 so stark zu wie seit Oktober 2024 nicht mehr.',
+    category: 'Märkte',
+    publishedAt: '2026-11-28T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['China', 'Aktienmarkt', 'Staatsrat', 'Asien'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['nikkei-225'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Märkte/Marktberichte, Meldung vom 27.11.2026, 10:16 Uhr: „Nikkei, Yen, CSI 300: Chinesische Märkte legen nach seltenem Regierungskommentar zu"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/nikkei-yen-csi-300-chinesische-maerkte-legen-nach-seltenem-regierungskommentar-zu/100273175.html',
+      },
+      {
+        label:
+          'CNBC, Meldung vom 27.11.2026, 10:13 Uhr GMT: „Chinese chip stocks notch biggest ever one-day gains as Beijing signals broader market support"',
+        url: 'https://www.cnbc.com/2026/11/27/china-chip-stocks-beijing-market-support.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinesische Aktien haben am Freitag deutlich an Wert gewonnen. Auslöser waren ungewöhnlich klare Regierungsaussagen zur Stützung der Kapitalmärkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Mitteilung des Staatsrats',
+      },
+      {
+        type: 'paragraph',
+        text: 'Chinas Staatsrat veröffentlichte am Mittag nach einer Sitzung unter Leitung von Premier Li Qiang eine Erklärung, in der unter anderem gefordert wird, „zusätzliche Maßnahmen vorzubereiten und einzuführen, um eine stabile und gesunde Entwicklung des Kapitalmarktes zu fördern". Ungewöhnlich war dabei, dass die Mitteilung die stabilisierende Rolle der sogenannten „Nationalteams" namentlich erwähnte – staatlich kontrollierte Finanzinstitutionen, die eingesetzt werden, um Chinas Aktienmärkte zu stützen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der größte Tagesgewinn seit Oktober 2024',
+      },
+      {
+        type: 'paragraph',
+        text: 'Chinas Leitindex CSI 300 ging daraufhin mit einem Plus von mehr als vier Prozent ins Wochenende – der größte Tagesgewinn seit Oktober 2024. Chinesische Chip-Aktien verzeichneten nach CNBC-Angaben ihren bislang größten Tagesgewinn überhaupt. Der Nikkei in Tokio legte parallel um 2,1 Prozent zu. Die Aussagen kommen nach einer monatelangen Schwächephase: Der CSI 300 liegt trotz des Kurssprungs weiterhin mehr als 20 Prozent unter seinem Höchststand vom Juni.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Regierungskommentar kann einen Index an einem Tag stärker bewegen als Monate an Unternehmensnachrichten. Das zeigt, wie stark Chinas Kapitalmärkte an politischen Signalen hängen – und wie wenig ein einzelner Tagesgewinn über den Trend der folgenden Monate aussagt.',
+      },
+    ],
+  },
+  {
+    slug: 'deutsche-boerse-allfunds-eu-freigabe',
+    title: 'EU gibt grünes Licht für Deutsche Börses größte Übernahme',
+    teaser:
+      'Die EU-Kommission hat der Übernahme der Fondsplattform Allfunds durch die Deutsche Börse ohne Auflagen zugestimmt – die größte Übernahme ihrer Geschichte.',
+    category: 'Märkte',
+    publishedAt: '2026-11-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Börse', 'Übernahme', 'Fonds', 'EU-Kommission'],
+    relatedTopics: ['fonds', 'aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Handelsblatt, Märkte, Meldung vom 27.11.2026, 13:16 Uhr: „Märkte: EU erlaubt Deutscher Börse Milliarden-Übernahme von Allfunds"',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/maerkte-eu-erlaubt-deutscher-boerse-milliarden-uebernahme-von-allfunds/100273297.html',
+      },
+      {
+        label:
+          'WirtschaftsWoche, Börse, Meldung vom 27.11.2026, 13:43 Uhr: „Allfunds: Deutsche Börse darf Fondsplattform übernehmen"',
+        url: 'https://www.wiwo.de/finanzen/boerse/deutsche-boerse-eu-genehmigt-rekorduebernahme-von-allfunds/100273302.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Börse kommt bei der größten Übernahme ihrer Geschichte voran. Die EU-Kommission hat dem Zusammenschluss mit der spanisch-britischen Fondsplattform Allfunds zugestimmt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ohne Auflagen genehmigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kommission teilte mit, sie habe keine wettbewerbsrechtlichen Bedenken gegen den Zusammenschluss. Im Januar hatte die Deutsche Börse mitgeteilt, Allfunds für etwas mehr als fünf Milliarden Euro übernehmen zu wollen. Der Vollzug wird wegen weiterer aufsichtsrechtlicher Genehmigungen für das erste Quartal 2027 erwartet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '1,7 Billionen Euro verwaltetes Vermögen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Allfunds verwaltete Ende 2025 ein Vermögen von rund 1,7 Billionen Euro und bietet Fondsmanagern und -vertrieben Systeme für Handel, Ausführung, Datenanalyse und Compliance an. Die Deutsche Börse baut ihr Geschäft seit einiger Zeit gezielt außerhalb des reinen Aktienhandels aus, um unabhängiger von dessen Schwankungen zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Umsatz gegen Marge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Deutsche Börse zählt bei einer solchen Übernahme nicht allein, wie viel zusätzlicher Umsatz hinzukommt, sondern zu welcher Marge er verarbeitet werden kann. Eine Fondsplattform wie Allfunds lebt von Gebühren je Transaktion und Depotposition – ein Geschäft mit anderen Kostenstrukturen als der Handel mit Aktien und Derivaten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die EU-Freigabe ist eine Hürde weniger, aber nicht die letzte. Bis der Zusammenschluss 2027 vollzogen ist, bleibt offen, wie gut sich ein Fondsgeschäft in einen Konzern einfügt, der bislang vor allem vom Börsenhandel lebt.',
+      },
+    ],
+  },
+  {
     slug: 'us-bip-revision-trump-untersuchung',
     title:
       'US-Wirtschaft wuchs im dritten Quartal deutlich stärker als zunächst gemeldet',

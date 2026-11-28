@@ -1,0 +1,26 @@
+{
+  "zusammenfassung": "Tarifeinigung in der Metallindustrie, überraschend schwächere Inflation in Frankreich und Spanien, SAP-Stellenabbau und ein Kurssprung in China.",
+  "kacheln": [
+    {
+      "titel": "Metall-Tarifstreit beigelegt",
+      "text": "IG Metall und Arbeitgeber einigten sich auf 4,3 Prozent mehr Lohn in zwei Stufen bis 2028. Zuvor hatte es die schärfsten Warnstreiks seit Jahren gegeben."
+    },
+    {
+      "titel": "Inflation fällt überraschend",
+      "text": "Frankreichs Teuerung sank auf 3,2 Prozent, Spaniens auf 4,1 Prozent. Beide Werte lagen klar unter den Erwartungen von Fachleuten."
+    },
+    {
+      "titel": "SAP plant Stellenabbau",
+      "text": "Insidern zufolge könnten bis zu 15.000 Jobs wegfallen. SAP äußert sich nicht zu Zahlen, bestätigt aber den Umbau Richtung Künstliche Intelligenz."
+    },
+    {
+      "titel": "Chinas Börsen springen",
+      "text": "Nach einem seltenen Regierungskommentar zur Marktstützung legte der CSI 300 so stark zu wie seit Oktober 2024 nicht mehr."
+    },
+    {
+      "titel": "Deutsche Börse: EU-Freigabe",
+      "text": "Brüssel genehmigte die Übernahme der Fondsplattform Allfunds ohne Auflagen. Es ist die größte Übernahme der Firmengeschichte."
+    }
+  ],
+  "schlagworte": ["dax", "inflation", "ezb", "börse", "aktien"]
+}
