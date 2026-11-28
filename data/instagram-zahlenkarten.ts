@@ -30,6 +30,7 @@ import { EXY_2026 } from './instagram-reihen-euro.ts'
 import { NVIDIA_COMEBACK } from './instagram-reihen-nvidia-comeback.ts'
 import { DAX_SCHWAERZESTE } from './instagram-reihen-dax-wochentage.ts'
 import { THANKSGIVING_WOCHEN } from './instagram-reihen-thanksgiving.ts'
+import { GEBURTENZIFFER_2024 } from './instagram-reihen-geburten.ts'
 import {
   ABSTAND_ZUM_HOCH,
   GOLD_2026,
@@ -51,6 +52,60 @@ import {
 import { DAX_NUR_SOMMER, DAX_NUR_WINTER } from './instagram-reihen-dax-halbjahre.ts'
 
 export const zahlenkarten: Zahlenkarte[] = [
+  {
+    /*
+      Zahlenkarte 28.11.2026, „Kinder pro Frau: EU-weit unter 2“ –
+      vollautomatisch, Ideenpool Nr. 13 („Wo die Kinder fehlen“, nur die
+      Karte), Aufhänger-Typ „Weltkarte/Länder“ – in den sieben Tagen davor
+      nicht vergeben. Einseiter nach zwei Karussells (26./27.11.; nie mehr
+      als zwei Tage dieselbe Klasse). Samstag, keine Börse – ein Thema ohne
+      Tageskurs passt.
+
+      Erst „Europa überall unter 2“ – falsch: Monaco liegt bei 2,10 (nicht
+      auf der Karte). Alle 27 EU-Länder stehen auf der Karte; der Test prüft,
+      dass keines 2 erreicht.
+
+      Zahlen: Weltbank, SP.DYN.TFRT.IN, Jahr 2024, aus laender.json
+      (abgerufen 01.11.2026), eingefroren in
+      data/instagram-reihen-geburten.ts. Höchster Wert Bulgarien 1,72,
+      niedrigster Malta 1,01, Deutschland 1,36 – im Test nachgerechnet.
+
+      Weggelassen: „2,1 Kinder halten die Bevölkerung stabil“ – die Quellen
+      dafür (Wikipedia: 429, Eurostat: 500, BiB: Verbindung abgebrochen,
+      28.11.2026 über quellen-holen.yml) waren nicht lesbar. Ebenso kein Wort
+      zur Rente: Pool Nr. 13 nennt sie, aber keine gelesene Quelle stützt
+      einen Satz dazu.
+    */
+    art: 'laenderkarte',
+    datum: '2026-11-28',
+    freigabe: '2026-11-28',
+    titel: [{ text: 'Kinder pro Frau:' }, { text: 'EU-weit unter 2.', gruen: true }],
+    unterzeile: 'Geburtenziffer 2024 – Kinder je Frau. Je dunkler, desto mehr.',
+    einheit: '',
+    stellen: 2,
+    von: 1,
+    bis: 1.8,
+    hervor: 'DEU',
+    werte: GEBURTENZIFFER_2024,
+    fusszeile:
+      'Stand: 2024 | Quelle: Weltbank (World Development Indicators, SP.DYN.TFRT.IN)',
+    text:
+      'Wie viele Kinder bekommt eine Frau in Europa? In keinem EU-Land sind es zwei. 👶\n\n' +
+      'Zusammengefasste Geburtenziffer 2024 (Kinder je Frau):\n' +
+      'Bulgarien: 1,72 – der höchste Wert in der EU\n' +
+      'Frankreich: 1,61\n' +
+      'Island: 1,56\n' +
+      'Großbritannien: 1,55\n' +
+      'Deutschland: 1,36\n' +
+      'Italien: 1,18\n' +
+      'Polen: 1,14\n' +
+      'Spanien: 1,10\n' +
+      'Malta: 1,01 – der niedrigste\n\n' +
+      'Außerhalb der EU liegt Monaco bei 2,10.\n\n' +
+      'Die Zahl ist ein Modellwert: so viele Kinder bekäme eine Frau im Leben, wenn die Geburtenhäufigkeiten eines Jahres für sie durchgehend gälten – nicht die tatsächliche Kinderzahl einer Generation.\n\n' +
+      'Quelle: Weltbank, World Development Indicators (SP.DYN.TFRT.IN), Jahr 2024',
+    schlagworte: ['geburtenrate', 'europa', 'demografie', 'wirtschaft', 'finanzen'],
+  },
   {
     /*
       Zahlenkarte 27.11.2026, „Black Friday: Was bleibt hängen?“ –
